@@ -17,6 +17,9 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            
+            // @nodes(SOURCE)
+
             var content = new LpsParser(ContentId, true, Lp.LetterOrDigit().OneOrMore()); 
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Nodes + "(" + content.Maybe() + ")");

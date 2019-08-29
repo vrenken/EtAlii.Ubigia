@@ -12,11 +12,22 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
+        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
+        private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
-        public AssignAndSelectValueAnnotationParser(INodeValidator nodeValidator, INodeFinder nodeFinder)
+        public AssignAndSelectValueAnnotationParser(
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder, 
+            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            IRootedPathSubjectParser rootedPathSubjectParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
+            _rootedPathSubjectParser = rootedPathSubjectParser;
+
+            // @value-assign(SOURCE, VALUE)
+
             var content = new LpsParser(ContentId, true, Lp.LetterOrDigit().OneOrMore()); 
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueAssign + "(" + content.Maybe() + ")");

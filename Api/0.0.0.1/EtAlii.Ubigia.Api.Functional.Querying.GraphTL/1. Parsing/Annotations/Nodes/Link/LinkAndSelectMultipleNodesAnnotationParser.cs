@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
@@ -8,27 +10,78 @@ namespace EtAlii.Ubigia.Api.Functional
         public string Id { get; } = nameof(LinkAndSelectMultipleNodesAnnotation);
         public LpsParser Parser { get; }
         
-        private const string ContentId = "Content";
+        private const string SourceId = "Source";
+        private const string TargetId = "Target";
+        private const string TargetLinkId = "TargetLink";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-
-        public LinkAndSelectMultipleNodesAnnotationParser(INodeValidator nodeValidator, INodeFinder nodeFinder)
+        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
+        private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
+        
+        public LinkAndSelectMultipleNodesAnnotationParser(
+            INodeValidator nodeValidator, 
+            INodeFinder nodeFinder, 
+            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            IRootedPathSubjectParser rootedPathSubjectParser,
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
+            _rootedPathSubjectParser = rootedPathSubjectParser;
             
-            var content = new LpsParser(ContentId, true, Lp.LetterOrDigit().OneOrMore()); 
-
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodesLink + "(" + content.Maybe() + ")");
+            // @nodes-link(SOURCE, TARGET, TARGET_LINK)
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Debug("Source", true);
+            var targetParser = new LpsParser(TargetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Debug("Target", true);
+            var targetLinkParser = new LpsParser(TargetLinkId, true, nonRootedPathSubjectParser.Parser).Debug("TargetLink", true);
+            
+            Parser = new LpsParser(Id, true, 
+                "@" + AnnotationPrefix.NodesLink + "(" + 
+                       sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + 
+                       targetParser + whitespaceParser.Optional + "," + whitespaceParser.Optional +
+                       targetLinkParser + ")");
         }
 
         public AnnotationNew Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var contentNode = _nodeFinder.FindFirst(node, ContentId);
+
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
+            var sourceChildNode = sourceNode.Children.Single();
+            var sourcePath = sourceChildNode.Id switch
+            {
+                { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(sourceChildNode),
+                { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
+                _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
+            };
             
-            return new LinkAndSelectMultipleNodesAnnotation(null, null, null);
+            var targetNode = _nodeFinder.FindFirst(node, TargetId);
+            var targetChildNode = targetNode.Children.Single();
+            var targetPath = targetChildNode.Id switch
+            {
+                { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(targetChildNode),
+                { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(targetChildNode),
+                _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
+            };
+
+            var targetLinkNode = _nodeFinder.FindFirst(node, TargetLinkId);
+            var targetLinkChildNode = targetLinkNode.Children.Single();
+            NonRootedPathSubject targetLinkPath;
+            if (targetLinkChildNode.Id == _nonRootedPathSubjectParser.Id)
+            {
+                targetLinkPath = _nonRootedPathSubjectParser.Parse(targetLinkChildNode) as NonRootedPathSubject;
+                if (targetLinkPath == null)
+                {
+                    throw new NotSupportedException($"Cannot find non-rooted target link path in: {node.Match}");
+                }
+            }
+            else
+            {
+                throw new NotSupportedException($"Cannot find non-rooted target link path in: {node.Match}");
+            }
+
+            return new LinkAndSelectMultipleNodesAnnotation(sourcePath, targetPath, targetLinkPath);
         }
 
         public bool CanParse(LpNode node)
