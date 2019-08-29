@@ -12,9 +12,9 @@
         /// <summary>
         /// The relative target path subject where the source should be unlinked from.
         /// </summary>
-        public PathSubject TargetLink { get; }
+        public NonRootedPathSubject TargetLink { get; }
 
-        public UnlinkAndSelectMultipleNodesAnnotation(PathSubject source, PathSubject target, RelativePathSubject targetLink) : base(source)
+        public UnlinkAndSelectMultipleNodesAnnotation(PathSubject source, PathSubject target, NonRootedPathSubject targetLink) : base(source)
         {
             Target = target;
             TargetLink = targetLink;
