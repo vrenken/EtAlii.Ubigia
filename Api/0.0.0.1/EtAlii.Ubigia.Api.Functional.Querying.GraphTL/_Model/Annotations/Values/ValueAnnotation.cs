@@ -5,17 +5,17 @@
     public class ValueAnnotation : AnnotationNew 
     {
         /// <summary>
-        /// The target path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
+        /// The source path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
         /// </summary>
-        public PathSubject Target { get; }
+        public PathSubject Source { get; }
 
         /// <summary>
-        /// Create a new ValueAnnotation using the specified target.
+        /// Create a new ValueAnnotation using the specified source.
         /// </summary>
-        /// <param name="target"></param>
-        public ValueAnnotation(PathSubject target)
+        /// <param name="source"></param>
+        public ValueAnnotation(PathSubject source)
         {
-            Target = target;
+            Source = source;
         }
     }
 }

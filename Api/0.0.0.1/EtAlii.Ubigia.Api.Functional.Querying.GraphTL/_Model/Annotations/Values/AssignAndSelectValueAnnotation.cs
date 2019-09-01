@@ -6,7 +6,7 @@
     {
         public Subject Subject { get; }
         
-        public AssignAndSelectValueAnnotation(PathSubject target, Subject subject) : base(target)
+        public AssignAndSelectValueAnnotation(PathSubject source, Subject subject) : base(source)
         {
             Subject = subject;
         }

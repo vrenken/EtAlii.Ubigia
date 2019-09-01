@@ -4,7 +4,7 @@
 
     public class ClearAndSelectValueAnnotation : ValueAnnotation 
     {
-        public ClearAndSelectValueAnnotation(PathSubject target) : base(target)
+        public ClearAndSelectValueAnnotation(PathSubject source) : base(source)
         {
         }
     }
