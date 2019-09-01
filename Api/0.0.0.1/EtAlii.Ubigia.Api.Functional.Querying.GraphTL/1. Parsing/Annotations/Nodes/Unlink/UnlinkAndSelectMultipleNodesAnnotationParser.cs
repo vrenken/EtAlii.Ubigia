@@ -32,9 +32,9 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootedPathSubjectParser = rootedPathSubjectParser;
             
             // @nodes-unlink(SOURCE, TARGET, TARGET_LINK)
-            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Debug("Source", true);
-            var targetParser = new LpsParser(TargetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Debug("Target", true);
-            var targetLinkParser = new LpsParser(TargetLinkId, true, nonRootedPathSubjectParser.Parser).Debug("TargetLink", true);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var targetParser = new LpsParser(TargetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var targetLinkParser = new LpsParser(TargetLinkId, true, nonRootedPathSubjectParser.Parser);
             
             Parser = new LpsParser(Id, true, 
                 "@" + AnnotationPrefix.NodesUnlink + "(" + 
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool CanValidate(AnnotationNew annotation)

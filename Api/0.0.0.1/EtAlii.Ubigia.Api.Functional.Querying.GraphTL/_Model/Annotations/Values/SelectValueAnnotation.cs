@@ -4,7 +4,7 @@
 
     public class SelectValueAnnotation : ValueAnnotation 
     {
-        public SelectValueAnnotation(PathSubject target) : base(target)
+        public SelectValueAnnotation(PathSubject source) : base(source)
         {
         }
     }

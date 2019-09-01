@@ -40,7 +40,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
+            Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString());
             Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
@@ -61,7 +61,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
+            Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString());
             Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
@@ -82,7 +82,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"\\Weight",valueAnnotation.Target.ToString());
+            Assert.Equal(@"\\Weight",valueAnnotation.Source.ToString());
             Assert.Equal("42", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
@@ -91,7 +91,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-assign('John2')";
+            var text = @"@value-assign(//Nickname, 'Johnny')";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -102,8 +102,8 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Null(valueAnnotation.Target);
-            Assert.Equal("John2", ((StringConstantSubject)valueAnnotation.Subject).Value);
+            Assert.Equal("//Nickname", valueAnnotation.Source.ToString());
+            Assert.Equal("Johnny", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
         [Fact]
@@ -111,7 +111,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-assign(""John2"")";
+            var text = @"@value-assign(//Nickname, ""Johnny"")";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -122,8 +122,8 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Null(valueAnnotation.Target);
-            Assert.Equal("John2", ((StringConstantSubject)valueAnnotation.Subject).Value);
+            Assert.Equal("//Nickname", valueAnnotation.Source.ToString());
+            Assert.Equal("Johnny", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
     }
 }

@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool CanValidate(AnnotationNew annotation)

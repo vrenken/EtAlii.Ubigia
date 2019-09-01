@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
@@ -7,30 +9,45 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public string Id { get; } = nameof(SelectSingleNodeAnnotation);
         public LpsParser Parser { get; }
-        
-        private const string ContentId = "Content";
 
+        private const string SourceId = "Source";
+        
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
+        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
+        private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
-        public SelectSingleNodeAnnotationParser(INodeValidator nodeValidator, INodeFinder nodeFinder)
+        public SelectSingleNodeAnnotationParser(
+            INodeValidator nodeValidator, 
+            INodeFinder nodeFinder, 
+            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            IRootedPathSubjectParser rootedPathSubjectParser,
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            
+            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
+            _rootedPathSubjectParser = rootedPathSubjectParser;
+
             // @node(SOURCE)
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
 
-            var content = new LpsParser(ContentId, true, Lp.LetterOrDigit().OneOrMore()); 
-
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Node + "(" + content.Maybe() + ")");
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Node + "(" + whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ")");
         }
 
         public AnnotationNew Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var contentNode = _nodeFinder.FindFirst(node, ContentId);
-            
-            return new SelectSingleNodeAnnotation(null);
+
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
+            var sourceChildNode = sourceNode.Children.Single();
+            var sourcePath = sourceChildNode.Id switch
+            {
+                { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(sourceChildNode),
+                { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
+                _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
+            };
+            return new SelectSingleNodeAnnotation(sourcePath);
         }
 
         public bool CanParse(LpNode node)
@@ -40,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public bool CanValidate(AnnotationNew annotation)

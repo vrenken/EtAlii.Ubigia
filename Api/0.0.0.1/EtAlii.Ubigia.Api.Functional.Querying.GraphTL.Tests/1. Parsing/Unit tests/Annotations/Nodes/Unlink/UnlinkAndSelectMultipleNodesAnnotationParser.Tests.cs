@@ -28,7 +28,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-unlink(/Time, time:2000-05-02 23:07, /Event)";
+            var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07', /Event)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -49,7 +49,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-unlink(/Time, time:2000-05-02 23:07,/Event)";
+            var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07',/Event)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -61,7 +61,7 @@
             var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
-            Assert.Equal("location:DE/Berlin/", nodeAnnotation.Target.ToString());
+            Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
             Assert.Equal("/Event", nodeAnnotation.TargetLink.ToString());
         }
         
@@ -70,7 +70,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-unlink(/Time,time:2000-05-02 23:07, /Event)";
+            var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -82,7 +82,7 @@
             var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
-            Assert.Equal("location:DE/Berlin/", nodeAnnotation.Target.ToString());
+            Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
             Assert.Equal("/Event", nodeAnnotation.TargetLink.ToString());
         }
         
@@ -91,7 +91,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-unlink(/Time,time:2000-05-02 23:07, /Event)";
+            var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -103,7 +103,7 @@
             var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
-            Assert.Equal("location:DE/Berlin/", nodeAnnotation.Target.ToString());
+            Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
             Assert.Equal("/Event", nodeAnnotation.TargetLink.ToString());
         }
     }

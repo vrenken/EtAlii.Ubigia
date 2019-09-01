@@ -39,7 +39,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as SelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
+            Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString());
         }
         
         [Fact]
@@ -58,7 +58,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as SelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Null(valueAnnotation.Target);
+            Assert.Null(valueAnnotation.Source);
         }
     }
 }

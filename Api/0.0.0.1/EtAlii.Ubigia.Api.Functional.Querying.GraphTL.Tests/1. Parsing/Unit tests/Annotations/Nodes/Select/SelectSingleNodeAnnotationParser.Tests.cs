@@ -28,7 +28,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node(XXXXXXXX)";
+            var text = @"@node(person:Doe/John)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -39,8 +39,45 @@
             Assert.Empty(node.Rest);
             var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
             Assert.NotNull(nodeAnnotation);
-            
-            throw new System.InvalidOperationException();
+            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
         }
+        [Fact]
+        public void SelectSingleNodeAnnotationParser_Parse_02()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = @"@node(person:Doe/John )";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.Empty(node.Rest);
+            var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
+            Assert.NotNull(nodeAnnotation);
+            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
+        }
+
+        [Fact]
+        public void SelectSingleNodeAnnotationParser_Parse_03()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = @"@node( person:Doe/John)";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.Empty(node.Rest);
+            var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
+            Assert.NotNull(nodeAnnotation);
+            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
+        }
+
     }
 }

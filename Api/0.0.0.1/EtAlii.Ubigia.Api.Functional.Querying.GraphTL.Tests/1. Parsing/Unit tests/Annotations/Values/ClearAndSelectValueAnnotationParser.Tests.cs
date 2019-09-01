@@ -39,7 +39,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
+            Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString()); 
         }
 
         [Fact]
@@ -58,7 +58,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Equal(@"NickName",valueAnnotation.Target.ToString());
+            Assert.Equal(@"NickName",valueAnnotation.Source.ToString());
         }
 
         [Fact]
@@ -66,7 +66,7 @@
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-clear()";
+            var text = @"@value-clear(//Weight)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -77,7 +77,7 @@
             Assert.Empty(node.Rest);
             var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
-            Assert.Null(valueAnnotation.Target);
+            Assert.Equal(@"//Weight",valueAnnotation.Source.ToString());
         }
     }
 }
