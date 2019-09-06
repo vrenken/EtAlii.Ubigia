@@ -18,6 +18,9 @@
 
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTM5ODI2QDMxMzcyZTMyMmUzMGVWWXpJWXRhR040Nml1WFpTMFhnVHF5V0l3YnJaVVA0dkFuYU0wdnlzVWM9");
+
             var startupDelay = e.Args.Length > 0 ? int.Parse(e.Args[0]) * 1000 : 0;
             Thread.Sleep(startupDelay);
 

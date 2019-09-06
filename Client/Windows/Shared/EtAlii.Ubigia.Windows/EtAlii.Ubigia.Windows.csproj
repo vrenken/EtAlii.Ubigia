@@ -19,7 +19,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ControlzEx" Version="4.0.1" />
+    <PackageReference Include="ControlzEx" Version="4.0.3" />
     <PackageReference Include="Fluent.Ribbon" Version="7.0.0-alpha0687" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->

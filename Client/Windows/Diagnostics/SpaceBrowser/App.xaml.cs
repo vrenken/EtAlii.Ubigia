@@ -18,6 +18,9 @@
 
         public App()
         {
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTM5ODI2QDMxMzcyZTMyMmUzMGVWWXpJWXRhR040Nml1WFpTMFhnVHF5V0l3YnJaVVA0dkFuYU0wdnlzVWM9");
+            
             if (!Debugger.IsAttached)
             {
                 DispatcherUnhandledException += (sender, e) =>
