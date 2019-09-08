@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    internal interface IAddAndSelectMultipleNodesAnnotationParser : IAnnotationNewParser
+    internal interface IAddAndSelectMultipleNodesAnnotationParser : INodeAnnotationParser
     {
     }
 } 

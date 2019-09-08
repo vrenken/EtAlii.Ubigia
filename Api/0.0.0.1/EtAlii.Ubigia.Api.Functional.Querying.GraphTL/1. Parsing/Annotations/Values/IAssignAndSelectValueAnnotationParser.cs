@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    internal interface IAssignAndSelectValueAnnotationParser : IAnnotationNewParser
+    internal interface IAssignAndSelectValueAnnotationParser : IValueAnnotationParser
     {
     }
 } 

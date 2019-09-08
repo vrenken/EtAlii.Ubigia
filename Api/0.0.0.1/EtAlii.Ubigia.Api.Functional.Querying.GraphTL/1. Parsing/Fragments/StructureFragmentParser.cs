@@ -19,7 +19,7 @@
         private readonly IValueFragmentParser _valueFragmentParser;
         private readonly IRequirementParser _requirementParser;
 
-        private readonly IAnnotationParser _annotationParser;
+        private readonly INodeAnnotationsParser _annotationParser;
         private const string NameId = "NameId";
         private const string FragmentsId = "FragmentsId";
 
@@ -29,7 +29,7 @@
             INewLineParser newLineParser,
             IQuotedTextParser quotedTextParser,
             IValueFragmentParser valueFragmentParser,
-            IAnnotationParser annotationParser, 
+            INodeAnnotationsParser annotationParser, 
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -63,7 +63,7 @@
                 fragments.Maybe(),
                 newLineParser.OptionalMultiple + end);
 
-            var name = (Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId));
+            var name = Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId);
 
             var parserBody = (_requirementParser.Parser + name + newLineParser.OptionalMultiple +
                              _annotationParser.Parser.Maybe()).Wrap(ChildStructureQueryHeaderId) + newLineParser.OptionalMultiple +
@@ -115,8 +115,21 @@
                 }
             }
 
-            var type = annotation?.Operator == null ? FragmentType.Query : FragmentType.Mutation;
-            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), type);
+            var fragmentType = annotation == null || annotation is SelectSingleNodeAnnotation || annotation is SelectMultipleNodesAnnotation 
+                ? FragmentType.Query 
+                : FragmentType.Mutation;
+
+            if (valueFragments.Any(vf => vf.Type == FragmentType.Mutation))
+            {
+                fragmentType = FragmentType.Mutation;
+            }
+
+//            if (structureFragments.Any(sf => sf.Type == FragmentType.Mutation))
+//            {
+//                fragmentType = FragmentType.Mutation;
+//            }
+            
+            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), fragmentType);
         }
 
         public bool CanParse(LpNode node)
