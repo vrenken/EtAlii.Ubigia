@@ -38,10 +38,11 @@ namespace EtAlii.Ubigia.Api.Functional
             var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | Lp.OneOrMore(c => char.IsLetterOrDigit(c)).Wrap(NameId) | _quotedTextParser.Parser);
             
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueAssign + "(" + whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + whitespaceParser.Optional + ")");
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueAssign + "(" + 
+                                             whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ("," + whitespaceParser.Optional + nameParser + whitespaceParser.Optional).Maybe() + ")");
         }
 
-        public AnnotationNew Parse(LpNode node)
+        public ValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
@@ -49,21 +50,30 @@ namespace EtAlii.Ubigia.Api.Functional
             var sourceChildNode = sourceNode.Children.Single();
             var sourcePath = sourceChildNode.Id switch
             {
-                { } id when id == _rootedPathSubjectParser.Id => (PathSubject) _rootedPathSubjectParser.Parse(sourceChildNode),
-                { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
+                { } id when id == _rootedPathSubjectParser.Id => _rootedPathSubjectParser.Parse(sourceChildNode),
+                { } id when id == _nonRootedPathSubjectParser.Id => _nonRootedPathSubjectParser.Parse(sourceChildNode),
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
-            
-            var nameNode = _nodeFinder.FindFirst(node, NameId);
-            var nameChildNode = nameNode.Children.Single();
-            var name = nameChildNode.Id switch
-            {
-                {} id when id == _quotedTextParser.Id => _quotedTextParser.Parse(nameChildNode),
-                _ => nameChildNode.Match.ToString()
-            };
 
-            var constant = name != null ? new StringConstantSubject(name) : null;
-            return new AssignAndSelectValueAnnotation(sourcePath, constant);
+            Subject name;
+            var nameNode = _nodeFinder.FindFirst(node, NameId);
+            if (nameNode != null)
+            {
+                var nameChildNode = nameNode.Children.Single();
+                var nameString = nameChildNode.Id switch
+                {
+                    {} id when id == _quotedTextParser.Id => _quotedTextParser.Parse(nameChildNode),
+                    _ => nameChildNode.Match.ToString()
+                };
+                name = nameString != null ? new StringConstantSubject(nameString) : null;
+            }
+            else
+            {
+                name = sourcePath; // We have one single argument - let's assume it is the name and not the source path.
+                sourcePath = null;
+            }
+
+            return new AssignAndSelectValueAnnotation((PathSubject)sourcePath, name);
         }
 
         public bool CanParse(LpNode node)
@@ -71,12 +81,12 @@ namespace EtAlii.Ubigia.Api.Functional
             return node.Id == Id;
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanValidate(AnnotationNew annotation)
+        public bool CanValidate(ValueAnnotation annotation)
         {
             return annotation is AssignAndSelectValueAnnotation;
         }

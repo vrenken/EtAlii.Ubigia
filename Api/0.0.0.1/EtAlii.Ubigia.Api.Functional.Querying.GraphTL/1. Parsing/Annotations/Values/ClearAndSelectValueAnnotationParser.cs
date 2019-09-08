@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueClear + "(" + whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ")");
         }
 
-        public AnnotationNew Parse(LpNode node)
+        public ValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
@@ -63,12 +63,12 @@ namespace EtAlii.Ubigia.Api.Functional
             return node.Id == Id;
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanValidate(AnnotationNew annotation)
+        public bool CanValidate(ValueAnnotation annotation)
         {
             return annotation is ClearAndSelectValueAnnotation;
         }

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public const string NodeUnlink = "node-unlink";
         public const string NodesUnlink = "nodes-unlink";
 
-        public const string ValueAssign = "value-assign";
+        public const string ValueAssign = "value-assign"; // Not value-set?
         public const string ValueClear = "value-clear";
         public const string Value = "value";
 
