@@ -10,5 +10,10 @@
         {
             Subject = subject;
         }
+
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.ValueAssign}({Source?.ToString() ?? string.Empty}, {Subject?.ToString() ?? string.Empty})";
+        }
     }
 }

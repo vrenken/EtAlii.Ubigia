@@ -19,5 +19,10 @@
             Target = target;
             TargetLink = targetLink;
         }
+                        
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.NodesLink}({Source?.ToString() ?? string.Empty}, {Target?.ToString() ?? string.Empty}, {TargetLink?.ToString() ?? string.Empty})";
+        }
     }
 }

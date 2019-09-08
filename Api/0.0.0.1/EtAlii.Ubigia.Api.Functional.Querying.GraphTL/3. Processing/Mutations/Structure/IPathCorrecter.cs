@@ -4,6 +4,6 @@
 
     internal interface IPathCorrecter
     {
-        PathSubject Correct(Annotation annotation, PathSubject path);
+        PathSubject Correct(NodeAnnotation annotation, PathSubject path);
     }
 }

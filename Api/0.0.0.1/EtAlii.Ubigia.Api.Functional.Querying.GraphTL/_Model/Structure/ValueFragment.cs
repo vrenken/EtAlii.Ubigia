@@ -4,15 +4,23 @@
     {
         public object Mutation { get; }
 
+        public ValueAnnotation Annotation { get; }
+
         internal ValueFragment(
             string name, 
-            Annotation annotation, 
+            ValueAnnotation annotation, 
             Requirement requirement, 
             FragmentType fragmentType, 
             object mutation)
-            : base(name, annotation, requirement, fragmentType)
+            : base(name, requirement, fragmentType)
         {
+            Annotation = annotation;
             Mutation = mutation;
+        }
+                
+        public override string ToString()
+        {
+            return $"{Name}{(Annotation != null ? " " + Annotation : string.Empty)}";
         }
     }
 }

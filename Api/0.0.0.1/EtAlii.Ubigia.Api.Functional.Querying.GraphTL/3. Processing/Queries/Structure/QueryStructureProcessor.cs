@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional
             SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> schemaOutput, 
-            Annotation annotation, 
+            NodeAnnotation annotation, 
             Identifier id, 
             string structureName,
             Structure parent)

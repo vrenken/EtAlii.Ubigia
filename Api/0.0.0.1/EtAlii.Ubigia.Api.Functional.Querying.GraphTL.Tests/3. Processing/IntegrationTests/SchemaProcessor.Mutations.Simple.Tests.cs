@@ -100,7 +100,7 @@
         public async Task SchemaProcessor_Mutate_Person_02()
         {
             // Arrange.
-            var mutationText = @"Person @node(Person:Doe += Mary)
+            var mutationText = @"Person @node-add(Person:Doe, Mary)
                                {
                                     Weight <= 160.1,
                                     NickName <= ""MinteyMary""
@@ -149,7 +149,7 @@
                                      FirstName @value(),
                                      LastName @value(\#FamilyName),
                                      NickName,
-                                     Friend @nodes(/Friends += Person:Vrenken/Peter)
+                                     Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                      {
                                         FirstName @value(),
                                         LastName @value(\#FamilyName),
@@ -224,7 +224,7 @@
         public async Task SchemaProcessor_Mutate_Persons_01()
         {
             // Arrange.
-            var mutationText = @"Person @nodes(Person:Doe += Mary)
+            var mutationText = @"Person @nodes-add(Person:Doe, Mary)
                                {
                                     Weight <= 160.1,
                                     NickName <= ""MinteyMary""
@@ -280,7 +280,7 @@
                                     LastName @value(\#FamilyName)
                                     NickName
                                     Birthdate
-                                    Friends @nodes(/Friends += Person:Vrenken/Peter)
+                                    Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                     {
                                         FirstName @value()
                                         LastName @value(\#FamilyName)
@@ -331,19 +331,7 @@
                                          FirstName @value(),
                                          LastName @value(\#FamilyName),
                                          NickName,
-                                         Friend @nodes(/Friends += Person:Vrenken/Peter)
-                                         {
-                                            FirstName @value(),
-                                            LastName @value(\#FamilyName),
-                                            NickName
-                                         }  
-                                     },
-                                     Person @node(Person:Vrenken/Peter)
-                                     {
-                                         FirstName @value(),
-                                         LastName @value(\#FamilyName),
-                                         NickName,
-                                         Friend @nodes(/Friends += Person:Doe/John)
+                                         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                          {
                                             FirstName @value(),
                                             LastName @value(\#FamilyName),
