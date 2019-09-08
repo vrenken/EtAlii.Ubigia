@@ -121,7 +121,11 @@ Person @node(Person:Doe/John)
     FirstName @value(),
     LastName @value(\#FamilyName),
     NickName,
-    Friends @nodes(/Friends/)  
+    Friends @nodes(/Friends/)
+    {
+        FirstName @value(),
+        LastName @value(\#FamilyName)
+    }
 }
 
 -- ==================================================================================================================
@@ -133,7 +137,11 @@ Person @node(Person:Doe/John)
     !FirstName @value(),
     !LastName @value(\#FamilyName),
     NickName,
-    Friends @node(/Friends)  
+    Friends @nodes(/Friends)  
+    {
+        FirstName @value(),
+        LastName @value(\#FamilyName)
+    }
 }
 
 -- ==================================================================================================================
@@ -145,7 +153,11 @@ Person @node(Person:Doe/John)
     FirstName @value(),
     LastName @value(\#FamilyName),
     ?NickName,
-    ?Friends @node(/Friends)  
+    ?Friends @nodes(/Friends)  
+    {
+        FirstName @value(),
+        LastName @value(\#FamilyName)
+    }
 }
 
 
@@ -159,5 +171,9 @@ Person @node(Person:Doe/John)
     FirstName @value(),
     LastName @value(\#FamilyName),
     ?NickName,
-    ?Friends @node(/Friends)  
+    ?Friends @nodes(/Friends)  
+    {
+        FirstName @value(),
+        LastName @value(\#FamilyName)
+    }
 }
