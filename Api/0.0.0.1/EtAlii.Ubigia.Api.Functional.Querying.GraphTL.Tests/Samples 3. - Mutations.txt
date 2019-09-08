@@ -1,6 +1,13 @@
 ﻿-- ==================================================================================================================
--- 01. Assign a property to an existing node. 
+-- 01.a Assign a property to an existing node. 
 -- Throws an error if multiple nodes are found. 
+Person @node(Person:Doe/John)
+{
+    NickName @value-assign("Johnny")
+}
+
+-- ==================================================================================================================
+-- 01.b Assign a query property to a constant. 
 Person @node(Person:Doe/John)
 {
     NickName <= "Johnny"
@@ -11,7 +18,7 @@ Person @node(Person:Doe/John)
 -- Throws an error if multiple nodes are found. 
  Person @node(Person:Doe/John)
  {
-    NickName <= 
+    NickName @value-clear() 
  }
 
 -- ==================================================================================================================
@@ -19,15 +26,15 @@ Person @node(Person:Doe/John)
 -- Throws an error if multiple nodes are found. 
  Person @node(Person:Doe/Johhn)
  {
-     FirstName @value() <= "John"
+     FirstName @value-assign("John")
  }
 
 
 -- ==================================================================================================================
 -- 04. Add a new node and give it some properties.  
- Person @node(Person:Doe += Jane)
+ Person @node-add(Person:Doe, Jane)
  {
-     NickName <= "Jahney"
+     NickName @value-assign("Jahney")
  }
  
 -- ==================================================================================================================
@@ -37,7 +44,7 @@ Person @node(Person:Doe/John)
      FirstName @value(),
      LastName @value(\#FamilyName),
      NickName,
-     Friend @nodes(/Friends += Person:Stark/Tony)
+     Friend @nodes-link(/Friends, Person:Stark/Tony, /Friends)
      {
         FirstName @value(),
         LastName @value(\#FamilyName),
@@ -54,7 +61,7 @@ Person @node(Person:Doe/John)
          FirstName @value(),
          LastName @value(\#FamilyName),
          NickName,
-         Friend @nodes(/Friends += Person:Vrenken/Peter)
+         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
          {
             FirstName @value(),
             LastName @value(\#FamilyName),
@@ -72,7 +79,7 @@ Person @node(Person:Doe/John)
          FirstName @value(),
          LastName @value(\#FamilyName),
          NickName,
-         Friend @nodes(/Friends += Person:Vrenken/Peter)
+         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
          {
             FirstName @value(),
             LastName @value(\#FamilyName),
@@ -84,7 +91,7 @@ Person @node(Person:Doe/John)
          FirstName @value(),
          LastName @value(\#FamilyName),
          NickName,
-         Friend @nodes(/Friends += Person:Doe/John)
+         Friend @nodes(/Friends)
          {
             FirstName @value(),
             LastName @value(\#FamilyName),

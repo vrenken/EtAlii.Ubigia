@@ -2,10 +2,16 @@
 -- 01.a Add an unnamed Track entry to a Person given a specific time and location. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node(/Track += new())
+    Track @node-add(/Track, UNNAMED)
     {
-        Time += value(Time:2006-04-03 11:23)
-        Location += value(Location:Europe/Germany/Berlin)
+        Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     }  
 }
 
@@ -13,10 +19,16 @@ Person @nodes(Person:Doe/John)
 -- 01.b Add an named Track entry to a Person given a specific time and location. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node(/Track += new("Love Parade"))
+    Track @node-add(/Track, "Love Parade")
     {
-        Time <= value(Time:2006-04-03 11:23)
-        Location <= value(Location:Europe/Germany/Berlin)
+        Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     }  
 }
 
@@ -26,20 +38,32 @@ Person @nodes(Person:Doe/John)
 -- 01.b Add an named Track entry to a Person given a specific time and location. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node_new(/Track, "Love Parade")
+    Track @node-add(/Track, "Love Parade")
     {
-        Time @node_link(/Time, Time:2006-04-03 11:23, /Event)
-        Location @node_link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     }  
 }
 -- ==================================================================================================================
 -- 01.b Add an named Track entry to a Person given a specific time and location. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node_new(/Track, "Love Parade")
+    Track @node-add(/Track, "Love Parade")
     {
-        Time @node_link(/Time, Time:2006-04-03 11:23, /Event)
-        Location @node_link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     }  
 }
 
@@ -51,20 +75,38 @@ Person @nodes(Person:Doe/John)
 -- 01.c Add multiple named Track entry to a Person given specific times and locations. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node(/Track += new("Love Parade 2006"))
+    Track @node-add(/Track, "Love Parade 2006")
     {
-        Time += value(Time:2006-04-03 11:23)
-        Location += value(Location:Europe/Germany/Berlin)
+        Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     },
-    Track @node(/Track += new("Love Parade 2000"))
+    Track @node-add(/Track, "Love Parade 2000")
     {
-        Time += value(Time:2000-05-02 11:23)
-        Location += value(Location:Europe/Germany/Berlin)
+        Time @node-link(/Time, Time:'2000-05-02 11:23', /Visit)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
+        {
+            Location @value()
+        }
     },
-    Track @node(/Track += new("Love Parade 2007"))
+    Track @node-add(/Track, "Love Parade 2007")
     {
-        Time += value(Time:2007-06-13 09:12)
-        Location += value(Location:Europe/Germany/Essen)
+        Time @node-link(/Time, Time:'2007-06-13 09:12', /Visit)
+        {
+            Time @value()
+        }
+        Location @node-link(/Location, Location:Europe/Germany/Essen, /Visit)
+        {
+            Location @value()
+        }
     }  
 }
 

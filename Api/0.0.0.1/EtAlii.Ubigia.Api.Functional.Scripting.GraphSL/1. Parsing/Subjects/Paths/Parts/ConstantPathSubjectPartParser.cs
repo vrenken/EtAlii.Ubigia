@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             _nodeFinder = nodeFinder;
 
             Parser = new LpsParser(Id, true,
-                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(TextId)) |
+                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(TextId)) |
                 (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).ZeroOrMore().Id(TextId) + Lp.One(c => c == '\"')) |
                 (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).ZeroOrMore().Id(TextId) + Lp.One(c => c == '\'')) 
             );
