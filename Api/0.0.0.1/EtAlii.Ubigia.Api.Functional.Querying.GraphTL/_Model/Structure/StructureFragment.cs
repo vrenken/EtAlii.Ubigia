@@ -4,19 +4,26 @@
     {
         public StructureFragment[] Children { get; }
 
+        public NodeAnnotation Annotation { get; }
         public ValueFragment[] Values { get; }
 
         internal StructureFragment(
             string name, 
-            Annotation annotation, 
+            NodeAnnotation annotation, 
             Requirement requirement, 
             ValueFragment[] values, 
             StructureFragment[] children, 
             FragmentType fragmentType)
-            : base(name, annotation, requirement, fragmentType)
+            : base(name, requirement, fragmentType)
         {
             Values = values;
             Children = children;
+            Annotation = annotation;
+        }
+        
+        public override string ToString()
+        {
+            return $"{Name}{(Annotation != null ? " " + Annotation : string.Empty)}";
         }
     }
 }

@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
@@ -54,18 +55,18 @@ namespace EtAlii.Ubigia.Api.Functional
             SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> schemaOutput, 
-            Annotation annotation, 
+            NodeAnnotation annotation, 
             Identifier id, 
             string structureName,
             Structure parent)
         {
             var path = _pathDeterminer.Determine(fragmentMetadata, annotation, id);
 
-            if (annotation?.Operator != null)
+            var mutationScript = CreateMutationScript(annotation, path);
+            if (mutationScript != null)
             {
-                var mutationScript = annotation.Subject == null 
-                    ? new Script(new Sequence(new SequencePart[] {path, annotation.Operator})) 
-                    : new Script(new Sequence(new SequencePart[] {path, annotation.Operator, annotation.Subject}));
+//              ? new Script(new Sequence(new SequencePart[] {path, annotation.Operator})) 
+//              : new Script(new Sequence(new SequencePart[] {path, annotation.Operator, annotation.Subject}));
                 var scriptResult = await _scriptContext.Process(mutationScript, executionScope.ScriptScope);
                 await scriptResult.Output;
 
@@ -74,6 +75,60 @@ namespace EtAlii.Ubigia.Api.Functional
             }
 
             await _pathStructureBuilder.Build(executionScope, fragmentMetadata, schemaOutput, annotation, structureName, parent, path);
+
+        }
+
+        private Script CreateMutationScript(NodeAnnotation annotation, PathSubject pathSubject)
+        {
+            switch (annotation)
+            {
+                case AddAndSelectMultipleNodesAnnotation addAnnotation:
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
+                case AddAndSelectSingleNodeAnnotation addAnnotation:
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
+                
+                case LinkAndSelectMultipleNodesAnnotation linkAnnotation:
+                    return CreateLinkScript(pathSubject, linkAnnotation.Source, linkAnnotation.Target, linkAnnotation.TargetLink);
+                case LinkAndSelectSingleNodeAnnotation linkAnnotation:
+                    return CreateLinkScript(pathSubject, linkAnnotation.Source, linkAnnotation.Target, linkAnnotation.TargetLink);
+                case RemoveAndSelectMultipleNodesAnnotation removeAnnotation:
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), new StringConstantSubject(removeAnnotation.Name) }));                
+                case RemoveAndSelectSingleNodeAnnotation removeAnnotation:
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), new StringConstantSubject(removeAnnotation.Name) }));
+                case UnlinkAndSelectMultipleNodesAnnotation unlinkAnnotation:
+                    return new Script(new []
+                    {
+                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),   
+                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),   
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),   
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),   
+                    });
+                case UnlinkAndSelectSingleNodeAnnotation unlinkAnnotation:
+                    return new Script(new []
+                    {
+                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),   
+                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),   
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),   
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),   
+                    });
+                default:
+                    return null;
+            }
+        }
+
+        private Script CreateLinkScript(PathSubject pathSubject, PathSubject source, PathSubject target, PathSubject targetLink)
+        {
+            var relativeSource = new RelativePathSubject(source.Parts);
+            var absoluteSourceLink = new AbsolutePathSubject(pathSubject.Parts.Concat(relativeSource.Parts).ToArray());
+            var relativeTarget = new RelativePathSubject(targetLink.Parts);
+            var absoluteTargetLink = new AbsolutePathSubject(target.Parts.Concat(relativeSource.Parts).ToArray());
+            return new Script(new []
+            {
+                new Sequence(new SequencePart[] {pathSubject, new AddOperator(), relativeSource }),   
+                new Sequence(new SequencePart[] {absoluteSourceLink, new AddOperator(), target }),   
+                new Sequence(new SequencePart[] {target, new AddOperator(), relativeTarget }),   
+                new Sequence(new SequencePart[] {absoluteTargetLink, new AddOperator(), pathSubject }),   
+            });
 
         }
 

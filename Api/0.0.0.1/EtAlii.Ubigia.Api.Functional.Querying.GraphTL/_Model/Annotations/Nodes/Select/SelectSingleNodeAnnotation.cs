@@ -7,5 +7,10 @@
         public SelectSingleNodeAnnotation(PathSubject source) : base(source) 
         {
         }
+
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.Node}({Source?.ToString() ?? string.Empty})";
+        }
     }
 }

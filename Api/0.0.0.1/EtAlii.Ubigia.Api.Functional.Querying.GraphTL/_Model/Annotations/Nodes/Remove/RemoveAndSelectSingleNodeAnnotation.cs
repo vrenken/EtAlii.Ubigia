@@ -13,5 +13,10 @@
         {
             Name = name;
         }
+                        
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.NodeRemove}({Source?.ToString() ?? string.Empty}, {Name})";
+        }
     }
 }

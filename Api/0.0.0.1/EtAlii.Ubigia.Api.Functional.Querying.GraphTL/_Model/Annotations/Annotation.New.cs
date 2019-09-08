@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    public class AnnotationNew
+    public abstract class Annotation
     {
     }
 }

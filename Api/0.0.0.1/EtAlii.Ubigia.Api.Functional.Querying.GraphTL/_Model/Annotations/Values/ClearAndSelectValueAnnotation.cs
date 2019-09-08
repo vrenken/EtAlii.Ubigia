@@ -7,5 +7,10 @@
         public ClearAndSelectValueAnnotation(PathSubject source) : base(source)
         {
         }
+        
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.ValueClear}({Source?.ToString() ?? string.Empty})";
+        }
     }
 }

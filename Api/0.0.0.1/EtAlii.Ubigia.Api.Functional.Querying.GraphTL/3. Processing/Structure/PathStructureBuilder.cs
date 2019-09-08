@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
             SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> schemaOutput, 
-            Annotation annotation, 
+            NodeAnnotation annotation, 
             string structureName, 
             Structure parent, 
             PathSubject path)
@@ -37,26 +37,27 @@ namespace EtAlii.Ubigia.Api.Functional
             var script = new Script(new Sequence(new SequencePart[] {path}));
             var scriptResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
-            switch (annotation?.Type)
-            {
-                case AnnotationType.Node:
-                    if (await scriptResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
-                    {
-                        Build(lastOutput, schemaOutput, structureName, fragmentMetadata, parent);
-                    }
+            var onlyOneSingleNode = annotation is SelectSingleNodeAnnotation ||
+                                    annotation is AddAndSelectSingleNodeAnnotation ||
+                                    annotation is RemoveAndSelectSingleNodeAnnotation ||
+                                    annotation is LinkAndSelectSingleNodeAnnotation ||
+                                    annotation is UnlinkAndSelectSingleNodeAnnotation;
 
-                    break;
-                case AnnotationType.Nodes:
-                case null: // We have a nested node.
-                    scriptResult.Output
-                        .OfType<IInternalNode>()
-                        .Subscribe(
-                            onError: schemaOutput.OnError,
-                            onNext: o => Build(o, schemaOutput, structureName, fragmentMetadata, parent),
-                            onCompleted: () => { });
-                    break;
-                case AnnotationType.Value:
-                    break;
+            if (onlyOneSingleNode)
+            {
+                if (await scriptResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
+                {
+                    Build(lastOutput, schemaOutput, structureName, fragmentMetadata, parent);
+                }
+            }
+            else
+            {
+                scriptResult.Output
+                    .OfType<IInternalNode>()
+                    .Subscribe(
+                        onError: schemaOutput.OnError,
+                        onNext: o => Build(o, schemaOutput, structureName, fragmentMetadata, parent),
+                        onCompleted: () => { });
             }
         }
 

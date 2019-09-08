@@ -7,5 +7,10 @@
         public SelectValueAnnotation(PathSubject source) : base(source)
         {
         }
+        
+        public override string ToString()
+        {
+            return $"@{AnnotationPrefix.Value}({Source?.ToString() ?? string.Empty})";
+        }
     }
 }

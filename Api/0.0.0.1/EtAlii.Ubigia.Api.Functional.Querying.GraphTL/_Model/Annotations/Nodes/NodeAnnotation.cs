@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public abstract class NodeAnnotation : AnnotationNew
+    public abstract class NodeAnnotation : Annotation
     {
         /// <summary>
         /// The source path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
