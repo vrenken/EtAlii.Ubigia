@@ -9,9 +9,9 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\AnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectMultipleNodesAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\NodeAnnotationsParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectMultipleNodesAnnotationParser.Tests.cs" />
@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\AssignAndSelectValueAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ValueAnnotationsParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectValueAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
