@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Xunit;
 
     public class ValueFragmentParserMutationsTests 
@@ -83,7 +84,7 @@
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "Location <= @value(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
+            var text = "Location @value-assign( Location:NL/Overijssel/Enschede/Oldebokhoek/52 )";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -93,10 +94,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", annotation.Path.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
         
         [Fact]
@@ -104,7 +105,7 @@
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "Location<=@value(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
+            var text = "Location @value-assign(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -114,10 +115,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", annotation.Path.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
 
                 
@@ -126,7 +127,7 @@
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "Location\t<=\t@value(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
+            var text = "Location\t@value-assign(\tLocation:NL/Overijssel/Enschede/Oldebokhoek/52\t)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -136,10 +137,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", annotation.Path.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
 
         [Fact]
@@ -147,7 +148,7 @@
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "FirstName @value() <= \"John\"";
+            var text = "FirstName @value-assign(\"John\")";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -157,11 +158,12 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Null(annotation.Path);
-            Assert.Equal("John", valueFragment.Mutation.ToString());
+            Assert.Null(annotation.Source);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
+            Assert.Equal("John", subject.Value);
         }
                 
         [Fact]
@@ -169,7 +171,7 @@
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "FirstName @value()\t<=\t\"John\"";
+            var text = "FirstName @value-assign(\t\"John\"\t)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -179,18 +181,19 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Null(annotation.Path);
-            Assert.Equal("John", valueFragment.Mutation.ToString());
+            Assert.Null(annotation.Source);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
+            Assert.Equal("John", subject.Value);
         }
         [Fact]
         public void ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Compact()
         {
             // Arrange.
             var parser = CreateValueFragmentParser();
-            var text = "FirstName @value()<=\"John\"";
+            var text = "FirstName @value-assign(\"John\")";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -200,11 +203,12 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
+            Assert.Equal("John", subject.Value);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Null(annotation.Path);
-            Assert.Equal("John", valueFragment.Mutation.ToString());
+            Assert.Null(annotation.Source);
         }
     }
 }

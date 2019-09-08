@@ -88,13 +88,21 @@
                     LastName @value(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends/)  
-                }
+                    {
+                        FirstName @value(),
+                        LastName @value(\#FamilyName)
+                    }
+                },
                 Location @nodes(location:DE/Berlin//)
                 {
                     FirstName @value(),
                     LastName @value(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends/)  
+                    {
+                        FirstName @value(),
+                        LastName @value(\#FamilyName)
+                    }  
                 }
             }";
             

@@ -58,8 +58,8 @@
 
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
-            Assert.Null(annotation.Path);
+            Assert.IsType<SelectValueAnnotation>(annotation);
+            Assert.Null(annotation.Source);
         }
         
         [Fact]
@@ -81,8 +81,8 @@
             
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.Equal(AnnotationType.Value, annotation.Type);
-            Assert.Equal(@"\\", annotation.Path.ToString());
+            Assert.IsType<SelectValueAnnotation>(annotation);
+            Assert.Equal(@"\\", annotation.Source.ToString());
         }
     }
 }

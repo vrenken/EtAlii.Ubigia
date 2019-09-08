@@ -465,14 +465,14 @@
             Assert.Single(structureFragment.Children); 
             Assert.Equal("name", structureFragment.Children[0].Name); 
             Assert.Equal(FragmentType.Query, structureFragment.Children[0].Type); 
-            Assert.Equal("@Node(\\#FamilyName)", structureFragment.Children[0].Annotation.ToString()); 
+            Assert.Equal("@node(\\#FamilyName)", structureFragment.Children[0].Annotation.ToString()); 
             Assert.Equal(2, structureFragment.Children[0].Values.Length); 
             Assert.Equal("first", structureFragment.Children[0].Values[0].Name); 
             Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[0].Type); 
-            Assert.Equal("@Value(/FirstName)", structureFragment.Children[0].Values[0].Annotation.ToString()); 
+            Assert.Equal("@value(/FirstName)", structureFragment.Children[0].Values[0].Annotation.ToString()); 
             Assert.Equal("last", structureFragment.Children[0].Values[1].Name); 
             Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[1].Type); 
-            Assert.Equal("@Value()", structureFragment.Children[0].Values[1].Annotation.ToString()); 
+            Assert.Equal("@value()", structureFragment.Children[0].Values[1].Annotation.ToString()); 
             Assert.Equal("age", structureFragment.Values[0].Name); 
             Assert.Equal(FragmentType.Query, structureFragment.Values[0].Type); 
             Assert.Equal("company", structureFragment.Values[1].Name); 

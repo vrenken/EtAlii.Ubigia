@@ -104,8 +104,8 @@
             var text = @"Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
-                ""firstname"" <= @value(),
-                ""lastname"" <= @value(\#FamilyName),
+                ""firstname"" @value(),
+                ""lastname"" @value(\#FamilyName),
                 ""email"" <= ""admin@starkindustries.com"",
                 ""phone"" <= ""+31 (909) 477-2353""
             }";
@@ -120,15 +120,15 @@
 
             var valueFragment1 = structureMutation.Values.Single(v => v.Name == "firstname"); 
             Assert.NotNull(valueFragment1);
-            Assert.Equal(FragmentType.Mutation, valueFragment1.Type);
-            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
-            Assert.Null(valueFragment1.Annotation.Path);
+            Assert.Equal(FragmentType.Query, valueFragment1.Type);
+            Assert.IsType<SelectValueAnnotation>(valueFragment1.Annotation);
+            Assert.Null(valueFragment1.Annotation.Source);
             
             var valueFragment2 = structureMutation.Values.Single(v => v.Name == "lastname"); 
             Assert.NotNull(valueFragment2);
-            Assert.Equal(FragmentType.Mutation, valueFragment2.Type);
-            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName", valueFragment2.Annotation.Path.ToString());
+            Assert.Equal(FragmentType.Query, valueFragment2.Type);
+            Assert.IsType<SelectValueAnnotation>(valueFragment2.Annotation);
+            Assert.Equal(@"\#FamilyName", valueFragment2.Annotation.Source.ToString());
         }
         
         [Fact]
@@ -139,8 +139,8 @@
             var text = @"Person @node(person:Stark/Tony)
             {
                 age <= 22,
-                firstname <= @value(),
-                lastname <= @value(\#FamilyName),
+                firstname @value(),
+                lastname @value(\#FamilyName),
                 email <= ""admin@starkindustries.com"",
                 phone <= ""+31 (909) 477-2353""
             }";
@@ -159,7 +159,7 @@
         {
             // Arrange.
             var parser = CreateStructureFragmentParser();
-            var text = @"Friends @nodes(/Friends += Person:Vrenken/Peter)
+            var text = @"Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                         {
                             FirstName @value()
                             LastName @value(\#FamilyName)
@@ -174,24 +174,19 @@
             Assert.NotNull(structureMutation);
             Assert.Equal(FragmentType.Mutation, structureMutation.Type);
             Assert.NotNull(structureMutation.Annotation);
-            Assert.NotNull(structureMutation.Annotation.Path);
-            Assert.NotNull(structureMutation.Annotation.Operator);
-            Assert.NotNull(structureMutation.Annotation.Subject);
-            Assert.Equal(AnnotationType.Nodes,structureMutation.Annotation.Type);
-            Assert.Equal("/Friends", structureMutation.Annotation.Path.ToString());
-            Assert.Equal(" += ", structureMutation.Annotation.Operator.ToString());
-            Assert.Equal("Person:Vrenken/Peter", structureMutation.Annotation.Subject.ToString());
+            var linkAnnotation = Assert.IsType<LinkAndSelectMultipleNodesAnnotation>(structureMutation.Annotation);
+            Assert.Equal("/Friends", linkAnnotation.Source.ToString());
+            Assert.Equal("Person:Vrenken/Peter", linkAnnotation.Target.ToString());
+            Assert.Equal("/Friends", linkAnnotation.TargetLink.ToString());
             
             var valueFragment1 = structureMutation.Values.Single(v => v.Name == "FirstName"); 
             Assert.NotNull(valueFragment1);
             Assert.Equal(FragmentType.Query, valueFragment1.Type);
-            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
-            Assert.Null(valueFragment1.Annotation.Path);
+            Assert.Null(valueFragment1.Annotation.Source);
 
             var valueFragment2 = structureMutation.Values.Single(v => v.Name == "LastName"); 
             Assert.NotNull(valueFragment2);
-            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Path.ToString());
+            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Source.ToString());
         }
     }
 }

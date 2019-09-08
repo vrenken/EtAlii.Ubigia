@@ -110,7 +110,7 @@
                             LastName @value(\#FamilyName)
                             NickName
                             Birthdate
-                            Friends @nodes(/Friends += Person:Vrenken/Peter)
+                            Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                             {
                                 FirstName @value()
                                 LastName @value(\#FamilyName)
@@ -133,25 +133,22 @@
 
             Assert.Equal(FragmentType.Mutation, childStructure.Type);
             Assert.NotNull(childStructure.Annotation);
-            Assert.NotNull(childStructure.Annotation.Path);
-            Assert.NotNull(childStructure.Annotation.Operator);
-            Assert.NotNull(childStructure.Annotation.Subject);
-            Assert.Equal(AnnotationType.Nodes,childStructure.Annotation.Type);
-            Assert.Equal("/Friends", childStructure.Annotation.Path.ToString());
-            Assert.Equal(" += ", childStructure.Annotation.Operator.ToString());
-            Assert.Equal("Person:Vrenken/Peter", childStructure.Annotation.Subject.ToString());
+            Assert.NotNull(childStructure.Annotation.Source);
+            Assert.IsType<LinkAndSelectMultipleNodesAnnotation>(childStructure.Annotation);
+            var linkAnnotation = (LinkAndSelectMultipleNodesAnnotation)childStructure.Annotation;
+            Assert.Equal("/Friends", linkAnnotation.Source.ToString());
+            Assert.Equal("Person:Vrenken/Peter", linkAnnotation.Target.ToString());
+            Assert.Equal("/Friends", linkAnnotation.TargetLink.ToString());
             
             var valueFragment1 = childStructure.Values.Single(v => v.Name == "FirstName"); 
             Assert.NotNull(valueFragment1);
             Assert.Equal(FragmentType.Query,valueFragment1.Type);
-            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
-            Assert.Null(valueFragment1.Annotation.Path);
+            Assert.Null(valueFragment1.Annotation.Source);
 
             var valueFragment2 = childStructure.Values.Single(v => v.Name == "LastName"); 
             Assert.NotNull(valueFragment2);
             Assert.Equal(FragmentType.Query,valueFragment2.Type);
-            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Path.ToString());
+            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Source.ToString());
             
 
         }

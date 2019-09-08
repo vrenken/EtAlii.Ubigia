@@ -24,7 +24,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
         }
 
         [Fact]
@@ -46,7 +46,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
@@ -68,7 +68,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
@@ -92,7 +92,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
@@ -121,10 +121,10 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
-            Assert.Equal("Person",parseResult.Schema.Structure.Annotation.Path.Parts[1].ToString());
-            Assert.Equal("Stark",parseResult.Schema.Structure.Annotation.Path.Parts[3].ToString());
-            Assert.Equal("Tony",parseResult.Schema.Structure.Annotation.Path.Parts[5].ToString());
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal("Person",parseResult.Schema.Structure.Annotation.Source.Parts[1].ToString());
+            Assert.Equal("Stark",parseResult.Schema.Structure.Annotation.Source.Parts[3].ToString());
+            Assert.Equal("Tony",parseResult.Schema.Structure.Annotation.Source.Parts[5].ToString());
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
          
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -164,9 +164,9 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
-            Assert.IsType<Annotation>(parseResult.Schema.Structure.Annotation);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.NotNull(parseResult.Schema.Structure.Annotation);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -205,7 +205,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -244,7 +244,7 @@
             Assert.NotNull(parseResult.Schema);
             
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -285,7 +285,7 @@
 
                         
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -327,7 +327,7 @@
             Assert.NotNull(parseResult.Schema.Structure);
 
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -349,8 +349,8 @@
             Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
-                ""firstname"" <= @value(),
-                ""lastname"" <= @node(\\),
+                ""firstname"" @value(),
+                ""lastname"" @value(\\),
                 ""email"" <= ""admin@starkindustries.com"",
                 ""phone"" <= ""+31 (909) 477-2353""
             }";
@@ -366,7 +366,7 @@
             Assert.NotNull(parseResult.Schema.Structure);
             
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -389,7 +389,7 @@
             Person 
             {
                 ""age"" <= 22,
-                ""firstname"" <= @value(),
+                ""firstname"" @value(),
                 ""company"" <= ""ISOTRONIC"",
                 ""email"" <= ""sabrina.stephenson@isotronic.io"",
                 ""phone"" <= ""+31 (909) 477-2353""
@@ -406,7 +406,7 @@
             Assert.NotNull(parseResult.Schema.Structure);
             
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
@@ -429,7 +429,7 @@
                 ""age"" <= 22,
                 ""name"" 
                 {
-                    ""first"" <= @value(),
+                    ""first"" @value(),
                     ""last"" <= ""Stephenson""
                 },
                 ""company"" <= ""ISOTRONIC"",
@@ -448,7 +448,7 @@
             Assert.NotNull(parseResult.Schema.Structure);
             
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Type);
             
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
