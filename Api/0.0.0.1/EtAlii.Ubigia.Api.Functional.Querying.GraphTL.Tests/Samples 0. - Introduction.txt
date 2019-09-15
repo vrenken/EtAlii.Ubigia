@@ -118,13 +118,13 @@ Person @node(Person:Doe/John)
 -- Only the properties that can be found will be returned. No error is given if a property cannot be found. 
 Person @node(Person:Doe/John)
 {
-    FirstName @value(),
-    LastName @value(\#FamilyName),
+    FirstName @node(),
+    LastName @node(\#FamilyName),
     NickName,
     Friends @nodes(/Friends/)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName)
+        FirstName @node(), 
+        LastName @node(\#FamilyName)
     }
 }
 
@@ -134,13 +134,13 @@ Person @node(Person:Doe/John)
 -- An error is given when any of the the properties marked as mandatory cannot be found. 
 Person @node(Person:Doe/John)
 {
-    !FirstName @value(),
-    !LastName @value(\#FamilyName),
+    !FirstName @node(),
+    !LastName @node(\#FamilyName),
     NickName,
     Friends @nodes(/Friends)  
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName)
+        FirstName @node(),
+        LastName @node(\#FamilyName)
     }
 }
 
@@ -150,13 +150,13 @@ Person @node(Person:Doe/John)
 -- An error is given when any of the the properties not marked as optional cannot be found. 
 Person @node(Person:Doe/John)
 {
-    FirstName @value(),
-    LastName @value(\#FamilyName),
+    FirstName @node(),
+    LastName @node(\#FamilyName),
     ?NickName,
     ?Friends @nodes(/Friends)  
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName)
+        FirstName @node(),
+        LastName @node(\#FamilyName)
     }
 }
 
@@ -168,12 +168,12 @@ Person @node(Person:Doe/John)
 
 Person @node(Person:Doe/John)
 {
-    FirstName @value(),
-    LastName @value(\#FamilyName),
+    FirstName @node(),
+    LastName @node(\#FamilyName),
     ?NickName,
     ?Friends @nodes(/Friends)  
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName)
+        FirstName @node(),
+        LastName @node(\#FamilyName)
     }
 }

@@ -3,14 +3,14 @@
 Person @nodes(Person:Doe/John) 
 {
     Track @node-add(/Track, UNNAMED)
-    {
+    { 
         Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     }  
 }
@@ -23,11 +23,11 @@ Person @nodes(Person:Doe/John)
     {
         Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     }  
 }
@@ -42,11 +42,11 @@ Person @nodes(Person:Doe/John)
     {
         Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     }  
 }
@@ -58,11 +58,11 @@ Person @nodes(Person:Doe/John)
     {
         Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     }  
 }
@@ -79,47 +79,47 @@ Person @nodes(Person:Doe/John)
     {
         Time @node-link(/Time, Time:'2006-04-03 11:23', /Event)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     },
     Track @node-add(/Track, "Love Parade 2000")
     {
         Time @node-link(/Time, Time:'2000-05-02 11:23', /Visit)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Berlin, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     },
     Track @node-add(/Track, "Love Parade 2007")
     {
         Time @node-link(/Time, Time:'2007-06-13 09:12', /Visit)
         {
-            Time @value()
+            Time @node()
         }
         Location @node-link(/Location, Location:Europe/Germany/Essen, /Visit)
         {
-            Location @value()
+            Location @node()
         }
     }  
 }
 
 -- ==================================================================================================================
 -- 02 Returns two different arrays in one single response. Limit the results to the union of the two.
-Person @node(Person:Doe/John) 
-{
-    FirstName @value(),
-    LastName @value(\#FamilyName),
-    Track @nodes(/Track/)
-    {
-        Name @value(),
-        Time @where(Time:2000/**),
-        Location @where(Location:Europe/Germany/Berlin)
-    }
-}
+-- Person @node(Person:Doe/John) 
+-- {
+--     FirstName @node(),
+--     LastName @node(\#FamilyName),
+--     Track @nodes(/Track/)
+--     {
+--         Name @node(),
+--         Time @where(Time:2000/**),
+--         Location @where(Location:Europe/Germany/Berlin)
+--     }
+-- }

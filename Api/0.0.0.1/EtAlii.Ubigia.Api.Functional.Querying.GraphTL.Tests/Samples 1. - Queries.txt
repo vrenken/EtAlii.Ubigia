@@ -7,10 +7,10 @@ Person @node(person:Stark/Tony)
 
 
 -- ==================================================================================================================
--- 02. Query with nodes directive at entity path and relative property
+-- 02. Query with nodes directive at entity path and relative property 
 Person @node(person:Stark/Tony)
 { 
-    lastname @value(\\#FamilyName) 
+    lastname @node(\\#FamilyName) 
 } 
 
 -- ==================================================================================================================

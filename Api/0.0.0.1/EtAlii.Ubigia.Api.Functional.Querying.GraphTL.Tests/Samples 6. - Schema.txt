@@ -1,8 +1,8 @@
 ﻿-- ==================================================================================================================
 -- 01 Add a schema.
-@schema-add("contact.names") 
-{
-    FirstName @value(),
-    LastName @value(\#FamilyName),
-    NickName,
-}
+-- @schema-add("contact.names")  
+-- {
+--     FirstName @node(),
+--     LastName @node(\#FamilyName),
+--     NickName,
+-- }

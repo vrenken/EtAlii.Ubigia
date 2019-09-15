@@ -24,24 +24,24 @@ Data
 {
     Person @node(Person:Doe/John)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     },
     Location @nodes(location:DE/Berlin//)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     }
 }
@@ -52,24 +52,24 @@ Data
 {
     Person @nodes(Person:Doe/*)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     },
     Location @nodes(location:DE/Berlin//)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     }
 }
@@ -80,24 +80,24 @@ Data
 {
     Person @nodes(Person:Doe/*)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     }
     Location @nodes(location:DE/Berlin//)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)  
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName)
+            FirstName @node(),
+            LastName @node(\#FamilyName)
         }
     }
 }
@@ -111,8 +111,8 @@ Data
 --     @nodes(time:2009//)
 --     @union(/Locations/","/Visitors/", "/Events/)
 --     {
---         FirstName @value(),
---         LastName @value(\#FamilyName),
+--         FirstName @node(),
+--         LastName @node(\#FamilyName),
 --         NickName
 --     }
 -- } 
@@ -126,8 +126,8 @@ DataOuter
     {
         Person @node(Person:Doe/John)
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName),
+            FirstName @node(),
+            LastName @node(\#FamilyName),
             NickName
         }
     }
@@ -141,26 +141,26 @@ Data
     {
         Name
         {
-            First @value(),
-            Last @value(\LastName),
+            First @node(),
+            Last @node(\LastName),
             NickName
         }
     }
 }
 
 -- ==================================================================================================================
--- 06.c Nest traversal queries to explore additional context.
+-- 06.c Nest traversal queries to explore additional context. 
 Data
 {
     Person @node(Person:Doe/John)
     {
-        FirstName @value(),
-        LastName @value(\#FamilyName),
+        FirstName @node(),
+        LastName @node(\#FamilyName),
         NickName,
         Friends @nodes(/Friends/)
         {
-            FirstName @value(),
-            LastName @value(\#FamilyName),
+            FirstName @node(),
+            LastName @node(\#FamilyName),
             NickName
         }  
     }
