@@ -2,16 +2,16 @@
 {
     using Moppet.Lapa;
 
-    internal interface IValueAnnotationsParser
+    internal interface INodeValueAnnotationsParser
     {
         string Id { get; }
         
         LpsParser Parser { get; }
-        ValueAnnotation Parse(LpNode node);
+        NodeValueAnnotation Parse(LpNode node);
 
         bool CanParse(LpNode node);
 
-        void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth);
+        void Validate(StructureFragment parent, StructureFragment self, NodeValueAnnotation annotation, int depth);
         bool CanValidate(Annotation annotation);
     }
 }

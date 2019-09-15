@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-    internal class AssignAndSelectValueAnnotationParser : IAssignAndSelectValueAnnotationParser
+    internal class SetAndSelectNodeValueAnnotationParser : ISetAndSelectNodeValueAnnotationParser
     {
-        public string Id { get; } = nameof(AssignAndSelectValueAnnotation);
+        public string Id { get; } = nameof(AssignAndSelectNodeValueAnnotation);
         public LpsParser Parser { get; }
 
         private const string SourceId = "Source";
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
         private readonly IQuotedTextParser _quotedTextParser;
 
-        public AssignAndSelectValueAnnotationParser(
+        public SetAndSelectNodeValueAnnotationParser(
             INodeValidator nodeValidator, 
             INodeFinder nodeFinder, 
             INonRootedPathSubjectParser nonRootedPathSubjectParser, 
@@ -34,15 +34,15 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootedPathSubjectParser = rootedPathSubjectParser;
             _quotedTextParser = quotedTextParser;
 
-            // @value-assign(SOURCE, VALUE)
+            // @node-set(SOURCE, VALUE)
             var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | Lp.OneOrMore(c => char.IsLetterOrDigit(c)).Wrap(NameId) | _quotedTextParser.Parser);
             
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueAssign + "(" + 
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValueSet + "(" + 
                                              whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ("," + whitespaceParser.Optional + nameParser + whitespaceParser.Optional).Maybe() + ")");
         }
 
-        public ValueAnnotation Parse(LpNode node)
+        public NodeValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 sourcePath = null;
             }
 
-            return new AssignAndSelectValueAnnotation((PathSubject)sourcePath, name);
+            return new AssignAndSelectNodeValueAnnotation((PathSubject)sourcePath, name);
         }
 
         public bool CanParse(LpNode node)
@@ -81,14 +81,14 @@ namespace EtAlii.Ubigia.Api.Functional
             return node.Id == Id;
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, NodeValueAnnotation annotation, int depth)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanValidate(ValueAnnotation annotation)
+        public bool CanValidate(NodeValueAnnotation annotation)
         {
-            return annotation is AssignAndSelectValueAnnotation;
+            return annotation is AssignAndSelectNodeValueAnnotation;
         }
     }
 }

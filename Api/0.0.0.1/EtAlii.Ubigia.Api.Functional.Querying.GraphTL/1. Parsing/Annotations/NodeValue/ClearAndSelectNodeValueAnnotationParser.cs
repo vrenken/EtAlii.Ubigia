@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-    internal class ClearAndSelectValueAnnotationParser : IClearAndSelectValueAnnotationParser
+    internal class ClearAndSelectNodeValueAnnotationParser : IClearAndSelectNodeValueAnnotationParser
     {
-        public string Id { get; } = nameof(ClearAndSelectValueAnnotation);
+        public string Id { get; } = nameof(ClearAndSelectNodeValueAnnotation);
         public LpsParser Parser { get; }
         
         private const string SourceId = "Source";
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
-        public ClearAndSelectValueAnnotationParser(
+        public ClearAndSelectNodeValueAnnotationParser(
             INodeValidator nodeValidator, 
             INodeFinder nodeFinder, 
             INonRootedPathSubjectParser nonRootedPathSubjectParser, 
@@ -32,30 +32,35 @@ namespace EtAlii.Ubigia.Api.Functional
             // @value-clear(SOURCE)
             var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueClear + "(" + whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ")");
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValueClear + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
 
-        public ValueAnnotation Parse(LpNode node)
+        public NodeValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
+            Subject path = null;
             var sourceNode = _nodeFinder.FindFirst(node, SourceId);
-            var sourceChildNode = sourceNode.Children.Single();
-            var path = sourceChildNode.Id switch
+            if (sourceNode != null)
             {
-                { } id when id == _rootedPathSubjectParser.Id => _rootedPathSubjectParser.Parse(sourceChildNode),
-                { } id when id == _nonRootedPathSubjectParser.Id => _nonRootedPathSubjectParser.Parse(sourceChildNode),
-                _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
-            };
+                var sourceChildNode = sourceNode.Children.Single();
+                path = sourceChildNode.Id switch
+                {
+                    { } id when id == _rootedPathSubjectParser.Id => _rootedPathSubjectParser.Parse(sourceChildNode),
+                    { } id when id == _nonRootedPathSubjectParser.Id => _nonRootedPathSubjectParser.Parse(sourceChildNode),
+                    _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
+                };
+            }
 
             var sourcePath = path switch 
             {
                 { } p when p is PathSubject pathSubject => pathSubject,
                 { } p when p is StringConstantSubject stringConstantSubject => new RelativePathSubject(new ConstantPathSubjectPart(stringConstantSubject.Value)),
+                null => null,
                 _ => throw new NotSupportedException($"Cannot convert path subject in: {node.Match}")
             };
-            
-            return new ClearAndSelectValueAnnotation(sourcePath);
+
+            return new ClearAndSelectNodeValueAnnotation(sourcePath);
         }
 
         public bool CanParse(LpNode node)
@@ -63,14 +68,14 @@ namespace EtAlii.Ubigia.Api.Functional
             return node.Id == Id;
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, NodeValueAnnotation annotation, int depth)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanValidate(ValueAnnotation annotation)
+        public bool CanValidate(NodeValueAnnotation annotation)
         {
-            return annotation is ClearAndSelectValueAnnotation;
+            return annotation is ClearAndSelectNodeValueAnnotation;
         }
     }
 }

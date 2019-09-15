@@ -16,7 +16,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IQuotedTextParser _quotedTextParser;
-        private readonly IValueFragmentParser _valueFragmentParser;
+        private readonly INodeValueFragmentParser _nodeValueFragmentParser;
         private readonly IRequirementParser _requirementParser;
 
         private readonly INodeAnnotationsParser _annotationParser;
@@ -28,7 +28,7 @@
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
             IQuotedTextParser quotedTextParser,
-            IValueFragmentParser valueFragmentParser,
+            INodeValueFragmentParser nodeValueFragmentParser,
             INodeAnnotationsParser annotationParser, 
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
@@ -36,7 +36,7 @@
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _quotedTextParser = quotedTextParser;
-            _valueFragmentParser = valueFragmentParser;
+            _nodeValueFragmentParser = nodeValueFragmentParser;
             _annotationParser = annotationParser;
             _requirementParser = requirementParser;
 
@@ -47,7 +47,7 @@
 
             var fragmentsParser = new LpsParser(FragmentsId, true, 
                 structureQueryParser | 
-                _valueFragmentParser.Parser); //.Debug("VQ", true)
+                _nodeValueFragmentParser.Parser); //.Debug("VQ", true)
             
             var whitespace = whitespaceParser.Optional;//.Debug("W")
             var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
@@ -103,9 +103,9 @@
             foreach (var fragmentNode in fragmentNodes)
             {
                 var child = fragmentNode.Children.Single(); 
-                if (child.Id == _valueFragmentParser.Id)
+                if (child.Id == _nodeValueFragmentParser.Id)
                 {
-                    var valueQuery = _valueFragmentParser.Parse(child);
+                    var valueQuery = _nodeValueFragmentParser.Parse(child);
                     valueFragments.Add(valueQuery);
                 }
                 else if (child.Id == ChildStructureQueryId)

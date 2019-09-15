@@ -4,12 +4,12 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-    internal class ValueFragmentParser : IValueFragmentParser
+    internal class NodeValueFragmentParser : INodeValueFragmentParser
     {
         private readonly IKeyValuePairParser _keyValuePairParser;
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
-        private readonly IValueAnnotationsParser _annotationParser;
+        private readonly INodeValueAnnotationsParser _annotationParser;
         private readonly IRequirementParser _requirementParser;
         private readonly INodeFinder _nodeFinder;
 
@@ -27,10 +27,10 @@
         //private const string MutationKeyId = "MutationKey";
         //private const string MutationValueId = "MutationValue";
 
-        public ValueFragmentParser(
+        public NodeValueFragmentParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
-            IValueAnnotationsParser annotationParser,
+            INodeValueAnnotationsParser annotationParser,
             INodeFinder nodeFinder, 
             IKeyValuePairParser keyValuePairParser,
             //IAssignmentParser assignmentParser,
@@ -137,14 +137,14 @@
             var name = constantNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(constantNode);
 
             var annotationNode = _nodeFinder.FindFirst(node, AnnotationId);
-            ValueAnnotation annotation = null;
+            NodeValueAnnotation annotation = null;
             if (annotationNode != null)
             {
                 var annotationValueNode = _nodeFinder.FindFirst(annotationNode, _annotationParser.Id);
                 annotation = _annotationParser.Parse(annotationValueNode);
             }
 
-            var fragmentType = annotation == null || annotation is SelectValueAnnotation 
+            var fragmentType = annotation == null || annotation is SelectNodeValueAnnotation 
                 ? FragmentType.Query 
                 : FragmentType.Mutation;
             return new ValueFragment(name, annotation, requirement, fragmentType, null);
