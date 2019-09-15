@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Register(Container container)
         {
             container.Register<INodeAnnotationsParser, NodeAnnotationsParser>();
-            container.Register<IValueAnnotationsParser, ValueAnnotationsParser>();
+            container.Register<INodeValueAnnotationsParser, NodeValueAnnotationsParser>();
 
             container.Register<ISchemaParser, SchemaParser>();
             container.Register<IRequirementParser, RequirementParser>();
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
             container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser => ((KeyValuePairParser)keyValuePairParser).Initialize(container.GetInstance<IAssignmentParser>().Parser));
             
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
-            container.Register<IValueFragmentParser, ValueFragmentParser>();
+            container.Register<INodeValueFragmentParser, NodeValueFragmentParser>();
 
             container.Register<IAddAndSelectMultipleNodesAnnotationParser, AddAndSelectMultipleNodesAnnotationParser>();
             container.Register<IAddAndSelectSingleNodeAnnotationParser, AddAndSelectSingleNodeAnnotationParser>();
@@ -36,9 +36,9 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IUnlinkAndSelectMultipleNodesAnnotationParser, UnlinkAndSelectMultipleNodesAnnotationParser>();
             container.Register<IUnlinkAndSelectSingleNodeAnnotationParser, UnlinkAndSelectSingleNodeAnnotationParser>();
 
-            container.Register<IAssignAndSelectValueAnnotationParser, AssignAndSelectValueAnnotationParser>();
-            container.Register<IClearAndSelectValueAnnotationParser, ClearAndSelectValueAnnotationParser>();
-            container.Register<ISelectValueAnnotationParser, SelectValueAnnotationParser>();
+            container.Register<ISetAndSelectNodeValueAnnotationParser, SetAndSelectNodeValueAnnotationParser>();
+            container.Register<IClearAndSelectNodeValueAnnotationParser, ClearAndSelectNodeValueAnnotationParser>();
+            container.Register<ISelectNodeValueAnnotationParser, SelectNodeValueAnnotationParser>();
 
             //container.Register<IStructureMutationParser, StructureMutationParser>() 
             //container.Register<IValueMutationParser, ValueMutationParser>()
