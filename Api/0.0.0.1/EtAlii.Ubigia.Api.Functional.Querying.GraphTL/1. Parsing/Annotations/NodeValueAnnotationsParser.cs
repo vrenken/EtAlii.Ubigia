@@ -4,26 +4,26 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-    internal class ValueAnnotationsParser : IValueAnnotationsParser
+    internal class NodeValueAnnotationsParser : INodeValueAnnotationsParser
     {
-        public string Id { get; } = nameof(ValueAnnotation);
+        public string Id { get; } = nameof(NodeValueAnnotation);
         
         public LpsParser Parser { get; }
 
-        private readonly IValueAnnotationParser[] _parsers;
+        private readonly INodeValueAnnotationParser[] _parsers;
         private readonly INodeValidator _nodeValidator;
 
-        public ValueAnnotationsParser(
+        public NodeValueAnnotationsParser(
             INodeValidator nodeValidator,
-            IAssignAndSelectValueAnnotationParser assignAndSelectValueAnnotationParser,
-            IClearAndSelectValueAnnotationParser clearAndSelectValueAnnotationParser,
-            ISelectValueAnnotationParser selectValueAnnotationParser) 
+            ISetAndSelectNodeValueAnnotationParser setAndSelectNodeValueAnnotationParser,
+            IClearAndSelectNodeValueAnnotationParser clearAndSelectNodeValueAnnotationParser,
+            ISelectNodeValueAnnotationParser selectNodeValueAnnotationParser) 
         {
-            _parsers = new IValueAnnotationParser[]
+            _parsers = new INodeValueAnnotationParser[]
             {
-                assignAndSelectValueAnnotationParser,
-                clearAndSelectValueAnnotationParser,
-                selectValueAnnotationParser
+                setAndSelectNodeValueAnnotationParser,
+                clearAndSelectNodeValueAnnotationParser,
+                selectNodeValueAnnotationParser
             };
             
             _nodeValidator = nodeValidator;
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Parser = new LpsParser(Id, true, lpsParsers);
         }
 
-        public ValueAnnotation Parse(LpNode node)
+        public NodeValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
             var childNode = node.Children.Single();
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional
             throw new System.NotImplementedException();
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, NodeValueAnnotation annotation, int depth)
         {
             //var subject = (NodeAnnotation)self
             var parser = _parsers.Single(p => p.CanValidate(annotation));
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public bool CanValidate(Annotation annotation)
         {
-            return annotation is ValueAnnotation;
+            return annotation is NodeValueAnnotation;
         }
     }
 }

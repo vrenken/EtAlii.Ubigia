@@ -5,9 +5,9 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-    internal class SelectValueAnnotationParser : ISelectValueAnnotationParser
+    internal class SelectNodeValueAnnotationParser : ISelectNodeValueAnnotationParser
     {
-        public string Id { get; } = nameof(SelectValueAnnotation);
+        public string Id { get; } = nameof(SelectNodeValueAnnotation);
         public LpsParser Parser { get; }
         
         private const string SourceId = "Source";
@@ -17,7 +17,7 @@
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
-        public SelectValueAnnotationParser(
+        public SelectNodeValueAnnotationParser(
             INodeValidator nodeValidator, 
             INodeFinder nodeFinder, 
             INonRootedPathSubjectParser nonRootedPathSubjectParser, 
@@ -33,10 +33,10 @@
             // @value()
             var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Value + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValue + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
 
-        public ValueAnnotation Parse(LpNode node)
+        public NodeValueAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
@@ -52,7 +52,7 @@
                     _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
                 };
             }
-            return new SelectValueAnnotation(sourcePath);
+            return new SelectNodeValueAnnotation(sourcePath);
         }
 
         public bool CanParse(LpNode node)
@@ -60,14 +60,14 @@
             return node.Id == Id;
         }
 
-        public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
+        public void Validate(StructureFragment parent, StructureFragment self, NodeValueAnnotation annotation, int depth)
         {
             throw new NotImplementedException();
         }
 
-        public bool CanValidate(ValueAnnotation annotation)
+        public bool CanValidate(NodeValueAnnotation annotation)
         {
-            return annotation is SelectValueAnnotation;
+            return annotation is SelectNodeValueAnnotation;
         }
     }
 }
