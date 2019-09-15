@@ -4,11 +4,11 @@
     {
         public object Mutation { get; }
 
-        public ValueAnnotation Annotation { get; }
+        public NodeValueAnnotation Annotation { get; }
 
         internal ValueFragment(
             string name, 
-            ValueAnnotation annotation, 
+            NodeValueAnnotation annotation, 
             Requirement requirement, 
             FragmentType fragmentType, 
             object mutation)
