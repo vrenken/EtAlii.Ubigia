@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -7,19 +10,11 @@
     <Description>
     </Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>1a8ebc3e-54d9-44d6-b1c9-94614e0ad0eb</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.56.4" />

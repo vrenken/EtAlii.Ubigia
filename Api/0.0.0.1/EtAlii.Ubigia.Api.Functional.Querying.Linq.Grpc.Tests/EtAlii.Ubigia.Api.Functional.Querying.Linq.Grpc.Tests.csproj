@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -6,18 +9,10 @@
     <Company>EtAlii</Company>
     <Description>Unit test project</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>6aa27c5c-9f40-4642-a760-94b0deda6fff</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
   </PropertyGroup>
@@ -25,7 +20,7 @@
     <None Remove="TestImage_01.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.assert" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />

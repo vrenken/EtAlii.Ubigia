@@ -84,24 +84,24 @@
             {
                 Person @nodes(Person:Doe/*)
                 {
-                    FirstName @value(),
-                    LastName @value(\#FamilyName),
+                    FirstName @node(),
+                    LastName @node(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends/)  
                     {
-                        FirstName @value(),
-                        LastName @value(\#FamilyName)
+                        FirstName @node(),
+                        LastName @node(\#FamilyName)
                     }
                 },
                 Location @nodes(location:DE/Berlin//)
                 {
-                    FirstName @value(),
-                    LastName @value(\#FamilyName),
+                    FirstName @node(),
+                    LastName @node(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends/)  
                     {
-                        FirstName @value(),
-                        LastName @value(\#FamilyName)
+                        FirstName @node(),
+                        LastName @node(\#FamilyName)
                     }  
                 }
             }";

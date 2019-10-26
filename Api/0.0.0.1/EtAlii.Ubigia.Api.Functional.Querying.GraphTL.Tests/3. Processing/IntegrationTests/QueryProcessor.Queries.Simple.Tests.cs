@@ -81,13 +81,13 @@
             // Arrange.
             var queryText = @"Time @node(time:now)
                                {
-                                    Millisecond @value()
-                                    Second @value(\)
-                                    Minute @value(\\)
-                                    Hour @value(\\\)
-                                    Day @value(\\\\)
-                                    Month @value(\\\\\)
-                                    Year @value(\\\\\\)
+                                    Millisecond @node()
+                                    Second @node(\)
+                                    Minute @node(\\)
+                                    Hour @node(\\\)
+                                    Day @node(\\\\)
+                                    Month @node(\\\\\)
+                                    Year @node(\\\\\\)
                                }";
 
             var query = _context.Parse(queryText).Schema;
@@ -132,13 +132,13 @@
             // Arrange.
             var selectSchemaText = @"Time @node(time:now)
                                    {
-                                        Millisecond @value()
-                                        Second @value(\)
-                                        Minute @value(\\)
-                                        Hour @value(\\\)
-                                        Day @value(\\\\)
-                                        Month @value(\\\\\)
-                                        Year @value(\\\\\\)
+                                        Millisecond @node()
+                                        Second @node(\)
+                                        Minute @node(\\)
+                                        Hour @node(\\\)
+                                        Day @node(\\\\)
+                                        Month @node(\\\\\)
+                                        Year @node(\\\\\\)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -169,8 +169,8 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                    {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
+                                        FirstName @node()
+                                        LastName @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -200,8 +200,8 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:*/*)
                                    {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
+                                        FirstName @node()
+                                        LastName @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -251,8 +251,8 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                    {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
+                                        FirstName @node()
+                                        LastName @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -285,8 +285,8 @@
             // Arrange.
             var selectSchemaText = @"Data
                                    {
-                                        FirstName @value(Person:Stark/Tony)
-                                        LastName @value(Person:Stark/Tony\#FamilyName)
+                                        FirstName @node(Person:Stark/Tony)
+                                        LastName @node(Person:Stark/Tony\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -324,8 +324,8 @@
                                     {
                                         Data
                                         {
-                                            FirstName @value()
-                                            LastName @value(\#FamilyName)
+                                            FirstName @node()
+                                            LastName @node(\#FamilyName)
                                         }
                                     }";
 
@@ -362,8 +362,8 @@
                                    {
                                         Data
                                         {
-                                            FirstName @value()
-                                            LastName @value(\#FamilyName)
+                                            FirstName @node()
+                                            LastName @node(\#FamilyName)
                                         }
                                    }";
 
@@ -403,8 +403,8 @@
                                         {
                                             Data2
                                             {
-                                                FirstName @value()
-                                                LastName @value(\#FamilyName)
+                                                FirstName @node()
+                                                LastName @node(\#FamilyName)
                                             }
                                         }
                                    }";
@@ -445,8 +445,8 @@
                                         {
                                             Data2
                                             {
-                                                FirstName @value()
-                                                LastName @value(\#FamilyName)
+                                                FirstName @node()
+                                                LastName @node(\#FamilyName)
                                             }
                                         }
                                    }";
@@ -484,8 +484,8 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Doe/*)
                                {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
+                                    FirstName @node()
+                                    LastName @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                }";
@@ -528,14 +528,14 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Doe/John)
                                {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
+                                    FirstName @node()
+                                    LastName @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                     Friends @nodes(/Friends/)
                                     {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
+                                        FirstName @node()
+                                        LastName @node(\#FamilyName)
                                     }
                                }";
 
@@ -575,8 +575,8 @@
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Doe/*)
                                {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
+                                    FirstName @node()
+                                    LastName @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                }";

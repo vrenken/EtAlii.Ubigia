@@ -8,27 +8,43 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public PathSubject Correct(NodeAnnotation annotation, PathSubject path)
         {
-            switch (annotation)
+            return annotation switch
             {
-                case AddAndSelectMultipleNodesAnnotation _:
-                case AddAndSelectSingleNodeAnnotation _:
-                case RemoveAndSelectMultipleNodesAnnotation _:
-                case RemoveAndSelectSingleNodeAnnotation _:
-                //case AddOperator _
-                //case RemoveOperator _:
-                    var parts = BuildCorrectedPathParts(annotation, path);
-                    if (path is RootedPathSubject rootedPathSubject)
-                    {
-                        path = new RootedPathSubject(rootedPathSubject.Root, parts);
-                    }
-                    else if (path is AbsolutePathSubject)
-                    {
-                        path = new AbsolutePathSubject(parts);
-                    }
-                    break;
-                //case AssignOperator _:
-                //    throw new SchemaProcessingException("Assignments cannot be done using @node/@nodes mutations. Use @value mutations instead.");
-            }
+                AddAndSelectMultipleNodesAnnotation a => CorrectAddition(annotation, path, a.Name),
+                AddAndSelectSingleNodeAnnotation a => CorrectAddition(annotation, path, a.Name),
+                RemoveAndSelectMultipleNodesAnnotation _ => CorrectSelection(annotation, path),
+                RemoveAndSelectSingleNodeAnnotation _ => CorrectSelection(annotation, path),
+                _ => path
+            };
+        }
+
+        private PathSubject CorrectSelection(NodeAnnotation annotation, PathSubject path)
+        {
+            var parts = BuildCorrectedPathParts(annotation, path);
+            path = path switch
+            {
+                RootedPathSubject rootedPathSubject => new RootedPathSubject(rootedPathSubject.Root, parts),
+                AbsolutePathSubject _ => new AbsolutePathSubject(parts),
+                _ => path
+            };
+            return path;
+        }
+
+        private PathSubject CorrectAddition(NodeAnnotation annotation, PathSubject path, string name)
+        {
+            var parts = BuildCorrectedPathParts(annotation, path);
+
+            parts = parts
+                .Concat(new [] { new ParentPathSubjectPart() })
+                .Concat(new [] { new ConstantPathSubjectPart(name) })
+                .ToArray();
+
+            path = path switch
+            {
+                RootedPathSubject rootedPathSubject => new RootedPathSubject(rootedPathSubject.Root, parts),
+                AbsolutePathSubject _ => new AbsolutePathSubject(parts),
+                _ => path
+            };
 
             return path;
         }

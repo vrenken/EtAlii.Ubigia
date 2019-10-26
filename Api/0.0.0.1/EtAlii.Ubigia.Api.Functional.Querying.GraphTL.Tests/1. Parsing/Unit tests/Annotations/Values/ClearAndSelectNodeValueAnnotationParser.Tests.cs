@@ -2,10 +2,10 @@
 {
     using Xunit;
 
-    public class ClearAndSelectValueAnnotationParserTests 
+    public class ClearAndSelectNodeValueAnnotationParserTests 
     {
         [Fact]
-        public void ClearAndSelectValueAnnotationParser_Create()
+        public void ClearAndSelectNodeValueAnnotationParser_Create()
         {
             // Arrange.
             
@@ -16,19 +16,19 @@
             Assert.NotNull(parser);
         }
 
-        private IClearAndSelectValueAnnotationParser CreateAnnotationParser()
+        private IClearAndSelectNodeValueAnnotationParser CreateAnnotationParser()
         {
             var container = new SchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<IClearAndSelectValueAnnotationParser>();
+            return container.GetInstance<IClearAndSelectNodeValueAnnotationParser>();
         }
         
         [Fact]
-        public void ClearAndSelectValueAnnotationParser_Parse_Value_LastName() 
+        public void ClearAndSelectNodeValueAnnotationParser_Parse_Value_LastName() 
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-clear(\\LastName)";
+            var text = @"@node-clear(\\LastName)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -37,17 +37,17 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
+            var valueAnnotation = annotation as ClearAndSelectNodeValueAnnotation;
             Assert.NotNull(valueAnnotation);
             Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString()); 
         }
 
         [Fact]
-        public void ClearAndSelectValueAnnotationParser_Parse_Value_NickName()
+        public void ClearAndSelectNodeValueAnnotationParser_Parse_Value_NickName()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-clear(NickName)";
+            var text = @"@node-clear(NickName)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -56,17 +56,17 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
+            var valueAnnotation = annotation as ClearAndSelectNodeValueAnnotation;
             Assert.NotNull(valueAnnotation);
             Assert.Equal(@"NickName",valueAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void ClearAndSelectValueAnnotationParser_Parse_Value()
+        public void ClearAndSelectNodeValueAnnotationParser_Parse_Value()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@value-clear(//Weight)";
+            var text = @"@node-clear(//Weight)";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -75,7 +75,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var valueAnnotation = annotation as ClearAndSelectValueAnnotation;
+            var valueAnnotation = annotation as ClearAndSelectNodeValueAnnotation;
             Assert.NotNull(valueAnnotation);
             Assert.Equal(@"//Weight",valueAnnotation.Source.ToString());
         }

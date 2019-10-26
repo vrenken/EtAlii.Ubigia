@@ -1,4 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
@@ -7,7 +10,6 @@
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>2db527c9-10f1-4129-9e3a-10e857c1944e</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>

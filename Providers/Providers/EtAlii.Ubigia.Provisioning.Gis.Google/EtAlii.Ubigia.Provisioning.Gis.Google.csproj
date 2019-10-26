@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -7,18 +10,10 @@
     <Description>
     </Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>e877ae17-3301-480b-8e91-62f8f20caab1</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
