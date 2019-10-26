@@ -140,7 +140,7 @@
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
-        [Fact]
+        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Person_03()
         {
             // Arrange.
@@ -220,7 +220,7 @@
             AssertFriends(queryFriends);
         }
 
-        [Fact]
+        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Persons_01()
         {
             // Arrange.
@@ -270,7 +270,7 @@
         }
 
                 
-        [Fact]
+        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
             // Arrange.
@@ -320,7 +320,7 @@
         }
 
         
-                [Fact]
+        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Person_Friends_Bidirectional_01()
         {
             // Arrange.
