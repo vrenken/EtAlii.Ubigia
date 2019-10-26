@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <OutputType>Library</OutputType>
@@ -8,18 +11,10 @@
     <Description>
     </Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>da6da2cc-af51-456a-82fd-66cca60c29a1</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

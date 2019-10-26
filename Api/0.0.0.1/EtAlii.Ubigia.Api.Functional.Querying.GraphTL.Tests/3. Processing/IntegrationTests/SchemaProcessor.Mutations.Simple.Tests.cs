@@ -146,13 +146,13 @@
             // Arrange.
             var mutationText = @"Person @node(Person:Doe/John)
                                  {
-                                     FirstName @value(),
-                                     LastName @value(\#FamilyName),
+                                     FirstName @node(),
+                                     LastName @node(\#FamilyName),
                                      NickName,
                                      Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                      {
-                                        FirstName @value(),
-                                        LastName @value(\#FamilyName),
+                                        FirstName @node(),
+                                        LastName @node(\#FamilyName),
                                         NickName
                                      }  
                                  }";
@@ -160,13 +160,13 @@
 
             var queryText = @"Person @node(Person:Doe/John)
                               {    
-                                    FirstName @value(),
-                                    LastName @value(\#FamilyName),
+                                    FirstName @node(),
+                                    LastName @node(\#FamilyName),
                                     NickName
                                     Friend @nodes(/Friends/)
                                     {
-                                        FirstName @value(),
-                                        LastName @value(\#FamilyName),
+                                        FirstName @node(),
+                                        LastName @node(\#FamilyName),
                                         NickName
                                     }
                               }";
@@ -276,14 +276,14 @@
             // Arrange.
             var mutationText = @"Person @nodes(Person:Doe/John)
                                {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
+                                    FirstName @node()
+                                    LastName @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                     Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                     {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
+                                        FirstName @node()
+                                        LastName @node(\#FamilyName)
                                     }
                                }";
 
@@ -328,13 +328,13 @@
                                  {
                                      Person @node(Person:Doe/John)
                                      {
-                                         FirstName @value(),
-                                         LastName @value(\#FamilyName),
+                                         FirstName @node(),
+                                         LastName @node(\#FamilyName),
                                          NickName,
                                          Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                                          {
-                                            FirstName @value(),
-                                            LastName @value(\#FamilyName),
+                                            FirstName @node(),
+                                            LastName @node(\#FamilyName),
                                             NickName
                                          }  
                                      }
@@ -346,25 +346,25 @@
                               {
                                     Person @node(Person:Doe/John)
                                     {    
-                                        FirstName @value(),
-                                        LastName @value(\#FamilyName),
+                                        FirstName @node(),
+                                        LastName @node(\#FamilyName),
                                         NickName
                                         Friend @nodes(/Friends/)
                                         {
-                                            FirstName @value(),
-                                            LastName @value(\#FamilyName),
+                                            FirstName @node(),
+                                            LastName @node(\#FamilyName),
                                             NickName
                                         }
                                     },
                                     Person @node(Person:Vrenken/Peter)
                                     {    
-                                        FirstName @value(),
-                                        LastName @value(\#FamilyName),
+                                        FirstName @node(),
+                                        LastName @node(\#FamilyName),
                                         NickName
                                         Friend @nodes(/Friends/)
                                         {
-                                            FirstName @value(),
-                                            LastName @value(\#FamilyName),
+                                            FirstName @node(),
+                                            LastName @node(\#FamilyName),
                                             NickName
                                         }
                                     }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29209.62
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7C2871EF-E67E-4CD0-BF65-DA0E1C05C4EB}"
 EndProject
@@ -389,6 +389,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{C953
 		Global.json = Global.json
 		NuGet.config = NuGet.config
 		README.md = README.md
+		Version.props = Version.props
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api", "Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{D2D0023C-7EDF-47F6-9542-76E1021FA2D5}"
@@ -413,7 +414,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Grpc.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Grpc.Tests.csproj", "{6A427C5C-9F40-4642-F760-94AB42DA6FFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.ShellExtension", "Client\Windows\ShellExtension\EtAlii.Ubigia.Windows.ShellExtension\EtAlii.Ubigia.Windows.ShellExtension.csproj", "{89357084-89FE-4D6A-8FB9-691E7C8876AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Windows.ShellExtension", "Client\Windows\ShellExtension\EtAlii.Ubigia.Windows.ShellExtension\EtAlii.Ubigia.Windows.ShellExtension.csproj", "{89357084-89FE-4D6A-8FB9-691E7C8876AE}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -423,7 +424,7 @@ Global
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.projitems*{7f142bab-7a0a-4068-ad49-6b4da090fa3d}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{85e9cf67-c4a5-47e0-ae62-f8430fdcc498}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{aa41b057-bb1e-457b-8ab2-783cccfcbc5f}*SharedItemsImports = 13
-		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.projitems*{ab4d1142-4552-408e-98d4-d8161b2f0d6e}*SharedItemsImports = 13
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.projitems*{ab4d1142-4552-408e-98d4-d8161b2f0d6e}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{f9cb6a59-98fd-4d02-9d34-ce0617a8949b}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -6268,10 +6269,10 @@ Global
 		{7F142BAB-7A0A-4068-AD49-6B4DA090FA3D} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{7175CB15-0138-4010-9066-C0ABE5C00649} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{AA41B057-BB1E-457B-8AB2-783CCCFCBC5F} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
-		{32ACAB6D-B3A2-4AB2-A65D-10AD4A893030} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
-		{6A427C5C-9F40-4642-F760-94AB42DA6FFF} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{6AA27C5C-9F40-4642-A760-94B0DEDA6FFF} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{32AC736D-B3A2-4AB2-EF5D-10AD4A893A30} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{32ACAB6D-B3A2-4AB2-A65D-10AD4A893030} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{6A427C5C-9F40-4642-F760-94AB42DA6FFF} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{89357084-89FE-4D6A-8FB9-691E7C8876AE} = {1CCC0BB6-F186-4B39-AA1D-EB6CFA6B38FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

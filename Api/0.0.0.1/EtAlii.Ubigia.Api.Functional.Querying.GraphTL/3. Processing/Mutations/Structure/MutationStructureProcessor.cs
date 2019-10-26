@@ -86,7 +86,6 @@ namespace EtAlii.Ubigia.Api.Functional
                     return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
                 case AddAndSelectSingleNodeAnnotation addAnnotation:
                     return new Script(new Sequence(new SequencePart[] {pathSubject, new AddOperator(), new StringConstantSubject(addAnnotation.Name) }));
-                
                 case LinkAndSelectMultipleNodesAnnotation linkAnnotation:
                     return CreateLinkScript(pathSubject, linkAnnotation.Source, linkAnnotation.Target, linkAnnotation.TargetLink);
                 case LinkAndSelectSingleNodeAnnotation linkAnnotation:

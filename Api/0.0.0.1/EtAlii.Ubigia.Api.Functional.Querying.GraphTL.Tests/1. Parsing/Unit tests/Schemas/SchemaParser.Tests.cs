@@ -106,14 +106,14 @@
             var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
             var text = @"Person @nodes(Person:Doe/John)
                        {
-                            FirstName @value()
-                            LastName @value(\#FamilyName)
+                            FirstName @node()
+                            LastName @node(\#FamilyName)
                             NickName
                             Birthdate
                             Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
                             {
-                                FirstName @value()
-                                LastName @value(\#FamilyName)
+                                FirstName @node()
+                                LastName @node(\#FamilyName)
                             }
                        }";
             

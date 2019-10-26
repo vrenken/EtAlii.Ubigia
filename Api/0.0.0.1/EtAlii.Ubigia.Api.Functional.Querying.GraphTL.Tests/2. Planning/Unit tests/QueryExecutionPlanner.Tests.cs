@@ -44,8 +44,8 @@
                 phone,
                 name @node(\#FamilyName)
                 {
-                    first @value(/FirstName),
-                    last @value()
+                    first @node(/FirstName),
+                    last @node()
                 }
             }";
 
@@ -75,8 +75,8 @@
             Assert.Equal("email", executionPlans[3].ToString());
             Assert.Equal("phone", executionPlans[4].ToString());
             Assert.Equal("name @node(\\#FamilyName)", executionPlans[5].ToString());
-            Assert.Equal("first @value(/FirstName)", executionPlans[6].ToString());
-            Assert.Equal("last @value()", executionPlans[7].ToString());
+            Assert.Equal("first @node(/FirstName)", executionPlans[6].ToString());
+            Assert.Equal("last @node()", executionPlans[7].ToString());
 
         }
     }

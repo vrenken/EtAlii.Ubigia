@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -6,22 +9,14 @@
     <Company>EtAlii</Company>
     <Description>Unit test project</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>7f3505c3-584f-4549-be37-c639b3732afe</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.3.0" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>

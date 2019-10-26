@@ -1,4 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
@@ -9,18 +12,10 @@
     <Company>EtAlii</Company>
     <Description>StorageBrowser</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
-    <Version>1.0.19.0</Version>
     <ProjectGuid>c53cf7f6-40bb-4e22-b4d6-bec861d69dda</ProjectGuid>
-    <PackageLicenseUrl>
-    </PackageLicenseUrl>
-    <PackageProjectUrl>
-    </PackageProjectUrl>
-    <PackageIconUrl>
-    </PackageIconUrl>
-    <PackageReleaseNotes>
-    </PackageReleaseNotes>
-    <PackageTags>
-    </PackageTags>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
   </PropertyGroup>

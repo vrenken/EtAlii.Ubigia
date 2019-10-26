@@ -349,8 +349,8 @@
             Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
-                ""firstname"" @value(),
-                ""lastname"" @value(\\),
+                ""firstname"" @node(),
+                ""lastname"" @node(\\),
                 ""email"" <= ""admin@starkindustries.com"",
                 ""phone"" <= ""+31 (909) 477-2353""
             }";
@@ -389,7 +389,7 @@
             Person 
             {
                 ""age"" <= 22,
-                ""firstname"" @value(),
+                ""firstname"" @node(),
                 ""company"" <= ""ISOTRONIC"",
                 ""email"" <= ""sabrina.stephenson@isotronic.io"",
                 ""phone"" <= ""+31 (909) 477-2353""
@@ -429,7 +429,7 @@
                 ""age"" <= 22,
                 ""name"" 
                 {
-                    ""first"" @value(),
+                    ""first"" @node(),
                     ""last"" <= ""Stephenson""
                 },
                 ""company"" <= ""ISOTRONIC"",
