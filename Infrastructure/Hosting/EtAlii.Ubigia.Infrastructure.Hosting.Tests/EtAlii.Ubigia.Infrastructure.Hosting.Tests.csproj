@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.84.6" />
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
-    <PackageReference Include="System.Threading.AccessControl" Version="4.5.0" />
+    <PackageReference Include="System.Threading.AccessControl" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
