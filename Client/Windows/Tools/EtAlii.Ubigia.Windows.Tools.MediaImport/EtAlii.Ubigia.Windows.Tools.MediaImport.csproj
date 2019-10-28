@@ -24,7 +24,7 @@
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
     <PackageReference Include="Fluent.Ribbon" Version="7.0.0-alpha0687" />
-    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
     <PackageReference Include="ControlzEx" Version="4.0.3" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4">
       <NoWarn>NU1701</NoWarn>

@@ -31,8 +31,8 @@
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
     <PackageReference Include="Fluent.Ribbon" Version="7.0.0-alpha0687" />
-    <PackageReference Include="Grpc" Version="2.23.0" />
-    <PackageReference Include="Grpc.Core" Version="2.23.0" />
+    <PackageReference Include="Grpc" Version="2.24.0" />
+    <PackageReference Include="Grpc.Core" Version="2.24.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
@@ -41,10 +41,10 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="17.2.0.49" />
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="17.2.0.49" />
-    <PackageReference Include="System.Reactive" Version="4.2.0-preview.566" />
-    <PackageReference Include="System.Reactive.Core" Version="4.2.0-preview.566" />
-    <PackageReference Include="System.Reactive.Linq" Version="4.2.0-preview.566" />
-    <PackageReference Include="System.Reactive.PlatformServices" Version="4.2.0-preview.566" />
+    <PackageReference Include="System.Reactive" Version="4.2.0" />
+    <PackageReference Include="System.Reactive.Core" Version="4.2.0" />
+    <PackageReference Include="System.Reactive.Linq" Version="4.2.0" />
+    <PackageReference Include="System.Reactive.PlatformServices" Version="4.2.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>

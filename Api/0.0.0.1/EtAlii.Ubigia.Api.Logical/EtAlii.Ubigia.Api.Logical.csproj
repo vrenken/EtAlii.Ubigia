@@ -20,7 +20,7 @@
     <PackageReference Include="EtAlii.xTechnology.Structure" Version="1.0.4" />
     <PackageReference Include="EtAlii.xTechnology.Threading" Version="1.0.3" />
     <PackageReference Include="HashLib" Version="2.1.0.2" />
-    <PackageReference Include="System.Reactive.Linq" Version="4.2.0-preview.566" />
+    <PackageReference Include="System.Reactive.Linq" Version="4.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
