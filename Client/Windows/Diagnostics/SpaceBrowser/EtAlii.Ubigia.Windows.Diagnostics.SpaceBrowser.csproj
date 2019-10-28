@@ -24,7 +24,7 @@
     <PackageReference Include="AvalonDock" Version="2.0.2000">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="AvalonEdit" Version="5.0.4">
+    <PackageReference Include="AvalonEdit" Version="6.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0">
@@ -37,10 +37,10 @@
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
-    <PackageReference Include="Syncfusion.Grid.WPF" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.SfChart.WPF" Version="17.2.0.49" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="17.2.0.49" />
+    <PackageReference Include="Syncfusion.Grid.WPF" Version="17.3.0.19" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="17.3.0.19" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="17.3.0.19" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="17.3.0.19" />
     <PackageReference Include="System.Reactive" Version="4.2.0" />
     <PackageReference Include="System.Reactive.Core" Version="4.2.0" />
     <PackageReference Include="System.Reactive.Linq" Version="4.2.0" />
