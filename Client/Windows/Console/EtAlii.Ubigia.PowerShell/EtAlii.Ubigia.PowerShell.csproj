@@ -19,7 +19,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
-    <PackageReference Include="System.Management.Automation" Version="6.2.2" /> 
+    <PackageReference Include="System.Management.Automation" Version="6.2.3" /> 
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
