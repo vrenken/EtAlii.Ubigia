@@ -21,7 +21,7 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>

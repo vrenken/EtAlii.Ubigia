@@ -29,9 +29,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.NetCore" Version="1.0.84.3" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.NetCore" Version="1.0.84.6" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting\EtAlii.Ubigia.Provisioning.Hosting.csproj" />
