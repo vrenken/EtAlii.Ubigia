@@ -10,6 +10,7 @@
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <ProjectGuid>8ba37f50-b8a0-44d8-9e88-d8db718fcd0d</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <Description>This library provides a WebApi specific transport management layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
