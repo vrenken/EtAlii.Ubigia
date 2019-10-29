@@ -10,6 +10,7 @@
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <ProjectGuid>{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <Description>This library provides client-transport agnostic logic. It is consumed by all transport specific packages.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>

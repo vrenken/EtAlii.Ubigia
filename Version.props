@@ -5,7 +5,6 @@
     <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-<!--    <PackageLicenseUrl>http://TBD</PackageLicenseUrl>-->
   </PropertyGroup>
 </Project>
 

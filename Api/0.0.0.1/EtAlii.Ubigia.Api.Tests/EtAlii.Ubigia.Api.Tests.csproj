@@ -10,6 +10,7 @@
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <ProjectGuid>b42a4c2b-15b6-4533-b06a-89346fb7aab6</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <Description>This library provides the basic code constructs for all testing purposes.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>

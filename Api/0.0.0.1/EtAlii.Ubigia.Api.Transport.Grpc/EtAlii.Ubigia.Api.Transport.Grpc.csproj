@@ -10,20 +10,20 @@
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <ProjectGuid>20db2052-783f-40dd-ba23-0aca594da338</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <Description>This library provides a Grpc specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
-    <!--<ProjectReference Include="..\..\..\Frameworks\Microsoft.AspNetCore.SignalR\src\Microsoft.AspNetCore.SignalR.Client\Microsoft.AspNetCore.SignalR.Client.csproj" />-->
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Grpc.Tools" Version="1.0.7" />
     <PackageReference Include="Grpc" Version="2.24.0" />
     <PackageReference Include="Grpc.Tools" Version="2.23.0" />
-    <PackageReference Include="Google.Protobuf" Version="3.10.0" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.10.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.10.1" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.10.1" />
   </ItemGroup>
 </Project>
