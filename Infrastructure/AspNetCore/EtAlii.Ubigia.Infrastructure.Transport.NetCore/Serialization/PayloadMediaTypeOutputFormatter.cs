@@ -6,6 +6,7 @@
 	using System.Reflection;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
+	using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
 	using Microsoft.Net.Http.Headers;
 	using Newtonsoft.Json;
@@ -30,6 +31,13 @@
 
 		public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
 		{
+			// Fix for: https://github.com/aspnet/AspNetCore/issues/7644
+			var bodyControlFeature = context.HttpContext.Features.Get<IHttpBodyControlFeature>();
+			if (bodyControlFeature != null)
+			{
+				bodyControlFeature.AllowSynchronousIO = true;
+			}
+			
 			var response = context.HttpContext.Response;
 			WriteToStream(context.ObjectType, context.Object, response.Body);
 			return Task.CompletedTask;
