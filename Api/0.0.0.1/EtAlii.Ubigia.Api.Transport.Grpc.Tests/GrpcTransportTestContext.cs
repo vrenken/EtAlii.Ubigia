@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-    using global::Grpc.Core;
+    using global::Grpc.Net.Client;
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
@@ -16,7 +16,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			var grpcChannelFactory = new Func<Uri, Channel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
+			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
             
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory))
@@ -45,7 +45,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            var grpcChannelFactory = new Func<Uri, Channel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
+            var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
 				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory))

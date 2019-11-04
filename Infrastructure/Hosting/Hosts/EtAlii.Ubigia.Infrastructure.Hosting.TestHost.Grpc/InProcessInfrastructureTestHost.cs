@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
+	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
@@ -22,6 +23,12 @@
 	    private AdminModule _adminModule;
 	    public UserModule UserModule => _userModule;
 	    private UserModule _userModule;
+
+	    static InProcessInfrastructureTestHost()
+	    {
+		    // See: https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.0#call-insecure-grpc-services-with-net-core-client
+		    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+	    }
 
 		protected InProcessInfrastructureTestHost(ISystemManager systemManager)
 		    : base(systemManager)

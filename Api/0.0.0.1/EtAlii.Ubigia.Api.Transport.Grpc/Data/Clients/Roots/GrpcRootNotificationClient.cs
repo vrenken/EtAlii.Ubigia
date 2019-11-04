@@ -33,7 +33,7 @@
 //            Removed[id]
 //        ]
 
-        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+	    public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
 

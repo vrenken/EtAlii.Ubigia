@@ -4,8 +4,9 @@
     using System.Diagnostics;
     using System.Security.Cryptography;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
-    using global::Grpc.Core;
-    using global::Grpc.Core.Logging;
+    using Grpc.Core;
+    using Grpc.Core.Logging;
+    using Grpc.Net.Client;
 
     public class InProcessInfrastructureHostTestContext : HostTestContext<InProcessInfrastructureTestHost>
     {
@@ -25,17 +26,20 @@
             HostIdentifier = Convert.ToBase64String(bytes);
         }
 
-        public Channel CreateAdminGrpcInfrastructureChannel()
+        public GrpcChannel CreateAdminGrpcInfrastructureChannel()
         { 
-            return new Channel("localhost", Host.AdminModule.Port, ChannelCredentials.Insecure);
+            var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
+            return  GrpcChannel.ForAddress($"http://localhost:{Host.AdminModule.Port}", options);
         }
-        public Channel CreateUserGrpcInfrastructureChannel()
+        public GrpcChannel CreateUserGrpcInfrastructureChannel()
         {
-            return new Channel("localhost", Host.UserModule.Port, ChannelCredentials.Insecure);
+            var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
+            return  GrpcChannel.ForAddress($"http://localhost:{Host.UserModule.Port}", options);
         }
-        public Channel CreateGrpcInfrastructureChannel(Uri address)
+        public GrpcChannel CreateGrpcInfrastructureChannel(Uri address)
         {
-            return new Channel(address.DnsSafeHost, address.Port, ChannelCredentials.Insecure);
+            var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
+            return  GrpcChannel.ForAddress(address, options);
         }
         
 //        public IInfrastructureClient CreateRestInfrastructureClient()

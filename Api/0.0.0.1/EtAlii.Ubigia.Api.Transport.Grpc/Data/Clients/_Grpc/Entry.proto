@@ -1,17 +1,7 @@
 ﻿//
 // Copyright 2018 Peter Vrenken.
-
 syntax = "proto3";
-
-import "_Model.proto";
-
-option java_multiple_files = true;
-option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
-option java_outer_classname = "Ubigia";
-option objc_class_prefix = "Ubigia";
-option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
-//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME
-
+import "Data/Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
 // The Entry Grpc service definition.

@@ -7,6 +7,7 @@
 	using EtAlii.Ubigia.Api.Transport.Grpc;
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
 	using Grpc.Core;
+	using Grpc.Net.Client;
 	using Xunit;
 	using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
@@ -23,7 +24,7 @@
 	        _testContext = testContext;
         }
 
-		private async Task<Metadata> CreateAuthenticationHeaders(Channel channel, InProcessInfrastructureHostTestContext context)
+		private async Task<Metadata> CreateAuthenticationHeaders(GrpcChannel channel, InProcessInfrastructureHostTestContext context)
 		{
 			var authenticationClient = new AdminAuthenticationClient(channel);
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };

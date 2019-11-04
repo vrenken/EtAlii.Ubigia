@@ -1,10 +1,11 @@
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using global::Grpc.Core;
+	using global::Grpc.Net.Client;
 
 	public interface IGrpcTransport
     {
-	    Channel Channel { get; }
+	    GrpcChannel Channel { get; }
 	    
 		string AuthenticationToken { get; set; }
 	    
