@@ -13,7 +13,7 @@
 	    public HubConnection CreateForHost(ISignalRTransport transport, Uri address, string hostIdentifier)
 	    {
 		    var builder = new HubConnectionBuilder()
-		        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
 			    .ConfigureLogging(options =>
 			    {
 				    if (Debugger.IsAttached)
@@ -43,7 +43,7 @@
 		public HubConnection Create(ISignalRTransport transport, Uri address, string authenticationToken)
 	    {
 		    var builder = new HubConnectionBuilder()
-			    .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
 			    .ConfigureLogging(options =>
 			    {
 				    if (Debugger.IsAttached)
@@ -56,7 +56,7 @@
 			    {
 				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
 				    options.Transports = HttpTransportType.LongPolling;
-					options.Headers = new Dictionary<string, string>() {{"Authentication-Token", authenticationToken}};
+					options.Headers = new Dictionary<string, string> {{"Authentication-Token", authenticationToken}};
 				});
 			return builder.Build();
         }

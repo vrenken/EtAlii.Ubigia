@@ -20,7 +20,7 @@
                     //    .AddSingleton<IAccountRepository>(infrastructure.Accounts)
                     //    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                     //    .AddSingleton<IStorageRepository>(infrastructure.Storages)
-                        .AddMvcForTypedController<UserPortalController>();
+                        .AddMvcForTypedController<UserPortalController>(options => options.EnableEndpointRouting = false);
                 },
                 appBuilder =>
                 {

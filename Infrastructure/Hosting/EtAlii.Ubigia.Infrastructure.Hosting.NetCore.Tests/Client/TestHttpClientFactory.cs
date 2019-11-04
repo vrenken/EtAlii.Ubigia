@@ -4,6 +4,7 @@
 	using System.Net.Http;
 	using EtAlii.Ubigia.Api.Transport.WebApi;
 	using Microsoft.AspNetCore.TestHost;
+	using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.WebApi.IHttpClientFactory;
 
 	internal class TestHttpClientFactory : IHttpClientFactory
 	{

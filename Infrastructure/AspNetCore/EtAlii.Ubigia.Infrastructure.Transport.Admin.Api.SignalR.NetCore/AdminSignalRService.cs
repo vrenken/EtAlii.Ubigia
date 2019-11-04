@@ -39,7 +39,7 @@
                                 options.EnableDetailedErrors = Debugger.IsAttached;
                             }
                         })
-                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+                        .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
@@ -50,14 +50,15 @@
                             configuration.AllowAnyHeader();
                             configuration.AllowAnyOrigin(); 
                         })
-                        .UseSignalR(routes =>
+                        .UseRouting()
+                        .UseEndpoints(endPoints =>
                         {
-                            routes.MapHub<AuthenticationHub>(SignalRHub.Authentication);
+                            endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
 
-                            routes.MapHub<StorageHub>(SignalRHub.Storage);
-                            routes.MapHub<SpaceHub>(SignalRHub.Space);
-                            routes.MapHub<AccountHub>(SignalRHub.Account);
-						});
+                            endPoints.MapHub<StorageHub>(SignalRHub.Storage);
+                            endPoints.MapHub<SpaceHub>(SignalRHub.Space);
+                            endPoints.MapHub<AccountHub>(SignalRHub.Account);
+                        });
                 });
         }
     }

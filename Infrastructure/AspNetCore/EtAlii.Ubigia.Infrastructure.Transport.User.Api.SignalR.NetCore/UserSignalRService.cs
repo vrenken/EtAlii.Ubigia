@@ -43,7 +43,12 @@
 				                options.EnableDetailedErrors = Debugger.IsAttached;
 			                }
 		                })
-		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+		                .AddHubOptions<ContentHub>(options =>
+		                {
+							const long maximumReceiveMessageSizeInMegaByte = 1024 * 1024 * 2;
+							options.MaximumReceiveMessageSize = maximumReceiveMessageSizeInMegaByte;
+		                })
+		                .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
@@ -54,18 +59,19 @@
 		                    configuration.AllowAnyHeader();
                             configuration.AllowAnyOrigin(); 
                         })
-                        .UseSignalR(routes =>
+                        .UseRouting()
+                        .UseEndpoints(endPoints =>
                         {
-                            routes.MapHub<AuthenticationHub>(SignalRHub.Authentication);
+	                        endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
 
-							routes.MapHub<AccountHub>(SignalRHub.Account);
-							routes.MapHub<SpaceHub>(SignalRHub.Space);
+	                        endPoints.MapHub<AccountHub>(SignalRHub.Account);
+	                        endPoints.MapHub<SpaceHub>(SignalRHub.Space);
 
-							routes.MapHub<RootHub>(SignalRHub.Root);
-                            routes.MapHub<EntryHub>(SignalRHub.Entry);
-                            routes.MapHub<PropertiesHub>(SignalRHub.Property);
-                            routes.MapHub<ContentHub>(SignalRHub.Content);
-                            routes.MapHub<ContentDefinitionHub>(SignalRHub.ContentDefinition);
+	                        endPoints.MapHub<RootHub>(SignalRHub.Root);
+	                        endPoints.MapHub<EntryHub>(SignalRHub.Entry);
+	                        endPoints.MapHub<PropertiesHub>(SignalRHub.Property);
+	                        endPoints.MapHub<ContentHub>(SignalRHub.Content);
+	                        endPoints.MapHub<ContentDefinitionHub>(SignalRHub.ContentDefinition);
                         });
                 });
         }

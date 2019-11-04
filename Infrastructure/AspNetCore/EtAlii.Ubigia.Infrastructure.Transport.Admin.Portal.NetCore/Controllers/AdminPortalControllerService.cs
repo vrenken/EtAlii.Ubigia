@@ -17,7 +17,7 @@
             applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BasePath,
                 services =>
                 {
-                    services.AddMvcForTypedController<AdminPortalController>();
+                    services.AddMvcForTypedController<AdminPortalController>(options => options.EnableEndpointRouting = false);
                     //.AddRazorOptions(options =>
                     //[
                     //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace))
