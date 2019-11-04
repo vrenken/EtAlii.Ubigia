@@ -32,7 +32,7 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Apis.PeopleService.v1" Version="1.41.1.1757" />
+    <PackageReference Include="Google.Apis.PeopleService.v1" Version="1.41.1.1764" />
     <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
   </ItemGroup>
