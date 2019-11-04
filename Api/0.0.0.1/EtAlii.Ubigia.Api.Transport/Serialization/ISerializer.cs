@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.IO;
     using Newtonsoft.Json;
 
-    // TODO: Should be moved to EtAlii.Ubigia.Api.Transport assembly.
     // Update 2017-06-23: This should really be done. storage and transportation should be two
     // distinct and separated serializations (e.g. prot buff for storage).
+    // Update 2019-11-04: Done sometime in the past year or so.
     public interface ISerializer
     {
         DefaultValueHandling DefaultValueHandling { get; }
