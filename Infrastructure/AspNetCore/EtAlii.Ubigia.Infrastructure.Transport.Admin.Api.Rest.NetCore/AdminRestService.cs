@@ -33,8 +33,9 @@
 		                .AddInfrastructureSerialization()
 
 						.AddMvcForTypedController<RestController>(options =>
-						{
-							options.InputFormatters.Clear();
+		                {
+			                options.EnableEndpointRouting = false;
+			                options.InputFormatters.Clear();
 							options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
 							options.OutputFormatters.Clear();
 							options.OutputFormatters.Add(new PayloadMediaTypeOutputFormatter());
