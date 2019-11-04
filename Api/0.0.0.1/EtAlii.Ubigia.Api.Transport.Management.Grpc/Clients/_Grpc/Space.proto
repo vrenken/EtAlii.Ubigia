@@ -1,19 +1,8 @@
 ﻿//
 // Copyright 2018 Peter Vrenken.
-
 syntax = "proto3";
-
-import "_Model.proto";
-
-option java_multiple_files = true;
-option java_package = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
-option java_outer_classname = "Ubigia";
-option objc_class_prefix = "Ubigia";
-option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
-//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME
-
+import "Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-
 
 // The Space Grpc service definition.
 service SpaceGrpcService

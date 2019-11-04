@@ -29,7 +29,6 @@
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
     <PackageReference Include="Fluent.Ribbon" Version="7.0.0" />
-    <PackageReference Include="Grpc" Version="2.24.0" />
     <PackageReference Include="Grpc.Core" Version="2.24.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.3">

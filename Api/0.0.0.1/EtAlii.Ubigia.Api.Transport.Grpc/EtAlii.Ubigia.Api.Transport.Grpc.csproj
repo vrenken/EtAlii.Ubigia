@@ -16,14 +16,17 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <ProtoBuf Include="**\*.proto" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Grpc.Tools" Version="1.0.7" />
-    <PackageReference Include="Grpc" Version="2.24.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.24.0" />
     <PackageReference Include="Grpc.Tools" Version="2.24.0" />
     <PackageReference Include="Google.Protobuf" Version="3.10.1" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.10.1" />
   </ItemGroup>
 </Project>

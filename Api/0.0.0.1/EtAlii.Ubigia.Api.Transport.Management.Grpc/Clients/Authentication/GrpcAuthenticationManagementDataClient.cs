@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-    using global::Grpc.Core;
+    using global::Grpc.Net.Client;
 
     public partial class GrpcAuthenticationManagementDataClient : GrpcManagementClientBase, IAuthenticationManagementDataClient<IGrpcStorageTransport>
     {
@@ -32,7 +32,7 @@
             return Task.CompletedTask;
         }
 
-        private void SetClients(Channel channel)
+        private void SetClients(GrpcChannel channel)
         {
             _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
             _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
