@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             var storageId = _context.Storages.GetLocal().Id;
             var accountId = space.AccountId;
 
-            return _fabric.Identifiers.GetNextIdentifierForPreviousHeadIdentifier(storageId, spaceId, accountId, previousHeadIdentifier);
+            return _fabric.Identifiers.GetNextIdentifierForPreviousHeadIdentifier(storageId, accountId, spaceId, previousHeadIdentifier);
         }
     }
 }
