@@ -18,14 +18,9 @@
         public string Id { get; } = "ValueQuery";
 
         private const string KeyId = "Key";
-        //private const string RequirementId = "Requirement"
         private const string AnnotationId = "Annotation";
 
         private const string QueryValueId = "QueryValue"; 
-        //private const string KeyAnnotationMutationId = "KeyAnnotationMutation";
-        //private const string KeyAnnotationValueMutationId = "KeyAnnotationValueMutation";
-        //private const string MutationKeyId = "MutationKey";
-        //private const string MutationValueId = "MutationValue";
 
         public NodeValueFragmentParser(
             INodeValidator nodeValidator,
@@ -33,7 +28,6 @@
             INodeValueAnnotationsParser annotationParser,
             INodeFinder nodeFinder, 
             IKeyValuePairParser keyValuePairParser,
-            //IAssignmentParser assignmentParser,
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
