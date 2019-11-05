@@ -99,14 +99,8 @@
             }
         }
 
-        private void ReleaseUnmanagedResources()
-        {
-            // TODO release unmanaged resources here
-        }
-
         private void Dispose(bool disposing)
         {
-            ReleaseUnmanagedResources();
             if (disposing)
             {
                 _scriptChangedSubscription?.Dispose();
