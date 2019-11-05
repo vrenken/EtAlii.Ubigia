@@ -106,6 +106,7 @@
         {
             if (_disposed) return;
             
+            #pragma warning disable once S1066
             if (disposing)
             {
                 // Free other state (managed objects).
