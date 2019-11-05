@@ -106,7 +106,7 @@
         {
             if (_disposed) return;
             
-            #pragma warning disable once S1066
+            #pragma warning disable S1066
             if (disposing)
             {
                 // Free other state (managed objects).
@@ -117,6 +117,8 @@
                     Storage = null;
                 }
             }
+            #pragma warning restore S1066
+
             // Free your own state (unmanaged objects).
             // Set large fields to null.
             _disposed = true;
