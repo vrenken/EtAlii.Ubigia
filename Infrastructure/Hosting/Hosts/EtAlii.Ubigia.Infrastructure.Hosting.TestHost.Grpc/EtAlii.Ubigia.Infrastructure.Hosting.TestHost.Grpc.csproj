@@ -26,9 +26,7 @@
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
-    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
-    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 </Project>

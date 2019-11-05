@@ -34,17 +34,6 @@
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
                   }
                 ]
-              },
-              {
-                "Name": "Portal",
-                "Services": [
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc"
-                  },
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc"
-                  }
-                ]
               }
             ]
           },
@@ -59,17 +48,6 @@
                 "Services": [
                   {
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
-                  }
-                ]
-              },
-              {
-                "Name": "Portal",
-                "Services": [
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc"
-                  },
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc"
                   }
                 ]
               }

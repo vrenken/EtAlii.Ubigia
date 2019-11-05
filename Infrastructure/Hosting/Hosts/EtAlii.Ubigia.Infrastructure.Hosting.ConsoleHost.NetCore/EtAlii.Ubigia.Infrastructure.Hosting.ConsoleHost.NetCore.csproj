@@ -16,15 +16,15 @@
     </Content>
     <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.NetCore" Version="1.0.84.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.0.0" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.NetCore\EtAlii.Ubigia.Infrastructure.Transport.NetCore.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.NetCore.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.NetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.csproj" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <Content Update="settings.*.json">
       <DependentUpon>settings.json</DependentUpon>

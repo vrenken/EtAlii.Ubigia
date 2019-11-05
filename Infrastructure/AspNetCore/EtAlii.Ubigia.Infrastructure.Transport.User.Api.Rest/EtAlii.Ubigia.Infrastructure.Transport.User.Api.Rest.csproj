@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ProjectGuid>cc58d7b1-4c3d-4718-a199-115a60a954d3</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.csproj" />
+  </ItemGroup>
+</Project>
