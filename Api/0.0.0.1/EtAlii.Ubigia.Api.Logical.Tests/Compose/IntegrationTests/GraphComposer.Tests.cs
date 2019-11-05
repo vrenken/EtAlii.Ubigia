@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using Xunit;
 
-    
     public partial class GraphComposerIntegrationTests : IClassFixture<FabricUnitTestContext>
     {
         private readonly FabricUnitTestContext _testContext;
@@ -18,7 +17,7 @@
         public async Task GraphComposer_Create()
         {
             // Arrange.
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);

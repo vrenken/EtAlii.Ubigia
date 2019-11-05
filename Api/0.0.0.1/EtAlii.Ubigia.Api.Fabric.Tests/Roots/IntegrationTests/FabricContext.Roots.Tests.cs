@@ -20,7 +20,7 @@
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnection();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
@@ -68,7 +68,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Add_Multiple()
         {
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
@@ -158,13 +158,9 @@
         public async Task FabricContext_Roots_Get_No_Roots()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection();
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
-            var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             // Act.
-            var retrievedRoots = await fabric.Roots.GetAll();
+            var retrievedRoots = await _fabric.Roots.GetAll();
 
             // Assert.
             Assert.NotNull(retrievedRoots);
@@ -175,23 +171,19 @@
         public async Task FabricContext_Roots_Get_All()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection();
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
-            var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
             var roots = new List<Root>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
 
-                var root = await fabric.Roots.Add(name);
+                var root = await _fabric.Roots.Add(name);
                 Assert.NotNull(root);
                 Assert.Equal(name, root.Name);
                 roots.Add(root);
             }
 
             // Act.
-            var retrievedRoots = await fabric.Roots.GetAll();
+            var retrievedRoots = await _fabric.Roots.GetAll();
 
             // Assert.
             Assert.Equal(roots.Count + SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Count());

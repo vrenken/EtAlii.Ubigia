@@ -33,7 +33,7 @@
         public async Task ScriptProcessor_RootedPath_Get_GetItem()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
 
             const string query = "Time:";
             var script = _parser.Parse(query).Script;
@@ -58,7 +58,7 @@
         public async Task ScriptProcessor_RootedPath_Get_GetItemByVariable_1()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "$var1 <= Time:",
@@ -87,7 +87,7 @@
         //public async Task ScriptProcessor_RootedPath_Get_GetItemByVariable_2()
         //[
         //    // Arrange.
-        //    var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true)
+        //    using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true)
         //    var queries = new[]
         //    [
         //        "$var1 <= \"Time\":",
@@ -116,7 +116,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -150,7 +150,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -185,7 +185,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -222,7 +222,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -256,7 +256,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -289,7 +289,7 @@
             // Arrange.
             var continent = "Europe";
 
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location:+={continent}",
@@ -321,7 +321,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 $"Location: += {continent}",
@@ -353,7 +353,7 @@
         {
             // Arrange.
             var now = DateTime.Now;
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "Time:+={0:yyyy}",
@@ -386,7 +386,7 @@
         {
             // Arrange.
             var now = DateTime.Now;
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "$var1 <= Time:{0:yyyy}{0:MM}{0:dd}{0:HH}{0:mm}{0:ss}{0:fff}",
@@ -419,7 +419,7 @@
             // Arrange.
             var past = DateTime.Now.Subtract(TimeSpan.FromSeconds(5)); 
             var now = DateTime.Now;
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "Time:{1:yyyy}{1:MM}{1:dd}{1:HH}{1:mm}{1:ss}{1:fff}", // This should not have any impact.
@@ -451,7 +451,7 @@
         {
             // Arrange.
             var now = DateTime.Now;
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "Time: += {0:yyyy}",
@@ -483,7 +483,7 @@
         {
             // Arrange.
             var now = DateTime.Now;
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
                 "Time: += {0:yyyy}",

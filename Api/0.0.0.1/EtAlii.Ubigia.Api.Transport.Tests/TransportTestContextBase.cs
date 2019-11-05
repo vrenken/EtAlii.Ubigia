@@ -18,19 +18,24 @@
             _testHostFactory = new HostTestContextFactory();
         }
 
-        public Task<IDataConnection> CreateDataConnection(bool openOnCreation = true)
+        public Task<IDataConnection> CreateDataConnectionToNewSpace(bool openOnCreation = true)
         {
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var spaceName = Guid.NewGuid().ToString();
-	        return CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true);
+	        return CreateDataConnectionToNewSpace(Context.DataServiceAddress, accountName, password, openOnCreation);
 		}
 
-        public Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
+        public Task<IDataConnection> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
         {
-			return CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
+			return CreateDataConnectionToNewSpace(Context.DataServiceAddress, accountName, accountPassword, openOnCreation, spaceTemplate);
         }
-		public abstract Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
+        public abstract Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
+
+        public Task<IDataConnection> CreateDataConnectionToExistingSpace(string accountName, string accountPassword, string spaceName, bool openOnCreation)
+        {
+            return CreateDataConnectionToExistingSpace(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation);
+        }
+        public abstract Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation);
 
         public Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
         {

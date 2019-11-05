@@ -45,6 +45,9 @@
 
             // Assert.
             Assert.Equal("Overijssel_01", single[0].Type);
+            
+            // Assure.
+            await configuration.Connection.Close();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -70,6 +73,9 @@
             // Assert.
             Assert.Equal("Overijssel_01", single[0].Type);
             Assert.Equal("Overijssel_02", single[1].Type);
+                        
+            // Assure.
+            await configuration.Connection.Close();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -95,6 +101,9 @@
             // Assert.
             Assert.Equal("Overijssel_01", single[0].ToString());
             Assert.Equal("Overijssel_02", single[1].ToString());
+                        
+            // Assure.
+            await configuration.Connection.Close();
         }
     }
 }

@@ -37,7 +37,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             const string query = "<= include(\\02) <= /time/\"2017-02-20 20:06:02.123\"";
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
@@ -66,7 +66,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var query = new[]
             {
                 "/time/\"2017-02-20 20:06:01.122\"",
@@ -100,7 +100,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var query = new[]
             {
                 "/time/\"2017-02-20 20:06:02.122\"",
@@ -134,7 +134,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_04()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var query = new[]
             {
                 "/time/\"2017-02-20 20:06:01.122\"",
@@ -168,7 +168,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Include_Path_05()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var query = new[]
             {
                 "/time/\"2017-02-20 20:06:01.122\"",

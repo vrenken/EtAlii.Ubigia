@@ -23,7 +23,7 @@
         public async Task GraphPathTraverser_MultipleConnections_Create()
         {
             // Arrange.
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var configuration = new GraphPathTraverserConfiguration()
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
@@ -41,7 +41,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
 
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
@@ -83,7 +83,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -129,7 +129,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -170,7 +170,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -217,7 +217,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -259,7 +259,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -305,7 +305,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
@@ -348,7 +348,7 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 

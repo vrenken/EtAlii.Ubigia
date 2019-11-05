@@ -24,9 +24,9 @@
             // Arrange.
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection.Open();
 
             // Assert.
@@ -38,10 +38,9 @@
             // Arrange.
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var spaceName = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(accountName, password, spaceName, false, true, SpaceTemplate.Data);
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Data);
             await connection.Open();
 
             // Assert.
@@ -53,10 +52,9 @@
             // Arrange.
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var spaceName = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(accountName, password, spaceName, false, true, SpaceTemplate.Configuration);
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Configuration);
             await connection.Open();
 
             // Assert.
@@ -66,9 +64,9 @@
         public async Task DataConnection_Open_Twice_Same()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection.Open();
 
             // Act.
@@ -82,15 +80,15 @@
         public async Task DataConnection_Open_Twice_New()
         {
             // Arrange.
-            var connection1 = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection1 = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection1.Open();
 
             // Act.
-            var connection2 = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection2 = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection2.Open();
 
             // Assert.
@@ -102,9 +100,9 @@
         public async Task DataConnection_Open()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
 
             // Act.
             await connection.Open();
@@ -117,9 +115,9 @@
         public async Task DataConnection_Open_Invalid_Password()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
-                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -132,9 +130,9 @@
         public async Task DataConnection_Open_Invalid_Account()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName + "BAAD", 
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -147,9 +145,9 @@
         public async Task DataConnection_Open_Invalid_Space()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System + "BAAD", false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -162,9 +160,9 @@
         public async Task DataConnection_Open_Invalid_Account_And_Password()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName + "BAAD", 
-                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -177,9 +175,9 @@
         public async Task DataConnection_Open_Invalid_Account_And_Password_And_Space()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName + "BAAD", 
-                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -192,9 +190,9 @@
         public async Task DataConnection_Open_Already_Open()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection.Open();
 
             // Act.
@@ -207,9 +205,9 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task DataConnection_Open_And_Close_System()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
-                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
             await connection.Open();
             await connection.Close();
         }
@@ -219,9 +217,8 @@
         {
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var spaceName = Guid.NewGuid().ToString();
 
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(accountName, password, spaceName, false, true);
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false);
             await connection.Open();
             await connection.Close();
         }
@@ -230,7 +227,7 @@
         public async Task DataConnection_Close()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Close());

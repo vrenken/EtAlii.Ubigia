@@ -40,7 +40,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Update_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -92,7 +92,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Not_Update_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -144,7 +144,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Update_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -199,7 +199,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Update_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -253,7 +253,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Not_Update_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -308,7 +308,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Not_Update_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -363,7 +363,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Not_Update_04()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -418,7 +418,7 @@
         public async Task ScriptProcessor_Assign_Dynamic_Should_Not_Update_05()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
