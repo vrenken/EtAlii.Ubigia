@@ -19,8 +19,7 @@
         ISystemConnectionCreationProxy IEditableInfrastructureConfiguration.SystemConnectionCreationProxy { get => SystemConnectionCreationProxy; set => SystemConnectionCreationProxy = value; }
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 
-        Func<Container, IInfrastructure> IEditableInfrastructureConfiguration.GetInfrastructure { get => _getInfrastructure; set => _getInfrastructure = value; }
-        private Func<Container, IInfrastructure> _getInfrastructure;
+        Func<Container, IInfrastructure> IEditableInfrastructureConfiguration.GetInfrastructure { get; set; }
 
         public InfrastructureConfiguration(ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
@@ -29,7 +28,7 @@
 
         public IInfrastructure GetInfrastructure(Container container)
         {
-            return _getInfrastructure(container);
+            return ((IEditableInfrastructureConfiguration)this).GetInfrastructure(container);
         }
     }
 }
