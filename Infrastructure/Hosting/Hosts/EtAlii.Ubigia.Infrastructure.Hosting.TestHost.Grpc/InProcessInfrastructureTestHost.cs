@@ -37,6 +37,10 @@
 
         protected override async Task Started()
         {
+	        GrpcHostManager.ShutdownUsingKill = true;
+	        GrpcHostManager.KillServersOnInitialization = false;
+	        GrpcHostManager.ShutdownChannelsOnInitialization = false;
+	        
             await base.Started();
 
             var system = Systems.Single();

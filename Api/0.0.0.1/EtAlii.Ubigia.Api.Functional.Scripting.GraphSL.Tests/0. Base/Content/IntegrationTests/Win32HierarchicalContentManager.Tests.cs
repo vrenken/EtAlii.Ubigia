@@ -46,7 +46,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var folderName = Guid.NewGuid().ToString();
@@ -68,7 +68,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var hierarchicalContentManager = new HierarchicalContentManager();
@@ -85,7 +85,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var hierarchicalContentManager = new HierarchicalContentManager();

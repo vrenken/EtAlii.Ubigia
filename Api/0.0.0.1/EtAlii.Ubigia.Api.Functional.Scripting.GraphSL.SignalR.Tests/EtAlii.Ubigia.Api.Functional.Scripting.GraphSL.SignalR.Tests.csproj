@@ -15,6 +15,7 @@
     <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests</RootNamespace>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />

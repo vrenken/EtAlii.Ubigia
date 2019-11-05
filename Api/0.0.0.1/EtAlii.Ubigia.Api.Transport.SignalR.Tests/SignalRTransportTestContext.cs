@@ -12,7 +12,37 @@
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
-        public override async Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
+	    public override async Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
+	    {
+		    var spaceName = Guid.NewGuid().ToString();
+		    
+		    var diagnostics = TestDiagnostics.Create();
+
+		    //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
+		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+
+		    var connectionConfiguration = new DataConnectionConfiguration()
+			    //.Use(SignalRTransportProvider.Create(signalRHttpClient))
+			    .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
+			    .Use(address)
+			    .Use(accountName, spaceName, accountPassword)
+			    .UseTransportDiagnostics(diagnostics);
+		    var connection = new DataConnectionFactory().Create(connectionConfiguration);
+
+		    using var managementConnection = await CreateManagementConnection();
+		    var account = await managementConnection.Accounts.Get(accountName) ??
+		                  await managementConnection.Accounts.Add(accountName, accountPassword, AccountTemplate.User);
+		    await managementConnection.Spaces.Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data);
+		    await managementConnection.Close();
+
+		    if (openOnCreation)
+		    {
+			    await connection.Open();
+		    }
+		    return connection;
+	    }
+
+	    public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
         {
             var diagnostics = TestDiagnostics.Create();
 
@@ -26,15 +56,6 @@
                 .Use(accountName, spaceName, accountPassword)
                 .UseTransportDiagnostics(diagnostics);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
-
-            if (useNewSpace)
-            {
-                var managementConnection = await CreateManagementConnection();
-                var account = await managementConnection.Accounts.Get(accountName) ??
-                              await managementConnection.Accounts.Add(accountName, accountPassword, AccountTemplate.User);
-                await managementConnection.Spaces.Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data);
-                await managementConnection.Close();
-            }
 
             if (openOnCreation)
             {

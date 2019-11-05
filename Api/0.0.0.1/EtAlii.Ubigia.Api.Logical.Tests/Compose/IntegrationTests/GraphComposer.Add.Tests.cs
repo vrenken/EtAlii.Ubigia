@@ -13,7 +13,7 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
@@ -51,7 +51,7 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);

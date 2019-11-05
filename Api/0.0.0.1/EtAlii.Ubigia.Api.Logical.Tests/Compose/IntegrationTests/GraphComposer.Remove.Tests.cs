@@ -17,7 +17,7 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
@@ -30,7 +30,7 @@
             var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
-            string item = Guid.NewGuid().ToString();
+            var item = Guid.NewGuid().ToString();
             var addedEntry = await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(fabric)
@@ -77,7 +77,7 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
@@ -88,7 +88,7 @@
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
 //            var hierarchy = hierarchyResult.Item2
-            string item = Guid.NewGuid().ToString();
+            var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
@@ -114,7 +114,7 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
@@ -125,7 +125,7 @@
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
 //            var hierarchy = hierarchyResult.Item2
-            string item = Guid.NewGuid().ToString();
+            var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)

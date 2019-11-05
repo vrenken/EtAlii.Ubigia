@@ -17,13 +17,13 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         public async Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation)
         {
-            var connection = await Transport.CreateDataConnection(openOnCreation);
+            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation);
             fabricContextConfiguration.Use(connection);
         }
 
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
-            var connection = await Transport.CreateDataConnection(openOnCreation);
+            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             return new FabricContextFactory().Create(fabricContextConfiguration);

@@ -17,6 +17,7 @@
         private ILinqQueryContext _context;
 
         private string _countryPath;
+        private LinqQueryContextConfiguration _configuration;
 
         public LinqQueryContextNodesAddAddTests(LogicalUnitTestContext testContext)
         {
@@ -29,12 +30,12 @@
 
             _diagnostics = TestDiagnostics.Create();
             
-            var configuration = new LinqQueryContextConfiguration()
+            _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
 
-            _logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
-            _context = new LinqQueryContextFactory().Create(configuration);
+            _logicalContext = new LogicalContextFactory().Create(_configuration); // Hmz, I'm not so sure about this action.
+            _context = new LinqQueryContextFactory().Create(_configuration);
                 
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
@@ -42,10 +43,12 @@
             Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Task DisposeAsync()
+        public async Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
+            await _configuration.Connection.Close();
+            _configuration = null;
             _countryPath = null;
             _context.Dispose();
             _context = null;
@@ -54,7 +57,6 @@
             _diagnostics = null;
 
             Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return Task.CompletedTask;
         }
 
         [Fact(Skip="Not working yet"), Trait("Category", TestAssembly.Category)]

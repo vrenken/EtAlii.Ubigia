@@ -18,7 +18,7 @@
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnection();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);

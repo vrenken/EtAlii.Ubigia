@@ -16,6 +16,7 @@
         private IGraphTLContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
+        private GraphTLQueryContextConfiguration _configuration;
 
         public SchemaProcessorMutationsSimpleTests(QueryingUnitTestContext testContext)
         {
@@ -27,13 +28,13 @@
             var start = Environment.TickCount;
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
-            var configuration = new GraphTLQueryContextConfiguration()
+            _configuration = new GraphTLQueryContextConfiguration()
                 .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
                 .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
             
-            _scriptContext = new GraphSLScriptContextFactory().Create(configuration);
-            _context = new GraphTLQueryContextFactory().Create(configuration);
+            _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
+            _context = new GraphTLQueryContextFactory().Create(_configuration);
         
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
@@ -41,15 +42,16 @@
             Console.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
-        public Task DisposeAsync()
+        public async Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
+            await _configuration.Connection.Close();
+            _configuration = null;
             _scriptContext = null;
             _context = null;
 
             Console.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
-            return Task.CompletedTask;
         }
 
         [Fact]

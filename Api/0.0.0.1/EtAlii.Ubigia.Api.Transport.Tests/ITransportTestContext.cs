@@ -1,10 +1,10 @@
 namespace EtAlii.Ubigia.Api.Tests
 {
-	using System;
-	using System.Threading.Tasks;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public interface ITransportTestContext : ITransportTestContext<InProcessInfrastructureHostTestContext>
     {
@@ -15,9 +15,12 @@ namespace EtAlii.Ubigia.Api.Tests
     {
         THostTestContext Context { get; }
 
-        Task<IDataConnection> CreateDataConnection(bool openOnCreation = true);
-        Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
-        Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
+        Task<IDataConnection> CreateDataConnectionToNewSpace(bool openOnCreation = true);
+        Task<IDataConnection> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
+        Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
+        Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation);
+        Task<IDataConnection> CreateDataConnectionToExistingSpace(string accountName, string accountPassword, string spaceName, bool openOnCreation);
+        
         Task<IManagementConnection> CreateManagementConnection(Uri address, string accountName, string password, bool openOnCreation);
         Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true);
 

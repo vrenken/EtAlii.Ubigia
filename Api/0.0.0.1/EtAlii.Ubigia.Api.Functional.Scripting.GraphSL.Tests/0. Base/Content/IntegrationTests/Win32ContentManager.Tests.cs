@@ -49,7 +49,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
 
@@ -67,7 +67,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var fileName = Guid.NewGuid().ToString();
@@ -86,7 +86,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -102,7 +102,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -123,7 +123,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -143,7 +143,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -163,7 +163,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -189,7 +189,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -215,7 +215,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -244,7 +244,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
@@ -273,7 +273,7 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
