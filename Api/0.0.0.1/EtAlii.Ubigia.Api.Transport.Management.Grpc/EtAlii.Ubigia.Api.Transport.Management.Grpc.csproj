@@ -27,7 +27,8 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Grpc.Tools" Version="2.24.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.26.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.26.0" />
     <PackageReference Include="Google.Protobuf" Version="3.11.2" />
   </ItemGroup>
 </Project>

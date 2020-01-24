@@ -46,8 +46,8 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.84.9" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.84.9" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.85" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.85" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
