@@ -29,7 +29,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.NetCore" Version="1.0.84.9" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.NetCore" Version="1.0.85" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
   </ItemGroup>
