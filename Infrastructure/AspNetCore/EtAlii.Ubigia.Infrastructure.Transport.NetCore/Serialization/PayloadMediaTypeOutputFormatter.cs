@@ -14,6 +14,7 @@
 
 	public class PayloadMediaTypeOutputFormatter : OutputFormatter
 	{
+		// ReSharper disable once InconsistentNaming
         public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
 		private readonly ISerializer _serializer;
 

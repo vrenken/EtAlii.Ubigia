@@ -168,6 +168,7 @@
 
     public abstract class CommandBase : MarkupExtension
     {
+        // ReSharper disable once InconsistentNaming
         protected static readonly Dictionary<Type, object> Instances = new Dictionary<Type, object>();
     }
 

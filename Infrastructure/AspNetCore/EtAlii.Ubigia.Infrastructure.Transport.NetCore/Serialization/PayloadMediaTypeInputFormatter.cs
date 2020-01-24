@@ -19,6 +19,7 @@
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
         private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
 
+        // ReSharper disable once InconsistentNaming
         public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
 		private readonly ISerializer _serializer;
 

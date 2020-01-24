@@ -17,6 +17,7 @@
             return _name;
         }
 
+        // ReSharper disable InconsistentNaming
         public static readonly GraphRelation AllChildren = new GraphRelation("ALLCHILDREN");
         public static readonly GraphRelation Children = new GraphRelation("CHILDREN");
         public static readonly GraphRelation AllParents = new GraphRelation("ALLPARENTS");
@@ -33,5 +34,6 @@
         public static readonly GraphRelation Last = new GraphRelation("LAST");
         public static readonly GraphRelation Original = new GraphRelation("ORIGINAL");
         public static readonly GraphRelation Final = new GraphRelation("FINAL");
+        // ReSharper restore InconsistentNaming
     }
 }

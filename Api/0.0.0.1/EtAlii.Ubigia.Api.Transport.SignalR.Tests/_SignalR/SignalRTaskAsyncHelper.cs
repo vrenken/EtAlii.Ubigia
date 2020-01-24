@@ -904,6 +904,7 @@
 
         private static class TaskCache<T>
         {
+            // ReSharper disable once InconsistentNaming
             public static readonly Task<T> EmptyTaskCache = MakeTask(default(T));
         }
     }

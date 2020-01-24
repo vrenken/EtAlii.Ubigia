@@ -15,6 +15,7 @@
 
 	public class PayloadMediaTypeFormatter : MediaTypeFormatter
     {
+	    // ReSharper disable InconsistentNaming
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
         private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
@@ -22,6 +23,7 @@
         public static readonly MediaTypeWithQualityHeaderValue MediaType = new MediaTypeWithQualityHeaderValue("application/bson");
 	    public static readonly MediaTypeHeaderValue ContentMediaType = new MediaTypeHeaderValue("application/bson");
 	    private readonly ISerializer _serializer;
+	    // ReSharper restore InconsistentNaming
 
 		public PayloadMediaTypeFormatter()
 		{

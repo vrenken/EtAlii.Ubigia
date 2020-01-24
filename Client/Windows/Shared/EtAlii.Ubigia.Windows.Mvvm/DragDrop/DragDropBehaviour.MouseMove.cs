@@ -11,11 +11,8 @@
         /// <summary>
         /// attached property that defines if the source is a drag source
         /// </summary>
-        public static readonly DependencyProperty IsDragSourceProperty =
-           DependencyProperty.RegisterAttached("IsDragSource", 
-           typeof(bool), 
-           typeof(DragDropBehaviour),
-           new PropertyMetadata(false, new IsDragSourceBehaviour().PropertyChangedHandler));
+        // ReSharper disable once InconsistentNaming
+        public static readonly DependencyProperty IsDragSourceProperty = DependencyProperty.RegisterAttached("IsDragSource", typeof(bool), typeof(DragDropBehaviour), new PropertyMetadata(false, new IsDragSourceBehaviour().PropertyChangedHandler));
 
         public static void SetIsDragSource(DependencyObject o, object propertyValue)
         {
