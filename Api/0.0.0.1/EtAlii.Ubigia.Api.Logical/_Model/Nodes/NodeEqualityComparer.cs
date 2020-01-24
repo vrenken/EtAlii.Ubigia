@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public class NodeEqualityComparer : IEqualityComparer<Node>
     {
+        // ReSharper disable once InconsistentNaming
         public static readonly NodeEqualityComparer Default = new NodeEqualityComparer();
 
         public bool Equals(Node x, Node y)

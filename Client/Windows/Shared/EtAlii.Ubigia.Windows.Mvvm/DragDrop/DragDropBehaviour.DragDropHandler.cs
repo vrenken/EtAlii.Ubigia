@@ -11,11 +11,8 @@
         /// <summary>
         /// attached property that handles drag and drop
         /// </summary>
-        public static readonly DependencyProperty DragDropHandlerProperty =
-           DependencyProperty.RegisterAttached("DragDropHandler",
-           typeof(IDragDropHandler),
-           typeof(DragDropBehaviour),
-           new PropertyMetadata(null, new ExecuteDragDropBehaviour().PropertyChangedHandler));
+        // ReSharper disable once InconsistentNaming
+        public static readonly DependencyProperty DragDropHandlerProperty = DependencyProperty.RegisterAttached("DragDropHandler", typeof(IDragDropHandler), typeof(DragDropBehaviour), new PropertyMetadata(null, new ExecuteDragDropBehaviour().PropertyChangedHandler));
 
         public static void SetDragDropHandler(DependencyObject o, object propertyValue)
         {

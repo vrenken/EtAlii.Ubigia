@@ -7,6 +7,7 @@
 
     internal static class SignalRHttpRuleParser
     {
+        // ReSharper disable InconsistentNaming
         private static readonly bool[] TokenChars;
 //        private const int maxNestedCount = 5
         private static readonly string[] DateFormats;
@@ -15,6 +16,7 @@
         internal const int MaxInt64Digits = 19;
         internal const int MaxInt32Digits = 10;
         internal static readonly Encoding DefaultHttpEncoding;
+        // ReSharper restore InconsistentNaming
 
         static SignalRHttpRuleParser()
         {

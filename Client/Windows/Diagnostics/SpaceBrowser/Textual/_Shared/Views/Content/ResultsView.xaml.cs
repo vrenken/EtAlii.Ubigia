@@ -5,26 +5,16 @@
 
     public partial class ResultsView
     {
-        public IEnumerable ItemsSource
-        {
-            get { return (IEnumerable)GetValue(ItemsSourceProperty); }
-            set { SetValue(ItemsSourceProperty, value ?? new object[0]); }
-        }
+        // ReSharper disable InconsistentNaming
+        public IEnumerable ItemsSource { get => (IEnumerable)GetValue(ItemsSourceProperty); set => SetValue(ItemsSourceProperty, value ?? new object[0]); }
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ResultsView), new PropertyMetadata(new object[0], OnItemsSourceChanged));
 
-        public object SelectedItem
-        {
-            get { return GetValue(SelectedItemProperty); }
-            set { SetValue(SelectedItemProperty, value); }
-        }
+        public object SelectedItem { get => GetValue(SelectedItemProperty); set => SetValue(SelectedItemProperty, value); }
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(ResultsView), new PropertyMetadata(null));
 
-        public object Source
-        {
-            get { return GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
+        public object Source { get => GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ResultsView), new PropertyMetadata(null, OnSourceChanged));
+        // ReSharper restore InconsistentNaming
 
         public ResultsView()
         {

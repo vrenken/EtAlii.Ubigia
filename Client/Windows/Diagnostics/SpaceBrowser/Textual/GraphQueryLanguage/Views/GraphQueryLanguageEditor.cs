@@ -9,12 +9,10 @@
     {
         private bool _updateDocumentFromSource = true;
 
-        public string Source
-        {
-            get { return (string)GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
+        // ReSharper disable InconsistentNaming
+        public string Source { get => (string)GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(nameof(Source), typeof(string), typeof(GraphQueryLanguageEditor), new PropertyMetadata(string.Empty));
+        // ReSharper restore InconsistentNaming
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {
