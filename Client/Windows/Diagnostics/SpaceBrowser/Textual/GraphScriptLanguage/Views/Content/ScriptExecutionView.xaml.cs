@@ -8,20 +8,14 @@
 
     public partial class ScriptExecutionView
     {
-        public ObservableCollection<string> ExecutionStatus
-        {
-            get => (ObservableCollection<string>)GetValue(ExecutionStatusProperty);
-            set => SetValue(ExecutionStatusProperty, value);
-        }
+        // ReSharper disable InconsistentNaming
+        public ObservableCollection<string> ExecutionStatus { get => (ObservableCollection<string>)GetValue(ExecutionStatusProperty); set => SetValue(ExecutionStatusProperty, value); }
         public static readonly DependencyProperty ExecutionStatusProperty = DependencyProperty.Register("ExecutionStatus", typeof(ObservableCollection<string>), typeof(ScriptExecutionView), new PropertyMetadata(new ObservableCollection<string>(), OnExecutionStatusChanged));
 
-        public object Source
-        {
-            get => GetValue(SourceProperty);
-            set => SetValue(SourceProperty, value);
-        }
+        public object Source { get => GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ScriptExecutionView), new PropertyMetadata(null, OnSourceChanged));
-        
+        // ReSharper restore InconsistentNaming
+
         public ScriptExecutionView()
         {
             InitializeComponent();
