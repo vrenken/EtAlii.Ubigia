@@ -58,10 +58,10 @@
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
 
-    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1">
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.1.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
-    <PackageReference Include="Microsoft.Owin" Version="4.0.1">
+    <PackageReference Include="Microsoft.Owin" Version="4.1.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
     <PackageReference Include="Owin" Version="1.0.0">
