@@ -31,26 +31,34 @@ steps:
 #     versionSpec: 4.9.4
 
 
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet restore'
+#   inputs:
+#     command: restore
+#     projects: '**/*.sln'
+#     feedsToUse: config
+#     nugetConfigPath: NuGet.config
+
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
   inputs:
-    command: restore
-    projects: '**/*.sln'
+    command: 'restore'
+    projects: '**/*.csproj'
     feedsToUse: config
     nugetConfigPath: NuGet.config
 
 
+
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet build'
+  displayName: 'build'
   inputs:
-    projects: '**\*.csproj'
-
+    projects: '**/*.csproj'
+    
 
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet test'
+  displayName: 'test'
   inputs:
     command: test
-    projects: '**\*.Tests.csproj'
+    projects: '**/*.Tests.csproj'
     arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
   continueOnError: true
 
