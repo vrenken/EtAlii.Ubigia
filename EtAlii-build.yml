@@ -6,8 +6,9 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'     # For Docker.
+#pool:
+pool: Default
+  #vmImage: 'ubuntu-latest'    # For Docker.
   #vmImage: 'windows-latest'   # For Windows.
 
 variables:
