@@ -19,18 +19,16 @@ variables:
 
 steps:
 
+# - task: VisualStudioTestPlatformInstaller@1
+#   displayName: 'Visual Studio Test Platform Installer'
+#   inputs:
+#     versionSelector: latestStable
 
 
-- task: VisualStudioTestPlatformInstaller@1
-  displayName: 'Visual Studio Test Platform Installer'
-  inputs:
-    versionSelector: latestStable
-
-
-- task: NuGetToolInstaller@1
-  displayName: 'Use NuGet 4.9.4'
-  inputs:
-    versionSpec: 4.9.4
+# - task: NuGetToolInstaller@1
+#   displayName: 'Use NuGet 4.9.4'
+#   inputs:
+#     versionSpec: 4.9.4
 
 
 - task: DotNetCoreCLI@2
