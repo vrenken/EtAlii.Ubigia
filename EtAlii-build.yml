@@ -58,7 +58,9 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'build'
   inputs:
-    projects: '**/*.csproj'
+    projects: |
+      **/*.csproj
+      !**/StorageBrowser.csproj
     
 
 - task: DotNetCoreCLI@2
