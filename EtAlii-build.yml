@@ -7,9 +7,14 @@ trigger:
 - master
 
 #pool:
-pool: Default
+pool: 
+  name: Default
+  demands:
+    #- SpecialSoftware # Check if SpecialSoftware capability exists
+    - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
   #vmImage: 'ubuntu-latest'    # For Docker.
   #vmImage: 'windows-latest'   # For Windows.
+
 
 variables:
   solution: '**/*.sln'
