@@ -7,9 +7,9 @@ trigger:
 - master
 
 #pool:
-pool: #Default
+pool: Default
   #vmImage: 'ubuntu-latest'    # For Docker.
-  vmImage: 'windows-latest'   # For Windows.
+  #vmImage: 'windows-latest'   # For Windows.
 
 variables:
   solution: '**/*.sln'
