@@ -19,7 +19,6 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</AssemblyName>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <Win32Resource />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="AvalonDock" Version="2.0.2000">
