@@ -5887,6 +5887,8 @@ Global
 		{89357084-89FE-4D6A-8FB9-691E7C8876AE}.Trial|x64.Build.0 = Debug|Any CPU
 		{89357084-89FE-4D6A-8FB9-691E7C8876AE}.Trial|x86.ActiveCfg = Debug|Any CPU
 		{89357084-89FE-4D6A-8FB9-691E7C8876AE}.Trial|x86.Build.0 = Debug|Any CPU
+		{8013733C-E0DA-4AB6-8DA6-6FDA6723E84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8013733C-E0DA-4AB6-8DA6-6FDA6723E84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
