@@ -1,0 +1,117 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- master
+
+#pool:
+pool: 
+  name: Default
+  demands:
+    #- SpecialSoftware # Check if SpecialSoftware capability exists
+    - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
+  #vmImage: 'ubuntu-latest'    # For Docker.
+  #vmImage: 'windows-latest'   # For Windows.
+
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
+
+
+steps:
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.1.x'
+
+# - task: VisualStudioTestPlatformInstaller@1
+#   displayName: 'Visual Studio Test Platform Installer'
+#   inputs:
+#     versionSelector: latestStable
+
+
+# - task: NuGetToolInstaller@1
+#   displayName: 'Use NuGet 4.9.4'
+#   inputs:
+#     versionSpec: 4.9.4
+
+
+# - task: DotNetCoreCLI@2
+#   displayName: 'dotnet restore'
+#   inputs:
+#     command: restore
+#     projects: '**/*.sln'
+#     feedsToUse: config
+#     nugetConfigPath: NuGet.config
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: |
+      **/*.csproj
+      !**/StorageBrowser.csproj
+    feedsToUse: config
+    nugetConfigPath: NuGet.config
+
+
+
+- task: DotNetCoreCLI@2
+  displayName: 'build'
+  inputs:
+    projects: |
+      **/*.csproj
+      !**/StorageBrowser.csproj
+    
+
+- task: DotNetCoreCLI@2
+  displayName: 'test'
+  inputs:
+    command: test
+    projects: '**/*.Tests.csproj'
+    arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
+  continueOnError: true
+
+#Your build pipeline references an undefined variable named ‘[System.IO.Path]::GetFileNameWithoutExtension($_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘[System.IO.Path]::GetFileNameWithoutExtension($_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#- powershell: |
+#   $ver = (Get-ChildItem $env:USERPROFILE\.nuget\packages\Microsoft.CodeCoverage | Select-Object -Property Name | Sort-Object -Descending | Select-Object -First 1).Name
+#   Get-ChildItem -Recurse -Filter "*.coverage" | % {
+#   $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
+#   $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
+#   "Analyse '$($_.FullName)' with output '$output'..."
+#   .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\$ver\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+#   }
+#   
+#  workingDirectory: '$(Agent.TempDirectory)'
+#  displayName: 'Gather code coverage output'
+
+
+#- task: DotNetCoreCLI@2
+#  displayName: 'dotnet push'
+#  inputs:
+#    command: push
+#    packagesToPush: '**\EtAlii.Ubigia.Api.*.nupkg;-:**\EtAlii.Ubigia.Api.*.Tests.nupkg;**\EtAlii.Ubigia.Infrastructure.*.nupkg;-:**\EtAlii.Ubigia.Infrastructure.*.Tests.nupkg'
+#    publishVstsFeed: '7066386f-87fe-4d53-9860-566cebc53cc5'
+
+#- task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
+#  displayName: 'Run Code Analysis'
+
+  
+#- powershell: |
+#   Get-ChildItem $Agent.BuildDirectory -Recurse | Where{$_.Name -Match ".*css-bundle"} | Remove-Item 
+#  displayName: 'Quality Results cleanup'
+
+
+#- task: SonarSource.sonarqube.291ed61f-1ee4-45d3-b1b0-bf822d9095ef.SonarQubePublish@4
+#  displayName: 'Publish Quality Gate Result'
+#  inputs:
+#    pollingTimeoutSec: 600
