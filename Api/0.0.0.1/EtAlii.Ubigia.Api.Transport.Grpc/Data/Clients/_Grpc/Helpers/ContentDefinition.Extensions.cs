@@ -20,7 +20,7 @@
                     
                     Size = contentDefinition.Size,
                 };
-                foreach (var part in contentDefinition?.Parts)
+                foreach (var part in contentDefinition.Parts)
                 {
                     result.Parts.Add(part.ToLocal());
                 }
