@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public class AdminModule : NetCoreModuleBase
+    public class AdminModule : ModuleBase
     {
         public AdminModule(IConfigurationSection configuration) 
             : base(configuration)

@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IAuthenticationService : INetCoreService
+    public interface IAuthenticationService : IService
     {
     }
 }

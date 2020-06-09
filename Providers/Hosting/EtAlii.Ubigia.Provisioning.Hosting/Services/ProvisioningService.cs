@@ -3,12 +3,14 @@
     using System.Text;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
+    using Microsoft.Extensions.Configuration;
 
     public class ProvisioningService : ServiceBase, IProvisioningService
     {
         private readonly IProvisioning _provisioning;
 
-        public ProvisioningService(IProvisioning provisioning)
+        public ProvisioningService(IConfigurationSection configurationSection, IProvisioning provisioning)
+            : base(configurationSection)
         {
             _provisioning = provisioning;
         }
@@ -57,10 +59,10 @@
             Status.Summary = Status.Description;
         }
 
-	    protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
-	    {
-			status = new Status(nameof(ProvisioningService));
-            return Task.CompletedTask;
-	    }
+        // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
+        // {
+        //     status = new Status(nameof(ProvisioningService));
+        //     return Task.CompletedTask;
+        // }
     }
 }
