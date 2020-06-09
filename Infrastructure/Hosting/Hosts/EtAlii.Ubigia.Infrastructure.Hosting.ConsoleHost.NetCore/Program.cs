@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.NetCore
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
-    using EtAlii.xTechnology.Hosting.ConsoleHost;
     using Microsoft.Extensions.Configuration;
 
     public static class Program
@@ -9,11 +9,13 @@
         /// <summary>
         /// The main entry point for the application. 
         /// </summary>
-        public static void Main()
+        public static async Task Main()
         {
+            var details = await new ConfigurationDetailsParser()
+                .Parse("settings.json");
+
             var applicationConfiguration = new ConfigurationBuilder()
-                .AddJsonFile("settings.json", optional: true)
-                //.AddXmlFile("app.config")
+                .AddConfigurationDetails(details)
                 .Build();
 
             var hostConfiguration = new HostConfigurationBuilder()

@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost
 {
 	using System;
+	using System.Threading.Tasks;
 	using EtAlii.xTechnology.Hosting;
-	using EtAlii.xTechnology.Hosting.ConsoleHost;
 	using global::Microsoft.Extensions.Configuration;
 
 	public static class Program
@@ -11,10 +11,14 @@
         /// The main entry point for the application. 
         /// </summary>
         [STAThread]
-        public static void Main()
+        public static async Task Main()
         {
+	        
+	        var details = await new ConfigurationDetailsParser()
+		        .Parse("settings.json");
+
 	        var applicationConfiguration = new ConfigurationBuilder()
-		        .AddJsonFile("settings.json")
+		        .AddConfigurationDetails(details)
 		        .Build();
 
 	        var hostConfiguration = new HostConfigurationBuilder()
