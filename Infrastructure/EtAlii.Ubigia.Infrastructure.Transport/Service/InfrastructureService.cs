@@ -13,9 +13,10 @@
     {
         private readonly IConfiguration _configuration;
         public IInfrastructure Infrastructure { get; private set; }
-        private IInfrastructureSystem _system;
+        // private IInfrastructureSystem _system;
 
-        public InfrastructureService(IConfiguration configuration)
+        public InfrastructureService(IConfigurationSection configurationSection, IConfiguration configuration) 
+            : base(configurationSection)
         {
             _configuration = configuration;
         }
@@ -31,18 +32,18 @@
             await Infrastructure.Stop();
         }
 
-        protected override Task Initialize(
-	        IHost host, IInfrastructureSystem system, 
-            IModule[] moduleChain, out Status status)
-        {
-            _system = system;
-            status = new Status(nameof(InfrastructureService));
-            return Task.CompletedTask;
-        }
+        // protected override Task Initialize(
+	       //  IHost host, IInfrastructureSystem system, 
+        //     IModule[] moduleChain, out Status status)
+        // {
+        //     _system = system;
+        //     status = new Status(nameof(InfrastructureService));
+        //     return Task.CompletedTask;
+        // }
         
         private IInfrastructure CreateInfrastructure()
         {
-            var storage = _system.Services.OfType<IStorageService>().Single().Storage;
+            var storage = System.Services.OfType<IStorageService>().Single().Storage;
 
             string name;
             name = _configuration.GetValue<string>(nameof(name));

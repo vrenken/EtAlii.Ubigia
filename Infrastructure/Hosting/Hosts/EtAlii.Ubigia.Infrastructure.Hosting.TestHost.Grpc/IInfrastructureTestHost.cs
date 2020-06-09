@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
 
-    public interface IInfrastructureTestHost : IGrpcHost
+    public interface IInfrastructureTestHost : IHost
     {
         IInfrastructure Infrastructure { get; }
 
