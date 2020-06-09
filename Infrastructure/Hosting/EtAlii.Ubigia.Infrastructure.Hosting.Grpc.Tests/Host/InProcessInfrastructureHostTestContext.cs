@@ -29,12 +29,12 @@
         public GrpcChannel CreateAdminGrpcInfrastructureChannel()
         { 
             var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
-            return  GrpcChannel.ForAddress($"http://localhost:{Host.AdminModule.Port}", options);
+            return  GrpcChannel.ForAddress($"http://localhost:{Host.AdminModule.HostString.Port}", options);
         }
         public GrpcChannel CreateUserGrpcInfrastructureChannel()
         {
             var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
-            return  GrpcChannel.ForAddress($"http://localhost:{Host.UserModule.Port}", options);
+            return  GrpcChannel.ForAddress($"http://localhost:{Host.UserModule.HostString.Port}", options);
         }
         public GrpcChannel CreateGrpcInfrastructureChannel(Uri address)
         {
