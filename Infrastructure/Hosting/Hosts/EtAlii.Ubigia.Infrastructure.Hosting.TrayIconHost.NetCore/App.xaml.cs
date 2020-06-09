@@ -22,7 +22,7 @@
                 //    "Icon-Logo-Black.ico",
                 //    "Icon-Logo-Red.ico")
 
-            TrayIconHost.Start(hostConfiguration);
+            //TrayIconHost.Start(hostConfiguration);
         }
     }
 }
