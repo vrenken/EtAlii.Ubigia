@@ -7,4 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.4" />
+  </ItemGroup>
 </Project>
