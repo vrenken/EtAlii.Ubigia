@@ -4,6 +4,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Management.Automation;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
@@ -14,32 +15,33 @@
     {
         private PowerShell PowerShell { get; set; }
 
-        public IHostTestContext<NetworkedInfrastructureTestHost> Context { get; private set; }
+        public IHostTestContext<InfrastructureTestHost> Context { get; private set; }
 
-        public void Start()
+        public async Task Start()
         {
-			// TODO: The powershell tests cannot use the test infrastructure because process boundaries disable direct interaction 
+			// TODO: The PowerShell tests cannot use the test infrastructure because process boundaries disable direct interaction 
 			// between the host/infrastructure and the unit tests.
 
 			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();
-	        Context.Start();
+	        await Context.Start();
 
 			PowerShell = CreatePowerShell();
 			InvokeSelectStorage();
 		}
 
-		public void Stop()
+		public async Task Stop()
         {
             PowerShell.Dispose();
             PowerShell = null;
-            Context.Stop();
+            
+            await Context.Stop();
             Context = null;
             PowerShellClient.Current = null;
         }
 
         private PowerShell CreatePowerShell()
         {
-            var path = typeof(Nouns).Assembly.GetName().CodeBase.Replace("file:///", string.Empty);
+            var path = typeof(Nouns).Assembly.GetName().CodeBase!.Replace("file:///", string.Empty);
             var powerShell = PowerShell.Create(RunspaceMode.NewRunspace);
             powerShell.Commands.AddCommand("Import-Module").AddParameter("Name", path);
             powerShell.Invoke();

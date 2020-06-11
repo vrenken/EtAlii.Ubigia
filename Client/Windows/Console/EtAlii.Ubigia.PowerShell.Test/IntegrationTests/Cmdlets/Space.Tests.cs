@@ -1,29 +1,20 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class SpaceTest : IDisposable
+    public class SpaceTest : IAsyncLifetime
     {
         private PowerShellTestContext _testContext;
 
 
-        public SpaceTest()
-        {
-            TestInitialize();
-        }
-
-        public void Dispose()
-        {
-            TestCleanup();
-        }
-
-        private void TestInitialize()
+        public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            _testContext.Start();
+            await _testContext.Start();
 
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -32,9 +23,9 @@
             _testContext.InvokeSelectAccountByName(accountName);
         }
 
-        private void TestCleanup()
+        public async Task DisposeAsync()
         {
-            _testContext.Stop();
+            await _testContext.Stop();
             _testContext = null;
         }
 

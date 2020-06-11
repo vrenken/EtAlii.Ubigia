@@ -1,32 +1,24 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class AccountTest : IDisposable
+    public class AccountTest : IAsyncLifetime
     {
         private PowerShellTestContext _testContext;
 
-        public AccountTest()
-        {
-            TestInitialize();
-        }
-
-        public void Dispose()
-        {
-            TestCleanup();
-        }
-
-        private void TestInitialize()
+        public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            _testContext.Start();
+            await _testContext.Start();
         }
-        private void TestCleanup()
+
+        public async Task DisposeAsync()
         {
-            _testContext.Stop();
+            await _testContext.Stop();
             _testContext = null;
         }
 
@@ -44,12 +36,12 @@
         }
 
         [Fact]
-        public void PowerShell_Account_Add_And_Get_WithInitializeAndCleanup()
+        public async Task PowerShell_Account_Add_And_Get_WithInitializeAndCleanup()
         {
             PowerShell_Account_Add();
 
-            TestCleanup();
-            TestInitialize();
+            await DisposeAsync();
+            await InitializeAsync();
 
             PowerShell_Accounts_Get();
         }

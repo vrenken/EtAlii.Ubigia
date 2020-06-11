@@ -53,19 +53,17 @@
 
         #region start/stop
 
-        public Task Start() 
+        public async Task Start() 
         {
             Context = _testHostFactory.Create<THostTestContext>();
-            Context.Start();
-            return Task.CompletedTask;
+            await Context.Start();
         }
 
-        public Task Stop()  
+        public async Task Stop()  
         {
-            Context.Stop();
+            await Context.Stop();
             Context = null;
             //SpaceName = null
-            return Task.CompletedTask;
         }
 
         #endregion start/stop

@@ -1,34 +1,24 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using Xunit;
 
-    public class StorageTest : IDisposable
+    public class StorageTest : IAsyncLifetime
     {
         private PowerShellTestContext _testContext;
 
-        public StorageTest()
-        {
-            TestInitialize();
-        }
-
-        public void Dispose()
-        {
-            TestCleanup();
-        }
-
-        private void TestInitialize()
+        public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            _testContext.Start();
+            await _testContext.Start();
         }
 
-        private void TestCleanup()
+        public async Task DisposeAsync()
         {
-            _testContext.Stop();
+            await _testContext.Stop();
             _testContext = null;
-
         }
 
         [Fact(Skip = "The storage.Address now still contains the path part of the hosting.")]
