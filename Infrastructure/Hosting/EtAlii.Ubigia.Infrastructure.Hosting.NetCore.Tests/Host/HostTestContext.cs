@@ -6,9 +6,14 @@
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 
-	public partial class HostTestContext<TInfrastructureTestHost> : HostTestContextBase, IHostTestContext<TInfrastructureTestHost>
+	public partial class HostTestContext<TInfrastructureTestHost> : HostTestContextBase<TInfrastructureTestHost>, IHostTestContext<TInfrastructureTestHost>
 	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
+	    protected HostTestContext()
+		    : base("Host/settings.json")
+	    {
+	    }
+	    
 	    public Task<ISystemConnection> CreateSystemConnection()
 	    {
 		    var connectionConfiguration = new SystemConnectionConfiguration()
