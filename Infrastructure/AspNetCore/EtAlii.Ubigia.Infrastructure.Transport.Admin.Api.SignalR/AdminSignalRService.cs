@@ -9,57 +9,103 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class AdminSignalRService : NetCoreServiceBase
+    public class AdminSignalRService : ServiceBase
     {
         public AdminSignalRService(IConfigurationSection configuration) 
             : base(configuration)
         {
         }
 
-        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+        protected override void ConfigureServices(IServiceCollection services)
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            services
+                .AddSingleton(infrastructure.Accounts)
+                .AddSingleton(infrastructure.Spaces)
+                .AddSingleton(infrastructure.Storages)
 
-            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.SignalR.BasePath,
-                services =>
+                .AddInfrastructureSimpleAuthentication(infrastructure)
+                .AddInfrastructureSerialization()
+
+                .AddRouting()
+                .AddCors()
+                .AddSignalR(options => 
                 {
-                    services
-                        .AddSingleton(infrastructure.Accounts)
-                        .AddSingleton(infrastructure.Spaces)
-                        .AddSingleton(infrastructure.Storages)
+                    if (Debugger.IsAttached)
+                    {
+                        options.EnableDetailedErrors = Debugger.IsAttached;
+                    }
+                })
+                .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+        }
 
-                        .AddInfrastructureSimpleAuthentication(infrastructure)
-                        .AddInfrastructureSerialization()
-
-                        .AddCors()
-                        .AddSignalR(options => 
-                        {
-                            if (Debugger.IsAttached)
-                            {
-                                options.EnableDetailedErrors = Debugger.IsAttached;
-                            }
-                        })
-                        .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
-                },
-                appBuilder =>
+        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        {
+            applicationBuilder
+                .UseCors(builder =>
                 {
-                    appBuilder
-                        .UseCors(configuration =>
-                        {
-                            configuration.AllowAnyMethod();
-                            configuration.AllowAnyHeader();
-                            configuration.AllowAnyOrigin(); 
-                        })
-                        .UseRouting()
-                        .UseEndpoints(endPoints =>
-                        {
-                            endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
+                    builder
+                        .AllowAnyOrigin() 
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .WithOrigins($"http://{HostString}");
+                })
+                .UseRouting()
+                .UseEndpoints(endPoints =>
+                {
+                    endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
 
-                            endPoints.MapHub<StorageHub>(SignalRHub.Storage);
-                            endPoints.MapHub<SpaceHub>(SignalRHub.Space);
-                            endPoints.MapHub<AccountHub>(SignalRHub.Account);
-                        });
+                    endPoints.MapHub<StorageHub>(SignalRHub.Storage);
+                    endPoints.MapHub<SpaceHub>(SignalRHub.Space);
+                    endPoints.MapHub<AccountHub>(SignalRHub.Account);
                 });
         }
+            //
+            //
+            // protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+            // {
+            //     var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            //
+            //     applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.SignalR.BasePath,
+            //         services =>
+            //         {
+            //             services
+            //                 .AddSingleton(infrastructure.Accounts)
+            //                 .AddSingleton(infrastructure.Spaces)
+            //                 .AddSingleton(infrastructure.Storages)
+            //
+            //                 .AddInfrastructureSimpleAuthentication(infrastructure)
+            //                 .AddInfrastructureSerialization()
+            //
+            //                 .AddCors()
+            //                 .AddSignalR(options => 
+            //                 {
+            //                     if (Debugger.IsAttached)
+            //                     {
+            //                         options.EnableDetailedErrors = Debugger.IsAttached;
+            //                     }
+            //                 })
+            //                 .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+            //         },
+            //         appBuilder =>
+            //         {
+            //             appBuilder
+            //                 .UseCors(configuration =>
+            //                 {
+            //                     configuration.AllowAnyMethod();
+            //                     configuration.AllowAnyHeader();
+            //                     configuration.AllowAnyOrigin(); 
+            //                 })
+            //                 .UseRouting()
+            //                 .UseEndpoints(endPoints =>
+            //                 {
+            //                     endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
+            //
+            //                     endPoints.MapHub<StorageHub>(SignalRHub.Storage);
+            //                     endPoints.MapHub<SpaceHub>(SignalRHub.Space);
+            //                     endPoints.MapHub<AccountHub>(SignalRHub.Account);
+            //                 });
+            //         });
+            // }
     }
 }
