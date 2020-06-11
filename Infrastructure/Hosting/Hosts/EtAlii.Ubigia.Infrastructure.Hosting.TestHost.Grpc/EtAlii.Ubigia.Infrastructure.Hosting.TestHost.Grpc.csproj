@@ -20,13 +20,14 @@
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.4" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.62" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.1.9" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.1.11" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 </Project>
