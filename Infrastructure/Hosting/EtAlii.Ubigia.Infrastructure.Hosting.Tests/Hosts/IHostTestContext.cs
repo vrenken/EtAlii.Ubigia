@@ -25,10 +25,10 @@
 
         string HostName { get; }
 
-        void Start();
+        Task Start();
 
         //void Start(IHost host, IInfrastructure infrastructure)
-        void Stop();
+        Task Stop();
 
         Task<ISystemConnection> CreateSystemConnection();
 

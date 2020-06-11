@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Hosting;
 
     public abstract partial class HostTestContextBase<TTestHost> 
-        where TTestHost : class, IHost
+        where TTestHost : class, IInfrastructureTestHostBase
     {
         // protected abstract void StartInternal(bool useRandomPorts);
         // protected abstract void StopInternal();
@@ -15,13 +14,7 @@
         {
             await base.Start();
 
-//            var delayInSeconds = _random.Next(10)
-//            var delay = TimeSpan.FromSeconds(10 + delayInSeconds)
-//            System.Threading.Tasks.Task.Delay(delay).Wait[]
-            
-            // We need to start each test hosting one at a time. 
-            // Reason is that this is the only way to make sure that the ports aren't reused.
-            //HostMutex.ExecuteExclusive(() => StartInternal(true));
+            Infrastructure = Host.Infrastructure;
             
             var systemAccount = Infrastructure.Accounts.Get("System");
             SystemAccountName = systemAccount.Name;
@@ -39,8 +32,6 @@
         public override async Task Stop()
         {
             await base.Stop();
-
-            //StopInternal();
             
             Infrastructure = null;
 

@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 
-    public class InProcessInfrastructureHostTestContext : HostTestContext<InProcessInfrastructureTestHost>
+    public class InProcessInfrastructureHostTestContext : HostTestContext<InfrastructureTestHost>
     {
         public IInfrastructureClient CreateRestInfrastructureClient()
         {
