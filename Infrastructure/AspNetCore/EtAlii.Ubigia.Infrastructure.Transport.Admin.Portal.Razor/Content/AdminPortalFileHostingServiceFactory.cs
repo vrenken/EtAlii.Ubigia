@@ -10,6 +10,7 @@
         {
             var container = new Container();
 
+            container.Register(() => configuration);
             container.Register<IService, AdminPortalFileHostingService>();
 
             return container.GetInstance<IService>();

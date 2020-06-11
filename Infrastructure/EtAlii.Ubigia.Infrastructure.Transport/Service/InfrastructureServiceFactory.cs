@@ -10,8 +10,8 @@
         {
             var container = new Container();
 
+            container.Register(() => configuration);
             container.Register<IInfrastructureService, InfrastructureService>();
-            container.Register<IConfiguration>(() => configuration);
 
             return container.GetInstance<IInfrastructureService>();
         }
