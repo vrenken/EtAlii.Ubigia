@@ -8,7 +8,7 @@
     using Grpc.Core.Logging;
     using Grpc.Net.Client;
 
-    public class InProcessInfrastructureHostTestContext : HostTestContext<InProcessInfrastructureTestHost>
+    public class InProcessInfrastructureHostTestContext : HostTestContext<InfrastructureTestHost>
     {
         public string HostIdentifier { get; }
 

@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 
-    public class NetworkedInfrastructureHostTestContext : HostTestContext<NetworkedInfrastructureTestHost>
+    public class NetworkedInfrastructureHostTestContext : HostTestContext<InfrastructureTestHost>
     {
     }
 }

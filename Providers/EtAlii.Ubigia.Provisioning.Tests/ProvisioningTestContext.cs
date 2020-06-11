@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
-        public IHostTestContext<InProcessInfrastructureTestHost> Context { get; private set; }
+        public IHostTestContext<InfrastructureTestHost> Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
@@ -42,7 +42,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         private async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
             var diagnostics = TestDiagnostics.Create();
-			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
 
 			var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransportDiagnostics(diagnostics)
@@ -59,7 +60,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         public async Task<IManagementConnection> OpenManagementConnection()
         {
             var diagnostics = TestDiagnostics.Create();
-			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
@@ -73,18 +75,16 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         #region start/stop
 
-        public Task Start()
+        public async Task Start()
         {
             Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
-            Context.Start();
-            return Task.CompletedTask;
+            await Context.Start();
         }
 
-        public Task Stop()
+        public async Task Stop()
         {
-            Context.Stop();
+            await Context.Stop();
             Context = null;
-            return Task.CompletedTask;
         }
 
         #endregion start/stop

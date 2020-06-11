@@ -4,7 +4,7 @@
     using EtAlii.xTechnology.Hosting;
 
     public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
-        where TTestHost : class, IHost
+        where TTestHost : class, IInfrastructureTestHostBase
     {
         public IInfrastructure Infrastructure { get; protected set; }
 
