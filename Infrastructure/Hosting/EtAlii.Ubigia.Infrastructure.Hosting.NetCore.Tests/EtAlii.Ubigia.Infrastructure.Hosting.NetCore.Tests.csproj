@@ -29,11 +29,6 @@
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Host\settings-Template.json">
-      <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Host\settings.json">
       <TransformOnBuild>false</TransformOnBuild>
       <Link></Link>
