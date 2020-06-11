@@ -9,7 +9,7 @@
 	using EtAlii.Ubigia.Storage;
 	using EtAlii.xTechnology.Hosting;
 
-	public class InProcessInfrastructureTestHost : InProcessTestHost, IInfrastructureTestHost
+	public class InfrastructureTestHost : TestHost, IInfrastructureTestHost
     {
 	    public IInfrastructure Infrastructure => _infrastructure;
 	    private IInfrastructure _infrastructure;
@@ -22,7 +22,7 @@
 	    public UserModule UserModule => _userModule;
 	    private UserModule _userModule;
 
-		protected InProcessInfrastructureTestHost(ISystemManager systemManager)
+		protected InfrastructureTestHost(ISystemManager systemManager)
 		    : base(systemManager)
 	    {
 		}
