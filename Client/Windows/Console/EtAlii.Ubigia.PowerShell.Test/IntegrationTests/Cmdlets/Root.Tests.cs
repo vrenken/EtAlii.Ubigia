@@ -2,28 +2,19 @@
 {
     using System;
     using System.Management.Automation;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class RootTest : IDisposable
+    public class RootTest : IAsyncLifetime
     {
         private PowerShellTestContext _testContext;
 
-        public RootTest()
-        {
-            TestInitialize();
-        }
-
-        public void Dispose()
-        {
-            TestCleanup();
-        }
-
-        private void TestInitialize()
+        public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            _testContext.Start();
+            await _testContext.Start();
 
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -38,19 +29,19 @@
             _testContext.ToAssertedResult<Space>(result);
         }
 
-        private void TestCleanup()
+        public async Task DisposeAsync()
         {
-            _testContext.Stop();
+            await _testContext.Stop();
             _testContext = null;
         }
 
         [Fact]
-        public void PowerShell_Root_Add_And_Get_WithInitializeAndCleanup()
+        public async Task PowerShell_Root_Add_And_Get_WithInitializeAndCleanup()
         {
             PowerShell_Root_Add();
 
-            TestCleanup();
-            TestInitialize();
+            await DisposeAsync();
+            await InitializeAsync();
 
             PowerShell_Roots_Get();
         }

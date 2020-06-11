@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
     public interface IProvisioningTestContext
     {
-        IHostTestContext<InProcessInfrastructureTestHost> Context { get; }
+        IHostTestContext<InfrastructureTestHost> Context { get; }
 
         Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string accountPassword, string spaceName);
 
