@@ -20,10 +20,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.2.3" />
-    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="6.2.3" />
-    <PackageReference Include="Microsoft.WSMan.Management" Version="6.2.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.1" />
+    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.0.1" />
+    <PackageReference Include="Microsoft.WSMan.Management" Version="7.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj" />
