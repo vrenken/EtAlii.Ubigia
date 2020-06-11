@@ -3,7 +3,8 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
-    public abstract partial class HostTestContextBase : HostTestContext
+    public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
+        where TTestHost : class, IHost
     {
         public IInfrastructure Infrastructure { get; protected set; }
 
