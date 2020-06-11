@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Tests;
+    using Xunit;
 
-    public class InfrastructureUnitTestContext : IDisposable
+    public class InfrastructureUnitTestContext : IAsyncLifetime
     {
         public InProcessInfrastructureHostTestContext HostTestContext { get; private set; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
@@ -23,12 +24,16 @@
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
             HostTestContext = new HostTestContextFactory().Create<InProcessInfrastructureHostTestContext>();
-            HostTestContext.Start();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            HostTestContext.Stop();
+            await HostTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await HostTestContext.Stop();
             HostTestContext = null;
         }
     }
