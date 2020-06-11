@@ -20,19 +20,19 @@
     <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.6.0">
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
-    <PackageReference Include="Fluent.Ribbon" Version="7.0.1" />
+    <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
-    <PackageReference Include="ControlzEx" Version="4.2.1" />
+    <PackageReference Include="ControlzEx" Version="4.3.0" />
     <PackageReference Include="Northwoods.GoWPF" Version="3.0.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Grid.WPF" Version="17.3.0.26" />
-    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="17.3.0.26" />
-    <PackageReference Include="Syncfusion.SfChart.WPF" Version="17.3.0.26" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="17.3.0.26" />
+    <PackageReference Include="Syncfusion.Grid.WPF" Version="18.1.0.56" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="18.1.0.56" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.1.0.56" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.1.0.56" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
