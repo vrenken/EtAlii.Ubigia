@@ -15,8 +15,8 @@
         public IInfrastructure Infrastructure { get; private set; }
         // private IInfrastructureSystem _system;
 
-        public InfrastructureService(IConfigurationSection configurationSection, IConfiguration configuration) 
-            : base(configurationSection)
+        public InfrastructureService(IConfigurationSection configuration) 
+            : base(configuration)
         {
             _configuration = configuration;
         }

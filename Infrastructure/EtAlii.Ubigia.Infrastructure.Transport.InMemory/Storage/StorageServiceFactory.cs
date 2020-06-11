@@ -13,6 +13,7 @@
         {
             var container = new Container();
 
+            container.Register(() => configuration);
             container.Register<IStorageService, StorageService>();
 
             string name;
