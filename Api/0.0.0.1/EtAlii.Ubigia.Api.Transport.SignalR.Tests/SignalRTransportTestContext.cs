@@ -18,8 +18,8 @@
 		    
 		    var diagnostics = TestDiagnostics.Create();
 
-		    //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
-		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+		    //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
 
 		    var connectionConfiguration = new DataConnectionConfiguration()
 			    //.Use(SignalRTransportProvider.Create(signalRHttpClient))
@@ -46,8 +46,8 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
-			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+			//var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
 
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
@@ -67,8 +67,9 @@
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
             var diagnostics = TestDiagnostics.Create();
-	        //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler())
-	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+
+            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()
 				//.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
