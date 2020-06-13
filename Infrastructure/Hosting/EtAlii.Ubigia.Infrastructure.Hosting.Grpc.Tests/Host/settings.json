@@ -13,13 +13,9 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
-            "Address": "http://{{HOST:AdminHost@127.0.0.1}}"
-          },
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Grpc.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Grpc",
-            "IpAddress": "{{HOST:AuthenticationHost@0.0.0.0}}",
-            "Port": "{{PORT:AuthenticationPort@64002}}"
-          }],
+            "Address": "http://{{HOST:StorageHost@127.0.0.1}}"
+          }
+        ],
         "Modules": [
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
@@ -33,7 +29,8 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
+                    "Path": "{{PATH:AdminApi@}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
                   }
                 ]
               }
@@ -49,7 +46,8 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
+                    "Path": "{{PATH:UserApi@}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
                   }
                 ]
               }
