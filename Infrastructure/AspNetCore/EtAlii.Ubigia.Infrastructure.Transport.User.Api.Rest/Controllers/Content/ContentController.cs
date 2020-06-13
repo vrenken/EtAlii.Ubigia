@@ -38,7 +38,7 @@
         [HttpGet]
         public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]UInt64 contentPartId)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 var contentPart = _items.Get(entryId, contentPartId);
