@@ -46,7 +46,7 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.15" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.16" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.5" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
