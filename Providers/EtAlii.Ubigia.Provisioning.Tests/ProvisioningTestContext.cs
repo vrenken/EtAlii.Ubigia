@@ -42,8 +42,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         private async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
             var diagnostics = TestDiagnostics.Create();
-            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
+            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransportDiagnostics(diagnostics)
@@ -60,8 +59,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         public async Task<IManagementConnection> OpenManagementConnection()
         {
             var diagnostics = TestDiagnostics.Create();
-            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
+            var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))

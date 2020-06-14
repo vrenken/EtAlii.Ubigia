@@ -18,8 +18,7 @@
 		    
 		    var diagnostics = TestDiagnostics.Create();
 
-		    //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
+		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 		    var connectionConfiguration = new DataConnectionConfiguration()
 			    //.Use(SignalRTransportProvider.Create(signalRHttpClient))
@@ -46,8 +45,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
+			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
@@ -68,8 +66,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => throw new InvalidOperationException());
+	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()
 				//.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
