@@ -33,18 +33,17 @@
 
         public async Task<TResult> Get<TResult>(Uri address, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            
+            try
             {
-                try
-                {
-                    var response = await client.GetAsync(address);
-                    await WaitAndTestResponse(response, HttpMethod.Get);
-	                return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
-                }
-                catch (AggregateException e)
-                {
-                    throw new InfrastructureConnectionException(GetErrorMessage, e);
-                }
+                var response = await client.GetAsync(address);
+                await WaitAndTestResponse(response, HttpMethod.Get);
+                return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
+            }
+            catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(GetErrorMessage, e);
             }
         }
 
@@ -59,51 +58,48 @@
             where TValue : class
             where TResult : class
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            
+            try
             {
-                try
-                {
-	                var response = await client.PostAsync(address, value, _formatter);
-                    await WaitAndTestResponse(response, HttpMethod.Post);
-					return await response.Content.ReadAsAsync<TResult>(new[] { _formatter });
-				}
-				catch (AggregateException e)
-                {
-                    throw new InfrastructureConnectionException(PostErrorMessage, e);
-                }
+                var response = await client.PostAsync(address, value, _formatter);
+                await WaitAndTestResponse(response, HttpMethod.Post);
+                return await response.Content.ReadAsAsync<TResult>(new[] { _formatter });
+            }
+            catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(PostErrorMessage, e);
             }
         }
 
 	    public async Task Delete(Uri address, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            
+            try
             {
-                try
-                {
-                    var response = await client.DeleteAsync(address);
-                    await WaitAndTestResponse(response, HttpMethod.Delete);
-                }
-                catch (AggregateException e)
-                {
-                    throw new InfrastructureConnectionException(DeleteErrorMessage, e);
-                }
+                var response = await client.DeleteAsync(address);
+                await WaitAndTestResponse(response, HttpMethod.Delete);
+            }
+            catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(DeleteErrorMessage, e);
             }
         }
 
         public async Task<TValue> Put<TValue>(Uri address, TValue value, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            
+            try
             {
-                try
-                {
-	                var response = await client.PutAsync(address, value, _formatter);
-                    await WaitAndTestResponse(response, HttpMethod.Put);
-					return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
-				}
-				catch (AggregateException e)
-                {
-                    throw new InfrastructureConnectionException(PutErrorMessage, e);
-                }
+                var response = await client.PutAsync(address, value, _formatter);
+                await WaitAndTestResponse(response, HttpMethod.Put);
+                return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
+            }
+            catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(PutErrorMessage, e);
             }
         }
 
