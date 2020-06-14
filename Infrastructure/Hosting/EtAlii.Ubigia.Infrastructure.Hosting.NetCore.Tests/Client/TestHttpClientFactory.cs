@@ -3,21 +3,20 @@
 	using System.Net;
 	using System.Net.Http;
 	using EtAlii.Ubigia.Api.Transport.WebApi;
-	using Microsoft.AspNetCore.TestHost;
 	using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.WebApi.IHttpClientFactory;
 
 	internal class TestHttpClientFactory : IHttpClientFactory
 	{
-        private readonly TestServer _testServer;
+		private readonly xTechnology.Hosting.IHostTestContext _testContext;
 
-        public TestHttpClientFactory(TestServer testServer)
+        public TestHttpClientFactory(xTechnology.Hosting.IHostTestContext testContext)
         {
-			_testServer = testServer;
+	        _testContext = testContext;
         }
 
         public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
         {
-			var handler = _testServer.CreateHandler();
+	        var handler = _testContext.CreateHandler();
 			var client = new HttpClient(new TestHttpClientMessageHandler(handler, credentials, hostIdentifier, authenticationToken));
 
 	        // Set the Accept header for BSON.
