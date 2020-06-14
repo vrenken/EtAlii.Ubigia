@@ -4,8 +4,6 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
-	using EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.NetCore;
 	using EtAlii.Ubigia.Storage;
 	using EtAlii.xTechnology.Hosting;
 
@@ -16,11 +14,6 @@
 
 	    public IStorage Storage => _storage;
 	    private IStorage _storage;
-
-		public AdminModule AdminModule => _adminModule;
-	    private AdminModule _adminModule;
-	    public UserModule UserModule => _userModule;
-	    private UserModule _userModule;
 
 		protected InfrastructureTestHost(ISystemManager systemManager)
 		    : base(systemManager)
@@ -33,8 +26,6 @@
 
             _infrastructure = Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
             _storage = Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single();
-            _adminModule = Systems.Single().Modules.OfType<AdminModule>().Single();
-            _userModule = Systems.Single().Modules.OfType<UserModule>().Single();
         }
     }
 }
