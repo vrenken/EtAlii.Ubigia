@@ -10,7 +10,7 @@
 
 		public Uri HostAddress { get; } = new Uri(HostSchemaAndIp, UriKind.Absolute);
 
-	    public Uri ManagementServiceAddress => new Uri($"{HostSchemaAndIp}:{Host.AdminModule.HostString.Port}/Admin");
-	    public Uri DataServiceAddress => new Uri($"{HostSchemaAndIp}:{Host.UserModule.HostString.Port}/User");
+		public Uri ManagementServiceAddress { get; private set; }
+		public Uri DataServiceAddress { get; private set; }
     }
 }

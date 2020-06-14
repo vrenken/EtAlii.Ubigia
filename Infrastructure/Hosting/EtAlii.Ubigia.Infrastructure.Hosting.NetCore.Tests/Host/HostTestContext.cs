@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
+	using System;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
@@ -13,7 +14,15 @@
 		    : base("Host/settings.json")
 	    {
 	    }
-	    
+
+	    public override async Task Start()
+	    {
+		    await base.Start();
+		    
+		    ManagementServiceAddress = new Uri($"{HostSchemaAndIp}:{Ports["AdminPort"]}{Paths["AdminApi"]}");
+		    DataServiceAddress = new Uri($"{HostSchemaAndIp}:{Ports["UserPort"]}{Paths["UserApi"]}");
+	    }
+
 	    public Task<ISystemConnection> CreateSystemConnection()
 	    {
 		    var connectionConfiguration = new SystemConnectionConfiguration()
