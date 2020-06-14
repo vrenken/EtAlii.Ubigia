@@ -2,10 +2,11 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.Service.Grpc;
     using EtAlii.xTechnology.MicroContainer;
-    using global::Grpc.Core;
+    using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
 
     public class AdminGrpcService : GrpcServiceBase
     {
@@ -14,7 +15,7 @@
         {
         }
 
-        protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
+        protected override void ConfigureServices(IServiceCollection services)
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
@@ -23,50 +24,40 @@
             new AuthenticationScaffolding().Register(container);     
             new SerializationScaffolding().Register(container);
 
-            container.Register<IAccountAuthenticationInterceptor, AccountAuthenticationInterceptor>();
-            //container.Register<ISpaceAuthenticationInterceptor, SpaceAuthenticationInterceptor>()
-	        
-            //var spaceAuthenticationInterceptor = container.GetInstance<ISpaceAuthenticationInterceptor>()
-            var accountAuthenticationInterceptor = container.GetInstance<IAccountAuthenticationInterceptor>();
+            container.Register<IAdminAuthenticationService, AdminAuthenticationService>();
+            container.Register<IAdminStorageService, AdminStorageService>();
+            container.Register<IAdminAccountService, AdminAccountService>();
+            container.Register<IAdminSpaceService, AdminSpaceService>();
 
-            serviceDefinitions.Add(new AdminAuthenticationServiceDefinitionFactory().Create(infrastructure));
-            serviceDefinitions.Add(new AdminStorageServiceDefinitionFactory().Create(infrastructure, accountAuthenticationInterceptor));
-            serviceDefinitions.Add(new AdminAccountServiceDefinitionFactory().Create(infrastructure));
-            serviceDefinitions.Add(new AdminSpaceServiceDefinitionFactory().Create(infrastructure));
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationVerifier>());
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationBuilder>());
+
+            services.AddSingleton(svc => (AdminAuthenticationService) container.GetInstance<IAdminAuthenticationService>());
+            services.AddSingleton(svc => (AdminStorageService) container.GetInstance<IAdminStorageService>());
+            services.AddSingleton(svc => (AdminAccountService) container.GetInstance<IAdminAccountService>());
+            services.AddSingleton(svc => (AdminSpaceService) container.GetInstance<IAdminSpaceService>());
             
-    //        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure
+            var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
+            
+            services
+                .AddGrpc()
+                .AddServiceOptions<AdminStorageService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<AdminAccountService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<AdminSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier));
+        }
 
-    //        applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Grpc.BaseUrl,
-    //            services =>
-    //            [
-    //                services
-    //                    .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-    //                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-    //                    .AddSingleton<IStorageRepository>(infrastructure.Storages)
-
-				//		.AddInfrastructureSimpleAuthentication(infrastructure)
-				//		.AddInfrastructureSerialization()
-
-	   //                 .AddCors()
-    //                    .AddGrpc()
-		  //              .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
-				//],
-    //            appBuilder =>
-    //            [
-    //                appBuilder
-    //                    .UseCors(configuration =>
-    //                    [
-    //                        configuration.AllowAnyOrigin()
-    //                    ])
-    //                    .UseGrpc(routes =>
-    //                    [
-    //                        routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
-
-    //                        routes.MapHub<StorageHub>(GrpcHub.Storage)
-    //                        routes.MapHub<SpaceHub>(GrpcHub.Space)
-    //                        routes.MapHub<AccountHub>(GrpcHub.Account)
-				//		])
-    //            ])
+        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        {
+            applicationBuilder
+                .UseRouting()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapGrpcService<AdminAuthenticationService>();
+                    endpoints.MapGrpcService<AdminStorageService>();
+                    endpoints.MapGrpcService<AdminAccountService>();
+                    endpoints.MapGrpcService<AdminSpaceService>();
+                });
         }
     }
 }

@@ -2,10 +2,11 @@
 {
 	using System.Linq;
 	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
-	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.Service.Grpc;
 	using EtAlii.xTechnology.MicroContainer;
-	using global::Grpc.Core;
+	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
+	using Microsoft.Extensions.DependencyInjection;
 
 	public class UserGrpcService : GrpcServiceBase
     {
@@ -14,74 +15,68 @@
 	    {
 	    }
 
-	    protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
+
+        protected override void ConfigureServices(IServiceCollection services)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
-	        var container = new Container();
-	        new UserApiScaffolding(infrastructure).Register(container);
-	        new AuthenticationScaffolding().Register(container);     
-	        new SerializationScaffolding().Register(container);
+            var container = new Container();
+            new UserApiScaffolding(infrastructure).Register(container);
+            new AuthenticationScaffolding().Register(container);     
+            new SerializationScaffolding().Register(container);
 
-	        container.Register<IAccountAuthenticationInterceptor, AccountAuthenticationInterceptor>();
-	        container.Register<ISpaceAuthenticationInterceptor, SpaceAuthenticationInterceptor>();
-	        
-	        var spaceAuthenticationInterceptor = container.GetInstance<ISpaceAuthenticationInterceptor>();
-	        var accountAuthenticationInterceptor = container.GetInstance<IAccountAuthenticationInterceptor>();
+            container.Register<IUserAuthenticationService, UserAuthenticationService>();
+            container.Register<IUserStorageService, UserStorageService>();
+            container.Register<IUserAccountService,UserAccountService>();
+            container.Register<IUserSpaceService, UserSpaceService>();
+            container.Register<IUserRootService, UserRootService>();
+            container.Register<IUserEntryService, UserEntryService>();
+            container.Register<IUserPropertiesService, UserPropertiesService>();
+            container.Register<IUserContentService, UserContentService>();
+            container.Register<IUserContentDefinitionService, UserContentDefinitionService>();
 
-	        serviceDefinitions.Add(new UserAuthenticationServiceDefinitionFactory().Create(infrastructure));
-	        serviceDefinitions.Add(new UserStorageServiceDefinitionFactory().Create(infrastructure, accountAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserAccountServiceDefinitionFactory().Create(infrastructure, accountAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserSpaceServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserRootServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserEntryServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserPropertiesServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserContentServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
-	        serviceDefinitions.Add(new UserContentDefinitionServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationVerifier>());
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationTokenVerifier>()); 
+            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationBuilder>());
+            
+            services.AddSingleton(svc => (UserAuthenticationService) container.GetInstance<IUserAuthenticationService>());
+            services.AddSingleton(svc => (UserStorageService) container.GetInstance<IUserStorageService>());
+            services.AddSingleton(svc => (UserAccountService) container.GetInstance<IUserAccountService>());
+            services.AddSingleton(svc => (UserSpaceService) container.GetInstance<IUserSpaceService>());
+            services.AddSingleton(svc => (UserRootService) container.GetInstance<IUserRootService>());
+            services.AddSingleton(svc => (UserEntryService) container.GetInstance<IUserEntryService>());
+            services.AddSingleton(svc => (UserPropertiesService) container.GetInstance<IUserPropertiesService>());
+            services.AddSingleton(svc => (UserContentService) container.GetInstance<IUserContentService>());
+            services.AddSingleton(svc => (UserContentDefinitionService) container.GetInstance<IUserContentDefinitionService>());
+            
+			var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
+            services
+                .AddGrpc()
+                .AddServiceOptions<UserAccountService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserRootService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserEntryService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserPropertiesService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserContentService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<UserContentDefinitionService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier));
+        }
 
-            // TODO: GRPC
-      //      var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure
-
-      //      applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.User.Api.Grpc.BaseUrl,
-      //          services =>
-      //          [
-	     //           services
-						//.AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-						//.AddSingleton<IAccountRepository>(infrastructure.Accounts)
-						//.AddSingleton<IRootRepository>(infrastructure.Roots)
-						//.AddSingleton<IEntryRepository>(infrastructure.Entries)
-		    //            .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
-		    //            .AddSingleton<IContentRepository>(infrastructure.Content)
-		    //            .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
-
-		    //            .AddInfrastructureSimpleAuthentication(infrastructure)
-		    //            .AddInfrastructureSerialization()
-
-		    //            .AddCors()
-		    //            .AddGrpc()
-		    //            .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
-      //          ],
-      //          appBuilder =>
-      //          [
-      //              appBuilder
-      //                  .UseCors(configuration =>
-      //                  [
-      //                      configuration.AllowAnyOrigin() 
-      //                  ])
-      //                  .UseGrpc(routes =>
-      //                  [
-      //                      routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
-
-						//	routes.MapHub<AccountHub>(GrpcHub.Account)
-						//	routes.MapHub<SpaceHub>(GrpcHub.Space)
-
-						//	routes.MapHub<RootHub>(GrpcHub.Root)
-      //                      routes.MapHub<EntryHub>(GrpcHub.Entry)
-      //                      routes.MapHub<PropertiesHub>(GrpcHub.Property)
-      //                      routes.MapHub<ContentHub>(GrpcHub.Content)
-      //                      routes.MapHub<ContentDefinitionHub>(GrpcHub.ContentDefinition)
-      //                  ])
-      //          ])
+        protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
+        {
+            applicationBuilder
+                .UseRouting()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapGrpcService<UserAuthenticationService>();
+                    endpoints.MapGrpcService<UserStorageService>();
+                    endpoints.MapGrpcService<UserAccountService>();
+                    endpoints.MapGrpcService<UserSpaceService>();
+                    endpoints.MapGrpcService<UserRootService>();
+                    endpoints.MapGrpcService<UserEntryService>();
+                    endpoints.MapGrpcService<UserPropertiesService>();
+                    endpoints.MapGrpcService<UserContentService>();
+                    endpoints.MapGrpcService<UserContentDefinitionService>();
+                });
         }
     }
 }
