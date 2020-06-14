@@ -8,6 +8,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.16" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.18" />
   </ItemGroup>
 </Project>
