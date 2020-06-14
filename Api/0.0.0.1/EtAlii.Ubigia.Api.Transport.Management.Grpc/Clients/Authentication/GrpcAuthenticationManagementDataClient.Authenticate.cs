@@ -28,7 +28,7 @@
     
                 if (password == null)
                 {
-                    var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+                    var request = new AuthenticationRequest { AccountName = accountName, Password = null, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsAsync(request);
                     await call.ResponseAsync;
                     //var response = await call.ResponseAsync
