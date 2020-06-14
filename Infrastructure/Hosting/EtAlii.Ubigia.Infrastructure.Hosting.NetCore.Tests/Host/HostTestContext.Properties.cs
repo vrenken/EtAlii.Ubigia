@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
 	using System;
-	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 
-	public partial class HostTestContext<TInfrastructureTestHost> 
-		where TInfrastructureTestHost : class, IInfrastructureTestHost
+	public partial class HostTestContext
     {
         private const string HostSchemaAndIp = "http://127.0.0.1";
 

@@ -4,10 +4,10 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 
-	public partial class HostTestContext<TInfrastructureTestHost> : HostTestContextBase<TInfrastructureTestHost>, IHostTestContext<TInfrastructureTestHost>
-        where TInfrastructureTestHost : class, IInfrastructureTestHostBase
+	public partial class HostTestContext : HostTestContextBase<InfrastructureTestHost>
     {
 	    protected HostTestContext()
 		    : base("Host/settings.json")

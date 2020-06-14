@@ -2,8 +2,7 @@
 {
 	using System;
 
-	public partial class HostTestContext<TInfrastructureTestHost> 
-		where TInfrastructureTestHost : class, IInfrastructureTestHostBase
+	public partial class HostTestContext
     {
         private const string HostSchemaAndIp = "http://127.0.0.1";
 
