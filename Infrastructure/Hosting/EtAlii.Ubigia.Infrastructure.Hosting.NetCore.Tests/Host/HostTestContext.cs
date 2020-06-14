@@ -7,8 +7,8 @@
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 
-	public partial class HostTestContext<TInfrastructureTestHost> : HostTestContextBase<TInfrastructureTestHost>, IHostTestContext<TInfrastructureTestHost>
-	    where TInfrastructureTestHost : class, IInfrastructureTestHost
+	public partial class HostTestContext : HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
+
     {
 	    protected HostTestContext()
 		    : base("Host/settings.json")
