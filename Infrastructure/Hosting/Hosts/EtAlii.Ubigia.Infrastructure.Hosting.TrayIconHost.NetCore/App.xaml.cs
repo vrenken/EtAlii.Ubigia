@@ -2,22 +2,27 @@
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
+	using Microsoft.Extensions.Configuration;
 
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
 	public partial class App
 	{
-        private void OnApplicationStartup(object sender, StartupEventArgs e)
+        private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-//	        var applicationConfiguration = new ConfigurationBuilder()
-//		        .AddJsonFile("settings.json")
-//		        .Build()
+	        var details = await new ConfigurationDetailsParser()
+		        .Parse("settings.json");
 
-	        var hostConfiguration = new HostConfiguration();// HostConfigurationBuilder()
-		        //.Build(applicationConfiguration)
-                //.UseTrayIconHost(
-                //    this,
+	        var applicationConfiguration = new ConfigurationBuilder()
+		        .AddConfigurationDetails(details)
+		        .Build();
+
+
+	        var hostConfiguration = new HostConfigurationBuilder()
+		        .Build(applicationConfiguration);
+	        //     .UseTrayIconHost(
+	        //         this,
                 //    "Icon-Logo-White-Shaded.ico",
                 //    "Icon-Logo-Black.ico",
                 //    "Icon-Logo-Red.ico")
