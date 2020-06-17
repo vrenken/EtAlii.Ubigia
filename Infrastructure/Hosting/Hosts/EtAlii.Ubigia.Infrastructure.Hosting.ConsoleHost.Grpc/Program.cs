@@ -14,15 +14,15 @@
             // See: https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.0#call-insecure-grpc-services-with-net-core-client
             //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-            var details = await new ConfigurationDetailsParser()
+            var applicationConfigurationDetails = await new ConfigurationDetailsParser()
                 .Parse("settings.json");
 
             var applicationConfiguration = new ConfigurationBuilder()
-                .AddConfigurationDetails(details)
+                .AddConfigurationDetails(applicationConfigurationDetails)
                 .Build();
             
             var hostConfiguration = new HostConfigurationBuilder()
-                .Build(applicationConfiguration)
+                .Build(applicationConfiguration, applicationConfigurationDetails)
                 .UseConsoleHost();
 
             ConsoleHost.Start(hostConfiguration);

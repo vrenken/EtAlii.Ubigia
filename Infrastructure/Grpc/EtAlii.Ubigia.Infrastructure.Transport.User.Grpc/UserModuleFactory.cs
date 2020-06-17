@@ -6,7 +6,7 @@
 
     public class UserModuleFactory : ModuleFactoryBase
     {
-        public override IModule Create(IConfigurationSection configuration)
+        public override IModule Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 
