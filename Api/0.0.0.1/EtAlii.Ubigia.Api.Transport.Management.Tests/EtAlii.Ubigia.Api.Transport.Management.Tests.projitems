@@ -18,6 +18,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Accounts.Administrators.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Accounts.Users.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Information.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Spaces.Configuration.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Spaces.Data.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ManagementConnection.Storages.Tests.cs" />
