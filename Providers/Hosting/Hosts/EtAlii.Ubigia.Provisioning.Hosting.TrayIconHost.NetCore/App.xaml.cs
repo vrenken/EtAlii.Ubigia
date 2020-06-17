@@ -9,15 +9,15 @@
 	{
         private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-	        var details = await new ConfigurationDetailsParser()
+	        var applicationConfigurationDetails = await new ConfigurationDetailsParser()
 		        .Parse("settings.json");
 
 	        var applicationConfiguration = new ConfigurationBuilder()
-		        .AddConfigurationDetails(details)
+		        .AddConfigurationDetails(applicationConfigurationDetails)
 		        .Build();
 
 	        var hostConfiguration = new HostConfigurationBuilder()
-		        .Build(applicationConfiguration);
+		        .Build(applicationConfiguration, applicationConfigurationDetails);
             //     .UseTrayIconHost(
             //         this,
             //         "Icon-Logo-White-Shaded.ico",

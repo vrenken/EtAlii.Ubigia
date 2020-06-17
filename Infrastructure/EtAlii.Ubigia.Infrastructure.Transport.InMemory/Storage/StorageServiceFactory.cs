@@ -9,7 +9,7 @@
 
     public class StorageServiceFactory : ServiceFactoryBase
     {
-        public override IService Create(IConfigurationSection configuration)
+        public override IService Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

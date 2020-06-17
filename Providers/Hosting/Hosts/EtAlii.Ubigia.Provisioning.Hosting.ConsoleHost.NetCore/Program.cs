@@ -14,15 +14,15 @@
         public static async Task Main()
         {
 	        
-	        var details = await new ConfigurationDetailsParser()
+	        var applicationConfigurationDetails = await new ConfigurationDetailsParser()
 		        .Parse("settings.json");
 
 	        var applicationConfiguration = new ConfigurationBuilder()
-		        .AddConfigurationDetails(details)
+		        .AddConfigurationDetails(applicationConfigurationDetails)
 		        .Build();
 
 	        var hostConfiguration = new HostConfigurationBuilder()
-		        .Build(applicationConfiguration)
+		        .Build(applicationConfiguration, applicationConfigurationDetails)
 		        .UseConsoleHost();
 
 	        ConsoleHost.Start(hostConfiguration);
