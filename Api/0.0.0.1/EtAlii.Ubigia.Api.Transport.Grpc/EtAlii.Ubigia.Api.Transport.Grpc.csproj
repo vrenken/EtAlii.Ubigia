@@ -18,7 +18,15 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProtoBuf Include="**\*.proto" />
+    <Protobuf Include="**\*.proto"  >
+      <GrpcServices>Both</GrpcServices>
+      <Access>Public</Access>
+      <ProtoCompile>True</ProtoCompile>
+      <ProtoRoot />
+      <CompileOutputs>True</CompileOutputs>
+      <OutputDir>obj\Debug\netstandard2.1\</OutputDir>
+      <Generator>MSBuild:Compile</Generator>
+    </Protobuf>
   </ItemGroup>
 
   <ItemGroup>
