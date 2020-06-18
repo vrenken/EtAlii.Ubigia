@@ -1,0 +1,42 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+syntax = "proto3";
+import "Clients/_Grpc/_Model.proto";
+package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+
+// The Information Grpc service definition.
+service InformationGrpcService  
+{
+	rpc GetLocalStorage (LocalStorageRequest) returns (LocalStorageResponse) {}
+	rpc GetLocalConnectivityDetails(ConnectivityDetailsRequest) returns (ConnectivityDetailsResponse) {}
+}
+
+message LocalStorageRequest
+{
+    oneof Selection 
+    {
+        Guid Id = 1;
+        string Name = 2;
+        Storage Storage = 3;        
+    }
+}
+
+message LocalStorageResponse
+{
+	Storage Storage = 1;
+}
+
+message ConnectivityDetailsRequest
+{
+}
+
+message ConnectivityDetailsResponse
+{
+    ConnectivityDetails ConnectivityDetails = 1;
+}
+
+message ConnectivityDetails
+{
+  string ManagementAddress = 1;
+  string DataAddress = 2;
+}

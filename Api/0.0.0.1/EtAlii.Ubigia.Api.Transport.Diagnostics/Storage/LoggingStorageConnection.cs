@@ -11,12 +11,21 @@
 
         private Uri _address;
 
+        /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+        /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
+        /// <inheritdoc />
         public IStorageTransport Transport => ((dynamic)_decoree).Transport;
+        /// <inheritdoc />
         public IStorageContext Storages => _decoree?.Storages;
+        /// <inheritdoc />
         public IAccountContext Accounts => _decoree?.Accounts;
+        /// <inheritdoc />
         public ISpaceContext Spaces => _decoree?.Spaces;
+        /// <inheritdoc />
+        public IStorageConnectionDetails Details => _decoree.Details;
+        /// <inheritdoc />
         public IStorageConnectionConfiguration Configuration => _decoree.Configuration;
 
         public LoggingStorageConnection(

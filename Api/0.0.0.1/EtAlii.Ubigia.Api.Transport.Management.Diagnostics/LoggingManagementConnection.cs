@@ -15,6 +15,8 @@
         public ISpaceContext Spaces => _decoree.Spaces;
 
         public bool IsConnected => _decoree.IsConnected;
+
+        public IStorageConnectionDetails Details => _decoree.Details;
         public IManagementConnectionConfiguration Configuration => _decoree.Configuration;
 
         public LoggingManagementConnection(

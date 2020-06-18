@@ -6,25 +6,33 @@
     public abstract class StorageConnection<TTransport> : IStorageConnection<TTransport>
         where TTransport : IStorageTransport
     {
+        /// <inheritdoc />
         public Storage Storage { get; private set; }
 
         IStorageTransport IStorageConnection.Transport => Transport;
         
+        /// <inheritdoc />
         public TTransport Transport { get; }
 
+        /// <inheritdoc />
         public IStorageContext Storages { get; }
 
+        /// <inheritdoc />
         public IAccountContext Accounts { get; }
 
-        public IAuthenticationManagementContext Authentication { get; }
+        private readonly IAuthenticationManagementContext _authentication;
+        private readonly IInformationContext _information;
 
+        /// <inheritdoc />
         public ISpaceContext Spaces { get; }
 
         public bool IsConnected => Storage != null;
 
-        /// <summary>
-        /// The Configuration used to instantiate this StorageConnection.
-        /// </summary>
+        /// <inheritdoc />
+        public IStorageConnectionDetails Details => _details;
+        private readonly StorageConnectionDetails _details;
+
+        /// <inheritdoc />
         public IStorageConnectionConfiguration Configuration { get; }
 
         protected StorageConnection(
@@ -33,14 +41,18 @@
             IStorageContext storages, 
             ISpaceContext spaces,
             IAccountContext accounts,
-            IAuthenticationManagementContext authentication)
+            IAuthenticationManagementContext authentication,
+            IInformationContext information)
         {
             Transport = (TTransport)transport;
             Configuration = configuration;
             Storages = storages;
             Spaces = spaces;
             Accounts = accounts;
-            Authentication = authentication;
+            _authentication = authentication;
+            _information = information;
+            
+            _details = new StorageConnectionDetails();
         }
 
         public async Task Close()
@@ -53,7 +65,8 @@
             await Accounts.Close(this);
             await Storages.Close(this);
             await Spaces.Close(this);
-
+            await _information.Close(this);
+            
             await Transport.Stop();
             Storage = null;
         }
@@ -65,10 +78,13 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await  Authentication.Data.Authenticate(this, accountName, password);
+            await  _authentication.Data.Authenticate(this, accountName, password);
 
-            Storage = await Authentication.Data.GetConnectedStorage(this);
-
+            Storage = await _information.Data.GetConnectedStorage(this);
+            var details = await _information.Data.GetConnectivityDetails(this);
+            _details.Update(Storage, details.ManagementAddress, details.DataAddress);
+                
+            await _information.Open(this);
             await Accounts.Open(this);
             await Storages.Open(this);
             await Spaces.Open(this);

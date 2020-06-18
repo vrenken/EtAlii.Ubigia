@@ -5,14 +5,10 @@
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using global::Grpc.Net.Client;
 
-    public partial class GrpcAuthenticationManagementDataClient : GrpcManagementClientBase, IAuthenticationManagementDataClient<IGrpcStorageTransport>
+    public partial class GrpcInformationDataClient : GrpcManagementClientBase, IInformationDataClient<IGrpcStorageTransport>
     {
-        private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
-
-        public GrpcAuthenticationManagementDataClient()
-        {
-            _hostIdentifier = CreateHostIdentifier();
-        }
+        private InformationGrpcService.InformationGrpcServiceClient _client;
+        private StorageGrpcService.StorageGrpcServiceClient _storageClient;
 
         public override Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
@@ -23,12 +19,14 @@
         public override Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
             _client = null;
+            _storageClient = null;
             return Task.CompletedTask;
         }
 
         private void SetClients(GrpcChannel channel)
         {
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            _client = new InformationGrpcService.InformationGrpcServiceClient(channel);
+            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
         }
     }
 }

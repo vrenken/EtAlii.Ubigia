@@ -11,8 +11,9 @@
             IStorageContext storages,
             ISpaceContext spaces,
             IAccountContext accounts, 
-            IAuthenticationManagementContext authentication)
-            : base(transport, configuration, storages, spaces, accounts, authentication)
+            IAuthenticationManagementContext authentication, 
+            IInformationContext information)
+            : base(transport, configuration, storages, spaces, accounts, authentication, information)
         {
         }
         

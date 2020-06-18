@@ -11,9 +11,27 @@
         /// </summary>
         IManagementConnectionConfiguration Configuration { get; }
 
+        /// <summary>
+        /// Additional details about the storage connection.
+        /// </summary>
+        IStorageConnectionDetails Details { get; }
+        
+        /// <summary>
+        /// The storage to which the connection talks. 
+        /// </summary>
         Storage Storage { get; }
+        
+        /// <summary>
+        /// A context through which to call storage related RPC's. 
+        /// </summary>
         IStorageContext Storages { get; }
+        /// <summary>
+        /// A context through which to call account related RPC's. 
+        /// </summary>
         IAccountContext Accounts { get; }
+        /// <summary>
+        /// A context through which to call space related RPC's. 
+        /// </summary>
         ISpaceContext Spaces { get; }
 
         Task<IDataConnection> OpenSpace(Space space);

@@ -13,9 +13,16 @@
         string IEditableInfrastructureConfiguration.Name { get => Name; set => Name = value; }
         public string Name { get; private set; }
 
-        Uri IEditableInfrastructureConfiguration.Address { get => Address; set => Address = value; }
-        public Uri Address { get; private set; }
-        
+        /// <inheritdoc />
+        Uri IEditableInfrastructureConfiguration.ManagementAddress { get => ManagementAddress; set => ManagementAddress = value; }
+        /// <inheritdoc />
+        public Uri ManagementAddress { get; private set; }
+
+        /// <inheritdoc />
+        Uri IEditableInfrastructureConfiguration.DataAddress { get => DataAddress; set => DataAddress = value; }
+        /// <inheritdoc />
+        public Uri DataAddress { get; private set; }
+
         ISystemConnectionCreationProxy IEditableInfrastructureConfiguration.SystemConnectionCreationProxy { get => SystemConnectionCreationProxy; set => SystemConnectionCreationProxy = value; }
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 

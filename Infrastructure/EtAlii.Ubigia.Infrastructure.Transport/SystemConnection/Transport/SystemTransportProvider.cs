@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         
         public IStorageTransport GetStorageTransport()
         {
-            return new SystemStorageTransport(_infrastructure.Configuration.Address, _infrastructure);
+            return new SystemStorageTransport(_infrastructure.Configuration.ManagementAddress, _infrastructure);
         }
     }
 }

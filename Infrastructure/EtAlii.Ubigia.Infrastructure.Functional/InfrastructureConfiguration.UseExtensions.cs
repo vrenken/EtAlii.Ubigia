@@ -5,7 +5,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public static class InfrastructureConfigurationUseExtensions
     {
-        public static TInfrastructureConfiguration Use<TInfrastructureConfiguration>(this TInfrastructureConfiguration configuration, string name, Uri address)
+        public static TInfrastructureConfiguration Use<TInfrastructureConfiguration>(
+            this TInfrastructureConfiguration configuration, 
+            string name, 
+            Uri managementAddress,
+            Uri dataAddress)
             where TInfrastructureConfiguration : InfrastructureConfiguration
         {
             var editableConfiguration = (IEditableInfrastructureConfiguration) configuration;
@@ -16,7 +20,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
 
             editableConfiguration.Name = name;
-            editableConfiguration.Address = address ?? throw new ArgumentNullException(nameof(address));
+            editableConfiguration.ManagementAddress = managementAddress ?? throw new ArgumentNullException(nameof(managementAddress));
+            editableConfiguration.DataAddress = dataAddress ?? throw new ArgumentNullException(nameof(dataAddress));
             return configuration;
         }
 

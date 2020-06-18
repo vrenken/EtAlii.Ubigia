@@ -11,8 +11,7 @@
             IEntryContext entries, 
             IContentContext content, 
             IPropertiesContext properties, 
-            IAuthenticationContext authentication
-            ) 
+            IAuthenticationContext authentication) 
             : base(transport, configuration, roots, entries, content, properties, authentication)
         {
         }
