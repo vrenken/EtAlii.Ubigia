@@ -6,6 +6,8 @@
     {
         public void Register(Container container)
         {
+            container.Register<IInformationRepository, InformationRepository>();
+
             container.Register<IRootRepository, RootRepository>();
             container.Register<IEntryRepository, EntryRepository>();
             container.Register<IContentRepository, ContentRepository>();

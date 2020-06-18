@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Grpc;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.AspNetCore.Builder;
@@ -10,9 +11,12 @@
 
     public class AdminGrpcService : GrpcServiceBase
     {
-        public AdminGrpcService(IConfigurationSection configuration) 
+        private readonly IConfigurationDetails _configurationDetails;
+
+        public AdminGrpcService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
             : base(configuration)
         {
+            _configurationDetails = configurationDetails;
         }
 
         protected override void ConfigureServices(IServiceCollection services)
@@ -28,6 +32,9 @@
             container.Register<IAdminStorageService, AdminStorageService>();
             container.Register<IAdminAccountService, AdminAccountService>();
             container.Register<IAdminSpaceService, AdminSpaceService>();
+            container.Register<IAdminInformationService, AdminInformationService>();
+            
+            container.Register(() => _configurationDetails);
 
             services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationVerifier>());
             services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
@@ -37,6 +44,7 @@
             services.AddSingleton(svc => (AdminStorageService) container.GetInstance<IAdminStorageService>());
             services.AddSingleton(svc => (AdminAccountService) container.GetInstance<IAdminAccountService>());
             services.AddSingleton(svc => (AdminSpaceService) container.GetInstance<IAdminSpaceService>());
+            services.AddSingleton(svc => (AdminInformationService) container.GetInstance<IAdminInformationService>());
             
             var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
             
@@ -44,7 +52,8 @@
                 .AddGrpc()
                 .AddServiceOptions<AdminStorageService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
                 .AddServiceOptions<AdminAccountService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<AdminSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier));
+                .AddServiceOptions<AdminSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
+                .AddServiceOptions<AdminInformationService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier));
         }
 
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
@@ -57,6 +66,7 @@
                     endpoints.MapGrpcService<AdminStorageService>();
                     endpoints.MapGrpcService<AdminAccountService>();
                     endpoints.MapGrpcService<AdminSpaceService>();
+                    endpoints.MapGrpcService<AdminInformationService>();
                 });
         }
     }

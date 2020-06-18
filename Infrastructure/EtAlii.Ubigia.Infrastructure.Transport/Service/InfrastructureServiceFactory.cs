@@ -10,7 +10,6 @@
         {
             var container = new Container();
 
-            container.Register(() => configuration);
             container.Register<IInfrastructureService, InfrastructureService>();
 
             container.Register(() => configuration);

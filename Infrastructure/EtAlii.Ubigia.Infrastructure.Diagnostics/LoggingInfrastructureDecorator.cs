@@ -9,6 +9,8 @@
         private readonly IInfrastructure _decoree;
 
         public IInfrastructureConfiguration Configuration => _decoree.Configuration;
+        
+        public IInformationRepository Information => _decoree.Information;
         public IStorageRepository Storages => _decoree.Storages;
         public ISpaceRepository Spaces => _decoree.Spaces;
         public IIdentifierRepository Identifiers => _decoree.Identifiers;

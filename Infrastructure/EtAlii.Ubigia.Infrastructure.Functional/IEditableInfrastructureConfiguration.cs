@@ -10,7 +10,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         string Name { get; set; }
 
-        Uri Address { get; set; }
+        /// <summary>
+        /// Editable access to the address of the management API.
+        /// </summary>
+        Uri ManagementAddress { get; set; }
+        /// <summary>
+        /// Editable access to the address of the data API.
+        /// </summary>
+        Uri DataAddress { get; set; }
 
 
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; set; }

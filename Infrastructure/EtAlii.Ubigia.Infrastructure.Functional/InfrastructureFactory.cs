@@ -11,9 +11,13 @@
             {
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }
-            if (configuration.Address == null)
+            if (configuration.ManagementAddress == null)
             {
-                throw new NotSupportedException("The address is required to construct a Infrastructure instance");
+                throw new NotSupportedException("The management address is required to construct a Infrastructure instance");
+            }
+            if (configuration.DataAddress == null)
+            {
+                throw new NotSupportedException("The data address is required to construct a Infrastructure instance");
             }
             if (configuration.SystemConnectionCreationProxy == null)
             {

@@ -12,6 +12,7 @@
 
             container.Register<IAuthenticationManagementDataClient, GrpcAuthenticationManagementDataClient>();
 
+            container.Register<IInformationDataClient, GrpcInformationDataClient>();
             container.Register<IStorageDataClient, GrpcStorageDataClient>();
             container.Register<IAccountDataClient, GrpcAccountDataClient>();
             container.Register<ISpaceDataClient, GrpcSpaceDataClient>();

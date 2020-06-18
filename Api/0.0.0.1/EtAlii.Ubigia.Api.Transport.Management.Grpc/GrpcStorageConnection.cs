@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
 
     internal class GrpcStorageConnection : StorageConnection<IGrpcStorageTransport>, IGrpcStorageConnection
@@ -11,8 +10,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
             IStorageContext storages, 
             ISpaceContext spaces, 
             IAccountContext accounts,
-            IAuthenticationManagementContext authentication) 
-            : base(transport, configuration, storages, spaces, accounts, authentication)
+            IAuthenticationManagementContext authentication,
+            IInformationContext information) 
+            : base(transport, configuration, storages, spaces, accounts, authentication, information)
         {
         }
     }

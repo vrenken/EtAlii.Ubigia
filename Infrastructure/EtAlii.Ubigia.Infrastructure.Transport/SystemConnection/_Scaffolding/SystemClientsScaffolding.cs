@@ -22,6 +22,8 @@
 
             // Data clients.
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();
+
+            container.Register<IInformationDataClient, SystemInformationDataClient>();
             
             container.Register<IEntryDataClient, SystemEntryDataClient>();
             container.Register<IEntryNotificationClient, EntryNotificationClientStub>();

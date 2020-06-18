@@ -17,7 +17,7 @@
 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-	        var address = _configuration.Infrastructure.Configuration.Address;
+	        var address = _configuration.Infrastructure.Configuration.DataAddress;
 
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(_configuration.TransportProvider)
@@ -30,7 +30,7 @@
 
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-	        var address = _configuration.Infrastructure.Configuration.Address;
+	        var address = _configuration.Infrastructure.Configuration.ManagementAddress;
 
 	        var connectionConfiguration = new ManagementConnectionConfiguration()
                 .Use(_configuration.TransportProvider)

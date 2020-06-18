@@ -8,7 +8,15 @@
     {
         ILogicalContext Logical { get; }
 
-        Uri Address { get; }
+        /// <summary>
+        /// The address of the management API.
+        /// </summary>
+        Uri ManagementAddress { get; }
+
+        /// <summary>
+        /// The address of the data API.
+        /// </summary>
+        Uri DataAddress { get; }
 
         string Name { get; }
 

@@ -3,9 +3,17 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 
-    internal partial class SystemAuthenticationManagementDataClient
+    internal sealed class SystemInformationDataClient : SystemStorageClientBase, IInformationDataClient
     {
+        private readonly IInfrastructure _infrastructure;
+
+        public SystemInformationDataClient(IInfrastructure infrastructure)
+        {
+            _infrastructure = infrastructure;
+        }
+
         public Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
         {
             if (connection.Storage != null)
@@ -35,6 +43,16 @@
             storage.Address = storageConnection.Transport.Address.ToString();
 
             return Task.FromResult(storage);
+        }
+
+        public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
+        {
+            var result = new ConnectivityDetails
+            {
+                ManagementAddress = _infrastructure.Configuration.ManagementAddress.ToString(),
+                DataAddress = _infrastructure.Configuration.DataAddress.ToString(),
+            };
+            return Task.FromResult(result);
         }
     }
 }

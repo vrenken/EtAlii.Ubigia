@@ -17,7 +17,6 @@
             try
             {
                 var grpcConnection = (IGrpcStorageConnection)storageConnection;
-    
                 SetClients(grpcConnection.Transport.Channel);
 
                 var authenticationToken = grpcConnection.Transport.AuthenticationToken;

@@ -5,19 +5,25 @@
 
     internal class ManagementConnection : IManagementConnection
     {
+        /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
 
+        /// <inheritdoc />
         public Storage Storage => _connection?.Storage;
 
+        /// <inheritdoc />
         public IStorageContext Storages => _connection?.Storages;
 
+        /// <inheritdoc />
         public IAccountContext Accounts => _connection?.Accounts;
 
+        /// <inheritdoc />
         public ISpaceContext Spaces => _connection?.Spaces;
 
-        /// <summary>
-        /// The Configuration used to instantiate this ManagementConnection.
-        /// </summary>
+        /// <inheritdoc />
+        public IStorageConnectionDetails Details => _connection?.Details;
+
+        /// <inheritdoc />
         public IManagementConnectionConfiguration Configuration { get; }
 
         private IStorageConnection _connection;
@@ -42,14 +48,16 @@
  
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
-	        var uriBuilder = new UriBuilder(Configuration.Address);
-	        uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User");
-
-			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
-	        uriBuilder.Port = uriBuilder.Port - 1;
-
-			var address = uriBuilder.Uri;
+            // // TODO: Temporary patch to make downscaling from a management to a data connection possible. 
+            // var uriBuilder = new UriBuilder(Configuration.Address);
+            // uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User");
+            //
+            // // TODO: Temporary patch to make downscaling from a management to a data connection possible.
+            // uriBuilder.Port = uriBuilder.Port - 1;
+            //
+            // var address = uriBuilder.Uri;
+            
+            var address = _connection.Details.DataAddress;
 
 			var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(Configuration.TransportProvider)
