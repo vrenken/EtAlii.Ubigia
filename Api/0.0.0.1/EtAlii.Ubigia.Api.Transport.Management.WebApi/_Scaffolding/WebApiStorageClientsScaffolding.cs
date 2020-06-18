@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -20,6 +19,7 @@
 
             container.Register<IAuthenticationManagementDataClient, WebApiAuthenticationManagementDataClient>();
 
+            container.Register<IInformationDataClient, WebApiInformationDataClient>();
             container.Register<IStorageDataClient, WebApiStorageDataClient>();
             container.Register<IAccountDataClient, WebApiAccountDataClient>();
             container.Register<ISpaceDataClient, WebApiSpaceDataClient>();

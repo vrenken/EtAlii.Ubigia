@@ -14,6 +14,7 @@
             container.Register<IAuthenticationManagementDataClient, SignalRAuthenticationManagementDataClient>();
             container.Register<ISignalRAuthenticationTokenGetter, SignalRAuthenticationTokenGetter>();
 
+            container.Register<IInformationDataClient, SignalRInformationDataClient>();
             container.Register<IStorageDataClient, SignalRStorageDataClient>();
             container.Register<IAccountDataClient, SignalRAccountDataClient>();
             container.Register<ISpaceDataClient, SignalRSpaceDataClient>();

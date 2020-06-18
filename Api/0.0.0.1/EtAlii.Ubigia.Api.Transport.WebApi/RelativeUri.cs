@@ -28,6 +28,8 @@
         {
             public const string Accounts = "account";
 
+            public const string Information = "information";
+
             public const string Storages = "storage";
             public const string Spaces = "space";
 

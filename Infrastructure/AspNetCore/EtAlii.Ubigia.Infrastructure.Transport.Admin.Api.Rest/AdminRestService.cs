@@ -10,10 +10,13 @@
 
 	public class AdminRestService : ServiceBase
     {
-        public AdminRestService(IConfigurationSection configuration) 
+	    private readonly IConfigurationDetails _configurationDetails;
+
+	    public AdminRestService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
             : base(configuration)
-        {
-        }
+	    {
+		    _configurationDetails = configurationDetails;
+	    }
 
         protected override void ConfigureServices(IServiceCollection services)
         {
@@ -25,6 +28,8 @@
 		        .AddSingleton(infrastructure.Spaces)
 
 		        .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
+
+		        .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
 		        //.AddInfrastructureSimpleAuthentication(infrastructure)
 		        .AddInfrastructureHttpContextAuthentication(infrastructure)
@@ -47,38 +52,5 @@
 		        .UseRouting()
 		        .UseEndpoints(endpoints => endpoints.MapControllers());
         }
-
-    //     protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
-    //     {
-    //         var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
-    //
-    //         applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Rest.BasePath,
-    //             services =>
-    //             {
-	   //              services
-		  //               .AddSingleton(infrastructure.Storages)
-		  //               .AddSingleton(infrastructure.Accounts)
-	   //                  .AddSingleton(infrastructure.Spaces)
-    //
-	   //                  .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
-    //
-    //                     //.AddInfrastructureSimpleAuthentication(infrastructure)
-    //                     .AddInfrastructureHttpContextAuthentication(infrastructure)
-		  //               .AddInfrastructureSerialization()
-    //
-				// 		.AddMvcForTypedController<RestController>(options =>
-		  //               {
-			 //                options.EnableEndpointRouting = false;
-			 //                options.InputFormatters.Clear();
-				// 			options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
-				// 			options.OutputFormatters.Clear();
-				// 			options.OutputFormatters.Add(new PayloadMediaTypeOutputFormatter());
-				// 		});
-				// },
-    //             appBuilder =>
-    //             {
-    //                 appBuilder.UseMvc();
-    //             });
-    //     }
     }
 }
