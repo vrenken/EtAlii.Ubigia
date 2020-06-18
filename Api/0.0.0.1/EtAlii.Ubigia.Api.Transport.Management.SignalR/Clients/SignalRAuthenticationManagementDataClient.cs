@@ -9,14 +9,10 @@
     {
         private HubConnection _accountConnection;
         private HubConnection _storageConnection;
-        private readonly IHubProxyMethodInvoker _invoker;
         private readonly ISignalRAuthenticationTokenGetter _signalRAuthenticationTokenGetter;
 
-        public SignalRAuthenticationManagementDataClient(
-            IHubProxyMethodInvoker invoker, 
-            ISignalRAuthenticationTokenGetter signalRAuthenticationTokenGetter)
+        public SignalRAuthenticationManagementDataClient(ISignalRAuthenticationTokenGetter signalRAuthenticationTokenGetter)
         {
-            _invoker = invoker;
             _signalRAuthenticationTokenGetter = signalRAuthenticationTokenGetter;
         }
 

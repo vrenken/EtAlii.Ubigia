@@ -11,6 +11,7 @@
         public const string Content = "Content";
         public const string ContentDefinition = "ContentDefinition";
 
+        public const string Information = "Information";
         public const string Account = "Account";
         public const string Storage = "Storage";
         public const string Space = "Space";

@@ -4,7 +4,8 @@
     {
 	    public const string AuthenticationToken = "authenticationToken";
         public const string Local = "local";
-
+        public const string Connectivity = "connectivity";
+        
         public const string IdType = "idType";
 
         public const string EntryId = "entryId";

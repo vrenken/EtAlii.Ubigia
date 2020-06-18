@@ -11,9 +11,12 @@
 
     public class AdminSignalRService : ServiceBase
     {
-        public AdminSignalRService(IConfigurationSection configuration) 
+        private readonly IConfigurationDetails _configurationDetails;
+
+        public AdminSignalRService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
             : base(configuration)
         {
+            _configurationDetails = configurationDetails;
         }
 
         protected override void ConfigureServices(IServiceCollection services)
@@ -23,6 +26,9 @@
                 .AddSingleton(infrastructure.Accounts)
                 .AddSingleton(infrastructure.Spaces)
                 .AddSingleton(infrastructure.Storages)
+                .AddSingleton(infrastructure.Information)
+
+                .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
                 .AddInfrastructureSimpleAuthentication(infrastructure)
                 .AddInfrastructureSerialization()
@@ -58,54 +64,8 @@
                     endPoints.MapHub<StorageHub>(SignalRHub.Storage);
                     endPoints.MapHub<SpaceHub>(SignalRHub.Space);
                     endPoints.MapHub<AccountHub>(SignalRHub.Account);
+                    endPoints.MapHub<InformationHub>(SignalRHub.Information);
                 });
         }
-            //
-            //
-            // protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
-            // {
-            //     var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
-            //
-            //     applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.SignalR.BasePath,
-            //         services =>
-            //         {
-            //             services
-            //                 .AddSingleton(infrastructure.Accounts)
-            //                 .AddSingleton(infrastructure.Spaces)
-            //                 .AddSingleton(infrastructure.Storages)
-            //
-            //                 .AddInfrastructureSimpleAuthentication(infrastructure)
-            //                 .AddInfrastructureSerialization()
-            //
-            //                 .AddCors()
-            //                 .AddSignalR(options => 
-            //                 {
-            //                     if (Debugger.IsAttached)
-            //                     {
-            //                         options.EnableDetailedErrors = Debugger.IsAttached;
-            //                     }
-            //                 })
-            //                 .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
-            //         },
-            //         appBuilder =>
-            //         {
-            //             appBuilder
-            //                 .UseCors(configuration =>
-            //                 {
-            //                     configuration.AllowAnyMethod();
-            //                     configuration.AllowAnyHeader();
-            //                     configuration.AllowAnyOrigin(); 
-            //                 })
-            //                 .UseRouting()
-            //                 .UseEndpoints(endPoints =>
-            //                 {
-            //                     endPoints.MapHub<AuthenticationHub>(SignalRHub.Authentication);
-            //
-            //                     endPoints.MapHub<StorageHub>(SignalRHub.Storage);
-            //                     endPoints.MapHub<SpaceHub>(SignalRHub.Space);
-            //                     endPoints.MapHub<AccountHub>(SignalRHub.Account);
-            //                 });
-            //         });
-            // }
     }
 }

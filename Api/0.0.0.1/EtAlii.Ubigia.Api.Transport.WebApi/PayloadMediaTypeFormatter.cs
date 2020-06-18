@@ -42,8 +42,7 @@
 		    return true;
 	    }
 
-	    public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
-		    IFormatterLogger formatterLogger)
+	    public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
 	    {
 		    if (type == null)
 		    {
@@ -119,12 +118,11 @@
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
 	    {
-		    using (var reader = CreateJsonReader(type, readStream))
-		    {
-			    reader.CloseInput = false;
-				return _serializer.Deserialize(reader, type);
-		    }
-		}
+		    using var reader = CreateJsonReader(type, readStream);
+		    
+		    reader.CloseInput = false;
+		    return _serializer.Deserialize(reader, type);
+	    }
 
 	    private JsonReader CreateJsonReader(Type type, Stream readStream)
         {
@@ -215,13 +213,12 @@
 
 	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)
 	    {
-		    using (var writer = CreateJsonWriter(type, writeStream))
-		    {
-			    writer.CloseOutput = false;
-				_serializer.Serialize(writer, value);
-			    writer.Flush();
-		    }
-		}
+		    using var writer = CreateJsonWriter(type, writeStream);
+		    
+		    writer.CloseOutput = false;
+		    _serializer.Serialize(writer, value);
+		    writer.Flush();
+	    }
 
 		private JsonWriter CreateJsonWriter(Type type, Stream writeStream)
         {
