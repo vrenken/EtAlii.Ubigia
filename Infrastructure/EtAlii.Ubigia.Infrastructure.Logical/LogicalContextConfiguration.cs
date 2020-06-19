@@ -9,12 +9,12 @@
 
         public string Name { get; private set; }
 
-        public Uri Address { get; private set; }
+        public Uri DataApiAddress { get; private set; }
 
-        public ILogicalContextConfiguration Use(string name, Uri address)
+        public ILogicalContextConfiguration Use(string name, Uri dataApiAddress)
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
-            Address = address ?? throw new ArgumentNullException(nameof(address));
+            DataApiAddress = dataApiAddress ?? throw new ArgumentNullException(nameof(dataApiAddress));
 
             return this;
         }

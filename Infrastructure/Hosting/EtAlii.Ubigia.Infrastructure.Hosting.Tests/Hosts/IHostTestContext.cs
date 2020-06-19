@@ -19,9 +19,8 @@
         string AdminAccountName { get; }
         string AdminAccountPassword { get; }
 
-        Uri HostAddress { get; }
-        Uri ManagementServiceAddress { get; }
-        Uri DataServiceAddress { get; }
+        Uri ManagementApiAddress { get; }
+        Uri DataApiAddress { get; }
 
         string HostName { get; }
         
