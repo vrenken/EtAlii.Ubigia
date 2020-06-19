@@ -2,8 +2,6 @@
 {
     public static class SignalRHub
     {
-	    public const string BasePath = "/api/stream/";
-
 		public const string Authentication = "Authentication";
         public const string Root = "Root";
         public const string Property = "Properties";

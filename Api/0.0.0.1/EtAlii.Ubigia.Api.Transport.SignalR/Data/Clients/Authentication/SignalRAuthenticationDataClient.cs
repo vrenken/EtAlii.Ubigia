@@ -23,8 +23,8 @@
 
             var factory = new HubConnectionFactory();
 
-			_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + SignalRHub.Account, UriKind.Absolute));
-			_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + SignalRHub.Space, UriKind.Absolute));
+			_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + "/" + SignalRHub.Account, UriKind.Absolute));
+			_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + "/" + SignalRHub.Space, UriKind.Absolute));
 	        await _accountConnection.StartAsync();
 	        await _spaceConnection.StartAsync();
         }
