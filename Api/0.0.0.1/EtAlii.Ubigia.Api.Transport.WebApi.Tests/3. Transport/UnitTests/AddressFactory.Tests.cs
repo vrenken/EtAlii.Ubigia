@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    
     public class AddressFactoryTests : IDisposable
     {
         private const string BaseAddress = "http://localtesthost:1234";
@@ -32,7 +31,7 @@
             var address = _factory.Create(_storage, "test");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + RelativeUri.ApiRest + "test", address.ToString());
+            Assert.Equal(BaseAddress + "/" + "test", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -44,7 +43,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "firstvalue", "secondKey", "secondvalue");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + RelativeUri.ApiRest + "test?firstkey=firstvalue&secondKey=secondvalue", address.ToString());
+            Assert.Equal(BaseAddress + "/" + "test?firstkey=firstvalue&secondKey=secondvalue", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -56,7 +55,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "first=value", "secondKey", "second&value");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + RelativeUri.ApiRest + "test?firstkey=first%3Dvalue&secondKey=second%26value", address.ToString());
+            Assert.Equal(BaseAddress + "/" + "test?firstkey=first%3Dvalue&secondKey=second%26value", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -80,7 +79,7 @@
             var address = _factory.Create(_storage, null);
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + RelativeUri.ApiRest, address.ToString());
+            Assert.Equal(BaseAddress + "/", address.ToString());
         }
     }
 }
