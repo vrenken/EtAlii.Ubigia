@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
-    public partial class WebApiAuthenticationManagementDataClient
+    internal sealed class WebApiInformationDataClient : WebApiClientBase, IInformationDataClient
     {
         public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
         {
@@ -26,6 +26,14 @@
             storage.Address = storageConnection.Transport.Address.ToString();
 
             return storage;
+        }
+
+        public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection storageConnection)
+        {
+            var webApiConnection = (IWebApiConnection)storageConnection;
+            var address = webApiConnection.AddressFactory.Create(storageConnection.Storage, RelativeUri.Data.Information, UriParameter.Connectivity);
+            var connectivityDetails = await webApiConnection.Client.Get<ConnectivityDetails>(address);
+            return connectivityDetails;
         }
     }
 }

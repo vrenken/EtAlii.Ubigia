@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.PowerShell", 
 		{B2437364-7A9D-4798-B429-59E9FF9308E9} = {B2437364-7A9D-4798-B429-59E9FF9308E9}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.PowerShell.Tests", "Client\Windows\Console\EtAlii.Ubigia.PowerShell.Test\EtAlii.Ubigia.PowerShell.Tests.csproj", "{5B004E8E-46CB-4F89-9318-CA3F34A0A933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.PowerShell.Tests", "Client\Windows\Console\EtAlii.Ubigia.PowerShell.Tests\EtAlii.Ubigia.PowerShell.Tests.csproj", "{5B004E8E-46CB-4F89-9318-CA3F34A0A933}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.PowerShell.Diagnostics", "Client\Windows\Console\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj", "{5C7861B5-DFA0-41A0-87D7-733C61E888EF}"
 EndProject
