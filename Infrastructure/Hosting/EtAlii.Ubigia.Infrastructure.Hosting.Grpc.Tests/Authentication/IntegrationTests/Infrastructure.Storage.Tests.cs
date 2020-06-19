@@ -176,7 +176,7 @@
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
 		{
 			// Arrange.
@@ -192,7 +192,7 @@
 			await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
 		}
 		
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
 		{
 			// Arrange.
