@@ -147,7 +147,7 @@
             var retrievedStorages = await connection.Storages.GetAll();
             var retrievedStorage = retrievedStorages.SingleOrDefault();
             Assert.NotNull(retrievedStorage);
-            Assert.Equal(_testContext.Context.HostAddress, new Uri(retrievedStorage.Address, UriKind.Absolute));
+            Assert.Equal(_testContext.Context.Infrastructure.Configuration.ManagementAddress, new Uri(retrievedStorage.Address, UriKind.Absolute));
             Assert.Equal(_testContext.Context.HostName, retrievedStorage.Name);
         }
 

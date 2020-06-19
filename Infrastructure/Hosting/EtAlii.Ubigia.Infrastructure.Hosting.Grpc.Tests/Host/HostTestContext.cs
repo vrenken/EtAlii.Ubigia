@@ -18,8 +18,8 @@
 	    {
 		    await base.Start();
 
-		    ManagementServiceAddress = new Uri($"{HostSchemaAndIp}:{Ports["AdminPort"]}{Paths["AdminApi"]}");
-		    DataServiceAddress = new Uri($"{HostSchemaAndIp}:{Ports["UserPort"]}{Paths["UserApi"]}");
+		    ManagementApiAddress = new Uri($"{HostSchemaAndIp}:{Ports["AdminPort"]}{Paths["AdminApi"]}");
+		    DataApiAddress = new Uri($"{HostSchemaAndIp}:{Ports["UserPort"]}{Paths["UserApi"]}");
 	    }
 
 	    public Task<ISystemConnection> CreateSystemConnection()
