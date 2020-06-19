@@ -6,15 +6,15 @@
     public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
         where TTestHost : class, IInfrastructureTestHostBase
     {
-        public IInfrastructure Infrastructure { get; protected set; }
+        public IInfrastructure Infrastructure { get; private set; }
 
-        public string SystemAccountName { get; protected set; }
-        public string SystemAccountPassword { get; protected set; }
-        public string TestAccountName { get; protected set; }
-        public string TestAccountPassword { get; protected set; }
+        public string SystemAccountName { get; private set; }
+        public string SystemAccountPassword { get; private set; }
+        public string TestAccountName { get; private set; }
+        public string TestAccountPassword { get; private set; }
  
-        public string AdminAccountName { get; protected set; }
-        public string AdminAccountPassword { get; protected set; }
+        public string AdminAccountName { get; private set; }
+        public string AdminAccountPassword { get; private set; }
         
         public string HostName => Infrastructure?.Configuration?.Name;
 
