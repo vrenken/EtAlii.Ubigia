@@ -27,7 +27,7 @@
         {
             await base.Connect(spaceConnection);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + _name, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + "/" + _name, UriKind.Absolute));
 			_subscriptions = new[]
 			{
 				_connection.On<Identifier>("stored", OnStored),
