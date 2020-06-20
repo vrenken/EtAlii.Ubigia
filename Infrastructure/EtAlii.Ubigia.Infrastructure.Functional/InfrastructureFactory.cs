@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
     public class InfrastructureFactory : IInfrastructureFactory
@@ -11,11 +12,17 @@
             {
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }
-            if (configuration.ManagementAddress == null)
+
+            var serviceDetails = configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            if (serviceDetails == null)
+            {
+                throw new NotSupportedException("No system service details found. These are required to construct a Infrastructure instance");
+            }
+            if (serviceDetails.ManagementAddress == null)
             {
                 throw new NotSupportedException("The management address is required to construct a Infrastructure instance");
             }
-            if (configuration.DataAddress == null)
+            if (serviceDetails.DataAddress == null)
             {
                 throw new NotSupportedException("The data address is required to construct a Infrastructure instance");
             }
@@ -24,10 +31,7 @@
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");
             }
 
-            var container = new Container(true); // TODO: Injecting the container itself should not be done.
-            //container.ResolveUnregisteredType += (sender, args) => [ throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.FullName); ]
-            
-
+            var container = new Container();
             var scaffoldings = new IScaffolding[]
             {
                 new InfrastructureScaffolding(configuration), 
