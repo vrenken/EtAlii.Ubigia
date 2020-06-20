@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -47,10 +48,12 @@
 
         public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
+            var serviceDetails = _infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+
             var result = new ConnectivityDetails
             {
-                ManagementAddress = _infrastructure.Configuration.ManagementAddress.ToString(),
-                DataAddress = _infrastructure.Configuration.DataAddress.ToString(),
+                ManagementAddress = serviceDetails.ManagementAddress.ToString(),
+                DataAddress = serviceDetails.DataAddress.ToString(),
             };
             return Task.FromResult(result);
         }

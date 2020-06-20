@@ -11,7 +11,8 @@
             var container = new Container();
 
             container.Register<IInfrastructureService, InfrastructureService>();
-
+            container.Register<IServiceDetailsBuilder, ServiceDetailsBuilder>();
+            
             container.Register(() => configuration);
             container.Register(() => configurationDetails);
 

@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -30,7 +31,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         
         public IStorageTransport GetStorageTransport()
         {
-            return new SystemStorageTransport(_infrastructure.Configuration.ManagementAddress, _infrastructure);
+            var serviceDetails = _infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            
+            return new SystemStorageTransport(serviceDetails.ManagementAddress, _infrastructure);
         }
     }
 }

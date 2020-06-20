@@ -5,12 +5,22 @@
 
 	public interface ILogicalContextConfiguration
     {
+	    /// <summary>
+	    /// The name of the Ubigia storage.
+	    /// </summary>
         string Name { get; }
-	    Uri DataApiAddress { get; }
+        
+        /// <summary>
+        /// The address (schema+host) at which the storage can be found.
+        /// </summary>
+	    Uri StorageAddress { get; }
 
+        /// <summary>
+        /// The fabric that should be used by the logical context.
+        /// </summary>
         IFabricContext Fabric { get; }
         
-        ILogicalContextConfiguration Use(string name, Uri dataApiAddress);
+        ILogicalContextConfiguration Use(string name, Uri storageAddress);
 
         ILogicalContextConfiguration Use(IFabricContext fabric);
     }

@@ -26,8 +26,8 @@
             HostIdentifier = Convert.ToBase64String(bytes);
         }
 
-        public GrpcChannel CreateAdminGrpcInfrastructureChannel() =>  this.CreateChannel(ManagementApiAddress);
-        public GrpcChannel CreateUserGrpcInfrastructureChannel() => this.CreateChannel(DataApiAddress);
+        public GrpcChannel CreateAdminGrpcInfrastructureChannel() =>  this.CreateChannel(ServiceDetails.ManagementAddress);
+        public GrpcChannel CreateUserGrpcInfrastructureChannel() => this.CreateChannel(ServiceDetails.DataAddress);
         public GrpcChannel CreateGrpcInfrastructureChannel(Uri address) => this.CreateChannel(address.ToString());
     }
 }

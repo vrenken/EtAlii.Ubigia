@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     public static class InfrastructureConfigurationUseExtensions
@@ -8,8 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         public static TInfrastructureConfiguration Use<TInfrastructureConfiguration>(
             this TInfrastructureConfiguration configuration, 
             string name, 
-            Uri managementAddress,
-            Uri dataAddress)
+            ServiceDetails[] serviceDetails)
             where TInfrastructureConfiguration : InfrastructureConfiguration
         {
             var editableConfiguration = (IEditableInfrastructureConfiguration) configuration;
@@ -19,9 +19,17 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 throw new ArgumentException(nameof(name));
             }
 
+            if (!serviceDetails.Any())
+            {
+                throw new InvalidOperationException("No service details specified during infrastructure configuration");
+            }
+            if (serviceDetails.All(sd => !sd.IsSystemService))
+            {
+                throw new InvalidOperationException("No system service details specified during infrastructure configuration");
+            }
+            
             editableConfiguration.Name = name;
-            editableConfiguration.ManagementAddress = managementAddress ?? throw new ArgumentNullException(nameof(managementAddress));
-            editableConfiguration.DataAddress = dataAddress ?? throw new ArgumentNullException(nameof(dataAddress));
+            editableConfiguration.ServiceDetails = serviceDetails;
             return configuration;
         }
 

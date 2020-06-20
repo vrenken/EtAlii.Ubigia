@@ -25,7 +25,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -42,7 +42,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -59,7 +59,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -76,7 +76,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -93,7 +93,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -110,7 +110,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
@@ -127,7 +127,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -144,7 +144,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -161,7 +161,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -178,7 +178,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -194,7 +194,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -211,7 +211,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -228,7 +228,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -245,7 +245,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.DataAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -262,7 +262,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
@@ -279,7 +279,7 @@
 		    var context = _testContext.HostTestContext;
 		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
 		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementApiAddress, RelativeUri.Authenticate);
+		    var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act

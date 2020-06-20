@@ -1,25 +1,28 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     public interface IInfrastructureConfiguration : IConfiguration
     {
+        /// <summary>
+        /// The context that provides access to the logical layer of the codebase. 
+        /// </summary>
         ILogicalContext Logical { get; }
 
         /// <summary>
-        /// The address of the management API.
+        /// Returns the details for all of the services provided by the hosted infrastructure.  
         /// </summary>
-        Uri ManagementAddress { get; }
+        ServiceDetails[] ServiceDetails { get; }
 
         /// <summary>
-        /// The address of the data API.
+        /// The name of the infrastructure.
         /// </summary>
-        Uri DataAddress { get; }
-
         string Name { get; }
 
+        /// <summary>
+        /// A proxy wrapping system connection creation mechanisms. 
+        /// </summary>
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
     }
 }

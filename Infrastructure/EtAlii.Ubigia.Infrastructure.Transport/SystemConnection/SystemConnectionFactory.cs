@@ -29,7 +29,9 @@
 
             var container = new Container();
 
-            var transport = configuration.TransportProvider.GetStorageTransport(configuration.Infrastructure.Configuration.ManagementAddress);
+            var serviceDetails = configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+
+            var transport = configuration.TransportProvider.GetStorageTransport(serviceDetails.ManagementAddress);
             var scaffoldings = transport
                 .CreateScaffolding()
                 .Concat(new IScaffolding[]

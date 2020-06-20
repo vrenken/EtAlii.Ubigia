@@ -32,13 +32,13 @@
             
             // Assert.
             Assert.NotNull(connection.Details.ManagementAddress);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.ManagementAddress.Scheme, connection.Details.ManagementAddress.Scheme);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.ManagementAddress.Port, connection.Details.ManagementAddress.Port);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.ManagementAddress.PathAndQuery, connection.Details.ManagementAddress.PathAndQuery);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.Scheme, connection.Details.ManagementAddress.Scheme);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.Port, connection.Details.ManagementAddress.Port);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.PathAndQuery, connection.Details.ManagementAddress.PathAndQuery);
             Assert.NotNull(connection.Details.DataAddress);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.DataAddress.Scheme, connection.Details.DataAddress.Scheme);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.DataAddress.Port, connection.Details.DataAddress.Port);
-            Assert.Equal(_testContext.TransportTestContext.Context.Infrastructure.Configuration.DataAddress.PathAndQuery, connection.Details.DataAddress.PathAndQuery);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.Scheme, connection.Details.DataAddress.Scheme);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.Port, connection.Details.DataAddress.Port);
+            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.PathAndQuery, connection.Details.DataAddress.PathAndQuery);
         }
     }
 }

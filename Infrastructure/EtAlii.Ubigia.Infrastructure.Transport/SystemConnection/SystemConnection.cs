@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
@@ -17,7 +18,9 @@
 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-	        var address = _configuration.Infrastructure.Configuration.DataAddress;
+            var serviceDetails = _configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+
+	        var address = serviceDetails.DataAddress;
 
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(_configuration.TransportProvider)
@@ -30,7 +33,9 @@
 
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-	        var address = _configuration.Infrastructure.Configuration.ManagementAddress;
+            var serviceDetails = _configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+
+	        var address = serviceDetails.ManagementAddress;
 
 	        var connectionConfiguration = new ManagementConnectionConfiguration()
                 .Use(_configuration.TransportProvider)
