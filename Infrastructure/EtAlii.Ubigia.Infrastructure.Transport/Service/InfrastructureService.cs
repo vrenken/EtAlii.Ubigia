@@ -16,7 +16,6 @@
         private readonly IConfigurationDetails _configurationDetails;
 
         public IInfrastructure Infrastructure { get; private set; }
-        // private IInfrastructureSystem _system;
 
         public InfrastructureService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
             : base(configuration)
@@ -35,15 +34,6 @@
         {
             await Infrastructure.Stop();
         }
-
-        // protected override Task Initialize(
-	       //  IHost host, IInfrastructureSystem system, 
-        //     IModule[] moduleChain, out Status status)
-        // {
-        //     _system = system;
-        //     status = new Status(nameof(InfrastructureService));
-        //     return Task.CompletedTask;
-        // }
         
         private IInfrastructure CreateInfrastructure()
         {
@@ -54,7 +44,7 @@
             if (name == null)
             {
                 throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(name)} not set in service configuration.");
-            }
+            } 
             // TODO: Ugly. This needs to change and not be needed at all.
             var dataAddressBuilder = new StringBuilder();
             dataAddressBuilder.Append($"http://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}");
