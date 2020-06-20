@@ -10,7 +10,7 @@
     {
         public ObservableCollection<JournalItem> Items { get; }
 
-        public int Size { get { return _size; } set { SetProperty(ref _size, value); } }
+        public int Size { get => _size; set => SetProperty(ref _size, value); }
         private int _size = 300;
 
         protected IFabricContext Fabric { get; }

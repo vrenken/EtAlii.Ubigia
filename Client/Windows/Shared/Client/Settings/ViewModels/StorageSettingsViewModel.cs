@@ -7,10 +7,10 @@
     {
         public IGlobalSettings GlobalSettings { get; }
 
-        public StorageSettings StorageSettings { get { return _storageSettings; } set { SetProperty(ref _storageSettings, value); } }
+        public StorageSettings StorageSettings { get => _storageSettings; set => SetProperty(ref _storageSettings, value); }
         private StorageSettings _storageSettings;
 
-        public bool StorageCanBeRemoved { get { return _storageCanBeRemoved; } set { SetProperty(ref _storageCanBeRemoved, value); } }
+        public bool StorageCanBeRemoved { get => _storageCanBeRemoved; set => SetProperty(ref _storageCanBeRemoved, value); }
         private bool _storageCanBeRemoved = true;
 
         public StorageSettingsViewModel(IGlobalSettings globalSettings)
