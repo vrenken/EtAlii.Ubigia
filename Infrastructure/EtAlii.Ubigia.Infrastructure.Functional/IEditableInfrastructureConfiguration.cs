@@ -6,20 +6,24 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public interface IEditableInfrastructureConfiguration
     {
+        /// <summary>
+        /// Editable access to the context that provides access to the logical layer of the codebase. 
+        /// </summary>
         ILogicalContext Logical { get; set; }
 
+        /// <summary>
+        /// Editable access to the name of the infrastructure.
+        /// </summary>
         string Name { get; set; }
 
         /// <summary>
-        /// Editable access to the address of the management API.
+        /// Editable access to provide the details for all of the services provided by the hosted infrastructure.  
         /// </summary>
-        Uri ManagementAddress { get; set; }
+        ServiceDetails[] ServiceDetails { get; set; }
+
         /// <summary>
-        /// Editable access to the address of the data API.
+        /// Editable access to a proxy wrapping system connection creation mechanisms. 
         /// </summary>
-        Uri DataAddress { get; set; }
-
-
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; set; }
 
         Func<Container, IInfrastructure> GetInfrastructure { get; set; }

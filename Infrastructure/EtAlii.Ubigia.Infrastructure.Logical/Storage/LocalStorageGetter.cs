@@ -16,7 +16,7 @@
             _localStorage = new Lazy<Storage>(() => new Storage
             {
                 Id = Guid.NewGuid(),
-                Address = _configuration.DataApiAddress.ToString(),
+                Address = _configuration.StorageAddress.ToString(),
                 Name = _configuration.Name,
             });
         }

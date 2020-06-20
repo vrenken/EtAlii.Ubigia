@@ -5,16 +5,19 @@
 
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {
+        /// <inheritdoc /> 
         public IFabricContext Fabric { get; private set; }
 
+        /// <inheritdoc /> 
         public string Name { get; private set; }
 
-        public Uri DataApiAddress { get; private set; }
+        /// <inheritdoc /> 
+        public Uri StorageAddress { get; private set; }
 
-        public ILogicalContextConfiguration Use(string name, Uri dataApiAddress)
+        public ILogicalContextConfiguration Use(string name, Uri storageAddress)
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
-            DataApiAddress = dataApiAddress ?? throw new ArgumentNullException(nameof(dataApiAddress));
+            StorageAddress = storageAddress ?? throw new ArgumentNullException(nameof(storageAddress));
 
             return this;
         }

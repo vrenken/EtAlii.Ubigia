@@ -7,23 +7,27 @@
 
     public class InfrastructureConfiguration : Configuration, IInfrastructureConfiguration, IEditableInfrastructureConfiguration
     {
+        /// <inheritdoc />
         ILogicalContext IEditableInfrastructureConfiguration.Logical { get => Logical; set => Logical = value; }
+
+        /// <inheritdoc />
         public ILogicalContext Logical { get; private set; }
 
+        /// <inheritdoc />
         string IEditableInfrastructureConfiguration.Name { get => Name; set => Name = value; }
+
+        /// <inheritdoc />
         public string Name { get; private set; }
 
         /// <inheritdoc />
-        Uri IEditableInfrastructureConfiguration.ManagementAddress { get => ManagementAddress; set => ManagementAddress = value; }
+        ServiceDetails[] IEditableInfrastructureConfiguration.ServiceDetails { get => ServiceDetails; set => ServiceDetails = value; }
+        
         /// <inheritdoc />
-        public Uri ManagementAddress { get; private set; }
+        public ServiceDetails[] ServiceDetails { get; private set; } = Array.Empty<ServiceDetails>();
 
         /// <inheritdoc />
-        Uri IEditableInfrastructureConfiguration.DataAddress { get => DataAddress; set => DataAddress = value; }
-        /// <inheritdoc />
-        public Uri DataAddress { get; private set; }
-
         ISystemConnectionCreationProxy IEditableInfrastructureConfiguration.SystemConnectionCreationProxy { get => SystemConnectionCreationProxy; set => SystemConnectionCreationProxy = value; }
+        /// <inheritdoc />
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 
         Func<Container, IInfrastructure> IEditableInfrastructureConfiguration.GetInfrastructure { get; set; }

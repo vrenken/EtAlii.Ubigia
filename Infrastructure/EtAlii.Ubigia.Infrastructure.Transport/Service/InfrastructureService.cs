@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -14,14 +13,19 @@
     {
         private readonly IConfiguration _configuration;
         private readonly IConfigurationDetails _configurationDetails;
+        private readonly IServiceDetailsBuilder _serviceDetailsBuilder;
 
         public IInfrastructure Infrastructure { get; private set; }
 
-        public InfrastructureService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
+        public InfrastructureService(
+            IConfigurationSection configuration, 
+            IConfigurationDetails configurationDetails,
+            IServiceDetailsBuilder serviceDetailsBuilder) 
             : base(configuration)
         {
             _configuration = configuration;
             _configurationDetails = configurationDetails;
+            _serviceDetailsBuilder = serviceDetailsBuilder;
         }
 
         public override async Task Start()
@@ -39,57 +43,35 @@
         {
             var storage = System.Services.OfType<IStorageService>().Single().Storage;
 
-            string name;
-            name = _configuration.GetValue<string>(nameof(name));
+            string name = _configuration.GetValue<string>(nameof(name));
             if (name == null)
             {
                 throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(name)} not set in service configuration.");
-            } 
-            // TODO: Ugly. This needs to change and not be needed at all.
-            var dataAddressBuilder = new StringBuilder();
-            dataAddressBuilder.Append($"http://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}");
-            dataAddressBuilder.Append(_configurationDetails.Paths["UserApi"]);
-            if (_configurationDetails.Paths.TryGetValue("UserApiRest", out var userApiRest)) dataAddressBuilder.Append(userApiRest);
-            var dataAddress = dataAddressBuilder.ToString();
-
-            var managementAddressBuilder = new StringBuilder();
-            managementAddressBuilder.Append($"http://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}");
-            managementAddressBuilder.Append(_configurationDetails.Paths["AdminApi"]);
-            if (_configurationDetails.Paths.TryGetValue("AdminApiRest", out var adminApiRest)) managementAddressBuilder.Append(adminApiRest);
-            var managementAddress = managementAddressBuilder.ToString();
-
-            if (dataAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(dataAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
             }
 
-            if (managementAddress == null)
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
-            }
-            if (!Uri.IsWellFormedUriString(managementAddress, UriKind.Absolute))
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
-            }
+            var serviceDetails = _serviceDetailsBuilder.Build(_configurationDetails);
+            
 
             // Fetch the Infrastructure configuration.
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(name, new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute));
+                .Use(name, serviceDetails);
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()
                 .Use(storage);
             var fabric = new FabricContextFactory().Create(fabricConfiguration);
 
+            // TODO: This isn't right. We don't want give the logical context any address to store and distribute.
+            var dataService = serviceDetails.FirstOrDefault(sd => !sd.IsSystemService) ?? serviceDetails.First();
+
+            var dataAddress = dataService!.DataAddress;
+            var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
+            
             // Create logical context instance.
             var logicalConfiguration = new LogicalContextConfiguration()
                 .Use(fabric)
-                .Use(infrastructureConfiguration.Name, infrastructureConfiguration.DataAddress);
+                .Use(infrastructureConfiguration.Name, storageAddress);
             var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
 
             // Create a Infrastructure instance.

@@ -6,8 +6,15 @@
     public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
         where TTestHost : class, IInfrastructureTestHostBase
     {
-        public IInfrastructure Infrastructure { get; private set; }
+        /// <summary>
+        /// The details of the service current under test. 
+        /// </summary>
+        public ServiceDetails ServiceDetails { get; protected set; }
 
+        /// <summary>
+        /// The infrastructure against which this TestContext conducts its tests.
+        /// </summary>
+        protected IInfrastructure Infrastructure { get; private set; }
         public string SystemAccountName { get; private set; }
         public string SystemAccountPassword { get; private set; }
         public string TestAccountName { get; private set; }

@@ -151,7 +151,7 @@
             PowerShell.Commands.Clear();
 	        PowerShell
 	            .AddCommand("Select-Storage")
-				.AddArgument(Context.ManagementApiAddress)
+				.AddArgument(Context.ServiceDetails.ManagementAddress)
                 .AddArgument(Context.AdminAccountName)
                 .AddArgument(Context.AdminAccountPassword);
             return PowerShell.Invoke();
