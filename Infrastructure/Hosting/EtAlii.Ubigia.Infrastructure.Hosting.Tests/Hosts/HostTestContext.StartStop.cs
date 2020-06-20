@@ -2,14 +2,8 @@
 {
     using System.Threading.Tasks;
 
-    public abstract partial class HostTestContextBase<TTestHost> 
-        where TTestHost : class, IInfrastructureTestHostBase
+    public abstract partial class HostTestContextBase<TTestHost>
     {
-        // protected abstract void StartInternal(bool useRandomPorts);
-        // protected abstract void StopInternal();
-
-        //private static readonly System.Random _random = new Random()
-
         public override async Task Start()
         {
             await base.Start();
