@@ -36,7 +36,7 @@
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
                 .Use(fabric)
-                .Use(context.HostName, context.HostAddress);
+                .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
@@ -67,7 +67,7 @@
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
                 .Use(fabric)
-                .Use(context.HostName, context.HostAddress);
+                .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
@@ -101,7 +101,7 @@
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
                 .Use(fabric)
-                .Use(context.HostName, context.HostAddress);
+                .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
             var rootInitializer = new RootInitializer(fabric, logical.Entries);
