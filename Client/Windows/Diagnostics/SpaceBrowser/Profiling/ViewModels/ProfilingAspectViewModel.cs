@@ -11,13 +11,13 @@
         private readonly ProfilingAspect _aspect;
         private readonly IProfilingContext _context;
         private readonly Func<IProfilingAspectViewModel[]> _getAllContextProfilingAspectViewModels;
-        public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         private string _title;
 
-        public string Group { get { return _group; } set { SetProperty(ref _group, value); } }
+        public string Group { get => _group; set => SetProperty(ref _group, value); }
         private string _group;
 
-        public bool IsActive { get { return _isActive; } set { SetProperty(ref _isActive, value); } }
+        public bool IsActive { get => _isActive; set => SetProperty(ref _isActive, value); }
         private bool _isActive;
 
         public ProfilingAspectViewModel(
