@@ -4,7 +4,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.PowerShell.Spaces;
 
     public abstract class EntryTargetingCmdlet<TOut> : SpaceTargetingCmdlet<TOut>, IEntryInfoProvider

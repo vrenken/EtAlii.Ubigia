@@ -2,6 +2,11 @@
 {
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Accounts;
+    using EtAlii.Ubigia.PowerShell.Entries;
+    using EtAlii.Ubigia.PowerShell.Roots;
+    using EtAlii.Ubigia.PowerShell.Spaces;
+    using EtAlii.Ubigia.PowerShell.Storages;
     using EtAlii.xTechnology.MicroContainer;
 
     public class PowerShellClientFactory
