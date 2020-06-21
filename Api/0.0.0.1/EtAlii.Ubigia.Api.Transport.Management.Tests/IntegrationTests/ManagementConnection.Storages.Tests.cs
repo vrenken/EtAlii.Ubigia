@@ -157,7 +157,8 @@
         public async Task ManagementConnection_Storages_Get_None()
         {
             // Arrange.
-            
+            var expectedStorageAddress = new Uri($"{_testContext.Context.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Context.ServiceDetails.ManagementAddress.Host}/").ToString();
+
             // Act.
             var connection = await _testContext.CreateManagementConnection();
             var retrievedStorages = await connection.Storages.GetAll();
@@ -165,7 +166,7 @@
             
             // Assert.
             Assert.NotNull(retrievedStorage);
-            Assert.Equal(_testContext.Context.ServiceDetails.ManagementAddress, new Uri(retrievedStorage.Address, UriKind.Absolute));
+            Assert.Equal(expectedStorageAddress, retrievedStorage.Address);
             Assert.Equal(_testContext.Context.HostName, retrievedStorage.Name);
         }
 

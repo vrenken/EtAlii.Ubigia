@@ -21,10 +21,11 @@
             _testContext = null;
         }
 
-        [Fact(Skip = "The storage.Address now still contains the path part of the hosting.")]
+        [Fact]
         public void PowerShell_Storage_Select()
         {
             // Arrange.
+            var expectedStorageAddress = new Uri($"{_testContext.Context.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Context.ServiceDetails.ManagementAddress.Host}/").ToString();
 
             // Act.
             var result = _testContext.InvokeSelectStorage();
@@ -35,7 +36,7 @@
             Assert.True(result.Count == 1);
             var storage = result[0].BaseObject as Storage;
             Assert.NotNull(storage);
-	        Assert.Equal(_testContext.Context.ServiceDetails.ManagementAddress.ToString(), storage.Address);
+	        Assert.Equal(expectedStorageAddress, storage.Address);
         }
 
         [Fact]
