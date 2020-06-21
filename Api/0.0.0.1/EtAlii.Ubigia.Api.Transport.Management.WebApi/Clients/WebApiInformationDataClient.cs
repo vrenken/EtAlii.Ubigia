@@ -21,17 +21,13 @@
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToStorage);
             }
 
-            // We do not want the address pushed to us from the server. 
-            // If we get here then we already know how to contact the server. 
-            storage.Address = storageConnection.Transport.Address.ToString();
-
             return storage;
         }
 
         public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection storageConnection)
         {
             var webApiConnection = (IWebApiConnection)storageConnection;
-            var address = webApiConnection.AddressFactory.Create(storageConnection.Storage, RelativeUri.Data.Information, UriParameter.Connectivity);
+            var address = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Information, UriParameter.Connectivity);
             var connectivityDetails = await webApiConnection.Client.Get<ConnectivityDetails>(address);
             return connectivityDetails;
         }

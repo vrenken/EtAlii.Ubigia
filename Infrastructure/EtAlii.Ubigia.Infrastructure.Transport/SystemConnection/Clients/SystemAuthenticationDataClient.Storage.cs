@@ -16,10 +16,6 @@
 
             var storage = _infrastructure.Storages.GetLocal();
 
-            // We do not want the address pushed to us from the server. 
-            // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Transport.Address.ToString();
-
             return Task.FromResult(storage);
         }
         public Task<Storage> GetConnectedStorage(IStorageConnection connection, Uri address)
@@ -30,10 +26,6 @@
             }
 
             var storage = _infrastructure.Storages.GetLocal();
-
-            // We do not want the address pushed to us from the server. 
-            // If we get here then we already know how to contact the server. 
-            storage.Address = address.ToString();
 
             return Task.FromResult(storage);
         }
