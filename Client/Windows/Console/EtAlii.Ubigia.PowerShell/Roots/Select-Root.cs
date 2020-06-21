@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.PowerShell.Spaces;
     using EtAlii.Ubigia.PowerShell.Storages;
 
-#pragma warning disable S110 // For the powershell part we don't worry about a too deep inheritance chain.
+#pragma warning disable S110 // For the PowerShell part we don't worry about a too deep inheritance chain.
     [Cmdlet(VerbsCommon.Select, Nouns.Root, DefaultParameterSetName = "byRootName")]
     public class SelectRoot : RootTargetingCmdlet<Root>
     {
@@ -19,7 +19,7 @@
         }
         protected override Task<Root> ProcessTask()
         {
-            StorageCmdlet.Current = TargetStorage;
+            StorageCmdlet.CurrentStorage = TargetStorage;
             AccountCmdlet.Current = TargetAccount;
             SpaceCmdlet.Current = TargetSpace;
             RootCmdlet.Current = TargetRoot;

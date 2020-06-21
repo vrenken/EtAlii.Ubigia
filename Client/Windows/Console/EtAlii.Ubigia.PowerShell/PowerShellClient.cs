@@ -6,6 +6,11 @@
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Accounts;
+    using EtAlii.Ubigia.PowerShell.Entries;
+    using EtAlii.Ubigia.PowerShell.Roots;
+    using EtAlii.Ubigia.PowerShell.Spaces;
+    using EtAlii.Ubigia.PowerShell.Storages;
 
     public class PowerShellClient : IPowerShellClient
     {
@@ -51,7 +56,7 @@
 
         private static IPowerShellClient GetCurrentClient()
         {
-            return _currentPowerShellClient ?? (_currentPowerShellClient = new PowerShellClientFactory().Create<PowerShellClient>());
+            return _currentPowerShellClient ??= new PowerShellClientFactory().Create<PowerShellClient>();
         }
         
         private static void SetCurrentClient(IPowerShellClient current)

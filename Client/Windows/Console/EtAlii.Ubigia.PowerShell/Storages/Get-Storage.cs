@@ -4,7 +4,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storage, DefaultParameterSetName = "byStorage")]
     public class GetStorage : TaskCmdlet<Storage>, IStorageInfoProvider
@@ -20,7 +19,7 @@
 
         protected override async Task<Storage> ProcessTask()
         {
-            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current, false);
+            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress, false);
 
             return storage;
         }

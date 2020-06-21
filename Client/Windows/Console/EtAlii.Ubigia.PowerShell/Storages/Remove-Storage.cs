@@ -4,7 +4,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Storage, DefaultParameterSetName = "byStorage", SupportsShouldProcess = true)]
     public class RemoveStorage : TaskCmdlet, IStorageInfoProvider
@@ -23,7 +22,7 @@
 
         protected override async Task ProcessTask()
         {
-            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current, false);
+            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress, false);
 
             var verboseDescription = $"Storage '{storage.Name}' has been removed.";
             //var verboseNegativeDescription = $"Storage '{storage.Name}' has not been removed."

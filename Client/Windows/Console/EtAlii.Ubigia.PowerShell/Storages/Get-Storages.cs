@@ -5,7 +5,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storages, DefaultParameterSetName = "byStorage")]
     public class GetStorages : TaskCmdlet<IEnumerable<Storage>>, IStorageInfoProvider
@@ -19,11 +18,11 @@
         [Parameter(Mandatory = false, ParameterSetName = "byStorageId", HelpMessage = "The ID of the storage from which the storages should be retrieved.")]
         public Guid StorageId { get; set; }
 
-        protected Storage TargetStorage { get; private set; }
+        private Storage TargetStorage { get; set; }
 
         protected override async Task BeginProcessingTask()
         {
-            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress);
 
             if (TargetStorage == null)
             {
