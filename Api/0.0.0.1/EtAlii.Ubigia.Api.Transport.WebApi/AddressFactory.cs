@@ -33,6 +33,14 @@
 			return builder.Uri;//ToString()
 		}
 
+		public Uri Create(ISpaceTransport transport, string relativeAddress, params string[] parameters)
+		{
+			return Create(transport.Address, relativeAddress, parameters);
+		}
+		public Uri Create(IStorageTransport transport, string relativeAddress, params string[] parameters)
+		{
+			return Create(transport.Address, relativeAddress, parameters);
+		}
 		public Uri Create(Storage storage, string relativeAddress, params string[] parameters)
 		{
 			var baseAddress = new Uri(storage.Address, UriKind.Absolute);
