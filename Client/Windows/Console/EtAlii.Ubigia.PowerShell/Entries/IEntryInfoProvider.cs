@@ -1,5 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
+    using EtAlii.Ubigia.Api;
+
     public interface IEntryInfoProvider
     {
         Entry Entry { get; }

@@ -1,6 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
+﻿namespace EtAlii.Ubigia.PowerShell.Storages
 {
     using System;
+    using EtAlii.Ubigia.Api;
 
     public interface IStorageInfoProvider 
     {
