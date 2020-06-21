@@ -19,7 +19,7 @@
 
         public async Task Start()
         {
-			// TODO: The PowerShell tests cannot use the test infrastructure because process boundaries disable direct interaction 
+			// TODO: The PowerShell tests cannot use the in-process test infrastructure because process boundaries disable direct interaction 
 			// between the host/infrastructure and the unit tests.
 
 			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();

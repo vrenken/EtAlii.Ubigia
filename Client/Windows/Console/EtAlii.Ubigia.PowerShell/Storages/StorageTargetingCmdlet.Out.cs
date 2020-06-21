@@ -4,7 +4,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public abstract class StorageTargetingCmdlet<TOut> : TaskCmdlet<TOut>, IStorageInfoProvider
         where TOut: class
@@ -22,7 +21,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress);
 
             if (TargetStorage == null)
             {

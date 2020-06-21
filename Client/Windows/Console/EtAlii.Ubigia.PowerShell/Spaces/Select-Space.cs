@@ -45,13 +45,13 @@ namespace EtAlii.Ubigia.PowerShell.Spaces
             }
             catch (Exception e)
             {
-                StorageCmdlet.Current = null;
+                StorageCmdlet.CurrentStorage = null;
                 ThrowTerminatingError(new ErrorRecord(e, ErrorId.AuthenticationFailed, ErrorCategory.AuthenticationError, TargetStorage.Address));
             }
 
             //WriteDebug($"Selecting space [{(space != null ? space.Name : "NONE")}]")
 
-            StorageCmdlet.Current = TargetStorage;
+            StorageCmdlet.CurrentStorage = TargetStorage;
             AccountCmdlet.Current = TargetAccount;
             SpaceCmdlet.Current = space;
             return space;

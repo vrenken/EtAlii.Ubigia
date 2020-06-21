@@ -13,7 +13,7 @@
 
         protected override Task BeginProcessingTask()
         {
-            if (StorageCmdlet.Current == null)
+            if (StorageCmdlet.CurrentStorage == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
