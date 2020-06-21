@@ -99,7 +99,7 @@
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
@@ -111,7 +111,7 @@
 			var token = await client.Get<string>(address, credentials);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(50000);
+			Thread.Sleep(TimeSpan.FromSeconds(30));
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
 			// Act.
@@ -121,7 +121,7 @@
 			Assert.NotNull(storage);
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
@@ -133,7 +133,7 @@
 			var token = await client.Get<string>(address, credentials);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(50000);
+			Thread.Sleep(TimeSpan.FromSeconds(30));
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
 			// Act.
@@ -143,7 +143,7 @@
 			Assert.NotNull(storage);
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
@@ -155,7 +155,7 @@
 			var token = await client.Get<string>(address, credentials);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
-			Thread.Sleep(50000);
+			Thread.Sleep(TimeSpan.FromSeconds(30));
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
 			// Act.
@@ -165,7 +165,7 @@
 			Assert.NotNull(storage);
 		}
 
-		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		[Fact, Trait("Category", TestAssembly.Category)]
         public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
         {
 			// Arrange.
@@ -177,7 +177,7 @@
 			// Act.
 			var act = new Action(() =>
             {
-                Thread.Sleep(50000);
+                Thread.Sleep(TimeSpan.FromSeconds(30));
                 var storage = client.Get<Storage>(address);
                 Assert.NotNull(storage);
             });
