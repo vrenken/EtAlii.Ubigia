@@ -7,7 +7,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    [Route(RelativeUri.User.Api.Entry)]
+    [Route(RelativeUri.Data.Api.Entry)]
     public partial class EntryController : RestController
     {
         private readonly IEntryRepository _items;

@@ -10,7 +10,7 @@
 
         // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
-        public static class Admin
+        public static class Management
         {
             public static class Portal
             {
@@ -34,7 +34,7 @@
             }
         }
 
-        public static class User
+        public static class Data
         {
             public static class Portal
             {

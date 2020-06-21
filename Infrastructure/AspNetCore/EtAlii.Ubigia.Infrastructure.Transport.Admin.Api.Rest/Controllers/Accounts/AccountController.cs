@@ -11,7 +11,7 @@
 	using Microsoft.Extensions.Primitives;
 
 	//[RequiresAuthenticationToken]
-    [Route(RelativeUri.Admin.Api.Accounts)]
+    [Route(RelativeUri.Management.Api.Accounts)]
     public class AccountController : RestController
     {
 	    private readonly IAccountRepository _items;

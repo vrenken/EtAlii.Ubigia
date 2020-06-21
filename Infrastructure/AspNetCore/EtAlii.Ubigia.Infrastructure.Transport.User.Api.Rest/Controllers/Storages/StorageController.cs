@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
-    [Route(RelativeUri.User.Api.Storages)]
+    [Route(RelativeUri.Data.Api.Storages)]
     public class StorageController : RestController
     {
         private readonly IStorageRepository _items;

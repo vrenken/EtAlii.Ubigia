@@ -8,7 +8,7 @@
 
     //[RequiresAuthenticationToken]
     //[Authorize]
-    [Route(RelativeUri.Admin.Api.Roots)]
+    [Route(RelativeUri.Management.Api.Roots)]
     public class RootController : RestController
     {
         private readonly IRootRepository _items;

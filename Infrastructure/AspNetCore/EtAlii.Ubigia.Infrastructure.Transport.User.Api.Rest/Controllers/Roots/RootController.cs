@@ -9,7 +9,7 @@
     // TODO: REST Based data access is not yet secure!
     //[RequiresAuthenticationToken]
     //[Authorize]
-    [Route(RelativeUri.User.Api.Roots)]
+    [Route(RelativeUri.Data.Api.Roots)]
     public class RootController : RestController
     {
         private readonly IRootRepository _items;

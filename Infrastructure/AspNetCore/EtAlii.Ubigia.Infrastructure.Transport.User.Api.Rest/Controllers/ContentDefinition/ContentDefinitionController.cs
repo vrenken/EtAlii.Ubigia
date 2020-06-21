@@ -9,7 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    [Route(RelativeUri.User.Api.ContentDefinition)]
+    [Route(RelativeUri.Data.Api.ContentDefinition)]
     public class ContentDefinitionController : RestController
     {
         private readonly IContentDefinitionRepository _items;
