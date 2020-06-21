@@ -4,7 +4,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Storage, DefaultParameterSetName = "byStorage")]
     public class AddStorage : TaskCmdlet<Storage>, IStorageInfoProvider
@@ -28,7 +27,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress);
 
             if (TargetStorage == null)
             {

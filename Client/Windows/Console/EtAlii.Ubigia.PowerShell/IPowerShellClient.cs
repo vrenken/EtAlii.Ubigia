@@ -1,10 +1,15 @@
 ﻿namespace EtAlii.Ubigia.PowerShell
 {
-	using System;
-	using System.Threading.Tasks;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Accounts;
+    using EtAlii.Ubigia.PowerShell.Entries;
+    using EtAlii.Ubigia.PowerShell.Roots;
+    using EtAlii.Ubigia.PowerShell.Spaces;
+    using EtAlii.Ubigia.PowerShell.Storages;
 
     public interface IPowerShellClient
     {
