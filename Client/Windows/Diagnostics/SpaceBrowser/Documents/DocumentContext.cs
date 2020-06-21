@@ -8,7 +8,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
 
-    class DocumentContext : IDocumentContext
+    internal class DocumentContext : IDocumentContext
     {
         public DocumentContext(
             IGraphSLScriptContext scriptContext, 
