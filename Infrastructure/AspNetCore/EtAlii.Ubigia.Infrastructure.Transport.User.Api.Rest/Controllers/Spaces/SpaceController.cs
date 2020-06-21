@@ -8,7 +8,7 @@
 	using Microsoft.Extensions.Primitives;
 
 	//[RequiresAuthenticationToken]
-    [Route(RelativeUri.User.Api.Spaces)]
+    [Route(RelativeUri.Data.Api.Spaces)]
     public class SpaceController : RestController
     {
 	    private readonly ISpaceRepository _items;

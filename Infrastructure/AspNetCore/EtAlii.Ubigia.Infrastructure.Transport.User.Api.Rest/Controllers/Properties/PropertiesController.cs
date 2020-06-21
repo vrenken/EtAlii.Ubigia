@@ -9,7 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    [Route(RelativeUri.User.Api.Properties)]
+    [Route(RelativeUri.Data.Api.Properties)]
     public class PropertiesController : RestController
     {
         private readonly IPropertiesRepository _properties;

@@ -8,7 +8,7 @@
 
 	//[RequiresAuthenticationToken]
     //[Authorize]
-    [Route(RelativeUri.Admin.Api.Information)]
+    [Route(RelativeUri.Management.Api.Information)]
     public class InformationController : RestController
     {
 	    private readonly IConfigurationDetails _configurationDetails;
