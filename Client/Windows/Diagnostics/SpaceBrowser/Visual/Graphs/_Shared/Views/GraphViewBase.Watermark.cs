@@ -75,15 +75,15 @@
         {
             if (depObj != null)
             {
-                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+                for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
-                    DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
+                    var child = VisualTreeHelper.GetChild(depObj, i);
                     if (child != null && child.GetType().Name == typeName)
                     {
                         yield return child;
                     }
 
-                    foreach (DependencyObject childOfChild in FindVisualChildren(child, typeName))
+                    foreach (var childOfChild in FindVisualChildren(child, typeName))
                     {
                         yield return childOfChild;
                     }
