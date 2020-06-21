@@ -70,7 +70,7 @@
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + "/" + SignalRHub.Storage, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Storage, UriKind.Absolute));
 	        await _connection.StartAsync();
         }
 

@@ -7,14 +7,14 @@
     {
         public async Task<IEditableEntry> Prepare()
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Entry, UriParameter.SpaceId, Connection.Space.Id.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Entry, UriParameter.SpaceId, Connection.Space.Id.ToString());
             var entry = await Connection.Client.Post<Entry>(address);
             return entry;
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var changeAddress = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Entry);
+            var changeAddress = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Entry);
             var result = await Connection.Client.Put(changeAddress, entry as Entry);
             scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
@@ -32,7 +32,7 @@
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
 
-                var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Entry, UriParameter.EntryId,
+                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Entry, UriParameter.EntryId,
                     entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
                 var result = await Connection.Client.Get<Entry>(address);
                 return result;
@@ -45,7 +45,7 @@
             var result = new List<IReadOnlyEntry>();
             foreach (var entryIdentifier in entryIdentifiers)
             {
-                var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Entry, UriParameter.EntryId,
+                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Entry, UriParameter.EntryId,
                     entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
                 var entry = await Connection.Client.Get<Entry>(address);
                 result.Add(entry);
@@ -58,7 +58,7 @@
         {
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {
-                var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.RelatedEntries,
+                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.RelatedEntries,
                     UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation,
                     entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
                 var result = await Connection.Client.Get<IEnumerable<Entry>>(address);
