@@ -1,6 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Storages;
 
     public class EntryResolver : IEntryResolver
     {
@@ -19,11 +22,9 @@
 
             if (entryInfoProvider != null)
             {
-                var targetStorage = entryInfoProvider.TargetStorage;
-
                 if (entryInfoProvider.EntryId != Identifier.Empty)
                 {
-                    var address = _addressFactory.Create(targetStorage, RelativeUri.Data.Entry, UriParameter.EntryId, entryInfoProvider.EntryId.ToString());
+                    var address = _addressFactory.Create(StorageCmdlet.CurrentStorageApiAddress, RelativeUri.Data.Entry, UriParameter.EntryId, entryInfoProvider.EntryId.ToString());
                     entry = address != null ? await _client.Get<Entry>(address) : null;
                 }
             }
