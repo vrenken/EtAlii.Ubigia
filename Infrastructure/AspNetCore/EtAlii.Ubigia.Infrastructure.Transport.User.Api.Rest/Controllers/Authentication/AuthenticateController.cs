@@ -35,7 +35,7 @@
 		[HttpGet]
 		public IActionResult Get([RequiredFromQuery]string accountName, [RequiredFromQuery(Name = "authenticationToken")] string value)
 		{
-			IActionResult response = null;
+			IActionResult response;
 			try
 			{
 				response = _authenticationTokenVerifier.Verify(HttpContext, this, Role.Admin, Role.System);

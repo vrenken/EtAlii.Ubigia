@@ -10,7 +10,7 @@
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Primitives;
 
-	//[RequiresAuthenticationToken]
+	[RequiresAuthenticationToken(Role.Admin)]
     [Route(RelativeUri.Management.Api.Accounts)]
     public class AccountController : RestController
     {
