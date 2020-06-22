@@ -6,8 +6,7 @@
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Mvc;
 
-	//[RequiresAuthenticationToken]
-    //[Authorize]
+	[RequiresAuthenticationToken(Role.Admin)]
     [Route(RelativeUri.Management.Api.Information)]
     public class InformationController : RestController
     {

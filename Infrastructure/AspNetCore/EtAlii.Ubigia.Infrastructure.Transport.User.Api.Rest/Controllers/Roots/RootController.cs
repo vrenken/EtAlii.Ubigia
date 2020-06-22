@@ -2,13 +2,12 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
-    // TODO: REST Based data access is not yet secure!
-    //[RequiresAuthenticationToken]
-    //[Authorize]
+    [RequiresAuthenticationToken(Role.User)]
     [Route(RelativeUri.Data.Api.Roots)]
     public class RootController : RestController
     {
@@ -19,8 +18,13 @@
             _items = items;
         }
 
-
-        // Get all spaces for the specified accountid
+        /// <summary>
+        /// Get all roots for the specified spaceId.
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="id"></param>
+        /// <param name="idType"></param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get([RequiredFromQuery]Guid spaceId, [FromQuery(Name = "rootId")]string id, [FromQuery]string idType)
         {
@@ -59,56 +63,13 @@
             return response;
         }
 
-
-        //// Get all spaces for the specified accountid
-        //[HttpGet]
-        //public IActionResult GetForSpace([RequiredFromQuery]Guid spaceId)
-        //[
-        //    IActionResult response
-        //    try
-        //    [
-        //        var roots = _items.GetAll(spaceId)
-        //        response = Ok(roots)
-        //    ]
-        //    catch [Exception ex]
-        //    [
-        //        response = BadRequest(ex.Message)
-        //    ]
-        //    return response
-        //]
-        // Get Item by id
-        //[HttpGet]
-        //public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [RequiredFromQuery(Name = "byId")]string byId)
-        //[
-        //    IActionResult response
-        //    try
-        //    [
-        //        var root = _items.Get(spaceId, rootId)
-        //        response = Ok(root)
-        //    ]
-        //    catch [Exception ex]
-        //    [
-        //        response = BadRequest(ex.Message)
-        //    ]
-        //    return response
-        //]
-        //// Get Item by id
-        //[HttpGet]
-        //public IActionResult GetByName([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]string rootName)
-        //[
-        //    IActionResult response
-        //    try
-        //    [
-        //        var root = _items.Get(spaceId, rootName)
-        //        response = Ok(root)
-        //    ]
-        //    catch [Exception ex]
-        //    [
-        //        response = BadRequest(ex.Message)
-        //    ]
-        //    return response
-        //]
-        // Add item
+        /// <summary>
+        /// Add item
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         [HttpPost]
         public IActionResult Post([RequiredFromQuery]Guid spaceId, [FromBody]Root root)
         {
@@ -131,7 +92,13 @@
             return response;
         }
 
-        // Update Item by id
+        /// <summary>
+        /// Update Item by id
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="rootId"></param>
+        /// <param name="root"></param>
+        /// <returns></returns>
         [HttpPut]
         public IActionResult Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [FromBody]Root root)
         {
@@ -149,7 +116,12 @@
             return response;
         }
 
-        // Delete Item by id
+        /// <summary>
+        /// Delete Item by id
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="rootId"></param>
+        /// <returns></returns>
         [HttpDelete]
         public IActionResult Delete([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
         {

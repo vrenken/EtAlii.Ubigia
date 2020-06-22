@@ -2,13 +2,12 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    [Authorize]
+    [RequiresAuthenticationToken(Role.User)]
     [Route(RelativeUri.Data.Api.ContentDefinition)]
     public class ContentDefinitionController : RestController
     {
@@ -22,7 +21,7 @@
         [HttpGet]
         public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 var contentDefinition = _items.Get(entryId);
@@ -39,7 +38,7 @@
         [HttpPost]
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 // Store the ContentDefinition.
@@ -60,7 +59,7 @@
         //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 if (contentDefinitionPartId != contentDefinitionPart.Id)

@@ -2,12 +2,12 @@
 {
 	using System;
 	using System.Linq;
+	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.Extensions.Primitives;
 
-	//[RequiresAuthenticationToken]
+	[RequiresAuthenticationToken(Role.User)]
     [Route(RelativeUri.Data.Api.Accounts)]
     public class AccountController : RestController
     {
@@ -28,7 +28,7 @@
 		    IActionResult response;
 		    try
 		    {
-			    HttpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+			    HttpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 			    var authenticationTokenAsString = stringValues.Single();
 			    var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 
@@ -42,6 +42,5 @@
             }
             return response;
         }
-		
     }    
 }

@@ -2,12 +2,13 @@
 {
 	using System;
 	using System.Linq;
+	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using Microsoft.AspNetCore.Mvc;
 	using Microsoft.Extensions.Primitives;
 
-	//[RequiresAuthenticationToken]
+	[RequiresAuthenticationToken(Role.User)]
     [Route(RelativeUri.Data.Api.Spaces)]
     public class SpaceController : RestController
     {

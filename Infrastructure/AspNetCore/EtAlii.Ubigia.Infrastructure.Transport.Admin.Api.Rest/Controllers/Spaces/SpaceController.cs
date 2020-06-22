@@ -9,8 +9,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    //[Authorize]
+    [RequiresAuthenticationToken(Role.Admin)]
     [Route(RelativeUri.Management.Api.Spaces)]
     public class SpaceController : RestController
     {

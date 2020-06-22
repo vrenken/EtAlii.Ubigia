@@ -2,13 +2,12 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    [Authorize]
+    [RequiresAuthenticationToken(Role.User)]
     [Route(RelativeUri.Data.Api.Content)]
     public class ContentController : RestController
     {
@@ -22,7 +21,7 @@
         [HttpGet]
         public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 var content = _items.Get(entryId);
@@ -60,7 +59,7 @@
         [HttpPost]
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 // Store the content.
@@ -87,7 +86,7 @@
         //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId, UInt64 contentPartId, [FromBody] ContentPart contentPart)
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] UInt64 contentPartId, [FromBody] ContentPart contentPart)
         {
-            IActionResult response = null;
+            IActionResult response;
             try
             {
                 if (contentPartId != contentPart.Id)
