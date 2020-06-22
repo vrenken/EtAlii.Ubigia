@@ -16,28 +16,21 @@
 
         public byte[] ToBytes(AuthenticationToken token)
         {
-            byte[] tokenAsBytes;
-            using (var stream = new MemoryStream())
+            using var stream = new MemoryStream();
+            using (var writer = new BsonDataWriter(stream))
             {
-                using (var writer = new BsonDataWriter(stream))
-                {
-                    _serializer.Serialize(writer, token);
-                }
-                tokenAsBytes = stream.ToArray();
+                _serializer.Serialize(writer, token);
             }
+            var tokenAsBytes = stream.ToArray();
             return tokenAsBytes;
         }
 
         public AuthenticationToken FromBytes(byte[] tokenAsBytes)
         {
-            AuthenticationToken token;
-            using (var stream = new MemoryStream(tokenAsBytes))
-            {
-                using (var reader = new BsonDataReader(stream))
-                {
-                    token = _serializer.Deserialize<AuthenticationToken>(reader);
-                }
-            }
+            using var stream = new MemoryStream(tokenAsBytes);
+            using var reader = new BsonDataReader(stream);
+            var token = _serializer.Deserialize<AuthenticationToken>(reader);
+
             return token;
         }
 
