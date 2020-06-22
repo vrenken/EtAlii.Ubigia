@@ -30,7 +30,7 @@
 
                 .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
-                .AddInfrastructureSimpleAuthentication(infrastructure)
+                .AddInfrastructureAuthentication(infrastructure)
                 .AddInfrastructureSerialization()
 
                 .AddRouting()
