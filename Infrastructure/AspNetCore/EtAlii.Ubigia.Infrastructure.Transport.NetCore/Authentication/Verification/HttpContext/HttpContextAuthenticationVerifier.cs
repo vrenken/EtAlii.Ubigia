@@ -9,7 +9,6 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Primitives;
 
     internal class HttpContextAuthenticationVerifier : IHttpContextAuthenticationVerifier
     {
@@ -79,7 +78,7 @@
             var host = new Uri(context.Request.GetDisplayUrl()).DnsSafeHost;
 
             var respondWithChallenge = true;
-            if (context.Request.Headers.TryGetValue("RespondWithChallenge", out StringValues challenges))
+            if (context.Request.Headers.TryGetValue("RespondWithChallenge", out var challenges))
             {
                 respondWithChallenge = challenges.Select(c => c.ToLower()).SingleOrDefault() != "false";
             }

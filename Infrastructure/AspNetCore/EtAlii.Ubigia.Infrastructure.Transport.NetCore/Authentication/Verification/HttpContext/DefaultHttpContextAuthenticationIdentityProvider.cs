@@ -4,7 +4,6 @@
     using System.Linq;
     using System.Text;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.Extensions.Primitives;
 
     internal class DefaultHttpContextAuthenticationIdentityProvider : IHttpContextAuthenticationIdentityProvider
     {
@@ -14,7 +13,7 @@
         /// <param name="context"></param>
         public AuthenticationIdentity Get(HttpContext context)
         {
-            if (context.Request.Headers.TryGetValue("Authorization", out StringValues values))
+            if (context.Request.Headers.TryGetValue("Authorization", out var values))
             {
                 var authenticationHeader = values.FirstOrDefault();
                 if (string.IsNullOrWhiteSpace(authenticationHeader))

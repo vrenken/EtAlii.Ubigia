@@ -8,7 +8,7 @@
 
     internal class HttpContextAuthenticationTokenVerifier : IHttpContextAuthenticationTokenVerifier
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IAccountRepository _accountRepository; 
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public HttpContextAuthenticationTokenVerifier(
@@ -21,10 +21,11 @@
 
         public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
-            IActionResult result = controller.Forbid();
+            IActionResult result;
             var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context);
             if (authenticationToken != null)
             {
+                result = controller.Forbid();
                 try
                 {
                     var account = _accountRepository.Get(authenticationToken.Name);
