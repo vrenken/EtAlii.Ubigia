@@ -23,9 +23,12 @@
 			// It is rather low priority compared to gRPC and SignalR.
 			var authenticationTokenConverter = context.HttpContext.RequestServices.GetService<IAuthenticationTokenConverter>();
 			var accountRepository = context.HttpContext.RequestServices.GetService<IAccountRepository>();
+
+			IActionResult result;
 			var authenticationToken = authenticationTokenConverter.FromHttpActionContext(context.HttpContext);
 			if (authenticationToken != null)
 			{
+				result = new UnauthorizedResult(); // "Unauthorized account" 
 				try
 				{
 					var account = accountRepository.Get(authenticationToken.Name);
@@ -38,28 +41,27 @@
 							if (hasOneRequiredRole)
 							{
 								// All fine.
-								return;
+								result = null;
 							}
 						}
 						else
 						{
 							// All fine.
-							return;
+							result = null;
 						}
 					}
 				}
 				catch (Exception)
 				{
-					context.Result = new UnauthorizedResult(); // "Unauthorized account" 
-					return;
+					result = new UnauthorizedResult(); // "Unauthorized account" 
 				}
 			}
 			else
 			{
-				context.Result = new UnauthorizedResult(); // "Missing Authentication-Token" 
-				return;
+				result = new BadRequestResult(); // "Missing Authentication-Token" 
 			}
-			context.Result = new UnauthorizedResult(); // "Unauthorized account" 
+
+			context.Result = result;
 		}
 	}
 }

@@ -25,7 +25,7 @@
             var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context);
             if (authenticationToken != null)
             {
-                result = controller.Forbid();
+                result = controller.Forbid(); 
                 try
                 {
                     var account = _accountRepository.Get(authenticationToken.Name);
