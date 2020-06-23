@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Net;
 	using System.Threading;
 	using System.Threading.Tasks;
@@ -84,20 +85,36 @@
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
-        public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
-        {
+		public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
+		{
 			// Arrange.
-	        var context = _testContext.HostTestContext;
-	        var addressFactory = new AddressFactory();
-            var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Storages, UriParameter.Local);
-	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var context = _testContext.HostTestContext;
+			var addressFactory = new AddressFactory();
+			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Storages, UriParameter.Local);
+			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.
 			var act = new Func<Task>(async () => await client.Get<Storage>(address));
 
-            // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
-        }
+			// Assert.
+			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+		}
+
+		[Fact, Trait("Category", TestAssembly.Category)]
+		public async Task Infrastructure_Get_Accounts_Without_Authentication()
+		{
+			// Arrange.
+			var context = _testContext.HostTestContext;
+			var addressFactory = new AddressFactory();
+			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Accounts);
+			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+			// Act.
+			var act = new Func<Task>(async () => await client.Get<IEnumerable<Account>>(address));
+
+			// Assert.
+			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
@@ -175,15 +192,15 @@
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.
-			var act = new Action(() =>
+			var act = new Func<Task>(async () =>
             {
                 Thread.Sleep(TimeSpan.FromSeconds(30));
-                var storage = client.Get<Storage>(address);
+                var storage = await client.Get<Storage>(address);
                 Assert.NotNull(storage);
             });
 
             // Assert.
-            Assert.Throws<InvalidInfrastructureOperationException>(act);
+            Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
     }
 }
