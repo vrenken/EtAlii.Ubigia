@@ -5,7 +5,9 @@
 
     public static class StorageCmdlet 
     {
-        public static Uri CurrentStorageApiAddress { get; set; }
+        public static Uri CurrentManagementApiAddress { get; set; }
+        public static Uri CurrentDataApiAddress { get; set; }
+        
         public static Storage CurrentStorage { get; set; }
     }
 }

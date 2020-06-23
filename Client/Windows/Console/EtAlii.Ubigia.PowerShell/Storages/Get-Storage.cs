@@ -19,7 +19,7 @@
 
         protected override async Task<Storage> ProcessTask()
         {
-            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress, false);
+            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress, false);
 
             return storage;
         }

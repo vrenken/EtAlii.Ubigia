@@ -24,7 +24,8 @@
         {
             PowerShellClient.Current.Client.AuthenticationToken = null;
 
-            StorageCmdlet.CurrentStorageApiAddress = null;
+            StorageCmdlet.CurrentManagementApiAddress = null;
+            StorageCmdlet.CurrentDataApiAddress = null;
             StorageCmdlet.CurrentStorage = null;
             AccountCmdlet.Current = null;
             SpaceCmdlet.Current = null;
@@ -35,13 +36,15 @@
         protected override async Task<Storage> ProcessTask()
         {
             var storage = (Storage) null;
-            Uri address = null;
+            Uri managementAddress = null;
+            Uri dataAddress = null;
             try
             {
-	            address = new Uri(Address, UriKind.Absolute);
-                await PowerShellClient.Current.OpenManagementConnection(address, AccountName, Password);
+                managementAddress = new Uri(Address, UriKind.Absolute);
+                await PowerShellClient.Current.OpenManagementConnection(managementAddress, AccountName, Password);
                 //WriteDebug($"Using storage at {Address} [{PowerShellClient.Current.Client.AuthenticationToken}]")
                 storage = PowerShellClient.Current.ManagementConnection.Storage;
+                dataAddress = PowerShellClient.Current.ManagementConnection.Details.DataAddress;
             }
             catch (Exception e)
             {
@@ -51,7 +54,8 @@
 
             //WriteDebug($"Selecting storage [{(storage != null ? storage.Name : "NONE")}]")
 
-            StorageCmdlet.CurrentStorageApiAddress = address;
+            StorageCmdlet.CurrentManagementApiAddress = managementAddress;
+            StorageCmdlet.CurrentDataApiAddress = dataAddress;
             StorageCmdlet.CurrentStorage = storage;
             return storage;
         }

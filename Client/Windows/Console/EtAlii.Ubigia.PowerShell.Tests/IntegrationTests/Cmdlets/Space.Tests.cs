@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
+    using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -168,50 +169,36 @@
         [Fact]
         public void PowerShell_Space_Remove_By_Name()
         {
+            // Arrange.
             var name = Guid.NewGuid().ToString();
-
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
-
             var result = _testContext.InvokeGetSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
-
             Assert.Equal(name, space.Name);
-
             _testContext.InvokeRemoveSpaceByName(name);
 
-            Exception exceptedException = null;
-            try
-            {
-                _testContext.InvokeGetSpaceByName(name);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
+            // Act.
+            var act = new Action(() => _testContext.InvokeGetSpaceByName(name));
+            
+            // Assert.
+            Assert.Throws<CmdletInvocationException>(act);
         }
 
 
         [Fact]
         public void PowerShell_Space_Remove_By_Instance()
         {
+            // Arrange.
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
-
             _testContext.InvokeSelectSpaceByName(name);
-
             _testContext.InvokeRemoveSpaceByInstance();
 
-            Exception exceptedException = null;
-            try
-            {
-                _testContext.InvokeGetSpaceByName(name);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
+            // Arrange.
+            var act = new Action(() => _testContext.InvokeGetSpaceByName(name));
+            
+            // Assert.
+            Assert.Throws<Exception>(act);
         }
 
         [Fact]

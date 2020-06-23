@@ -157,50 +157,36 @@
         [Fact]
         public void PowerShell_Root_Remove_By_Name()
         {
+            // Arrange.
             var name = Guid.NewGuid().ToString();
-
             _testContext.InvokeAddRoot(name);
-
             var result = _testContext.InvokeGetRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
-
             Assert.Equal(name, root.Name);
-
             _testContext.InvokeRemoveRootByName(name);
 
-            Exception exceptedException = null;
-            try
-            {
-                _testContext.InvokeGetRootByName(name);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
+            // Act.
+            var act = new Action(() => _testContext.InvokeGetRootByName(name));
+
+            // Assert.
+            Assert.Throws<CmdletInvocationException>(act);
         }
 
 
         [Fact]
         public void PowerShell_Root_Remove_By_Instance()
         {
+            // Arrange.
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(name);
-
             _testContext.InvokeSelectRootByName(name);
-
             _testContext.InvokeRemoveRootByInstance();
 
-            Exception exceptedException = null;
-            try
-            {
-                _testContext.InvokeGetRootByName(name);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
+            // Act.
+            var act = new Action(() => _testContext.InvokeGetRootByName(name));
+            
+            // Assert.
+            Assert.Throws<CmdletInvocationException>(act);
         }
 
         [Fact]

@@ -30,19 +30,19 @@
 
                 if (rootInfoProvider.Root != null)
                 {
-                    address = _addressFactory.Create(StorageCmdlet.CurrentStorageApiAddress, RelativeUri.Data.Roots, UriParameter.RootId, rootInfoProvider.Root.Id.ToString());
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.RootId, rootInfoProvider.Root.Id.ToString());
                     root = address != null ? await _client.Get<Root>(address) : null;
                 }
                 else if (rootInfoProvider.RootId != Guid.Empty)
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount);
-                    address = _addressFactory.Create(StorageCmdlet.CurrentStorageApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString(), UriParameter.IdType, "rootId");
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString(), UriParameter.IdType, "rootId");
                     root = address != null ? await _client.Get<Root>(address) : null;
                 }
                 else if (!string.IsNullOrEmpty(rootInfoProvider.RootName))
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount);
-                    address = _addressFactory.Create(StorageCmdlet.CurrentStorageApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootName, UriParameter.IdType, "rootName");
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootName, UriParameter.IdType, "rootName");
                     root = address != null ? await _client.Get<Root>(address) : null;
                 }
             }

@@ -24,7 +24,7 @@
             {
                 if (entryInfoProvider.EntryId != Identifier.Empty)
                 {
-                    var address = _addressFactory.Create(StorageCmdlet.CurrentStorageApiAddress, RelativeUri.Data.Entry, UriParameter.EntryId, entryInfoProvider.EntryId.ToString());
+                    var address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Entry, UriParameter.EntryId, entryInfoProvider.EntryId.ToString());
                     entry = address != null ? await _client.Get<Entry>(address) : null;
                 }
             }

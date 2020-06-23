@@ -21,7 +21,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentStorageApiAddress);
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress);
 
             if (TargetStorage == null)
             {
