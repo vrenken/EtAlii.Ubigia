@@ -5,12 +5,14 @@
 
 	public static partial class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddInfrastructureHttpContextAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
+		public static IServiceCollection AddAttributeBasedInfrastructureAuthorization(this IServiceCollection services, IInfrastructure infrastructure)
 		{
 			services
 				.TryAddSingleton(infrastructure.Accounts)
 				.TryAddSingleton(infrastructure.Storages)
+				.TryAddSingleton(infrastructure.Configuration)
 				.AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
+				.AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>()
 				.AddSingleton<IHttpContextAuthenticationVerifier, HttpContextAuthenticationVerifier>()
 				.AddSingleton<IHttpContextResponseBuilder, HttpContextResponseBuilder>()
 				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
@@ -18,7 +20,7 @@
 			return services;
 		}
 
-		public static IServiceCollection AddInfrastructureSimpleAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
+		public static IServiceCollection AddInfrastructureAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 	    {
 		    services
 			    .TryAddSingleton(infrastructure.Accounts)

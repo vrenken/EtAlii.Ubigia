@@ -31,8 +31,7 @@
 
 		        .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
-		        //.AddInfrastructureSimpleAuthentication(infrastructure)
-		        .AddInfrastructureHttpContextAuthentication(infrastructure)
+		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
 		        .AddInfrastructureSerialization()
 
 		        .AddControllers(options =>
@@ -50,6 +49,7 @@
         {
 	        applicationBuilder
 		        .UseRouting()
+		        .UseAuthorization()
 		        .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }
