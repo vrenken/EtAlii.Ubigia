@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
+    using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -165,24 +166,18 @@
         [Fact]
         public void PowerShell_Account_Remove_By_Instance()
         {
+            // Arrange.
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             _testContext.InvokeAddAccount(accountName, password, AccountTemplate.User);
-
             _testContext.InvokeSelectAccountByName(accountName);
-
             _testContext.InvokeRemoveAccountByInstance();
 
-            Exception exceptedException = null;
-            try
-            {
-                _testContext.InvokeGetAccountByName(accountName);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
+            // Act.
+            var act = new Action(() => _testContext.InvokeGetAccountByName(accountName));
+            
+            // Assert.
+            Assert.Throws<CmdletInvocationException>(act);
         }
 
         [Fact]
