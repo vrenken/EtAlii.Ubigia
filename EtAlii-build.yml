@@ -7,8 +7,9 @@ trigger:
 - master
 
 jobs:
-- job: buildJob
-  timeoutInMinutes: 120
+- job: 'Build and Test'
+  
+  timeoutInMinutes: 240
 
   pool: 
     name: Default
@@ -41,17 +42,9 @@ jobs:
         !**/StorageBrowser.csproj
       feedsToUse: config
       nugetConfigPath: NuGet.config
-  
-  - task: DotNetCoreCLI@2
-    displayName: 'Calling: dotnet build'
-    inputs:
-      command: 'build'
-      projects: |
-        **/*.sln
-        !**/StorageBrowser.csproj
-  
+
   - task: SonarQubePrepare@4
-    displayName: 'SonarQube analysis: preparing'
+    displayName: 'SonarQube: preparing'
     inputs:
       SonarQube: 'Avalon SonarQube'
       scannerMode: 'MSBuild'
@@ -60,13 +53,21 @@ jobs:
         # Additional properties that will be passed to the scanner, 
         # Put one key=value per line, example:
         sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
-        
+
         #sonar.exclusions=**/EtAlii.Ubigia.Api.Functional.Querying.Tests/**;**/EtAlii.Ubigia.Api.Functional.Scripting.Tests/**
         #sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
         #sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
         #sonar.coverage.exclusions="**Tests*.cs"
         #sonar.coverage.exclusions="*.Functional.*, *.Logical.*, *.Transport.*, *.Infrastructure.*"
         #sonar.verbose=true
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Calling: dotnet build'
+    inputs:
+      command: 'build'
+      projects: |
+        **/*.sln
+        !**/StorageBrowser.csproj
   
   - task: DotNetCoreCLI@2
     displayName: 'Calling: dotnet test'
@@ -78,10 +79,10 @@ jobs:
   
   
   - task: SonarQubeAnalyze@4
-    displayName: 'SonarQube analysis: analysing'
+    displayName: 'SonarQube: analysing'
   
   
   - task: SonarQubePublish@4
-    displayName: 'SonarQube analysis: publishing'
+    displayName: 'SonarQube: publishing'
     inputs:
       pollingTimeoutSec: '300'    
