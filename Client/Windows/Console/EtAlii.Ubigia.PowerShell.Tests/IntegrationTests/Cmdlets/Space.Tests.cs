@@ -1,12 +1,8 @@
-﻿namespace EtAlii.Ubigia.PowerShell.Tests
-{
-    using System;
-    using System.Management.Automation;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using Xunit;
+﻿using System;
+using System.Threading.Tasks;
 
+namespace EtAlii.Ubigia.PowerShell.Tests
+{
     public class SpaceTest : IAsyncLifetime
     {
         private PowerShellTestContext _testContext;
@@ -185,7 +181,7 @@
         }
 
 
-        [Fact(Skip = "Not working")] 
+        [Fact] 
         public void PowerShell_Space_Remove_By_Instance()
         {
             // Arrange.
