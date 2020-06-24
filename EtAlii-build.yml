@@ -6,141 +6,82 @@
 trigger:
 - master
 
-timeoutInMinutes: 120
+jobs:
+- job: buildJob
+  timeoutInMinutes: 120
 
-pool: 
-  name: Default
-  demands:
-    #- SpecialSoftware # Check if SpecialSoftware capability exists
-    - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
-  #vmImage: 'ubuntu-latest'    # For Docker.
-  #vmImage: 'windows-latest'   # For Windows.
-
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug'
-
-steps:
-
-- task: UseDotNet@2
-  displayName: 'Use: dotnet SDK 3.1.101'
-  inputs:
-    packageType: 'sdk'
-    version: '3.1.101'
-
-# - task: VisualStudioTestPlatformInstaller@1
-#   displayName: 'Visual Studio Test Platform Installer'
-#   inputs:
-#     versionSelector: latestStable
-
-
-# - task: NuGetToolInstaller@1
-#   displayName: 'Use NuGet 4.9.4'
-#   inputs:
-#     versionSpec: 4.9.4
-
-
-# - task: DotNetCoreCLI@2
-#   displayName: 'dotnet restore'
-#   inputs:
-#     command: restore
-#     projects: '**/*.sln'
-#     feedsToUse: config
-#     nugetConfigPath: NuGet.config
-
-- task: DotNetCoreCLI@2
-  displayName: 'Calling: dotnet restore'
-  inputs:
-    command: 'restore'
-    projects: |
-      **/*.csproj
-      !**/StorageBrowser.csproj
-    feedsToUse: config
-    nugetConfigPath: NuGet.config
-
-- task: DotNetCoreCLI@2
-  displayName: 'Calling: dotnet build'
-  inputs:
-    command: 'build'
-    projects: |
-      **/*.sln
-      !**/StorageBrowser.csproj
-
-- task: SonarQubePrepare@4
-  displayName: 'SonarQube analysis: preparing'
-  inputs:
-    SonarQube: 'Avalon SonarQube'
-    scannerMode: 'MSBuild'
-    projectKey: 'EtAlii.Ubigia'
-    extraProperties: |
-      # Additional properties that will be passed to the scanner, 
-      # Put one key=value per line, example:
-      sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
-      
-      #sonar.exclusions=**/EtAlii.Ubigia.Api.Functional.Querying.Tests/**;**/EtAlii.Ubigia.Api.Functional.Scripting.Tests/**
-      #sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
-      #sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-      #sonar.coverage.exclusions="**Tests*.cs"
-      #sonar.coverage.exclusions="*.Functional.*, *.Logical.*, *.Transport.*, *.Infrastructure.*"
-      #sonar.verbose=true
-
-- task: DotNetCoreCLI@2
-  displayName: 'Calling: dotnet test'
-  inputs:
-    command: test
-    projects: '**/*.Tests.csproj'
-    arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
-  continueOnError: true
-
-
-- task: SonarQubeAnalyze@4
-  displayName: 'SonarQube analysis: analysing'
-
-
-- task: SonarQubePublish@4
-  displayName: 'SonarQube analysis: publishing'
-  inputs:
-    pollingTimeoutSec: '300'
-
-
-#Your build pipeline references an undefined variable named ‘[System.IO.Path]::GetFileNameWithoutExtension($_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘[System.IO.Path]::GetFileNameWithoutExtension($_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘$_.FullName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#- powershell: |
-#   $ver = (Get-ChildItem $env:USERPROFILE\.nuget\packages\Microsoft.CodeCoverage | Select-Object -Property Name | Sort-Object -Descending | Select-Object -First 1).Name
-#   Get-ChildItem -Recurse -Filter "*.coverage" | % {
-#   $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
-#   $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
-#   "Analyse '$($_.FullName)' with output '$output'..."
-#   .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\$ver\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
-#   }
-#   
-#  workingDirectory: '$(Agent.TempDirectory)'
-#  displayName: 'Gather code coverage output'
-
-
-#- task: DotNetCoreCLI@2
-#  displayName: 'dotnet push'
-#  inputs:
-#    command: push
-#    packagesToPush: '**\EtAlii.Ubigia.Api.*.nupkg;-:**\EtAlii.Ubigia.Api.*.Tests.nupkg;**\EtAlii.Ubigia.Infrastructure.*.nupkg;-:**\EtAlii.Ubigia.Infrastructure.*.Tests.nupkg'
-#    publishVstsFeed: '7066386f-87fe-4d53-9860-566cebc53cc5'
-
-#- task: SonarSource.sonarqube.6D01813A-9589-4B15-8491-8164AEB38055.SonarQubeAnalyze@4
-#  displayName: 'Run Code Analysis'
-
+  pool: 
+    name: Default
+    demands:
+      #- SpecialSoftware # Check if SpecialSoftware capability exists
+      - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
+    #vmImage: 'ubuntu-latest'    # For Docker.
+    #vmImage: 'windows-latest'   # For Windows.
   
-#- powershell: |
-#   Get-ChildItem $Agent.BuildDirectory -Recurse | Where{$_.Name -Match ".*css-bundle"} | Remove-Item 
-#  displayName: 'Quality Results cleanup'
-
-
-#- task: SonarSource.sonarqube.291ed61f-1ee4-45d3-b1b0-bf822d9095ef.SonarQubePublish@4
-#  displayName: 'Publish Quality Gate Result'
-#  inputs:
-#    pollingTimeoutSec: 600
+  
+  variables:
+    solution: '**/*.sln'
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Debug'
+  
+  steps:
+  
+  - task: UseDotNet@2
+    displayName: 'Use: dotnet SDK 3.1.101'
+    inputs:
+      packageType: 'sdk'
+      version: '3.1.101'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Calling: dotnet restore'
+    inputs:
+      command: 'restore'
+      projects: |
+        **/*.csproj
+        !**/StorageBrowser.csproj
+      feedsToUse: config
+      nugetConfigPath: NuGet.config
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Calling: dotnet build'
+    inputs:
+      command: 'build'
+      projects: |
+        **/*.sln
+        !**/StorageBrowser.csproj
+  
+  - task: SonarQubePrepare@4
+    displayName: 'SonarQube analysis: preparing'
+    inputs:
+      SonarQube: 'Avalon SonarQube'
+      scannerMode: 'MSBuild'
+      projectKey: 'EtAlii.Ubigia'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
+        
+        #sonar.exclusions=**/EtAlii.Ubigia.Api.Functional.Querying.Tests/**;**/EtAlii.Ubigia.Api.Functional.Scripting.Tests/**
+        #sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+        #sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+        #sonar.coverage.exclusions="**Tests*.cs"
+        #sonar.coverage.exclusions="*.Functional.*, *.Logical.*, *.Transport.*, *.Infrastructure.*"
+        #sonar.verbose=true
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Calling: dotnet test'
+    inputs:
+      command: test
+      projects: '**/*.Tests.csproj'
+      arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
+    continueOnError: true
+  
+  
+  - task: SonarQubeAnalyze@4
+    displayName: 'SonarQube analysis: analysing'
+  
+  
+  - task: SonarQubePublish@4
+    displayName: 'SonarQube analysis: publishing'
+    inputs:
+      pollingTimeoutSec: '300'    
