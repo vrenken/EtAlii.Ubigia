@@ -24,7 +24,7 @@ variables:
 steps:
 
 - task: UseDotNet@2
-  displayName: 'Using dotnet SDK 3.1.101'
+  displayName: 'Use: dotnet SDK 3.1.101'
   inputs:
     packageType: 'sdk'
     version: '3.1.101'
@@ -62,17 +62,10 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Calling: dotnet build'
   inputs:
+    command: 'build'
     projects: |
-      **/*.csproj
+      **/*.sln
       !**/StorageBrowser.csproj
-
-- task: DotNetCoreCLI@2
-  displayName: 'Calling: dotnet test'
-  inputs:
-    command: test
-    projects: '**/*.Tests.csproj'
-    arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
-  continueOnError: true
 
 - task: SonarQubePrepare@4
   displayName: 'SonarQube analysis: preparing'
@@ -91,6 +84,15 @@ steps:
       #sonar.coverage.exclusions="**Tests*.cs"
       #sonar.coverage.exclusions="*.Functional.*, *.Logical.*, *.Transport.*, *.Infrastructure.*"
       #sonar.verbose=true
+
+- task: DotNetCoreCLI@2
+  displayName: 'Calling: dotnet test'
+  inputs:
+    command: test
+    projects: '**/*.Tests.csproj'
+    arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
+  continueOnError: true
+
 
 - task: SonarQubeAnalyze@4
   displayName: 'SonarQube analysis: analysing'
