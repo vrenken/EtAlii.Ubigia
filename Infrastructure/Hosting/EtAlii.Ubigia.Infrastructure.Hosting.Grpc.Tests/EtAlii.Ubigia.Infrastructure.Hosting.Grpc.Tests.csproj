@@ -17,7 +17,7 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.1.19" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.1.20" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2" />
