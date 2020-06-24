@@ -7,7 +7,8 @@ trigger:
 - master
 
 jobs:
-- job: 'Build and Test'
+- job: 'buildAndTest'
+  displayName: 'Build and Test'
   
   timeoutInMinutes: 240
 
