@@ -38,7 +38,7 @@
             try
             {
                 var response = await client.GetAsync(address);
-                await WaitAndTestResponse(response, HttpMethod.Get);
+                await WaitAndTestResponse(response, HttpMethod.Get, address);
                 return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
             }
             catch (AggregateException e)
@@ -63,7 +63,7 @@
             try
             {
                 var response = await client.PostAsync(address, value, _formatter);
-                await WaitAndTestResponse(response, HttpMethod.Post);
+                await WaitAndTestResponse(response, HttpMethod.Post, address);
                 return await response.Content.ReadAsAsync<TResult>(new[] { _formatter });
             }
             catch (AggregateException e)
@@ -79,7 +79,7 @@
             try
             {
                 var response = await client.DeleteAsync(address);
-                await WaitAndTestResponse(response, HttpMethod.Delete);
+                await WaitAndTestResponse(response, HttpMethod.Delete, address);
             }
             catch (AggregateException e)
             {
@@ -94,7 +94,7 @@
             try
             {
                 var response = await client.PutAsync(address, value, _formatter);
-                await WaitAndTestResponse(response, HttpMethod.Put);
+                await WaitAndTestResponse(response, HttpMethod.Put, address);
                 return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
             }
             catch (AggregateException e)
@@ -104,7 +104,7 @@
         }
 
 
-        private async Task WaitAndTestResponse(HttpResponseMessage result, HttpMethod method)
+        private async Task WaitAndTestResponse(HttpResponseMessage result, HttpMethod method, Uri address)
         {
     
             if (!result.IsSuccessStatusCode)
@@ -117,15 +117,15 @@
                 switch (result.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
-                        message = $"Unable to {method} data on the client: {error}";
+                        message = $"Unable to {method} {address}: {error}";
                         e = new InvalidInfrastructureOperationException(message);
                         break;
                     case HttpStatusCode.Unauthorized:
-                        message = $"Unauthorized to {method} data on the client: {error}";
+                        message = $"Unauthorized to {method} {address}: {error}";
                         e = new UnauthorizedInfrastructureOperationException(message);
                         break;
                     default:
-                        message = string.Format("Unable to {0} data on the client ({2}): {1}", method, error, result.StatusCode);
+                        message = string.Format("Unable to {0} {3} ({2}): {1}", method, error, result.StatusCode, address);
                         e = new InvalidInfrastructureOperationException(message);
                         break;
                 }
