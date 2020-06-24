@@ -26,8 +26,8 @@ steps:
 
 - task: UseDotNet@2
   inputs:
-    packageType: 'sdk'
-    useGlobalJson: true
+    packageType: 'runtime'
+    version: '3.1.101'
 
 # - task: VisualStudioTestPlatformInstaller@1
 #   displayName: 'Visual Studio Test Platform Installer'
