@@ -6,7 +6,8 @@
 trigger:
 - master
 
-#pool:
+timeoutInMinutes: 120
+
 pool: 
   name: Default
   demands:
@@ -87,7 +88,6 @@ steps:
 
 - task: DotNetCoreCLI@2
   displayName: 'Calling: dotnet test'
-  timeoutInMinutes: 120
   inputs:
     command: test
     projects: '**/*.Tests.csproj'
