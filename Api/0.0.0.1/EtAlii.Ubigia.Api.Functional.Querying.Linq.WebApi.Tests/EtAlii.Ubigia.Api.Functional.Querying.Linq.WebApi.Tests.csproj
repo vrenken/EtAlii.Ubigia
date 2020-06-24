@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(SolutionDir)\Version.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <ProjectGuid>331a5416-4f7e-477d-a89c-d9e47948e73e</ProjectGuid>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestImage_01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq\EtAlii.Ubigia.Api.Functional.Querying.Linq.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.WebApi.Tests\EtAlii.Ubigia.Api.Logical.WebApi.Tests.csproj" />
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems" Label="Shared" />
+</Project>
