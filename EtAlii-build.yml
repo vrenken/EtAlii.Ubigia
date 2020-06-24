@@ -21,7 +21,6 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
 
-
 steps:
 
 - task: UseDotNet@2
