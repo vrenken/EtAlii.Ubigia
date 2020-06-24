@@ -21,10 +21,10 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
 
-
 steps:
 
 - task: UseDotNet@2
+  displayName: 'Use: dotnet SDK 3.1.101'
   inputs:
     packageType: 'sdk'
     version: '3.1.101'
@@ -50,6 +50,7 @@ steps:
 #     nugetConfigPath: NuGet.config
 
 - task: DotNetCoreCLI@2
+  displayName: 'Calling: dotnet restore'
   inputs:
     command: 'restore'
     projects: |
@@ -59,18 +60,15 @@ steps:
     nugetConfigPath: NuGet.config
 
 - task: DotNetCoreCLI@2
-  displayName: 'build'
+  displayName: 'Calling: dotnet build'
   inputs:
+    command: 'build'
     projects: |
-      **/*.csproj
+      **/*.sln
       !**/StorageBrowser.csproj
-    
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'test'
-  continueOnError: true
 
 - task: SonarQubePrepare@4
+  displayName: 'SonarQube analysis: preparing'
   inputs:
     SonarQube: 'Avalon SonarQube'
     scannerMode: 'MSBuild'
@@ -88,16 +86,21 @@ steps:
       #sonar.verbose=true
 
 - task: DotNetCoreCLI@2
-  displayName: 'test'
+  displayName: 'Calling: dotnet test'
+  timeoutInMinutes: 120
   inputs:
     command: test
     projects: '**/*.Tests.csproj'
     arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
   continueOnError: true
 
+
 - task: SonarQubeAnalyze@4
+  displayName: 'SonarQube analysis: analysing'
+
 
 - task: SonarQubePublish@4
+  displayName: 'SonarQube analysis: publishing'
   inputs:
     pollingTimeoutSec: '300'
 
