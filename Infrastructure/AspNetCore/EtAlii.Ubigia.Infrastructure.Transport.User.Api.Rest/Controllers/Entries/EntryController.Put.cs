@@ -2,11 +2,8 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    [Authorize]
     public partial class EntryController
     {
         // Update Item by id

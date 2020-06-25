@@ -5,11 +5,8 @@
     using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    [Authorize]
     public partial class EntryController
     {
         [HttpGet]
