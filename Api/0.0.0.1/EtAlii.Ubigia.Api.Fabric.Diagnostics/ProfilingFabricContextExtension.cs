@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingFabricContextExtension : IFabricContextExtension
