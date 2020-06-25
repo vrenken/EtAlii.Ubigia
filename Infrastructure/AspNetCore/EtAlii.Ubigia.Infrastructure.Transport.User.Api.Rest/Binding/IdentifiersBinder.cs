@@ -37,7 +37,9 @@
 
             var identifiersAsStrings = rawValue.Split(_partSplitCharacters, StringSplitOptions.None);
 
-            bindingContext.Model = identifiersAsStrings.Select(ToIdentifier);
+            var model = identifiersAsStrings.Select(ToIdentifier);
+            
+            bindingContext.Result = ModelBindingResult.Success(model);
             return Task.CompletedTask;
         }
 

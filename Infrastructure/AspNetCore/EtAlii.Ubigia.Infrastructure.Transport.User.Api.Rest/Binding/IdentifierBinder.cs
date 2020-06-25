@@ -35,7 +35,7 @@
             var locations = locationPart.Split(_locationSplitCharacters, StringSplitOptions.None);
             var times = timePart.Split(_timeSplitCharacters, StringSplitOptions.None);
 
-            bindingContext.Model = Identifier.Create
+            var model = Identifier.Create
             (
                 new Guid(locations[0]),
                 new Guid(locations[1]),
@@ -44,6 +44,8 @@
                 UInt64.Parse(times[1]),
                 UInt64.Parse(times[2])
             );
+            
+            bindingContext.Result = ModelBindingResult.Success(model);
             return Task.CompletedTask;
         }
     }
