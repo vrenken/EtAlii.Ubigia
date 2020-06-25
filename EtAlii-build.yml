@@ -53,7 +53,7 @@ jobs:
       extraProperties: |
         # Additional properties that will be passed to the scanner, 
         # Put one key=value per line, example:
-        sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
+        #sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
 
         #sonar.exclusions=**/EtAlii.Ubigia.Api.Functional.Querying.Tests/**;**/EtAlii.Ubigia.Api.Functional.Scripting.Tests/**
         #sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
@@ -69,15 +69,14 @@ jobs:
       projects: |
         **/*.sln
         !**/StorageBrowser.csproj
-  
+
   - task: DotNetCoreCLI@2
     displayName: 'Calling: dotnet test'
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
-      arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
+#      arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
     continueOnError: true
-  
   
   - task: SonarQubeAnalyze@4
     displayName: 'SonarQube: analysing'
