@@ -2,6 +2,9 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// The basic interface for all network connections.
+    /// </summary>
     public interface IConnection
     {
         /// <summary>
@@ -17,7 +20,16 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         bool IsConnected { get; }
 
+        /// <summary>
+        /// Disconnect from the remote service.
+        /// </summary>
+        /// <returns></returns>
         Task Close();
+        
+        /// <summary>
+        /// Connect using the given credentials.
+        /// </summary>
+        /// <returns></returns>
         Task Open(string accountName, string password);
     }
 }

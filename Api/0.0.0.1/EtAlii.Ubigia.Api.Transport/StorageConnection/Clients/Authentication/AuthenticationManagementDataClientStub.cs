@@ -7,16 +7,19 @@
     /// </summary>
     public class AuthenticationManagementDataClientStub : IAuthenticationManagementDataClient
     {
+        /// <inheritdoc />
         public Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             return Task.CompletedTask;
         }
         
+        /// <inheritdoc />
         public Task Connect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public Task Disconnect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
