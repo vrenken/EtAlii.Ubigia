@@ -2,11 +2,8 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
-    [Authorize]
     public partial class EntryController
     {
         // Get a new prepared entry for the specified spaceId
