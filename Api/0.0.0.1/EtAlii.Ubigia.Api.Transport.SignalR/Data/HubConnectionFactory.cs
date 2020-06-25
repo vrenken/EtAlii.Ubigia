@@ -26,7 +26,7 @@
 			    {
 				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
 				    options.Transports = HttpTransportType.LongPolling;
-					options.Headers = new Dictionary<string, string>() {{"Host-Identifier", hostIdentifier}};
+					options.Headers = new Dictionary<string, string> {{"Host-Identifier", hostIdentifier}};
 				});		    
 			return builder.Build();
 		}
