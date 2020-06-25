@@ -5,20 +5,28 @@
 
     public class DataConnectionStub : IDataConnection
     {
+        /// <inheritdoc />
         public Storage Storage { get; }
 
+        /// <inheritdoc />
         public Account Account { get; }
 
+        /// <inheritdoc />
         public Space Space { get; }
 
+        /// <inheritdoc />
         public IEntryContext Entries { get; }
 
+        /// <inheritdoc />
         public IRootContext Roots { get; }
 
+        /// <inheritdoc />
         public IContentContext Content { get; }
 
+        /// <inheritdoc />
         public IPropertiesContext Properties { get; }
 
+        /// <inheritdoc />
         public bool IsConnected { get; } = false;
 
         /// <summary>
@@ -26,15 +34,18 @@
         /// </summary>
         public IDataConnectionConfiguration Configuration { get; }
 
+        /// <inheritdoc />
         public Task Open()
         {
             return Task.CompletedTask;
         }
+        /// <inheritdoc />
         public Task Close()
         {
             return Task.CompletedTask;
         }
 
+        /// Create a new <see cref="DataConnectionStub" /> instance.
         public DataConnectionStub()
         {
             Configuration = new DataConnectionConfiguration();

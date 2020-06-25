@@ -6,41 +6,49 @@
 
     public sealed class StorageDataClientStub : IStorageDataClient
     {
+        /// <inheritdoc />
         public Task<Storage> Add(string storageName, string storageAddress)
         {
             return Task.FromResult<Storage>(null);
         }
 
+        /// <inheritdoc />
         public Task Remove(Guid storageId)
         {
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
         {
             return Task.FromResult<Storage>(null);
         }
 
+        /// <inheritdoc />
         public Task<Storage> Get(string storageName)
         {
             return Task.FromResult<Storage>(null);
         }
 
+        /// <inheritdoc />
         public Task<Storage> Get(Guid storageId)
         {
             return Task.FromResult<Storage>(null);
         }
 
+        /// <inheritdoc />
         public Task<IEnumerable<Storage>> GetAll()
         {
             return Task.FromResult<IEnumerable<Storage>>(null);
         }
 
+        /// <inheritdoc />
         public Task Connect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }
 
+        /// <inheritdoc />
         public Task Disconnect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;

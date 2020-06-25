@@ -4,8 +4,16 @@
     using System.Diagnostics;
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// A Newtonsoft oriented converter capable to serialize a PropertyDictionary from/to Json.
+    /// </summary>
     public partial class PropertyDictionaryJSonConverter : JsonConverter
     {
+        /// <summary>
+        /// Check if the specified object type can be converted.
+        /// </summary>
+        /// <param name="objectType"></param>
+        /// <returns></returns>
         [DebuggerStepThrough]
         public override bool CanConvert(Type objectType)
         {

@@ -4,17 +4,25 @@
 
     internal class DataConnection : IDataConnection
     {
+        /// <inheritdoc />
         public Storage Storage => _connection?.Storage;
 
+        /// <inheritdoc />
         public Space Space => _connection?.Space;
+
+        /// <inheritdoc />
         public Account Account => _connection?.Account;
 
+        /// <inheritdoc />
         public IRootContext Roots => _connection?.Roots;
 
+        /// <inheritdoc />
         public IEntryContext Entries => _connection?.Entries;
 
+        /// <inheritdoc />
         public IContentContext Content => _connection?.Content;
 
+        /// <inheritdoc />
         public IPropertiesContext Properties => _connection?.Properties;
 
         /// <summary>
@@ -22,6 +30,7 @@
         /// </summary>
         public IDataConnectionConfiguration Configuration { get; }
 
+        /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
 
         private ISpaceConnection _connection;
@@ -31,6 +40,7 @@
             Configuration = configuration;
         }
 
+        /// <inheritdoc />
         public async Task Open()
         {
             if (IsConnected)
@@ -45,6 +55,7 @@
             await _connection.Open(Configuration.AccountName, Configuration.Password);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
             if (!IsConnected)
