@@ -1,7 +1,4 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+# Default Ubigia build and test pipeline. 
 
 trigger:
 - master
@@ -35,7 +32,7 @@ jobs:
       version: '3.1.101'
   
   - task: DotNetCoreCLI@2
-    displayName: 'Calling: dotnet restore'
+    displayName: 'Run: dotnet restore'
     inputs:
       command: 'restore'
       projects: |
@@ -45,7 +42,7 @@ jobs:
       nugetConfigPath: NuGet.config
 
   - task: SonarQubePrepare@4
-    displayName: 'SonarQube: preparing'
+    displayName: 'SonarQube: prepare'
     inputs:
       SonarQube: 'Avalon SonarQube'
       scannerMode: 'MSBuild'
@@ -63,7 +60,7 @@ jobs:
         #sonar.verbose=true
 
   - task: DotNetCoreCLI@2
-    displayName: 'Calling: dotnet build'
+    displayName: 'Run: dotnet build'
     inputs:
       command: 'build'
       projects: |
@@ -71,19 +68,19 @@ jobs:
         !**/StorageBrowser.csproj
   
   - task: DotNetCoreCLI@2
-    displayName: 'Calling: dotnet test'
+    displayName: 'Run: dotnet test'
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
-      arguments: '--collect "Code Coverage"  --no-build /property:SolutionDir=$(Build.SourcesDirectory)'
+      arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory)'
     continueOnError: true
   
   
   - task: SonarQubeAnalyze@4
-    displayName: 'SonarQube: analysing'
+    displayName: 'SonarQube: analyse'
   
   
   - task: SonarQubePublish@4
-    displayName: 'SonarQube: publishing'
+    displayName: 'SonarQube: publish'
     inputs:
       pollingTimeoutSec: '300'    
