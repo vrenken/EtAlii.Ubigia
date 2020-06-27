@@ -25,6 +25,10 @@
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.2" />
     <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.0.2" />
     <PackageReference Include="Microsoft.WSMan.Management" Version="7.0.2" />
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj" />
