@@ -3,10 +3,11 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.WebApi.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class TransportTestContext
     {
-        public ITransportTestContext Create()
+        public ITransportTestContext<InProcessInfrastructureHostTestContext> Create()
         {
             return new TransportTestContextFactory().Create<WebApiTransportTestContext>();
         }
