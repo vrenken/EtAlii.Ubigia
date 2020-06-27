@@ -187,8 +187,7 @@
 
         // Has something to do with that the select-space changes to a different user.
         // No idea how to apply a simple and easy fix for this.
-        [Fact(Skip="Not working (yet)")] 
-        
+        [Fact(Skip="Not working (yet)")]
         public void PowerShell_Space_Remove_By_Instance()
         {
             // Arrange.

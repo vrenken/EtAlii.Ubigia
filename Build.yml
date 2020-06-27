@@ -38,7 +38,7 @@ jobs:
           command: 'restore'
           projects: |
             **/*.csproj
-            !**/ProjectToExclude.csproj
+            !**/StorageBrowser.csproj
           feedsToUse: config
           nugetConfigPath: NuGet.config
 
@@ -59,7 +59,7 @@ jobs:
           command: 'build'
           projects: |
             **/*.sln
-            !**/ProjectToExclude.csproj
+            !**/StorageBrowser.csproj
 
 # TEST
       - task: DotNetCoreCLI@2
@@ -86,4 +86,5 @@ jobs:
           command: push
           packagesToPush: '**/*.nupkg'
           publishVstsFeed: ${{ variables.publishPackageFeed }}
+          allowPackageConflicts: true
         continueOnError: true
