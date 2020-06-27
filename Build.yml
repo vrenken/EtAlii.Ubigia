@@ -1,5 +1,7 @@
 # Default Ubigia build and test pipeline. 
 
+name: 'EtAlii.Ubigia'
+
 trigger:
 - master
 

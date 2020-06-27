@@ -370,7 +370,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{C9537D00-7881-4ACB-9111-9439363F658D}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		EtAlii-build.yml = EtAlii-build.yml
+		Build.yml = Build.yml
 		Global.json = Global.json
 		NuGet.config = NuGet.config
 		README.md = README.md
