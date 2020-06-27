@@ -8,7 +8,7 @@
     {
         // Update Item by id
         [HttpPut]
-        public IActionResult Put(Entry entry)
+        public IActionResult Put([FromBody]Entry entry)
         {
             IActionResult response;
             try
