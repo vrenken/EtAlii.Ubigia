@@ -185,13 +185,18 @@
         }
 
 
-        [Fact(Skip="Not working")] 
+        // Has something to do with that the select-space changes to a different user.
+        // No idea how to apply a simple and easy fix for this.
+        [Fact(Skip="Not working (yet)")] 
+        
         public void PowerShell_Space_Remove_By_Instance()
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
-            _testContext.InvokeSelectSpaceByName(name);
+            var result = _testContext.InvokeSelectSpaceByName(name); 
+            var space = _testContext.ToAssertedResult<Space>(result);
+            Assert.Equal(name, space.Name);
             _testContext.InvokeRemoveSpaceByInstance();
 
             // Arrange.
