@@ -1,88 +1,89 @@
 # Default Ubigia build and test pipeline. 
-
-name: 'EtAlii.Ubigia'
+variables:
+  buildDisplayName: 'EtAlii.Ubigia'
+  sonarQubeProject: 'EtAlii.Ubigia'
+  publishPackageFeed: 'EtAlii.Ubigia'
+  timeoutInMinutes: 240
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug'
 
 trigger:
-- master
+  - master
+
+name: ${{ variables.buildDisplayName }}
 
 jobs:
-- job: 'buildAndTest'
-  displayName: 'Build and Test'
-  
-  timeoutInMinutes: 240
+  - job: 'buildAndTest'
+    displayName: 'Build and Test'
+    timeoutInMinutes: ${{ variables.timeoutInMinutes }}
+    pool:
+      name: Default
+      demands:
+        #- SpecialSoftware # Check if SpecialSoftware capability exists
+        - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
+      #vmImage: 'ubuntu-latest'    # For Docker.
+      #vmImage: 'windows-latest'   # For Windows.
+    steps:
+# BUILD
+      - task: UseDotNet@2
+        displayName: 'Use: dotnet SDK 3.1.101'
+        inputs:
+          packageType: 'sdk'
+          version: '3.1.101'
 
-  pool: 
-    name: Default
-    demands:
-      #- SpecialSoftware # Check if SpecialSoftware capability exists
-      - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
-    #vmImage: 'ubuntu-latest'    # For Docker.
-    #vmImage: 'windows-latest'   # For Windows.
-  
-  
-  variables:
-    solution: '**/*.sln'
-    buildPlatform: 'Any CPU'
-    buildConfiguration: 'Debug'
-  
-  steps:
-  
-  - task: UseDotNet@2
-    displayName: 'Use: dotnet SDK 3.1.101'
-    inputs:
-      packageType: 'sdk'
-      version: '3.1.101'
-  
-  - task: DotNetCoreCLI@2
-    displayName: 'Run: dotnet restore'
-    inputs:
-      command: 'restore'
-      projects: |
-        **/*.csproj
-        !**/StorageBrowser.csproj
-      feedsToUse: config
-      nugetConfigPath: NuGet.config
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet restore'
+        inputs:
+          command: 'restore'
+          projects: |
+            **/*.csproj
+            !**/ProjectToExclude.csproj
+          feedsToUse: config
+          nugetConfigPath: NuGet.config
 
-  - task: SonarQubePrepare@4
-    displayName: 'SonarQube: prepare'
-    inputs:
-      SonarQube: 'Avalon SonarQube'
-      scannerMode: 'MSBuild'
-      projectKey: 'EtAlii.Ubigia'
-      extraProperties: |
-        # Additional properties that will be passed to the scanner, 
-        # Put one key=value per line, example:
-        #sonar.cs.vscoveragexml.reportsPaths=$(Agent.TempDirectory)/**/*.coveragexml
+      - task: SonarQubePrepare@4
+        displayName: 'SonarQube: prepare'
+        inputs:
+          SonarQube: 'Avalon SonarQube'
+          scannerMode: 'MSBuild'
+          projectKey: ${{ variables. sonarQubeProject }}
+          extraProperties: |
+            # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
+            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
+            sonar.coverage.exclusions=”**Test**.cs”
 
-        #sonar.exclusions=**/EtAlii.Ubigia.Api.Functional.Querying.Tests/**;**/EtAlii.Ubigia.Api.Functional.Scripting.Tests/**
-        #sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
-        #sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-        #sonar.coverage.exclusions="**Tests*.cs"
-        #sonar.coverage.exclusions="*.Functional.*, *.Logical.*, *.Transport.*, *.Infrastructure.*"
-        #sonar.verbose=true
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet build'
+        inputs:
+          command: 'build'
+          projects: |
+            **/*.sln
+            !**/ProjectToExclude.csproj
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Run: dotnet build'
-    inputs:
-      command: 'build'
-      projects: |
-        **/*.sln
-        !**/StorageBrowser.csproj
+# TEST
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet test'
+        inputs:
+          command: test
+          projects: '**/*.Tests.csproj'
+          arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory) /p:CoverletOutputFormat=opencover'
+        continueOnError: true
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Run: dotnet test'
-    inputs:
-      command: test
-      projects: '**/*.Tests.csproj'
-      arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory)'
-    continueOnError: true
-  
-  
-  - task: SonarQubeAnalyze@4
-    displayName: 'SonarQube: analyse'
-  
-  
-  - task: SonarQubePublish@4
-    displayName: 'SonarQube: publish'
-    inputs:
-      pollingTimeoutSec: '300'    
+
+      - task: SonarQubeAnalyze@4
+        displayName: 'SonarQube: analyse'
+
+
+      - task: SonarQubePublish@4
+        displayName: 'SonarQube: publish'
+        inputs:
+          pollingTimeoutSec: '300'
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet push'
+        inputs:
+          command: push
+          packagesToPush: '**/*.nupkg'
+          publishVstsFeed: ${{ variables.publishPackageFeed }}
+        continueOnError: true
