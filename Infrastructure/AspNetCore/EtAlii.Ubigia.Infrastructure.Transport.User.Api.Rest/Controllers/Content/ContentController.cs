@@ -56,7 +56,7 @@
         /// <param name="entryId"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost] 
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
         {
             IActionResult response;
@@ -82,10 +82,15 @@
         /// <param name="contentPartId"></param>
         /// <param name="contentPart"></param>
         /// <returns></returns>
-        [HttpPost]
-        //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId, UInt64 contentPartId, [FromBody] ContentPart contentPart)
-        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] UInt64 contentPartId, [FromBody] ContentPart contentPart)
+        [HttpPut]
+        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] UInt64 contentPartId, [FromBody] ContentPart contentPart)
         {
+            // Remark. We cannot have two post methods at the same time. The hosting 
+            // framework gets confused and does not out of the box know what method to choose.
+            // Even if both have different parameters.
+            // It might not be the best fit to alter this in PUT, but as the WebApi interface
+            // is the least important one this will do for now.
+            // We've got bigger fish to fry.
             IActionResult response;
             try
             {

@@ -14,8 +14,14 @@
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
+            // Remark. We cannot have two post methods at the same time. The hosting 
+            // framework gets confused and does not out of the box know what method to choose.
+            // Even if both have different parameters.
+            // It might not be the best fit to alter this in PUT, but as the WebApi interface
+            // is the least important one this will do for now.
+            // We've got bigger fish to fry.
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
-            await Connection.Client.Post(address, contentDefinitionPart);
+            await Connection.Client.Put(address, contentDefinitionPart);
 
             MarkAsStored(contentDefinitionPart);
         }
