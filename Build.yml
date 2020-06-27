@@ -2,7 +2,6 @@
 variables:
   buildDisplayName: 'EtAlii.Ubigia'
   sonarQubeProject: 'EtAlii.Ubigia'
-  publishPackageFeed: 'EtAlii.Ubigia'
   timeoutInMinutes: 240
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
@@ -25,6 +24,7 @@ jobs:
       #vmImage: 'ubuntu-latest'    # For Docker.
       #vmImage: 'windows-latest'   # For Windows.
     steps:
+    
 # BUILD
       - task: UseDotNet@2
         displayName: 'Use: dotnet SDK 3.1.101'
@@ -80,11 +80,10 @@ jobs:
         inputs:
           pollingTimeoutSec: '300'
 
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet push'
-        inputs:
-          command: push
-          packagesToPush: '**/*.nupkg'
-          publishVstsFeed: ${{ variables.publishPackageFeed }}
-          allowPackageConflicts: true
-        continueOnError: true
+# PUBLISH
+      - task: NuGetAuthenticate@0
+        displayName: 'Run: nuget authenticate'
+
+      - script: dotnet nuget push --api-key AzureArtifacts --skip-duplicate --source ${{ variables.packageFeedUrl }} **/*.nupkg
+        displayName: 'Run: dotnet nuget push'
+
