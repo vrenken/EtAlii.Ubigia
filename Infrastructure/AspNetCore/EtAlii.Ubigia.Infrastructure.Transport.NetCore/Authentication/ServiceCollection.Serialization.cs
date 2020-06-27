@@ -6,7 +6,7 @@
 
 	public static partial class ServiceCollectionExtensions
 	{
-	    public static IServiceCollection AddInfrastructureSerialization(this IServiceCollection services)
+		public static IServiceCollection AddInfrastructureSerialization(this IServiceCollection services)
 		{
 			var serializer = new SerializerFactory().Create();
 
@@ -14,10 +14,16 @@
 			services
 				.AddSingleton(serializer)
 				.AddSingleton((JsonSerializer) serializer);
-				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
 
 			return services;
-
-	    }
+		}
+		
+		public static IMvcBuilder AddInfrastructureSerialization(this IMvcBuilder mvcBuilder)
+		{
+			AddInfrastructureSerialization(mvcBuilder.Services);
+			
+			// We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
+			return mvcBuilder.AddNewtonsoftJson(options => SerializerFactory.Configure(options.SerializerSettings));
+		}
 	}
 }
