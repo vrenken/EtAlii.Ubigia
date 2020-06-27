@@ -32,9 +32,9 @@
 		        .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
 		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
+		        .AddControllers()
 		        .AddInfrastructureSerialization()
-
-		        .AddControllers(options =>
+		        .AddMvcOptions(options =>
 		        {
 			        options.EnableEndpointRouting = false;
 			        options.InputFormatters.Clear();

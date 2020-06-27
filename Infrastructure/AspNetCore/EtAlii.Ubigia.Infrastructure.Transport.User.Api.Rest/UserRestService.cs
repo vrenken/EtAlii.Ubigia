@@ -30,9 +30,9 @@
 		        .AddSingleton(infrastructure.ContentDefinition)
 
 		        .AddAttributeBasedInfrastructureAuthorization(infrastructure)
+		        .AddControllers()
 		        .AddInfrastructureSerialization()
-
-		        .AddControllers(options =>
+		        .AddMvcOptions(options =>
 		        {
 			        options.EnableEndpointRouting = false;
 			        options.InputFormatters.Clear();
