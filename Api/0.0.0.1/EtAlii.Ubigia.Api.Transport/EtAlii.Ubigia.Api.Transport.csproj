@@ -16,6 +16,11 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
+  <PropertyGroup>
+    <!-- We want to have comments on everything public -->
+<!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+<!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
