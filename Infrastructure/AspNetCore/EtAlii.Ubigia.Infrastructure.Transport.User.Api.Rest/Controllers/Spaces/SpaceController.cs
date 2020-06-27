@@ -26,7 +26,12 @@
 			_authenticationTokenConverter = authenticationTokenConverter;
 		}
 
-        // Get all spaces for the specified accountid
+        /// <summary>
+        /// Get all spaces for the specified authenticationToken.
+        /// </summary>
+        /// <param name="stringValue"></param>
+        /// <param name="spaceName"></param>
+        /// <returns></returns>
         [HttpGet]
 	    public IActionResult GetForAuthenticationToken([RequiredFromQuery(Name = "authenticationToken")] string stringValue, [RequiredFromQuery]string spaceName)
 		{

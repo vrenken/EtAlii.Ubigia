@@ -20,7 +20,11 @@
 		    _items = items;
 	    }
 
-		// Get all spaces for the specified accountid
+		/// <summary>
+		/// Get all spaces for the specified accountId.
+		/// </summary>
+		/// <param name="accountId"></param>
+		/// <returns></returns>
 		[HttpGet]
         public IActionResult GetForAccount([RequiredFromQuery]Guid accountId)
         {
