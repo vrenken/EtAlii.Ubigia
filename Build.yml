@@ -51,7 +51,7 @@ jobs:
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
             sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
-            sonar.coverage.exclusions=”**Test**.cs”
+            sonar.coverage.exclusions=”**/*.Tests.cs”
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
@@ -81,9 +81,9 @@ jobs:
           pollingTimeoutSec: '300'
 
 # PUBLISH
-      - task: NuGetAuthenticate@0
-        displayName: 'Run: nuget authenticate'
-
-      - script: dotnet nuget push --api-key AzureArtifacts --skip-duplicate --source ${{ variables.packageFeedUrl }} **/*.nupkg
-        displayName: 'Run: dotnet nuget push'
+#      - task: NuGetAuthenticate@0
+#        displayName: 'Run: nuget authenticate'
+#
+#      - script: dotnet nuget push --api-key AzureArtifacts --skip-duplicate --source ${{ variables.packageFeedUrl }} **/*.nupkg
+#        displayName: 'Run: dotnet nuget push'
 
