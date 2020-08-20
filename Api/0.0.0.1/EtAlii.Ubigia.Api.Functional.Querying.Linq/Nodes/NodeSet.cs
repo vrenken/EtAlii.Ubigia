@@ -10,7 +10,7 @@
         private readonly INodeSaveCommand _nodeSaveCommand;
         private readonly INodeReloadCommand _nodeReloadCommand; 
 
-        protected internal NodeSet(
+        public NodeSet(
             INodeSaveCommand nodeSaveCommand,
             INodeReloadCommand nodeReloadCommand, 
             INodeQueryProviderFactory nodeQueryProviderFactory)

@@ -14,7 +14,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
+    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>

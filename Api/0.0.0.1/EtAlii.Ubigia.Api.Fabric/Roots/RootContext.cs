@@ -13,7 +13,7 @@
 
         private readonly IDataConnection _connection;
 
-        internal RootContext(IDataConnection connection)
+        public RootContext(IDataConnection connection)
         {
             if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;

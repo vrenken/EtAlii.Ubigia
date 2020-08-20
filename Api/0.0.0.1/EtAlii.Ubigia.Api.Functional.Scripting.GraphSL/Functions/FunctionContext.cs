@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         IItemToIdentifierConverter IFunctionContext.ItemToIdentifierConverter => _itemToIdentifierConverter;
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
 
-        internal FunctionContext(
+        public FunctionContext(
             IPathProcessor pathProcessor, 
             IItemToIdentifierConverter itemToIdentifierConverter)
         {

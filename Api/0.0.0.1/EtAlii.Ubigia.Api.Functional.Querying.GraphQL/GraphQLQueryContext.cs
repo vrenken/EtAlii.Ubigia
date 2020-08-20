@@ -15,7 +15,7 @@
         private readonly IDocumentBuilder _builder;
         private readonly IDocumentWriter _documentWriter;
 
-        internal GraphQLQueryContext(
+        public GraphQLQueryContext(
             IDocumentBuilder builder,
             IDocumentWriter documentWriter,
             IDocumentExecuter executor,

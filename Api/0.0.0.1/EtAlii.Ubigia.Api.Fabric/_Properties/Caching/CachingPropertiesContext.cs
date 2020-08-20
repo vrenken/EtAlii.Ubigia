@@ -8,7 +8,7 @@
         private readonly IPropertyCacheRetrieveHandler _retrieveHandler;
         private readonly IPropertyCacheStoreHandler _storeHandler;
 
-        internal CachingPropertiesContext(
+        public CachingPropertiesContext(
             IPropertiesCacheContextProvider contextProvider,
             IPropertyCacheRetrieveHandler retrieveHandler,
             IPropertyCacheStoreHandler storeHandler)

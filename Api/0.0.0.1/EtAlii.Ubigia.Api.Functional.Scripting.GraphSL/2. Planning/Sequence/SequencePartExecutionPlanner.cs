@@ -7,7 +7,7 @@
     {
         private readonly ISelector<SequencePart, Func<object, ISequencePartExecutionPlanner>> _selector;
 
-        internal SequencePartExecutionPlannerSelector(
+        public SequencePartExecutionPlannerSelector(
             IOperatorExecutionPlannerSelector operatorExecutionPlannerSelector,
             ISubjectExecutionPlannerSelector subjectExecutionPlannerSelector,
             ICommentExecutionPlanner commentExecutionPlanner)

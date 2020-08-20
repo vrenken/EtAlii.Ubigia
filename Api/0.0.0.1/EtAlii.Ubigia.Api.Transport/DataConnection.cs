@@ -35,7 +35,7 @@
 
         private ISpaceConnection _connection;
 
-        internal DataConnection(IDataConnectionConfiguration configuration)
+        public DataConnection(IDataConnectionConfiguration configuration)
         {
             Configuration = configuration;
         }

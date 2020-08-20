@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using IGraphSLScriptContext = EtAlii.Ubigia.Api.Functional.Scripting.IGraphSLScriptContext;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     internal class GraphTLContext : IGraphTLContext
     {
@@ -11,7 +11,7 @@
         private readonly ISchemaParserFactory _schemaParserFactory;
         private readonly IGraphSLScriptContext _scriptContext;
 
-        protected internal GraphTLContext(
+        public GraphTLContext(
             ISchemaProcessorFactory schemaProcessorFactory, 
             ISchemaParserFactory schemaParserFactory, 
             IGraphSLScriptContext scriptContext)
