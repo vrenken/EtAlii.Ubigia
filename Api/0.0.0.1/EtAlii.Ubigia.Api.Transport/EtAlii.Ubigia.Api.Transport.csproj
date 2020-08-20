@@ -23,7 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
-    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
+    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />

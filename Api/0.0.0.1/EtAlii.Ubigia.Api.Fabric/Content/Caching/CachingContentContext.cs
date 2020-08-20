@@ -15,7 +15,7 @@
         private readonly IContentCacheStoreHandler _storeHandler;
         private readonly IContentCacheStorePartHandler _storePartHandler;
 
-        internal CachingContentContext(
+        public CachingContentContext(
             IContentCacheContextProvider contextProvider,
             IContentCacheRetrieveDefinitionHandler retrieveDefinitionHandler,
             IContentCacheStoreDefinitionHandler storeDefinitionHandler,

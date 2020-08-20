@@ -8,7 +8,7 @@
         public IChangeTracker ChangeTracker { get; }
         public IIndexSet Indexes { get; }
 
-        internal LinqQueryContext(
+        public LinqQueryContext(
             INodeSet nodes,
             IIndexSet indexes,
             IChangeTracker changeTracker

@@ -11,7 +11,7 @@
     {
         private readonly ISystemConnectionConfiguration _configuration;
 
-        internal SystemConnection(ISystemConnectionConfiguration configuration)
+        public SystemConnection(ISystemConnectionConfiguration configuration)
         {
             _configuration = configuration;
         }

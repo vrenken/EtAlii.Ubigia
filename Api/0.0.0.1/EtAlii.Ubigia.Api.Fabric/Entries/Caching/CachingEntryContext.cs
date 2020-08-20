@@ -12,7 +12,7 @@
         private readonly IEntryCacheStoreHandler _storeHandler;
         private readonly IEntryCacheContextProvider _contextProvider;
 
-        internal CachingEntryContext(
+        public CachingEntryContext(
             IEntryCacheContextProvider contextProvider,
             IEntryCacheChangeHandler changeHandler,
             IEntryCacheGetHandler getHandler,

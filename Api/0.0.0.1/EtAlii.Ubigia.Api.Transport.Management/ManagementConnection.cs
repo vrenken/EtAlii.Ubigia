@@ -28,11 +28,12 @@
 
         private IStorageConnection _connection;
 
-        internal ManagementConnection(IManagementConnectionConfiguration configuration)
+        public ManagementConnection(IManagementConnectionConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
         {
             var account = await Accounts.Get(accountId);
@@ -40,12 +41,14 @@
             return await OpenSpace(account.Name, space.Name);
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Space space)
         {
             var account = await Accounts.Get(space.AccountId);
             return await OpenSpace(account.Name, space.Name);
         }
  
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
             // // TODO: Temporary patch to make downscaling from a management to a data connection possible. 
@@ -68,6 +71,7 @@
             return dataConnection;
         }
 
+        /// <inheritdoc />
         public async Task Open()
         {
             if (IsConnected)
@@ -80,6 +84,8 @@
             _connection = new StorageConnectionFactory().Create(configuration);
             await _connection.Open(Configuration.AccountName, Configuration.Password);
         }
+
+        /// <inheritdoc />
         public async Task Close()
         {
             if (!IsConnected)

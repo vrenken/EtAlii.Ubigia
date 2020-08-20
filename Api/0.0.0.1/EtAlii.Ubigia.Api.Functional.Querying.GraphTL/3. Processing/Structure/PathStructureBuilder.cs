@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         private readonly IGraphSLScriptContext _scriptContext;
 
-        protected PathStructureBuilder(IGraphSLScriptContext scriptContext)
+        public PathStructureBuilder(IGraphSLScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
