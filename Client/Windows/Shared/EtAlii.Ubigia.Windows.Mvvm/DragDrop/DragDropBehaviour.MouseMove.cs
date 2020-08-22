@@ -36,23 +36,19 @@
             /// <param name="sender"></param>
             /// <param name="oldValue"></param>
             /// <param name="newValue"></param>
-            protected override void AdjustEventHandlers(DependencyObject sender, 
-                                                        object oldValue, object newValue)
+            protected override void AdjustEventHandlers(DependencyObject sender, object oldValue, object newValue)
             {
-                var element = sender as UIElement;
-                if (element == null) 
+                if (!(sender is UIElement element)) 
                     return;
 
                 if (oldValue != null)
                 {
-                    element.RemoveHandler(UIElement.MouseMoveEvent, 
-                                          new MouseEventHandler(OnMouseMove));
+                    element.RemoveHandler(UIElement.MouseMoveEvent, new MouseEventHandler(OnMouseMove));
                 }
 
-                if (newValue != null && newValue is bool && (bool)newValue)
+                if (newValue != null && newValue is bool value && value)
                 {
-                    element.AddHandler(UIElement.MouseMoveEvent, 
-                                       new MouseEventHandler(OnMouseMove));
+                    element.AddHandler(UIElement.MouseMoveEvent, new MouseEventHandler(OnMouseMove));
                 }
             }
 
@@ -61,17 +57,13 @@
             /// </summary>
             private void OnMouseMove(object sender, MouseEventArgs e)
             {
-                if (sender is Selector && e.LeftButton == MouseButtonState.Pressed)
+                if (sender is Selector selector && e.LeftButton == MouseButtonState.Pressed)
                 {
-                    var lst = (Selector)sender;
-                    var selectedItem = lst.SelectedItem;
+                    var selectedItem = selector.SelectedItem;
 
                     var dragDropEffect = DragDropEffects.Move;
 
-                    if (dragDropEffect != DragDropEffects.None)
-                    {
-                        DragDrop.DoDragDrop(sender as DependencyObject, selectedItem, dragDropEffect);
-                    }
+                    DragDrop.DoDragDrop(selector, selectedItem, dragDropEffect);
                 }
             }
         }
