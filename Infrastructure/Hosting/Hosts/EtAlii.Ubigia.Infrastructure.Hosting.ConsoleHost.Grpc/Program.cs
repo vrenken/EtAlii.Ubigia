@@ -11,18 +11,14 @@
         /// </summary>
         public static async Task Main()
         {
-            // See: https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.0#call-insecure-grpc-services-with-net-core-client
-            //AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-
-            var applicationConfigurationDetails = await new ConfigurationDetailsParser()
-                .Parse("settings.json");
+            var details = await new ConfigurationDetailsParser().Parse("settings.json");
 
             var applicationConfiguration = new ConfigurationBuilder()
-                .AddConfigurationDetails(applicationConfigurationDetails)
+                .AddConfigurationDetails(details)
                 .Build();
             
             var hostConfiguration = new HostConfigurationBuilder()
-                .Build(applicationConfiguration, applicationConfigurationDetails)
+                .Build(applicationConfiguration, details)
                 .UseConsoleHost();
 
             ConsoleHost.Start(hostConfiguration);

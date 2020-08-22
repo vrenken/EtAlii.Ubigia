@@ -222,15 +222,8 @@
 
 		private JsonWriter CreateJsonWriter(Type type, Stream writeStream)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
-            if (writeStream == null)
-            {
-                throw new ArgumentNullException(nameof(writeStream));
-            }
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (writeStream == null) throw new ArgumentNullException(nameof(writeStream));
 
             return new BsonDataWriter(new BinaryWriter(writeStream));
         }
