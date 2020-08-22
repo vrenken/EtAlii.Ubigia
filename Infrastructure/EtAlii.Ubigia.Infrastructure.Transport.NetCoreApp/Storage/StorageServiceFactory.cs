@@ -13,20 +13,21 @@
 		{
 			var container = new Container();
 
+			container.Register(() => configuration);
 			container.Register<IStorageService, StorageService>();
-
-			string baseFolder;
-			baseFolder = configuration.GetValue<string>(nameof(baseFolder));
-			if (baseFolder == null)
-			{
-				throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(baseFolder)} not set in service configuration.");
-			}
 
 			string name;
 			name = configuration.GetValue<string>(nameof(name));
 			if (name == null)
 			{
 				throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
+			}
+			
+			string baseFolder;
+			baseFolder = configuration.GetValue<string>(nameof(baseFolder));
+			if (baseFolder == null)
+			{
+				throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(baseFolder)} not set in service configuration.");
 			}
 
 			var storageConfiguration = new StorageConfiguration()
