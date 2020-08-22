@@ -24,8 +24,11 @@
             //         "Icon-Logo-Black.ico",
             //         "Icon-Logo-Red.ico");
             // TrayIconHost.Start(hostConfiguration);
-            
-            throw new InvalidOperationException("Tray icon host not implemented currently.");
+
+            if (hostConfiguration != null)
+            {
+	            throw new InvalidOperationException("Tray icon host not implemented currently.");
+            }
         }
 	}
 }
