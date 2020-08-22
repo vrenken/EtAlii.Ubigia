@@ -22,7 +22,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="3.1.7" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
     <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.22" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.23" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
