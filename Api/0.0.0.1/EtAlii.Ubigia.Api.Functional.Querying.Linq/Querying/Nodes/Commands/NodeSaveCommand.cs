@@ -12,7 +12,7 @@
     {
         private readonly IGraphSLScriptContext _scriptContext;
 
-        internal NodeSaveCommand(IGraphSLScriptContext scriptContext)
+        public NodeSaveCommand(IGraphSLScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
