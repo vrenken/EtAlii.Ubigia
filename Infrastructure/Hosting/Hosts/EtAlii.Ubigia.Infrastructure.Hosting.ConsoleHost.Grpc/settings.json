@@ -7,30 +7,28 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
             "Name": "Debug storage",
-            "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
+            "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
           },
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
-            "Address": "http://127.0.0.1"
-          }//,
-          //{
-          //  "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Grpc.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Grpc",
-          //  "IpAddress": "0.0.0.0",
-          //  "Port": "64002"
-          //}
+            "Address": "http://{{HOST:StorageHost@127.0.0.1}}"
+          }
         ],
         "Modules": [
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
             "Name": "Admin",
-            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
-            "Port": "64001",
+            "####Comment": "// Admin should be accessible over localhost only",
+            "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
+            "Port": "{{PORT:AdminPort@64001}}",
+
             "Modules": [
               {
                 "Name": "Api",
                 "Services": [
                   {
+                    "Path": "{{PATH:AdminApi@}}",
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
                   }
                 ]
@@ -40,13 +38,14 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
             "Name": "User",
-            "IpAddress": "0.0.0.0",
-            "Port": "64000",
+            "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
+            "Port": "{{PORT:UserPort@64000}}",
             "Modules": [
               {
                 "Name": "Api",
                 "Services": [
                   {
+                    "Path": "{{PATH:UserApi@}}",
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
                   }
                 ]
