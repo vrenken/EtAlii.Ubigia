@@ -1,6 +1,8 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿// ReSharper disable once CheckNamespace
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 
     public class InProcessInfrastructureHostTestContext : HostTestContext
     {

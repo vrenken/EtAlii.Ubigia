@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore
 {
+    using System;
     using System.Net;
     using System.Net.Http;
+    using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -27,9 +29,13 @@
         {
             if (_credentials != null)
             {
-                var credentials = _credentials.GetCredential(request.RequestUri, "Basic-Authentication");
-                request.Headers.Add("Test-UserName", credentials.UserName);
-                request.Headers.Add("Test-Password", credentials.Password);
+	            var credentials = _credentials.GetCredential(request.RequestUri, "Basic-Authentication");
+
+	            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credentials.UserName + ":" + credentials.Password));
+	            request.Headers.Add("Authorization", "Basic " + encoded);
+
+                //request.Headers.Add("Test-UserName", credentials.UserName)
+                //request.Headers.Add("Test-Password", credentials.Password)
             }
 
             request.Headers.Add("Host-Identifier", _hostIdentifier);

@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 

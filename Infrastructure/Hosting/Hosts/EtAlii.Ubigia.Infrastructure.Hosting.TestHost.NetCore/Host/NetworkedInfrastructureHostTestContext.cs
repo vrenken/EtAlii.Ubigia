@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore
 {
     public class NetworkedInfrastructureHostTestContext : HostTestContext
     {

@@ -32,7 +32,12 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Host\settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

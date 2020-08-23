@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using global::Grpc.Net.Client;
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore
 {
 	using System.Net;
 	using System.Net.Http;

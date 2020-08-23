@@ -7,8 +7,8 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
     public class PowerShellTestContext

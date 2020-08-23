@@ -3,6 +3,7 @@
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using Xunit;
 
 	[Trait("Technology", "NetCore")]

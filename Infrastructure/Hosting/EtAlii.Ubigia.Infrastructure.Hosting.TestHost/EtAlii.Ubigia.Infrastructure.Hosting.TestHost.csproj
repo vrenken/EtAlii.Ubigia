@@ -16,6 +16,7 @@
     <PackageReleaseNotes />
     <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TestHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.23" />
