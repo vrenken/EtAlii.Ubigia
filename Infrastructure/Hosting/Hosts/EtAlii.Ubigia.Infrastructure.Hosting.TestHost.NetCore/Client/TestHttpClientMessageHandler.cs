@@ -21,7 +21,7 @@
             : base(handler)
         {
             _credentials = credentials;
-            _hostIdentifier = hostIdentifier;
+            _hostIdentifier = hostIdentifier; 
             _authenticationToken = authenticationToken;
         }
 
@@ -30,10 +30,8 @@
             if (_credentials != null)
             {
 	            var credentials = _credentials.GetCredential(request.RequestUri, "Basic-Authentication");
-
 	            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credentials.UserName + ":" + credentials.Password));
 	            request.Headers.Add("Authorization", "Basic " + encoded);
-
                 //request.Headers.Add("Test-UserName", credentials.UserName)
                 //request.Headers.Add("Test-Password", credentials.Password)
             }
