@@ -5,20 +5,22 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    internal class TestHttpClientMessageHandler : DelegatingHandler
+    
+    
+    internal class TestHttpClientMessageHandlerOld : DelegatingHandler
     {
         private readonly ICredentials _credentials;
         private readonly string _hostIdentifier;
         private readonly string _authenticationToken;
 
-        public TestHttpClientMessageHandler(
+        public TestHttpClientMessageHandlerOld(
             HttpMessageHandler handler,
             ICredentials credentials, 
             string hostIdentifier, 
             string authenticationToken)
             : base(handler)
         {
-            _credentials = credentials;
+            _credentials = credentials; 
             _hostIdentifier = hostIdentifier;
             _authenticationToken = authenticationToken;
         }
@@ -28,6 +30,8 @@
             if (_credentials != null)
             {
                 var credentials = _credentials.GetCredential(request.RequestUri, "Basic-Authentication");
+            
+                
                 request.Headers.Add("Test-UserName", credentials.UserName);
                 request.Headers.Add("Test-Password", credentials.Password);
             }
