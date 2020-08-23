@@ -12,7 +12,7 @@
     {
         private readonly IGraphSLScriptContext _scriptContext;
         
-        internal NodeReloadCommand(IGraphSLScriptContext scriptContext)
+        public NodeReloadCommand(IGraphSLScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
