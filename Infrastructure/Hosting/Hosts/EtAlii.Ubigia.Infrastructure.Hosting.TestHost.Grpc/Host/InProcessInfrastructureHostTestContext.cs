@@ -1,14 +1,15 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿// ReSharper disable once CheckNamespace
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System;
     using System.Diagnostics;
     using System.Security.Cryptography;
     using EtAlii.xTechnology.Hosting;
-    using Grpc.Core;
-    using Grpc.Core.Logging;
-    using Grpc.Net.Client;
+    using global::Grpc.Core;
+    using global::Grpc.Core.Logging;
+    using global::Grpc.Net.Client;
 
-    public class InProcessInfrastructureHostTestContext : HostTestContext, IHostTestContext
+    public class InProcessInfrastructureHostTestContext : Grpc.HostTestContext, IHostTestContext
     {
         public string HostIdentifier { get; }
 

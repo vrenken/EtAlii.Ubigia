@@ -6,6 +6,7 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Grpc;
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using Grpc.Core;
 	using Grpc.Net.Client;
 	using Xunit;

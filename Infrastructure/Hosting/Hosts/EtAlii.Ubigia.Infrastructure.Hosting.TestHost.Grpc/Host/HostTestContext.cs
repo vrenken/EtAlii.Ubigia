@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
 	using System.Linq;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
-	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 
 	public class HostTestContext : HostTestContextBase<InfrastructureTestHost>

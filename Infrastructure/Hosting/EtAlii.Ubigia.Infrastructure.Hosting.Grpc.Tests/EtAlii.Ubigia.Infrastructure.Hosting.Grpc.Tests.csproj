@@ -17,7 +17,6 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.1.23" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
@@ -30,7 +29,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -38,12 +36,5 @@
     <Folder Include="Data\Entries\UnitTests" />
     <Folder Include="Data\Roots\UnitTests" />
     <Folder Include="Management\UnitTests" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Host\settings.json">
-      <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 </Project>

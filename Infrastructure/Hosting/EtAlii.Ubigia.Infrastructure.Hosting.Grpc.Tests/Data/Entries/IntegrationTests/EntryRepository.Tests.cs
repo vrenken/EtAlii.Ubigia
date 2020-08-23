@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
 
     [Trait("Technology", "Grpc")]

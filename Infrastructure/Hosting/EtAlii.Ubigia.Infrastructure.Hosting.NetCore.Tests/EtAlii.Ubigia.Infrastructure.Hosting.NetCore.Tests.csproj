@@ -32,14 +32,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Host\settings.json">
-      <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 </Project>
