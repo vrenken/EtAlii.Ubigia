@@ -20,14 +20,9 @@
     <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
-      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
-    </PackageReference>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
-    <PackageReference Include="Microsoft.Owin" Version="4.1.0">
-      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
-    </PackageReference>
-
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.1.31" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />

@@ -17,7 +17,7 @@
     <Content Update="settings.*.json">
       <DependentUpon>settings.json</DependentUpon>
     </Content>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.1.24" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.1.31" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
