@@ -46,17 +46,12 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.24" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.1.31" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
-      <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
-    </PackageReference>
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
     <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
-      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
-    </PackageReference>
-    <PackageReference Include="Microsoft.Owin" Version="4.1.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
 
