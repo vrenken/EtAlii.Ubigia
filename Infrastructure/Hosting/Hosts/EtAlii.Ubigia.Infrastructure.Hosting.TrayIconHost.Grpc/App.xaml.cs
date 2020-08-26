@@ -1,6 +1,5 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.Grpc
 {
-	using System;
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
@@ -17,20 +16,15 @@
 	        var applicationConfiguration = new ConfigurationBuilder()
 		        .AddConfigurationDetails(details)
 		        .Build();
-	        
-	        var hostConfiguration = new HostConfigurationBuilder()
-		        .Build(applicationConfiguration, details);
-	        //     .UseTrayIconHost(this,
-            //      "Icon-Logo-White-Shaded.ico",
-            //      "Icon-Logo-Black.ico",
-            //      "Icon-Logo-Red.ico")
 
-            //TrayIconHost.Start(hostConfiguration);
-            
-            if (hostConfiguration != null)
-            {
-	            throw new InvalidOperationException("Tray icon host not implemented currently.");
-            }
+	        var hostConfiguration = new HostConfigurationBuilder()
+		        .Build(applicationConfiguration, details)
+		        .UseTrayIconHost(this,
+			        "Icon-Logo-White-Shaded.ico",
+			        "Icon-Logo-Black.ico",
+			        "Icon-Logo-Red.ico");
+
+            TrayIconHost.Start(hostConfiguration);
         }
     }
 }

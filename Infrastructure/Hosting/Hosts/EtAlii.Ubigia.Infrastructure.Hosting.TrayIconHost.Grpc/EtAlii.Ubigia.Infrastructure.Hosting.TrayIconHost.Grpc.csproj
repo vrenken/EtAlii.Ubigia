@@ -1,8 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <Import Project="$(SolutionDir)\Version.props" />
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ProjectGuid>345a3148-d8cf-4d26-a362-0d3120d13778</ProjectGuid>
+    <ProjectGuid>a98f0e7f-d0d4-46ae-9937-1e2e3b503114</ProjectGuid>
+    <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
@@ -18,10 +20,19 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.1.31" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.1.31" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.7" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Icon-Logo-Black.ico" />
+    <EmbeddedResource Include="Icon-Logo-Black.ico" />
+    <None Remove="Icon-Logo-Red.ico" />
+    <EmbeddedResource Include="Icon-Logo-Red.ico" />
+    <None Remove="Icon-Logo-White-Shaded.ico" />
+    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico" />
   </ItemGroup>
 </Project>

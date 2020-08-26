@@ -15,8 +15,8 @@
 	    public IStorage Storage => _storage;
 	    private IStorage _storage;
 
-		public InfrastructureTestHost(ISystemManager systemManager)
-		    : base(systemManager)
+		public InfrastructureTestHost(IHostConfiguration configuration, ISystemManager systemManager)
+		    : base(configuration, systemManager)
 	    {
 		}
 
