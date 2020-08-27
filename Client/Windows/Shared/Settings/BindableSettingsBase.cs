@@ -16,10 +16,8 @@
 
         protected RegistryKey GetSubKey(string subKeyName)
         {
-            using (var productKey = Registry.CurrentUser.CreateSubKey(_registryKey))
-            {
-                return productKey.CreateSubKey(subKeyName);
-            }
+            using var productKey = Registry.CurrentUser.CreateSubKey(_registryKey);
+            return productKey.CreateSubKey(subKeyName);
         }
 
         protected BindableSettingsBase(string registryKeyName)
