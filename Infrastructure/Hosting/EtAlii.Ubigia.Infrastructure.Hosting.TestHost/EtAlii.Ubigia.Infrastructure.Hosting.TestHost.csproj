@@ -24,6 +24,7 @@
     <PackageReference Include="System.Threading.AccessControl" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Networking\EtAlii.xTechnology.Networking.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 </Project>
