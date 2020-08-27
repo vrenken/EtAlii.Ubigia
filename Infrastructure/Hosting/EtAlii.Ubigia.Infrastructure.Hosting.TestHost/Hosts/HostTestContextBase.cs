@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
@@ -27,6 +28,11 @@
 
         protected HostTestContextBase(string configurationFile) : base(configurationFile)
         {
+        }
+
+        protected override async Task<ConfigurationDetails> ParseForTesting(string configurationFile)
+        {
+		    return await new ConfigurationDetailsParser().ParseForTestingWithFreePortFindingChanges(configurationFile);
         }
     }
 }
