@@ -31,5 +31,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi.Tests\EtAlii.Ubigia.Api.Transport.WebApi.Tests.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems" Label="Shared" />
 </Project>

@@ -32,5 +32,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Grpc.Tests\EtAlii.Ubigia.Api.Transport.Management.Grpc.Tests.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems" Label="Shared" />
 </Project>

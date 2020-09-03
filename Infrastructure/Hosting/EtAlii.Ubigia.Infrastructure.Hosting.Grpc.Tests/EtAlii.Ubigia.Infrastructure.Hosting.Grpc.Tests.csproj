@@ -37,4 +37,9 @@
     <Folder Include="Data\Roots\UnitTests" />
     <Folder Include="Management\UnitTests" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>

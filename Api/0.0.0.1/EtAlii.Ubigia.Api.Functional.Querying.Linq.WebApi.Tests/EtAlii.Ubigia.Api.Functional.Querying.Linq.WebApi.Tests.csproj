@@ -40,5 +40,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.WebApi.Tests\EtAlii.Ubigia.Api.Logical.WebApi.Tests.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems" Label="Shared" />
 </Project>

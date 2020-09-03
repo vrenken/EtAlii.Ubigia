@@ -34,4 +34,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>

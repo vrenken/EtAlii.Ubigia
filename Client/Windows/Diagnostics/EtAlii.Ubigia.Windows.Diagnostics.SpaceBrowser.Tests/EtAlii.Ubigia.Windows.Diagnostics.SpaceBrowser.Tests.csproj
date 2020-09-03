@@ -35,4 +35,10 @@
     <ProjectReference Include="..\SpaceBrowser\EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+
 </Project>
