@@ -5,6 +5,11 @@
     <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+
+    <!-- We want to have comments on everything public -->
+    <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+    <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
+
   </PropertyGroup>
 </Project>
 
