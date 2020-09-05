@@ -1,4 +1,4 @@
-﻿namespace EtAlii.xTechnology.Networking
+﻿﻿namespace EtAlii.xTechnology.Networking
 {
     using System;
 
@@ -30,6 +30,7 @@
                 if(disposing)
                 {
                     // Dispose managed resources.
+                    _memoryMappedFile.Dispose();
                 }
 
                 // Call the appropriate methods to clean up unmanaged resources here. 

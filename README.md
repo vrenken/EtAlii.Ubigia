@@ -1,6 +1,9 @@
 #Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This is the primary repository for the Ubigia information paradigm shift testbed.
 
+In 2012 I've come to the conclusion that the way we think about digital information is fundamentally flawed,
+or better said based on decades of digital progress that has clouded our vision  
+ 
 #Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process

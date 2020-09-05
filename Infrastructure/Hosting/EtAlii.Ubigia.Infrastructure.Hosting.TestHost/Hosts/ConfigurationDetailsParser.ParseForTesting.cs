@@ -39,7 +39,7 @@
 			}
 
 			var neededPorts = (ushort)details.Ports.Count;
-			var freePorts = Ipv4FreePortFinder.Current.Get(12000, neededPorts);
+			var freePorts = Ipv4FreePortFinder.Current.Get(neededPorts);
 			
 			var testPorts = new Dictionary<string, int>();
 

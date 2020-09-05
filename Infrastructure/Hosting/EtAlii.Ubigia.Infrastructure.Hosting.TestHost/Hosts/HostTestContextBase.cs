@@ -1,13 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Hosting;
+	using System;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Networking;
 
-    public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
+	public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
         where TTestHost : class, IInfrastructureTestHostBase
     {
-        /// <summary>
+	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
+
+	    /// <summary>
         /// The details of the service current under test. 
         /// </summary>
         public ServiceDetails ServiceDetails { get; protected set; }
@@ -30,9 +34,26 @@
         {
         }
 
+        protected override void StartExclusive()
+	    {
+		    // We want to start only one test hosting at the same time.
+		    using (var _ = new SystemSafeExecutionScope(_uniqueId))
+		    {
+			    var task = Task.Run(async () => await StartInternal());
+			    task.Wait();
+		    }
+	    }
+	    
         protected override async Task<ConfigurationDetails> ParseForTesting(string configurationFile)
         {
-		    return await new ConfigurationDetailsParser().ParseForTestingWithFreePortFindingChanges(configurationFile);
+	        try
+	        {
+		        return await new ConfigurationDetailsParser().ParseForTestingWithFreePortFindingChanges(configurationFile);
+	        }
+	        catch (Exception e)
+	        {
+		        throw new InvalidOperationException("Something fishy happened during test preparation.", e);
+	        }
         }
     }
 }

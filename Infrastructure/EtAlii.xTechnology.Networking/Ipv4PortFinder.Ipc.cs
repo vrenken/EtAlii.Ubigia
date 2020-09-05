@@ -1,21 +1,21 @@
-﻿namespace EtAlii.xTechnology.Networking
+﻿﻿namespace EtAlii.xTechnology.Networking
 {
+    using System;
     using System.IO.MemoryMappedFiles;
 
     public sealed partial class Ipv4FreePortFinder
     {
+        private static readonly Guid UniqueId = Guid.Parse("0EFB08CD-7EBF-4D6E-9D91-D73C3CA98CAC"); 
+        
         private readonly string _memoryMappedIpcFileName;
         private readonly int _fileSize; 
         private readonly int _structureSize;
+        private readonly MemoryMappedFile _memoryMappedFile;
 
         private PortRegistration[] GetPortRegistrations()
         {
-            // Create the memory-mapped file.
-            using var memoryMappedFile = MemoryMappedFile.CreateOrOpen(_memoryMappedIpcFileName, _fileSize);
-
-            // Create a random access view, from the 256th megabyte (the offset)
-            // to the 768th megabyte (the offset plus length).
-            using var accessor = memoryMappedFile.CreateViewAccessor();
+            // Create a random access view.
+            using var accessor = _memoryMappedFile.CreateViewAccessor();
 
             accessor.Read(0, out short numberOfRegistrations);
 
@@ -26,19 +26,16 @@
 
         private void SetPortRegistrations(PortRegistration[] registrations)
         {
-            // Create the memory-mapped file.
-            using var memoryMappedFile = MemoryMappedFile.CreateOrOpen(_memoryMappedIpcFileName, _fileSize);
-
-            // Create a random access view, from the 256th megabyte (the offset)
-            // to the 768th megabyte (the offset plus length).
-            using var accessor = memoryMappedFile.CreateViewAccessor();
+            // Create a random access view.
+            using var accessor = _memoryMappedFile.CreateViewAccessor();
 
             var numberOfRegistrations = (short)registrations.Length;
             
             accessor.Write(0, numberOfRegistrations);
 
             accessor.WriteArray(2, registrations, 0, numberOfRegistrations);
+            
+            accessor.Flush();
         }
-
     }
 }
