@@ -47,11 +47,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
             var locationRoot = await context.Roots.Get("Location");
-            string continent = "Europe";
-            string country = "NL";
-            string region = "Overijssel";
-            string city = "Enschede";
-            string location = "Helmerhoek";
+            var continent = "Europe";
+            var country = "NL";
+            var region = "Overijssel";
+            var city = "Enschede";
+            var location = "Helmerhoek";
 
             var scope = new ExecutionScope(false);
 
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task AddRegions(ILogicalContext context, IEditableEntry countryEntry, int regions)
         {
-            for (int i = 1; i <= regions; i++)
+            for (var i = 1; i <= regions; i++)
             {
                 await CreateHierarchy(context, countryEntry, $"Overijssel_{i:00}");
             }
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             var scope = new ExecutionScope(false);
 
-            IEditableEntry result = parent;
+            var result = parent;
             foreach (var element in hierarchy)
             {
                 result = (IEditableEntry)await context.Nodes.Add(result.Id, element, scope);
