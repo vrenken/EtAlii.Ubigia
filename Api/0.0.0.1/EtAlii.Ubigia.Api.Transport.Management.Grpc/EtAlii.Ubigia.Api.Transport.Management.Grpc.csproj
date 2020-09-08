@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>10e04580-52ab-44de-83d8-8272c8bf1923</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <Description>This library provides a Grpc specific transport management layer for the higher level Api functionalities.</Description>

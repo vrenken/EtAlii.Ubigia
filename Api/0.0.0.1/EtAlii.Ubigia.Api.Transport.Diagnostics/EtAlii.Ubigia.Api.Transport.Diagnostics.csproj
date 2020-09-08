@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>fda16bcf-17a2-4273-b5d8-c76d17d2186a</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <Description>This library provides client-transport agnostic diagnostic functionalities. It is consumed by all transport specific packages.</Description>

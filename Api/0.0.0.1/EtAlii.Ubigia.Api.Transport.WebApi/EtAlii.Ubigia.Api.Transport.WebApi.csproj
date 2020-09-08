@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>ef86703d-3523-4afe-817f-76279e6edbe9</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <Description>This library provides a WebApi specific transport layer for the higher level Api functionalities.</Description>

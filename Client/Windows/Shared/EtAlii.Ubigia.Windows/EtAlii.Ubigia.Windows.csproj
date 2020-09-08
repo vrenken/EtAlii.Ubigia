@@ -1,17 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
 
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
     <Description>StorageBrowser</Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>38ff565d-898f-4f18-81e3-edae23e60598</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />

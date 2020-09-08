@@ -1,14 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
+
     <Description>Unit test project</Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>4d4aefe0-9be6-4d53-9b01-318f9db08c38</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />

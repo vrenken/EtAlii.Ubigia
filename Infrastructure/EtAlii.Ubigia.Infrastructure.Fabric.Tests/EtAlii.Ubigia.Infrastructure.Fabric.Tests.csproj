@@ -1,16 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
 
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
     <Description>Unit test project</Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>8021144c-1ae4-46b2-ad45-a65f9a8ebfa5</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
@@ -21,7 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.4" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.7" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.62" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="xunit" Version="2.4.1" />

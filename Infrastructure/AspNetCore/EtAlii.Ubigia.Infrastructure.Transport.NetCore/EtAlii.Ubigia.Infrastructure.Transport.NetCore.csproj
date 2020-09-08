@@ -1,15 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
+
     <Description>
     </Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>8131bac6-52a8-4ef0-9cbb-522025fe161f</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
@@ -22,7 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="3.1.7" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
     <PackageReference Include="System.Memory" Version="4.5.4" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.34" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Rest" Version="1.1.35" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />

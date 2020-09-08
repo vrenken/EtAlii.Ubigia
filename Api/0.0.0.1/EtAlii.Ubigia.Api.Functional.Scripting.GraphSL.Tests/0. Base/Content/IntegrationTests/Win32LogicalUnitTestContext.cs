@@ -4,7 +4,7 @@
     using System.IO;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Networking;
+    using EtAlii.xTechnology.Hosting;
 
     public class Win32LogicalUnitTestContext : IDisposable
     {

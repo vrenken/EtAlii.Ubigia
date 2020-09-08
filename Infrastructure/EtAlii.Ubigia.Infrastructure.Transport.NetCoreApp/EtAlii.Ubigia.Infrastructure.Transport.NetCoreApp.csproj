@@ -1,16 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
     <Description>
     </Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>a312cfe9-826e-4f12-833d-61ef21dc9c7b</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
@@ -18,7 +12,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.NetCoreApp" Version="1.0.56.4" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.NetCoreApp" Version="1.0.56.7" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />

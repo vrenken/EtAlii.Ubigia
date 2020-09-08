@@ -1,16 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
+
     <Description>
     </Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
     <ProjectGuid>f830994b-391f-465a-ab3a-9e1fbdacbe8c</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
@@ -18,7 +13,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.34" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.1.35" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
