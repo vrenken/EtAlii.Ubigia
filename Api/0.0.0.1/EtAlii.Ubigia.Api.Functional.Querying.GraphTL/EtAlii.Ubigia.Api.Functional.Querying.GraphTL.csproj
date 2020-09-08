@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <Import Project="$(SolutionDir)\Version.props" />
-
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <Authors>Peter Vrenken</Authors>
-        <Product>Ubigia</Product>
-        <Company>EtAlii</Company>
-        <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
         <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
         <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
         <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>

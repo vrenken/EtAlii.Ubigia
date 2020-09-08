@@ -1,15 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Import Project="$(SolutionDir)\Version.props" />
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <Authors>Peter Vrenken</Authors>
-    <Product>Ubigia</Product>
-    <Company>EtAlii</Company>
-    <Description></Description>
-    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+
+    <Description />
+
     <ProjectGuid>dec3af7a-4ded-4985-a3b9-fec93f30263d</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
@@ -18,7 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.4" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.7" />
     <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
