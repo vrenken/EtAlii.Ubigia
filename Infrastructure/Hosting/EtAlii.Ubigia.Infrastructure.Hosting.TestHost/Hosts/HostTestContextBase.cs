@@ -1,14 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
-	using System;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.xTechnology.Hosting;
 
 	public abstract partial class HostTestContextBase<TTestHost> : HostTestContext<TTestHost>
         where TTestHost : class, IInfrastructureTestHostBase
     {
-	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
-
 	    /// <summary>
         /// The details of the service current under test. 
         /// </summary>
