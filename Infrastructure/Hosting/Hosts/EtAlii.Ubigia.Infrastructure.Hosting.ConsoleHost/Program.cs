@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Grpc
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
