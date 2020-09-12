@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
+    using System.Text;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
@@ -15,17 +16,36 @@
             Storage = storage;
         }
 
-        public override Task Start()
+        public override async Task Start()
         {
-            // Handle Start.
-            return Task.CompletedTask;
+            Status.Title = "Ubigia infrastructure in-memory storage subsystem";
+
+            Status.Description = "Starting...";
+            Status.Summary = "Starting Ubigia in-memory storage subsystem";
+
+            await base.Start();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("All OK. Ubigia in-memory storage subsystem is operational.");
+
+            Status.Description = "Running";
+            Status.Summary = sb.ToString();
         }
 
-        public override Task Stop()
+        public override async Task Stop()
         {
-            // Handle Stop.
-            return Task.CompletedTask;
+            Status.Description = "Stopping...";
+            Status.Summary = "Stopping Ubigia in-memory storage subsystem";
+
+            await base.Stop();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Finished stopping Ubigia in-memory storage subsystem.");
+
+            Status.Description = "Stopped";
+            Status.Summary = sb.ToString();
         }
+
         //
         // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
         // {

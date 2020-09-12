@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System.Linq;
+	using System.Text;
+	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using EtAlii.xTechnology.Hosting;
 	using EtAlii.xTechnology.Hosting.Service.Rest;
@@ -12,6 +14,38 @@
     {
         public UserRestService(IConfigurationSection configuration) : base(configuration)
         {
+        }
+
+        public override async Task Start()
+        {
+	        Status.Title = "Ubigia infrastructure user REST access";
+
+	        Status.Description = "Starting...";
+	        Status.Summary = "Starting Ubigia user REST services";
+
+	        await base.Start();
+
+	        var sb = new StringBuilder();
+	        sb.AppendLine("All OK. Ubigia user REST services are available on the address specified below.");
+	        sb.AppendLine($"Address: {HostString}{PathString}");
+
+	        Status.Description = "Running";
+	        Status.Summary = sb.ToString();
+        }
+
+        public override async Task Stop()
+        {
+	        Status.Description = "Stopping...";
+	        Status.Summary = "Stopping Ubigia user REST services";
+
+	        await base.Stop();
+
+	        var sb = new StringBuilder();
+	        sb.AppendLine("Finished providing Ubigia user REST services on the address specified below.");
+	        sb.AppendLine($"Address: {HostString}{PathString}");
+
+	        Status.Description = "Stopped";
+	        Status.Summary = sb.ToString();
         }
 
         protected override void ConfigureServices(IServiceCollection services)

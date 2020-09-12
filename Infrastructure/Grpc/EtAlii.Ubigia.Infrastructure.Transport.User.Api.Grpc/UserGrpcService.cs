@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
 	using System.Linq;
+	using System.Text;
+	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
 	using EtAlii.xTechnology.Hosting.Service.Grpc;
 	using EtAlii.xTechnology.MicroContainer;
@@ -15,8 +17,39 @@
 	    {
 	    }
 
+	    public override async Task Start()
+	    {
+		    Status.Title = "Ubigia infrastructure user gRPC access";
 
-        protected override void ConfigureServices(IServiceCollection services)
+		    Status.Description = "Starting...";
+		    Status.Summary = "Starting Ubigia user gRPC services";
+
+		    await base.Start();
+
+		    var sb = new StringBuilder();
+		    sb.AppendLine("All OK. Ubigia user gRPC services are available on the address specified below.");
+		    sb.AppendLine($"Address: {HostString}{PathString}");
+
+		    Status.Description = "Running";
+		    Status.Summary = sb.ToString();
+	    }
+
+	    public override async Task Stop()
+	    {
+		    Status.Description = "Stopping...";
+		    Status.Summary = "Stopping Ubigia user gRPC services";
+
+		    await base.Stop();
+
+		    var sb = new StringBuilder();
+		    sb.AppendLine("Finished providing Ubigia user gRPC services on the address specified below.");
+		    sb.AppendLine($"Address: {HostString}{PathString}");
+
+		    Status.Description = "Stopped";
+		    Status.Summary = sb.ToString();
+	    }
+
+	    protected override void ConfigureServices(IServiceCollection services)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
