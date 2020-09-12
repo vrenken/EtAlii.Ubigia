@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
 
     internal class PropertyCacheProvider : IPropertyCacheProvider
@@ -8,7 +9,7 @@
 
         public PropertyCacheProvider()
         {
-            Cache = new Dictionary<Identifier, PropertyDictionary>(100);
+            Cache = new ConcurrentDictionary<Identifier, PropertyDictionary>();
         }
     }
 }
