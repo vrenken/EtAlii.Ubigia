@@ -17,9 +17,9 @@
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.8.1">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
-    <PackageReference Include="Fluent.Ribbon" Version="7.1.0" />
+    <PackageReference Include="Fluent.Ribbon" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26" />
-    <PackageReference Include="ControlzEx" Version="4.3.0" />
+    <PackageReference Include="ControlzEx" Version="4.3.2" />
     <PackageReference Include="Northwoods.GoWPF" Version="3.0.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
