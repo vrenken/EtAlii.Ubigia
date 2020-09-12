@@ -14,7 +14,7 @@
             out bool connectionSucceeded,
             IDataConnectionExtension[] configurationExtensions = null)
         {
-            configurationExtensions = configurationExtensions ?? Array.Empty<IDataConnectionExtension>();
+            configurationExtensions ??= Array.Empty<IDataConnectionExtension>();
             
             var passwordBox = window.PasswordBox;
             var password = passwordBox.Password;
