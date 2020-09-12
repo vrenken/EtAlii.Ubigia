@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
 {
+    using System.Text;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
@@ -8,23 +9,48 @@
     public class StorageService : ServiceBase, IStorageService
     {
         public IStorage Storage { get; }
+        private readonly string _baseFolder;
 
         public StorageService(IConfigurationSection configurationSection, IStorage storage) 
             : base(configurationSection)
         {
             Storage = storage;
+
+            string baseFolder;
+            baseFolder = configurationSection.GetValue<string>(nameof(baseFolder));
+            _baseFolder = baseFolder;
         }
 
-        public override Task Start()
+        public override async Task Start()
         {
-            // Handle Start.
-            return Task.CompletedTask;
+            Status.Title = "Ubigia infrastructure NTFS storage subsystem";
+
+            Status.Description = "Starting...";
+            Status.Summary = "Starting Ubigia NTFS storage subsystem";
+
+            await base.Start();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("All OK. Ubigia NTFS storage subsystem is operational using the folder specified below.");
+            sb.AppendLine($"Base folder: {_baseFolder}");
+
+            Status.Description = "Running";
+            Status.Summary = sb.ToString();
         }
 
-        public override Task Stop()
+        public override async Task Stop()
         {
-            // Handle Stop.
-            return Task.CompletedTask;
+            Status.Description = "Stopping...";
+            Status.Summary = "Stopping Ubigia NTFS storage subsystem";
+
+            await base.Stop();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Finished stopping Ubigia NTFS storage subsystem from the folder specified below.");
+            sb.AppendLine($"Base folder: {_baseFolder}");
+
+            Status.Description = "Stopped";
+            Status.Summary = sb.ToString();
         }
         
         // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)

@@ -2,6 +2,8 @@
 {
     using System.Diagnostics;
     using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using EtAlii.xTechnology.Hosting;
@@ -17,6 +19,38 @@
             : base(configuration)
         {
             _configurationDetails = configurationDetails;
+        }
+
+        public override async Task Start()
+        {
+            Status.Title = "Ubigia infrastructure admin SignalR access";
+
+            Status.Description = "Starting...";
+            Status.Summary = "Starting Ubigia admin SignalR services";
+
+            await base.Start();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("All OK. Ubigia admin SignalR services are available on the address specified below.");
+            sb.AppendLine($"Address: {HostString}{PathString}");
+
+            Status.Description = "Running";
+            Status.Summary = sb.ToString();
+        }
+
+        public override async Task Stop()
+        {
+            Status.Description = "Stopping...";
+            Status.Summary = "Stopping Ubigia admin SignalR services";
+
+            await base.Stop();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Finished providing Ubigia admin SignalR services on the address specified below.");
+            sb.AppendLine($"Address: {HostString}{PathString}");
+
+            Status.Description = "Stopped";
+            Status.Summary = sb.ToString();
         }
 
         protected override void ConfigureServices(IServiceCollection services)

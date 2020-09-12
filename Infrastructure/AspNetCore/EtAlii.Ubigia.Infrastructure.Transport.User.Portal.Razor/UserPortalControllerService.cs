@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor
 {
+    using System.Text;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.Service.Rest;
     using Microsoft.AspNetCore.Builder;
@@ -10,6 +12,38 @@
     {
         public UserPortalControllerService(IConfigurationSection configuration) : base(configuration)
         {
+        }
+
+        public override async Task Start()
+        {
+            Status.Title = "Ubigia infrastructure user portal";
+
+            Status.Description = "Starting...";
+            Status.Summary = "Starting Ubigia user portal";
+
+            await base.Start();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("All OK. Ubigia user portal is now available on the address specified below.");
+            sb.AppendLine($"Address: {HostString}{PathString}");
+
+            Status.Description = "Running";
+            Status.Summary = sb.ToString();
+        }
+
+        public override async Task Stop()
+        {
+            Status.Description = "Stopping...";
+            Status.Summary = "Stopping Ubigia user portal";
+
+            await base.Stop();
+
+            var sb = new StringBuilder();
+            sb.AppendLine("Finished providing Ubigia user portal on the address specified below.");
+            sb.AppendLine($"Address: {HostString}{PathString}");
+
+            Status.Description = "Stopped";
+            Status.Summary = sb.ToString();
         }
 
         protected override void ConfigureServices(IServiceCollection services)
