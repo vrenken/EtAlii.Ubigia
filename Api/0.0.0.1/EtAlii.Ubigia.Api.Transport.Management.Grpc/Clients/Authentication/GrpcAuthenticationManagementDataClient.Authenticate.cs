@@ -45,7 +45,7 @@
                     //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
                     
-                    authenticationToken= call
+                    authenticationToken = call
                         .GetTrailers()
                         .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
                 }
