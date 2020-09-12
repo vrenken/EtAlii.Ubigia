@@ -33,7 +33,7 @@
             Background="Transparent"
             EnableLabelEdit="False"
             ShowTabItemContextMenu="False"
-            ShowTabListContextMenu="False"
+            TabListContextMenuOptions="Default"
             CloseButtonType="Hide"
             SelectedItem="{Binding ElementName=Root, Path=SelectedItem}"
             TabStripPlacement="Left"
