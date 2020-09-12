@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
 
     internal class EntryCacheProvider : IEntryCacheProvider
@@ -8,7 +9,7 @@
 
         public EntryCacheProvider()
         {
-            Cache = new Dictionary<Identifier, IReadOnlyEntry>(100);
+            Cache = new ConcurrentDictionary<Identifier, IReadOnlyEntry>();
         }
     }
 }
