@@ -19,7 +19,7 @@
         public App()
         {
             //Register Syncfusion license
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTYzNDQ0QDMxMzcyZTMzMmUzMG5BMERhOW94NHBzZTVtNnpyOHJWWm95eDlJVi9YYURNS1VIUlpReGU4ZTA9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzE2NTUxQDMxMzgyZTMyMmUzMEtFNXoxRkpIeUNoK1FDa3JobnFJVVlpcTVzRzczeDdyKzVDb3hMTThKejA9");
             
             if (!Debugger.IsAttached)
             {

@@ -23,10 +23,10 @@
     <PackageReference Include="Northwoods.GoWPF" Version="3.0.1">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Syncfusion.Grid.WPF" Version="18.1.0.57" />
-    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="18.1.0.57" />
-    <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.1.0.57" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.1.0.57" />
+    <PackageReference Include="Syncfusion.Grid.WPF" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.2.0.57" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.2.0.57" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.13" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
