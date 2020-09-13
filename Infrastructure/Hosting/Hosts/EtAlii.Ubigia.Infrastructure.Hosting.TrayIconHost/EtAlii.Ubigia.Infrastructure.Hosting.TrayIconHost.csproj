@@ -5,6 +5,7 @@
     <ProjectGuid>a98f0e7f-d0d4-46ae-9937-1e2e3b503114</ProjectGuid>
     <UseWPF>true</UseWPF>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="settings.json" />
@@ -17,6 +18,9 @@
     <Content Update="settings.*.json">
       <DependentUpon>settings.json</DependentUpon>
     </Content>
+    <None Update="settings.All.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.1.40" />

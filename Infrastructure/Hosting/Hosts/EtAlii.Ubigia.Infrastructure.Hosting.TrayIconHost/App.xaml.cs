@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.Grpc
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
