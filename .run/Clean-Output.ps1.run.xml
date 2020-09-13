@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Clean-Output.ps1" type="PowerShellRunType" factoryName="PowerShell" scriptUrl="$PROJECT_DIR$/Clean-Output.ps1" workingDirectory="$SolutionDir$">
+    <method v="2" />
+  </configuration>
+</component>
