@@ -418,6 +418,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.csproj", "{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.DockerHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost\EtAlii.Ubigia.Infrastructure.Hosting.DockerHost.csproj", "{3C764E54-0A6E-4FCD-85B4-E407283BB802}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -1891,6 +1893,18 @@ Global
 		{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}.Release|x64.Build.0 = Release|Any CPU
 		{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}.Release|x86.ActiveCfg = Release|Any CPU
 		{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6}.Release|x86.Build.0 = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|x64.Build.0 = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Debug|x86.Build.0 = Debug|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|x64.ActiveCfg = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|x64.Build.0 = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|x86.ActiveCfg = Release|Any CPU
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2062,6 +2076,7 @@ Global
 		{D2D0023C-7EDF-47F6-9542-76E1021FA2D5} = {27CC2941-9A82-44BF-90D7-2D55BCFFA7FA}
 		{73723C36-7C9E-4C82-A5D1-2CC627FAB6F2} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{11F4CE6F-7F97-4CF1-A7EA-FA668A1720C6} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
+		{3C764E54-0A6E-4FCD-85B4-E407283BB802} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
