@@ -1,29 +1,11 @@
-#Stage 1
-#FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
-#
-#WORKDIR /app
-#
-#COPY *.csproj ./
-#
-#RUN dotnet restore
-#
-#COPY . ./
-#
-#RUN dotnet publish -c Release -o out
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build-env
+WORKDIR /app
 
-# Stage 2
+COPY . ./
+RUN dotnet publish Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost -c Release -o out
+
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+WORKDIR /app
+COPY --from=build-env /app/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/out .
 
-RUN apt-get update && apt-get install -y supervisor && apt-get install -y openssh-server && echo "root:Root123!" | chpasswd 
-
-RUN mkdir -p /var/log/supervisor /run/sshd
-
-COPY sshd_config /etc/ssh/
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-#WORKDIR /app
-#COPY --from=build /app/out .
-
-EXPOSE 64000 64001 63999
-
-ENTRYPOINT ["/usr/bin/supervisord"]
+ENTRYPOINT ["dotnet", "EtAlii.Ubigia.Infrastructure.Hosting.DockerHost.dll"]
