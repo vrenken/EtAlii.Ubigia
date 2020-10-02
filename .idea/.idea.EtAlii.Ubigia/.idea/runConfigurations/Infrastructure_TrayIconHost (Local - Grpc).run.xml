@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Infrastructure\TrayIconHost (Local - Grpc)" type="DotNetProject" factoryName=".NET Project" folderName="Hosting">
+  <configuration default="false" name="Infrastructure\TrayIconHost (Local - Grpc)" type="DotNetProject" factoryName=".NET Project">
     <option name="EXE_PATH" value="$PROJECT_DIR$/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost/bin/Debug/netcoreapp3.1/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.dll" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost/bin/Debug/netcoreapp3.1" />

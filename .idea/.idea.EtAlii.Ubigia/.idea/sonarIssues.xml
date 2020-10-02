@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Querying.Linq/Querying/Nodes/NodeQueryingException.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests/EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests.csproj">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Querying.NET47.SignalR.Tests/EtAlii.Ubigia.Api.Functional.Querying.NET47.SignalR.Tests.csproj">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Querying.NET47.SignalR.Tests/obj/Debug/netcoreapp2.1/EtAlii.Ubigia.Api.Functional.Querying.NET47.SignalR.Tests.Program.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Querying.Tests/Linq/IntegrationTests/LinqQueryContext.Nodes.ToArray.Tests.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/CommentParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/INodeFinder.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/Lp.DebuggerExtensions.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/NodeFinder.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/Operators/AddOperatorParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/Operators/OperatorsParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/ScriptParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/ScriptParserException.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/Subjects/Paths/NonRootedPathSubjectParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/1. Parsing/Subjects/Roots/RootDefinitionSubjectParser.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/4. Processing/Operators/Assign/ToRoot/AssignRootDefinitionToRootOperatorSubProcessor.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL/4. Processing/ScriptProcessor.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests/1. Logical/IntegrationTests/Win32LogicalUnitTestContext.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests/1. Logical/UnitTests/Win32ContentManager.Tests.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests/EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests.csproj">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Logical.Tests/Compose/UnitTests/HierarchicalRelationDuplicator.Tests.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Logical/Assignment/AssignmentException.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Logical/Compose/GraphComposeException.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Management.Tests/IntegrationTests/ManagementConnection.System.Tests.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore/Data/Clients/UriConstant.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Client/Windows/Diagnostics/EtAlii.Ubigia.Diagnostics.StorageBrowser/ViewModels/SpacesViewModel.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Client/Windows/Diagnostics/SpaceBrowser/Textual/CSharp/UnitsOfWork/CompileCodeUnitOfworkHandler.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Client/Windows/Shared/Shared/App.cs">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/EtAlii.Ubigia.sln">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

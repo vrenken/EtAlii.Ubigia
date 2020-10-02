@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="965354b4-7f42-44d2-941a-fd7fa676a5b7" name="etalii.ubigia.infrastructure.dockerhost" url="http://127.0.0.2">
+        <fileTransfer rootFolder="/root" accessType="SFTP" host="127.0.0.2" port="63999" sshConfigId="cb9e7e04-a964-4fd3-80c9-c27de6b4ad38" sshConfig="root@127.0.0.2:63999 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
