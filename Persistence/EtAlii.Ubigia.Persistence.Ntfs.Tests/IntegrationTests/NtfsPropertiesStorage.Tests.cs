@@ -29,7 +29,7 @@
 
             var now = DateTime.Now;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 Storage.Properties.Store(containerIds[i], properties[i]);
@@ -65,7 +65,7 @@
             var containerIds = StorageTestHelper.CreateSimpleContainerIdentifiers(count);
             var properties = TestPropertiesFactory.CreateSimple(count);
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 Storage.Properties.Store(containerIds[i], properties[i]);
@@ -73,7 +73,7 @@
 
             var now = DateTime.Now;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 var retrievedProperties = Storage.Properties.Retrieve(containerIds[i]);

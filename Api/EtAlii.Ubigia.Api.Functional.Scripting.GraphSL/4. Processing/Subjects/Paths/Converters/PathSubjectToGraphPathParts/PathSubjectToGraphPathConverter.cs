@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             //var result = new List<GraphPathPart>()
 
-            for (int i = 0; i < pathSubject.Parts.Length; i++)
+            for (var i = 0; i < pathSubject.Parts.Length; i++)
             {
                 var part = pathSubject.Parts[i];
                 var previousPart = i > 0 ? pathSubject.Parts[i - 1] : null;

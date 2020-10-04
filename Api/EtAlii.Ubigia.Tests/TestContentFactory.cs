@@ -89,7 +89,7 @@
         public byte[][] CreateData(int min, int max, int count)
         {
             var result = new List<byte[]>();
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var size = (ulong)_random.Next(min, max);
                 var data = new byte[size];

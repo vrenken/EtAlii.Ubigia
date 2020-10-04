@@ -12,7 +12,13 @@
         [Fact]
         public void Profiler_Create_Root()
         {
+            // Arrange.
+            
+            // Act.
             var profiler = new Profiler(ProfilingAspects.Functional.Context);
+            
+            // Assert.
+            Assert.NotNull(profiler);
         }
 
         [Fact]
@@ -25,6 +31,7 @@
             var profiler = new Profiler(root, ProfilingAspects.Functional.ScriptProcessor);
 
             // Assert.
+            Assert.NotNull(profiler);
         }
 
         [Fact]
@@ -82,6 +89,7 @@
             profiler2.Begin("Execution");
 
             // Assert.
+            Assert.NotNull(profile);
             Assert.Single(results);
             Assert.Single(results[0].Children);
         }

@@ -10,7 +10,7 @@
 			relativeAddress ??= string.Empty;
 
 			var queryComponents = new List<string>();
-			for (int i = 0; i < parameters.Length; i += 2)
+			for (var i = 0; i < parameters.Length; i += 2)
 			{
 				var key = parameters[i];
 				if (i + 1 < parameters.Length)

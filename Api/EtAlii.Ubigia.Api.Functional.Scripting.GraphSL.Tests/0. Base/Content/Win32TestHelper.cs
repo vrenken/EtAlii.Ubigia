@@ -36,7 +36,7 @@
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetAssembly(typeof(Win32TestHelper));
             // Get the stream (embedded resource) - be sure to wrap in a using block
-            using (Stream stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.TestImage_01.jpg"))
+            using (var stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.TestImage_01.jpg"))
             {
                 var bytes = new byte[stream.Length];
                 stream.Read(bytes, 0, (int)stream.Length);
@@ -50,14 +50,14 @@
 
             if (depth > 0)
             {
-                for (int folder = 0; folder < foldersPerFolder; folder++)
+                for (var folder = 0; folder < foldersPerFolder; folder++)
                 {
                     var subFolder = Path.Combine(folderName, Guid.NewGuid().ToString());
                     SaveTestFolder(subFolder, depth - 1, foldersPerFolder, filesPerFolder, fileMinSize, fileMaxSize);
                 }
             }
 
-            for (int file = 0; file < filesPerFolder; file++)
+            for (var file = 0; file < filesPerFolder; file++)
             {
                 var fileName = $"{Guid.NewGuid()}.bin";
                 fileName = Path.Combine(folderName, fileName);
@@ -73,7 +73,7 @@
 
             using (var stream = File.OpenWrite(fileName))
             {
-                for (int megaByte = 0; megaByte < megaBytes; megaByte++)
+                for (var megaByte = 0; megaByte < megaBytes; megaByte++)
                 {
                     rnd.NextBytes(data);
                     stream.Write(data, 0, bytesInMegaByte);
@@ -88,10 +88,10 @@
             var rnd = new Random();
             var megaBytes = megaBytesMin + rnd.NextDouble() * (megaBytesMax - megaBytesMin);
 
-            int kiloBytes = (int)(megaBytes / 1024f);
+            var kiloBytes = (int)(megaBytes / 1024f);
             using (var stream = File.OpenWrite(fileName))
             {
-                for (int kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
+                for (var kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
                 {
                     rnd.NextBytes(data);
                     stream.Write(data, 0, bytesInKiloByte);
@@ -104,7 +104,7 @@
             var expectedBytes = File.ReadAllBytes(expectedFile);
             var actualBytes = File.ReadAllBytes(actualFile);
             Assert.Equal(expectedBytes.Length, actualBytes.Length);
-            for (int i = 0; i < expectedBytes.Length; i++)
+            for (var i = 0; i < expectedBytes.Length; i++)
             {
                 Assert.Equal(expectedBytes[i], actualBytes[i]);
             }

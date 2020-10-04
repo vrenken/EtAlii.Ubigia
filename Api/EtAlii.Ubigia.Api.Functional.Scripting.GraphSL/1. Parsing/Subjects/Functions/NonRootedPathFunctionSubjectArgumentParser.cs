@@ -44,7 +44,7 @@
             var subject = ((NonRootedPathFunctionSubjectArgument) argument).Subject;
             var parts = subject.Parts;
 
-            for (int i = 0; i < parts.Length; i++)
+            for (var i = 0; i < parts.Length; i++)
             {
                 var beforePathPart = i > 0 ? parts[i - 1] : null;
                 var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;

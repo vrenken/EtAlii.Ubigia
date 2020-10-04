@@ -78,7 +78,7 @@
         public void ContentDefinition_Equality_Operator_By_Checksum()
         {
             // Arrange.
-            ulong checksum = (ulong)new Random().Next(0, int.MaxValue);
+            var checksum = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 
@@ -94,7 +94,7 @@
         public void ContentDefinition_InEquality_Operator_By_Checksum()
         {
             // Arrange.
-            ulong checksum = (ulong)new Random().Next(0, int.MaxValue);
+            var checksum = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 
@@ -110,7 +110,7 @@
         public void ContentDefinition_Equality_By_Checksum()
         {
             // Arrange.
-            ulong checksum = (ulong)new Random().Next(0, int.MaxValue);
+            var checksum = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 
@@ -126,7 +126,7 @@
         public void ContentDefinition_Equality_Operator_By_Size()
         {
             // Arrange.
-            ulong size = (ulong)new Random().Next(0, int.MaxValue);
+            var size = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 
@@ -142,7 +142,7 @@
         public void ContentDefinition_InEquality_Operator_By_Size()
         {
             // Arrange.
-            ulong size = (ulong)new Random().Next(0, int.MaxValue);
+            var size = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 
@@ -158,7 +158,7 @@
         public void ContentDefinition_Equality_By_Size()
         {
             // Arrange.
-            ulong size = (ulong)new Random().Next(0, int.MaxValue);
+            var size = (ulong)new Random().Next(0, int.MaxValue);
             var first = new ContentDefinition();
             var second = new ContentDefinition();
 

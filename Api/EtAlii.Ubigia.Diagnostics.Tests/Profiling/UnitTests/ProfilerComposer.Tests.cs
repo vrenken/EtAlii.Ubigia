@@ -9,7 +9,13 @@
         [Fact]
         public void ProfilerComposer_Create()
         {
+            // Arrange.
+            
+            // Act.
             var profileComposer = new ProfileComposer(new IProfiler[0]);
+            
+            // Assert.
+            Assert.NotNull(profileComposer);
         }
 
     }

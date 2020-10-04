@@ -10,7 +10,14 @@
         [Fact]
         public void ProfilingResult_Create()
         {
+            // Arrange.
+            
+            // Act.
             var result = new ProfilingResult(null, "root", ProfilingLayer.Functional, "Root");
+            
+            // Assert.
+            Assert.NotNull(result);
+
         }
 
         [Fact]
@@ -23,6 +30,7 @@
             var profile = new ProfilingResult(null, "ScriptParser", ProfilingLayer.Functional, "Execution");
 
             // Assert.
+            Assert.NotNull(profile);
             Assert.Empty(root.Children);
         }
 
@@ -114,9 +122,9 @@
             Assert.NotEqual(DateTime.MinValue, profile.Started);
             Assert.NotNull(profile[ProfilingProperty.Stopped]);
             Assert.NotEqual(DateTime.MinValue, profile.Stopped);
-            Assert.True((double)profile.DurationTotal > 500);
-            Assert.False((double)profile.DurationOfSelf > 500);
-            Assert.False((double)profile.DurationOfChildren > 500);
+            Assert.True(profile.DurationTotal > 500f);
+            Assert.False(profile.DurationOfSelf > 500f);
+            Assert.False(profile.DurationOfChildren > 500f);
             Assert.Equal("ScriptParser", profile.ProfilerName);
 
         }

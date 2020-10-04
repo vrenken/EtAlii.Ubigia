@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            _usage.TryGetValue(root.Identifier, out int usage);
+            _usage.TryGetValue(root.Identifier, out var usage);
             _usage[root.Identifier] = usage += 1;
 
             dynamic profile = _profiler.Begin("Get by root: " + root.Name + " - " + usage + "x");
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            _usage.TryGetValue(entryIdentifier, out int usage);
+            _usage.TryGetValue(entryIdentifier, out var usage);
             _usage[entryIdentifier] = usage += 1;
 
             dynamic profile = _profiler.Begin("Get by id: " + entryIdentifier.ToTimeString() + " - " + usage + "x");
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             ExecutionScope scope,
             EntryRelation entryRelations = EntryRelation.None)
         {
-            _usage.TryGetValue(entryIdentifier, out int usage);
+            _usage.TryGetValue(entryIdentifier, out var usage);
             _usage[entryIdentifier] = usage += 1;
 
             dynamic profile = _profiler.Begin("Get related: " + entryIdentifier + " (relation: " + entriesWithRelation + ") - " + usage + "x");

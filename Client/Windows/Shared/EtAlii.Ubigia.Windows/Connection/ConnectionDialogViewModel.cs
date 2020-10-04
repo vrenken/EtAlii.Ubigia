@@ -51,7 +51,7 @@
         {
             _window = window;
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
-            _connectionSettingsPersister.Load(out string password);
+            _connectionSettingsPersister.Load(out var password);
 
 			if (Debugger.IsAttached)
             {

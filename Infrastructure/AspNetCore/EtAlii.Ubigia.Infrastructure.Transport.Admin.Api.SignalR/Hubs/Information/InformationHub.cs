@@ -5,7 +5,6 @@
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.SignalR;
-	using Microsoft.Extensions.Primitives;
 
 	public class InformationHub : HubBase
     {
@@ -27,7 +26,7 @@
 		public Storage GetLocalStorage()
 		{
 			var httpContext = Context.GetHttpContext();
-			httpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+			httpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 			var authenticationToken = stringValues.Single();
 			_authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
 

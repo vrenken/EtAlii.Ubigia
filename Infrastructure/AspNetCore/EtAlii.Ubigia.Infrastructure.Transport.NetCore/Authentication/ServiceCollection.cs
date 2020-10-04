@@ -13,7 +13,7 @@
 				throw new ArgumentNullException(nameof(collection));
 			if (instance == null)
 				throw new ArgumentNullException(nameof(instance));
-			ServiceDescriptor descriptor = ServiceDescriptor.Singleton(typeof(TService), instance);
+			var descriptor = ServiceDescriptor.Singleton(typeof(TService), instance);
 			collection.TryAdd(descriptor);
 			return collection;
 		}

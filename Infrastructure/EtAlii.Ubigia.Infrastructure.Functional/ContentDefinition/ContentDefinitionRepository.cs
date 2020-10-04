@@ -114,7 +114,7 @@
 
                 if (contentDefinition != null)
                 {
-                    foreach (ulong contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
+                    foreach (var contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
                     {
                         var contentDefinitionPart = (ContentDefinitionPart)_logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
                         contentDefinition.Parts.Add(contentDefinitionPart);

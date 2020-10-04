@@ -27,7 +27,7 @@
             }
 
             var itemToUpdate = items.SingleOrDefault(item => item.Id == itemId);
-            int index = items.IndexOf(itemToUpdate);
+            var index = items.IndexOf(itemToUpdate);
 
             updatedItem = updateFunction(itemToUpdate, updatedItem);
 

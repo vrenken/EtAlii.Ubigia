@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope);
             id = latestEntry.Id;
 
-            IInternalNode sourceNode = (IInternalNode)node;
+            var sourceNode = (IInternalNode)node;
             var newProperties = sourceNode.GetProperties();
 
             var entry = await _fabric.Entries.Get(id, scope);

@@ -6,7 +6,6 @@
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using Microsoft.AspNetCore.Mvc;
-	using Microsoft.Extensions.Primitives;
 
 	[RequiresAuthenticationToken(Role.Admin)]
     [Route(RelativeUri.Management.Api.Accounts)]
@@ -29,7 +28,7 @@
 			IActionResult response;
 		    try
 		    {
-			    HttpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+			    HttpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 			    var authenticationTokenAsString = stringValues.Single();
 			    var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 

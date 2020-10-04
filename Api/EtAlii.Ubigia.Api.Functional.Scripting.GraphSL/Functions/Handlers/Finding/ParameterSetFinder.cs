@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         private bool HasSameParameters(ParameterSet parameterSet, ArgumentSet argumentSet)
         {
             var result = true;
-            for (int i = 0; i < argumentSet.Arguments.Length; i++)
+            for (var i = 0; i < argumentSet.Arguments.Length; i++)
             {
                 var parameterTypeInfo = parameterSet.ParameterTypeInfos[i];
                 var argumentTypeInfo = argumentSet.ArgumentTypeInfos[i];

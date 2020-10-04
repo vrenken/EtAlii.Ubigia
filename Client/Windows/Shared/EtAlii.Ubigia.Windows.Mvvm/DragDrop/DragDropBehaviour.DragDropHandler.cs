@@ -51,8 +51,8 @@
                     Property = e.Property;
                 }
 
-                object oldValue = e.OldValue;
-                object newValue = e.NewValue;
+                var oldValue = e.OldValue;
+                var newValue = e.NewValue;
 
                 AdjustEventHandlers(sender, oldValue, newValue);
             }

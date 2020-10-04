@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    
     public class HierarchicalRelationDuplicatorUnitTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
@@ -37,7 +35,7 @@
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 first.Children.Add(_testIdentifierFactory.Create());
             }
@@ -51,7 +49,7 @@
             Assert.Equal(count, second.Children.Count());
             Assert.Empty(second.Children2);
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var secondRelation = second.Children.Skip(i).First();
                 Assert.True(first.Children.Contains(secondRelation.Id));
@@ -68,7 +66,7 @@
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 first.Children2.Add(_testIdentifierFactory.Create());
             }
@@ -82,7 +80,7 @@
             Assert.Empty(second.Children);
             Assert.Equal(count, second.Children2.Count());
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var secondRelation = second.Children2.Skip(i).First();
                 Assert.True(first.Children2.Contains(secondRelation.Id));
@@ -100,7 +98,7 @@
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             var idToExclude = Identifier.Empty;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var identifier = _testIdentifierFactory.Create();
                 if (i == count / 2)
@@ -119,7 +117,7 @@
             Assert.Equal(count - 1, second.Children.Count());
             Assert.Empty(second.Children2);
             Assert.False(((IEditableEntry)second).Children.Contains(idToExclude));
-            for (int i = 0; i < count - 1; i++)
+            for (var i = 0; i < count - 1; i++)
             {
                 var secondRelation = second.Children.Skip(i).First();
                 Assert.True(first.Children.Contains(secondRelation.Id));
@@ -137,7 +135,7 @@
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             var idToExclude = Identifier.Empty;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var identifier = _testIdentifierFactory.Create();
                 if (i == count / 2)
@@ -155,7 +153,7 @@
             Assert.Empty(second.Children);
             Assert.Equal(count - 1, second.Children2.Count());
             Assert.False(((IEditableEntry)second).Children2.Contains(idToExclude));
-            for (int i = 0; i < count - 1; i++)
+            for (var i = 0; i < count - 1; i++)
             {
                 var secondRelation = second.Children2.Skip(i).First();
                 Assert.True(first.Children2.Contains(secondRelation.Id));
@@ -173,11 +171,11 @@
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 first.Children.Add(_testIdentifierFactory.Create());
             }
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 first.Children2.Add(_testIdentifierFactory.Create());
             }
@@ -191,12 +189,12 @@
             Assert.Equal(count, second.Children.Count());
             Assert.Equal(count, second.Children2.Count());
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var secondRelation = second.Children.Skip(i).First();
                 Assert.True(first.Children.Contains(secondRelation.Id));
             }
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var secondRelation = second.Children2.Skip(i).First();
                 Assert.True(first.Children2.Contains(secondRelation.Id));

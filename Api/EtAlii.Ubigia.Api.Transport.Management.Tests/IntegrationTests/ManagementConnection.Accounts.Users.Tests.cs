@@ -48,7 +48,7 @@
         {
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var password = Guid.NewGuid().ToString();
@@ -86,7 +86,7 @@
         {
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var password = Guid.NewGuid().ToString();
@@ -108,7 +108,7 @@
 
             var accounts = new List<Account>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var password = Guid.NewGuid().ToString();
@@ -153,7 +153,7 @@
 
             var accounts = new List<Account>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var password = Guid.NewGuid().ToString();

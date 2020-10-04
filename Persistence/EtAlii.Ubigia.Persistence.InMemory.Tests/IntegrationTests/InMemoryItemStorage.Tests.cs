@@ -131,7 +131,7 @@
 
             var now = DateTime.Now;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 Storage.Items.Store(items[i], ids[i], containerId);
@@ -169,7 +169,7 @@
             var ids = StorageTestHelper.CreateIds(count);
             var items = StorageTestHelper.CreateSimpleTestItems(count);
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 Storage.Items.Store(items[i], ids[i], containerId);
@@ -177,7 +177,7 @@
 
             var now = DateTime.Now;
 
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 // Act.
                 var retrievedItem = Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId);

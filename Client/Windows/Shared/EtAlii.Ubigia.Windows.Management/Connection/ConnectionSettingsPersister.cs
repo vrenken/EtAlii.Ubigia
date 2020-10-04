@@ -30,10 +30,10 @@
             password = currentSettings.Password;
             _viewModel.IsTested = reader.ReadBoolean();
             _viewModel.RememberPassword = reader.ReadBoolean();
-            int totalServers = reader.ReadInt32();
+            var totalServers = reader.ReadInt32();
 
             var previousSettings = new List<ConnectionSettings>();
-            for (int i = 0; i < totalServers; i++)
+            for (var i = 0; i < totalServers; i++)
             {
                 var previousSetting = (ConnectionSettings)formatter.Deserialize(reader.BaseStream);
                 previousSettings.Add(previousSetting);

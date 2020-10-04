@@ -4,7 +4,6 @@
     using System.Linq;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Primitives;
 
     internal class HttpContextResponseBuilder : IHttpContextResponseBuilder
 	{
@@ -27,7 +26,7 @@
             IActionResult response;
             try
             {
-                var success = context.Request.Headers.TryGetValue("Host-Identifier", out StringValues values);
+                var success = context.Request.Headers.TryGetValue("Host-Identifier", out var values);
                 if (success)
                 {
                     var hostIdentifier = values.First();

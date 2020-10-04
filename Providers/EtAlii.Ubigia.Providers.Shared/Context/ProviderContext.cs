@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 
     public class ProviderContext : IProviderContext
@@ -26,13 +25,13 @@
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string spaceName)
         {
-            IDataConnection dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
+            var dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
             return _configuration.CreateScriptContext(dataConnection);
         }
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(Space space)
         {
-            IDataConnection dataConnection = await ManagementConnection.OpenSpace(space);
+            var dataConnection = await ManagementConnection.OpenSpace(space);
             return _configuration.CreateScriptContext(dataConnection);
         }
     }

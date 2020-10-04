@@ -28,7 +28,7 @@
         protected T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
             var oldValue = default(T);
-            if (_properties.TryGetValue(propertyName, out object value))
+            if (_properties.TryGetValue(propertyName, out var value))
             {
                 oldValue = (T)value;
             }

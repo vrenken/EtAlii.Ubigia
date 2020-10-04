@@ -30,7 +30,7 @@
                 return false;
             }
 
-            for (int i = 0; i < expectedSubFolders.Length; i++)
+            for (var i = 0; i < expectedSubFolders.Length; i++)
             {
                 var expectedSubFolder = Path.GetFileName(expectedSubFolders[i]);
                 var actualSubFolder = Path.GetFileName(actualSubFolders[i]);
@@ -51,7 +51,7 @@
                 return false;
             }
 
-            for (int i = 0; i < expectedSubFolders.Length; i++)
+            for (var i = 0; i < expectedSubFolders.Length; i++)
             {
                 var expectedFile = Path.GetFileName(expectedFiles[i]);
                 var actualFile = Path.GetFileName(actualFiles[i]);

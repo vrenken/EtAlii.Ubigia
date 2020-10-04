@@ -12,7 +12,7 @@
                 return false;
             }
 
-            const int BYTES_TO_READ = sizeof(long);
+            const int bytesToRead = sizeof(long);
 
             var expected = new FileInfo(expectedFileName);
             var actual = new FileInfo(actualFileName);
@@ -22,18 +22,18 @@
                 return false;
             }
 
-            var iterations = (int)Math.Ceiling((double)expected.Length / BYTES_TO_READ);
+            var iterations = (int)Math.Ceiling((double)expected.Length / bytesToRead);
 
-            using (FileStream actualFileStream = actual.OpenRead())
-            using (FileStream expectedFileStream = expected.OpenRead())
+            using (var actualFileStream = actual.OpenRead())
+            using (var expectedFileStream = expected.OpenRead())
             {
-                byte[] one = new byte[BYTES_TO_READ];
-                byte[] two = new byte[BYTES_TO_READ];
+                var one = new byte[bytesToRead];
+                var two = new byte[bytesToRead];
 
-                for (int i = 0; i < iterations; i++)
+                for (var i = 0; i < iterations; i++)
                 {
-                    actualFileStream.Read(one, 0, BYTES_TO_READ);
-                    expectedFileStream.Read(two, 0, BYTES_TO_READ);
+                    actualFileStream.Read(one, 0, bytesToRead);
+                    expectedFileStream.Read(two, 0, bytesToRead);
 
                     if (BitConverter.ToInt64(two, 0) != BitConverter.ToInt64(one, 0))
                     {

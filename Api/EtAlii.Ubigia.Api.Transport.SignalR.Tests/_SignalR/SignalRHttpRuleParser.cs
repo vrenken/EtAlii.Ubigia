@@ -20,56 +20,56 @@
 
         static SignalRHttpRuleParser()
         {
-            string[] strArray = new string[15];
-            int index1 = 0;
-            string str1 = "ddd, d MMM yyyy H:m:s 'GMT'";
+            var strArray = new string[15];
+            var index1 = 0;
+            var str1 = "ddd, d MMM yyyy H:m:s 'GMT'";
             strArray[index1] = str1;
-            int index2 = 1;
-            string str2 = "ddd, d MMM yyyy H:m:s";
+            var index2 = 1;
+            var str2 = "ddd, d MMM yyyy H:m:s";
             strArray[index2] = str2;
-            int index3 = 2;
-            string str3 = "d MMM yyyy H:m:s 'GMT'";
+            var index3 = 2;
+            var str3 = "d MMM yyyy H:m:s 'GMT'";
             strArray[index3] = str3;
-            int index4 = 3;
-            string str4 = "d MMM yyyy H:m:s";
+            var index4 = 3;
+            var str4 = "d MMM yyyy H:m:s";
             strArray[index4] = str4;
-            int index5 = 4;
-            string str5 = "ddd, d MMM yy H:m:s 'GMT'";
+            var index5 = 4;
+            var str5 = "ddd, d MMM yy H:m:s 'GMT'";
             strArray[index5] = str5;
-            int index6 = 5;
-            string str6 = "ddd, d MMM yy H:m:s";
+            var index6 = 5;
+            var str6 = "ddd, d MMM yy H:m:s";
             strArray[index6] = str6;
-            int index7 = 6;
-            string str7 = "d MMM yy H:m:s 'GMT'";
+            var index7 = 6;
+            var str7 = "d MMM yy H:m:s 'GMT'";
             strArray[index7] = str7;
-            int index8 = 7;
-            string str8 = "d MMM yy H:m:s";
+            var index8 = 7;
+            var str8 = "d MMM yy H:m:s";
             strArray[index8] = str8;
-            int index9 = 8;
-            string str9 = "dddd, d'-'MMM'-'yy H:m:s 'GMT'";
+            var index9 = 8;
+            var str9 = "dddd, d'-'MMM'-'yy H:m:s 'GMT'";
             strArray[index9] = str9;
-            int index10 = 9;
-            string str10 = "dddd, d'-'MMM'-'yy H:m:s";
+            var index10 = 9;
+            var str10 = "dddd, d'-'MMM'-'yy H:m:s";
             strArray[index10] = str10;
-            int index11 = 10;
-            string str11 = "ddd MMM d H:m:s yyyy";
+            var index11 = 10;
+            var str11 = "ddd MMM d H:m:s yyyy";
             strArray[index11] = str11;
-            int index12 = 11;
-            string str12 = "ddd, d MMM yyyy H:m:s zzz";
+            var index12 = 11;
+            var str12 = "ddd, d MMM yyyy H:m:s zzz";
             strArray[index12] = str12;
-            int index13 = 12;
-            string str13 = "ddd, d MMM yyyy H:m:s";
+            var index13 = 12;
+            var str13 = "ddd, d MMM yyyy H:m:s";
             strArray[index13] = str13;
-            int index14 = 13;
-            string str14 = "d MMM yyyy H:m:s zzz";
+            var index14 = 13;
+            var str14 = "d MMM yyyy H:m:s zzz";
             strArray[index14] = str14;
-            int index15 = 14;
-            string str15 = "d MMM yyyy H:m:s";
+            var index15 = 14;
+            var str15 = "d MMM yyyy H:m:s";
             strArray[index15] = str15;
             DateFormats = strArray;
             DefaultHttpEncoding = Encoding.GetEncoding(28591);
             TokenChars = new bool[128];
-            for (int index16 = 33; index16 < (int)sbyte.MaxValue; ++index16)
+            for (var index16 = 33; index16 < (int)sbyte.MaxValue; ++index16)
                 TokenChars[index16] = true;
             TokenChars[40] = false;
             TokenChars[41] = false;
@@ -101,7 +101,7 @@
         {
             if (startIndex >= input.Length)
                 return 0;
-            for (int index = startIndex; index < input.Length; ++index)
+            for (var index = startIndex; index < input.Length; ++index)
             {
                 if (!IsTokenChar(input[index]))
                     return index - startIndex;
@@ -113,7 +113,7 @@
         {
             if (startIndex >= input.Length)
                 return 0;
-            int index = startIndex;
+            var index = startIndex;
             while (index < input.Length)
             {
                 switch (input[index])
@@ -147,11 +147,11 @@
 
         private static bool ContainsInvalidNewLine(string value, int startIndex)
         {
-            for (int index1 = startIndex; index1 < value.Length; ++index1)
+            for (var index1 = startIndex; index1 < value.Length; ++index1)
             {
                 if (value[index1] == 13)
                 {
-                    int index2 = index1 + 1;
+                    var index2 = index1 + 1;
                     if (index2 < value.Length && value[index2] == 10)
                     {
                         index1 = index2 + 1;
@@ -173,13 +173,13 @@
 
         internal static int GetNumberLength(string input, int startIndex, bool allowDecimal)
         {
-            int index = startIndex;
-            bool flag = !allowDecimal;
+            var index = startIndex;
+            var flag = !allowDecimal;
             if (input[index] == 46)
                 return 0;
             while (index < input.Length)
             {
-                char ch = input[index];
+                var ch = input[index];
                 if (ch >= 48 && ch <= 57)
                     ++index;
                 else if (!flag && ch == 46)
@@ -198,11 +198,11 @@
             host = null;
             if (startIndex >= input.Length)
                 return 0;
-            int index = startIndex;
-            bool flag = true;
+            var index = startIndex;
+            var flag = true;
             for (; index < input.Length; ++index)
             {
-                char character = input[index];
+                var character = input[index];
                 switch (character)
                 {
                     case '/':
@@ -218,10 +218,10 @@
                 }
             }
         label_7:
-            int length = index - startIndex;
+            var length = index - startIndex;
             if (length == 0)
                 return 0;
-            string host1 = input.Substring(startIndex, length);
+            var host1 = input.Substring(startIndex, length);
             if ((!allowToken || !flag) && !IsValidHostName(host1))
                 return 0;
             host = host1;
@@ -230,13 +230,13 @@
 
         internal static HttpParseResult GetCommentLength(string input, int startIndex, out int length)
         {
-            int nestedCount = 0;
+            var nestedCount = 0;
             return GetExpressionLength(input, startIndex, '(', ')', true, ref nestedCount, out length);
         }
 
         internal static HttpParseResult GetQuotedStringLength(string input, int startIndex, out int length)
         {
-            int nestedCount = 0;
+            var nestedCount = 0;
             return GetExpressionLength(input, startIndex, '"', '"', false, ref nestedCount, out length);
         }
 
@@ -266,7 +266,7 @@
             length = 0;
             if (input[startIndex] != openChar)
                 return HttpParseResult.NotParsed;
-            int startIndex1 = startIndex + 1;
+            var startIndex1 = startIndex + 1;
             while (startIndex1 < input.Length)
             {
                 if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out var length1) == HttpParseResult.Parsed)

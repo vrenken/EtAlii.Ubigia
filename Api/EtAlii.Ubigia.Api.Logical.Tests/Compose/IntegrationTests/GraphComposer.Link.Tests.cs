@@ -34,7 +34,7 @@
             var secondEntry = hierarchyResult.Item1;
 //            var personHierarchy = hierarchyResult.Item2
 
-            string linkItem = Guid.NewGuid().ToString();
+            var linkItem = Guid.NewGuid().ToString();
 
             // Act.
             var addedEntry = await composer.Link(firstEntry.Id, linkItem, secondEntry.Id, scope);

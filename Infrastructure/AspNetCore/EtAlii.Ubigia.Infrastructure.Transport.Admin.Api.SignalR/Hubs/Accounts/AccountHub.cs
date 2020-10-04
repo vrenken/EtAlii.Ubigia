@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
-    using Microsoft.Extensions.Primitives;
 
     public class AccountHub : HubBase
     {
@@ -43,7 +42,7 @@
 			try
 			{
 				var httpContext = Context.GetHttpContext();
-				httpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+				httpContext.Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
 

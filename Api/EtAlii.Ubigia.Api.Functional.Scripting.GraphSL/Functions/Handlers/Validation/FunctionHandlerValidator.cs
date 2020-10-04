@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             {
                 result = true;
 
-                for (int i = 0; i < first.Length; i++)
+                for (var i = 0; i < first.Length; i++)
                 {
                     if (first[i].Type != second[i].Type)
                     {

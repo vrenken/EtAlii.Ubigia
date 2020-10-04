@@ -9,7 +9,7 @@
                 return false;
             }
 
-            for (int i = 0; i < expected.Length; i++)
+            for (var i = 0; i < expected.Length; i++)
             {
                 if (expected[i] != actual[i])
                 {
@@ -22,7 +22,7 @@
 
         public bool AreNotEqual(byte[] first, byte[] second)
         {
-            bool areEqual = true;
+            var areEqual = true;
 
             try
             {
@@ -33,7 +33,7 @@
                 }
                 if (areEqual)
                 {
-                    for (int i = 0; i < first.Length; i++)
+                    for (var i = 0; i < first.Length; i++)
                     {
                         areEqual &= first[i] == second[i];
                     }

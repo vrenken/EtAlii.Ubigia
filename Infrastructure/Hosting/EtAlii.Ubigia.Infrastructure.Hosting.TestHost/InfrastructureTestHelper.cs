@@ -12,7 +12,7 @@
             var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry previousEntry = null;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
                 createdEntries[i] = createdEntry;
@@ -31,7 +31,7 @@
             var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parentEntry = null;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
                 if (parentEntry != null)
@@ -49,7 +49,7 @@
             var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parent2Entry = null;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
                 if (parent2Entry != null)

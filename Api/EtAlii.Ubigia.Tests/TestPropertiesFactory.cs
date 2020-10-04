@@ -21,9 +21,9 @@
             var properties = new PropertyDictionary();
 
 
-            for (int i = 0; i < size; i++)
+            for (var i = 0; i < size; i++)
             {
-                int type = _random.Next(6);
+                var type = _random.Next(6);
                 switch (type)
                 {
                     case 0:
@@ -82,7 +82,7 @@
         public PropertyDictionary[] CreateSimple(int count)
         {
             var result = new PropertyDictionary[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 result[i] = CreateSimple();
             }

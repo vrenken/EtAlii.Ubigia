@@ -25,7 +25,7 @@
                 .ToArray();
             var count = parts.Length;
 
-            for (int i = 1; i <= count; i++)
+            for (var i = 1; i <= count; i++)
             {
                 var currentPosition = count - i;
 
