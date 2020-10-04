@@ -167,16 +167,11 @@
 			    throw new ArgumentNullException(nameof(writeStream));
 		    }
 		    
-		    return WriteToStreamInternalAsync(type, value, writeStream);//, content, transportContext
+		    return WriteToStreamInternalAsync(value, writeStream);//, content, transportContext
 	    }
 
-	    private Task WriteToStreamInternalAsync(Type type, object value, Stream writeStream)//, HttpContent content, TransportContext transportContext
+	    private Task WriteToStreamInternalAsync(object value, Stream writeStream)//, HttpContent content, TransportContext transportContext
 	    {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
             if (writeStream == null)
             {
                 throw new ArgumentNullException(nameof(writeStream));
@@ -200,29 +195,28 @@
 				// Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  
 	            // Is written out as binary equivalent of [ "Value": value ] JSON.
                 var temporaryDictionary = new Dictionary<string, object> { { "Value", value } };
-	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);
+	            WriteToStreamInternal(temporaryDictionary, writeStream);
 			}
 			else
             {
 
-				WriteToStreamInternal(type, value, writeStream);
+				WriteToStreamInternal(value, writeStream);
             }
 
 		    return Task.CompletedTask;
 	    }
 
-	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)
+	    private void WriteToStreamInternal(object value, Stream writeStream)
 	    {
-		    using var writer = CreateJsonWriter(type, writeStream);
+		    using var writer = CreateJsonWriter(writeStream);
 		    
 		    writer.CloseOutput = false;
 		    _serializer.Serialize(writer, value);
 		    writer.Flush();
 	    }
 
-		private JsonWriter CreateJsonWriter(Type type, Stream writeStream)
+		private JsonWriter CreateJsonWriter(Stream writeStream)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
             if (writeStream == null) throw new ArgumentNullException(nameof(writeStream));
 
             return new BsonDataWriter(new BinaryWriter(writeStream));
