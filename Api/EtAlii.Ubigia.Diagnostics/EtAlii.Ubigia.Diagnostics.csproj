@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <Description>Package that contains the core diagnostic client components needed to communicate with Ubigia server components.</Description>
     <PackageTags>API abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
