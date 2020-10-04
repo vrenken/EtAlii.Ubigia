@@ -20,7 +20,7 @@
 
         public ProfilingAspect[] Aspects
         {
-            get { return _aspects; }
+            get => _aspects;
             set
             {
                 if (_aspects != value)

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial struct Identifier : IEquatable<Identifier>, IEditableIdentifier
+    public partial struct Identifier : IEquatable<Identifier>
     {
         public override bool Equals(object obj)
         {

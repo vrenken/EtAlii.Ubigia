@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
     public class NamedObject : Node
     {
-        public string Name { get { return GetProperty<string>(); } set { SetProperty(value); } }
-        public int Value { get { return GetProperty<int>(); } set { SetProperty(value); } }
+        public string Name { get => GetProperty<string>(); set => SetProperty(value); }
+        public int Value { get => GetProperty<int>(); set => SetProperty(value); }
 
         public NamedObject(IReadOnlyEntry entry)
             : base(entry)

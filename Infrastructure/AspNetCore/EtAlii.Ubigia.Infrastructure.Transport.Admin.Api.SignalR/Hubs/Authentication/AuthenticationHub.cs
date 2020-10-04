@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 {
-    using EtAlii.Ubigia.Api.Transport;
     using Microsoft.AspNetCore.SignalR;
 
     public class AuthenticationHub : Hub

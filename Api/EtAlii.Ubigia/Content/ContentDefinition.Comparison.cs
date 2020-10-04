@@ -2,7 +2,7 @@
 {
     using System;
 
-    public sealed partial class ContentDefinition : BlobBase, IEquatable<ContentDefinition>, IReadOnlyContentDefinition
+    public sealed partial class ContentDefinition
     {
         public override bool Equals(object obj)
         {

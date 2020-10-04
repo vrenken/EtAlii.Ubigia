@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial struct Identifier : IEquatable<Identifier>, IEditableIdentifier
+    public partial struct Identifier
     {
         public static Identifier NewIdentifier(Guid storage, Guid account, Guid space)
         {

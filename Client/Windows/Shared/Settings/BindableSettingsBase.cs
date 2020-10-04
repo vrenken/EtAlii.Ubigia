@@ -56,7 +56,7 @@
 
         private object GetValue<T>(ref T defaultValue, string propertyName, RegistryKey productKey)
         {
-            object value = null;
+            object value;
 
             if (typeof(T) == typeof(bool))
             {

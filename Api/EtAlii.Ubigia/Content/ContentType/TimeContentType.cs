@@ -2,20 +2,20 @@
 {
     public class TimeContentType : ContentType
     {
-        private const string _timeContentTypeId = "Time";
+        private const string TimeContentTypeId = "Time";
 
-        public ContentType Year { get; } = new ContentType(_timeContentTypeId, "Year");
+        public ContentType Year { get; } = new ContentType(TimeContentTypeId, "Year");
 
-        public ContentType Month { get; } = new ContentType(_timeContentTypeId, "Month");
+        public ContentType Month { get; } = new ContentType(TimeContentTypeId, "Month");
 
-        public ContentType Day { get; } = new ContentType(_timeContentTypeId, "Day");
+        public ContentType Day { get; } = new ContentType(TimeContentTypeId, "Day");
 
-        public ContentType Hour { get; } = new ContentType(_timeContentTypeId, "Hour");
+        public ContentType Hour { get; } = new ContentType(TimeContentTypeId, "Hour");
 
-        public ContentType Minute { get; } = new ContentType(_timeContentTypeId, "Minute");
+        public ContentType Minute { get; } = new ContentType(TimeContentTypeId, "Minute");
 
         internal TimeContentType()
-            : base(_timeContentTypeId)
+            : base(TimeContentTypeId)
         {
         }
     }

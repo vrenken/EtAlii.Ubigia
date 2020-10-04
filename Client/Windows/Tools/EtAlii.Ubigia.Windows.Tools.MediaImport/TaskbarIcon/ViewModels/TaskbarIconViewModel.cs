@@ -11,27 +11,27 @@
         private readonly Container _container;
         private readonly IFolderMonitorManager _folderMonitorManager;
 
-        public string ToolTipText { get { return _toolTipText; } set { SetProperty(ref _toolTipText, value); } }
+        public string ToolTipText { get => _toolTipText; set => SetProperty(ref _toolTipText, value); }
         private string _toolTipText;
 
         public ICommand ExitApplicationCommand { get; }
 
-        public bool CanShowConfiguration { get { return _canShowConfiguration; } set { SetProperty(ref _canShowConfiguration, value); } }
+        public bool CanShowConfiguration { get => _canShowConfiguration; set => SetProperty(ref _canShowConfiguration, value); }
         private bool _canShowConfiguration;
 
         public ICommand ShowConfigurationCommand { get; }
 
-        public bool CanShowStatus { get { return _canShowStatus; } set { SetProperty(ref _canShowStatus, value); } }
+        public bool CanShowStatus { get => _canShowStatus; set => SetProperty(ref _canShowStatus, value); }
         private bool _canShowStatus;
 
         public ICommand ShowStatusCommand { get; }
 
-        public bool CanShowAbout { get { return _canShowAbout; } set { SetProperty(ref _canShowAbout, value); } }
+        public bool CanShowAbout { get => _canShowAbout; set => SetProperty(ref _canShowAbout, value); }
         private bool _canShowAbout;
 
         public ICommand ShowAboutCommand { get; }
 
-        public string IconToShow { get { return _iconToShow; } set { SetProperty(ref _iconToShow, value); } }
+        public string IconToShow { get => _iconToShow; set => SetProperty(ref _iconToShow, value); }
         private string _iconToShow = TaskbarIconResource.Stopped;
 
         public TaskbarIconViewModel(Container container, IFolderMonitorManager folderMonitorManager)

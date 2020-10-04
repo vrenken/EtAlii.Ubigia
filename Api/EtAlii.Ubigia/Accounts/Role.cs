@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿namespace EtAlii.Ubigia
 {
     public static class Role
     {

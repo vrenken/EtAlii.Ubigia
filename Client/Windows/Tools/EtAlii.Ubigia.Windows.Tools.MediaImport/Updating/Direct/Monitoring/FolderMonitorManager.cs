@@ -17,25 +17,14 @@
 
         public ObservableCollection<IFolderMonitor> Monitors { get; } = new ObservableCollection<IFolderMonitor>();
 
-        public bool AllMonitorsAreRunning
-        {
-            get { return Monitors.All(monitor => monitor.IsRunning); }
-        }
+        public bool AllMonitorsAreRunning => Monitors.All(monitor => monitor.IsRunning); 
 
-        public bool IsRunning { get { return _isRunning; } set { SetProperty(ref _isRunning, value); } }
+        public bool IsRunning { get => _isRunning; set => SetProperty(ref _isRunning, value); }
         private bool _isRunning;
 
-        public bool HasError
-        {
-            get { return Monitors.All(monitor => monitor.HasError) || HasManagerError; }
-        }
+        public bool HasError => Monitors.All(monitor => monitor.HasError) || HasManagerError; 
 
-        public bool HasManagerError
-        {
-            get { return _hasManagerError; }
-            set { SetProperty(ref _hasManagerError, value); }
-        }
-
+        public bool HasManagerError { get => _hasManagerError; set => SetProperty(ref _hasManagerError, value); }
         private bool _hasManagerError;
 
         public FolderMonitorManager(

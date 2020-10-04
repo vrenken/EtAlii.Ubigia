@@ -10,7 +10,6 @@
         where TRelationsComponent : RelationsComponent, new()
     {
         internal RelationsComponentCollection()
-            : base()
         {
         }
 
@@ -26,7 +25,7 @@
 
         public bool Contains(Identifier id)
         {
-            return base.Items.Any(component => component.Relations.Any(c => c.Id == id));
+            return Items.Any(component => component.Relations.Any(c => c.Id == id));
         }
     }
 }

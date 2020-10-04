@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    public class Base36Convert_BytesTests
+    public class Base36ConvertBytesTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_Bytes_ToString_0x00()

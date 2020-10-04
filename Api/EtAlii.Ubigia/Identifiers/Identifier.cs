@@ -9,19 +9,25 @@
     {
         public Guid Storage => _storage;
         private Guid _storage;
+        Guid IEditableIdentifier.Storage { get => _storage; set => _storage = value; }
 
         public Guid Account => _account;
         private Guid _account;
+        Guid IEditableIdentifier.Account { get => _account; set => _account = value; }
 
         public Guid Space => _space;
         private Guid _space;
+        Guid IEditableIdentifier.Space { get => _space; set => _space = value; }
 
         public UInt64 Era { get; private set; }
+        ulong IEditableIdentifier.Era { get => Era; set => Era = value; }
 
         public UInt64 Period { get; private set; }
+        ulong IEditableIdentifier.Period { get => Period; set => Period  = value; }
 
         public UInt64 Moment { get; private set; }
-
+        ulong IEditableIdentifier.Moment { get => Moment; set => Moment = value; }
+        
         public static readonly Identifier Empty = new Identifier
         {
             _storage = Guid.Empty,
@@ -68,78 +74,6 @@
         public string ToDotSeparatedString()
         {
             return $"{Storage}.{Account}.{Space}.{Era}.{Period}.{Moment}";
-        }
-
-        Guid IEditableIdentifier.Storage
-        {
-            get
-            {
-                return _storage;
-            }
-            set
-            {
-                _storage = value;
-            }
-        }
-
-        Guid IEditableIdentifier.Account
-        {
-            get
-            {
-                return _account;
-            }
-            set
-            {
-                _account = value;
-            }
-        }
-
-        Guid IEditableIdentifier.Space
-        {
-            get
-            {
-                return _space;
-            }
-            set
-            {
-                _space = value;
-            }
-        }
-
-        ulong IEditableIdentifier.Era
-        {
-            get
-            {
-                return Era;
-            }
-            set
-            {
-                Era = value;
-            }
-        }
-
-        ulong IEditableIdentifier.Period
-        {
-            get
-            {
-                return Period;
-            }
-            set
-            {
-                Period  = value;
-            }
-        }
-
-        ulong IEditableIdentifier.Moment
-        {
-            get
-            {
-                return Moment;
-            }
-            set
-            {
-                Moment = value;
-            }
         }
     }
 }

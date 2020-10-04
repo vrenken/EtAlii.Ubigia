@@ -41,6 +41,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger.Info("Stopped PeopleImporter");
         }
 
-        public event Action<Exception> Error { add { _decoree.Error += value; } remove { _decoree.Error -= value; } }
+        public event Action<Exception> Error { add => _decoree.Error += value; remove => _decoree.Error -= value;
+        }
     }
 }

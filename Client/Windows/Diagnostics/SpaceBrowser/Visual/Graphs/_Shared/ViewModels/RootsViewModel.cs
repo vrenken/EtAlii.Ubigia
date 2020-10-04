@@ -9,12 +9,11 @@
 
     public class RootsViewModel : BindableBase, IRootsViewModel
     {
-        public IEnumerable<Root> AvailableRoots { get { return _availableRoots; } set { SetProperty(ref _availableRoots, value); } }
+        public IEnumerable<Root> AvailableRoots { get => _availableRoots; set => SetProperty(ref _availableRoots, value); }
         private IEnumerable<Root> _availableRoots;
 
-        public Root SelectedRoot { get { return _selectedRoot; } set { SetProperty(ref _selectedRoot, value); } }
+        public Root SelectedRoot { get => _selectedRoot; set => SetProperty(ref _selectedRoot, value); }
         private Root _selectedRoot;
-
 
         protected IFabricContext Fabric { get; }
 
