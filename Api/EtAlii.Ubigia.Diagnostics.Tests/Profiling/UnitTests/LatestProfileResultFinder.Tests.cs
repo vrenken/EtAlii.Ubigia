@@ -22,14 +22,14 @@
             // Arrange.
             var latestProfileResultFinder = new LatestProfileResultFinder();
 
-            var rootResult = new ProfilingResult(null, "Test", ProfilingLayer.Functional, "Test1", true);
+            var rootResult = new ProfilingResult(null, "Test", ProfilingLayer.Functional, "Test1");
             rootResult.Start();
 
-            var result1 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test1", true);
-            var result3 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test3", true);
-            var result5 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test5", true);
-            var result4 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test4", true);
-            var result2 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Transport, "Test2", true);
+            var result1 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test1");
+            var result3 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test3");
+            var result5 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test5");
+            var result4 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Logical, "Test4");
+            var result2 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Transport, "Test2");
 
             rootResult.Stop();
             var profilingResults = new[] { rootResult };
@@ -39,6 +39,10 @@
 
             // Assert.
             Assert.NotNull(latestResult);
+            Assert.NotNull(result1);
+            Assert.NotNull(result3);
+            Assert.NotNull(result5);
+            Assert.NotNull(result4);
             Assert.Equal(result2, latestResult); // Not completely sure why this test returns result2.
         }
     }
