@@ -2,8 +2,8 @@
 {
     public class DowndateComponent : RelationComponent
     {
-        protected internal override string Name => _name;
-        private const string _name = "Downdate";
+        protected internal override string GetName() => Name;
+        private const string Name = "Downdate";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

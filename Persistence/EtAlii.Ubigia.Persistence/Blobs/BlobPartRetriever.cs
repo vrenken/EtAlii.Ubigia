@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.Ubigia.Api;
 
     internal class BlobPartRetriever : IBlobPartRetriever
     {

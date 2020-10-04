@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using EtAlii.Ubigia.Api;
-
     public class ContentDefinitionPart : BlobPartBase, IReadOnlyContentDefinitionPart
     {
         public ulong Checksum { get; set; }

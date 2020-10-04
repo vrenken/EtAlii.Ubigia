@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.Ubigia.Api;
-
     internal class LoggingBlobPartRetriever : IBlobPartRetriever
     {
         private readonly IBlobPartRetriever _blobPartRetriever;

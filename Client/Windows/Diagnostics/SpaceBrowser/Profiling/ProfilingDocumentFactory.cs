@@ -36,15 +36,20 @@
             //container.Register<IProfilingView, ProfilingView>()
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
 
-            container.Register<IProfileComposer>(() => 
-            new ProfileComposer(
-                ((IProfilingGraphSLScriptContext)documentContext.ScriptContext).Profiler,
-                ((IProfilingGraphQLQueryContext)documentContext.QueryContext).Profiler,
-                //((IProfilingLinqQueryContext)linqContext).Profiler,
-                ((IProfilingLogicalContext)documentContext.LogicalContext).Profiler,
-                ((IProfilingFabricContext)documentContext.FabricContext).Profiler,
-                ((IProfilingDataConnection)documentContext.Connection).Profiler
-                ));
+            container.Register<IProfileComposer>(() =>
+            {
+                var profilers = new[]
+                {
+                    ((IProfilingGraphSLScriptContext) documentContext.ScriptContext).Profiler,
+                    ((IProfilingGraphQLQueryContext) documentContext.QueryContext).Profiler,
+                    //((IProfilingLinqQueryContext)linqContext).Profiler,
+                    ((IProfilingLogicalContext) documentContext.LogicalContext).Profiler,
+                    ((IProfilingFabricContext) documentContext.FabricContext).Profiler,
+                    ((IProfilingDataConnection) documentContext.Connection).Profiler
+                };
+
+                return new ProfileComposer(profilers);
+            });
 
             var documentViewModel = container.GetInstance<IProfilingViewModel>();
             var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();

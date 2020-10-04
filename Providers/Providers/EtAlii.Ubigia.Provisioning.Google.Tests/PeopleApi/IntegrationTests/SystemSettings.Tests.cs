@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
     using EtAlii.Ubigia.Provisioning.Tests;
     using Xunit;

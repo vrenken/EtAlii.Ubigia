@@ -4,12 +4,10 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
     using EtAlii.Ubigia.Provisioning.Tests;
     using Xunit;
 
-    
     public class UserSettingsTests : IClassFixture<ProvisioningUnitTestContext>
     {
         private readonly ProvisioningUnitTestContext _testContext;

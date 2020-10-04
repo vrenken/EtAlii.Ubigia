@@ -32,7 +32,7 @@
             var result2 = new ProfilingResult(rootResult, "Test", ProfilingLayer.Transport, "Test2", true);
 
             rootResult.Stop();
-            var profilingResults = new ProfilingResult[] { rootResult };
+            var profilingResults = new[] { rootResult };
 
             // Act.
             var latestResult = latestProfileResultFinder.Find(profilingResults, ProfilingLayer.Logical);

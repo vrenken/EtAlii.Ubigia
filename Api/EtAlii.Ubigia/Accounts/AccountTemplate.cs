@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport;
 
     public class AccountTemplate
     {

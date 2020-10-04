@@ -12,13 +12,14 @@
             var id = new TestIdentifierFactory().Create();
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
-            var relation = Relation.Create(otherId, 2);
-            var component = new IdentifierComponent() { Id = otherId };
+            var relation = Relation.Create(otherId, 2UL);
+            var component = new IdentifierComponent { Id = otherId };
 
             // Act.
             ((IComponentEditableEntry)entry).IdComponent = component;
 
             // Assert.
+            Assert.Equal(2UL, relation.Moment);
             Assert.Equal(otherId, entry.Id);
         }
 

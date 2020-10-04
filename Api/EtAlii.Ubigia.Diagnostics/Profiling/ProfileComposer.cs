@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         private readonly IProfiler[] _profilers;
 
-        public ProfileComposer(params IProfiler[] profilers)
+        public ProfileComposer(IProfiler[] profilers)
         {
             _items = new ObservableCollection<ProfilingResult>();
             Results = new ReadOnlyObservableCollection<ProfilingResult>(_items);

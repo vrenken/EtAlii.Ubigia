@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api.Transport;
 
     public interface ISpacesViewModel : INotifyPropertyChanged
     {
