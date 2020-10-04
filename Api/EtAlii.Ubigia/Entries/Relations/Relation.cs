@@ -6,9 +6,11 @@
     [DebuggerStepThrough]
     public partial struct Relation : IEquatable<Relation>
     {
-        public Identifier Id { get; private set; }
+        public Identifier Id => _id;
+        private Identifier _id;
 
-        public ulong Moment { get; private set; }
+        public ulong Moment => _moment;
+        private ulong _moment;
 
         public override string ToString()
         {
@@ -17,8 +19,8 @@
 
         public static readonly Relation None = new Relation
         {
-            Id = Identifier.Empty,
-            Moment = ulong.MinValue,
+            _id = Identifier.Empty,
+            _moment = ulong.MinValue,
         };
     }
 }

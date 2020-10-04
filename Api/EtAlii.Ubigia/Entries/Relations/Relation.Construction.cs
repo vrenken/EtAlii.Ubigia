@@ -8,7 +8,7 @@
         {
             return new Relation
             {
-                Id = id,
+                _id = id,
                 Moment = (ulong)DateTime.UtcNow.Ticks,
             };
         }
@@ -17,7 +17,7 @@
         {
             return new Relation
             {
-                Id = id,
+                _id = id,
                 Moment = moment,
             };
         }

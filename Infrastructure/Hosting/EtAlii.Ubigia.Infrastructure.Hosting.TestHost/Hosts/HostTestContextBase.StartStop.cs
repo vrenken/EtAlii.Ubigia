@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    // ReSharper disable once UnusedTypeParameter
     public abstract partial class HostTestContextBase<TTestHost>
     {
         public override async Task Start()
