@@ -9,7 +9,7 @@
             return new Relation
             {
                 _id = id,
-                Moment = (ulong)DateTime.UtcNow.Ticks,
+                _moment = (ulong)DateTime.UtcNow.Ticks,
             };
         }
         
@@ -18,7 +18,7 @@
             return new Relation
             {
                 _id = id,
-                Moment = moment,
+                _moment = moment,
             };
         }
         
