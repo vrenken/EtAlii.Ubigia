@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
   </ItemGroup>

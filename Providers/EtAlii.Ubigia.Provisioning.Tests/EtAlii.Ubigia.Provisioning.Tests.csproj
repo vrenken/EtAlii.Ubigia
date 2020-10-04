@@ -23,7 +23,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
     <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
   </ItemGroup>

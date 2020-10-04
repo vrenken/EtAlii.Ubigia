@@ -16,7 +16,7 @@
     <PackageReference Include="System.Management.Automation" Version="7.0.3" /> 
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
   </ItemGroup>
 </Project>

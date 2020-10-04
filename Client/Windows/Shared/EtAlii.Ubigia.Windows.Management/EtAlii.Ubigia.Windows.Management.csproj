@@ -21,9 +21,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Private>true</Private>
     </ProjectReference>

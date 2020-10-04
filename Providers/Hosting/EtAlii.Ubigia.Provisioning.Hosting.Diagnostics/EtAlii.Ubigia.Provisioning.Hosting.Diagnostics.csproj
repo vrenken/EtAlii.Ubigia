@@ -28,9 +28,9 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Provisioning.Hosting\EtAlii.Ubigia.Provisioning.Hosting.csproj" />
   </ItemGroup>
 </Project>

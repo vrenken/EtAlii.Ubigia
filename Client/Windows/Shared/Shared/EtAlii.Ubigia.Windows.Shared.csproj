@@ -28,7 +28,7 @@
     <EmbeddedResource Include="Icon-Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
   </ItemGroup>
 </Project>

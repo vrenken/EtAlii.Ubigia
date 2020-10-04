@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <Description>Unit test project</Description>
+
+    <ProjectGuid>ad2a6ca0-2d82-465b-a10f-39865c8156ed</ProjectGuid>
+    <PackageProjectUrl />
+    <PackageReleaseNotes />
+    <PackageTags />
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests</RootNamespace>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestImage_01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.WebApi.Tests\EtAlii.Ubigia.Api.Logical.WebApi.Tests.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.projitems" Label="Shared" />
+</Project>

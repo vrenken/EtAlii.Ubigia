@@ -1,4 +1,4 @@
-﻿﻿/* Copyright 2012 Marco Minerva, marco.minerva@gmail.com 
+﻿/* Copyright 2012 Marco Minerva, marco.minerva@gmail.com 
  
    Licensed under the Apache License, Version 2.0 (the "License"); 
    you may not use this file except in compliance with the License. 
