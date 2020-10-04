@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Collections.Generic;
 
     internal class ContentCacheEntry
@@ -12,7 +11,7 @@
 
         public IReadOnlyContent Content { get; set; }
 
-        public Dictionary<UInt64, IReadOnlyContentPart> ContentParts { get; }
+        public Dictionary<ulong, IReadOnlyContentPart> ContentParts { get; }
 
         public ContentCacheEntry()
         {

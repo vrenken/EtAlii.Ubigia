@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
@@ -17,13 +16,13 @@
         public async Task Execute(ContentPartQuery query)
         {
             var totalParts = query.Content.TotalParts;
-            for (UInt64 part = 0; part < totalParts; part++)
+            for (ulong part = 0; part < totalParts; part++)
             {
                 await GetContentPart(query.Stream, query.Identifier, part); // , query.Content
             }
         }
 
-        private async Task GetContentPart(Stream localDataStream, Identifier identifier, UInt64 contentPartId) // , IReadOnlyContent content
+        private async Task GetContentPart(Stream localDataStream, Identifier identifier, ulong contentPartId) // , IReadOnlyContent content
         {
             var contentPart = await _fabric.Content.Retrieve(identifier, contentPartId);
             var buffer = contentPart.Data;

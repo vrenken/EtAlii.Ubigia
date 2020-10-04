@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
-    using System;
     using System.Linq;
     using PCLStorage;
 
@@ -25,7 +24,7 @@
         public string GetFileName(string fileId, ContainerIdentifier container)
         {
             var folder = GetFolder(container);
-            var fileName = String.Format(_serializer.FileNameFormat, fileId);
+            var fileName = string.Format(_serializer.FileNameFormat, fileId);
             return PortablePath.Combine(folder, fileName);
         }
 
@@ -53,7 +52,7 @@
             {
                 parts = parts.Take(parts.Length - 1).ToArray();
             }
-            return String.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+            return string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
         }
     }
 }

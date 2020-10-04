@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
-    using System;
     using System.Linq;
     using PCLStorage;
 
@@ -28,7 +27,7 @@
             var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
             fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
             var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
             createFolderTask.Wait();
@@ -50,7 +49,7 @@
             var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
             fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
             var createFolderTask = _storage.CreateFolderAsync(folderName, CreationCollisionOption.OpenIfExists);
             createFolderTask.Wait();
@@ -73,7 +72,7 @@
             var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
             fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
             var getFolderTask = _storage.GetFolderAsync(folderName);
             getFolderTask.Wait();
@@ -95,7 +94,7 @@
             var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
             fileName = parts.Length > 1 ? parts.Skip(parts.Length - 1).Single() : parts.First();
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
-            var folderName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
+            var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
             var getFolderTask = _storage.GetFolderAsync(folderName);
             getFolderTask.Wait();

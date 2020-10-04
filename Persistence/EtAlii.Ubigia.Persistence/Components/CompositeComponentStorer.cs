@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System;
-    using EtAlii.Ubigia.Api.Fabric;
 
     internal class CompositeComponentStorer : ICompositeComponentStorer
     {

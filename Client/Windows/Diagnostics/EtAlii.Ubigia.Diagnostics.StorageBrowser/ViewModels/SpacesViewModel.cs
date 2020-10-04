@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -61,7 +60,7 @@
             var result = SelectedSpace == null;
             result &= SelectedAccount != null;
             result &= SelectedSpaceTemplate != null;
-            result &= !String.IsNullOrWhiteSpace(SpaceName);
+            result &= !string.IsNullOrWhiteSpace(SpaceName);
             return result;
         }
 
@@ -89,7 +88,7 @@
         {
             var result = SelectedSpace != null;
             result &= SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(SpaceName);
+            result &= !string.IsNullOrWhiteSpace(SpaceName);
             result &= SelectedSpaceTemplate == null;
             if (SelectedSpace != null)
             {
@@ -123,7 +122,7 @@
             var result = SelectedSpace != null;
             result &= SelectedAccount != null;
             result &= SelectedSpaceTemplate == null;
-            result &= !String.IsNullOrWhiteSpace(SpaceName);
+            result &= !string.IsNullOrWhiteSpace(SpaceName);
             return result;
         }
 
@@ -150,7 +149,7 @@
         private bool CanClearSpace(object sender)
         {
             var result = SelectedSpace != null;
-            result |= !String.IsNullOrWhiteSpace(SpaceName);
+            result |= !string.IsNullOrWhiteSpace(SpaceName);
             return result;
         }
 

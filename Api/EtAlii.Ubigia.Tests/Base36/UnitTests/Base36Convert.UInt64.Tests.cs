@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
-    using System;
     using Xunit;
 
     public class Base36ConvertUInt64Tests
@@ -9,7 +8,7 @@
         public void Base36Convert_UInt64_ToString_0()
         {
             // Arrange.
-            const UInt64 value = 0;
+            const ulong value = 0;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -22,7 +21,7 @@
         public void Base36Convert_UInt64_ToString_1()
         {
             // Arrange.
-            const UInt64 value = 1;
+            const ulong value = 1;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -35,7 +34,7 @@
         public void Base36Convert_UInt64_ToString_10()
         {
             // Arrange.
-            const UInt64 value = 10;
+            const ulong value = 10;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -48,7 +47,7 @@
         public void Base36Convert_UInt64_ToString_11()
         {
             // Arrange.
-            const UInt64 value = 11;
+            const ulong value = 11;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -61,7 +60,7 @@
         public void Base36Convert_UInt64_ToString_111111()
         {
             // Arrange.
-            const UInt64 value = 111111;
+            const ulong value = 111111;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -74,7 +73,7 @@
         public void Base36Convert_UInt64_ToString_11111111111111111111()
         {
             // Arrange.
-            const UInt64 value = 11111111111111111111;
+            const ulong value = 11111111111111111111;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -87,7 +86,7 @@
         public void Base36Convert_UInt64_ToString_UInt64_MaxValue()
         {
             // Arrange.
-            const UInt64 value = UInt64.MaxValue - 1;
+            const ulong value = ulong.MaxValue - 1;
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -102,7 +101,7 @@
         public void Base36Convert_UInt64_ToUint64_0()
         {
             // Arrange.
-            const UInt64 value = 0;
+            const ulong value = 0;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -122,14 +121,14 @@
             var result = Base36Convert.ToUInt64(value);
 
             // Assert.
-            Assert.Equal((UInt64)0, result);
+            Assert.Equal((ulong)0, result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_UInt64_ToUint64_1()
         {
             // Arrange.
-            const UInt64 value = 1;
+            const ulong value = 1;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -149,14 +148,14 @@
             var result = Base36Convert.ToUInt64(value);
 
             // Assert.
-            Assert.Equal((UInt64)1, result);
+            Assert.Equal((ulong)1, result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_UInt64_ToUint64_10()
         {
             // Arrange.
-            const UInt64 value = 10;
+            const ulong value = 10;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -170,7 +169,7 @@
         public void Base36Convert_UInt64_ToUint64_11()
         {
             // Arrange.
-            const UInt64 value = 11;
+            const ulong value = 11;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -184,7 +183,7 @@
         public void Base36Convert_UInt64_ToUint64_111111()
         {
             // Arrange.
-            const UInt64 value = 111111;
+            const ulong value = 111111;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -204,14 +203,14 @@
             var result = Base36Convert.ToUInt64(value);
 
             // Assert.
-            Assert.Equal((UInt64)111111, result);
+            Assert.Equal((ulong)111111, result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_UInt64_ToUint64_11111111111111111111()
         {
             // Arrange.
-            const UInt64 value = 11111111111111111111;
+            const ulong value = 11111111111111111111;
             var converted = Base36Convert.ToString(value);
 
             // Act.
@@ -225,7 +224,7 @@
         public void Base36Convert_UInt64_ToUint64_UInt64_MaxValue()
         {
             // Arrange.
-            const UInt64 value = UInt64.MaxValue - 1;
+            const ulong value = ulong.MaxValue - 1;
             var converted = Base36Convert.ToString(value);
 
             // Act.

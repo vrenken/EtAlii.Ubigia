@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Threading.Tasks;
 
     internal class ContentCacheRetrievePartHandler : IContentCacheRetrievePartHandler
@@ -16,7 +15,7 @@
             _contextProvider = contextProvider;
         }
 
-        public async Task<IReadOnlyContentPart> Handle(Identifier identifier, UInt64 contentPartId)
+        public async Task<IReadOnlyContentPart> Handle(Identifier identifier, ulong contentPartId)
         {
             var contentPart = _cacheHelper.Get(identifier, contentPartId);
             if (contentPart == null)

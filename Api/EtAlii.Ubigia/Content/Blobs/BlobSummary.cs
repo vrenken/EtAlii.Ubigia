@@ -1,20 +1,18 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using System;
-
     public class BlobSummary 
     {
         public bool IsComplete { get; private set; }
 
-        public UInt64[] AvailableParts { get; private set; }
+        public ulong[] AvailableParts { get; private set; }
 
-        public UInt64 TotalParts { get; private set; }
+        public ulong TotalParts { get; private set; }
 
         private BlobSummary()
         {
         }
 
-        public static BlobSummary Create(bool isCompleted, UInt64 parts, UInt64[] availableParts)
+        public static BlobSummary Create(bool isCompleted, ulong parts, ulong[] availableParts)
         {
             return new BlobSummary
             {
@@ -24,7 +22,7 @@
             };
         }
 
-        public static BlobSummary Create(bool isCompleted, IBlob blob, UInt64[] availableParts)
+        public static BlobSummary Create(bool isCompleted, IBlob blob, ulong[] availableParts)
         {
             return new BlobSummary
             {

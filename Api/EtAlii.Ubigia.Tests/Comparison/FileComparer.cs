@@ -12,7 +12,7 @@
                 return false;
             }
 
-            const int BYTES_TO_READ = sizeof(Int64);
+            const int BYTES_TO_READ = sizeof(long);
 
             var expected = new FileInfo(expectedFileName);
             var actual = new FileInfo(actualFileName);

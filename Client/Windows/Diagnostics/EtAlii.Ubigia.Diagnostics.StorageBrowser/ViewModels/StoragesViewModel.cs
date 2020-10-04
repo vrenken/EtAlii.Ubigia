@@ -148,8 +148,8 @@
         private bool CanClearStorage(object sender)
         {
             var result = SelectedStorage != null;
-            result |= !String.IsNullOrWhiteSpace(StorageName);
-            result |= !String.IsNullOrWhiteSpace(StorageAddress);
+            result |= !string.IsNullOrWhiteSpace(StorageName);
+            result |= !string.IsNullOrWhiteSpace(StorageAddress);
             return result;
         }
 

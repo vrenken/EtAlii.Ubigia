@@ -36,13 +36,13 @@
                         properties[Guid.NewGuid().ToString()] = Guid.NewGuid().ToString();
                         break;
                     case 3:
-                        properties[Guid.NewGuid().ToString()] = (UInt32)_random.Next();
+                        properties[Guid.NewGuid().ToString()] = (uint)_random.Next();
                         break;
                     case 4:
                         properties[Guid.NewGuid().ToString()] = _random.Next(1) == 1;
                         break;
                     case 5:
-                        properties[Guid.NewGuid().ToString()] = (Int64)_random.Next();
+                        properties[Guid.NewGuid().ToString()] = (long)_random.Next();
                         break;
                     //case 6:
                     //    properties[Guid.NewGuid().ToString()] = rnd.NextDouble();
@@ -62,9 +62,9 @@
             properties[Guid.NewGuid().ToString()] = _random.Next();
             properties[Guid.NewGuid().ToString()] = Guid.NewGuid();
             properties[Guid.NewGuid().ToString()] = Guid.NewGuid().ToString();
-            properties[Guid.NewGuid().ToString()] = (UInt32)_random.Next();
+            properties[Guid.NewGuid().ToString()] = (uint)_random.Next();
             properties[Guid.NewGuid().ToString()] = _random.Next(1) == 1;
-            properties[Guid.NewGuid().ToString()] = (Int64)_random.Next();
+            properties[Guid.NewGuid().ToString()] = (long)_random.Next();
             properties[Guid.NewGuid().ToString()] = _random.NextDouble();
             properties[Guid.NewGuid().ToString()] = (float)_random.NextDouble();
             return properties;

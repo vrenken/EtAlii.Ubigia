@@ -28,7 +28,7 @@
                 throw new InvalidOperationException("The provided entry has not been prepared.");
             }
 
-            var fileName = String.Format(_serializer.FileNameFormat, itemName);
+            var fileName = string.Format(_serializer.FileNameFormat, itemName);
             fileName = Path.Combine(folder, fileName);
 
             _serializer.Serialize(fileName, item);
@@ -51,7 +51,7 @@
 
             if (_inMemoryItems.Exists(folderName))
             {
-                var fileName = String.Format(_serializer.FileNameFormat, itemName);
+                var fileName = string.Format(_serializer.FileNameFormat, itemName);
                 fileName = Path.Combine(folderName, fileName);
 
                 if (_inMemoryItems.Exists(fileName))

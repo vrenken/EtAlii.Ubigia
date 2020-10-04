@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
-    using System;
     using Moppet.Lapa;
 
     internal class IntegerValueParser : IIntegerValueParser
@@ -14,7 +13,7 @@
         public IntegerValueParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => Char.IsDigit(c)));
+            Parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => char.IsDigit(c)));
         }
 
 

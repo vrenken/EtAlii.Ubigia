@@ -112,7 +112,7 @@
                 var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
                 Assert.NotNull(value);
                 Assert.IsType<string>(value.Object);
-                Assert.True(((string)value.Object).All(Char.IsDigit));
+                Assert.True(((string)value.Object).All(char.IsDigit));
             }
 
             AssertTimeValue("Millisecond");

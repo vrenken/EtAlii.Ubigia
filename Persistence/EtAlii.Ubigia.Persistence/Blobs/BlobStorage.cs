@@ -75,7 +75,7 @@
             }
         }
 
-        public T Retrieve<T>(ContainerIdentifier container, UInt64 position)
+        public T Retrieve<T>(ContainerIdentifier container, ulong position)
             where T : BlobPartBase
         {
             if (container == ContainerIdentifier.Empty)

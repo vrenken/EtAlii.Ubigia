@@ -89,7 +89,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Int16)123;
+            properties["Hello"] = (short)123;
 
             // Act.
             var result = WriteJSon(properties);
@@ -173,7 +173,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Int64)123;
+            properties["Hello"] = (long)123;
 
             // Act.
             var result = WriteJSon(properties);
@@ -215,7 +215,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (UInt16)1234;
+            properties["Hello"] = (ushort)1234;
 
             // Act.
             var result = WriteJSon(properties);
@@ -257,7 +257,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (UInt32)1234;
+            properties["Hello"] = (uint)1234;
 
             // Act.
             var result = WriteJSon(properties);
@@ -426,7 +426,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (SByte)123;
+            properties["Hello"] = (sbyte)123;
 
             // Act.
             var result = WriteJSon(properties);
@@ -776,7 +776,7 @@
             properties["Int32"] = 1234;
             properties["Boolean"] = true;
             properties["Null"] = null;
-            properties["Int16"] = (Int16)1234;
+            properties["Int16"] = (short)1234;
 
             // Act.
             var result = WriteJSon(properties);

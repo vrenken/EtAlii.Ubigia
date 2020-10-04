@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using System;
     using EtAlii.Ubigia.Api;
 
     internal class BlobPartRetriever : IBlobPartRetriever
@@ -14,7 +13,7 @@
             _pathBuilder = pathBuilder;
         }
 
-        public T Retrieve<T>(ContainerIdentifier container, UInt64 position) 
+        public T Retrieve<T>(ContainerIdentifier container, ulong position) 
             where T : BlobPartBase
         {
             var blobName = BlobPartHelper.GetName<T>();
@@ -22,7 +21,7 @@
 
             T blobPart = null;
 
-            var fileName = String.Format(BlobPartStorer.FileNameFormat, position);
+            var fileName = string.Format(BlobPartStorer.FileNameFormat, position);
             
             var path = _pathBuilder.GetFileName(fileName, container);
             if (_fileManager.Exists(path))

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using System;
-
     internal class BlobPartStorer : IBlobPartStorer
     {
         public const string FileNameFormat = "Part_{0}";
@@ -24,7 +22,7 @@
 
             _folderManager.Create(folder);
 
-            var fileName = String.Format(FileNameFormat, blobPart.Id);
+            var fileName = string.Format(FileNameFormat, blobPart.Id);
 
             BlobPartHelper.SetStored(blobPart, false);
             _folderManager.SaveToFolder(blobPart, fileName, folder);

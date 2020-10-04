@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 

@@ -246,7 +246,7 @@
 
             // Assert.
             Assert.NotEqual(ContainerIdentifier.Empty, containerId);
-            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -278,7 +278,7 @@
 
             // Assert.
             Assert.NotEqual(ContainerIdentifier.Empty, containerId);
-            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
 

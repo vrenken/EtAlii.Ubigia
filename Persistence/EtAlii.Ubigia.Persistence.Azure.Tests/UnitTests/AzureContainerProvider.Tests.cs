@@ -243,7 +243,7 @@
             var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
-            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -273,7 +273,7 @@
             containerId = ContainerIdentifier.Combine(containerId, second);
 
             // Assert.
-            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
 

@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Fabric;
 
     internal class ComponentRetriever : IComponentRetriever
     {
@@ -35,7 +33,7 @@
                 foreach (var fullFileName in _folderManager.EnumerateFiles(folder))
                 {
                     var fileName = _pathBuilder.GetFileNameWithoutExtension(fullFileName);
-                    var compositeComponentId = UInt64.Parse(fileName);
+                    var compositeComponentId = ulong.Parse(fileName);
 
                     var component = _fileManager.LoadFromFile<T>(fullFileName);
 

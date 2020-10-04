@@ -152,7 +152,7 @@
         {
             Assert.Equal(File.Exists(expectedFileName), File.Exists(actualFileName));
 
-            const int bytesToRead = sizeof(Int64);
+            const int bytesToRead = sizeof(long);
 
             var expected = new FileInfo(expectedFileName);
             var actual = new FileInfo(actualFileName);

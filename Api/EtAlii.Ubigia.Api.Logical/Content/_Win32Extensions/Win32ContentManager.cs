@@ -14,7 +14,7 @@
                 var size = fileInfo.Length;
                 using (var stream = File.OpenRead(localDataIdentifier))
                 {
-                    await contentManager.Upload(stream, (UInt32)size, identifier);
+                    await contentManager.Upload(stream, (uint)size, identifier);
                 }
             }
             catch (Exception e)

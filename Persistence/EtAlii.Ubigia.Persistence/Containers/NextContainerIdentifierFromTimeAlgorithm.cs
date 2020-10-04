@@ -16,9 +16,9 @@
         private string _accountFolder;
         private string _spaceFolder;
 
-        private UInt64 _eraId;
-        private UInt64 _periodId;
-        private UInt64 _momentId;
+        private ulong _eraId;
+        private ulong _periodId;
+        private ulong _momentId;
 
         private readonly object _lockObject = new object();
 
@@ -45,13 +45,13 @@
                     _spaceFolder = nextContainerIdentifier.Paths[3];
 
                     _eraId = nextContainerIdentifier.Paths.Length > 4
-                        ? UInt64.Parse(nextContainerIdentifier.Paths[4])
+                        ? ulong.Parse(nextContainerIdentifier.Paths[4])
                         : 0;
                     _periodId = nextContainerIdentifier.Paths.Length > 5
-                        ? UInt64.Parse(nextContainerIdentifier.Paths[5])
+                        ? ulong.Parse(nextContainerIdentifier.Paths[5])
                         : 0;
                     _momentId = nextContainerIdentifier.Paths.Length > 6
-                        ? UInt64.Parse(nextContainerIdentifier.Paths[6])
+                        ? ulong.Parse(nextContainerIdentifier.Paths[6])
                         : 0;
 
                     _year = now.Year;

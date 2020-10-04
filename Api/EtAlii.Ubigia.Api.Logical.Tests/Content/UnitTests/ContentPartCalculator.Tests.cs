@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
-    using System;
     using Xunit;
 
     public class ContentPartCalculatorTests
@@ -22,13 +21,13 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024;
+            ulong oneGigaByte = 1024 * 1024 * 1024;
 
             // Act.
             var parts = partCalculator.GetRequiredParts(oneGigaByte);
 
             // Assert.
-            Assert.Equal((UInt64)1024, parts);
+            Assert.Equal((ulong)1024, parts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -36,13 +35,13 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024 + 1;
+            ulong oneGigaByte = 1024 * 1024 * 1024 + 1;
 
             // Act.
             var parts = partCalculator.GetRequiredParts(oneGigaByte);
 
             // Assert.
-            Assert.Equal((UInt64)1025, parts);
+            Assert.Equal((ulong)1025, parts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -50,13 +49,13 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024 - 1;
+            ulong oneGigaByte = 1024 * 1024 * 1024 - 1;
 
             // Act.
             var parts = partCalculator.GetRequiredParts(oneGigaByte);
 
             // Assert.
-            Assert.Equal((UInt64)1024
+            Assert.Equal((ulong)1024
                 , parts);
         }
 
@@ -65,13 +64,13 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 halfMegaByte = 1024 * 512;
+            ulong halfMegaByte = 1024 * 512;
 
             // Act.
             var parts = partCalculator.GetRequiredParts(halfMegaByte);
 
             // Assert.
-            Assert.Equal((UInt64)1, parts);
+            Assert.Equal((ulong)1, parts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -79,13 +78,13 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 noBytes = 0;
+            ulong noBytes = 0;
 
             // Act.
             var parts = partCalculator.GetRequiredParts(noBytes);
 
             // Assert.
-            Assert.Equal((UInt64)0, parts);
+            Assert.Equal((ulong)0, parts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -93,14 +92,14 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024;
-            UInt64 firstByte = 0;
+            ulong oneGigaByte = 1024 * 1024 * 1024;
+            ulong firstByte = 0;
 
             // Act.
             var part = partCalculator.GetPart(oneGigaByte, firstByte);
 
             // Assert.
-            Assert.Equal((UInt64)0, part);
+            Assert.Equal((ulong)0, part);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -108,14 +107,14 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024;
-            UInt64 firstByte = 1024 * 1024;
+            ulong oneGigaByte = 1024 * 1024 * 1024;
+            ulong firstByte = 1024 * 1024;
 
             // Act.
             var part = partCalculator.GetPart(oneGigaByte, firstByte);
 
             // Assert.
-            Assert.Equal((UInt64)1, part);
+            Assert.Equal((ulong)1, part);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -123,14 +122,14 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024;
-            UInt64 firstByte = 1024 * 1024 + 1;
+            ulong oneGigaByte = 1024 * 1024 * 1024;
+            ulong firstByte = 1024 * 1024 + 1;
 
             // Act.
             var part = partCalculator.GetPart(oneGigaByte, firstByte);
 
             // Assert.
-            Assert.Equal((UInt64)1, part);
+            Assert.Equal((ulong)1, part);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -138,14 +137,14 @@
         {
             // Arrange.
             var partCalculator = new ContentPartCalculator();
-            UInt64 oneGigaByte = 1024 * 1024 * 1024;
-            UInt64 firstByte = 1024 * 1024 - 1;
+            ulong oneGigaByte = 1024 * 1024 * 1024;
+            ulong firstByte = 1024 * 1024 - 1;
 
             // Act.
             var part = partCalculator.GetPart(oneGigaByte, firstByte);
 
             // Assert.
-            Assert.Equal((UInt64)0, part);
+            Assert.Equal((ulong)0, part);
         }
     }
 }

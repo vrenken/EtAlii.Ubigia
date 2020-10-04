@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
     public static partial class ProfilingAspects
     {
         public static ProfilingAspect[] All => _all.Value;
+        // ReSharper disable once InconsistentNaming
         private static readonly Lazy<ProfilingAspect[]> _all;
 
         static ProfilingAspects()

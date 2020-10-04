@@ -37,7 +37,7 @@
             return result;
         }
 
-        public static Entry CreateEntry(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static Entry CreateEntry(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var previousIdentifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             previousIdentifier = Identifier.NewIdentifier(previousIdentifier, era, period, moment);
@@ -45,14 +45,14 @@
             return Entry.NewEntry(identifier, Relation.NewRelation(previousIdentifier));
         }
 
-        public static ChildrenComponent CreateChildrenComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static ChildrenComponent CreateChildrenComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
             return new ChildrenComponent { Relations = new[] { Relation.NewRelation(identifier) } };
         }
 
-        public static ParentComponent CreateParentComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static ParentComponent CreateParentComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
@@ -69,7 +69,7 @@
             return new TagComponent { Tag = tag };
         }
 
-        public static PreviousComponent CreatePreviousComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static PreviousComponent CreatePreviousComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
@@ -77,7 +77,7 @@
             return new PreviousComponent { Relation = relation };
         }
 
-        public static NextComponent CreateNextComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static NextComponent CreateNextComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
@@ -85,14 +85,14 @@
             return new NextComponent { Relation = relation };
         }
 
-        public static UpdatesComponent CreateUpdatesComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static UpdatesComponent CreateUpdatesComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
             return new UpdatesComponent { Relations = new[] { Relation.NewRelation(identifier) } };
         }
 
-        public static DowndateComponent CreateDowndateComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
+        public static DowndateComponent CreateDowndateComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
@@ -124,7 +124,7 @@
         public static ContainerIdentifier CreateSimpleContainerIdentifier(string id = null)
         {
             string[] paths;
-            if (!String.IsNullOrEmpty(id))
+            if (!string.IsNullOrEmpty(id))
             {
                 paths = new[]
                 {

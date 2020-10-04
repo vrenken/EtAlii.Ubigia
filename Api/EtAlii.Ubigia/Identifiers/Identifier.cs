@@ -19,13 +19,13 @@
         private Guid _space;
         Guid IEditableIdentifier.Space { get => _space; set => _space = value; }
 
-        public UInt64 Era { get; private set; }
+        public ulong Era { get; private set; }
         ulong IEditableIdentifier.Era { get => Era; set => Era = value; }
 
-        public UInt64 Period { get; private set; }
+        public ulong Period { get; private set; }
         ulong IEditableIdentifier.Period { get => Period; set => Period  = value; }
 
-        public UInt64 Moment { get; private set; }
+        public ulong Moment { get; private set; }
         ulong IEditableIdentifier.Moment { get => Moment; set => Moment = value; }
         
         public static readonly Identifier Empty = new Identifier
@@ -33,9 +33,9 @@
             _storage = Guid.Empty,
             _account = Guid.Empty,
             _space = Guid.Empty,
-            Era = UInt64.MinValue,
-            Period = UInt64.MinValue,
-            Moment = UInt64.MinValue,
+            Era = ulong.MinValue,
+            Period = ulong.MinValue,
+            Moment = ulong.MinValue,
         };
 
         public override string ToString()
@@ -46,7 +46,7 @@
             }
             else
             {
-                return String.Format("{0}{2}{1}", 
+                return string.Format("{0}{2}{1}", 
                                 ToLocationString(), 
                                 ToTimeString(),
                                 IdentifierSplitter.Part);
@@ -55,7 +55,7 @@
 
         public string ToLocationString()
         {
-            return String.Format("{0}{3}{1}{3}{2}",
+            return string.Format("{0}{3}{1}{3}{2}",
                             _storage.ToString().Replace("-", ""),
                             _account.ToString().Replace("-", ""),
                             _space.ToString().Replace("-", ""),
@@ -64,7 +64,7 @@
 
         public string ToTimeString()
         {
-            return String.Format("{0}{3}{1}{3}{2}",
+            return string.Format("{0}{3}{1}{3}{2}",
                             Era,
                             Period,
                             Moment,

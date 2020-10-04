@@ -8,7 +8,7 @@
     {
         public Identifier Id { get; private set; }
 
-        public UInt64 Moment { get; private set; }
+        public ulong Moment { get; private set; }
 
         public override string ToString()
         {
@@ -18,7 +18,7 @@
         public static readonly Relation None = new Relation
         {
             Id = Identifier.Empty,
-            Moment = UInt64.MinValue,
+            Moment = ulong.MinValue,
         };
     }
 }

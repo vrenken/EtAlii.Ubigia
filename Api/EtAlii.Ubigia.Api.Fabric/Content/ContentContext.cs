@@ -21,7 +21,7 @@
             return _connection.Content.Data.RetrieveDefinition(identifier);
         }
 
-        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId)
+        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             return _connection.Content.Data.Retrieve(identifier, contentPartId);
         }

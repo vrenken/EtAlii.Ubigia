@@ -11,8 +11,8 @@
             Assert.Equal(Guid.Empty, Identifier.Empty.Storage);// The Identifier.Empty.Storage property is incorrect.
             Assert.Equal(Guid.Empty, Identifier.Empty.Account);// The Identifier.Empty.Account property is incorrect.
             Assert.Equal(Guid.Empty, Identifier.Empty.Space);// The Identifier.Empty.Space property is incorrect.
-            Assert.Equal(UInt64.MinValue, Identifier.Empty.Period);// The Identifier.Empty.Period property is incorrect.
-            Assert.Equal(UInt64.MinValue, Identifier.Empty.Moment);// The Identifier.Empty.Moment property is incorrect.
+            Assert.Equal(ulong.MinValue, Identifier.Empty.Period);// The Identifier.Empty.Period property is incorrect.
+            Assert.Equal(ulong.MinValue, Identifier.Empty.Moment);// The Identifier.Empty.Moment property is incorrect.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

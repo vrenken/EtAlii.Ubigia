@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
-
     internal class ContentCacheHelper : IContentCacheHelper
     {
         private readonly IContentCacheProvider _cacheProvider;
@@ -18,7 +16,7 @@
             return cacheEntry?.Content;
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, UInt64 contentPartId)
+        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
         {
             var contentPart = default(IReadOnlyContentPart);
 

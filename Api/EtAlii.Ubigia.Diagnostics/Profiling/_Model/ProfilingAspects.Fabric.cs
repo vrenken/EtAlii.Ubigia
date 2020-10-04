@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
-    public static partial class ProfilingAspects
+    public partial class ProfilingAspects
     {
         public static readonly FabricProfilers Fabric = new FabricProfilers();
     }
