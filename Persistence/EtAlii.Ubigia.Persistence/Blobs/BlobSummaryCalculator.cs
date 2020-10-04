@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using System;
     using System.Collections.Generic;
 
     internal class BlobSummaryCalculator : IBlobSummaryCalculator
@@ -29,11 +28,11 @@
                 // Yup, we have a blob file. Lets load it.
                 var blob = _fileManager.LoadFromFile<T>(path);
 
-                UInt64 totalAvailableParts = 0;
-                var availableParts = new List<UInt64>();
-                for (UInt64 partId = 0; partId < blob.TotalParts; partId++)
+                ulong totalAvailableParts = 0;
+                var availableParts = new List<ulong>();
+                for (ulong partId = 0; partId < blob.TotalParts; partId++)
                 {
-                    var partFileName = String.Format(BlobPartStorer.FileNameFormat, partId);
+                    var partFileName = string.Format(BlobPartStorer.FileNameFormat, partId);
                     path = _pathBuilder.GetFileName(partFileName, container);
                     if (_fileManager.Exists(path))
                     {

@@ -13,7 +13,7 @@
 
         public IStorage Create(IStorageConfiguration configuration)
         {
-            if (String.IsNullOrWhiteSpace(configuration.Name))
+            if (string.IsNullOrWhiteSpace(configuration.Name))
             {
                 throw new NotSupportedException("The name is required to construct a Storage instance");
             }

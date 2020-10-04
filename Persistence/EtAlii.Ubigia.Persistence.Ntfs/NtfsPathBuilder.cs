@@ -26,20 +26,20 @@
         public void Initialize(string baseFolder)
         {
             var folder = Environment.ExpandEnvironmentVariables(baseFolder);
-            BaseFolder = String.Join(_separatorString, folder, _configuration.Name);
+            BaseFolder = string.Join(_separatorString, folder, _configuration.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)
         {
-            var relativePath = String.Join(_separatorString, container.Paths);
+            var relativePath = string.Join(_separatorString, container.Paths);
             return Path.Combine(BaseFolder, relativePath);
         }
 
         public string GetFileName(string fileId, ContainerIdentifier container)
         {
             var folder = GetFolder(container);
-            var fileName = String.Format(_serializer.FileNameFormat, fileId);
-            return String.Join(_separatorString, folder, fileName);
+            var fileName = string.Format(_serializer.FileNameFormat, fileId);
+            return string.Join(_separatorString, folder, fileName);
         }
 
         public string GetFileNameWithoutExtension(string path)
@@ -49,13 +49,13 @@
 
         public string Combine(string path1, string path2)
         {
-            return String.Join(_separatorString, path1, path2);
+            return string.Join(_separatorString, path1, path2);
         }
 
         public string GetDirectoryName(string path)
         {
             var lastIndex = path.LastIndexOf(_separatorChar);
-            return lastIndex == -1 ? String.Empty : path.Substring(0, lastIndex);
+            return lastIndex == -1 ? string.Empty : path.Substring(0, lastIndex);
         }
     }
 }

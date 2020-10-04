@@ -89,7 +89,7 @@
                 // Ensure that the requested folder exists.
                 _folderManager.Create(folder);
 
-                var searchPattern = String.Format(_serializer.FileNameFormat, "*");
+                var searchPattern = string.Format(_serializer.FileNameFormat, "*");
                 var fileNames = _folderManager.EnumerateFiles(folder, searchPattern)
                                               .Select(fileName => _pathBuilder.GetFileNameWithoutExtension(fileName))
                                               .ToArray();

@@ -87,7 +87,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (Int16) 123};
+            var properties = new PropertyDictionary {["Hello"] = (short) 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -100,7 +100,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int16.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = short.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -113,7 +113,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int16.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = short.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -139,7 +139,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int32_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int32.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = int.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -152,7 +152,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int32_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int32.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = int.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -165,7 +165,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int64()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (Int64) 123};
+            var properties = new PropertyDictionary {["Hello"] = (long) 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -178,7 +178,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int64_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int64.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = long.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -191,7 +191,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int64_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Int64.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = long.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -204,7 +204,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt16()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (UInt16) 1234};
+            var properties = new PropertyDictionary {["Hello"] = (ushort) 1234};
 
             // Act.
             var result = WriteJSon(properties);
@@ -217,7 +217,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt16.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = ushort.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -230,7 +230,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt16_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt16.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = ushort.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -243,7 +243,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt32()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (UInt32) 1234};
+            var properties = new PropertyDictionary {["Hello"] = (uint) 1234};
 
             // Act.
             var result = WriteJSon(properties);
@@ -257,7 +257,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt32.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = uint.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -270,7 +270,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt32_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt32.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = uint.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -283,7 +283,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt64()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (UInt64) 1234};
+            var properties = new PropertyDictionary {["Hello"] = (ulong) 1234};
 
             // Act.
             var result = WriteJSon(properties);
@@ -296,7 +296,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt64.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = ulong.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -309,7 +309,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_UInt64_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = UInt64.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = ulong.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -348,7 +348,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Char_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Char.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = char.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -361,7 +361,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Char_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Char.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = char.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -400,7 +400,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_SByte()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (SByte) 123};
+            var properties = new PropertyDictionary {["Hello"] = (sbyte) 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -413,7 +413,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_SByte_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = SByte.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = sbyte.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -426,7 +426,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_SByte_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = SByte.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = sbyte.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -439,7 +439,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (Byte) 123};
+            var properties = new PropertyDictionary {["Hello"] = (byte) 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -452,7 +452,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Byte.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = byte.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -465,7 +465,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Byte.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = byte.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -478,7 +478,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (Single) 123.456};
+            var properties = new PropertyDictionary {["Hello"] = (float) 123.456};
 
             // Act.
             var result = WriteJSon(properties);
@@ -491,7 +491,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Single.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = float.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -504,7 +504,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Single.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = float.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -530,7 +530,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Double_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Double.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = double.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -543,7 +543,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Double_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Double.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = double.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -556,7 +556,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Decimal()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = (Decimal) 123.456};
+            var properties = new PropertyDictionary {["Hello"] = (decimal) 123.456};
 
             // Act.
             var result = WriteJSon(properties);
@@ -569,7 +569,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Decimal.MaxValue};
+            var properties = new PropertyDictionary {["Hello"] = decimal.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -582,7 +582,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Decimal_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary {["Hello"] = Decimal.MinValue};
+            var properties = new PropertyDictionary {["Hello"] = decimal.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -741,7 +741,7 @@
                 ["Int32"] = 1234,
                 ["Boolean"] = true,
                 ["Null"] = null,
-                ["Int16"] = (Int16) 1234
+                ["Int16"] = (short) 1234
             };
 
             // Act.

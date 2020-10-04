@@ -54,7 +54,7 @@
 
         // Post a new ContentDefinitionPart for the specified entry.
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
+        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] ulong contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         {
             // Remark. We cannot have two post methods at the same time. The hosting 
             // framework gets confused and does not out of the box know what method to choose.

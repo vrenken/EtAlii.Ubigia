@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -47,12 +46,12 @@
             AddAll(components, entry.IndexesComponent);
             Add(components, entry.IndexedComponent, entry.IndexedComponent.Relation);
 
-            if (!String.IsNullOrEmpty(entry.TypeComponent.Type))
+            if (!string.IsNullOrEmpty(entry.TypeComponent.Type))
             {
                 components.Add(entry.TypeComponent);
             }
 
-            if (!String.IsNullOrEmpty(entry.TagComponent.Tag))
+            if (!string.IsNullOrEmpty(entry.TagComponent.Tag))
             {
                 components.Add(entry.TagComponent);
             }

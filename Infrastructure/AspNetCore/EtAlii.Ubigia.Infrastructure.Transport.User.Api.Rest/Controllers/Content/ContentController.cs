@@ -33,7 +33,7 @@
         }
 
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]UInt64 contentPartId)
+        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]ulong contentPartId)
         {
             IActionResult response;
             try
@@ -81,7 +81,7 @@
         /// <param name="contentPart"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] UInt64 contentPartId, [FromBody] ContentPart contentPart)
+        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] ulong contentPartId, [FromBody] ContentPart contentPart)
         {
             // Remark. We cannot have two post methods at the same time. The hosting 
             // framework gets confused and does not out of the box know what method to choose.

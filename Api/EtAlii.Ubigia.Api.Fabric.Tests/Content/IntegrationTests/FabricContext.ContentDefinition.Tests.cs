@@ -209,7 +209,7 @@
 
             // Assert.
             Assert.True(_testContext.ContentComparer.AreEqual(contentDefinition, retrievedContentDefinition, false));
-            Assert.Equal((UInt64)contentDefinition.Parts.Count, retrievedContentDefinition.Summary.TotalParts);
+            Assert.Equal((ulong)contentDefinition.Parts.Count, retrievedContentDefinition.Summary.TotalParts);
             Assert.True(retrievedContentDefinition.Summary.IsComplete);
         }
 
@@ -233,7 +233,7 @@
             Assert.Equal(contentDefinition.TotalParts, retrievedContentDefinition.Summary.TotalParts);
             Assert.False(retrievedContentDefinition.Summary.IsComplete);
             Assert.Single(retrievedContentDefinition.Summary.AvailableParts);
-            Assert.Equal((UInt64)1, retrievedContentDefinition.Summary.AvailableParts.First());
+            Assert.Equal((ulong)1, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -256,7 +256,7 @@
             Assert.Equal(contentDefinition.TotalParts, retrievedContentDefinition.Summary.TotalParts);
             Assert.False(retrievedContentDefinition.Summary.IsComplete);
             Assert.Single(retrievedContentDefinition.Summary.AvailableParts);
-            Assert.Equal((UInt64)2, retrievedContentDefinition.Summary.AvailableParts.First());
+            Assert.Equal((ulong)2, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 
         //[Fact, Trait("Category", TestAssembly.Category)]

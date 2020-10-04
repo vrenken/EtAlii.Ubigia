@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    using System;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -60,7 +59,7 @@
         /// <param name="identifier"></param>
         /// <param name="contentPartId"></param>
         /// <returns></returns>
-        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId);
+        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId);
     }
 
     /// <summary>

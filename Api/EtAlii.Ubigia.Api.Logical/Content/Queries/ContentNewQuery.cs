@@ -1,15 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-
     public class ContentNewQuery
     {
         public readonly Identifier Identifier;
-        public readonly UInt64 SizeInBytes;
-        public readonly UInt64 RequiredParts;
-        public readonly UInt64 PartSize;
+        public readonly ulong SizeInBytes;
+        public readonly ulong RequiredParts;
+        public readonly ulong PartSize;
 
-        public ContentNewQuery(Identifier identifier, UInt64 sizeInBytes, UInt64 requiredParts, UInt64 partSize)
+        public ContentNewQuery(Identifier identifier, ulong sizeInBytes, ulong requiredParts, ulong partSize)
         {
             Identifier = identifier;
             SizeInBytes = sizeInBytes;

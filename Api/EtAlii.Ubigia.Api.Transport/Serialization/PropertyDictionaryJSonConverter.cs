@@ -151,19 +151,19 @@
             switch (typeid)
             {
                 case TypeId.String: return typeof(string);
-                case TypeId.Char: return typeof(Char);
-                case TypeId.Boolean: return typeof(Boolean);
-                case TypeId.SByte: return typeof(SByte);
-                case TypeId.Byte: return typeof(Byte);
-                case TypeId.Int16: return typeof(Int16);
-                case TypeId.Int32: return typeof(Int32);
-                case TypeId.Int64: return typeof(Int64);
-                case TypeId.UInt16: return typeof(UInt16);
-                case TypeId.UInt32: return typeof(UInt32);
-                case TypeId.UInt64: return typeof(UInt64);
-                case TypeId.Single: return typeof(Single);
-                case TypeId.Double: return typeof(Double);
-                case TypeId.Decimal: return typeof(Decimal);
+                case TypeId.Char: return typeof(char);
+                case TypeId.Boolean: return typeof(bool);
+                case TypeId.SByte: return typeof(sbyte);
+                case TypeId.Byte: return typeof(byte);
+                case TypeId.Int16: return typeof(short);
+                case TypeId.Int32: return typeof(int);
+                case TypeId.Int64: return typeof(long);
+                case TypeId.UInt16: return typeof(ushort);
+                case TypeId.UInt32: return typeof(uint);
+                case TypeId.UInt64: return typeof(ulong);
+                case TypeId.Single: return typeof(float);
+                case TypeId.Double: return typeof(double);
+                case TypeId.Decimal: return typeof(decimal);
                 case TypeId.DateTime: return typeof(DateTime);
                 case TypeId.TimeSpan: return typeof(TimeSpan);
                 case TypeId.Guid: return typeof(Guid);

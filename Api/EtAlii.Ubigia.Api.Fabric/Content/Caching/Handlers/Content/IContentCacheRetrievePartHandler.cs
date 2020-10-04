@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
     using System.Threading.Tasks;
 
     internal interface IContentCacheRetrievePartHandler
     {
-        Task<IReadOnlyContentPart> Handle(Identifier identifier, UInt64 contentPartId);
+        Task<IReadOnlyContentPart> Handle(Identifier identifier, ulong contentPartId);
     }
 }

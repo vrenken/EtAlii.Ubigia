@@ -118,9 +118,9 @@
         public Identifier ToIdentifier(Guid storageId, Guid accountId, Guid spaceId, ContainerIdentifier containerId)
         {
             var paths = containerId.Paths;
-            var era = UInt64.Parse(paths[4]);
-            var period = UInt64.Parse(paths[5]);
-            var moment = UInt64.Parse(paths[6]);
+            var era = ulong.Parse(paths[4]);
+            var period = ulong.Parse(paths[5]);
+            var moment = ulong.Parse(paths[6]);
             return Identifier.Create(storageId, accountId, spaceId, era, period, moment);
         }
     }

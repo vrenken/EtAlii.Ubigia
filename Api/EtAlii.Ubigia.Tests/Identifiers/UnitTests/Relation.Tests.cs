@@ -12,10 +12,10 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
-            UInt64 relationMoment = 5;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
+            ulong relationMoment = 5;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var expectedResult = $"{identifier.ToLocationString()}/{identifier.ToTimeString()} ({relationMoment})";
             // Act.
@@ -32,9 +32,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
             var relation2 = Relation.Create(identifier, 0);
@@ -53,9 +53,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
             var relation2 = Relation.Create(identifier, 0);
@@ -74,9 +74,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
             var relation2 = Relation.Create(identifier, 0);
@@ -95,10 +95,10 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment1 = 3;
-            UInt64 moment2 = 4;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment1 = 3;
+            ulong moment2 = 4;
             var identifier1 = Identifier.Create(storage, account, space, era, period, moment1);
             var identifier2 = Identifier.Create(storage, account, space, era, period, moment2);
             var relation1 = Relation.Create(identifier1, 0);
@@ -118,10 +118,10 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment1 = 3;
-            UInt64 moment2 = 4;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment1 = 3;
+            ulong moment2 = 4;
             var identifier1 = Identifier.Create(storage, account, space, era, period, moment1);
             var identifier2 = Identifier.Create(storage, account, space, era, period, moment2);
             var relation1 = Relation.Create(identifier1, 0);
@@ -141,10 +141,10 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment1 = 3;
-            UInt64 moment2 = 4;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment1 = 3;
+            ulong moment2 = 4;
             var identifier1 = Identifier.Create(storage, account, space, era, period, moment1);
             var identifier2 = Identifier.Create(storage, account, space, era, period, moment2);
             var relation1 = Relation.Create(identifier1, 0);
@@ -165,9 +165,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
 
@@ -185,9 +185,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
 
@@ -205,9 +205,9 @@
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            UInt64 era = 0;
-            UInt64 period = 2;
-            UInt64 moment = 3;
+            ulong era = 0;
+            ulong period = 2;
+            ulong moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
             var relation1 = Relation.Create(identifier, 0);
 

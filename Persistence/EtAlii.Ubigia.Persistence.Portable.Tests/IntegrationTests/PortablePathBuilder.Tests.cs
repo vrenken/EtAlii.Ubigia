@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
-    using System;
     using System.IO;
     using System.Linq;
     using EtAlii.Ubigia.Persistence.Tests;
@@ -44,11 +43,11 @@
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var directoryName = Storage.PathBuilder.GetDirectoryName(String.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
+            var directoryName = Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
 
             // Assert.
             var paths = containerId.Paths.Take(containerId.Paths.Length == 1 ? 1 : containerId.Paths.Length - 1);
-            var expectedDirectoryName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), paths);
+            var expectedDirectoryName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), paths);
             Assert.Equal(expectedDirectoryName, directoryName);
         }
 
@@ -59,10 +58,10 @@
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier("First");
 
             // Act.
-            var directoryName = Storage.PathBuilder.GetDirectoryName(String.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
+            var directoryName = Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
 
             // Assert.
-            var expectedDirectoryName = Path.GetDirectoryName(String.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
+            var expectedDirectoryName = Path.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
             Assert.Equal(expectedDirectoryName, directoryName);
         }
     }

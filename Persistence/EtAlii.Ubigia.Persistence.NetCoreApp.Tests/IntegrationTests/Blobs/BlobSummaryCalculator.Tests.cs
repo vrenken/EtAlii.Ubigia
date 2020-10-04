@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
-    using System;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -58,8 +57,8 @@
             Assert.NotNull(summary);
             Assert.True(summary.IsComplete);
             Assert.Equal(content.TotalParts, summary.TotalParts);
-            Assert.Equal(content.TotalParts, (UInt32)summary.AvailableParts.Length);
-            for (UInt32 partId = 0; partId < content.TotalParts; partId++)
+            Assert.Equal(content.TotalParts, (uint)summary.AvailableParts.Length);
+            for (uint partId = 0; partId < content.TotalParts; partId++)
             {
                 Assert.Contains(partId, summary.AvailableParts);
             }
@@ -90,8 +89,8 @@
             Assert.NotNull(summary);
             Assert.False(summary.IsComplete);
             Assert.Equal(content.TotalParts, summary.TotalParts);
-            Assert.Equal(content.TotalParts - 2, (UInt32)summary.AvailableParts.Length);
-            for (UInt32 partId = 0; partId < content.TotalParts; partId++)
+            Assert.Equal(content.TotalParts - 2, (uint)summary.AvailableParts.Length);
+            for (uint partId = 0; partId < content.TotalParts; partId++)
             {
                 if (partId == 2 || partId == 4)
                 {

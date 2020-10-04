@@ -191,7 +191,7 @@
             var contentDefinition = new ContentDefinition();
 
             // Assert.
-            Assert.Equal((UInt64)0, contentDefinition.Size);
+            Assert.Equal((ulong)0, contentDefinition.Size);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -203,7 +203,7 @@
             var contentDefinition = new ContentDefinition();
 
             // Assert.
-            Assert.Equal((UInt64)0, contentDefinition.Checksum);
+            Assert.Equal((ulong)0, contentDefinition.Checksum);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

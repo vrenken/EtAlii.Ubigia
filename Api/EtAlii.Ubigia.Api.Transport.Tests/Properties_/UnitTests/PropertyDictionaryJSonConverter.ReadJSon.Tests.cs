@@ -48,7 +48,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Int16)123, result["Hello"]);
+            Assert.Equal((short)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -63,7 +63,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int16.MaxValue, result["Hello"]);
+            Assert.Equal(short.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -78,7 +78,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int16.MinValue, result["Hello"]);
+            Assert.Equal(short.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -108,7 +108,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int32.MaxValue, result["Hello"]);
+            Assert.Equal(int.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -123,7 +123,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int32.MinValue, result["Hello"]);
+            Assert.Equal(int.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -138,7 +138,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Int64)123, result["Hello"]);
+            Assert.Equal((long)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -153,7 +153,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int64.MaxValue, result["Hello"]);
+            Assert.Equal(long.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -168,7 +168,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Int64.MinValue, result["Hello"]);
+            Assert.Equal(long.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -183,7 +183,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((UInt16)123, result["Hello"]);
+            Assert.Equal((ushort)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -198,7 +198,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt16.MaxValue, result["Hello"]);
+            Assert.Equal(ushort.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -213,7 +213,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt16.MinValue, result["Hello"]);
+            Assert.Equal(ushort.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -228,7 +228,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((UInt32)123, result["Hello"]);
+            Assert.Equal((uint)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -259,7 +259,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt32.MinValue, result["Hello"]);
+            Assert.Equal(uint.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -274,7 +274,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((UInt64)1234, result["Hello"]);
+            Assert.Equal((ulong)1234, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -289,7 +289,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt64.MaxValue, result["Hello"]);
+            Assert.Equal(ulong.MaxValue, result["Hello"]);
         }
 
 
@@ -305,7 +305,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt64.MinValue, result["Hello"]);
+            Assert.Equal(ulong.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -352,7 +352,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Char.MaxValue, result["Hello"]);
+            Assert.Equal(char.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -367,7 +367,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Char.MinValue, result["Hello"]);
+            Assert.Equal(char.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -412,7 +412,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((SByte)123, result["Hello"]);
+            Assert.Equal((sbyte)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -427,7 +427,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(SByte.MaxValue, result["Hello"]);
+            Assert.Equal(sbyte.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -442,7 +442,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(SByte.MinValue, result["Hello"]);
+            Assert.Equal(sbyte.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -457,7 +457,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Byte)123, result["Hello"]);
+            Assert.Equal((byte)123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -472,7 +472,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Byte.MaxValue, result["Hello"]);
+            Assert.Equal(byte.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -487,7 +487,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Byte.MinValue, result["Hello"]);
+            Assert.Equal(byte.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -502,7 +502,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Single)123.456, result["Hello"]);
+            Assert.Equal((float)123.456, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -517,7 +517,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Single.MaxValue, result["Hello"]);
+            Assert.Equal(float.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -532,7 +532,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Single.MinValue, result["Hello"]);
+            Assert.Equal(float.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -562,7 +562,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Double.MaxValue, result["Hello"]);
+            Assert.Equal(double.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -577,7 +577,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Double.MinValue, result["Hello"]);
+            Assert.Equal(double.MinValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -592,7 +592,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Decimal)123.456, result["Hello"]);
+            Assert.Equal((decimal)123.456, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -607,7 +607,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Decimal.MaxValue, result["Hello"]);
+            Assert.Equal(decimal.MaxValue, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -622,7 +622,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(Decimal.MinValue, result["Hello"]);
+            Assert.Equal(decimal.MinValue, result["Hello"]);
         }
 
 
@@ -792,7 +792,7 @@
             Assert.Equal(1234, result["Int32"]);
             Assert.True((bool)result["Boolean"]);
             Assert.Null(result["Null"]);
-            Assert.Equal((Int16)1234, result["Int16"]);
+            Assert.Equal((short)1234, result["Int16"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -12,7 +12,7 @@
         Task Store(Identifier identifier, Content content);
         Task Store(Identifier identifier, ContentPart contentPart);
         Task<IReadOnlyContent> Retrieve(Identifier identifier);
-        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId);
+        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId);
 
         event Action<Identifier> Updated;
         event Action<Identifier> Stored;

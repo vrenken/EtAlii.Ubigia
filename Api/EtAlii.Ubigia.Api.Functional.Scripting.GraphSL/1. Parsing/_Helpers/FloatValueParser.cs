@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
-    using System;
     using System.Globalization;
     using Moppet.Lapa;
 
@@ -15,7 +14,7 @@
         public FloatValueParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => Char.IsDigit(c)) + Lp.One(c => c == '.') + Lp.OneOrMore(c => Char.IsDigit(c)));
+            Parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => char.IsDigit(c)) + Lp.One(c => c == '.') + Lp.OneOrMore(c => char.IsDigit(c)));
         }
 
 
@@ -23,7 +22,7 @@
         {
             _nodeValidator.EnsureSuccess(node, Id);
             var text = node.Match.ToString();
-            return Single.Parse(text, CultureInfo.InvariantCulture); //TODO: we need to ensure the . is always used as separator.
+            return float.Parse(text, CultureInfo.InvariantCulture); //TODO: we need to ensure the . is always used as separator.
         }
 
         public bool CanParse(LpNode node)

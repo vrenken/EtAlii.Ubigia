@@ -42,7 +42,7 @@
             return await _retrieveDefinitionHandler.Handle(identifier);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId)
+        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             return await _retrievePartHandler.Handle(identifier, contentPartId);
         }

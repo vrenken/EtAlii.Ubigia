@@ -24,7 +24,7 @@
         {
             var dataBuffer = new byte[command.PartSize];
 
-            for (UInt64 part = 0; part < command.RequiredParts; part++)
+            for (ulong part = 0; part < command.RequiredParts; part++)
             {
                 var bytesToWrite = await GetBytesToWrite(command.Stream, command.PartSize, dataBuffer, part);
                 var hasResult = _hash.ComputeBytes(bytesToWrite);
@@ -38,7 +38,7 @@
             Identifier identifier, 
             IReadOnlyContent content,
             byte[] bytesToWrite,
-            UInt64 part)
+            ulong part)
         {
             var contentPartAlreadyAvailable = false;
             if (content.Summary != null)
@@ -56,7 +56,7 @@
             }
         }
 
-        private async Task<byte[]> GetBytesToWrite(Stream stream, UInt64 partSize, byte[] dataBuffer, UInt64 part)
+        private async Task<byte[]> GetBytesToWrite(Stream stream, ulong partSize, byte[] dataBuffer, ulong part)
         {
             var offset = part * partSize;
             stream.Seek((long)offset, SeekOrigin.Begin);
@@ -67,11 +67,11 @@
         }
 
         private async Task StoreContentDefinitionPart(
-            UInt64 partSize, 
+            ulong partSize, 
             Identifier identifier, 
             IReadOnlyContentDefinition contentDefinition, 
-            UInt64 part,
-            UInt64 checksum)
+            ulong part,
+            ulong checksum)
         {
             var contentDefinitionPartAlreadyAvailable = false;
             if (contentDefinition.Summary != null)

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.IO;
     using System.Threading.Tasks;
 
@@ -9,7 +8,7 @@
     /// </summary>
     public interface IContentManager
     {
-        Task Upload(Stream stream, UInt64 sizeInBytes, Identifier identifier);
+        Task Upload(Stream stream, ulong sizeInBytes, Identifier identifier);
         Task Download(Stream stream, Identifier identifier, bool validateChecksum = false);
 
         Task<bool> HasContent(Identifier identifier);

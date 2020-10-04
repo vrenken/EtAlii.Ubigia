@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.Ubigia.Api.Fabric;
-
     internal class ComponentStorer : IComponentStorer
     {
         private readonly IPathBuilder _pathBuilder;

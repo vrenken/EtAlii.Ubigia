@@ -27,7 +27,7 @@
 
             path = path.Trim(SeparatorChar);
 
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 result = folder;
             }
@@ -37,15 +37,15 @@
                 var subItemName = items.First();
                 if (items.Length > 1)
                 {
-                    if (folder.Items.SingleOrDefault(i => String.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
+                    if (folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
                     {
-                        var subPath = String.Join(SeparatorString, items.Skip(1));
+                        var subPath = string.Join(SeparatorString, items.Skip(1));
                         result = Find(subPath, subFolder);
                     }
                 }
                 else if (items.Length == 1)
                 {
-                    result = folder.Items.SingleOrDefault(i => String.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0);
+                    result = folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0);
                 }
                 else
                 {
@@ -70,7 +70,7 @@
             var targetFileName = Path.GetFileName(targetPath);
             var targetFolder = (Folder)Find(targetFolderName);
 
-            var sourceFile = (File)sourceFolder.Items.Single(i => String.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
+            var sourceFile = (File)sourceFolder.Items.Single(i => string.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
             var targetFile = new File(targetFileName) {Content = sourceFile.Content};
 
             sourceFolder.Items.Remove(sourceFile);
@@ -83,7 +83,7 @@
             var itemName = Path.GetFileName(path);
             var folder = (Folder)Find(folderName);
 
-            var item = folder.Items.Single(i => String.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0);
+            var item = folder.Items.Single(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0);
             folder.Items.Remove(item);
         }
     }

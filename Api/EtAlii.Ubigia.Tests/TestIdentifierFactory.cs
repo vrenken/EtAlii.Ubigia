@@ -17,9 +17,9 @@ namespace EtAlii.Ubigia.Tests
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
-            var era = (ulong)_random.Next(0, Int32.MaxValue);
-            var period = (ulong)_random.Next(0, Int32.MaxValue);
-            var moment = (ulong)_random.Next(0, Int32.MaxValue);
+            var era = (ulong)_random.Next(0, int.MaxValue);
+            var period = (ulong)_random.Next(0, int.MaxValue);
+            var moment = (ulong)_random.Next(0, int.MaxValue);
             return Identifier.Create(storage, account, space, era, period, moment);
         }
     }

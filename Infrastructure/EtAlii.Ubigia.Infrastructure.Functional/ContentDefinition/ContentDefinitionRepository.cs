@@ -44,7 +44,7 @@
 
                 if (contentDefinitionParts.Any())
                 {
-                    UInt64 totalParts = 0;
+                    ulong totalParts = 0;
                     foreach (var _ in contentDefinitionParts)
                     {
                         totalParts += 1;
@@ -114,7 +114,7 @@
 
                 if (contentDefinition != null)
                 {
-                    foreach (UInt64 contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
+                    foreach (ulong contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
                     {
                         var contentDefinitionPart = (ContentDefinitionPart)_logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
                         contentDefinition.Parts.Add(contentDefinitionPart);

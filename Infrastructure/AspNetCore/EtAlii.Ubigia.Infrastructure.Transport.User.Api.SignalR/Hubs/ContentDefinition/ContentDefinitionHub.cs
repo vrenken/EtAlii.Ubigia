@@ -48,7 +48,7 @@
         }
 
         // Post a new ContentDefinitionPart for the specified entry.
-        public void PostPart(Identifier entryId, UInt64 contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
+        public void PostPart(Identifier entryId, ulong contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
         {
             try
             {

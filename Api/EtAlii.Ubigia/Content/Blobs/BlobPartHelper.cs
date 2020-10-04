@@ -39,7 +39,7 @@
             return ((BlobPartBase)blobPart).Name;
         }
 
-        public static void SetId(IBlobPart blobPart, UInt32 id)
+        public static void SetId(IBlobPart blobPart, uint id)
         {
             ((BlobPartBase)blobPart).Id = id;
         }

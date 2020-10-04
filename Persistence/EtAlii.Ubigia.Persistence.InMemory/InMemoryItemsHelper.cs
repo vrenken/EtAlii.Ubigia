@@ -24,7 +24,7 @@
             var targetFileName = Path.GetFileName(targetPath);
             var targetFolder = (Folder)_inMemoryItems.Find(targetFolderName);
 
-            var sourceFile = (File)sourceFolder.Items.Single(i => String.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
+            var sourceFile = (File)sourceFolder.Items.Single(i => string.Compare(i.Name, sourceFileName, StringComparison.OrdinalIgnoreCase) == 0);
             var targetFile = new File(targetFileName) {Content = sourceFile.Content};
 
             targetFolder.Items.Add(targetFile);
@@ -91,7 +91,7 @@
             var itemName = Path.GetFileName(path);
             var folder = (Folder)_inMemoryItems.Find(folderName);
 
-            if (!folder.Items.Any(i => String.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0))
+            if (!folder.Items.Any(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0))
             {
                 folder.Items.Add(new Folder(itemName));
             }

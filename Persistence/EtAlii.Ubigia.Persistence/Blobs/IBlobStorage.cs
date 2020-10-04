@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using System;
     using EtAlii.Ubigia.Api;
 
     public interface IBlobStorage
@@ -11,7 +10,7 @@
         T Retrieve<T>(ContainerIdentifier container)
             where T : BlobBase;
 
-        T Retrieve<T>(ContainerIdentifier container, UInt64 position)
+        T Retrieve<T>(ContainerIdentifier container, ulong position)
             where T : BlobPartBase;
     }
 }

@@ -56,9 +56,9 @@
                 new Guid(locations[0]),
                 new Guid(locations[1]),
                 new Guid(locations[2]),
-                UInt64.Parse(times[0]),
-                UInt64.Parse(times[1]),
-                UInt64.Parse(times[2])
+                ulong.Parse(times[0]),
+                ulong.Parse(times[1]),
+                ulong.Parse(times[2])
             );
         }
     }

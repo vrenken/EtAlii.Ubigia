@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric
+﻿namespace EtAlii.Ubigia
 {
     using System;
     using System.Collections.Generic;
@@ -24,7 +24,7 @@
             where T : ComponentBase
         {
             var type = typeof(T);
-            var name = String.Empty;
+            var name = string.Empty;
 
             if (!ComponentNames.TryGetValue(type, out name))
             {

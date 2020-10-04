@@ -53,7 +53,7 @@
 
                 if (contentParts.Any())
                 {
-                    UInt64 totalParts = 0;
+                    ulong totalParts = 0;
                     // ReSharper disable once UnusedVariable
                     foreach (var contentPart in contentParts)
                     {
@@ -132,7 +132,7 @@
             }
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, UInt64 contentPartId)
+        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
         {
             if (identifier == Identifier.Empty)
             {

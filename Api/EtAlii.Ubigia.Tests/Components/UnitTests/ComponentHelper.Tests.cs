@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
-    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
     public class ComponentHelperTests

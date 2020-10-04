@@ -30,7 +30,7 @@
             _contentNewQueryHandler = contentNewQueryHandler;
         }
 
-        public async Task Upload(Stream stream, UInt64 sizeInBytes, Identifier identifier)
+        public async Task Upload(Stream stream, ulong sizeInBytes, Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {

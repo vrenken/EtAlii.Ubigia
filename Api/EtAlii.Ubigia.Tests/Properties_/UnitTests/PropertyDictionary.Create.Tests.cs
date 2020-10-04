@@ -15,7 +15,7 @@
 
             // Assert.
             Assert.NotNull(properties);
-            Assert.Equal(String.Empty, properties.ToString());
+            Assert.Equal(string.Empty, properties.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

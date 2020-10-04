@@ -26,7 +26,7 @@
             }
             else
             {
-                return String.Join("\\", Paths);
+                return string.Join("\\", Paths);
             }
         }
     }

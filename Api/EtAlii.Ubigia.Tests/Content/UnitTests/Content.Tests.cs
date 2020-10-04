@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
-    using System;
     using Xunit;
 
     public class ContentTests
@@ -49,7 +48,7 @@
             var content = new Content();
 
             // Assert.
-            Assert.Equal((UInt64)0, content.TotalParts);
+            Assert.Equal((ulong)0, content.TotalParts);
         }
     }
 }

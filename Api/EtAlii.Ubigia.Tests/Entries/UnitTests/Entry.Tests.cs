@@ -46,8 +46,8 @@
             Assert.Equal(storage, entry.Id.Storage);// The entry.Id.Storage property is incorrect.
             Assert.Equal(account, entry.Id.Account);// The entry.Id.Account property is incorrect.
             Assert.Equal(space, entry.Id.Space);// The entry.Id.Space property is incorrect.
-            Assert.Equal(UInt64.MinValue, entry.Id.Period);// The entry.Id.Moment property is incorrect.
-            Assert.Equal(UInt64.MinValue, entry.Id.Moment);// The entry.Id.Period property is incorrect.
+            Assert.Equal(ulong.MinValue, entry.Id.Period);// The entry.Id.Moment property is incorrect.
+            Assert.Equal(ulong.MinValue, entry.Id.Moment);// The entry.Id.Period property is incorrect.
 
             Assert.Equal(Relation.None, entry.Downdate);
             Assert.Empty(entry.Updates);
@@ -79,8 +79,8 @@
             Assert.Equal(storage, entry.Id.Storage);// The entry.Id.Storage property is incorrect.
             Assert.Equal(account, entry.Id.Account);// The entry.Id.Account property is incorrect.
             Assert.Equal(space, entry.Id.Space);// The entry.Id.Space property is incorrect.
-            Assert.Equal(UInt64.MinValue, entry.Id.Period);// The entry.Id.Moment property is incorrect.
-            Assert.NotEqual(UInt64.MinValue, entry.Id.Moment);// The entry.Id.Period property is incorrect.
+            Assert.Equal(ulong.MinValue, entry.Id.Period);// The entry.Id.Moment property is incorrect.
+            Assert.NotEqual(ulong.MinValue, entry.Id.Moment);// The entry.Id.Period property is incorrect.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

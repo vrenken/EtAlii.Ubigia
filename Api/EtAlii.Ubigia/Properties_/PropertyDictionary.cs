@@ -83,9 +83,9 @@
             }
 
             // Let's also check the keys.
-            var firstKeysAsString = String.Join("", firstKeys);
-            var secondKeysAsString = String.Join("", secondKeys);
-            result += String.Compare(firstKeysAsString, secondKeysAsString, StringComparison.Ordinal);
+            var firstKeysAsString = string.Join("", firstKeys);
+            var secondKeysAsString = string.Join("", secondKeys);
+            result += string.Compare(firstKeysAsString, secondKeysAsString, StringComparison.Ordinal);
 
             return result;
         }

@@ -9,11 +9,11 @@
             return new Relation
             {
                 Id = id,
-                Moment = (UInt64)DateTime.UtcNow.Ticks,
+                Moment = (ulong)DateTime.UtcNow.Ticks,
             };
         }
         
-        internal static Relation Create(Identifier id, UInt64 moment)
+        internal static Relation Create(Identifier id, ulong moment)
         {
             return new Relation
             {

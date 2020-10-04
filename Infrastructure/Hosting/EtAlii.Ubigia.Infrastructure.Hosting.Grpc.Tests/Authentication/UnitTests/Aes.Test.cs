@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Security.Cryptography;
     using Xunit;
@@ -16,7 +15,7 @@
             var originalBytes = CreateBytes(64);
             var encryptedBytes = Aes.Encrypt(originalBytes);
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
-            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
+            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<byte>.Default);
         }
 
         [Fact]
@@ -25,7 +24,7 @@
             var originalBytes = CreateBytes(1024 * 1024);
             var encryptedBytes = Aes.Encrypt(originalBytes);
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
-            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
+            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<byte>.Default);
         }
 
         [Fact]
@@ -38,7 +37,7 @@
             var decryptedByte = decryptedBytes[2];
             decryptedBytes[2] = (byte)(decryptedByte == 0 ? decryptedByte + 1 : decryptedByte - 1);
 
-            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
+            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<byte>.Default);
         }
 
         [Fact]
@@ -52,7 +51,7 @@
 
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
 
-            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
+            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<byte>.Default);
         }
 
         private byte[] CreateBytes(int length)

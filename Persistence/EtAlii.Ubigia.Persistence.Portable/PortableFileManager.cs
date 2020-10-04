@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
-    using System;
     using System.Linq;
     using PCLStorage;
 
@@ -98,7 +97,7 @@
             var targetParts = targetFile.Split(PortablePath.DirectorySeparatorChar);
             targetFile = targetParts.Length > 1 ? targetParts.Skip(targetParts.Length - 1).Single() : targetParts.First();
             targetParts = targetParts.Length > 1 ? targetParts.Take(targetParts.Length - 1).ToArray() : targetParts;
-            var targetFolderName = String.Join(PortablePath.DirectorySeparatorChar.ToString(), targetParts);
+            var targetFolderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), targetParts);
 
             var getSourceFileTask = _storage.GetFileAsync(sourceFile);
             getSourceFileTask.Wait();

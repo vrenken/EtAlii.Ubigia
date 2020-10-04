@@ -30,7 +30,7 @@
             return response;
         }
 
-        public ContentPart GetPart(Identifier entryId, UInt64 contentPartId)
+        public ContentPart GetPart(Identifier entryId, ulong contentPartId)
         {
             ContentPart response = null;
             try
@@ -73,7 +73,7 @@
         /// <param name="contentPartId"></param>
         /// <param name="contentPart"></param>
         /// <returns></returns>
-        public void PostPart(Identifier entryId, UInt64 contentPartId, ContentPart contentPart)
+        public void PostPart(Identifier entryId, ulong contentPartId, ContentPart contentPart)
         {
             try
             {

@@ -11,7 +11,7 @@
             get => ((IComponentEditableEntry)this).TypeComponent.Type;
             set
             {
-                if (!String.IsNullOrEmpty(((IComponentEditableEntry)this).TypeComponent.Type))
+                if (!string.IsNullOrEmpty(((IComponentEditableEntry)this).TypeComponent.Type))
                 {
                     throw new InvalidOperationException("Unable to set Entry.Type. This property has already been assigned");
                 }
@@ -29,7 +29,7 @@
             get => ((IComponentEditableEntry)this).TagComponent.Tag;
             set
             {
-                if (!String.IsNullOrEmpty(((IComponentEditableEntry)this).TagComponent.Tag))
+                if (!string.IsNullOrEmpty(((IComponentEditableEntry)this).TagComponent.Tag))
                 {
                     throw new InvalidOperationException("Unable to set Entry.Tag. This property has already been assigned");
                 }

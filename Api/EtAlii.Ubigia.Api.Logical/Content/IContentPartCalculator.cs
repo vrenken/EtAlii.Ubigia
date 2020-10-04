@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-
     public interface IContentPartCalculator
     {
-        UInt64 GetRequiredParts(UInt64 totalBytes);
-        UInt64 GetPartSize(UInt64 totalBytes);
-        UInt64 GetPart(UInt64 totalBytes, UInt64 positionInBytes);
+        ulong GetRequiredParts(ulong totalBytes);
+        ulong GetPartSize(ulong totalBytes);
+        ulong GetPart(ulong totalBytes, ulong positionInBytes);
     }
 }

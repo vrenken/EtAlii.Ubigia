@@ -10,12 +10,12 @@
         [DebuggerStepThrough]
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Decimal) == objectType;
+            return typeof(decimal) == objectType;
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            Decimal result = 0;
+            decimal result = 0;
             if (reader.TokenType == JsonToken.String)
             {
                 var text = serializer.Deserialize<string>(reader);
@@ -32,7 +32,7 @@
             }
             else
             {
-                var text = Convert.ToString((Decimal)value, CultureInfo.InvariantCulture);
+                var text = Convert.ToString((decimal)value, CultureInfo.InvariantCulture);
                 serializer.Serialize(writer, text);
             }
         }

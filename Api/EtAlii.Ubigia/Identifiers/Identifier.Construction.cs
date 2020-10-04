@@ -11,13 +11,13 @@
                 _storage = storage,
                 _account = account,
                 _space = space,
-                Era = UInt64.MinValue,
-                Period = UInt64.MinValue,
-                Moment = UInt64.MinValue,
+                Era = ulong.MinValue,
+                Period = ulong.MinValue,
+                Moment = ulong.MinValue,
             };
         }
 
-        public static Identifier NewIdentifier(Identifier id, UInt64 era, UInt64 period, UInt64 moment)
+        public static Identifier NewIdentifier(Identifier id, ulong era, ulong period, ulong moment)
         {
             return new Identifier
             {
@@ -30,7 +30,7 @@
             };
         }
 
-        public static Identifier Create(Guid storage, Guid account, Guid space, UInt64 era, UInt64 period, UInt64 moment)
+        public static Identifier Create(Guid storage, Guid account, Guid space, ulong era, ulong period, ulong moment)
         {
             return new Identifier
             {

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using System;
-
     public class ContentType
     {
         public string Id { get; }
@@ -14,7 +12,7 @@
 
         internal ContentType(params string[] contentTypeParts)
         {
-            Id = String.Join(@"\", contentTypeParts);
+            Id = string.Join(@"\", contentTypeParts);
         }
 
         public override string ToString()
