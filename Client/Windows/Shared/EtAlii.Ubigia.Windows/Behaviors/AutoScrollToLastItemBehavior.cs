@@ -36,7 +36,7 @@
 
         private void ScrollToLastItem()
         {
-            int count = AssociatedObject.Items.Count;
+            var count = AssociatedObject.Items.Count;
             if (count > 0)
             {
                 var last = AssociatedObject.Items[count - 1];

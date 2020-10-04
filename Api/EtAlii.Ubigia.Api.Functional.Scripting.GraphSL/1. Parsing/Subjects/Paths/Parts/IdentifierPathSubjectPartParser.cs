@@ -28,7 +28,7 @@
 
         private LpsParser CreateIdentifierParser()
         {
-            char[] hexDigits = new[] { 'a', 'b', 'c', 'd', 'e', 'f' };
+            var hexDigits = new[] { 'a', 'b', 'c', 'd', 'e', 'f' };
             var hexChar = Lp.One(c => char.IsDigit(c) || hexDigits.Contains(char.ToLower(c)));
             var hexSeparator = Lp.Char('-');
             var identifierSeparator = Lp.Char(IdentifierSeparatorCharacter);

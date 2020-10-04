@@ -93,14 +93,14 @@
 
             // Act.
             var startTicks = Environment.TickCount;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 entries[i] = await _fabric.Entries.Prepare();
             }
             var endTicks = Environment.TickCount;
 
             // Assert.
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 Assert.NotNull(entries[i]);
                 Assert.NotEqual(Identifier.Empty, entries[i].Id);
@@ -151,21 +151,21 @@
             var count = 50;
             var scope = new ExecutionScope(false);
             var entries = new IEditableEntry[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 entries[i] = await _fabric.Entries.Prepare();
             }
 
             // Act.
             var startTicks = Environment.TickCount;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 entries[i] = (IEditableEntry)await _fabric.Entries.Change(entries[i], scope);
             }
             var endTicks = Environment.TickCount;
 
             // Assert.
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var retrievedEntry = await _fabric.Entries.Get(entries[i].Id, scope);
                 Assert.NotNull(retrievedEntry);

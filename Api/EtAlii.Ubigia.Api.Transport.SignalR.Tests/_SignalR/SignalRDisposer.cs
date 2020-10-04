@@ -16,7 +16,7 @@
         {
             if (disposable == null)
                 throw new ArgumentNullException(nameof(disposable));
-            object obj = Interlocked.CompareExchange(ref _disposable, disposable, null);
+            var obj = Interlocked.CompareExchange(ref _disposable, disposable, null);
             if (obj == null || obj != DisposedSentinel)
                 return;
             disposable.Dispose();
@@ -26,7 +26,7 @@
         {
             if (!disposing)
                 return;
-            IDisposable disposable = Interlocked.Exchange<object>(ref _disposable, DisposedSentinel) as IDisposable;
+            var disposable = Interlocked.Exchange<object>(ref _disposable, DisposedSentinel) as IDisposable;
             if (disposable == null)
                 return;
             disposable.Dispose();

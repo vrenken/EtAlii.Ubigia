@@ -14,7 +14,7 @@
             var proposed = (ulong) DateTime.UtcNow.Ticks;
 
             // However, on speedy machines these are not unique enough. so let's cache them for each container and increment them on each next request.
-            ulong actual = proposed;
+            var actual = proposed;
             if(_cached.TryGetValue(containerIdentifier, out var previous))
             {
                 previous += 1;

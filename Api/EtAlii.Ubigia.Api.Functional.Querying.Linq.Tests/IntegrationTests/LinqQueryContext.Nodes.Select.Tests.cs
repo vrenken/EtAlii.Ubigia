@@ -254,13 +254,13 @@
             var counts = new int[iterations];
 
             // Act.
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 counts[i] = items.Count();
             }
 
             // Assert.
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 Assert.Equal(regions, counts[i]);
             }

@@ -63,7 +63,7 @@
 
             // Assert.
             Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count);
-            for (int i = 0; i < contentDefinition.Parts.Count; i++)
+            for (var i = 0; i < contentDefinition.Parts.Count; i++)
             {
                 Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum);
                 Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size);

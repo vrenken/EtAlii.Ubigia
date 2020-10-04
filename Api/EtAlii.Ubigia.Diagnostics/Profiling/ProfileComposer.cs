@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
             _profilers = profilers;
 
-            for (int i = 0; i < _profilers.Length; i++)
+            for (var i = 0; i < _profilers.Length; i++)
             {
                 if (i == 0)
                 {

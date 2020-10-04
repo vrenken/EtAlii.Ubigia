@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             var variablePathSubjectPart = (VariablePathSubjectPart)part;
             if (scope.Variables.TryGetValue(variablePathSubjectPart.Name, out var variable))
             {
-                object variableValue = await variable.Value.SingleAsync();
+                var variableValue = await variable.Value.SingleAsync();
                 return variableValue?.ToString();
             }
             return null;

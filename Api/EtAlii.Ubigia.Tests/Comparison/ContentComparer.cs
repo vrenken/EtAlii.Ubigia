@@ -27,7 +27,7 @@
             {
                 return false;
             }
-            for (int i = 0; i < expectedPartCount; i++)
+            for (var i = 0; i < expectedPartCount; i++)
             {
                 var expectedPart = expected.Parts.ElementAt(i);
                 var actualPart = actual.Parts.ElementAt(i);

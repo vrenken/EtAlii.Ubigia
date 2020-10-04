@@ -9,7 +9,13 @@
         [Fact]
         public void ProfilerIdentifier_Create()
         {
+            // Arrange.
+            
+            // Act.
             var result = new ProfilingAspect(ProfilingLayer.Functional, "Context");
+            
+            // Assert.
+            Assert.NotNull(result);
         }
 
         [Fact]

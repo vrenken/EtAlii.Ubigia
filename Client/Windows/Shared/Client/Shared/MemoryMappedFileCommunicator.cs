@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Windows.Client
             if (ReadPosition < 0 || writePosition < 0)
                 throw new ArgumentException("Unable to start reading: read or write position < 0");
 
-            Thread t = new Thread(ReaderThread);
+            var t = new Thread(ReaderThread);
             t.IsBackground = true;
             t.Start();
             _started = true;
@@ -179,17 +179,17 @@ namespace EtAlii.Ubigia.Windows.Client
                 if (dataAvailable)
                 {
                     // Checks how many bytes to read. 
-                    int availableBytes = _view.ReadInt32(ReadPosition + DATA_LENGTH_OFFSET);
+                    var availableBytes = _view.ReadInt32(ReadPosition + DATA_LENGTH_OFFSET);
                     var bytes = new byte[availableBytes];
                     // Reads the byte array. 
-                    int read = _view.ReadArray(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
+                    var read = _view.ReadArray(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
 
                     // Sets the flag used to signal that there aren't available data anymore. 
                     _view.Write(ReadPosition + DATA_AVAILABLE_OFFSET, false);
                     // Sets the flag used to signal that data has been read.  
                     _view.Write(ReadPosition + READ_CONFIRM_OFFSET, true);
 
-                    MemoryMappedDataReceivedEventArgs args = new MemoryMappedDataReceivedEventArgs(bytes, read);
+                    var args = new MemoryMappedDataReceivedEventArgs(bytes, read);
                     _operation.Post(_callback, args);
                 }
 

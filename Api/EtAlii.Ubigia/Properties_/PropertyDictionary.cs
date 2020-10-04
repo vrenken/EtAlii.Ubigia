@@ -27,7 +27,7 @@
         {
 
             // TODO: This compareto method has errors. 
-            int result = 1;
+            var result = 1;
 
             if (other != null)
             {
@@ -66,8 +66,8 @@
             var result = 0;
             foreach (var key in allKeys)
             {
-                first.TryGetValue(key, out object firstValue);
-                second.TryGetValue(key, out object secondValue);
+                first.TryGetValue(key, out var firstValue);
+                second.TryGetValue(key, out var secondValue);
                 if (firstValue is IComparable comparableFirstValue)
                 {
                     result += Compare(comparableFirstValue, secondValue);
@@ -122,7 +122,7 @@
         private int DetermineHashForString(string valueAsString)
         {
             // TODO: Investigate if this is sound.
-            int hashCode = int.MinValue;
+            var hashCode = int.MinValue;
             var bytes = Encoding.Default.GetBytes(valueAsString);
             foreach (var b in bytes)
             {

@@ -39,7 +39,7 @@
             // And finally let's add the spaces that 
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
-                var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out bool isAdded);
+                var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out var isAdded);
                 if (isAdded)
                 {
                     await _spaceInitializer.Initialize(addedSpace, spaceToCreate);

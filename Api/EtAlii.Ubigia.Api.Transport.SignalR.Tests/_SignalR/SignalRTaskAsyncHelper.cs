@@ -54,8 +54,8 @@
 
         public static Task Series(Func<object, Task>[] tasks, object[] state)
         {
-            Task task = Empty;
-            for (int index = 0; index < tasks.Length; ++index)
+            var task = Empty;
+            for (var index = 0; index < tasks.Length; ++index)
                 task = Then(task, tasks[index], state[index]);
             return task;
         }
@@ -110,7 +110,7 @@
                         return FromError(ex);
                     }
                 default:
-                    TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+                    var tcs = new TaskCompletionSource<object>();
                     ContinueWithPreservedCulture(task, t =>
                     {
                         if (!t.IsFaulted)
@@ -431,8 +431,8 @@
 
         public static Task Delay(TimeSpan timeOut)
         {
-            TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
-            Timer timer = new Timer(completionSource.SetResult, null, timeOut, TimeSpan.FromMilliseconds(-1.0));
+            var completionSource = new TaskCompletionSource<object>();
+            var timer = new Timer(completionSource.SetResult, null, timeOut, TimeSpan.FromMilliseconds(-1.0));
             return ContinueWithPreservedCulture(completionSource.Task, _ => timer.Dispose(), TaskContinuationOptions.ExecuteSynchronously);
         }
 
@@ -585,7 +585,7 @@
 
         private static Task<T> FromResult<T>(T value)
         {
-            TaskCompletionSource<T> completionSource = new TaskCompletionSource<T>();
+            var completionSource = new TaskCompletionSource<T>();
             completionSource.SetResult(value);
             return completionSource.Task;
         }
@@ -597,7 +597,7 @@
 
         private static Task<T> FromError<T>(Exception e)
         {
-            TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
+            var tcs = new TaskCompletionSource<T>();
             SetUnwrappedException(tcs, e);
             return tcs.Task;
         }
@@ -626,7 +626,7 @@
 //        ]
         private static Task<T> Canceled<T>()
         {
-            TaskCompletionSource<T> completionSource = new TaskCompletionSource<T>();
+            var completionSource = new TaskCompletionSource<T>();
             completionSource.SetCanceled();
             return completionSource.Task;
         }
@@ -716,7 +716,7 @@
 
         private static Task RunTask(Task task, Action successor)
         {
-            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            var tcs = new TaskCompletionSource<object>();
             ContinueWithPreservedCulture(task, t =>
             {
                 if (t.IsFaulted)
@@ -743,7 +743,7 @@
 
         private static Task RunTaskSynchronously(Task task, Action<object> next, object state, bool onlyOnSuccess = true)
         {
-            TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+            var tcs = new TaskCompletionSource<object>();
             ContinueWithPreservedCulture(task, t =>
             {
                 try
@@ -778,7 +778,7 @@
         {
             internal static Task RunTask(Task<T> task, Action<T> successor)
             {
-                TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
+                var tcs = new TaskCompletionSource<object>();
                 ContinueWithPreservedCulture(task, t =>
                 {
                     if (t.IsFaulted)
@@ -805,7 +805,7 @@
 
             internal static Task<TResult> RunTask(Task task, Func<TResult> successor)
             {
-                TaskCompletionSource<TResult> tcs = new TaskCompletionSource<TResult>();
+                var tcs = new TaskCompletionSource<TResult>();
                 ContinueWithPreservedCulture(task, t =>
                 {
                     if (t.IsFaulted)
@@ -831,7 +831,7 @@
 
             internal static Task<TResult> RunTask(Task<T> task, Func<Task<T>, TResult> successor)
             {
-                TaskCompletionSource<TResult> tcs = new TaskCompletionSource<TResult>();
+                var tcs = new TaskCompletionSource<TResult>();
                 ContinueWithPreservedCulture(task, t =>
                 {
                     if (task.IsFaulted)

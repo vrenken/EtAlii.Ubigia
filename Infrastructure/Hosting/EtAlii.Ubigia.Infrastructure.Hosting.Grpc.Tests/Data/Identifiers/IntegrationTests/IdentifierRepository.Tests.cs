@@ -32,7 +32,7 @@
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
-            var identifier = context.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out Identifier previousHeadIdentifier);
+            var identifier = context.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out var previousHeadIdentifier);
             Assert.NotEqual(identifier, Identifier.Empty);
             Assert.NotEqual(previousHeadIdentifier, Identifier.Empty);
             Assert.NotEqual(identifier, previousHeadIdentifier);

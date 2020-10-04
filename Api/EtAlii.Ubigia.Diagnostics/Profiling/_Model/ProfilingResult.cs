@@ -95,14 +95,14 @@
             stopped = DateTime.UtcNow;
             Set(ProfilingProperty.Stopped, stopped);
 
-            double durationTotal = (stopped - started).TotalMilliseconds;
+            var durationTotal = (stopped - started).TotalMilliseconds;
             Set(ProfilingProperty.DurationTotal, durationTotal);
 
             var durationOfChildren = Get<double>(ProfilingProperty.DurationOfChildren);
-            double percentage = durationTotal / 1;
-            double percentageOfChildren = durationOfChildren / percentage;
+            var percentage = durationTotal / 1;
+            var percentageOfChildren = durationOfChildren / percentage;
             percentageOfChildren = double.IsNaN(percentageOfChildren) ? 0f : percentageOfChildren;
-            double percentageOfSelf = 1 - percentageOfChildren;
+            var percentageOfSelf = 1 - percentageOfChildren;
             Set(ProfilingProperty.DurationOfChildren, percentageOfChildren);
             Set(ProfilingProperty.DurationOfSelf, percentageOfSelf);
             if (Parent != null)

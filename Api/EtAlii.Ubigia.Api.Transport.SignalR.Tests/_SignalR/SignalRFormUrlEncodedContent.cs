@@ -53,9 +53,9 @@
             const int limit = 32760;
 
             var sb = new StringBuilder();
-            int loops = data.Length / limit;
+            var loops = data.Length / limit;
 
-            for (int i = 0; i <= loops; i++)
+            for (var i = 0; i <= loops; i++)
             {
                 if (i < loops)
                 {

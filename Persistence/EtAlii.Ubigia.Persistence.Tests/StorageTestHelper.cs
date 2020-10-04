@@ -7,7 +7,7 @@
         public static Guid[] CreateIds(int count)
         {
             var result = new Guid[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 result[i] = Guid.NewGuid();
             }
@@ -26,7 +26,7 @@
         public static SimpleTestItem[] CreateSimpleTestItems(int count)
         {
             var result = new SimpleTestItem[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 result[i] = new SimpleTestItem
                 {
@@ -114,7 +114,7 @@
         public static ContainerIdentifier[] CreateSimpleContainerIdentifiers(int count)
         {
             var result = new ContainerIdentifier[count];
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 result[i] = CreateSimpleContainerIdentifier();
             }

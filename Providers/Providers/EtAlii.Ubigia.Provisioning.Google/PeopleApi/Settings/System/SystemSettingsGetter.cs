@@ -18,7 +18,7 @@
             var settings = new SystemSettings();
 
             var lastSequence = await context.Process(script);
-            DynamicNode result = await lastSequence.Output.Cast<DynamicNode>();
+            var result = await lastSequence.Output.Cast<DynamicNode>();
 
             if (result.TryGetValue("ClientId", out var value))
             {

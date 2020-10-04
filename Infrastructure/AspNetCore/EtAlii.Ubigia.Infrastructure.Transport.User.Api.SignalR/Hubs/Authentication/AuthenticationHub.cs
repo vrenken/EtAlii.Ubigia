@@ -3,7 +3,6 @@
 	using System.Linq;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
-	using Microsoft.Extensions.Primitives;
 
 	public class AuthenticationHub : Hub
     {
@@ -32,7 +31,7 @@
 
 	    public string AuthenticateAs(string accountName, string hostIdentifier)
 	    {
-		    Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+		    Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
 		    var authenticationToken = stringValues.Single();
 		    _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 
@@ -41,7 +40,7 @@
 
 		public Storage GetLocalStorage()
         {
-            Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+            Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out var stringValues);
             var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 

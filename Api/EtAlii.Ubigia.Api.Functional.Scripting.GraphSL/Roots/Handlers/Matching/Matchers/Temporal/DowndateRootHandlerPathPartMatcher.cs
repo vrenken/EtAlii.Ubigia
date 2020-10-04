@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
         public Task<bool> CanMatch(MatchParameters parameters)
         {
-            bool canMatch = false;
+            var canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
             if (next is DowndatePathSubjectPart)
             {

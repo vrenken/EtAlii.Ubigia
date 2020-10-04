@@ -26,7 +26,7 @@
             var entry = hierarchyResult.Item1;
 //            var hierarchy = hierarchyResult.Item2
 
-            string itemToAdd = Guid.NewGuid().ToString();
+            var itemToAdd = Guid.NewGuid().ToString();
 
             // Act.
             var addedEntry = await composer.Add(entry.Id, itemToAdd, scope);

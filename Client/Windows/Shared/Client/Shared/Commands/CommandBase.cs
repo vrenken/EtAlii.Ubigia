@@ -152,7 +152,7 @@
                 case null: return null;
                 case ContentElement contentElement:
                 {
-                    DependencyObject parent = ContentOperations.GetParent(contentElement);
+                    var parent = ContentOperations.GetParent(contentElement);
                     if (parent != null) return parent;
 
                     return contentElement is FrameworkContentElement fce ? fce.Parent : null;

@@ -85,7 +85,7 @@
 
         public static bool operator ==(MatchResult first, MatchResult second)
         {
-            bool equals = false;
+            var equals = false;
             if ((object)first != null && (object)second != null)
             {
                 equals = first.Equals(second);
@@ -99,7 +99,7 @@
 
         public static bool operator !=(MatchResult first, MatchResult second)
         {
-            bool equals = first == second;
+            var equals = first == second;
             return !equals;
         }
 
@@ -107,16 +107,16 @@
 
         public override int GetHashCode()
         {
-            int result = 0;
+            var result = 0;
 
-            for (int i = 0; i < Match.Length; i++)
+            for (var i = 0; i < Match.Length; i++)
             {
                 var pathSubjectPart = Match[i];
                 var power = 2 ^ i;
                 result ^= ShiftAndWrap(pathSubjectPart.GetHashCode(), power);
             }
 
-            for (int i = 0; i < Match.Length; i++)
+            for (var i = 0; i < Match.Length; i++)
             {
                 var pathSubjectPart = Rest[i];
                 var power = 2 ^ i;
@@ -131,9 +131,9 @@
             positions = positions & 0x1F;
 
             // Save the existing bit pattern, but interpret it as an unsigned integer. 
-            uint number = BitConverter.ToUInt32(BitConverter.GetBytes(value), 0);
+            var number = BitConverter.ToUInt32(BitConverter.GetBytes(value), 0);
             // Preserve the bits to be discarded. 
-            uint wrapped = number >> (32 - positions);
+            var wrapped = number >> (32 - positions);
             // Shift and wrap the discarded bits. 
             return BitConverter.ToInt32(BitConverter.GetBytes((number << positions) | wrapped), 0);
         }

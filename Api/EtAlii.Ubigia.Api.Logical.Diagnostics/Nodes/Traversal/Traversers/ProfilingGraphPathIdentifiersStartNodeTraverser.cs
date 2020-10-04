@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         public void Configure(TraversalParameters parameters)
         {
-            string identifiers = string.Join(", ", ((GraphIdentifiersStartNode)parameters.Part).Identifiers.Select(i => i.ToTimeString()));
+            var identifiers = string.Join(", ", ((GraphIdentifiersStartNode)parameters.Part).Identifiers.Select(i => i.ToTimeString()));
 
             dynamic profile = _profiler.Begin("Configuring start identifiers traversing: " + identifiers);
             profile.Part = parameters.Part;
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            string identifiers = string.Join(", ", ((GraphIdentifiersStartNode) part).Identifiers.Select(i => i.ToTimeString()));
+            var identifiers = string.Join(", ", ((GraphIdentifiersStartNode) part).Identifiers.Select(i => i.ToTimeString()));
 
             dynamic profile = _profiler.Begin("Traversing start identifiers: " + identifiers);
             profile.Part = part;

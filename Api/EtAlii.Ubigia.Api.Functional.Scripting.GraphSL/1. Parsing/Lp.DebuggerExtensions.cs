@@ -11,7 +11,7 @@
             return new LpsParser(text =>
             {
                 var sb = new StringBuilder();
-                for (int i = 0; i < _indention; i++)
+                for (var i = 0; i < _indention; i++)
                 {
                     sb.Append("\t");
                 }

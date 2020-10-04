@@ -9,7 +9,7 @@
         {
             var result = new List<GraphPathPart>();
 
-            for (int i = 0; i < path.Length; i++)
+            for (var i = 0; i < path.Length; i++)
             {
                 var currentPart = path[i];
                 var nextPart = i < path.Length - 1 ? path[i + 1] : null;

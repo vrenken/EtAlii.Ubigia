@@ -133,7 +133,7 @@
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
@@ -182,7 +182,7 @@
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
@@ -209,7 +209,7 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var accounts = new List<Account>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
@@ -266,7 +266,7 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var accounts = new List<Account>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();

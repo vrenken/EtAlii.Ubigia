@@ -25,7 +25,7 @@
             var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName);
 			if (space == null)
 			{
-				string message = $"Unable to connect to the the specified space ({spaceName})";
+				var message = $"Unable to connect to the the specified space ({spaceName})";
 				throw new UnauthorizedInfrastructureOperationException(message);
 			}
 			return space;// s.FirstOrDefault(s => s.Name == spaceName)

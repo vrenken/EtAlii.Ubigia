@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     {
                         Relation downDate;
                         Identifier previousResult;
-                        Identifier result = start;
+                        var result = start;
                         do
                         {
                             previousResult = result;
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             Relation downDate;
             Identifier previousResult;
-            Identifier result = start;
+            var result = start;
             do
             {
                 previousResult = result;

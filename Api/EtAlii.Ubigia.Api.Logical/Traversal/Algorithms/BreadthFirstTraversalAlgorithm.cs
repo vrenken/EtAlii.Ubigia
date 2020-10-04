@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             IEnumerable<Identifier> previousResult = new[] { current };
 
-            for (int i = 0; i < graphPath.Length; i++)
+            for (var i = 0; i < graphPath.Length; i++)
             {
                 var currentGraphPathPart = graphPath[i];
 

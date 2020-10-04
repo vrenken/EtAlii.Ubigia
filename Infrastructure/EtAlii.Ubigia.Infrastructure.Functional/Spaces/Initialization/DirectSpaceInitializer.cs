@@ -35,7 +35,7 @@
             var previousIdentifier = Identifier.Empty;
             var rootEntries = new IEditableEntry[rootEntryCount];
             var tailIdentifier = Identifier.Empty;
-            for (int i = 0; i < rootEntryCount; i++)
+            for (var i = 0; i < rootEntryCount; i++)
             {
                 var newId = Identifier.NewIdentifier(spaceIdentifier, 0, 0, (ulong)i);
                 var entry = (IEditableEntry)_context.Entries.Prepare(spaceId, newId);

@@ -22,7 +22,7 @@
 
         protected BindableSettingsBase(string registryKeyName)
         {
-            string format = string.IsNullOrWhiteSpace(registryKeyName) ? "Software\\{0}" : "Software\\{0}\\{1}";
+            var format = string.IsNullOrWhiteSpace(registryKeyName) ? "Software\\{0}" : "Software\\{0}\\{1}";
             _registryKey = string.Format(format, Settings.ProductName, registryKeyName);
         }
 

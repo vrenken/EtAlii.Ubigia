@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
                         } while (entry != null);
 
-                        for (int i = path.Count; i > 0; i--)
+                        for (var i = path.Count; i > 0; i--)
                         {
                             entry = path[i - 1];
 
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             } while (entry != null);
 
-            for (int i = path.Count; i > 0; i--)
+            for (var i = path.Count; i > 0; i--)
             {
                 entry = path[i - 1];
 

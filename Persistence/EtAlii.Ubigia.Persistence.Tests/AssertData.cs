@@ -11,7 +11,7 @@
         {
             Assert.Equal(expected.Length, actual.Length);
 
-            for (int i = 0; i < expected.Length; i++)
+            for (var i = 0; i < expected.Length; i++)
             {
                 Assert.Equal(expected[i], actual[i]);
             }
@@ -20,7 +20,7 @@
 
         public static void AreNotEqual(byte[] first, byte[] second)
         {
-            bool areEqual = true;
+            var areEqual = true;
 
             try
             {
@@ -31,7 +31,7 @@
                 }
                 if (areEqual)
                 {
-                    for (int i = 0; i < first.Length; i++)
+                    for (var i = 0; i < first.Length; i++)
                     {
                         areEqual &= first[i] == second[i];
                     }
@@ -53,7 +53,7 @@
             var actualPartCount = actual.Parts.Count();
             Assert.Equal(expectedPartCount, actualPartCount);
 
-            for (int i = 0; i < expectedPartCount; i++)
+            for (var i = 0; i < expectedPartCount; i++)
             {
                 var expectedPart = expected.Parts.ElementAt(i);
                 var actualPart = actual.Parts.ElementAt(i);
@@ -118,7 +118,7 @@
 
             Assert.Equal(expectedSubFolders.Length, actualSubFolders.Length);
 
-            for (int i = 0; i < expectedSubFolders.Length; i++)
+            for (var i = 0; i < expectedSubFolders.Length; i++)
             {
                 var expectedSubFolder = Path.GetFileName(expectedSubFolders[i]);
                 var actualSubFolder = Path.GetFileName(actualSubFolders[i]);
@@ -133,7 +133,7 @@
 
             Assert.Equal(expectedFiles.Length, actualFiles.Length);
 
-            for (int i = 0; i < expectedSubFolders.Length; i++)
+            for (var i = 0; i < expectedSubFolders.Length; i++)
             {
                 var expectedFile = Path.GetFileName(expectedFiles[i]);
                 var actualFile = Path.GetFileName(actualFiles[i]);
@@ -161,13 +161,13 @@
 
             var iterations = (int)Math.Ceiling((double)expected.Length / bytesToRead);
 
-            using FileStream actualFileStream = actual.OpenRead();
-            using FileStream expectedFileStream = expected.OpenRead();
+            using var actualFileStream = actual.OpenRead();
+            using var expectedFileStream = expected.OpenRead();
             
-            byte[] one = new byte[bytesToRead];
-            byte[] two = new byte[bytesToRead];
+            var one = new byte[bytesToRead];
+            var two = new byte[bytesToRead];
 
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 actualFileStream.Read(one, 0, bytesToRead);
                 expectedFileStream.Read(two, 0, bytesToRead);

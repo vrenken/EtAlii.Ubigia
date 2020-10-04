@@ -115,7 +115,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Get_Multiple()
         {
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
@@ -135,7 +135,7 @@
         {
             // Arrange.
             var roots = new List<Root>();
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var root = await _fabric.Roots.Add(name);

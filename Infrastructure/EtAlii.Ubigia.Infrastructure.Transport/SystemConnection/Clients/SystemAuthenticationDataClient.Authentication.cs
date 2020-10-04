@@ -10,7 +10,7 @@
 
         public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(password); // accountName, 
+            var authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -18,14 +18,14 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
 
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(password); // accountName, 
+            var authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -33,7 +33,7 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

@@ -34,7 +34,7 @@
             var nodesToAdd = await inputObservable
                 .Cast<INode>()
                 .ToArray();
-            foreach (INode nodeToAdd in nodesToAdd)
+            foreach (var nodeToAdd in nodesToAdd)
             {
                 var identifierToAdd = nodeToAdd.Id;
                 var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope);

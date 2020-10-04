@@ -25,7 +25,7 @@
             var account = _infrastructure.Accounts.Get(accountName);
             if (account == null)
             {
-                string message = $"Unable to connect using the specified account ({accountName})";
+                var message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
             return Task.FromResult(account);

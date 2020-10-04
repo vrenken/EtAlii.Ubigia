@@ -134,7 +134,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id);
@@ -155,7 +155,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
@@ -177,7 +177,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
@@ -200,7 +200,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
@@ -223,7 +223,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 1; i < Count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
@@ -244,7 +244,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 1; i < Count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
@@ -265,7 +265,7 @@
             var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure);
             var loadedEntries = new IEditableEntry[Count];
 
-            for (int i = 1; i < Count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
@@ -369,13 +369,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 Assert.NotEqual(Identifier.Empty, loadedEntry.Id);
@@ -393,13 +393,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 Assert.NotEqual(Identifier.Empty, loadedEntry.Id);
@@ -417,13 +417,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 var next = loadedEntry.Next.Id;
@@ -441,13 +441,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 var child = ((Entry)loadedEntry).Children.First().Id;
@@ -466,13 +466,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var previousEntry = loadedEntries[i];
                 var nextId = previousEntry.Next.Id;
@@ -494,13 +494,13 @@
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (int i = 0; i < Count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
             }
 
             // Assert.
-            for (int i = 0; i < Count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var parentEntry = loadedEntries[i];
                 var childId = ((Entry)parentEntry).Children.First().Id;

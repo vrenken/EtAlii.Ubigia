@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
         public async Task<bool> CanMatch(MatchParameters parameters)
         {
-            bool canMatch = false;
+            var canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {

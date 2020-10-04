@@ -41,7 +41,7 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
 
@@ -76,7 +76,7 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration);
@@ -97,7 +97,7 @@
 
             var spaces = new List<Space>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
 
@@ -138,7 +138,7 @@
 
             var spaces = new List<Space>();
 
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
 

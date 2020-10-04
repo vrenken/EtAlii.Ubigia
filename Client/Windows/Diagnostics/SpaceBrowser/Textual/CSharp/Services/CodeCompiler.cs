@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using Microsoft.CSharp;
     using System.CodeDom.Compiler;
+    using Microsoft.CSharp;
 
     public class CodeCompiler : ICodeCompiler
     {
@@ -17,7 +17,7 @@
 
         private CompilerParameters CreateCompilerParameters()
         {
-            CompilerParameters result = new CompilerParameters
+            var result = new CompilerParameters
             {
                 CompilerOptions = "/target:library",
                 GenerateExecutable = false,

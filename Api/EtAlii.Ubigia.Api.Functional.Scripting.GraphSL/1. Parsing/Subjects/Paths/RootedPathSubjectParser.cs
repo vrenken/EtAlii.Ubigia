@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             var rootedPathSubject = (RootedPathSubject)item;
             var parts = rootedPathSubject.Parts;
 
-            for (int i = 0; i < parts.Length; i++)
+            for (var i = 0; i < parts.Length; i++)
             {
                 var beforePathPart = i > 0 ? parts[i - 1] : null;
                 var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
