@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -10,6 +10,19 @@ namespace EtAlii.Ubigia.Api.Fabric
             //the byte array MUST be little-endian here or the operation will be totally fubared.
             var bitArray = new BitArray(bytes);
 
+            // The code below takes longer then the BitArray.
+            // var length = bytes.Length;
+            // var bitArray = new bool[8 * length];
+            //
+            // // check each bit in the byte. if 1 set to true, if 0 set to false
+            // for (var j = 0; j < length; j++)
+            // {
+            //     for (var i = 0; i < 8; i++)
+            //     {
+            //         bitArray[j * 8 + i] = (bytes[j] & (1 << i)) != 0;
+            //     }
+            // }
+            
             ulong buffer = 0;
             byte quotientBuffer = 0;
             byte qBufferLen = 0;

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
     public class Base36ConvertGuidTests

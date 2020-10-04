@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
 
     internal class NewFunctionHandler : IFunctionHandler
     {

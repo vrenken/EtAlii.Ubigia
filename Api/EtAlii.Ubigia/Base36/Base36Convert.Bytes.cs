@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia
 {
     using System;
     using System.Linq;
@@ -10,23 +10,24 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
         //but uses all 26 English letters a-z instead of just a-f.
-        private static readonly char[] Alphabet = {
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
-                'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
-                'w', 'x', 'y', 'z'
-            };
-
-        public static byte[] ToBytes(string base36String)
+        private static readonly char[] Alphabet = 
         {
-            base36String = base36String.ToLower();
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+            'w', 'x', 'y', 'z'
+        };
 
-            var bits = new bool[]{};
+        public static Span<byte> ToBytes(string base36String)
+        {
+            ReadOnlySpan<char> span = base36String.ToLower();
 
-            var charactersToIterate = base36String.Length;
+            Span<bool> bits = new bool[]{};
+
+            var charactersToIterate = span.Length;
 
             for(var i = charactersToIterate - 1; i>=0; i--)
             {
-                var character = base36String[i];
+                var character = span[i];
                 var characterValue = (byte)Characters.IndexOf(character);
                 var characterBits = ToBits(characterValue);
                 for (var m = 0; m < charactersToIterate - i - 1; m++)
@@ -50,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
 
             var builder = new StringBuilder();
-            while (bytes.Any(b => b > 0))
+            while (bytes.ToArray().Any(b => b > 0))
             {
                 bytes = BitShift.Divide(bytes, 36, out var mod);
                 builder.Insert(0, Alphabet[mod]);
@@ -64,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                 : result;
         }
 
-        private static bool[] ToBits(byte value)
+        private static Span<bool> ToBits(byte value)
         {
             var result = new bool[8];
 
@@ -79,9 +80,9 @@ namespace EtAlii.Ubigia.Api.Fabric
             return result;
         }
 
-        private static byte[] ToBytes(bool[] bits)
+        private static Span<byte> ToBytes(ReadOnlySpan<bool> bits)
         {
-            var result = new byte[]{};
+            Span<byte> result = new byte[]{};
 
             byte currentByte = 0;            
             var bitsToIterate = bits.Length;
@@ -96,8 +97,10 @@ namespace EtAlii.Ubigia.Api.Fabric
 
                 if (bitCounter == 8)
                 {
-                    var newResult = new byte[result.Length + 1];
-                    Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
+                    Span<byte> newResult = new byte[result.Length + 1];
+                    //Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
+                    result.CopyTo(newResult.Slice(1));
+                    //var newResult = result.Slice(1);
                     result = newResult;
                     result[0] = currentByte;
                     currentByte = 0;
@@ -107,8 +110,11 @@ namespace EtAlii.Ubigia.Api.Fabric
 
             if (currentByte != 0)
             {
-                var newResult = new byte[result.Length + 1];
-                Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
+                Span<byte> newResult = new byte[result.Length + 1];
+                //var newResult = new byte[result.Length + 1];
+                //Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
+                //var newResult = result.Slice(1);
+                result.CopyTo(newResult.Slice(1));
                 result = newResult;
                 result[0] = currentByte;
             }

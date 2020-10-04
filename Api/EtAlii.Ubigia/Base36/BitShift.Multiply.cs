@@ -1,13 +1,13 @@
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia
 {
     using System;
 
     internal static partial class BitShift
     {
-        public static void Multiply(ref bool[] target, bool[] multiplication)
+        public static void Multiply(ref Span<bool> target, bool[] multiplication)
         {
-            var original = new bool[target.Length];
-            Buffer.BlockCopy(target, 0, original, 0, target.Length);
+            Span<bool> original = new bool[target.Length];
+            target.CopyTo(original);
 
             target = new bool[] { };
 
@@ -18,8 +18,8 @@ namespace EtAlii.Ubigia.Api.Fabric
                 {
                     Add(ref target, original);
                 }
-                var newOriginal = new bool[original.Length + 1];
-                Buffer.BlockCopy(original, 0, newOriginal, 0, original.Length);
+                Span<bool> newOriginal = new bool[original.Length + 1];
+                original.CopyTo(newOriginal);
                 original = newOriginal;
             }
         }

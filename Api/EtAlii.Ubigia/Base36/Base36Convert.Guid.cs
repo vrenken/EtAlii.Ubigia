@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia
 {
     using System;
 
