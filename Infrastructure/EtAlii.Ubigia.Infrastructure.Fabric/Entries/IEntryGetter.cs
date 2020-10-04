@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
 
     public interface IEntryGetter
     {

@@ -4,17 +4,18 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using Root = EtAlii.Ubigia.Root;
 
     internal class GrpcRootDataClient : GrpcClientBase, IRootDataClient<IGrpcSpaceTransport>
     {
         private RootGrpcService.RootGrpcServiceClient _client;
         private IGrpcSpaceTransport _transport;
 
-        public async Task<Api.Root> Add(string name)
+        public async Task<Root> Add(string name)
         {
             try
             {
-                var root = new Api.Root { Name = name };
+                var root = new Root { Name = name };
                 var request = new RootPostSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
                 var response = await _client.PostAsync(request, _transport.AuthenticationHeaders);
                 return response.Root.ToLocal();
@@ -38,11 +39,11 @@
             }
         }
 
-        public async Task<Api.Root> Change(System.Guid rootId, string rootName)
+        public async Task<Root> Change(System.Guid rootId, string rootName)
         {
             try
             {
-                var root = new Api.Root { Id = rootId, Name = rootName };
+                var root = new Root { Id = rootId, Name = rootName };
                 var request = new RootSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
                 var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
                 return response.Root.ToLocal();
@@ -53,7 +54,7 @@
             }
         }
 
-        public async Task<Api.Root> Get(string rootName)
+        public async Task<Root> Get(string rootName)
         {
             try
             {
@@ -67,7 +68,7 @@
             }
         }
 
-        public async Task<Api.Root> Get(System.Guid rootId)
+        public async Task<Root> Get(System.Guid rootId)
         {
             try
             {
@@ -81,7 +82,7 @@
             }
         }
 
-        public async Task<IEnumerable<Api.Root>> GetAll()
+        public async Task<IEnumerable<Root>> GetAll()
         {
             try
             {

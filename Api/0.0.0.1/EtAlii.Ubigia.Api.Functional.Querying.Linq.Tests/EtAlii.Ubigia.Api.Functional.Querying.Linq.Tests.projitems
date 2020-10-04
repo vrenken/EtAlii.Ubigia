@@ -6,7 +6,7 @@
     <SharedGUID>B440E70F-9C1F-46AD-8B86-A56ECEE3D185</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests</Import_RootNamespace>
+    <Import_RootNamespace>EtAlii.Ubigia.Functional.Querying.Linq.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />

@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
 
     internal class RootRemover : IRootRemover
     {

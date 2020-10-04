@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Storages
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public static class StorageCmdlet 
     {

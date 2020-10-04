@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     public interface IStorageResolver
     {

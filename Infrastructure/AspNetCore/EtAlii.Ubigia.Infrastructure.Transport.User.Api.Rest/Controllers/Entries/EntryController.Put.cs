@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
-    using EtAlii.Ubigia.Api;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class EntryController

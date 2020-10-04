@@ -7,16 +7,10 @@
     <Description>This library provides client-transport agnostic logic. It is consumed by all transport specific packages.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-  <PropertyGroup>
-    <!-- We want to have comments on everything public -->
-<!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
-<!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
-  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
   </ItemGroup>
   <ItemGroup>

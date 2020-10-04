@@ -12,9 +12,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.NetCoreApp" Version="1.0.56.7" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.NetCoreApp\EtAlii.Ubigia.Persistence.NetCoreApp.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>
 </Project>

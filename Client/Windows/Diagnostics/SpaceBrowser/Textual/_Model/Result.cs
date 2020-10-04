@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
-
     public class Result 
     {
         public string Id { get; }

@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingEntryDataClient : IEntryDataClient
     {

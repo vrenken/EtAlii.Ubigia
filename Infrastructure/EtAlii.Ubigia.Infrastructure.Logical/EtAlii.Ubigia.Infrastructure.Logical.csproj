@@ -9,7 +9,7 @@
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj" />

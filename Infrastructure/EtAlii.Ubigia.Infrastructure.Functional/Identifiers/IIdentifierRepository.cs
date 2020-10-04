@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public interface IIdentifierRepository
     {

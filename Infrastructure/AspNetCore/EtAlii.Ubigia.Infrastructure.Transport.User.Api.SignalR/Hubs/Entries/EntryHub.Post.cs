@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public partial class EntryHub
     {

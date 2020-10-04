@@ -9,10 +9,9 @@
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.Service.Grpc" Version="1.1.40" />
   </ItemGroup>
   <ItemGroup>

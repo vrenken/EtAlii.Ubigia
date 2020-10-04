@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
-    using EtAlii.Ubigia.Api;
-
     public class PropertiesSet : IPropertiesSet
     {
         private readonly IPropertiesGetter _propertiesGetter;

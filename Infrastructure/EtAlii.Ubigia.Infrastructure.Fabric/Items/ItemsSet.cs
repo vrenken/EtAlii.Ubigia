@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using EtAlii.Ubigia.Api;
 
     public class ItemsSet : IItemsSet
     {

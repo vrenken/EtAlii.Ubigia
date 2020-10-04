@@ -25,10 +25,10 @@
         {
             var authenticationTokenHeader = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
             var authenticationToken = authenticationTokenHeader.Value;
-            _authenticationTokenVerifier.Verify(authenticationToken, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
+            _authenticationTokenVerifier.Verify(authenticationToken, out EtAlii.Ubigia.Account account, Role.User, Role.System);
             var accountId = account.Id;
             
-            EtAlii.Ubigia.Api.Space space;
+            EtAlii.Ubigia.Space space;
             
             switch (request)
             {
@@ -57,7 +57,7 @@
         {
             var authenticationTokenHeader = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
             var authenticationToken = authenticationTokenHeader.Value;
-            _authenticationTokenVerifier.Verify(authenticationToken, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
+            _authenticationTokenVerifier.Verify(authenticationToken, out EtAlii.Ubigia.Account account, Role.User, Role.System);
             var accountId = account.Id;
             
             var spaces = _items

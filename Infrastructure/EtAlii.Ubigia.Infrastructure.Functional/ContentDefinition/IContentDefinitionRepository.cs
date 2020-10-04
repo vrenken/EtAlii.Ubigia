@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using EtAlii.Ubigia.Api;
-
     public interface IContentDefinitionRepository
     {
         void Store(Identifier identifier, ContentDefinition contentDefinition);

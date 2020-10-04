@@ -5,7 +5,6 @@
 	using System.Net;
 	using System.Threading;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Api.Transport.WebApi;
 	using Xunit;

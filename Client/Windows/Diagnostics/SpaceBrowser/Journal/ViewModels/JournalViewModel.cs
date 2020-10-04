@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Windows.Mvvm;
 

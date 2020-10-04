@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using Xunit;
 
     public class StorageTest : IAsyncLifetime

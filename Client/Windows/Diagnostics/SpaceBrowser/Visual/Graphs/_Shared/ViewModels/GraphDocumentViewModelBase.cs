@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.ObjectModel;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using Northwoods.GoXam.Model;
 
-//using System.Windows.Input
+    //using System.Windows.Input
 
     public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel
     {

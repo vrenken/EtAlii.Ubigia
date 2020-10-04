@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.InMemory;
+    using EtAlii.Ubigia.Persistence;
+    using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 

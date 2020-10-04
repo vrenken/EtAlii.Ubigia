@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.xTechnology.Logging;
 

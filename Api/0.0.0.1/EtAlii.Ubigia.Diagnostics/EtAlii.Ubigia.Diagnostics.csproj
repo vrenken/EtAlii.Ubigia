@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Package that contains the core diagnostic client components needed to communicate with Ubigia server components.</Description>
+    <PackageTags>API abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <Version>$(PackageVersion)</Version>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Diagnostics</PackageProjectUrl>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <ProjectGuid>fea8b5c7-799c-45d1-9659-6708809b0c7c</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.xTechnology.Diagnostics" Version="1.0.3" />
+    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+  </ItemGroup>
+
+</Project>

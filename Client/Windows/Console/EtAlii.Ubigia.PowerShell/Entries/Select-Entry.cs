@@ -2,7 +2,6 @@
 {
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Entry)]
     public class SelectEntry : TaskCmdlet<Entry>

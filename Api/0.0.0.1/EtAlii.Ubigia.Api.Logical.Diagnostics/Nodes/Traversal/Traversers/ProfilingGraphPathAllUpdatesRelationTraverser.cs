@@ -3,8 +3,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingGraphPathAllUpdatesRelationTraverser : IGraphPathAllUpdatesRelationTraverser
     {

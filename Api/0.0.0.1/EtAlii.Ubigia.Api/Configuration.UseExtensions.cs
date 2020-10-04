@@ -1,5 +1,4 @@
-﻿
-namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Api
 {
     using System;
     using System.Linq;
@@ -52,6 +51,5 @@ namespace EtAlii.Ubigia.Api
             
             return configuration;
         }
-
     }
 }

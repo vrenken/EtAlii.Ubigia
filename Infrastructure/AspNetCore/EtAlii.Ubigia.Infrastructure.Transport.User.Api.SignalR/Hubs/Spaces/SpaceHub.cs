@@ -2,7 +2,6 @@
 {
 	using System;
 	using System.Linq;
-	using EtAlii.Ubigia.Api;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 	using Microsoft.Extensions.Primitives;

@@ -2,7 +2,6 @@
 {
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Clear, Nouns.Space, DefaultParameterSetName = "bySpaceName", SupportsShouldProcess = true)]
     public class ClearSpace : SpaceTargetingCmdlet<Space>

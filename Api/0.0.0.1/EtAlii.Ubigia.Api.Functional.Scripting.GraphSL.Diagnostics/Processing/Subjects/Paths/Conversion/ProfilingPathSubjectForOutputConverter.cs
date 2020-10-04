@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     internal class ProfilingPathSubjectForOutputConverter : IPathSubjectForOutputConverter
     {

@@ -5,8 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
 
     internal class ItemGetter : IItemGetter
     {

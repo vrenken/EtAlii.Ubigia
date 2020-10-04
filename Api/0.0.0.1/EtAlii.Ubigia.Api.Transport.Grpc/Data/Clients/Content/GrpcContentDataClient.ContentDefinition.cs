@@ -3,10 +3,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using ContentDefinition = EtAlii.Ubigia.ContentDefinition;
+    using ContentDefinitionPart = EtAlii.Ubigia.ContentDefinitionPart;
+    using Identifier = EtAlii.Ubigia.Identifier;
 
     internal partial class GrpcContentDataClient
     {
-        public async Task StoreDefinition(Api.Identifier identifier, Api.ContentDefinition contentDefinition)
+        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             try
             {
@@ -22,7 +25,7 @@
             }
         }
 
-        public async Task StoreDefinition(Api.Identifier identifier, Api.ContentDefinitionPart contentDefinitionPart)
+        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             try
             {
@@ -38,7 +41,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Api.Identifier identifier)
+        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             try
             {
@@ -53,7 +56,7 @@
             }
         }
 
-        private void MarkAsStored(Api.ContentDefinition contentDefinition)
+        private void MarkAsStored(ContentDefinition contentDefinition)
         {
             BlobHelper.SetStored(contentDefinition, true);
 
@@ -63,7 +66,7 @@
             }
         }
 
-        private void MarkAsStored(Api.ContentDefinitionPart contentDefinitionPart)
+        private void MarkAsStored(ContentDefinitionPart contentDefinitionPart)
         {
             BlobPartHelper.SetStored(contentDefinitionPart, true);
         }

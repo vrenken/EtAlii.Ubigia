@@ -17,12 +17,12 @@
 //        [
 //            //_name = GrpcHub.Content
 //        ]
-//        private void OnUpdated(Api.Identifier identifier)
+//        private void OnUpdated(Identifier identifier)
 //        [
 //            Updated(identifier)
 //        ]
 //
-//        private void OnStored(Api.Identifier identifier)
+//        private void OnStored(Identifier identifier)
 //        [
 //            Stored(identifier)
 //        ]

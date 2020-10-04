@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
 
     public class IdentifierTailGetter : IIdentifierTailGetter
     {

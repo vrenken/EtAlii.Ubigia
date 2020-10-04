@@ -11,6 +11,8 @@
     <Copyright>Copyright ©2012-2020 Peter Vrenken</Copyright>
     <Company>EtAlii</Company>
     <Product>Ubigia</Product>
+
+    <BuildUbigiaPackages>false</BuildUbigiaPackages>
     
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->

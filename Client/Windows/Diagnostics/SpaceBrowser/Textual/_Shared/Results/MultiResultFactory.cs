@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Structure;
 
     public class MultiResultFactory : IMultiResultFactory

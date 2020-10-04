@@ -7,17 +7,18 @@
     using global::Grpc.Core;
     using AdminStorageSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
     using AdminStorageMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest;
+    using Storage = EtAlii.Ubigia.Storage;
 
     public sealed class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
     {
         private StorageGrpcService.StorageGrpcServiceClient _client;
         private IGrpcStorageTransport _transport;
 
-        public async Task<Api.Storage> Add(string storageName, string storageAddress)
+        public async Task<Storage> Add(string storageName, string storageAddress)
         {
             try
             {
-                var storage = StorageExtension.ToWire(new Api.Storage
+                var storage = StorageExtension.ToWire(new Storage
                 {
                     Name = storageName,
                     Address = storageAddress,
@@ -54,11 +55,11 @@
             }
         }
 
-        public async Task<Api.Storage> Change(System.Guid storageId, string storageName, string storageAddress)
+        public async Task<Storage> Change(System.Guid storageId, string storageName, string storageAddress)
         {
             try
             {
-                var storage = StorageExtension.ToWire(new Api.Storage
+                var storage = StorageExtension.ToWire(new Storage
                 {
                     Id = storageId,
                     Name = storageName,
@@ -79,7 +80,7 @@
             }
         }
 
-        public async Task<Api.Storage> Get(string storageName)
+        public async Task<Storage> Get(string storageName)
         {
             try
             {
@@ -97,7 +98,7 @@
             }
         }
 
-        public async Task<Api.Storage> Get(System.Guid storageId)
+        public async Task<Storage> Get(System.Guid storageId)
         {
             try
             {
@@ -115,7 +116,7 @@
             }
         }
 
-        public async Task<IEnumerable<Api.Storage>> GetAll()
+        public async Task<IEnumerable<Storage>> GetAll()
         {
             try
             {

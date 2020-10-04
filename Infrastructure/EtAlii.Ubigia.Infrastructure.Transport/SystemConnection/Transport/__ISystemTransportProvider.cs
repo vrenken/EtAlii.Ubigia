@@ -1,6 +1,6 @@
 //namespace EtAlii.Ubigia.Infrastructure.Transport
 //[
-//    using EtAlii.Ubigia.Api.Management
+//    using EtAlii.Ubigia.Management
 
 //    public interface ISystemTransportProvider : IStorageTransportProvider
 //    [

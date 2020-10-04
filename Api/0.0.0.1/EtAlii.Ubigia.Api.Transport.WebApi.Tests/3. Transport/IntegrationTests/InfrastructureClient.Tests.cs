@@ -3,8 +3,8 @@
     using System;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class InfrastructureClientIntegrationTests

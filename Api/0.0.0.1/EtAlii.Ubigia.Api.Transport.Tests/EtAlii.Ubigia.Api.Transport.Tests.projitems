@@ -13,7 +13,7 @@
     <SharedGUID>43519cad-f917-4cf3-b9cb-2f84bbcaf2e0</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>EtAlii.Ubigia.Api.Transport.Tests</Import_RootNamespace>
+    <Import_RootNamespace>EtAlii.Ubigia.Transport.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentClientStub.Tests.cs" />

@@ -2,7 +2,6 @@
 {
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
     public class GetSpace : SpaceTargetingCmdlet<Space>

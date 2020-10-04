@@ -16,7 +16,7 @@
 //        [
 //            //_name = GrpcHub.Property
 //        ]
-//        private void OnStored(Api.Identifier identifier)
+//        private void OnStored(Identifier identifier)
 //        [
 //            Stored(identifier)
 //        ]

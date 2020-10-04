@@ -5,6 +5,7 @@
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using Account = EtAlii.Ubigia.Account;
     using AdminAccountPostSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest;
     using AdminAccountSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest;
     using AdminAccountMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest;
@@ -14,11 +15,11 @@
         private AccountGrpcService.AccountGrpcServiceClient _client;
         private IGrpcStorageTransport _transport;
 
-        public async Task<Api.Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             try
             {
-                var account = AccountExtension.ToWire(new Api.Account
+                var account = AccountExtension.ToWire(new Account
                 {
                     Name = accountName,
                     Password = accountPassword,
@@ -57,11 +58,11 @@
             }
         }
 
-        public async Task<Api.Account> Change(System.Guid accountId, string accountName, string accountPassword)
+        public async Task<Account> Change(System.Guid accountId, string accountName, string accountPassword)
         {
             try
             {
-                var account = AccountExtension.ToWire(new Api.Account
+                var account = AccountExtension.ToWire(new Account
                 {
                     Id = accountId,
                     Name = accountName,
@@ -83,7 +84,7 @@
             }
         }
 
-        public async Task<Api.Account> Change(Api.Account account)
+        public async Task<Account> Change(Account account)
         {
             try
             {
@@ -102,7 +103,7 @@
             }
         }
 
-        public async Task<Api.Account> Get(string accountName)
+        public async Task<Account> Get(string accountName)
         {
             try
             {
@@ -121,7 +122,7 @@
             }
         }
 
-        public async Task<Api.Account> Get(System.Guid accountId)
+        public async Task<Account> Get(System.Guid accountId)
         {
             try
             {
@@ -140,7 +141,7 @@
             }
         }
 
-        public async Task<IEnumerable<Api.Account>> GetAll()
+        public async Task<IEnumerable<Account>> GetAll()
         {
             try
             {

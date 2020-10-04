@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Accounts;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Spaces, DefaultParameterSetName = "ByAccountName")]

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
 
     public interface IGraphDocumentViewModel : IDocumentViewModel
     {

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using EtAlii.Ubigia.Api;
-
     public interface ISimpleAuthenticationTokenVerifier
     {
         void Verify(string authenticationTokenAsString, params string[] requiredRoles);

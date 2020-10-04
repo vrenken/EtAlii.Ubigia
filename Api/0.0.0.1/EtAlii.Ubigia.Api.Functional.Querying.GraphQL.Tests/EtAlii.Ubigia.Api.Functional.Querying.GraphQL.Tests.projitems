@@ -6,7 +6,7 @@
     <SharedGUID>D9BC8BFE-F2E6-4D5C-A3DB-F6A090695F17</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests</Import_RootNamespace>
+    <Import_RootNamespace>EtAlii.Ubigia.Functional.Querying.GraphQL.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphQLData.cs" />

@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
 
     public interface IRootsViewModel : INotifyPropertyChanged
     {

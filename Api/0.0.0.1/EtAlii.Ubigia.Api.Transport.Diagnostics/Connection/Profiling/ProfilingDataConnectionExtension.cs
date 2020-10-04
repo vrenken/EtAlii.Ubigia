@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingDataConnectionExtension : IDataConnectionExtension 

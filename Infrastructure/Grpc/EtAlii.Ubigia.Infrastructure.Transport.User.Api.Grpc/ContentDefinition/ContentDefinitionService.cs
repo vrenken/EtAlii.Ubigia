@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
-    using ContentDefinition = EtAlii.Ubigia.Api.ContentDefinition;
+    using ContentDefinition = EtAlii.Ubigia.ContentDefinition;
 
     public class UserContentDefinitionService : ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
     {

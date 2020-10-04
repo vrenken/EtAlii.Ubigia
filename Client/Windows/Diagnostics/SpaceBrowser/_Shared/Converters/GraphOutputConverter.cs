@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.Collections.Generic;
     using System.Text;
     using System.Windows.Data;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Logical;
 
     public class GraphOutputConverter : IValueConverter

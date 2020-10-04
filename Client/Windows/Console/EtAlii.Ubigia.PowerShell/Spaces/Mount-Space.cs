@@ -2,7 +2,6 @@
 {
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsData.Mount, Nouns.Space, DefaultParameterSetName = "byStorageName")]
     public class MountSpace : SpaceTargetingCmdlet<Space>

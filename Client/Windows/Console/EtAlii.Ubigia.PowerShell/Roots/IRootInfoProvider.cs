@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public interface IRootInfoProvider
     {

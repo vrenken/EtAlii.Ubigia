@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Spaces;
 
 #pragma warning disable S110 // For the powershell part we don't worry about a too deep inheritance chain.

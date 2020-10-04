@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalPropertiesSet : ILogicalPropertiesSet

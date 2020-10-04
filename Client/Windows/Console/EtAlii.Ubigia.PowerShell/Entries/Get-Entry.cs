@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using System.Management.Automation;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Entry)]
     public class GetEntry : Cmdlet

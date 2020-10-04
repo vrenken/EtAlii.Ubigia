@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public interface IContentSet
     {

@@ -6,8 +6,8 @@
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
-    using Content = EtAlii.Ubigia.Api.Content;
-    using ContentPart = EtAlii.Ubigia.Api.ContentPart;
+    using Content = EtAlii.Ubigia.Content;
+    using ContentPart = EtAlii.Ubigia.ContentPart;
 
     public class UserContentService : ContentGrpcService.ContentGrpcServiceBase, IUserContentService
     {

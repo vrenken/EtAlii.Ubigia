@@ -5,7 +5,6 @@
     using System.IO;
     using System.Linq;
     using System.Text;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     internal class DebuggingEntryRepositoryDecorator : IEntryRepository

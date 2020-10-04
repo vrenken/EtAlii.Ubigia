@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public class IdentifierRootUpdater : IIdentifierRootUpdater
     {

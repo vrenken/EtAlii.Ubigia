@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingGraphPathTraverserExtension : IGraphPathTraverserExtension

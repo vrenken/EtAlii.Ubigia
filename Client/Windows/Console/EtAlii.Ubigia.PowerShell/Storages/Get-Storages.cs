@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storages, DefaultParameterSetName = "byStorage")]
     public class GetStorages : TaskCmdlet<IEnumerable<Storage>>, IStorageInfoProvider

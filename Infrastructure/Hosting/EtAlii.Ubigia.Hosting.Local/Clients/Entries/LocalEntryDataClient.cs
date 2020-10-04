@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Local
 {
-    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia;
     using EtAlii.xTechnology.MicroContainer;
     using System.Collections.Generic;
 

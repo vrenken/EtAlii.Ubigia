@@ -8,7 +8,7 @@
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
