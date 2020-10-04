@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class IdentifierHeadGetter : IIdentifierHeadGetter

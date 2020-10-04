@@ -1,4 +1,4 @@
-//namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+//namespace EtAlii.Ubigia.Diagnostics.Profiling
 //[
 //    using System.Threading.Tasks
 //    using EtAlii.Ubigia.Api.Functional

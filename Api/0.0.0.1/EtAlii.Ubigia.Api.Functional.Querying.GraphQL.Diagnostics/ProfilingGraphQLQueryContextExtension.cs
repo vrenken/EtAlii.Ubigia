@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingGraphQLQueryContextExtension : IGraphQLQueryContextExtension

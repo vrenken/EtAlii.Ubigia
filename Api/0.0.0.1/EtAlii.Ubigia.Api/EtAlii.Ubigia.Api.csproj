@@ -7,7 +7,7 @@
     <Description>This library contains code constructs that are used all throughout the Api projects.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <PropertyGroup>
@@ -16,7 +16,7 @@
     <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
+    <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>

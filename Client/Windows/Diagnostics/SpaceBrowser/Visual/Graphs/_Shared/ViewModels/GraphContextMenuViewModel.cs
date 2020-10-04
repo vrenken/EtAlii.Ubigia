@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Windows.Mvvm;
 
     public class GraphContextMenuViewModel : BindableBase, IGraphContextMenuViewModel

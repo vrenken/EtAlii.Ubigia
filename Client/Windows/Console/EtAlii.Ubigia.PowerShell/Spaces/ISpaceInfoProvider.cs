@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Spaces
 {
     using System;
-    using EtAlii.Ubigia.Api;
 
     public interface ISpaceInfoProvider 
     {

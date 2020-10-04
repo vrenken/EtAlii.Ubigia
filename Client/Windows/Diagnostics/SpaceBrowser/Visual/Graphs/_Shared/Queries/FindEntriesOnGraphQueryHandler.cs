@@ -1,9 +1,8 @@
 ﻿
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Workflow;
     using System.Linq;
+    using EtAlii.xTechnology.Workflow;
 
     public class FindEntriesOnGraphQueryHandler : QueryHandlerBase<FindEntriesOnGraphQuery, IReadOnlyEntry>, IFindEntriesOnGraphQueryHandler
     {

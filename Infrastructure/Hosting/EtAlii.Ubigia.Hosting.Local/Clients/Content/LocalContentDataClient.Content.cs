@@ -1,16 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Local
 {
-    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia;
     using EtAlii.Ubigia.Api.Transport;
 
     public partial class LocalContentDataClient : LocalDataClientBase<IDataConnection>, IContentDataClient
     {
-        public void Store(Identifier identifier, EtAlii.Ubigia.Api.Content content)
+        public void Store(Identifier identifier, EtAlii.Ubigia.Content content)
         {
             throw new System.NotImplementedException();
 
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
-            //Infrastructure.Post<EtAlii.Ubigia.Api.Content>(address, content)
+            //Infrastructure.Post<EtAlii.Ubigia.Content>(address, content)
 
             //BlobHelper.SetStored(content, true)
         }
@@ -30,7 +30,7 @@
             throw new System.NotImplementedException();
 
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
-            //var content = Infrastructure.Get<EtAlii.Ubigia.Api.Content>(address)
+            //var content = Infrastructure.Get<EtAlii.Ubigia.Content>(address)
             //return content as IReadOnlyContent
         }
 

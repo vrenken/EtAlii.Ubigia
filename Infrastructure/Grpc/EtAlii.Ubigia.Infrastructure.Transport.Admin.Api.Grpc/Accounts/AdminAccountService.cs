@@ -22,7 +22,7 @@
         //public Account GetByName(string accountName)
         public override Task<AccountSingleResponse> GetSingle(AccountSingleRequest request, ServerCallContext context)
         {
-            EtAlii.Ubigia.Api.Account account;
+            EtAlii.Ubigia.Account account;
             
             switch (request)
             {

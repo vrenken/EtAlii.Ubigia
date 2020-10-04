@@ -9,13 +9,13 @@
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.56.7" />
     <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

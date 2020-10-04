@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     public class IdentifiersBinder : IModelBinder

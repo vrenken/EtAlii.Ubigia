@@ -1,9 +1,9 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-//using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying
+    //using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying
 
     public class ProfilingGraphTLQueryContextExtension : IGraphTLQueryContextExtension
     {

@@ -7,7 +7,7 @@
     <Description>This library provides a SignalR specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RootNamespace>EtAlii.Ubigia.Api.Transport.SignalR</RootNamespace>
   </PropertyGroup>

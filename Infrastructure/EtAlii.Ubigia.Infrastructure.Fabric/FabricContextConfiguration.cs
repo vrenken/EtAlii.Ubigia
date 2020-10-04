@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
 
     public class FabricContextConfiguration : IFabricContextConfiguration
     {

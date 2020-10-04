@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalStorageSet : ILogicalStorageSet

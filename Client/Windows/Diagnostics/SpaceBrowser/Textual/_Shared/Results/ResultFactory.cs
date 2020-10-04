@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
 

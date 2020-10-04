@@ -7,7 +7,7 @@
         <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
         <PackageTags>
         </PackageTags>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <RootNamespace>EtAlii.Ubigia.Api.Functional.Diagnostics</RootNamespace>
     </PropertyGroup>

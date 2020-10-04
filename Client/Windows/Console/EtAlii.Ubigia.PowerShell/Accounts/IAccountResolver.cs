@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.PowerShell.Accounts
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     public interface IAccountResolver
     {

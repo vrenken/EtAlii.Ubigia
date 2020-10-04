@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingLinqQueryContext : IProfilingLinqQueryContext
     {

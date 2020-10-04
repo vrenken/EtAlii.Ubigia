@@ -3,7 +3,6 @@
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Entry)]
     public class AddEntry : TaskCmdlet<Entry>

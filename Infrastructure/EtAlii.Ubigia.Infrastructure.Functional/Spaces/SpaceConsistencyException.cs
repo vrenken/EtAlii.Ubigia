@@ -2,7 +2,6 @@
 {
     using System;
     using System.Runtime.Serialization;
-    using EtAlii.Ubigia.Api;
 
     [Serializable]
     public sealed class SpaceConsistencyException : Exception

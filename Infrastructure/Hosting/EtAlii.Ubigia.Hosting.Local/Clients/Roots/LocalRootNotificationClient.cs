@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Local
 {
-    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia;
     using System;
 
     public class LocalRootNotificationClient : LocalNotificationClientBase, IRootNotificationClient

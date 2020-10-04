@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class RootRepository : IRootRepository

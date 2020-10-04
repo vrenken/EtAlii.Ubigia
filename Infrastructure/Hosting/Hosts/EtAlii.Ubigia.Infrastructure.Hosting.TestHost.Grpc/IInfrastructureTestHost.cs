@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
 
     // using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
     // using EtAlii.Ubigia.Infrastructure.Transport.User.Grpc;

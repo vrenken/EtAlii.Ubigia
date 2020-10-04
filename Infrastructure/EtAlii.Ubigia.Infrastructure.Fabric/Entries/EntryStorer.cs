@@ -2,8 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
 
     internal class EntryStorer : IEntryStorer
     {

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
 
     public interface IItemAdder
     {

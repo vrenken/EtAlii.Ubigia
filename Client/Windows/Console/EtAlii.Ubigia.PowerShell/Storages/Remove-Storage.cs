@@ -3,7 +3,6 @@
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Storage, DefaultParameterSetName = "byStorage", SupportsShouldProcess = true)]
     public class RemoveStorage : TaskCmdlet, IStorageInfoProvider

@@ -3,7 +3,6 @@
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Storages;
 
     [Cmdlet(VerbsData.Update, Nouns.Account, DefaultParameterSetName = "byStorage")]

@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
 	using System;
-	using EtAlii.Ubigia.Storage;
-	using EtAlii.Ubigia.Storage.NetCoreApp;
+	using EtAlii.Ubigia.Persistence;
+	using EtAlii.Ubigia.Persistence.NetCoreApp;
 	using EtAlii.xTechnology.Hosting;
 	using EtAlii.xTechnology.MicroContainer;
 	using Microsoft.Extensions.Configuration;

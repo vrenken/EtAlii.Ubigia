@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Windows.Mvvm;
 

@@ -35,7 +35,7 @@
         //public Root GetByName(string rootName)
         public override Task<RootSingleResponse> GetSingle(RootSingleRequest request, ServerCallContext context)
         {
-            EtAlii.Ubigia.Api.Root root;
+            EtAlii.Ubigia.Root root;
             var spaceId = request.SpaceId.ToLocal();
 
             switch (request)

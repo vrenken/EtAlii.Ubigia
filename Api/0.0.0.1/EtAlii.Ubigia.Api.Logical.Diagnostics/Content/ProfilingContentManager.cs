@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingContentManager : IContentManager
     {

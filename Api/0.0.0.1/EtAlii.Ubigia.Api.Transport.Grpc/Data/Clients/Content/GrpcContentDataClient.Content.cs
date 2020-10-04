@@ -3,10 +3,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using Content = EtAlii.Ubigia.Content;
+    using ContentPart = EtAlii.Ubigia.ContentPart;
+    using Identifier = EtAlii.Ubigia.Identifier;
 
     internal partial class GrpcContentDataClient
     {
-        public async Task Store(Api.Identifier identifier, Api.Content content)
+        public async Task Store(Identifier identifier, Content content)
         {
             try
             {
@@ -24,7 +27,7 @@
 
         }
 
-        public async Task Store(Api.Identifier identifier, Api.ContentPart contentPart)
+        public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             try
             {
@@ -40,7 +43,7 @@
             }
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Api.Identifier identifier)
+        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
         {
             try
             {
@@ -55,7 +58,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Api.Identifier identifier, ulong contentPartId)
+        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             try
             {

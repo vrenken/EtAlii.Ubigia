@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
 
     public class LogicalGraphDocumentViewModel : GraphDocumentViewModelBase, ILogicalGraphDocumentViewModel

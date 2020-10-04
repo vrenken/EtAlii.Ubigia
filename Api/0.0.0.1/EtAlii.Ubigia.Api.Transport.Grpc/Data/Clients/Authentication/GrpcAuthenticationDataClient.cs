@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Net.Client;
+    using Account = EtAlii.Ubigia.Account;
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
@@ -12,7 +13,7 @@
         private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
         private StorageGrpcService.StorageGrpcServiceClient _storageClient;
         private SpaceGrpcService.SpaceGrpcServiceClient _spaceClient;
-        private Api.Account _account;
+        private Account _account;
 
         public GrpcAuthenticationDataClient()
         {

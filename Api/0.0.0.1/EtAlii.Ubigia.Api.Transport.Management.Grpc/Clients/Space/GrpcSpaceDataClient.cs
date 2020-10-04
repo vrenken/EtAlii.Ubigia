@@ -8,17 +8,18 @@
     using AdminSpacePostSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest;
     using AdminSpaceSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest;
     using AdminSpaceMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest;
+    using Space = EtAlii.Ubigia.Space;
 
     public sealed class GrpcSpaceDataClient : ISpaceDataClient<IGrpcStorageTransport>
     {
         private SpaceGrpcService.SpaceGrpcServiceClient _client;
         private IGrpcStorageTransport _transport;
 
-        public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
+        public async Task<Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
             try
             {
-                var space = SpaceExtension.ToWire(new Api.Space 
+                var space = SpaceExtension.ToWire(new Space 
                 {
                     Name = spaceName,
                     AccountId = accountId,
@@ -57,11 +58,11 @@
             }
         }
 
-        public async Task<Api.Space> Change(System.Guid spaceId, string spaceName)
+        public async Task<Space> Change(System.Guid spaceId, string spaceName)
         {
             try
             {
-                var space = SpaceExtension.ToWire(new Api.Space
+                var space = SpaceExtension.ToWire(new Space
                 {
                     Id = spaceId,
                     Name = spaceName,
@@ -82,7 +83,7 @@
             }
         }
 
-        public async Task<Api.Space> Get(System.Guid accountId, string spaceName)
+        public async Task<Space> Get(System.Guid accountId, string spaceName)
         {
             try
             {
@@ -101,7 +102,7 @@
             }
         }
 
-        public async Task<Api.Space> Get(System.Guid spaceId)
+        public async Task<Space> Get(System.Guid spaceId)
         {
             try
             {
@@ -120,7 +121,7 @@
             }
         }
 
-        public async Task<IEnumerable<Api.Space>> GetAll(System.Guid accountId)
+        public async Task<IEnumerable<Space>> GetAll(System.Guid accountId)
         {
             try
             {

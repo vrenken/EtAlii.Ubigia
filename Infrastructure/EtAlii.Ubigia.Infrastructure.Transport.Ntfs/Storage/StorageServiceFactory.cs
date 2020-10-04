@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
 {
     using System;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.Ntfs;
+    using EtAlii.Ubigia.Persistence;
+    using EtAlii.Ubigia.Persistence.Ntfs;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;

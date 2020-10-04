@@ -21,7 +21,7 @@
         //public Space GetByName(string spaceName)
         public override Task<SpaceSingleResponse> GetSingle(SpaceSingleRequest request, ServerCallContext context)
         {
-            EtAlii.Ubigia.Api.Space space;
+            EtAlii.Ubigia.Space space;
             
             switch (request)
             {

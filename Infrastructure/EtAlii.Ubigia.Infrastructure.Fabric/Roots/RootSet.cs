@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
+
     public class RootSet : IRootSet
     {
         private readonly IRootAdder _rootAdder;

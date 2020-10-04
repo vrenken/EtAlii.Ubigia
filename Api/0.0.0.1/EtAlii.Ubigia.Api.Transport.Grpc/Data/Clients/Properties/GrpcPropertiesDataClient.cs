@@ -3,13 +3,15 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using Identifier = EtAlii.Ubigia.Identifier;
+    using PropertyDictionary = EtAlii.Ubigia.PropertyDictionary;
 
     internal class GrpcPropertiesDataClient : GrpcClientBase, IPropertiesDataClient<IGrpcSpaceTransport>
     {
         private IGrpcSpaceTransport _transport;
         private PropertiesGrpcService.PropertiesGrpcServiceClient _client;
 
-        public async Task Store(Api.Identifier identifier, Api.PropertyDictionary properties, ExecutionScope scope)
+        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
             try
             {
@@ -24,7 +26,7 @@
             }
         }
 
-        public async Task<Api.PropertyDictionary> Retrieve(Api.Identifier identifier, ExecutionScope scope)
+        public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
             try
             {

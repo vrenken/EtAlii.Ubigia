@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     internal class ProfilingRelativePathSubjectProcessor : IRelativePathSubjectProcessor
     {

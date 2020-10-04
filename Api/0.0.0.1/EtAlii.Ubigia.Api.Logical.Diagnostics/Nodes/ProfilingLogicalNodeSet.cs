@@ -2,8 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingLogicalNodeSet : ILogicalNodeSet
     {

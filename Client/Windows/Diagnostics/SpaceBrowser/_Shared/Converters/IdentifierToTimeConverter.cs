@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Windows.Data;
-    using EtAlii.Ubigia.Api;
 
     public class IdentifierToTimeConverter : IValueConverter
     {

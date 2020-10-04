@@ -4,7 +4,7 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
-	using EtAlii.Ubigia.Storage;
+	using EtAlii.Ubigia.Persistence;
 	using EtAlii.xTechnology.Hosting;
 
 	public class InfrastructureTestHost : TestHost, IInfrastructureTestHost

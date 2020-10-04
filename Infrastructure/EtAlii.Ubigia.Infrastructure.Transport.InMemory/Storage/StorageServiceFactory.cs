@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
     using System;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.InMemory;
+    using EtAlii.Ubigia.Persistence;
+    using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;

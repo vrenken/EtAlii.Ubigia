@@ -9,9 +9,9 @@
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
   </ItemGroup>
 </Project>

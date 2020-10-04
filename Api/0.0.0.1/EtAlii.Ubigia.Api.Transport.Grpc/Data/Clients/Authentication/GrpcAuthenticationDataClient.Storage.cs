@@ -2,10 +2,11 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using Storage = EtAlii.Ubigia.Storage;
 
     public partial class GrpcAuthenticationDataClient
     {
-        public async Task<Api.Storage> GetConnectedStorage(ISpaceConnection connection)
+        public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
             if (connection.Storage != null)
             {
@@ -22,7 +23,7 @@
 
             return storage;
         }
-        private async Task<Api.Storage> GetConnectedStorage(IGrpcTransport transport)
+        private async Task<Storage> GetConnectedStorage(IGrpcTransport transport)
         {
             var request = new StorageSingleRequest();
             var response = await _storageClient.GetLocalAsync(request, transport.AuthenticationHeaders);

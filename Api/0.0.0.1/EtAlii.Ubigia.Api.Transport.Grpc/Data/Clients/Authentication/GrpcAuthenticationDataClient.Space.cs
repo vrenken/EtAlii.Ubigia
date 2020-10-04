@@ -2,10 +2,11 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using Space = EtAlii.Ubigia.Space;
 
     public partial class GrpcAuthenticationDataClient
     {
-        public async Task<Api.Space> GetSpace(ISpaceConnection connection)
+        public async Task<Space> GetSpace(ISpaceConnection connection)
         {
             if (connection.Space != null)
             {
@@ -22,7 +23,7 @@
             return space;
         }
 
-        private async Task<Api.Space> GetSpace(string spaceName, IGrpcTransport transport)
+        private async Task<Space> GetSpace(string spaceName, IGrpcTransport transport)
         {
             var request = new SpaceSingleRequest {Name = spaceName};
             var response = await _spaceClient.GetSingleAsync(request, transport.AuthenticationHeaders);

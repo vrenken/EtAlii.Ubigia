@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public interface IProfilingDataConnection : IDataConnection, IProfilingContext
     {

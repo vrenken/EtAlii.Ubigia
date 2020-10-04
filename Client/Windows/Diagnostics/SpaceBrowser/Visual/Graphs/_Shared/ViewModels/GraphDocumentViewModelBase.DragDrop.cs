@@ -2,7 +2,6 @@
 {
     using System.Collections;
     using System.Windows;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Windows.Mvvm;
 
     public partial class GraphDocumentViewModelBase : IDragDropHandler

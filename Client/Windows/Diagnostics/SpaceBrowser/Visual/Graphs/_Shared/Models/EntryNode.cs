@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
     using Northwoods.GoXam.Model;
 
     // This class holds sufficient information for all nodes in this sample.

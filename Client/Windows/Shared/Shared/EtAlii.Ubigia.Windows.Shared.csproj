@@ -12,10 +12,6 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
-    <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Connection\**" />
     <EmbeddedResource Remove="Connection\**" />
     <None Remove="Connection\**" />
@@ -30,5 +26,9 @@
     <EmbeddedResource Include="Icon-Logo-White.ico" />
     <EmbeddedResource Include="Icon-Logo.ico" />
     <EmbeddedResource Include="Icon-Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
+    <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 {
     using System.Text;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 

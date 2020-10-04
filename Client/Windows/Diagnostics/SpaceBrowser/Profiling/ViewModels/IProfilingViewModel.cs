@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public interface IProfilingViewModel : IDocumentViewModel
     {

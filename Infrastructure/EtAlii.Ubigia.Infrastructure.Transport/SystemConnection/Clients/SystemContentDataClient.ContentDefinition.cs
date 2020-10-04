@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
 
     internal partial class SystemContentDataClient
     {

@@ -3,7 +3,6 @@
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Accounts;
 
     public abstract class SpaceTargetingCmdlet : AccountTargetingCmdlet, ISpaceInfoProvider

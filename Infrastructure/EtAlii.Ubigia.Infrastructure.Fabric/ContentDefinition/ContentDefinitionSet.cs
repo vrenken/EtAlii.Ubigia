@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
-    using EtAlii.Ubigia.Api;
-
     public class ContentDefinitionSet : IContentDefinitionSet
     {
         private readonly IContentDefinitionGetter _contentDefinitionGetter;

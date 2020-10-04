@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.Ubigia.Persistence;
     using HashLib;
 
     internal class ContentPartStorer : IContentPartStorer

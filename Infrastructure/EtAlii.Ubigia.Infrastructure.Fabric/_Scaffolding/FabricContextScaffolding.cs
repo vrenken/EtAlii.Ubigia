@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
-    using Storage;
+    using EtAlii.Ubigia.Persistence;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class FabricContextScaffolding : IScaffolding

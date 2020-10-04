@@ -30,7 +30,7 @@
         //public Storage GetByName(string storageName)
         public override Task<StorageSingleResponse> GetSingle(StorageSingleRequest request, ServerCallContext context)
         {
-            EtAlii.Ubigia.Api.Storage storage;
+            EtAlii.Ubigia.Storage storage;
             
             switch (request)
             {

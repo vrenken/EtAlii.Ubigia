@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>Package that contains the implementation needed to store data on Azure.</Description>
+    <Version>$(PackageVersion)</Version>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Azure</PackageProjectUrl>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageTags>Storage Ubigia Azure</PackageTags>
+    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <ProjectGuid>FE45A439-36D7-4F47-AECE-5F4824AD2007</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
+  </ItemGroup>
+</Project>

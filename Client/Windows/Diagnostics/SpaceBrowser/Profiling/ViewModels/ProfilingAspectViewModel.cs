@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.Ubigia.Windows.Mvvm;
 
     public class ProfilingAspectViewModel : BindableBase, IProfilingAspectViewModel

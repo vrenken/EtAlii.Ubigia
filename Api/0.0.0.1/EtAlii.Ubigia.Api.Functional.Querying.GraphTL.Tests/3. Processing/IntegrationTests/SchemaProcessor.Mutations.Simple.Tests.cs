@@ -8,8 +8,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-//using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
-
     public class SchemaProcessorMutationsSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IGraphSLScriptContext _scriptContext;

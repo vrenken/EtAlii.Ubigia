@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Diagnostics.Profiling;
 
     internal class ProfilingScriptParserFactory : IScriptParserFactory
     {
