@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Grpc.Tests\EtAlii.Ubigia.Api.Fabric.Grpc.Tests.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Fabric.Grpc.Tests\EtAlii.Ubigia.Api.Fabric.Grpc.Tests.csproj" />
     <ProjectReference Include="..\..\Shared\Client\EtAlii.Ubigia.Windows.Client.csproj" />
     <ProjectReference Include="..\SpaceBrowser\EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.csproj" />
   </ItemGroup>

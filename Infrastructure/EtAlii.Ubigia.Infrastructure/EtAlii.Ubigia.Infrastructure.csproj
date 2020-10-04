@@ -12,6 +12,6 @@
     <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
   </ItemGroup>
 </Project>
