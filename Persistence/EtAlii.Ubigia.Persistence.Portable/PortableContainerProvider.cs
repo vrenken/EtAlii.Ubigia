@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System;
-    using EtAlii.Ubigia.Api.Fabric;
 
     public class PortableContainerProvider : IContainerProvider
     {

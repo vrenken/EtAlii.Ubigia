@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 

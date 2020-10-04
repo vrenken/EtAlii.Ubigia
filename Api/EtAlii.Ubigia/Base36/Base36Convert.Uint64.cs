@@ -1,12 +1,12 @@
-namespace EtAlii.Ubigia.Api.Fabric
+namespace EtAlii.Ubigia
 {
     using System;
     using System.Text;
 
     public static partial class Base36Convert
     {
-                     // This is the number "000000000011111111112222222222333333"
-                     // This is the index  "012345678901234567890123456789012345"
+                    // This is the number "000000000011111111112222222222333333"
+                    // This is the index  "012345678901234567890123456789012345"
         private const string Characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 
         public static UInt64 ToUInt64(String base36String)

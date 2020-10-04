@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
     public class Base36ConvertBytesTests
@@ -150,7 +149,7 @@
         {
             // Arrange.
             const string value = "2dqf";
-            var bytes = Base36Convert.ToBytes(value);
+            var bytes = Base36Convert.ToBytes(value).ToArray();
 
             // Act.
             var result = Base36Convert.ToString(bytes);
@@ -166,7 +165,7 @@
         {
             // Arrange.
             const string value = "0";
-            var converted = Base36Convert.ToBytes(value);
+            var converted = Base36Convert.ToBytes(value).ToArray();
 
             // Act.
             var result = Base36Convert.ToString(converted);
@@ -180,7 +179,7 @@
         {
             // Arrange.
             const string value = "1";
-            var converted = Base36Convert.ToBytes(value);
+            var converted = Base36Convert.ToBytes(value).ToArray();
 
             // Act.
             var result = Base36Convert.ToString(converted);
@@ -195,9 +194,9 @@
             // Arrange.
             var duration = 0;
             var random = new Random();
-            var iterations = 1000;
+            const int iterations = 1000;
             var originalBytes = new List<byte[]>();
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 var bytes = new byte[4];
                 random.NextBytes(bytes);
@@ -234,9 +233,9 @@
             // Arrange.
             var duration = 0;
             var random = new Random();
-            var iterations = 1000000;
+            const int iterations = 1000000;
             var originalBytes = new List<byte[]>();
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 var bytes = new byte[4];
                 random.NextBytes(bytes);
@@ -267,12 +266,12 @@
             //}
         }
 
-        private static readonly char[] alphabet = new[]
-            {
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
-                'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
-                'w', 'x', 'y', 'z'
-            };
+        private static readonly char[] Alphabet = 
+        {
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+            'w', 'x', 'y', 'z'
+        };
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_Bytes_ToBytes_Timed_1000()
@@ -280,14 +279,14 @@
             // Arrange.
             var duration = 0;
             var random = new Random();
-            var iterations = 1000;
+            const int iterations = 1000;
             var originalStrings = new List<string>();
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 var characters = new char[4];
-                for (int c = 0; c < characters.Length; c++)
+                for (var c = 0; c < characters.Length; c++)
                 {
-                    characters[c] = alphabet[random.Next(alphabet.Length)];
+                    characters[c] = Alphabet[random.Next(Alphabet.Length)];
                 }
                 originalStrings.Add(new string(characters));
             }
@@ -297,7 +296,7 @@
             foreach (var s in originalStrings)
             {
                 var start = Environment.TickCount;
-                var bytes = Base36Convert.ToBytes(s);
+                var bytes = Base36Convert.ToBytes(s).ToArray();
                 var stop = Environment.TickCount;
                 duration += stop - start;
                 convertedStrings.Add(bytes);
@@ -322,14 +321,14 @@
             // Arrange.
             var duration = 0;
             var random = new Random();
-            var iterations = 1000000;
+            const int iterations = 1000000;
             var originalStrings = new List<string>();
-            for (int i = 0; i < iterations; i++)
+            for (var i = 0; i < iterations; i++)
             {
                 var characters = new char[4];
-                for (int c = 0; c < characters.Length; c++)
+                for (var c = 0; c < characters.Length; c++)
                 {
-                    characters[c] = alphabet[random.Next(alphabet.Length)];
+                    characters[c] = Alphabet[random.Next(Alphabet.Length)];
                 }
                 originalStrings.Add(new string(characters));
             }
@@ -342,7 +341,7 @@
                 var bytes = Base36Convert.ToBytes(s);
                 var stop = Environment.TickCount;
                 duration += stop - start;
-                convertedStrings.Add(bytes);
+                convertedStrings.Add(bytes.ToArray());
             }
 
             // Assert.
@@ -362,7 +361,7 @@
         private static void AreEqual(byte[] expected, byte[] actual)
         {
             Assert.Equal(expected.Length, actual.Length);
-            for (int i = 0; i < expected.Length; i++)
+            for (var i = 0; i < expected.Length; i++)
             {
                 Assert.Equal(expected[i], actual[i]);
             }
