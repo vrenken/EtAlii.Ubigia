@@ -215,7 +215,7 @@
             var containerId = ContainerIdentifier.FromPaths();
 
             // Assert.
-            Assert.Equal($"{typeof(ContainerIdentifier).Name}.Empty", containerId.ToString());
+            Assert.Equal($"{nameof(ContainerIdentifier)}.Empty", containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -296,10 +296,9 @@
             // Arrange.
             var id = _testIdentifierFactory.Create();
             var first = _containerProvider.FromIdentifier(id);
-            var second = (object)null;
 
             // Act.
-            var result = first.Equals(second);
+            var result = first.Equals(null);
 
             // Assert.
             Assert.False(result, "A ContainerIdentifier should not match with null");
@@ -317,7 +316,7 @@
             var result = first.Equals(second);
 
             // Assert.
-            Assert.True(result, "A AzureContainerProvider generated ContainerIdentifier should also match with itselve wrapped as object.");
+            Assert.True(result, "A AzureContainerProvider generated ContainerIdentifier should also match with itself wrapped as object.");
         }
 
 
