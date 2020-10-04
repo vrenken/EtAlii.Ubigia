@@ -11,10 +11,9 @@
 
         private static readonly char[] TrimChars = new[] {' ', '-'};
 
-        private static readonly IEqualityComparer<object> _valueComparer = EqualityComparer<object>.Default;
+        private static readonly IEqualityComparer<object> ValueComparer = EqualityComparer<object>.Default;
 
         public PropertyDictionary()
-            : base()
         {
         }
 
@@ -153,7 +152,7 @@
             foreach (var pair in this)
             {
                 var otherValue = other[pair.Key];
-                if (!_valueComparer.Equals(pair.Value, other[pair.Key]))
+                if (!ValueComparer.Equals(pair.Value, otherValue))
                 {
                     return false;
                 }

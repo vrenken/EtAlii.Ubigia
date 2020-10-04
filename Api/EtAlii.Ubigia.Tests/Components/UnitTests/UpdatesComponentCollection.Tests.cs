@@ -14,6 +14,7 @@
             var updatesComponentCollection = new UpdatesComponentCollection();
 
             // Assert.
+            Assert.NotNull(updatesComponentCollection);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

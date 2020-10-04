@@ -192,7 +192,7 @@
             var relation1 = Relation.Create(identifier, 0);
 
             // Act.
-            var areEqual = relation1.Equals((object)null);
+            var areEqual = relation1.Equals(null);
 
             // Assert.
             Assert.False(areEqual);

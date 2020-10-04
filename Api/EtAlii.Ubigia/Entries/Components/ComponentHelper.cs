@@ -17,22 +17,21 @@
         /// <returns></returns>
         public static string GetName(IComponent containerComponent)
         {
-            return ((ComponentBase)containerComponent).Name;
+            return ((ComponentBase)containerComponent).GetName();
         }
 
         public static string GetName<T>()
             where T : ComponentBase
         {
             var type = typeof(T);
-            var name = string.Empty;
 
-            if (!ComponentNames.TryGetValue(type, out name))
+            if (!ComponentNames.TryGetValue(type, out var name))
             {
                 var constructor = type.GetTypeInfo()
                                       .DeclaredConstructors
                                       .First(c => !c.IsStatic && c.GetParameters().Length == 0);
                 var instance = (T)constructor.Invoke(EmptyConstructorParameters);
-                name = instance.Name;
+                name = instance.GetName();
                 ComponentNames[type] = name;
             }
             return name;

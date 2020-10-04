@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using EtAlii.Ubigia.Api.Transport;
 
     public interface ILogicalSpaceSet
     {

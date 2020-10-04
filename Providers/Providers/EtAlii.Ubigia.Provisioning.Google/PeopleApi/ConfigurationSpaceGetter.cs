@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public class ConfigurationSpaceGetter : IConfigurationSpaceGetter
     {

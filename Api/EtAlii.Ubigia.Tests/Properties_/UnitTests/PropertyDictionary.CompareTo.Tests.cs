@@ -3,7 +3,7 @@
     using System;
     using Xunit;
 
-    public class PropertyDictionary_CompareToTests
+    public class PropertyDictionaryCompareToTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionary_CompareTo_Same()

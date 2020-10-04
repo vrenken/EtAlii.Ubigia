@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
     public partial class ProfilingAspects
     {
-        public static readonly LogicalProfilers Logical = new LogicalProfilers();
+        public static LogicalProfilers Logical { get; }
     }
 
     public class LogicalProfilers

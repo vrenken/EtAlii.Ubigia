@@ -2,16 +2,16 @@
 {
     public class ImageContentType : ContentType
     {
-        private const string _imageContentTypeId = "Image";
+        private const string ImageContentTypeId = "Image";
 
-        public ContentType PortableNetworkGraphics { get; } = new ContentType(_imageContentTypeId, "Png");
+        public ContentType PortableNetworkGraphics { get; } = new ContentType(ImageContentTypeId, "Png");
 
-        public ContentType Gif { get; } = new ContentType(_imageContentTypeId, "Gif");
+        public ContentType Gif { get; } = new ContentType(ImageContentTypeId, "Gif");
 
-        public ContentType Jpeg { get; } = new ContentType(_imageContentTypeId, "Jpeg");
+        public ContentType Jpeg { get; } = new ContentType(ImageContentTypeId, "Jpeg");
 
         internal ImageContentType()
-            : base(_imageContentTypeId)
+            : base(ImageContentTypeId)
         {
         }
     }

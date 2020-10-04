@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Transport;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
     {

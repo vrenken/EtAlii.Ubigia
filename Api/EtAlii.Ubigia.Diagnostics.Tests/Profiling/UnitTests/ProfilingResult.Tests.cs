@@ -85,7 +85,7 @@
         {
             // Arrange.
             var root = new ProfilingResult(null, "root", ProfilingLayer.Functional, "Root");
-            var profile = new ProfilingResult(null, "ScriptParser", ProfilingLayer.Functional, "Query execution");
+            var profile = new ProfilingResult(root, "ScriptParser", ProfilingLayer.Functional, "Query execution");
 
             // Act.
             profile.Start();
@@ -111,7 +111,7 @@
         {
             // Arrange.
             var root = new ProfilingResult(null, "root", ProfilingLayer.Functional, "Root");
-            var profile = new ProfilingResult(null, "ScriptParser", ProfilingLayer.Functional, "Query execution");
+            var profile = new ProfilingResult(root, "ScriptParser", ProfilingLayer.Functional, "Query execution");
 
             // Act.
             profile.Start();

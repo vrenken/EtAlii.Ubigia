@@ -13,7 +13,7 @@
             var id = Guid.NewGuid();
             var name = "John";
             var password = "baadfood";
-            var roles = new string[] {Role.Admin};
+            var roles = new[] {Role.Admin};
             var updated = DateTime.Now;
 
             // Act.

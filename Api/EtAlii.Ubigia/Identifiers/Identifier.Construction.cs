@@ -11,9 +11,9 @@
                 _storage = storage,
                 _account = account,
                 _space = space,
-                Era = ulong.MinValue,
-                Period = ulong.MinValue,
-                Moment = ulong.MinValue,
+                _era = ulong.MinValue,
+                _period = ulong.MinValue,
+                _moment = ulong.MinValue
             };
         }
 
@@ -24,9 +24,9 @@
                 _storage = id._storage,
                 _account = id._account,
                 _space = id._space,
-                Era = era,
-                Period = period,
-                Moment = moment,
+                _era = era,
+                _period = period,
+                _moment = moment
             };
         }
 
@@ -37,9 +37,9 @@
                 _storage = storage,
                 _account = account,
                 _space = space,
-                Era = era,
-                Period = period,
-                Moment = moment,
+                _era = era,
+                _period = period,
+                _moment = moment
             };
         }
     }

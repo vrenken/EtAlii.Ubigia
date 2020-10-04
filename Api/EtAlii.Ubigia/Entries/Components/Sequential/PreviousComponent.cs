@@ -2,8 +2,8 @@
 {
     public class PreviousComponent : RelationComponent
     {
-        protected internal override string Name => _name;
-        private const string _name = "Previous";
+        protected internal override string GetName() => Name;
+        private const string Name = "Previous";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

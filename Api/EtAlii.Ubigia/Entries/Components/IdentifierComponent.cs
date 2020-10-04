@@ -8,8 +8,8 @@
 
         public Identifier Id { get; internal set; }
 
-        protected internal override string Name => _name;
-        private const string _name = "Identifier";
+        protected internal override string GetName() => Name;
+        private const string Name = "Identifier";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

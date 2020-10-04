@@ -19,23 +19,26 @@
         private Guid _space;
         Guid IEditableIdentifier.Space { get => _space; set => _space = value; }
 
-        public ulong Era { get; private set; }
-        ulong IEditableIdentifier.Era { get => Era; set => Era = value; }
+        public ulong Era => _era;
+        private ulong _era;
+        ulong IEditableIdentifier.Era { get => _era; set => _era = value; }
 
-        public ulong Period { get; private set; }
-        ulong IEditableIdentifier.Period { get => Period; set => Period  = value; }
+        public ulong Period => _period;
+        private ulong _period;
+        ulong IEditableIdentifier.Period { get => _period; set => _period  = value; }
 
-        public ulong Moment { get; private set; }
-        ulong IEditableIdentifier.Moment { get => Moment; set => Moment = value; }
+        public ulong Moment => _moment;
+        private ulong _moment;
+        ulong IEditableIdentifier.Moment { get => _moment; set => _moment = value; }
         
         public static readonly Identifier Empty = new Identifier
         {
             _storage = Guid.Empty,
             _account = Guid.Empty,
             _space = Guid.Empty,
-            Era = ulong.MinValue,
-            Period = ulong.MinValue,
-            Moment = ulong.MinValue,
+            _era = ulong.MinValue,
+            _period = ulong.MinValue,
+            _moment = ulong.MinValue,
         };
 
         public override string ToString()

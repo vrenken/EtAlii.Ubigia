@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using Xunit;
 
     public class Base36ConvertBytesTests
@@ -218,13 +219,13 @@
             Assert.True(TimeSpan.FromTicks(duration).TotalMilliseconds < 50,
                 $"Calling Base36.ToString {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
-            //for (int i = 0; i < iterations; i++)
-            //{
-            //    var s = convertedBytes[i];
-            //    var converted = Base36Convert.ToBytes(s);
-            //    var original = originalBytes[i].SkipWhile(o => o == 0x00).ToArray();
-            //    AreEqual(original, converted);
-            //}
+            for (var i = 0; i < iterations; i++)
+            {
+                var s = convertedBytes[i];
+                var converted = Base36Convert.ToBytes(s);
+                var original = originalBytes[i].SkipWhile(o => o == 0x00).ToArray();
+                AreEqual(original, converted.ToArray());
+            }
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -254,16 +255,10 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 21f,
-                $"Calling Base36.ToString {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 21f, $"Calling Base36.ToString {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
-            //for (int i = 0; i < iterations; i++)
-            //{
-            //    var s = convertedBytes[i];
-            //    var converted = Base36Convert.ToBytes(s);
-            //    var original = originalBytes[i].SkipWhile(o => o == 0x00).ToArray();
-            //    AreEqual(original, converted);
-            //}
+
+            AssertEqual(iterations, convertedBytes, originalBytes);
         }
 
         private static readonly char[] Alphabet = 
@@ -303,16 +298,9 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 2,
-                $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 2, $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
-            //for (int i = 0; i < iterations; i++)
-            //{
-            //    var bytes = convertedStrings[i];
-            //    var converted = Base36Convert.ToString(bytes);
-            //    var original = originalStrings[i];
-            //    AreEqual(original, converted);
-            //}
+            AssertEqual(iterations, convertedStrings, originalStrings);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -345,23 +333,39 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 35,
-                $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 35, $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
-            //for (int i = 0; i < iterations; i++)
-            //{
-            //    var bytes = convertedStrings[i];
-            //    var converted = Base36Convert.ToString(bytes);
-            //    var original = originalStrings[i];
-            //    AreEqual(original, converted);
-            //}
+            AssertEqual(iterations, convertedStrings, originalStrings);
+        }
+
+        private void AssertEqual(int iterations, IReadOnlyList<byte[]> convertedStrings, IReadOnlyList<string> originalStrings)
+        {
+            for (var i = 0; i < iterations; i++)
+            {
+                var bytes = convertedStrings[i];
+                var original = originalStrings[i];
+                var converted = Base36Convert.ToString(bytes);
+                converted = converted.PadLeft(original.Length, '0');
+                Assert.Equal(original, converted);
+            }
+        }
+        private void AssertEqual(int iterations, IReadOnlyList<string> convertedBytes, IReadOnlyList<byte[]> originalBytes)
+        {
+            for (var i = 0; i < iterations; i++)
+            {
+                var s = convertedBytes[i];
+                var converted = Base36Convert.ToBytes(s).ToArray();
+                var original = originalBytes[i].SkipWhile(o => o == 0x00).ToArray();
+                AreEqual(original, converted);
+            }
         }
 
 
-        private static void AreEqual(byte[] expected, byte[] actual)
+        private void AreEqual(IReadOnlyList<byte> expected, IReadOnlyList<byte> actual)
         {
-            Assert.Equal(expected.Length, actual.Length);
-            for (var i = 0; i < expected.Length; i++)
+            var sameLength = expected.Count == actual.Count; 
+            Assert.True(sameLength);
+            for (var i = 0; i < expected.Count; i++)
             {
                 Assert.Equal(expected[i], actual[i]);
             }

@@ -3,7 +3,7 @@
     using System;
     using Xunit;
 
-    public class PropertyDictionary_CreateTests
+    public class PropertyDictionaryCreateTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionary_Create()

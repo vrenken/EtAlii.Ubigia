@@ -183,9 +183,8 @@
             // Arrange.
             var storage = Guid.NewGuid();
             var account = Guid.NewGuid();
-            var space1 = Guid.NewGuid();
-            var space2 = Guid.NewGuid();
-            var entry = Entry.NewEntry(storage, account, space1);
+            var space = Guid.NewGuid();
+            var entry = Entry.NewEntry(storage, account, space);
 
             // Act.
             var equals = entry.Equals((object)entry);

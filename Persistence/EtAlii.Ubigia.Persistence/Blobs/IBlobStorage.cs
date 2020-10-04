@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.Ubigia.Api;
-
     public interface IBlobStorage
     {
         void Store(ContainerIdentifier container, IBlob blob);

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class SpaceTemplateTests

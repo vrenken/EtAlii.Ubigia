@@ -13,6 +13,7 @@
             var content = new Content();
 
             // Assert.
+            Assert.NotNull(content);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

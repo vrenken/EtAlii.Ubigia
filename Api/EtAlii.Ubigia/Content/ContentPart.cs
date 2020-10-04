@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using EtAlii.Ubigia.Api;
-
     public class ContentPart : BlobPartBase, IReadOnlyContentPart
     {
         public byte[] Data { get; set; }
