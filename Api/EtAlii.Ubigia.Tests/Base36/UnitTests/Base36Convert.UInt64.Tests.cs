@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    public class Base36Convert_UInt64Tests
+    public class Base36ConvertUInt64Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Base36Convert_UInt64_ToString_0()

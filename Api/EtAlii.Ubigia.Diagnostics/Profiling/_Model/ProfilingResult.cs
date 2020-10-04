@@ -35,7 +35,7 @@
                 _properties.TryGetValue(propertyName, out var value);
                 return value;
             }
-            set { _properties[propertyName] = value; }
+            set => _properties[propertyName] = value;
         }
 
         public ProfilingResult(

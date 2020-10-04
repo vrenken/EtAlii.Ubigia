@@ -10,7 +10,9 @@
 
     public class StoragesViewModel : BindableBase, IStoragesViewModel
     {
-        public IEnumerable<Storage> AvailableStorages { get { return _availableStorages; } private set { SetProperty(ref _availableStorages, value); } }
+        public IEnumerable<Storage> AvailableStorages { get => _availableStorages;
+            private set => SetProperty(ref _availableStorages, value);
+        }
         private IEnumerable<Storage> _availableStorages;
 
         protected IManagementConnection Connection { get; }
@@ -23,14 +25,14 @@
 
         public ICommand ClearCommand { get; }
 
-        public Storage SelectedStorage { get { return _selectedStorage; } set { SetProperty(ref _selectedStorage, value); } }
+        public Storage SelectedStorage { get => _selectedStorage; set => SetProperty(ref _selectedStorage, value); }
         private Storage _selectedStorage;
         public const string SelectedStorageProperty = "SelectedStorage";
 
-        public string StorageName { get { return _storageName; } set { SetProperty(ref _storageName, value); } }
+        public string StorageName { get => _storageName; set => SetProperty(ref _storageName, value); }
         private string _storageName;
 
-        public string StorageAddress { get { return _storageAddress; } set { SetProperty(ref _storageAddress, value); } }
+        public string StorageAddress { get => _storageAddress; set => SetProperty(ref _storageAddress, value); }
         private string _storageAddress;
 
         private readonly ILogger _logger;

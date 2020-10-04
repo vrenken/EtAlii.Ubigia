@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Provisioning
 
         public ProviderElement this[int index]
         {
-            get { return (ProviderElement)BaseGet(index); }
+            get => (ProviderElement)BaseGet(index);
             set
             {
                 if (BaseGet(index) != null)

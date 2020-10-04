@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    public class BitShift_AndTests
+    public class BitShiftAndTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void BitShift_Multiply_10110_And_1101_Is_100011110()

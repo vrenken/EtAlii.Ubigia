@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
     using Xunit;
@@ -297,7 +297,6 @@
         public void ContentDefinition_Compare_With_Other_Parts()
         {
             // Arrange.
-            var random = new Random();
             var first = new ContentDefinition();
             var second = new ContentDefinition();
             first.Parts.Add(new ContentDefinitionPart());

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalAccountSet : ILogicalAccountSet

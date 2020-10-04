@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class AccountTests

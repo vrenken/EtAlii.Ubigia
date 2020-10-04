@@ -7,8 +7,8 @@
     {
         public new MainWindowViewModel DataContext
         {
-            get { return base.DataContext as MainWindowViewModel; }
-            set { base.DataContext = value; }
+            get => base.DataContext as MainWindowViewModel;
+            set => base.DataContext = value;
         }
 
         public MainWindow()

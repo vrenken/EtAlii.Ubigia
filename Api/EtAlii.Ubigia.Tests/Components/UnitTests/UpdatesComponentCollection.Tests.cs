@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
     using Xunit;

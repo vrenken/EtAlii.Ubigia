@@ -7,16 +7,18 @@
 
     public class TextualViewModelBase : BindableBase
     {
-        public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         private string _title;
 
-        public IEnumerable<TextualError> Errors { get { return _errors; } set { SetProperty(ref _errors, value); } }
+        public IEnumerable<TextualError> Errors { get => _errors; set => SetProperty(ref _errors, value); }
         private IEnumerable<TextualError> _errors = new TextualError[] { };
 
-        public bool CanExecute { get { return _canExecute; } set { SetProperty(ref _canExecute, value); } }
+        public bool CanExecute { get => _canExecute; set => SetProperty(ref _canExecute, value); }
         private bool _canExecute;
 
-        public bool CanStop { get { return _canStop; } set { SetProperty(ref _canStop, value); } }
+        public bool CanStop { get => _canStop;
+            set => SetProperty(ref _canStop, value);
+        }
         private bool _canStop;
 
         public ICommand ClearCommand { get; }

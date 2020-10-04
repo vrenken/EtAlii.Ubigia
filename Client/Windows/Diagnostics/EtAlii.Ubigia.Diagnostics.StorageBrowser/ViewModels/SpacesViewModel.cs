@@ -10,7 +10,7 @@
 
     public class SpacesViewModel : BindableBase, ISpacesViewModel
     {
-        public IEnumerable<Space> AvailableSpaces { get { return _availableSpaces; } private set { SetProperty(ref _availableSpaces, value); } }
+        public IEnumerable<Space> AvailableSpaces { get => _availableSpaces; private set => SetProperty(ref _availableSpaces, value); }
         private IEnumerable<Space> _availableSpaces;
 
         protected IManagementConnection Connection { get; }
@@ -31,9 +31,7 @@
         private Account _selectedAccount;
         public const string SelectedAccountProperty = "SelectedAccount";
 
-        public string SpaceName { get => _spaceName;
-            set => SetProperty(ref _spaceName, value);
-        }
+        public string SpaceName { get => _spaceName; set => SetProperty(ref _spaceName, value); }
         private string _spaceName;
         public const string SpaceNameProperty = "SpaceName";
 

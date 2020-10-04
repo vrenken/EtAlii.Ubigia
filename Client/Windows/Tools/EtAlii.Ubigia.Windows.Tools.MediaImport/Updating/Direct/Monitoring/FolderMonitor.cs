@@ -12,16 +12,16 @@
         private readonly FileSystemWatcher _watcher;
         private readonly IItemChecker _itemChecker;
 
-        public FolderSyncConfiguration Configuration { get { return _configuration; } set { SetProperty(ref _configuration, value); } }
+        public FolderSyncConfiguration Configuration { get => _configuration; set => SetProperty(ref _configuration, value); }
         private FolderSyncConfiguration _configuration;
         
         public event EventHandler Changed = delegate { };
         public event EventHandler Error = delegate { };
 
-        public bool IsRunning { get { return _isRunning; } private set { SetProperty(ref _isRunning, value); } }
+        public bool IsRunning { get => _isRunning; private set => SetProperty(ref _isRunning, value); }
         private bool _isRunning;
 
-        public bool HasError { get { return _hasError; } set { SetProperty(ref _hasError, value); } }
+        public bool HasError { get => _hasError; set => SetProperty(ref _hasError, value); }
         private bool _hasError;
     
         public FolderMonitor(

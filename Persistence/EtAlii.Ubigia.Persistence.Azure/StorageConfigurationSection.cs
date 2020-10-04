@@ -5,11 +5,7 @@
     public class StorageConfigurationSection : ConfigurationSection
     {
         [ConfigurationProperty("name", IsRequired = false)]
-        public string Name
-        {
-            get { return this["name"] as string; }
-            set { this["name"] = value; }
-        }
+        public string Name { get => this["name"] as string; set => this["name"] = value; }
 
         public IStorageConfiguration ToStorageConfiguration()
         {

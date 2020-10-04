@@ -11,6 +11,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         private readonly IPeopleApiUpdater _decoree;
         private readonly ILogger _logger;
 
+        public event Action<Exception> Error { add => _decoree.Error += value; remove => _decoree.Error -= value; }
+
         public DebuggingPeopleApiUpdater(IPeopleApiUpdater decoree, ILogger logger)
         {
             _decoree = decoree;
@@ -41,6 +43,5 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger.Info("Stopped PeopleApiUpdater");
         }
 
-        public event Action<Exception> Error { add { _decoree.Error += value; } remove { _decoree.Error -= value; } }
     }
 }

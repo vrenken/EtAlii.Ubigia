@@ -8,10 +8,10 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     {
         private readonly Func<IProfilingAspectViewModel[]> _getAllContextProfilingAspectViewModels;
         private readonly Action<IProfilingAspectViewModel> _action;
-        public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         private string _title;
 
-        public string Group { get { return _group; } set { SetProperty(ref _group, value); } }
+        public string Group { get => _group; set => SetProperty(ref _group, value); }
         private string _group;
         public bool IsActive { get; set; }
 
