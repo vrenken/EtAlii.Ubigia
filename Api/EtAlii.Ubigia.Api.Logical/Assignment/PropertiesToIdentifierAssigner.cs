@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var nodeShouldBeUpdated = ShouldUpdateNode(oldProperties, properties);
             if (!nodeShouldBeUpdated)
             {
-                // The two propertydictionaries are the same. Let's return the old node.
+                // The two PropertyDictionaries are the same. Let's return the old node.
                 return new DynamicNode(entry, oldProperties);
             }
             else
