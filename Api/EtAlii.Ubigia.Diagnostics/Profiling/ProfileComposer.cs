@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         private readonly ObservableCollection<ProfilingResult> _items;
 
+        // ReSharper disable once PrivateFieldCanBeConvertedToLocalVariable
         private readonly IProfiler[] _profilers;
 
         public ProfileComposer(IProfiler[] profilers)
