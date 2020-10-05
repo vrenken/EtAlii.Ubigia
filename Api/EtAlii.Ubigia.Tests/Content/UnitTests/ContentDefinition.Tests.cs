@@ -67,7 +67,7 @@
 
             // Act.
             editableContent.Parts.Add(new ContentDefinitionPart());
-            var content = editableContent as IReadOnlyContentDefinition;
+            var content = (IReadOnlyContentDefinition) editableContent;
 
             // Assert.
             Assert.Single(content.Parts);
@@ -224,10 +224,9 @@
         {
             // Arrange.
             var content = new ContentDefinition();
-            var o = (object)null;
 
             // Act.
-            var equals = content.Equals(o);
+            var equals = content.Equals(null);
 
             // Assert.
             Assert.False(equals);
