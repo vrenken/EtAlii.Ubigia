@@ -1,38 +1,14 @@
 ﻿namespace EtAlii.Ubigia
 {
-    using System;
-
     public class AccountTemplate
     {
-        public static AccountTemplate[] All => _all.Value;
+        public static AccountTemplate[] All { get; }
 
-        private static readonly Lazy<AccountTemplate[]> _all = new Lazy<AccountTemplate[]>(() => new [] 
-        {
-            User,
-            System,
-            Administrator
-        });
+        public static AccountTemplate User { get; }
 
-        public static AccountTemplate User { get; } = new AccountTemplate
-        (
-            name: AccountName.User, 
-            rolesToAssign: new [] { Role.User, },
-            spacesToCreate: new []{ SpaceTemplate.Configuration, SpaceTemplate.Data }
-        );
+        public static AccountTemplate System { get; }
 
-        public static AccountTemplate System { get; } = new AccountTemplate
-        (
-            name: AccountName.System,
-            rolesToAssign: new [] { Role.System },
-            spacesToCreate: new [] { SpaceTemplate.System, SpaceTemplate.Metrics }
-        );
-
-        public static AccountTemplate Administrator { get; } = new AccountTemplate
-        (
-            name: AccountName.Administrator,
-            rolesToAssign: new [] { Role.Admin, Role.User },
-            spacesToCreate: new [] { SpaceTemplate.Configuration, SpaceTemplate.Data  }
-        );
+        public static AccountTemplate Administrator { get; }
 
 
         public string Name { get; }
@@ -40,6 +16,35 @@
         public string[] RolesToAssign { get; }
 
         public SpaceTemplate[] SpacesToCreate { get; }
+
+        static AccountTemplate()
+        {
+            User = new AccountTemplate
+            (
+                name: AccountName.User,
+                rolesToAssign: new[] {Role.User,},
+                spacesToCreate: new[] {SpaceTemplate.Configuration, SpaceTemplate.Data}
+            );
+            System = new AccountTemplate
+            (
+                name: AccountName.System,
+                rolesToAssign: new [] { Role.System },
+                spacesToCreate: new [] { SpaceTemplate.System, SpaceTemplate.Metrics }
+            );
+            Administrator = new AccountTemplate
+            (
+                name: AccountName.Administrator,
+                rolesToAssign: new [] { Role.Admin, Role.User },
+                spacesToCreate: new [] { SpaceTemplate.Configuration, SpaceTemplate.Data  }
+            );
+            
+            All = new[]
+            {
+                User,
+                System,
+                Administrator
+            };
+        }
 
         private AccountTemplate(
             string name,
