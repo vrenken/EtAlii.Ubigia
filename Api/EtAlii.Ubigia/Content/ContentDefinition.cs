@@ -7,8 +7,11 @@
     {
         internal const string ContentDefinitionName = "ContentDefinition";
 
-        public ulong Size { get; set; }
-        public ulong Checksum { get; set; }
+        public ulong Size { get => _size; set => _size = value; }
+        private ulong _size;
+        
+        public ulong Checksum { get => _checksum; set => _checksum = value; }
+        private ulong _checksum;
 
         public IList<ContentDefinitionPart> Parts { get; } = new List<ContentDefinitionPart>();
 
