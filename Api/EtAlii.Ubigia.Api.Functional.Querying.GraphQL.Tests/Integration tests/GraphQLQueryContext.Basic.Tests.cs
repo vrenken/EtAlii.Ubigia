@@ -56,12 +56,6 @@
         public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string queryText)
         {
             // Arrange.
-#pragma warning disable 1717
-            // ReSharper disable RedundantAssignment
-            title = title;
-            fileName = fileName;
-            // ReSharper restore RedundantAssignment
-#pragma warning restore 1717
             
             // Act.
             var parseResult = await _queryContext.Parse(queryText);
@@ -69,6 +63,8 @@
              
             // Assert.
             Assert.NotNull(result);
+            Assert.NotNull(title);
+            Assert.NotNull(fileName);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
