@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class StoragesViewModel : BindableBase, IStoragesViewModel
     {

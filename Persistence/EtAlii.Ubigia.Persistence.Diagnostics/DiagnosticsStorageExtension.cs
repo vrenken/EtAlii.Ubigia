@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Persistence
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsStorageExtension : IStorageExtension

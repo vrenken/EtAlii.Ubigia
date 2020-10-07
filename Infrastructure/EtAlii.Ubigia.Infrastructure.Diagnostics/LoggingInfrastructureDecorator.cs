@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class LoggingInfrastructureDecorator : IInfrastructure
     {

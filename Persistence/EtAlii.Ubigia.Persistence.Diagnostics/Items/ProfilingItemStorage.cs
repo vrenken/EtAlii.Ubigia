@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class ProfilingItemStorage : IItemStorage
     {

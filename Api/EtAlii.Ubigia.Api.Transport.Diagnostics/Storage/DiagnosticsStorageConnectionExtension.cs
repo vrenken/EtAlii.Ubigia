@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsStorageConnectionExtension : IStorageConnectionExtension

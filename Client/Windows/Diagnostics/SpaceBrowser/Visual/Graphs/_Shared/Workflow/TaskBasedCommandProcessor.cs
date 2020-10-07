@@ -4,7 +4,7 @@
     using System.Collections.Concurrent;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Workflow;
 
     public class TaskBasedCommandProcessor : CommandProcessor, IDisposable

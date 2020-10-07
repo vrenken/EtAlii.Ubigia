@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
     using global::Google.Apis.PeopleService.v1.Data;
 
     public class DebuggingPersonSetter : IPersonSetter

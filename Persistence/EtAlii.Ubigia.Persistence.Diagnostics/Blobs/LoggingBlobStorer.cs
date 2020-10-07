@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class LoggingBlobStorer : IBlobStorer
     {

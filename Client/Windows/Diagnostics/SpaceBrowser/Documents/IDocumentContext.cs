@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
 
     public interface IDocumentContext
     {

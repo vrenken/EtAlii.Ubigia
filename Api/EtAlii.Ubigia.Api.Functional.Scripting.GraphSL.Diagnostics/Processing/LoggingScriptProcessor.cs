@@ -2,7 +2,7 @@
 {
     using System;
     using System.Diagnostics;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     [DebuggerStepThrough]
     internal class LoggingScriptProcessor : IScriptProcessor

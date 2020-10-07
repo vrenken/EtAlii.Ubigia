@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class ProfilingEntryRepositoryDecorator : IEntryRepository
     {

@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
 
     internal static class TestDiagnostics
     {

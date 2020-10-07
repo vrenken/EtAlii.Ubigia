@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsLinqQueryContextExtension : ILinqQueryContextExtension

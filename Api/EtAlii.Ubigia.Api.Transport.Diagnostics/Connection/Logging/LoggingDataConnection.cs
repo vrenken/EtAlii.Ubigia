@@ -2,8 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class LoggingDataConnection : IDataConnection
     {

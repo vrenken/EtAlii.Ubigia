@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     public class LoggingSpaceTransport : ISpaceTransport

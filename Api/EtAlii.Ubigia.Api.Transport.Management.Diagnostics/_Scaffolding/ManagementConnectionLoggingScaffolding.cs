@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ManagementConnectionLoggingScaffolding : IScaffolding

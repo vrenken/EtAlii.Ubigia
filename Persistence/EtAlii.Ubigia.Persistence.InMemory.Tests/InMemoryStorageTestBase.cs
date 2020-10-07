@@ -3,7 +3,6 @@
     using System;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
 
     public abstract class InMemoryStorageTestBase : IDisposable
     {

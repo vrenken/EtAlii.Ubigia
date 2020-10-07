@@ -2,7 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class LoggingEntryPreparerDecorator : IEntryPreparer
     {
