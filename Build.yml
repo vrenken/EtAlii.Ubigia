@@ -17,7 +17,7 @@ jobs:
     displayName: 'Build and Test'
     timeoutInMinutes: ${{ variables.timeoutInMinutes }}
     pool:
-      name: Default
+      name: 'Avalon agent pool'
       demands:
         #- SpecialSoftware # Check if SpecialSoftware capability exists
         # Check if Agent.OS == Windows_NT
