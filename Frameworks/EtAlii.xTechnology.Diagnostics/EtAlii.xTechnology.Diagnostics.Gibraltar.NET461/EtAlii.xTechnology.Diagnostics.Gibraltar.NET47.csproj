@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <Version>1.0.4</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics/nuget_icon.png</PackageIconUrl>
+    <Description>A package that contains a logging implementation that uses the Gibraltar logging system.</Description>
+    <PackageTags>di dependency injection solid</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <RootNamespace>EtAlii.xTechnology.Diagnostics</RootNamespace>
+    <PackageId>EtAlii.xTechnology.Diagnostics.Gibraltar.NET47</PackageId>
+    <AssemblyName>EtAlii.xTechnology.Diagnostics.Gibraltar.NET47</AssemblyName>
+    <RootNamespace>EtAlii.xTechnology.Diagnostics</RootNamespace>
+    <ProjectGuid>77630446-5169-41CB-884D-7F70417DAA82</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Gibraltar.Agent" Version="4.9.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
+  </ItemGroup>
+
+</Project>

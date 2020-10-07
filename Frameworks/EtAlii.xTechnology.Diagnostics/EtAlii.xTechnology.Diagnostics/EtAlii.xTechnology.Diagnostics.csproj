@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <Version>$(PackageVersion)</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.EtAlii.xTechnology.Diagnostics/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.EtAlii.xTechnology.Diagnostics</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.EtAlii.xTechnology.Diagnostics/nuget_icon.png</PackageIconUrl>
+    <Description>A package that contains generic abstractions for debugging and logging purposes.</Description>
+    <PackageTags>diagnostics debug debugging log logging trace traceing</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <ProjectGuid>8498323A-0910-42E0-A1FA-B21265418DE8</ProjectGuid>
+  </PropertyGroup>
+
+</Project>
