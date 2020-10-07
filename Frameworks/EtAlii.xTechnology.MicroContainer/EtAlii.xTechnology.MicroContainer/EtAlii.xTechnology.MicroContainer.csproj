@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <Version>$(PackageVersion)</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.MicroContainer/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.MicroContainer</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.MicroContainer/nuget_icon.png</PackageIconUrl>
+    <Description>A simple (and not optimized) but very pure DI container.</Description>
+    <PackageTags>di dependency injection solid</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 1.0</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
