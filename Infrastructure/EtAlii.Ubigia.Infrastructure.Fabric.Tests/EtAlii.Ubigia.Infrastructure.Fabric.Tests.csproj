@@ -1,17 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <UseWPF>true</UseWPF>
-
-    <Description>Unit test project</Description>
-
     <ProjectGuid>8021144c-1ae4-46b2-ad45-a65f9a8ebfa5</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.Fabric.Tests</AssemblyName>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Fabric.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />

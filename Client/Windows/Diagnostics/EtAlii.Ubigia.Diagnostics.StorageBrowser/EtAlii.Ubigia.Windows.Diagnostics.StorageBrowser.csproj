@@ -1,17 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <UseWPF>true</UseWPF>
-
     <Description>StorageBrowser</Description>
-
     <ProjectGuid>a15e7ac6-b912-47c4-83ea-16851e6c3b88</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</AssemblyName>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>

@@ -1,12 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <OutputType>Library</OutputType>
-
-    <Description>
-    </Description>
-
     <ProjectGuid>da6da2cc-af51-456a-82fd-66cca60c29a1</ProjectGuid>
+    <Description />
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
