@@ -12,8 +12,10 @@
     <Company>EtAlii</Company>
     <Product>Ubigia</Product>
 
-    <BuildUbigiaPackages>false</BuildUbigiaPackages>
-    
+    <UbigiaBuildPackages>false</UbigiaBuildPackages>
+    <UbigiaNetStandardVersion>netstandard2.1</UbigiaNetStandardVersion>
+    <UbigiaNetCoreAppVersion>netcoreapp3.1</UbigiaNetCoreAppVersion>
+
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
