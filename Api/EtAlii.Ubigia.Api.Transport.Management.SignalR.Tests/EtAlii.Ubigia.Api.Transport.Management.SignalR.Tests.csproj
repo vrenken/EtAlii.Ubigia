@@ -1,15 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
-    <Description>Unit test project</Description>
-
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>f34b0199-92d2-4240-88d4-06f471fa07a0</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RootNamespace>EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />

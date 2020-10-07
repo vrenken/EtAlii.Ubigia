@@ -1,11 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-
     <Description>StorageBrowser</Description>
-
     <ProjectGuid>38ff565d-898f-4f18-81e3-edae23e60598</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />

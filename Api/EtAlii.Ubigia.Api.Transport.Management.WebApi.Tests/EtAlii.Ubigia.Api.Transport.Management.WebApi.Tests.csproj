@@ -1,13 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-
-    <Description>Unit test project</Description>
-
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>65613b13-ccc4-47ca-8da2-cfbae750ea54</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

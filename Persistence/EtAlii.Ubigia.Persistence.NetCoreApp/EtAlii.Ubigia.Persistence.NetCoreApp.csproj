@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <Description>Package that contains the implementation needed to store data in NetCoreApp applications.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Ntfs</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.1</PackageReleaseNotes>
     <PackageTags>Storage Ubigia NetCoreApp3.0</PackageTags>
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>8389CFF0-B7E8-4A84-B95D-0F12A3706966</ProjectGuid>
     <LangVersion>8</LangVersion>
   </PropertyGroup>

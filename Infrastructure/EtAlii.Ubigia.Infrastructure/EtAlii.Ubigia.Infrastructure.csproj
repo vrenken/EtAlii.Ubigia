@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-
-    <Description>
-    </Description>
-
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <Description />
     <ProjectGuid>a70337c3-bc86-4355-bf5b-3552dfe4dfc3</ProjectGuid>
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />

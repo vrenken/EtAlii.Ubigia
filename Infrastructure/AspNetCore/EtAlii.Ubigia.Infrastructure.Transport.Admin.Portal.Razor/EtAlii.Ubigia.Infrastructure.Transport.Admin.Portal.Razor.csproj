@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>df76eede-a505-49f0-8e2c-14a4da4488f1</ProjectGuid>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\Routes.cshtml" />

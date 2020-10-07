@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <LangVersion>7.2</LangVersion>
     <ProjectGuid>8f34baea-91ca-4031-b345-8e79ef9e9c5f</ProjectGuid>
   </PropertyGroup>

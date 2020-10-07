@@ -1,15 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-
-    <Description>
-    </Description>
-
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
     <ProjectGuid>1a8ebc3e-54d9-44d6-b1c9-94614e0ad0eb</ProjectGuid>
+    <Description />
     <PackageProjectUrl />
     <PackageReleaseNotes />
     <PackageTags />
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="HashLib" Version="2.1.0.2" />

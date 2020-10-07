@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
     <Description>Package that contains the core diagnostic components needed to store Ubigia related information.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Diagnostics</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags>Storage abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>E4CE6C92-A0E1-4273-96B2-DD8724986DD1</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence</RootNamespace>
   </PropertyGroup>

@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
     <Description>Package that contains the implementation needed to store data on Cassandra.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Cassandra</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Cassandra</PackageTags>
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>5D1EA868-4FC7-40D2-9D6D-B0EBB049163C</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence</RootNamespace>
   </PropertyGroup>

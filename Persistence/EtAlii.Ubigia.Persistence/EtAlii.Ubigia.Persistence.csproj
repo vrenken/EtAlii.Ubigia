@@ -1,18 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
     <Description>Package that contains the core storage layer needed to abstract away a platform specific implementation.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags>Storage abstraction Ubigia</PackageTags>
-    <GeneratePackageOnBuild>$(BuildUbigiaPackages)</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>1BC36B53-03E2-4807-AF38-2F1D203A470E</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
-    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.7" />
     <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
   </ItemGroup>
 
