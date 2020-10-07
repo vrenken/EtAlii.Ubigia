@@ -104,7 +104,7 @@ namespace EtAlii.xTechnology.MicroContainer
 
             var instances = new object[parameters.Length];
 
-            int parameterIndex = 0;
+            var parameterIndex = 0;
             try
             {
                 for (parameterIndex = 0; parameterIndex < parameters.Length; parameterIndex++)
