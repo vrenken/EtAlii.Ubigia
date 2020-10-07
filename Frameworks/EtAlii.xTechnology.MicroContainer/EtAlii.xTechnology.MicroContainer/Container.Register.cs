@@ -55,7 +55,6 @@ namespace EtAlii.xTechnology.MicroContainer
                 throw new InvalidOperationException("Service Type already registered: " + serviceType);
             
             }
-            var ti = serviceType.GetTypeInfo();
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException("Service Type should be an interface: " + serviceType);
