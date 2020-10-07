@@ -2,7 +2,6 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class InfrastructureProfilingScaffolding : IScaffolding

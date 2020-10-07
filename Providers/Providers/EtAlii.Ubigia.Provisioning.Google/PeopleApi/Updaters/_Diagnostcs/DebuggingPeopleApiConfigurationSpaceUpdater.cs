@@ -3,7 +3,7 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class DebuggingPeopleApiConfigurationSpaceUpdater : IPeopleApiConfigurationSpaceUpdater
     {

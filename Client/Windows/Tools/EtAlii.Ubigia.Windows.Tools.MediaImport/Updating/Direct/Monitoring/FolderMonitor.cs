@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.IO;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class FolderMonitor : BindableBase, IFolderMonitor
     {

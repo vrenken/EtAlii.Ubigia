@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Provisioning
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public interface IEditableProviderConfiguration
     {

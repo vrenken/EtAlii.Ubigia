@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class LoggingEntryStorerDecorator : IEntryStorer
     {

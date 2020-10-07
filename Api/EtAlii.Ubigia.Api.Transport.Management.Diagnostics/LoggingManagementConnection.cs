@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class LoggingManagementConnection : IManagementConnection
     {

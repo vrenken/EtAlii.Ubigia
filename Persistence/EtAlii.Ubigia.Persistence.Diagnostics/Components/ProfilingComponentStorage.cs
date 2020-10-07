@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class ProfilingComponentStorage : IComponentStorage
     {

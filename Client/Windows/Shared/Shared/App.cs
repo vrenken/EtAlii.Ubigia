@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using EtAlii.Ubigia.Windows.Settings;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     public abstract class App : System.Windows.Application

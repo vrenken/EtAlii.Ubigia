@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics.Tests
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 

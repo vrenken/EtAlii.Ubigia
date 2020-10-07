@@ -7,7 +7,6 @@
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
 
     /// <summary>
     /// Interaction logic for App.xaml

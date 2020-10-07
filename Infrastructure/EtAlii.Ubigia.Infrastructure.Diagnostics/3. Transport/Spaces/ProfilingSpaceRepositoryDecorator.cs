@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class ProfilingSpaceRepositoryDecorator : ISpaceRepository
     {

@@ -2,7 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class ProfilingIdentifierRepositoryDecorator : IIdentifierRepository
     {

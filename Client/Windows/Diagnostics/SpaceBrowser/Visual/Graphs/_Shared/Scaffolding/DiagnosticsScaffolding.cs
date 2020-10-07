@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsScaffolding

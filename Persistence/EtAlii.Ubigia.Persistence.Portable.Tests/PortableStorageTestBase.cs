@@ -4,7 +4,6 @@
     using System.IO;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
     using PCLStorage;
 
     public abstract class PortableStorageTestBase : IDisposable

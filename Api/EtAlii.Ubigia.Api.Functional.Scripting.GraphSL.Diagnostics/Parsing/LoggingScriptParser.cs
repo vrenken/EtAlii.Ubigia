@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
-    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Diagnostics;
 
     internal class LoggingScriptParser : IScriptParser
     {
