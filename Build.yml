@@ -66,7 +66,7 @@ jobs:
         inputs:
           SonarQube: 'Avalon SonarQube'
           scannerMode: 'MSBuild'
-          projectKey: ${{ variables. sonarQubeProject }}
+          projectKey: ${{ variables.sonarQubeProject }}
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
             sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
