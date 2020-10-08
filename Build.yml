@@ -2,7 +2,7 @@
 variables:
   buildDisplayName: 'EtAlii.Ubigia'
   sonarQubeProject: 'EtAlii.Ubigia'
-  timeoutInMinutes: 240
+  timeoutInMinutes: 840
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
