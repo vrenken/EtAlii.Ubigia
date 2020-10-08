@@ -1,4 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
+﻿[assembly: JetBrains.dotMemoryUnit.SuppressXUnitOutputException]
+[assembly: JetBrains.dotMemoryUnit.DotMemoryUnit(FailIfRunWithoutSupport = false)]
+
+namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     //you have to label the class with this or it is never scanned for methods
     internal class TestAssembly

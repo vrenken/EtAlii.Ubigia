@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Integration tests\AssertQuery.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration tests\GraphQLQueryContext.Basic.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration tests\GraphQLQueryContext.Full.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Integration tests\GraphQLQueryContext.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration tests\GraphQLQueryContext.Multiple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Integration tests\GraphQLQueryContext.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
