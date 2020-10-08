@@ -17,10 +17,11 @@ jobs:
     displayName: 'Build and Test'
     timeoutInMinutes: ${{ variables.timeoutInMinutes }}
     pool:
-      name: Default
+      name: 'Avalon agent pool'
       demands:
         #- SpecialSoftware # Check if SpecialSoftware capability exists
-        - Agent.OS -equals Windows_NT # Check if Agent.OS == Windows_NT
+        # Check if Agent.OS == Windows_NT
+        - Agent.OS -equals Windows_NT 
       #vmImage: 'ubuntu-latest'    # For Docker.
       #vmImage: 'windows-latest'   # For Windows.
     steps:
@@ -65,7 +66,7 @@ jobs:
         inputs:
           SonarQube: 'Avalon SonarQube'
           scannerMode: 'MSBuild'
-          projectKey: ${{ variables. sonarQubeProject }}
+          projectKey: ${{ variables.sonarQubeProject }}
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
             sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
