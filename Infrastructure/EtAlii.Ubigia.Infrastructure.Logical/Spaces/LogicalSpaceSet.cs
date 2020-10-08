@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private const string Folder = "Spaces";
 
-        private ObservableCollection<Space> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
+        private ObservableCollection<Space> Items { get { lock (_lockObject) { return _items ??= InitializeItems(); } } }
         private ObservableCollection<Space> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
 
         public LogicalSpaceSet(

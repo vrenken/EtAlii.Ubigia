@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private const string Folder = "Accounts";
 
-        private ObservableCollection<Account> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
+        private ObservableCollection<Account> Items { get { lock (_lockObject) { return _items ??= InitializeItems(); } } }
         private ObservableCollection<Account> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
 
         public LogicalAccountSet(IFabricContext fabric)
@@ -66,11 +66,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
 
-        private ObservableCollection<Account> InitializeItems()
-        {
-            var items = _fabric.Items.GetItems<Account>(Folder);
-            return items;
-        }
+        private ObservableCollection<Account> InitializeItems() =>_fabric.Items.GetItems<Account>(Folder);
 
         public Account Add(Account item, AccountTemplate template, out bool isAdded)
         {
