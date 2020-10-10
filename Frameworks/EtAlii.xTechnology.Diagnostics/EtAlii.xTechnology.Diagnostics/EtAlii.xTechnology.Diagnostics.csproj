@@ -13,4 +13,8 @@
     <ProjectGuid>8498323A-0910-42E0-A1FA-B21265418DE8</ProjectGuid>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Debugging" />
+  </ItemGroup>
+
 </Project>
