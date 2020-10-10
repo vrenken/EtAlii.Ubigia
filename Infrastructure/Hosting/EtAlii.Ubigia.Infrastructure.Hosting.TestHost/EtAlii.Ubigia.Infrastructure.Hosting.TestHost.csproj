@@ -11,14 +11,13 @@
     <PackageReleaseNotes />
     <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TestHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost" Version="1.1.40" />
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
     <PackageReference Include="System.Threading.AccessControl" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 </Project>

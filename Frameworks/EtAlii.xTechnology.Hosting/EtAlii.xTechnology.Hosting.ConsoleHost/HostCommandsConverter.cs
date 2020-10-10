@@ -15,7 +15,7 @@
 
                 MenuItem parent = null;
 
-                for (int i = 0; i < nameParts.Length; i++)
+                for (var i = 0; i < nameParts.Length; i++)
                 {
                     var collectionToAddTo = (IList<MenuItem>)parent?.Items ?? result;
                     if (i == nameParts.Length - 1)

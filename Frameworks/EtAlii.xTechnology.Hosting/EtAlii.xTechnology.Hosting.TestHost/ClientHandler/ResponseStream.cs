@@ -43,8 +43,8 @@
 
         public override long Position
         {
-            get { throw new NotSupportedException(); }
-            set { throw new NotSupportedException(); }
+            get => throw new NotSupportedException();
+            set => throw new NotSupportedException();
         }
 
         public override long Seek(long offset, SeekOrigin origin)

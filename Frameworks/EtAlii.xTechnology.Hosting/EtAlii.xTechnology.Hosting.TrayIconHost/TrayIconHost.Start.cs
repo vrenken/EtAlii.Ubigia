@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 if (arguments[i] == "-d" && i + 1 < arguments.Length)
                 {
-                    var delay = Int32.Parse(arguments[i + 1]);
+                    var delay = int.Parse(arguments[i + 1]);
                     System.Threading.Tasks.Task.Delay(delay).Wait();
                 }
             }
