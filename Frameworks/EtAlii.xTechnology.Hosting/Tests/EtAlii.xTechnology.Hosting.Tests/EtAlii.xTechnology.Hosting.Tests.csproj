@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>FCC5D2A9-0EE7-49BF-A208-3FB3AB5D0466</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>7870039B-92D2-4C1C-9EDA-FACD35381021</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Commands\Provisioning\Firewall\ConfigureFirewall.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Commands\Provisioning\Firewall\ConfigureFirewall.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests\EtAlii.xTechnology.Hosting.Tests.csproj" />
+  </ItemGroup>
+</Project>

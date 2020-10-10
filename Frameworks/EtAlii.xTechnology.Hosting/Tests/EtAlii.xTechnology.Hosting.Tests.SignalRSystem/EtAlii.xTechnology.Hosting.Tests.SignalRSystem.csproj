@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>8D6C02D6-AD08-48E5-9DE5-EEF304FB14D0</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.Service.SignalR\EtAlii.xTechnology.Hosting.Service.SignalR.csproj" />
+  </ItemGroup>
+</Project> 

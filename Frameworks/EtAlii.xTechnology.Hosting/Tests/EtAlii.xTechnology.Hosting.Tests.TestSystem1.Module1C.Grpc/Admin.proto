@@ -1,0 +1,26 @@
+//
+// Copyright 2020 Peter Vrenken.
+syntax = "proto3";
+
+option csharp_namespace = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.WireProtocol";
+
+service AdminGrpcService 
+{
+	rpc GetSimple (SimpleAdminGetRequest) returns (AdminGetResponse) {}
+	rpc GetComplex (ComplexAdminGetRequest) returns (AdminGetResponse) {}
+}
+
+message SimpleAdminGetRequest
+{
+}
+
+message ComplexAdminGetRequest
+{
+    string Postfix = 1;
+}
+
+message AdminGetResponse
+{
+    string Result = 1;
+}
+

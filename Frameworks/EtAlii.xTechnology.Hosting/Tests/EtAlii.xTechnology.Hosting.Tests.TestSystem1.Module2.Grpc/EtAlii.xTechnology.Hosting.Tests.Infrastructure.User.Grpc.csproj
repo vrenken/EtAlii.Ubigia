@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>7673AFC7-B0AC-4437-8F2B-550F483D3439</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
+  </ItemGroup>
+</Project>
