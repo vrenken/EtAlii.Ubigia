@@ -9,7 +9,7 @@
         {
             var result = new List<IConfigurationSection>();
 
-            int index = 0;
+            var index = 0;
             bool exists;
             do
             {

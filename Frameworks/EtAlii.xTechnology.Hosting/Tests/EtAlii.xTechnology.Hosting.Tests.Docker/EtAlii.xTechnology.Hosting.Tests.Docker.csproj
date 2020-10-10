@@ -79,6 +79,12 @@
     <Compile Remove="Container\Program.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+
   <Target Name="CopyConsoleHostSource" AfterTargets="AfterBuild">
     <ItemGroup>
       <ConsoleHostSource Include="..\EtAlii.xTechnology.Hosting.Tests.Console\bin\Debug\netcoreapp3.1\**\*.*" />

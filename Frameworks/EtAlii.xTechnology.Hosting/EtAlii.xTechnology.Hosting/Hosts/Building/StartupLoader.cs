@@ -124,7 +124,7 @@ namespace EtAlii.xTechnology.Hosting
                 IServiceProvider ConfigureServicesWithContainerConfiguration(IServiceCollection services)
                 {
                     // Call ConfigureServices, if that returned an IServiceProvider, we're done
-                    IServiceProvider applicationServiceProvider = configureServicesCallback.Invoke(services);
+                    var applicationServiceProvider = configureServicesCallback.Invoke(services);
 
                     if (applicationServiceProvider != null)
                     {
@@ -168,7 +168,7 @@ namespace EtAlii.xTechnology.Hosting
                     }
 
                     Action<IServiceCollection> pipeline = InvokeStartup;
-                    for (int i = 0; i < filters.Length; i++)
+                    for (var i = 0; i < filters.Length; i++)
                     {
                         pipeline = filters[i].ConfigureServices(pipeline);
                     }
@@ -208,7 +208,7 @@ namespace EtAlii.xTechnology.Hosting
                         .ToArray();
 
                     Action<TContainerBuilder> pipeline = InvokeConfigureContainer;
-                    for (int i = 0; i < filters.Length; i++)
+                    for (var i = 0; i < filters.Length; i++)
                     {
                         pipeline = filters[i].ConfigureContainer(pipeline);
                     }

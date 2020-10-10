@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
-    using System;
-
     public class ServiceDetails
     {
         public string Name { get;  }
@@ -15,9 +13,9 @@
             string descriptionFormat // e.g. "Provides applications access to the Ubigia storage '{0}'"
         )
         {
-            Name = String.Format(shortServiceNameFormat, configurationName).Replace(" ", "_");
-            DisplayName = String.Format(displayNameFormat, configurationName);
-            Description = String.Format(descriptionFormat, configurationName);
+            Name = string.Format(shortServiceNameFormat, configurationName).Replace(" ", "_");
+            DisplayName = string.Format(displayNameFormat, configurationName);
+            Description = string.Format(descriptionFormat, configurationName);
         }
     }
 

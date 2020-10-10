@@ -24,7 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Third party -->
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.1.40" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.26">
       <PrivateAssets>all</PrivateAssets>
@@ -32,6 +31,7 @@
     </PackageReference>
 
     <!-- Shared -->
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.NetCore\EtAlii.Ubigia.Infrastructure.Transport.NetCore.csproj" />
 

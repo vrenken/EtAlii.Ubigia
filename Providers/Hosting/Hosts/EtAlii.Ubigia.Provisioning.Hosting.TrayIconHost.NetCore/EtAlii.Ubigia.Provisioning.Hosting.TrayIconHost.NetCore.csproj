@@ -15,9 +15,9 @@
   <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.1.40" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TrayIconHost\EtAlii.xTechnology.Hosting.TrayIconHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj" />
