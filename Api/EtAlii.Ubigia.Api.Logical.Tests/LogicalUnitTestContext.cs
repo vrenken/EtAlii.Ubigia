@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
-    using Ubigia.Tests;
     using Xunit;
 
     public class LogicalUnitTestContext : IAsyncLifetime
@@ -21,7 +22,7 @@
 
         public async Task InitializeAsync()
         {
-            Diagnostics = TestDiagnostics.Create();
+            Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             LogicalTestContext = new LogicalTestContextFactory().Create();
             await LogicalTestContext.Start();
         }

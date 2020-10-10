@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -19,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         public ScriptProcessorRootedPathFunctionIdTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = TestDiagnostics.Create();
+            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

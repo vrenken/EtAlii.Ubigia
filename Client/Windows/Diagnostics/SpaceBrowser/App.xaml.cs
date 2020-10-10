@@ -5,7 +5,7 @@
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Diagnostics;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -43,7 +43,7 @@
             var password = e.Args.Length > 2 ? e.Args[2] : string.Empty;
             var space = e.Args.Length > 3 ? e.Args[3] : string.Empty;
 
-            var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;//new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
 
             IProfilingDataConnection connection;
 

@@ -14,18 +14,18 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
 
         public void Initialize(Container container)
         {
-            var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
-                () => new DisabledLogFactory(),
-                () => new DisabledProfilerFactory(),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"));
+            // var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
+            //     () => new DisabledLogFactory(),
+            //     () => new DisabledProfilerFactory(),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"));
 
             var scaffoldings = new IScaffolding[]
             {
-                new ProvisioningDiagnosticsScaffolding(diagnostics),
-                new ProvisioningDebuggingScaffolding(diagnostics),
-                new ProvisioningLoggingScaffolding(diagnostics),
-                new ProvisioningProfilingScaffolding(diagnostics),
+                new ProvisioningDiagnosticsScaffolding(_diagnostics),
+                new ProvisioningDebuggingScaffolding(_diagnostics),
+                new ProvisioningLoggingScaffolding(_diagnostics),
+                new ProvisioningProfilingScaffolding(_diagnostics),
 
                 //new WebApiProfilingScaffolding(diagnostics),
                 //new WebApiLoggingScaffolding(diagnostics),

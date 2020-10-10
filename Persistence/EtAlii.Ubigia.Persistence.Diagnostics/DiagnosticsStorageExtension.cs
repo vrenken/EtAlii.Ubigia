@@ -14,17 +14,17 @@ namespace EtAlii.Ubigia.Persistence
 
         public void Initialize(Container container)
         {
-            var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
-                () => new DisabledLogFactory(),
-                () => new DisabledProfilerFactory(),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"));
+            // var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
+            //     () => new DisabledLogFactory(),
+            //     () => new DisabledProfilerFactory(),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"));
 
             var scaffoldings = new IScaffolding[]
             {
-                new DiagnosticsScaffolding(diagnostics),
-                new BlobsLoggingScaffolding(diagnostics),
-                new ComponentsProfilingScaffolding(diagnostics),
+                new DiagnosticsScaffolding(_diagnostics),
+                new BlobsLoggingScaffolding(_diagnostics),
+                new ComponentsProfilingScaffolding(_diagnostics),
             };
 
             foreach (var scaffolding in scaffoldings)

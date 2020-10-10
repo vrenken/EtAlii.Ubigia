@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
 
@@ -41,7 +42,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         private async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new DataConnectionConfiguration()
@@ -58,7 +59,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()

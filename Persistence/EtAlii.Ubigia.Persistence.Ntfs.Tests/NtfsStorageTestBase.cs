@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
     using System;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
 
     public abstract class NtfsStorageTestBase : IDisposable
     {
@@ -52,33 +52,12 @@
 
         private IStorage CreateStorage()
         {
-            var diagnostics = new DiagnosticsConfiguration
-            {
-                EnableProfiling = true,
-                EnableLogging = true,
-                EnableDebugging = true,
-                CreateLogFactory = () => new DisabledLogFactory(),
-                CreateLogger = CreateLogger,
-                CreateProfilerFactory = () => new DisabledProfilerFactory(),
-                CreateProfiler = CreateProfiler,
-            };
-
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseNtfsStorage(_rootFolder)
-                .Use(diagnostics);
+                .Use(UbigiaDiagnostics.DefaultConfiguration)
+                .UseNtfsStorage(_rootFolder);
 
             return new StorageFactory().Create(configuration);
-        }
-
-        private ILogger CreateLogger(ILogFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.Ntfs.Tests");
-        }
-
-        private IProfiler CreateProfiler(IProfilerFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.Ntfs.Tests");
         }
     }
 }

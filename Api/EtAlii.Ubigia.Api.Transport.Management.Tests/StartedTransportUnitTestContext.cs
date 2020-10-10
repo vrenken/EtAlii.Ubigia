@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -13,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public async Task InitializeAsync()
         {
-            Diagnostics = TestDiagnostics.Create();
+            Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             TransportTestContext = new TransportTestContext().Create();
             await TransportTestContext.Start();
         }

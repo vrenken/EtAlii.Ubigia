@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionIdTests : IDisposable
@@ -10,7 +11,7 @@
 
         public ScriptParserFunctionIdTests()
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

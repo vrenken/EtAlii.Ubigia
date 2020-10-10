@@ -9,7 +9,7 @@
         private readonly IDataConnection _decoree;
         private readonly ILogger _logger;
 
-        internal LoggingDataConnection(
+        public LoggingDataConnection(
             IDataConnection decoree,
             ILogger logger)
         {

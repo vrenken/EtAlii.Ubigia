@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Diagnostics;
     using Xunit;
 
     public class ScriptParserAssignVariableObjectTests : IDisposable
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
         public ScriptParserAssignVariableObjectTests()
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
