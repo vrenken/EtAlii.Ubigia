@@ -38,7 +38,6 @@ jobs:
           key: 'nuget | "$(Agent.OS)" | **/*.csproj'
           restoreKeys: |
             nuget | "$(Agent.OS)"
-            nuget
           path: $(Pipeline.Workspace)/.nuget/packages
         displayName: Cache NuGet packages
 
@@ -71,8 +70,7 @@ jobs:
           projects: |
             **/*.sln
             !**/StorageBrowser.csproj
-          #arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaRunningOnBuildAgent=true'
-          buildProperties: 'VersionSuffix="$(Build.BuildNumber)"'
+          arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaRunningOnBuildAgent=true'
 
 
 # TEST
