@@ -92,7 +92,7 @@
 
             // Assert.
             var delta = DateTime.Now - now;
-            Assert.True(delta < TimeSpan.FromSeconds(20));
+            Assert.True(delta < TimeSpan.FromSeconds(25));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
