@@ -48,7 +48,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<AbsolutePathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(3));
@@ -68,7 +68,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<AbsolutePathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(3));
@@ -88,7 +88,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<AbsolutePathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(3));
@@ -109,7 +109,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<AbsolutePathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.ElementAt(3));

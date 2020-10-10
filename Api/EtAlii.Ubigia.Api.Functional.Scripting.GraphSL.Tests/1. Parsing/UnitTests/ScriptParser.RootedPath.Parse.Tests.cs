@@ -48,7 +48,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<RootedPathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.Equal("First", script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Root);
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(0));
@@ -68,7 +68,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<RootedPathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.Equal("First", script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Root);
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(0));
@@ -88,7 +88,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<RootedPathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.Equal("First", script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Root);
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(0));
@@ -109,7 +109,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.False(result.Errors.Any(), result.Errors.DumpAsString());
             Assert.IsType<RootedPathSubject>(script.Sequences.First().Parts.Skip(1).First());
             Assert.Equal("First", script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Root);
             Assert.IsType<ConstantPathSubjectPart>(script.Sequences.First().Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.ElementAt(0));

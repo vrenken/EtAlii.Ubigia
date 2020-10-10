@@ -156,6 +156,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FunctionHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFunctionalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ObservableExceptionAssert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScriptParserError.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFunctionHandler.cs" />
