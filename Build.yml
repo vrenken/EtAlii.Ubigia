@@ -2,7 +2,7 @@
 variables:
   buildDisplayName: 'EtAlii.Ubigia'
   sonarQubeProject: 'EtAlii.Ubigia'
-  timeoutInMinutes: 840
+  timeoutInMinutes: 120
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
@@ -70,8 +70,7 @@ jobs:
           projects: |
             **/*.sln
             !**/StorageBrowser.csproj
-          arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaRunningOnBuildAgent=true'
-
+          arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaIsRunningOnBuildAgent=true'
 
 # TEST
       - task: DotNetCoreCLI@2
