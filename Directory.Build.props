@@ -1,4 +1,4 @@
-﻿<!-- Stuff that needs to happen at the end of the MSBuild process should go in the .props file. -->
+﻿<!-- Stuff that needs to happen at the start of the MSBuild process should go in the .props file. -->
 <Project>
   <PropertyGroup>
     <VersionPrefix>1.0.0.5</VersionPrefix>
@@ -15,6 +15,7 @@
     <UbigiaBuildPackages>false</UbigiaBuildPackages>
     <UbigiaNetStandardVersion>netstandard2.1</UbigiaNetStandardVersion>
     <UbigiaNetCoreAppVersion>netcoreapp3.1</UbigiaNetCoreAppVersion>
+    <DefineConstants Condition="'$(UbigiaRunningOnBuildAgent.ToLower())' == 'true'">$(DefineConstants);UBIGIA_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
