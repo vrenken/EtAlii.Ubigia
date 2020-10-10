@@ -1,0 +1,14 @@
+namespace EtAlii.xTechnology.Hosting.WebsiteHost.NetCore
+{
+    public static class HostConfigurationWebsiteHostExtension
+    {
+        public static IHostConfiguration UseWebsiteHost(this IHostConfiguration configuration)
+        {
+            var extensions = new IHostExtension[]
+            {
+//                new WebsiteHostExtension(),
+            };
+            return configuration.Use(extensions);
+        }
+    }
+}

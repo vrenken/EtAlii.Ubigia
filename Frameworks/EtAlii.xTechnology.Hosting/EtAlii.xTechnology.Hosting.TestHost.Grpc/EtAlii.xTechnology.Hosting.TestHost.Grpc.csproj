@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
+    <ProjectGuid>9234ACDF-5339-4C48-917C-31246FDABEDE</ProjectGuid>
+    <Description>Package that helps (unit)testing Grpc scenarios.</Description>
+    <PackageTags>hosting test Grpc unittest Asp.Net Core 3.1</PackageTags>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.31.0" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Service.Grpc\EtAlii.xTechnology.Hosting.Service.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+  </ItemGroup>
+</Project>
