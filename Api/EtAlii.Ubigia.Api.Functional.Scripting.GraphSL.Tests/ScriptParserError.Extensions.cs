@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
+    using System.Text;
+
     public static class ScriptParserErrorExtensions
     {
         public static string DumpAsString(this ScriptParserError[] errors)
