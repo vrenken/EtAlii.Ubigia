@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using System;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
 
     public abstract class NetCoreAppStorageTestBase : IDisposable
     {
@@ -51,33 +51,12 @@
 
         private IStorage CreateStorage()
         {
-            var diagnostics = new DiagnosticsConfiguration
-            {
-                EnableProfiling = false,
-                EnableLogging = false,
-                EnableDebugging = false,
-                CreateLogFactory = () => new DisabledLogFactory(),
-                CreateLogger = CreateLogger,
-                CreateProfilerFactory = () => new DisabledProfilerFactory(),
-                CreateProfiler = CreateProfiler,
-            };
-
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseNetCoreAppStorage(_rootFolder)
-                .Use(diagnostics);
+                .Use(UbigiaDiagnostics.DefaultConfiguration)
+                .UseNetCoreAppStorage(_rootFolder);
 
             return new StorageFactory().Create(configuration);
-        }
-
-        private ILogger CreateLogger(ILogFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.NetCoreApp.Tests");
-        }
-
-        private IProfiler CreateProfiler(IProfilerFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.NetCoreApp.Tests");
         }
     }
 }

@@ -7,6 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using global::Grpc.Net.Client;
 
@@ -16,7 +17,7 @@
         {
             var spaceName = Guid.NewGuid().ToString();
             
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
 
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
             
@@ -42,7 +43,7 @@
 
         public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
 
 			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
             
@@ -62,7 +63,7 @@
 
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
-            var diagnostics = TestDiagnostics.Create();
+            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
 
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
 

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics.Tests
 {
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
@@ -12,7 +11,7 @@
             // Arrange.
 
             // Act.
-            var scaffolding = new DiagnosticsScaffolding(DiagnosticsConfiguration.Default);
+            var scaffolding = new DiagnosticsScaffolding();
 
             // Assert.
             Assert.NotNull(scaffolding);
@@ -22,16 +21,16 @@
         public void DiagnosticsScaffolding_Create_With_Configuration()
         {
             // Arrange.
-            var name = "EtAlii";
-            var category = "EtAlii.Ubigia.Infrastructure";
-            var configuration = new DiagnosticsFactory().Create(true, false, true,
-                () => new DisabledLogFactory(),
-                () => new DisabledProfilerFactory(),
-                (factory) => factory.Create(name, category),
-                (factory) => factory.Create(name, category));
+            // var name = "EtAlii";
+            // var category = "EtAlii.Ubigia.Infrastructure";
+            // var configuration = new DiagnosticsFactory().Create(true, false, true,
+            //     () => new DisabledLogFactory(),
+            //     () => new DisabledProfilerFactory(),
+            //     (factory) => factory.Create(name, category),
+            //     (factory) => factory.Create(name, category));
 
             // Act.
-            var scaffolding = new DiagnosticsScaffolding(configuration);
+            var scaffolding = new DiagnosticsScaffolding();
 
             // Assert.
             Assert.NotNull(scaffolding);
@@ -43,7 +42,7 @@
             // Arrange.
 
             // Act.
-            var scaffolding = new DiagnosticsScaffolding(null);
+            var scaffolding = new DiagnosticsScaffolding();
 
             // Assert.
             Assert.NotNull(scaffolding);
@@ -53,7 +52,7 @@
         public void DiagnosticsScaffolding_Register()
         {
             // Arrange.
-            var scaffolding = new DiagnosticsScaffolding(DiagnosticsConfiguration.Default);
+            var scaffolding = new DiagnosticsScaffolding();
             var container = new Container();
 
             // Act.

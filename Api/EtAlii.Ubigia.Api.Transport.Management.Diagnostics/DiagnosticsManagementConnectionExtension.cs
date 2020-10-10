@@ -14,13 +14,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
         public void Initialize(Container container)
         {
-            var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
-                () => new DisabledLogFactory(),
-                () => new DisabledProfilerFactory(),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"),
-                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"));
+            // var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
+            //     () => new DisabledLogFactory(),
+            //     () => new DisabledProfilerFactory(),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"),
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"));
 
-            container.Register(() => diagnostics);
+            container.Register(() => _diagnostics);
 
             var scaffoldings = new IScaffolding[]
             {

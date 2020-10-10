@@ -2,8 +2,8 @@
 {
     using System;
     using System.IO;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using PCLStorage;
 
     public abstract class PortableStorageTestBase : IDisposable
@@ -76,33 +76,12 @@
 
         private IStorage CreateStorage()
         {
-            var diagnostics = new DiagnosticsConfiguration
-            {
-                EnableProfiling = false,
-                EnableLogging = false,
-                EnableDebugging = false,
-                CreateLogFactory = () => new DisabledLogFactory(),
-                CreateLogger = CreateLogger,
-                CreateProfilerFactory = () => new DisabledProfilerFactory(),
-                CreateProfiler = CreateProfiler,
-            };
-
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .Use(diagnostics)
+                .Use(UbigiaDiagnostics.DefaultConfiguration)
                 .UsePortableStorage(StorageFolder);
 
             return new StorageFactory().Create(configuration);
-        }
-
-        private ILogger CreateLogger(ILogFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.Portable.Tests");
-        }
-
-        private IProfiler CreateProfiler(IProfilerFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Persistence.Portable.Tests");
         }
     }
 }

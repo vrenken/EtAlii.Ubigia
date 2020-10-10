@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -18,7 +19,7 @@
 
         public Task InitializeAsync()
         {
-            _diagnostics = TestDiagnostics.Create();
+            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             //_logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             return Task.CompletedTask;
         }
