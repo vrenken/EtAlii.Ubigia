@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Exe</OutputType>
+    <ProjectGuid>30BE97EC-145D-45B6-DBCC-2C0D5AFF1A6C</ProjectGuid>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="settings.json" />
+    <None Update="settings.*.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings-Original.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.GrpcSystem\EtAlii.xTechnology.Hosting.Tests.GrpcSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.RestSystem\EtAlii.xTechnology.Hosting.Tests.RestSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.SignalRSystem\EtAlii.xTechnology.Hosting.Tests.SignalRSystem.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+  </ItemGroup>
+</Project>

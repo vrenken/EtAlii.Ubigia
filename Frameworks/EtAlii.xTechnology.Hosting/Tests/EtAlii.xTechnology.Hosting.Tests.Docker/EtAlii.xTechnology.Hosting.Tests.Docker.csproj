@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>c899ee3a-57c9-432e-a478-a54bafcc4f4e</ProjectGuid>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="settings_systems_1_variant_1.json" />
+    <None Remove="settings_systems_1_variant_2.json" />
+    <None Remove="settings_systems_2_variant_grpc.json" />
+    <None Remove="settings_systems_2_variant_netcore.json" />
+  </ItemGroup>
+
+  <!-- System 1 - All variants -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.GrpcSystem\EtAlii.xTechnology.Hosting.Tests.GrpcSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.RestSystem\EtAlii.xTechnology.Hosting.Tests.RestSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.SignalRSystem\EtAlii.xTechnology.Hosting.Tests.SignalRSystem.csproj" />
+  </ItemGroup>
+
+  <!-- System 2 - Grpc variant -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.Grpc\EtAlii.xTechnology.Hosting.TestHost.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1C.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2A.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem2.Grpc\EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc.csproj" />
+  </ItemGroup>
+
+  <!-- System 2 - NetCore variant -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.SignalR\EtAlii.xTechnology.Hosting.TestHost.SignalR.csproj" />
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.Rest\EtAlii.xTechnology.Hosting.TestHost.Rest.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1C.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2B.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem2.NetCore\EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="DockerizedTesting" Version="1.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Include="Container\.dockerignore">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Container\dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Remove="docker-compose.yaml" />
+    <Content Include="Container\settings_variant_1.json" />
+    <Compile Remove="Source\Program.cs" />
+    <None Remove="dockerfile" />
+    <Compile Remove="Container\Program.cs" />
+  </ItemGroup>
+
+  <Target Name="CopyConsoleHostSource" AfterTargets="AfterBuild">
+    <ItemGroup>
+      <ConsoleHostSource Include="..\EtAlii.xTechnology.Hosting.Tests.Console\bin\Debug\netcoreapp3.1\**\*.*" />
+      <None Include="..\EtAlii.xTechnology.Hosting.Tests.Console\bin\Debug\netcoreapp3.1\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ConsoleHostSource)" DestinationFolder="$(OutDir)Container\%(RecursiveDir)" />
+  </Target>
+</Project>

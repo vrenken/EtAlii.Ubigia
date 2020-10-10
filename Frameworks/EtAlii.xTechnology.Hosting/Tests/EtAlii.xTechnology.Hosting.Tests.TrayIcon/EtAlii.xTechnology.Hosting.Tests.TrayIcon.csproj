@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Exe</OutputType>
+    <ProjectGuid>67F4031B-2E17-4362-AAB2-FA744B4AD5FA</ProjectGuid>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Remove="settings.json" />
+    <None Update="settings.*.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="settings-Original.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TrayIconHost\EtAlii.xTechnology.Hosting.TrayIconHost.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.GrpcSystem\EtAlii.xTechnology.Hosting.Tests.GrpcSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.RestSystem\EtAlii.xTechnology.Hosting.Tests.RestSystem.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.SignalRSystem\EtAlii.xTechnology.Hosting.Tests.SignalRSystem.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Icon-Logo-Black.ico" />
+    <EmbeddedResource Include="Icon-Logo-Black.ico" />
+    <None Remove="Icon-Logo-Red.ico" />
+    <EmbeddedResource Include="Icon-Logo-Red.ico" />
+    <None Remove="Icon-Logo-White-Shaded.ico" />
+    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico" />
+  </ItemGroup>
+</Project>

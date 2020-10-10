@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Library</OutputType>
+    <ProjectGuid>C0D47921-FC25-4010-910A-64C5F19D4F60</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.Service.Rest\EtAlii.xTechnology.Hosting.Service.Rest.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.csproj" />
+  </ItemGroup>
+</Project>

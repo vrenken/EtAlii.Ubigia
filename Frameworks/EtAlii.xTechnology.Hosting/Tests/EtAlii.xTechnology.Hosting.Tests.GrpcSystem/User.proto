@@ -1,0 +1,26 @@
+//
+// Copyright 2020 Peter Vrenken.
+syntax = "proto3";
+
+option csharp_namespace = "EtAlii.xTechnology.Hosting.Tests.GrpcSystem.WireProtocol";
+
+service UserGrpcService 
+{
+	rpc GetSimple (SimpleUserGetRequest) returns (UserGetResponse) {}
+	rpc GetComplex (ComplexUserGetRequest) returns (UserGetResponse) {}
+}
+
+message SimpleUserGetRequest
+{
+}
+
+message ComplexUserGetRequest
+{
+    string Postfix = 1;
+}
+
+message UserGetResponse
+{
+    string Result = 1;
+}
+
