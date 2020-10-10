@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <OutputType>library</OutputType>
+    <ProjectGuid>A50E8CA4-0D19-4D0E-8DE0-906731183337</ProjectGuid>
+    <RootNamespace>EtAlii.xTechnology.Hosting.WebsiteHost.NetCore</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>Package that enables a host to be hosted as a web application.</Description>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology</PackageProjectUrl>
+    <PackageTags>hosting console command</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+<!--    <PackageReference Include="Microsoft.Owin" Version="4.1.0">-->
+<!--      <NoWarn>NU1701</NoWarn> &lt;!&ndash; Remove when the Owin packages have been made compatible with netcore3.0 and netstandard2.1 &ndash;&gt;-->
+<!--    </PackageReference>-->
+<!--    <PackageReference Include="Owin" Version="1.0.0">-->
+<!--      <NoWarn>NU1701</NoWarn> &lt;!&ndash; Remove when the Owin packages have been made compatible with netcore3.0 and netstandard2.1 &ndash;&gt;-->
+<!--    </PackageReference>-->
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Web.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="Web.*.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+  </ItemGroup>
+</Project>

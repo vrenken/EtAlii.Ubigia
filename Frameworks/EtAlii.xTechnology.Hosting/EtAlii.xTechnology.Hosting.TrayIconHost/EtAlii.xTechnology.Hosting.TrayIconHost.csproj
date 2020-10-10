@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+    <PropertyGroup>
+        <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+        <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+        <ProjectGuid>CE3ADEFA-E754-457B-9C86-6D6F747E4F5D</ProjectGuid>
+        <OutputType>library</OutputType>
+        <UseWPF>true</UseWPF>
+        <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
+        <Description>Package that enables a host to be started as a tray icon application.</Description>
+        <PackageTags>hosting console command</PackageTags>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Hardcodet.Wpf.TaskbarNotification.Core" Version="2.0.0" />
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+    </ItemGroup>
+</Project>
