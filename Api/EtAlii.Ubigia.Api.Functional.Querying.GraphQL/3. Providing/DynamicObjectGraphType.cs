@@ -17,9 +17,9 @@
             return assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObjectGraphType)}");
         }
 
-        private static TypeInfo BuildInstanceType()
+        private static TypeInfo BuildInstanceType() 
         {
-            var typeName = $"{typeof(DynamicObjectGraphType).Name}_{Guid.NewGuid():N}";
+            var typeName = $"{nameof(DynamicObjectGraphType)}_{Guid.NewGuid():N}";
             var typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
             return typeBuilder.CreateTypeInfo();
         }

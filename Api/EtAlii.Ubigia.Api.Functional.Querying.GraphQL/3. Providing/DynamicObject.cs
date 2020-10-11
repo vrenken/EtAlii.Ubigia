@@ -6,7 +6,7 @@
 
     public static class DynamicObject
     {
-        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder(); 
+        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder();  
 
         private static ModuleBuilder CreateModuleBuilder()
         {

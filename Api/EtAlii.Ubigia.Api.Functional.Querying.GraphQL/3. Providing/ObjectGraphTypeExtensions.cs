@@ -14,7 +14,7 @@
             QueryArguments arguments = null,
             Func<ResolveFieldContext, object> resolve = null)
         {
-            var field = new FieldType();
+            var field = new FieldType(); 
             field.Name = name;
             field.Description = description;
             field.Arguments = arguments;
