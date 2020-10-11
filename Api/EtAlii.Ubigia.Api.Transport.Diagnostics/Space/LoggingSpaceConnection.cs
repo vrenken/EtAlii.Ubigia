@@ -2,12 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class LoggingSpaceConnection : ISpaceConnection
     {
         private readonly ISpaceConnection _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<ISpaceConnection>();
 
         private Uri _address;
 
@@ -24,12 +24,9 @@
         public IContentContext Content => _decoree.Content;
         public IPropertiesContext Properties => _decoree.Properties;
 
-        public LoggingSpaceConnection(
-            ISpaceConnection decoree,
-            ILogger logger)
+        public LoggingSpaceConnection(ISpaceConnection decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Open(string accountName, string password)
@@ -37,20 +34,20 @@
             _address = _decoree.Transport.Address;
 
             var message = "Opening space connection (Address: {address}";
-            _logger.Info(message, _address);
+            _logger.Information(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Open(accountName, password);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened space connection (Address: {address} Duration: {duration}ms)";
-            _logger.Info(message, _address, duration);
+            _logger.Information(message, _address, duration);
         }
 
         public async Task Close()
         {
             var message = "Closing space connection (Address: {address}";
-            _logger.Info(message, _address);
+            _logger.Information(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Close();
@@ -58,7 +55,7 @@
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Closed space connection (Address: {address} Duration: {duration}ms)";
-            _logger.Info(message, _address, duration);
+            _logger.Information(message, _address, duration);
         }
 
         #region Disposable

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class LoggingInfrastructureDecorator : IInfrastructure
     {
@@ -22,32 +22,29 @@
         public IContentRepository Content => _decoree.Content;
         public IContentDefinitionRepository ContentDefinition => _decoree.ContentDefinition;
 
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IInfrastructure>();
 
-        public LoggingInfrastructureDecorator(
-            IInfrastructure decoree, 
-            ILogger logger)
+        public LoggingInfrastructureDecorator(IInfrastructure decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Start()
         {
-            _logger.Info("Starting infrastructure hosting");
+            _logger.Information("Starting infrastructure hosting");
 
             await _decoree.Start();
 
-            _logger.Info("Started infrastructure hosting");
+            _logger.Information("Started infrastructure hosting");
         }
 
         public async Task Stop()
         {
-            _logger.Info("Stopping infrastructure hosting");
+            _logger.Information("Stopping infrastructure hosting");
 
             await _decoree.Stop();
 
-            _logger.Info("Stopped infrastructure hosting");
+            _logger.Information("Stopped infrastructure hosting");
         }
     }
 }

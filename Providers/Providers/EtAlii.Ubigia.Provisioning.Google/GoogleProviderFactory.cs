@@ -36,9 +36,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
             container.Register<IUserSettingsUpdater, UserSettingsUpdater>();
 
             container.Register<IConfigurationSpaceGetter, ConfigurationSpaceGetter>();
-
-            container.Register(() => configuration.LogFactory.Create("Google.PeopleApi", "Provider"));
-
+            
             container.RegisterDecorator(typeof(IPeopleApiConfigurationSpaceUpdater), typeof(DebuggingPeopleApiConfigurationSpaceUpdater));
             container.RegisterDecorator(typeof(IUserSettingsUpdater), typeof(DebuggingUserSettingsUpdater));
             container.RegisterDecorator(typeof(IPeopleApiUpdater), typeof(DebuggingPeopleApiUpdater));

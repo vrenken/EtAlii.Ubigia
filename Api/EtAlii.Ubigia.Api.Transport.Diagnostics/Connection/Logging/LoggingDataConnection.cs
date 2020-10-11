@@ -2,19 +2,16 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class LoggingDataConnection : IDataConnection
     {
         private readonly IDataConnection _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IDataConnection>();
 
-        public LoggingDataConnection(
-            IDataConnection decoree,
-            ILogger logger)
+        public LoggingDataConnection(IDataConnection decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public Storage Storage => _decoree.Storage;
@@ -36,12 +33,12 @@
             var spaceName = _decoree.Configuration.Space;
 
             var message = "Opening data connection (Address: {address} Account: {accountName} Space: {spaceName})";
-            _logger.Info(message, address, accountName, spaceName);
+            _logger.Information(message, address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Open();
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = $"Opened data connection (Address: {{address}} Account: {{accountName}} Space: {{spaceName}} Duration: {duration}ms)";
-            _logger.Info(message, address, accountName, spaceName, duration);
+            message = "Opened data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {duration}ms)";
+            _logger.Information(message, address, accountName, spaceName, duration);
         }
 
         public async Task Close()
@@ -51,12 +48,12 @@
             var spaceName = _decoree.Configuration.Space;
 
             var message = "Closing data connection (Address: {address} Account: {accountName} Space: {spaceName})";
-            _logger.Info(message, address, accountName, spaceName);
+            _logger.Information(message, address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Close();
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Closed data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {duration}ms)";
-            _logger.Info(message, address, accountName, spaceName, duration);
+            _logger.Information(message, address, accountName, spaceName, duration);
         }
     }
 }

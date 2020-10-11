@@ -2,26 +2,25 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class DebuggingUserSettingsSetter : IUserSettingsSetter
     {
         private readonly IUserSettingsSetter _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IUserSettingsSetter>();
 
-        public DebuggingUserSettingsSetter(IUserSettingsSetter decoree, ILogger logger)
+        public DebuggingUserSettingsSetter(IUserSettingsSetter decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Set(IGraphSLScriptContext context, string account, UserSettings settings)
         {
-            _logger.Info($"Setting PeopleApi user settings for account: {account}");
+            _logger.Information("Setting PeopleApi {userSettings} for account: {account}", settings, account);
 
             await _decoree.Set(context, account, settings);
 
-            _logger.Info($"Finished setting PeopleApi user settings for account: {account}");
+            _logger.Information("Finished setting PeopleApi user settings for account: {account}", account);
         }
     }
 }

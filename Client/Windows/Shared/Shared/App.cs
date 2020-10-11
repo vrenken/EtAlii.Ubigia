@@ -46,8 +46,6 @@
             //RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude)
 
             Container.Register<IGlobalSettings, GlobalSettings>();
-            Container.Register<ILogFactory, DisabledLogFactory>();
-            Container.Register(GetLogger);
             Container.Register<IProfilerFactory, DisabledProfilerFactory>();
             Container.Register(GetProfiler);
         }
@@ -65,11 +63,6 @@
         //        Container.Register(typeToRegister)
         //    ]
         //]
-        private ILogger GetLogger()
-        {
-            var factory = Container.GetInstance<ILogFactory>();
-            return factory.Create("EtAlii", "EtAlii.Ubigia.Client.Windows");
-        }
 
         private IProfiler GetProfiler()
         {

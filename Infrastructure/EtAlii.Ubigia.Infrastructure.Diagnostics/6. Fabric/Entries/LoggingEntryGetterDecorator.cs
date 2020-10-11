@@ -2,37 +2,36 @@
 {
     using System.Collections.Generic;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     internal class LoggingEntryGetterDecorator : IEntryGetter
     {
-        private readonly ILogger _logger;
-        private readonly IEntryGetter _entryGetter;
+        private readonly ILogger _logger = Log.ForContext<IEntryGetter>();
+        private readonly IEntryGetter _decoree;
 
-        public LoggingEntryGetterDecorator(ILogger logger, IEntryGetter entryGetter)
+        public LoggingEntryGetterDecorator(IEntryGetter decoree)
         {
-            _logger = logger;
-            _entryGetter = entryGetter;
+            _decoree = decoree;
         }
 
         public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
-            return _entryGetter.Get(identifiers, entryRelations);
+            return _decoree.Get(identifiers, entryRelations);
         }
 
         public Entry Get(Identifier identifier, EntryRelation entryRelations)
         {
-            _logger.Verbose("Getting entry: {0}", identifier.ToTimeString());
+            _logger.Verbose("Getting entry: {identifier}", identifier.ToTimeString());
 
-            return _entryGetter.Get(identifier, entryRelations);
+            return _decoree.Get(identifier, entryRelations);
         }
 
 
         public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
-            _logger.Verbose("Getting entries for: {0}", identifier.ToTimeString());
+            _logger.Verbose("Getting entries for: {identifier}", identifier.ToTimeString());
 
-            return _entryGetter.GetRelated(identifier, entriesWithRelation, entryRelations);
+            return _decoree.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
     }
 }

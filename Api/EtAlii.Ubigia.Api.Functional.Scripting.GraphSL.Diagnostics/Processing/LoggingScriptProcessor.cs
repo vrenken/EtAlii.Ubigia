@@ -2,31 +2,28 @@
 {
     using System;
     using System.Diagnostics;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     [DebuggerStepThrough]
     internal class LoggingScriptProcessor : IScriptProcessor
     {
         private readonly IScriptProcessor _processor;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IScriptProcessor>();
 
-        public LoggingScriptProcessor(
-            IScriptProcessor processor,
-            ILogger logger)
+        public LoggingScriptProcessor(IScriptProcessor processor)
         {
             _processor = processor;
-            _logger = logger;
         }
 
         public IObservable<SequenceProcessingResult> Process(Script script)
         {
             var message = "Processing script (async)";
-            _logger.Info(message);
+            _logger.Information(message);
             var start = Environment.TickCount;
 
             var result = _processor.Process(script);
 
-            _logger.Info("Processed script (Duration: {duration}ms)", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _logger.Information("Processed script (Duration: {duration}ms)", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
 
             return result;
         }

@@ -7,13 +7,13 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
     using Container = EtAlii.xTechnology.MicroContainer.Container;
 
     internal class FolderMonitorManager : BindableBase, IFolderMonitorManager
     {
         private readonly Container _container;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IFolderMonitorManager>();
 
         public ObservableCollection<IFolderMonitor> Monitors { get; } = new ObservableCollection<IFolderMonitor>();
 
@@ -27,13 +27,9 @@
         public bool HasManagerError { get => _hasManagerError; set => SetProperty(ref _hasManagerError, value); }
         private bool _hasManagerError;
 
-        public FolderMonitorManager(
-            Container container,
-            IObservableFolderSyncConfigurationCollection folderSyncConfigurations,
-            ILogger logger)
+        public FolderMonitorManager(Container container, IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
             _container = container;
-            _logger = logger;
 
 
             foreach (var folderSyncConfiguration in folderSyncConfigurations)
@@ -107,19 +103,19 @@
         {
             try
             {
-                _logger.Info("Starting MediaImport");
+                _logger.Information("Starting MediaImport");
                 IsRunning = true;
                 foreach (var monitor in Monitors)
                 {
                     StartMonitor(monitor);
                 }
-                _logger.Info("Started MediaImport");
+                _logger.Information("Started MediaImport");
             }
             catch (Exception e)
             {
                 HasManagerError = true;
-                _logger.Critical("Fatal exception starting MediaImport", e);
-                _logger.Info("Restarting MediaImport");
+                _logger.Error(e, "Fatal exception starting MediaImport");
+                _logger.Information("Restarting MediaImport");
                 Task.Delay(2000);
                 HasManagerError = false;
                 Stop();
@@ -137,19 +133,19 @@
         {
             try
             {
-                _logger.Info("Stopping MediaImport");
+                _logger.Information("Stopping MediaImport");
                 IsRunning = false;
                 foreach (var monitor in Monitors)
                 {
                     StopMonitor(monitor);
                 }
 
-                _logger.Info("Stopped MediaImport");
+                _logger.Information("Stopped MediaImport");
             }
             catch (Exception e)
             {
                 HasManagerError = true;
-                _logger.Critical("Fatal exception stopping MediaImport", e);
+                _logger.Error(e, "Fatal exception stopping MediaImport");
                 Task.Delay(2000);
                 HasManagerError = false;
             }

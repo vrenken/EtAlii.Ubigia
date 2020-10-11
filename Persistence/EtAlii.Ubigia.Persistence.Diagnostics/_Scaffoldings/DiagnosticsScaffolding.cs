@@ -18,9 +18,6 @@
 
             container.Register(() => _diagnostics.CreateProfilerFactory());
             container.Register(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-
-            container.Register(() => _diagnostics.CreateLogFactory());
-            container.Register(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
         }
     }
 }

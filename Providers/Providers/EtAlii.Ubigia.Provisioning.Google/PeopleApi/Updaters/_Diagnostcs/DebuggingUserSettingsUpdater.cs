@@ -3,26 +3,25 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class DebuggingUserSettingsUpdater : IUserSettingsUpdater
     {
         private readonly IUserSettingsUpdater _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IUserSettingsUpdater>();
 
-        public DebuggingUserSettingsUpdater(IUserSettingsUpdater decoree, ILogger logger)
+        public DebuggingUserSettingsUpdater(IUserSettingsUpdater decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IGraphSLScriptContext userDataContext, TimeSpan thresholdBeforeExpiration)
         {
-            _logger.Info($"Updating: {userSettings.Email} ({userSettings.Updated})");
+            _logger.Debug("Updating: {userSettingsEmail} ({userSettingsUpdated})", userSettings.Email, userSettings.Updated);
 
             await _decoree.Update(userSettings, systemSettings, userDataContext, thresholdBeforeExpiration);
 
-            _logger.Info($"Updated: {userSettings.Email} ({userSettings.Updated})");
+            _logger.Debug("Updated: {userSettingsEmail} ({userSettingsUpdated})", userSettings.Email, userSettings.Updated);
         }
     }
 }

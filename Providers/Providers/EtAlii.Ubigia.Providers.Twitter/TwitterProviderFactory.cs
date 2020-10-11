@@ -11,9 +11,7 @@
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, TwitterProvider>();
             container.Register<ITweetImporter, TweetImporter>();
-
-            container.Register(() => configuration.LogFactory.Create("Twitter", "Provider"));
-
+            
             return container.GetInstance<IProvider>();
         }
     }

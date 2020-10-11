@@ -1,17 +1,16 @@
 namespace EtAlii.xTechnology.Hosting.Diagnostics
 {
-    using EtAlii.xTechnology.Diagnostics;
     using Microsoft.Extensions.Configuration;
+    using Serilog;
 
     public class LoggingInstanceCreator : IInstanceCreator
     {
         private readonly IInstanceCreator _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IInstanceCreator>();
 
-        public LoggingInstanceCreator(IInstanceCreator decoree, ILogger logger)
+        public LoggingInstanceCreator(IInstanceCreator decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public bool TryCreate<TInstance>(
@@ -21,11 +20,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             var factoryTypeName = configuration.GetValue<string>("Factory");
 
-            _logger.Info($"Creating instance for {name ?? "NULL"} using factory: {factoryTypeName ?? "NULL"}");
+            _logger.Information("Creating instance for {name} using factory: {factoryTypeName}", name, factoryTypeName);
 
             var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance);
             
-            _logger.Info($"Created instance: {(result ? "TRUE" : "FALSE")}");
+            _logger.Information("Created instance: {success}", result);
 
             return result;
         }
@@ -37,11 +36,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             var factoryTypeName = configuration.GetValue<string>("Factory");
 
-            _logger.Info($"Creating instance for {name ?? "NULL"} using factory: {factoryTypeName ?? "NULL"}");
+            _logger.Information("Creating instance for {name} using factory: {factoryTypeName}", name, factoryTypeName);
 
             var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance, throwOnNoFactory);
             
-            _logger.Info($"Created instance: {(result ? "TRUE" : "FALSE")}");
+            _logger.Information("Created instance: {success}", result);
 
             return result;
         }

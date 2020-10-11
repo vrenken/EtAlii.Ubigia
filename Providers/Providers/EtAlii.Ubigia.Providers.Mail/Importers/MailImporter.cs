@@ -6,11 +6,12 @@
     using System.Threading.Tasks;
     using ActiveUp.Net.Mail;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class MailImporter : IMailImporter
     {
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IMailImporter>();
+        
         private readonly IGraphSLScriptContext _scriptContext;
 
         private Imap4Client _imap;
@@ -20,11 +21,8 @@
         private int _lastMessageCount;
         private Mailbox _inbox;
 
-        public MailImporter(
-            ILogger logger,
-            IGraphSLScriptContext scriptContext)
+        public MailImporter(IGraphSLScriptContext scriptContext)
         {
-            _logger = logger;
             _scriptContext = scriptContext;
         }
 
@@ -32,16 +30,16 @@
         {
             try
             {
-                _logger.Info("Starting mail provider");
+                _logger.Information("Starting mail provider");
 
                 await Stop();
                 Setup();
 
-                _logger.Info("Started mail provider");
+                _logger.Information("Started mail provider");
             }
             catch (Exception e)
             {
-                _logger.Critical("Unable to start mail provider", e);
+                _logger.Error(e, "Unable to start mail provider");
             }
         }
 
@@ -49,15 +47,15 @@
         {
             try
             {
-                _logger.Info("Stopping mail provider");
+                _logger.Information("Stopping mail provider");
 
                 Shutdown();
 
-                _logger.Info("Stopped mail provider");
+                _logger.Information("Stopped mail provider");
             }
             catch (Exception e)
             {
-                _logger.Critical("Unable to stop mail provider", e);
+                _logger.Error(e, "Unable to stop mail provider");
             }
             return Task.CompletedTask;
         }
@@ -90,7 +88,7 @@
  
         public void NewMessageReceived(object source, NewMessageReceivedEventArgs e)
         {
-            _logger.Info("Adding mail to space");
+            _logger.Information("Adding mail to space");
 
             try
             {
@@ -125,7 +123,7 @@
             }
             catch (Exception exception)
             {
-                _logger.Critical("Unable to add mail to space", exception);
+                _logger.Error(exception, "Unable to add mail to space");
             }
         }
     }

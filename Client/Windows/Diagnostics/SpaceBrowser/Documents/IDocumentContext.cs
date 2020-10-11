@@ -16,8 +16,6 @@
         IFabricContext FabricContext { get; }
         IDataConnection Connection { get; }
         IDiagnosticsConfiguration Diagnostics { get; } 
-        ILogger Logger { get; } 
-        ILogFactory LogFactory { get; } 
         IJournalViewModel Journal { get; }
         IGraphContextFactory GraphContextFactory { get; }
     }

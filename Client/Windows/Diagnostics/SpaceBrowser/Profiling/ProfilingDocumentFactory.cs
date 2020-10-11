@@ -14,7 +14,7 @@
         {
             var container = new Container();
 
-            new DiagnosticsScaffolding().Register(container, documentContext.Diagnostics, documentContext.Logger, documentContext.LogFactory);
+            new DiagnosticsScaffolding().Register(container, documentContext.Diagnostics);
             new StructureScaffolding().Register(container);
 
             container.Register<IProfilingViewModel, ProfilingViewModel>();
@@ -30,7 +30,7 @@
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
-                return documentContext.GraphContextFactory.Create(documentContext.Logger, documentContext.Journal, documentContext.FabricContext, dvmp);
+                return documentContext.GraphContextFactory.Create(documentContext.Journal, documentContext.FabricContext, dvmp);
             });
 
             //container.Register<IProfilingView, ProfilingView>()

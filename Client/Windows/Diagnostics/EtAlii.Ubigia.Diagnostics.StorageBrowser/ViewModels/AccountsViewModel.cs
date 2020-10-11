@@ -5,7 +5,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class AccountsViewModel : BindableBase, IAccountsViewModel
     {
@@ -44,11 +44,10 @@
         public AccountTemplate SelectedAccountTemplate { get => _selectedAccountTemplate; set => SetProperty(ref _selectedAccountTemplate, value); }
         private AccountTemplate _selectedAccountTemplate;
 
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IAccountsViewModel>();
 
-        public AccountsViewModel(IManagementConnection connection, ILogger logger)
+        public AccountsViewModel(IManagementConnection connection)
         {
-            _logger = logger;   
             Connection = connection;
             AddCommand = new RelayCommand(AddAccount, CanAddAccount);
             SaveCommand = new RelayCommand(SaveAccount, CanSaveAccount);
@@ -187,7 +186,7 @@
 
         private void ReloadAvailableAccounts()
         {
-            _logger.Info("Reloading accounts");
+            _logger.Information("Reloading accounts");
 
             IEnumerable<Account> accounts = null;
             var task = Task.Run(async () =>

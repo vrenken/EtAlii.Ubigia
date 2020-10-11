@@ -17,8 +17,6 @@
             IFabricContext fabricContext, 
             IDataConnection connection, 
             IDiagnosticsConfiguration diagnostics, 
-            ILogger logger, 
-            ILogFactory logFactory, 
             IJournalViewModel journal, 
             IGraphContextFactory graphContextFactory)
         {
@@ -29,8 +27,6 @@
             FabricContext = fabricContext;
             Connection = connection;
             Diagnostics = diagnostics;
-            Logger = logger;
-            LogFactory = logFactory;
             Journal = journal;
             GraphContextFactory = graphContextFactory;
         }
@@ -42,8 +38,6 @@
         public IFabricContext FabricContext { get; }
         public IDataConnection Connection { get; }
         public IDiagnosticsConfiguration Diagnostics { get; }
-        public ILogger Logger { get; }
-        public ILogFactory LogFactory { get; }
         public IJournalViewModel Journal { get; }
         public IGraphContextFactory GraphContextFactory { get; }
     }

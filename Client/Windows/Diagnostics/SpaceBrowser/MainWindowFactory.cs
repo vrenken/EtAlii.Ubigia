@@ -121,12 +121,7 @@
         private void RegisterDiagnostics(Container container, IDiagnosticsConfiguration diagnostics)
         {
             container.Register(() => diagnostics);
-            container.Register(() => container.GetInstance<IDiagnosticsConfiguration>().CreateLogFactory());
-            container.Register(() =>
-            {
-                var factory = container.GetInstance<ILogFactory>();
-                return container.GetInstance<IDiagnosticsConfiguration>().CreateLogger(factory);
-            });
+      
             //container.Register<IProfilerFactory>(
             //    () => container.GetInstance<IDiagnosticsConfiguration>().CreateProfilerFactory())
             //container.Register<IProfiler>(() =>

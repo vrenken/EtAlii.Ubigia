@@ -12,7 +12,6 @@
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, TimeProvider>();
             container.Register<ITimeImporter, TimeImporter> ();
-            container.Register(() => configuration.LogFactory.Create("Time","Provider"));
 
             return container.GetInstance<IProvider>();
         }

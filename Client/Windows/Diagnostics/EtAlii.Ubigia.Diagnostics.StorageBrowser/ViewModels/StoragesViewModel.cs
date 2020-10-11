@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class StoragesViewModel : BindableBase, IStoragesViewModel
     {
@@ -35,11 +35,10 @@
         public string StorageAddress { get => _storageAddress; set => SetProperty(ref _storageAddress, value); }
         private string _storageAddress;
 
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IStoragesViewModel>();
 
-        public StoragesViewModel(IManagementConnection connection, ILogger logger)
+        public StoragesViewModel(IManagementConnection connection)
         {
-            _logger = logger;   
             Connection = connection;
             AddCommand = new RelayCommand(AddStorage, CanAddStorage);
             SaveCommand = new RelayCommand(SaveStorage, CanSaveStorage);
@@ -173,7 +172,7 @@
 
         private void ReloadAvailableStorages()
         {
-            _logger.Info("Reloading storages");
+            _logger.Information("Reloading storages");
 
             IEnumerable<Storage> storages = null;
             var task = Task.Run(async () =>

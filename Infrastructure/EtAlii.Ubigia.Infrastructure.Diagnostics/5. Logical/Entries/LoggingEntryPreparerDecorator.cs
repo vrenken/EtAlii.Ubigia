@@ -2,16 +2,15 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     internal class LoggingEntryPreparerDecorator : IEntryPreparer
     {
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IEntryPreparer>();
         private readonly IEntryPreparer _entryPreparer;
 
-        public LoggingEntryPreparerDecorator(ILogger logger, IEntryPreparer entryPreparer)
+        public LoggingEntryPreparerDecorator(IEntryPreparer entryPreparer)
         {
-            _logger = logger;
             _entryPreparer = entryPreparer;
         }
 

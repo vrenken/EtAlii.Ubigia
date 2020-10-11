@@ -6,18 +6,17 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Diagnostics;
     using global::Google.Apis.PeopleService.v1.Data;
+    using Serilog;
 
     public class DebuggingPersonSetter : IPersonSetter
     {
         private readonly IPersonSetter _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IPersonSetter>();
 
-        public DebuggingPersonSetter(IPersonSetter decoree, ILogger logger)
+        public DebuggingPersonSetter(IPersonSetter decoree)
         {
 			_decoree = decoree;
-            _logger = logger;
         }
 
         public Task Set(IGraphSLScriptContext context, Person person)
@@ -29,7 +28,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         //               GetEmail(person.ContactEntry.PrimaryEmail) ??
         //               GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails)
 
-            _logger.Info($"Setting contact: {name}");
+            _logger.Information("Setting contact: {name}", name);
 
             return _decoree.Set(context, person);
         }

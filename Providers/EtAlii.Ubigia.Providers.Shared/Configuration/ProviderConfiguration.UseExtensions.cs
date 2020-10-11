@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Provisioning
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Diagnostics;
 
     public static class ProviderConfigurationUseExtensions
     {
@@ -34,16 +33,6 @@ namespace EtAlii.Ubigia.Provisioning
             var editableConfiguration = (IEditableProviderConfiguration) configuration;
             
             editableConfiguration.SystemScriptContext = systemScriptContext ?? throw new ArgumentException(nameof(systemScriptContext));
-
-            return configuration;
-        }
-
-        public static TProviderConfiguration Use<TProviderConfiguration>(this TProviderConfiguration configuration, ILogFactory logFactory)
-            where TProviderConfiguration : ProviderConfiguration
-        {
-            var editableConfiguration = (IEditableProviderConfiguration) configuration;
-            
-            editableConfiguration.LogFactory = logFactory ?? throw new ArgumentException(nameof(logFactory));
 
             return configuration;
         }

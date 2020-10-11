@@ -22,9 +22,6 @@
             container.Register< IAccountsViewModel , AccountsViewModel >();
             container.Register<IRolesViewModel, RolesViewModel>();
             container.Register<ISpacesViewModel, SpacesViewModel >();
-
-            container.Register<ILogFactory, DisabledLogFactory>();
-            container.Register(() => container.GetInstance<ILogFactory>().Create("EtAlii", "EtAlii.Ubigia.Client.Windows.Diagnostics"));
             
             return container.GetInstance<IMainWindow>();
         }

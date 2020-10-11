@@ -4,12 +4,12 @@
     using System.Collections.Concurrent;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Workflow;
+    using Serilog;
 
     public class TaskBasedCommandProcessor : CommandProcessor, IDisposable
     {
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<ICommandProcessor>();
         private readonly IJournalViewModel _journal;
         private readonly ConcurrentQueue<Tuple<ICommand, ICommandHandler>> _queue;
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
@@ -18,10 +18,8 @@
         private readonly WaitHandle[] _events;
 
         public TaskBasedCommandProcessor(
-            ILogger logger,
             IJournalViewModel journal)
         {
-            _logger = logger;
             _journal = journal;
             _queue = new ConcurrentQueue<Tuple<ICommand, ICommandHandler>>();
 

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Provisioning
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Diagnostics;
 
     public interface IEditableProviderConfiguration
     {
@@ -13,8 +12,6 @@ namespace EtAlii.Ubigia.Provisioning
         IManagementConnection ManagementConnection { get; set; }
         
         IProviderFactory Factory { get; set; }
-    
-        ILogFactory LogFactory { get; set; }
     
         Func<IDataConnection, IGraphSLScriptContext> ScriptContextFactory { get; set; }
     }

@@ -5,11 +5,9 @@
 
     public class DiagnosticsScaffolding
     {
-        public void Register(Container container, IDiagnosticsConfiguration diagnostics, ILogger logger, ILogFactory logFactory)
+        public void Register(Container container, IDiagnosticsConfiguration diagnostics)
         {
             container.Register(() => diagnostics);
-            container.Register(() => logger);
-            container.Register(() => logFactory);
         }
     }
 }
