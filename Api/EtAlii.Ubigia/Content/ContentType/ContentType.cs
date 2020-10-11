@@ -4,7 +4,7 @@
     {
         public string Id { get; }
 
-        public static StructureContentType Structure { get; } = new StructureContentType();
+        public static StructureContentType Structure { get; } = new StructureContentType(); 
 
         public static ImageContentType Image { get; } = new ImageContentType();
 

@@ -9,7 +9,7 @@
 
     public static class BlobPartHelper
     {
-        private static readonly Dictionary<Type, string> BlobPartNames = new Dictionary<Type, string>();
+        private static readonly Dictionary<Type, string> BlobPartNames = new Dictionary<Type, string>(); 
         private static readonly object[] EmptyConstructorParameters = new object[] { };
 
         private static readonly object LockObject = new object();

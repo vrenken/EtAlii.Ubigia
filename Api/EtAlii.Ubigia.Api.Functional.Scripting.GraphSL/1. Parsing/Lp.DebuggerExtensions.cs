@@ -3,7 +3,7 @@
     using System.Text;
     using Moppet.Lapa;
 
-    internal static class LpDebuggerExtensions
+    internal static class LpDebuggerExtensions 
     {
         private static int _indention;
         public static LpsParser Debug(this LpsParser parser, string debugId, bool showDetails = false)

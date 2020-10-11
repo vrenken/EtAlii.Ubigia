@@ -9,7 +9,7 @@
     /// </summary>
     internal class SignalRDisposer : IDisposable
     {
-        private static readonly object DisposedSentinel = new object();
+        private static readonly object DisposedSentinel = new object(); 
         private object _disposable;
 
         public void Set(IDisposable disposable)

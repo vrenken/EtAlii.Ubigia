@@ -36,12 +36,10 @@
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetAssembly(typeof(Win32TestHelper));
             // Get the stream (embedded resource) - be sure to wrap in a using block
-            using (var stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Scripting.Tests.TestImage_01.jpg"))
-            {
-                var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, (int)stream.Length);
-                File.WriteAllBytes(fileName, bytes);
-            }
+            using var stream = assembly!.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Scripting.Tests.TestImage_01.jpg");
+            var bytes = new byte[stream!.Length];
+            stream.Read(bytes, 0, (int)stream.Length);
+            File.WriteAllBytes(fileName, bytes);
         }
 
         public static void SaveTestFolder(string folderName, int depth, int foldersPerFolder, int filesPerFolder, float fileMinSize, float fileMaxSize)
@@ -71,13 +69,12 @@
             var data = new byte[bytesInMegaByte];
             var rnd = new Random();
 
-            using (var stream = File.OpenWrite(fileName))
+            using var stream = File.OpenWrite(fileName);
+            
+            for (var megaByte = 0; megaByte < megaBytes; megaByte++)
             {
-                for (var megaByte = 0; megaByte < megaBytes; megaByte++)
-                {
-                    rnd.NextBytes(data);
-                    stream.Write(data, 0, bytesInMegaByte);
-                }
+                rnd.NextBytes(data);
+                stream.Write(data, 0, bytesInMegaByte);
             }
         }
 
@@ -89,13 +86,13 @@
             var megaBytes = megaBytesMin + rnd.NextDouble() * (megaBytesMax - megaBytesMin);
 
             var kiloBytes = (int)(megaBytes / 1024f);
-            using (var stream = File.OpenWrite(fileName))
+            
+            using var stream = File.OpenWrite(fileName);
+            
+            for (var kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
             {
-                for (var kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
-                {
-                    rnd.NextBytes(data);
-                    stream.Write(data, 0, bytesInKiloByte);
-                }
+                rnd.NextBytes(data);
+                stream.Write(data, 0, bytesInKiloByte);
             }
         }
 

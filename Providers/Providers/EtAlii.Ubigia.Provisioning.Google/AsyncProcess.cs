@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
         public event Action<Exception> Error; 
 
-        private static readonly object LockObject = new object();
+        private static readonly object LockObject = new object(); 
 
         protected AsyncProcess()
         {
