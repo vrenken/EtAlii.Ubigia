@@ -40,27 +40,29 @@
         {
             _address = _decoree.Transport.Address;
 
-            var message = $"Opening storage connection (Address: {_address}";
-            _logger.Info(message);
+            var message = "Opening storage connection (Address: {address}";
+            _logger.Info(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Open(accountName, password);
 
-            message = $"Opened storage connection (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = "Opened storage connection (Address: {address} Duration: {duration}ms)";
+            _logger.Info(message, _address, duration);
         }
 
         public async Task Close()
         {
-            var message = $"Closing storage connection (Address: {_address}";
-            _logger.Info(message);
+            var message = "Closing storage connection (Address: {address}";
+            _logger.Info(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Close();
             _address = null;
 
-            message = $"Closed storage connection (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = "Closed storage connection (Address: {address} Duration: {duration}ms)";
+            _logger.Info(message, _address, duration);
         }
 
         #region Disposable
