@@ -36,7 +36,9 @@
         /// <param name="numberOfPorts"></param>
         /// <returns></returns>
         public PortRange Get(ushort numberOfPorts) => Get(new PortRange(5200, 8000), numberOfPorts, TimeSpan.FromSeconds(10));
-        
+
+        public PortRange Get(PortRange fromRange, ushort numberOfPorts) => Get(fromRange, numberOfPorts, TimeSpan.FromSeconds(10));
+
         // ReSharper disable once MemberCanBePrivate.Global
         public PortRange Get(PortRange fromRange, ushort numberOfPorts, TimeSpan lease)
         {

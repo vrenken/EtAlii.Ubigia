@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     public class LogicalTestContext : ILogicalTestContext
     {
@@ -86,9 +87,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         #region start/stop
 
-        public async Task Start()
+        public async Task Start(PortRange portRange)
         {
-            await _fabric.Start();
+            await _fabric.Start(portRange);
         }
 
         public async Task Stop()

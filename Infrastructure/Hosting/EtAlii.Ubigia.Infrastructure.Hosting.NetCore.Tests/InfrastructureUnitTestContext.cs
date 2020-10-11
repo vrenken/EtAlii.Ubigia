@@ -29,7 +29,7 @@
 
         public async Task InitializeAsync()
         {
-            await HostTestContext.Start();
+            await HostTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

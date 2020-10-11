@@ -7,7 +7,7 @@
 
 	public static class ConfigurationDetailsParserParseForTestingExtensions
 	{
-		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile)
+		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile, PortRange portRange)
 		{
 			var details = await parser.Parse(configurationFile, false);
 			var configuration = details.Configuration;
@@ -29,7 +29,7 @@
 
 			// For each port we introduce a new (i.e. free) one.
 			var neededPorts = (ushort)details.Ports.Count;
-			var freePorts = Ipv4FreePortFinder.Current.Get(neededPorts);
+			var freePorts = Ipv4FreePortFinder.Current.Get(portRange, neededPorts);
 			
 			var testPorts = new Dictionary<string, int>();
 

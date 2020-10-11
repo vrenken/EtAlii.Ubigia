@@ -4,6 +4,7 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
+	using EtAlii.xTechnology.Hosting;
 
 	public class HostTestContext : HostTestContextBase<InfrastructureTestHost>
     {
@@ -12,9 +13,9 @@
 	    {
 	    }
 
-	    public override async Task Start()
+	    public override async Task Start(PortRange portRange)
 	    {
-		    await base.Start();
+		    await base.Start(portRange);
 
 		    ServiceDetails = Infrastructure.Configuration.ServiceDetails.Single(sd => sd.Name == "Grpc");
 	    }

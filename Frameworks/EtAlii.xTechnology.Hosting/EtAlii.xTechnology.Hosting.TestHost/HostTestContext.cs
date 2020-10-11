@@ -39,18 +39,18 @@ namespace EtAlii.xTechnology.Hosting
 		    Paths = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 	    }
 
-	    public virtual Task Start()
+	    public virtual Task Start(PortRange portRange)
 	    {
-		    StartExclusive();
+		    StartExclusive(portRange);
 		    return Task.CompletedTask;
 	    }
 
-	    private void StartExclusive()
+	    private void StartExclusive(PortRange portRange)
 	    {
 		    // We want to start only one test hosting at the same time.
 		    using (var _ = new SystemSafeExecutionScope(_uniqueId))
 		    {
-			    var task = Task.Run(async () => await StartInternal());
+			    var task = Task.Run(async () => await StartInternal(portRange));
 			    task.Wait();
 		    }
 	    }
@@ -58,16 +58,15 @@ namespace EtAlii.xTechnology.Hosting
 	    /// <summary>
 	    /// Override this method to implement a custom parsing from the configuration file into a ConfigurationDetails instance.
 	    /// </summary>
-	    /// <param name="configurationFile"></param>
 	    /// <returns></returns>
-	    private async Task<ConfigurationDetails> ParseForTesting(string configurationFile)
+	    private async Task<ConfigurationDetails> ParseForTesting(string configurationFile, PortRange portRange)
 	    {
-		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile);
+		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
 	    }
 	    
-	    private async Task StartInternal()
+	    private async Task StartInternal(PortRange portRange)
 	    {
-		    var details = await ParseForTesting(_configurationFile);
+		    var details = await ParseForTesting(_configurationFile, portRange);
 		    Folders = details.Folders;
 		    Hosts = details.Hosts;
 		    Ports = details.Ports;

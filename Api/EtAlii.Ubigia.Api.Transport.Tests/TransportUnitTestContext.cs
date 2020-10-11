@@ -35,7 +35,7 @@
         public async Task InitializeAsync()
         {
             TransportTestContext = new TransportTestContext().Create();
-            await TransportTestContext.Start();
+            await TransportTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

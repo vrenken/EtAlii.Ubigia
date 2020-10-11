@@ -3,6 +3,7 @@
     <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>4d4aefe0-9be6-4d53-9b01-318f9db08c38</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Api.Fabric.Tests</RootNamespace>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>

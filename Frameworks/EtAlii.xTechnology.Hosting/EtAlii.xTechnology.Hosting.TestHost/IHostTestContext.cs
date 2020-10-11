@@ -5,7 +5,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public interface IHostTestContext
     {
-        Task Start();
+        Task Start(PortRange portRange);
 
         Task Stop();
 

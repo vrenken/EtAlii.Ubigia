@@ -14,7 +14,7 @@
 
         public async Task InitializeAsync()
         {
-            await _testContext.TransportTestContext.Start();
+            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

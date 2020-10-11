@@ -6,6 +6,7 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
+	using EtAlii.xTechnology.Hosting;
 
 	public class HostTestContext : HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
@@ -14,9 +15,9 @@
 	    {
 	    }
 	    
-	    public override async Task Start()
+	    public override async Task Start(PortRange portRange)
 	    {
-		    await base.Start();
+		    await base.Start(portRange);
 		    
 		    // TODO: Ugly. This needs to change and not be needed at all.
 		    // However, for now it works...

@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
+    using EtAlii.xTechnology.Hosting;
 
     public interface IProvisioningTestContext
     {
@@ -14,7 +15,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         Task<IManagementConnection> OpenManagementConnection();
 
-        Task Start();
+        Task Start(PortRange portRange);
         Task Stop();
     }
 }

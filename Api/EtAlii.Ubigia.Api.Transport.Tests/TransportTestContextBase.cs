@@ -5,6 +5,8 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Hosting;
+    using IHostTestContext = EtAlii.Ubigia.Infrastructure.Hosting.TestHost.IHostTestContext;
 
     public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
         where THostTestContext: class, IHostTestContext, new()
@@ -53,10 +55,10 @@
 
         #region start/stop
 
-        public async Task Start() 
+        public async Task Start(PortRange portRange) 
         {
             Context = _testHostFactory.Create<THostTestContext>();
-            await Context.Start();
+            await Context.Start(portRange);
         }
 
         public async Task Stop()  

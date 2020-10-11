@@ -1,5 +1,4 @@
-﻿
-namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
@@ -17,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start();
+            await _testContext.Start(UnitTestSettings.NetworkPortRange);
 
             _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             var scriptParserConfiguration = new ScriptParserConfiguration()

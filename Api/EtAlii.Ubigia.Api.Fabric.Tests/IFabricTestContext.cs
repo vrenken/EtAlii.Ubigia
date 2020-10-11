@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Hosting;
 
     public interface IFabricTestContext
     {
@@ -9,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         Task<IFabricContext> CreateFabricContext(bool openOnCreation);
         Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth);//, out string[] hierarchy)
 
-        Task Start();
+        Task Start(PortRange portRange);
         Task Stop();
     }
 }
