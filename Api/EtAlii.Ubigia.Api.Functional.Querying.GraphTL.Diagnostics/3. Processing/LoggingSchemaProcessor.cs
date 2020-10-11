@@ -3,33 +3,29 @@
     using System;
     using System.Diagnostics;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     [DebuggerStepThrough]
     internal class LoggingSchemaProcessor : ISchemaProcessor
     {
         private readonly ISchemaProcessor _processor;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<ISchemaProcessor>();
 
-        public LoggingSchemaProcessor(
-            ISchemaProcessor processor,
-            ILogger logger)
+        public LoggingSchemaProcessor(ISchemaProcessor processor)
         {
             _processor = processor;
-            _logger = logger;
         }
 
         public async Task<SchemaProcessingResult> Process(Schema schema)
         {
             var message = "Processing query (async)";
-            _logger.Info(message);
+            _logger.Information(message);
             var start = Environment.TickCount;
 
             var result = await _processor.Process(schema);
 
-            message =
-                $"Processed query (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            message = $"Processed query (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            _logger.Information(message);
 
             return result;
         }

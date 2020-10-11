@@ -54,7 +54,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task ConfigurationDetailsParser_ParseForTesting_Port(string configurationFile)
         {
             // Arrange.
-            var portRange = new PortRange(5000, 6000);
+            var portRange = new PortRange(6000, 7000);
 
             // Act.
             var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);

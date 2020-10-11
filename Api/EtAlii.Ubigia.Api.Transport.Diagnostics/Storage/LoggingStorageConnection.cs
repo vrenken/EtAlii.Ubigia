@@ -2,12 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public sealed class LoggingStorageConnection : IStorageConnection
     {
         private readonly IStorageConnection _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IStorageConnection>();
 
         private Uri _address;
 
@@ -28,12 +28,9 @@
         /// <inheritdoc />
         public IStorageConnectionConfiguration Configuration => _decoree.Configuration;
 
-        public LoggingStorageConnection(
-            IStorageConnection decoree,
-            ILogger logger)
+        public LoggingStorageConnection(IStorageConnection decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Open(string accountName, string password)
@@ -41,20 +38,20 @@
             _address = _decoree.Transport.Address;
 
             var message = "Opening storage connection (Address: {address}";
-            _logger.Info(message, _address);
+            _logger.Information(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Open(accountName, password);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened storage connection (Address: {address} Duration: {duration}ms)";
-            _logger.Info(message, _address, duration);
+            _logger.Information(message, _address, duration);
         }
 
         public async Task Close()
         {
             var message = "Closing storage connection (Address: {address}";
-            _logger.Info(message, _address);
+            _logger.Information(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Close();
@@ -62,7 +59,7 @@
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Closed storage connection (Address: {address} Duration: {duration}ms)";
-            _logger.Info(message, _address, duration);
+            _logger.Information(message, _address, duration);
         }
 
         #region Disposable

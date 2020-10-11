@@ -4,44 +4,42 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class DebuggingPeopleApiUpdater : IPeopleApiUpdater
     {
         private readonly IPeopleApiUpdater _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IPeopleApiUpdater>();
 
         public event Action<Exception> Error { add => _decoree.Error += value; remove => _decoree.Error -= value; }
 
-        public DebuggingPeopleApiUpdater(IPeopleApiUpdater decoree, ILogger logger)
+        public DebuggingPeopleApiUpdater(IPeopleApiUpdater decoree)
         {
             _decoree = decoree;
             _decoree.Error += OnError;
-            _logger = logger;
         }
 
         private void OnError(Exception exception)
         {
-            _logger.Critical("Exception in PeopleApiUpdater", exception);
+            _logger.Error(exception, "Exception in PeopleApiUpdater");
         }
 
         public async Task Start()
         {
-            _logger.Info("Starting PeopleApiUpdater");
+            _logger.Information("Starting PeopleApiUpdater");
 
             await _decoree.Start();
 
-            _logger.Info("Started PeopleApiUpdater");
+            _logger.Information("Started PeopleApiUpdater");
         }
 
         public async Task Stop()
         {
-            _logger.Info("Stopping PeopleApiUpdater");
+            _logger.Information("Stopping PeopleApiUpdater");
 
             await _decoree.Stop();
 
-            _logger.Info("Stopped PeopleApiUpdater");
+            _logger.Information("Stopped PeopleApiUpdater");
         }
-
     }
 }

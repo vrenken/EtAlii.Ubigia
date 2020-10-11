@@ -23,8 +23,6 @@
                 // Invoke all DI container registrations involved in profiling the MediaImport tool.
             }
 
-            container.Register(() => _diagnostics.CreateLogFactory());
-            container.Register(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
             if (_diagnostics.EnableLogging) // logging is enabled
             {
                 // Invoke all DI container registrations involved in logging the MediaImport tool.

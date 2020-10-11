@@ -9,9 +9,6 @@
         {
             var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
 
-            container.Register(() => diagnostics.CreateLogFactory());
-            container.Register(() => diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
-
             if (diagnostics.EnableLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptProcessor), typeof(LoggingScriptProcessor));

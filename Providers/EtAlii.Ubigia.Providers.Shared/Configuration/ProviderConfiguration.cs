@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Diagnostics;
 
     public class ProviderConfiguration : Configuration, IProviderConfiguration, IEditableProviderConfiguration
     {
@@ -18,9 +17,6 @@
         IProviderFactory IEditableProviderConfiguration.Factory { get => Factory; set => Factory = value; }
         public IProviderFactory Factory { get; private set; }
 
-        ILogFactory IEditableProviderConfiguration.LogFactory { get => LogFactory; set => LogFactory = value; }
-        public ILogFactory LogFactory { get; private set; }
-
         Func<IDataConnection, IGraphSLScriptContext> IEditableProviderConfiguration.ScriptContextFactory { get; set; }
 
         public ProviderConfiguration()
@@ -31,7 +27,6 @@
             :this()
         {
             Factory = configuration.Factory;
-            LogFactory = configuration.LogFactory;
             this.Use(configuration.Extensions);
         }
         

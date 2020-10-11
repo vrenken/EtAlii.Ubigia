@@ -1,20 +1,18 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     internal class LoggingBlobPartStorer : IBlobPartStorer
     {
         private readonly IPathBuilder _pathBuilder;
-        private readonly IBlobPartStorer _blobPartStorer;
-        private readonly ILogger _logger;
+        private readonly IBlobPartStorer _decoree;
+        private readonly ILogger _logger = Log.ForContext<IBlobPartStorer>();
 
         public LoggingBlobPartStorer(
-            ILogger logger,
-            IBlobPartStorer blobPartStorer,
+            IBlobPartStorer decoree,
             IPathBuilder pathBuilder)
         {
-            _logger = logger;
-            _blobPartStorer = blobPartStorer;
+            _decoree = decoree;
             _pathBuilder = pathBuilder;
         }
 
@@ -24,9 +22,9 @@
             var logContainer = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(logContainer);
 
-            _logger.Verbose("Storing {0} blob part in: {1}", blobName, folder);
+            _logger.Verbose("Storing {blobName} blob part in: {folder}", blobName, folder);
 
-            _blobPartStorer.Store(container, blobPart);
+            _decoree.Store(container, blobPart);
         }
     }
 }

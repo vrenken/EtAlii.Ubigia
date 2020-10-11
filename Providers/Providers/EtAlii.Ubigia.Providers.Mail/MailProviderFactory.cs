@@ -13,9 +13,7 @@
             container.Register<IProvider, MailProvider>();
 
             container.Register<IMailImporter, MailImporter>();
-
-            container.Register(() => configuration.LogFactory.Create("Mail", "Provider"));
-
+            
             return container.GetInstance<IProvider>();
         }
     }

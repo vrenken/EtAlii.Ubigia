@@ -4,11 +4,11 @@
     using System.ComponentModel;
     using System.IO;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     internal class FolderMonitor : BindableBase, IFolderMonitor
     {
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IFolderMonitor>();
         private readonly FileSystemWatcher _watcher;
         private readonly IItemChecker _itemChecker;
 
@@ -25,10 +25,8 @@
         private bool _hasError;
     
         public FolderMonitor(
-            ILogger logger, 
             IItemChecker itemChecker)
         {
-            _logger = logger;
             _itemChecker = itemChecker;
             _watcher = new FileSystemWatcher();
 
@@ -57,7 +55,7 @@
         {
             try
             {
-                _logger.Info("Starting folder monitoring");
+                _logger.Information("Starting folder monitoring");
                 IsRunning = false;
 
                 if (_configuration == null)
@@ -82,11 +80,11 @@
                 _watcher.EnableRaisingEvents = true;
 
                 IsRunning = true;
-                _logger.Info("Started folder monitoring");
+                _logger.Information("Started folder monitoring");
             }
             catch (Exception e)
             {
-                _logger.Critical("Unable to start folder monitoring", e);
+                _logger.Error(e, "Unable to start folder monitoring");
                 IsRunning = false;
                 HasError = true;
             }
@@ -114,7 +112,7 @@
         {
             try
             {
-                _logger.Info("Stopping folder monitoring");
+                _logger.Information("Stopping folder monitoring");
 
                 StopWatching();
                 _watcher.EnableRaisingEvents = false;
@@ -123,11 +121,11 @@
                 _itemChecker.Stop();
 
                 IsRunning = false;
-                _logger.Info("Stopped folder monitoring");
+                _logger.Information("Stopped folder monitoring");
             }
             catch (Exception e)
             {
-                _logger.Critical("Unable to stop folder monitoring", e);
+                _logger.Error(e, "Unable to stop folder monitoring");
                 IsRunning = false;
                 HasError = true;
             }
@@ -135,7 +133,7 @@
 
         private void OnError(object sender, ErrorEventArgs e)
         {
-            _logger.Info("Error in folder monitoring");
+            _logger.Information("Error in folder monitoring");
             Error(this, e);
 
             //Stop()

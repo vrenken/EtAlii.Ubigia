@@ -1,43 +1,41 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System.Collections.Generic;
-    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     internal class LoggingEntryStorerDecorator : IEntryStorer
     {
-        private readonly ILogger _logger;
-        private readonly IEntryStorer _entryStorer;
+        private readonly ILogger _logger = Log.ForContext<IEntryStorer>();
+        private readonly IEntryStorer _decoree;
 
-        public LoggingEntryStorerDecorator(ILogger logger, IEntryStorer entryStorer)
+        public LoggingEntryStorerDecorator(IEntryStorer decoree)
         {
-            _logger = logger;
-            _entryStorer = entryStorer;
+            _decoree = decoree;
         }
 
         public Entry Store(IEditableEntry entry)
         {
-            return _entryStorer.Store(entry);
+            return _decoree.Store(entry);
         }
 
         public Entry Store(Entry entry)
         {
-            return _entryStorer.Store(entry);
+            return _decoree.Store(entry);
         }
 
         public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)
         {
-            return _entryStorer.Store(entry, out storedComponents);
+            return _decoree.Store(entry, out storedComponents);
         }
 
         public Entry Store(Entry entry, out IEnumerable<IComponent> storedComponents)
         {
-            _logger.Verbose("Storing entry: {0} (Components to store: {1})", entry.Id.ToTimeString());
+            _logger.Verbose("Storing entry: {@entry}", entry);
 
-            entry = _entryStorer.Store(entry, out storedComponents);
+            entry = _decoree.Store(entry, out storedComponents);
 
-            _logger.Verbose("Components stored: {0}", storedComponents.Count());
+            _logger.Verbose("Components stored: {@components}", storedComponents);
 
             return entry;
         }

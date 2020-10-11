@@ -3,26 +3,25 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class DebuggingPeopleApiConfigurationSpaceUpdater : IPeopleApiConfigurationSpaceUpdater
     {
         private readonly IPeopleApiConfigurationSpaceUpdater _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<IPeopleApiConfigurationSpaceUpdater>();
 
-        public DebuggingPeopleApiConfigurationSpaceUpdater(IPeopleApiConfigurationSpaceUpdater decoree, ILogger logger)
+        public DebuggingPeopleApiConfigurationSpaceUpdater(IPeopleApiConfigurationSpaceUpdater decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-            _logger.Info($"Processing space: {configurationSpace.Account.Name}/{configurationSpace.Space.Name}");
+            _logger.Information("Processing space: {accountName}/{spaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
 
             await _decoree.Update(configurationSpace, systemSettings);
 
-            _logger.Info($"Processed space: {configurationSpace.Account.Name}/{configurationSpace.Space.Name}");
+            _logger.Information("Processed space: {accountName}/{spaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
         }
     }
 }

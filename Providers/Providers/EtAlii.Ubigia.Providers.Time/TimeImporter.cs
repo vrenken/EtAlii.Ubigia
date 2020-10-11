@@ -4,12 +4,12 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class TimeImporter : ITimeImporter
     {
         private IDisposable _subscription;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<ITimeImporter>();
         private readonly IProviderContext _context;
 
         //private readonly List<IReadOnlyEntry> _yearEntries
@@ -21,9 +21,8 @@
         //private DateTime _lastTime
         private readonly bool addEachTenSeconds = false;
 
-        public TimeImporter(ILogger logger, IProviderContext context)
+        public TimeImporter(IProviderContext context)
         {
-            _logger = logger;
             _context = context;
 
             //_yearEntries = new List<IReadOnlyEntry>()
@@ -39,16 +38,16 @@
 
         public void Start()
         {
-            _logger.Info("Starting time provider");
+            _logger.Information("Starting time provider");
 
             Setup();
 
-            _logger.Info("Started time provider");
+            _logger.Information("Started time provider");
         }
 
         public void Stop()
         {
-            _logger.Info("Stopping time provider");
+            _logger.Information("Stopping time provider");
 
             if (_subscription != null)
             {
@@ -56,12 +55,12 @@
                 _subscription = null;
             }
 
-            _logger.Info("Stopped time provider");
+            _logger.Information("Stopped time provider");
         }
 
         private async Task Add(long time)
         {
-            _logger.Info("Adding time to space");
+            _logger.Information("Adding time to space");
 
             try
             {
@@ -85,7 +84,7 @@
             }
             catch (Exception e)
             {
-                _logger.Critical("Unable to add time to space", e);
+                _logger.Error(e, "Unable to add time to space");
             }
 
         }

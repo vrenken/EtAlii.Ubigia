@@ -16,6 +16,7 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.Serilog\EtAlii.xTechnology.Diagnostics.Serilog.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
 </Project>

@@ -24,8 +24,6 @@
             container.Register<IOneDriveImporter, OneDriveImporter>();
             container.Register<IOneNoteImporter, OneNoteImporter>();
 
-            container.Register(() => configuration.LogFactory.Create("Microsoft.Graph", "Provider"));
-
             return container.GetInstance<IProvider>();
         }
     }

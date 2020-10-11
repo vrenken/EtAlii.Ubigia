@@ -2,26 +2,25 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Diagnostics;
+    using Serilog;
 
     public class DebuggingSystemSettingsGetter : ISystemSettingsGetter
     {
         private readonly ISystemSettingsGetter _decoree;
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = Log.ForContext<ISystemSettingsGetter>();
 
-        public DebuggingSystemSettingsGetter(ISystemSettingsGetter decoree, ILogger logger)
+        public DebuggingSystemSettingsGetter(ISystemSettingsGetter decoree)
         {
             _decoree = decoree;
-            _logger = logger;
         }
 
         async Task<SystemSettings> ISystemSettingsGetter.Get(IGraphSLScriptContext context)
         {
-            _logger.Info($"Getting PeopleApi system settings");
+            _logger.Information("Getting PeopleApi system settings");
 
             var result = await _decoree.Get(context);
 
-            _logger.Info($"Finished getting PeopleApi system settings");
+            _logger.Information("Finished getting PeopleApi system settings");
 
             return result;
         }
