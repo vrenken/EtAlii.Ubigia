@@ -24,7 +24,7 @@
         {
             Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             LogicalTestContext = new LogicalTestContextFactory().Create();
-            await LogicalTestContext.Start();
+            await LogicalTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

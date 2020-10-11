@@ -1,9 +1,8 @@
-// ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Api.Transport.WebApi.Tests;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Api.Transport.WebApi.Tests;
 
     internal class TransportTestContext
     {

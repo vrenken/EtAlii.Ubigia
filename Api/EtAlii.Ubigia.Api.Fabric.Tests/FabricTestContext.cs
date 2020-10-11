@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Hosting;
 
     public class FabricTestContext : IFabricTestContext
     {
@@ -77,9 +78,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         #region start/stop
 
-        public async Task Start()
+        public async Task Start(PortRange portRange)
         {
-            await Transport.Start();
+            await Transport.Start(portRange);
         }
 
         public async Task Stop()

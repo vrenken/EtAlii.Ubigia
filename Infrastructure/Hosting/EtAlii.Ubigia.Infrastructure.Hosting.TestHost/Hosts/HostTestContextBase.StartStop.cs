@@ -1,13 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Hosting;
 
     // ReSharper disable once UnusedTypeParameter
     public abstract partial class HostTestContextBase<TTestHost>
     {
-        public override async Task Start()
+        public override async Task Start(PortRange portRange)
         {
-            await base.Start();
+            await base.Start(portRange);
 
             Infrastructure = Host.Infrastructure;
             

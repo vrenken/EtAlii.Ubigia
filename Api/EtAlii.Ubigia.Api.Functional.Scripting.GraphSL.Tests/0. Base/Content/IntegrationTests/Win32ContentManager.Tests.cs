@@ -36,7 +36,7 @@
 
         public async Task InitializeAsync()
         {
-            await _testContext.LogicalTestContext.Start();
+            await _testContext.LogicalTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

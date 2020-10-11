@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Hosting;
 
     public interface ILogicalTestContext
     {
@@ -14,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         Task<string> AddContinentCountryRegionCityLocation(ILogicalContext logicalContext);
         Task AddRegions(ILogicalContext context, IEditableEntry countryEntry, int regions);
 
-        Task Start();
+        Task Start(PortRange portRange);
         Task Stop();
     }
 }

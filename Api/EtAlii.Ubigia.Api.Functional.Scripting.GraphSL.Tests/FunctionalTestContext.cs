@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting;
 
     public class FunctionalTestContext : IFunctionalTestContext
     {
@@ -239,9 +240,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
         #region start/stop
         
-        public async Task Start()
+        public async Task Start(PortRange portRange)
         {
-            await _logical.Start();
+            await _logical.Start(portRange);
         }
 
         public async Task Stop()

@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
+    using EtAlii.xTechnology.Hosting;
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
@@ -74,10 +75,10 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         #region start/stop
 
-        public async Task Start()
+        public async Task Start(PortRange portRange)
         {
             Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
-            await Context.Start();
+            await Context.Start(portRange);
         }
 
         public async Task Stop()

@@ -10,7 +10,7 @@
         public async Task InitializeAsync()
         {
             ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
-            await ProvisioningTestContext.Start();
+            await ProvisioningTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

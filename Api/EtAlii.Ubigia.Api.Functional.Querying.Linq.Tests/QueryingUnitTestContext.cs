@@ -11,7 +11,7 @@
         public async Task InitializeAsync()
         {
             FunctionalTestContext = new FunctionalTestContextFactory().Create();
-            await FunctionalTestContext.Start();
+            await FunctionalTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

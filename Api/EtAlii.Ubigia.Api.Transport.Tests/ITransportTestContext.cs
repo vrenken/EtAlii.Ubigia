@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Tests
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Hosting;
 
     public interface ITransportTestContext : ITransportTestContext<InProcessInfrastructureHostTestContext>
     {
@@ -26,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Tests
 
         Task<Account> AddUserAccount(IManagementConnection connection);
 
-        Task Start();
+        Task Start(PortRange portRange);
         Task Stop();
     }
 }

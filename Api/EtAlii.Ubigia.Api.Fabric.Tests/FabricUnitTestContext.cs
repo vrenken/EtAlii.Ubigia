@@ -14,7 +14,7 @@
         {
             DiagnosticsConfiguration = UbigiaDiagnostics.DefaultConfiguration;
             FabricTestContext = new FabricTestContextFactory().Create();
-            await FabricTestContext.Start();
+            await FabricTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         {
             Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
             TransportTestContext = new TransportTestContext().Create();
-            await TransportTestContext.Start();
+            await TransportTestContext.Start(UnitTestSettings.NetworkPortRange);
         }
 
         public async Task DisposeAsync()

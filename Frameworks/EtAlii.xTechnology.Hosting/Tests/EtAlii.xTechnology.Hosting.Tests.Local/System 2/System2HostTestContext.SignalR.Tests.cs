@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
@@ -30,7 +30,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
@@ -46,7 +46,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
@@ -62,7 +62,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
@@ -80,7 +80,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
@@ -96,7 +96,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
@@ -112,7 +112,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
             var tick = Environment.TickCount;
@@ -131,7 +131,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start();
+            await context.Start(UnitTestSettings.NetworkPortRange);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
             var tick = Environment.TickCount;
