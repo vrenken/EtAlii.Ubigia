@@ -18,15 +18,15 @@
         {
             var lines = text.Replace("\r\n", "\n").Split('\n');
             var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-            var message = $"Parsing text (Text: {line})";
-            _logger.Info(message);
+            var message = "Parsing text (Text: {line})";
+            _logger.Info(message, line);
             var start = Environment.TickCount;
 
             var scriptParseResult = _parser.Parse(text);
 
-            message =
-                $"Parsed text (Text: \"{line}\" Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = "Parsed text (Text: \"{line}\" Duration: {duration}ms)";
+            _logger.Info(message, line, duration);
 
             return scriptParseResult;
         }

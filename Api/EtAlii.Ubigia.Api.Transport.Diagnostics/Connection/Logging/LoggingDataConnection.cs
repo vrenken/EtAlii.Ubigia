@@ -35,13 +35,13 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = $"Opening data connection (Address: {address} Account: {accountName} Space: {spaceName})";
-            _logger.Info(message);
+            var message = "Opening data connection (Address: {address} Account: {accountName} Space: {spaceName})";
+            _logger.Info(message, address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Open();
-            message =
-                $"Opened data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = $"Opened data connection (Address: {{address}} Account: {{accountName}} Space: {{spaceName}} Duration: {duration}ms)";
+            _logger.Info(message, address, accountName, spaceName, duration);
         }
 
         public async Task Close()
@@ -50,13 +50,13 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = $"Closing data connection (Address: {address} Account: {accountName} Space: {spaceName})";
-            _logger.Info(message);
+            var message = "Closing data connection (Address: {address} Account: {accountName} Space: {spaceName})";
+            _logger.Info(message, address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Close();
-            message =
-                $"Closed data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = "Closed data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {duration}ms)";
+            _logger.Info(message, address, accountName, spaceName, duration);
         }
     }
 }
