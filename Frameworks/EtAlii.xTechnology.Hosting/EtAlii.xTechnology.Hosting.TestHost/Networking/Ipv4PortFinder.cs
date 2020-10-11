@@ -9,7 +9,7 @@
     public sealed partial class Ipv4FreePortFinder
     {
         public static Ipv4FreePortFinder Current => Instance.Value;
-        private static readonly Lazy<Ipv4FreePortFinder> Instance = new Lazy<Ipv4FreePortFinder>(() =>
+        private static readonly Lazy<Ipv4FreePortFinder> Instance = new Lazy<Ipv4FreePortFinder>(() => 
         {
             AppDomain.CurrentDomain.UnhandledException += (sender, args) => Instance.Value.Dispose();
             AppDomain.CurrentDomain.DomainUnload += (sender, args) => Instance.Value.Dispose();

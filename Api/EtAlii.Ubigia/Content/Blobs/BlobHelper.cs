@@ -8,7 +8,7 @@
     public static class BlobHelper
     {
         private static readonly Dictionary<Type, string> BlobNames = new Dictionary<Type, string>();
-        private static readonly object[] EmptyConstructorParameters = { };
+        private static readonly object[] EmptyConstructorParameters = { }; 
 
         private static readonly object LockObject = new object();
         

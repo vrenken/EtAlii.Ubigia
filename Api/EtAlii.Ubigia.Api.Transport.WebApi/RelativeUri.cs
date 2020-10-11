@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    public static class RelativeUri 
+    public static class RelativeUri  
     {
 		// TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 

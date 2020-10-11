@@ -12,7 +12,7 @@
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private static ILogicalTestContext _testContext;
+        private ILogicalTestContext _testContext;
 
         public async Task InitializeAsync()
         {

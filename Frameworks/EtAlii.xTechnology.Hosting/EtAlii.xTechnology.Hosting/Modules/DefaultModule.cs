@@ -5,7 +5,7 @@
 
     public class DefaultModule : ModuleBase
     {
-        private static int _defaultModuleCounter;
+        private static int _defaultModuleCounter; 
 
         public DefaultModule(IConfigurationSection configuration) : base(configuration)
         {

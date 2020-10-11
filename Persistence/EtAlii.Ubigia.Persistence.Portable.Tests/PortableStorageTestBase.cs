@@ -17,7 +17,7 @@
         protected IFolder StorageFolder { get; private set; }
 
         private readonly string _rootFolder;
-        private static int _testIndex;
+        private static int _testIndex; 
 
 
         protected PortableStorageTestBase()
