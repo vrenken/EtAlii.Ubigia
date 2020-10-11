@@ -2,12 +2,6 @@
 {
     public class DisabledLogger : ILogger
     {
-        public LogLevel Level
-        {
-            get => LogLevel.None;
-            set { /* No action. */ }
-        }
-
         public void Verbose(string message)
         {
         }

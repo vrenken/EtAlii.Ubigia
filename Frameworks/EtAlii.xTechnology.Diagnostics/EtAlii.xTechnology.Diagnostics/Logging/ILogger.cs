@@ -4,7 +4,6 @@
 
     public interface ILogger
     {
-        LogLevel Level { get; set; }
         void Verbose(string message);
         void Verbose(string message, params object[] args);
         void Info(string message);
