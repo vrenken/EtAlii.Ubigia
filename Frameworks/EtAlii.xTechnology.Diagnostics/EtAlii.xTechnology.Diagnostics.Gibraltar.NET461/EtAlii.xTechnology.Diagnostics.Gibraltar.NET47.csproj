@@ -17,9 +17,9 @@
     <ProjectGuid>77630446-5169-41CB-884D-7F70417DAA82</ProjectGuid>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Gibraltar.Agent" Version="4.9.5" />
-  </ItemGroup>
+<!--  <ItemGroup>-->
+<!--    <PackageReference Include="Gibraltar.Agent" Version="4.9.5" />-->
+<!--  </ItemGroup>-->
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
