@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.Serilog\EtAlii.xTechnology.Diagnostics.Serilog.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
   </ItemGroup>
