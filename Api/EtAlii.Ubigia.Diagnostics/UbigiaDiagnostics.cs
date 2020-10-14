@@ -9,6 +9,7 @@
         static UbigiaDiagnostics()
         {
             Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
                 .Enrich.WithThreadName()
                 .Enrich.WithThreadId()
                 .Enrich.WithProcessName()

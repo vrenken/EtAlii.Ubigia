@@ -16,13 +16,13 @@
 
         public Entry Prepare(Guid spaceId, Identifier id)
         {
-            _logger.Verbose("Preparing entry for space: {0} (Id: {1})", spaceId, id);
+            _logger.Verbose("Preparing entry for space: {spaceId} (Id: {identifier})", spaceId, id);
             return _entryPreparer.Prepare(spaceId);
         }
 
         public Entry Prepare(Guid spaceId)
         {
-            _logger.Verbose("Preparing entry for space: {0}", spaceId);
+            _logger.Verbose("Preparing entry for space: {spaceId}", spaceId);
             return _entryPreparer.Prepare(spaceId);
         }
     }

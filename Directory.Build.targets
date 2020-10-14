@@ -2,6 +2,6 @@
 <Project>
   <PropertyGroup>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
+<!--  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Tests'))">-->
+<!--  </ItemGroup>-->
 </Project>

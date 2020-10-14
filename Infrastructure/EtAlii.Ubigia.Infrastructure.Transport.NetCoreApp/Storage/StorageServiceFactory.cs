@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
 	using System;
+	using EtAlii.Ubigia.Diagnostics;
 	using EtAlii.Ubigia.Persistence;
 	using EtAlii.Ubigia.Persistence.NetCoreApp;
 	using EtAlii.xTechnology.Hosting;
@@ -32,7 +33,8 @@
 
 			var storageConfiguration = new StorageConfiguration()
 				.Use(name)
-				.UseNetCoreAppStorage(baseFolder);
+				.UseNetCoreAppStorage(baseFolder)
+                .Use(UbigiaDiagnostics.DefaultConfiguration);
 			var storage = new StorageFactory().Create(storageConfiguration);
 
 			container.Register(() => storage);
