@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
     using System;
+    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Persistence;
     using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.xTechnology.Hosting;
@@ -23,16 +24,10 @@
                 throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
             }
 
-            
-            
-            
-            
-            
-            
-            
             var storageConfiguration = new StorageConfiguration()
                 .Use(name)
-				.UseInMemoryStorage();
+				.UseInMemoryStorage()
+                .Use(UbigiaDiagnostics.DefaultConfiguration);
             var storage = new StorageFactory().Create(storageConfiguration);
 
             container.Register(() => storage);

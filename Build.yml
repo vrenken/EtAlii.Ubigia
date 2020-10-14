@@ -33,17 +33,10 @@ jobs:
           packageType: 'sdk'
           version: '3.1.401'
 
-      - task: Cache@2
-        inputs:
-          key: 'nuget | "$(Agent.OS)" | **/*.csproj'
-          restoreKeys: |
-            nuget | "$(Agent.OS)"
-          path: $(Pipeline.Workspace)/.nuget/packages
-        displayName: Cache NuGet packages
+      - task: NugetToolInstaller@1
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet restore'
-        condition: ne(variables.CACHE_RESTORED, 'true')
         inputs:
           command: 'restore'
           projects: |
@@ -80,7 +73,6 @@ jobs:
           projects: '**/*.Tests.csproj'
           arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory) /p:CoverletOutputFormat=opencover'
         continueOnError: true
-
 
       - task: SonarQubeAnalyze@4
         displayName: 'SonarQube: analyse'

@@ -50,7 +50,7 @@
                         var handler = action.Item2;
 
                         _journal.AddItem("Processing", command.ToString());
-                        _logger.Verbose("Processing command: {0}", command);
+                        _logger.Information("Processing command: {0}", command);
 
                         handler.Handle(command);
                     }
@@ -63,7 +63,7 @@
         {
             _queue.Enqueue(new Tuple<ICommand, ICommandHandler>(command, handler));
             _journal.AddItem("Queued", command.ToString());
-            _logger.Verbose("Queued command: {0}", command);
+            _logger.Information("Queued command: {0}", command);
             _enqueuedEvent.Set();
         }
 

@@ -43,3 +43,7 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser")]
+
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.InMemory")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Ntfs")]
