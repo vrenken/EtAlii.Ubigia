@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -20,7 +19,7 @@
             _testContext = new LogicalTestContextFactory().Create();
             await _testContext.Start(UnitTestSettings.NetworkPortRange);
 
-            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

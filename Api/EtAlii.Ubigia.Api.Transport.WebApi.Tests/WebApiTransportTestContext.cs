@@ -8,8 +8,8 @@
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class WebApiTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
     {
@@ -17,7 +17,7 @@
         {
             var spaceName = Guid.NewGuid().ToString();
 
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
 
             //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure)
             var client = Context.CreateRestInfrastructureClient();
@@ -44,7 +44,7 @@
 
         public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
 
 			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure)
 	        var client = Context.CreateRestInfrastructureClient();
@@ -65,7 +65,7 @@
 
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
 
 	        var client = Context.CreateRestInfrastructureClient();
 

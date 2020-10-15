@@ -5,8 +5,8 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
+    using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -23,7 +23,7 @@
             var startupDelay = e.Args.Length > 0 ? int.Parse(e.Args[0]) * 1000 : 0;
             Thread.Sleep(startupDelay);
 
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(SignalRTransportProvider.Create())
                 .UseTransportDiagnostics(diagnostics)

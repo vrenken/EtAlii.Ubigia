@@ -5,6 +5,8 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Collections.ObjectModel;
 	using System.Net.Http;
 	using System.Threading.Tasks;
+	using EtAlii.xTechnology.Diagnostics;
+	using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
 
 	public class HostTestContext : HostTestContext<TestHost>
@@ -50,7 +52,7 @@ namespace EtAlii.xTechnology.Hosting
 		    // We want to start only one test hosting at the same time.
 		    using (var _ = new SystemSafeExecutionScope(_uniqueId))
 		    {
-			    var task = Task.Run(async () => await StartInternal(portRange));
+			    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default));
 			    task.Wait();
 		    }
 	    }
@@ -64,7 +66,7 @@ namespace EtAlii.xTechnology.Hosting
 		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
 	    }
 	    
-	    private async Task StartInternal(PortRange portRange)
+	    private async Task StartInternal(PortRange portRange, IDiagnosticsConfiguration diagnosticsConfiguration)
 	    {
 		    var details = await ParseForTesting(_configurationFile, portRange);
 		    Folders = details.Folders;
@@ -77,7 +79,8 @@ namespace EtAlii.xTechnology.Hosting
 			    .Build();
 
 		    var hostConfiguration = new HostConfigurationBuilder()
-			    .Build(applicationConfiguration, details);
+			    .Build(applicationConfiguration, details)
+			    .Use(diagnosticsConfiguration);
 
 		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);
 

@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public partial class ScriptParserRootedPathTests : IDisposable
@@ -37,7 +37,7 @@
 
         public ScriptParserRootedPathTests()
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

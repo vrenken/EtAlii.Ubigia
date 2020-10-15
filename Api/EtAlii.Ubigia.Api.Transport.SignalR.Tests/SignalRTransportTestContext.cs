@@ -8,8 +8,8 @@
 	using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
 	using EtAlii.Ubigia.Api.Transport.Management.SignalR;
 	using EtAlii.Ubigia.Api.Transport.Tests;
-	using EtAlii.Ubigia.Diagnostics;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+	using EtAlii.xTechnology.Diagnostics;
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
@@ -17,7 +17,7 @@
 	    {
 		    var spaceName = Guid.NewGuid().ToString();
 		    
-		    var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+		    var diagnostics = DiagnosticsConfiguration.Default;
 
 		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
@@ -44,7 +44,7 @@
 
 	    public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
 
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 
@@ -65,7 +65,7 @@
 
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
 
 	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
 

@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Ubigia.Diagnostics
+﻿namespace EtAlii.xTechnology.Diagnostics.Serilog
 {
     using System;
-    using EtAlii.xTechnology.Diagnostics;
-    using Serilog;
+    using global::Serilog;
 
-    internal static class UbigiaDiagnostics
+    public static class DiagnosticsConfigurationInitializeExtension
     {
-        static UbigiaDiagnostics()
+        
+        public static IDiagnosticsConfiguration UseSerilog(this IDiagnosticsConfiguration configuration)
         {
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
@@ -30,20 +30,7 @@
             {
                 Log.Error((Exception) e.ExceptionObject, "Unhandled exception");
             };
-        }
-        
-        public static readonly IDiagnosticsConfiguration DefaultConfiguration = new DiagnosticsConfiguration
-        {
-            EnableProfiling = false,
-            EnableLogging = true,
-            EnableDebugging = true,
-            CreateProfilerFactory = () => new DisabledProfilerFactory(),
-            CreateProfiler = CreateProfiler,//factory => factory.Create("EtAlii", "Default"),
-        };
-     
-        private static IProfiler CreateProfiler(IProfilerFactory factory)
-        {
-            return factory.Create("EtAlii", "EtAlii.Ubigia");
+            return configuration;
         }
     }
 }

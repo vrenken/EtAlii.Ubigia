@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -12,7 +11,7 @@
 
         public async Task InitializeAsync()
         {
-            DiagnosticsConfiguration = UbigiaDiagnostics.DefaultConfiguration;
+            DiagnosticsConfiguration = EtAlii.xTechnology.Diagnostics.DiagnosticsConfiguration.Default;
             FabricTestContext = new FabricTestContextFactory().Create();
             await FabricTestContext.Start(UnitTestSettings.NetworkPortRange);
         }

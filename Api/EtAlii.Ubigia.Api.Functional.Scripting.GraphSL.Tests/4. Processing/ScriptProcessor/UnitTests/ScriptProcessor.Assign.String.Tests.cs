@@ -3,7 +3,6 @@
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -14,7 +13,7 @@
 
         public ScriptProcessorAssignStringUnitTests()
         {
-            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

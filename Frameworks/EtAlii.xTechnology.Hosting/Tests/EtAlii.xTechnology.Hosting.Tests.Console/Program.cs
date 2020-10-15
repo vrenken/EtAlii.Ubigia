@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.xTechnology.Hosting.Tests.Console
 {
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     public static class Program
@@ -18,6 +20,7 @@
 
             var hostConfiguration = new HostConfigurationBuilder()
                 .Build(applicationConfiguration, details)
+                .Use(DiagnosticsConfiguration.Default)
                 .UseConsoleHost();
 
             ConsoleHost.Start(hostConfiguration);

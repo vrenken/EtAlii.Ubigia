@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System;
-    using EtAlii.Ubigia.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionRenameTests : IDisposable
@@ -10,7 +10,7 @@
 
         public ScriptParserFunctionRenameTests()
         {
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            var diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);

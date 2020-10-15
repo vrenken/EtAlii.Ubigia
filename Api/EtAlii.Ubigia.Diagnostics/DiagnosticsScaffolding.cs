@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics.Serilog;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class DiagnosticsScaffolding : IScaffolding
@@ -9,16 +10,12 @@
 
         internal DiagnosticsScaffolding()
         {
-            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            _diagnostics = DiagnosticsConfiguration.Default;
         }
 
         public void Register(Container container)
         {
-            // var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
-            //     () => new DisabledLogFactory(),
-            //     () => new DisabledProfilerFactory(),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"));
+            DiagnosticsConfiguration.Default.UseSerilog();
 
             container.Register(() => _diagnostics);
         }

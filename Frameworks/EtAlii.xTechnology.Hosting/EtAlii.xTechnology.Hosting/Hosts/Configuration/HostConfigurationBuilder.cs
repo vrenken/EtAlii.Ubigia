@@ -4,8 +4,7 @@
 
     public class HostConfigurationBuilder
     {
-        public IHostConfiguration Build(
-            IConfigurationRoot applicationConfiguration, ConfigurationDetails details)
+        public IHostConfiguration Build(IConfigurationRoot applicationConfiguration, ConfigurationDetails details)
 		{
             var hostSection = applicationConfiguration.GetSection("Host");
 

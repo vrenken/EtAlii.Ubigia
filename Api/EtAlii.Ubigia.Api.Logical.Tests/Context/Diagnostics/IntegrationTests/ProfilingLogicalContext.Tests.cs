@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -19,7 +18,7 @@
 
         public Task InitializeAsync()
         {
-            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            _diagnostics = DiagnosticsConfiguration.Default;
             return Task.CompletedTask;
         }
 
