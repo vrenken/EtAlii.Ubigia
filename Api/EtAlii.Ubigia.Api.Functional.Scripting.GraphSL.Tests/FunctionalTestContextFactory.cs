@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     public class FunctionalTestContextFactory
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
             container.Register<IFunctionalTestContext, FunctionalTestContext>();
             container.Register(() => new LogicalTestContextFactory().Create());
-            container.Register(() => UbigiaDiagnostics.DefaultConfiguration);
+            container.Register(() => DiagnosticsConfiguration.Default);
             return container.GetInstance<IFunctionalTestContext>();
         }
     }

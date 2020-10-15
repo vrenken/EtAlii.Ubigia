@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -22,7 +21,7 @@
 
         public async Task InitializeAsync()
         {
-            Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            Diagnostics = DiagnosticsConfiguration.Default;
             LogicalTestContext = new LogicalTestContextFactory().Create();
             await LogicalTestContext.Start(UnitTestSettings.NetworkPortRange);
         }

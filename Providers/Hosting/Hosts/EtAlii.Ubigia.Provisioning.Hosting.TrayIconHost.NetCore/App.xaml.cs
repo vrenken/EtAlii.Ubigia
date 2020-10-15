@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost
 {
 	using System.Windows;
+	using EtAlii.xTechnology.Diagnostics;
 	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.Diagnostics;
 	using global::Microsoft.Extensions.Configuration;
 
 	partial class App
@@ -17,6 +19,7 @@
 
 	        var hostConfiguration = new HostConfigurationBuilder()
 		        .Build(applicationConfiguration, applicationConfigurationDetails)
+		        .Use(DiagnosticsConfiguration.Default)
                 .UseTrayIconHost(
                     this,
                     "Icon-Logo-White-Shaded.ico",

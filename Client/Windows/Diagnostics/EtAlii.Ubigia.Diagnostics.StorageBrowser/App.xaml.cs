@@ -5,8 +5,8 @@
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Windows.Management;
+    using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -38,7 +38,7 @@
             var account = e.Args.Length > 1 ? e.Args[1] : string.Empty;
             var password = e.Args.Length > 2 ? e.Args[2] : string.Empty;
 
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;//new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.StorageBrowser");
+            var diagnostics = DiagnosticsConfiguration.Default;//new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.StorageBrowser");
 
             IManagementConnection connection;
             var factory = new ManagementConnectionFactory();

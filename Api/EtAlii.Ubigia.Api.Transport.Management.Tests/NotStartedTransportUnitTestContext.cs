@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Diagnostics;
 
@@ -13,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public NotStartedTransportUnitTestContext()
         {
-            Diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            Diagnostics = DiagnosticsConfiguration.Default;
             TransportTestContext = new TransportTestContext().Create();
         }
 

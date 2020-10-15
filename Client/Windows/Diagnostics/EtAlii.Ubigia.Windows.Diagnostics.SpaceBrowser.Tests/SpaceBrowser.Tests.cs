@@ -5,10 +5,10 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
     using System.Windows.Markup;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.Ubigia.Windows.Client;
     using EtAlii.Ubigia.Windows.Settings;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
     using App = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.App;
@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
         {
             // Arrange.
             using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var diagnostics = UbigiaDiagnostics.DefaultConfiguration;//= new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
+            var diagnostics = DiagnosticsConfiguration.Default;//= new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
             var profiler = new Profiler(ProfilingAspects.Transport.Connection);
 
             await StaHelper.StartStaTask(() =>

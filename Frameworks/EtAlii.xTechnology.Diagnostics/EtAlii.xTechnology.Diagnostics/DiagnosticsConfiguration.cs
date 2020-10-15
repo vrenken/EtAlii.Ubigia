@@ -11,14 +11,19 @@
         public Func<IProfilerFactory> CreateProfilerFactory { get; set; }
         public Func<IProfilerFactory, IProfiler> CreateProfiler { get; set; }
 
-        // public static readonly DiagnosticsConfiguration Default = new DiagnosticsConfiguration
-        // {
-        //     EnableProfiling = false,
-        //     EnableLogging = false,
-        //     EnableDebugging = false,
-        //
-        //     CreateProfilerFactory = () => new DisabledProfilerFactory(),
-        //     CreateProfiler = factory => factory.Create("EtAlii", "Default"),
-        // };
+                
+        public static readonly IDiagnosticsConfiguration Default = new DiagnosticsConfiguration
+        {
+            EnableProfiling = false,
+            EnableLogging = true,
+            EnableDebugging = true,
+            CreateProfilerFactory = () => new DisabledProfilerFactory(),
+            CreateProfiler = CreateProfilerInstance,//factory => factory.Create("EtAlii", "Default"),
+        };
+     
+        private static IProfiler CreateProfilerInstance(IProfilerFactory factory)
+        {
+            return factory.Create("EtAlii", "EtAlii.Ubigia");
+        }
     }
 }

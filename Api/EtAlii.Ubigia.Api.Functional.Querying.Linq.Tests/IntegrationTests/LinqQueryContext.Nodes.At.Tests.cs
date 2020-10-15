@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -29,7 +28,7 @@
         {
             var start = Environment.TickCount;
 
-            _diagnostics = UbigiaDiagnostics.DefaultConfiguration;
+            _diagnostics = DiagnosticsConfiguration.Default;
             
             _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
