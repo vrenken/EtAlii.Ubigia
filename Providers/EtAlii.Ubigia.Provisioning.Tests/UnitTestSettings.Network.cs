@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(15200, 15399);
+        public static PortRange NetworkPortRange = new PortRange(15600, 15799);
     }
 }

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Diagnostics.Serilog;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class DiagnosticsScaffolding : IScaffolding
@@ -15,8 +14,6 @@
 
         public void Register(Container container)
         {
-            DiagnosticsConfiguration.Default.UseSerilog();
-
             container.Register(() => _diagnostics);
         }
     }
