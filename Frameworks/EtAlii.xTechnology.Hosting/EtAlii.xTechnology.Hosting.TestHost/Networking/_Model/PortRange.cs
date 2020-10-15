@@ -36,5 +36,7 @@ namespace EtAlii.xTechnology.Hosting
         {
             return GetEnumerator();
         }
+
+        public override string ToString() => $"{LowerPort}-{UpperPort}";
     }
 }
