@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             IConfigurationDetails configurationDetails, 
             string name, out TInstance instance)
         {
-            var factoryTypeName = configuration.GetValue<string>("Factory");
+            var factoryTypeName = configuration?.GetValue<string>("Factory");
 
             _logger.Information("Creating instance for {name} using factory: {factoryTypeName}", name, factoryTypeName);
 

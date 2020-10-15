@@ -52,8 +52,15 @@ namespace EtAlii.xTechnology.Hosting
 		    // We want to start only one test hosting at the same time.
 		    using (var _ = new SystemSafeExecutionScope(_uniqueId))
 		    {
-			    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default));
-			    task.Wait();
+			    try
+			    {
+				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default));
+				    task.GetAwaiter().GetResult();
+			    }
+			    catch (Exception e)
+			    {
+				    throw new InvalidOperationException($"Unable to start {nameof(HostTestContext<THost>)} on port range {portRange}", e);
+			    }
 		    }
 	    }
 

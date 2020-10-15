@@ -127,7 +127,7 @@
 
         }
 
-		protected void OnConfigureKestrel(WebHostBuilderContext context, KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
-        protected void OnConfigureApplication(WebHostBuilderContext context, IApplicationBuilder configurationBuilder) => ConfigureApplication?.Invoke(configurationBuilder);
+		private void OnConfigureKestrel(WebHostBuilderContext context, KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
+		private void OnConfigureApplication(WebHostBuilderContext context, IApplicationBuilder configurationBuilder) => ConfigureApplication?.Invoke(configurationBuilder);
     }
 }

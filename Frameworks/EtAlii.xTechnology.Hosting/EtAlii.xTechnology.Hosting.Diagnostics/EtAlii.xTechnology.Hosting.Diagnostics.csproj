@@ -19,4 +19,7 @@
     <ProjectReference Include="..\..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.Serilog\EtAlii.xTechnology.Diagnostics.Serilog.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+  </ItemGroup>
 </Project>

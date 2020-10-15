@@ -2,6 +2,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Serilog;
 
     public class HostLoggingScaffolding : IScaffolding
     {
@@ -16,8 +17,14 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             if (_diagnostics.EnableLogging) // logging is enabled
             {
+                container.RegisterInitializer<IHost>(host =>
+                {
+                    var configurableHost = (IConfigurableHost)host;
+                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog();
+                });
+                
                 // Register for logging required DI instances.
-                container.Register<IInstanceCreator, InstanceCreator>();
+                container.Register<IInstanceCreator, LoggingInstanceCreator>();
             }
         }
     }

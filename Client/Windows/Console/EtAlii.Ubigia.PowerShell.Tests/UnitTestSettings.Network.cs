@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.PowerShell.Tests
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(14600, 14799);
+        public static PortRange NetworkPortRange = new PortRange(15400, 15599);
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class DiagnosticsConfiguration : IDiagnosticsConfiguration
+    public partial class DiagnosticsConfiguration : IDiagnosticsConfiguration
     {
         public bool EnableProfiling { get; set; }
         public bool EnableLogging { get; set; }
@@ -11,7 +11,6 @@
         public Func<IProfilerFactory> CreateProfilerFactory { get; set; }
         public Func<IProfilerFactory, IProfiler> CreateProfiler { get; set; }
 
-                
         public static readonly IDiagnosticsConfiguration Default = new DiagnosticsConfiguration
         {
             EnableProfiling = false,
