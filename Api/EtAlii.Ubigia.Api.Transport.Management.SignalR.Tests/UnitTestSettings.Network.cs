@@ -1,4 +1,4 @@
-#pragma warning disable CS0436    
+    
 namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using EtAlii.xTechnology.Hosting;

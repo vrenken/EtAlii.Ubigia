@@ -1,4 +1,4 @@
-#pragma warning disable CS0436
+
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Transport.Tests
 {
