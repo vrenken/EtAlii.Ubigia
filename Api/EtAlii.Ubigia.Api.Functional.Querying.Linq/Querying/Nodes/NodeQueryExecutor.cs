@@ -53,7 +53,7 @@
             // TODO: Attempt to make Linq async.
             var sequenceProcessingResult = _scriptContext
                 .Process(scriptParseResult.Script, scope)
-                .Wait();
+                .GetAwaiter().GetResult();
 
             var output = sequenceProcessingResult
                 .Output

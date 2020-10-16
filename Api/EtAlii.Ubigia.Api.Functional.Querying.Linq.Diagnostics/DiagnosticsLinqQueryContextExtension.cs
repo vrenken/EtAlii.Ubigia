@@ -21,6 +21,12 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"));
 
             container.Register(() => _diagnostics);
+            
+            if (_diagnostics.EnableLogging)
+            {
+                container.RegisterDecorator(typeof(INodeQueryExecutor), typeof(LoggingNodeQueryExecutor));
+                container.RegisterDecorator(typeof(IRootQueryExecutor), typeof(LoggingRootQueryExecutor));
+            }
         }
     }
 }
