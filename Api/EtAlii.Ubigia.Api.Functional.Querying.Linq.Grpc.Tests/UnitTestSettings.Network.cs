@@ -1,4 +1,4 @@
-#pragma warning disable CS0436
+
 namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using EtAlii.xTechnology.Hosting;
