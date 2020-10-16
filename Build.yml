@@ -35,16 +35,6 @@ jobs:
 
       - task: NugetToolInstaller@1
 
-      - task: DotNetCoreCLI@2
-        displayName: 'Run: dotnet restore'
-        inputs:
-          command: 'restore'
-          projects: |
-            **/*.csproj
-            !**/ProjectToExclude.csproj
-          feedsToUse: config
-          nugetConfigPath: NuGet.config
-
       - task: SonarQubePrepare@4
         displayName: 'SonarQube: prepare'
         inputs:
@@ -55,6 +45,16 @@ jobs:
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
             sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
             sonar.coverage.exclusions=”**/*.Tests.cs”
+
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet restore'
+        inputs:
+          command: 'restore'
+          projects: |
+            **/*.csproj
+            !**/ProjectToExclude.csproj
+          feedsToUse: config
+          nugetConfigPath: NuGet.config
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
