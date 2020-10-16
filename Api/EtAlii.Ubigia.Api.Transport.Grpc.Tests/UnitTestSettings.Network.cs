@@ -1,3 +1,4 @@
+#pragma warning disable CS0436
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Transport.Tests
 {
@@ -5,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(13600, 13799);
+        public static PortRange NetworkPortRange = new PortRange(UnitTestConstants.NetworkPortRangeStart + 13600, UnitTestConstants.NetworkPortRangeStart + 13799);
     }
 }
