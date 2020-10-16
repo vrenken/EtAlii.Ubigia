@@ -2,6 +2,7 @@
 {
     using System;
     using Serilog;
+    using Serilog.Events;
 
     public partial class DiagnosticsConfiguration
     {
@@ -31,7 +32,7 @@
                     .WriteTo.Async(writeTo =>
                     {
                         writeTo.Seq("http://vrenken.duckdns.org:5341");
-                        writeTo.Debug();
+                        writeTo.Debug(LogEventLevel.Error);
                     }));
 
             // Let's flush the log when the process exits.
