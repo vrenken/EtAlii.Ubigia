@@ -6,15 +6,14 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
 
-    public class GraphPathTraverserMultipleConnectionsTests : IClassFixture<FabricUnitTestContext>
+    public class GraphPathTraverserMultipleConnectionsTests : IClassFixture<LogicalUnitTestContext>
     {
-        private readonly FabricUnitTestContext _testContext;
+        private readonly LogicalUnitTestContext _testContext;
 
-        public GraphPathTraverserMultipleConnectionsTests(FabricUnitTestContext testContext)
+        public GraphPathTraverserMultipleConnectionsTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

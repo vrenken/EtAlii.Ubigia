@@ -7,12 +7,12 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class Win32HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class Win32HierarchicalContentManagerTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
     {
         private readonly string _testFolderSimple;
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
 
-        public Win32HierarchicalContentManagerTests(LogicalUnitTestContext testContext)
+        public Win32HierarchicalContentManagerTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
 

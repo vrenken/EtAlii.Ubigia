@@ -5,22 +5,21 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
     using Xunit.Abstractions;
 
-    public class LinqQueryContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class LinqQueryContextNodesAddTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
         private string _countryPath;
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private LinqQueryContextConfiguration _configuration;
 
-        public LinqQueryContextNodesAddTests(LogicalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
+        public LinqQueryContextNodesAddTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;

@@ -2,14 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class GraphSLScriptContextFactoryFunctionHandlersTests : IClassFixture<LogicalUnitTestContext>
+    public class GraphSLScriptContextFactoryFunctionHandlersTests : IClassFixture<ScriptingUnitTestContext>
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
 
-        public GraphSLScriptContextFactoryFunctionHandlersTests(LogicalUnitTestContext testContext)
+        public GraphSLScriptContextFactoryFunctionHandlersTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

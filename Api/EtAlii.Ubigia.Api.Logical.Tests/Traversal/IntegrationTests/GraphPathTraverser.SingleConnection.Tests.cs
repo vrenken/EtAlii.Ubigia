@@ -7,16 +7,15 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
 
-    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
+    public class GraphPathTraverserSingleConnectionTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
-        private readonly FabricUnitTestContext _testContext;
+        private readonly LogicalUnitTestContext _testContext;
         private IFabricContext _fabric;
 
-        public GraphPathTraverserSingleConnectionTests(FabricUnitTestContext testContext)
+        public GraphPathTraverserSingleConnectionTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

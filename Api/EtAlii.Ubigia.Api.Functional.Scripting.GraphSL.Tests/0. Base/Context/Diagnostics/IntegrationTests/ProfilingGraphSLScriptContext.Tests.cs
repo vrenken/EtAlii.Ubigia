@@ -1,17 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingGraphSLScriptContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ProfilingGraphSLScriptContextTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         //private ILogicalContext _logicalContext;
 
-        public ProfilingGraphSLScriptContextTests(LogicalUnitTestContext testContext)
+        public ProfilingGraphSLScriptContextTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

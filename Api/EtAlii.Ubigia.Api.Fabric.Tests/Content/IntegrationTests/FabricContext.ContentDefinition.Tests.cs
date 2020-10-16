@@ -4,15 +4,14 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    public class FabricContextContentDefinitionTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
+    public class FabricContextContentDefinitionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;
-        private readonly TransportUnitTestContext _testContext;
+        private readonly FabricUnitTestContext _testContext;
 
-        public FabricContextContentDefinitionTests(TransportUnitTestContext testContext)
+        public FabricContextContentDefinitionTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
         }

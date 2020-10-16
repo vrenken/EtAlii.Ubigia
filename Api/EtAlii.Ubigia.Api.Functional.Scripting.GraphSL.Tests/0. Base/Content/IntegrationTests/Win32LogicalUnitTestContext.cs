@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
 
-    public class Win32LogicalUnitTestContext : IDisposable
+    public class Win32FunctionalUnitTestContext : IDisposable
     {
         private readonly Guid _uniqueId = Guid.Parse("5F763915-44A5-496F-B478-BFA42F60E406"); 
         public string TestFile2MImage { get; }
@@ -17,7 +17,7 @@
         public FolderComparer FolderComparer { get; }
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
-        public Win32LogicalUnitTestContext()
+        public Win32FunctionalUnitTestContext()
         {
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);

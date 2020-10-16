@@ -2,16 +2,15 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
         //private IScriptParser _parser
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignStringIntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorAssignStringIntegrationTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

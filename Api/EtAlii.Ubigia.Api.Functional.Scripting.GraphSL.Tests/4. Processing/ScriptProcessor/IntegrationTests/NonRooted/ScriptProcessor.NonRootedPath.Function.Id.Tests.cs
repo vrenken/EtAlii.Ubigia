@@ -5,17 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathFunctionId(LogicalUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathFunctionId(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

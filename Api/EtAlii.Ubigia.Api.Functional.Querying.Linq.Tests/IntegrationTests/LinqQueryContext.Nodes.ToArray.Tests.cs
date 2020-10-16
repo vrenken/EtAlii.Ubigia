@@ -5,14 +5,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class LinqQueryContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class LinqQueryContextNodesToArrayTests : IClassFixture<QueryingUnitTestContext>, IDisposable
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly QueryingUnitTestContext _testContext;
 
-        public LinqQueryContextNodesToArrayTests(LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesToArrayTests(QueryingUnitTestContext testContext)
         {
             _testContext = testContext;
         }
