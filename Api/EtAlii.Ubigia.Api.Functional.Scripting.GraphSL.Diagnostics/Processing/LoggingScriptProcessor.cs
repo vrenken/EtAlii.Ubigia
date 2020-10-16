@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
     using Serilog;
 
     [DebuggerStepThrough]
@@ -17,15 +18,22 @@
 
         public IObservable<SequenceProcessingResult> Process(Script script)
         {
-            var message = "Processing script (async)";
-            _logger.Information(message);
-            var start = Environment.TickCount;
+            // We want to be able to track method calls throughout the whole application stack.
+            // Including across network and process boundaries.
+            // For this we create a unique correlationId and pass it through all involved systems.
+            using (ContextCorrelator.BeginCorrelationScope("CorrelationId", Guid.NewGuid(), false))
+            {
+                var message = "Processing script (async)";
+                _logger.Information(message);
+                var start = Environment.TickCount;
 
-            var result = _processor.Process(script);
+                var result = _processor.Process(script);
 
-            _logger.Information("Processed script (Duration: {duration}ms)", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+                var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+                _logger.Information("Processed script (Duration: {duration}ms)", duration);
 
-            return result;
+                return result;
+            }
         }
     }
 }
