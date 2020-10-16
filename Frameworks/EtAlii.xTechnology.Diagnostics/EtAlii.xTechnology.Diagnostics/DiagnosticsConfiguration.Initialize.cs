@@ -27,6 +27,7 @@
                     .Enrich.WithAssemblyName()
                     .Enrich.WithAssemblyVersion()
                     .Enrich.WithMemoryUsage()
+                    .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough  
                     .WriteTo.Async(writeTo =>
                     {
                         writeTo.Seq("http://vrenken.duckdns.org:5341");
