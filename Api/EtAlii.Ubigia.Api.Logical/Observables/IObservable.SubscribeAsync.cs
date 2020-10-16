@@ -14,7 +14,7 @@
             void OnNext(T o)
             {
                 var task = Task.Run(() => onNext(o));
-                task.Wait();
+                task.GetAwaiter().GetResult();
             }
 
             if (onError != null && onCompleted != null)
