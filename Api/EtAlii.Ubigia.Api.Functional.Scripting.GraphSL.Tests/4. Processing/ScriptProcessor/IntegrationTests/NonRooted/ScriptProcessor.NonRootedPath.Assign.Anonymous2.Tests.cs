@@ -3,19 +3,18 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

@@ -4,19 +4,18 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorScriptedAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorScriptedAddTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorScriptedAddTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorScriptedAddTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

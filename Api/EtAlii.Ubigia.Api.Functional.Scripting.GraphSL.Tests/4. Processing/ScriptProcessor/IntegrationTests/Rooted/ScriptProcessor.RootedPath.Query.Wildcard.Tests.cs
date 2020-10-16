@@ -4,16 +4,15 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private ILogicalContext _logicalContext;
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathQueryWildcardIntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryWildcardIntegrationTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

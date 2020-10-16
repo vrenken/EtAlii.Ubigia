@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    public class FabricContextContentTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
+    public class FabricContextContentTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;
-        private readonly TransportUnitTestContext _testContext;
+        private readonly FabricUnitTestContext _testContext;
 
-        public FabricContextContentTests(TransportUnitTestContext testContext)
+        public FabricContextContentTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
         }

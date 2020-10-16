@@ -3,19 +3,18 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorRootedPathQueryTemporalIntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryTemporalIntegrationTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

@@ -4,18 +4,17 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly ScriptingUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignDynamicLocationsIntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorAssignDynamicLocationsIntegrationTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

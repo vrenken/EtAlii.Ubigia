@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
     using System;
     using System.Threading.Tasks;
     using System.Windows.Markup;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
+    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.Ubigia.Windows.Client;
@@ -14,11 +14,11 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
     using App = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.App;
     using MainWindow = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.MainWindow;
 
-    public class SpaceBrowserTests  : IClassFixture<FabricUnitTestContext>
+    public class SpaceBrowserTests  : IClassFixture<LogicalUnitTestContext>
     {
-        private readonly FabricUnitTestContext _testContext;
+        private readonly LogicalUnitTestContext _testContext;
 
-        public SpaceBrowserTests(FabricUnitTestContext testContext)
+        public SpaceBrowserTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

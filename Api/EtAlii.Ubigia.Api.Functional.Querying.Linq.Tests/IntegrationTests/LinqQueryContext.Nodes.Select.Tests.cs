@@ -9,17 +9,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class LinqQueryContextNodesSelectTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class LinqQueryContextNodesSelectTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
         private string _countryPath;
         private IEditableEntry _countryEntry;
-        private readonly LogicalUnitTestContext _testContext;
+        private readonly QueryingUnitTestContext _testContext;
         private LinqQueryContextConfiguration _configuration;
 
-        public LinqQueryContextNodesSelectTests(LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesSelectTests(QueryingUnitTestContext testContext)
         {
             _testContext = testContext;
         }

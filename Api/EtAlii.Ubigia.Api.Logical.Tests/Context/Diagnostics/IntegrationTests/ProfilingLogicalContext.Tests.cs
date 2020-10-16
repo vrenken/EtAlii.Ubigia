@@ -1,17 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingLogicalContextTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
+    public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
-        private readonly FabricUnitTestContext _testContext;
+        private readonly LogicalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
 
-        public ProfilingLogicalContextTests(FabricUnitTestContext testContext)
+        public ProfilingLogicalContextTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

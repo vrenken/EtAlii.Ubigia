@@ -27,9 +27,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ILogicalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContextFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LogicalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)_TestDiagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogicalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\IntegrationTests\GraphPathTraverser.MultipleConnections.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\IntegrationTests\GraphPathTraverser.SingleConnection.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\UnitTests\GraphPathBuilder.Tests.cs" />

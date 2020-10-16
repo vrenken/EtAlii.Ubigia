@@ -1,14 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using Xunit;
 
-    public partial class GraphComposerIntegrationTests : IClassFixture<FabricUnitTestContext>
+    public partial class GraphComposerIntegrationTests : IClassFixture<LogicalUnitTestContext>
     {
-        private readonly FabricUnitTestContext _testContext;
+        private readonly LogicalUnitTestContext _testContext;
 
-        public GraphComposerIntegrationTests(FabricUnitTestContext testContext)
+        public GraphComposerIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

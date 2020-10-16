@@ -7,10 +7,10 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class Win32ContentManagerTests : IClassFixture<Win32LogicalUnitTestContext>, IAsyncLifetime
+    public class Win32ContentManagerTests : IClassFixture<Win32FunctionalUnitTestContext>, IAsyncLifetime
     {
 
-        private readonly Win32LogicalUnitTestContext _testContext;
+        private readonly Win32FunctionalUnitTestContext _testContext;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -29,7 +29,7 @@
         //]
         //private TestContext _testContext
 
-        public Win32ContentManagerTests(Win32LogicalUnitTestContext testContext)
+        public Win32ContentManagerTests(Win32FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
