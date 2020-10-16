@@ -26,4 +26,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
 </Project>
