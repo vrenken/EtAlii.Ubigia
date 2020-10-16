@@ -5,5 +5,12 @@
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = true)]
 #else
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerClass
-#endif 
- 
+#endif
+
+namespace EtAlii
+{
+    public static class UnitTestConstants
+    {
+        public const int NetworkPortRangeStart = 20000; 
+    }
+}    

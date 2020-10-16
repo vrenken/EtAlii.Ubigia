@@ -1,9 +1,10 @@
+#pragma warning disable CS0436    
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.xTechnology.Hosting;
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(12600, 12799);
+        public static PortRange NetworkPortRange = new PortRange(UnitTestConstants.NetworkPortRangeStart + 12600, UnitTestConstants.NetworkPortRangeStart + 12799);
     }
 }
