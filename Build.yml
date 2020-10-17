@@ -63,7 +63,7 @@ jobs:
           projects: |
             **/*.sln
             !**/StorageBrowser.csproj
-          arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaIsRunningOnBuildAgent=true'
+          arguments: '--configuration $(BuildConfiguration) --no-restore /p:UbigiaIsRunningOnBuildAgent=true --nodereuse false'
 
 # TEST
       - task: DotNetCoreCLI@2
@@ -71,7 +71,7 @@ jobs:
         inputs:
           command: test
           projects: '**/*.Tests.csproj'
-          arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory) /p:CoverletOutputFormat=opencover'
+          arguments: '/p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory) /p:CoverletOutputFormat=opencover --nodereuse false'
         continueOnError: true
 
       - task: SonarQubeAnalyze@4
