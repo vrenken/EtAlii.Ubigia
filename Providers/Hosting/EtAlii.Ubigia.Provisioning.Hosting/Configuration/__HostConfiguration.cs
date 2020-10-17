@@ -99,6 +99,7 @@
 //            var fabricContextConfiguration = new FabricContextConfiguration()
 //                .UseTraversalCaching(useCaching)
 //                .Use(connection)
+//                .Use(DiagnosticsConfiguration.Default)
 //            var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration)
 
 //            var logicalContextConfiguration = new LogicalContextConfiguration()

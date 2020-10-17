@@ -1,20 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class FabricContextFactory : IFabricContextFactory
+    public class FabricContextFactory : Factory<IFabricContext, FabricContextConfiguration, IFabricContextExtension>// IFabricContextFactory
     {
-        public IFabricContext Create(IFabricContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(FabricContextConfiguration configuration)
         {
             if (configuration.Storage == null)
             {
                 throw new NotSupportedException("A Storage is required to construct a FabricContext instance");
             }
 
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new FabricContextScaffolding(configuration.Storage),
                 new ItemsScaffolding(),
@@ -25,13 +24,6 @@
                 new PropertiesScaffolding(),
                 new EntryScaffolding(),
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            return container.GetInstance<IFabricContext>();
         }
     }
 }

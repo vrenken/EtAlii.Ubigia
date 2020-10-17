@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
-    using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Diagnostics;
@@ -23,11 +22,6 @@
 
                 // Logical.
                 container.RegisterDecorator(typeof(IEntryPreparer), typeof(LoggingEntryPreparerDecorator));
-
-                // Fabric.
-                container.RegisterDecorator(typeof(IEntryGetter), typeof(LoggingEntryGetterDecorator));
-                container.RegisterDecorator(typeof(IEntryStorer), typeof(LoggingEntryStorerDecorator));
-                container.RegisterDecorator(typeof(IEntryUpdater), typeof(LoggingEntryUpdaterDecorator));
 
                 container.RegisterDecorator(typeof(IStorageRepository), typeof(LoggingStorageRepositoryDecorator));
             }

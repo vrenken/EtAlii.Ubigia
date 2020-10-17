@@ -1,7 +1,7 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
+﻿// ReSharper disable once CheckNamespace
+namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
 
     internal class LoggingEntryUpdaterDecorator : IEntryUpdater
     {

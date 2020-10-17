@@ -12,6 +12,7 @@
     <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj" />
