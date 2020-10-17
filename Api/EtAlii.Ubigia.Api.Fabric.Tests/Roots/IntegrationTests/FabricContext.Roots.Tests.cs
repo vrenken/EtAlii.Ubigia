@@ -5,7 +5,9 @@
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public sealed class FabricContextRootsTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
@@ -21,7 +23,8 @@
         {
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
             var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
+                .Use(connection)
+                .Use(DiagnosticsConfiguration.Default);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
@@ -312,6 +315,7 @@
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection)
+        //        .Use(DiagnosticsConfiguration.Default)
 
 
         //    // Act.
@@ -328,6 +332,7 @@
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection)
+        //        .Use(DiagnosticsConfiguration.Default)
 
         //    // Act.
         //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
@@ -343,6 +348,7 @@
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection)
+        //        .Use(DiagnosticsConfiguration.Default)
 
         //    // Act.
         //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
@@ -358,6 +364,7 @@
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection)
+        //        .Use(DiagnosticsConfiguration.Default)
 
         //    // Act.
         //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
@@ -373,6 +380,7 @@
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection)
+        //        .Use(DiagnosticsConfiguration.Default)
 
         //    // Act.
         //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])

@@ -19,6 +19,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
   </ItemGroup>
