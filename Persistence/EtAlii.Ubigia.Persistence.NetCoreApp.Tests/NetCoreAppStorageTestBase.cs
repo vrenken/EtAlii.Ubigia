@@ -1,19 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
-    using System;
+    using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
 
-    public abstract class NetCoreAppStorageTestBase : IDisposable
+    public abstract class NetCoreAppStorageTestBase : FileSystemStorageTestBase
     {
         protected TestContentFactory TestContentFactory { get; }
         protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         protected TestPropertiesFactory TestPropertiesFactory { get; }
-
-        protected IStorage Storage { get; private set; }
-
-        private readonly string _rootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
-
+        
         protected NetCoreAppStorageTestBase()
         {
             TestContentFactory = new TestContentFactory();
@@ -29,32 +25,12 @@
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // Cleanup
-            if (disposing)
-            {
-                Storage = null;
-            }
-        }
-
-        ~NetCoreAppStorageTestBase()
-        {
-            Dispose(false);
-        }
-
         private IStorage CreateStorage()
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .Use(DiagnosticsConfiguration.Default)
-                .UseNetCoreAppStorage(_rootFolder);
+                .UseNetCoreAppStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);
         }

@@ -1,42 +1,24 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
-    using System;
-    using System.IO;
+    using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using PCLStorage;
 
-    public abstract class PortableStorageTestBase : IDisposable
+    public abstract class PortableStorageTestBase : FileSystemStorageTestBase
     {
         protected TestContentFactory TestContentFactory { get; }
         protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         protected TestPropertiesFactory TestPropertiesFactory { get; }
-
-        protected IStorage Storage { get; private set; }
-
         protected IFolder StorageFolder { get; private set; }
-
-        private readonly string _rootFolder;
-        private static int _testIndex; 
-
 
         protected PortableStorageTestBase()
         {
             TestContentFactory = new TestContentFactory();
             TestContentDefinitionFactory = new TestContentDefinitionFactory();
             TestPropertiesFactory = new TestPropertiesFactory();
-
-            _rootFolder = @"c:\temp\" + _testIndex;
-            _testIndex += 1;
-            _testIndex = _testIndex > 999 ? 0 : _testIndex;
-
-            if (Directory.Exists(_rootFolder))
-            {
-                Directory.Delete(_rootFolder, true);
-            }
-            Directory.CreateDirectory(_rootFolder);
-
-            StorageFolder = new FileSystemFolder(_rootFolder, false);
+                
+            StorageFolder = new FileSystemFolder(RootFolder, false);
 
             Storage = CreateStorage();
 
@@ -45,33 +27,6 @@
             {
                 ((IFolderManager)Storage.FolderManager).Delete(folder);
             }
-        }
-
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // Cleanup
-            if (disposing)
-            {
-                StorageFolder = null;
-                Storage = null;
-
-                if (Directory.Exists(_rootFolder))
-                {
-                    Directory.Delete(_rootFolder, true);
-                }
-            }
-        }
-
-        ~PortableStorageTestBase()
-        {
-            Dispose(false);
         }
 
         private IStorage CreateStorage()
