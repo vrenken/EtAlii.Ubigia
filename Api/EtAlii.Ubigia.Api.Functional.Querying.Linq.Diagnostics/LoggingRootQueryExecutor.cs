@@ -23,14 +23,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (ContextCorrelator.BeginCorrelationScope("CorrelationId", Guid.NewGuid(), false))
             {
-                var message = "Executing scalar<{type}> root Linq query transformation";
+                var message = "Executing scalar<{Type}> root Linq query transformation";
                 _logger.Information(message, nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteScalar<T>(queryModel);
                 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Executing scalar<{type}> root Linq query transformation (Duration: {duration}ms)", nameof(T), duration);
+                _logger.Information("Executing scalar<{Type}> root Linq query transformation (Duration: {Duration}ms)", nameof(T), duration);
 
                 return result;
             }
@@ -43,14 +43,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (ContextCorrelator.BeginCorrelationScope("CorrelationId", Guid.NewGuid(), false))
             {
-                var message = "Executing single<{type}> root Linq query transformation";
+                var message = "Executing single<{Type}> root Linq query transformation";
                 _logger.Information(message, nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteSingle<T>(queryModel, returnDefaultWhenEmpty);
                 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Executing single<{type}> root Linq query transformation (Duration: {duration}ms)", nameof(T), duration);
+                _logger.Information("Executing single<{Type}> root Linq query transformation (Duration: {Duration}ms)", nameof(T), duration);
                 
                 return result;
             }
@@ -63,14 +63,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (ContextCorrelator.BeginCorrelationScope("CorrelationId", Guid.NewGuid(), false))
             {
-                var message = "Executing collection<{type}> root Linq query transformation";
+                var message = "Executing collection<{Type}> root Linq query transformation";
                 _logger.Information(message, nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteCollection<T>(queryModel);
                 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Executing collection<{type}> root Linq query transformation (Duration: {duration}ms)", nameof(T), duration);
+                _logger.Information("Executing collection<{Type}> root Linq query transformation (Duration: {Duration}ms)", nameof(T), duration);
                 
                 return result;
             }

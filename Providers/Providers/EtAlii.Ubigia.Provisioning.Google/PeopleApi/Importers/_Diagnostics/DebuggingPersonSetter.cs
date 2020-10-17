@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         //               GetEmail(person.ContactEntry.PrimaryEmail) ??
         //               GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails)
 
-            _logger.Information("Setting contact: {name}", name);
+            _logger.Information("Setting contact: {ContactName}", name);
 
             return _decoree.Set(context, person);
         }

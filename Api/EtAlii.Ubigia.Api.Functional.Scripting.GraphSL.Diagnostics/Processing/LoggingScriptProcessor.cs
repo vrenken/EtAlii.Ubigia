@@ -30,7 +30,7 @@
                 var result = _processor.Process(script);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Processed script (Duration: {duration}ms)", duration);
+                _logger.Information("Processed script (Duration: {Duration}ms)", duration);
 
                 return result;
             }

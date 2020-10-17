@@ -33,20 +33,20 @@
         {
             _address = _decoree.Transport.Address;
 
-            var message = "Opening space connection (Address: {address}";
+            var message = "Opening space connection (Address: {Address}";
             _logger.Information(message, _address);
             var start = Environment.TickCount;
 
             await _decoree.Open(accountName, password);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened space connection (Address: {address} Duration: {duration}ms)";
+            message = "Opened space connection (Address: {Address} Duration: {Duration}ms)";
             _logger.Information(message, _address, duration);
         }
 
         public async Task Close()
         {
-            var message = "Closing space connection (Address: {address}";
+            var message = "Closing space connection (Address: {Address}";
             _logger.Information(message, _address);
             var start = Environment.TickCount;
 
@@ -54,7 +54,7 @@
             _address = null;
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Closed space connection (Address: {address} Duration: {duration}ms)";
+            message = "Closed space connection (Address: {Address} Duration: {Duration}ms)";
             _logger.Information(message, _address, duration);
         }
 

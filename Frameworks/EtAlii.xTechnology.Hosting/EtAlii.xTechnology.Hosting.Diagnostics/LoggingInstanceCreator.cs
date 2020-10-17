@@ -20,11 +20,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             var factoryTypeName = configuration?.GetValue<string>("Factory");
 
-            _logger.Information("Creating instance for {name} using factory: {factoryTypeName}", name, factoryTypeName);
+            _logger.Information("Creating instance for {Name} using factory: {FactoryTypeName}", name, factoryTypeName);
 
             var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance);
             
-            _logger.Information("Created instance: {success}", result);
+            _logger.Information("Created instance: {Success}", result);
 
             return result;
         }
@@ -36,11 +36,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         {
             var factoryTypeName = configuration.GetValue<string>("Factory");
 
-            _logger.Information("Creating instance for {name} using factory: {factoryTypeName}", name, factoryTypeName);
+            _logger.Information("Creating instance for {Name} using factory: {FactoryTypeName}", name, factoryTypeName);
 
             var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance, throwOnNoFactory);
             
-            _logger.Information("Created instance: {success}", result);
+            _logger.Information("Created instance: {Success}", result);
 
             return result;
         }
