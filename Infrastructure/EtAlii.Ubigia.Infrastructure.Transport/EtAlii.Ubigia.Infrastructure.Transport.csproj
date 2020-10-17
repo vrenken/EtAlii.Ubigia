@@ -11,6 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
   </ItemGroup>
 </Project>
