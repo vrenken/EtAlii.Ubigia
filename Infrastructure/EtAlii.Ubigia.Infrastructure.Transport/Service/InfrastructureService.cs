@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Fabric;
+    using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Diagnostics;
@@ -62,7 +63,8 @@
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()
-                .Use(storage);
+                .Use(storage)
+                .Use(DiagnosticsConfiguration.Default);
             var fabric = new FabricContextFactory().Create(fabricConfiguration);
 
             // TODO: This isn't right. We don't want give the logical context any address to store and distribute.

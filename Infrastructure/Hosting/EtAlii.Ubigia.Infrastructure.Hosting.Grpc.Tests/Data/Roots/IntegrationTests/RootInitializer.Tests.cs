@@ -3,8 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
+    using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     [Trait("Technology", "Grpc")]
@@ -31,7 +33,8 @@
             Assert.NotEqual(root.Id, Guid.Empty);
 
             var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(context.Host.Storage);
+                .Use(context.Host.Storage)
+                .Use(DiagnosticsConfiguration.Default);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -62,7 +65,8 @@
             Assert.NotEqual(root.Id, Guid.Empty);
 
             var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(context.Host.Storage);
+                .Use(context.Host.Storage)
+                .Use(DiagnosticsConfiguration.Default);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -96,7 +100,8 @@
             Assert.NotEqual(root.Id, Guid.Empty);
 
             var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(context.Host.Storage);
+                .Use(context.Host.Storage)
+                .Use(DiagnosticsConfiguration.Default);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
