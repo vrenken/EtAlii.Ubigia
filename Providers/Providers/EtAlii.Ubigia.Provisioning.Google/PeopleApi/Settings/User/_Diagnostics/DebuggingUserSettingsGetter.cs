@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
             var result = await _decoree.Get(context);
 
-            _logger.Information("Finished getting all PeopleApi user settings: {@userSettings}", result);
+            _logger.Information("Finished getting all PeopleApi user settings: {@UserSettings}", result);
 
             return result;
         }

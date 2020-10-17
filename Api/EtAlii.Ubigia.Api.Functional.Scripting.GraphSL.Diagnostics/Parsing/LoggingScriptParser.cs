@@ -23,14 +23,14 @@
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                var message = "Parsing text (Text: {line})";
+                var message = "Parsing text (Text: {Line})";
                 _logger.Information(message, line);
                 var start = Environment.TickCount;
 
                 var scriptParseResult = _parser.Parse(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                message = "Parsed text (Text: \"{line}\" Duration: {duration}ms)";
+                message = "Parsed text (Text: \"{Line}\" Duration: {Duration}ms)";
                 _logger.Information(message, line, duration);
                 
                 return scriptParseResult;
@@ -45,14 +45,15 @@
             using (ContextCorrelator.BeginCorrelationScope("CorrelationId", Guid.NewGuid(), false))
             {
                 var line = text.Length == 1 ? text[0] : $"{text[0]}...";
-                var message = $"Parsing text (Text: {line})";
-                _logger.Information(message);
+                var message = "Parsing text (Text: {Line})";
+                _logger.Information(message, line);
                 var start = Environment.TickCount;
 
                 var scriptParseResult = _parser.Parse(text);
 
-                message = $"Parsed text (Text: \"{line}\" Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-                _logger.Information(message);
+                var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+                message = "Parsed text (Text: \"{Line}\" Duration: {Duration}ms)";
+                _logger.Information(message, line, duration);
 
                 return scriptParseResult;
             }

@@ -27,14 +27,14 @@
 
         public async Task<Root> Add(string name)
         {
-            var message = "Adding root (Name: {name})";
+            var message = "Adding root (Name: {RootName})";
             _logger.Information(message, name);
             var start = Environment.TickCount;
 
             var root = await _client.Add(name);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Added root (Name: {name} Duration: {duration}ms)";
+            message = "Added root (Name: {RootName} Duration: {Duration}ms)";
             _logger.Information(message, name, duration);
 
             return root;
@@ -42,27 +42,27 @@
 
         public async Task Remove(Guid id)
         {
-            var message = "Removing root (Id: {id})";
+            var message = "Removing root (Id: {RootId})";
             _logger.Information(message, id);
             var start = Environment.TickCount;
 
             await _client.Remove(id);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Removed root (Id: {id} Duration: {duration}ms)";
+            message = "Removed root (Id: {RootId} Duration: {Duration}ms)";
             _logger.Information(message, id, duration);
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
         {
-            var message = "Changing root (Id: {rootId} Name: {rootName})";
+            var message = "Changing root (Id: {RootId} Name: {RootName})";
             _logger.Information(message, rootId, rootName);
             var start = Environment.TickCount;
 
             var root = await _client.Change(rootId, rootName);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Changed root (Id: {rootId} Name: {rootName} Duration: {duration}ms)";
+            message = "Changed root (Id: {RootId} Name: {RootName} Duration: {Duration}ms)";
             _logger.Information(message, rootId, rootName, duration);
 
             return root;
@@ -70,14 +70,14 @@
 
         public async Task<Root> Get(string rootName)
         {
-            var message = "Getting root (Name: {rootName})";
+            var message = "Getting root (Name: {RootName})";
             _logger.Information(message, rootName);
             var start = Environment.TickCount;
 
             var root = await _client.Get(rootName);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got root (Name: {rootName} Duration: {}ms)";
+            message = "Got root (Name: {RootName} Duration: {}ms)";
             _logger.Information(message, rootName, duration);
 
             return root;
@@ -85,14 +85,14 @@
 
         public async Task<Root> Get(Guid rootId)
         {
-            var message = "Getting root (Id: {rootId})";
+            var message = "Getting root (Id: {RootId})";
             _logger.Information(message, rootId);
             var start = Environment.TickCount;
 
             var root = await _client.Get(rootId);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got root (Id: {rootId} Duration: {duration}ms)";
+            message = "Got root (Id: {RootId} Duration: {Duration}ms)";
             _logger.Information(message, rootId, duration);
 
             return root;
@@ -107,7 +107,7 @@
             var roots = await _client.GetAll();
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got all roots (Duration: {duration}ms)";
+            message = "Got all roots (Duration: {Duration}ms)";
             _logger.Information(message, duration);
 
             return roots;

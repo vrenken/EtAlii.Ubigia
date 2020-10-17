@@ -21,27 +21,27 @@
 
         public async Task Start()
         {
-            var message = "Starting transport (Address: {address})";
+            var message = "Starting transport (Address: {Address})";
             _logger.Information(message, Address);
             var start = Environment.TickCount;
 
             await _transport.Start();
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Started transport (Address: {address} Duration: {duration}ms)";
+            message = "Started transport (Address: {Address} Duration: {Duration}ms)";
             _logger.Information(message, Address, duration);
         }
 
         public async Task Stop()
         {
-            var message = "Stopping transport (Address: {address})";
+            var message = "Stopping transport (Address: {Address})";
             _logger.Information(message, Address);
             var start = Environment.TickCount;
 
             await _transport.Stop();
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Stopped transport (address: {address} Duration: {duration}ms)";
+            message = "Stopped transport (Address: {Address} Duration: {Duration}ms)";
             _logger.Information(message, Address, duration);
         }
 

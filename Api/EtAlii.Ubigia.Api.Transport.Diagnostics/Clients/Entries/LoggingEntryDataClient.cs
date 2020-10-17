@@ -35,7 +35,7 @@
             var entry = await _client.Prepare();
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Prepared entry (Id: {entryId} Duration: {duration}ms)";
+            message = "Prepared entry (Id: {EntryId} Duration: {Duration}ms)";
             _logger.Information(message, entry.Id.ToTimeString(), duration);
 
             return entry;
@@ -43,29 +43,29 @@
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var message = "Changing entry (Id: {entryId})";
+            var message = "Changing entry (Id: {OriginalEntryId})";
             _logger.Information(message, entry.Id.ToTimeString());
             var start = Environment.TickCount;
 
             var changedEntry = await _client.Change(entry, scope);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Changed entry (Id: {entryId} Duration: {duration}ms)";
-            _logger.Information(message, entry.Id.ToTimeString(), duration);
+            message = "Changed entry (Id: {ChangedEntryId} Duration: {Duration}ms)";
+            _logger.Information(message, changedEntry.Id.ToTimeString(), duration);
 
             return changedEntry;
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = "Getting entry (Root: {rootName})";
+            var message = "Getting entry (Root: {RootName})";
             _logger.Information(message, root.Name);
             var start = Environment.TickCount;
 
             var entry = await _client.Get(root, scope, entryRelations);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got entry (Root: {rootName} Id: {entryId} Duration: {duration}ms)";
+            message = "Got entry (Root: {RootName} Id: {EntryId} Duration: {Duration}ms)";
             _logger.Information(message, root.Name, entry.Id.ToTimeString(), duration);
 
             return entry;
@@ -73,14 +73,14 @@
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = "Getting entry (Id: {entryIdentifier})";
+            var message = "Getting entry (Id: {EntryId})";
             _logger.Information(message, entryIdentifier.ToTimeString());
             var start = Environment.TickCount;
 
             var entry = await _client.Get(entryIdentifier, scope, entryRelations);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got entry (Id: {entryIdentifier} Duration: {duration}ms)";
+            message = "Got entry (Id: {EntryId} Duration: {Duration}ms)";
             _logger.Information(message, entryIdentifier.ToTimeString(), duration);
 
             return entry;
@@ -95,7 +95,7 @@
             var entries = await _client.Get(entryIdentifiers, scope, entryRelations);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got multiple entries (Duration: {duration}ms)";
+            message = "Got multiple entries (Duration: {Duration}ms)";
             _logger.Information(message, duration);
 
             return entries;
@@ -110,8 +110,8 @@
             var entries = await _client.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got related entries (Duration: {duration}ms)";
-            _logger.Information(message, duration);
+            message = "Got related entries (Relations: {Relations} Duration: {Duration}ms)";
+            _logger.Information(message, entriesWithRelation, duration);
 
             return entries;
 

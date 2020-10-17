@@ -17,11 +17,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-            _logger.Information("Processing space: {accountName}/{spaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
+            _logger.Information("Processing space: {AccountName}/{SpaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
 
             await _decoree.Update(configurationSpace, systemSettings);
 
-            _logger.Information("Processed space: {accountName}/{spaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
+            _logger.Information("Processed space: {AccountName}/{SpaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
         }
     }
 }

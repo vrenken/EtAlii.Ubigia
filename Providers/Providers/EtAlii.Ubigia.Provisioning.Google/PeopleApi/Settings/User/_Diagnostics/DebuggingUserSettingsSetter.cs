@@ -16,11 +16,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Set(IGraphSLScriptContext context, string account, UserSettings settings)
         {
-            _logger.Information("Setting PeopleApi {userSettings} for account: {account}", settings, account);
+            _logger.Information("Setting PeopleApi {@UserSettings} for account: {AccountName}", settings, account);
 
             await _decoree.Set(context, account, settings);
 
-            _logger.Information("Finished setting PeopleApi user settings for account: {account}", account);
+            _logger.Information("Finished setting PeopleApi user settings for account: {AccountName}", account);
         }
     }
 }
