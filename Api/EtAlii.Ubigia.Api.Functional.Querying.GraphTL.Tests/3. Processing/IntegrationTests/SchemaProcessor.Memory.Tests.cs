@@ -1,4 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests 
+﻿// We don't want these tests running on the build server.
+#if (UBIGIA_IS_RUNNING_ON_BUILD_AGENT == false)
+
+namespace EtAlii.Ubigia.Api.Functional.Querying.Tests 
 {
     using System;
     using System.Threading.Tasks;
@@ -105,3 +108,5 @@
         }
     }
 }
+
+#endif
