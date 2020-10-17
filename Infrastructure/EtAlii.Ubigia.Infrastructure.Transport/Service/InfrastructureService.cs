@@ -3,9 +3,11 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -55,7 +57,8 @@
             // Fetch the Infrastructure configuration.
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(name, serviceDetails);
+                .Use(name, serviceDetails)
+                .Use(DiagnosticsConfiguration.Default);
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()
