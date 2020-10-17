@@ -3,6 +3,8 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class FabricContextEntriesTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
@@ -19,7 +21,8 @@
         {
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
             var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
+                .Use(connection)
+                .Use(DiagnosticsConfiguration.Default);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

@@ -4,9 +4,11 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.PowerShell.Accounts;
     using EtAlii.Ubigia.PowerShell.Roots;
     using EtAlii.Ubigia.PowerShell.Storages;
+    using EtAlii.xTechnology.Diagnostics;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
     public class SelectSpace : SpaceTargetingCmdlet<Space>
@@ -34,7 +36,8 @@
                 {
                     var connection = await PowerShellClient.Current.ManagementConnection.OpenSpace(TargetSpace.AccountId, TargetSpace.Id);
                     var fabricContextConfiguration = new FabricContextConfiguration()
-                        .Use(connection);
+                        .Use(connection)
+                        .Use(DiagnosticsConfiguration.Default);
                     PowerShellClient.Current.Fabric = new FabricContextFactory().Create(fabricContextConfiguration);
                     space = PowerShellClient.Current.Fabric.Connection.Space;
                     //WriteDebug($"Using space '{space.Name}' at {TargetStorage.Address}")
