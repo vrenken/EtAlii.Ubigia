@@ -23,11 +23,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Remove="settings_systems_1_variant_1.json" />
-
     <None Remove="settings_systems_1_variant_2.json" />
-
     <None Remove="settings_systems_2_variant_grpc.json" />
-
     <None Remove="settings_systems_2_variant_netcore.json" />
   </ItemGroup>
 
@@ -67,18 +64,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-    </PackageReference>
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
+  
   <ItemGroup>
     <Compile Include="..\..\..\..\UnitTestSettings.cs">
       <Link>UnitTestSettings.cs</Link>
