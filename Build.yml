@@ -43,7 +43,7 @@ jobs:
           projectKey: ${{ variables.sonarQubeProject }}
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
-            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
+            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/TestResults/**/coverage.opencover.xml
             sonar.coverage.exclusions=”**/*.Tests.cs”
 
       - task: DotNetCoreCLI@2
@@ -71,7 +71,7 @@ jobs:
         inputs:
           command: test
           projects: '**/*.Tests.csproj'
-          arguments: '--no-restore --no-build /p:CollectCoverage=true /p:SolutionDir=$(Build.SourcesDirectory) /p:CoverletOutputFormat=opencover -nodeReuse:false -maxCpuCount:8'
+          arguments: '/p:SolutionDir=$(Build.SourcesDirectory) --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
         continueOnError: true
 
       - task: SonarQubeAnalyze@4
