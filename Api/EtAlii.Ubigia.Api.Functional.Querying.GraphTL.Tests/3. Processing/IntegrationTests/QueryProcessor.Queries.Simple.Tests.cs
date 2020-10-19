@@ -8,18 +8,21 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
+    using Xunit.Abstractions;
 
     public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphTLContext _context;
         private readonly QueryingUnitTestContext _testContext;
+        private readonly ITestOutputHelper _testOutputHelper;
         private IDiagnosticsConfiguration _diagnostics;
         private GraphTLQueryContextConfiguration _configuration;
 
-        public SchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext)
+        public SchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
+            _testOutputHelper = testOutputHelper;
         }
 
         public async Task InitializeAsync()
@@ -38,7 +41,7 @@
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
 
-            Console.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
+            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
         public async Task DisposeAsync()
@@ -50,7 +53,7 @@
             _scriptContext = null;
             _context = null;
 
-            Console.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
+            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
         

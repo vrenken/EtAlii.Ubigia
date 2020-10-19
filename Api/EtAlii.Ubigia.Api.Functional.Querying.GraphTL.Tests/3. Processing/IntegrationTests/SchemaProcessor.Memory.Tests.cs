@@ -17,15 +17,17 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
         private IGraphSLScriptContext _scriptContext;
         private IGraphTLContext _context;
         private readonly QueryingUnitTestContext _testContext;
+        private readonly ITestOutputHelper _testOutputHelper;
         private IDiagnosticsConfiguration _diagnostics;
         private GraphTLQueryContextConfiguration _configuration;
 
-        public SchemaProcessorMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper outputHelper)
+        public SchemaProcessorMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
-            // We want to have dotmemory profiling output.
-            DotMemoryUnitTestOutput.SetOutputMethod(outputHelper.WriteLine);
-            
             _testContext = testContext;
+            _testOutputHelper = testOutputHelper;
+
+            // We want to have dotmemory profiling output.
+            DotMemoryUnitTestOutput.SetOutputMethod(_testOutputHelper.WriteLine);
         }
 
         public async Task InitializeAsync()
@@ -44,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
 
-            Console.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
+            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
         public async Task DisposeAsync()
@@ -56,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             _scriptContext = null;
             _context = null;
 
-            Console.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
+            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
         [Fact]

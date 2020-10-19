@@ -51,7 +51,7 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         private async Task TestCleanup()
@@ -67,7 +67,7 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _testOutputHelper.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
