@@ -16,14 +16,17 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
         private IGraphQLQueryContext _queryContext;
         
         private readonly QueryingUnitTestContext _testContext;
+        private readonly ITestOutputHelper _testOutputHelper;
         private GraphQLQueryContextConfiguration _configuration;
 
-        public GraphQLQueryContextMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper outputHelper)
+        public GraphQLQueryContextMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             // We want to have dotmemory profiling output.
-            DotMemoryUnitTestOutput.SetOutputMethod(outputHelper.WriteLine);
+            DotMemoryUnitTestOutput.SetOutputMethod(testOutputHelper.WriteLine);
 
             _testContext = testContext;
+            _testOutputHelper = testOutputHelper;
+            _testOutputHelper = testOutputHelper;
         }
 
         public async Task InitializeAsync()
@@ -41,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
-            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public async Task DisposeAsync()
@@ -53,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             _scriptContext = null;
             _queryContext = null;
 
-            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _testOutputHelper.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]

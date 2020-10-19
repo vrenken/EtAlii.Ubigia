@@ -11,8 +11,8 @@
             // Arrange.
             var random = new Random();
             var blob = new ContentDefinition();
-            var isComplete = true;
             var availableParts = new[] { (ulong)random.Next(0, int.MaxValue) };
+            var isComplete = availableParts.Length > 0;
 
             // Act.
             var summary = BlobSummary.Create(isComplete, blob, availableParts);
@@ -28,8 +28,8 @@
             // Arrange.
             var random = new Random();
             var parts = (ulong)random.Next(0, int.MaxValue);
-            var isComplete = true;
             var availableParts = new[] { (ulong)random.Next(0, int.MaxValue) };
+            var isComplete = availableParts.Length > 0;
 
             // Act.
             var summary = BlobSummary.Create(isComplete, parts, availableParts);
