@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.xTechnology.Diagnostics
 {
     using System;
+    using System.Reflection;
     using Serilog;
     using Serilog.Events;
 
@@ -16,6 +17,8 @@
 
         static DiagnosticsConfiguration()
         {
+            var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
+            
             Update(loggerConfiguration =>
                 loggerConfiguration.MinimumLevel.Verbose()
                     .Enrich.FromLogContext()
@@ -25,8 +28,12 @@
                     .Enrich.WithProcessId()
                     .Enrich.WithMachineName()
                     .Enrich.WithEnvironmentUserName()
-                    .Enrich.WithAssemblyName()
-                    .Enrich.WithAssemblyVersion()
+                    // These ones do not give elegant results during unit tests.
+                    // .Enrich.WithAssemblyName()  
+                    // .Enrich.WithAssemblyVersion()
+                    // Let's do it ourselves.
+                    .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
+                    .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                     .Enrich.WithMemoryUsage()
                     .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough  
                     .WriteTo.Async(writeTo =>
