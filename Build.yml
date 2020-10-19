@@ -72,6 +72,7 @@ jobs:
           command: test
           projects: |
             **/*.EtAlii.Ubigia.Api.Transport.WebApi.csproj
+            **/*.EtAlii.Ubigia.Api.Fabric.WebApi.Tests.csproj
             !**/*.Tests.csproj
             !**/*.WebApi.Tests.csproj
           arguments: '/p:SolutionDir=$(Build.SourcesDirectory) --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
