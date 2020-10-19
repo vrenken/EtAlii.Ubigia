@@ -107,7 +107,7 @@
                 Assert.NotEqual(Identifier.Empty, entries[i].Id);
             }
             var duration = TimeSpan.FromTicks(endTicks - startTicks).TotalSeconds;
-            Assert.True(duration < 2d, $"{count} entry perparations took: {duration} seconds");
+            Assert.True(duration < 2d, $"{count} entry preparations took: {duration} seconds");
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

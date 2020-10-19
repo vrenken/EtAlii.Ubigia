@@ -83,8 +83,8 @@
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
             var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);
-            var contentdefinition = _testContext.TestContentDefinitionFactory.Create(datas);
-            await _fabric.Content.StoreDefinition(entry.Id, contentdefinition);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(datas);
+            await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
             var content = _testContext.TestContentFactory.Create(3);
             var contentPartFirst = _testContext.TestContentFactory.CreatePart(datas[0]);
             var contentPartSecond = _testContext.TestContentFactory.CreatePart(datas[1], 1);
