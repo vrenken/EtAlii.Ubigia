@@ -24,11 +24,10 @@
             var configuration = new LogicalContextConfiguration();
 
             // Act.
-            using (var context = new LogicalContextFactory().Create(configuration))
-            {
-                // Assert.
-                Assert.NotNull(context);
-            }
+            using var context = new LogicalContextFactory().Create(configuration);
+
+            // Assert.
+            Assert.NotNull(context);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
