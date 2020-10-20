@@ -27,18 +27,21 @@ namespace EtAlii.Ubigia.Api.Logical
                 var isLast = i == graphPath.Length - 1;
                 foreach (var identifier in previousResult)
                 {
-                    var relatedNodes = await traverser.Traverse(currentGraphPathPart, identifier, context, scope);
+                    var relatedNodes = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
 
                     if (isLast)
                     {
-                        foreach (var relatedNode in relatedNodes)
+                        await foreach (var relatedNode in relatedNodes)
                         {
                             finalOutput.OnNext(relatedNode);
                         }
                     }
                     else
                     {
-                        iterationResult.AddRange(relatedNodes);
+                        await foreach (var relatedNode in relatedNodes)
+                        {
+                            iterationResult.Add(relatedNode);
+                        }
                     }
                 }
                 if (!isLast)

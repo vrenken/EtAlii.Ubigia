@@ -50,11 +50,9 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            var result = new List<Identifier>();
-
-            var limit  = ((GraphTraversingWildcard)part).Limit;
+            var limit = ((GraphTraversingWildcard)part).Limit;
             if (limit == 0)
             {
                 throw new NotSupportedException("not-limited wildcard traversal is not yet supported: The Traversers archictecture needs to be changed to allow for this.");
@@ -64,11 +62,15 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 throw new GraphTraversalException("Wildcard traversal cannot be done at the root of a graph");
             }
-            else
+
+            var result = new List<Identifier>();
+            await TraverseChildren(result, start, context, scope, limit); // EntryRelation.Child, 
+            var results = result.Distinct();
+            
+            foreach (var item in results)
             {
-                await TraverseChildren(result, start, context, scope, limit); // EntryRelation.Child, 
+                yield return item;
             }
-            return result.Distinct();
         }
 
         private async Task TraverseChildren(
@@ -79,15 +81,21 @@ namespace EtAlii.Ubigia.Api.Logical
             //EntryRelation entryRelation, 
             int limit)
         {
-            start = (await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope)).SingleOrDefault();
+            var items = new List<Identifier>();
+            var results = _graphPathFinalRelationTraverser.Traverse(null, start, context, scope);
+            await foreach (var item in results)
+            {
+                items.Add(item);
+            }
+            
+            start = items.SingleOrDefault();
             result.Add(start);
 
             if (limit > 1)
             {
-                var subItems = (await _graphPathChildrenRelationTraverser.Traverse(null, start, context, scope))
-                    .ToArray();
+                var subItems = _graphPathChildrenRelationTraverser.Traverse(null, start, context, scope);
 
-                foreach (var subItem in subItems)
+                await foreach (var subItem in subItems)
                 {
                     await TraverseChildren(result, subItem, context, scope, limit - 1); // , entryRelation
                 }

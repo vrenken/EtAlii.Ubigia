@@ -19,11 +19,11 @@
                 var currentGraphPathPart = graphPath.First();
                 var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart);
 
-                var relatedNodes = await traverser.Traverse(currentGraphPathPart, current, context, scope);
+                var relatedNodes = traverser.Traverse(currentGraphPathPart, current, context, scope);
                 var subPathParts = graphPath.Skip(1).ToArray();
                 if (subPathParts.Any())
                 {
-                    foreach (var relatedNode in relatedNodes)
+                    await foreach (var relatedNode in relatedNodes)
                     {
                         var subGraphPath = new GraphPath(subPathParts);
                         await Traverse(subGraphPath, relatedNode, context, scope, finalOutput);
@@ -31,7 +31,7 @@
                 }
                 else
                 {
-                    foreach (var relatedNode in relatedNodes)
+                    await foreach (var relatedNode in relatedNodes)
                     {
                         finalOutput.OnNext(relatedNode);
                     }

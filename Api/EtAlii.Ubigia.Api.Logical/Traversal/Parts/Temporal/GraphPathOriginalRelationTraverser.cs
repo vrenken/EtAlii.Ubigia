@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     internal class GraphPathOriginalRelationTraverser : IGraphPathOriginalRelationTraverser
     {
@@ -28,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             Relation downDate;
             Identifier previousResult;
@@ -41,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             while (downDate != Relation.None);
 
-            return new[] { previousResult };
+            yield return previousResult;
         }
     }
 }

@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
-    using System.Threading.Tasks;
 
     internal class GraphPathConditionalTraverser : IGraphPathConditionalTraverser
     {
@@ -34,10 +33,8 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            var result = new List<Identifier>();
-
             var predicate = ((GraphCondition)part).Predicate;
 
             if (start == Identifier.Empty)
@@ -52,11 +49,10 @@ namespace EtAlii.Ubigia.Api.Logical
                     var shouldAdd = predicate(properties);
                     if (shouldAdd)
                     {
-                        result.Add(start);
+                        yield return start;
                     }
                 }
             }
-            return result;
         }
 
         public string WildcardToRegex(string pattern)

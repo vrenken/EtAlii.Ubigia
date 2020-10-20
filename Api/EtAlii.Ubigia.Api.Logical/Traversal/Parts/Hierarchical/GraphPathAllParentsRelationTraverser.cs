@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             var result = new List<Identifier>();
             var path = new List<IReadOnlyEntry>();
@@ -82,7 +82,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
             }
 
-            return result.AsEnumerable();
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
 
 

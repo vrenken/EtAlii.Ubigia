@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     internal class GraphPathWildcardTraverser : IGraphPathWildcardTraverser
     {
@@ -32,10 +31,8 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            var result = new List<Identifier>();
-
             var pattern = ((GraphWildcard)part).Pattern;
 
             var regex = scope.GetWildCardRegex(pattern);
@@ -49,10 +46,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 var entry = await context.Entries.Get(start, scope);
                 if (regex.IsMatch(entry.Type))
                 {
-                    result.Add(entry.Id);
+                    yield return entry.Id;
                 }
             }
-            return result;
         }
 
     }
