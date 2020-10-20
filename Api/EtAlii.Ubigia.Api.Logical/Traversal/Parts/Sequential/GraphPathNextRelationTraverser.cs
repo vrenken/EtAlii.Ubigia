@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     internal class GraphPathNextRelationTraverser : IGraphPathNextRelationTraverser
     {
@@ -12,7 +11,8 @@ namespace EtAlii.Ubigia.Api.Logical
                     onError: e => parameters.Output.OnError(e),
                     onNext: async start =>
                     {
-                        var entries = await parameters.Context.Entries.GetRelated(start, EntryRelation.Next, parameters.Scope);
+                        var entries = await parameters.Context.Entries
+                            .GetRelated(start, EntryRelation.Next, parameters.Scope);
                         var results = entries
                             .Select(e => e.Id)
                             .AsEnumerable();
@@ -25,13 +25,17 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             var entries = await context.Entries
                 .GetRelated(start, EntryRelation.Next, scope);
-            return entries
+            var result = entries
                 .Select(e => e.Id)
                 .AsEnumerable();
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

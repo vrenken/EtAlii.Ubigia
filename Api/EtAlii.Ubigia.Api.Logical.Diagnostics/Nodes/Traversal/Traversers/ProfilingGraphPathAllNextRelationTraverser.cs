@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingGraphPathAllNextRelationTraverser : IGraphPathAllNextRelationTraverser
@@ -25,18 +24,19 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler.End(profile);
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Traversing relation: ALL NEXT");
             profile.Part = part;
             profile.Start = start;
 
-            var result = await _decoree.Traverse(part, start, context, scope);
+            var result = _decoree.Traverse(part, start, context, scope);
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
 
             _profiler.End(profile);
-
-            return result;
-
         }
     }
 }

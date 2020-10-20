@@ -33,11 +33,18 @@ namespace EtAlii.Ubigia.Api.Logical
 
 
                 var resultCount = previousResult.Length;
-                var subResults = new IEnumerable<Identifier>[resultCount];
+                var subResults = new List<Identifier>[resultCount];
 
                 await Parallel.ForAsync(previousResult, _maxDegreeOfParallelism, async (identifier, index) =>
                 {
-                    subResults[index] = await traverser.Traverse(currentGraphPathPart, identifier, context, scope);
+                    var list = new List<Identifier>();
+                    
+                    var results = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
+                    await foreach (var result in results)
+                    {
+                        list.Add(result);                        
+                    }
+                    subResults[index] = list; 
                 });
 
                 var iterationResult = subResults.SelectMany(sr => sr);

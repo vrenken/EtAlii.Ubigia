@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     internal class GraphPathDowndateRelationTraverser : IGraphPathDowndateRelationTraverser
     {
@@ -25,13 +24,18 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             var entries = await context.Entries
                 .GetRelated(start, EntryRelation.Downdate, scope);
-            return entries
+
+            var result = entries
                 .Select(e => e.Id)
-                .AsEnumerable();
+                .AsEnumerable(); 
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

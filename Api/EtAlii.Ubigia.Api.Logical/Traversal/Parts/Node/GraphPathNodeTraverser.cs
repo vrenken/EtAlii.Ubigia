@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     internal class GraphPathNodeTraverser : IGraphPathNodeTraverser
     {
@@ -31,26 +30,23 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            var result = new List<Identifier>();
-
             var name = ((GraphNode) part).Name;
 
             if (start == Identifier.Empty)
             {
                 var root = await context.Roots.Get(name);
-                result.Add(root.Identifier);
+                yield return root.Identifier; 
             }
             else
             {
                 var entry = await context.Entries.Get(start, scope);
                 if (entry.Type == name)
                 {
-                    result.Add(entry.Id);
+                    yield return entry.Id; 
                 }
             }
-            return result;
         }
     }
 }
