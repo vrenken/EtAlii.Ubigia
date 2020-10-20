@@ -75,8 +75,9 @@ jobs:
           # **/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests.csproj
           # **/*.Tests.csproj
           # !**/*.WebApi.Tests.csproj
+          # **/EtAlii.Ubigia.Api.Transport.WebApi.csproj
           projects: |
-            **/EtAlii.Ubigia.Api.Transport.WebApi.csproj
+            **/EtAlii.Ubigia.Api.Functional.Scripting.GraphQL.WebApi.Tests.csproj
           arguments: '/p:SolutionDir=$(Build.SourcesDirectory) --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
         continueOnError: true
 
