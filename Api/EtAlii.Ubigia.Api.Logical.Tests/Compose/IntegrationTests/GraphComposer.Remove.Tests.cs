@@ -48,24 +48,24 @@
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var addUpdatedEntry = (await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope)).SingleOrDefault();
+            var addUpdatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
             Assert.NotNull(addUpdatedEntry);
             Assert.Equal(hierarchy.Last(), addUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var addLinkedEntry = (await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var addLinkedEntry = await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(addLinkedEntry);
             Assert.Equal(EntryType.Add, addLinkedEntry.Type);
-            var addFinalEntry = (await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var addFinalEntry = await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(addFinalEntry);
             Assert.Equal(item, addFinalEntry.Type);
             Assert.Equal(addedEntry.Id, addFinalEntry.Id);
 
-            var removeUpdatedEntry = (await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Update, scope)).SingleOrDefault();
+            var removeUpdatedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
             Assert.NotNull(removeUpdatedEntry);
             Assert.Equal(hierarchy.Last(), removeUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var removeLinkedEntry = (await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var removeLinkedEntry = await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(removeLinkedEntry);
             Assert.Equal(EntryType.Remove, removeLinkedEntry.Type);
-            var removeFinalEntry = (await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var removeFinalEntry = await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(removeFinalEntry);
             Assert.Equal(item, removeFinalEntry.Type);
             Assert.Equal(removedEntry.Id, removeFinalEntry.Id);

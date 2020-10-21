@@ -18,9 +18,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IReadOnlyEntry> TryAddChild(Identifier location, ExecutionScope scope)
         {
-            var entries = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
-            var entry = entries
-                .SingleOrDefault(); // We do not support multiple empty childs yet.
+            var entry = await _fabric.Entries
+                .GetRelated(location, EntryRelation.Child, scope)
+                .SingleOrDefaultAsync(); // We do not support multiple empty childs yet.
 
             if (entry != null)
             {
@@ -46,23 +46,22 @@ namespace EtAlii.Ubigia.Api.Logical
 
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, Identifier childId, ExecutionScope scope)
         {
-            var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
-            var child = related.SingleOrDefault(e => e.Id == childId);
+            var child = await _fabric.Entries
+                .GetRelated(location, EntryRelation.Child, scope)
+                .SingleOrDefaultAsync(e => e.Id == childId);
             if (child != null)
             {
                 var message = $"Unable to add child '{childId}' to entry: {location}";
                 throw new GraphComposeException(message);
             }
-            else
-            {
-                var originalChild = await _fabric.Entries.Get(childId, scope);
-                var updatedChild = await _fabric.Entries.Prepare();
-                updatedChild.Parent = Relation.NewRelation(location);
-                updatedChild.Type = originalChild.Type;
-                updatedChild.Tag = originalChild.Tag;
-                updatedChild.Downdate = Relation.NewRelation(originalChild.Id);
-                child = await _fabric.Entries.Change(updatedChild, scope);
-            }
+
+            var originalChild = await _fabric.Entries.Get(childId, scope);
+            var updatedChild = await _fabric.Entries.Prepare();
+            updatedChild.Parent = Relation.NewRelation(location);
+            updatedChild.Type = originalChild.Type;
+            updatedChild.Tag = originalChild.Tag;
+            updatedChild.Downdate = Relation.NewRelation(originalChild.Id);
+            child = await _fabric.Entries.Change(updatedChild, scope);
             return child;
         }
 
@@ -75,22 +74,20 @@ namespace EtAlii.Ubigia.Api.Logical
 
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, string name, ExecutionScope scope)
         {
-            var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
-
-            var entry = related.SingleOrDefault(e => e.Type == name);
+            var entry = await _fabric.Entries
+                .GetRelated(location, EntryRelation.Child, scope)
+                .SingleOrDefaultAsync(e => e.Type == name);
 
             if (entry != null)
             {
                 var message = $"Unable to add child '{name}' to entry: {location}";
                 throw new GraphComposeException(message);
             }
-            else
-            { 
-                var newEntry = await _fabric.Entries.Prepare();
-                newEntry.Parent = Relation.NewRelation(location);
-                newEntry.Type = name;
-                entry = await _fabric.Entries.Change(newEntry, scope);
-            }
+
+            var newEntry = await _fabric.Entries.Prepare();
+            newEntry.Parent = Relation.NewRelation(location);
+            newEntry.Type = name;
+            entry = await _fabric.Entries.Change(newEntry, scope);
             return entry;
 
         }

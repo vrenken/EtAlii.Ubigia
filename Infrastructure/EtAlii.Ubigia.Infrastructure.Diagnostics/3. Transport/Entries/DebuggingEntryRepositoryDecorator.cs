@@ -37,16 +37,15 @@
             return entry;
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var entries = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
 
-            foreach(var entry in entries)
+            await foreach(var entry in entries)
             {
                 EnsureUniqueComponents(entry);
+                yield return entry;
             }
-
-            return entries;
         }
 
         public Entry Prepare(Guid spaceId)

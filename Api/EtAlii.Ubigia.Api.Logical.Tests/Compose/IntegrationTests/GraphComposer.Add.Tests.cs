@@ -33,13 +33,13 @@
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var updatedEntry = (await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope)).SingleOrDefault();
+            var updatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
             Assert.NotNull(updatedEntry);
             Assert.False(string.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
-            var linkedEntry = (await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var linkedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
-            var finalEntry = (await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(finalEntry);
             Assert.Equal(itemToAdd, finalEntry.Type);
             Assert.Equal(addedEntry.Id, finalEntry.Id);
@@ -76,16 +76,16 @@
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var updatedFirstEntry = (await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope)).SingleOrDefault();
+            var updatedFirstEntry = await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
             Assert.NotNull(updatedFirstEntry);
             Assert.False(string.IsNullOrEmpty(updatedFirstEntry.Type)); // TODO: We somehow should be able to make this value empty.
-            var linkedEntry = (await fabric.Entries.GetRelated(updatedFirstEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var linkedEntry = await fabric.Entries.GetRelated(updatedFirstEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
-            var finalEntry = (await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
+            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
             Assert.NotNull(finalEntry);
             Assert.Equal(addedEntry.Id, finalEntry.Id);
-            var updatedSecondEntry = (await fabric.Entries.GetRelated(secondEntry.Id, EntryRelation.Update, scope)).SingleOrDefault();
+            var updatedSecondEntry = await fabric.Entries.GetRelated(secondEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
             Assert.NotNull(updatedSecondEntry);
         }
     }

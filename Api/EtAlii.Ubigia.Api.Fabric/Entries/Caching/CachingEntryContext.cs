@@ -54,9 +54,9 @@
             return await _getHandler.Handle(identifiers, scope);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
         {
-            return await _getRelatedHandler.Handle(identifier, relations, scope);
+            return _getRelatedHandler.Handle(identifier, relations, scope);
         }
 
         public event Action<Identifier> Prepared = delegate { };

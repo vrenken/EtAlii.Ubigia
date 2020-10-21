@@ -53,17 +53,20 @@
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation,
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation,
             ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
+            return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
+        }
+
+        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier,EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        {
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.RelatedEntries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation, entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
+            var result = await Connection.Client.Get<IEnumerable<Entry>>(address);
+            foreach (var item in result)
             {
-                var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.RelatedEntries,
-                    UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation,
-                    entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
-                var result = await Connection.Client.Get<IEnumerable<Entry>>(address);
-                return result;
-            });
+                yield return item;
+            }
         }
     }
 }

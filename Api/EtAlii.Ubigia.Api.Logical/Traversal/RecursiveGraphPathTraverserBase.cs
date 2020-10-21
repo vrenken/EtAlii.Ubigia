@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     internal abstract class RecursiveGraphPathTraverserBase  
     {
@@ -17,8 +16,8 @@ namespace EtAlii.Ubigia.Api.Logical
                             throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
                         }
 
-                        var results = await TraverseRecursive(start, parameters.Context, parameters.Scope);
-                        foreach (var result in results.Distinct())
+                        var results = TraverseRecursive(start, parameters.Context, parameters.Scope).Distinct();
+                        await foreach (var result in results)
                         {
                             parameters.Output.OnNext(result);
                         }
@@ -33,35 +32,35 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
             }
 
-            var result = await TraverseRecursive(start, context, scope);
-            result = result.Distinct();
-            foreach (var item in result)
+            var result = TraverseRecursive(start, context, scope).Distinct();
+            await foreach (var item in result)
             {
                 yield return item;
             }
         }
 
-        protected abstract Task<IEnumerable<Identifier>> GetNextRecursion(
+        protected abstract IAsyncEnumerable<Identifier> GetNextRecursion(
             Identifier start, 
             ITraversalContext context,
             ExecutionScope scope); 
 
-        private async Task<IEnumerable<Identifier>> TraverseRecursive(
+        private async IAsyncEnumerable<Identifier> TraverseRecursive(
             Identifier start, 
             ITraversalContext context,
-            ExecutionScope scope) 
+            ExecutionScope scope)
         {
-            var result = new List<Identifier>();
-            result.Add(start);
-            var subItems = (await GetNextRecursion(start, context, scope))
-                .ToArray();
+            yield return start;
 
-            foreach (var subItem in subItems)
+            var subItems = GetNextRecursion(start, context, scope);
+
+            await foreach (var subItem in subItems)
             {
-                var subResults = await TraverseRecursive(subItem, context, scope);
-                result.AddRange(subResults);
+                var subResults = TraverseRecursive(subItem, context, scope);
+                await foreach (var subResult in subResults)
+                {
+                    yield return subResult;
+                }
             }
-            return result;
         }
     }
 }

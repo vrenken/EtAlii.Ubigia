@@ -19,9 +19,12 @@
             return _logicalContext.Entries.Get(identifier, entryRelations);
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
-            return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
+            return _logicalContext.Entries
+                .GetRelated(identifier, entriesWithRelation, entryRelations)
+                .ToAsyncEnumerable();
+            // TODO: AsyncEnumerable
         }
 
 

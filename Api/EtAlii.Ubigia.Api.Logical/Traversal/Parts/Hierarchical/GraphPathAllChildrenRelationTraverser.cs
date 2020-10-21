@@ -22,7 +22,9 @@ namespace EtAlii.Ubigia.Api.Logical
                         do
                         {
                             path.Add(entry);
-                            var entries = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope);
+                            var entries = await parameters.Context.Entries
+                                .GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope)
+                                .ToArrayAsync();
                             if (entries.Multiple())
                             {
                                 throw new NotSupportedException("The GraphPathAllChildrenRelationTraverser is not able to process splitted temporal paths.");
@@ -35,8 +37,8 @@ namespace EtAlii.Ubigia.Api.Logical
                         {
                             entry = path[i - 1];
 
-                            var children = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Child, parameters.Scope);
-                            foreach (var child in children)
+                            var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Child, parameters.Scope);
+                            await foreach (var child in children)
                             {
                                 await Update(results, child, parameters.Context, parameters.Scope);
                             }
@@ -61,7 +63,9 @@ namespace EtAlii.Ubigia.Api.Logical
             do
             {
                 path.Add(entry);
-                var entries = await context.Entries.GetRelated(entry.Id, EntryRelation.Downdate, scope);
+                var entries = await context.Entries
+                    .GetRelated(entry.Id, EntryRelation.Downdate, scope)
+                    .ToArrayAsync();
                 if (entries.Multiple())
                 {
                     throw new NotSupportedException("The GraphPathAllChildrenRelationTraverser is not able to process splitted temporal paths.");
@@ -74,8 +78,8 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 entry = path[i - 1];
 
-                var children = await context.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
-                foreach (var child in children)
+                var children = context.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
+                await foreach (var child in children) // TODO: AsyncEnumerable - Can't we yield here somehow? 
                 {
                     await Update(result, child, context, scope);
                 }
@@ -116,16 +120,5 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
             }
         }
-
-        //private void Remove(List<Identifier> list, IEnumerable<Relation> relations)
-        //[
-        //    var ids = relations
-        //        .Select(c => c.Id)
-        //        .AsEnumerable()
-        //    var toRemove = ids.SelectMany(id => _context.Fabric.Entries
-        //        .GetRelated(id, EntryRelation.Downdate)
-        //        .Select(c => c.Id))
-        //    list.RemoveRange(toRemove)
-        //]
     }
 }

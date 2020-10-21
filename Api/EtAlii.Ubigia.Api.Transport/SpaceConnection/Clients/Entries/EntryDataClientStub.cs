@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class EntryDataClientStub : IEntryDataClient 
@@ -30,9 +31,9 @@
             return Task.FromResult<IEnumerable<IReadOnlyEntry>>(new IReadOnlyEntry[] { });
         }
 
-        public Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+            return AsyncEnumerable.Empty<IReadOnlyEntry>();
         }
 
         public Task Connect(ISpaceConnection spaceConnection)

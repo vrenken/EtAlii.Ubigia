@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -10,6 +11,9 @@
     /// </summary>
     public class Cache
     {
+        private readonly SemaphoreSlim _propertiesSemaphore = new SemaphoreSlim(1,1);
+        private readonly SemaphoreSlim _entriesSemaphore = new SemaphoreSlim(1,1);
+        private readonly SemaphoreSlim _relatedEntriesSemaphore = new SemaphoreSlim(1,1);
         private readonly bool _cacheEnabled;
         private readonly IDictionary<Identifier, IReadOnlyEntry> _entries;
 
@@ -45,23 +49,19 @@
 
             if (_cacheEnabled)
             {
-                bool hasValue;
-                lock (_properties)
-                {
-                    hasValue = _properties.TryGetValue(identifier, out result);
-                }
+                await _propertiesSemaphore.WaitAsync();
+                
+                var hasValue = _properties.TryGetValue(identifier, out result);
+                
+                _propertiesSemaphore.Release();
+                
                 if(!hasValue)
                 {
-                    lock (_properties)
-                    {
-                        var task = getter();
-                        task.Wait();
-                        if (task.IsFaulted)
-                        {
-                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch properties from cache");
-                        }
-                        _properties[identifier] = result = task.Result;
-                    }
+                    await _propertiesSemaphore.WaitAsync();
+
+                    _properties[identifier] = result = await getter();
+                    
+                    _propertiesSemaphore.Release();
                 }
             }
             else
@@ -85,24 +85,18 @@
 
             if (_cacheEnabled)
             {
-                bool hasValue;
-                lock (_entries)
-                {
-                    // TODO: This cache is not clever enough yet.
-                    hasValue = _entries.TryGetValue(identifier, out result);
-                }
+                await _entriesSemaphore.WaitAsync();
+
+                // TODO: This cache is not clever enough yet.
+                var hasValue = _entries.TryGetValue(identifier, out result);
+
+                _entriesSemaphore.Release();
+                
                 if(!hasValue)
                 {
-                    lock (_entries)
-                    {
-                        var task = getter();
-                        task.Wait();
-                        if (task.IsFaulted)
-                        {
-                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch entry from cache");
-                        }
-                        _entries[identifier] = result = task.Result;
-                    }
+                    await _entriesSemaphore.WaitAsync();
+                    _entries[identifier] = result = await getter();
+                    _entriesSemaphore.Release();
                 }
             }
             else
@@ -121,41 +115,52 @@
         /// <param name="getter"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelatedEntries(Identifier identifier, EntryRelation relation, Func<Task<IEnumerable<IReadOnlyEntry>>> getter)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelatedEntries(Identifier identifier, EntryRelation relation, Func<IAsyncEnumerable<IReadOnlyEntry>> getter)
         {
-            IEnumerable<IReadOnlyEntry> result;
-
             if (_cacheEnabled)
             {
                 var cacheId = new Tuple<Identifier, EntryRelation>(identifier, relation);
 
-                bool hasValue;
-                lock (_relatedEntries)
+                await _relatedEntriesSemaphore.WaitAsync();
+                
+                // TODO: This cache is not clever enough yet.
+                var hasValue = _relatedEntries.TryGetValue(cacheId, out var cachedResult);
+
+                _relatedEntriesSemaphore.Release();
+
+                if (hasValue)
                 {
-                    // TODO: This cache is not clever enough yet.
-                    hasValue = _relatedEntries.TryGetValue(cacheId, out result);
-                }
-                if (!hasValue)
-                {
-                    lock (_relatedEntries)
+                    foreach (var item in cachedResult)
                     {
-                        var task = getter();
-                        task.Wait();
-                        if (task.IsFaulted)
-                        {
-                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch related entries from cache");
-                        }
-                        _relatedEntries[cacheId] = result = task.Result;
+                        yield return item;
+                    }
+                }
+                else
+                {
+                    await _relatedEntriesSemaphore.WaitAsync();
+
+                    var list = new List<IReadOnlyEntry>();
+                    var result = getter();
+
+                    await foreach (var item in result)
+                    {
+                        list.Add(item);
+                        yield return item;
                     }
 
+                    _relatedEntries[cacheId] = list; 
+
+                    _relatedEntriesSemaphore.Release();
                 }
             }
             else
             {
-                result = await getter();
+                var result = getter();
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
-
-            return result;
         }
 
         /// <summary>
@@ -164,32 +169,32 @@
         /// <param name="identifier"></param>
         public void InvalidateEntry(Identifier identifier)
         {
-            lock (_entries)
+            _entriesSemaphore.Wait();
+            _relatedEntriesSemaphore.Wait();
+
+            _entries.Remove(identifier);
+            
+            var itemsToRemove = new List<Tuple<Identifier, EntryRelation>>();
+
+            var items = _relatedEntries
+                .Where(r => r.Key.Item1 == identifier)
+                .Select(r => r.Key)
+                .ToArray();
+            itemsToRemove.AddRange(items);
+
+            items = _relatedEntries
+                .Where(r => r.Value.Any(e => e.Id == identifier))
+                .Select(r => r.Key)
+                .ToArray();
+            itemsToRemove.AddRange(items);
+
+            foreach (var itemToRemove in itemsToRemove)
             {
-                _entries.Remove(identifier);
+                _relatedEntries.Remove(itemToRemove);
             }
-
-            lock (_relatedEntries)
-            {
-                var itemsToRemove = new List<Tuple<Identifier, EntryRelation>>();
-
-                var items = _relatedEntries
-                    .Where(r => r.Key.Item1 == identifier)
-                    .Select(r => r.Key)
-                    .ToArray();
-                itemsToRemove.AddRange(items);
-
-                items = _relatedEntries
-                    .Where(r => r.Value.Any(e => e.Id == identifier))
-                    .Select(r => r.Key)
-                    .ToArray();
-                itemsToRemove.AddRange(items);
-
-                foreach (var itemToRemove in itemsToRemove)
-                {
-                    _relatedEntries.Remove(itemToRemove);
-                }
-            }
+            
+            _entriesSemaphore.Release();
+            _relatedEntriesSemaphore.Release();
         }
     }
 }

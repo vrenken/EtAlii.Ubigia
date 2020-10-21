@@ -37,8 +37,9 @@
         public async Task<Tuple<IReadOnlyEntry, IReadOnlyEntry>> GetLink(string itemName, IReadOnlyEntry entry, ExecutionScope scope)
         {
             IReadOnlyEntry result = null;
-            var entries = await _fabric.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
-            var linkEntry = entries.SingleOrDefault();
+            var linkEntry = await _fabric.Entries
+                .GetRelated(entry.Id, EntryRelation.Child, scope)
+                .SingleOrDefaultAsync();
             if (linkEntry != null)
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -54,8 +55,9 @@
         public async Task<Tuple<IReadOnlyEntry, IReadOnlyEntry>> GetLink(Identifier item, IReadOnlyEntry entry, ExecutionScope scope)
         {
             IReadOnlyEntry result = null;
-            var entries = await _fabric.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
-            var linkEntry = entries.SingleOrDefault();
+            var linkEntry = await _fabric.Entries
+                .GetRelated(entry.Id, EntryRelation.Child, scope)
+                .SingleOrDefaultAsync();
             if (linkEntry != null)
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>

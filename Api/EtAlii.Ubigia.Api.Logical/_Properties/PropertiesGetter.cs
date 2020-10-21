@@ -25,19 +25,20 @@
                     result = await _fabric.Properties.Retrieve(identifier, scope);
                     if (result == null)
                     {
-                        var entries = await _fabric.Entries.GetRelated(identifier, EntryRelation.Downdate, scope);
+                        var entries = await _fabric.Entries
+                            .GetRelated(identifier, EntryRelation.Downdate, scope)
+                            .ToArrayAsync();
                         if (entries.Multiple())
                         {
                             throw new NotSupportedException("The PropertiesGetter cannot handle multiple downdates.");
                         }
-                        else if (!entries.Any())
+
+                        if (!entries.Any())
                         {
                             break;
                         }
-                        else
-                        {
-                            identifier = entries.Select(e => e.Id).Single();
-                        }
+
+                        identifier = entries.Select(e => e.Id).Single();
                     }
                 }
             } while (result == null);

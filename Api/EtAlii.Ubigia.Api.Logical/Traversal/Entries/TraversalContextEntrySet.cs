@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
 
@@ -68,28 +69,33 @@ namespace EtAlii.Ubigia.Api.Logical
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope)
         {
             var key = new Tuple<Identifier, EntryRelation>(identifier, relation);
-            IEnumerable<IReadOnlyEntry> result;
 
             if (_cachingEnabled)
             {
-                if (!_cacheRelated.TryGetValue(key, out result))
+                if (!_cacheRelated.TryGetValue(key, out var result))
                 {
-                    _cacheRelated[key] = result = await _context.Entries.GetRelated(identifier, relation, scope);
+                    _cacheRelated[key] = result = await _context.Entries
+                        .GetRelated(identifier, relation, scope)
+                        .ToArrayAsync();
                 }
 
                 foreach (var entry in result)
                 {
                     _cache[entry.Id] = entry;
+                    yield return entry;
                 }
             }
             else
             {
-                result = await _context.Entries.GetRelated(identifier, relation, scope);
+                var result = _context.Entries.GetRelated(identifier, relation, scope);
+                await foreach (var entry in result)
+                {
+                    yield return entry;
+                }
             }
-            return result;
         }
     }
 }
