@@ -101,19 +101,21 @@
             return entries;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             var message = "Getting related entries";
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var entries = await _client.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
+            var result = _client.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
+            await foreach (var item in result)
+            {
+                yield return item; 
+            }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got related entries (Relations: {Relations} Duration: {Duration}ms)";
             _logger.Information(message, entriesWithRelation, duration);
-
-            return entries;
 
         }
     }

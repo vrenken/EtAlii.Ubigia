@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(
             Identifier entryIdentifier, 
             EntryRelation entriesWithRelation, 
             ExecutionScope scope,
@@ -122,12 +122,14 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntriesWithRelation = entriesWithRelation;
             profile.EntryRelations = entryRelations;
 
-            var result = await _decoree.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
+            var result = _decoree.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
+            await foreach (var item in result)
+            {
+                yield return item; 
+            }
 
             profile.Result = result;
             _profiler.End(profile);
-
-            return result;
         }
     }
 }

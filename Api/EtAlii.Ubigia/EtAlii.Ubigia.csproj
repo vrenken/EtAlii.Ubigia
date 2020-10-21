@@ -12,4 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" Version="4.1.1" />
+  </ItemGroup>
 </Project>

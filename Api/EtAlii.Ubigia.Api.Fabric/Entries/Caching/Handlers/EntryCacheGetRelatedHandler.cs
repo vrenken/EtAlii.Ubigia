@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
     using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     internal class EntryCacheGetRelatedHandler : IEntryCacheGetRelatedHandler
     {
@@ -19,10 +18,10 @@
             _contextProvider = contextProvider;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Handle(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelation relations, ExecutionScope scope)
         {
 
-            var result = new List<IReadOnlyEntry>();
+            IAsyncEnumerable<IReadOnlyEntry> result;
 
             var entry = _cacheHelper.Get(identifier);
             if (entry == null)
@@ -36,56 +35,99 @@
 
             if (relations.HasFlag(EntryRelation.Child))
             {
-                await Add(entry.Children, result, scope);
-                await Add(entry.Children2, result, scope);
+                result = Add(entry.Children, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
+                result = Add(entry.Children2, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
+
             }
             if (relations.HasFlag(EntryRelation.Downdate))
             {
-                await Add(entry.Downdate, result, scope);
+                result = Add(entry.Downdate, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Index))
             {
-                await Add(entry.Indexes, result, scope);
+                result = Add(entry.Indexes, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Indexed))
             {
-                await Add(entry.Indexed, result, scope);
+                result = Add(entry.Indexed, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Next))
             {
-                await Add(entry.Next, result, scope);
+                result = Add(entry.Next, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Parent))
             {
-                await Add(entry.Parent, result, scope);
-                await Add(entry.Parent2, result, scope);
+                result = Add(entry.Parent, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
+                result = Add(entry.Parent2, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Previous))
             {
-                await Add(entry.Previous, result, scope);
+                result = Add(entry.Previous, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
             if (relations.HasFlag(EntryRelation.Update))
             {
-                await Add(entry.Updates, result, scope);
+                result = Add(entry.Updates, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
-            
-            return result;
         }
 
-        private async Task Add(IEnumerable<Relation> relations, List<IReadOnlyEntry> result, ExecutionScope scope)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope)
         {
             foreach(var relation in relations)
             {
-                await Add(relation, result, scope);
+                var result = Add(relation, scope);
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
         }
 
-        private async Task Add(Relation relation, List<IReadOnlyEntry> result, ExecutionScope scope)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope)
         {
             if (relation.Id != Identifier.Empty)
             {
                 var entry = await _entryGetHandler.Handle(relation.Id, scope);
-                result.Add(entry);
+                yield return entry;
             }
         }
     }

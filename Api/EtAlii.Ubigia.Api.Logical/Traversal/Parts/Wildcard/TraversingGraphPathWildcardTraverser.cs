@@ -81,14 +81,7 @@ namespace EtAlii.Ubigia.Api.Logical
             //EntryRelation entryRelation, 
             int limit)
         {
-            var items = new List<Identifier>();
-            var results = _graphPathFinalRelationTraverser.Traverse(null, start, context, scope);
-            await foreach (var item in results)
-            {
-                items.Add(item);
-            }
-            
-            start = items.SingleOrDefault();
+            start = await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope).SingleOrDefaultAsync();
             result.Add(start);
 
             if (limit > 1)

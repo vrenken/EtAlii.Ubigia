@@ -58,12 +58,18 @@
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
+            return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
+        }
+
+        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        {
+            var result = await _invoker.Invoke<IEnumerable<Entry>>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
+            foreach (var item in result)
             {
-                return await _invoker.Invoke<IEnumerable<Entry>>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
-            });
+                yield return item;
+            }
         }
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)

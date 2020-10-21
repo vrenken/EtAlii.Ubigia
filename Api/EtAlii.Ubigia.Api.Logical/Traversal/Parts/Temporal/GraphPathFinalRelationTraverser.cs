@@ -20,8 +20,11 @@ namespace EtAlii.Ubigia.Api.Logical
                             var nextResult = new List<Identifier>();
                             foreach (var result in results)
                             {
-                                var newResults = await parameters.Context.Entries.GetRelated(result, EntryRelation.Update, parameters.Scope);
-                                nextResult.AddRange(newResults.Select(e => e.Id));
+                                var newResults = await parameters.Context.Entries
+                                    .GetRelated(result, EntryRelation.Update, parameters.Scope)
+                                    .Select(e => e.Id)
+                                    .ToArrayAsync();
+                                nextResult.AddRange(newResults);
                             }
                             results = nextResult.ToArray();
                         }
@@ -47,14 +50,19 @@ namespace EtAlii.Ubigia.Api.Logical
                 var nextResult = new List<Identifier>();
                 foreach (var r in result)
                 {
-                    var newResults = await context.Entries.GetRelated(r, EntryRelation.Update, scope);
-                    nextResult.AddRange(newResults.Select(e => e.Id));
+                    var newResults = await context.Entries
+                        .GetRelated(r, EntryRelation.Update, scope)
+                        .Select(e => e.Id)
+                        .ToArrayAsync();
+                    nextResult.AddRange(newResults);
                 }
                 result = nextResult.ToArray();
             }
             while (result.Any());
             
-            foreach (var item in previousResult)
+            // TODO: This feels fishy. Why would we not use the results and only the previous result?
+            // This previous result is only being added once.
+            foreach (var item in previousResult) 
             {
                 yield return item;
             }

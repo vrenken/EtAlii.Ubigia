@@ -45,10 +45,9 @@
             return Task.FromResult<IEnumerable<IReadOnlyEntry>>(result);
         }
 
-        public Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = _infrastructure.Entries.GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
-            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(result);
+            return _infrastructure.Entries.GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
         }
     }
 }

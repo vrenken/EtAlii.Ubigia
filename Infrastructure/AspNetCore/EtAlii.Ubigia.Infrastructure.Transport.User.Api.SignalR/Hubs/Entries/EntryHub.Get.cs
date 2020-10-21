@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public partial class EntryHub
     {
@@ -34,12 +35,14 @@
             return response;
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IEnumerable<Entry>> GetRelated(Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             IEnumerable<Entry> response;
             try
             {
-                response = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
+                response = await _items
+                    .GetRelated(entryId, entriesWithRelation, entryRelations)
+                    .ToArrayAsync();   // TODO: AsyncEnumerable
             }
             catch (Exception e)
             {

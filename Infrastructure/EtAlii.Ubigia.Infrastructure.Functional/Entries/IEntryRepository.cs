@@ -6,7 +6,7 @@
     public interface IEntryRepository
     {
         Entry Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None);
-        IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None);
         IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None);
 
         Entry Prepare(Guid spaceId);

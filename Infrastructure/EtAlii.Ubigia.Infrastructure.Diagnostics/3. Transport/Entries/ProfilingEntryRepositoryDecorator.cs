@@ -28,12 +28,15 @@
             profiler.Register(StoreCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute"); 
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
-            var entries = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
+            var result = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetRelatedCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return entries;
         }
 
         public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)

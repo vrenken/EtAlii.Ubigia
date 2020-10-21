@@ -11,12 +11,10 @@ namespace EtAlii.Ubigia.Api.Logical
                     onError: e => parameters.Output.OnError(e),
                     onNext: async start =>
                     {
-                        var entries = await parameters.Context.Entries
-                            .GetRelated(start, EntryRelation.Downdate, parameters.Scope);
-                        var results = entries
-                            .Select(e => e.Id)
-                            .AsEnumerable();
-                        foreach (var result in results)
+                        var results = parameters.Context.Entries
+                            .GetRelated(start, EntryRelation.Downdate, parameters.Scope)
+                            .Select(e => e.Id);
+                        await foreach (var result in results)
                         {
                             parameters.Output.OnNext(result);
                         }
@@ -24,18 +22,11 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            var entries = await context.Entries
-                .GetRelated(start, EntryRelation.Downdate, scope);
-
-            var result = entries
-                .Select(e => e.Id)
-                .AsEnumerable(); 
-            foreach (var item in result)
-            {
-                yield return item;
-            }
+            return context.Entries
+                .GetRelated(start, EntryRelation.Downdate, scope)
+                .Select(e => e.Id); 
         }
     }
 }

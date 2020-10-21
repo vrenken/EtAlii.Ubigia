@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
         {
             var identifierTime = identifier.ToTimeString();
             
@@ -98,12 +98,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information(message, identifierTime, relations);
             var start = Environment.TickCount;
 
-            var result = await _decoree.GetRelated(identifier, relations, scope);
+            var result = _decoree.GetRelated(identifier, relations, scope);
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
             
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Related entries retrieved for identifier {Identifier} (Relation: {Relations} Duration: {Duration}ms)", identifierTime, relations, duration);
-                
-            return result;
         }
 
         public event Action<Identifier> Prepared;

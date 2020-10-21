@@ -52,9 +52,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
             foreach (var child in hierarchy)
             {
-                var entries = await fabric.Entries.GetRelated(parent.Id, EntryRelation.Child, scope);
-                var previousLink = entries.SingleOrDefault(e => e.Type == EntryType.Add);
-
+                var previousLink = await fabric.Entries
+                    .GetRelated(parent.Id, EntryRelation.Child, scope)
+                    .SingleOrDefaultAsync(e => e.Type == EntryType.Add);
                 
                 var updatedParent = await fabric.Entries.Prepare();
                 updatedParent.Type = parent.Type;
