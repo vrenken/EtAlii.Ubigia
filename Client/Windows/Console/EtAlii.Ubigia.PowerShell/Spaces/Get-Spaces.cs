@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.PowerShell.Accounts;
@@ -14,7 +15,9 @@
         {
             //WriteDebug($"Getting spaces for [{TargetAccount.Name}]")
 
-            var spaces = await PowerShellClient.Current.ManagementConnection.Spaces.GetAll(TargetAccount.Id);
+            var spaces = await PowerShellClient.Current.ManagementConnection.Spaces
+                .GetAll(TargetAccount.Id)
+                .ToArrayAsync();
 
             return spaces;
         }

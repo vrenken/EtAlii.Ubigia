@@ -116,18 +116,24 @@
             }
         }
 
-        public async Task<IEnumerable<Storage>> GetAll()
+        public async IAsyncEnumerable<Storage> GetAll()
         {
+            var result = new List<Storage>(); // TODO: AsyncEnumerable
             try
             {
                 var request = new AdminStorageMultipleRequest();
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
                 var response = await call.ResponseAsync;
-                return response.Storages.ToLocal();
+                result.AddRange(response.Storages.ToLocal());
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcStorageDataClient)}.GetAll()", e);
+            }
+
+            foreach (var item in result)
+            {
+                yield return item;
             }
         }
 

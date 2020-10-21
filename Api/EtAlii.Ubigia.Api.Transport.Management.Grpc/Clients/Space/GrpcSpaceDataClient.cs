@@ -121,8 +121,9 @@
             }
         }
 
-        public async Task<IEnumerable<Space>> GetAll(System.Guid accountId)
+        public async IAsyncEnumerable<Space> GetAll(System.Guid accountId)
         {
+            var result = new List<Space>();
             try
             {
                 var request = new AdminSpaceMultipleRequest
@@ -132,11 +133,16 @@
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
                 var response = await call.ResponseAsync;
     
-                return response.Spaces.ToLocal();
+                result.AddRange(response.Spaces.ToLocal());
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.GetAll()", e);
+            }
+
+            foreach (var item in result)
+            {
+                yield return item;
             }
         }
 

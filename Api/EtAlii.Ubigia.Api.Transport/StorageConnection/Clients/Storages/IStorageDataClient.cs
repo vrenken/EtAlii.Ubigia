@@ -11,7 +11,7 @@
         Task<Storage> Change(Guid storageId, string storageName, string storageAddress);
         Task<Storage> Get(string storageName);
         Task<Storage> Get(Guid storageId);
-        Task<IEnumerable<Storage>> GetAll();
+        IAsyncEnumerable<Storage> GetAll();
     }
 
     public interface IStorageDataClient<in TTransport> : IStorageDataClient, IStorageTransportClient<TTransport>

@@ -55,11 +55,14 @@
             return storage;
         }
 
-        public async Task<IEnumerable<Storage>> GetAll()
+        public async IAsyncEnumerable<Storage> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages);
-            var storages = await Connection.Client.Get<IEnumerable<Storage>>(address);
-            return storages;
+            var result = await Connection.Client.Get<IEnumerable<Storage>>(address);
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

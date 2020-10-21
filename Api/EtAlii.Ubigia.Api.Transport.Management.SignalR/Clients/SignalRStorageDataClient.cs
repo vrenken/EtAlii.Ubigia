@@ -53,9 +53,13 @@
             return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Get", storageId);
         }
 
-        public async Task<IEnumerable<Storage>> GetAll()
+        public async IAsyncEnumerable<Storage> GetAll()
         {
-            return await _invoker.Invoke<IEnumerable<Storage>>(_connection, SignalRHub.Storage, "GetAll");
+            var result = await _invoker.Invoke<IEnumerable<Storage>>(_connection, SignalRHub.Storage, "GetAll");
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
 
         public async Task Connect(IStorageConnection storageConnection)

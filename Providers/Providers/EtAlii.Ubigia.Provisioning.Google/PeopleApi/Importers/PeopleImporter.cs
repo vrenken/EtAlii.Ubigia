@@ -31,8 +31,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             var systemSettings = await _systemSettingsGetter.Get(_context.SystemScriptContext);
 
             // Fetch all configuration spaces.
-            var configurationSpaces = await _configurationSpaceGetter.GetAll();
-            foreach (var configurationSpace in configurationSpaces)
+            var configurationSpaces = _configurationSpaceGetter.GetAll();
+            await foreach (var configurationSpace in configurationSpaces)
             {
                 // If so, update the people for this user.
                 await _spaceUpdater.Update(configurationSpace, systemSettings);

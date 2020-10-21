@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -57,10 +58,10 @@
             return Task.FromResult(storage);
         }
 
-        public Task<IEnumerable<Storage>> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
             var storages = _infrastructure.Storages.GetAll();
-            return Task.FromResult(storages);
+            return storages.ToAsyncEnumerable(); // TODO: AsyncEnumerable 
         }
     }
 }

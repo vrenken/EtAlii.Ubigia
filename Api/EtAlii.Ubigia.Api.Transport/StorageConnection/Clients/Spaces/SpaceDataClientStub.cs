@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public sealed class SpaceDataClientStub : ISpaceDataClient 
@@ -37,9 +38,9 @@
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
-            return Task.FromResult<IEnumerable<Space>>(null);
+            return AsyncEnumerable.Empty<Space>();
         }
 
         /// <inheritdoc />

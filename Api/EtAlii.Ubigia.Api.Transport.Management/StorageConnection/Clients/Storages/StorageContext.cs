@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public sealed class StorageContext : StorageClientContextBase<IStorageDataClient, IStorageNotificationClient>, IStorageContext
     {
@@ -59,13 +58,13 @@
             return await Data.Get(storageId);
         }
 
-        public async Task<IEnumerable<Storage>> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
             if (!Connection.IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.GetAll();
+            return Data.GetAll();
         }
     }
 }

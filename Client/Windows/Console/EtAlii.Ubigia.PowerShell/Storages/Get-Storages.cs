@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Management.Automation;
     using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@
         {
             //WriteDebug("Getting storages")
 
-            return await PowerShellClient.Current.ManagementConnection.Storages.GetAll();
+            return await PowerShellClient.Current.ManagementConnection.Storages.GetAll().ToArrayAsync();
         }
     }
 }

@@ -2,10 +2,10 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface IConfigurationSpaceGetter
     {
-        Task<ConfigurationSpace[]> GetAll();
+        IAsyncEnumerable<ConfigurationSpace> GetAll();
     }
 }

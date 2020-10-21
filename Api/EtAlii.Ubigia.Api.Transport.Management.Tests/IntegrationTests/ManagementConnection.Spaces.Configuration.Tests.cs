@@ -121,10 +121,16 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_No_Configuration()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
-            var retrievedSpaces = await connection.Spaces.GetAll(account.Id);
+            // Act.
+            var retrievedSpaces = await connection.Spaces
+                .GetAll(account.Id)
+                .ToArrayAsync();
+            
+            // Assert.
             Assert.NotNull(retrievedSpaces);
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
             Assert.Equal(2, retrievedSpaces.Count());
@@ -133,6 +139,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_All_Configurations()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
@@ -149,8 +156,12 @@
                 spaces.Add(space);
             }
 
-            var retrievedSpaces = (await connection.Spaces.GetAll(account.Id)).ToArray();
+            // Act.
+            var retrievedSpaces = await connection.Spaces
+                .GetAll(account.Id)
+                .ToArrayAsync();
 
+            // Assert.
             // Each user is initialized with at least a configuration and a data space. so we need to add two to the ammount of spaces we expect.
             Assert.Equal(spaces.Count + 2, retrievedSpaces.Count());
 

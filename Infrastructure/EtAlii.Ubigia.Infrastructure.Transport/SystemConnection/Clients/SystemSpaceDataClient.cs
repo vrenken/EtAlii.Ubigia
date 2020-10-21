@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -58,10 +59,10 @@
             return Task.FromResult(space);
         }
 
-        public Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             var spaces = _infrastructure.Spaces.GetAll(accountId);
-            return Task.FromResult(spaces);
+            return spaces.ToAsyncEnumerable();
         }
     }
 }

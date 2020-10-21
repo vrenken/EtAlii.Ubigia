@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class StorageDataClientStubTests
@@ -102,10 +102,12 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            var storages = await storageDataClientStub.GetAll();
+            var storages = await storageDataClientStub
+                .GetAll()
+                .ToArrayAsync();
 
             // Assert.
-            Assert.Null(storages);
+            Assert.Empty(storages);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
