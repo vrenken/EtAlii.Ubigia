@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>47d6fb52-b2d1-43ca-a6d4-4ac086ddc8a5</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

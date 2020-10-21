@@ -4,7 +4,6 @@
     <ProjectGuid>70db8c97-0b9a-4313-8580-c3de09c3a10e</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Fabric.Tests</RootNamespace>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
