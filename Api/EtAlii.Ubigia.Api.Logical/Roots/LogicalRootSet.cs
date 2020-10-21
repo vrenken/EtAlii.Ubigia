@@ -60,9 +60,9 @@ namespace EtAlii.Ubigia.Api.Logical
             return await _fabric.Roots.Get(rootId);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public IAsyncEnumerable<Root> GetAll()
         {
-            return await _fabric.Roots.GetAll();
+            return _fabric.Roots.GetAll();
         }
     }
 }

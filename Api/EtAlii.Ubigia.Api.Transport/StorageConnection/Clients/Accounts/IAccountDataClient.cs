@@ -12,7 +12,7 @@
         Task<Account> Change(Account account);
         Task<Account> Get(string accountName);
         Task<Account> Get(Guid accountId);
-        Task<IEnumerable<Account>> GetAll();
+        IAsyncEnumerable<Account> GetAll();
     }
 
     public interface IAccountDataClient<in TTransport> : IAccountDataClient, IStorageTransportClient<TTransport>

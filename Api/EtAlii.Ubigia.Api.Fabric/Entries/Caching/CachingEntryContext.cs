@@ -49,9 +49,9 @@
             return await _getHandler.Handle(identifier, scope);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            return await _getHandler.Handle(identifiers, scope);
+            return _getHandler.Handle(identifiers, scope);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)

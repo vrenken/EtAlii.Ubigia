@@ -30,9 +30,8 @@
             return entry;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Handle(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> Handle(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            var entries = new List<IReadOnlyEntry>();
             var missingIdentifiers = new List<Identifier>();
 
             foreach (var identifier in identifiers)
@@ -44,22 +43,22 @@
                 }
                 else
                 {
-                    entries.Add(entry);
+                    yield return entry;
                 }
             }
             if (missingIdentifiers.Count > 0)
             {
-                var missingEntries = await _contextProvider.Context.Get(missingIdentifiers, scope);
-                entries.AddRange(missingEntries);
-                foreach (var missingEntry in missingEntries)
+                var missingEntries = _contextProvider.Context.Get(missingIdentifiers, scope);
+                await foreach (var missingEntry in missingEntries)
                 {
                     if (_cacheHelper.ShouldStore(missingEntry))
                     {
                         _cacheHelper.Store(missingEntry);
                     }
+
+                    yield return missingEntry;
                 }
             }
-            return entries;
         }
     }
 }

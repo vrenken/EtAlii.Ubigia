@@ -68,13 +68,13 @@
             return await Data.Get(accountId);
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public IAsyncEnumerable<Account> GetAll()
         {
             if (!Connection.IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.GetAll();
+            return Data.GetAll();
         }
     }
 }

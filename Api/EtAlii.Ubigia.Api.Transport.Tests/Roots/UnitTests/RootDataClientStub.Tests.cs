@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
 
@@ -99,10 +100,12 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            var result = await rootDataClientStub.GetAll();
+            var result = await rootDataClientStub
+                .GetAll()
+                .ToArrayAsync();
             
             // Assert.
-            Assert.Null(result);
+            Assert.Empty(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

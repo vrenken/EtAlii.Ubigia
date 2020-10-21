@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -29,7 +30,7 @@
             _graphComposerFactory = graphComposerFactory;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> SelectMany(GraphPath path, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> SelectMany(GraphPath path, ExecutionScope scope)
         {
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(Fabric);
@@ -39,7 +40,7 @@
                 traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
-            return await results.ToArray();
+            return results.ToAsyncEnumerable(); // TODO: AsyncEnumerable
         }
 
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)

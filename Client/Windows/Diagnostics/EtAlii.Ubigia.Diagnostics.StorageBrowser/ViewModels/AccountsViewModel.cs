@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
@@ -191,7 +192,9 @@
             IEnumerable<Account> accounts = null;
             var task = Task.Run(async () =>
             {
-                accounts = await Connection.Accounts.GetAll();
+                accounts = await Connection.Accounts
+                    .GetAll()
+                    .ToArrayAsync();
             });
             task.Wait();
 

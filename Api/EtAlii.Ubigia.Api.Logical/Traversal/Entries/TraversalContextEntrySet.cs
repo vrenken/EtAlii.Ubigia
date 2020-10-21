@@ -45,10 +45,8 @@ namespace EtAlii.Ubigia.Api.Logical
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            var result = new List<IReadOnlyEntry>();
-
             foreach (var entryIdentifier in identifiers)
             {
                 IReadOnlyEntry match;
@@ -64,9 +62,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     match = await _context.Entries.Get(entryIdentifier, scope);
                 }
-                result.Add(match);
+
+                yield return match;
             }
-            return result;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope)

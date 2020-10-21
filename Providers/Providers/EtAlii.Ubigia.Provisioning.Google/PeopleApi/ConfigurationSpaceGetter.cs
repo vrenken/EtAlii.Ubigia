@@ -19,8 +19,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             var result = new List<ConfigurationSpace>();
 
-            var accounts = await _context.ManagementConnection.Accounts.GetAll();
-            foreach (var account in accounts)
+            var accounts = _context.ManagementConnection.Accounts.GetAll();
+            await foreach (var account in accounts)
             {
                 var spaces = await _context.ManagementConnection.Spaces.GetAll(account.Id);
                 var configurationsToAdd = spaces

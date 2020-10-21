@@ -47,9 +47,9 @@
             return await _connection.Roots.Data.Get(rootId);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public IAsyncEnumerable<Root> GetAll()
         {
-            return await _connection.Roots.Data.GetAll();
+            return _connection.Roots.Data.GetAll();
         }
 
 

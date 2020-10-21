@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.PowerShell.Storages;
@@ -14,7 +15,9 @@
         {
             //WriteDebug("Getting accounts")
 
-            var accounts = await PowerShellClient.Current.ManagementConnection.Accounts.GetAll();
+            var accounts = await PowerShellClient.Current.ManagementConnection.Accounts
+                .GetAll()
+                .ToArrayAsync();
             return accounts;
         }
     }

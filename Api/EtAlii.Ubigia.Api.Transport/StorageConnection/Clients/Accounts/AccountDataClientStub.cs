@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public sealed class AccountDataClientStub : IAccountDataClient 
@@ -36,9 +37,9 @@
             return Task.FromResult<Account>(null);
         }
 
-        public Task<IEnumerable<Account>> GetAll()
+        public IAsyncEnumerable<Account> GetAll()
         {
-            return Task.FromResult<IEnumerable<Account>>(null);
+            return AsyncEnumerable.Empty<Account>();
         }
 
         public Task Connect(IStorageConnection storageConnection)

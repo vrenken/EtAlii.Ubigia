@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Linq;
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.PowerShell.Spaces;
@@ -15,7 +16,9 @@
         {
             //WriteDebug($"Getting roots for [{TargetSpace.Name}]")
 
-            var roots = await PowerShellClient.Current.Fabric.Roots.GetAll();
+            var roots = await PowerShellClient.Current.Fabric.Roots
+                .GetAll()
+                .ToArrayAsync();
             return roots;
         }
     }

@@ -43,19 +43,17 @@
             });
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             // TODO: this can be improved by using one single Web API call.
-            var result = new List<IReadOnlyEntry>();
             foreach (var entryIdentifier in entryIdentifiers)
             {
                 var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
                     return await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                 });
-                result.Add(entry);
+                yield return entry;
             }
-            return result;
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)

@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class AccountDataClientStubTests
@@ -102,10 +102,12 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            var accounts = await accountDataClientStub.GetAll();
+            var accounts = await accountDataClientStub
+                .GetAll()
+                .ToArrayAsync();
 
             // Assert.
-            Assert.Null(accounts);
+            Assert.Empty(accounts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

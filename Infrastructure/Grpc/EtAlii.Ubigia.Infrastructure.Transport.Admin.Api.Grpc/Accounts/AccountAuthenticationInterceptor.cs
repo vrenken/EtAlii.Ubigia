@@ -18,15 +18,16 @@
 
         private void EnsureUserIsAuthenticated(Metadata headers)
         {
-            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is Metadata.Entry
-                authenticationTokenHeader))
+            var authenticationTokenHeader = headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
+            
+            if (authenticationTokenHeader == null)
             {
                 throw new InvalidOperationException("Unable to authenticate: no authentication token header.");                
             }
-            
+
             var authenticationToken = authenticationTokenHeader.Value;
             _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
-            
+
             // TODO: Check space ID.
         }
         

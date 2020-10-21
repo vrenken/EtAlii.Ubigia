@@ -26,9 +26,9 @@
             return Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(new IReadOnlyEntry[] { });
+            return AsyncEnumerable.Empty<IReadOnlyEntry>();
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)

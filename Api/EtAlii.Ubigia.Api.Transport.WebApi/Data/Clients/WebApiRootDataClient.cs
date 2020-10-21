@@ -51,11 +51,14 @@
             return root;
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public async IAsyncEnumerable<Root> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString());
-            var roots = await Connection.Client.Get<IEnumerable<Root>>(address);
-            return roots;
+            var result = await Connection.Client.Get<IEnumerable<Root>>(address); // TODO: AsyncEnumerable
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

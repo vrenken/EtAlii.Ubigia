@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
@@ -28,7 +29,7 @@
 
         private void BeginEntryDrag(object obj)
         {
-            var frameworkElement = obj as FrameworkElement;
+            var frameworkElement = (FrameworkElement)obj;
             DragDrop.DoDragDrop(frameworkElement, SelectedRoot.Identifier, DragDropEffects.Move);
         }
 
@@ -41,7 +42,9 @@
         {
             var task = Task.Run(async () =>
             {
-                AvailableRoots = await Fabric.Roots.GetAll();
+                AvailableRoots = await Fabric.Roots
+                    .GetAll()
+                    .ToArrayAsync();
             });
             task.Wait();
         }

@@ -98,19 +98,21 @@
             return root;
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public async IAsyncEnumerable<Root> GetAll()
         {
             var message = "Getting all roots";
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var roots = await _client.GetAll();
+            var result = _client.GetAll();
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got all roots (Duration: {Duration}ms)";
             _logger.Information(message, duration);
-
-            return roots;
         }
     }
 }
