@@ -94,18 +94,20 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             dynamic profile = _profiler.Begin("Get multiple by ids: " + string.Join(", ", entryIdentifiers.Select(e => e.ToTimeString())));
             profile.EntryIdentifiers = entryIdentifiers;
             profile.EntryRelations = entryRelations;
 
-            var result = await _decoree.Get(entryIdentifiers, scope, entryRelations);
+            var result = _decoree.Get(entryIdentifiers, scope, entryRelations);
+            await foreach (var item in result)
+            {
+                yield return item; 
+            }
 
             profile.Result = result;
             _profiler.End(profile);
-
-            return result;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(

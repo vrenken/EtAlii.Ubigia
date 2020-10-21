@@ -44,7 +44,9 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "time");
+            var root = await logicalContext.Roots
+                .GetAll()
+                .SingleOrDefaultAsync(r => r.Name == "time");
 
             // Assert.
             Assert.NotNull(script);
@@ -72,7 +74,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "time");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "time");
 
             // Assert.
             Assert.NotNull(script);
@@ -100,7 +102,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "specialtime");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime");
 
             // Assert.
             Assert.NotNull(script);
@@ -128,7 +130,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "specialtime");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime");
 
             // Assert.
             Assert.NotNull(script);
@@ -156,7 +158,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "projects");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects");
 
             // Assert.
             Assert.NotNull(script);
@@ -184,7 +186,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = (await logicalContext.Roots.GetAll()).SingleOrDefault(r => r.Name == "projects");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects");
 
             // Assert.
             Assert.NotNull(script);

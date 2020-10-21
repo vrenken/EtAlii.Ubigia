@@ -86,19 +86,21 @@
             return entry;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             var message = "Getting multiple entries";
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var entries = await _client.Get(entryIdentifiers, scope, entryRelations);
-
+            var result = _client.Get(entryIdentifiers, scope, entryRelations);
+            await foreach (var item in result)
+            {
+                yield return item; 
+            }
+            
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got multiple entries (Duration: {Duration}ms)";
             _logger.Information(message, duration);
-
-            return entries;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)

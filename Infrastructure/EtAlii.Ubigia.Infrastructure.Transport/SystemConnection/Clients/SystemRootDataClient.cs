@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -55,10 +56,10 @@
             return Task.FromResult(result);
         }
 
-        public Task<IEnumerable<Root>> GetAll()
+        public IAsyncEnumerable<Root> GetAll()
         {
             var result = _infrastructure.Roots.GetAll(Connection.Space.Id);
-            return Task.FromResult(result);
+            return result.ToAsyncEnumerable(); // TODO: ASyncEnumerable
         }
     }
 }

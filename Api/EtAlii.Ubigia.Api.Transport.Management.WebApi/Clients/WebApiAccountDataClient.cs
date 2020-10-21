@@ -61,11 +61,14 @@
             return account;
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async IAsyncEnumerable<Account> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts);
-            var accounts = await Connection.Client.Get<IEnumerable<Account>>(address);
-            return accounts;
+            var result = await Connection.Client.Get<IEnumerable<Account>>(address);
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

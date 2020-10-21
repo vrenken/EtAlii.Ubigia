@@ -50,9 +50,13 @@
             return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "GetById", Connection.Space.Id, rootId);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public async IAsyncEnumerable<Root> GetAll()
         {
-            return await _invoker.Invoke<IEnumerable<Root>>(_connection, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
+            var result = await _invoker.Invoke<IEnumerable<Root>>(_connection, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)

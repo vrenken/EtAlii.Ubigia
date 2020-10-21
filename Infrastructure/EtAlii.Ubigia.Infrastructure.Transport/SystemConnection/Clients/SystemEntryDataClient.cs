@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -39,10 +40,10 @@
             return Task.FromResult<IReadOnlyEntry>(result);
         }
 
-        public Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             var result = _infrastructure.Entries.Get(entryIdentifiers, entryRelations);
-            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(result);
+            return result.ToAsyncEnumerable(); // TODO: AsyncEnumerable
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)

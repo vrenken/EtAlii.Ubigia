@@ -247,7 +247,9 @@
 
             // Act.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var retrievedAccounts = await connection.Accounts.GetAll();
+            var retrievedAccounts = await connection.Accounts
+                .GetAll()
+                .ToArrayAsync();
             
             // Assert.
             Assert.NotNull(retrievedAccounts);
@@ -282,11 +284,11 @@
                 accounts.Add(account);
             }
 
-            var retrievedAccounts = (await connection.Accounts.GetAll()).ToArray();
+            var retrievedAccounts = await connection.Accounts.GetAll().ToArrayAsync();
 
             // We have the system and administrator accounts, 
             // so 2 additional accounts need to be used in the equation.
-            Assert.Equal(accounts.Count + 2, retrievedAccounts.Count());
+            Assert.Equal(accounts.Count + 2, retrievedAccounts.Length);
 
             foreach (var account in accounts)
             {

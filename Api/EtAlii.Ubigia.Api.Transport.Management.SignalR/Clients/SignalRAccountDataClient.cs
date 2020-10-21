@@ -60,9 +60,13 @@
             return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Get", accountId);
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async IAsyncEnumerable<Account> GetAll()
         {
-            return await _invoker.Invoke<IEnumerable<Account>>(_connection, SignalRHub.Account, "GetAll");
+            var result = await _invoker.Invoke<IEnumerable<Account>>(_connection, SignalRHub.Account, "GetAll");
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
 
         public async Task Connect(IStorageConnection storageConnection)

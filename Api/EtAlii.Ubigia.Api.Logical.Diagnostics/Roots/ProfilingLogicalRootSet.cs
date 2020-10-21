@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingLogicalRootSet : ILogicalRootSet
     {
@@ -46,9 +45,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             return await _decoree.Get(rootId);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public IAsyncEnumerable<Root> GetAll()
         {
-            return await _decoree.GetAll();
+            return _decoree.GetAll();
         }
     }
 }

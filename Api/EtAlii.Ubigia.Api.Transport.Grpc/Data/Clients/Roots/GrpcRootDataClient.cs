@@ -82,17 +82,23 @@
             }
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public async IAsyncEnumerable<Root> GetAll()
         {
+            IEnumerable<Root> result; 
             try
             {
                 var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() }; 
                 var response = await _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                return response.Roots.ToLocal();
+                result = response.Roots.ToLocal();
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcRootDataClient)}.GetAll()", e);
+            }
+
+            foreach (var item in result)
+            {
+                yield return item; // TODO: AsyncEnumerable - refactor to grpc stream?
             }
         }
 

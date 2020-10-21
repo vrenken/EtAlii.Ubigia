@@ -70,12 +70,12 @@
             }
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
-        {
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        {                
+            var result = new List<IReadOnlyEntry>();
             try
             {
                 // TODO: this can be improved by using one single Web API call.
-                var result = new List<IReadOnlyEntry>();
                 foreach (var entryIdentifier in entryIdentifiers)
                 {
                     var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
@@ -86,11 +86,15 @@
                     });
                     result.Add(entry);
                 }
-                return result;
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcEntryDataClient)}.Get()", e);
+            }
+
+            foreach (var item in result)
+            {
+                yield return item; // TODO: AsyncEnumerable - refactor to grpc stream?
             }
         }
 

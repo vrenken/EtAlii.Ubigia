@@ -141,19 +141,26 @@
             }
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async IAsyncEnumerable<Account> GetAll()
         {
+            var result = new List<Account>();
             try
             {
                 var request = new AdminAccountMultipleRequest();
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
                 var response = await call.ResponseAsync;
     
-                return response.Accounts.ToLocal();
+                var account = response.Accounts.ToLocal();
+                result.AddRange(account);
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcAccountDataClient)}.GetAll()",e);
+            }
+
+            foreach (var item in result)
+            {
+                yield return item; // TODO: AsyncEnumerable - refactor to grpc stream?
             }
         }
 

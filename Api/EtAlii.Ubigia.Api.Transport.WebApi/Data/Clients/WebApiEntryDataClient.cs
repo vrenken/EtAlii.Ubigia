@@ -39,18 +39,16 @@
             });
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             // TODO: this can be improved by using one single Web API call.
-            var result = new List<IReadOnlyEntry>();
             foreach (var entryIdentifier in entryIdentifiers)
             {
                 var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Entry, UriParameter.EntryId,
                     entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
                 var entry = await Connection.Client.Get<Entry>(address);
-                result.Add(entry);
+                yield return entry;
             }
-            return result;
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation,

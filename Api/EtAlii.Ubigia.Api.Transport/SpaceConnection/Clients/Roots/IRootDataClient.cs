@@ -11,7 +11,7 @@
         Task<Root> Change(Guid rootId, string rootName);
         Task<Root> Get(string rootName);
         Task<Root> Get(Guid rootId);
-        Task<IEnumerable<Root>> GetAll();
+        IAsyncEnumerable<Root> GetAll();
     }
 
     public interface IRootDataClient<in TTransport> : IRootDataClient, ISpaceTransportClient<TTransport>

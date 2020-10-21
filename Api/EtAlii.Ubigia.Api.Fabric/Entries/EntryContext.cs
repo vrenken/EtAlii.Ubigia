@@ -37,9 +37,9 @@
             return await _connection.Entries.Data.Get(identifier, scope, EntryRelation.All);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Get(identifiers, scope, EntryRelation.All);
+            return _connection.Entries.Data.Get(identifiers, scope, EntryRelation.All);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)

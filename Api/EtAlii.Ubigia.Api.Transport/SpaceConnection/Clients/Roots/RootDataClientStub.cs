@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -40,9 +41,9 @@
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<Root>> GetAll()
+        public IAsyncEnumerable<Root> GetAll()
         {
-            return Task.FromResult<IEnumerable<Root>>(null);
+            return AsyncEnumerable.Empty<Root>();
         }
 
         /// <inheritdoc />

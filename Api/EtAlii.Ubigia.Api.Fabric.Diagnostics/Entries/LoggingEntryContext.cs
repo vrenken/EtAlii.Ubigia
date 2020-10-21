@@ -76,18 +76,20 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
             var message = "Retrieving entries for identifiers";
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Get(identifiers, scope);
-            
+            var result = _decoree.Get(identifiers, scope);
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
+
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Entries retrieved for identifiers (Duration: {Duration}ms)", duration);
-                
-            return result;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
