@@ -17,6 +17,8 @@
     <UbigiaNetCoreAppVersion>netcoreapp3.1</UbigiaNetCoreAppVersion>
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
+    <LangVersion>8</LangVersion>
+    
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->

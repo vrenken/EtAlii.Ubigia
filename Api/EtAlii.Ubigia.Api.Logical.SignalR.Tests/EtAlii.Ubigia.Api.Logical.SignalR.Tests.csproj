@@ -4,7 +4,6 @@
     <ProjectGuid>7f3505c3-584f-4549-be37-c639b3732afe</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Logical.Tests</RootNamespace>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

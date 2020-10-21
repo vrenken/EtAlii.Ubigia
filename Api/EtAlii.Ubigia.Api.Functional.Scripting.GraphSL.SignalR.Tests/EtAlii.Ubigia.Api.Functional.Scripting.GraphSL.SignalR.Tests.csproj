@@ -4,7 +4,6 @@
     <ProjectGuid>617a217c-af63-4a8f-a5ff-91ee4aa4b600</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.Tests</RootNamespace>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />

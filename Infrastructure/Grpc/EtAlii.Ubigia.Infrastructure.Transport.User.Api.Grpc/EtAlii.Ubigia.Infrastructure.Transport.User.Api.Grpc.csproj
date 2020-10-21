@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
     <ProjectGuid>ac4b87f2-6a13-4ced-895a-f68b6cf557c3</ProjectGuid>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.csproj" />

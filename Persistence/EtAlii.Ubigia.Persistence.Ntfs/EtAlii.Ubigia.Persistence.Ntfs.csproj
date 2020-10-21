@@ -8,7 +8,6 @@
     <PackageTags>Storage Ubigia Ntfs</PackageTags>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>2FB9D0D5-DE7B-44EB-AC89-81DE306D9554</ProjectGuid>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

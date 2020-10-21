@@ -8,7 +8,6 @@
     <PackageTags>Storage Ubigia NetCoreApp3.0</PackageTags>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>8389CFF0-B7E8-4A84-B95D-0F12A3706966</ProjectGuid>
-    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
