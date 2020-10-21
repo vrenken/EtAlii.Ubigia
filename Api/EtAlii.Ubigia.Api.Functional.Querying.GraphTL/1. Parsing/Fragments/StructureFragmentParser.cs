@@ -123,11 +123,6 @@
             {
                 fragmentType = FragmentType.Mutation;
             }
-
-//            if (structureFragments.Any(sf => sf.Type == FragmentType.Mutation))
-//            {
-//                fragmentType = FragmentType.Mutation;
-//            }
             
             return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), fragmentType);
         }

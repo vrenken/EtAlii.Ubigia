@@ -11,15 +11,15 @@
             await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection);
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
-        {
-            await Disconnect(); 
-        }
-
         public virtual Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
         {
             Connection = spaceConnection;
             return Task.CompletedTask;
+        }
+
+        public async Task Disconnect(ISpaceConnection spaceConnection)
+        {
+            await Disconnect(); 
         }
 
         public virtual Task Disconnect()

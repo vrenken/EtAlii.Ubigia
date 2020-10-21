@@ -47,6 +47,13 @@
             return await _retrievePartHandler.Handle(identifier, contentPartId);
         }
 
+        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        {
+            // TODO: IMPORTANT ISSUE WITH CACHING.
+            return await _retrieveHandler.Handle(identifier); 
+            //return await _contextProvider.Context.Retrieve(identifier)
+        }
+
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             await _storeDefinitionHandler.Handle(identifier, contentDefinition);
@@ -66,13 +73,6 @@
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             await _storePartHandler.Handle(identifier, contentPart);
-        }
-
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
-        {
-            // TODO: IMPORTANT ISSUE WITH CACHING.
-            return await _retrieveHandler.Handle(identifier); 
-            //return await _contextProvider.Context.Retrieve(identifier)
         }
 
         public event Action<Identifier> Updated = delegate { };

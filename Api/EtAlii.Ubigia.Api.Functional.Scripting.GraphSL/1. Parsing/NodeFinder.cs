@@ -10,6 +10,31 @@
             return FindFirst(new[] { node }, id);
         }
 
+        public LpNode FindFirst(IEnumerable<LpNode> nodes)
+        {
+            LpNode result = null;
+
+            if (nodes != null)
+            {
+                foreach (var node in nodes)
+                {
+                    if (node.Id != null)
+                    {
+                        result = node;
+                    }
+                    else
+                    {
+                        result = FindFirst(node.Children);
+                    }
+                    if (result != null)
+                    {
+                        break;
+                    }
+                }
+            }
+            return result;
+        }
+
         public LpNode FindFirst(IEnumerable<LpNode> nodes, string id)
         {
             if (nodes == null) return null;
@@ -55,35 +80,6 @@
                     }
                 }
             }
-        }
-
-        //public LpNode FindFirst(LpNode node)
-        //[
-        //    return FindFirst(new LpNode[] [ node ])
-        //]
-        public LpNode FindFirst(IEnumerable<LpNode> nodes)
-        {
-            LpNode result = null;
-
-            if (nodes != null)
-            {
-                foreach (var node in nodes)
-                {
-                    if (node.Id != null)
-                    {
-                        result = node;
-                    }
-                    else
-                    {
-                        result = FindFirst(node.Children);
-                    }
-                    if (result != null)
-                    {
-                        break;
-                    }
-                }
-            }
-            return result;
         }
     }
 }

@@ -55,7 +55,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            //storage.Address = storageConnection.Transport.Address.ToString();
+            //storage.Address = storageConnection.Transport.Address.ToString[]
 
             return storage;
         }

@@ -19,7 +19,12 @@
                 Roles = account.Roles.ToArray()
             };
         }
-
+        
+        public static IEnumerable<Account> ToLocal(this IEnumerable<WireProtocol.Account> accounts)
+        {
+            return accounts.Select(s => s.ToLocal());
+        }
+        
         public static WireProtocol.Account ToWire(this Account account)
         {
             // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
@@ -42,11 +47,6 @@
         public static IEnumerable<WireProtocol.Account> ToWire(this IEnumerable<Account> accounts)
         {
             return accounts.Select(s => s.ToWire());
-        }
-        
-        public static IEnumerable<Account> ToLocal(this IEnumerable<WireProtocol.Account> accounts)
-        {
-            return accounts.Select(s => s.ToLocal());
         }
     }
 }

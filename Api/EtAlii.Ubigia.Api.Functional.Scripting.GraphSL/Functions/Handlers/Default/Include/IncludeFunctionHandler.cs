@@ -39,11 +39,11 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 //    ProcessByArgument(context, parameterSet, argumentSet, scope, output)
                 //]
                 //else
-                {
+                //{
                     // No way to throw an exception here. It could be a left side subject so we will have to wait until it is executed from an operator.
                     //throw new ScriptProcessingException("Unable to convert arguments for rename function processing")
                     output.OnCompleted();
-                }
+                //}
             }
             else
             {

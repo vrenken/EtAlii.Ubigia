@@ -29,7 +29,7 @@
 
 	    private GrpcChannel GetChannel()
 	    {
-		    var uriAsString = _channel?.Target;//.ResolvedTarget;
+		    var uriAsString = _channel?.Target;
 		    var hasAddress = !string.IsNullOrWhiteSpace(uriAsString);
 		    if (hasAddress)
 		    {

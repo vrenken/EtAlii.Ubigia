@@ -27,6 +27,19 @@ namespace EtAlii.Ubigia.Api.Fabric
             return configuration;
         }
         
+        public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, FabricContextConfiguration otherConfiguration)
+            where TFabricContextConfiguration: FabricContextConfiguration
+        {
+            configuration.Use((Configuration)otherConfiguration);
+
+            var editableConfiguration = (IEditableFabricContextConfiguration) configuration;
+
+            editableConfiguration.Connection = otherConfiguration.Connection;
+            editableConfiguration.TraversalCachingEnabled = otherConfiguration.TraversalCachingEnabled;
+
+            return configuration;
+        }
+        
         /// <summary>
         /// When cachingEnabled is set to true the instantiated FabricContext is configured to use traversal caching.
         /// </summary>
@@ -40,19 +53,5 @@ namespace EtAlii.Ubigia.Api.Fabric
             ((IEditableFabricContextConfiguration)configuration).TraversalCachingEnabled = cachingEnabled;
             return configuration;
         }
-        
-        public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, FabricContextConfiguration otherConfiguration)
-            where TFabricContextConfiguration: FabricContextConfiguration
-        {
-            configuration.Use((Configuration)otherConfiguration);
-
-            var editableConfiguration = (IEditableFabricContextConfiguration) configuration;
-
-            editableConfiguration.Connection = otherConfiguration.Connection;
-            editableConfiguration.TraversalCachingEnabled = otherConfiguration.TraversalCachingEnabled;
-
-            return configuration;
-        }
-
     }
 }

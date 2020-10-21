@@ -13,9 +13,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
 
+        ScriptProcessorConfiguration UseCaching(bool cachingEnabled);
         ScriptProcessorConfiguration Use(IScriptScope scope);
         ScriptProcessorConfiguration Use(ILogicalContext logicalContext);
-        ScriptProcessorConfiguration UseCaching(bool cachingEnabled);
         ScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
         ScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider);
     }

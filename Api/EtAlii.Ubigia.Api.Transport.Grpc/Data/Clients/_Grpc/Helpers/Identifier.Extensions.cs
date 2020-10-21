@@ -17,6 +17,16 @@
             
             return Identifier.Create(storage,account, space, era, period, moment);
         }
+
+        public static IEnumerable<Identifier> ToLocal(this IEnumerable<WireProtocol.Identifier> identifiers)
+        {
+            return identifiers.Select(id => id.ToLocal());
+        }
+
+        public static IEnumerable<WireProtocol.Identifier> ToWire(this IEnumerable<Identifier> identifiers)
+        {
+            return identifiers.Select(id => id.ToWire());
+        }
         
         public static WireProtocol.Identifier ToWire(this Identifier identifier)
         {
@@ -28,7 +38,7 @@
             var period = identifier.Period;
             var moment = identifier.Moment;
             
-            return new WireProtocol.Identifier()
+            return new WireProtocol.Identifier
             {
                 Storage = storage,
                 Account = account, 
@@ -37,16 +47,6 @@
                 Period = period, 
                 Moment = moment,
             };
-        }
-        
-        public static IEnumerable<WireProtocol.Identifier> ToWire(this IEnumerable<Identifier> identifiers)
-        {
-            return identifiers.Select(id => id.ToWire());
-        }
-        
-        public static IEnumerable<Identifier> ToLocal(this IEnumerable<WireProtocol.Identifier> identifiers)
-        {
-            return identifiers.Select(id => id.ToLocal());
         }
     }
 }
