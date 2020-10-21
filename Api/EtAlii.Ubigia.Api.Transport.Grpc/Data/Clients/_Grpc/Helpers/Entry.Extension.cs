@@ -41,7 +41,12 @@
 
             return (Entry)result;
         }
-        
+    
+        public static IEnumerable<Entry> ToLocal(this IEnumerable<WireProtocol.Entry> entries)
+        {
+            return entries.Select(id => id.ToLocal());
+        }
+
         public static WireProtocol.Entry ToWire(this IComponentEditableEntry entry)
         {
             var result = new WireProtocol.Entry();
@@ -67,15 +72,9 @@
             return result;
         }
         
-                
         public static IEnumerable<WireProtocol.Entry> ToWire(this IEnumerable<Entry> entries)
         {
             return entries.Select(id => id.ToWire());
-        }
-        
-        public static IEnumerable<Entry> ToLocal(this IEnumerable<WireProtocol.Entry> entries)
-        {
-            return entries.Select(id => id.ToLocal());
         }
     }
 }

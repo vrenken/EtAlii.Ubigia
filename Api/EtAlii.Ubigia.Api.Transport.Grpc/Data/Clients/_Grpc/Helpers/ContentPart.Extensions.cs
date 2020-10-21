@@ -6,16 +6,6 @@
 
     public static class ContentPartExtension
     {
-        public static ContentPart ToLocal(this WireProtocol.ContentPart contentPart)
-        {
-            return new ContentPart
-            {
-                Id = contentPart.Id,
-                Data = contentPart.Data.ToByteArray(),
-                Stored = contentPart.Stored,
-            };
-        }
-
         public static WireProtocol.ContentPart ToWire(this ContentPart contentPart)
         {
             return new WireProtocol.ContentPart
@@ -31,10 +21,20 @@
         {
             return contentParts.Select(s => s.ToWire());
         }
+        
+        public static ContentPart ToLocal(this WireProtocol.ContentPart contentPart)
+        {
+            return new ContentPart
+            {
+                Id = contentPart.Id,
+                Data = contentPart.Data.ToByteArray(),
+                Stored = contentPart.Stored,
+            };
+        }
+
         public static IEnumerable<ContentPart> ToLocal(this IEnumerable<WireProtocol.ContentPart> contentParts)
         {
             return contentParts.Select(s => s.ToLocal());
         }
-
     }
 }

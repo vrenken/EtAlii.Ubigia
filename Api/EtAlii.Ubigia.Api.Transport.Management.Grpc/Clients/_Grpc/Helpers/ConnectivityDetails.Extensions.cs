@@ -14,6 +14,10 @@
             };
         }
 
+        public static IEnumerable<ConnectivityDetails> ToLocal(this IEnumerable<WireProtocol.ConnectivityDetails> connectivityDetailss)
+        {
+            return connectivityDetailss.Select(s => s.ToLocal());
+        }
         public static WireProtocol.ConnectivityDetails ToWire(this ConnectivityDetails connectivityDetails)
         {
             return new WireProtocol.ConnectivityDetails
@@ -26,10 +30,6 @@
         public static IEnumerable<WireProtocol.ConnectivityDetails> ToWire(this IEnumerable<ConnectivityDetails> connectivityDetailss)
         {
             return connectivityDetailss.Select(s => s.ToWire());
-        }
-        public static IEnumerable<ConnectivityDetails> ToLocal(this IEnumerable<WireProtocol.ConnectivityDetails> connectivityDetailss)
-        {
-            return connectivityDetailss.Select(s => s.ToLocal());
         }
     }
 }

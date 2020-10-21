@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
-	using System;
-	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public abstract class StorageTransportBase : IStorageTransport

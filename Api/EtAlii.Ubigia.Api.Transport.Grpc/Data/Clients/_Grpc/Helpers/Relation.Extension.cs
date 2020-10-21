@@ -13,6 +13,11 @@
             return Relation.Create(id, moment);
         }
 
+        public static IEnumerable<Relation> ToLocal(this IEnumerable<WireProtocol.Relation> relations)
+        {
+            return relations.Select(s => s.ToLocal());
+        }
+        
         public static WireProtocol.Relation ToWire(this Relation relation)
         {
             var id = relation.Id.ToWire();
@@ -28,11 +33,6 @@
         public static IEnumerable<WireProtocol.Relation> ToWire(this IEnumerable<Relation> relations)
         {
             return relations.Select(s => s.ToWire());
-        }
-        
-        public static IEnumerable<Relation> ToLocal(this IEnumerable<WireProtocol.Relation> relations)
-        {
-            return relations.Select(s => s.ToLocal());
         }
     }
 }

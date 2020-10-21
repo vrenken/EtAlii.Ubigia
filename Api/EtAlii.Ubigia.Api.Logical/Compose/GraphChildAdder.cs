@@ -44,6 +44,13 @@ namespace EtAlii.Ubigia.Api.Logical
             return AddChildInternal(location, childId, scope);
         }
 
+        public Task<IReadOnlyEntry> AddChild(Identifier location, string name, ExecutionScope scope)
+        {
+            if (name == null) throw new ArgumentNullException(nameof(name));
+
+            return AddChildInternal(location, name, scope);
+        }
+
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, Identifier childId, ExecutionScope scope)
         {
             var child = await _fabric.Entries
@@ -65,13 +72,6 @@ namespace EtAlii.Ubigia.Api.Logical
             return child;
         }
 
-        public Task<IReadOnlyEntry> AddChild(Identifier location, string name, ExecutionScope scope)
-        {
-            if (name == null) throw new ArgumentNullException(nameof(name));
-
-            return AddChildInternal(location, name, scope);
-        }
-
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, string name, ExecutionScope scope)
         {
             var entry = await _fabric.Entries
@@ -89,7 +89,6 @@ namespace EtAlii.Ubigia.Api.Logical
             newEntry.Type = name;
             entry = await _fabric.Entries.Change(newEntry, scope);
             return entry;
-
         }
     }
 }

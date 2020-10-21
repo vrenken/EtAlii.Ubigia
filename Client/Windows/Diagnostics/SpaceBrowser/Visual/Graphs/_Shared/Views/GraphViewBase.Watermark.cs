@@ -78,7 +78,7 @@
                 for (var i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
                 {
                     var child = VisualTreeHelper.GetChild(depObj, i);
-                    if (child != null && child.GetType().Name == typeName)
+                    if (child.GetType().Name == typeName)
                     {
                         yield return child;
                     }
