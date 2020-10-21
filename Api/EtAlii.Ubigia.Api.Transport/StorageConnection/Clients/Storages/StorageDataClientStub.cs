@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public sealed class StorageDataClientStub : IStorageDataClient
@@ -37,9 +38,9 @@
         }
 
         /// <inheritdoc />
-        public Task<IEnumerable<Storage>> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
-            return Task.FromResult<IEnumerable<Storage>>(null);
+            return AsyncEnumerable.Empty<Storage>();
         }
 
         /// <inheritdoc />

@@ -55,11 +55,14 @@
             return space;
         }
 
-        public async Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public async IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Spaces, UriParameter.AccountId, accountId.ToString());
-            var spaces = await Connection.Client.Get<IEnumerable<Space>>(address);
-            return spaces;
+            var result = await Connection.Client.Get<IEnumerable<Space>>(address);
+            foreach (var item in result)
+            {
+                yield return item;
+            }
         }
     }
 }

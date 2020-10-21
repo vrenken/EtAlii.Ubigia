@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
 
     public class ConfigurationSpaceGetter : IConfigurationSpaceGetter
     {
@@ -15,20 +14,21 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _context = context;
         }
 
-        public async Task<ConfigurationSpace[]> GetAll()
+        public async IAsyncEnumerable<ConfigurationSpace> GetAll()
         {
-            var result = new List<ConfigurationSpace>();
-
             var accounts = _context.ManagementConnection.Accounts.GetAll();
             await foreach (var account in accounts)
             {
-                var spaces = await _context.ManagementConnection.Spaces.GetAll(account.Id);
-                var configurationsToAdd = spaces
+                var result = _context.ManagementConnection.Spaces
+                    .GetAll(account.Id)
                     .Where(s => s.Name == SpaceName.Configuration)
                     .Select(s => new ConfigurationSpace {Account = account, Space = s});
-                result.AddRange(configurationsToAdd);
+                
+                await foreach (var item in result)
+                {
+                    yield return item;
+                }
             }
-            return result.ToArray();
         }
     }
 }

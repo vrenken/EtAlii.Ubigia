@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class SpaceDataClientStubTests
@@ -102,10 +102,12 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            var spaces = await spaceDataClientStub.GetAll(Guid.NewGuid());
+            var spaces = await spaceDataClientStub
+                .GetAll(Guid.NewGuid())
+                .ToArrayAsync();
 
             // Assert.
-            Assert.Null(spaces);
+            Assert.Empty(spaces);
         }
     }
 }

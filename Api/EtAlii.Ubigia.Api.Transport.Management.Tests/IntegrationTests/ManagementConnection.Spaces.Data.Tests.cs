@@ -23,13 +23,15 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Add_Single_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
-
             var name = Guid.NewGuid().ToString();
 
+            // Act.
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
 
+            // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
@@ -38,6 +40,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Add_Multiple_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
@@ -45,8 +48,10 @@
             {
                 var name = Guid.NewGuid().ToString();
 
+                // Act.
                 var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
 
+                // Assert.
                 Assert.NotNull(space);
                 Assert.Equal(name, space.Name);
                 Assert.Equal(account.Id, space.AccountId);
@@ -56,15 +61,16 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_Single_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
-
             var name = Guid.NewGuid().ToString();
-
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
 
+            // Act.
             space = await connection.Spaces.Get(space.Id);
 
+            // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
@@ -73,6 +79,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_Multiple_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
@@ -81,8 +88,10 @@
                 var name = Guid.NewGuid().ToString();
                 var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
 
+                // Act.
                 space = await connection.Spaces.Get(space.Id);
 
+                // Assert.
                 Assert.NotNull(space);
                 Assert.Equal(name, space.Name);
                 Assert.Equal(account.Id, space.AccountId);
@@ -92,6 +101,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_First_Data_Full_Add()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
@@ -101,7 +111,10 @@
             {
                 var name = Guid.NewGuid().ToString();
 
+                // Act.
                 var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+                
+                // Assert.
                 Assert.NotNull(space);
                 Assert.Equal(name, space.Name);
                 Assert.Equal(account.Id, space.AccountId);
@@ -121,10 +134,16 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_No_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
-            var retrievedSpaces = await connection.Spaces.GetAll(account.Id);
+            // Act.
+            var retrievedSpaces = await connection.Spaces
+                .GetAll(account.Id)
+                .ToArrayAsync();
+            
+            // Assert.
             Assert.NotNull(retrievedSpaces);
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
             Assert.Equal(2, retrievedSpaces.Count());
@@ -133,6 +152,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Get_All_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
@@ -149,9 +169,13 @@
                 spaces.Add(space);
             }
 
-            var retrievedSpaces = (await connection.Spaces.GetAll(account.Id)).ToArray();
+            // Act.
+            var retrievedSpaces = await connection.Spaces
+                .GetAll(account.Id)
+                .ToArrayAsync();
 
-            // Each user is initialized with at least a configuration and a data space. so we need to add two to the ammount of spaces we expect.
+            // Assert.
+            // Each user is initialized with at least a configuration and a data space. so we need to add two to the amount of spaces we expect.
             Assert.Equal(spaces.Count + 2, retrievedSpaces.Count());
 
             foreach (var space in spaces)
@@ -166,12 +190,15 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Change_Data()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
-
             var name = Guid.NewGuid().ToString();
 
+            // Act.
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+
+            // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
@@ -198,12 +225,16 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Delete()
         {
+            // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
 
             var name = Guid.NewGuid().ToString();
 
+            // Act.
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            
+            // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);

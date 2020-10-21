@@ -53,7 +53,7 @@
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        Task<IEnumerable<Space>> GetAll(Guid accountId);
+        IAsyncEnumerable<Space> GetAll(Guid accountId);
     }
 
     /// <summary>

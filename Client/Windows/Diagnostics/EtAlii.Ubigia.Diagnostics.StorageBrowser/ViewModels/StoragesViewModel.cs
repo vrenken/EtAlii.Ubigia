@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
@@ -177,7 +178,7 @@
             IEnumerable<Storage> storages = null;
             var task = Task.Run(async () =>
             {
-                storages = await Connection.Storages.GetAll();
+                storages = await Connection.Storages.GetAll().ToArrayAsync();
             });
             task.Wait();
 

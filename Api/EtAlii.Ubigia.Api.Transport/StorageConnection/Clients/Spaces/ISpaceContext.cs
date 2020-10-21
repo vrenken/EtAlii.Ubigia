@@ -11,6 +11,6 @@
         Task<Space> Change(Guid spaceId, string spaceName);
         Task<Space> Get(Guid accountId, string spaceName);
         Task<Space> Get(Guid spaceId);
-        Task<IEnumerable<Space>> GetAll(Guid accountId);
+        IAsyncEnumerable<Space> GetAll(Guid accountId);
     }
 }

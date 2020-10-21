@@ -18,17 +18,19 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorEntryConversion);
         }
 
-        public async Task<IEnumerable<DynamicNode>> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope)
+        public async IAsyncEnumerable<DynamicNode> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Converting entries to nodes");
             profile.Entries = entries;
 
-            var result = await _decoree.Convert(entries, scope);
+            var result = _decoree.Convert(entries, scope);
+            await foreach (var item in result)
+            {
+                yield return item;
+            }
 
             profile.Result = result;
             _profiler.End(profile);
-
-            return result;
         }
 
         public async Task<DynamicNode> Convert(IReadOnlyEntry entry, ExecutionScope scope)

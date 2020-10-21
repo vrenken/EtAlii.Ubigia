@@ -58,13 +58,13 @@
             return await Data.Get(spaceId);
         }
 
-        public async Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             if (!Connection.IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.GetAll(accountId);
+            return Data.GetAll(accountId);
         }
     }
 }

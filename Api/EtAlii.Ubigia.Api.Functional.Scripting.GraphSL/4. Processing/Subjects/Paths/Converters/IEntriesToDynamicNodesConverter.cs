@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
     public interface IEntriesToDynamicNodesConverter
     {
-        Task<IEnumerable<DynamicNode>> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope);
+        IAsyncEnumerable<DynamicNode> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope);
         Task<DynamicNode> Convert(IReadOnlyEntry entry, ExecutionScope scope);
     }
 }

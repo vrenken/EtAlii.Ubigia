@@ -51,6 +51,6 @@
         /// Return all <see cref="Storage"/> instances known by the connected backend.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Storage>> GetAll();
+        IAsyncEnumerable<Storage> GetAll();
     }
 }
