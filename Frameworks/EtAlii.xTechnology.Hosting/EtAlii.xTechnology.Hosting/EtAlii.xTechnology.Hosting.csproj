@@ -20,10 +20,10 @@
     <ProjectReference Include="..\..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.8" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.9" />
     <PackageReference Include="Polly" Version="7.2.1" />
   </ItemGroup>
   <ItemGroup>

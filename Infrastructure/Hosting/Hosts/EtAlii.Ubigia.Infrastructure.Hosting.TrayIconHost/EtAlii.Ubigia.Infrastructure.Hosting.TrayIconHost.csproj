@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
 <!--    <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.13" />-->
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
