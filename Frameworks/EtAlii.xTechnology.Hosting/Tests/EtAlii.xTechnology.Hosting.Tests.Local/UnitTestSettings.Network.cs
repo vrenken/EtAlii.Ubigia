@@ -2,6 +2,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(UnitTestConstants.NetworkPortRangeStart + 14800, UnitTestConstants.NetworkPortRangeStart + 14999);
+        // For our hosting tests we need a bigger range.
+        public static PortRange NetworkPortRange = new PortRange(UnitTestConstants.NetworkPortRangeStart + 16800, UnitTestConstants.NetworkPortRangeStart + 17299);
     }
 }
