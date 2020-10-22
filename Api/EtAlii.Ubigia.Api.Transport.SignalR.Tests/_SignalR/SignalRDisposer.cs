@@ -4,8 +4,7 @@
     using System.Threading;
 
     /// <summary>
-    /// Helper class to manage disposing a resource at an arbirtary time
-    /// 
+    /// Helper class to manage disposing a resource at an arbitrary time.
     /// </summary>
     internal class SignalRDisposer : IDisposable
     {
@@ -27,9 +26,7 @@
             if (!disposing)
                 return;
             var disposable = Interlocked.Exchange<object>(ref _disposable, DisposedSentinel) as IDisposable;
-            if (disposable == null)
-                return;
-            disposable.Dispose();
+            disposable?.Dispose();
         }
 
         public void Dispose()
