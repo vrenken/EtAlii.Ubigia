@@ -43,7 +43,7 @@ jobs:
           projectKey: ${{ variables.sonarQubeProject }}
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/**/*.coveragexml
-            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/TestResults/**/coverage.opencover.xml
+            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/**/coverage.opencover.xml
             sonar.coverage.exclusions=”**/*.Tests.cs”
 
       - task: DotNetCoreCLI@2
@@ -80,9 +80,11 @@ jobs:
           # **/EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests.csproj
           # **/EtAlii.Ubigia.Api.Logical.WebApi.Tests.csproj
           # **/EtAlii.Ubigia.Api.Functional.Scripting.GraphQL.*.Tests.csproj
+
+          # The WebApi tests won't run nicely on the build agent. No idea why.
           projects: |
             **/*.Tests.csproj
-            !**/*.WebApi.Tests.csproj
+            !**/*.WebApi.Tests.csproj  
           arguments: '/p:SolutionDir=$(Build.SourcesDirectory) --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
         continueOnError: true
 
