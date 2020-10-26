@@ -2,14 +2,16 @@
 TODO: Intro + elaborate about the philosophy behind Ubigia.
 
 ## Why? - Philosophical perspective.
-- *Technological Entropy.*<br/>
-  Today’s technology trends reach a tipping point beyond which innovation speed drastically decreases and complexity increases.
 
-- *Moving towards The Invisible Computer.*<br/>
-  We just don’t seem to be able to make IT ‘ready-at-hand’ instead of ‘present-at-hand’
-
-- *IT has become a goal in itself.*<br/>
-  That is until the first organization breaks the cycle and adds value without todays enormous costs involved.
+> :information_source: **_SUMMARY:_**
+> - *Technological Entropy.*<br/>
+>  Today’s technology trends reach a tipping point beyond which innovation speed drastically decreases and complexity increases.
+>
+> - *Moving towards The Invisible Computer.*<br/>
+>   We just don’t seem to be able to make IT ‘ready-at-hand’ instead of ‘present-at-hand’
+> 
+> - *IT has become a goal in itself.*<br/>
+>   That is until the first organization breaks the cycle and adds value without todays enormous costs involved.
 
 ## Why? - Business perspective.
 - *The Digital Wasteland.*<br/>
