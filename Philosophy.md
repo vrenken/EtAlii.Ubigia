@@ -19,14 +19,22 @@ Combined with the commercial world that surrounds IT it can even be speculated t
 >   That is until the first organization breaks the cycle and adds value without todays enormous costs involved.
 
 ## Why? - Business perspective.
-- *The Digital Wasteland.*<br/>
-  The exponential increase of data silo’s is getting out of control.
+Of course the effects mentioned in the previous part should be seen from a commercial perspective. However, if it is commercially the right choice it doesn't mean it will bea  feasible long-term strategy. Especially today's common accepted approach to information storage and exchange is something that can be considered flawed from both a business, societal and environmental point-of-view. It just isn't logically to just create new information silo's without understanding that such an approach won't scale in any way.
 
-- *Our hunger for Next-Gen applications.*<br/>
-  Virtual Private Assistants, Mixed Reality, Artificial Intelligence, Digital Twin, Internet of Things – they all require a level of information complexity that is difficult to realize/grasp.
-  
-- *Uncharted business cases.*<br/>
-  Service Enhancing Technologies, The Future of Work & many more!
+Surely there are cloud approaches and data-lakes, but none of them try to approach and solve the problem fundamentally.
+In combination with an increased need for new, better ways of storing and exchanging information for virtual private assistants (the machine-version, not the human one), Machine Learning, any variation of the Digital Twin concept, and even the Internet of Things. All of these require more complex information models that are difficult to grasp and therefore even more difficult with the tools that are being mainstream today. 
+
+**_TODO_**
+
+> :information_source: **_SUMMARY:_**
+> - *The Digital Wasteland.*<br/>
+>   The exponential increase of data silo’s is getting out of control.
+>
+> - *Our hunger for Next-Gen applications.*<br/>
+>   Virtual Private Assistants, Mixed Reality, Artificial Intelligence, Digital Twin, Internet of Things – they all require a level of information complexity that is difficult to realize/grasp.
+>  
+> - *Uncharted business cases.*<br/>
+>   Home Automation, Autonomous Vehicle, UAV transport, Covid-19 pushed New ways of working & many more!
 
 ## How? - Philosophical perspective.
 - *Think out of the box.*<br/>
