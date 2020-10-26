@@ -4,7 +4,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 
 ## Getting Started
 
-1. Anyone curious about the guiding principles behind Ubigia and how it came into existence might find the "[Philosophy](Philosophy.md)" pages interesting.
+1. Anyone curious about the guiding principles behind Ubigia and how it came into existence might find the "[Philosophy](Documentation/Philosophy/Philosophy.md)" pages interesting.
 2. People that just want to learn by making their hands dirty could start witg our "Getting started" guides.
 3. People interested in the architecture, implementation, how Ubigia works and everything related should check out the "How stuff works" set of pages.
    - Installation process
