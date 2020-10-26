@@ -80,5 +80,74 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Split the concerns of Information Persisting and Information Registration – these are not the same.*<br/>
   Preparation of identifiers can happen way before using them.
   
+# What? - Conceptual: Contextual Views using Micro Schema Composition.
+- *A user’s view on information is dynamic.*<br/>
+  Provide a view that slides across information and broadens or narrows depending on the required (and changing) context.
   
+- *Information interlinking should not be limited.*<br/>
+  Instead applications should be able to find out how to interpret information.
+  
+- *Dynamic Hierarchical Schematics.*<br/>
+  Application access information using a dynamic composition of small schema’s they understand. 
+  
+# What? - Conceptual: Multi-Dimensional Traversal Language.
+- *We need a new way to work with information.*<br/>
+  There is need for an information retrieval/alteration approach that is native to the multi-dimensional character of information.
+  
+- *Flow and stream based information access.*<br/>
+  Querying information should not merely return a snapshot in time - Accessing a context should also provide access to possible changes.
+  
+- *Facilitating compatibility.*<br/>
+  Traditional systems should be facilitated and also able to run on top of a Ubiquitous Information System.
+  
+# What? - Conceptual: Subscription based Information Exchange.
+- *Blockchain/DLT powered.*<br/>
+  To ensure that when needed information cannot be replicated.
+  
+- *You are in control.*<br/>
+  Share information permanently/once/for a period or even based on a specific ruleset.
+  
+- *Highly needed to solve the problem of IoT.*<br/>
+  And doing so trigger a paradigm shift in information ownership.
+  
+# What? - Conceptual: Benefits
+- *Next-gen business use-case complexity will become feasible.*<br/>
+  Indexing will become a thing of the past. Exchanging information ”as easy as pie”.
+  
+- *Interlinking different types of information will become easy.*<br/>
+  Enabling advanced use cases in which 3D, tasks details, collaboration and numerous information sources can finally be combined.
+  
+- *Manageable Industrial Data Platforms and Industry 4.0.*<br/>
+  Subscription based information exchange will change the flow of value.
+  
+- *Fully structured information.*<br/>
+  Which will greatly benefit any Artificial Intelligence application.
+
+- *Scaling the Internet of Things.*<br/>
+  Not having to worry about information replication and the corresponding security will greatly reduce the complexity of IoT setups.
+  
+- *Security will become easier.*<br/>
+  Reduction in the impact of breaches. Eventually a breach will no longer result in permanent damage.
+
+# What? - POC / Use Case 1 – Personal Photo Collection
+- Full personal photo archives are made available in a truly ‘usable’ way.
+- Intelligently accumulates other information sources like: 
+  - Contact details, time, usage + behavioral patterns.
+  - Conversations: Email, Facebook, WhatsApp, phone calls.
+  - Location: Photo/device location, car location, travel details.
+
+- Searching can be done naturally.<br/>
+  When was I last in Berlin? Who was also there at that moment? How did I travel? What conversations are related to this trip?
+
+- Visualization is done on desktop, touch and glass devices – including AR/VR.
+
+# What? - POC Use Case 2 – Personal Contextual Assistant/assistance.
+- Knowledge workers are assisted with applications that run on top of a Ubiquitous Information System.
+
+- Selected types of business information are stored and interlinked:<br/>
+  Email, LinkedIn, personal information, project information, documents, indoor/outdoor location, information wrt colleagues, office building related information.
+
+- The system provides advice, additional context and processes tasks when requested. 
+
+- Integration is done as deeply in a user’s devices as possible.
 
