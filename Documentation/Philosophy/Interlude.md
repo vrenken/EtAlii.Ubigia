@@ -38,8 +38,11 @@ Folowing this stream of thought it seems that most - if not  all - of the futuri
 >   Home Automation, Autonomous Vehicle, UAV transport, Covid-19 pushed New ways of working & many more!
 
 ## How? - Philosophical perspective.
-So, if change in information thinking is neccesery, how do we achieve it? The approach taken with Ubigia is to *doubt everything*. The human mind is engineered to accept things that just work, but to introduce radical new concepts it's wise to reflect on all concepts and principles we all take for granted.
+So, if change in information thinking is neccesery, how do we achieve it? The approach taken with Ubigia is to *doubt everything*. The human mind is engineered to accept things that just work, but to introduce groundbreaking new concepts it's wise to reflect on all concepts and principles we all take for granted. In case of this project this boils down to analysing and re-interpreting some of the basic abstract principles that make up digital information. Which ones will be explained further on this page.
 
+Also, as Ubigia is not meant as a commercial product but as a concept with which to make the (digital) world a better place we should think big. There is no need to introduce a limiting - yet lucrative - mindset. This will only shroud conclusions and decisions and in general influence the result for the worse.
+
+Another driver is not to stop at the current technical limitations of technologies...  
 **_TODO_**
 
 > :information_source: **_SUMMARY:_**
@@ -48,6 +51,7 @@ So, if change in information thinking is neccesery, how do we achieve it? The ap
 > 
 > - *Think BIG!*<br/>
 >   How are IT trends related and how do we make sense of them all?
+
 > - *Think beyond.*<br/>
 >   It is OK to doubt the limitations set by todays technology or ‘proven’ concepts/theorems. 
 
