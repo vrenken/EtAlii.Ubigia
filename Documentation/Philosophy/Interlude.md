@@ -1,11 +1,10 @@
-# Ubigia - A Philosophical Interlude 
-TODO: Intro + elaborate about the philosophy behind Ubigia.
+# Ubigia - A Philosophical Interlude. 
+The thoughts on which Ubigia is build started way back in 2012 (in Italy to be precise). This page describes the philosophical thought experiments from that early era using a why/how/what principle. Reason is foremost that we don't want to fall in the patterns and practices that are keeping current information systems from evolving, but want to both understand the fundamental reason for this project and - as it'll be a long project - need thorough and strong guiding principles to fall back on along the road. 
 
 ## Why? - Philosophical perspective.
 Today's world is directly entangled with information technology trends. However, many IT innovations are reaching a tipping point in that the required information systems and corresponding exchange cannot keep up anymore. Systems get more and more complex, but the added value is no longer in contrast with the complexity needed to achieve it. 
 
 In parallel another trend is the ongoing quest towards better user interfaces, not only using conventional 2D applications running on screens but lately also in the form of chat/voice assistants and 3D VR/AR/MR applications. But almost - if not all - variations don't succeed in elevating computing appliances to the next level in regards how 'natural' they are. There seems to be something missing in making them more ‘[ready-to-hand](https://en.wikipedia.org/wiki/Heideggerian_terminology#Ready-to-hand)’ and less ‘[present-at-hand](https://en.wikipedia.org/wiki/Heideggerian_terminology#Present-at-hand)’. Somehow it feels that many of today's UX endeavors and communities have accepted the general limitations of IT and scoped their goals to make the best of it without attempting to break the limitations they put on users.  
-
 Combined with the commercial world that surrounds IT it can even be speculated that software development in general is more and more becoming a goal on itself. New versions with better - and more - features, increased performance, new ways to express/personalize but far less focussed on breaking fundamental barriers that are holding back IT from becoming something better. This effect is especially noticeable in all Digital Transformation activities that show the wonders of for example Machine Learning without truly showing the disadvantages/increased complexity/costs such technologies introduce.
 
 > :information_source: **_SUMMARY:_**
@@ -19,12 +18,14 @@ Combined with the commercial world that surrounds IT it can even be speculated t
 >   That is until the first organization breaks the cycle and adds value without todays enormous costs involved.
 
 ## Why? - Business perspective.
-Of course the effects mentioned in the previous part should be seen from a commercial perspective. However, if it is commercially the right choice it doesn't mean it will bea  feasible long-term strategy. Especially today's common accepted approach to information storage and exchange is something that can be considered flawed from both a business, societal and environmental point-of-view. It just isn't logically to just create new information silo's without understanding that such an approach won't scale in any way.
+Of course the effects mentioned in the previous part should be seen from a commercial perspective. However, if it is commercially the right choice it doesn't mean it will bea  feasible long-term strategy. Especially today's common accepted approach to information storage and exchange is something that can be considered flawed from both a business, societal and environmental point-of-view. It just isn't logically to just create new information silo's without understanding that such an approach won't scale in any way. 
+The question that can be read in these kind of thoughts is if the current way of structuring and exchanging information can be replaced with something else. And if so, with what? One simple answer is that an exponentially growing set of data also requires an exponentially growing set of compute to understand it.  
 
-Surely there are cloud approaches and data-lakes, but none of them try to approach and solve the problem fundamentally.
-In combination with an increased need for new, better ways of storing and exchanging information for virtual private assistants (the machine-version, not the human one), Machine Learning, any variation of the Digital Twin concept, and even the Internet of Things. All of these require more complex information models that are difficult to grasp and therefore even more difficult with the tools that are being mainstream today. 
+Surely there are cloud approaches and data-lakes, but none of them try to approach and solve the problem fundamentally. In essence the whole Internet is based on making countless duplicates of the same information, and verifying and re-transferring them when they got changed. In today's world where sustainability is a hot topic it just feels absolutely illogical to duplicate information infinitely, without asking weither or not there are better ways to share and use information. Not only email, information on social networks and other personal/business information sources are prone for duplication and ever-increasing complexity, but all organizational and knowledge and information stored on the internet gets restructured, replicated, backed up and can often be found within and outside the scope of expected operation. It feels like the Internet and the connected set of global information systems is slowly transforming into a Digital Wasteland.
 
-**_TODO_**
+Yet still, Digital Transformation is still being pushed tremendously and through virtual private assistants (the machine-version, not the human one), Machine Learning, any variation of the Digital Twin concept, and even the Internet of Things promotes an increased need for new, better ways of storing and exchanging information. Simly said, all of tomorrow's innovations require more complex information models than we currently are able to grasp with conventional information thinking, which makes it very difficult to realize them with tools build using the same mindset.
+
+Folowing this stream of thought it seems that most - if not  all - of the futuristic user interfaces that get presented in the science fiction movies and TV series just won't be achievable without a fresh wave of thinking. We're teased and excited with a fascinating era that lies of ahead of us but up until now (11-2020) nobody has been able to unlock the door to the other side of the paradigm and enable its promised potential. 
 
 > :information_source: **_SUMMARY:_**
 > - *The Digital Wasteland.*<br/>
@@ -33,17 +34,22 @@ In combination with an increased need for new, better ways of storing and exchan
 > - *Our hunger for Next-Gen applications.*<br/>
 >   Virtual Private Assistants, Mixed Reality, Artificial Intelligence, Digital Twin, Internet of Things – they all require a level of information complexity that is difficult to realize/grasp.
 >  
-> - *Uncharted business cases.*<br/>
+> - *Uncharted IT use-cases.*<br/>
 >   Home Automation, Autonomous Vehicle, UAV transport, Covid-19 pushed New ways of working & many more!
 
 ## How? - Philosophical perspective.
-- *Think out of the box.*<br/>
-  What concepts do we all take for granted but aren’t actually?
+So, if change in information thinking is neccesery, how do we achieve it? The approach taken with Ubigia is to *doubt everything*. The human mind is engineered to accept things that just work, but to introduce radical new concepts it's wise to reflect on all concepts and principles we all take for granted.
 
-- *Think BIG!*<br/>
-  How are IT trends related and how do we make sense of them all?
-- *Think beyond.*<br/>
-  It is OK to doubt the limitations set by todays technology or ‘proven’ concepts/theorems. 
+**_TODO_**
+
+> :information_source: **_SUMMARY:_**
+> - *Think out of the box.*<br/>
+>   What concepts do we all take for granted but aren’t actually?
+> 
+> - *Think BIG!*<br/>
+>   How are IT trends related and how do we make sense of them all?
+> - *Think beyond.*<br/>
+>   It is OK to doubt the limitations set by todays technology or ‘proven’ concepts/theorems. 
 
 ## How? - Fundamental principles.
 - *Information is always multi-dimensional.*<br/>
