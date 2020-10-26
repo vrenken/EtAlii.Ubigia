@@ -2,6 +2,11 @@
 TODO: Intro + elaborate about the philosophy behind Ubigia.
 
 ## Why? - Philosophical perspective.
+Today's world is directly entangled with information technology trends. However, manyb IT innovations are reaching a tipping point in that the required information systems and corresponding exchange cannot keep up anymore. Systems get more and more complex, but the added value is no longer in contrast with the complexity needed to achieve it. 
+
+In parallel another trend is the ongoing quest towards better user interfaces, not only using conventional 2D applications running on screens but lately also in the form of chat/voice assistants and 3D VR/AR/MR applications. But almost - if not all - variations don't succeed in elevating computing appliances to the next level in regards how 'natural' they are. There seems to be something missing in making them more ‘[ready-to-hand](https://en.wikipedia.org/wiki/Heideggerian_terminology#Ready-to-hand)’ and less ‘[present-at-hand](https://en.wikipedia.org/wiki/Heideggerian_terminology#Present-at-hand)’. Somehow it feels that many of today's UX endeavors and communities have accepted the general limitations of IT and scoped their goals to make the best of it without attempting to break the limitations they put on users.  
+
+Combined with the commercial world that surrounds IT it can even be speculated that software development in general is more and more becoming a goal on itself. New versions with better - and more - features, increased performance, new ways to express/personalize but far less focussed on breaking fundamental barriers that are holding back IT from becoming something better. This effect is especially noticeable in all Digital Transformation activities that show the wonders of for example Machine Learning without truly showing the disadvantages/increased complexity/costs such technologies introduce.
 
 > :information_source: **_SUMMARY:_**
 > - *Technological Entropy.*<br/>
