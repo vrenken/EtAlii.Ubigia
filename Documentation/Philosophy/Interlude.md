@@ -1,4 +1,4 @@
-# Philosophy 
+# Ubigia - A Philosophical Interlude 
 TODO: Intro + elaborate about the philosophy behind Ubigia.
 
 ## Why? - Philosophical perspective.
