@@ -1,7 +1,7 @@
 # Philosophy 
 TODO: Intro + elaborate about the philosophy behind Ubigia.
 
-# Why? - Philosophical perspective.
+## Why? - Philosophical perspective.
 - *Technological Entropy.*<br/>
   Today’s technology trends reach a tipping point beyond which innovation speed drastically decreases and complexity increases.
 
@@ -11,7 +11,7 @@ TODO: Intro + elaborate about the philosophy behind Ubigia.
 - *IT has become a goal in itself.*<br/>
   That is until the first organization breaks the cycle and adds value without todays enormous costs involved.
 
-# Why? - Business perspective.
+## Why? - Business perspective.
 - *The Digital Wasteland.*<br/>
   The exponential increase of data silo’s is getting out of control.
 
@@ -21,7 +21,7 @@ TODO: Intro + elaborate about the philosophy behind Ubigia.
 - *Uncharted business cases.*<br/>
   Service Enhancing Technologies, The Future of Work & many more!
 
-# How? - Philosophical perspective.
+## How? - Philosophical perspective.
 - *Think out of the box.*<br/>
   What concepts do we all take for granted but aren’t actually?
 
@@ -30,7 +30,7 @@ TODO: Intro + elaborate about the philosophy behind Ubigia.
 - *Think beyond.*<br/>
   It is OK to doubt the limitations set by todays technology or ‘proven’ concepts/theorems. 
 
-# How? - Fundamental principles.
+## How? - Fundamental principles.
 - *Information is always multi-dimensional.*<br/>
   Take this as a starting point.
   
@@ -40,7 +40,7 @@ TODO: Intro + elaborate about the philosophy behind Ubigia.
 - *Context is key.*<br/>
   The purpose of any IT system is to support its users in some task(s). This means that information system’s should provide information as good as possible for the context the user is in.
   
-# What? - Conceptual: Information Layer Architecture instead of data silo oriented.
+## What? - Conceptual: Information Layer Architecture instead of data silo oriented.
 - *Ubiquitous Information System.*<br/>
   In which all information is stored, secured and  interlinked.
   
@@ -50,7 +50,7 @@ TODO: Intro + elaborate about the philosophy behind Ubigia.
 - *This is not a data lake!*<br/>
   A data lake doesn’t honor information relations as firs-class information.
 
-# What? - Conceptual: Multi-Dimensional information
+## What? - Conceptual: Multi-Dimensional information
 All possible information can be modelled using three symmetrical dimensions:
 
 - *Temporal*<br/>
@@ -59,7 +59,7 @@ All possible information can be modelled using three symmetrical dimensions:
 
 - *Hierarchical*<br/>
 
-# What? - Conceptual: Immutable Information.
+## What? - Conceptual: Immutable Information.
 - *Most of today’s data systems are based on mutable information.*<br/>
   This is an ‘ancient’ concept that originated a few decades ago.
   
@@ -69,7 +69,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Immutable Information opens up new possibilities.*<br/>
   Easier information structuring/exchange (including CAP theorem workaround) and many more.
   
-# What? - Conceptual: All information should be absolutely identifiable.
+## What? - Conceptual: All information should be absolutely identifiable.
 
 - *Even temporal information should be uniquely identifiable.*<br/>
   This will separate the concerns of information exchange and need for conflict resolution when using information across multiple devices.
@@ -80,7 +80,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Split the concerns of Information Persisting and Information Registration – these are not the same.*<br/>
   Preparation of identifiers can happen way before using them.
   
-# What? - Conceptual: Contextual Views using Micro Schema Composition.
+## What? - Conceptual: Contextual Views using Micro Schema Composition.
 - *A user’s view on information is dynamic.*<br/>
   Provide a view that slides across information and broadens or narrows depending on the required (and changing) context.
   
@@ -90,7 +90,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Dynamic Hierarchical Schematics.*<br/>
   Application access information using a dynamic composition of small schema’s they understand. 
   
-# What? - Conceptual: Multi-Dimensional Traversal Language.
+## What? - Conceptual: Multi-Dimensional Traversal Language.
 - *We need a new way to work with information.*<br/>
   There is need for an information retrieval/alteration approach that is native to the multi-dimensional character of information.
   
@@ -100,7 +100,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Facilitating compatibility.*<br/>
   Traditional systems should be facilitated and also able to run on top of a Ubiquitous Information System.
   
-# What? - Conceptual: Subscription based Information Exchange.
+## What? - Conceptual: Subscription based Information Exchange.
 - *Blockchain/DLT powered.*<br/>
   To ensure that when needed information cannot be replicated.
   
@@ -110,7 +110,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Highly needed to solve the problem of IoT.*<br/>
   And doing so trigger a paradigm shift in information ownership.
   
-# What? - Conceptual: Benefits
+## What? - Conceptual: Benefits
 - *Next-gen business use-case complexity will become feasible.*<br/>
   Indexing will become a thing of the past. Exchanging information ”as easy as pie”.
   
@@ -129,7 +129,7 @@ All possible information can be modelled using three symmetrical dimensions:
 - *Security will become easier.*<br/>
   Reduction in the impact of breaches. Eventually a breach will no longer result in permanent damage.
 
-# What? - POC / Use Case 1 – Personal Photo Collection
+## What? - POC / Use Case 1 – Personal Photo Collection
 - Full personal photo archives are made available in a truly ‘usable’ way.
 - Intelligently accumulates other information sources like: 
   - Contact details, time, usage + behavioral patterns.
@@ -141,7 +141,7 @@ All possible information can be modelled using three symmetrical dimensions:
 
 - Visualization is done on desktop, touch and glass devices – including AR/VR.
 
-# What? - POC Use Case 2 – Personal Contextual Assistant/assistance.
+## What? - POC Use Case 2 – Personal Contextual Assistant/assistance.
 - Knowledge workers are assisted with applications that run on top of a Ubiquitous Information System.
 
 - Selected types of business information are stored and interlinked:<br/>
