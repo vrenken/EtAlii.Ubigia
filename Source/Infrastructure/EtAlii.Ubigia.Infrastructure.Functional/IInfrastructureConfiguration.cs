@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     public interface IInfrastructureConfiguration : IConfiguration

@@ -1,7 +1,6 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class FabricContextConfigurationUseDiagnostics
