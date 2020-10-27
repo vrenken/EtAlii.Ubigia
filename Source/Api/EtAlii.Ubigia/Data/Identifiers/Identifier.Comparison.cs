@@ -4,6 +4,11 @@
 
     public partial struct Identifier : IEquatable<Identifier>
     {
+        /// <summary>
+        /// Check whether this identifier equals the provided object.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public override bool Equals(object obj)
         {
             // If parameter is null, return false. 
@@ -28,6 +33,11 @@
             return Equals((Identifier)obj);
         }
 
+        /// <summary>
+        /// Check whether this identifier equals the other identifier.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool Equals(Identifier id)
         {
             // Cannot happen. 
@@ -87,6 +97,12 @@
             return true;
         }
 
+        /// <summary>
+        /// Check whether two identifiers are equal.
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         public static bool operator ==(Identifier first, Identifier second)
         {
             var equals = first.Equals(second);
@@ -99,6 +115,12 @@
             return equals;
         }
 
+        /// <summary>
+        /// Check whether two identifiers are not equal.
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         public static bool operator !=(Identifier first, Identifier second)
         {
             var equals = first == second;
