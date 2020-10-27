@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Provisioning.Diagnostics
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
     public class ViewFunctionHandler : FunctionHandlerBase, IViewFunctionHandler
