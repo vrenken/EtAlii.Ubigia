@@ -10,6 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
   </ItemGroup>
 </Project>

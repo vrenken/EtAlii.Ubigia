@@ -11,7 +11,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\UnitTestSettings.cs">
