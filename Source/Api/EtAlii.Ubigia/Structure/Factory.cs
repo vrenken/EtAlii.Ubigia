@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia
 {
     using EtAlii.xTechnology.MicroContainer;
 

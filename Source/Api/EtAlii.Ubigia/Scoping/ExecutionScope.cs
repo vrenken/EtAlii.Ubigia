@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia
 {
     using System.Collections.Generic;
     using System.Text.RegularExpressions;

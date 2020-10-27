@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
-    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.MicroContainer;
 
     public class FabricContextFactory : Factory<IFabricContext, FabricContextConfiguration, IFabricContextExtension>// IFabricContextFactory

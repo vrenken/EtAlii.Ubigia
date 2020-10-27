@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia
 {
     /// <summary>
     /// Use this interface to access properties of a configuration.

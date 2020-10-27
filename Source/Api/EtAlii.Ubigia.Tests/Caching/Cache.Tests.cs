@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Tests
+﻿namespace EtAlii.Ubigia.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class CacheTests
