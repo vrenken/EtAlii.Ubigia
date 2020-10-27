@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia
 {
     /// <summary>
     /// Use this interface to define a configuration that can be used by configuration/factory subsystem implementations.

@@ -89,11 +89,7 @@
 
         public static bool operator ==(Identifier first, Identifier second)
         {
-            var equals = false;
-            if ((object)first != null && (object)second != null)
-            {
-                equals = first.Equals(second);
-            }
+            var equals = first.Equals(second);
 
             // Cannot happen.
             //else if ((object)first == null && (object)second == null)
