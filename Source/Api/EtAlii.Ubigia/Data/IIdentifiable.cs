@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// This interface represents identifiable, named types.
+    /// </summary>
     public interface IIdentifiable
     {
         Guid Id { get; set; }

@@ -3,7 +3,11 @@
     using System;
 
     /// <summary>
-    /// A very unique identifier. 
+    /// A very unique identifier.
+    /// The Ubigia identifier is not based on random values but on a hierarchical structure,
+    /// composed of both spatial (Storage/Account/Space) and temporal (Era/Period/Moment) components.
+    /// The reasoning is that we want to be able to uniquely identifier each individual change a person or system
+    /// will ever needs. 
     /// </summary>
     public partial struct Identifier : IEditableIdentifier
     {
@@ -47,13 +51,8 @@
             {
                 return $"{GetType().Name}.Empty";
             }
-            else
-            {
-                return string.Format("{0}{2}{1}", 
-                                ToLocationString(), 
-                                ToTimeString(),
-                                IdentifierSplitter.Part);
-            }
+
+            return string.Format($"{ToLocationString()}{IdentifierSplitter.Part}{ToTimeString()}");
         }
 
         public string ToLocationString()
