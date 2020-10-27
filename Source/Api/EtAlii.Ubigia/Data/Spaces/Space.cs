@@ -3,7 +3,7 @@
     using System;
 
     /// <summary>
-    /// Represents a single space in a <see cref="Storage"/> .
+    /// Represents a single space in a <see cref="Storage"/>.
     /// </summary>
     public class Space : IIdentifiable
     {
