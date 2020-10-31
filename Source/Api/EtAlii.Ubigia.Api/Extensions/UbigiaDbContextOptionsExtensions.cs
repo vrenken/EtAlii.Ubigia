@@ -45,8 +45,65 @@ namespace Microsoft.EntityFrameworkCore
             [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
             where TContext : DbContext
-            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext(
-                (DbContextOptionsBuilder)optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
+            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext<GrpcTransport>(optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
+
+        /// <summary>
+        ///     Configures the context to connect to a Ubigia context.
+        /// </summary>
+        /// <typeparam name="TContext"> The type of context being configured. </typeparam>
+        /// <typeparam name="TTransport"> The type of the transport to use. </typeparam>
+        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
+        /// </param>
+        /// <param name="storage">
+        ///     The storage that should be queried.
+        /// </param>
+        /// <param name="username">
+        ///     The username with which to access the storage.
+        /// </param>
+        /// <param name="password">
+        ///     The password with which to access the storage.
+        /// </param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
+        /// <returns> The options builder so that further configuration can be chained. </returns>
+        public static DbContextOptionsBuilder<TContext> UseUbigiaContext<TContext, TTransport>(
+            [NotNull] this DbContextOptionsBuilder<TContext> optionsBuilder,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
+            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
+            where TContext : DbContext
+            where TTransport : ITransport
+            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext<TTransport>(optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
+        
+        /// <summary>
+        ///     Configures the context to connect to a Ubigia context.
+        /// </summary>
+        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
+        /// </param>
+        /// <param name="storage">
+        ///     The storage that should be queried.
+        /// </param>
+        /// <param name="username">
+        ///     The username with which to access the storage.
+        /// </param>
+        /// <param name="password">
+        ///     The password with which to access the storage.
+        /// </param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
+        /// <returns> The options builder so that further configuration can be chained. </returns>
+        public static DbContextOptionsBuilder UseUbigiaContext(
+            [NotNull] this DbContextOptionsBuilder optionsBuilder,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
+            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
+            => UseUbigiaContext<GrpcTransport>(optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
 
         /// <summary>
         ///     Configures the context to connect to a Ubigia context.
@@ -74,64 +131,7 @@ namespace Microsoft.EntityFrameworkCore
             [NotNull] string username,
             [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
-            where TTransport : ITransport
-            => UseUbigiaContext(optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
-
-        /// <summary>
-        ///     Configures the context to connect to a Ubigia context.
-        /// </summary>
-        /// <typeparam name="TContext"> The type of context being configured. </typeparam>
-        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="address">
-        ///     The address of the Ubigia database. 
-        /// </param>
-        /// <param name="storage">
-        ///     The storage that should be queried.
-        /// </param>
-        /// <param name="username">
-        ///     The username with which to access the storage.
-        /// </param>
-        /// <param name="password">
-        ///     The password with which to access the storage.
-        /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
-        /// <returns> The options builder so that further configuration can be chained. </returns>
-        public static DbContextOptionsBuilder<TContext> UseUbigiaContext<TContext, TTransport>(
-            [NotNull] this DbContextOptionsBuilder<TContext> optionsBuilder,
-            [NotNull] string address,
-            [NotNull] string storage,
-            [NotNull] string username,
-            [NotNull] string password,
-            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
-            where TContext : DbContext
-            where TTransport : ITransport
-            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext((DbContextOptionsBuilder)optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
-
-        /// <summary>
-        ///     Configures the context to connect to a Ubigia context.
-        /// </summary>
-        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="address">
-        ///     The address of the Ubigia database. 
-        /// </param>
-        /// <param name="storage">
-        ///     The storage that should be queried.
-        /// </param>
-        /// <param name="username">
-        ///     The username with which to access the storage.
-        /// </param>
-        /// <param name="password">
-        ///     The password with which to access the storage.
-        /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
-        /// <returns> The options builder so that further configuration can be chained. </returns>
-        public static DbContextOptionsBuilder UseUbigiaContext(
-            [NotNull] this DbContextOptionsBuilder optionsBuilder,
-            [NotNull] string address,
-            [NotNull] string storage,
-            [NotNull] string username,
-            [NotNull] string password,
-            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
+            where TTransport: ITransport
         {
             Check.NotNull(optionsBuilder, nameof(optionsBuilder));
             Check.NotEmpty(address, nameof(address));
@@ -146,12 +146,8 @@ namespace Microsoft.EntityFrameworkCore
                 .WithAddress(address)
                 .WithStorage(storage)
                 .WithPassword(password)
-                .WithUsername(username);
-
-            //if (databaseRoot != null)
-            //{
-            //    extension = extension.WithDatabaseRoot(databaseRoot);
-            //}
+                .WithUsername(username)
+                .WithTransport<TTransport>();
 
             ConfigureWarnings(optionsBuilder);
 
