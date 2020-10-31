@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/contentModel.xml
+/.idea.EtAlii.Ubigia.Api.iml
+# Datasource local storage ignored files
+/../../../../../../../../../:\Git\Github\Vrenken\EtAlii.Ubigia\Source\.idea\.idea.EtAlii.Ubigia.Api\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

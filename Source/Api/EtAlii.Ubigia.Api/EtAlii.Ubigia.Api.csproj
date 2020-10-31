@@ -11,16 +11,28 @@
   </PropertyGroup>
   <PropertyGroup>
     <!-- We want to have comments on everything public -->
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>
+<!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+<!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq\EtAlii.Ubigia.Api.Functional.Querying.Linq.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
+
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_Shared\**.*.cs" />
+    <None Update="Properties\Resources.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.9" />
   </ItemGroup>
 </Project>

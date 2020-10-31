@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
-    <ProjectGuid>b42a4c2b-15b6-4533-b06a-89346fb7aab6</ProjectGuid>
+    <ProjectGuid>{8C097F87-74F3-4753-AF2E-4B1DE6C7A5C9}</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <Description>This library provides the basic code constructs for all testing purposes.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
@@ -10,6 +10,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>
@@ -18,6 +19,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UnitTests" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.9" />
   </ItemGroup>
 </Project>
