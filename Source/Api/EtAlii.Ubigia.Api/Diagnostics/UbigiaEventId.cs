@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics
 
     /// <summary>
     ///     <para>
-    ///         Event IDs for in-memory events that correspond to messages logged to an <see cref="ILogger" />
+    ///         Event IDs for Ubigia events that correspond to messages logged to an <see cref="ILogger" />
     ///         and events sent to a <see cref="DiagnosticSource" />.
     ///     </para>
     ///     <para>
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics
 
         /// <summary>
         ///     <para>
-        ///         A transaction operation was requested, but ignored because in-memory does not support transactions.
+        ///         A transaction operation was requested, but ignored because Ubigia does not support transactions.
         ///     </para>
         ///     <para>
         ///         This event is in the <see cref="DbLoggerCategory.Database.Transaction" /> category.

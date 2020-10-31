@@ -23,6 +23,6 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
         public static IUbigiaStore GetStore([NotNull] this IUbigiaStoreCache storeCache, [NotNull] IDbContextOptions options)
-            => storeCache.GetStore(options.Extensions.OfType<UbigiaOptionsExtension>().First().StoreName);
+            => storeCache.GetStore(options.Extensions.OfType<UbigiaOptionsExtension>().First().Storage);
     }
 }

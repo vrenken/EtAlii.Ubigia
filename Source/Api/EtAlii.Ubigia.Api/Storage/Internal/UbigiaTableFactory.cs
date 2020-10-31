@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     ///     doing so can result in application failures when updating to a new Entity Framework Core release.
     /// </summary>
     public class UbigiaTableFactory
-        // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+        // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
 #pragma warning disable EF1001 // Internal API
         : IdentityMapFactoryFactoryBase, IUbigiaTableFactory
 #pragma warning restore EF1001 // Internal API
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         [UsedImplicitly]
         private static Func<IUbigiaTable> CreateFactory<TKey>(IKey key, bool sensitiveLoggingEnabled)
             => () => new UbigiaTable<TKey>(
-                // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+                // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
 #pragma warning disable EF1001 // Internal API
                 Microsoft.EntityFrameworkCore.Metadata.Internal.KeyExtensions.GetPrincipalKeyValueFactory<TKey>(key),
 #pragma warning restore EF1001 // Internal API

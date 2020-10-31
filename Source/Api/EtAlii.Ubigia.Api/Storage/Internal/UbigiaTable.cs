@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     /// </summary>
     public class UbigiaTable<TKey> : IUbigiaTable
     {
-        // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+        // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
         private readonly IPrincipalKeyValueFactory<TKey> _keyValueFactory;
         private readonly bool _sensitiveLoggingEnabled;
         private readonly Dictionary<TKey, object[]> _rows;
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
         public UbigiaTable(
-            // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+            // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
             [NotNull] IPrincipalKeyValueFactory<TKey> keyValueFactory,
             bool sensitiveLoggingEnabled)
         {
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
                 _integerGenerators = new Dictionary<int, IUbigiaIntegerValueGenerator>();
             }
 
-            // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+            // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
 #pragma warning disable EF1001 // Internal API
             var propertyIndex = Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetIndex(property);
 #pragma warning restore EF1001 // Internal API
@@ -222,7 +222,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             }
         }
 
-        // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+        // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
 #pragma warning disable EF1001 // Internal API
         private TKey CreateKey(IUpdateEntry entry) => _keyValueFactory.CreateFromCurrentValues((InternalEntityEntry)entry);
 #pragma warning restore EF1001 // Internal API

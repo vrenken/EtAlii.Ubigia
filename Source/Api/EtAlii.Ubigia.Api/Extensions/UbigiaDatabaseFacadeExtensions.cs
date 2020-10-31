@@ -17,7 +17,7 @@ namespace Microsoft.EntityFrameworkCore
     {
         /// <summary>
         ///     <para>
-        ///         Returns <c>true</c> if the database provider currently in use is the in-memory provider.
+        ///         Returns <c>true</c> if the database provider currently in use is the Ubigia provider.
         ///     </para>
         ///     <para>
         ///         This method can only be used after the <see cref="DbContext" /> has been configured because
@@ -27,7 +27,7 @@ namespace Microsoft.EntityFrameworkCore
         ///     </para>
         /// </summary>
         /// <param name="database"> The facade from <see cref="DbContext.Database" />. </param>
-        /// <returns> <c>true</c> if the in-memory database is being used. </returns>
+        /// <returns> <c>true</c> if the Ubigia database is being used. </returns>
         public static bool IsUbigia([NotNull] this DatabaseFacade database)
             => database.ProviderName.Equals(
                 typeof(UbigiaOptionsExtension).GetTypeInfo().Assembly.GetName().Name,
