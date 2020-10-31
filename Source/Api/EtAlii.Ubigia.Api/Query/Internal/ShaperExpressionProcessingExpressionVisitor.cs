@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 {
     public class ShaperExpressionProcessingExpressionVisitor : ExpressionVisitor
     {
-        private readonly InMemoryQueryExpression _queryExpression;
+        private readonly UbigiaQueryExpression _queryExpression;
         private readonly ParameterExpression _valueBufferParameter;
 
         private readonly IDictionary<Expression, ParameterExpression> _mapping = new Dictionary<Expression, ParameterExpression>();
@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         private readonly List<Expression> _expressions = new List<Expression>();
 
         public ShaperExpressionProcessingExpressionVisitor(
-            [CanBeNull] InMemoryQueryExpression queryExpression, [NotNull] ParameterExpression valueBufferParameter)
+            [CanBeNull] UbigiaQueryExpression queryExpression, [NotNull] ParameterExpression valueBufferParameter)
         {
             _queryExpression = queryExpression;
             _valueBufferParameter = valueBufferParameter;
