@@ -5,6 +5,7 @@ using System.ComponentModel;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Utilities;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore.Infrastructure
 {
     /// <summary>
@@ -52,6 +53,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
         /// <param name="obj"> The object to compare with the current object. </param>
         /// <returns> true if the specified object is equal to the current object; otherwise, false. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // ReSharper disable once BaseObjectEqualsIsObjectEquals
         public override bool Equals(object obj) => base.Equals(obj);
 
         /// <summary>
@@ -59,6 +61,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
         /// </summary>
         /// <returns> A hash code for the current object. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
         public override int GetHashCode() => base.GetHashCode();
 
         #endregion

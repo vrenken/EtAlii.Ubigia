@@ -1,17 +1,17 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Concurrent;
-using System.Reflection;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Utilities;
-
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
+    using System;
+    using System.Collections.Concurrent;
+    using System.Reflection;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Utilities;
+
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
     ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
@@ -20,7 +20,10 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     /// </summary>
     public class InMemoryTableFactory
         // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+#pragma warning disable EF1001 // Internal API
         : IdentityMapFactoryFactoryBase, IInMemoryTableFactory
+#pragma warning restore EF1001 // Internal API
+   
     {
         private readonly bool _sensitiveLoggingEnabled;
 
@@ -59,7 +62,9 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         private static Func<IInMemoryTable> CreateFactory<TKey>(IKey key, bool sensitiveLoggingEnabled)
             => () => new InMemoryTable<TKey>(
                 // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+#pragma warning disable EF1001 // Internal API
                 Microsoft.EntityFrameworkCore.Metadata.Internal.KeyExtensions.GetPrincipalKeyValueFactory<TKey>(key),
+#pragma warning restore EF1001 // Internal API
                 sensitiveLoggingEnabled);
     }
 }

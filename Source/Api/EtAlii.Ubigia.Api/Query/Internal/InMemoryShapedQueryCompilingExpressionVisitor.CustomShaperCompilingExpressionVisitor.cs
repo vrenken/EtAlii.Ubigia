@@ -26,19 +26,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _tracking = tracking;
             }
 
-            private static readonly MethodInfo _includeReferenceMethodInfo
+            private static readonly MethodInfo IncludeReferenceMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(IncludeReference));
 
-            private static readonly MethodInfo _includeCollectionMethodInfo
+            private static readonly MethodInfo IncludeCollectionMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(IncludeCollection));
 
-            private static readonly MethodInfo _materializeCollectionMethodInfo
+            private static readonly MethodInfo MaterializeCollectionMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(MaterializeCollection));
 
-            private static readonly MethodInfo _materializeSingleResultMethodInfo
+            private static readonly MethodInfo MaterializeSingleResultMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(MaterializeSingleResult));
 
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var collectionShaper = (CollectionShaperExpression)includeExpression.NavigationExpression;
                         return Expression.Call(
-                            _includeCollectionMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
+                            IncludeCollectionMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
                             QueryCompilationContext.QueryContextParameter,
                             collectionShaper.Projection,
                             Expression.Constant(((LambdaExpression)Visit(collectionShaper.InnerShaper)).Compile()),
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     }
 
                     return Expression.Call(
-                        _includeReferenceMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
+                        IncludeReferenceMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
                         QueryCompilationContext.QueryContextParameter,
                         includeExpression.EntityExpression,
                         includeExpression.NavigationExpression,
@@ -208,7 +208,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var collectionType = collectionShaperExpression.Type;
 
                     return Expression.Call(
-                        _materializeCollectionMethodInfo.MakeGenericMethod(elementType, collectionType),
+                        MaterializeCollectionMethodInfo.MakeGenericMethod(elementType, collectionType),
                         QueryCompilationContext.QueryContextParameter,
                         collectionShaperExpression.Projection,
                         Expression.Constant(((LambdaExpression)Visit(collectionShaperExpression.InnerShaper)).Compile()),
@@ -220,7 +220,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (extensionExpression is SingleResultShaperExpression singleResultShaperExpression)
                 {
                     return Expression.Call(
-                        _materializeSingleResultMethodInfo.MakeGenericMethod(singleResultShaperExpression.Type),
+                        MaterializeSingleResultMethodInfo.MakeGenericMethod(singleResultShaperExpression.Type),
                         QueryCompilationContext.QueryContextParameter,
                         singleResultShaperExpression.Projection,
                         Expression.Constant(((LambdaExpression)Visit(singleResultShaperExpression.InnerShaper)).Compile()));
@@ -269,14 +269,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 INavigation navigation)
                 => Expression.Call(
                     Expression.Constant(navigation.GetCollectionAccessor()),
-                    _collectionAccessorAddMethodInfo,
+                    CollectionAccessorAddMethodInfo,
                     entity,
                     relatedEntity,
                     Expression.Constant(true));
 
-            private static readonly MethodInfo _collectionAccessorAddMethodInfo
-                = typeof(IClrCollectionAccessor).GetTypeInfo()
-                    .GetDeclaredMethod(nameof(IClrCollectionAccessor.Add));
+            private static readonly MethodInfo CollectionAccessorAddMethodInfo = typeof(IClrCollectionAccessor).GetTypeInfo().GetDeclaredMethod(nameof(IClrCollectionAccessor.Add));
         }
     }
 }

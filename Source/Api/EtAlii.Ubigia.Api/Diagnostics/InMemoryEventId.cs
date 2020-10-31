@@ -1,11 +1,13 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Diagnostics;
-using Microsoft.Extensions.Logging;
-
-namespace Microsoft.EntityFrameworkCore.Diagnostics
+namespace EtAlii.Ubigia.Api.Diagnostics
 {
+    using System.Diagnostics;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.Extensions.Logging;
+
     /// <summary>
     ///     <para>
     ///         Event IDs for in-memory events that correspond to messages logged to an <see cref="ILogger" />
@@ -30,8 +32,8 @@ namespace Microsoft.EntityFrameworkCore.Diagnostics
             ChangesSaved = CoreEventId.ProviderBaseId + 100
         }
 
-        private static readonly string _transactionPrefix = DbLoggerCategory.Database.Transaction.Name + ".";
-        private static EventId MakeTransactionId(Id id) => new EventId((int)id, _transactionPrefix + id);
+        private static readonly string TransactionPrefix = DbLoggerCategory.Database.Transaction.Name + ".";
+        private static EventId MakeTransactionId(Id id) => new EventId((int)id, TransactionPrefix + id);
 
         /// <summary>
         ///     <para>
@@ -46,8 +48,8 @@ namespace Microsoft.EntityFrameworkCore.Diagnostics
         /// </summary>
         public static readonly EventId TransactionIgnoredWarning = MakeTransactionId(Id.TransactionIgnoredWarning);
 
-        private static readonly string _updatePrefix = DbLoggerCategory.Update.Name + ".";
-        private static EventId MakeUpdateId(Id id) => new EventId((int)id, _updatePrefix + id);
+        private static readonly string UpdatePrefix = DbLoggerCategory.Update.Name + ".";
+        private static EventId MakeUpdateId(Id id) => new EventId((int)id, UpdatePrefix + id);
 
         /// <summary>
         ///     <para>

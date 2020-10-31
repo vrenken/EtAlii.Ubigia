@@ -1,15 +1,14 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 {
+    using System;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.EntityFrameworkCore;
+    using EtAlii.Ubigia.Api.Storage;
 
     /// <summary>
     ///     <para>

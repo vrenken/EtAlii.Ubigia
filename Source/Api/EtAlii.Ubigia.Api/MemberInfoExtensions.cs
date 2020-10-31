@@ -3,6 +3,7 @@
 
 using System.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
     internal static class MemberInfoExtensions

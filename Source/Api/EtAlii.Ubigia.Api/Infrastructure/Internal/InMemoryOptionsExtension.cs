@@ -1,16 +1,16 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Globalization;
-using System.Text;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Text;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.Ubigia.Api.Storage;
+
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
     ///     the same compatibility standards as public APIs. It may be changed or removed without notice in

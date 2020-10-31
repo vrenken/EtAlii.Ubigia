@@ -17,10 +17,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
     public partial class InMemoryQueryExpression : Expression, IPrintableExpression
     {
-        private static readonly ConstructorInfo _valueBufferConstructor
+        private static readonly ConstructorInfo ValueBufferConstructor
             = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
 
-        private static readonly PropertyInfo _valueBufferCountMemberInfo
+        private static readonly PropertyInfo ValueBufferCountMemberInfo
             = typeof(ValueBuffer).GetTypeInfo().GetProperty(nameof(ValueBuffer.Count));
 
         private readonly List<Expression> _valueBufferSlots = new List<Expression>();
@@ -42,22 +42,29 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         public InMemoryQueryExpression(IEntityType entityType)
         {
             _valueBufferParameter = Parameter(typeof(ValueBuffer), "valueBuffer");
+            // ReSharper disable once VirtualMemberCallInConstructor
             ServerQueryExpression = new InMemoryTableExpression(entityType);
             var readExpressionMap = new Dictionary<IProperty, Expression>();
             foreach (var property in entityType.GetAllBaseTypesInclusive().SelectMany(et => et.GetDeclaredProperties()))
             {
+#pragma warning disable EF1001 // Internal API
                 readExpressionMap[property] = CreateReadValueExpression(property.ClrType, property.GetIndex(), property);
+#pragma warning restore EF1001 // Internal API
             }
 
             foreach (var property in entityType.GetDerivedTypes().SelectMany(et => et.GetDeclaredProperties()))
             {
                 readExpressionMap[property] = Condition(
                     LessThan(
+#pragma warning disable EF1001 // Internal API
                         Constant(property.GetIndex()),
+#pragma warning restore EF1001 // Internal API
                         MakeMemberAccess(
                             _valueBufferParameter,
-                            _valueBufferCountMemberInfo)),
+                            ValueBufferCountMemberInfo)),
+#pragma warning disable EF1001 // Internal API
                     CreateReadValueExpression(property.ClrType, property.GetIndex(), property),
+#pragma warning restore EF1001 // Internal API
                     Default(property.ClrType));
             }
 
@@ -91,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         typeof(ResultEnumerable).GetConstructors().Single(),
                         Lambda<Func<ValueBuffer>>(
                             New(
-                                _valueBufferConstructor,
+                                ValueBufferConstructor,
                                 NewArrayInit(typeof(object), ServerQueryExpression))));
                 }
                 else
@@ -192,8 +199,9 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
-        private IEnumerable<IProperty> GetAllPropertiesInHierarchy(IEntityType entityType)
-            => entityType.GetTypesInHierarchy().SelectMany(Microsoft.EntityFrameworkCore.EntityTypeExtensions.GetDeclaredProperties);
+#pragma warning disable EF1001 // Internal API
+        private IEnumerable<IProperty> GetAllPropertiesInHierarchy(IEntityType entityType) => entityType.GetTypesInHierarchy().SelectMany(EntityTypeExtensions.GetDeclaredProperties);
+#pragma warning restore EF1001 // Internal API
 
         public virtual Expression GetMappedProjection(ProjectionMember member)
             => _projectionMapping[member];
@@ -231,7 +239,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -294,7 +302,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -311,7 +319,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             ServerQueryExpression = Call(
                 EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                 ServerQueryExpression,
-                New(_valueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
+                New(ValueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
 
             _valueBufferSlots.Clear();
         }
@@ -356,7 +364,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -375,15 +383,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             PushdownIntoSubquery();
 
             var selectMethod = (MethodCallExpression)ServerQueryExpression;
+            // ReSharper disable UnusedVariable
             var groupBySource = selectMethod.Arguments[0];
             var elementSelector = selectMethod.Arguments[1];
+            // ReSharper restore UnusedVariable
             _groupingParameter = Parameter(typeof(IGrouping<ValueBuffer, ValueBuffer>), "grouping");
             var groupingKeyAccessExpression = PropertyOrField(_groupingParameter, nameof(IGrouping<int, int>.Key));
             var groupingKeyExpressions = new List<Expression>();
             groupingKey = GetGroupingKey(groupingKey, groupingKeyExpressions, groupingKeyAccessExpression);
             var keySelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         groupingKeyExpressions.Select(e => e.Type.IsValueType ? Convert(e, typeof(object)) : e))),
@@ -490,7 +500,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
@@ -514,7 +524,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
@@ -530,7 +540,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -603,6 +613,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
+                        // ReSharper disable once PossibleNullReferenceException
                         readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
                     }
 
@@ -613,6 +624,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 {
                     var replacedExpression = replacingVisitor.Visit(projection.Value);
                     resultValueBufferExpressions.Add(replacedExpression);
+                    // ReSharper disable once PossibleNullReferenceException
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
                         = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
                 }
@@ -652,7 +664,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        _valueBufferConstructor,
+                        ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
                             Enumerable.Range(0, index - outerIndex).Select(i => Constant(null))))),
@@ -660,7 +672,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -752,7 +764,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -814,7 +826,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 new Expression[] { MakeMemberAccess(outerParameter, outerMemberInfo), innerParameter});
             var index = 0;
 
-            EntityProjectionExpression copyEntityProjectionToOuter(EntityProjectionExpression entityProjection)
+            EntityProjectionExpression CopyEntityProjectionToOuter(EntityProjectionExpression entityProjection)
             {
                 var readExpressionMap = new Dictionary<IProperty, Expression>();
                 foreach (var property in GetAllPropertiesInHierarchy(entityProjection.EntityType))
@@ -831,16 +843,18 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 // Also lift nested entity projections
-                foreach (var navigation in entityProjection.EntityType.GetTypesInHierarchy()
-                    .SelectMany(Microsoft.EntityFrameworkCore.EntityTypeExtensions.GetDeclaredNavigations))
+#pragma warning disable EF1001 // Internal API
+                foreach (var innerNavigation in entityProjection.EntityType.GetTypesInHierarchy().SelectMany(EntityTypeExtensions.GetDeclaredNavigations))
+#pragma warning restore EF1001 // Internal API
                 {
-                    var boundEntityShaperExpression = entityProjection.BindNavigation(navigation);
+                    var boundEntityShaperExpression = entityProjection.BindNavigation(innerNavigation);
                     if (boundEntityShaperExpression != null)
                     {
+                        // ReSharper disable once VariableHidesOuterVariable
                         var innerEntityProjection = (EntityProjectionExpression)boundEntityShaperExpression.ValueBufferExpression;
-                        var newInnerEntityProjection = copyEntityProjectionToOuter(innerEntityProjection);
+                        var newInnerEntityProjection = CopyEntityProjectionToOuter(innerEntityProjection);
                         boundEntityShaperExpression = boundEntityShaperExpression.Update(newInnerEntityProjection);
-                        newEntityProjection.AddNavigationBinding(navigation, boundEntityShaperExpression);
+                        newEntityProjection.AddNavigationBinding(innerNavigation, boundEntityShaperExpression);
                     }
                 }
 
@@ -851,7 +865,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             {
                 if (projection.Value is EntityProjectionExpression entityProjection)
                 {
-                    projectionMapping[projection.Key] = copyEntityProjectionToOuter(entityProjection);
+                    projectionMapping[projection.Key] = CopyEntityProjectionToOuter(entityProjection);
                 }
                 else
                 {
@@ -884,7 +898,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        _valueBufferConstructor,
+                        ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
                             Enumerable.Range(0, index - outerIndex).Select(i => Constant(null))))),
@@ -892,7 +906,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
