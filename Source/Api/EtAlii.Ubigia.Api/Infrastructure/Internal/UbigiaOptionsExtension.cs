@@ -19,8 +19,41 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     /// </summary>
     public class UbigiaOptionsExtension : IDbContextOptionsExtension
     {
-        private string _storeName;
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual string Storage => _storage;
+        private string _storage;
+        
+        public virtual string Username => _username;
+        private string _username;
+        
+        public virtual string Password => _password;
+        private string _password;
+        
+        public virtual string Address => _address;
+        private string _address;
+        
+        
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual UbigiaDatabaseRoot DatabaseRoot => _databaseRoot;
         private UbigiaDatabaseRoot _databaseRoot;
+        
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual DbContextOptionsExtensionInfo Info => _info ??= new ExtensionInfo(this);
         private DbContextOptionsExtensionInfo _info;
 
         /// <summary>
@@ -41,18 +74,14 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         /// </summary>
         protected UbigiaOptionsExtension([NotNull] UbigiaOptionsExtension copyFrom)
         {
-            _storeName = copyFrom._storeName;
+            _storage = copyFrom._storage;
+            _username = copyFrom._username;
+            _password = copyFrom._password;
+            _address = copyFrom._address;
+            
             _databaseRoot = copyFrom._databaseRoot;
         }
 
-        /// <summary>
-        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
-        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
-        ///     any release. You should only use it directly in your code with extreme caution and knowing that
-        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
-        /// </summary>
-        public virtual DbContextOptionsExtensionInfo Info
-            => _info ??= new ExtensionInfo(this);
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -68,30 +97,41 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public virtual string StoreName => _storeName;
-
-        /// <summary>
-        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
-        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
-        ///     any release. You should only use it directly in your code with extreme caution and knowing that
-        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
-        /// </summary>
-        public virtual UbigiaOptionsExtension WithStoreName([NotNull] string storeName)
+        public virtual UbigiaOptionsExtension WithStorage([NotNull] string storage)
         {
             var clone = Clone();
 
-            clone._storeName = storeName;
+            clone._storage = storage;
 
             return clone;
         }
+        
+        public virtual UbigiaOptionsExtension WithAddress([NotNull] string address)
+        {
+            var clone = Clone();
 
-        /// <summary>
-        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
-        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
-        ///     any release. You should only use it directly in your code with extreme caution and knowing that
-        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
-        /// </summary>
-        public virtual UbigiaDatabaseRoot DatabaseRoot => _databaseRoot;
+            clone._address = address;
+
+            return clone;
+        }
+        
+        public virtual UbigiaOptionsExtension WithUsername([NotNull] string username)
+        {
+            var clone = Clone();
+
+            clone._username = username;
+
+            return clone;
+        }
+        
+        public virtual UbigiaOptionsExtension WithPassword([NotNull] string password)
+        {
+            var clone = Clone();
+
+            clone._password = password;
+
+            return clone;
+        }
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -114,8 +154,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public virtual void ApplyServices(IServiceCollection services)
-            => services.AddEntityFrameworkUbigiaDatabase();
+        public virtual void ApplyServices(IServiceCollection services) => services.AddEntityFrameworkUbigiaDatabase();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -136,8 +175,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             {
             }
 
-            private new UbigiaOptionsExtension Extension
-                => (UbigiaOptionsExtension)base.Extension;
+            private new UbigiaOptionsExtension Extension => (UbigiaOptionsExtension)base.Extension;
 
             public override bool IsDatabaseProvider => true;
 
@@ -149,7 +187,10 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
                     {
                         var builder = new StringBuilder();
 
-                        builder.Append("StoreName=").Append(Extension._storeName).Append(' ');
+                        builder.Append("StoreName=").Append(Extension._storage).Append(' ');
+                        builder.Append("Address=").Append(Extension._address).Append(' ');
+                        builder.Append("Username=").Append(Extension._username).Append(' ');
+                        builder.Append("Password=").Append("<Password>").Append(' ');
 
                         _logFragment = builder.ToString();
                     }

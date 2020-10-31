@@ -15,7 +15,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
     ///     <para>
     ///         Instances of this class are returned from a call to
     ///         <see
-    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,string,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.UbigiaDbContextOptionsBuilder})" />
+    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,string,string,string,string,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.UbigiaDbContextOptionsBuilder})" />
     ///         and it is not designed to be directly constructed in your application code.
     ///     </para>
     /// </summary>

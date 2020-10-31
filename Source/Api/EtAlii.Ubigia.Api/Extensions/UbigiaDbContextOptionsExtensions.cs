@@ -23,141 +23,135 @@ namespace Microsoft.EntityFrameworkCore
         /// </summary>
         /// <typeparam name="TContext"> The type of context being configured. </typeparam>
         /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
         /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
+        /// <param name="storage">
+        ///     The storage that should be queried.
+        /// </param>
+        /// <param name="username">
+        ///     The username with which to access the storage.
+        /// </param>
+        /// <param name="password">
+        ///     The password with which to access the storage.
+        /// </param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
         /// <returns> The options builder so that further configuration can be chained. </returns>
         public static DbContextOptionsBuilder<TContext> UseUbigiaContext<TContext>(
             [NotNull] this DbContextOptionsBuilder<TContext> optionsBuilder,
-            [NotNull] string databaseName,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
             where TContext : DbContext
             => (DbContextOptionsBuilder<TContext>)UseUbigiaContext(
-                (DbContextOptionsBuilder)optionsBuilder, databaseName, ubigiaOptionsAction);
+                (DbContextOptionsBuilder)optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
 
-        /// <summary>
-        ///     Configures the context to connect to a Ubigia context.
-        /// </summary>
-        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
-        /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
-        /// <returns> The options builder so that further configuration can be chained. </returns>
-        public static DbContextOptionsBuilder UseUbigiaContext(
-            [NotNull] this DbContextOptionsBuilder optionsBuilder,
-            [NotNull] string databaseName,
-            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
-            => UseUbigiaContext(optionsBuilder, databaseName, null, ubigiaOptionsAction);
-
-        
         /// <summary>
         ///     Configures the context to connect to a Ubigia context.
         ///     passing a shared <see cref="UbigiaDatabaseRoot" /> on which to root the database.
         /// </summary>
         /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
         /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
+        /// <param name="storage">
+        ///     The storage that should be queried.
+        /// </param>
+        /// <param name="username">
+        ///     The username with which to access the storage.
+        /// </param>
+        /// <param name="password">
+        ///     The password with which to access the storage.
+        /// </param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
         /// <returns> The options builder so that further configuration can be chained. </returns>
         public static DbContextOptionsBuilder UseUbigiaContext<TTransport>(
             [NotNull] this DbContextOptionsBuilder optionsBuilder,
-            [NotNull] string databaseName,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
             where TTransport : ITransport
-            => UseUbigiaContext(optionsBuilder, databaseName, null, ubigiaOptionsAction);
+            => UseUbigiaContext(optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
 
-        
         /// <summary>
         ///     Configures the context to connect to a Ubigia context.
         /// </summary>
         /// <typeparam name="TContext"> The type of context being configured. </typeparam>
         /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
         /// </param>
-        /// <param name="databaseRoot">
-        ///     All in-memory databases will be rooted in this object, allowing the application
-        ///     to control their lifetime. This is useful when sometimes the context instance
-        ///     is created explicitly with <c>new</c> while at other times it is resolved using dependency injection.
+        /// <param name="storage">
+        ///     The storage that should be queried.
         /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
-        /// <returns> The options builder so that further configuration can be chained. </returns>
-        public static DbContextOptionsBuilder<TContext> UseUbigiaContext<TContext>(
-            [NotNull] this DbContextOptionsBuilder<TContext> optionsBuilder,
-            [NotNull] string databaseName,
-            [CanBeNull] UbigiaDatabaseRoot databaseRoot,
-            [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
-            where TContext : DbContext
-            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext(
-                (DbContextOptionsBuilder)optionsBuilder, databaseName, databaseRoot, ubigiaOptionsAction);
-
-        
-        /// <summary>
-        ///     Configures the context to connect to a Ubigia context.
-        /// </summary>
-        /// <typeparam name="TContext"> The type of context being configured. </typeparam>
-        /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
+        /// <param name="username">
+        ///     The username with which to access the storage.
         /// </param>
-        /// <param name="databaseRoot">
-        ///     All in-memory databases will be rooted in this object, allowing the application
-        ///     to control their lifetime. This is useful when sometimes the context instance
-        ///     is created explicitly with <c>new</c> while at other times it is resolved using dependency injection.
+        /// <param name="password">
+        ///     The password with which to access the storage.
         /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
         /// <returns> The options builder so that further configuration can be chained. </returns>
         public static DbContextOptionsBuilder<TContext> UseUbigiaContext<TContext, TTransport>(
             [NotNull] this DbContextOptionsBuilder<TContext> optionsBuilder,
-            [NotNull] string databaseName,
-            [CanBeNull] UbigiaDatabaseRoot databaseRoot,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
             where TContext : DbContext
             where TTransport : ITransport
-            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext(
-                (DbContextOptionsBuilder)optionsBuilder, databaseName, databaseRoot, ubigiaOptionsAction);
+            => (DbContextOptionsBuilder<TContext>)UseUbigiaContext((DbContextOptionsBuilder)optionsBuilder, address, storage, username, password, ubigiaOptionsAction);
 
         /// <summary>
         ///     Configures the context to connect to a Ubigia context.
         /// </summary>
         /// <param name="optionsBuilder"> The builder being used to configure the context. </param>
-        /// <param name="databaseName">
-        ///     The name of the in-memory database. This allows the scope of the in-memory database to be controlled
-        ///     independently of the context. The in-memory database is shared anywhere the same name is used.
+        /// <param name="address">
+        ///     The address of the Ubigia database. 
         /// </param>
-        /// <param name="databaseRoot">
-        ///     All in-memory databases will be rooted in this object, allowing the application
-        ///     to control their lifetime. This is useful when sometimes the context instance
-        ///     is created explicitly with <c>new</c> while at other times it is resolved using dependency injection.
+        /// <param name="storage">
+        ///     The storage that should be queried.
         /// </param>
-        /// <param name="ubigiaOptionsAction">An optional action to allow additional in-memory specific configuration.</param>
+        /// <param name="username">
+        ///     The username with which to access the storage.
+        /// </param>
+        /// <param name="password">
+        ///     The password with which to access the storage.
+        /// </param>
+        /// <param name="ubigiaOptionsAction">An optional action to allow additional Ubigia specific configuration.</param>
         /// <returns> The options builder so that further configuration can be chained. </returns>
         public static DbContextOptionsBuilder UseUbigiaContext(
             [NotNull] this DbContextOptionsBuilder optionsBuilder,
-            [NotNull] string databaseName,
-            [CanBeNull] UbigiaDatabaseRoot databaseRoot,
+            [NotNull] string address,
+            [NotNull] string storage,
+            [NotNull] string username,
+            [NotNull] string password,
             [CanBeNull] Action<UbigiaDbContextOptionsBuilder> ubigiaOptionsAction = null)
         {
             Check.NotNull(optionsBuilder, nameof(optionsBuilder));
-            Check.NotEmpty(databaseName, nameof(databaseName));
+            Check.NotEmpty(address, nameof(address));
+            Check.NotEmpty(storage, nameof(storage));
+            Check.NotEmpty(username, nameof(username));
+            Check.NotEmpty(password, nameof(password));
 
             var extension = optionsBuilder.Options.FindExtension<UbigiaOptionsExtension>()
                 ?? new UbigiaOptionsExtension();
 
-            extension = extension.WithStoreName(databaseName);
+            extension = extension
+                .WithAddress(address)
+                .WithStorage(storage)
+                .WithPassword(password)
+                .WithUsername(username);
 
-            if (databaseRoot != null)
-            {
-                extension = extension.WithDatabaseRoot(databaseRoot);
-            }
+            //if (databaseRoot != null)
+            //{
+            //    extension = extension.WithDatabaseRoot(databaseRoot);
+            //}
 
             ConfigureWarnings(optionsBuilder);
 
