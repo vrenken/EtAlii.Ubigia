@@ -225,12 +225,12 @@ namespace <#= model.Namespace.EndsWith(".Internal") ? model.Namespace : (model.N
         if (Session.ContainsKey("AccessModifier"))
         {
             result.AccessModifier = (string)Session["AccessModifier"];
-        };
+        }
         
         if (Session.ContainsKey("LoggingDefinitionsClass"))
         {
             result.LoggingDefinitionsClass = (string)Session["LoggingDefinitionsClass"];
-        };
+        }
 
         var services = (IServiceProvider)Host;
         var dte = (DTE)services.GetService(typeof(DTE));

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
     public class InMemoryQueryableMethodTranslatingExpressionVisitor : QueryableMethodTranslatingExpressionVisitor
     {
-        private static readonly MethodInfo _efPropertyMethod = typeof(EF).GetTypeInfo().GetDeclaredMethod(nameof(EF.Property));
+        private static readonly MethodInfo EntityFrameworkPropertyMethod = typeof(EF).GetTypeInfo().GetDeclaredMethod(nameof(EF.Property));
 
         private readonly InMemoryExpressionTranslatingExpressionVisitor _expressionTranslator;
         private readonly WeakEntityExpandingExpressionVisitor _weakEntityExpandingExpressionVisitor;
@@ -381,19 +381,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         private static (LambdaExpression OuterKeySelector, LambdaExpression InnerKeySelector)
             AlignKeySelectorTypes(LambdaExpression outerKeySelector, LambdaExpression innerKeySelector)
         {
-            static bool isConvertedToNullable(Expression outer, Expression inner)
+            static bool IsConvertedToNullable(Expression outer, Expression inner)
                 => outer.Type.IsNullableType()
                     && !inner.Type.IsNullableType()
                     && outer.Type.UnwrapNullableType() == inner.Type;
 
             if (outerKeySelector.Body.Type != innerKeySelector.Body.Type)
             {
-                if (isConvertedToNullable(outerKeySelector.Body, innerKeySelector.Body))
+                if (IsConvertedToNullable(outerKeySelector.Body, innerKeySelector.Body))
                 {
                     innerKeySelector = Expression.Lambda(
                         Expression.Convert(innerKeySelector.Body, outerKeySelector.Body.Type), innerKeySelector.Parameters);
                 }
-                else if (isConvertedToNullable(innerKeySelector.Body, outerKeySelector.Body))
+                else if (IsConvertedToNullable(innerKeySelector.Body, outerKeySelector.Body))
                 {
                     outerKeySelector = Expression.Lambda(
                         Expression.Convert(outerKeySelector.Body, innerKeySelector.Body.Type), outerKeySelector.Parameters);
@@ -495,7 +495,9 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return source;
                 }
 
+#pragma warning disable EF1001 // Internal API
                 var baseType = entityType.GetAllBaseTypes().SingleOrDefault(et => et.ClrType == resultType);
+#pragma warning restore EF1001 // Internal API                
                 if (baseType != null)
                 {
                     source.ShaperExpression = entityShaperExpression.WithEntityType(baseType);
@@ -510,14 +512,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var discriminatorProperty = entityType.GetDiscriminatorProperty();
                     var parameter = Expression.Parameter(entityType.ClrType);
 
-                    var callEFProperty = Expression.Call(
-                        _efPropertyMethod.MakeGenericMethod(
+                    var callEntityFrameworkProperty = Expression.Call(
+                        EntityFrameworkPropertyMethod.MakeGenericMethod(
                             discriminatorProperty.ClrType),
                         parameter,
                         Expression.Constant(discriminatorProperty.Name));
 
                     var equals = Expression.Equal(
-                        callEFProperty,
+                        callEntityFrameworkProperty,
                         Expression.Constant(derivedType.GetDiscriminatorValue(), discriminatorProperty.ClrType));
 
                     foreach (var derivedDerivedType in derivedType.GetDerivedTypes())
@@ -525,7 +527,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         equals = Expression.OrElse(
                             equals,
                             Expression.Equal(
-                                callEFProperty,
+                                callEntityFrameworkProperty,
                                 Expression.Constant(derivedDerivedType.GetDiscriminatorValue(), discriminatorProperty.ClrType)));
                     }
 
@@ -898,12 +900,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         .Select(p => p.ClrType)
                         .Any(t => t.IsNullableType());
 
+#pragma warning disable EF1001 // Internal API
                     var outerKey = entityShaperExpression.CreateKeyAccessExpression(
+#pragma warning restore EF1001 // Internal API
                         navigation.IsDependentToPrincipal()
                             ? foreignKey.Properties
                             : foreignKey.PrincipalKey.Properties,
                         makeNullable);
+#pragma warning disable EF1001 // Internal API
                     var innerKey = innerShapedQuery.ShaperExpression.CreateKeyAccessExpression(
+#pragma warning restore EF1001 // Internal API
                         navigation.IsDependentToPrincipal()
                             ? foreignKey.PrincipalKey.Properties
                             : foreignKey.Properties,
@@ -945,12 +951,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         .Select(p => p.ClrType)
                         .Any(t => t.IsNullableType());
 
+#pragma warning disable EF1001 // Internal API
                     var outerKey = entityShaperExpression.CreateKeyAccessExpression(
+#pragma warning restore EF1001 // Internal API
                         navigation.IsDependentToPrincipal()
                             ? foreignKey.Properties
                             : foreignKey.PrincipalKey.Properties,
                         makeNullable);
+#pragma warning disable EF1001 // Internal API
                     var innerKey = innerShapedQuery.ShaperExpression.CreateKeyAccessExpression(
+#pragma warning restore EF1001 // Internal API
                         navigation.IsDependentToPrincipal()
                             ? foreignKey.PrincipalKey.Properties
                             : foreignKey.Properties,

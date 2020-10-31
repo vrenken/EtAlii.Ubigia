@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
+    using Microsoft.EntityFrameworkCore;
+
     /// <summary>
     ///     <para>
     ///         This is an internal API that supports the Entity Framework Core infrastructure and not subject to

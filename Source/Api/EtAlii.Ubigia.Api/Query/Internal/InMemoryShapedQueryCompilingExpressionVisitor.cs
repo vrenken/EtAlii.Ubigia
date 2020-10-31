@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 case InMemoryTableExpression inMemoryTableExpression:
                     return Expression.Call(
-                        _tableMethodInfo,
+                        TableMethodInfo,
                         QueryCompilationContext.QueryContextParameter,
                         Expression.Constant(inMemoryTableExpression.EntityType));
             }
@@ -75,9 +75,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 Expression.Constant(_logger, typeof(IDiagnosticsLogger<DbLoggerCategory.Query>)));
         }
 
-        private static readonly MethodInfo _tableMethodInfo
-            = typeof(InMemoryShapedQueryCompilingExpressionVisitor).GetTypeInfo()
-                .GetDeclaredMethod(nameof(Table));
+        private static readonly MethodInfo TableMethodInfo = typeof(InMemoryShapedQueryCompilingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(Table));
 
         private static IEnumerable<ValueBuffer> Table(
             QueryContext queryContext,

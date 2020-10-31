@@ -47,7 +47,9 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             _keyValueFactory = keyValueFactory;
             _sensitiveLoggingEnabled = sensitiveLoggingEnabled;
+#pragma warning disable EF1001 // Internal API
             _rows = new Dictionary<TKey, object[]>(keyValueFactory.EqualityComparer);
+#pragma warning restore EF1001 // Internal API
         }
 
         /// <summary>
@@ -64,7 +66,9 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             }
 
             // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
+#pragma warning disable EF1001 // Internal API
             var propertyIndex = Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetIndex(property);
+#pragma warning restore EF1001 // Internal API
             if (!_integerGenerators.TryGetValue(propertyIndex, out var generator))
             {
                 generator = new InMemoryIntegerValueGenerator<TProperty>(propertyIndex);
@@ -219,8 +223,9 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         }
 
         // WARNING: The in-memory provider is using EF internal code here. This should not be copied by other providers. See #15096
-        private TKey CreateKey(IUpdateEntry entry)
-            => _keyValueFactory.CreateFromCurrentValues((InternalEntityEntry)entry);
+#pragma warning disable EF1001 // Internal API
+        private TKey CreateKey(IUpdateEntry entry) => _keyValueFactory.CreateFromCurrentValues((InternalEntityEntry)entry);
+#pragma warning restore EF1001 // Internal API
 
         private static object SnapshotValue(IProperty property, ValueComparer comparer, IUpdateEntry entry)
             => SnapshotValue(comparer, entry.GetCurrentValue(property));

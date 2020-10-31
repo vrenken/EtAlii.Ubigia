@@ -5,6 +5,7 @@ using System;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore.Utilities
 {
     internal static class DisposableExtensions

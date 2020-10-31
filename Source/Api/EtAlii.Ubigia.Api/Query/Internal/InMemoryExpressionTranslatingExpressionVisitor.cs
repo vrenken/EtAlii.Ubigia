@@ -421,7 +421,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     variables: new[] { valueBufferVariable },
                     Expression.Assign(valueBufferVariable, resultFunc),
                     Expression.Condition(
-                        Expression.MakeMemberAccess(valueBufferVariable, _valueBufferIsEmpty),
+                        Expression.MakeMemberAccess(valueBufferVariable, ValueBufferIsEmpty),
                         Expression.Default(methodCallExpression.Type),
                         replacedReadExpression));
             }
@@ -476,7 +476,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             return methodCallExpression.Update(@object, arguments);
         }
 
-        private static readonly MemberInfo _valueBufferIsEmpty = typeof(ValueBuffer).GetMember(nameof(ValueBuffer.IsEmpty))[0];
+        private static readonly MemberInfo ValueBufferIsEmpty = typeof(ValueBuffer).GetMember(nameof(ValueBuffer.IsEmpty))[0];
 
         protected override Expression VisitTypeBinary(TypeBinaryExpression typeBinaryExpression)
         {
@@ -616,7 +616,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (parameterExpression.Name.StartsWith(CompiledQueryParameterPrefix, StringComparison.Ordinal))
                 {
                     return Expression.Call(
-                        _getParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
+                        GetParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
                         QueryCompilationContext.QueryContextParameter,
                         Expression.Constant(parameterExpression.Name));
                 }
@@ -626,7 +626,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (parameterExpression.Name?.StartsWith(CompiledQueryParameterPrefix, StringComparison.Ordinal) == true)
                 {
                     return Expression.Call(
-                        _getParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
+                        GetParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
                         QueryCompilationContext.QueryContextParameter,
                         Expression.Constant(parameterExpression.Name));
                 }
@@ -635,9 +635,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             throw new InvalidOperationException(CoreStrings.TranslationFailed(parameterExpression.Print()));
         }
 
-        private static readonly MethodInfo _getParameterValueMethodInfo
-            = typeof(InMemoryExpressionTranslatingExpressionVisitor)
-                .GetTypeInfo().GetDeclaredMethod(nameof(GetParameterValue));
+        private static readonly MethodInfo GetParameterValueMethodInfo = typeof(InMemoryExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(GetParameterValue));
 
 #pragma warning disable IDE0052 // Remove unread private members
         private static T GetParameterValue<T>(QueryContext queryContext, string parameterName)

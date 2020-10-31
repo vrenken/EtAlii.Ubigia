@@ -1,18 +1,17 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Threading;
-using System.Threading.Tasks;
-using System.Transactions;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using EtAlii.Ubigia.Api.Internal;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Utilities;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Transactions;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using EtAlii.Ubigia.Api.Internal;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
@@ -31,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     /// </summary>
     public class InMemoryTransactionManager : IDbContextTransactionManager, ITransactionEnlistmentManager
     {
-        private static readonly InMemoryTransaction _stubTransaction = new InMemoryTransaction();
+        private static readonly InMemoryTransaction StubTransaction = new InMemoryTransaction();
 
         private readonly IDiagnosticsLogger<DbLoggerCategory.Database.Transaction> _logger;
 
@@ -59,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             _logger.TransactionIgnoredWarning();
 
-            return _stubTransaction;
+            return StubTransaction;
         }
 
         /// <summary>
@@ -73,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             _logger.TransactionIgnoredWarning();
 
-            return Task.FromResult<IDbContextTransaction>(_stubTransaction);
+            return Task.FromResult<IDbContextTransaction>(StubTransaction);
         }
 
         /// <summary>

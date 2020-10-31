@@ -1,16 +1,17 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using Microsoft.EntityFrameworkCore.Infrastructure;
-
-namespace Microsoft.EntityFrameworkCore.Storage
+namespace EtAlii.Ubigia.Api.Storage
 {
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+
     /// <summary>
     ///     Acts as a root for all in-memory databases such that they will be available
     ///     across context instances and service providers as long as the same instance
     ///     of this type is passed to
     ///     <see
-    ///         cref="InMemoryDbContextOptionsExtensions.UseUbigiaContext{TContext}" />
+    ///         cref="InMemoryDbContextOptionsExtensions.UseUbigiaContext{TContext,TTransport}" />
     /// </summary>
     public sealed class InMemoryDatabaseRoot
     {
