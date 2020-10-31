@@ -3,6 +3,7 @@
 
 namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Text;
@@ -36,6 +37,9 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         
         public virtual string Address => _address;
         private string _address;
+        
+        public virtual Type TransportType => _transportType;
+        private Type _transportType;
         
         
         /// <summary>
@@ -78,6 +82,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             _username = copyFrom._username;
             _password = copyFrom._password;
             _address = copyFrom._address;
+            _transportType = copyFrom._transportType;
             
             _databaseRoot = copyFrom._databaseRoot;
         }
@@ -123,7 +128,16 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 
             return clone;
         }
-        
+
+        public UbigiaOptionsExtension WithTransport<TTransport>() where TTransport : ITransport
+        {
+            var clone = Clone();
+
+            clone._transportType = typeof(TTransport);
+
+            return clone;
+        }
+
         public virtual UbigiaOptionsExtension WithPassword([NotNull] string password)
         {
             var clone = Clone();
