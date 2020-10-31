@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Storage
     using Microsoft.EntityFrameworkCore.Infrastructure;
 
     /// <summary>
-    ///     Acts as a root for all in-memory databases such that they will be available
+    ///     Acts as a root for all Ubigia databases such that they will be available
     ///     across context instances and service providers as long as the same instance
     ///     of this type is passed to
     ///     <see

@@ -27,7 +27,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         /// <summary>
         ///     <para>
-        ///         Adds the services required by the in-memory database provider for Entity Framework
+        ///         Adds the services required by the Ubigia database provider for Entity Framework
         ///         to an <see cref="IServiceCollection" />.
         ///     </para>
         ///     <para>

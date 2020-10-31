@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Internal
             = new ResourceManager("EtAlii.Ubigia.Api.Properties.UbigiaStrings", typeof(UbigiaResources).GetTypeInfo().Assembly);
 
         /// <summary>
-        ///     Saved {count} entities to in-memory store.
+        ///     Saved {count} entities to Ubigia store.
         /// </summary>
         public static EventDefinition<int> LogSavedChanges([NotNull] IDiagnosticsLogger logger)
         {
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Api.Internal
         }
 
         /// <summary>
-        ///     Transactions are not supported by the in-memory store. See http://go.microsoft.com/fwlink/?LinkId=800142
+        ///     Transactions are not supported by the Ubigia store. See http://go.microsoft.com/fwlink/?LinkId=800142
         /// </summary>
         public static EventDefinition LogTransactionsNotSupported([NotNull] IDiagnosticsLogger logger)
         {

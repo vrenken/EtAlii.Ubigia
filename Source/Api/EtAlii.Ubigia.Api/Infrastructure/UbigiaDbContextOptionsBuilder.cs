@@ -10,7 +10,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
 {
     /// <summary>
     ///     <para>
-    ///         Allows in-memory specific configuration to be performed on <see cref="DbContextOptions" />.
+    ///         Allows Ubigia specific configuration to be performed on <see cref="DbContextOptions" />.
     ///     </para>
     ///     <para>
     ///         Instances of this class are returned from a call to
