@@ -1,19 +1,17 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EtAlii.Ubigia.Api.Metadata.Conventions
 {
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+    using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
+    using Microsoft.Extensions.DependencyInjection;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///     <para>
-    ///         A builder for building conventions for th in-memory provider.
+    ///         A builder for building conventions for the Ubigia provider.
     ///     </para>
     ///     <para>
     ///         The service lifetime is <see cref="ServiceLifetime.Scoped" /> and multiple registrations
@@ -37,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Metadata.Conventions
 
         /// <summary>
         ///     <para>
-        ///         Call this method to build a <see cref="ConventionSet" /> for the in-memory provider when using
+        ///         Call this method to build a <see cref="ConventionSet" /> for the Ubigia provider when using
         ///         the <see cref="ModelBuilder" /> outside of <see cref="DbContext.OnModelCreating" />.
         ///     </para>
         ///     <para>
@@ -46,13 +44,13 @@ namespace EtAlii.Ubigia.Api.Metadata.Conventions
         ///     </para>
         /// </summary>
         /// <returns> The convention set. </returns>
-        public static ConventionSet Build()
+        public static ConventionSet Build(string address, string storage, string username, string password)
         {
             var serviceProvider = new ServiceCollection()
                 .AddEntityFrameworkUbigiaDatabase()
                 .AddDbContext<DbContext>(
                     (p, o) =>
-                        o.UseUbigiaContext(Guid.NewGuid().ToString())
+                        o.UseUbigiaContext(address, storage, username, password)
                             .UseInternalServiceProvider(p))
                 .BuildServiceProvider();
 

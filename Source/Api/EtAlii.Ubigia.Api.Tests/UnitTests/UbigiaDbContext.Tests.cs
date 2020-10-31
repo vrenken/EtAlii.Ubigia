@@ -12,8 +12,7 @@
         {
             // Arrange.
             var options = new DbContextOptionsBuilder<UbigiaTestContext>()
-                .UseUbigiaContext<GrpcTransport>("Test")
-                //.UseUbigiaContext<GrpcTransport>("http://localhost:123", "test", "test123")
+                .UseUbigiaContext<GrpcTransport>("http://localhost:123", "TestStorage", "TestUser", "test123")
                 .Options;
             
             var customer = new Customer
