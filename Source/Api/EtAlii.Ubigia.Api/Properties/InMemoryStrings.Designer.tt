@@ -1,5 +1,0 @@
-<#
-    Session["ResourceFile"] = "InMemoryStrings.resx";
-    Session["LoggingDefinitionsClass"] = "Diagnostics.Internal.InMemoryLoggingDefinitions";
-#>
-<#@ include file="Resources.tt" #>

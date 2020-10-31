@@ -1,0 +1,5 @@
+<#
+    Session["ResourceFile"] = "UbigiaStrings.resx";
+    Session["LoggingDefinitionsClass"] = "Diagnostics.Internal.UbigiaLoggingDefinitions";
+#>
+<#@ include file="Resources.tt" #>
