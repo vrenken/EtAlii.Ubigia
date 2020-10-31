@@ -5,7 +5,7 @@
     <Version>$(PackageVersion)</Version>
     <OutputType>Library</OutputType>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <ProjectGuid>8c097f87-74f3-4753-af2e-4b1de6c7a5c9</ProjectGuid>
+    <ProjectGuid>{B42A4C2B-15B6-4533-B06A-89346FB7AAB6}</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
