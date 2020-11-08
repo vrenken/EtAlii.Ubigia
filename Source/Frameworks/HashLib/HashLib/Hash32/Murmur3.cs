@@ -32,27 +32,27 @@ namespace HashLib.Hash32
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint k = (uint)a_data[a_index++] |
-                      ((uint)a_data[a_index++] << 8) |
-                      ((uint)a_data[a_index++] << 16) |
-                      ((uint)a_data[a_index++] << 24);
+            var k = (uint)a_data[a_index++] |
+                    ((uint)a_data[a_index++] << 8) |
+                    ((uint)a_data[a_index++] << 16) |
+                    ((uint)a_data[a_index++] << 24);
 
             TransformUIntFast(k);
         }
 
         protected override void Finish()
         {
-            ulong left = m_processed_bytes % (ulong)BlockSize;
+            var left = m_processed_bytes % (ulong)BlockSize;
 
             if (left != 0)
             {
-                byte[] buffer = m_buffer.GetBytesZeroPadded();
+                var buffer = m_buffer.GetBytesZeroPadded();
 
                 switch (left)
                 {
                     case 3:
                     {
-                        uint k = (uint)buffer[2] << 16 | ((uint)buffer[1] << 8) | (uint)buffer[0];
+                        var k = (uint)buffer[2] << 16 | ((uint)buffer[1] << 8) | (uint)buffer[0];
                         k *= C1;
                         k = (k << 15) | (k >> 17);
                         k *= C2;
@@ -61,7 +61,7 @@ namespace HashLib.Hash32
                     }
                     case 2:
                     {
-                        uint k = ((uint)buffer[1] << 8) | (uint)buffer[0];
+                        var k = ((uint)buffer[1] << 8) | (uint)buffer[0];
                         k *= C1;
                         k = (k << 15) | (k >> 17);
                         k *= C2;
@@ -91,7 +91,7 @@ namespace HashLib.Hash32
 
         protected override byte[] GetResult()
         {
-            byte[] result = new byte[4];
+            var result = new byte[4];
 
             result[0] = (byte)m_h;
             result[1] = (byte)(m_h >> 8);
@@ -219,15 +219,15 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            int current_index = 0;
-            int length = a_data.Length;
+            var current_index = 0;
+            var length = a_data.Length;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index] |
-                          ((uint)a_data[current_index + 1] << 8) |
-                          ((uint)a_data[current_index + 2] << 16) |
-                          ((uint)a_data[current_index + 3] << 24);
+                var k = (uint)a_data[current_index] |
+                        ((uint)a_data[current_index + 1] << 8) |
+                        ((uint)a_data[current_index + 2] << 16) |
+                        ((uint)a_data[current_index + 3] << 24);
 
                 k *= C1;
                 k = (k << 15) | (k >> 17);
@@ -245,7 +245,7 @@ namespace HashLib.Hash32
             {
                 case 3:
                 {
-                    uint k = (uint)a_data[current_index + 2] << 16 | ((uint)a_data[current_index + 1] << 8) | (uint)a_data[current_index];
+                    var k = (uint)a_data[current_index + 2] << 16 | ((uint)a_data[current_index + 1] << 8) | (uint)a_data[current_index];
                     k *= C1;
                     k = (k << 15) | (k >> 17);
                     k *= C2;
@@ -254,7 +254,7 @@ namespace HashLib.Hash32
                 }
                 case 2:
                 {
-                    uint k = ((uint)a_data[current_index + 1] << 8) | (uint)a_data[current_index];
+                    var k = ((uint)a_data[current_index + 1] << 8) | (uint)a_data[current_index];
                     k *= C1;
                     k = (k << 15) | (k >> 17);
                     k *= C2;
@@ -289,7 +289,7 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            for (int i=0; i<a_data.Length; i++)
+            for (var i=0; i<a_data.Length; i++)
                 TransformUIntFast(a_data[i]);
 
             m_h ^= (uint)a_data.Length * 4;
@@ -309,7 +309,7 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            for (int i = 0; i < a_data.Length; i++)
+            for (var i = 0; i < a_data.Length; i++)
                 TransformUIntFast(unchecked((uint)a_data[i]));
 
             m_h ^= (uint)a_data.Length * 4;
@@ -329,7 +329,7 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            for (int i = 0; i < a_data.Length; i++)
+            for (var i = 0; i < a_data.Length; i++)
                 TransformULongFast(unchecked((ulong)a_data[i]));
 
             m_h ^= (uint)a_data.Length * 8;
@@ -368,9 +368,9 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            for (int i = 0; i < a_data.Length; i++)
+            for (var i = 0; i < a_data.Length; i++)
             {
-                long k = BitConverter.DoubleToInt64Bits(a_data[i]);
+                var k = BitConverter.DoubleToInt64Bits(a_data[i]);
                 TransformULongFast(unchecked((ulong)k));
             }
 
@@ -391,8 +391,8 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            int current_index = a_data.Length / (sizeof(ulong) / sizeof(float)) * (sizeof(ulong) / sizeof(float));
-            int length = a_data.Length * sizeof(float) - current_index * sizeof(float);
+            var current_index = a_data.Length / (sizeof(ulong) / sizeof(float)) * (sizeof(ulong) / sizeof(float));
+            var length = a_data.Length * sizeof(float) - current_index * sizeof(float);
 
             TransformULongsFast(Converters.ConvertFloatsToULongs(a_data, 0, current_index));
 
@@ -415,13 +415,13 @@ namespace HashLib.Hash32
         public int ComputeStringFast(string a_data)
         {
             m_h = m_key;
-            int length = a_data.Length * sizeof(char);
-            int current_index = 0;
+            var length = a_data.Length * sizeof(char);
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] |
-                         ((uint)a_data[current_index++] << 16);
+                var k = (uint)a_data[current_index++] |
+                        ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
 
@@ -430,7 +430,7 @@ namespace HashLib.Hash32
 
             if (length == 2)
             {
-                uint k = (uint)a_data[current_index++];
+                var k = (uint)a_data[current_index++];
                 k *= C1;
                 k = (k << 15) | (k >> 17);
                 k *= C2;
@@ -453,13 +453,13 @@ namespace HashLib.Hash32
         public int ComputeCharsFast(char[] a_data)
         {
             m_h = m_key;
-            int length = a_data.Length * sizeof(char);
-            int current_index = 0;
+            var length = a_data.Length * sizeof(char);
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] |
-                         ((uint)a_data[current_index++] << 16);
+                var k = (uint)a_data[current_index++] |
+                        ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
 
@@ -468,7 +468,7 @@ namespace HashLib.Hash32
 
             if (length == 2)
             {
-                uint k = (uint)a_data[current_index++];
+                var k = (uint)a_data[current_index++];
                 k *= C1;
                 k = (k << 15) | (k >> 17);
                 k *= C2;
@@ -492,13 +492,13 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            int length = a_data.Length * sizeof(char);
-            int current_index = 0;
+            var length = a_data.Length * sizeof(char);
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)(unchecked((ushort)a_data[current_index++])) |
-                         (uint)(unchecked((ushort)a_data[current_index++] << 16));
+                var k = (uint)(unchecked((ushort)a_data[current_index++])) |
+                        (uint)(unchecked((ushort)a_data[current_index++] << 16));
 
                 TransformUIntFast(k);
 
@@ -531,13 +531,13 @@ namespace HashLib.Hash32
         {
             m_h = m_key;
 
-            int length = a_data.Length * sizeof(char);
-            int current_index = 0;
+            var length = a_data.Length * sizeof(char);
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] |
-                         ((uint)a_data[current_index++] << 16);
+                var k = (uint)a_data[current_index++] |
+                        ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
 
@@ -546,7 +546,7 @@ namespace HashLib.Hash32
 
             if (length == 2)
             {
-                uint k = (uint)a_data[current_index++];
+                var k = (uint)a_data[current_index++];
                 k *= C1;
                 k = (k << 15) | (k >> 17);
                 k *= C2;
@@ -568,7 +568,7 @@ namespace HashLib.Hash32
 
         private void TransformUIntFast(uint a_data)
         {
-            uint k = a_data;
+            var k = a_data;
 
             k *= C1;
             k = (k << 15) | (k >> 17);
@@ -581,7 +581,7 @@ namespace HashLib.Hash32
 
         private void TransformULongFast(ulong a_data)
         {
-            uint k = (uint)a_data;
+            var k = (uint)a_data;
 
             k *= C1;
             k = (k << 15) | (k >> 17);
@@ -604,7 +604,7 @@ namespace HashLib.Hash32
 
         private void TransformULongsFast(ulong[] a_data)
         {
-            for (int i = 0; i < a_data.Length; i++)
+            for (var i = 0; i < a_data.Length; i++)
                 TransformULongFast(a_data[i]);
         }
 

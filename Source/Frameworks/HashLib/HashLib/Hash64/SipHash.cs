@@ -47,7 +47,7 @@ namespace HashLib.Hash64
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong m = Converters.ConvertBytesToULong(a_data, a_index);
+            var m = Converters.ConvertBytesToULong(a_data, a_index);
 
             m_v3 ^= m;
 
@@ -86,16 +86,16 @@ namespace HashLib.Hash64
 
         protected override byte[] GetResult()
         {
-            ulong b = m_v0 ^ m_v1 ^ m_v2 ^ m_v3;
+            var b = m_v0 ^ m_v1 ^ m_v2 ^ m_v3;
             return Converters.ConvertULongToBytes(b);
         }
 
         protected override void Finish()
         {
-            ulong left = m_processed_bytes % (ulong)BlockSize;
-            ulong b = m_processed_bytes << 56;
+            var left = m_processed_bytes % (ulong)BlockSize;
+            var b = m_processed_bytes << 56;
 
-            byte[] buffer = m_buffer.GetBytesZeroPadded();
+            var buffer = m_buffer.GetBytesZeroPadded();
             b |= Converters.ConvertBytesToULong(buffer, 0);
 
             m_v3 ^= b;
@@ -198,7 +198,7 @@ namespace HashLib.Hash64
         {
             get
             {
-                byte[] key = new byte[KeyLength.Value];
+                var key = new byte[KeyLength.Value];
 
                 Converters.ConvertULongToBytes(m_key0, key, 0);
                 Converters.ConvertULongToBytes(m_key1, key, 8);

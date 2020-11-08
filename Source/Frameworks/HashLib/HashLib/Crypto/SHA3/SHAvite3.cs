@@ -264,20 +264,20 @@ namespace HashLib.Crypto.SHA3
         {
             uint x0, x1, x2, x3, y0, y1, y2, y3;
 
-            uint[] rk = new uint[144];
+            var rk = new uint[144];
             Converters.ConvertBytesToUInts(a_data, a_index, 64, rk);
 
-            uint cnt0 = (uint)(m_processed_bytes << 3);
-            uint cnt1 = (uint)(m_processed_bytes >> 29);
+            var cnt0 = (uint)(m_processed_bytes << 3);
+            var cnt1 = (uint)(m_processed_bytes >> 29);
 
-            uint state0 = m_state[0];
-            uint state1 = m_state[1];
-            uint state2 = m_state[2];
-            uint state3 = m_state[3];
-            uint state4 = m_state[4];
-            uint state5 = m_state[5];
-            uint state6 = m_state[6];
-            uint state7 = m_state[7];
+            var state0 = m_state[0];
+            var state1 = m_state[1];
+            var state2 = m_state[2];
+            var state3 = m_state[3];
+            var state4 = m_state[4];
+            var state5 = m_state[5];
+            var state6 = m_state[6];
+            var state7 = m_state[7];
 
             x0 = rk[1];
             x1 = rk[2];
@@ -369,7 +369,7 @@ namespace HashLib.Crypto.SHA3
             state6 ^= x2;
             state7 ^= x3;
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 rk[32 + i] = rk[i + 32 - 16] ^ rk[i + 32 - 3];
 
             y0 = state4 ^ rk[24];
@@ -462,7 +462,7 @@ namespace HashLib.Crypto.SHA3
             rk[62] = y2 ^ rk[58];
             rk[63] = y3 ^ rk[59];
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 rk[64 + i] = rk[i + 64 - 16] ^ rk[i + 64 - 3];
 
             y0 = state4 ^ rk[48];
@@ -596,7 +596,7 @@ namespace HashLib.Crypto.SHA3
             state6 ^= x2;
             state7 ^= x3;
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 rk[96 + i] = rk[i + 96 - 16] ^ rk[i + 96 - 3];
 
             x0 = rk[97];
@@ -689,7 +689,7 @@ namespace HashLib.Crypto.SHA3
             state6 ^= x2;
             state7 ^= x3;
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 rk[128 + i] = rk[i + 128 - 16] ^ rk[i + 128 - 3];
 
             y0 = state4 ^ rk[120];
@@ -745,9 +745,9 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            byte[] pad = new byte[64];
+            var pad = new byte[64];
 
-            int buf_pos = m_buffer.Pos;
+            var buf_pos = m_buffer.Pos;
 
             Array.Copy(m_buffer.GetBytesZeroPadded(), 0, pad, 0, buf_pos);
 
@@ -761,7 +761,7 @@ namespace HashLib.Crypto.SHA3
 
                 Converters.ConvertULongToBytes(m_processed_bytes * 8, pad, BlockSize - 10);
 
-                int hashsizebits = HashSize * 8;
+                var hashsizebits = HashSize * 8;
                 pad[BlockSize - 2] = (byte)hashsizebits;
                 pad[BlockSize - 1] = (byte)(hashsizebits >> 8);
 
@@ -770,8 +770,8 @@ namespace HashLib.Crypto.SHA3
             }
             else
             {
-                ulong bits = m_processed_bytes * 8;
-                int padindex = BlockSize - 10;
+                var bits = m_processed_bytes * 8;
+                var padindex = BlockSize - 10;
 
                 pad[padindex++] = (byte)bits;
                 pad[padindex++] = (byte)(bits >> 8);
@@ -782,7 +782,7 @@ namespace HashLib.Crypto.SHA3
                 pad[padindex++] = (byte)(bits >> 48);
                 pad[padindex++] = (byte)(bits >> 56);
 
-                int hashsizebits = HashSize * 8;
+                var hashsizebits = HashSize * 8;
                 pad[padindex++] = (byte)hashsizebits;
                 pad[padindex] = (byte)(hashsizebits >> 8);
 
@@ -839,28 +839,28 @@ namespace HashLib.Crypto.SHA3
         {
             uint x0, x1, x2, x3, y0, y1, y2, y3;
 
-            uint[] rk = new uint[448];
+            var rk = new uint[448];
             Converters.ConvertBytesToUInts(a_data, a_index, 128, rk);
 
-            uint cnt0 = (uint)(m_processed_bytes << 3);
-            uint cnt1 = (uint)(m_processed_bytes >> 29);
+            var cnt0 = (uint)(m_processed_bytes << 3);
+            var cnt1 = (uint)(m_processed_bytes >> 29);
 
-            uint state0 = m_state[0];
-            uint state1 = m_state[1];
-            uint state2 = m_state[2];
-            uint state3 = m_state[3];
-            uint state4 = m_state[4];
-            uint state5 = m_state[5];
-            uint state6 = m_state[6];
-            uint state7 = m_state[7];
-            uint state8 = m_state[8];
-            uint state9 = m_state[9];
-            uint state10 = m_state[10];
-            uint state11 = m_state[11];
-            uint state12 = m_state[12];
-            uint state13 = m_state[13];
-            uint state14 = m_state[14];
-            uint state15 = m_state[15];
+            var state0 = m_state[0];
+            var state1 = m_state[1];
+            var state2 = m_state[2];
+            var state3 = m_state[3];
+            var state4 = m_state[4];
+            var state5 = m_state[5];
+            var state6 = m_state[6];
+            var state7 = m_state[7];
+            var state8 = m_state[8];
+            var state9 = m_state[9];
+            var state10 = m_state[10];
+            var state11 = m_state[11];
+            var state12 = m_state[12];
+            var state13 = m_state[13];
+            var state14 = m_state[14];
+            var state15 = m_state[15];
 
             x0 = rk[1];
             x1 = rk[2];
@@ -960,7 +960,7 @@ namespace HashLib.Crypto.SHA3
             rk[48 + 14] = y2 ^ rk[48 + 10];
             rk[48 + 15] = y3 ^ rk[48 + 11];
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[64 + i] = rk[i + 64 - 32] ^ rk[i + 64 - 7];
 
             x0 = rk[96 - 31];
@@ -1061,7 +1061,7 @@ namespace HashLib.Crypto.SHA3
             rk[112 + 14] = y2 ^ rk[112 + 10];
             rk[112 + 15] = y3 ^ rk[112 + 11];
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[128 + i] = rk[i + 128 - 32] ^ rk[i + 128 - 7];
 
             x0 = rk[129];
@@ -1162,7 +1162,7 @@ namespace HashLib.Crypto.SHA3
             rk[176 + 14] = y2 ^ rk[176 + 10];
             rk[176 + 15] = y3 ^ rk[176 + 11];
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[192 + i] = rk[i + 192 - 32] ^ rk[i + 192 - 7];
 
             x0 = rk[224 - 31];
@@ -1263,7 +1263,7 @@ namespace HashLib.Crypto.SHA3
             rk[240 + 14] = y2 ^ rk[240 + 10];
             rk[240 + 15] = y3 ^ rk[240 + 11];
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[256 + i] = rk[i + 256 - 32] ^ rk[i + 256 - 7];
 
             x0 = rk[288 - 31];
@@ -1364,7 +1364,7 @@ namespace HashLib.Crypto.SHA3
             rk[318] = y2 ^ rk[314] ^ cnt0;
             rk[319] = y3 ^ rk[315] ^ ~cnt1;
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[320 + i] = rk[i + 320 - 32] ^ rk[i + 320 - 7];
 
             x0 = rk[352 - 31];
@@ -1465,7 +1465,7 @@ namespace HashLib.Crypto.SHA3
             rk[368 + 14] = y2 ^ rk[368 + 10];
             rk[368 + 15] = y3 ^ rk[368 + 11];
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 rk[384 + i] = rk[i + 384 - 32] ^ rk[i + 384 - 7];
 
             x0 = rk[416 - 31];
@@ -2272,9 +2272,9 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            byte[] pad = new byte[BlockSize];
+            var pad = new byte[BlockSize];
 
-            int buf_pos = m_buffer.Pos;
+            var buf_pos = m_buffer.Pos;
 
             Array.Copy(m_buffer.GetBytesZeroPadded(), 0, pad, 0, buf_pos);
 
@@ -2286,11 +2286,11 @@ namespace HashLib.Crypto.SHA3
 
                 pad.Clear();
 
-                int padindex = BlockSize - 18;
+                var padindex = BlockSize - 18;
                 Converters.ConvertULongToBytes(m_processed_bytes * 8, pad, padindex);
                 padindex += 16;
 
-                int hashsizebits = HashSize * 8;
+                var hashsizebits = HashSize * 8;
                 pad[padindex++] = (byte)hashsizebits;
                 pad[padindex] = (byte)(hashsizebits >> 8);
 
@@ -2301,7 +2301,7 @@ namespace HashLib.Crypto.SHA3
             {
                 Converters.ConvertULongToBytes(m_processed_bytes * 8, pad, BlockSize - 18);
 
-                int hashsizebits = HashSize * 8;
+                var hashsizebits = HashSize * 8;
                 pad[BlockSize - 2] = (byte)hashsizebits;
                 pad[BlockSize - 1] = (byte)(hashsizebits >> 8);
 

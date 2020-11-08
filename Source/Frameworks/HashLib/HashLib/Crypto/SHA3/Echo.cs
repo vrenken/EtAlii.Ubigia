@@ -196,10 +196,10 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            byte[] pad = new byte[BlockSize];
+            var pad = new byte[BlockSize];
             pad[0] = 0x80;
 
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
             int pad_len;
 
@@ -213,7 +213,7 @@ namespace HashLib.Crypto.SHA3
                 pad.Clear();
             }
 
-            int padindex = BlockSize - m_buffer.Pos - 18;
+            var padindex = BlockSize - m_buffer.Pos - 18;
 
             pad[padindex++] = (byte)(HashSize * 8);
             pad[padindex++] = (byte)((HashSize * 8) >> 8);
@@ -250,7 +250,7 @@ namespace HashLib.Crypto.SHA3
 
             uint WA, WB, WC, WD;
 
-            ulong[] cv = new ulong[8];
+            var cv = new ulong[8];
 
             cv[0] = m_state[0] ^ m_state[8] ^ m_state[16] ^ m_state[24];
             cv[1] = m_state[1] ^ m_state[9] ^ m_state[17] ^ m_state[25];
@@ -261,40 +261,40 @@ namespace HashLib.Crypto.SHA3
             cv[6] = m_state[6] ^ m_state[14] ^ m_state[22] ^ m_state[30];
             cv[7] = m_state[7] ^ m_state[15] ^ m_state[23] ^ m_state[31];
 
-            ulong WL0 = m_state[0];
-            ulong WH0 = m_state[1];
-            ulong WL1 = m_state[2];
-            ulong WH1 = m_state[3];
-            ulong WL2 = m_state[4];
-            ulong WH2 = m_state[5];
-            ulong WL3 = m_state[6];
-            ulong WH3 = m_state[7];
-            ulong WL4 = m_state[8];
-            ulong WH4 = m_state[9];
-            ulong WL5 = m_state[10];
-            ulong WH5 = m_state[11];
-            ulong WL6 = m_state[12];
-            ulong WH6 = m_state[13];
-            ulong WL7 = m_state[14];
-            ulong WH7 = m_state[15];
-            ulong WL8 = m_state[16];
-            ulong WH8 = m_state[17];
-            ulong WL9 = m_state[18];
-            ulong WH9 = m_state[19];
-            ulong WL10 = m_state[20];
-            ulong WH10 = m_state[21];
-            ulong WL11 = m_state[22];
-            ulong WH11 = m_state[23];
-            ulong WL12 = m_state[24];
-            ulong WH12 = m_state[25];
-            ulong WL13 = m_state[26];
-            ulong WH13 = m_state[27];
-            ulong WL14 = m_state[28];
-            ulong WH14 = m_state[29];
-            ulong WL15 = m_state[30];
-            ulong WH15 = m_state[31];
+            var WL0 = m_state[0];
+            var WH0 = m_state[1];
+            var WL1 = m_state[2];
+            var WH1 = m_state[3];
+            var WL2 = m_state[4];
+            var WH2 = m_state[5];
+            var WL3 = m_state[6];
+            var WH3 = m_state[7];
+            var WL4 = m_state[8];
+            var WH4 = m_state[9];
+            var WL5 = m_state[10];
+            var WH5 = m_state[11];
+            var WL6 = m_state[12];
+            var WH6 = m_state[13];
+            var WL7 = m_state[14];
+            var WH7 = m_state[15];
+            var WL8 = m_state[16];
+            var WH8 = m_state[17];
+            var WL9 = m_state[18];
+            var WH9 = m_state[19];
+            var WL10 = m_state[20];
+            var WH10 = m_state[21];
+            var WL11 = m_state[22];
+            var WH11 = m_state[23];
+            var WL12 = m_state[24];
+            var WH12 = m_state[25];
+            var WL13 = m_state[26];
+            var WH13 = m_state[27];
+            var WL14 = m_state[28];
+            var WH14 = m_state[29];
+            var WL15 = m_state[30];
+            var WH15 = m_state[31];
 
-            int r = 8;
+            var r = 8;
 
             ulong cnt = 0;
             if (!m_last_block)
@@ -462,10 +462,10 @@ namespace HashLib.Crypto.SHA3
                 WH15 = (ulong)(s_T0[(byte)(WC)] ^ s_T1[(byte)(WD >> 8)] ^ s_T2[(byte)(WA >> 16)] ^ s_T3[(byte)(WB >> 24)]);
                 WH15 ^= (ulong)(s_T0[(byte)(WD)] ^ s_T1[(byte)(WA >> 8)] ^ s_T2[(byte)(WB >> 16)] ^ s_T3[(byte)(WC >> 24)]) << 32;
 
-                ulong WT0 = WL2;
+                var WT0 = WL2;
                 WL2 = WL10;
                 WL10 = WT0;
-                ulong WT1 = WH2;
+                var WT1 = WH2;
                 WH2 = WH10;
                 WH10 = WT1;
 
@@ -487,11 +487,11 @@ namespace HashLib.Crypto.SHA3
                 WT0 ^= ((WL0 << 1) & 0xFEFEFEFEFEFEFEFE);
                 WT1 = ((WL1 >> 7) & 0x0101010101010101) * 27;
                 WT1 ^= ((WL1 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT2 = ((WL2 >> 7) & 0x0101010101010101) * 27;
+                var WT2 = ((WL2 >> 7) & 0x0101010101010101) * 27;
                 WT2 ^= ((WL2 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT3 = ((WL3 >> 7) & 0x0101010101010101) * 27;
+                var WT3 = ((WL3 >> 7) & 0x0101010101010101) * 27;
                 WT3 ^= ((WL3 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT4 = WL0 ^ WL1 ^ WL2 ^ WL3;
+                var WT4 = WL0 ^ WL1 ^ WL2 ^ WL3;
                 WL0 ^= WT0 ^ WT1 ^ WT4;
                 WL1 ^= WT1 ^ WT2 ^ WT4;
                 WL2 ^= WT2 ^ WT3 ^ WT4;
@@ -656,7 +656,7 @@ namespace HashLib.Crypto.SHA3
         {
             base.Initialize();
 
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
                 m_state[2 * i] = (ulong)HashSize * 8;
         }
     };
@@ -674,7 +674,7 @@ namespace HashLib.Crypto.SHA3
 
             uint WA, WB, WC, WD;
 
-            ulong[] cv = new ulong[16];
+            var cv = new ulong[16];
 
             cv[0] = m_state[0] ^ m_state[16];
             cv[1] = m_state[1] ^ m_state[17];
@@ -693,40 +693,40 @@ namespace HashLib.Crypto.SHA3
             cv[14] = m_state[14] ^ m_state[30];
             cv[15] = m_state[15] ^ m_state[31];
 
-            ulong WL0 = m_state[0];
-            ulong WH0 = m_state[1];
-            ulong WL1 = m_state[2];
-            ulong WH1 = m_state[3];
-            ulong WL2 = m_state[4];
-            ulong WH2 = m_state[5];
-            ulong WL3 = m_state[6];
-            ulong WH3 = m_state[7];
-            ulong WL4 = m_state[8];
-            ulong WH4 = m_state[9];
-            ulong WL5 = m_state[10];
-            ulong WH5 = m_state[11];
-            ulong WL6 = m_state[12];
-            ulong WH6 = m_state[13];
-            ulong WL7 = m_state[14];
-            ulong WH7 = m_state[15];
-            ulong WL8 = m_state[16];
-            ulong WH8 = m_state[17];
-            ulong WL9 = m_state[18];
-            ulong WH9 = m_state[19];
-            ulong WL10 = m_state[20];
-            ulong WH10 = m_state[21];
-            ulong WL11 = m_state[22];
-            ulong WH11 = m_state[23];
-            ulong WL12 = m_state[24];
-            ulong WH12 = m_state[25];
-            ulong WL13 = m_state[26];
-            ulong WH13 = m_state[27];
-            ulong WL14 = m_state[28];
-            ulong WH14 = m_state[29];
-            ulong WL15 = m_state[30];
-            ulong WH15 = m_state[31];
+            var WL0 = m_state[0];
+            var WH0 = m_state[1];
+            var WL1 = m_state[2];
+            var WH1 = m_state[3];
+            var WL2 = m_state[4];
+            var WH2 = m_state[5];
+            var WL3 = m_state[6];
+            var WH3 = m_state[7];
+            var WL4 = m_state[8];
+            var WH4 = m_state[9];
+            var WL5 = m_state[10];
+            var WH5 = m_state[11];
+            var WL6 = m_state[12];
+            var WH6 = m_state[13];
+            var WL7 = m_state[14];
+            var WH7 = m_state[15];
+            var WL8 = m_state[16];
+            var WH8 = m_state[17];
+            var WL9 = m_state[18];
+            var WH9 = m_state[19];
+            var WL10 = m_state[20];
+            var WH10 = m_state[21];
+            var WL11 = m_state[22];
+            var WH11 = m_state[23];
+            var WL12 = m_state[24];
+            var WH12 = m_state[25];
+            var WL13 = m_state[26];
+            var WH13 = m_state[27];
+            var WL14 = m_state[28];
+            var WH14 = m_state[29];
+            var WL15 = m_state[30];
+            var WH15 = m_state[31];
 
-            int r = 10;
+            var r = 10;
 
             ulong cnt = 0;
             if (!m_last_block)
@@ -894,10 +894,10 @@ namespace HashLib.Crypto.SHA3
                 WH15 = (ulong)(s_T0[(byte)(WC)] ^ s_T1[(byte)(WD >> 8)] ^ s_T2[(byte)(WA >> 16)] ^ s_T3[(byte)(WB >> 24)]);
                 WH15 ^= (ulong)(s_T0[(byte)(WD)] ^ s_T1[(byte)(WA >> 8)] ^ s_T2[(byte)(WB >> 16)] ^ s_T3[(byte)(WC >> 24)]) << 32;
 
-                ulong WT0 = WL2;
+                var WT0 = WL2;
                 WL2 = WL10;
                 WL10 = WT0;
-                ulong WT1 = WH2;
+                var WT1 = WH2;
                 WH2 = WH10;
                 WH10 = WT1;
 
@@ -919,11 +919,11 @@ namespace HashLib.Crypto.SHA3
                 WT0 ^= ((WL0 << 1) & 0xFEFEFEFEFEFEFEFE);
                 WT1 = ((WL1 >> 7) & 0x0101010101010101) * 27;
                 WT1 ^= ((WL1 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT2 = ((WL2 >> 7) & 0x0101010101010101) * 27;
+                var WT2 = ((WL2 >> 7) & 0x0101010101010101) * 27;
                 WT2 ^= ((WL2 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT3 = ((WL3 >> 7) & 0x0101010101010101) * 27;
+                var WT3 = ((WL3 >> 7) & 0x0101010101010101) * 27;
                 WT3 ^= ((WL3 << 1) & 0xFEFEFEFEFEFEFEFE);
-                ulong WT4 = WL0 ^ WL1 ^ WL2 ^ WL3;
+                var WT4 = WL0 ^ WL1 ^ WL2 ^ WL3;
                 WL0 ^= WT0 ^ WT1 ^ WT4;
                 WL1 ^= WT1 ^ WT2 ^ WT4;
                 WL2 ^= WT2 ^ WT3 ^ WT4;
@@ -1088,7 +1088,7 @@ namespace HashLib.Crypto.SHA3
         {
             base.Initialize();
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
                 m_state[2 * i] = (ulong)HashSize * 8;
         }
     };

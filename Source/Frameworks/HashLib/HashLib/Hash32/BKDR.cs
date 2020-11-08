@@ -24,7 +24,7 @@ namespace HashLib.Hash32
             Debug.Assert(a_length >= 0);
             Debug.Assert(a_index + a_length <= a_data.Length);
 
-            for (int i = a_index; a_length > 0; i++, a_length--)
+            for (var i = a_index; a_length > 0; i++, a_length--)
                 m_hash = (m_hash * SEED) + a_data[i];
         }
 

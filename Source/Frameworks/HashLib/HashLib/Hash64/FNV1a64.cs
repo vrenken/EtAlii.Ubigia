@@ -22,7 +22,7 @@ namespace HashLib.Hash64
             Debug.Assert(a_length >= 0);
             Debug.Assert(a_index + a_length <= a_data.Length);
 
-            for (int i = a_index; a_length > 0; i++, a_length--)
+            for (var i = a_index; a_length > 0; i++, a_length--)
                 m_hash = (m_hash ^ a_data[i]) * 1099511628211;
         }
 

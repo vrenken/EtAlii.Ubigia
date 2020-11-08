@@ -53,7 +53,7 @@ namespace HashLib
 
             Debug.Assert(m_buffer.IsEmpty);
 
-            byte[] result = GetResult();
+            var result = GetResult();
 
             Debug.Assert(result.Length == HashSize);
 

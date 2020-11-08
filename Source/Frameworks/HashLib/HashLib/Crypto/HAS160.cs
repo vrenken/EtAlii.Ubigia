@@ -32,10 +32,10 @@
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int pad_index = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
+            var bits = m_processed_bytes * 8;
+            var pad_index = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
 
-            byte[] pad = new byte[pad_index + 8];
+            var pad = new byte[pad_index + 8];
             pad[0] = 0x80;
 
             Converters.ConvertULongToBytes(bits, pad, pad_index);
@@ -51,13 +51,13 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint A = m_hash[0];
-            uint B = m_hash[1];
-            uint C = m_hash[2];
-            uint D = m_hash[3];
-            uint E = m_hash[4];
+            var A = m_hash[0];
+            var B = m_hash[1];
+            var C = m_hash[2];
+            var D = m_hash[3];
+            var E = m_hash[4];
 
-            uint[] data = new uint[20];
+            var data = new uint[20];
             Converters.ConvertBytesToUInts(a_data, a_index, BlockSize, data);
 
             data[16] = data[0] ^ data[1] ^ data[2] ^ data[3];
@@ -65,9 +65,9 @@
             data[18] = data[8] ^ data[9] ^ data[10] ^ data[11];
             data[19] = data[12] ^ data[13] ^ data[14] ^ data[15];
 
-            for (int r = 0; r < 20; r++)
+            for (var r = 0; r < 20; r++)
             {
-                uint T = data[s_index[r]] + (A << s_rot[r] | A >> s_tor[r]) + ((B & C) | (~B & D)) + E;
+                var T = data[s_index[r]] + (A << s_rot[r] | A >> s_tor[r]) + ((B & C) | (~B & D)) + E;
                 E = D;
                 D = C;
                 C = B << 10 | B >> 22;
@@ -80,9 +80,9 @@
             data[18] = data[1] ^ data[4] ^ data[11] ^ data[14];
             data[19] = data[0] ^ data[7] ^ data[10] ^ data[13];
 
-            for (int r = 20; r < 40; r++)
+            for (var r = 20; r < 40; r++)
             {
-                uint T = data[s_index[r]] + 0x5A827999 + (A << s_rot[r - 20] | A >> s_tor[r - 20]) + (B ^ C ^ D) + E;
+                var T = data[s_index[r]] + 0x5A827999 + (A << s_rot[r - 20] | A >> s_tor[r - 20]) + (B ^ C ^ D) + E;
                 E = D;
                 D = C;
                 C = B << 17 | B >> 15;
@@ -95,9 +95,9 @@
             data[18] = data[4] ^ data[6] ^ data[13] ^ data[15];
             data[19] = data[1] ^ data[3] ^ data[8] ^ data[10];
 
-            for (int r = 40; r < 60; r++)
+            for (var r = 40; r < 60; r++)
             {
-                uint T = data[s_index[r]] + 0x6ED9EBA1 + (A << s_rot[r - 40] | A >> s_tor[r - 40]) + (C ^ (B | ~D)) + E;
+                var T = data[s_index[r]] + 0x6ED9EBA1 + (A << s_rot[r - 40] | A >> s_tor[r - 40]) + (C ^ (B | ~D)) + E;
                 E = D;
                 D = C;
                 C = B << 25 | B >> 7;
@@ -110,9 +110,9 @@
             data[18] = data[0] ^ data[5] ^ data[10] ^ data[15];
             data[19] = data[1] ^ data[6] ^ data[11] ^ data[12];
 
-            for (int r = 60; r < 80; r++)
+            for (var r = 60; r < 80; r++)
             {
-                uint T = data[s_index[r]] + 0x8F1BBCDC + (A << s_rot[r - 60] | A >> s_tor[r - 60]) + (B ^ C ^ D) + E;
+                var T = data[s_index[r]] + 0x8F1BBCDC + (A << s_rot[r - 60] | A >> s_tor[r - 60]) + (B ^ C ^ D) + E;
                 E = D;
                 D = C;
                 C = B << 30 | B >> 2;

@@ -48,14 +48,14 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
-            int padindex = BlockSize - m_buffer.Pos - 8;
+            var padindex = BlockSize - m_buffer.Pos - 8;
 
             if (m_buffer.Pos >= BlockSize - 8)
                 padindex += BlockSize;
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             pad[0] = 0x80;
 
@@ -100,80 +100,80 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] data = Converters.ConvertBytesToUInts(a_data, a_index, 64);
+            var data = Converters.ConvertBytesToUInts(a_data, a_index, 64);
 
-            uint p256_00 = m_state[0] ^ data[0];
-            uint p256_01 = m_state[1] ^ data[1];
-            uint p256_02 = m_state[2] ^ data[2];
-            uint p256_03 = m_state[3] ^ data[3];
-            uint p256_04 = m_state[4] ^ data[4];
-            uint p256_05 = m_state[5] ^ data[5];
-            uint p256_06 = m_state[6] ^ data[6];
-            uint p256_07 = m_state[7] ^ data[7];
-            uint p256_08 = m_state[8] ^ data[8];
-            uint p256_09 = m_state[9] ^ data[9];
-            uint p256_10 = m_state[10] ^ data[10];
-            uint p256_11 = m_state[11] ^ data[11];
-            uint p256_12 = m_state[12] ^ data[12];
-            uint p256_13 = m_state[13] ^ data[13];
-            uint p256_14 = m_state[14] ^ data[14];
-            uint p256_15 = m_state[15] ^ data[15];
+            var p256_00 = m_state[0] ^ data[0];
+            var p256_01 = m_state[1] ^ data[1];
+            var p256_02 = m_state[2] ^ data[2];
+            var p256_03 = m_state[3] ^ data[3];
+            var p256_04 = m_state[4] ^ data[4];
+            var p256_05 = m_state[5] ^ data[5];
+            var p256_06 = m_state[6] ^ data[6];
+            var p256_07 = m_state[7] ^ data[7];
+            var p256_08 = m_state[8] ^ data[8];
+            var p256_09 = m_state[9] ^ data[9];
+            var p256_10 = m_state[10] ^ data[10];
+            var p256_11 = m_state[11] ^ data[11];
+            var p256_12 = m_state[12] ^ data[12];
+            var p256_13 = m_state[13] ^ data[13];
+            var p256_14 = m_state[14] ^ data[14];
+            var p256_15 = m_state[15] ^ data[15];
 
-            uint td32_00 = (data[0] << 1) | (data[0] >> 31);
-            uint td32_01 = (data[1] << 2) | (data[1] >> 30);
-            uint td32_02 = (data[2] << 3) | (data[2] >> 29);
-            uint td32_03 = (data[3] << 4) | (data[3] >> 28);
-            uint td32_04 = (data[4] << 5) | (data[4] >> 27);
-            uint td32_05 = (data[5] << 6) | (data[5] >> 26);
-            uint td32_06 = (data[6] << 7) | (data[6] >> 25);
-            uint td32_07 = (data[7] << 8) | (data[7] >> 24);
-            uint td32_08 = (data[8] << 9) | (data[8] >> 23);
-            uint td32_09 = (data[9] << 10) | (data[9] >> 22);
-            uint td32_10 = (data[10] << 11) | (data[10] >> 21);
-            uint td32_11 = (data[11] << 12) | (data[11] >> 20);
-            uint td32_12 = (data[12] << 13) | (data[12] >> 19);
-            uint td32_13 = (data[13] << 14) | (data[13] >> 18);
-            uint td32_14 = (data[14] << 15) | (data[14] >> 17);
-            uint td32_15 = (data[15] << 16) | (data[15] >> 16);
+            var td32_00 = (data[0] << 1) | (data[0] >> 31);
+            var td32_01 = (data[1] << 2) | (data[1] >> 30);
+            var td32_02 = (data[2] << 3) | (data[2] >> 29);
+            var td32_03 = (data[3] << 4) | (data[3] >> 28);
+            var td32_04 = (data[4] << 5) | (data[4] >> 27);
+            var td32_05 = (data[5] << 6) | (data[5] >> 26);
+            var td32_06 = (data[6] << 7) | (data[6] >> 25);
+            var td32_07 = (data[7] << 8) | (data[7] >> 24);
+            var td32_08 = (data[8] << 9) | (data[8] >> 23);
+            var td32_09 = (data[9] << 10) | (data[9] >> 22);
+            var td32_10 = (data[10] << 11) | (data[10] >> 21);
+            var td32_11 = (data[11] << 12) | (data[11] >> 20);
+            var td32_12 = (data[12] << 13) | (data[12] >> 19);
+            var td32_13 = (data[13] << 14) | (data[13] >> 18);
+            var td32_14 = (data[14] << 15) | (data[14] >> 17);
+            var td32_15 = (data[15] << 16) | (data[15] >> 16);
 
-            uint t256_16 = p256_01 - p256_14;
-            uint t256_17 = p256_15 - p256_12;
-            uint t256_18 = p256_14 - p256_07;
-            uint t256_19 = p256_13 - p256_06;
-            uint t256_20 = p256_08 - p256_05;
-            uint t256_21 = p256_08 - p256_01;
+            var t256_16 = p256_01 - p256_14;
+            var t256_17 = p256_15 - p256_12;
+            var t256_18 = p256_14 - p256_07;
+            var t256_19 = p256_13 - p256_06;
+            var t256_20 = p256_08 - p256_05;
+            var t256_21 = p256_08 - p256_01;
 
-            uint p256_16 = (p256_05 + t256_18 + p256_10 + p256_13);
+            var p256_16 = (p256_05 + t256_18 + p256_10 + p256_13);
             p256_16 = ((p256_16 >> 1) ^ (p256_16 << 3) ^ ((p256_16 << 4) | (p256_16 >> 28)) ^ ((p256_16 << 19) | (p256_16 >> 13))) + m_state[1];
-            uint p256_17 = (p256_06 - p256_08 + p256_11 + p256_14 - p256_15);
+            var p256_17 = (p256_06 - p256_08 + p256_11 + p256_14 - p256_15);
             p256_17 = ((p256_17 >> 1) ^ (p256_17 << 2) ^ ((p256_17 << 8) | (p256_17 >> 24)) ^ ((p256_17 << 23) | (p256_17 >> 9))) + m_state[2];
-            uint p256_18 = (p256_00 + p256_07 + p256_09 + t256_17);
+            var p256_18 = (p256_00 + p256_07 + p256_09 + t256_17);
             p256_18 = ((p256_18 >> 2) ^ (p256_18 << 1) ^ ((p256_18 << 12) | (p256_18 >> 20)) ^ ((p256_18 << 25) | (p256_18 >> 7))) + m_state[3];
-            uint p256_19 = (p256_00 + t256_21 - p256_10 + p256_13);
+            var p256_19 = (p256_00 + t256_21 - p256_10 + p256_13);
             p256_19 = ((p256_19 >> 2) ^ (p256_19 << 2) ^ ((p256_19 << 15) | (p256_19 >> 17)) ^ ((p256_19 << 29) | (p256_19 >> 3))) + m_state[4];
-            uint p256_20 = (t256_16 + p256_02 + p256_09 - p256_11);
+            var p256_20 = (t256_16 + p256_02 + p256_09 - p256_11);
             p256_20 = ((p256_20 >> 1) ^ p256_20) + m_state[5];
-            uint p256_21 = (p256_03 - p256_02 + p256_10 + t256_17);
+            var p256_21 = (p256_03 - p256_02 + p256_10 + t256_17);
             p256_21 = ((p256_21 >> 1) ^ (p256_21 << 3) ^ ((p256_21 << 4) | (p256_21 >> 28)) ^ ((p256_21 << 19) | (p256_21 >> 13))) + m_state[6];
-            uint p256_22 = (p256_04 - p256_00 - p256_03 - p256_11 + p256_13);
+            var p256_22 = (p256_04 - p256_00 - p256_03 - p256_11 + p256_13);
             p256_22 = ((p256_22 >> 1) ^ (p256_22 << 2) ^ ((p256_22 << 8) | (p256_22 >> 24)) ^ ((p256_22 << 23) | (p256_22 >> 9))) + m_state[7];
-            uint p256_23 = (t256_16 - p256_04 - p256_05 - p256_12);
+            var p256_23 = (t256_16 - p256_04 - p256_05 - p256_12);
             p256_23 = ((p256_23 >> 2) ^ (p256_23 << 1) ^ ((p256_23 << 12) | (p256_23 >> 20)) ^ ((p256_23 << 25) | (p256_23 >> 7))) + m_state[8];
-            uint p256_24 = (p256_02 - p256_05 + t256_19 - p256_15);
+            var p256_24 = (p256_02 - p256_05 + t256_19 - p256_15);
             p256_24 = ((p256_24 >> 2) ^ (p256_24 << 2) ^ ((p256_24 << 15) | (p256_24 >> 17)) ^ ((p256_24 << 29) | (p256_24 >> 3))) + m_state[9];
-            uint p256_25 = (p256_00 - p256_03 + p256_06 + t256_18);
+            var p256_25 = (p256_00 - p256_03 + p256_06 + t256_18);
             p256_25 = ((p256_25 >> 1) ^ p256_25) + m_state[10];
-            uint p256_26 = (t256_21 - p256_04 - p256_07 + p256_15);
+            var p256_26 = (t256_21 - p256_04 - p256_07 + p256_15);
             p256_26 = ((p256_26 >> 1) ^ (p256_26 << 3) ^ ((p256_26 << 4) | (p256_26 >> 28)) ^ ((p256_26 << 19) | (p256_26 >> 13))) + m_state[11];
-            uint p256_27 = (t256_20 - p256_00 - p256_02 + p256_09);
+            var p256_27 = (t256_20 - p256_00 - p256_02 + p256_09);
             p256_27 = ((p256_27 >> 1) ^ (p256_27 << 2) ^ ((p256_27 << 8) | (p256_27 >> 24)) ^ ((p256_27 << 23) | (p256_27 >> 9))) + m_state[12];
-            uint p256_28 = (p256_01 + p256_03 - p256_06 - p256_09 + p256_10);
+            var p256_28 = (p256_01 + p256_03 - p256_06 - p256_09 + p256_10);
             p256_28 = ((p256_28 >> 2) ^ (p256_28 << 1) ^ ((p256_28 << 12) | (p256_28 >> 20)) ^ ((p256_28 << 25) | (p256_28 >> 7))) + m_state[13];
-            uint p256_29 = (p256_02 + p256_04 + p256_07 + p256_10 + p256_11);
+            var p256_29 = (p256_02 + p256_04 + p256_07 + p256_10 + p256_11);
             p256_29 = ((p256_29 >> 2) ^ (p256_29 << 2) ^ ((p256_29 << 15) | (p256_29 >> 17)) ^ ((p256_29 << 29) | (p256_29 >> 3))) + m_state[14];
-            uint p256_30 = (p256_03 + t256_20 - p256_11 - p256_12);
+            var p256_30 = (p256_03 + t256_20 - p256_11 - p256_12);
             p256_14 = ((p256_30 >> 1) ^ p256_30) + m_state[15];
-            uint p256_31 = (p256_12 - p256_04 + t256_19 - p256_09);
+            var p256_31 = (p256_12 - p256_04 + t256_19 - p256_09);
             p256_15 = ((p256_31 >> 1) ^ (p256_31 << 3) ^ ((p256_31 << 4) | (p256_31 >> 28)) ^ ((p256_31 << 19) | (p256_31 >> 13))) + m_state[0];
 
             p256_00 = p256_16;
@@ -209,7 +209,7 @@ namespace HashLib.Crypto.SHA3
                       ((p256_15 >> 1) ^ (p256_15 << 3) ^ ((p256_15 << 4) | (p256_15 >> 28)) ^ ((p256_15 << 19) | (p256_15 >> 13))) +
                       ((td32_00 + td32_03 - td32_10 + 0x55555550) ^ m_state[7]);
 
-            uint XL32 = p256_16;
+            var XL32 = p256_16;
 
             p256_17 = ((p256_01 >> 1) ^ (p256_01 << 2) ^ ((p256_01 << 8) | (p256_01 >> 24)) ^ ((p256_01 << 23) | (p256_01 >> 9))) +
                       ((p256_02 >> 2) ^ (p256_02 << 1) ^ ((p256_02 << 12) | (p256_02 >> 20)) ^ ((p256_02 << 25) | (p256_02 >> 7))) +
@@ -230,8 +230,8 @@ namespace HashLib.Crypto.SHA3
                       ((td32_01 + td32_04 - td32_11 + 0x5aaaaaa5) ^ m_state[8]);
 
             XL32 ^= p256_17;
-            uint TempEven32 = p256_14 + p256_12 + p256_10 + p256_08 + p256_06 + p256_04 + p256_02;
-            uint TempOdd32 = p256_15 + p256_13 + p256_11 + p256_09 + p256_07 + p256_05 + p256_03;
+            var TempEven32 = p256_14 + p256_12 + p256_10 + p256_08 + p256_06 + p256_04 + p256_02;
+            var TempOdd32 = p256_15 + p256_13 + p256_11 + p256_09 + p256_07 + p256_05 + p256_03;
 
             p256_18 = TempEven32 +
                       ((p256_03 << 3) | (p256_03 >> 29)) +
@@ -334,7 +334,7 @@ namespace HashLib.Crypto.SHA3
                       ((p256_23 >> 2) ^ p256_23) +
                       ((td32_08 + td32_11 - td32_02 + 0x7ffffff8) ^ m_state[15]);
 
-            uint XH32 = XL32 ^ p256_24;
+            var XH32 = XL32 ^ p256_24;
             TempOdd32 = TempOdd32 + p256_21 - p256_07;
 
             p256_25 = TempOdd32 +
@@ -461,78 +461,78 @@ namespace HashLib.Crypto.SHA3
 
         protected override void FinalCompression()
         {
-            uint p256_00 = m_state[0] ^ 0xaaaaaaa0;
-            uint p256_01 = m_state[1] ^ 0xaaaaaaa1;
-            uint p256_02 = m_state[2] ^ 0xaaaaaaa2;
-            uint p256_03 = m_state[3] ^ 0xaaaaaaa3;
-            uint p256_04 = m_state[4] ^ 0xaaaaaaa4;
-            uint p256_05 = m_state[5] ^ 0xaaaaaaa5;
-            uint p256_06 = m_state[6] ^ 0xaaaaaaa6;
-            uint p256_07 = m_state[7] ^ 0xaaaaaaa7;
-            uint p256_08 = m_state[8] ^ 0xaaaaaaa8;
-            uint p256_09 = m_state[9] ^ 0xaaaaaaa9;
-            uint p256_10 = m_state[10] ^ 0xaaaaaaaa;
-            uint p256_11 = m_state[11] ^ 0xaaaaaaab;
-            uint p256_12 = m_state[12] ^ 0xaaaaaaac;
-            uint p256_13 = m_state[13] ^ 0xaaaaaaad;
-            uint p256_14 = m_state[14] ^ 0xaaaaaaae;
-            uint p256_15 = m_state[15] ^ 0xaaaaaaaf;
+            var p256_00 = m_state[0] ^ 0xaaaaaaa0;
+            var p256_01 = m_state[1] ^ 0xaaaaaaa1;
+            var p256_02 = m_state[2] ^ 0xaaaaaaa2;
+            var p256_03 = m_state[3] ^ 0xaaaaaaa3;
+            var p256_04 = m_state[4] ^ 0xaaaaaaa4;
+            var p256_05 = m_state[5] ^ 0xaaaaaaa5;
+            var p256_06 = m_state[6] ^ 0xaaaaaaa6;
+            var p256_07 = m_state[7] ^ 0xaaaaaaa7;
+            var p256_08 = m_state[8] ^ 0xaaaaaaa8;
+            var p256_09 = m_state[9] ^ 0xaaaaaaa9;
+            var p256_10 = m_state[10] ^ 0xaaaaaaaa;
+            var p256_11 = m_state[11] ^ 0xaaaaaaab;
+            var p256_12 = m_state[12] ^ 0xaaaaaaac;
+            var p256_13 = m_state[13] ^ 0xaaaaaaad;
+            var p256_14 = m_state[14] ^ 0xaaaaaaae;
+            var p256_15 = m_state[15] ^ 0xaaaaaaaf;
 
-            uint td32_00 = (m_state[0] << 1) | (m_state[0] >> 31);
-            uint td32_01 = (m_state[1] << 2) | (m_state[1] >> 30);
-            uint td32_02 = (m_state[2] << 3) | (m_state[2] >> 29);
-            uint td32_03 = (m_state[3] << 4) | (m_state[3] >> 28);
-            uint td32_04 = (m_state[4] << 5) | (m_state[4] >> 27);
-            uint td32_05 = (m_state[5] << 6) | (m_state[5] >> 26);
-            uint td32_06 = (m_state[6] << 7) | (m_state[6] >> 25);
-            uint td32_07 = (m_state[7] << 8) | (m_state[7] >> 24);
-            uint td32_08 = (m_state[8] << 9) | (m_state[8] >> 23);
-            uint td32_09 = (m_state[9] << 10) | (m_state[9] >> 22);
-            uint td32_10 = (m_state[10] << 11) | (m_state[10] >> 21);
-            uint td32_11 = (m_state[11] << 12) | (m_state[11] >> 20);
-            uint td32_12 = (m_state[12] << 13) | (m_state[12] >> 19);
-            uint td32_13 = (m_state[13] << 14) | (m_state[13] >> 18);
-            uint td32_14 = (m_state[14] << 15) | (m_state[14] >> 17);
-            uint td32_15 = (m_state[15] << 16) | (m_state[15] >> 16);
+            var td32_00 = (m_state[0] << 1) | (m_state[0] >> 31);
+            var td32_01 = (m_state[1] << 2) | (m_state[1] >> 30);
+            var td32_02 = (m_state[2] << 3) | (m_state[2] >> 29);
+            var td32_03 = (m_state[3] << 4) | (m_state[3] >> 28);
+            var td32_04 = (m_state[4] << 5) | (m_state[4] >> 27);
+            var td32_05 = (m_state[5] << 6) | (m_state[5] >> 26);
+            var td32_06 = (m_state[6] << 7) | (m_state[6] >> 25);
+            var td32_07 = (m_state[7] << 8) | (m_state[7] >> 24);
+            var td32_08 = (m_state[8] << 9) | (m_state[8] >> 23);
+            var td32_09 = (m_state[9] << 10) | (m_state[9] >> 22);
+            var td32_10 = (m_state[10] << 11) | (m_state[10] >> 21);
+            var td32_11 = (m_state[11] << 12) | (m_state[11] >> 20);
+            var td32_12 = (m_state[12] << 13) | (m_state[12] >> 19);
+            var td32_13 = (m_state[13] << 14) | (m_state[13] >> 18);
+            var td32_14 = (m_state[14] << 15) | (m_state[14] >> 17);
+            var td32_15 = (m_state[15] << 16) | (m_state[15] >> 16);
 
-            uint t256_16 = p256_01 - p256_14;
-            uint t256_17 = p256_15 - p256_12;
-            uint t256_18 = p256_14 - p256_07;
-            uint t256_19 = p256_13 - p256_06;
-            uint t256_20 = p256_08 - p256_05;
-            uint t256_21 = p256_08 - p256_01;
+            var t256_16 = p256_01 - p256_14;
+            var t256_17 = p256_15 - p256_12;
+            var t256_18 = p256_14 - p256_07;
+            var t256_19 = p256_13 - p256_06;
+            var t256_20 = p256_08 - p256_05;
+            var t256_21 = p256_08 - p256_01;
 
-            uint p256_16 = (p256_05 + t256_18 + p256_10 + p256_13);
+            var p256_16 = (p256_05 + t256_18 + p256_10 + p256_13);
             p256_16 = ((p256_16 >> 1) ^ (p256_16 << 3) ^ ((p256_16 << 4) | (p256_16 >> 28)) ^ ((p256_16 << 19) | (p256_16 >> 13))) + 0xaaaaaaa1;
-            uint p256_17 = (p256_06 - p256_08 + p256_11 + p256_14 - p256_15);
+            var p256_17 = (p256_06 - p256_08 + p256_11 + p256_14 - p256_15);
             p256_17 = ((p256_17 >> 1) ^ (p256_17 << 2) ^ ((p256_17 << 8) | (p256_17 >> 24)) ^ ((p256_17 << 23) | (p256_17 >> 9))) + 0xaaaaaaa2;
-            uint p256_18 = (p256_00 + p256_07 + p256_09 + t256_17);
+            var p256_18 = (p256_00 + p256_07 + p256_09 + t256_17);
             p256_18 = ((p256_18 >> 2) ^ (p256_18 << 1) ^ ((p256_18 << 12) | (p256_18 >> 20)) ^ ((p256_18 << 25) | (p256_18 >> 7))) + 0xaaaaaaa3;
-            uint p256_19 = (p256_00 + t256_21 - p256_10 + p256_13);
+            var p256_19 = (p256_00 + t256_21 - p256_10 + p256_13);
             p256_19 = ((p256_19 >> 2) ^ (p256_19 << 2) ^ ((p256_19 << 15) | (p256_19 >> 17)) ^ ((p256_19 << 29) | (p256_19 >> 3))) + 0xaaaaaaa4;
-            uint p256_20 = (t256_16 + p256_02 + p256_09 - p256_11);
+            var p256_20 = (t256_16 + p256_02 + p256_09 - p256_11);
             p256_20 = ((p256_20 >> 1) ^ p256_20) + 0xaaaaaaa5;
-            uint p256_21 = (p256_03 - p256_02 + p256_10 + t256_17);
+            var p256_21 = (p256_03 - p256_02 + p256_10 + t256_17);
             p256_21 = ((p256_21 >> 1) ^ (p256_21 << 3) ^ ((p256_21 << 4) | (p256_21 >> 28)) ^ ((p256_21 << 19) | (p256_21 >> 13))) + 0xaaaaaaa6;
-            uint p256_22 = (p256_04 - p256_00 - p256_03 - p256_11 + p256_13);
+            var p256_22 = (p256_04 - p256_00 - p256_03 - p256_11 + p256_13);
             p256_22 = ((p256_22 >> 1) ^ (p256_22 << 2) ^ ((p256_22 << 8) | (p256_22 >> 24)) ^ ((p256_22 << 23) | (p256_22 >> 9))) + 0xaaaaaaa7;
-            uint p256_23 = (t256_16 - p256_04 - p256_05 - p256_12);
+            var p256_23 = (t256_16 - p256_04 - p256_05 - p256_12);
             p256_23 = ((p256_23 >> 2) ^ (p256_23 << 1) ^ ((p256_23 << 12) | (p256_23 >> 20)) ^ ((p256_23 << 25) | (p256_23 >> 7))) + 0xaaaaaaa8;
-            uint p256_24 = (p256_02 - p256_05 + t256_19 - p256_15);
+            var p256_24 = (p256_02 - p256_05 + t256_19 - p256_15);
             p256_24 = ((p256_24 >> 2) ^ (p256_24 << 2) ^ ((p256_24 << 15) | (p256_24 >> 17)) ^ ((p256_24 << 29) | (p256_24 >> 3))) + 0xaaaaaaa9;
-            uint p256_25 = (p256_00 - p256_03 + p256_06 + t256_18);
+            var p256_25 = (p256_00 - p256_03 + p256_06 + t256_18);
             p256_25 = ((p256_25 >> 1) ^ p256_25) + 0xaaaaaaaa;
-            uint p256_26 = (t256_21 - p256_04 - p256_07 + p256_15);
+            var p256_26 = (t256_21 - p256_04 - p256_07 + p256_15);
             p256_26 = ((p256_26 >> 1) ^ (p256_26 << 3) ^ ((p256_26 << 4) | (p256_26 >> 28)) ^ ((p256_26 << 19) | (p256_26 >> 13))) + 0xaaaaaaab;
-            uint p256_27 = (t256_20 - p256_00 - p256_02 + p256_09);
+            var p256_27 = (t256_20 - p256_00 - p256_02 + p256_09);
             p256_27 = ((p256_27 >> 1) ^ (p256_27 << 2) ^ ((p256_27 << 8) | (p256_27 >> 24)) ^ ((p256_27 << 23) | (p256_27 >> 9))) + 0xaaaaaaac;
-            uint p256_28 = (p256_01 + p256_03 - p256_06 - p256_09 + p256_10);
+            var p256_28 = (p256_01 + p256_03 - p256_06 - p256_09 + p256_10);
             p256_28 = ((p256_28 >> 2) ^ (p256_28 << 1) ^ ((p256_28 << 12) | (p256_28 >> 20)) ^ ((p256_28 << 25) | (p256_28 >> 7))) + 0xaaaaaaad;
-            uint p256_29 = (p256_02 + p256_04 + p256_07 + p256_10 + p256_11);
+            var p256_29 = (p256_02 + p256_04 + p256_07 + p256_10 + p256_11);
             p256_29 = ((p256_29 >> 2) ^ (p256_29 << 2) ^ ((p256_29 << 15) | (p256_29 >> 17)) ^ ((p256_29 << 29) | (p256_29 >> 3))) + 0xaaaaaaae;
-            uint p256_30 = (p256_03 + t256_20 - p256_11 - p256_12);
+            var p256_30 = (p256_03 + t256_20 - p256_11 - p256_12);
             p256_14 = ((p256_30 >> 1) ^ p256_30) + 0xaaaaaaaf;
-            uint p256_31 = (p256_12 - p256_04 + t256_19 - p256_09);
+            var p256_31 = (p256_12 - p256_04 + t256_19 - p256_09);
             p256_15 = ((p256_31 >> 1) ^ (p256_31 << 3) ^ ((p256_31 << 4) | (p256_31 >> 28)) ^ ((p256_31 << 19) | (p256_31 >> 13))) + 0xaaaaaaa0;
 
             p256_00 = p256_16;
@@ -568,7 +568,7 @@ namespace HashLib.Crypto.SHA3
                       ((p256_15 >> 1) ^ (p256_15 << 3) ^ ((p256_15 << 4) | (p256_15 >> 28)) ^ ((p256_15 << 19) | (p256_15 >> 13))) +
                       ((td32_00 + td32_03 - td32_10 + 0x55555550) ^ 0xaaaaaaa7);
 
-            uint XL32 = p256_16;
+            var XL32 = p256_16;
 
             p256_17 = ((p256_01 >> 1) ^ (p256_01 << 2) ^ ((p256_01 << 8) | (p256_01 >> 24)) ^ ((p256_01 << 23) | (p256_01 >> 9))) +
                       ((p256_02 >> 2) ^ (p256_02 << 1) ^ ((p256_02 << 12) | (p256_02 >> 20)) ^ ((p256_02 << 25) | (p256_02 >> 7))) +
@@ -589,8 +589,8 @@ namespace HashLib.Crypto.SHA3
                       ((td32_01 + td32_04 - td32_11 + 0x5aaaaaa5) ^ 0xaaaaaaa8);
 
             XL32 ^= p256_17;
-            uint TempEven32 = p256_14 + p256_12 + p256_10 + p256_08 + p256_06 + p256_04 + p256_02;
-            uint TempOdd32 = p256_15 + p256_13 + p256_11 + p256_09 + p256_07 + p256_05 + p256_03;
+            var TempEven32 = p256_14 + p256_12 + p256_10 + p256_08 + p256_06 + p256_04 + p256_02;
+            var TempOdd32 = p256_15 + p256_13 + p256_11 + p256_09 + p256_07 + p256_05 + p256_03;
 
             p256_18 = TempEven32 +
                       ((p256_03 << 3) | (p256_03 >> 29)) +
@@ -689,7 +689,7 @@ namespace HashLib.Crypto.SHA3
                       ((p256_23 >> 2) ^ p256_23) +
                       ((td32_08 + td32_11 - td32_02 + 0x7ffffff8) ^ 0xaaaaaaaf);
 
-            uint XH32 = XL32 ^ p256_24;
+            var XH32 = XL32 ^ p256_24;
             TempOdd32 = TempOdd32 + p256_21 - p256_07;
 
             p256_25 = TempOdd32 +
@@ -817,9 +817,9 @@ namespace HashLib.Crypto.SHA3
 
         protected override byte[] GetResult()
         {
-            byte[] result = new byte[HashSize];
+            var result = new byte[HashSize];
 
-            byte[] state = Converters.ConvertUIntsToBytes(m_state);
+            var state = Converters.ConvertUIntsToBytes(m_state);
 
             if (HashSize == 28)
                 Array.Copy(state, 36, result, 0, HashSize);
@@ -882,80 +882,80 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] data = Converters.ConvertBytesToULongs(a_data, a_index, 128);
+            var data = Converters.ConvertBytesToULongs(a_data, a_index, 128);
 
-            ulong p512_00 = m_state[0] ^ data[0];
-            ulong p512_01 = m_state[1] ^ data[1];
-            ulong p512_02 = m_state[2] ^ data[2];
-            ulong p512_03 = m_state[3] ^ data[3];
-            ulong p512_04 = m_state[4] ^ data[4];
-            ulong p512_05 = m_state[5] ^ data[5];
-            ulong p512_06 = m_state[6] ^ data[6];
-            ulong p512_07 = m_state[7] ^ data[7];
-            ulong p512_08 = m_state[8] ^ data[8];
-            ulong p512_09 = m_state[9] ^ data[9];
-            ulong p512_10 = m_state[10] ^ data[10];
-            ulong p512_11 = m_state[11] ^ data[11];
-            ulong p512_12 = m_state[12] ^ data[12];
-            ulong p512_13 = m_state[13] ^ data[13];
-            ulong p512_14 = m_state[14] ^ data[14];
-            ulong p512_15 = m_state[15] ^ data[15];
+            var p512_00 = m_state[0] ^ data[0];
+            var p512_01 = m_state[1] ^ data[1];
+            var p512_02 = m_state[2] ^ data[2];
+            var p512_03 = m_state[3] ^ data[3];
+            var p512_04 = m_state[4] ^ data[4];
+            var p512_05 = m_state[5] ^ data[5];
+            var p512_06 = m_state[6] ^ data[6];
+            var p512_07 = m_state[7] ^ data[7];
+            var p512_08 = m_state[8] ^ data[8];
+            var p512_09 = m_state[9] ^ data[9];
+            var p512_10 = m_state[10] ^ data[10];
+            var p512_11 = m_state[11] ^ data[11];
+            var p512_12 = m_state[12] ^ data[12];
+            var p512_13 = m_state[13] ^ data[13];
+            var p512_14 = m_state[14] ^ data[14];
+            var p512_15 = m_state[15] ^ data[15];
 
-            ulong td64_00 = (data[0] << 1) | (data[0] >> 63);
-            ulong td64_01 = (data[1] << 2) | (data[1] >> 62);
-            ulong td64_02 = (data[2] << 3) | (data[2] >> 61);
-            ulong td64_03 = (data[3] << 4) | (data[3] >> 60);
-            ulong td64_04 = (data[4] << 5) | (data[4] >> 59);
-            ulong td64_05 = (data[5] << 6) | (data[5] >> 58);
-            ulong td64_06 = (data[6] << 7) | (data[6] >> 57);
-            ulong td64_07 = (data[7] << 8) | (data[7] >> 56);
-            ulong td64_08 = (data[8] << 9) | (data[8] >> 55);
-            ulong td64_09 = (data[9] << 10) | (data[9] >> 54);
-            ulong td64_10 = (data[10] << 11) | (data[10] >> 53);
-            ulong td64_11 = (data[11] << 12) | (data[11] >> 52);
-            ulong td64_12 = (data[12] << 13) | (data[12] >> 51);
-            ulong td64_13 = (data[13] << 14) | (data[13] >> 50);
-            ulong td64_14 = (data[14] << 15) | (data[14] >> 49);
-            ulong td64_15 = (data[15] << 16) | (data[15] >> 48);
+            var td64_00 = (data[0] << 1) | (data[0] >> 63);
+            var td64_01 = (data[1] << 2) | (data[1] >> 62);
+            var td64_02 = (data[2] << 3) | (data[2] >> 61);
+            var td64_03 = (data[3] << 4) | (data[3] >> 60);
+            var td64_04 = (data[4] << 5) | (data[4] >> 59);
+            var td64_05 = (data[5] << 6) | (data[5] >> 58);
+            var td64_06 = (data[6] << 7) | (data[6] >> 57);
+            var td64_07 = (data[7] << 8) | (data[7] >> 56);
+            var td64_08 = (data[8] << 9) | (data[8] >> 55);
+            var td64_09 = (data[9] << 10) | (data[9] >> 54);
+            var td64_10 = (data[10] << 11) | (data[10] >> 53);
+            var td64_11 = (data[11] << 12) | (data[11] >> 52);
+            var td64_12 = (data[12] << 13) | (data[12] >> 51);
+            var td64_13 = (data[13] << 14) | (data[13] >> 50);
+            var td64_14 = (data[14] << 15) | (data[14] >> 49);
+            var td64_15 = (data[15] << 16) | (data[15] >> 48);
 
-            ulong t512_16 = p512_01 - p512_14;
-            ulong t512_17 = p512_15 - p512_12;
-            ulong t512_18 = p512_14 - p512_07;
-            ulong t512_19 = p512_13 - p512_06;
-            ulong t512_20 = p512_08 - p512_05;
-            ulong t512_21 = p512_08 - p512_01;
+            var t512_16 = p512_01 - p512_14;
+            var t512_17 = p512_15 - p512_12;
+            var t512_18 = p512_14 - p512_07;
+            var t512_19 = p512_13 - p512_06;
+            var t512_20 = p512_08 - p512_05;
+            var t512_21 = p512_08 - p512_01;
 
-            ulong p512_16 = (p512_05 + t512_18 + p512_10 + p512_13);
+            var p512_16 = (p512_05 + t512_18 + p512_10 + p512_13);
             p512_16 = ((p512_16 >> 1) ^ (p512_16 << 3) ^ ((p512_16 << 4) | (p512_16 >> 60)) ^ ((p512_16 << 37) | (p512_16 >> 27))) + m_state[1];
-            ulong p512_17 = (p512_06 - p512_08 + p512_11 + p512_14 - p512_15);
+            var p512_17 = (p512_06 - p512_08 + p512_11 + p512_14 - p512_15);
             p512_17 = ((p512_17 >> 1) ^ (p512_17 << 2) ^ ((p512_17 << 13) | (p512_17 >> 51)) ^ ((p512_17 << 43) | (p512_17 >> 21))) + m_state[2];
-            ulong p512_18 = (p512_00 + p512_07 + p512_09 + t512_17);
+            var p512_18 = (p512_00 + p512_07 + p512_09 + t512_17);
             p512_18 = ((p512_18 >> 2) ^ (p512_18 << 1) ^ ((p512_18 << 19) | (p512_18 >> 45)) ^ ((p512_18 << 53) | (p512_18 >> 11))) + m_state[3];
-            ulong p512_19 = (p512_00 + t512_21 - p512_10 + p512_13);
+            var p512_19 = (p512_00 + t512_21 - p512_10 + p512_13);
             p512_19 = ((p512_19 >> 2) ^ (p512_19 << 2) ^ ((p512_19 << 28) | (p512_19 >> 36)) ^ ((p512_19 << 59) | (p512_19 >> 5))) + m_state[4];
-            ulong p512_20 = (t512_16 + p512_02 + p512_09 - p512_11);
+            var p512_20 = (t512_16 + p512_02 + p512_09 - p512_11);
             p512_20 = ((p512_20 >> 1) ^ p512_20) + m_state[5];
-            ulong p512_21 = (p512_03 - p512_02 + p512_10 + t512_17);
+            var p512_21 = (p512_03 - p512_02 + p512_10 + t512_17);
             p512_21 = ((p512_21 >> 1) ^ (p512_21 << 3) ^ ((p512_21 << 4) | (p512_21 >> 60)) ^ ((p512_21 << 37) | (p512_21 >> 27))) + m_state[6];
-            ulong p512_22 = (p512_04 - p512_00 - p512_03 - p512_11 + p512_13);
+            var p512_22 = (p512_04 - p512_00 - p512_03 - p512_11 + p512_13);
             p512_22 = ((p512_22 >> 1) ^ (p512_22 << 2) ^ ((p512_22 << 13) | (p512_22 >> 51)) ^ ((p512_22 << 43) | (p512_22 >> 21))) + m_state[7];
-            ulong p512_23 = (t512_16 - p512_04 - p512_05 - p512_12);
+            var p512_23 = (t512_16 - p512_04 - p512_05 - p512_12);
             p512_23 = ((p512_23 >> 2) ^ (p512_23 << 1) ^ ((p512_23 << 19) | (p512_23 >> 45)) ^ ((p512_23 << 53) | (p512_23 >> 11))) + m_state[8];
-            ulong p512_24 = (p512_02 - p512_05 + t512_19 - p512_15);
+            var p512_24 = (p512_02 - p512_05 + t512_19 - p512_15);
             p512_24 = ((p512_24 >> 2) ^ (p512_24 << 2) ^ ((p512_24 << 28) | (p512_24 >> 36)) ^ ((p512_24 << 59) | (p512_24 >> 5))) + m_state[9];
-            ulong p512_25 = (p512_00 - p512_03 + p512_06 + t512_18);
+            var p512_25 = (p512_00 - p512_03 + p512_06 + t512_18);
             p512_25 = ((p512_25 >> 1) ^ p512_25) + m_state[10];
-            ulong p512_26 = (t512_21 - p512_04 - p512_07 + p512_15);
+            var p512_26 = (t512_21 - p512_04 - p512_07 + p512_15);
             p512_26 = ((p512_26 >> 1) ^ (p512_26 << 3) ^ ((p512_26 << 4) | (p512_26 >> 60)) ^ ((p512_26 << 37) | (p512_26 >> 27))) + m_state[11];
-            ulong p512_27 = (t512_20 - p512_00 - p512_02 + p512_09);
+            var p512_27 = (t512_20 - p512_00 - p512_02 + p512_09);
             p512_27 = ((p512_27 >> 1) ^ (p512_27 << 2) ^ ((p512_27 << 13) | (p512_27 >> 51)) ^ ((p512_27 << 43) | (p512_27 >> 21))) + m_state[12];
-            ulong p512_28 = (p512_01 + p512_03 - p512_06 - p512_09 + p512_10);
+            var p512_28 = (p512_01 + p512_03 - p512_06 - p512_09 + p512_10);
             p512_28 = ((p512_28 >> 2) ^ (p512_28 << 1) ^ ((p512_28 << 19) | (p512_28 >> 45)) ^ ((p512_28 << 53) | (p512_28 >> 11))) + m_state[13];
-            ulong p512_29 = (p512_02 + p512_04 + p512_07 + p512_10 + p512_11);
+            var p512_29 = (p512_02 + p512_04 + p512_07 + p512_10 + p512_11);
             p512_29 = ((p512_29 >> 2) ^ (p512_29 << 2) ^ ((p512_29 << 28) | (p512_29 >> 36)) ^ ((p512_29 << 59) | (p512_29 >> 5))) + m_state[14];
-            ulong p512_30 = (p512_03 + t512_20 - p512_11 - p512_12);
+            var p512_30 = (p512_03 + t512_20 - p512_11 - p512_12);
             p512_14 = ((p512_30 >> 1) ^ p512_30) + m_state[15];
-            ulong p512_31 = (p512_12 - p512_04 + t512_19 - p512_09);
+            var p512_31 = (p512_12 - p512_04 + t512_19 - p512_09);
             p512_15 = ((p512_31 >> 1) ^ (p512_31 << 3) ^ ((p512_31 << 4) | (p512_31 >> 60)) ^ ((p512_31 << 37) | (p512_31 >> 27))) + m_state[0];
 
             p512_00 = p512_16;
@@ -991,7 +991,7 @@ namespace HashLib.Crypto.SHA3
                       ((p512_15 >> 1) ^ (p512_15 << 3) ^ ((p512_15 << 4) | (p512_15 >> 60)) ^ ((p512_15 << 37) | (p512_15 >> 27))) +
                       ((td64_00 + td64_03 - td64_10 + 0x5555555555555550) ^ m_state[7]);
 
-            ulong XL64 = p512_16;
+            var XL64 = p512_16;
 
             p512_17 = ((p512_01 >> 1) ^ (p512_01 << 2) ^ ((p512_01 << 13) | (p512_01 >> 51)) ^ ((p512_01 << 43) | (p512_01 >> 21))) +
                       ((p512_02 >> 2) ^ (p512_02 << 1) ^ ((p512_02 << 19) | (p512_02 >> 45)) ^ ((p512_02 << 53) | (p512_02 >> 11))) +
@@ -1012,8 +1012,8 @@ namespace HashLib.Crypto.SHA3
                       ((td64_01 + td64_04 - td64_11 + 0x5aaaaaaaaaaaaaa5) ^ m_state[8]);
 
             XL64 ^= p512_17;
-            ulong TempEven64 = p512_14 + p512_12 + p512_10 + p512_08 + p512_06 + p512_04 + p512_02;
-            ulong TempOdd64 = p512_15 + p512_13 + p512_11 + p512_09 + p512_07 + p512_05 + p512_03;
+            var TempEven64 = p512_14 + p512_12 + p512_10 + p512_08 + p512_06 + p512_04 + p512_02;
+            var TempOdd64 = p512_15 + p512_13 + p512_11 + p512_09 + p512_07 + p512_05 + p512_03;
 
             p512_18 = TempEven64 +
                       ((p512_03 << 5) | (p512_03 >> 59)) +
@@ -1116,7 +1116,7 @@ namespace HashLib.Crypto.SHA3
                       ((p512_23 >> 2) ^ p512_23) +
                       ((td64_08 + td64_11 - td64_02 + 0x7ffffffffffffff8) ^ m_state[15]);
 
-            ulong XH64 = XL64 ^ p512_24;
+            var XH64 = XL64 ^ p512_24;
             TempOdd64 += p512_21; TempOdd64 -= p512_07;
 
             p512_25 = TempOdd64 +
@@ -1244,78 +1244,78 @@ namespace HashLib.Crypto.SHA3
 
         protected override void FinalCompression()
         {
-            ulong p512_00 = m_state[0] ^ 0xaaaaaaaaaaaaaaa0;
-            ulong p512_01 = m_state[1] ^ 0xaaaaaaaaaaaaaaa1;
-            ulong p512_02 = m_state[2] ^ 0xaaaaaaaaaaaaaaa2;
-            ulong p512_03 = m_state[3] ^ 0xaaaaaaaaaaaaaaa3;
-            ulong p512_04 = m_state[4] ^ 0xaaaaaaaaaaaaaaa4;
-            ulong p512_05 = m_state[5] ^ 0xaaaaaaaaaaaaaaa5;
-            ulong p512_06 = m_state[6] ^ 0xaaaaaaaaaaaaaaa6;
-            ulong p512_07 = m_state[7] ^ 0xaaaaaaaaaaaaaaa7;
-            ulong p512_08 = m_state[8] ^ 0xaaaaaaaaaaaaaaa8;
-            ulong p512_09 = m_state[9] ^ 0xaaaaaaaaaaaaaaa9;
-            ulong p512_10 = m_state[10] ^ 0xaaaaaaaaaaaaaaaa;
-            ulong p512_11 = m_state[11] ^ 0xaaaaaaaaaaaaaaab;
-            ulong p512_12 = m_state[12] ^ 0xaaaaaaaaaaaaaaac;
-            ulong p512_13 = m_state[13] ^ 0xaaaaaaaaaaaaaaad;
-            ulong p512_14 = m_state[14] ^ 0xaaaaaaaaaaaaaaae;
-            ulong p512_15 = m_state[15] ^ 0xaaaaaaaaaaaaaaaf;
+            var p512_00 = m_state[0] ^ 0xaaaaaaaaaaaaaaa0;
+            var p512_01 = m_state[1] ^ 0xaaaaaaaaaaaaaaa1;
+            var p512_02 = m_state[2] ^ 0xaaaaaaaaaaaaaaa2;
+            var p512_03 = m_state[3] ^ 0xaaaaaaaaaaaaaaa3;
+            var p512_04 = m_state[4] ^ 0xaaaaaaaaaaaaaaa4;
+            var p512_05 = m_state[5] ^ 0xaaaaaaaaaaaaaaa5;
+            var p512_06 = m_state[6] ^ 0xaaaaaaaaaaaaaaa6;
+            var p512_07 = m_state[7] ^ 0xaaaaaaaaaaaaaaa7;
+            var p512_08 = m_state[8] ^ 0xaaaaaaaaaaaaaaa8;
+            var p512_09 = m_state[9] ^ 0xaaaaaaaaaaaaaaa9;
+            var p512_10 = m_state[10] ^ 0xaaaaaaaaaaaaaaaa;
+            var p512_11 = m_state[11] ^ 0xaaaaaaaaaaaaaaab;
+            var p512_12 = m_state[12] ^ 0xaaaaaaaaaaaaaaac;
+            var p512_13 = m_state[13] ^ 0xaaaaaaaaaaaaaaad;
+            var p512_14 = m_state[14] ^ 0xaaaaaaaaaaaaaaae;
+            var p512_15 = m_state[15] ^ 0xaaaaaaaaaaaaaaaf;
 
-            ulong td64_00 = (m_state[0] << 1) | (m_state[0] >> 63);
-            ulong td64_01 = (m_state[1] << 2) | (m_state[1] >> 62);
-            ulong td64_02 = (m_state[2] << 3) | (m_state[2] >> 61);
-            ulong td64_03 = (m_state[3] << 4) | (m_state[3] >> 60);
-            ulong td64_04 = (m_state[4] << 5) | (m_state[4] >> 59);
-            ulong td64_05 = (m_state[5] << 6) | (m_state[5] >> 58);
-            ulong td64_06 = (m_state[6] << 7) | (m_state[6] >> 57);
-            ulong td64_07 = (m_state[7] << 8) | (m_state[7] >> 56);
-            ulong td64_08 = (m_state[8] << 9) | (m_state[8] >> 55);
-            ulong td64_09 = (m_state[9] << 10) | (m_state[9] >> 54);
-            ulong td64_10 = (m_state[10] << 11) | (m_state[10] >> 53);
-            ulong td64_11 = (m_state[11] << 12) | (m_state[11] >> 52);
-            ulong td64_12 = (m_state[12] << 13) | (m_state[12] >> 51);
-            ulong td64_13 = (m_state[13] << 14) | (m_state[13] >> 50);
-            ulong td64_14 = (m_state[14] << 15) | (m_state[14] >> 49);
-            ulong td64_15 = (m_state[15] << 16) | (m_state[15] >> 48);
+            var td64_00 = (m_state[0] << 1) | (m_state[0] >> 63);
+            var td64_01 = (m_state[1] << 2) | (m_state[1] >> 62);
+            var td64_02 = (m_state[2] << 3) | (m_state[2] >> 61);
+            var td64_03 = (m_state[3] << 4) | (m_state[3] >> 60);
+            var td64_04 = (m_state[4] << 5) | (m_state[4] >> 59);
+            var td64_05 = (m_state[5] << 6) | (m_state[5] >> 58);
+            var td64_06 = (m_state[6] << 7) | (m_state[6] >> 57);
+            var td64_07 = (m_state[7] << 8) | (m_state[7] >> 56);
+            var td64_08 = (m_state[8] << 9) | (m_state[8] >> 55);
+            var td64_09 = (m_state[9] << 10) | (m_state[9] >> 54);
+            var td64_10 = (m_state[10] << 11) | (m_state[10] >> 53);
+            var td64_11 = (m_state[11] << 12) | (m_state[11] >> 52);
+            var td64_12 = (m_state[12] << 13) | (m_state[12] >> 51);
+            var td64_13 = (m_state[13] << 14) | (m_state[13] >> 50);
+            var td64_14 = (m_state[14] << 15) | (m_state[14] >> 49);
+            var td64_15 = (m_state[15] << 16) | (m_state[15] >> 48);
 
-            ulong t512_16 = p512_01 - p512_14;
-            ulong t512_17 = p512_15 - p512_12;
-            ulong t512_18 = p512_14 - p512_07;
-            ulong t512_19 = p512_13 - p512_06;
-            ulong t512_20 = p512_08 - p512_05;
-            ulong t512_21 = p512_08 - p512_01;
+            var t512_16 = p512_01 - p512_14;
+            var t512_17 = p512_15 - p512_12;
+            var t512_18 = p512_14 - p512_07;
+            var t512_19 = p512_13 - p512_06;
+            var t512_20 = p512_08 - p512_05;
+            var t512_21 = p512_08 - p512_01;
 
-            ulong p512_16 = (p512_05 + t512_18 + p512_10 + p512_13);
+            var p512_16 = (p512_05 + t512_18 + p512_10 + p512_13);
             p512_16 = ((p512_16 >> 1) ^ (p512_16 << 3) ^ ((p512_16 << 4) | (p512_16 >> 60)) ^ ((p512_16 << 37) | (p512_16 >> 27))) + 0xaaaaaaaaaaaaaaa1;
-            ulong p512_17 = (p512_06 - p512_08 + p512_11 + p512_14 - p512_15);
+            var p512_17 = (p512_06 - p512_08 + p512_11 + p512_14 - p512_15);
             p512_17 = ((p512_17 >> 1) ^ (p512_17 << 2) ^ ((p512_17 << 13) | (p512_17 >> 51)) ^ ((p512_17 << 43) | (p512_17 >> 21))) + 0xaaaaaaaaaaaaaaa2;
-            ulong p512_18 = (p512_00 + p512_07 + p512_09 + t512_17);
+            var p512_18 = (p512_00 + p512_07 + p512_09 + t512_17);
             p512_18 = ((p512_18 >> 2) ^ (p512_18 << 1) ^ ((p512_18 << 19) | (p512_18 >> 45)) ^ ((p512_18 << 53) | (p512_18 >> 11))) + 0xaaaaaaaaaaaaaaa3;
-            ulong p512_19 = (p512_00 + t512_21 - p512_10 + p512_13);
+            var p512_19 = (p512_00 + t512_21 - p512_10 + p512_13);
             p512_19 = ((p512_19 >> 2) ^ (p512_19 << 2) ^ ((p512_19 << 28) | (p512_19 >> 36)) ^ ((p512_19 << 59) | (p512_19 >> 5))) + 0xaaaaaaaaaaaaaaa4;
-            ulong p512_20 = (t512_16 + p512_02 + p512_09 - p512_11);
+            var p512_20 = (t512_16 + p512_02 + p512_09 - p512_11);
             p512_20 = ((p512_20 >> 1) ^ p512_20) + 0xaaaaaaaaaaaaaaa5;
-            ulong p512_21 = (p512_03 - p512_02 + p512_10 + t512_17);
+            var p512_21 = (p512_03 - p512_02 + p512_10 + t512_17);
             p512_21 = ((p512_21 >> 1) ^ (p512_21 << 3) ^ ((p512_21 << 4) | (p512_21 >> 60)) ^ ((p512_21 << 37) | (p512_21 >> 27))) + 0xaaaaaaaaaaaaaaa6;
-            ulong p512_22 = (p512_04 - p512_00 - p512_03 - p512_11 + p512_13);
+            var p512_22 = (p512_04 - p512_00 - p512_03 - p512_11 + p512_13);
             p512_22 = ((p512_22 >> 1) ^ (p512_22 << 2) ^ ((p512_22 << 13) | (p512_22 >> 51)) ^ ((p512_22 << 43) | (p512_22 >> 21))) + 0xaaaaaaaaaaaaaaa7;
-            ulong p512_23 = (t512_16 - p512_04 - p512_05 - p512_12);
+            var p512_23 = (t512_16 - p512_04 - p512_05 - p512_12);
             p512_23 = ((p512_23 >> 2) ^ (p512_23 << 1) ^ ((p512_23 << 19) | (p512_23 >> 45)) ^ ((p512_23 << 53) | (p512_23 >> 11))) + 0xaaaaaaaaaaaaaaa8;
-            ulong p512_24 = (p512_02 - p512_05 + t512_19 - p512_15);
+            var p512_24 = (p512_02 - p512_05 + t512_19 - p512_15);
             p512_24 = ((p512_24 >> 2) ^ (p512_24 << 2) ^ ((p512_24 << 28) | (p512_24 >> 36)) ^ ((p512_24 << 59) | (p512_24 >> 5))) + 0xaaaaaaaaaaaaaaa9;
-            ulong p512_25 = (p512_00 - p512_03 + p512_06 + t512_18);
+            var p512_25 = (p512_00 - p512_03 + p512_06 + t512_18);
             p512_25 = ((p512_25 >> 1) ^ p512_25) + 0xaaaaaaaaaaaaaaaa;
-            ulong p512_26 = (t512_21 - p512_04 - p512_07 + p512_15);
+            var p512_26 = (t512_21 - p512_04 - p512_07 + p512_15);
             p512_26 = ((p512_26 >> 1) ^ (p512_26 << 3) ^ ((p512_26 << 4) | (p512_26 >> 60)) ^ ((p512_26 << 37) | (p512_26 >> 27))) + 0xaaaaaaaaaaaaaaab;
-            ulong p512_27 = (t512_20 - p512_00 - p512_02 + p512_09);
+            var p512_27 = (t512_20 - p512_00 - p512_02 + p512_09);
             p512_27 = ((p512_27 >> 1) ^ (p512_27 << 2) ^ ((p512_27 << 13) | (p512_27 >> 51)) ^ ((p512_27 << 43) | (p512_27 >> 21))) + 0xaaaaaaaaaaaaaaac;
-            ulong p512_28 = (p512_01 + p512_03 - p512_06 - p512_09 + p512_10);
+            var p512_28 = (p512_01 + p512_03 - p512_06 - p512_09 + p512_10);
             p512_28 = ((p512_28 >> 2) ^ (p512_28 << 1) ^ ((p512_28 << 19) | (p512_28 >> 45)) ^ ((p512_28 << 53) | (p512_28 >> 11))) + 0xaaaaaaaaaaaaaaad;
-            ulong p512_29 = (p512_02 + p512_04 + p512_07 + p512_10 + p512_11);
+            var p512_29 = (p512_02 + p512_04 + p512_07 + p512_10 + p512_11);
             p512_29 = ((p512_29 >> 2) ^ (p512_29 << 2) ^ ((p512_29 << 28) | (p512_29 >> 36)) ^ ((p512_29 << 59) | (p512_29 >> 5))) + 0xaaaaaaaaaaaaaaae;
-            ulong p512_30 = (p512_03 + t512_20 - p512_11 - p512_12);
+            var p512_30 = (p512_03 + t512_20 - p512_11 - p512_12);
             p512_14 = ((p512_30 >> 1) ^ p512_30) + 0xaaaaaaaaaaaaaaaf;
-            ulong p512_31 = (p512_12 - p512_04 + t512_19 - p512_09);
+            var p512_31 = (p512_12 - p512_04 + t512_19 - p512_09);
             p512_15 = ((p512_31 >> 1) ^ (p512_31 << 3) ^ ((p512_31 << 4) | (p512_31 >> 60)) ^ ((p512_31 << 37) | (p512_31 >> 27))) + 0xaaaaaaaaaaaaaaa0;
 
             p512_00 = p512_16;
@@ -1351,7 +1351,7 @@ namespace HashLib.Crypto.SHA3
                       ((p512_15 >> 1) ^ (p512_15 << 3) ^ ((p512_15 << 4) | (p512_15 >> 60)) ^ ((p512_15 << 37) | (p512_15 >> 27))) +
                       ((td64_00 + td64_03 - td64_10 + 0x5555555555555550) ^ 0xaaaaaaaaaaaaaaa7);
 
-            ulong XL64 = p512_16;
+            var XL64 = p512_16;
 
             p512_17 = ((p512_01 >> 1) ^ (p512_01 << 2) ^ ((p512_01 << 13) | (p512_01 >> 51)) ^ ((p512_01 << 43) | (p512_01 >> 21))) +
                       ((p512_02 >> 2) ^ (p512_02 << 1) ^ ((p512_02 << 19) | (p512_02 >> 45)) ^ ((p512_02 << 53) | (p512_02 >> 11))) +
@@ -1372,8 +1372,8 @@ namespace HashLib.Crypto.SHA3
                       ((td64_01 + td64_04 - td64_11 + 0x5aaaaaaaaaaaaaa5) ^ 0xaaaaaaaaaaaaaaa8);
 
             XL64 ^= p512_17;
-            ulong TempEven64 = p512_14 + p512_12 + p512_10 + p512_08 + p512_06 + p512_04 + p512_02;
-            ulong TempOdd64 = p512_15 + p512_13 + p512_11 + p512_09 + p512_07 + p512_05 + p512_03;
+            var TempEven64 = p512_14 + p512_12 + p512_10 + p512_08 + p512_06 + p512_04 + p512_02;
+            var TempOdd64 = p512_15 + p512_13 + p512_11 + p512_09 + p512_07 + p512_05 + p512_03;
 
             p512_18 = TempEven64 +
                       ((p512_03 << 5) | (p512_03 >> 59)) +
@@ -1476,7 +1476,7 @@ namespace HashLib.Crypto.SHA3
                       ((p512_23 >> 2) ^ p512_23) +
                       ((td64_08 + td64_11 - td64_02 + 0x7ffffffffffffff8) ^ 0xaaaaaaaaaaaaaaaf);
 
-            ulong XH64 = XL64 ^ p512_24;
+            var XH64 = XL64 ^ p512_24;
             TempOdd64 += p512_21; TempOdd64 -= p512_07;
 
             p512_25 = TempOdd64 +
@@ -1604,9 +1604,9 @@ namespace HashLib.Crypto.SHA3
 
         protected override byte[] GetResult()
         {
-            byte[] result = new byte[HashSize];
+            var result = new byte[HashSize];
 
-            byte[] state = Converters.ConvertULongsToBytes(m_state);
+            var state = Converters.ConvertULongsToBytes(m_state);
 
             if (HashSize == 48)
                 Array.Copy(state, 80, result, 0, HashSize);

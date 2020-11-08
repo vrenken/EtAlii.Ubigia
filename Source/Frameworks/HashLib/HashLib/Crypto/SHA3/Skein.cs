@@ -73,7 +73,7 @@ namespace HashLib.Crypto.SHA3
             kw6 = m_state[3];
             kw7 = kw3 ^ kw4 ^ kw5 ^ kw6 ^ 0x5555555555555555;
 
-            ulong[] w = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
+            var w = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
 
             X0 = w[0] + kw3;
             X1 = w[1] + kw4 + kw0;
@@ -668,7 +668,7 @@ namespace HashLib.Crypto.SHA3
             kw10 = m_state[7];
             kw11 = kw3 ^ kw4 ^ kw5 ^ kw6 ^ kw7 ^ kw8 ^ kw9 ^ kw10 ^ 0x5555555555555555;
 
-            ulong[] w = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
+            var w = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
 
             X0 = w[0] + kw3;
             X1 = w[1] + kw4;

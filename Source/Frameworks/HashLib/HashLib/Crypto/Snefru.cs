@@ -952,10 +952,10 @@ namespace HashLib.Crypto
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int padindex = 2 * BlockSize - m_buffer.Pos - 8;
+            var bits = m_processed_bytes * 8;
+            var padindex = 2 * BlockSize - m_buffer.Pos - 8;
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             Converters.ConvertULongToBytesSwapOrder(bits, pad, padindex);
             padindex += 8;
@@ -965,17 +965,17 @@ namespace HashLib.Crypto
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] work = new uint[16];
+            var work = new uint[16];
             Array.Copy(m_state, 0, work, 0, m_state.Length);
 
             Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize, work, m_state.Length);
 
-            for (int i = 0; i < m_rounds; i++)
+            for (var i = 0; i < m_rounds; i++)
             {
-                uint[] sbox0 = s_boxes[i * 2];
-                uint[] sbox1 = s_boxes[i * 2 + 1];
+                var sbox0 = s_boxes[i * 2];
+                var sbox1 = s_boxes[i * 2 + 1];
 
-                for (int j = 0; j < 4; j++)
+                for (var j = 0; j < 4; j++)
                 {
                     work[15] ^= sbox0[(byte)work[0]]; 
                     work[1] ^= sbox0[(byte)work[0]];
@@ -1010,9 +1010,9 @@ namespace HashLib.Crypto
                     work[14] ^= sbox1[(byte)work[15]]; 
                     work[0] ^= sbox1[(byte)work[15]];
 
-                    int shift = s_shifts[j];
+                    var shift = s_shifts[j];
 
-                    for (int k = 0; k < work.Length; k++)
+                    for (var k = 0; k < work.Length; k++)
                         work[k] = (work[k] >> shift) | (work[k] << (32 - shift));
                 }
             }

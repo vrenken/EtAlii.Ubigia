@@ -110,11 +110,11 @@ namespace HashLib.Crypto
 
         protected override void Finish()
         {
-            int padLen = 16 - m_buffer.Pos;
+            var padLen = 16 - m_buffer.Pos;
 
-            byte[] pad = new byte[padLen];
+            var pad = new byte[padLen];
 
-            for (int i = 0; i < padLen; i++)
+            for (var i = 0; i < padLen; i++)
                 pad[i] = (byte)padLen;
 
             TransformBytes(pad, 0, padLen);
@@ -128,19 +128,19 @@ namespace HashLib.Crypto
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            byte[] temp = new byte[48];
+            var temp = new byte[48];
 
             Array.Copy(m_state, temp, 16);
             Array.Copy(a_data, a_index, temp, 16, 16);
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 temp[i + 32] = (byte)(m_state[i] ^ a_data[i + a_index]);
 
             uint t = 0;
 
-            for (int i = 0; i < 18; i++)
+            for (var i = 0; i < 18; i++)
             {
-                for (int j = 0; j < 48; j++)
+                for (var j = 0; j < 48; j++)
                     t = temp[j] ^= s_pi[t];
 
                 t = (byte)(t + i);
@@ -149,7 +149,7 @@ namespace HashLib.Crypto
             Array.Copy(temp, m_state, 16);
 
             t = m_checksum[15];
-            for (int i = 0; i < BlockSize; i++)
+            for (var i = 0; i < BlockSize; i++)
             {
                 m_checksum[i] ^= s_pi[a_data[i + a_index] ^ t];
                 t = m_checksum[i];

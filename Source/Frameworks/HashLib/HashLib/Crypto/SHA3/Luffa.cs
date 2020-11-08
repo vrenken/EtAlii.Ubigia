@@ -57,15 +57,15 @@ namespace HashLib.Crypto.SHA3
 
         protected override byte[] GetResult()
         {
-            byte[] zeroes = new byte[BlockSize];
-            uint[] result = new uint[HashSize / 4];
+            var zeroes = new byte[BlockSize];
+            var result = new uint[HashSize / 4];
 
-            for (int i = 0; i < HashSize / 4; i++)
+            for (var i = 0; i < HashSize / 4; i++)
             {
                 if (i % 8 == 0)
                     TransformBlock(zeroes, 0);
 
-                for (int j = 0; j < m_result_blocks; j++)
+                for (var j = 0; j < m_result_blocks; j++)
                     result[i] ^= m_state[(i % 8) + 8 * j];
             }
 
@@ -74,7 +74,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            byte[] pad = new byte[BlockSize - m_buffer.Pos];
+            var pad = new byte[BlockSize - m_buffer.Pos];
             pad[0] = 0x80;
             TransformBytes(pad, 0, pad.Length);
         }
@@ -103,16 +103,16 @@ namespace HashLib.Crypto.SHA3
             uint chainv0, chainv1, chainv2, chainv3, chainv4, chainv5, chainv6, chainv7;
             uint tmp;
 
-            uint[] data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
+            var data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
 
-            uint t0 = m_state[0] ^ m_state[0 + 8] ^ m_state[0 + 16];
-            uint t1 = m_state[1] ^ m_state[1 + 8] ^ m_state[1 + 16];
-            uint t2 = m_state[2] ^ m_state[2 + 8] ^ m_state[2 + 16];
-            uint t3 = m_state[3] ^ m_state[3 + 8] ^ m_state[3 + 16];
-            uint t4 = m_state[4] ^ m_state[4 + 8] ^ m_state[4 + 16];
-            uint t5 = m_state[5] ^ m_state[5 + 8] ^ m_state[5 + 16];
-            uint t6 = m_state[6] ^ m_state[6 + 8] ^ m_state[6 + 16];
-            uint t7 = m_state[7] ^ m_state[7 + 8] ^ m_state[7 + 16];
+            var t0 = m_state[0] ^ m_state[0 + 8] ^ m_state[0 + 16];
+            var t1 = m_state[1] ^ m_state[1 + 8] ^ m_state[1 + 16];
+            var t2 = m_state[2] ^ m_state[2 + 8] ^ m_state[2 + 16];
+            var t3 = m_state[3] ^ m_state[3 + 8] ^ m_state[3 + 16];
+            var t4 = m_state[4] ^ m_state[4 + 8] ^ m_state[4 + 16];
+            var t5 = m_state[5] ^ m_state[5 + 8] ^ m_state[5 + 16];
+            var t6 = m_state[6] ^ m_state[6 + 8] ^ m_state[6 + 16];
+            var t7 = m_state[7] ^ m_state[7 + 8] ^ m_state[7 + 16];
 
             tmp = t7;
             t7 = t6;
@@ -124,7 +124,7 @@ namespace HashLib.Crypto.SHA3
             t1 = t0 ^ tmp;
             t0 = tmp;
 
-            for (int j = 0; j < 3; j++)
+            for (var j = 0; j < 3; j++)
             {
                 m_state[0 + 8 * j] ^= t0 ^ data[0];
                 m_state[1 + 8 * j] ^= t1 ^ data[1];
@@ -155,7 +155,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = m_state[6];
             chainv7 = m_state[7];
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -246,7 +246,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 1) | (chainv6 >> 31);
             chainv7 = (chainv7 << 1) | (chainv7 >> 31);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -337,7 +337,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 2) | (chainv6 >> 30);
             chainv7 = (chainv7 << 2) | (chainv7 >> 30);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -449,13 +449,13 @@ namespace HashLib.Crypto.SHA3
             uint chainv0, chainv1, chainv2, chainv3, chainv4, chainv5, chainv6, chainv7;
             uint tmp;
 
-            uint[] data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
+            var data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
 
-            uint[] t = new uint[32];
+            var t = new uint[32];
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
-                for (int j = 0; j < 4; j++)
+                for (var j = 0; j < 4; j++)
                     t[i] ^= m_state[i + 8 * j];
             }
 
@@ -469,19 +469,19 @@ namespace HashLib.Crypto.SHA3
             t[1] = t[0] ^ tmp;
             t[0] = tmp;
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[i + 8 * j] ^= t[i];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     t[i + 8 * j] = m_state[i + 8 * j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 tmp = m_state[7 + (8 * j)];
                 m_state[7 + (8 * j)] = m_state[6 + (8 * j)];
@@ -494,15 +494,15 @@ namespace HashLib.Crypto.SHA3
                 m_state[8 * j] = tmp;
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[8 * j + i] ^= t[8 * ((j + 3) % 4) + i];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[i + 8 * j] ^= data[i];
 
                 tmp = data[7];
@@ -525,7 +525,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = m_state[6];
             chainv7 = m_state[7];
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -616,7 +616,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 1) | (chainv6 >> 31);
             chainv7 = (chainv7 << 1) | (chainv7 >> 31);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -707,7 +707,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 2) | (chainv6 >> 30);
             chainv7 = (chainv7 << 2) | (chainv7 >> 30);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -798,7 +798,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 3) | (chainv6 >> 29);
             chainv7 = (chainv7 << 3) | (chainv7 >> 29);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -894,13 +894,13 @@ namespace HashLib.Crypto.SHA3
             uint chainv0, chainv1, chainv2, chainv3, chainv4, chainv5, chainv6, chainv7;
             uint tmp;
 
-            uint[] data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
+            var data = Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize);
 
-            uint[] t = new uint[40];
+            var t = new uint[40];
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
-                for (int j = 0; j < 5; j++)
+                for (var j = 0; j < 5; j++)
                     t[i] ^= m_state[i + 8 * j];
             }
 
@@ -914,19 +914,19 @@ namespace HashLib.Crypto.SHA3
             t[1] = t[0] ^ tmp;
             t[0] = tmp;
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[i + 8 * j] ^= t[i];
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     t[i + 8 * j] = m_state[i + 8 * j];
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
                 tmp = m_state[7 + (8 * j)];
                 m_state[7 + (8 * j)] = m_state[6 + (8 * j)];
@@ -939,19 +939,19 @@ namespace HashLib.Crypto.SHA3
                 m_state[8 * j] = tmp;
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[8 * j + i] ^= t[8 * ((j + 1) % 5) + i];
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     t[i + 8 * j] = m_state[i + 8 * j];
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
                 tmp = m_state[7 + (8 * j)];
                 m_state[7 + (8 * j)] = m_state[6 + (8 * j)];
@@ -964,15 +964,15 @@ namespace HashLib.Crypto.SHA3
                 m_state[8 * j] = tmp;
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[8 * j + i] ^= t[8 * ((j + 4) % 5) + i];
             }
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
-                for (int i = 0; i < 8; i++)
+                for (var i = 0; i < 8; i++)
                     m_state[i + 8 * j] ^= data[i];
 
                 tmp = data[7];
@@ -995,7 +995,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = m_state[6];
             chainv7 = m_state[7];
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -1086,7 +1086,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 1) | (chainv6 >> 31);
             chainv7 = (chainv7 << 1) | (chainv7 >> 31);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -1177,7 +1177,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 2) | (chainv6 >> 30);
             chainv7 = (chainv7 << 2) | (chainv7 >> 30);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -1268,7 +1268,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 3) | (chainv6 >> 29);
             chainv7 = (chainv7 << 3) | (chainv7 >> 29);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;
@@ -1359,7 +1359,7 @@ namespace HashLib.Crypto.SHA3
             chainv6 = (chainv6 << 4) | (chainv6 >> 28);
             chainv7 = (chainv7 << 4) | (chainv7 >> 28);
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
                 tmp = chainv0;
                 chainv0 |= chainv1;

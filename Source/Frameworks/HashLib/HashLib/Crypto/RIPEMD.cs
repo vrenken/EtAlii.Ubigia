@@ -10,31 +10,31 @@ namespace HashLib.Crypto
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint data0 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 0);
-            uint data1 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 1);
-            uint data2 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 2);
-            uint data3 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 3);
-            uint data4 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 4);
-            uint data5 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 5);
-            uint data6 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 6);
-            uint data7 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 7);
-            uint data8 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 8);
-            uint data9 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 9);
-            uint data10 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 10);
-            uint data11 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 11);
-            uint data12 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 12);
-            uint data13 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 13);
-            uint data14 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 14);
-            uint data15 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 15);
+            var data0 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 0);
+            var data1 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 1);
+            var data2 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 2);
+            var data3 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 3);
+            var data4 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 4);
+            var data5 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 5);
+            var data6 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 6);
+            var data7 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 7);
+            var data8 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 8);
+            var data9 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 9);
+            var data10 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 10);
+            var data11 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 11);
+            var data12 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 12);
+            var data13 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 13);
+            var data14 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 14);
+            var data15 = Converters.ConvertBytesToUInt(a_data, a_index + 4 * 15);
 
-            uint a = m_state[0];
-            uint b = m_state[1];
-            uint c = m_state[2];
-            uint d = m_state[3];
-            uint aa = a;
-            uint bb = b;
-            uint cc = c;
-            uint dd = d;
+            var a = m_state[0];
+            var b = m_state[1];
+            var c = m_state[2];
+            var d = m_state[3];
+            var aa = a;
+            var bb = b;
+            var cc = c;
+            var dd = d;
 
             a = Bits.RotateLeft(P1(b, c, d) + a + data0, 11);
             d = Bits.RotateLeft(P1(a, b, c) + d + data1, 14);

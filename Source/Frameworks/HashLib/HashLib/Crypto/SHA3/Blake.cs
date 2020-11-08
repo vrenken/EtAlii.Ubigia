@@ -76,22 +76,22 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-                uint m0 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 0);
-                uint m1 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 1);
-                uint m2 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 2);
-                uint m3 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 3);
-                uint m4 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 4);
-                uint m5 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 5);
-                uint m6 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 6);
-                uint m7 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 7);
-                uint m8 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 8);
-                uint m9 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 9);
-                uint m10 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 10);
-                uint m11 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 11);
-                uint m12 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 12);
-                uint m13 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 13);
-                uint m14 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 14);
-                uint m15 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 15);
+                var m0 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 0);
+                var m1 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 1);
+                var m2 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 2);
+                var m3 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 3);
+                var m4 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 4);
+                var m5 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 5);
+                var m6 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 6);
+                var m7 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 7);
+                var m8 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 8);
+                var m9 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 9);
+                var m10 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 10);
+                var m11 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 11);
+                var m12 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 12);
+                var m13 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 13);
+                var m14 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 14);
+                var m15 = Converters.ConvertBytesToUIntSwapOrder(a_data, a_index + 4 * 15);
 
                 const uint c32_0 = 0x243F6A88;
                 const uint c32_1 = 0x85A308D3;
@@ -110,26 +110,26 @@ namespace HashLib.Crypto.SHA3
                 const uint c32_14 = 0x3F84D5B5;
                 const uint c32_15 = 0xB5470917;
 
-                uint v0 = m_state[0];
-                uint v1 = m_state[1];
-                uint v2 = m_state[2];
-                uint v3 = m_state[3];
-                uint v4 = m_state[4];
-                uint v5 = m_state[5];
-                uint v6 = m_state[6];
-                uint v7 = m_state[7];
-                uint v8 = c32_0;
-                uint v9 = c32_1;
-                uint v10 = c32_2;
-                uint v11 = c32_3;
-                uint v12 = c32_4;
-                uint v13 = c32_5;
-                uint v14 = c32_6;
-                uint v15 = c32_7;
+                var v0 = m_state[0];
+                var v1 = m_state[1];
+                var v2 = m_state[2];
+                var v3 = m_state[3];
+                var v4 = m_state[4];
+                var v5 = m_state[5];
+                var v6 = m_state[6];
+                var v7 = m_state[7];
+                var v8 = c32_0;
+                var v9 = c32_1;
+                var v10 = c32_2;
+                var v11 = c32_3;
+                var v12 = c32_4;
+                var v13 = c32_5;
+                var v14 = c32_6;
+                var v15 = c32_7;
 
                 if (!m_nullt)
                 {
-                    ulong bits = m_processed_bytes * 8;
+                    var bits = m_processed_bytes * 8;
                     v12 ^= (uint)bits;
                     v13 ^= (uint)bits;
                     bits >>= 32;
@@ -1162,7 +1162,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
             if (m_buffer.Pos == 55)
             {
@@ -1174,7 +1174,7 @@ namespace HashLib.Crypto.SHA3
             }
             else
             {
-                byte[] pad = new byte[BlockSize];
+                var pad = new byte[BlockSize];
                 pad[0] = 0x80;
 
                 if (m_buffer.Pos < 55)
@@ -1202,7 +1202,7 @@ namespace HashLib.Crypto.SHA3
 
             m_processed_bytes -= 8;
 
-            byte[] msg = new byte[8];
+            var msg = new byte[8];
             Converters.ConvertULongToBytesSwapOrder(bits, msg, 0);
 
             TransformBytes(msg, 0, 8);
@@ -1246,22 +1246,22 @@ namespace HashLib.Crypto.SHA3
         protected override void TransformBlock(byte[] a_data, int a_index)
             
             {
-                ulong m0 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 0);
-                ulong m1 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 1);
-                ulong m2 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 2);
-                ulong m3 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 3);
-                ulong m4 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 4);
-                ulong m5 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 5);
-                ulong m6 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 6);
-                ulong m7 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 7);
-                ulong m8 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 8);
-                ulong m9 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 9);
-                ulong m10 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 10);
-                ulong m11 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 11);
-                ulong m12 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 12);
-                ulong m13 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 13);
-                ulong m14 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 14);
-                ulong m15 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 15);
+                var m0 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 0);
+                var m1 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 1);
+                var m2 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 2);
+                var m3 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 3);
+                var m4 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 4);
+                var m5 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 5);
+                var m6 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 6);
+                var m7 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 7);
+                var m8 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 8);
+                var m9 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 9);
+                var m10 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 10);
+                var m11 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 11);
+                var m12 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 12);
+                var m13 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 13);
+                var m14 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 14);
+                var m15 = Converters.ConvertBytesToULongSwapOrder(a_data, a_index + 8 * 15);
 
                 const ulong c64_0 = 0x243F6A8885A308D3;
                 const ulong c64_1 = 0x13198A2E03707344;
@@ -1280,26 +1280,26 @@ namespace HashLib.Crypto.SHA3
                 const ulong c64_14 = 0x0801F2E2858EFC16;
                 const ulong c64_15 = 0x636920D871574E69;
 
-                ulong v0 = m_state[0];
-                ulong v1 = m_state[1];
-                ulong v2 = m_state[2];
-                ulong v3 = m_state[3];
-                ulong v4 = m_state[4];
-                ulong v5 = m_state[5];
-                ulong v6 = m_state[6];
-                ulong v7 = m_state[7];
-                ulong v8 = c64_0;
-                ulong v9 = c64_1;
-                ulong v10 = c64_2;
-                ulong v11 = c64_3;
-                ulong v12 = c64_4;
-                ulong v13 = c64_5;
-                ulong v14 = c64_6;
-                ulong v15 = c64_7;
+                var v0 = m_state[0];
+                var v1 = m_state[1];
+                var v2 = m_state[2];
+                var v3 = m_state[3];
+                var v4 = m_state[4];
+                var v5 = m_state[5];
+                var v6 = m_state[6];
+                var v7 = m_state[7];
+                var v8 = c64_0;
+                var v9 = c64_1;
+                var v10 = c64_2;
+                var v11 = c64_3;
+                var v12 = c64_4;
+                var v13 = c64_5;
+                var v14 = c64_6;
+                var v15 = c64_7;
 
                 if (!m_nullt)
                 {
-                    ulong bits = m_processed_bytes * 8;
+                    var bits = m_processed_bytes * 8;
                     v12 ^= bits;
                     v13 ^= bits;
                 }
@@ -2473,7 +2473,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
             if (m_buffer.Pos == 111)
             {
@@ -2485,7 +2485,7 @@ namespace HashLib.Crypto.SHA3
             }
             else
             {
-                byte[] pad = new byte[BlockSize];
+                var pad = new byte[BlockSize];
                 pad[0] = 0x80;
 
                 if (m_buffer.Pos < 111)
@@ -2513,7 +2513,7 @@ namespace HashLib.Crypto.SHA3
 
             m_processed_bytes -= 16;
 
-            byte[] msg = new byte[16];
+            var msg = new byte[16];
             Converters.ConvertULongToBytesSwapOrder(bits, msg, 8);
 
             TransformBytes(msg, 0, 16);

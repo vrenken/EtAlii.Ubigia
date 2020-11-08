@@ -38,10 +38,10 @@
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
+            var bits = m_processed_bytes * 8;
+            var padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             pad[0] = 0x80;
 

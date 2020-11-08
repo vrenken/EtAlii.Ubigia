@@ -137,10 +137,10 @@
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int padindex = (m_buffer.Pos < 118) ? (118 - m_buffer.Pos) : (246 - m_buffer.Pos);
+            var bits = m_processed_bytes * 8;
+            var padindex = (m_buffer.Pos < 118) ? (118 - m_buffer.Pos) : (246 - m_buffer.Pos);
 
-            byte[] pad = new byte[padindex + 10];
+            var pad = new byte[padindex + 10];
             pad[0] = (byte)0x01;
 
             pad[padindex++] = (byte)((m_rounds << 3) | (HAVAL_VERSION & 0x07));
@@ -237,16 +237,16 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
+            var temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
 
-            uint a = m_hash[0];
-            uint b = m_hash[1];
-            uint c = m_hash[2];
-            uint d = m_hash[3];
-            uint e = m_hash[4];
-            uint f = m_hash[5];
-            uint g = m_hash[6];
-            uint h = m_hash[7];
+            var a = m_hash[0];
+            var b = m_hash[1];
+            var c = m_hash[2];
+            var d = m_hash[3];
+            var e = m_hash[4];
+            var f = m_hash[5];
+            var g = m_hash[6];
+            var h = m_hash[7];
 
             uint t = 0;
 
@@ -558,16 +558,16 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
+            var temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
 
-            uint a = m_hash[0];
-            uint b = m_hash[1];
-            uint c = m_hash[2];
-            uint d = m_hash[3];
-            uint e = m_hash[4];
-            uint f = m_hash[5];
-            uint g = m_hash[6];
-            uint h = m_hash[7];
+            var a = m_hash[0];
+            var b = m_hash[1];
+            var c = m_hash[2];
+            var d = m_hash[3];
+            var e = m_hash[4];
+            var f = m_hash[5];
+            var g = m_hash[6];
+            var h = m_hash[7];
 
             uint t = 0;
 
@@ -975,16 +975,16 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
+            var temp = Converters.ConvertBytesToUInts(a_data, a_index, BlockSize);
 
-            uint a = m_hash[0];
-            uint b = m_hash[1];
-            uint c = m_hash[2];
-            uint d = m_hash[3];
-            uint e = m_hash[4];
-            uint f = m_hash[5];
-            uint g = m_hash[6];
-            uint h = m_hash[7];
+            var a = m_hash[0];
+            var b = m_hash[1];
+            var c = m_hash[2];
+            var d = m_hash[3];
+            var e = m_hash[4];
+            var f = m_hash[5];
+            var g = m_hash[6];
+            var h = m_hash[7];
 
             uint t = 0;
 

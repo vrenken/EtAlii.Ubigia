@@ -31,14 +31,14 @@ namespace HashLib.Hash128
 
         protected override void Finish()
         {
-            int length = m_buffer.Pos;
-            byte[] data = m_buffer.GetBytesZeroPadded();
+            var length = m_buffer.Pos;
+            var data = m_buffer.GetBytesZeroPadded();
 
             switch (length)
             {
                 case 15:
                     {
-                        ulong k2 = (ulong)(data[14]) << 48;
+                        var k2 = (ulong)(data[14]) << 48;
                         k2 ^= (ulong)(data[13]) << 40;
                         k2 ^= (ulong)(data[12]) << 32;
                         k2 ^= (ulong)(data[11]) << 24;
@@ -53,7 +53,7 @@ namespace HashLib.Hash128
                     }
                 case 14:
                     {
-                        ulong k2 = (ulong)(data[13]) << 40;
+                        var k2 = (ulong)(data[13]) << 40;
                         k2 ^= (ulong)(data[12]) << 32;
                         k2 ^= (ulong)(data[11]) << 24;
                         k2 ^= (ulong)(data[10]) << 16;
@@ -67,7 +67,7 @@ namespace HashLib.Hash128
                     }
                 case 13:
                     {
-                        ulong k2 = (ulong)(data[12]) << 32;
+                        var k2 = (ulong)(data[12]) << 32;
                         k2 ^= (ulong)(data[11]) << 24;
                         k2 ^= (ulong)(data[10]) << 16;
                         k2 ^= (ulong)(data[9]) << 8;
@@ -80,7 +80,7 @@ namespace HashLib.Hash128
                     }
                 case 12:
                     {
-                        ulong k2 = (ulong)(data[11]) << 24;
+                        var k2 = (ulong)(data[11]) << 24;
                         k2 ^= (ulong)(data[10]) << 16;
                         k2 ^= (ulong)(data[9]) << 8;
                         k2 ^= (ulong)(data[8]) << 0;
@@ -92,7 +92,7 @@ namespace HashLib.Hash128
                     }
                 case 11:
                     {
-                        ulong k2 = (ulong)(data[10]) << 16;
+                        var k2 = (ulong)(data[10]) << 16;
                         k2 ^= (ulong)(data[9]) << 8;
                         k2 ^= (ulong)(data[8]) << 0;
                         k2 *= C2;
@@ -103,7 +103,7 @@ namespace HashLib.Hash128
                     }
                 case 10:
                     {
-                        ulong k2 = (ulong)(data[9]) << 8;
+                        var k2 = (ulong)(data[9]) << 8;
                         k2 ^= (ulong)(data[8]) << 0;
                         k2 *= C2;
                         k2 = (k2 << 33) | (k2 >> 31);
@@ -113,7 +113,7 @@ namespace HashLib.Hash128
                     }
                 case 9:
                     {
-                        ulong k2 = (ulong)(data[8]) << 0;
+                        var k2 = (ulong)(data[8]) << 0;
                         k2 *= C2;
                         k2 = (k2 << 33) | (k2 >> 31);
                         k2 *= C1;
@@ -129,7 +129,7 @@ namespace HashLib.Hash128
             {
                 case 8:
                     {
-                        ulong k1 = (ulong)(data[7]) << 56;
+                        var k1 = (ulong)(data[7]) << 56;
                         k1 ^= (ulong)(data[6]) << 48;
                         k1 ^= (ulong)(data[5]) << 40;
                         k1 ^= (ulong)(data[4]) << 32;
@@ -145,7 +145,7 @@ namespace HashLib.Hash128
                     }
                 case 7:
                     {
-                        ulong k1 = (ulong)(data[6]) << 48;
+                        var k1 = (ulong)(data[6]) << 48;
                         k1 ^= (ulong)(data[5]) << 40;
                         k1 ^= (ulong)(data[4]) << 32;
                         k1 ^= (ulong)(data[3]) << 24;
@@ -160,7 +160,7 @@ namespace HashLib.Hash128
                     }
                 case 6:
                     {
-                        ulong k1 = (ulong)(data[5]) << 40;
+                        var k1 = (ulong)(data[5]) << 40;
                         k1 ^= (ulong)(data[4]) << 32;
                         k1 ^= (ulong)(data[3]) << 24;
                         k1 ^= (ulong)(data[2]) << 16;
@@ -174,7 +174,7 @@ namespace HashLib.Hash128
                     }
                 case 5:
                     {
-                        ulong k1 = (ulong)(data[4]) << 32;
+                        var k1 = (ulong)(data[4]) << 32;
                         k1 ^= (ulong)(data[3]) << 24;
                         k1 ^= (ulong)(data[2]) << 16;
                         k1 ^= (ulong)(data[1]) << 8;
@@ -187,7 +187,7 @@ namespace HashLib.Hash128
                     }
                 case 4:
                     {
-                        ulong k1 = (ulong)(data[3]) << 24;
+                        var k1 = (ulong)(data[3]) << 24;
                         k1 ^= (ulong)(data[2]) << 16;
                         k1 ^= (ulong)(data[1]) << 8;
                         k1 ^= (ulong)(data[0]) << 0;
@@ -199,7 +199,7 @@ namespace HashLib.Hash128
                     }
                 case 3:
                     {
-                        ulong k1 = (ulong)(data[2]) << 16;
+                        var k1 = (ulong)(data[2]) << 16;
                         k1 ^= (ulong)(data[1]) << 8;
                         k1 ^= (ulong)(data[0]) << 0;
                         k1 *= C1;
@@ -210,7 +210,7 @@ namespace HashLib.Hash128
                     }
                 case 2:
                     {
-                        ulong k1 = (ulong)(data[1]) << 8;
+                        var k1 = (ulong)(data[1]) << 8;
                         k1 ^= (ulong)(data[0]) << 0;
                         k1 *= C1;
                         k1 = (k1 << 31) | (k1 >> 33);
@@ -220,7 +220,7 @@ namespace HashLib.Hash128
                     }
                 case 1:
                     {
-                        ulong k1 = (ulong)(data[0]) << 0;
+                        var k1 = (ulong)(data[0]) << 0;
                         k1 *= C1;
                         k1 = (k1 << 31) | (k1 >> 33);
                         k1 *= C2;
@@ -253,10 +253,10 @@ namespace HashLib.Hash128
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong k1 = (ulong)a_data[a_index++] | (ulong)a_data[a_index++] << 8 |
-                       (ulong)a_data[a_index++] << 16 | (ulong)a_data[a_index++] << 24 |
-                       (ulong)a_data[a_index++] << 32 | (ulong)a_data[a_index++] << 40 |
-                       (ulong)a_data[a_index++] << 48 | (ulong)a_data[a_index++] << 56;
+            var k1 = (ulong)a_data[a_index++] | (ulong)a_data[a_index++] << 8 |
+                     (ulong)a_data[a_index++] << 16 | (ulong)a_data[a_index++] << 24 |
+                     (ulong)a_data[a_index++] << 32 | (ulong)a_data[a_index++] << 40 |
+                     (ulong)a_data[a_index++] << 48 | (ulong)a_data[a_index++] << 56;
 
             k1 *= C1;
             k1 = (k1 << 31) | (k1 >> 33);
@@ -267,10 +267,10 @@ namespace HashLib.Hash128
             m_h1 += m_h2;
             m_h1 = m_h1 * 5 + C3;
 
-            ulong k2 = (ulong)a_data[a_index++] | (ulong)a_data[a_index++] << 8 |
-                       (ulong)a_data[a_index++] << 16 | (ulong)a_data[a_index++] << 24 |
-                       (ulong)a_data[a_index++] << 32 | (ulong)a_data[a_index++] << 40 |
-                       (ulong)a_data[a_index++] << 48 | (ulong)a_data[a_index++] << 56;
+            var k2 = (ulong)a_data[a_index++] | (ulong)a_data[a_index++] << 8 |
+                     (ulong)a_data[a_index++] << 16 | (ulong)a_data[a_index++] << 24 |
+                     (ulong)a_data[a_index++] << 32 | (ulong)a_data[a_index++] << 40 |
+                     (ulong)a_data[a_index++] << 48 | (ulong)a_data[a_index++] << 56;
 
             k2 *= C2;
             k2 = (k2 << 33) | (k2 >> 31);
@@ -284,7 +284,7 @@ namespace HashLib.Hash128
 
         protected override byte[] GetResult()
         {
-            byte[] result = new byte[16];
+            var result = new byte[16];
 
             Converters.ConvertULongToBytes(m_h1, result, 0);
             Converters.ConvertULongToBytes(m_h2, result, 8);
