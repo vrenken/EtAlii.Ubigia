@@ -29,20 +29,16 @@ tbd
 ## Licenses
 There are many individual gears made by others that make the internals of Ubigia tick. I think each and everyone that worked on them deserves special credits as the whole ecosystem of free packages and libraries is what makes today's software tick. 
 
-.NET 
-tbd
-
-Challenging ones:
+**Challenging ones:
 
 *Extended.Wpf.Toolkit (Non-commercial only)*</br>
-https://github.com/xceedsoftware/wpftoolkit
-https://github.com/xceedsoftware/wpftoolkit/blob/master/license.md
+https://github.com/xceedsoftware/wpftoolkit</br>
 
 *AvalonDock (2.0.2000 = New BSD License (BSD))*</br>
 https://archive.codeplex.com/?p=avalondock
 
 
-GUI libraries
+**GUI libraries
 
 *ControlzEx (MIT)*</br>
 https://github.com/ControlzEx/ControlzEx
@@ -54,7 +50,9 @@ https://github.com/hardcodet/wpf-notifyicon
 https://github.com/fluentribbon/Fluent.Ribbon
 
 
-DATA libraries
+**Core technologies
+.NET 
+tbd
 
 *HasLib (MS-PL)*<br/>
 http://hashlib.codeplex.com/SourceControl/latest#HashLib/
@@ -78,7 +76,7 @@ https://github.com/protocolbuffers/protobuf
 *xunit (Apache-2.0 + MIT)*<br/>
 https://github.com/xunit/xunit
 
-Provisioning
+**Provisioning
 
 *MailSystem.NET (LGPL*<br/>
 https://github.com/pmengal/MailSystem.NET
