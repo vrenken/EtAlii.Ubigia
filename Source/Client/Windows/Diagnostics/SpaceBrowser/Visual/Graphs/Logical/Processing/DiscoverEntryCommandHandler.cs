@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class DiscoverEntryCommandHandler : CommandHandlerBase<DiscoverEntryCommand>, IDiscoverEntryCommandHandler
     {

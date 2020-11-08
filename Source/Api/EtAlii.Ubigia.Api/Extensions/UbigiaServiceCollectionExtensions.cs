@@ -1,27 +1,27 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using EtAlii.Ubigia.Api.Diagnostics.Internal;
-using EtAlii.Ubigia.Api.Infrastructure.Internal;
-using EtAlii.Ubigia.Api.Metadata.Conventions;
-using EtAlii.Ubigia.Api.Query.Internal;
-using EtAlii.Ubigia.Api.Storage.Internal;
-using EtAlii.Ubigia.Api.ValueGeneration.Internal;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.EntityFrameworkCore.Utilities;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using EtAlii.Ubigia.Api.Diagnostics.Internal;
+    using EtAlii.Ubigia.Api.Infrastructure.Internal;
+    using EtAlii.Ubigia.Api.Metadata.Conventions;
+    using EtAlii.Ubigia.Api.Query.Internal;
+    using EtAlii.Ubigia.Api.Storage.Internal;
+    using EtAlii.Ubigia.Api.ValueGeneration.Internal;
+    using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
+    using Microsoft.EntityFrameworkCore.ValueGeneration;
+
     /// <summary>
-    ///     In-memory specific extension methods for <see cref="IServiceCollection" />.
+    ///     Ubigia specific extension methods for <see cref="IServiceCollection" />.
     /// </summary>
     public static class UbigiaServiceCollectionExtensions
     {

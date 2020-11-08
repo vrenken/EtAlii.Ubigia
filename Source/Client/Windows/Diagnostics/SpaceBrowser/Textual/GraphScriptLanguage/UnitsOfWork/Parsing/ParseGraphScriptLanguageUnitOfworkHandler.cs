@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class ParseGraphScriptLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphScriptLanguageUnitOfwork>, IParseGraphScriptLanguageUnitOfworkHandler
     {

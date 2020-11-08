@@ -14,7 +14,7 @@ namespace Microsoft.EntityFrameworkCore
     using EtAlii.Ubigia.Api.Storage;
 
     /// <summary>
-    ///     In-memory specific extension methods for <see cref="DbContextOptionsBuilder" />.
+    ///     Ubigia specific extension methods for <see cref="DbContextOptionsBuilder" />.
     /// </summary>
     public static class UbigiaDbContextOptionsExtensions
     {

@@ -4,7 +4,7 @@
     using System.Collections.Concurrent;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
     using Serilog;
 
     public class TaskBasedCommandProcessor : CommandProcessor, IDisposable

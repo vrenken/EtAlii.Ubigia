@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class RetrieveEntryCommandHandler : CommandHandlerBase<RetrieveEntryCommand>, IRetrieveEntryCommandHandler
     {

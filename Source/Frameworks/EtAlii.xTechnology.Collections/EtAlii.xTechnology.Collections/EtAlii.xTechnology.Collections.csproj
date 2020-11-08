@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <Version>$(PackageVersion)</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections/nuget_icon.png</PackageIconUrl>
+    <Description>A collection of collection enhancing extension methods.</Description>
+    <PackageTags>collections</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>
