@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>1.2.4</Version>
+    <Authors>Alexander Yaroslavov</Authors>
+    <PackageLicenseUrl>https://moppetlapa.codeplex.com/license</PackageLicenseUrl>
+    <PackageProjectUrl>http://moppetlapa.codeplex.com/</PackageProjectUrl>
+    <Description>A collection of collection enhancing extension methods.</Description>
+    <Copyright>Copyright © Yaroslavov Alexander 2010</Copyright>
+    <PackageTags>Text parser generator Lambda functions LALR LR AST Yacc Peg LPG Lex ANTLR Moppet</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <Company>Moppet</Company>
+    <Product>Moppet.Lapa</Product>
+  </PropertyGroup>
+
+</Project>
