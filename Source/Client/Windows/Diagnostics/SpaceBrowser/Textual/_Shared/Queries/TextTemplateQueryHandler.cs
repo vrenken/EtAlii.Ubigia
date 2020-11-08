@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class TextTemplateQueryHandler : QueryHandlerBase<TextTemplateQuery, string>, ITextTemplateQueryHandler
     {

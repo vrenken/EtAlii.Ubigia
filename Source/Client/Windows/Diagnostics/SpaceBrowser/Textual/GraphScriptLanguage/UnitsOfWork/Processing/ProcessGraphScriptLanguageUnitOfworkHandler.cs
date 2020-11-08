@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class ProcessGraphScriptLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessGraphScriptLanguageUnitOfwork>, IProcessGraphScriptLanguageUnitOfworkHandler
     {

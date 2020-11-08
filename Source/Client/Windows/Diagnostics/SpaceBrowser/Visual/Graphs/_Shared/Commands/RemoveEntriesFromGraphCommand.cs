@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.xTechnology.Workflow;
+    using EtAlii.xTechnology.Structure.Workflow;
 
     public class RemoveEntriesFromGraphCommand : CommandBase
     {

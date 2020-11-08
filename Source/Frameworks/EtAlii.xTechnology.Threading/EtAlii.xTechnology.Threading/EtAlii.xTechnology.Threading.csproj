@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <Version>$(PackageVersion)</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading/nuget_icon.png</PackageIconUrl>
+    <Description>A collection of basic extensions on the common BCL System.Threading namespace.</Description>
+    <PackageTags>threading parallel thread task</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>

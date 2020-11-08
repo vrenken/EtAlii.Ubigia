@@ -2,7 +2,7 @@
 {
     using System.Diagnostics;
 
-    [DebuggerDisplay("{Root}")]
+    [DebuggerDisplay("{" + nameof(Root) + "}")]
     public class GraphRootStartNode : GraphPathPart
     {
         public string Root { get; }
