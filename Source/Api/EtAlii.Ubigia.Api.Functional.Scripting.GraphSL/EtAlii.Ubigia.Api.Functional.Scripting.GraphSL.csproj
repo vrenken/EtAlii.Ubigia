@@ -15,6 +15,7 @@
     <None Remove="Scripting\**" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting\EtAlii.Ubigia.Api.Functional.Scripting.csproj" />
   </ItemGroup>
   <ItemGroup>
