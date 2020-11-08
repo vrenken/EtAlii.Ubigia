@@ -23,3 +23,24 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 In 2012 I've come to the conclusion that the way we think about digital information is fundamentally flawed,
 or better said based on decades of digital progress that has clouded our vision  
  
+## Licenses
+
+.NET 
+tbd
+
+HasLib (MS-PL)
+http://hashlib.codeplex.com/SourceControl/latest#HashLib/
+
+Moppet.Lapa (MS-PL)
+https://www.nuget.org/packages/Moppet.Lapa/
+
+Grpc (Apache-2.0)
+Grpc.Core (Apache-2.0)
+Grpc.Tools (Apache-2.0)
+https://github.com/grpc/grpc
+
+Grpc.AspNetCore (Apache-2.0)
+Grpc.Net.Client (Apache-2.0)
+https://github.com/grpc/grpc-dotnet
+
+
