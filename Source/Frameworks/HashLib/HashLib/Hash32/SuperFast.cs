@@ -16,7 +16,7 @@ namespace HashLib.Hash32
             if (length == 0)
                 return new HashResult(0);
 
-            uint hash = (UInt32)length;
+            uint hash = (uint)length;
 
             int currentIndex = 0;
 

@@ -2697,12 +2697,12 @@ namespace HashLib.Crypto.SHA3
         {
             Array.Clear(m_state, 0, 25);
 
-            m_state[1] = UInt64.MaxValue;
-            m_state[2] = UInt64.MaxValue;
-            m_state[8] = UInt64.MaxValue;
-            m_state[12] = UInt64.MaxValue;
-            m_state[17] = UInt64.MaxValue;
-            m_state[20] = UInt64.MaxValue;
+            m_state[1] = ulong.MaxValue;
+            m_state[2] = ulong.MaxValue;
+            m_state[8] = ulong.MaxValue;
+            m_state[12] = ulong.MaxValue;
+            m_state[17] = ulong.MaxValue;
+            m_state[20] = ulong.MaxValue;
 
             base.Initialize();
         }
