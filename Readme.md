@@ -40,31 +40,20 @@ https://archive.codeplex.com/?p=avalondock
 
 **GUI libraries
 
-*ControlzEx (MIT)*</br>
-https://github.com/ControlzEx/ControlzEx
-
-*HardCodet.NotifyIcon.Wpf.NetCore (CPOL)*</br>
-https://github.com/hardcodet/wpf-notifyicon
-
-*Fluent.Ribbon (MIT)*</br>
-https://github.com/fluentribbon/Fluent.Ribbon
-
+| Library   	                        | Link  	                                                      | License      | Usage   	|   	|
+|---	                                 |---	                                                         |---	         |---	      |---	|
+| ControlzEx   	                     | https://github.com/ControlzEx/ControlzEx   	               | MIT   	      |   	      |   	|
+| HardCodet.NotifyIcon.Wpf.NetCore  	| https://github.com/hardcodet/wpf-notifyicon  	               | CPOL 	      |   	      |   	|
+| Fluent.Ribbon  	                     | https://github.com/fluentribbon/Fluent.Ribbon  	            | MIT 	      |   	      |   	|
+| HasLib        	                     | http://hashlib.codeplex.com/SourceControl/latest#HashLib/  	| MS-PL 	      |   	      |   	|
+| Moppet.Lapa                          | https://www.nuget.org/packages/Moppet.Lapa/                  | MS-PL        |           |     |
+| Grpc                                 | https://github.com/grpc/grpc                                 | Apache-2.0   |           |     |
+| Grpc.Core                            | https://github.com/grpc/grpc                                 | Apache-2.0   |           |     |
+| Grpc.Tools                           | https://github.com/grpc/grpc                                 | Apache-2.0   |           |     |
 
 **Core technologies
 .NET 
 tbd
-
-*HasLib (MS-PL)*<br/>
-http://hashlib.codeplex.com/SourceControl/latest#HashLib/
-
-*Moppet.Lapa (MS-PL)*<br/>
-https://www.nuget.org/packages/Moppet.Lapa/
-
-
-*Grpc (Apache-2.0)<br/>
-*Grpc.Core (Apache-2.0)<br/>
-*Grpc.Tools (Apache-2.0)*<br/>
-https://github.com/grpc/grpc
 
 *Grpc.AspNetCore (Apache-2.0)<br/>
 *Grpc.Net.Client (Apache-2.0)*<br/>
