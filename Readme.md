@@ -28,19 +28,19 @@ or better said based on decades of digital progress that has clouded our vision
 .NET 
 tbd
 
-HasLib (MS-PL)
+- *HasLib (MS-PL)*<br/>
 http://hashlib.codeplex.com/SourceControl/latest#HashLib/
 
-Moppet.Lapa (MS-PL)
+- *Moppet.Lapa (MS-PL)*<br/>
 https://www.nuget.org/packages/Moppet.Lapa/
 
-Grpc (Apache-2.0)
-Grpc.Core (Apache-2.0)
-Grpc.Tools (Apache-2.0)
+- *Grpc (Apache-2.0)<br/>
+- *Grpc.Core (Apache-2.0)<br/>
+- *Grpc.Tools (Apache-2.0)*<br/>
 https://github.com/grpc/grpc
 
-Grpc.AspNetCore (Apache-2.0)
-Grpc.Net.Client (Apache-2.0)
+- *Grpc.AspNetCore (Apache-2.0)<br/>
+- *Grpc.Net.Client (Apache-2.0)*<br/>
 https://github.com/grpc/grpc-dotnet
 
 
