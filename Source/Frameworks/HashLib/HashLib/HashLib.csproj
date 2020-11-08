@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <Version>2.1.0.2</Version>
+    <Authors>tomanu</Authors>
+    <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
+    <PackageProjectUrl>http://hashlib.codeplex.com/SourceControl/latest#HashLib/</PackageProjectUrl>
+    <Description>Implementations of many hashing algorithms: for hashtables, cryptographic purpose and checksums.</Description>
+    <Copyright>Copyright 2013</Copyright>
+    <PackageTags>Murmur2 Jenkins3 SuperFast AP Bernstein Bernstein1 BKDR DEK DJB ELF FNV FNV1a JS OneAtTime PJW Rotating RS SDBM ShiftAndXor Adler32 CRC32 CRC64 MD5 RIPEMD160 SHA1 SHA256 SHA384 SHA512 GOST HAS160 Haval MD2 MD4 RIPEMD128 RIPEMD256 RIPEMD320 SHA224 Snefru Tiger Tiger2 Whirlpool Blake BlueMidnightWish CubeHash Echo Fugue Groestl Hamsi JH Keccak Luffa Shabal SHAvite3 SIMD Skein HMAC</PackageTags>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+  </PropertyGroup>
+
+</Project>
