@@ -410,7 +410,7 @@ namespace HashLib
             byte[] result = new byte[a_in.Length / 2];
 
             for (int i = 0; i < result.Length; i++)
-                result[i] = Byte.Parse(a_in.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
+                result[i] = byte.Parse(a_in.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
 
             return result;
         }
