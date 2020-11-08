@@ -126,7 +126,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] data = Converters.ConvertBytesToULongs(a_data, a_index, 64);
+            var data = Converters.ConvertBytesToULongs(a_data, a_index, 64);
 
             const ulong c_2_1 = 0x5555555555555555;
             const ulong c_2_2 = 0xaaaaaaaaaaaaaaaa;
@@ -139,28 +139,28 @@ namespace HashLib.Crypto.SHA3
             const ulong c_32_1 = 0x0000ffff0000ffff;
             const ulong c_32_2 = 0xffff0000ffff0000;
 
-            ulong m0 = m_state[0] ^ data[0];
-            ulong m1 = m_state[1] ^ data[1];
-            ulong m2 = m_state[2] ^ data[2];
-            ulong m3 = m_state[3] ^ data[3];
-            ulong m4 = m_state[4] ^ data[4];
-            ulong m5 = m_state[5] ^ data[5];
-            ulong m6 = m_state[6] ^ data[6];
-            ulong m7 = m_state[7] ^ data[7];
+            var m0 = m_state[0] ^ data[0];
+            var m1 = m_state[1] ^ data[1];
+            var m2 = m_state[2] ^ data[2];
+            var m3 = m_state[3] ^ data[3];
+            var m4 = m_state[4] ^ data[4];
+            var m5 = m_state[5] ^ data[5];
+            var m6 = m_state[6] ^ data[6];
+            var m7 = m_state[7] ^ data[7];
 
-            ulong m8 = m_state[8];
-            ulong m9 = m_state[9];
-            ulong m10 = m_state[10];
-            ulong m11 = m_state[11];
-            ulong m12 = m_state[12];
-            ulong m13 = m_state[13];
-            ulong m14 = m_state[14];
-            ulong m15 = m_state[15];
+            var m8 = m_state[8];
+            var m9 = m_state[9];
+            var m10 = m_state[10];
+            var m11 = m_state[11];
+            var m12 = m_state[12];
+            var m13 = m_state[13];
+            var m14 = m_state[14];
+            var m15 = m_state[15];
 
             ulong t0;
             ulong t1;
 
-            for (int r = 0; r < 42; r = r + 7)
+            for (var r = 0; r < 42; r = r + 7)
             {
                 m12 = ~m12;
                 m14 = ~m14;
@@ -705,14 +705,14 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
-            int padindex = 56;
+            var padindex = 56;
 
             if (m_processed_bytes % 64 != 0)
                 padindex += m_buffer.Length - m_buffer.Pos;
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             pad[0] = 0x80;
 

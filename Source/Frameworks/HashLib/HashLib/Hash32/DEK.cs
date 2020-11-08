@@ -9,9 +9,9 @@
 
         protected override HashResult ComputeAggregatedBytes(byte[] a_data)
         {
-            uint hash = (uint)a_data.Length;
+            var hash = (uint)a_data.Length;
 
-            foreach (byte b in a_data)
+            foreach (var b in a_data)
                 hash = ((hash << 5) ^ (hash >> 27)) ^ b;
 
             return new HashResult(hash);

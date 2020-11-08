@@ -16,14 +16,14 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
-            int padindex = 4 - (int)(m_processed_bytes % 4);
+            var padindex = 4 - (int)(m_processed_bytes % 4);
 
             if (padindex == 4)
                 padindex = 0;
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             Converters.ConvertULongToBytesSwapOrder(bits, pad, padindex);
             padindex += 8;
@@ -55,7 +55,7 @@ namespace HashLib.Crypto.SHA3
 
             if (a_length >= 4)
             {
-                int bytes = (a_length / 4) * 4;
+                var bytes = (a_length / 4) * 4;
                 m_processed_bytes += (ulong)bytes;
                 TransformBlocks(a_data, a_index, bytes);
                 a_index += bytes;
@@ -371,10 +371,10 @@ namespace HashLib.Crypto.SHA3
             ulong tmp;
             uint tmp_zero;
             ulong col_0, col_1, col_2, col_3, col_02, col_13;
-            uint j1 = (uint)(5 - m_base / 6) % 5;
-            int ptr = m_base;
+            var j1 = (uint)(5 - m_base / 6) % 5;
+            var ptr = m_base;
 
-            for (int j = 0; j < 5; j++)
+            for (var j = 0; j < 5; j++)
             {
                 m_state[((-3 * (2 * ((j1 + j) % 5) + 1)) + 60) % 30] ^= m_state[((-3 * (2 * ((j1 + j) % 5) + 1)) + 4 + 60) % 30];
                 m_state[((-3 * (2 * ((j1 + j) % 5) + 1)) + 1 + 60) % 30] ^= m_state[((-3 * (2 * ((j1 + j) % 5) + 1)) + 5 + 60) % 30];
@@ -476,7 +476,7 @@ namespace HashLib.Crypto.SHA3
                 m_state[((-3 * (2 * ((j1 + j) % 5) + 2)) + 60) % 30] = tmp_zero;
             }
 
-            for (int j = 0; j < 13; j++)
+            for (var j = 0; j < 13; j++)
             {
                 m_state[(ptr + 4 + 60) % 30] ^= m_state[(ptr + 60) % 30];
                 m_state[(ptr + 15 + 60) % 30] ^= m_state[(ptr + 60) % 30];
@@ -575,9 +575,9 @@ namespace HashLib.Crypto.SHA3
             m_state[(ptr + 4 + 60) % 30] ^= m_state[(ptr + 60) % 30];
             m_state[(ptr + 15 + 60) % 30] ^= m_state[(ptr + 60) % 30];
 
-            uint[] result = new uint[HashSize / 4];
+            var result = new uint[HashSize / 4];
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 result[j] = m_state[(ptr + 1 + j + 60) % 30];
 
@@ -592,18 +592,18 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlocks(byte[] a_data, int a_index, int a_length)
         {
-            uint[] data32 = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
+            var data32 = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
 
             ulong row0, row1, row2, row3;
             ulong col0, col1, col2, col3;
             ulong col_0, col_1, col_2, col_3, col_02, col_13;
             ulong tmp, tmp_in;
             uint tmp_zero;
-            int ptr = m_base;
-            int j = 0;
-            uint j1 = (uint)(5 - m_base / 6) % 5;
+            var ptr = m_base;
+            var j = 0;
+            var j1 = (uint)(5 - m_base / 6) % 5;
 
-            uint[] state = new uint[30];
+            var state = new uint[30];
             Array.Copy(m_state, state, 30);
 
             tmp_zero = m_state[(ptr + 60) % 30];
@@ -1047,10 +1047,10 @@ namespace HashLib.Crypto.SHA3
                 }
             }
 
-            int len_mod = (a_length / 4) % 10;
-            int len_div = (a_length / 4) / 10;
+            var len_mod = (a_length / 4) % 10;
+            var len_div = (a_length / 4) / 10;
 
-            for (int j2 = 0; j2 < len_div; j2++)
+            for (var j2 = 0; j2 < len_div; j2++)
             {
                 tmp_in = data32[j] | (ulong)data32[j + 1] << 32;
                 state[(-6 * 0 + 1 + 60) % 30] ^= state[(-6 * 0 + 24 + 60) % 30];
@@ -3269,10 +3269,10 @@ namespace HashLib.Crypto.SHA3
             uint row0, row1, row2, row3;
             uint col0, col1, col2, col3;
             uint tmp;
-            uint j1 = (uint)(4 - m_base / 9) % 4;
-            int ptr = m_base;
+            var j1 = (uint)(4 - m_base / 9) % 4;
+            var ptr = m_base;
 
-            for (int j = 0; j < 6; j++)
+            for (var j = 0; j < 6; j++)
             {
                 m_state[((-3 * (3 * ((j1 + j) % 4) + 1)) + 36) % 36] ^= m_state[((-3 * (3 * ((j1 + j) % 4) + 1)) + 4 + 36) % 36];
                 m_state[((-3 * (3 * ((j1 + j) % 4) + 1)) + 1 + 36) % 36] ^= m_state[((-3 * (3 * ((j1 + j) % 4) + 1)) + 5 + 36) % 36];
@@ -3482,7 +3482,7 @@ namespace HashLib.Crypto.SHA3
 
             ptr = ptr - 18;
 
-            for (int j = 0; j < 13; j++)
+            for (var j = 0; j < 13; j++)
             {
                 m_state[(ptr + 4 + 36) % 36] ^= m_state[(ptr + 36) % 36];
                 m_state[(ptr + 12 + 36) % 36] ^= m_state[(ptr + 36) % 36];
@@ -3688,9 +3688,9 @@ namespace HashLib.Crypto.SHA3
             m_state[(ptr + 12 + 36) % 36] ^= m_state[(ptr + 36) % 36];
             m_state[(ptr + 24 + 36) % 36] ^= m_state[(ptr + 36) % 36];
 
-            uint[] result = new uint[HashSize / 4];
+            var result = new uint[HashSize / 4];
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 result[j] = m_state[(ptr + 1 + j + 36) % 36];
                 result[4 + j] = m_state[(ptr + 12 + j + 36) % 36];
@@ -3702,16 +3702,16 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlocks(byte[] a_data, int a_index, int a_length)
         {
-            uint[] data = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
+            var data = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
 
             uint row0, row1, row2, row3;
             uint col0, col1, col2, col3;
             uint tmp;
-            int ptr = m_base;
-            uint j1 = (uint)(4 - m_base / 9) % 4;
-            int j = 0;
+            var ptr = m_base;
+            var j1 = (uint)(4 - m_base / 9) % 4;
+            var j = 0;
 
-            uint[] state = new uint[36];
+            var state = new uint[36];
             Array.Copy(m_state, state, 36);
 
             if ((j1 != 0) && (a_length >= 4))
@@ -4369,10 +4369,10 @@ namespace HashLib.Crypto.SHA3
                 }
             }
 
-            int len_mod = (a_length / 4) % 4;
-            int len_div = a_length / 16;
+            var len_mod = (a_length / 4) % 4;
+            var len_div = a_length / 16;
 
-            for (int j2 = 0; j2 < len_div; j2++)
+            for (var j2 = 0; j2 < len_div; j2++)
             {
                 state[(-9 * 0 + 16 + 36) % 36] ^= state[(-9 * 0 + 36) % 36];
                 state[(-9 * 0 + 36) % 36] = data[j];
@@ -5902,10 +5902,10 @@ namespace HashLib.Crypto.SHA3
             uint row0, row1, row2, row3;
             uint col0, col1, col2, col3;
             uint tmp;
-            uint j1 = (uint)(3 - m_base / 12) % 3;
-            int ptr = m_base;
+            var j1 = (uint)(3 - m_base / 12) % 3;
+            var ptr = m_base;
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[((-3 * (4 * ((j1 + j) % 3) + 1)) + 36) % 36] ^= m_state[((-3 * (4 * ((j1 + j) % 3) + 1)) + 4 + 36) % 36];
                 m_state[((-3 * (4 * ((j1 + j) % 3) + 1)) + 1 + 36) % 36] ^= m_state[((-3 * (4 * ((j1 + j) % 3) + 1)) + 5 + 36) % 36];
@@ -6183,7 +6183,7 @@ namespace HashLib.Crypto.SHA3
 
             ptr = ptr - 24;
 
-            for (int j = 0; j < 13; j++)
+            for (var j = 0; j < 13; j++)
             {
                 m_state[(ptr + 4 + 36) % 36] ^= m_state[(ptr + 36) % 36];
                 m_state[(ptr + 9 + 36) % 36] ^= m_state[(ptr + 36) % 36];
@@ -6460,9 +6460,9 @@ namespace HashLib.Crypto.SHA3
             m_state[(ptr + 18 + 36) % 36] ^= m_state[(ptr + 36) % 36];
             m_state[(ptr + 27 + 36) % 36] ^= m_state[(ptr + 36) % 36];
 
-            uint[] result = new uint[HashSize / 4];
+            var result = new uint[HashSize / 4];
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 result[j] = m_state[(ptr + 1 + j + 36) % 36];
                 result[4 + j] = m_state[(ptr + 9 + j + 36) % 36];
@@ -6475,16 +6475,16 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlocks(byte[] a_data, int a_index, int a_length)
         {
-            uint[] data = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
+            var data = Converters.ConvertBytesToUInts(a_data, a_index, (a_length / 4) * 4);
 
             uint row0, row1, row2, row3;
             uint col0, col1, col2, col3;
             uint tmp;
-            int ptr = m_base;
-            uint j1 = (uint)(3 - m_base / 12) % 3;
-            int j = 0;
+            var ptr = m_base;
+            var j1 = (uint)(3 - m_base / 12) % 3;
+            var j = 0;
 
-            uint[] state = new uint[36];
+            var state = new uint[36];
             Array.Copy(m_state, state, 36);
 
             if ((j1 != 0) && (a_length >= 4))
@@ -7062,10 +7062,10 @@ namespace HashLib.Crypto.SHA3
                 }
             }
 
-            int len_mod = (a_length / 4) % 3;
-            int len_div = a_length / 12;
+            var len_mod = (a_length / 4) % 3;
+            var len_div = a_length / 12;
 
-            for (int j2 = 0; j2 < len_div; j2++)
+            for (var j2 = 0; j2 < len_div; j2++)
             {
                 state[(-12 * 0 + 22 + 36) % 36] ^= state[(-12 * 0 + 36) % 36];
                 state[(-12 * 0 + 36) % 36] = data[j];

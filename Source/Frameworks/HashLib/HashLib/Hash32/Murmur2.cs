@@ -27,20 +27,20 @@ namespace HashLib.Hash32
 
         private int InternalComputeBytes(byte[] a_data)
         {
-            int length = a_data.Length;
+            var length = a_data.Length;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] |
-                         ((uint)a_data[current_index++] << 8) |
-                         ((uint)a_data[current_index++] << 16) |
-                         ((uint)a_data[current_index++] << 24);
+                var k = (uint)a_data[current_index++] |
+                        ((uint)a_data[current_index++] << 8) |
+                        ((uint)a_data[current_index++] << 16) |
+                        ((uint)a_data[current_index++] << 24);
 
                 TransformUIntFast(k);
 
@@ -138,7 +138,7 @@ namespace HashLib.Hash32
 
             m_h = m_working_key ^ 4;
 
-            uint k = a_data;
+            var k = a_data;
             k *= M;
             k ^= k >> R;
             k *= M;
@@ -164,7 +164,7 @@ namespace HashLib.Hash32
 
             m_h = m_working_key ^ 8;
 
-            uint k = (uint)a_data;
+            var k = (uint)a_data;
             k *= M;
             k ^= k >> R;
             k *= M;
@@ -191,17 +191,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 2;
+            var length = a_data.Length * 2;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] |
+                var k = (uint)a_data[current_index++] |
                         ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
@@ -226,17 +226,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * sizeof(char);
+            var length = a_data.Length * sizeof(char);
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)a_data[current_index++] | 
+                var k = (uint)a_data[current_index++] | 
                         ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
@@ -261,17 +261,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 2;
+            var length = a_data.Length * 2;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = (uint)(unchecked((ushort)a_data[current_index++])) |
+                var k = (uint)(unchecked((ushort)a_data[current_index++])) |
                         ((uint)(unchecked((ushort)a_data[current_index++])) << 16);
 
                 TransformUIntFast(k);
@@ -296,17 +296,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 2;
+            var length = a_data.Length * 2;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k =  (uint)a_data[current_index++] |
+                var k =  (uint)a_data[current_index++] |
                          ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);
@@ -331,17 +331,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 4;
+            var length = a_data.Length * 4;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = unchecked((uint)a_data[current_index++]);
+                var k = unchecked((uint)a_data[current_index++]);
 
                 TransformUIntFast(k);
 
@@ -359,17 +359,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 4;
+            var length = a_data.Length * 4;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 4)
             {
-                uint k = a_data[current_index++];
+                var k = a_data[current_index++];
 
                 TransformUIntFast(k);
 
@@ -387,13 +387,13 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 8;
+            var length = a_data.Length * 8;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 8)
             {
@@ -413,13 +413,13 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 8;
+            var length = a_data.Length * 8;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 8)
             {
@@ -444,21 +444,21 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 4;
+            var length = a_data.Length * 4;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
 
-            int current_index = a_data.Length / (sizeof(ulong) / sizeof(float)) * (sizeof(ulong) / sizeof(float));
+            var current_index = a_data.Length / (sizeof(ulong) / sizeof(float)) * (sizeof(ulong) / sizeof(float));
             length = a_data.Length * sizeof(float) - current_index * sizeof(float);
 
             TransformULongsFast(Converters.ConvertFloatsToULongs(a_data, 0, current_index));
 
             while (length >= 4)
             {
-                uint k = BitConverter.ToUInt32(BitConverter.GetBytes(a_data[current_index++]), 0);
+                var k = BitConverter.ToUInt32(BitConverter.GetBytes(a_data[current_index++]), 0);
 
                 TransformUIntFast(k);
 
@@ -481,17 +481,17 @@ namespace HashLib.Hash32
         {
             Initialize();
 
-            int length = a_data.Length * 8;
+            var length = a_data.Length * 8;
 
             if (length == 0)
                 return 0;
 
             m_h = m_working_key ^ (uint)length;
-            int current_index = 0;
+            var current_index = 0;
 
             while (length >= 8)
             {
-                long k = BitConverter.DoubleToInt64Bits(a_data[current_index++]);
+                var k = BitConverter.DoubleToInt64Bits(a_data[current_index++]);
 
                 TransformULongFast(unchecked((ulong)k));
 
@@ -517,7 +517,7 @@ namespace HashLib.Hash32
 
         private void TransformULongFast(ulong a_data)
         {
-            uint k = (uint)a_data;
+            var k = (uint)a_data;
             k *= M;
             k ^= k >> R;
             k *= M;
@@ -536,8 +536,8 @@ namespace HashLib.Hash32
 
         public void TransformULongsFast(ulong[] a_data)
         {
-            int length = a_data.Length;
-            int current_index = 0;
+            var length = a_data.Length;
+            var current_index = 0;
 
             while (length > 0)
             {

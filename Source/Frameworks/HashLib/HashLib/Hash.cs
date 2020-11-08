@@ -182,7 +182,7 @@ namespace HashLib
         {
             Initialize();
             TransformBytes(a_data);
-            HashResult result = TransformFinal();
+            var result = TransformFinal();
             Initialize();
             return result;
         }
@@ -359,17 +359,17 @@ namespace HashLib
             var lockObject = new object();
             //var queue = new System.Collections.Concurrent.ConcurrentQueue<byte[]>();
             var queue = new System.Collections.Generic.Queue<byte[]>();
-            System.Threading.AutoResetEvent data_ready = new System.Threading.AutoResetEvent(false);
-            System.Threading.AutoResetEvent prepare_data = new System.Threading.AutoResetEvent(false);
+            var data_ready = new System.Threading.AutoResetEvent(false);
+            var prepare_data = new System.Threading.AutoResetEvent(false);
 
-            Task reader = Task.Factory.StartNew(delegate()
+            var reader = Task.Factory.StartNew(delegate()
             {
                 long total = 0;
 
                 for (; ; )
                 {
-                    byte[] data = new byte[BUFFER_SIZE];
-                    int readed = a_stream.Read(data, 0, data.Length);
+                    var data = new byte[BUFFER_SIZE];
+                    var readed = a_stream.Read(data, 0, data.Length);
 
                     if ((a_length == -1) && (readed != BUFFER_SIZE))
                         data = data.SubArray(0, readed);
@@ -398,9 +398,9 @@ namespace HashLib
                 }
             });
 
-            Task hasher = Task.Factory.StartNew((obj) =>
+            var hasher = Task.Factory.StartNew((obj) =>
             {
-                IHash h = (IHash)obj;
+                var h = (IHash)obj;
                 long total = 0;
 
                 for (; ; )
@@ -422,7 +422,7 @@ namespace HashLib
                     }
                     else
                     {
-                        int readed = data.Length;
+                        var readed = data.Length;
                         readed = readed - (int)(total - a_length);
                         h.TransformBytes(data, 0, data.Length);
                     }
@@ -447,7 +447,7 @@ namespace HashLib
         {
             Initialize();
             TransformStream(a_stream, a_length);
-            HashResult result = TransformFinal();
+            var result = TransformFinal();
             Initialize();
             return result;
         }
@@ -474,7 +474,7 @@ namespace HashLib
         {
             Debug.Assert(a_index >= 0);
 
-            int length = a_data.Length - a_index;
+            var length = a_data.Length - a_index;
 
             Debug.Assert(length >= 0);
 

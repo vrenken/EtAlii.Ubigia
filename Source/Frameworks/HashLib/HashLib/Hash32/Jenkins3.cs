@@ -9,7 +9,7 @@
 
         protected override HashResult ComputeAggregatedBytes(byte[] a_data)
         {
-            int length = a_data.Length;
+            var length = a_data.Length;
 
             if (length == 0)
                 return new HashResult((uint)0);
@@ -17,7 +17,7 @@
             uint a, b, c; 
             a = b = c = 0xdeadbeef + (uint)length;
 
-            int currentIndex = 0;
+            var currentIndex = 0;
 
             while (length > 12)
             {

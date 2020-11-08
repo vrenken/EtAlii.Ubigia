@@ -28,10 +28,10 @@
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
+            var bits = m_processed_bytes * 8;
+            var padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
             pad[0] = 0x80;
 
             Converters.ConvertULongToBytesSwapOrder(bits, pad, padindex);
@@ -42,31 +42,31 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            uint[] data = new uint[64];
+            var data = new uint[64];
             Converters.ConvertBytesToUIntsSwapOrder(a_data, a_index, BlockSize, data, 0);
 
-            uint A = m_state[0];
-            uint B = m_state[1];
-            uint C = m_state[2];
-            uint D = m_state[3];
-            uint E = m_state[4];
-            uint F = m_state[5];
-            uint G = m_state[6];
-            uint H = m_state[7];
+            var A = m_state[0];
+            var B = m_state[1];
+            var C = m_state[2];
+            var D = m_state[3];
+            var E = m_state[4];
+            var F = m_state[5];
+            var G = m_state[6];
+            var H = m_state[7];
 
-            for (int r = 16; r < 64; r++)
+            for (var r = 16; r < 64; r++)
             {
-                uint T = data[r - 2];
-                uint T2 = data[r - 15];
+                var T = data[r - 2];
+                var T2 = data[r - 15];
                 data[r] = (((T >> 17) | (T << 15)) ^ ((T >> 19) | (T << 13)) ^ (T >> 10)) + data[r - 7] +
                     (((T2 >> 7) | (T2 << 25)) ^ ((T2 >> 18) | (T2 << 14)) ^ (T2 >> 3)) + data[r - 16];
             }
 
-            for (int r = 0; r < 64; r++)
+            for (var r = 0; r < 64; r++)
             {
-                uint T = s_K[r] + data[r] + H + (((E >> 6) | (E << 26)) ^ ((E >> 11) | (E << 21)) ^ ((E >> 25) |
+                var T = s_K[r] + data[r] + H + (((E >> 6) | (E << 26)) ^ ((E >> 11) | (E << 21)) ^ ((E >> 25) |
                          (E << 7))) + ((E & F) ^ (~E & G));
-                uint T2 = (((A >> 2) | (A << 30)) ^ ((A >> 13) | (A << 19)) ^
+                var T2 = (((A >> 2) | (A << 30)) ^ ((A >> 13) | (A << 19)) ^
                           ((A >> 22) | (A << 10))) + ((A & B) ^ (A & C) ^ (B & C));
                 H = G;
                 G = F;

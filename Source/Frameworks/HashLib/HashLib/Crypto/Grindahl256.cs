@@ -62,7 +62,7 @@ namespace HashLib.Crypto
         private static uint[] CalcTable(int i)
         {
             var result = new uint[256];
-            for (int j = 0; j < 256; j++)
+            for (var j = 0; j < 256; j++)
                 result[j] = (uint)((s_master_table[j] >> i * 8) | (s_master_table[j] << (32 - i * 8)));
             return result;
         }
@@ -88,10 +88,10 @@ namespace HashLib.Crypto
 
         protected override void Finish()
         {
-            int padding_size = 3 * BlockSize - (int)(m_processed_bytes % (uint)BlockSize);
-            ulong msg_length = (m_processed_bytes / (ulong)ROWS) + 1;
+            var padding_size = 3 * BlockSize - (int)(m_processed_bytes % (uint)BlockSize);
+            var msg_length = (m_processed_bytes / (ulong)ROWS) + 1;
 
-            byte[] pad = new byte[padding_size];
+            var pad = new byte[padding_size];
             pad[0] = 0x80;
 
             Converters.ConvertULongToBytesSwapOrder(msg_length, pad, padding_size - 8);
@@ -100,7 +100,7 @@ namespace HashLib.Crypto
             m_state[0] = Converters.ConvertBytesToUIntSwapOrder(pad, padding_size - BlockSize);
             InjectMsg(true);
 
-            for (int i = 0; i < BLANK_ROUNDS; i++)
+            for (var i = 0; i < BLANK_ROUNDS; i++)
                 InjectMsg(true);
         }
 
@@ -200,7 +200,7 @@ namespace HashLib.Crypto
               s_table_2[(byte)(m_state[8] >> 8)] ^
               s_table_3[(byte)m_state[2]];
 
-            uint[] u = m_temp;
+            var u = m_temp;
             m_temp = m_state;
             m_state = u;
         }

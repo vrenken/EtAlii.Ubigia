@@ -26,7 +26,7 @@ namespace HashLib.Checksum
             Debug.Assert(a_length >= 0);
             Debug.Assert(a_index + a_length <= a_data.Length);
 
-            for (int i = a_index; a_length > 0; i++, a_length--)
+            for (var i = a_index; a_length > 0; i++, a_length--)
             {
                 m_a = (m_a + a_data[i]) % MOD_ADLER;
                 m_b = (m_b + m_a) % MOD_ADLER;

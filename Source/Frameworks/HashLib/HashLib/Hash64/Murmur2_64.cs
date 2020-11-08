@@ -25,21 +25,21 @@ namespace HashLib.Hash64
 
         protected override HashResult ComputeAggregatedBytes(byte[] a_data)
         {
-            int length = a_data.Length;
+            var length = a_data.Length;
 
             if (length == 0)
                 return new HashResult((ulong)0);
 
-            ulong h = m_working_key ^ (ulong)length;
-            int current_index = 0;
+            var h = m_working_key ^ (ulong)length;
+            var current_index = 0;
 
 
             while (length >= 8)
             {
-                ulong k = (ulong)a_data[current_index++] | (ulong)a_data[current_index++] << 8 | 
-                          (ulong)a_data[current_index++] << 16 | (ulong)a_data[current_index++] << 24 | 
-                          (ulong)a_data[current_index++] << 32 | (ulong)a_data[current_index++] << 40 |
-                          (ulong)a_data[current_index++] << 48 | (ulong)a_data[current_index++] << 56;
+                var k = (ulong)a_data[current_index++] | (ulong)a_data[current_index++] << 8 | 
+                        (ulong)a_data[current_index++] << 16 | (ulong)a_data[current_index++] << 24 | 
+                        (ulong)a_data[current_index++] << 32 | (ulong)a_data[current_index++] << 40 |
+                        (ulong)a_data[current_index++] << 48 | (ulong)a_data[current_index++] << 56;
 
                 k *= M;
                 k ^= k >> R;

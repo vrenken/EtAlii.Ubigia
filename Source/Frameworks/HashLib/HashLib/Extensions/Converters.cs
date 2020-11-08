@@ -61,7 +61,7 @@ namespace HashLib
 
             Check(a_in, 1, 4, a_index, a_length);
 
-            uint[] result = new uint[a_length / 4];
+            var result = new uint[a_length / 4];
             ConvertBytesToUInts(a_in, a_index, a_length, result);
             return result;
         }
@@ -80,7 +80,7 @@ namespace HashLib
 
             Check(a_in, 1, 8, a_index, a_length);
 
-            ulong[] result = new ulong[a_length / 8];
+            var result = new ulong[a_length / 8];
             ConvertBytesToULongs(a_in, a_index, a_length, result, 0);
             return result;
         }
@@ -96,7 +96,7 @@ namespace HashLib
         {
             Check(a_in, 1, 4, a_index, a_length);
 
-            uint[] result = new uint[a_length / 4];
+            var result = new uint[a_length / 4];
             ConvertBytesToUIntsSwapOrder(a_in, a_index, a_length, result, 0);
             return result;
         }
@@ -105,7 +105,7 @@ namespace HashLib
         {
             Check(a_in, 1, a_result, 4, a_index, a_length, a_index_out);
 
-            for (int i = a_index_out; a_length > 0; a_length -= 4)
+            for (var i = a_index_out; a_length > 0; a_length -= 4)
             {
                 a_result[i++] =
                     ((uint)a_in[a_index++] << 24) |
@@ -164,7 +164,7 @@ namespace HashLib
         {
             Check(a_in, 1, 8, a_index, a_length);
 
-            ulong[] result = new ulong[a_length / 8];
+            var result = new ulong[a_length / 8];
             ConvertBytesToULongsSwapOrder(a_in, a_index, a_length, result);
             return result;
         }
@@ -173,7 +173,7 @@ namespace HashLib
         {
             Check(a_in, 1, 8, a_index, a_length);
 
-            for (int i = 0; a_length > 0; a_length -= 8)
+            for (var i = 0; a_length > 0; a_length -= 8)
             {
                 a_out[i++] =
                     (((ulong)a_in[a_index++] << 56) |
@@ -194,9 +194,9 @@ namespace HashLib
 
             Check(a_in, 4, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 4];
+            var result = new byte[a_length * 4];
 
-            for (int j = 0; a_length > 0; a_length--, a_index++)
+            for (var j = 0; a_length > 0; a_length--, a_index++)
             {
                 result[j++] = (byte)(a_in[a_index] >> 24);
                 result[j++] = (byte)(a_in[a_index] >> 16);
@@ -214,7 +214,7 @@ namespace HashLib
 
             Check(a_in, 4, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 4];
+            var result = new byte[a_length * 4];
             Buffer.BlockCopy(a_in, a_index * 4, result, 0, a_length * 4);
             return result;
         }
@@ -227,7 +227,7 @@ namespace HashLib
 
             Check(a_in, 8, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 8];
+            var result = new byte[a_length * 8];
             Buffer.BlockCopy(a_in, a_index * 8, result, 0, a_length * 8);
             return result;
         }
@@ -239,9 +239,9 @@ namespace HashLib
 
             Check(a_in, 8, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 8];
+            var result = new byte[a_length * 8];
 
-            for (int j = 0; a_length > 0; a_length--, a_index++)
+            for (var j = 0; a_length > 0; a_length--, a_index++)
             {
                 result[j++] = (byte)(a_in[a_index] >> 56);
                 result[j++] = (byte)(a_in[a_index] >> 48);
@@ -258,7 +258,7 @@ namespace HashLib
 
         public static byte[] ConvertUIntToBytes(uint a_in)
         {
-            byte[] result = new byte[4];
+            var result = new byte[4];
             ConvertUIntToBytes(a_in, result, 0);
             return result;
         }
@@ -272,7 +272,7 @@ namespace HashLib
 
         public static byte[] ConvertULongToBytes(ulong a_in)
         {
-            byte[] result = new byte[8];
+            var result = new byte[8];
             ConvertULongToBytes(a_in, result, 0);
             return result;
         }
@@ -300,7 +300,7 @@ namespace HashLib
 
         public static byte[] ConvertStringToBytes(string a_in)
         {
-            byte[] bytes = new byte[a_in.Length * sizeof(char)];
+            var bytes = new byte[a_in.Length * sizeof(char)];
             System.Buffer.BlockCopy(a_in.ToCharArray(), 0, bytes, 0, bytes.Length);
             return bytes;
         }
@@ -314,7 +314,7 @@ namespace HashLib
         {
             Check(a_in, 2, 1);
 
-            byte[] bytes = new byte[a_in.Length * sizeof(char)];
+            var bytes = new byte[a_in.Length * sizeof(char)];
             System.Buffer.BlockCopy(a_in, 0, bytes, 0, bytes.Length);
             return bytes;
         }
@@ -323,7 +323,7 @@ namespace HashLib
         {
             Check(a_in, 2, 1);
 
-            byte[] result = new byte[a_in.Length * 2];
+            var result = new byte[a_in.Length * 2];
             Buffer.BlockCopy(a_in, 0, result, 0, result.Length);
             return result;
         }
@@ -332,7 +332,7 @@ namespace HashLib
         {
             Check(a_in, 2, 1);
 
-            byte[] result = new byte[a_in.Length * 2];
+            var result = new byte[a_in.Length * 2];
             Buffer.BlockCopy(a_in, 0, result, 0, result.Length);
             return result;
         }
@@ -341,7 +341,7 @@ namespace HashLib
         {
             Check(a_in, 4, 1);
 
-            byte[] result = new byte[a_in.Length * 4];
+            var result = new byte[a_in.Length * 4];
             Buffer.BlockCopy(a_in, 0, result, 0, a_in.Length * 4);
             return result;
         }
@@ -353,7 +353,7 @@ namespace HashLib
 
             Check(a_in, 8, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 8];
+            var result = new byte[a_length * 8];
             Buffer.BlockCopy(a_in, a_index * 8, result, 0, a_length * 8);
             return result;
         }
@@ -365,7 +365,7 @@ namespace HashLib
 
             Check(a_in, 8, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 8];
+            var result = new byte[a_length * 8];
             Buffer.BlockCopy(a_in, a_index * 8, result, 0, a_length * 8);
             return result;
         }
@@ -377,7 +377,7 @@ namespace HashLib
 
             Check(a_in, 4, 1, a_index, a_length);
 
-            byte[] result = new byte[a_length * 4];
+            var result = new byte[a_length * 4];
             Buffer.BlockCopy(a_in, a_index * 4, result, 0, a_length * 4);
             return result;
         }
@@ -389,7 +389,7 @@ namespace HashLib
 
             Check(a_in, sizeof(float), sizeof(ulong), a_index, a_length);
 
-            ulong[] result = new ulong[a_length / (sizeof(ulong) / sizeof(float))];
+            var result = new ulong[a_length / (sizeof(ulong) / sizeof(float))];
             ConvertFloatsToULongs(a_in, a_index, a_length, result, 0);
             return result;
         }
@@ -407,9 +407,9 @@ namespace HashLib
 
             Debug.Assert(a_in.Length % 2 == 0);
 
-            byte[] result = new byte[a_in.Length / 2];
+            var result = new byte[a_in.Length / 2];
 
-            for (int i = 0; i < result.Length; i++)
+            for (var i = 0; i < result.Length; i++)
                 result[i] = byte.Parse(a_in.Substring(i * 2, 2), System.Globalization.NumberStyles.HexNumber);
 
             return result;
@@ -417,17 +417,17 @@ namespace HashLib
 
         public static string ConvertBytesToHexString(byte[] a_in, bool a_group = true)
         {
-            string hex = BitConverter.ToString(a_in).ToUpper();
+            var hex = BitConverter.ToString(a_in).ToUpper();
 
             if (a_group)
             {
                 Check(a_in, 1, 4);
 
-                string[] ar = BitConverter.ToString(a_in).ToUpper().Split(new[] { '-' });
+                var ar = BitConverter.ToString(a_in).ToUpper().Split(new[] { '-' });
 
                 hex = "";
 
-                for (int i = 0; i < ar.Length / 4; i++)
+                for (var i = 0; i < ar.Length / 4; i++)
                 {
                     if (i != 0)
                         hex += "-";

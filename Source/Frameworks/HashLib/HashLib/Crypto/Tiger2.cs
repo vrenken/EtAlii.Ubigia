@@ -288,10 +288,10 @@
 
         protected override void Finish()
         {
-            ulong bits = m_processed_bytes * 8;
-            int padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
+            var bits = m_processed_bytes * 8;
+            var padindex = (m_buffer.Pos < 56) ? (56 - m_buffer.Pos) : (120 - m_buffer.Pos);
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             pad[0] = 0x80;
 
@@ -317,18 +317,18 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong data0 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 0);
-            ulong data1 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 1);
-            ulong data2 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 2);
-            ulong data3 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 3);
-            ulong data4 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 4);
-            ulong data5 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 5);
-            ulong data6 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 6);
-            ulong data7 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 7);
+            var data0 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 0);
+            var data1 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 1);
+            var data2 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 2);
+            var data3 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 3);
+            var data4 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 4);
+            var data5 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 5);
+            var data6 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 6);
+            var data7 = Converters.ConvertBytesToULong(a_data, a_index + 8 * 7);
 
-            ulong a = m_hash[0];
-            ulong b = m_hash[1];
-            ulong c = m_hash[2];
+            var a = m_hash[0];
+            var b = m_hash[1];
+            var c = m_hash[2];
 
             const ulong C1 = 0xA5A5A5A5A5A5A5A5;
             const ulong C2 = 0x0123456789ABCDEF;

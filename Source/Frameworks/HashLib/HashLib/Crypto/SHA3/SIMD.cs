@@ -165,11 +165,11 @@ namespace HashLib.Crypto.SHA3
             if (!m_buffer.IsEmpty)
                 TransformBlock(m_buffer.GetBytesZeroPadded(), 0);
 
-            ulong bits = m_processed_bytes * 8;
+            var bits = m_processed_bytes * 8;
 
-            byte[] pad = new byte[BlockSize];
+            var pad = new byte[BlockSize];
 
-            int padindex = 0;
+            var padindex = 0;
 
             Converters.ConvertULongToBytes(bits, pad, padindex);
 
@@ -244,19 +244,19 @@ namespace HashLib.Crypto.SHA3
 
         private void Round4(int[] a_y, int a_i, int a_r, int a_s, int a_t, int a_u)
         {
-            int code = a_i < 2 ? 185 : 233;
-            uint[] w = new uint[32];
-            int i32 = a_i * 32;
+            var code = a_i < 2 ? 185 : 233;
+            var w = new uint[32];
+            var i32 = a_i * 32;
 
-            for (int a = 0; a < 32; a++)
+            for (var a = 0; a < 32; a++)
                 w[a] = (((uint)(a_y[Q4[i32 + a]] * code)) << 16) | (((uint)(a_y[P4[i32 + a]] * code)) & 0xffff);
 
-            uint[] R = new uint[4];
+            var R = new uint[4];
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[12 + j] = m_state[12 + j] + w[0 + j] + ((((m_state[4 + j]) ^ (m_state[8 + j])) &
                     (m_state[0 + j])) ^ (m_state[8 + j]));
@@ -265,70 +265,70 @@ namespace HashLib.Crypto.SHA3
                 m_state[0 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[12 + j] << a_s) | (m_state[12 + j] >> (32 - a_s)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + w[4 + j] + ((((m_state[0 + j]) ^ (m_state[4 + j])) & (m_state[12 + j])) ^ (m_state[4 + j]));
                 m_state[8 + j] = ((m_state[8 + j] << a_t) | (m_state[8 + j] >> (32 - a_t))) + R[(j ^ (((8 * a_i + 1) % 3) + 1))];
                 m_state[12 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[8 + j] << a_t) | (m_state[8 + j] >> (32 - a_t)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[4 + j] = m_state[4 + j] + w[8 + j] + ((((m_state[12 + j]) ^ (m_state[0 + j])) & (m_state[8 + j])) ^ (m_state[0 + j]));
                 m_state[4 + j] = ((m_state[4 + j] << a_u) | (m_state[4 + j] >> (32 - a_u))) + R[(j ^ (((8 * a_i + 2) % 3) + 1))];
                 m_state[8 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[4 + j] << a_u) | (m_state[4 + j] >> (32 - a_u)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + w[12 + j] + ((((m_state[8 + j]) ^ (m_state[12 + j])) & (m_state[4 + j])) ^ (m_state[12 + j]));
                 m_state[0 + j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r))) + R[(j ^ (((8 * a_i + 3) % 3) + 1))];
                 m_state[4 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[12 + j] = m_state[12 + j] + w[16 + j] + (((m_state[8 + j]) & (m_state[4 + j])) | (((m_state[8 + j]) | (m_state[4 + j])) & (m_state[0 + j])));
                 m_state[12 + j] = ((m_state[12 + j] << a_s) | (m_state[12 + j] >> (32 - a_s))) + R[(j ^ (((8 * a_i + 4) % 3) + 1))];
                 m_state[0 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[12 + j] << a_s) | (m_state[12 + j] >> (32 - a_s)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + w[20 + j] + (((m_state[4 + j]) & (m_state[0 + j])) | (((m_state[4 + j]) | (m_state[0 + j])) & (m_state[12 + j])));
                 m_state[8 + j] = ((m_state[8 + j] << a_t) | (m_state[8 + j] >> (32 - a_t))) + R[(j ^ (((8 * a_i + 5) % 3) + 1))];
                 m_state[12 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[8 + j] << a_t) | (m_state[8 + j] >> (32 - a_t)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[4 + j] = m_state[4 + j] + w[24 + j] + (((m_state[0 + j]) & (m_state[12 + j])) | (((m_state[0 + j]) | (m_state[12 + j])) & (m_state[8 + j])));
                 m_state[4 + j] = ((m_state[4 + j] << a_u) | (m_state[4 + j] >> (32 - a_u))) + R[(j ^ (((8 * a_i + 6) % 3) + 1))];
                 m_state[8 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[4 + j] << a_u) | (m_state[4 + j] >> (32 - a_u)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + w[28 + j] + (((m_state[12 + j]) & (m_state[8 + j])) | (((m_state[12 + j]) | (m_state[8 + j])) & (m_state[4 + j])));
                 m_state[0 + j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r))) + R[(j ^ (((8 * a_i + 7) % 3) + 1))];
@@ -338,10 +338,10 @@ namespace HashLib.Crypto.SHA3
 
         private void FFT64(int[] a_y, int a_index)
         {
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
                 FFT8(a_y, a_index + i, 8);
 
-            for (int i = 8; i < 64; i++)
+            for (var i = 8; i < 64; i++)
             {
                 if ((i & 7) != 0)
                 {
@@ -350,25 +350,25 @@ namespace HashLib.Crypto.SHA3
                 }
             }
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
                 FFT8(a_y, a_index + 8 * i, 1);
         }
 
         protected override void TransformBlock(byte[] a_data, int a_index, bool a_final)
         {
-            int[] y = new int[128];
+            var y = new int[128];
 
-            for (int i = 0; i < 64; i++)
+            for (var i = 0; i < 64; i++)
                 y[i] = a_data[i + a_index];
 
-            int tmp = y[63];
+            var tmp = y[63];
 
-            for (int i = 0; i < 63; i++)
+            for (var i = 0; i < 63; i++)
                 y[64 + i] = ((y[i] * FFT128_2_64_Twiddle[i] & 255) - (y[i] * FFT128_2_64_Twiddle[i] >> 8));
 
             if (a_final)
             {
-                int tmp2 = y[61];
+                var tmp2 = y[61];
                 y[61] = (((tmp2 + 1) & 255) - ((tmp2 + 1) >> 8));
                 y[125] = (((tmp2 - 1) * FFT128_2_64_Twiddle[61] & 255) - ((tmp2 - 1) * FFT128_2_64_Twiddle[61] >> 8));
             }
@@ -379,12 +379,12 @@ namespace HashLib.Crypto.SHA3
             FFT64(y, 0);
             FFT64(y, 64);
 
-            uint[] state = new uint[16];
+            var state = new uint[16];
             Array.Copy(m_state, 0, state, 0, m_state.Length);
 
-            uint[] message = Converters.ConvertBytesToUInts(a_data, a_index, 64);
+            var message = Converters.ConvertBytesToUInts(a_data, a_index, 64);
 
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 m_state[i] ^= message[i];
 
             Round4(y, 0, 3, 23, 17, 27);
@@ -392,12 +392,12 @@ namespace HashLib.Crypto.SHA3
             Round4(y, 2, 29, 9, 15, 5);
             Round4(y, 3, 4, 13, 10, 25);
 
-            uint[] R = new uint[4];
+            var R = new uint[4];
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[0 + j] << 4) | (m_state[0 + j] >> (32 - 4)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[12 + j] = m_state[12 + j] + state[0 + j] + ((((m_state[4 + j]) ^ (m_state[8 + j])) &
                     (m_state[0 + j])) ^ (m_state[8 + j]));
@@ -406,10 +406,10 @@ namespace HashLib.Crypto.SHA3
             }
 
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[12 + j] << 13) | (m_state[12 + j] >> (32 - 13)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + state[4 + j] + ((((m_state[0 + j]) ^ (m_state[4 + j])) &
                     (m_state[12 + j])) ^ (m_state[4 + j]));
@@ -417,10 +417,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[12 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[8 + j] << 10) | (m_state[8 + j] >> (32 - 10)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[4 + j] = m_state[4 + j] + state[8 + j] + ((((m_state[12 + j]) ^ (m_state[0 + j])) &
                     (m_state[8 + j])) ^ (m_state[0 + j]));
@@ -428,10 +428,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[8 + j] = R[j];
             }
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
                 R[j] = ((m_state[4 + j] << 25) | (m_state[4 + j] >> (32 - 25)));
 
-            for (int j = 0; j < 4; j++)
+            for (var j = 0; j < 4; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + state[12 + j] + ((((m_state[8 + j]) ^ (m_state[12 + j])) &
                     (m_state[4 + j])) ^ (m_state[12 + j]));
@@ -549,18 +549,18 @@ namespace HashLib.Crypto.SHA3
 
         private void Round8(int[] a_y, int a_i, int a_r, int a_s, int a_t, int a_u)
         {
-            int code = a_i < 2 ? 185 : 233;
-            uint[] w = new uint[64];
+            var code = a_i < 2 ? 185 : 233;
+            var w = new uint[64];
 
-            for (int a = 0; a < 64; a++)
+            for (var a = 0; a < 64; a++)
                 w[a] = (((uint)(a_y[Q8[64 * a_i + a]] * code)) << 16) | (((uint)(a_y[P8[64 * a_i + a]] * code)) & 0xffff);
 
-            uint[] R = new uint[8];
+            var R = new uint[8];
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[24 + j] = m_state[24 + j] + w[0 + j] + ((((m_state[8 + j]) ^ (m_state[16 + j])) &
                     (m_state[0 + j])) ^ (m_state[16 + j]));
@@ -568,10 +568,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[0 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[24 + j] << a_s) | (m_state[24 + j] >> (32 - a_s)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[16 + j] = m_state[16 + j] + w[8 + j] + ((((m_state[0 + j]) ^ (m_state[8 + j])) &
                     (m_state[24 + j])) ^ (m_state[8 + j]));
@@ -579,10 +579,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[24 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[16 + j] << a_t) | (m_state[16 + j] >> (32 - a_t)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + w[16 + j] + ((((m_state[24 + j]) ^ (m_state[0 + j])) &
                     (m_state[16 + j])) ^ (m_state[0 + j]));
@@ -590,10 +590,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[16 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[8 + j] << a_u) | (m_state[8 + j] >> (32 - a_u)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + w[24 + j] + ((((m_state[16 + j]) ^ (m_state[24 + j])) &
                     (m_state[8 + j])) ^ (m_state[24 + j]));
@@ -601,10 +601,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[8 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[0 + j] << a_r) | (m_state[0 + j] >> (32 - a_r)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[24 + j] = m_state[24 + j] + w[32 + j] + (((m_state[16 + j]) & (m_state[8 + j])) |
                     (((m_state[16 + j]) | (m_state[8 + j])) & (m_state[0 + j])));
@@ -612,10 +612,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[0 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[24 + j] << a_s) | (m_state[24 + j] >> (32 - a_s)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[16 + j] = m_state[16 + j] + w[40 + j] + (((m_state[8 + j]) & (m_state[0 + j])) |
                     (((m_state[8 + j]) | (m_state[0 + j])) & (m_state[24 + j])));
@@ -623,10 +623,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[24 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[16 + j] << a_t) | (m_state[16 + j] >> (32 - a_t)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + w[48 + j] + (((m_state[0 + j]) & (m_state[24 + j])) |
                     (((m_state[0 + j]) | (m_state[24 + j])) & (m_state[16 + j])));
@@ -634,10 +634,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[16 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[8 + j] << a_u) | (m_state[8 + j] >> (32 - a_u)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + w[56 + j] + (((m_state[24 + j]) & (m_state[16 + j])) |
                     (((m_state[24 + j]) | (m_state[16 + j])) & (m_state[8 + j])));
@@ -846,34 +846,34 @@ namespace HashLib.Crypto.SHA3
 
         private void FFT128(int[] a_y, int a_index)
         {
-            for (int i = 0; i < 16; i++)
+            for (var i = 0; i < 16; i++)
                 FFT8(a_y, a_index + i, 16);
 
-            for (int i = 0; i < 128; i++)
+            for (var i = 0; i < 128; i++)
             {
                 a_y[a_index + i] = ((a_y[a_index + i] * FFT128_8_16_Twiddle[i] & 255) -
                     (a_y[a_index + i] * FFT128_8_16_Twiddle[i] >> 8));
             }
 
-            for (int i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
                 FFT16(a_y, a_index + 16 * i, 1);
         }
 
         protected override void TransformBlock(byte[] a_data, int a_index, bool a_final)
         {
-            int[] y = new int[256];
+            var y = new int[256];
 
-            for (int i = 0; i < 128; i++)
+            for (var i = 0; i < 128; i++)
                 y[i] = a_data[i + a_index];
 
-            int tmp = y[127];
+            var tmp = y[127];
 
-            for (int i = 0; i < 127; i++)
+            for (var i = 0; i < 127; i++)
                 y[128 + i] = ((y[i] * FFT256_2_128_Twiddle[i] & 255) - (y[i] * FFT256_2_128_Twiddle[i] >> 8));
 
             if (a_final)
             {
-                int tmp2 = y[125];
+                var tmp2 = y[125];
                 y[125] = (((tmp2 + 1) & 255) - ((tmp2 + 1) >> 8));
                 y[253] = (((tmp2 - 1) * FFT256_2_128_Twiddle[125] & 255) - ((tmp2 - 1) * FFT256_2_128_Twiddle[125] >> 8));
             }
@@ -884,12 +884,12 @@ namespace HashLib.Crypto.SHA3
             FFT128(y, 0);
             FFT128(y, 128);
 
-            uint[] state = new uint[32];
+            var state = new uint[32];
             Array.Copy(m_state, 0, state, 0, 32);
 
-            uint[] message = Converters.ConvertBytesToUInts(a_data, a_index, 128);
+            var message = Converters.ConvertBytesToUInts(a_data, a_index, 128);
 
-            for (int i = 0; i < 32; i++)
+            for (var i = 0; i < 32; i++)
                 m_state[i] ^= message[i];
 
             Round8(y, 0, 3, 23, 17, 27);
@@ -897,12 +897,12 @@ namespace HashLib.Crypto.SHA3
             Round8(y, 2, 29, 9, 15, 5);
             Round8(y, 3, 4, 13, 10, 25);
 
-            uint[] R = new uint[8];
+            var R = new uint[8];
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[0 + j] << 4) | (m_state[0 + j] >> (32 - 4)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[24 + j] = m_state[24 + j] + state[0 + j] + ((((m_state[8 + j]) ^ (m_state[16 + j])) &
                     (m_state[0 + j])) ^ (m_state[16 + j]));
@@ -910,10 +910,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[0 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[24 + j] << 13) | (m_state[24 + j] >> (32 - 13)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[16 + j] = m_state[16 + j] + state[8 + j] + ((((m_state[0 + j]) ^ (m_state[8 + j])) &
                     (m_state[24 + j])) ^ (m_state[8 + j]));
@@ -921,10 +921,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[24 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[16 + j] << 10) | (m_state[16 + j] >> (32 - 10)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[8 + j] = m_state[8 + j] + state[16 + j] + ((((m_state[24 + j]) ^ (m_state[0 + j])) &
                     (m_state[16 + j])) ^ (m_state[0 + j]));
@@ -932,10 +932,10 @@ namespace HashLib.Crypto.SHA3
                 m_state[16 + j] = R[j];
             }
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
                 R[j] = ((m_state[8 + j] << 25) | (m_state[8 + j] >> (32 - 25)));
 
-            for (int j = 0; j < 8; j++)
+            for (var j = 0; j < 8; j++)
             {
                 m_state[0 + j] = m_state[0 + j] + state[24 + j] + ((((m_state[16 + j]) ^ (m_state[24 + j])) &
                     (m_state[8 + j])) ^ (m_state[24 + j]));

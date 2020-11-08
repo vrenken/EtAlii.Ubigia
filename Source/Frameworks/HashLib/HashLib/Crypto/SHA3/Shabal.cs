@@ -149,7 +149,7 @@ namespace HashLib.Crypto.SHA3
             uint M0, M1, M2, M3, M4, M5, M6, M7, M8, M9, MA, MB, MC, MD, ME, MF;
             uint tmp;
 
-            uint[] data = new uint[16];
+            var data = new uint[16];
             Converters.ConvertBytesToUInts(a_data, a_index, BlockSize, data);
 
             A00 = m_A[0];
@@ -236,7 +236,7 @@ namespace HashLib.Crypto.SHA3
             BE = BE + ME;
             BF = BF + MF;
 
-            ulong blocks = m_processed_bytes / (uint)BlockSize;
+            var blocks = m_processed_bytes / (uint)BlockSize;
 
             A00 ^= (uint)blocks;
             A01 ^= (uint)(blocks >> 32);
@@ -512,11 +512,11 @@ namespace HashLib.Crypto.SHA3
             uint M0, M1, M2, M3, M4, M5, M6, M7, M8, M9, MA, MB, MC, MD, ME, MF;
             uint tmp;
 
-            byte[] pad = new byte[BlockSize];
+            var pad = new byte[BlockSize];
             pad[0] = 0x80;
             m_buffer.Feed(pad, BlockSize - m_buffer.Pos);
 
-            uint[] buffer = new uint[16];
+            var buffer = new uint[16];
             Converters.ConvertBytesToUInts(m_buffer.GetBytes(), 0, BlockSize, buffer);
 
             A00 = m_A[0];
@@ -600,7 +600,7 @@ namespace HashLib.Crypto.SHA3
             BE = BE + ME;
             BF = BF + MF;
 
-            ulong blocks = m_processed_bytes / (ulong)BlockSize + 1;
+            var blocks = m_processed_bytes / (ulong)BlockSize + 1;
 
             A00 ^= (uint)blocks;
             A01 ^= (uint)(blocks >> 32);
@@ -756,7 +756,7 @@ namespace HashLib.Crypto.SHA3
             A01 = A01 + C4;
             A00 = A00 + C3;
 
-            for (int i = 0; i < 3; i++) 
+            for (var i = 0; i < 3; i++) 
             {
                 tmp = (B0);
                 (B0) = (C0);

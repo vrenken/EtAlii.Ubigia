@@ -43,14 +43,14 @@
 
         protected override void Finish()
         {
-            ulong lowBits = m_processed_bytes << 3;
-            ulong hiBits = m_processed_bytes >> 61;
+            var lowBits = m_processed_bytes << 3;
+            var hiBits = m_processed_bytes >> 61;
 
-            int padindex = (m_buffer.Pos < 112) ? (111 - m_buffer.Pos) : (239 - m_buffer.Pos);
+            var padindex = (m_buffer.Pos < 112) ? (111 - m_buffer.Pos) : (239 - m_buffer.Pos);
 
             padindex++;
 
-            byte[] pad = new byte[padindex + 16];
+            var pad = new byte[padindex + 16];
             pad[0] = 0x80;
 
             Converters.ConvertULongToBytesSwapOrder(hiBits, pad, padindex);
@@ -64,26 +64,26 @@
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] data = new ulong[80];
+            var data = new ulong[80];
             Converters.ConvertBytesToULongsSwapOrder(a_data, a_index, BlockSize, data);
 
-            for (int i = 16; i <= 79; ++i)
+            for (var i = 16; i <= 79; ++i)
             {
-                ulong T0 = data[i - 15];
-                ulong T1 = data[i - 2];
+                var T0 = data[i - 15];
+                var T1 = data[i - 2];
 
                 data[i] = (((T1 << 45) | (T1 >> 19)) ^ ((T1 << 3) | (T1 >> 61)) ^ (T1 >> 6)) + data[i - 7] + 
                           (((T0 << 63) | (T0 >> 1)) ^ ((T0 << 56)| (T0 >> 8)) ^ (T0 >> 7)) + data[i - 16];
             }
 
-            ulong a = m_state[0];
-            ulong b = m_state[1];
-            ulong c = m_state[2];
-            ulong d = m_state[3];
-            ulong e = m_state[4];
-            ulong f = m_state[5];
-            ulong g = m_state[6];
-            ulong h = m_state[7];
+            var a = m_state[0];
+            var b = m_state[1];
+            var c = m_state[2];
+            var d = m_state[3];
+            var e = m_state[4];
+            var f = m_state[5];
+            var g = m_state[6];
+            var h = m_state[7];
 
             for(int i = 0, t = 0; i < 10; i ++)
             {

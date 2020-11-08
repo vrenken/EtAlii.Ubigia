@@ -11,19 +11,19 @@ namespace HashLib.Hash32
 
         protected override HashResult ComputeAggregatedBytes(byte[] a_data)
         {
-            int length = a_data.Length;
+            var length = a_data.Length;
 
             if (length == 0)
                 return new HashResult(0);
 
-            uint hash = (uint)length;
+            var hash = (uint)length;
 
-            int currentIndex = 0;
+            var currentIndex = 0;
 
             while (length >= 4)
             {
                 hash += (ushort)(a_data[currentIndex++] | a_data[currentIndex++] << 8);
-                uint tmp = (uint)((uint)(a_data[currentIndex++] | a_data[currentIndex++] << 8) << 11) ^ hash;
+                var tmp = (uint)((uint)(a_data[currentIndex++] | a_data[currentIndex++] << 8) << 11) ^ hash;
                 hash = (hash << 16) ^ tmp;
                 hash += hash >> 11;
 

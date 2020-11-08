@@ -46,9 +46,9 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] data = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
+            var data = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
 
-            for (int j = 0; j<BlockSize / 8; j++)
+            for (var j = 0; j<BlockSize / 8; j++)
                 m_state[j] ^= data[j];
 
             ulong Aba, Abe, Abi, Abo, Abu;
@@ -71,28 +71,28 @@ namespace HashLib.Crypto.SHA3
 
             ulong c_0 = 0x0000000000000001;
             ulong c_1 = 0x0000000000008082;
-            ulong c_2 = 0x800000000000808a;
-            ulong c_3 = 0x8000000080008000;
+            var c_2 = 0x800000000000808a;
+            var c_3 = 0x8000000080008000;
             ulong c_4 = 0x000000000000808b;
             ulong c_5 = 0x0000000080000001;
-            ulong c_6 = 0x8000000080008081;
-            ulong c_7 = 0x8000000000008009;
+            var c_6 = 0x8000000080008081;
+            var c_7 = 0x8000000000008009;
             ulong c_8 = 0x000000000000008a;
             ulong c_9 = 0x0000000000000088;
             ulong c_10 = 0x0000000080008009;
             ulong c_11 = 0x000000008000000a;
             ulong c_12 = 0x000000008000808b;
-            ulong c_13 = 0x800000000000008b;
-            ulong c_14 = 0x8000000000008089;
-            ulong c_15 = 0x8000000000008003;
-            ulong c_16 = 0x8000000000008002;
-            ulong c_17 = 0x8000000000000080;
+            var c_13 = 0x800000000000008b;
+            var c_14 = 0x8000000000008089;
+            var c_15 = 0x8000000000008003;
+            var c_16 = 0x8000000000008002;
+            var c_17 = 0x8000000000000080;
             ulong c_18 = 0x000000000000800a;
-            ulong c_19 = 0x800000008000000a;
-            ulong c_20 = 0x8000000080008081;
-            ulong c_21 = 0x8000000000008080;
+            var c_19 = 0x800000008000000a;
+            var c_20 = 0x8000000080008081;
+            var c_21 = 0x8000000000008080;
             ulong c_22 = 0x0000000080000001;
-            ulong c_23 = 0x8000000080008008;
+            var c_23 = 0x8000000080008008;
 
             Aba = m_state[0];
             Abe = m_state[1];
@@ -2674,8 +2674,8 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            int buffer_pos = m_buffer.Pos;
-            byte[] block = m_buffer.GetBytesZeroPadded();
+            var buffer_pos = m_buffer.Pos;
+            var block = m_buffer.GetBytesZeroPadded();
             block[buffer_pos] = 1;
             block[BlockSize - 1] |= 128;
 

@@ -571,8 +571,8 @@ namespace HashLib.Crypto.SHA3
 
         protected override void Finish()
         {
-            ulong processed_blocks = (m_processed_bytes / (uint)BlockSize) + 1;
-            int padindex = BlockSize - m_buffer.Pos - 8;
+            var processed_blocks = (m_processed_bytes / (uint)BlockSize) + 1;
+            var padindex = BlockSize - m_buffer.Pos - 8;
 
             if (m_buffer.Pos > BlockSize - 8 - 1)
             {
@@ -580,7 +580,7 @@ namespace HashLib.Crypto.SHA3
                 padindex += BlockSize;
             }
 
-            byte[] pad = new byte[padindex + 8];
+            var pad = new byte[padindex + 8];
 
             pad[0] = 0x80;
 
@@ -617,7 +617,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] m = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
+            var m = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
 
             ulong y0, y1, y2, y3, y4, y5, y6, y7;
             ulong z0, z1, z2, z3, z4, z5, z6, z7;
@@ -3525,7 +3525,7 @@ namespace HashLib.Crypto.SHA3
 
         protected override void TransformBlock(byte[] a_data, int a_index)
         {
-            ulong[] m = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
+            var m = Converters.ConvertBytesToULongs(a_data, a_index, BlockSize);
 
             ulong y0, y1, y2, y3, y4, y5, y6, y7, y8, y9, y10, y11, y12, y13, y14, y15;
             ulong z0, z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12, z13, z14, z15;
@@ -3679,7 +3679,7 @@ namespace HashLib.Crypto.SHA3
                 s_T[4 * 256 + (byte)(z0 >> (8 * 4))] ^ s_T[5 * 256 + (byte)(z2 >> (8 * 5))] ^
                 s_T[6 * 256 + (byte)(z4 >> (8 * 6))] ^ s_T[7 * 256 + (byte)(z6 >> (8 * 7))];
 
-            for (int i = 1; i < 14 - 1; i += 2)
+            for (var i = 1; i < 14 - 1; i += 2)
             {
                 y0 ^= (((((ulong)0xffffffffffffffff << 8) | ((ulong)0xffffffffffffffff >> (64 - 8))) & (0x000000FF000000FF)) |
                     ((((ulong)0xffffffffffffffff << 24) | ((ulong)0xffffffffffffffff >> (64 - 24))) & (0x0000FF000000FF00)) |
@@ -4394,7 +4394,7 @@ namespace HashLib.Crypto.SHA3
                 s_T[4 * 256 + (byte)(w4 >> (8 * 4))] ^ s_T[5 * 256 + (byte)(w5 >> (8 * 5))] ^
                 s_T[6 * 256 + (byte)(w6 >> (8 * 6))] ^ s_T[7 * 256 + (byte)(w11 >> (8 * 7))];
 
-            for (int i = 1; i < 13; i += 2)
+            for (var i = 1; i < 13; i += 2)
             {
                 z0 ^= (((((ulong)0x0000000000000000 << 8) | ((ulong)0x0000000000000000 >> (64 - 8))) & (0x000000FF000000FF)) |
                     ((((ulong)0x0000000000000000 << 24) | ((ulong)0x0000000000000000 >> (64 - 24))) & (0x0000FF000000FF00)) |
@@ -5150,7 +5150,7 @@ namespace HashLib.Crypto.SHA3
                 s_T[4 * 256 + (byte)(w4 >> (8 * 4))] ^ s_T[5 * 256 + (byte)(w5 >> (8 * 5))] ^
                 s_T[6 * 256 + (byte)(w6 >> (8 * 6))] ^ s_T[7 * 256 + (byte)(w11 >> (8 * 7))];
 
-            for (int j = 1; j < 13; j += 2)
+            for (var j = 1; j < 13; j += 2)
             {
                 y0 ^= (((((ulong)0x0000000000000000 << 8) | ((ulong)0x0000000000000000 >> (64 - 8))) & (0x000000FF000000FF)) |
                     ((((ulong)0x0000000000000000 << 24) | ((ulong)0x0000000000000000 >> (64 - 24))) & (0x0000FF000000FF00)) |
