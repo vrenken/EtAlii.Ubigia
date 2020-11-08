@@ -19,13 +19,13 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static bool AreSame<T>(this T[] a_ar1, T[] a_ar2)
         {
-            if (Object.ReferenceEquals(a_ar1, a_ar2))
+            if (object.ReferenceEquals(a_ar1, a_ar2))
                 return true;
 
             if (a_ar1.Length != a_ar2.Length)
                 return false;
 
-            for (int i = 0; i < a_ar1.Length; i++)
+            for (var i = 0; i < a_ar1.Length; i++)
             {
                 if (!a_ar1[i].Equals(a_ar2[i]))
                     return false;
@@ -42,13 +42,13 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static bool AreSame(this byte[] a_ar1, byte[] a_ar2)
         {
-            if (Object.ReferenceEquals(a_ar1, a_ar2))
+            if (object.ReferenceEquals(a_ar1, a_ar2))
                 return true;
 
             if (a_ar1.Length != a_ar2.Length)
                 return false;
 
-            for (int i = 0; i < a_ar1.Length; i++)
+            for (var i = 0; i < a_ar1.Length; i++)
             {
                 if (a_ar1[i] != a_ar2[i])
                     return false;
@@ -65,15 +65,15 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static bool AreSame(this byte[,] a_ar1, byte[,] a_ar2)
         {
-            if (Object.ReferenceEquals(a_ar1, a_ar2))
+            if (object.ReferenceEquals(a_ar1, a_ar2))
                 return true;
 
             if (a_ar1.GetLength(0) != a_ar2.GetLength(1))
                 return false;
 
-            for (int x = 0; x < a_ar1.GetLength(0); x++)
+            for (var x = 0; x < a_ar1.GetLength(0); x++)
             {
-                for (int y = 0; y < a_ar1.GetLength(1); y++)
+                for (var y = 0; y < a_ar1.GetLength(1); y++)
                 {
                     if (a_ar1[x, y] != a_ar2[x, y])
                         return false;
@@ -91,13 +91,13 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static bool AreSame(this ushort[] a_ar1, ushort[] a_ar2)
         {
-            if (Object.ReferenceEquals(a_ar1, a_ar2))
+            if (object.ReferenceEquals(a_ar1, a_ar2))
                 return true;
 
             if (a_ar1.Length != a_ar2.Length)
                 return false;
 
-            for (int i = 0; i < a_ar1.Length; i++)
+            for (var i = 0; i < a_ar1.Length; i++)
             {
                 if (a_ar1[i] != a_ar2[i])
                     return false;
@@ -114,9 +114,9 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static int GetHashCode<T>(T[] a_ar)
         {
-            int sum = 0;
+            var sum = 0;
 
-            for (int i = 0; i < a_ar.Length; i++)
+            for (var i = 0; i < a_ar.Length; i++)
                 sum ^= a_ar[i].GetHashCode();
 
             return sum;
@@ -140,7 +140,7 @@ namespace TomanuExtensions
         /// <param name="a_array"></param>
         public static void Clear<T>(this T[] a_array, T a_value = default(T))
         {
-            for (int i = 0; i < a_array.Length; i++)
+            for (var i = 0; i < a_array.Length; i++)
                 a_array[i] = a_value;
         }
 
@@ -150,9 +150,9 @@ namespace TomanuExtensions
         /// <param name="a_array"></param>
         public static void Clear<T>(this T[,] a_array, T a_value = default(T))
         {
-            for (int x = 0; x < a_array.GetLength(0); x++)
+            for (var x = 0; x < a_array.GetLength(0); x++)
             {
-                for (int y = 0; y < a_array.GetLength(1); y++)
+                for (var y = 0; y < a_array.GetLength(1); y++)
                 {
                     a_array[x, y] = a_value;
                 }
@@ -172,7 +172,7 @@ namespace TomanuExtensions
             if (a_count == -1)
                 a_count = a_array.Length - a_index;
 
-            T[] result = new T[a_count];
+            var result = new T[a_count];
             Array.Copy(a_array, a_index, result, 0, a_count);
             return result;
         }
@@ -188,8 +188,8 @@ namespace TomanuExtensions
         /// </returns>
         public static int IndexOf<T>(this T[] a_array, T a_element)
         {
-            for (int i = 0; i < a_array.Length; i++)
-                if (Object.ReferenceEquals(a_element, a_array[i]))
+            for (var i = 0; i < a_array.Length; i++)
+                if (object.ReferenceEquals(a_element, a_array[i]))
                     return i;
             return -1;
         }
@@ -226,7 +226,7 @@ namespace TomanuExtensions
 
         public static T[] Shuffle<T>(this T[] a_array, int a_seed)
         {
-            MersenneTwister mt = new MersenneTwister((uint)a_seed);
+            var mt = new MersenneTwister((uint)a_seed);
 
             return (from gr in
                         from el in a_array
@@ -237,9 +237,9 @@ namespace TomanuExtensions
 
         public static void Fill<T>(this T[,] a_ar, T a_value)
         {
-            for (int x = 0; x < a_ar.GetLength(0); x++)
+            for (var x = 0; x < a_ar.GetLength(0); x++)
             {
-                for (int y = 0; y < a_ar.GetLength(1); y++)
+                for (var y = 0; y < a_ar.GetLength(1); y++)
                 {
                     a_ar[x, y] = a_value;
                 }
@@ -248,7 +248,7 @@ namespace TomanuExtensions
 
         public static void Fill<T>(this T[] a_ar, T a_value)
         {
-            for (int i = 0; i < a_ar.GetLength(0); i++)
+            for (var i = 0; i < a_ar.GetLength(0); i++)
                 a_ar[i] = a_value;
         }
 

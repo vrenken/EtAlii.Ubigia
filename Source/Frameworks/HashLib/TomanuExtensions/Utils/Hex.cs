@@ -22,7 +22,7 @@ namespace TomanuExtensions.Utils
 
         public static byte HexToByte(string a_str, bool a_added_0x = true)
         {
-            int index = 0;
+            var index = 0;
             if (a_added_0x)
                 index += 2;
 
@@ -33,7 +33,7 @@ namespace TomanuExtensions.Utils
 
         public static ushort HexToUShort(string a_str, bool a_added_0x = true)
         {
-            int index = 0;
+            var index = 0;
             if (a_added_0x)
                 index += 2;
 
@@ -46,7 +46,7 @@ namespace TomanuExtensions.Utils
 
         public static uint HexToUInt(string a_str, bool a_added_0x = true)
         {
-            int index = 0;
+            var index = 0;
             if (a_added_0x)
                 index += 2;
 
@@ -65,7 +65,7 @@ namespace TomanuExtensions.Utils
         {
             if (a_add_0x)
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     '0', 'x',
                     m_trans_bin_to_hex[a_value >> 4],
@@ -74,7 +74,7 @@ namespace TomanuExtensions.Utils
             }
             else
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     m_trans_bin_to_hex[a_value >> 4],
                     m_trans_bin_to_hex[a_value & 0x0F]
@@ -86,7 +86,7 @@ namespace TomanuExtensions.Utils
         {
             if (a_add_0x)
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     '0', 'x',
                     m_trans_bin_to_hex[a_value >> 12],
@@ -97,7 +97,7 @@ namespace TomanuExtensions.Utils
             }
             else
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     m_trans_bin_to_hex[a_value >> 12],
                     m_trans_bin_to_hex[(a_value >> 8) & 0x0F],
@@ -111,7 +111,7 @@ namespace TomanuExtensions.Utils
         {
             if (a_add_0x)
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     '0', 'x',
                     m_trans_bin_to_hex[a_value >> 28],
@@ -126,7 +126,7 @@ namespace TomanuExtensions.Utils
             }
             else
             {
-                return new String(new char[]
+                return new string(new char[]
                 {
                     m_trans_bin_to_hex[a_value >> 28],
                     m_trans_bin_to_hex[(a_value >> 24) & 0x0F],

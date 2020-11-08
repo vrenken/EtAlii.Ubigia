@@ -8,7 +8,7 @@ namespace TomanuExtensions
     {
         public static bool IsNumber(this double a_d)
         {
-            return !Double.IsInfinity(a_d) && !Double.IsNaN(a_d);
+            return !double.IsInfinity(a_d) && !double.IsNaN(a_d);
         }
 
         public static double Fraction(this double a_d)
@@ -33,9 +33,9 @@ namespace TomanuExtensions
 
         public static bool IsAlmostRelativeEquals(this double a_d1, double a_d2, double a_precision)
         {
-            double mid = Math.Max(Math.Abs(a_d1), Math.Abs(a_d2));
+            var mid = Math.Max(Math.Abs(a_d1), Math.Abs(a_d2));
 
-            if (Double.IsInfinity(mid))
+            if (double.IsInfinity(mid))
                 return false;
             
             if (mid > a_precision)

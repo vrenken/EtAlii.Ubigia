@@ -92,7 +92,7 @@ namespace TomanuExtensions
         /// <param name="a_write_func"></param>
         public static void WriteXml(Stream a_stream, Action<XmlWriter> a_write_func)
         {
-            XmlWriterSettings settings = new XmlWriterSettings();
+            var settings = new XmlWriterSettings();
             settings.Indent = true;
 
             using (XmlWriter writer = new NoNamespacesXmlWriter(XmlWriter.Create(a_stream, settings)))

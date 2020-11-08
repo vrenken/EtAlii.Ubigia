@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HashLib.Hash32
+﻿namespace HashLib.Hash32
 {
     internal class SuperFast : MultipleTransformNonBlock, IHash32
     {

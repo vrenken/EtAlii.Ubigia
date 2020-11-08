@@ -9,7 +9,7 @@ namespace TomanuExtensions
     {
         public static int IndexOf<T>(this IList<T> a_list, T a_element)
         {
-            for (int i = 0; i < a_list.Count; i++)
+            for (var i = 0; i < a_list.Count; i++)
             {
                 if (a_element.Equals(a_list[i]))
                     return i;
@@ -20,7 +20,7 @@ namespace TomanuExtensions
 
         public static int IndexOf<T>(this IList<T> a_list, T a_element, IEqualityComparer<T> a_comparer)
         {
-            for (int i = 0; i < a_list.Count; i++)
+            for (var i = 0; i < a_list.Count; i++)
             {
                 if (a_comparer.Equals(a_list[i], a_element))
                     return i;
@@ -31,14 +31,14 @@ namespace TomanuExtensions
 
         public static T RemoveLast<T>(this IList<T> a_list)
         {
-            T last = a_list.Last();
+            var last = a_list.Last();
             a_list.RemoveAt(a_list.Count - 1);
             return last;
         }
 
         public static T RemoveFirst<T>(this IList<T> a_list)
         {
-            T first = a_list.First();
+            var first = a_list.First();
             a_list.RemoveAt(0);
             return first;
         }
@@ -56,7 +56,7 @@ namespace TomanuExtensions
 
         public static int GetHashCode<T>(IList<T> a_list)
         {
-            int hash = 0;
+            var hash = 0;
 
             foreach (var el in a_list)
                 hash ^= el.GetHashCode();
@@ -66,7 +66,7 @@ namespace TomanuExtensions
 
         public static bool Replace<T>(this IList<T> a_list, T a_old, T a_new)
         {
-            int index = a_list.IndexOf(a_old);
+            var index = a_list.IndexOf(a_old);
 
             if (index == -1)
                 return false;

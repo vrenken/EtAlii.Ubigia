@@ -31,9 +31,9 @@ namespace TomanuExtensions
 
         public static IEnumerable<Point> EnumPixels(this Rectangle a_rect)
         {
-            for (int y = a_rect.Top; y < a_rect.Bottom; y++)
+            for (var y = a_rect.Top; y < a_rect.Bottom; y++)
             {
-                for (int x = a_rect.Left; x < a_rect.Right; x++)
+                for (var x = a_rect.Left; x < a_rect.Right; x++)
                 {
                     yield return new Point(x, y);
                 }

@@ -36,8 +36,8 @@ namespace TomanuExtensions.TestUtils
 
         private void DeleteLine(int a_line)
         {
-            int start_index = richTextBox.GetFirstCharIndexFromLine(a_line);
-            int count = richTextBox.Lines[a_line].Length;
+            var start_index = richTextBox.GetFirstCharIndexFromLine(a_line);
+            var count = richTextBox.Lines[a_line].Length;
 
             if (a_line < richTextBox.Lines.Length - 1)
             {

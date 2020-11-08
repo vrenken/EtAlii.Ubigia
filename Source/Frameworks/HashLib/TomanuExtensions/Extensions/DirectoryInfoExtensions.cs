@@ -12,10 +12,10 @@ namespace TomanuExtensions
             if (!a_dir_info.Exists)
                 return;
 
-            foreach (FileInfo file_info in a_dir_info.GetFiles())
+            foreach (var file_info in a_dir_info.GetFiles())
                 file_info.Delete();
 
-            foreach (DirectoryInfo dir_info in a_dir_info.GetDirectories())
+            foreach (var dir_info in a_dir_info.GetDirectories())
                 dir_info.DeleteAll();
 
             a_dir_info.Delete(false);
@@ -26,10 +26,10 @@ namespace TomanuExtensions
             if (!a_dir_info.Exists)
                 return;
 
-            foreach (FileInfo file_info in a_dir_info.GetFiles())
+            foreach (var file_info in a_dir_info.GetFiles())
                 file_info.Delete();
 
-            foreach (DirectoryInfo dir_info in a_dir_info.GetDirectories())
+            foreach (var dir_info in a_dir_info.GetDirectories())
                 dir_info.DeleteAll();
         }
 
@@ -57,11 +57,11 @@ namespace TomanuExtensions
 
         public static string FindExistingDirectory(this DirectoryInfo a_di)
         {
-            string str = a_di.FullName;
+            var str = a_di.FullName;
 
             for (; ; )
             {
-                DirectoryInfo di = new DirectoryInfo(str);
+                var di = new DirectoryInfo(str);
 
                 if (di.Exists)
                     return str;

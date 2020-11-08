@@ -23,7 +23,7 @@ namespace TomanuExtensions
 
         public static bool ReadElementContentAsBoolean(this XmlReader a_reader, string a_name)
         {
-            return Boolean.Parse(a_reader.ReadElementString(a_name));
+            return bool.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static string ReadElementContentAsString(this XmlReader a_reader, string a_name)
@@ -33,7 +33,7 @@ namespace TomanuExtensions
 
         public static double ReadElementContentAsDouble(this XmlReader a_reader, string a_name)
         {
-            return Double.Parse(a_reader.ReadElementString(a_name.Replace(',', '.')),
+            return double.Parse(a_reader.ReadElementString(a_name.Replace(',', '.')),
                 CultureInfo.InvariantCulture);
         }
 
@@ -44,22 +44,22 @@ namespace TomanuExtensions
 
         public static byte ReadElementContentAsByte(this XmlReader a_reader, string a_name)
         {
-            return Byte.Parse(a_reader.ReadElementString(a_name));
+            return byte.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static ushort ReadElementContentAsUShort(this XmlReader a_reader, string a_name)
         {
-            return UInt16.Parse(a_reader.ReadElementString(a_name));
+            return ushort.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static uint ReadElementContentAsUInt(this XmlReader a_reader, string a_name)
         {
-            return UInt32.Parse(a_reader.ReadElementString(a_name));
+            return uint.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static Size ReadElementContentAsSize(this XmlReader a_reader, string a_name)
         {
-            Size size = new Size(
+            var size = new Size(
                 a_reader.GetAttributeInt("Width"),
                 a_reader.GetAttributeInt("Height"));
             a_reader.MoveToNextElement(a_name);
@@ -68,7 +68,7 @@ namespace TomanuExtensions
 
         public static Rectangle ReadElementContentAsRectangle(this XmlReader a_reader, string a_name)
         {
-            Rectangle rect = new Rectangle(
+            var rect = new Rectangle(
                 a_reader.GetAttributeInt("Left"),
                 a_reader.GetAttributeInt("Top"),
                 a_reader.GetAttributeInt("Width"),
@@ -79,12 +79,12 @@ namespace TomanuExtensions
 
         public static ulong ReadElementContentAsULong(this XmlReader a_reader, string a_name)
         {
-            return UInt64.Parse(a_reader.ReadElementString(a_name));
+            return ulong.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static int ReadElementContentAsInt(this XmlReader a_reader, string a_name)
         {
-            return Int32.Parse(a_reader.ReadElementString(a_name));
+            return int.Parse(a_reader.ReadElementString(a_name));
         }
 
         public static Guid ReadElementContentAsGuid(this XmlReader a_reader, string a_name)
@@ -123,47 +123,47 @@ namespace TomanuExtensions
 
         public static byte GetAttributeByte(this XmlReader a_reader, string a_name)
         {
-            return Byte.Parse(a_reader.GetAttribute(a_name));
+            return byte.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static ushort GetAttributeUShort(this XmlReader a_reader, string a_name)
         {
-            return UInt16.Parse(a_reader.GetAttribute(a_name));
+            return ushort.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static uint GetAttributeUInt(this XmlReader a_reader, string a_name)
         {
-            return UInt32.Parse(a_reader.GetAttribute(a_name));
+            return uint.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static ulong GetAttributeULong(this XmlReader a_reader, string a_name)
         {
-            return UInt64.Parse(a_reader.GetAttribute(a_name));
+            return ulong.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static int GetAttributeInt(this XmlReader a_reader, string a_name)
         {
-            return Int32.Parse(a_reader.GetAttribute(a_name));
+            return int.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static int GetAttributeIntDef(this XmlReader a_reader, string a_name, int a_default = 0)
         {
             if (a_reader.MoveToAttribute(a_name))
-                return Int32.Parse(a_reader.GetAttribute(a_name));
+                return int.Parse(a_reader.GetAttribute(a_name));
             else
                 return a_default;
         }
 
         public static bool GetAttributeBool(this XmlReader a_reader, string a_name)
         {
-            return Boolean.Parse(a_reader.GetAttribute(a_name));
+            return bool.Parse(a_reader.GetAttribute(a_name));
         }
 
         public static bool GetAttributeBoolDef(this XmlReader a_reader, string a_name,
             bool a_default = false)
         {
             if (a_reader.MoveToAttribute(a_name))
-                return Boolean.Parse(a_reader.GetAttribute(a_name));
+                return bool.Parse(a_reader.GetAttribute(a_name));
             else
                 return a_default;
         }
@@ -187,10 +187,10 @@ namespace TomanuExtensions
         /// <param name="a_read_func"></param>
         public static void ReadXml(Stream a_stream, Action<XmlReader> a_read_func)
         {
-            XmlReaderSettings settings = new XmlReaderSettings();
+            var settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
 
-            using (XmlReader reader = XmlReader.Create(a_stream, settings))
+            using (var reader = XmlReader.Create(a_stream, settings))
             {
                 reader.Read();
 
