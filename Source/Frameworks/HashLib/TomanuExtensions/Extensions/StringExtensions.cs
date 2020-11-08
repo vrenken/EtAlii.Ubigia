@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-
-namespace TomanuExtensions
+﻿namespace TomanuExtensions
 {
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Globalization;
+    using System.Linq;
+    using System.Text;
+    
     [DebuggerStepThrough]
     public static class StringExtensions
     {
