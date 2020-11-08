@@ -4,6 +4,7 @@
     <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Version>$(PackageVersion)</Version>
+    <ProjectGuid>772E6D20-B77B-4E27-8C47-CE4DCB01158F</ProjectGuid>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Collections/nuget_icon.png</PackageIconUrl>
