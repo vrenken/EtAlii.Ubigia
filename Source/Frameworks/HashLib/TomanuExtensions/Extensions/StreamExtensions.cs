@@ -20,7 +20,7 @@ namespace TomanuExtensions
             if (a_res_subfolder != "")
                 a_res_subfolder = "." + a_res_subfolder;
 
-            string res = a_type.GetParentFullName() + a_res_subfolder + "." + a_res_name;
+            var res = a_type.GetParentFullName() + a_res_subfolder + "." + a_res_name;
             return Assembly.GetAssembly(a_type).GetManifestResourceStream(res);
         }
 
@@ -31,7 +31,7 @@ namespace TomanuExtensions
         /// <returns></returns>
         public static byte[] ReadAll(this Stream a_stream)
         {
-            byte[] res = new byte[a_stream.Length];
+            var res = new byte[a_stream.Length];
             a_stream.Read(res, 0, res.Length);
             return res;
         }

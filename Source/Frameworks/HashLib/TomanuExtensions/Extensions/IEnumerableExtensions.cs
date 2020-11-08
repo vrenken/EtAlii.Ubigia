@@ -11,20 +11,20 @@ namespace TomanuExtensions
         public static void ForEachWithIndex<T>(this IEnumerable<T> a_enumerable,
             Action<T, int> a_handler)
         {
-            int index = 0;
-            foreach (T item in a_enumerable)
+            var index = 0;
+            foreach (var item in a_enumerable)
                 a_handler(item, index++);
         }
 
         public static void ForEach<T>(this IEnumerable<T> a_enumerable, Action<T> a_handler)
         {
-            foreach (T item in a_enumerable)
+            foreach (var item in a_enumerable)
                 a_handler(item);
         }
 
         public static int IndexOf<T>(this IEnumerable<T> a_enum, T a_el)
         {
-            int i = 0;
+            var i = 0;
 
             foreach (var el in a_enum)
             {
@@ -43,7 +43,7 @@ namespace TomanuExtensions
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> a_enumerable, T a_element)
         {
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
                 if (!ele.Equals(a_element))
                     yield return ele;
@@ -53,7 +53,7 @@ namespace TomanuExtensions
         public static IEnumerable<T> Except<T>(this IEnumerable<T> a_enumerable, T a_element,
             IEqualityComparer<T> a_comparer)
         {
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
                 if (!a_comparer.Equals(ele, a_element))
                     yield return ele;
@@ -66,11 +66,11 @@ namespace TomanuExtensions
             if (a_values.FirstOrDefault() == null)
                 return a_enumerable;
 
-            List<T> list = new List<T>(a_enumerable);
+            var list = new List<T>(a_enumerable);
 
-            foreach (T ele in a_values)
+            foreach (var ele in a_values)
             {
-                int index = list.IndexOf(ele);
+                var index = list.IndexOf(ele);
                 if (index != -1)
                     list.RemoveAt(index);
             }
@@ -81,7 +81,7 @@ namespace TomanuExtensions
         public static IEnumerable<T> Except<T>(this IEnumerable<T> a_enumerable,
                                                Predicate<T> a_predicate)
         {
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
                 if (!a_predicate(ele))
                     yield return ele;
@@ -104,7 +104,7 @@ namespace TomanuExtensions
             if (a_values.FirstOrDefault() == null)
                 return false;
 
-            foreach (T ele in a_values)
+            foreach (var ele in a_values)
             {
                 if (!a_enumerable.Contains(ele))
                     return false;
@@ -119,7 +119,7 @@ namespace TomanuExtensions
             if (a_values.FirstOrDefault() == null)
                 return false;
 
-            foreach (T ele in a_values)
+            foreach (var ele in a_values)
             {
                 if (!a_enumerable.Contains(ele, a_comparer))
                     return false;
@@ -130,19 +130,19 @@ namespace TomanuExtensions
 
         public static bool Exact<T>(this IEnumerable<T> a_enumerable, IEnumerable<T> a_values)
         {
-            List<T> list = new List<T>(a_values);
+            var list = new List<T>(a_values);
 
-            int init_count = list.Count;
-            int count = 0;
+            var init_count = list.Count;
+            var count = 0;
 
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
                 count++;
 
                 if (count > init_count)
                     return false;
 
-                int index = list.IndexOf(ele);
+                var index = list.IndexOf(ele);
                 if (index == -1)
                     return false;
                 else
@@ -155,19 +155,19 @@ namespace TomanuExtensions
         public static bool Exact<T>(this IEnumerable<T> a_enumerable, IEnumerable<T> a_values,
             IEqualityComparer<T> a_comparer)
         {
-            List<T> list = new List<T>(a_values);
+            var list = new List<T>(a_values);
 
-            int init_count = list.Count;
-            int count = 0;
+            var init_count = list.Count;
+            var count = 0;
 
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
                 count++;
 
                 if (count > init_count)
                     return false;
 
-                int index = list.IndexOf(ele, a_comparer);
+                var index = list.IndexOf(ele, a_comparer);
                 if (index == -1)
                     return false;
                 else
@@ -180,11 +180,11 @@ namespace TomanuExtensions
         public static IEnumerable<T> Substract<T>(this IEnumerable<T> a_enumerable,
             IEnumerable<T> a_values)
         {
-            List<T> list = new List<T>(a_values);
+            var list = new List<T>(a_values);
 
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
-                int index = list.IndexOf(ele);
+                var index = list.IndexOf(ele);
                 if (index != -1)
                     list.RemoveAt(index);
                 else
@@ -195,11 +195,11 @@ namespace TomanuExtensions
         public static IEnumerable<T> Substract<T>(this IEnumerable<T> a_enumerable,
             IEnumerable<T> a_values, IEqualityComparer<T> a_comparer)
         {
-            List<T> list = new List<T>(a_values);
+            var list = new List<T>(a_values);
 
-            foreach (T ele in a_enumerable)
+            foreach (var ele in a_enumerable)
             {
-                int index = list.IndexOf(ele, a_comparer);
+                var index = list.IndexOf(ele, a_comparer);
                 if (index != -1)
                     list.RemoveAt(index);
                 else
@@ -213,11 +213,11 @@ namespace TomanuExtensions
             if (a_values.FirstOrDefault() == null)
                 return false;
 
-            List<T> list = new List<T>(a_enumerable);
+            var list = new List<T>(a_enumerable);
 
-            foreach (T ele in a_values)
+            foreach (var ele in a_values)
             {
-                int index = list.IndexOf(ele);
+                var index = list.IndexOf(ele);
                 if (index == -1)
                     return false;
                 else
@@ -230,14 +230,14 @@ namespace TomanuExtensions
         public static bool ContainsExact<T>(this IEnumerable<T> a_enumerable,
             IEnumerable<T> a_values, IEqualityComparer<T> a_comparer)
         {
-            List<T> list = new List<T>(a_enumerable);
+            var list = new List<T>(a_enumerable);
 
             if (a_values.FirstOrDefault() == null)
                 return false;
 
-            foreach (T ele in a_values)
+            foreach (var ele in a_values)
             {
-                int index = list.IndexOf(ele, a_comparer);
+                var index = list.IndexOf(ele, a_comparer);
                 if (index == -1)
                     return false;
                 else
@@ -252,7 +252,7 @@ namespace TomanuExtensions
             if (a_times == 0)
                 yield break;
 
-            for (int i = 0; i < a_times; i++)
+            for (var i = 0; i < a_times; i++)
             {
                 foreach (var el in a_enum)
                     yield return el;
@@ -278,7 +278,7 @@ namespace TomanuExtensions
         public static IEnumerable<T> TakeAllOrOne<T>(this IEnumerable<T> a_enum, bool a_all,
             Func<T, bool> a_take)
         {
-            bool first = false;
+            var first = false;
 
             foreach (var el in a_enum)
             {

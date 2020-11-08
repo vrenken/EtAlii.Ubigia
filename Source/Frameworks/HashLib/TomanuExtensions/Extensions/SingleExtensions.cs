@@ -8,7 +8,7 @@ namespace TomanuExtensions
     {
         public static bool IsNumber(this float a_d)
         {
-            return !Single.IsInfinity(a_d) && !Single.IsNaN(a_d);
+            return !float.IsInfinity(a_d) && !float.IsNaN(a_d);
         }
 
         public static float Fraction(this float a_d)
@@ -35,7 +35,7 @@ namespace TomanuExtensions
         {
             double mid = Math.Max(Math.Abs(a_d1), Math.Abs(a_d2));
 
-            if (Double.IsInfinity(mid))
+            if (double.IsInfinity(mid))
                 return false;
 
             if (mid > a_precision)

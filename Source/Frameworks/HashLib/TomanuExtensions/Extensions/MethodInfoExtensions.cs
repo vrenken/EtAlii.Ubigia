@@ -34,7 +34,7 @@ namespace TomanuExtensions
             if (a_with_this)
                 yield return a_mi;
 
-            MethodInfo t = a_mi;
+            var t = a_mi;
 
             while ((t.GetBaseDefinition() != null) && (t.GetBaseDefinition() != t))
             {

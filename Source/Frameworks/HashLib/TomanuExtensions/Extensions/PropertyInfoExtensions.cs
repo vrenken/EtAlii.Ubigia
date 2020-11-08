@@ -60,8 +60,8 @@ namespace TomanuExtensions
             if (a_pi.DeclaringType == a_base.DeclaringType)
                 return a_with_this;
 
-            MethodInfo m1 = a_pi.GetGetMethod(true);
-            MethodInfo m3 = a_base.GetGetMethod(true);
+            var m1 = a_pi.GetGetMethod(true);
+            var m3 = a_base.GetGetMethod(true);
 
             if ((m1 != null) && (m3 != null))
             {
@@ -71,8 +71,8 @@ namespace TomanuExtensions
             else if ((m1 != null) || (m3 != null))
                 return false;
 
-            MethodInfo m2 = a_pi.GetSetMethod(true);
-            MethodInfo m4 = a_base.GetSetMethod(true);
+            var m2 = a_pi.GetSetMethod(true);
+            var m4 = a_base.GetSetMethod(true);
 
             if ((m2 != null) && (m4 != null))
             {

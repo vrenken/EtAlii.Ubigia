@@ -158,9 +158,9 @@ namespace TomanuExtensions.Utils
 
         public override void NextBytes(byte[] buffer) /* throws ArgumentNullException*/
         {
-            int bufLen = buffer.Length;
+            var bufLen = buffer.Length;
 
-            for (int idx = 0; idx < bufLen; ++idx)
+            for (var idx = 0; idx < bufLen; ++idx)
                 buffer[idx] = (byte)Next(256);
         }
 
@@ -211,64 +211,64 @@ namespace TomanuExtensions.Utils
 
         public byte[] NextBytes(int a_length)
         {
-            byte[] result = new byte[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new byte[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextByte();
             return result;
         }
 
         public char[] NextChars(int a_length)
         {
-            char[] result = new char[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new char[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextChar();
             return result;
         }
 
         public short[] NextShorts(int a_length)
         {
-            short[] result = new short[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new short[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextShort();
             return result;
         }
 
         public ushort[] NextUShorts(int a_length)
         {
-            ushort[] result = new ushort[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new ushort[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextUShort();
             return result;
         }
 
         public int[] NextInts(int a_length)
         {
-            int[] result = new int[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new int[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = Next();
             return result;
         }
 
         public uint[] NextUInts(int a_length)
         {
-            uint[] result = new uint[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new uint[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextUInt();
             return result;
         }
 
         public long[] NextLongs(int a_length)
         {
-            long[] result = new long[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new long[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextLong();
             return result;
         }
 
         public ulong[] NextULongs(int a_length)
         {
-            ulong[] result = new ulong[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new ulong[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextULong();
             return result;
         }
@@ -290,48 +290,48 @@ namespace TomanuExtensions.Utils
 
         public double[] NextDoublesFull(int a_length)
         {
-            double[] result = new double[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new double[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextDoubleFull();
             return result;
         }
 
         public double[] NextDoublesFullSafe(int a_length)
         {
-            double[] result = new double[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new double[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextDoubleFullSafe();
             return result;
         }
 
         public double[] NextDoubles(int a_length)
         {
-            double[] result = new double[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new double[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextDouble();
             return result;
         }
 
         public float[] NextFloatsFull(int a_length)
         {
-            float[] result = new float[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new float[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextFloatFull();
             return result;
         }
 
         public float[] NextFloatsFullSafe(int a_length)
         {
-            float[] result = new float[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new float[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextFloatFullSafe();
             return result;
         }
 
         public float[] NextFloats(int a_length)
         {
-            float[] result = new float[a_length];
-            for (int i = 0; i < a_length; i++)
+            var result = new float[a_length];
+            for (var i = 0; i < a_length; i++)
                 result[i] = NextFloat();
             return result;
         }
@@ -340,9 +340,9 @@ namespace TomanuExtensions.Utils
         {
             for (; ; )
             {
-                double d = NextDoubleFull();
+                var d = NextDoubleFull();
 
-                if (Double.IsNaN(d))
+                if (double.IsNaN(d))
                     continue;
 
                 return d;
@@ -353,9 +353,9 @@ namespace TomanuExtensions.Utils
         {
             for (; ; )
             {
-                float f = NextFloatFull();
+                var f = NextFloatFull();
 
-                if (!Single.IsNaN(f))
+                if (!float.IsNaN(f))
                     return f;
             }
         }

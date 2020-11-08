@@ -101,10 +101,7 @@ namespace HashLib.Hash64
 
         public byte[] Key
         {
-            get
-            {
-                return Converters.ConvertUIntToBytes(m_key);
-            }
+            get => Converters.ConvertUIntToBytes(m_key);
             set
             {
                 if (value == null)

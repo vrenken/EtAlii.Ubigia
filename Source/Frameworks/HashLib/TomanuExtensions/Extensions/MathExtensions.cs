@@ -17,7 +17,7 @@ namespace TomanuExtensions
             s_pascal_triangle = new int [10][];
             s_pascal_triangle[0] = new int[] { 1 };
 
-            for (int i = 1; i < s_pascal_triangle.Length; i++)
+            for (var i = 1; i < s_pascal_triangle.Length; i++)
                 s_pascal_triangle[i] = PascalTriangle(s_pascal_triangle[i - 1]);
         }
 
@@ -27,9 +27,9 @@ namespace TomanuExtensions
                 return s_pascal_triangle[a_row - 1];
             else
             {
-                int[] result = s_pascal_triangle[s_pascal_triangle.Length - 1];
+                var result = s_pascal_triangle[s_pascal_triangle.Length - 1];
 
-                for (int i = s_pascal_triangle.Length; i < a_row; i++)
+                for (var i = s_pascal_triangle.Length; i < a_row; i++)
                     result = PascalTriangle(result);
 
                 return result;
@@ -38,12 +38,12 @@ namespace TomanuExtensions
 
         private static int[] PascalTriangle(int[] a_start)
         {
-            int[] result = new int[a_start.Length + 1];
+            var result = new int[a_start.Length + 1];
             
             result[0] = 1;
             result[result.Length - 1] = 1;
 
-            for (int j = 0; j < a_start.Length - 1; j++)
+            for (var j = 0; j < a_start.Length - 1; j++)
                 result[j+1] = a_start[j] + a_start[j + 1];
 
             return result;

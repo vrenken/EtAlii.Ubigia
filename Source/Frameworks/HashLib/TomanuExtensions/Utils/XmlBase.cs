@@ -21,7 +21,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_source"></param>
         protected XmlBase(XmlBase a_source)
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             a_source.Save(ms);
             ms.Position = 0;
             Load(ms);
@@ -42,7 +42,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_file_name"></param>
         protected virtual void Load(string a_file_name)
         {
-            using (FileStream fs = new FileStream(a_file_name, FileMode.Open, FileAccess.Read))
+            using (var fs = new FileStream(a_file_name, FileMode.Open, FileAccess.Read))
                 Load(fs);
         }
 
@@ -67,7 +67,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_file_name"></param>
         public virtual void Save(string a_file_name)
         {
-            using (FileStream fs = new FileStream(a_file_name, FileMode.Create))
+            using (var fs = new FileStream(a_file_name, FileMode.Create))
                 Save(fs);
         }
 
@@ -96,14 +96,14 @@ namespace TomanuExtensions.Utils
             if (a_obj == null)
                 return false;
 
-            XmlBase xml_base = a_obj as XmlBase;
+            var xml_base = a_obj as XmlBase;
             if (xml_base == null)
                 return false;
 
-            MemoryStream ms1 = new MemoryStream();
+            var ms1 = new MemoryStream();
             xml_base.Save(ms1);
 
-            MemoryStream ms2 = new MemoryStream();
+            var ms2 = new MemoryStream();
             Save(ms2);
 
             return ms1.ToArray().AreSame(ms2.ToArray());
@@ -115,7 +115,7 @@ namespace TomanuExtensions.Utils
         /// <returns></returns>
         public override int GetHashCode()
         {
-            MemoryStream ms = new MemoryStream();
+            var ms = new MemoryStream();
             Save(ms);
             return ArrayExtensions.GetHashCode(ms.ToArray());
         }

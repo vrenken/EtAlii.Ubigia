@@ -8,9 +8,9 @@ namespace TomanuExtensions.Utils
     {
         public static long Profile(Action a_action, int a_tries = 5, int a_action_repeats = 1, bool a_boost = true)
         {
-            IntPtr old_aff = Process.GetCurrentProcess().ProcessorAffinity;
-            ProcessPriorityClass old_proc_prior = Process.GetCurrentProcess().PriorityClass;
-            ThreadPriority old_thread_prio = Thread.CurrentThread.Priority;
+            var old_aff = Process.GetCurrentProcess().ProcessorAffinity;
+            var old_proc_prior = Process.GetCurrentProcess().PriorityClass;
+            var old_thread_prio = Thread.CurrentThread.Priority;
 
             if (a_boost)
             {
@@ -19,16 +19,16 @@ namespace TomanuExtensions.Utils
                 Thread.CurrentThread.Priority = ThreadPriority.Highest;
             }
 
-            long result = long.MaxValue;
-            Stopwatch sw = new Stopwatch();
+            var result = long.MaxValue;
+            var sw = new Stopwatch();
 
             try
             {
-                for (int i = 0; i < a_tries; i++)
+                for (var i = 0; i < a_tries; i++)
                 {
                     sw.Restart();
 
-                    for (int j = 0; j < a_action_repeats; j++)
+                    for (var j = 0; j < a_action_repeats; j++)
                         a_action();
 
                     sw.Stop();

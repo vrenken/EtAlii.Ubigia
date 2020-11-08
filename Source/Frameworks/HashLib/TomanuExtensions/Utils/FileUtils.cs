@@ -7,7 +7,7 @@ namespace TomanuExtensions.Utils
     {
         public static bool IsFilePathValid(string a_path)
         {
-            if (String.IsNullOrEmpty(a_path.Trim()))
+            if (string.IsNullOrEmpty(a_path.Trim()))
             {
                 return false;
             }
@@ -29,7 +29,7 @@ namespace TomanuExtensions.Utils
             }
 
             // Make sure the filename part was actually specified
-            if (String.IsNullOrEmpty(filename.Trim()))
+            if (string.IsNullOrEmpty(filename.Trim()))
             {
                 return false;
             }

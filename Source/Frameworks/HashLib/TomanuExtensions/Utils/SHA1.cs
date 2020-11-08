@@ -23,7 +23,7 @@ namespace TomanuExtensions.Utils
         {
             using (var hasher = System.Security.Cryptography.SHA1.Create())
             {
-                byte[] hash = hasher.ComputeHash(a_data);
+                var hash = hasher.ComputeHash(a_data);
                 return BitConverter.ToString(hash).ToUpper().Replace("-", "");
             }
         }
