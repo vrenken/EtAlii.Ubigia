@@ -231,7 +231,7 @@ namespace Moppet.Lapa
 		{
 			foreach (var cn in nodes)
 			{
-				bool find = predicate(cn);
+				var find = predicate(cn);
 				if (find)
 					yield return cn;
 

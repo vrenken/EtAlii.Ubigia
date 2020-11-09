@@ -20,11 +20,11 @@ namespace Moppet.Lapa.Parsers
     public class LpUtils
     {
         /// <summary>
-        /// Парсер веб-ссылки типа: http://hostname.dom:80/Dir/Dir/?a=1&amp;b=2#anhor.
+        /// Parser for web links like: http://hostname.dom:80/Dir/Dir/?a=1&amp;b=2#anhor.
         /// 
-        /// Возвращаемое дерево помечено следующими идентификаторами:
-        /// Protocol - протокол;
-        /// Host - имя хоста, например localhost, yandex.ru, 127.0.0.1;
+        /// The returned tree is marked with the following identifiers:
+        /// Protocol - protocol;
+        /// Host - hostname, for example localhost, yandex.ru, 127.0.0.1;
         /// Port - номер порта;
         /// Path - относительный путь к папке или файлу;
         /// Query - GET-запрос или список параметров (a=1&amp;b=2), где имя и значение пемечаются как Name и Value;

@@ -8,11 +8,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-using System;
-
-namespace Moppet.Lapa
+namespace Moppet.Lapa.Parsers
 {
-    using Moppet.Lapa.Parsers;
+    using System;
 
     /// <summary>
     /// The parser date and time.
@@ -30,8 +28,8 @@ namespace Moppet.Lapa
         private static LpsParser Date()
         {
             var year  = LpNumber.Positive(0, 9999, 4).Rename("Y");
-            var month = LpNumber.Positive(1, 12,   1).Rename("M");
-            var day   = LpNumber.Positive(1, 31  , 1).Rename("D");
+            var month = LpNumber.Positive(1, 12).Rename("M");
+            var day   = LpNumber.Positive(1, 31).Rename("D");
 
             var dMinus     = Lp.Char('-' ).Rename("-");
             var dPoint     = Lp.Char('.' ).Rename("-");

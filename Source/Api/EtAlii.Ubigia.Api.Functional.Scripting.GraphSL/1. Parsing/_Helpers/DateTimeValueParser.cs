@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using Moppet.Lapa;
+    using Moppet.Lapa.Parsers;
 
     internal class DateTimeValueParser : IDateTimeValueParser
     {

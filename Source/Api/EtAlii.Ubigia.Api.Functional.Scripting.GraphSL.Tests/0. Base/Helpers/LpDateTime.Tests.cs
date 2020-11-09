@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System;
-    using Moppet.Lapa;
+    using Moppet.Lapa.Parsers;
     using Xunit;
 
     public class LpDateTimeTests

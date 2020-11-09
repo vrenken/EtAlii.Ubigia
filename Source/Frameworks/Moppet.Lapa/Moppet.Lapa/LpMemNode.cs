@@ -3,7 +3,7 @@
 namespace Moppet.Lapa
 {
     /// <summary>
-    /// Нода и её статистика при меморизации.
+    /// Noda and its statistics during memorialization.
     /// </summary>
     public class LpMemNode
     {
@@ -13,7 +13,7 @@ namespace Moppet.Lapa
         public LpNode Node;
 
         /// <summary>
-        /// Сколько раз возвращена из словаря по запросу.
+        /// How many times was returned from the dictionary on request.
         /// </summary>
         public int Count;
 
@@ -32,7 +32,7 @@ namespace Moppet.Lapa
         /// <returns>Строка. Всегда не null.</returns>
         public override string ToString()
         {
-            return string.Format("{0}: {1}", Count, Node);
+            return $"{Count}: {Node}";
         }
     }
 }

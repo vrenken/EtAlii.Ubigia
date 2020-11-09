@@ -37,13 +37,13 @@ namespace Moppet.Lapa
         /// Auxiliary constructor.
 		/// </summary>
         /// <param name="id">Identifier.</param>
-		public LpsParser(string id) : this() { m_identifier = id; }
+		public LpsParser(string id) : this() { Identifier = id; }
 
 		/// <summary>
         /// Auxiliary constructor.
 		/// </summary>
 		/// <param name="parser">parser.</param>
-		public LpsParser(Func<LpText, LpNode> parser) : this() { m_parser = parser; }
+		public LpsParser(Func<LpText, LpNode> parser) : this() { Parser = parser; }
 
 		/// <summary>
 		/// Auxiliary constructor.
@@ -52,8 +52,8 @@ namespace Moppet.Lapa
 		/// <param name="parser">parser.</param>
 		public LpsParser(string id, Func<LpText, LpNode> parser)
 		{
-			m_identifier = id;
-			m_parser = parser;
+			Identifier = id;
+			Parser = parser;
 		}
 
 		/// <summary>
@@ -65,9 +65,9 @@ namespace Moppet.Lapa
         /// <param name="recurse">Support for recursive call.</param>
 		public LpsParser(string id, bool wrapNode = false, Func<LpText, LpNode> parser = null, bool recurse = false)
 		{
-			m_identifier = id;
-			m_wrapNode = wrapNode;
-			m_parser = parser;
+			Identifier = id;
+			WrapNode = wrapNode;
+			Parser = parser;
 			if (recurse)
 				Recurse = recurse;
 		}
@@ -82,7 +82,7 @@ namespace Moppet.Lapa
 		public LpNode  Do(LpText text)
 		{
 			LpNode res;
-			if (m_stack != null)
+			if (Stack != null)
 			{
                 //if (m_stack.FindLast(text) != null)
                 //    return new LpNode(text);
@@ -91,31 +91,31 @@ namespace Moppet.Lapa
                 //m_stack.Remove(added);
 
                 LinkedListNode<LpText> added = null;
-                lock (m_stack)
+                lock (Stack)
                 {
-                    if (m_stack.FindLast(text) != null)
+                    if (Stack.FindLast(text) != null)
                         return new LpNode(text);
-                    added = m_stack.AddLast(text);
+                    added = Stack.AddLast(text);
                 }
-                res = m_parser(text);
-                lock (m_stack)
+                res = Parser(text);
+                lock (Stack)
                 {
-                    m_stack.Remove(added);
+                    Stack.Remove(added);
                 }
 			}
 			else
 			{
-				res = m_parser(text);
+				res = Parser(text);
 			}
-			if (m_identifier != null)
+			if (Identifier != null)
 			{
-				if (m_wrapNode && res.Id != null)
+				if (WrapNode && res.Id != null)
 				{
-					res = new LpNode(m_identifier, res.Match, res.Rest, res);
+					res = new LpNode(Identifier, res.Match, res.Rest, res);
 				}
 				else
 				{
-					res.Id = m_identifier;
+					res.Id = Identifier;
 				}
 			}
 			return res; 

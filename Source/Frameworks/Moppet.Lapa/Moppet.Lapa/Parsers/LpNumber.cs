@@ -87,23 +87,23 @@ namespace Moppet.Lapa.Parsers
             if (minDigits < 1)
                 throw new ArgumentOutOfRangeException("minDigits");
 
-            int maxDigits = 1;
+            var maxDigits = 1;
             var rest = maxValue / 10;
             while (rest > 0)
             {
                 rest /= 10; ++maxDigits;
             }
-            LpsParser parser = new LpsParser("Integer", (text) =>
+            var parser = new LpsParser("Integer", (text) =>
             {
-                int end = text.Length > maxDigits ? (maxDigits + 1) : text.Length;
+                var end = text.Length > maxDigits ? (maxDigits + 1) : text.Length;
                 int cur = 0, ind = text.Index;
                 var str = text.Source;
                 var val = 0L;
 
                 while (cur < end)
                 {
-                    char c = str[ind];
-                    int n = c - '0';
+                    var c = str[ind];
+                    var n = c - '0';
                     if (n > 9 || n < 0)
                         break;
 

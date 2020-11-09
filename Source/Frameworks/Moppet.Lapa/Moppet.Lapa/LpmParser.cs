@@ -16,7 +16,7 @@ namespace Moppet.Lapa
 {
 	/// <summary>
     /// Parser that returns a lot of options analysis, ie generic parser 
-	/// Func<LpText, IEnumerable<LpNode>></LpNode>.
+	/// Func&lt;LpText, IEnumerable&lt;LpNode&gt;&gt;^t;/LpNode&gt;.
     /// At the input text. In many embodiments the outlet parsing wherein each variant 
     /// - A pair of {Part parsed text; Balance}.
     /// For example, in the line "1234" parsing embodiments may be "", "1", "12", "123", "1234".
@@ -34,13 +34,13 @@ namespace Moppet.Lapa
 		/// Auxiliary constructor.
 		/// </summary>
 		/// <param name="id">ID.</param>
-		public LpmParser(string id) { m_identifier = id; }
+		public LpmParser(string id) { Identifier = id; }
 
 		/// <summary>
 		/// Auxiliary constructor.
 		/// </summary>
         /// <param name="parser">The actual function of parsing - parser.</param>
-		public LpmParser(Func<LpText, IEnumerable<LpNode>> parser) { m_parser = parser; }
+		public LpmParser(Func<LpText, IEnumerable<LpNode>> parser) { Parser = parser; }
 
 		/// <summary>
 		/// Auxiliary constructor.
@@ -49,8 +49,8 @@ namespace Moppet.Lapa
         /// <param name="parser">The actual function of parsing - parser.</param>
 		public LpmParser(string id, Func<LpText, IEnumerable<LpNode>> parser)
 		{
-			m_identifier = id;
-			m_parser = parser;
+			Identifier = id;
+			Parser = parser;
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace Moppet.Lapa
 		public IEnumerable<LpNode> Do(LpText text)
 		{
 			IEnumerable<LpNode> res;
-			if (m_stack != null)
+			if (Stack != null)
 			{
                 //if (m_stack.FindLast(text) != null)
                 //    return new LpNode[0];
@@ -70,25 +70,25 @@ namespace Moppet.Lapa
                 //m_stack.Remove(added);
 
                 LinkedListNode<LpText> added = null;
-                lock (m_stack)
+                lock (Stack)
                 {
-                    if (m_stack.FindLast(text) != null)
+                    if (Stack.FindLast(text) != null)
                         return new LpNode[0];
-                    added = m_stack.AddLast(text);
+                    added = Stack.AddLast(text);
                 }
-                res = m_parser(text);
-                lock (m_stack)
+                res = Parser(text);
+                lock (Stack)
                 {
-                    m_stack.Remove(added);
+                    Stack.Remove(added);
                 }
 			}
 			else
 			{
-				res = m_parser(text);
+				res = Parser(text);
 			}
-			if (m_identifier != null)
+			if (Identifier != null)
 			{
-				if (m_wrapNode)
+				if (WrapNode)
 					return WrapIdentifiers(res);
 				return SetIdentifiers(res);
 			}
@@ -106,8 +106,8 @@ namespace Moppet.Lapa
 			foreach (var n in res)
 			{
 				if (n.Id != null)
-					yield return new LpNode(m_identifier, n.Match, n.Rest, n);
-				n.Id = m_identifier;
+					yield return new LpNode(Identifier, n.Match, n.Rest, n);
+				n.Id = Identifier;
 				yield return n;
 			}
 		}
@@ -121,7 +121,7 @@ namespace Moppet.Lapa
 		{
 			foreach (var n in res)
 			{
-				n.Id = m_identifier;
+				n.Id = Identifier;
 				yield return n;
 			}
 		}

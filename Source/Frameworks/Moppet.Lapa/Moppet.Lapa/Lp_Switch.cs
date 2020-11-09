@@ -19,8 +19,8 @@ namespace Moppet.Lapa
             {
                 if (t.Length <= 0)
                     return new LpNode(t);
-                char c = t[0];
-                return parser(t[0], t);
+                var c = t[0];
+                return parser(c, t);
             });
         }
 

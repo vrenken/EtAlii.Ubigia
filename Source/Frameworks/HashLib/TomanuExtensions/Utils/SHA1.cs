@@ -21,11 +21,11 @@ namespace TomanuExtensions.Utils
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string Calculate(byte[] a_data)
+        public static string Calculate(byte[] data)
         {
             using (var hasher = System.Security.Cryptography.SHA1.Create())
             {
-                var hash = hasher.ComputeHash(a_data);
+                var hash = hasher.ComputeHash(data);
                 return BitConverter.ToString(hash).ToUpper().Replace("-", "");
             }
         }
