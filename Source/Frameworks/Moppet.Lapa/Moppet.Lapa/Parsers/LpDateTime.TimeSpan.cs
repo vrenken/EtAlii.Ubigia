@@ -8,11 +8,9 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-using System;
-
-namespace Moppet.Lapa
+namespace Moppet.Lapa.Parsers
 {
-    using Moppet.Lapa.Parsers;
+    using System;
 
     /// <summary>
     /// The parser date and time.
@@ -32,11 +30,11 @@ namespace Moppet.Lapa
             var delimiter = Lp.Char(':');
             var delimiter2 = Lp.Char('.');
             var isNegative = Lp.Char('-').Rename("n");
-            var days = LpNumber.Positive(1).Rename("d");
-            var hours = LpNumber.Positive(1).Rename("h");
-            var minutes = LpNumber.Positive(1).Rename("m");
-            var seconds = LpNumber.Positive(1).Rename("s");
-            var milliseconds = (delimiter2 + LpNumber.Positive(1)).Rename("f");
+            var days = LpNumber.Positive().Rename("d");
+            var hours = LpNumber.Positive().Rename("h");
+            var minutes = LpNumber.Positive().Rename("m");
+            var seconds = LpNumber.Positive().Rename("s");
+            var milliseconds = (delimiter2 + LpNumber.Positive()).Rename("f");
 
             var timeSpan1 = (isNegative.Maybe() + days + delimiter + hours + delimiter + minutes + delimiter + seconds + milliseconds.Maybe());
             var timeSpan2 = (isNegative.Maybe()                    + hours + delimiter + minutes + delimiter + seconds + milliseconds.Maybe());

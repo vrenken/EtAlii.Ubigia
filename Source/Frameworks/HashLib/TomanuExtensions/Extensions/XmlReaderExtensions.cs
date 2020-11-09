@@ -183,46 +183,44 @@ namespace TomanuExtensions
         /// <summary>
         /// Use to start read xml.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="a_type"></param>
-        /// <param name="a_stream"></param>
-        /// <param name="a_read_func"></param>
-        public static void ReadXml(Stream a_stream, Action<XmlReader> a_read_func)
+        /// <param name="stream"></param>
+        /// <param name="read"></param>
+        public static void ReadXml(Stream stream, Action<XmlReader> read)
         {
             var settings = new XmlReaderSettings();
             settings.IgnoreWhitespace = true;
 
-            using (var reader = XmlReader.Create(a_stream, settings))
+            using (var reader = XmlReader.Create(stream, settings))
             {
                 reader.Read();
 
                 if (reader.NodeType == XmlNodeType.XmlDeclaration)
                     reader.Skip();
 
-                a_read_func(reader);
+                read(reader);
             }
         }
 
         /// <summary>
         /// Move to next element. Current element must be empty.
         /// </summary>
-        /// <param name="a_reader"></param>
-        /// <param name="a_name"></param>
-        public static void MoveToNextElement(this XmlReader a_reader, string a_name)
+        /// <param name="reader"></param>
+        /// <param name="name"></param>
+        public static void MoveToNextElement(this XmlReader reader, string name)
         {
-            if (a_reader.NodeType == XmlNodeType.Attribute)
-                a_reader.MoveToElement();
+            if (reader.NodeType == XmlNodeType.Attribute)
+                reader.MoveToElement();
 
-            if (a_reader.IsEmptyElement)
-                a_reader.ReadStartElement(a_name);
+            if (reader.IsEmptyElement)
+                reader.ReadStartElement(name);
             else
             {
-                a_reader.ReadStartElement(a_name);
+                reader.ReadStartElement(name);
 
-                if (a_reader.IsStartElement())
+                if (reader.IsStartElement())
                     throw new XmlException();
 
-                a_reader.ReadEndElement();
+                reader.ReadEndElement();
             }
         }
     }

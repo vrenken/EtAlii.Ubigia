@@ -13,21 +13,21 @@ namespace TomanuExtensions
         /// <summary>
         /// With virtual keyword. Also interface implementations even without virtual keyword.
         /// </summary>
-        /// <param name="a_pi"></param>
+        /// <param name="methodInfo"></param>
         /// <returns></returns>
-        public static bool IsVirtual(this MethodInfo a_mi)
+        public static bool IsVirtual(this MethodInfo methodInfo)
         {
-            return a_mi.IsVirtual && !a_mi.IsAbstract && !a_mi.IsOverriden();
+            return methodInfo.IsVirtual && !methodInfo.IsAbstract && !methodInfo.IsOverriden();
         }
 
         /// <summary>
         /// With override keyword.
         /// </summary>
-        /// <param name="a_pi"></param>
+        /// <param name="methodInfo"></param>
         /// <returns></returns>
-        public static bool IsOverriden(this MethodInfo a_mi)
+        public static bool IsOverriden(this MethodInfo methodInfo)
         {
-            return a_mi.DeclaringType != a_mi.GetBaseDefinition().DeclaringType;
+            return methodInfo.DeclaringType != methodInfo.GetBaseDefinition().DeclaringType;
         }
 
         public static IEnumerable<MethodInfo> GetBaseDefinitions(this MethodInfo a_mi,

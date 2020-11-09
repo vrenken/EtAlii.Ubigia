@@ -26,23 +26,14 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Truth is, if you want to wrap the node (the result returned by the parser), if it has a non-zero identifier.
 		/// </summary>
-		protected bool m_wrapNode = false;
-
-		/// <summary>
-		/// Identifier.
-		/// </summary>
-		protected string m_identifier = null;
-
-
-		/// <summary>
-		/// Truth is, if you want to wrap the node (the result returned by the parser), if it has a non-zero identifier.
-		/// </summary>
-		public bool WrapNode => m_wrapNode;
+		public bool WrapNode { get => _wrapNode; protected set => _wrapNode = value; }
+		private bool _wrapNode;
 
 	    /// <summary>
 		/// Identifier.
 		/// </summary>
-		public string Identifier => m_identifier;
+		public string Identifier { get => _identifier; protected set => _identifier = value; }
+	    private string _identifier;
 
 
 	    /// <summary>
@@ -52,7 +43,7 @@ namespace Moppet.Lapa
 		/// <returns>Clone with a new ID.</returns>
 		public TDerived Id(string id)
 		{
-			return Id(id: id, wrap: m_wrapNode);
+			return Id(id: id, wrap: _wrapNode);
 		}
 
 		/// <summary>
@@ -64,12 +55,12 @@ namespace Moppet.Lapa
 		/// <returns>Clone with a new ID.</returns>
 		public TDerived Id(string id, bool wrap)
 		{
-			if (m_identifier != null && m_identifier != id)
-				throw new ArgumentException("Parser has another identifier already: " + m_identifier, "id");
+			if (_identifier != null && _identifier != id)
+				throw new ArgumentException("Parser has another identifier already: " + _identifier, nameof(id));
 
 			LpParserAttrs<TDerived> copy = Copy();
-			copy.m_identifier = id;
-			copy.m_wrapNode = wrap;
+			copy._identifier = id;
+			copy._wrapNode = wrap;
 			return (TDerived)copy;
 		}
 
@@ -81,7 +72,7 @@ namespace Moppet.Lapa
 		/// <returns>Clone with a new ID.</returns>
 		public TDerived Rename(string newId)
 		{
-			return Rename(newId: newId, wrap: m_wrapNode);
+			return Rename(newId: newId, wrap: _wrapNode);
 		}
 
 		/// <summary>
@@ -95,8 +86,8 @@ namespace Moppet.Lapa
 		public TDerived Rename(string newId, bool wrap)
 		{
 			LpParserAttrs<TDerived> copy = Copy();
-			copy.m_identifier = newId;
-			copy.m_wrapNode = wrap;
+			copy._identifier = newId;
+			copy._wrapNode = wrap;
 			return (TDerived)copy;
 		}
 
@@ -107,9 +98,11 @@ namespace Moppet.Lapa
 		/// <returns>Branch.</returns>
 		public virtual TDerived Copy()
 		{
-			TDerived c = new TDerived();
-			c.m_identifier = Identifier;
-			c.m_wrapNode   = WrapNode;
+			var c = new TDerived
+			{
+				_identifier = Identifier, 
+				_wrapNode = WrapNode
+			};
 			return c;
 		}
 
@@ -139,33 +132,27 @@ namespace Moppet.Lapa
 	/// <typeparam name="TResult">The result of the parser.</typeparam>
 	/// <typeparam name="TDerived">Is derived from this class.</typeparam>
 	public class LpBaseParser<TResult, TDerived> : LpParserAttrs<TDerived>
-		
 		where TDerived : LpBaseParser<TResult, TDerived>, new()
 	{
 		/// <summary>
         /// Protivozatsiklivatel. In the copying is not involved and should not be.
 		/// </summary>
-		protected LinkedList<LpText> m_stack = null;
-
-		/// <summary>
-		/// Parser.
-		/// </summary>
-		protected Func<LpText, TResult> m_parser = null;
+		protected LinkedList<LpText> Stack;
 
 		/// <summary>
         /// Parser - lambda.
-        /// This property is intended for a single isklyuchietlno initialization and external access.
+        /// This property is intended for a single unusual initialization and external access.
 		/// </summary>
 		public Func<LpText, TResult> Parser
 		{
-			get { return m_parser; }
+			get => _parser;
 			set
 			{
-				if (m_parser != null)
-					throw new ArgumentException("Property \"Parser\" already initialized.");
-				m_parser = value;
+				if (_parser != null) throw new ArgumentException("Property \"Parser\" already initialized.");
+				_parser = value;
 			}
 		}
+		private Func<LpText, TResult> _parser;
 
 		/// <summary>
         /// Control option for recursion, control over a stack overflow.
@@ -173,12 +160,12 @@ namespace Moppet.Lapa
 		/// </summary>
 		public bool Recurse
 		{
-			get { return m_stack != null; }
+			get => Stack != null;
 			set
 			{
-				if (m_stack != null)
+				if (Stack != null)
 					throw new ArgumentException("The 'Recurse' property already initialized.");
-				m_stack = value ? new LinkedList<LpText>() : null;
+				Stack = value ? new LinkedList<LpText>() : null;
 			}
 		}
 
@@ -188,7 +175,7 @@ namespace Moppet.Lapa
 		/// <returns>Branch.</returns>
 		public override TDerived  Copy()
 		{
-			if (m_parser == null)
+			if (_parser == null)
 			{
 				if (Identifier != null)
 					throw new NullReferenceException($"The parser named '{Identifier}' has not been initialized completely.");
@@ -196,7 +183,7 @@ namespace Moppet.Lapa
 					throw new NullReferenceException("The 'Parser' property has not been initialized.");
 			}
 			LpBaseParser<TResult, TDerived> c = base.Copy();
-			c.m_parser = m_parser;
+			c._parser = _parser;
 			return (TDerived)c;
 		}
 	}

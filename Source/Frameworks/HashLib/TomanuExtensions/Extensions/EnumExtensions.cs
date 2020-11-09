@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿// ReSharper disable all
 
 namespace TomanuExtensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Linq;
+
     [DebuggerStepThrough]
     public static class EnumExtensions
     {
-        public static T Parse<T>(string a_str)
+        public static T Parse<T>(string @string)
         {
-            return (T)Enum.Parse(typeof(T), a_str);
+            return (T)Enum.Parse(typeof(T), @string);
         }
 
         public static IEnumerable<T> GetValues<T>()

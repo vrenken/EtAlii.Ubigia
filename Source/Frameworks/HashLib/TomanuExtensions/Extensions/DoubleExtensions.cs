@@ -85,32 +85,38 @@ namespace TomanuExtensions
         /// Extension method may cause problem: -d.InRange(a, b) means -(d.AlmostRelvativeInRange(a,b))
         /// </summary>
         /// <param name="a_d"></param>
-        /// <param name="a_min_inclusive"></param>
-        /// <param name="a_max_inclusive"></param>
+        /// <param name="min_inclusive"></param>
+        /// <param name="max_inclusive"></param>
+        /// <param name="precision"></param>
         /// <returns></returns>
-        public static bool AlmostRelvativeInRange(double a_d, double a_min_inclusive,
-            double a_max_inclusive, double a_precision)
+        public static bool AlmostRelvativeInRange(
+            double a_d, 
+            double min_inclusive,
+            double max_inclusive, double precision)
         {
-            Debug.Assert(a_min_inclusive <= a_max_inclusive);
+            Debug.Assert(min_inclusive <= max_inclusive);
 
-            return a_d.IsAlmostRelativeGreaterOrEqualThen(a_min_inclusive, a_precision) &&
-                a_d.IsAlmostRelativeLessOrEqualThen(a_max_inclusive, a_precision);
+            return a_d.IsAlmostRelativeGreaterOrEqualThen(min_inclusive, precision) &&
+                a_d.IsAlmostRelativeLessOrEqualThen(max_inclusive, precision);
         }
 
         /// <summary>
         /// Extension method may cause problem: -d.InRange(a, b) means -(d.AlmostInRange(a,b))
         /// </summary>
         /// <param name="a_d"></param>
-        /// <param name="a_min_inclusive"></param>
-        /// <param name="a_max_inclusive"></param>
+        /// <param name="min_inclusive"></param>
+        /// <param name="max_inclusive"></param>
+        /// <param name="precision"></param>
         /// <returns></returns>
-        public static bool AlmostInRange(double a_d, double a_min_inclusive,
-            double a_max_inclusive, double a_precision)
+        public static bool AlmostInRange(
+            double a_d, 
+            double min_inclusive,
+            double max_inclusive, double precision)
         {
-            Debug.Assert(a_min_inclusive <= a_max_inclusive);
+            Debug.Assert(min_inclusive <= max_inclusive);
 
-            return a_d.IsAlmostGreaterOrEqualThen(a_min_inclusive, a_precision) &&
-                a_d.IsAlmostLessOrEqualThen(a_max_inclusive, a_precision);
+            return a_d.IsAlmostGreaterOrEqualThen(min_inclusive, precision) &&
+                a_d.IsAlmostLessOrEqualThen(max_inclusive, precision);
         }
 
         public static bool IsAlmostRelativeLessThen(this double a_d1, double a_d2, double a_precision)

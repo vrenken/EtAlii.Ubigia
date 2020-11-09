@@ -48,16 +48,16 @@ namespace HashLib
                 //typeof(HashLib.Crypto.BuildIn.SHA384Managed), 
                 //typeof(HashLib.Crypto.BuildIn.SHA512Cng), 
                 //typeof(HashLib.Crypto.BuildIn.SHA512Managed), 
-                typeof(HashLib.Crypto.MD5),
-                typeof(HashLib.Crypto.RIPEMD160),
-                typeof(HashLib.Crypto.SHA1),
-                typeof(HashLib.Crypto.SHA256),
-                typeof(HashLib.Crypto.SHA384),
-                typeof(HashLib.Crypto.SHA512),
+                typeof(Crypto.MD5),
+                typeof(Crypto.RIPEMD160),
+                typeof(Crypto.SHA1),
+                typeof(Crypto.SHA256),
+                typeof(Crypto.SHA384),
+                typeof(Crypto.SHA512),
             };
 
             AllUnique = new ReadOnlyCollection<Type>((from hf in All
-                         where !(hf.IsDerivedFrom(typeof(HashLib.Hash32.DotNet)))
+                         where !(hf.IsDerivedFrom(typeof(Hash32.DotNet)))
                          where !x2.Contains(hf)
                          where !hf.IsNested
                          select hf).ToList());

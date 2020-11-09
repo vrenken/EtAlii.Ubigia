@@ -2,6 +2,7 @@
 {
     using System;
     using Moppet.Lapa;
+    using Moppet.Lapa.Parsers;
 
     internal class TimeSpanValueParser : ITimeSpanValueParser
     {

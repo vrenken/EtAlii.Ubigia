@@ -24,12 +24,12 @@ namespace Moppet.Lapa
 	public sealed class LpsChain : LpParserAttrs<LpsChain>
 	{
 		/// <summary>
-		/// Список парсеров.
+		/// List of parsers.
 		/// </summary>
-		List<LpsParser> m_parsers = new List<LpsParser>();
+		private List<LpsParser> _mParsers = new List<LpsParser>();
 
 		/// <summary>
-		/// The default constructor. Пустая цепочка.
+		/// The default constructor. An empty chain.
 		/// </summary>
 		public LpsChain()
 		{
@@ -41,7 +41,7 @@ namespace Moppet.Lapa
 		/// <param name="parsers">Parser.</param>
 		public LpsChain(params LpsParser[] parsers)
 		{
-			m_parsers = new List<LpsParser>(parsers.Length); m_parsers.AddRange(parsers);
+			_mParsers = new List<LpsParser>(parsers.Length); _mParsers.AddRange(parsers);
 		}
 
 		/// <summary>
@@ -49,11 +49,11 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="left">Left chain.</param>
 		/// <param name="right">Right chain.</param>
-		public LpsChain(IEnumerable<LpsParser> left, IEnumerable<LpsParser> right)
+		public LpsChain(ICollection<LpsParser> left, ICollection<LpsParser> right)
 		{
-			m_parsers = new List<LpsParser>(left.Count() + right.Count());
-			m_parsers.AddRange(left);
-			m_parsers.AddRange(right);
+			_mParsers = new List<LpsParser>(left.Count + right.Count);
+			_mParsers.AddRange(left);
+			_mParsers.AddRange(right);
 		}
 
 		/// <summary>
@@ -63,28 +63,28 @@ namespace Moppet.Lapa
 		public override LpsChain Copy()
 		{
 			var c = base.Copy();
-			c.m_parsers = new List<LpsParser>(m_parsers.Count + 1);
-			c.m_parsers.AddRange(m_parsers);
+			c._mParsers = new List<LpsParser>(_mParsers.Count + 1);
+			c._mParsers.AddRange(_mParsers);
 			return c;
 		}
 
 		/// <summary>
-		/// Вспомогательная функция конвертации цепочки в парсер.
+		/// A helper function for converting a string to a parser.
 		/// </summary>
 		/// <returns>parser.</returns>
 		public LpsParser ToParser()
 		{
-			if (m_parsers.Count <= 0)
+			if (_mParsers.Count <= 0)
 				throw new Exception("Parsers chain is empty.");
 
-			if (m_parsers.Count == 1)
-				return m_parsers[0];
+			if (_mParsers.Count == 1)
+				return _mParsers[0];
 
-			if (m_parsers.Count > 2)
-				return Concat(m_parsers, Identifier, WrapNode);
+			if (_mParsers.Count > 2)
+				return Concat(_mParsers, Identifier, WrapNode);
 
-			var par1 = m_parsers[0]; // Копии нужны, ибо массив Parsers может измениться.
-			var par2 = m_parsers[1];
+			var par1 = _mParsers[0]; // Copies are needed because the Parsers array can change.
+			var par2 = _mParsers[1];
 
 			return new LpsParser(Identifier, WrapNode, (text) =>
 			{
@@ -93,7 +93,7 @@ namespace Moppet.Lapa
                     return new LpNode(text);
 				var right = par2.Do(left.Rest);
                 if (right.Match.Length < 0)
-                    return new LpNode(text); // Здесь нельзя просто вернуть right, т.к. будет неверный остаток.
+                    return new LpNode(text); // You can't just return right here, since there will be an incorrect remainder.
 
                 if (left.Match.Length == 0 && left.Id == null)
                     return right;
@@ -125,20 +125,20 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-		/// Оператор конкатенации парсера к цепочке.
+		/// Operator for concatenating a parser to a chain.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Right odnorezultatny parser.</param>
 		/// <returns>parser.</returns>
 		public static LpsChain operator + (LpsChain left, LpsParser right)
 		{
-            if (left.m_identifier != null)
+            if (left.Identifier != null)
                 return new LpsChain(left.ToParser(), right);
-			return new LpsChain(left.m_parsers, new [] { right });
+			return new LpsChain(left._mParsers, new [] { right });
 		}
 
 		/// <summary>
-		/// Оператор конкатенации цепочек парсеров.
+		/// Concatenation operator for parser chains.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Right odnorezultatny parser.</param>
@@ -149,101 +149,101 @@ namespace Moppet.Lapa
             {
                 if (right.Identifier != null)
                     return new LpsChain(left, right);
-                return new LpsChain(new [] { left.ToParser() }, right.m_parsers);
+                return new LpsChain(new [] { left.ToParser() }, right._mParsers);
             }
             else if (right.Identifier != null)
             {
                 if (left.Identifier != null)
                     return new LpsChain(left, right);
-                return new LpsChain(left.m_parsers, new[] { right.ToParser() });
+                return new LpsChain(left._mParsers, new[] { right.ToParser() });
             }
-            return new LpsChain(left.m_parsers, right.m_parsers);
+            return new LpsChain(left._mParsers, right._mParsers);
 		}
 
 		/// <summary>
-		/// Оператор конкатенации цепочек парсеров.
+		/// Concatenation operator for parser chains.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Search for a (following) characters.</param>
 		/// <returns>parser.</returns>
 		public static LpsChain operator +(LpsChain left, char right)
 		{
-            if (left.m_identifier != null)
+            if (left.Identifier != null)
                 return new LpsChain(left.ToParser(), Lp.Char(right));
-			return new LpsChain(left.m_parsers, new[] { Lp.Char(right) });
+			return new LpsChain(left._mParsers, new[] { Lp.Char(right) });
 		}
 
         /// <summary>
-        /// Оператор конкатенации цепочек парсеров.
+        /// Concatenation operator for parser chains.
         /// </summary>
         /// <param name="left">Chain parsers.</param>
         /// <param name="right">Search for a (following) characters.</param>
         /// <returns>parser.</returns>
         public static LpsChain operator + (LpsChain left, Func<char, bool> right)
         {
-            if (left.m_identifier != null)
+            if (left.Identifier != null)
                 return new LpsChain(left.ToParser(), Lp.One(right));
-            return new LpsChain(left.m_parsers, new[] { Lp.One(right) });
+            return new LpsChain(left._mParsers, new[] { Lp.One(right) });
         }
 
 		/// <summary>
-		/// Оператор конкатенации цепочек парсеров.
+		/// Concatenation operator for parser chains.
 		/// </summary>
-		/// <param name="left">Поиск первого символа.</param>
-		/// <param name="right">Поиск соответствия следующей цепочке парсеров.</param>
+		/// <param name="left">Search for the first character.</param>
+		/// <param name="right">Matching the next chain of parsers.</param>
 		/// <returns>parser.</returns>
         public static LpsChain operator + (char left, LpsChain right)
         {
-            if (right.m_identifier != null)
+            if (right.Identifier != null)
                 return new LpsChain(Lp.Char(left), right.ToParser());
-            return new LpsChain(new[] { Lp.Char(left) },  right.m_parsers);
+            return new LpsChain(new[] { Lp.Char(left) },  right._mParsers);
         }
 
         /// <summary>
-        /// Оператор конкатенации цепочек парсеров.
+        /// Concatenation operator for parser chains.
         /// </summary>
-        /// <param name="left">Поиск первого символа.</param>
-        /// <param name="right">Поиск соответствия следующей цепочке парсеров.</param>
+        /// <param name="left">Search for the first character.</param>
+        /// <param name="right">Matching the next chain of parsers.</param>
         /// <returns>parser.</returns>
         public static LpsChain operator + (Func<char, bool> left, LpsChain right)
         {
-            if (right.m_identifier != null)
+            if (right.Identifier != null)
                 return new LpsChain(Lp.One(left), right.ToParser());
-            return new LpsChain(new[] { Lp.One(left) }, right.m_parsers);
+            return new LpsChain(new[] { Lp.One(left) }, right._mParsers);
         }
 
 
 		/// <summary>
-		/// Оператор конкатенации цепочек парсеров.
+		/// Concatenation operator for parser chains.
 		/// </summary>
-		/// <param name="left">Поиск первого терма.</param>
-		/// <param name="right">Поиск соответствия следующей цепочке парсеров.</param>
+		/// <param name="left">Search for the first term.</param>
+		/// <param name="right">Matching the next chain of parsers.</param>
 		/// <returns>parser.</returns>
 		public static LpsChain operator + (string left, LpsChain right)
 		{
-            if (right.m_identifier != null)
+            if (right.Identifier != null)
                 return new LpsChain(Lp.Term(left), right.ToParser());
 
-            return new LpsChain(new[] { Lp.Term(left) }, right.m_parsers);
+            return new LpsChain(new[] { Lp.Term(left) }, right._mParsers);
 		}
 
 		/// <summary>
-		/// Оператор конкатенации цепочек парсеров.
+		/// Concatenation operator for parser chains.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Search for a (next) word.</param>
 		/// <returns>parser.</returns>
 		public static LpsChain operator + (LpsChain left, string right)
 		{
-            if (left.m_identifier != null)
+            if (left.Identifier != null)
                 return new LpsChain(left.ToParser(), Lp.Term(right));
 
-			return new LpsChain(left.m_parsers, new[] { Lp.Term(right) });
+			return new LpsChain(left._mParsers, new[] { Lp.Term(right) });
 		}
 
 
 		/// <summary>
-		/// Оператор Or. Либо цепочка либо цепочка.
+		/// Or operator. Either chain or chain.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Chain parsers.</param>
@@ -254,11 +254,11 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-		/// Оператор Or. Либо цепочка либо парсер.
+		/// Or operator. Either a chain or a parser.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Parser.</param>
-		/// <returns>Цепочка из двух альтернатив.</returns>
+		/// <returns>A chain of two alternatives.</returns>
 		public static LpsAlternatives operator | (LpsChain left, LpsParser right)
 		{
 			return left.ToParser() | right;
@@ -266,7 +266,7 @@ namespace Moppet.Lapa
 
 
 		/// <summary>
-		/// Оператор Or. Либо цепочка либо мультипарсер.
+		/// Or operator. Either chain or multi-parser.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Right multiparser.</param>
@@ -277,9 +277,9 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-		/// Оператор Or. Либо мультипарсер либо цепочка.
+		/// Or operator. Either a multi-parser or a chain.
 		/// </summary>
-		/// <param name="left">Левый мультипарсер.</param>
+		/// <param name="left">Left multi-parser.</param>
 		/// <param name="right">Chain parsers.</param>
 		/// <returns>Multiparser.</returns>
 		public static LpmParser operator | (LpmParser left, LpsChain right)
@@ -288,7 +288,7 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-		/// Оператор конкатенации мултипарсера к цепочке.
+		/// Multiparser-to-string concatenation operator.
 		/// </summary>
 		/// <param name="left">Chain parsers.</param>
 		/// <param name="right">Right odnorezultatny parser.</param>
@@ -341,32 +341,31 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Consistent application of combinatorial parsers.
 		/// </summary>
-		/// <param name="parsersList">Список парсеров.</param>
+		/// <param name="parsersList">List of parsers.</param>
 		/// <returns>The resulting parser.</returns>
 		public static Func<LpText, LpNode> Concat(IEnumerable<LpsParser> parsersList)
 		{
 			var parsers = parsersList.ToArray();
 			if (parsers.Length < 2)
-				throw new ArgumentOutOfRangeException("parsersList");
+				throw new ArgumentOutOfRangeException(nameof(parsersList));
 
 			return (text) =>
 			{
                 var children = new List<LpNode>(0x10);
                 var next = new LpNode(new LpText(text.Source, text.Index, 0), text);
 
-                int nextLen = 0;
-				for (int i = 0; i < parsers.Length; ++i)
-				{
-					next = parsers[i].Do(next.Rest);
-                    nextLen = next.Match.Length;
-                    if (nextLen < 0)
-                        return new LpNode(text);
+                foreach (var parser in parsers)
+                {
+	                next = parser.Do(next.Rest);
+	                var nextLen = next.Match.Length;
+	                if (nextLen < 0)
+		                return new LpNode(text);
 
-                    if (nextLen > 0)
-						children.Add(next);
-                    else if (nextLen == 0 && next.Id != null)
-                        children.Add(next);
-				}
+	                if (nextLen > 0)
+		                children.Add(next);
+	                else if (next.Id != null)
+		                children.Add(next);
+                }
                 if (children.Count == 0)
                     return new LpNode(text, next.Rest.Index - text.Index, null, null);
                 return new LpNode(text, next.Rest.Index - text.Index, null, children);
@@ -376,7 +375,7 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Consistent application of combinatorial parsers.
 		/// </summary>
-		/// <param name="parsersList">Список парсеров.</param>
+		/// <param name="parsersList">List of parsers.</param>
 		/// <param name="id">ID.</param>
 		/// <param name="wrapNode">wrapping result.</param>
 		/// <returns>The resulting parser.</returns>

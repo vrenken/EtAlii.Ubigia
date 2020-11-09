@@ -59,9 +59,9 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// The main constructor.
 		/// </summary>
-		/// <param name="source">Источник текста.</param>
-		/// <param name="index">Индекс на первый символ блока.</param>
-		/// <param name="length">Длинна блока.</param>
+		/// <param name="source">Source of text.</param>
+		/// <param name="index">The index to the first character of the block.</param>
+		/// <param name="length">Block length.</param>
 		public LpText(string source, int index, int length)
 		{
 			Source = source; Index = index; Length = length;
@@ -196,7 +196,7 @@ namespace Moppet.Lapa
         /// <returns>True if both structures are identical and Source refers to the same memory.</returns>
 		public override bool Equals(object obj)
 		{
-			LpText t = (LpText)obj;
+			var t = (LpText)obj;
 			return Index == t.Index && Length == t.Length && object.ReferenceEquals(Source, t.Source);
 		}
 
@@ -216,7 +216,7 @@ namespace Moppet.Lapa
         /// <returns>Перечислитель символов.</returns>
         public IEnumerator<char> GetEnumerator()
         {
-            for (int i = 0; i < Length; ++i)
+            for (var i = 0; i < Length; ++i)
                 yield return Source[Index + i];
         }
 

@@ -8,10 +8,10 @@
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
-using System;
-
-namespace Moppet.Lapa
+namespace Moppet.Lapa.Parsers
 {
+    using System;
+
     /// <summary>
     /// The parser date and time.
     /// List format: http://msdn.microsoft.com/ru-ru/library/saw4x629.aspx.

@@ -23,16 +23,16 @@ namespace Moppet.Lapa
 	/// </summary>
 	public static partial class Lp
 	{
-        /// <summary> 
-        /// Returns all the search matches throughout the text. 
-        /// Sequence is applied to the text parser, passing the remainder of the previous parser successful outcome, until 
-        /// While the text is recognized. Returns all matching results. Found between compliance can not be 
-        /// Breaks. 
-        /// </Summary> 
-        /// <param Name="parser">parser.</Param> 
-        /// <param Name="text">block of text.</Param> 
-        /// <returns>Results.</Returns>
-        public static IEnumerable<LpNode> Matches(LpmParser parser, LpText text)
+		/// <summary> 
+		/// Returns all the search matches throughout the text. 
+		/// Sequence is applied to the text parser, passing the remainder of the previous parser successful outcome, until 
+		/// While the text is recognized. Returns all matching results. Found between compliance can not be 
+		/// Breaks. 
+		/// </Summary> 
+		/// <param name="parser">parser.</param>
+		/// <param name="text">block of text.</param>
+		/// <returns>Results.</Returns>
+		public static IEnumerable<LpNode> Matches(LpmParser parser, LpText text)
 		{
 			foreach (var res in parser.Do(text))
 			{
@@ -104,7 +104,7 @@ namespace Moppet.Lapa
             {
                 if (p.Length <= 0 || !char.IsDigit(p[0]))
                     return new LpNode(p);
-                int value = (p[0] - '0');
+                var value = (p[0] - '0');
                 return (minDigitValue >= value && value <= maxDigitValue) ? new LpNode(p, 1) : new LpNode(p);
             });
         }
@@ -177,7 +177,7 @@ namespace Moppet.Lapa
 
             return new LpsParser((text) =>
             {
-                int end = text.Length > maxCount ? (maxCount + 1) : text.Length;
+                var end = text.Length > maxCount ? (maxCount + 1) : text.Length;
                 int cur = 0, ind = text.Index;
                 var str = text.Source;
                 while (cur < end && str[ind] == ch) { ++ind; ++cur; }
@@ -304,12 +304,13 @@ namespace Moppet.Lapa
             return new LpsParser((text) => text.StartsWith(term) ? new LpNode(text, term.Length) : new LpNode(text));
 		}
 
-        /// <summary>
-        /// Parser that looks for matches for the specified term.
-        /// </summary>
-        /// <param name="term">Word, ie any sequence of characters.</param>
-        /// <returns>result.</returns>
-        public static LpsParser Term(string term, bool ignoreCase)
+		/// <summary>
+		/// Parser that looks for matches for the specified term.
+		/// </summary>
+		/// <param name="term">Word, ie any sequence of characters.</param>
+		/// <param name="ignoreCase"></param>
+		/// <returns>result.</returns>
+		public static LpsParser Term(string term, bool ignoreCase)
         {
             return new LpsParser((text) => text.StartsWith(term, ignoreCase) ? new LpNode(text, term.Length) : new LpNode(text));
         }
@@ -333,15 +334,15 @@ namespace Moppet.Lapa
             //
             return new LpsParser((text) =>
             {
-                int wc = words.Length;
-                int tl = text.Length;
+                var wc = words.Length;
+                var tl = text.Length;
 
                 if (tl <= 0)
                     return new LpNode(text);
 
-                for (int i = 0; i < wc; ++i)
+                for (var i = 0; i < wc; ++i)
                 {
-                    string word = words[i];
+                    var word = words[i];
                     if (text.StartsWith(word))
                         return new LpNode(text, word.Length);
                 }
@@ -351,11 +352,12 @@ namespace Moppet.Lapa
 
         /// <summary>
         /// Parser that looks for matches for any given word. 
-        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b ​​and c - is the word. 
+        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b and c - is the word. 
         /// Words are matched in the order in which they are passed as arguments. 
         /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if 
         /// We seek "(a | ab)", it is found only the first letter.
         /// </summary>
+        /// <param name="ignoreCase"></param>
         /// <param name="words">Words. Empty words can not pass here.</param>
         /// <returns>The result for one of the words found.</returns>
         public static LpsParser Any(bool ignoreCase, params string[] words)
@@ -368,15 +370,15 @@ namespace Moppet.Lapa
             //
             return new LpsParser((text) =>
             {
-                int wc = words.Length;
-                int tl = text.Length;
+                var wc = words.Length;
+                var tl = text.Length;
 
                 if (tl <= 0)
                     return new LpNode(text);
 
-                for (int i = 0; i < wc; ++i)
+                for (var i = 0; i < wc; ++i)
                 {
-                    string word = words[i];
+                    var word = words[i];
                     if (text.StartsWith(word, ignoreCase))
                         return new LpNode(text, word.Length);
                 }
@@ -482,7 +484,7 @@ namespace Moppet.Lapa
 		/// <returns>node or null.</returns>
 		public static LpNode Max(this IEnumerable<LpNode> results)
 		{
-			int maxLen = -int.MaxValue;
+			var maxLen = -int.MaxValue;
 			LpNode maxResult = null;
 
 			foreach (var r in results)
@@ -769,8 +771,8 @@ namespace Moppet.Lapa
 		/// <returns>Successful compliance without reserve or line failure.</returns>
 		public static LpNode EndsWith(this LpText text, LpsParser parser)
 		{
-			int initialLength = text.Length;
-			int currentLength = 0;
+			var initialLength = text.Length;
+			var currentLength = 0;
 			
 			while (++currentLength <= initialLength)
 			{
@@ -905,8 +907,8 @@ namespace Moppet.Lapa
 					var rest = last.Rest;
 					if (!(rest.Length > 0 && rest[0] == delimiter))
 						break;
-					LpNode delim = new LpNode(rest, 1);
-					LpNode next = listItem.Do(delim.Rest);
+					var delim = new LpNode(rest, 1);
+					var next = listItem.Do(delim.Rest);
 					if (!next.Success)
 						break;
 					last = next;
@@ -940,10 +942,10 @@ namespace Moppet.Lapa
 
 				while (last.Success)
 				{
-					LpNode delim = delimiter.Do(last.Rest);
+					var delim = delimiter.Do(last.Rest);
 					if (!delim.Success)
 						break;
-					LpNode next = listItem.Do(delim.Rest);
+					var next = listItem.Do(delim.Rest);
 					if (!next.Success)
 						break;
 					last = next;
@@ -966,22 +968,22 @@ namespace Moppet.Lapa
 
 				while(last.Success)
 				{
-					LpNode s_left = maybeSpaces.Do(last.Rest);
-					LpNode delim  = delimiter.Do(s_left.Rest);
+					var left = maybeSpaces.Do(last.Rest);
+					var delim  = delimiter.Do(left.Rest);
 					if (!delim.Success)
 						break;
-					LpNode s_right = maybeSpaces.Do(delim.Rest);
-					var next = listItem.Do(s_right.Rest);
+					var right = maybeSpaces.Do(delim.Rest);
+					var next = listItem.Do(right.Rest);
 					if (!next.Success)
 						break;
 
 					// Add spaces, the separator and the list item.
 					last = next;
-					if (s_left.Success && s_left.Match.Length > 0)
-						children.Add(s_left);
+					if (left.Success && left.Match.Length > 0)
+						children.Add(left);
 					children.Add(delim);
-					if (s_right.Success && s_right.Match.Length > 0)
-						children.Add(s_right);
+					if (right.Success && right.Match.Length > 0)
+						children.Add(right);
 					children.Add(last);
 				}
                 //TODO: Clean up of children and extra blank check,,,
@@ -1018,7 +1020,7 @@ namespace Moppet.Lapa
                 var children = new List<LpNode>(0x10);
 
 				LpNode center = null;
-				LpNode last = maybeLeft.Do(text);
+				var last = maybeLeft.Do(text);
 				if (last.Match.Length > 0)
 				{
 					children.Add(last);
@@ -1198,7 +1200,7 @@ namespace Moppet.Lapa
 		/// <returns>Purified from duplicate sequence.</returns>
 		public static IEnumerable<LpNode> DistinctVoids(this IEnumerable<LpNode> variants)
 		{
-			bool first = true;
+			var first = true;
 			foreach (var v in variants)
 			{
 				if (v.Match.Length == 0)
@@ -1247,7 +1249,7 @@ namespace Moppet.Lapa
 				// Replays must always clean because the parsing in adverse outcomes can grow exponentially.
 				results = results.DistinctMatches();
 				
-				bool empty = true;
+				var empty = true;
 				foreach (var oneResult in results)
 				{
 					empty = false;
@@ -1627,89 +1629,90 @@ namespace Moppet.Lapa
 
 
 
-        /// <summary>
-        /// Implements the template (first + Maybenext{0,1}). 
-        /// Very similar to the combiner NextZeroOrMore, no otličaetsâ thereof only tem cto instead of {0} worth {0,1}.
-        /// </summary>
-        /// <param name="first">Parser first element.</param>
-        /// <param name="maybeNext">Parser subsequent elements.</param>
-        /// <returns>parser.</returns>
-        /*
-        [Obsolete("Protests add unit tests.")]
-        public static LpsParser MaybeNext(this LpUncover<LpsParser, LpNode> first, LpUncover<LpsParser, LpNode> maybeNext)
-        {
-            if (!first.Uncover && !maybeNext.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
-            {
-                var nFirst = first.Parser.Do(text);
-                if (!nFirst.Success)
-                    return nFirst;
-                var nNext = maybeNext.Parser.Do(nFirst.Rest);
-                if (nNext.Match.Length <= 0)
-                    return nFirst;
-                return nFirst.Match.Length <= 0 ? nNext : new LpNode(text, nNext.Rest.Index - text.Index, null, nFirst, nNext);
-            });
+		/*
+		/// <summary>
+		/// Implements the template (first + Maybenext{0,1}). 
+		/// Very similar to the combiner NextZeroOrMore, no otličaetsâ thereof only tem cto instead of {0} worth {0,1}.
+		/// </summary>
+		/// <param name="first">Parser first element.</param>
+		/// <param name="maybeNext">Parser subsequent elements.</param>
+		/// <returns>parser.</returns>
+		[Obsolete("Protests add unit tests.")]
+		public static LpsParser MaybeNext(this LpUncover<LpsParser, LpNode> first, LpUncover<LpsParser, LpNode> maybeNext)
+		{
+		    if (!first.Uncover && !maybeNext.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+		    {
+		        var nFirst = first.Parser.Do(text);
+		        if (!nFirst.Success)
+		            return nFirst;
+		        var nNext = maybeNext.Parser.Do(nFirst.Rest);
+		        if (nNext.Match.Length <= 0)
+		            return nFirst;
+		        return nFirst.Match.Length <= 0 ? nNext : new LpNode(text, nNext.Rest.Index - text.Index, null, nFirst, nNext);
+		    });
 
 
-            // maybeNext.Uncover
-            if (maybeNext.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
-            {
-                var next = first.Parser.Do(text);
-                if (!next.Success)
-                    return next;
+		    // maybeNext.Uncover
+		    if (maybeNext.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+		    {
+		        var next = first.Parser.Do(text);
+		        if (!next.Success)
+		            return next;
 
-                var list = new List<LpNode>(0x10);
-                if (first.Uncover)
-                    list.AddChildrenOrNodeOrNothing(next);
-                else if (next.Match.Length > 0)
-                    list.Add(next);
+		        var list = new List<LpNode>(0x10);
+		        if (first.Uncover)
+		            list.AddChildrenOrNodeOrNothing(next);
+		        else if (next.Match.Length > 0)
+		            list.Add(next);
 
-                next = maybeNext.Parser.Do(next.Rest);
-                if (next.Match.Length > 0)
-                    list.AddChildrenOrNodeOrNothing(next);
+		        next = maybeNext.Parser.Do(next.Rest);
+		        if (next.Match.Length > 0)
+		            list.AddChildrenOrNodeOrNothing(next);
 
-                if (list.Count <= 1)
-                    return list.Count == 0 ? next : list[0];
-                return new LpNode(text, next.Rest.Index - text.Index, null, list);
-            });
+		        if (list.Count <= 1)
+		            return list.Count == 0 ? next : list[0];
+		        return new LpNode(text, next.Rest.Index - text.Index, null, list);
+		    });
 
 
-            return new LpsParser(id: null, wrapNode: true, parser: (text) =>
-            {
-                var next = first.Parser.Do(text);
-                if (!next.Success)
-                    return next;
+		    return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+		    {
+		        var next = first.Parser.Do(text);
+		        if (!next.Success)
+		            return next;
 
-                var list = new List<LpNode>(0x10);
-                if (first.Uncover)
-                    list.AddChildrenOrNodeOrNothing(next);
-                else if (next.Match.Length > 0)
-                    list.Add(next);
+		        var list = new List<LpNode>(0x10);
+		        if (first.Uncover)
+		            list.AddChildrenOrNodeOrNothing(next);
+		        else if (next.Match.Length > 0)
+		            list.Add(next);
 
-                next = maybeNext.Parser.Do(next.Rest);
-                if (next.Match.Length > 0)
-                    list.Add(next);
+		        next = maybeNext.Parser.Do(next.Rest);
+		        if (next.Match.Length > 0)
+		            list.Add(next);
 
-                if (list.Count <= 1)
-                    return list.Count == 0 ? next : list[0];
-                return new LpNode(text, next.Rest.Index - text.Index, null, list);
-            });
-        }
-         */
+		        if (list.Count <= 1)
+		            return list.Count == 0 ? next : list[0];
+		        return new LpNode(text, next.Rest.Index - text.Index, null, list);
+		    });
+		}
+		 */
 
-        /// <summary>
-        /// implements template  (first + maybeNext{0,1}).
-        /// Very similar to the combinatorial NextZeroOrMore, but the only difference is that instead of {0} worth {0,1}.
-        /// </summary>
-        /// <param name="first">Parser first element.</param>
-        /// <param name="maybeNext">Parser subsequent elements.</param>
-        /// <returns>parser.</returns>
-        /*
-        public static LpsParser MaybeNext(this LpsChain first, LpUncover<LpsParser, LpNode> maybeNext)
-        {
-            return MaybeNext((LpUncover<LpsParser, LpNode>)first.ToParser(), maybeNext);
-        }
-        */
+		/*
+		/// <summary>
+		/// implements template  (first + maybeNext{0,1}).
+		/// Very similar to the combinatorial NextZeroOrMore, but the only difference is that instead of {0} worth {0,1}.
+		/// </summary>
+		/// <param name="first">Parser first element.</param>
+		/// <param name="maybeNext">Parser subsequent elements.</param>
+		/// <returns>parser.</returns>
+		public static LpsParser MaybeNext(this LpsChain first, LpUncover<LpsParser, LpNode> maybeNext)
+		{
+		    return MaybeNext((LpUncover<LpsParser, LpNode>)first.ToParser(), maybeNext);
+		}
+		*/
 
+		/*
         /// <summary>
         ///implements template(first + maybeNext{0,1}).
         /// Very similar to the combinatorial NextZeroOrMore, but the only difference is that instead {0,} worth {0,1}.
@@ -1717,26 +1720,25 @@ namespace Moppet.Lapa
         /// <param name="first">Parser first element.</param>
         /// <param name="maybeNext">Parser subsequent elements.</param>
         /// <returns>parser.</returns>
-        /*
         public static LpsParser MaybeNext(this LpsParser first, LpUncover<LpsParser, LpNode> maybeNext)
         {
             return MaybeNext((LpUncover<LpsParser, LpNode>)first, maybeNext);
         }
         */
 
-        /// <summary>
-        /// implements template (first + maybeNext{0,1}).
-        /// Very similar to the combinatorial NextZeroOrMore, but the only difference is that instead {0,} worth {0,1}.
-        /// </summary>
-        /// <param name="first">Parser first element.</param>
-        /// <param name="maybeNext">Parser subsequent elements.</param>
-        /// <returns>parser.</returns>
-        /*
-        public static LpsParser MaybeNext(this LpsParser first, LpsChain maybeNext)
-        {
-            return MaybeNext((LpUncover<LpsParser, LpNode>)first, maybeNext.ToParser());
-        }
-        */
+		/*
+		/// <summary>
+		/// implements template (first + maybeNext{0,1}).
+		/// Very similar to the combinatorial NextZeroOrMore, but the only difference is that instead {0,} worth {0,1}.
+		/// </summary>
+		/// <param name="first">Parser first element.</param>
+		/// <param name="maybeNext">Parser subsequent elements.</param>
+		/// <returns>parser.</returns>
+		public static LpsParser MaybeNext(this LpsParser first, LpsChain maybeNext)
+		{
+		    return MaybeNext((LpUncover<LpsParser, LpNode>)first, maybeNext.ToParser());
+		}
+		*/
 
 		/// <summary>
 		/// Function to add a node to the list.
@@ -1855,7 +1857,7 @@ namespace Moppet.Lapa
 			while (true)
 			{
 
-				bool empty = true;
+				var empty = true;
 
 				// Replays must always clean because the parsing in adverse outcomes can grow exponentially.
 				results = results.DistinctMatches();

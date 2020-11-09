@@ -15,14 +15,14 @@ using System;
 namespace Moppet.Lapa
 {
 	/// <summary>
-	/// Класс, который помогает строить рекурсивный парсер для разбора некоторого выражения в скобках.
-	/// Выражение может быть заключено в скобки многократно, например ((expr)).
+	/// A class that helps build a recursive parser for parsing some expression in parentheses.
+	/// An expression can be parenthesized multiple times, for example ((expr)).
 	/// </summary>
 	public class LpBrackets
 	{
-	    readonly LpsParser m_openBracket;
-	    readonly LpsParser m_closeBracket;
-	    readonly LpsParser m_body;
+	    private readonly LpsParser _openBracket;
+	    private readonly LpsParser _closeBracket;
+	    private readonly LpsParser _body;
 
 		/// <summary>
 		/// Конструктор.
@@ -41,23 +41,23 @@ namespace Moppet.Lapa
 			if (closeBracket == null)
 				throw new ArgumentNullException("closeBracket");
 
-			m_openBracket = openBracket;
-			m_body = body;
-			m_closeBracket = closeBracket;
+			_openBracket = openBracket;
+			_body = body;
+			_closeBracket = closeBracket;
 		}
 
 		/// <summary>
-		/// Основная функция - парсер.
+		/// The main function is a parser.
 		/// </summary>
-		/// <param name="t">Блок текста.</param>
+		/// <param name="t">Block text.</param>
 		/// <returns>result.</returns>
 		public LpNode Do(LpText t)
 		{
-			var open = m_openBracket.Do(t);
+			var open = _openBracket.Do(t);
 			if (!open.Success)
                 return open;
 
-			var body = m_body.Do(open.Rest);
+			var body = _body.Do(open.Rest);
 
 			if (!body.Success)
 				body = Do(open.Rest);
@@ -65,7 +65,7 @@ namespace Moppet.Lapa
 			if (!body.Success)
                 return body;
 
-			var close = m_closeBracket.Do(body.Rest);
+			var close = _closeBracket.Do(body.Rest);
 			if (!close.Success)
                 return close;
 

@@ -91,14 +91,14 @@ namespace Moppet.Lapa.Parsers
             // Несмотря на то что конечные автоматы не приветствуются, здесь ему самое место, ибо он существенно сократил код и его понимание.
             var name_ = new LpsParser((t) =>
             {
-                int state = Start;
-                int iPoint = -1;
-                int i = -1;
-                int len = t.Length;
+                var state = Start;
+                var iPoint = -1;
+                var i = -1;
+                var len = t.Length;
                 
                 while(++i < len)
                 {
-                    char c = t[i];
+                    var c = t[i];
                     switch (state)
                     {
                         case Start:

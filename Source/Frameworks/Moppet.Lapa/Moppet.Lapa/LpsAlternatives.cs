@@ -7,13 +7,12 @@
 // Email: x-ronos@yandex.ru
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Moppet.Lapa
 {
+	using System;
+	using System.Collections.Generic;
+	using System.Linq;
+
     // Attention can not be in this class to use the implicit cast to LpsParser! 
     // This leads to the fact that the reduction manifests itself not where it should.
     //
@@ -29,7 +28,7 @@ namespace Moppet.Lapa
 		/// <summary>
         /// List parsers.
 		/// </summary>
-		List<LpsParser> m_parsers = new List<LpsParser>();
+		private List<LpsParser> _mParsers = new List<LpsParser>();
 
 		/// <summary>
 		/// The default constructor.
@@ -43,16 +42,16 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="left">Left chain.</param>
 		/// <param name="right">Right chain.</param>
-		public LpsAlternatives(IEnumerable<LpsParser> left, IEnumerable<LpsParser> right)
+		public LpsAlternatives(ICollection<LpsParser> left, ICollection<LpsParser> right)
 		{
             if (left.Any(l => l == null))
-                throw new ArgumentNullException("left", "One of item in arguments is null.");
+                throw new ArgumentNullException(nameof(left), "One of item in arguments is null.");
             if (right.Any(r => r == null))
-                throw new ArgumentNullException("right", "One of item in arguments is null.");
+                throw new ArgumentNullException(nameof(right), "One of item in arguments is null.");
 
-            m_parsers = new List<LpsParser>(left.Count() + right.Count());
-            m_parsers.AddRange(left);
-            m_parsers.AddRange(right);
+            _mParsers = new List<LpsParser>(left.Count + right.Count);
+            _mParsers.AddRange(left);
+            _mParsers.AddRange(right);
 		}
 
 		/// <summary>
@@ -61,12 +60,12 @@ namespace Moppet.Lapa
 		/// <param name="parsers">Parser.</param>
 		public LpsAlternatives(params LpsParser[] parsers)
 		{
-			m_parsers = new List<LpsParser>(parsers.Length);
+			_mParsers = new List<LpsParser>(parsers.Length);
 			foreach (var p in parsers)
 			{
 				if (p == null)
-					throw new ArgumentNullException("parsers", "One of item in arguments is null.");
-				m_parsers.Add(p);
+					throw new ArgumentNullException(nameof(parsers), "One of item in arguments is null.");
+				_mParsers.Add(p);
 			}
 		}
 
@@ -77,8 +76,8 @@ namespace Moppet.Lapa
 		public override LpsAlternatives Copy()
 		{
 			var c = base.Copy();
-			c.m_parsers = new List<LpsParser>(m_parsers.Count + 1);
-			c.m_parsers.AddRange(m_parsers);
+			c._mParsers = new List<LpsParser>(_mParsers.Count + 1);
+			c._mParsers.AddRange(_mParsers);
 			return c;
 		}
 
@@ -90,7 +89,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public LpsParser TakeFirst()
 		{
-			return TakeFirst(Identifier, m_parsers);
+			return TakeFirst(Identifier, _mParsers);
 		}
 
 		/// <summary>
@@ -102,7 +101,7 @@ namespace Moppet.Lapa
 		/// <returns>The resulting parser.</returns>
 		public LpsParser TakeFirst(LpsParser ifBehind)
 		{
-			return TakeFirst(Identifier, m_parsers, ifBehind);
+			return TakeFirst(Identifier, _mParsers, ifBehind);
 		}
 
 		/// <summary>
@@ -111,7 +110,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public LpsParser TakeMax()
 		{
-			var copyParsers = m_parsers.ToArray();
+			var copyParsers = _mParsers.ToArray();
             return new LpsParser(Identifier, (text) => All(text, copyParsers).Max() ?? new LpNode(Identifier, text));
 		}
 
@@ -121,7 +120,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public LpmParser TakeAll()
 		{
-			var copyParsers = m_parsers.ToArray();
+			var copyParsers = _mParsers.ToArray();
 			return new LpmParser(Identifier, (text) => All(text, copyParsers).DistinctMatches()); // DistinctVoids
 		}
 
@@ -156,7 +155,7 @@ namespace Moppet.Lapa
 		public static LpsChain operator + (LpsAlternatives left, LpsParser right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
+				throw new ArgumentNullException(nameof(right));
 			return left.TakeFirst() + right;
 		}
 
@@ -170,7 +169,7 @@ namespace Moppet.Lapa
 		public static LpsChain operator + (LpsParser left, LpsAlternatives right)
 		{
 			if (left == null)
-				throw new ArgumentNullException("left");
+				throw new ArgumentNullException(nameof(left));
 			return left + right.TakeFirst();
 		}
 
@@ -206,7 +205,7 @@ namespace Moppet.Lapa
 		public static LpsChain operator + (LpsAlternatives left, string right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
+				throw new ArgumentNullException(nameof(right));
 			return left.TakeFirst() + Lp.Term(right);
 		}
 
@@ -219,7 +218,7 @@ namespace Moppet.Lapa
 		public static LpmParser operator + (LpsAlternatives left, LpmParser right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
+				throw new ArgumentNullException(nameof(right));
 			return left.TakeFirst() + right;
 		}
 
@@ -232,7 +231,7 @@ namespace Moppet.Lapa
 		public static LpmParser operator + (LpmParser left, LpsAlternatives right)
 		{
 			if (left == null)
-				throw new ArgumentNullException("left");
+				throw new ArgumentNullException(nameof(left));
 			return left + right.TakeFirst();
 		}
 
@@ -245,7 +244,7 @@ namespace Moppet.Lapa
 		public static LpmParser operator | (LpsAlternatives left, LpmParser right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
+				throw new ArgumentNullException(nameof(right));
 			return left.TakeFirst() | right;
 		}
 
@@ -257,7 +256,7 @@ namespace Moppet.Lapa
 		/// <returns>Results in a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsAlternatives left, LpsAlternatives right)
 		{
-			return new LpsAlternatives(left.m_parsers, right.m_parsers);
+			return new LpsAlternatives(left._mParsers, right._mParsers);
 		}
 
 		/// <summary>
@@ -279,7 +278,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsAlternatives left, char ch)
 		{
-			return new LpsAlternatives(left.m_parsers, new[] { Lp.Char(ch) });
+			return new LpsAlternatives(left._mParsers, new[] { Lp.Char(ch) });
 		}
 
 		/// <summary>
@@ -290,7 +289,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (char ch, LpsAlternatives right)
 		{
-			return new LpsAlternatives(new[] { Lp.Char(ch) }, right.m_parsers);
+			return new LpsAlternatives(new[] { Lp.Char(ch) }, right._mParsers);
 		}
 
 		/// <summary>
@@ -302,8 +301,8 @@ namespace Moppet.Lapa
 		public static LpsAlternatives operator | (LpsAlternatives left, string term)
 		{
 			if (term == null)
-				throw new ArgumentNullException("term");
-			return new LpsAlternatives(left.m_parsers, new[] { Lp.Term(term) });
+				throw new ArgumentNullException(nameof(term));
+			return new LpsAlternatives(left._mParsers, new[] { Lp.Term(term) });
 		}
 
 		/// <summary>
@@ -315,8 +314,8 @@ namespace Moppet.Lapa
 		public static LpsAlternatives operator | (LpsAlternatives left, LpsParser right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
-			return new LpsAlternatives(left.m_parsers, new [] { right });
+				throw new ArgumentNullException(nameof(right));
+			return new LpsAlternatives(left._mParsers, new [] { right });
 		}
 
 		/// <summary>
@@ -327,7 +326,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsParser left, LpsAlternatives right)
 		{
-			return new LpsAlternatives(new[] { left }, right.m_parsers);
+			return new LpsAlternatives(new[] { left }, right._mParsers);
 		}
 
 		/// <summary>
@@ -342,7 +341,7 @@ namespace Moppet.Lapa
             // return left.ToParser() | right.TakeFirst();
 
             // Right behaviour
-            return new LpsAlternatives(new[] { left.ToParser() }, right.m_parsers);
+            return new LpsAlternatives(new[] { left.ToParser() }, right._mParsers);
 		}
 
 		/// <summary>
