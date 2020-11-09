@@ -27,7 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="_Shared\**.*.cs" />
-    <None Update="Properties\Resources.tt">
+    <None Update="Properties\Resources.tt.tmp">
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
   </ItemGroup>
