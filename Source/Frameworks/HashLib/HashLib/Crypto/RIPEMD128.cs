@@ -1,4 +1,6 @@
-﻿namespace HashLib.Crypto
+﻿// ReSharper disable all
+
+namespace HashLib.Crypto
 {
     internal class RIPEMD128 : MDBase
     {

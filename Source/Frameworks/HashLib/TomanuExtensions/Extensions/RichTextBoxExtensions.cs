@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿// ReSharper disable all
+
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace TomanuExtensions

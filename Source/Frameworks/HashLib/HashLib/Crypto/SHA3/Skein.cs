@@ -1,3 +1,5 @@
+// ReSharper disable all
+
 using System;
 using System.Diagnostics;
 

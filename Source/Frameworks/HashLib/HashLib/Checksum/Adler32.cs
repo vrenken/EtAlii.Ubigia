@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+// ReSharper disable all
 
 namespace HashLib.Checksum
 {

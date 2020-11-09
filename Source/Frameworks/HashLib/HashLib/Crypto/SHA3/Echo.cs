@@ -1,3 +1,5 @@
+// ReSharper disable all
+
 namespace HashLib.Crypto.SHA3
 {
     internal class Echo224 : Echo256Base

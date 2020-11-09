@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable all
+
+using System;
 using System.Diagnostics;
 
 namespace HashLib.Hash32

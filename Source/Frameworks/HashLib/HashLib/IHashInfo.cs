@@ -1,4 +1,6 @@
-﻿namespace HashLib
+﻿// ReSharper disable all
+
+namespace HashLib
 {
     public interface ICrypto : IHash, IBlockHash
     {

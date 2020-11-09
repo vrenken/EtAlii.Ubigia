@@ -1,4 +1,6 @@
-﻿namespace HashLib.Crypto
+﻿// ReSharper disable all
+
+namespace HashLib.Crypto
 {
     internal class SHA512 : SHA512Base
     {

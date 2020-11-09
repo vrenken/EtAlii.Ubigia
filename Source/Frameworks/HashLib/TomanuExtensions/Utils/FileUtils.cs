@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable all
+
+using System;
 using System.IO;
 
 namespace TomanuExtensions.Utils

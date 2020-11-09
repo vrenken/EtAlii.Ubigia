@@ -1,3 +1,5 @@
+// ReSharper disable all
+
 namespace HashLib.Crypto
 {
     internal class Grindahl512 : BlockHash, ICryptoNotBuildIn

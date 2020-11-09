@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Text;
+// ReSharper disable all
 
 namespace HashLib
 {

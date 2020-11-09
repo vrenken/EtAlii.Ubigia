@@ -1,4 +1,6 @@
-﻿namespace HashLib.Crypto
+﻿// ReSharper disable all
+
+namespace HashLib.Crypto
 {
     internal class Haval_3_128 : Haval3
     {
