@@ -54,7 +54,7 @@ jobs:
             **/*.csproj
             !**/ProjectToExclude.csproj
           feedsToUse: config
-          nugetConfigPath: NuGet.config
+          nugetConfigPath: ./NuGet.config
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
