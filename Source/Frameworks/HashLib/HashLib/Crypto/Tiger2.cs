@@ -1,4 +1,6 @@
-﻿namespace HashLib.Crypto
+﻿// ReSharper disable all
+
+namespace HashLib.Crypto
 {
     internal class Tiger2 : BlockHash, ICryptoNotBuildIn
     {

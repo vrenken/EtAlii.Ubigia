@@ -1,4 +1,6 @@
-﻿namespace HashLib.Hash32
+﻿// ReSharper disable all
+
+namespace HashLib.Hash32
 {
     internal class Jenkins3 : MultipleTransformNonBlock, IHash32
     {

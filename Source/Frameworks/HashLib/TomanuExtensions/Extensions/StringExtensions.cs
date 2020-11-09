@@ -1,4 +1,6 @@
-﻿namespace TomanuExtensions
+﻿// ReSharper disable all
+
+namespace TomanuExtensions
 {
     using System.Collections.Generic;
     using System.Diagnostics;

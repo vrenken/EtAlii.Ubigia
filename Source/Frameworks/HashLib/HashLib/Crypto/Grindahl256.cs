@@ -1,3 +1,4 @@
+// ReSharper disable all
 
 namespace HashLib.Crypto
 {

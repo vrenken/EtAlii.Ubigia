@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿// ReSharper disable all
+
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Xml.Linq;

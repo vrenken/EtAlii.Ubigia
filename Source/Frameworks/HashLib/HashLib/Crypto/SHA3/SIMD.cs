@@ -1,3 +1,5 @@
+// ReSharper disable all
+
 using System;
 
 namespace HashLib.Crypto.SHA3
@@ -654,35 +656,35 @@ namespace HashLib.Crypto.SHA3
             u = a_y[a_index + stripe * 0];
             v = a_y[a_index + stripe * 8];
             a_y[a_index + stripe * 0] = u + v;
-            a_y[a_index + stripe * 8] = (u - v) << 0; ;
+            a_y[a_index + stripe * 8] = (u - v) << 0; 
             u = a_y[a_index + stripe * 1];
             v = a_y[a_index + stripe * 9];
             a_y[a_index + stripe * 1] = u + v;
-            a_y[a_index + stripe * 9] = (u - v) << 1; ;
+            a_y[a_index + stripe * 9] = (u - v) << 1; 
             u = a_y[a_index + stripe * 2];
             v = a_y[a_index + stripe * 10];
             a_y[a_index + stripe * 2] = u + v;
-            a_y[a_index + stripe * 10] = (u - v) << 2; ;
+            a_y[a_index + stripe * 10] = (u - v) << 2; 
             u = a_y[a_index + stripe * 3];
             v = a_y[a_index + stripe * 11];
             a_y[a_index + stripe * 3] = u + v;
-            a_y[a_index + stripe * 11] = (u - v) << 3; ;
+            a_y[a_index + stripe * 11] = (u - v) << 3; 
             u = a_y[a_index + stripe * 4];
             v = a_y[a_index + stripe * 12];
             a_y[a_index + stripe * 4] = u + v;
-            a_y[a_index + stripe * 12] = (u - v) << 4; ;
+            a_y[a_index + stripe * 12] = (u - v) << 4; 
             u = a_y[a_index + stripe * 5];
             v = a_y[a_index + stripe * 13];
             a_y[a_index + stripe * 5] = u + v;
-            a_y[a_index + stripe * 13] = (u - v) << 5; ;
+            a_y[a_index + stripe * 13] = (u - v) << 5; 
             u = a_y[a_index + stripe * 6];
             v = a_y[a_index + stripe * 14];
             a_y[a_index + stripe * 6] = u + v;
-            a_y[a_index + stripe * 14] = (u - v) << 6; ;
+            a_y[a_index + stripe * 14] = (u - v) << 6; 
             u = a_y[a_index + stripe * 7];
             v = a_y[a_index + stripe * 15];
             a_y[a_index + stripe * 7] = u + v;
-            a_y[a_index + stripe * 15] = (u - v) << 7; ;
+            a_y[a_index + stripe * 15] = (u - v) << 7; 
 
             a_y[a_index + stripe * 11] = ((a_y[a_index + stripe * 11] & 255) - (a_y[a_index + stripe * 11] >> 8));
             a_y[a_index + stripe * 12] = ((a_y[a_index + stripe * 12] & 255) - (a_y[a_index + stripe * 12] >> 8));
@@ -693,35 +695,35 @@ namespace HashLib.Crypto.SHA3
             u = a_y[a_index + stripe * 0];
             v = a_y[a_index + stripe * 4];
             a_y[a_index + stripe * 0] = u + v;
-            a_y[a_index + stripe * 4] = (u - v) << 0; ;
+            a_y[a_index + stripe * 4] = (u - v) << 0; 
             u = a_y[a_index + stripe * 8];
             v = a_y[a_index + stripe * 12];
             a_y[a_index + stripe * 8] = u + v;
-            a_y[a_index + stripe * 12] = (u - v) << 0; ;
+            a_y[a_index + stripe * 12] = (u - v) << 0; 
             u = a_y[a_index + stripe * 1];
             v = a_y[a_index + stripe * 5];
             a_y[a_index + stripe * 1] = u + v;
-            a_y[a_index + stripe * 5] = (u - v) << 2; ;
+            a_y[a_index + stripe * 5] = (u - v) << 2;
             u = a_y[a_index + stripe * 9];
             v = a_y[a_index + stripe * 13];
             a_y[a_index + stripe * 9] = u + v;
-            a_y[a_index + stripe * 13] = (u - v) << 2; ;
+            a_y[a_index + stripe * 13] = (u - v) << 2; 
             u = a_y[a_index + stripe * 2];
             v = a_y[a_index + stripe * 6];
             a_y[a_index + stripe * 2] = u + v;
-            a_y[a_index + stripe * 6] = (u - v) << 4; ;
+            a_y[a_index + stripe * 6] = (u - v) << 4; 
             u = a_y[a_index + stripe * 10];
             v = a_y[a_index + stripe * 14];
             a_y[a_index + stripe * 10] = u + v;
-            a_y[a_index + stripe * 14] = (u - v) << 4; ;
+            a_y[a_index + stripe * 14] = (u - v) << 4; 
             u = a_y[a_index + stripe * 3];
             v = a_y[a_index + stripe * 7];
             a_y[a_index + stripe * 3] = u + v;
-            a_y[a_index + stripe * 7] = (u - v) << 6; ;
+            a_y[a_index + stripe * 7] = (u - v) << 6; 
             u = a_y[a_index + stripe * 11];
             v = a_y[a_index + stripe * 15];
             a_y[a_index + stripe * 11] = u + v;
-            a_y[a_index + stripe * 15] = (u - v) << 6; ;
+            a_y[a_index + stripe * 15] = (u - v) << 6; 
 
             a_y[a_index + stripe * 5] = ((a_y[a_index + stripe * 5] & 255) - (a_y[a_index + stripe * 5] >> 8));
             a_y[a_index + stripe * 7] = ((a_y[a_index + stripe * 7] & 255) - (a_y[a_index + stripe * 7] >> 8));
@@ -731,117 +733,117 @@ namespace HashLib.Crypto.SHA3
             u = a_y[a_index + stripe * 0];
             v = a_y[a_index + stripe * 2];
             a_y[a_index + stripe * 0] = u + v;
-            a_y[a_index + stripe * 2] = (u - v) << 0; ;
+            a_y[a_index + stripe * 2] = (u - v) << 0; 
             u = a_y[a_index + stripe * 4];
             v = a_y[a_index + stripe * 6];
             a_y[a_index + stripe * 4] = u + v;
-            a_y[a_index + stripe * 6] = (u - v) << 0; ;
+            a_y[a_index + stripe * 6] = (u - v) << 0; 
             u = a_y[a_index + stripe * 8];
             v = a_y[a_index + stripe * 10];
             a_y[a_index + stripe * 8] = u + v;
-            a_y[a_index + stripe * 10] = (u - v) << 0; ;
+            a_y[a_index + stripe * 10] = (u - v) << 0; 
             u = a_y[a_index + stripe * 12];
             v = a_y[a_index + stripe * 14];
             a_y[a_index + stripe * 12] = u + v;
-            a_y[a_index + stripe * 14] = (u - v) << 0; ;
+            a_y[a_index + stripe * 14] = (u - v) << 0; 
             u = a_y[a_index + stripe * 1];
             v = a_y[a_index + stripe * 3];
             a_y[a_index + stripe * 1] = u + v;
-            a_y[a_index + stripe * 3] = (u - v) << 4; ;
+            a_y[a_index + stripe * 3] = (u - v) << 4; 
             u = a_y[a_index + stripe * 5];
             v = a_y[a_index + stripe * 7];
             a_y[a_index + stripe * 5] = u + v;
-            a_y[a_index + stripe * 7] = (u - v) << 4; ;
+            a_y[a_index + stripe * 7] = (u - v) << 4; 
             u = a_y[a_index + stripe * 9];
             v = a_y[a_index + stripe * 11];
             a_y[a_index + stripe * 9] = u + v;
-            a_y[a_index + stripe * 11] = (u - v) << 4; ;
+            a_y[a_index + stripe * 11] = (u - v) << 4; 
             u = a_y[a_index + stripe * 13];
             v = a_y[a_index + stripe * 15];
             a_y[a_index + stripe * 13] = u + v;
-            a_y[a_index + stripe * 15] = (u - v) << 4; ;
+            a_y[a_index + stripe * 15] = (u - v) << 4; 
 
             u = a_y[a_index + stripe * 0];
             v = a_y[a_index + stripe * 1];
             a_y[a_index + stripe * 0] = u + v;
-            a_y[a_index + stripe * 1] = (u - v) << 0; ;
+            a_y[a_index + stripe * 1] = (u - v) << 0; 
             u = a_y[a_index + stripe * 2];
             v = a_y[a_index + stripe * 3];
             a_y[a_index + stripe * 2] = u + v;
-            a_y[a_index + stripe * 3] = (u - v) << 0; ;
+            a_y[a_index + stripe * 3] = (u - v) << 0; 
             u = a_y[a_index + stripe * 4];
             v = a_y[a_index + stripe * 5];
             a_y[a_index + stripe * 4] = u + v;
-            a_y[a_index + stripe * 5] = (u - v) << 0; ;
+            a_y[a_index + stripe * 5] = (u - v) << 0; 
             u = a_y[a_index + stripe * 6];
             v = a_y[a_index + stripe * 7];
             a_y[a_index + stripe * 6] = u + v;
-            a_y[a_index + stripe * 7] = (u - v) << 0; ;
+            a_y[a_index + stripe * 7] = (u - v) << 0; 
             u = a_y[a_index + stripe * 8];
             v = a_y[a_index + stripe * 9];
             a_y[a_index + stripe * 8] = u + v;
-            a_y[a_index + stripe * 9] = (u - v) << 0; ;
+            a_y[a_index + stripe * 9] = (u - v) << 0; 
             u = a_y[a_index + stripe * 10];
             v = a_y[a_index + stripe * 11];
             a_y[a_index + stripe * 10] = u + v;
-            a_y[a_index + stripe * 11] = (u - v) << 0; ;
+            a_y[a_index + stripe * 11] = (u - v) << 0; 
             u = a_y[a_index + stripe * 12];
             v = a_y[a_index + stripe * 13];
             a_y[a_index + stripe * 12] = u + v;
-            a_y[a_index + stripe * 13] = (u - v) << 0; ;
+            a_y[a_index + stripe * 13] = (u - v) << 0; 
             u = a_y[a_index + stripe * 14];
             v = a_y[a_index + stripe * 15];
             a_y[a_index + stripe * 14] = u + v;
-            a_y[a_index + stripe * 15] = (u - v) << 0; ;
+            a_y[a_index + stripe * 15] = (u - v) << 0; 
 
             a_y[a_index + stripe * 0] = ((a_y[a_index + stripe * 0] & 255) - (a_y[a_index + stripe * 0] >> 8));
             a_y[a_index + stripe * 0] = (a_y[a_index + stripe * 0] <= 128 ?
-                a_y[a_index + stripe * 0] : a_y[a_index + stripe * 0] - 257); ;
+                a_y[a_index + stripe * 0] : a_y[a_index + stripe * 0] - 257); 
             a_y[a_index + stripe * 1] = ((a_y[a_index + stripe * 1] & 255) - (a_y[a_index + stripe * 1] >> 8));
             a_y[a_index + stripe * 1] = (a_y[a_index + stripe * 1] <= 128 ?
-                a_y[a_index + stripe * 1] : a_y[a_index + stripe * 1] - 257); ;
+                a_y[a_index + stripe * 1] : a_y[a_index + stripe * 1] - 257); 
             a_y[a_index + stripe * 2] = ((a_y[a_index + stripe * 2] & 255) - (a_y[a_index + stripe * 2] >> 8));
             a_y[a_index + stripe * 2] = (a_y[a_index + stripe * 2] <= 128 ?
-                a_y[a_index + stripe * 2] : a_y[a_index + stripe * 2] - 257); ;
+                a_y[a_index + stripe * 2] : a_y[a_index + stripe * 2] - 257); 
             a_y[a_index + stripe * 3] = ((a_y[a_index + stripe * 3] & 255) - (a_y[a_index + stripe * 3] >> 8));
             a_y[a_index + stripe * 3] = (a_y[a_index + stripe * 3] <= 128 ?
-                a_y[a_index + stripe * 3] : a_y[a_index + stripe * 3] - 257); ;
+                a_y[a_index + stripe * 3] : a_y[a_index + stripe * 3] - 257); 
             a_y[a_index + stripe * 4] = ((a_y[a_index + stripe * 4] & 255) - (a_y[a_index + stripe * 4] >> 8));
             a_y[a_index + stripe * 4] = (a_y[a_index + stripe * 4] <= 128 ?
-                a_y[a_index + stripe * 4] : a_y[a_index + stripe * 4] - 257); ;
+                a_y[a_index + stripe * 4] : a_y[a_index + stripe * 4] - 257); 
             a_y[a_index + stripe * 5] = ((a_y[a_index + stripe * 5] & 255) - (a_y[a_index + stripe * 5] >> 8));
             a_y[a_index + stripe * 5] = (a_y[a_index + stripe * 5] <= 128 ?
-                a_y[a_index + stripe * 5] : a_y[a_index + stripe * 5] - 257); ;
+                a_y[a_index + stripe * 5] : a_y[a_index + stripe * 5] - 257); 
             a_y[a_index + stripe * 6] = ((a_y[a_index + stripe * 6] & 255) - (a_y[a_index + stripe * 6] >> 8));
             a_y[a_index + stripe * 6] = (a_y[a_index + stripe * 6] <= 128 ?
-                a_y[a_index + stripe * 6] : a_y[a_index + stripe * 6] - 257); ;
+                a_y[a_index + stripe * 6] : a_y[a_index + stripe * 6] - 257); 
             a_y[a_index + stripe * 7] = ((a_y[a_index + stripe * 7] & 255) - (a_y[a_index + stripe * 7] >> 8));
             a_y[a_index + stripe * 7] = (a_y[a_index + stripe * 7] <= 128 ?
-                a_y[a_index + stripe * 7] : a_y[a_index + stripe * 7] - 257); ;
+                a_y[a_index + stripe * 7] : a_y[a_index + stripe * 7] - 257); 
             a_y[a_index + stripe * 8] = ((a_y[a_index + stripe * 8] & 255) - (a_y[a_index + stripe * 8] >> 8));
             a_y[a_index + stripe * 8] = (a_y[a_index + stripe * 8] <= 128 ?
-                a_y[a_index + stripe * 8] : a_y[a_index + stripe * 8] - 257); ;
+                a_y[a_index + stripe * 8] : a_y[a_index + stripe * 8] - 257); 
             a_y[a_index + stripe * 9] = ((a_y[a_index + stripe * 9] & 255) - (a_y[a_index + stripe * 9] >> 8));
             a_y[a_index + stripe * 9] = (a_y[a_index + stripe * 9] <= 128 ?
-                a_y[a_index + stripe * 9] : a_y[a_index + stripe * 9] - 257); ;
+                a_y[a_index + stripe * 9] : a_y[a_index + stripe * 9] - 257); 
             a_y[a_index + stripe * 10] = ((a_y[a_index + stripe * 10] & 255) - (a_y[a_index + stripe * 10] >> 8));
             a_y[a_index + stripe * 10] = (a_y[a_index + stripe * 10] <= 128 ?
-                a_y[a_index + stripe * 10] : a_y[a_index + stripe * 10] - 257); ;
+                a_y[a_index + stripe * 10] : a_y[a_index + stripe * 10] - 257); 
             a_y[a_index + stripe * 11] = ((a_y[a_index + stripe * 11] & 255) - (a_y[a_index + stripe * 11] >> 8));
             a_y[a_index + stripe * 11] = (a_y[a_index + stripe * 11] <= 128 ?
-                a_y[a_index + stripe * 11] : a_y[a_index + stripe * 11] - 257); ;
+                a_y[a_index + stripe * 11] : a_y[a_index + stripe * 11] - 257); 
             a_y[a_index + stripe * 12] = ((a_y[a_index + stripe * 12] & 255) - (a_y[a_index + stripe * 12] >> 8));
             a_y[a_index + stripe * 12] = (a_y[a_index + stripe * 12] <= 128 ?
-                a_y[a_index + stripe * 12] : a_y[a_index + stripe * 12] - 257); ;
+                a_y[a_index + stripe * 12] : a_y[a_index + stripe * 12] - 257); 
             a_y[a_index + stripe * 13] = ((a_y[a_index + stripe * 13] & 255) - (a_y[a_index + stripe * 13] >> 8));
             a_y[a_index + stripe * 13] = (a_y[a_index + stripe * 13] <= 128 ?
-                a_y[a_index + stripe * 13] : a_y[a_index + stripe * 13] - 257); ;
+                a_y[a_index + stripe * 13] : a_y[a_index + stripe * 13] - 257); 
             a_y[a_index + stripe * 14] = ((a_y[a_index + stripe * 14] & 255) - (a_y[a_index + stripe * 14] >> 8));
             a_y[a_index + stripe * 14] = (a_y[a_index + stripe * 14] <= 128 ?
-                a_y[a_index + stripe * 14] : a_y[a_index + stripe * 14] - 257); ;
+                a_y[a_index + stripe * 14] : a_y[a_index + stripe * 14] - 257); 
             a_y[a_index + stripe * 15] = ((a_y[a_index + stripe * 15] & 255) - (a_y[a_index + stripe * 15] >> 8));
             a_y[a_index + stripe * 15] = (a_y[a_index + stripe * 15] <= 128 ?
-                a_y[a_index + stripe * 15] : a_y[a_index + stripe * 15] - 257); ;
+                a_y[a_index + stripe * 15] : a_y[a_index + stripe * 15] - 257); 
         }
 
         private void FFT128(int[] a_y, int a_index)

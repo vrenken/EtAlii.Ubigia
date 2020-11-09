@@ -1,9 +1,10 @@
-﻿using System;
+﻿// ReSharper disable all
+
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
 using TomanuExtensions.Utils;
-// ReSharper disable ArrangeStaticMemberQualifier
 
 namespace TomanuExtensions
 {
