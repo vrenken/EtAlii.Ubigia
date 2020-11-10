@@ -2,15 +2,15 @@ namespace EtAlii.Ubigia.Api.Tests
 {
     using Microsoft.EntityFrameworkCore;
 
-    public class UbigiaTestContext : DbContext
+    public class UbigiaTestContext : UbigiaDbContext
     {
         public UbigiaTestContext(DbContextOptions options)
             : base(options)
         {
-            
         }
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<InvoiceItem> InvoiceItems { get; set; }
+
+        public IUbigiaDbSet<Customer> Customers { get; set; } 
+        public IUbigiaDbSet<Invoice> Invoices { get; set; }
+        public IUbigiaDbSet<InvoiceItem> InvoiceItems { get; set; }
     }
 }

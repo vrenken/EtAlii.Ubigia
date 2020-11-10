@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var shaperLambda = (LambdaExpression)shaper;
 
             return Expression.New(
-                typeof(QueryingEnumerable<>).MakeGenericType(shaperLambda.ReturnType).GetConstructors()[0],
+                typeof(QueryingEnumerable<>).MakeGenericType(shaperLambda!.ReturnType).GetConstructors()[0],
                 QueryCompilationContext.QueryContextParameter,
                 innerEnumerable,
                 Expression.Constant(shaperLambda.Compile()),
