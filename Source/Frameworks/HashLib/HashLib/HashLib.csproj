@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <ProjectGuid>A89B17A7-8CCF-4005-85C0-AC0D842AEDCB</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>2.1.0.2</Version>
     <Authors>tomanu</Authors>
