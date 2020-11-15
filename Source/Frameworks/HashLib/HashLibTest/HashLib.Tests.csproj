@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ProjectGuid>{F38139F9-CCB4-4A02-A752-B4FC3D1A81D3}</ProjectGuid>
   </PropertyGroup>

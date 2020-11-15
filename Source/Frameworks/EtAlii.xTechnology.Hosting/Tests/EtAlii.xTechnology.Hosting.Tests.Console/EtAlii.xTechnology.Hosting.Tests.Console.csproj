@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <OutputType>Exe</OutputType>
     <ProjectGuid>30BE97EC-145D-45B6-DBCC-2C0D5AFF1A6C</ProjectGuid>

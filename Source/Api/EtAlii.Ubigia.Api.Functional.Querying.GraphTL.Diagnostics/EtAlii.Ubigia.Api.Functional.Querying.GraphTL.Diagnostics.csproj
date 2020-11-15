@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
-        <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+        <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
         <ProjectGuid>b672f721-1f6d-43fe-8435-0c1847bcaad1</ProjectGuid>
         <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
         <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>

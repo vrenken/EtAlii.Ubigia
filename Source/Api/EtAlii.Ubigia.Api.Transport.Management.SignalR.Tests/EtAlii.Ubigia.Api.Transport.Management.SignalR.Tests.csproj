@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>f34b0199-92d2-4240-88d4-06f471fa07a0</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Transport.Management.Tests</RootNamespace>

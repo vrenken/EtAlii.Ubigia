@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
   </PropertyGroup>
 
 </Project>

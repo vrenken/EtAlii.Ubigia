@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>

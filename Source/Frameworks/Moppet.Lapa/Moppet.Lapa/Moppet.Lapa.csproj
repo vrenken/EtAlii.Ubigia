@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <Version>1.2.4</Version>
     <ProjectGuid>0BABB7CC-617B-438F-8B74-04A4AB922FBB</ProjectGuid>

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>da6da2cc-af51-456a-82fd-66cca60c29a1</ProjectGuid>
     <Description />

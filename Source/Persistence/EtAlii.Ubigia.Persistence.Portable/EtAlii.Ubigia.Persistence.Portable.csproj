@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation that is portable across multiple client applications.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Portable</PackageProjectUrl>

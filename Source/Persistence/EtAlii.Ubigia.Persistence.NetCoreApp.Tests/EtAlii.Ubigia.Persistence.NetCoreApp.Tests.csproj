@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <Description>Unit test project</Description>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <OutputType>Library</OutputType>

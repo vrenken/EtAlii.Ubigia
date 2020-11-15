@@ -13,8 +13,8 @@
     <Product>Ubigia</Product>
 
     <UbigiaBuildPackages>false</UbigiaBuildPackages>
-    <UbigiaNetStandardVersion>netstandard2.1</UbigiaNetStandardVersion>
-    <UbigiaNetCoreAppVersion>netcoreapp3.1</UbigiaNetCoreAppVersion>
+    <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
+    <UbigiaApplicationTargetFramework>netcoreapp3.1</UbigiaApplicationTargetFramework>
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
     <LangVersion>8</LangVersion>

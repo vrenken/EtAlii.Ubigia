@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Description>Package that contains the core client components needed to communicate with Ubigia server components.</Description>
     <Version>$(PackageVersion)</Version>

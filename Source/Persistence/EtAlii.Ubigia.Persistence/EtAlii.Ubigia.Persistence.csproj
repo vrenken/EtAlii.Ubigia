@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the core storage layer needed to abstract away a platform specific implementation.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence</PackageProjectUrl>

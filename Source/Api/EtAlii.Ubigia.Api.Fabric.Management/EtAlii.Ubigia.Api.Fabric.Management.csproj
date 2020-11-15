@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>6161c876-e5d7-4db9-b759-1f338340ed87</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Fabric</PackageProjectUrl>
