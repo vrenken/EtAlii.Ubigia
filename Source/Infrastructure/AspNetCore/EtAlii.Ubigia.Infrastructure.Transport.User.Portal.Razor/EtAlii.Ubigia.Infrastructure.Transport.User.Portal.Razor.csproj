@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>844b4d36-cc45-41e7-bfe6-f3bad94e73cb</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor</RootNamespace>
   </PropertyGroup>

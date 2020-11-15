@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaNetCoreAppVersion)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>8f93df78-e2be-4b18-8506-f80c87bde1cc</ProjectGuid>
     <UseWpf>true</UseWpf>
     <Description>StorageBrowser</Description>

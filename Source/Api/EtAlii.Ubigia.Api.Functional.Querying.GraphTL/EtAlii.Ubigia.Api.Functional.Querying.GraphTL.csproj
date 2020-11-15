@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>$(UbigiaNetStandardVersion)</TargetFramework>
+        <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
         <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
         <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
         <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
