@@ -12,6 +12,7 @@ namespace Microsoft.EntityFrameworkCore
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Diagnostics;
     using EtAlii.Ubigia.Api.Storage;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     /// <summary>
     ///     Ubigia specific extension methods for <see cref="DbContextOptionsBuilder" />.
@@ -154,6 +155,12 @@ namespace Microsoft.EntityFrameworkCore
             ((IDbContextOptionsBuilderInfrastructure)optionsBuilder).AddOrUpdateExtension(extension);
 
             ubigiaOptionsAction?.Invoke(new UbigiaDbContextOptionsBuilder(optionsBuilder));
+
+            // Ubigia specifics.
+            // We want to replace the DbSets with our own variation.
+            // Reason is that not everything that the EF allows is a good match for accessing a Ubigia store.
+            optionsBuilder.ReplaceService<IDbSetSource, UbigiaDbSetSource>();
+            optionsBuilder.ReplaceService<IDbSetFinder, UbigiaDbSetFinder>();
 
             return optionsBuilder;
         }

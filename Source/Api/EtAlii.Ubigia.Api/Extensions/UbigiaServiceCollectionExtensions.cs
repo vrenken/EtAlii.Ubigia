@@ -14,7 +14,6 @@ namespace Microsoft.Extensions.DependencyInjection
     using EtAlii.Ubigia.Api.Query.Internal;
     using EtAlii.Ubigia.Api.Storage.Internal;
     using EtAlii.Ubigia.Api.ValueGeneration.Internal;
-    using Microsoft.EntityFrameworkCore.Internal;
     using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
     using Microsoft.EntityFrameworkCore.Query;
     using Microsoft.EntityFrameworkCore.Storage;
@@ -68,14 +67,7 @@ namespace Microsoft.Extensions.DependencyInjection
                         .TryAddSingleton<IUbigiaSingletonOptions, UbigiaSingletonOptions>()
                         .TryAddSingleton<IUbigiaStoreCache, UbigiaStoreCache>()
                         .TryAddSingleton<IUbigiaTableFactory, UbigiaTableFactory>()
-                        .TryAddScoped<IUbigiaDatabase, UbigiaDatabase>())
-                
-                // Ubigia specifics.
-                // We want to replace the DbSets with our own variation.
-                // Reason is that not everything that the EF allows is a good match for accessing a Ubigia store.
-                .TryAdd<IDbSetSource, UbigiaDbSetSource>()
-                .TryAdd<IDbSetFinder, UbigiaDbSetFinder>();
-            
+                        .TryAddScoped<IUbigiaDatabase, UbigiaDatabase>());
 
             builder.TryAddCoreServices();
 
