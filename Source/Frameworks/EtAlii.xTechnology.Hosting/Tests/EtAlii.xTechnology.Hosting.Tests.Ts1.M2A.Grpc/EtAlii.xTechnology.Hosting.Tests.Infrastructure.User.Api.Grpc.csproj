@@ -5,7 +5,7 @@
     <ProjectGuid>2AE702F8-6FF4-4AE5-9A4A-9B7680D8FDF7</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Protobuf Include="**\*.proto" />

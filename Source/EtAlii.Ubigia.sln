@@ -523,13 +523,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests\EtAlii.xTechnology.Hosting.Tests.csproj", "{FCC5D2A9-0EE7-49BF-A208-3FB3AB5D0466}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc.csproj", "{2497B333-6D75-4667-B2C6-8421FCCD0FA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc.csproj", "{2497B333-6D75-4667-B2C6-8421FCCD0FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1C.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.csproj", "{8D68A2B6-AC08-4DE5-9ED5-57B304EB14D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M1C.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.csproj", "{8D68A2B6-AC08-4DE5-9ED5-57B304EB14D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj", "{7673AFC7-B0AC-4437-8F2B-550F483D3439}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj", "{7673AFC7-B0AC-4437-8F2B-550F483D3439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2A.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc.csproj", "{2AE702F8-6FF4-4AE5-9A4A-9B7680D8FDF7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M2A.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc.csproj", "{2AE702F8-6FF4-4AE5-9A4A-9B7680D8FDF7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem2.Grpc\EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc.csproj", "{D55EFFC3-B7AB-4473-9E9C-49E139D7E534}"
 EndProject
@@ -539,17 +539,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetCore", "NetCore", "{E515
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.csproj", "{4065B6F1-D6F7-4485-AE31-21FBFD7CAA1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.csproj", "{F22D7DE5-4504-406F-A560-0848F588F683}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.csproj", "{F22D7DE5-4504-406F-A560-0848F588F683}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.csproj", "{C0D47921-FC25-4010-910A-64C5F19D4F60}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M1A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.csproj", "{C0D47921-FC25-4010-910A-64C5F19D4F60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module1C.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.csproj", "{6E9BE10F-63BA-4F0B-92DF-606ED3465149}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M1C.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.csproj", "{6E9BE10F-63BA-4F0B-92DF-606ED3465149}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.csproj", "{0CB88BE5-5621-4959-B654-59E044831834}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.csproj", "{0CB88BE5-5621-4959-B654-59E044831834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.csproj", "{CD69D5E3-0857-4894-8529-809BBA7857E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M2A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.csproj", "{CD69D5E3-0857-4894-8529-809BBA7857E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Module2B.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.csproj", "{8CB8DB9F-0FA0-421A-9DC3-0C999E36475D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.Ts1.M2B.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.csproj", "{8CB8DB9F-0FA0-421A-9DC3-0C999E36475D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore", "Frameworks\EtAlii.xTechnology.Hosting\Tests\EtAlii.xTechnology.Hosting.Tests.TestSystem2.NetCore\EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.csproj", "{7870039B-92D2-4C1C-9EDA-FACD35381021}"
 EndProject
