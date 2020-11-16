@@ -3,7 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using GraphQL.Http;
+    using GraphQL;
+    using GraphQL.NewtonsoftJson;
     using Xunit;
     using Xunit.Abstractions;
 
@@ -62,6 +63,7 @@
             
             // Act.
             var parseResult = await _queryContext.Parse(queryText);
+            Assert.Empty(parseResult.Errors);                
             var result = await _queryContext.Process(parseResult.Query);
              
             // Assert.

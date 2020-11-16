@@ -1,10 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
+    using System;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
     using GraphQL;
     using GraphQL.Execution;
-    using GraphQL.Http;
+    using GraphQL.NewtonsoftJson;
     using GraphQL.Validation;
     using GraphQL.Validation.Complexity;
 
@@ -21,7 +22,8 @@
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
             container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
 
-            container.Register<IDependencyResolver>(() => new FuncDependencyResolver(container.GetInstance));
+            //container.Register<IServiceProvider>(() => new ContainerGraphTypeServiceProvider(container));
+            container.Register<IServiceProvider, GraphTypeServiceProvider>();
 
             container.Register<IDocumentValidator, DocumentValidator>();
             container.Register<IDocumentBuilder, GraphQLDocumentBuilder>();

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using GraphQL.Types;
 
@@ -11,6 +10,6 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context, 
             GraphType parent,
-            Dictionary<System.Type, GraphType> graphTypes);
+            IGraphTypeServiceProvider graphTypes);
     }
 }

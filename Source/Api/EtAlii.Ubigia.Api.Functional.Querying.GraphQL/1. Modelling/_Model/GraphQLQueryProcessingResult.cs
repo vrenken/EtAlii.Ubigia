@@ -5,6 +5,7 @@
     using GraphQL;
     using GraphQL.Instrumentation;
     using GraphQL.Language.AST;
+    using GraphQL.NewtonsoftJson;
     using Newtonsoft.Json;
 
     [JsonConverter(typeof(ExecutionResultJsonConverter))]
@@ -26,8 +27,6 @@
 
         public PerfRecord[] Perf { get; }
 
-        public bool ExposeExceptions { get; }
-
         public Dictionary<string, object> Extensions { get; }
 
         public GraphQLQueryProcessingResult(object data, string dataAsString)
@@ -47,7 +46,6 @@
             Operation = result.Operation;
             Document = result.Document;
             Perf = result.Perf;
-            ExposeExceptions = result.ExposeExceptions;
             Extensions = result.Extensions;
             
             DataAsString = dataAsString;
@@ -63,7 +61,6 @@
                 Operation = graphQLQueryProcessingResult.Operation,
                 Document = graphQLQueryProcessingResult.Document,
                 Perf = graphQLQueryProcessingResult.Perf,
-                ExposeExceptions = graphQLQueryProcessingResult.ExposeExceptions,
                 Extensions = graphQLQueryProcessingResult.Extensions,
             };
         }

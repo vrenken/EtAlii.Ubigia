@@ -1,15 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using GraphQL;
     using GraphQL.Execution;
-    using GraphQL.Http;
 
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
         private readonly IDocumentExecuter _executor;
-        private readonly IDependencyResolver _dependencyResolver;
+        private readonly IServiceProvider _serviceProvider;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
         private readonly IDocumentBuilder _builder;
@@ -19,14 +19,14 @@
             IDocumentBuilder builder,
             IDocumentWriter documentWriter,
             IDocumentExecuter executor,
-            IDependencyResolver dependencyResolver,
+            IServiceProvider serviceProvider,
             IOperationProcessor operationProcessor, 
             IFieldProcessor fieldProcessor)
         {
             _builder = builder;
             _documentWriter = documentWriter;
             _executor = executor;
-            _dependencyResolver = dependencyResolver;
+            _serviceProvider = serviceProvider;
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
         }
@@ -51,9 +51,12 @@
         
         public async Task<GraphQLQueryProcessingResult> Process(Query query) 
         {
+            if (query.Document == null)
+            {
+                throw new InvalidOperationException("Unable to process query");
+            }
             var document = query.Document;
-            var schema = await DynamicSchema.Create(_dependencyResolver, _operationProcessor, _fieldProcessor, document);
-            var inputs = new Inputs();
+            var schema = await DynamicSchema.Create(_serviceProvider, _operationProcessor, _fieldProcessor, document);
 
             // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
             var configuration = new ExecutionOptions
@@ -67,8 +70,8 @@
                 Schema = schema,
                 Query = query.Text,
                 OperationName = null, //operationName//request.OperationName
-                Inputs = inputs, //request.Variables.ToInputs()
-                UserContext = new UserContext {User = null} // ctx.User 
+                Inputs = new Inputs(new Dictionary<string, object>()), //request.Variables.ToInputs()
+                UserContext = new Dictionary<string, object>{{ "User", null }}// UserContext {User = null} // ctx.User 
             };
 
             var executionResult = await _executor.ExecuteAsync(configuration);

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -17,13 +18,12 @@
 
         public async Task<OperationContext> Process(
             Operation operation, 
-            ComplexGraphType<object> query, 
-            Dictionary<System.Type, GraphType> graphTypes)
+            ComplexGraphType<object> query)
         {
             var nodesDirectiveResults = new List<NodesDirectiveResult>();
-            var nodesDirectives = operation.Directives
-                .Where(directive => directive.Name == "nodes")
-                .ToArray();
+            var nodesDirectives = operation.Directives != null
+                ? operation.Directives.Where(directive => directive.Name == "nodes").ToArray() 
+                : Array.Empty<Directive>();
             foreach (var nodesDirective in nodesDirectives)
             {
                 var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective);

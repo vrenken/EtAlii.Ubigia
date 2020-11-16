@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using System.Collections.Generic;
     using System.Linq;
     using GraphQL.Types;
 
@@ -25,7 +24,7 @@
             NodesDirectiveResult[] nodesDirectiveResults, 
             FieldContext context, 
             GraphType parent, 
-            Dictionary<System.Type, GraphType> graphTypes)
+            IGraphTypeServiceProvider graphTypes)
         {
             var nodesDirectiveResult = nodesDirectiveResults.FirstOrDefault();
             if (nodesDirectiveResult != null)
@@ -62,7 +61,7 @@
                 if (graphType != null)
                 {
                     context.GraphType = graphType;
-                    graphTypes[graphType.GetType()] = graphType;
+                    graphTypes.Register(graphType);
                 }
             }
         }

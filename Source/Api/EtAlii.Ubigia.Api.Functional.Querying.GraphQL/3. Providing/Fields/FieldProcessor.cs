@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using GraphQL.Language.AST;
-    using GraphQL.Types;
 
     internal class FieldProcessor : IFieldProcessor
     {
@@ -29,7 +28,7 @@
         public async Task<FieldContext> Process(
             Field field, 
             Context parentContext, 
-            Dictionary<System.Type, GraphType> graphTypes)
+            IGraphTypeServiceProvider graphTypes)
         {
             FieldContext context = null;
 
@@ -41,9 +40,9 @@
                 .ToArray();
 
             var nodesDirectiveResults = new List<NodesDirectiveResult>();
-            var nodesDirectives = field.Directives
-                .Where(directive => directive.Name == "nodes")
-                .ToArray();
+            var nodesDirectives = field.Directives != null 
+                ? field.Directives.Where(directive => directive.Name == "nodes").ToArray() 
+                : Array.Empty<Directive>();
             foreach (var nodesDirective in nodesDirectives)
             {
                 var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective, startIdentifiers);
@@ -51,9 +50,9 @@
             }
             
             var idDirectiveResults = new List<IdDirectiveResult>();
-            var idDirectives = field.Directives
-                .Where(directive => directive.Name == "id")
-                .ToArray();
+            var idDirectives = field.Directives != null 
+                ? field.Directives.Where(directive => directive.Name == "id").ToArray() 
+                : Array.Empty<Directive>();
             foreach (var idDirective in idDirectives)
             {
                 var idDirectiveResult = await _idDirectiveHandler.Handle(idDirective, startIdentifiers);
