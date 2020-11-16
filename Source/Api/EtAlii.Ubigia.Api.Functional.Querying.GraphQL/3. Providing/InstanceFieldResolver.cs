@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
+    using GraphQL;
     using GraphQL.Resolvers;
-    using GraphQL.Types;
 
     public class InstanceFieldResolver : IFieldResolver<object>
     {
@@ -12,12 +12,12 @@
             _instance = instance;
         }
 
-        public object Resolve(ResolveFieldContext context)
+        public object Resolve(IResolveFieldContext context)
         {
             return _instance;
         }
 
-        object IFieldResolver.Resolve(ResolveFieldContext context)
+        object IFieldResolver.Resolve(IResolveFieldContext context)
         {
             return Resolve(context);
         }

@@ -24,10 +24,13 @@
         {
             Document = new Document();
             Stack.Push(Document);
-            
-            foreach (var operation in document.Operations)
+
+            if (document.Operations != null)
             {
-                operation.Accept(this);
+                foreach (var operation in document.Operations)
+                {
+                    operation.Accept(this);
+                }
             }
 
             Stack.Pop();

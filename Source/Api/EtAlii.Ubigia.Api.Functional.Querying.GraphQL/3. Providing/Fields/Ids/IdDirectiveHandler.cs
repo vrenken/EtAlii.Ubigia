@@ -12,7 +12,7 @@
         {
 //            var result = new IdDirectiveResult()
             
-            var pathArgument = directive.Arguments.SingleOrDefault(d => d.Name == "path");
+            var pathArgument = directive.Arguments?.SingleOrDefault(d => d.Name == "path");
             var pathArgumentValue = pathArgument?.Value as StringValue;
 //
 ////            var mappings = new List<IdMapping>()

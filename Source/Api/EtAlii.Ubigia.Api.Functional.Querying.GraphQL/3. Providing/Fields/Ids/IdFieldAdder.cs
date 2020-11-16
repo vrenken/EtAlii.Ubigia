@@ -24,7 +24,7 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context,
             GraphType parent,
-            Dictionary<System.Type, GraphType> graphTypes)
+            IGraphTypeServiceProvider graphTypes)
         {   
             if(parent.Metadata.TryGetValue(ComplexFieldTypeBuilder.NodeMetadataKey, out var node))
             {
@@ -41,7 +41,7 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context, 
             GraphType parent,
-            Dictionary<System.Type, GraphType> graphTypes, 
+            IGraphTypeServiceProvider graphTypes, 
             IInternalNode node)
         {
             var idValue = await GetId(node.Id, idDirectiveResult.Path);
@@ -52,7 +52,7 @@
             if (graphType != null)
             {
                 context.GraphType = graphType;
-                graphTypes[graphType.GetType()] = graphType;
+                graphTypes.Register(graphType);
             }
         }
 

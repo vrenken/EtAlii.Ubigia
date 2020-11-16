@@ -3,7 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using GraphQL.Http;
+    using GraphQL;
+    using GraphQL.NewtonsoftJson;
     using Xunit;
     using Xunit.Abstractions;
 
