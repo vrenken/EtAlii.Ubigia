@@ -24,9 +24,13 @@
                     var lines = fragment.Replace("\r\n", "\n").Split("\n");
                     if (lines.Length > 1)
                     {
-                        var title = lines[0];
-                        var query = string.Join("\n", lines.Skip(1).ToArray());
-                        Add(fileName, title, query);
+                        var allLinesAreCommentsOrEmpty = lines.Skip(1).All(l => l.StartsWith("#") || string.IsNullOrWhiteSpace(l));
+                        if (!allLinesAreCommentsOrEmpty)
+                        {
+                            var title = lines[0];
+                            var query = string.Join("\n", lines.Skip(1).ToArray());
+                            Add(fileName, title, query);
+                        }
                     }
                 }
             }

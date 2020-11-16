@@ -13,7 +13,7 @@ query data
     }
 }
 
-## 02 Query with paths at query level
+### 02 Query with paths at query level
 #query data 
 #{ 
 #    region @nodes(path:"location:NL/Overijssel/")
