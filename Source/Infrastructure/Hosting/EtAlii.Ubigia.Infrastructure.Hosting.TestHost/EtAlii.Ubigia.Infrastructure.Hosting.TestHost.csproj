@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>73723c36-7c9e-4c82-a5d1-2cc627fab6f2</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
-    <PackageReference Include="System.Threading.AccessControl" Version="4.7.0" />
+    <PackageReference Include="System.Threading.AccessControl" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />

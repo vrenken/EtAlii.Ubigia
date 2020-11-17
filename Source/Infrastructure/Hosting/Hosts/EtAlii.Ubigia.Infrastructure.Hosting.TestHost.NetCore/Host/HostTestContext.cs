@@ -21,7 +21,7 @@
 		    
 		    // TODO: Ugly. This needs to change and not be needed at all.
 		    // However, for now it works...
-		    var codeBase = Assembly.GetExecutingAssembly()!.CodeBase;
+		    var codeBase = Assembly.GetExecutingAssembly()!.Location;
 		    var isWebApiTestBase = codeBase!.Contains("WebApi.Tests") || 
 		                           codeBase.Contains("PowerShell.Tests");
 		    var isSignalRTestBase = codeBase.Contains("SignalR.Tests") || 

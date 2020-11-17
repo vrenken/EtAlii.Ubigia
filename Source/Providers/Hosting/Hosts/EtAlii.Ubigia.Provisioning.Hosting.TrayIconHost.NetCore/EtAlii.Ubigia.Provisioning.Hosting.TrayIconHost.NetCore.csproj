@@ -1,16 +1,16 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ProjectGuid>bfba3c11-7d9f-4c55-bc08-e34a42719b5f</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
     <AssemblyName>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</AssemblyName>
     <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.14" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />

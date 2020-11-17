@@ -29,7 +29,7 @@
                 .FromEventPattern<GridTreeCreatingNodeEventArgs>(GridTreeControl, "CreatingTreeNode")
                 .Throttle(TimeSpan.FromSeconds(2))
                 .ObserveOnDispatcher()
-                .Subscribe(e =>
+                .Subscribe(_ =>
                 {
                     if (AutoExpandNodes)
                     {

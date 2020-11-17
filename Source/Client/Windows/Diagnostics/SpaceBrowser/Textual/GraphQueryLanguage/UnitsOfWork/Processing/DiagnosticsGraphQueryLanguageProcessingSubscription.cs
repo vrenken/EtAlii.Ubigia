@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                 .Subscribe(
                     onError: e => _statusWriter.Write(viewModel, $"Query error: {e.Message}"),
                     onFirst: () => _statusWriter.Write(viewModel, "Query start"),
-                    onNext: o =>
+                    onNext: _ =>
                     {
 //                        _statusWriter.Write(viewModel, $"Query: [o.Sequence] ([o.Step]/[o.Total])")
 //                        o.Output

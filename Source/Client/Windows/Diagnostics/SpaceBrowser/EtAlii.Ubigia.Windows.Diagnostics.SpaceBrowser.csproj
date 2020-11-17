@@ -1,11 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Description>SpaceBrowser</Description>
     <ProjectGuid>73759ec5-502d-4fd7-b78f-804c29f8bed0</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
@@ -28,10 +28,11 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="18.2.0.57" />
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.2.0.57" />
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.2.0.57" />
-    <PackageReference Include="System.Reactive" Version="4.4.1" />
-    <PackageReference Include="System.Reactive.Core" Version="4.4.1" />
-    <PackageReference Include="System.Reactive.Linq" Version="4.4.1" />
-    <PackageReference Include="System.Reactive.PlatformServices" Version="4.4.1" />
+    <PackageReference Include="System.Reactive" Version="5.0.0" />
+<!--    <PackageReference Include="System.Reactive.Observable.Aliases" Version="5.0.0" />-->
+<!--    <PackageReference Include="System.Reactive.Core" Version="5.0.0" />-->
+<!--    <PackageReference Include="System.Reactive.Linq" Version="5.0.0" />-->
+    <PackageReference Include="System.Reactive.PlatformServices" Version="5.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>

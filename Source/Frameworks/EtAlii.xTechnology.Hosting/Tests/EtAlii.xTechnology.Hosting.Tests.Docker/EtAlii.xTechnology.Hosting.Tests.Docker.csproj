@@ -43,11 +43,10 @@
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2B.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem2.NetCore\EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.csproj" />
   </ItemGroup>
-
-
+  
   <ItemGroup>
     <PackageReference Include="DockerizedTesting" Version="1.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
   
   <ItemGroup>

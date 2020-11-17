@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <OutputType>Exe</OutputType>
     <ProjectGuid>30BE97EC-145D-45B6-DBCC-2C0D5AFF1A6C</ProjectGuid>
     <ApplicationIcon />
@@ -30,6 +29,6 @@
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.SignalRSystem\EtAlii.xTechnology.Hosting.Tests.SignalRSystem.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
 </Project>

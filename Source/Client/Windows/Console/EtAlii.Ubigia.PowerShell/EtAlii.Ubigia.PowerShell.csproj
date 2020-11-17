@@ -3,10 +3,9 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>da6da2cc-af51-456a-82fd-66cca60c29a1</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="System.Management.Automation" Version="7.0.3" /> 
+    <PackageReference Include="System.Management.Automation" Version="7.1.0" /> 
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj" />

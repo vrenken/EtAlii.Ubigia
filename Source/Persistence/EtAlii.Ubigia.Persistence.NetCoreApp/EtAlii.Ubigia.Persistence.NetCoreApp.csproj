@@ -6,12 +6,11 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Ntfs</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.1</PackageReleaseNotes>
     <PackageTags>Storage Ubigia NetCoreApp3.0</PackageTags>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>8389CFF0-B7E8-4A84-B95D-0F12A3706966</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
