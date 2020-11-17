@@ -60,12 +60,10 @@ jobs:
           script: |
             $cache = dotnet nuget locals global-packages -l
             $cacheLocation = $cache.Replace('info : global-packages: ', '')
-    
             Write-Host $cacheLocation
-    
             Write-Host "##vso[task.setvariable variable=NUGET_PACKAGES;]$cacheLocation"
     
-          pwsh: true
+      #    pwsh: true
     
       - task: Cache@2
         inputs:
