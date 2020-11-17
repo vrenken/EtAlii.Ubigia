@@ -67,16 +67,16 @@ jobs:
           arguments: ' --no-restore --configuration $(BuildConfiguration) /p:UbigiaIsRunningOnBuildAgent=true -nodeReuse:false -maxCpuCount:8'
 
 # TEST
-#      - task: DotNetCoreCLI@2
-#        displayName: 'Run: dotnet test'
-#        inputs:
-#          command: test
-#          # The WebApi tests won't run nicely on the build agent. No idea why.
-#          projects: |
-#            Source/**/*.Tests.csproj
-#            !Source/**/*.WebApi.Tests.csproj
-#          arguments: '/p:SolutionDir=$(Build.SourcesDirectory)/Source --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-#        continueOnError: true
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet test'
+        inputs:
+          command: test
+          # The WebApi tests won't run nicely on the build agent. No idea why.
+          projects: |
+            Source/**/*.Tests.csproj
+            !Source/**/*.WebApi.Tests.csproj
+          arguments: '/p:SolutionDir=$(Build.SourcesDirectory)/Source --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+        continueOnError: true
 
       - task: SonarQubeAnalyze@4
         displayName: 'SonarQube: analyse'
