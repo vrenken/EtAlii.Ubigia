@@ -1,13 +1,13 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Concurrent;
-using System.Threading;
-using JetBrains.Annotations;
-using EtAlii.Ubigia.Api.Infrastructure.Internal;
-
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
+    using System.Collections.Concurrent;
+    using System.Threading;
+    using JetBrains.Annotations;
+    using EtAlii.Ubigia.Api.Infrastructure.Internal;
+
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
     ///     the same compatibility standards as public APIs. It may be changed or removed without notice in

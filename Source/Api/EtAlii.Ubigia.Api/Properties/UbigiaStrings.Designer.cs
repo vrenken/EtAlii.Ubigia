@@ -19,7 +19,35 @@ namespace EtAlii.Ubigia.Api.Internal
     public static class UbigiaStrings
     {
         private static readonly ResourceManager _resourceManager
-            = new ResourceManager("EtAlii.Ubigia.Api.Properties.UbigiaStrings", typeof(UbigiaStrings).GetTypeInfo().Assembly);
+            = new ResourceManager("EtAlii.Ubigia.Api.Properties.UbigiaStrings", typeof(UbigiaStrings).Assembly);
+
+        /// <summary>
+        ///     Cannot apply 'DefaultIfEmpty' after a client-evaluated projection. Consider applying 'DefaultIfEmpty' before last 'Select' or use 'AsEnumerable' before 'DefaultIfEmpty' to apply it on client-side.
+        /// </summary>
+        public static string DefaultIfEmptyAppliedAfterProjection
+            => GetString("DefaultIfEmptyAppliedAfterProjection");
+
+        /// <summary>
+        ///     The specified entity type '{derivedType}' is not derived from '{entityType}'.
+        /// </summary>
+        public static string InvalidDerivedTypeInEntityProjection([CanBeNull] object derivedType, [CanBeNull] object entityType)
+            => string.Format(
+                GetString("InvalidDerivedTypeInEntityProjection", nameof(derivedType), nameof(entityType)),
+                derivedType, entityType);
+
+        /// <summary>
+        ///     There is no query string because the Ubigia provider does not use a string-based query language.
+        /// </summary>
+        public static string NoQueryStrings
+            => GetString("NoQueryStrings");
+
+        /// <summary>
+        ///     Unable to bind '{memberType}' '{member}' to entity projection of '{entityType}'.
+        /// </summary>
+        public static string UnableToBindMemberToEntityProjection([CanBeNull] object memberType, [CanBeNull] object member, [CanBeNull] object entityType)
+            => string.Format(
+                GetString("UnableToBindMemberToEntityProjection", nameof(memberType), nameof(member), nameof(entityType)),
+                memberType, member, entityType);
 
         /// <summary>
         ///     Attempted to update or delete an entity that does not exist in the store.
@@ -59,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Internal
 namespace EtAlii.Ubigia.Api.Internal
 {
     using EtAlii.Ubigia.Api.Diagnostics;
-
+    
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
     ///     the same compatibility standards as public APIs. It may be changed or removed without notice in

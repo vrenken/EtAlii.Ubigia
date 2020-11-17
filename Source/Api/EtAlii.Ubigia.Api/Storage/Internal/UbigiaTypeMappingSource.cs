@@ -2,17 +2,15 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.EntityFrameworkCore.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
-    using Microsoft.EntityFrameworkCore;
-
     /// <summary>
     ///     <para>
     ///         This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -48,17 +46,13 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         protected override CoreTypeMapping FindMapping(in TypeMappingInfo mappingInfo)
         {
             var clrType = mappingInfo.ClrType;
-            Debug.Assert(clrType != null);
+            Check.DebugAssert(clrType != null, "ClrType is null");
 
             if (clrType.IsValueType
-                || clrType == typeof(string))
+                || clrType == typeof(string)
+                || clrType == typeof(byte[]))
             {
                 return new UbigiaTypeMapping(clrType);
-            }
-
-            if (clrType == typeof(byte[]))
-            {
-                return new UbigiaTypeMapping(clrType, structuralComparer: new ArrayStructuralComparer<byte>());
             }
 
             if (clrType.FullName == "NetTopologySuite.Geometries.Geometry"
@@ -68,7 +62,6 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
 
                 return new UbigiaTypeMapping(
                     clrType,
-                    comparer,
                     comparer,
                     comparer);
             }

@@ -8,10 +8,10 @@ using System.Globalization;
 using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using EtAlii.Ubigia.Api.Internal;
 using EtAlii.Ubigia.Api.ValueGeneration.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.EntityFrameworkCore.Update;
 using Microsoft.EntityFrameworkCore.Utilities;
 
@@ -27,10 +27,11 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     /// </summary>
     public class UbigiaTable<TKey> : IUbigiaTable
     {
-        // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
         private readonly IPrincipalKeyValueFactory<TKey> _keyValueFactory;
         private readonly bool _sensitiveLoggingEnabled;
         private readonly Dictionary<TKey, object[]> _rows;
+        private readonly IList<(int, ValueConverter)> _valueConverters;
+        private readonly IList<(int, ValueComparer)> _valueComparers;
 
         private Dictionary<int, IUbigiaIntegerValueGenerator> _integerGenerators;
 
@@ -40,16 +41,40 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public UbigiaTable(
-            // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
-            [NotNull] IPrincipalKeyValueFactory<TKey> keyValueFactory,
-            bool sensitiveLoggingEnabled)
+        public UbigiaTable([NotNull] IEntityType entityType, [CanBeNull] IUbigiaTable baseTable, bool sensitiveLoggingEnabled)
         {
-            _keyValueFactory = keyValueFactory;
+            EntityType = entityType;
+            BaseTable = baseTable;
+            _keyValueFactory = entityType.FindPrimaryKey().GetPrincipalKeyValueFactory<TKey>();
             _sensitiveLoggingEnabled = sensitiveLoggingEnabled;
-#pragma warning disable EF1001 // Internal API
-            _rows = new Dictionary<TKey, object[]>(keyValueFactory.EqualityComparer);
-#pragma warning restore EF1001 // Internal API
+            _rows = new Dictionary<TKey, object[]>(_keyValueFactory.EqualityComparer);
+
+            foreach (var property in entityType.GetProperties())
+            {
+                var converter = property.GetValueConverter()
+                    ?? property.FindTypeMapping()?.Converter;
+
+                if (converter != null)
+                {
+                    if (_valueConverters == null)
+                    {
+                        _valueConverters = new List<(int, ValueConverter)>();
+                    }
+
+                    _valueConverters.Add((property.GetIndex(), converter));
+                }
+
+                var comparer = property.GetKeyValueComparer();
+                if (!comparer.IsDefault())
+                {
+                    if (_valueComparers == null)
+                    {
+                        _valueComparers = new List<(int, ValueComparer)>();
+                    }
+
+                    _valueComparers.Add((property.GetIndex(), comparer));
+                }
+            }
         }
 
         /// <summary>
@@ -58,25 +83,43 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public virtual UbigiaIntegerValueGenerator<TProperty> GetIntegerValueGenerator<TProperty>(IProperty property)
+        public virtual IUbigiaTable BaseTable { get; }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual IEntityType EntityType { get; }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual UbigiaIntegerValueGenerator<TProperty> GetIntegerValueGenerator<TProperty>(
+            IProperty property,
+            IReadOnlyList<IUbigiaTable> tables)
         {
             if (_integerGenerators == null)
             {
                 _integerGenerators = new Dictionary<int, IUbigiaIntegerValueGenerator>();
             }
 
-            // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
-#pragma warning disable EF1001 // Internal API
-            var propertyIndex = Microsoft.EntityFrameworkCore.Metadata.Internal.PropertyBaseExtensions.GetIndex(property);
-#pragma warning restore EF1001 // Internal API
+            var propertyIndex = property.GetIndex();
             if (!_integerGenerators.TryGetValue(propertyIndex, out var generator))
             {
                 generator = new UbigiaIntegerValueGenerator<TProperty>(propertyIndex);
                 _integerGenerators[propertyIndex] = generator;
 
-                foreach (var row in _rows.Values)
+                foreach (var table in tables)
                 {
-                    generator.Bump(row);
+                    foreach (var row in table.Rows)
+                    {
+                        generator.Bump(row);
+                    }
                 }
             }
 
@@ -89,14 +132,51 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
+        public virtual IEnumerable<object[]> Rows
+            => _rows.Values;
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual IReadOnlyList<object[]> SnapshotRows()
-            => _rows.Values.ToList();
+        {
+            var rows = _rows.Values.ToList();
+            var rowCount = rows.Count;
+            var properties = EntityType.GetProperties().ToList();
+            var propertyCount = properties.Count;
 
-        private static List<ValueComparer> GetStructuralComparers(IEnumerable<IProperty> properties)
-            => properties.Select(GetStructuralComparer).ToList();
+            for (var rowIndex = 0; rowIndex < rowCount; rowIndex++)
+            {
+                var snapshotRow = new object[propertyCount];
+                Array.Copy(rows[rowIndex], snapshotRow, propertyCount);
 
-        private static ValueComparer GetStructuralComparer(IProperty p)
-            => p.GetStructuralValueComparer() ?? p.FindTypeMapping()?.StructuralComparer;
+                if (_valueConverters != null)
+                {
+                    foreach (var (index, converter) in _valueConverters)
+                    {
+                        snapshotRow[index] = converter.ConvertFromProvider(snapshotRow[index]);
+                    }
+                }
+
+                if (_valueComparers != null)
+                {
+                    foreach (var (index, comparer) in _valueComparers)
+                    {
+                        snapshotRow[index] = comparer.Snapshot(snapshotRow[index]);
+                    }
+                }
+
+                rows[rowIndex] = snapshotRow;
+            }
+
+            return rows;
+        }
+
+        private static List<ValueComparer> GetKeyComparers(IEnumerable<IProperty> properties)
+            => properties.Select(p => p.GetKeyValueComparer()).ToList();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -107,7 +187,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         public virtual void Create(IUpdateEntry entry)
         {
             var row = entry.EntityType.GetProperties()
-                .Select(p => SnapshotValue(p, GetStructuralComparer(p), entry))
+                .Select(p => SnapshotValue(p, p.GetKeyValueComparer(), entry))
                 .ToArray();
 
             _rows.Add(CreateKey(entry), row);
@@ -125,14 +205,14 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             var key = CreateKey(entry);
 
-            if (_rows.ContainsKey(key))
+            if (_rows.TryGetValue(key, out var row))
             {
                 var properties = entry.EntityType.GetProperties().ToList();
                 var concurrencyConflicts = new Dictionary<IProperty, object>();
 
                 for (var index = 0; index < properties.Count; index++)
                 {
-                    IsConcurrencyConflict(entry, properties[index], _rows[key][index], concurrencyConflicts);
+                    IsConcurrencyConflict(entry, properties[index], row[index], concurrencyConflicts);
                 }
 
                 if (concurrencyConflicts.Count > 0)
@@ -154,14 +234,18 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             object rowValue,
             Dictionary<IProperty, object> concurrencyConflicts)
         {
-            if (property.IsConcurrencyToken
-                && !StructuralComparisons.StructuralEqualityComparer.Equals(
-                    rowValue,
-                    entry.GetOriginalValue(property)))
+            if (property.IsConcurrencyToken)
             {
-                concurrencyConflicts.Add(property, rowValue);
+                var comparer = property.GetKeyValueComparer();
+                var originalValue = entry.GetOriginalValue(property);
 
-                return true;
+                if ((comparer != null && !comparer.Equals(rowValue, originalValue))
+                    || (comparer == null && !StructuralComparisons.StructuralEqualityComparer.Equals(rowValue, originalValue)))
+                {
+                    concurrencyConflicts.Add(property, rowValue);
+
+                    return true;
+                }
             }
 
             return false;
@@ -177,23 +261,23 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             var key = CreateKey(entry);
 
-            if (_rows.ContainsKey(key))
+            if (_rows.TryGetValue(key, out var row))
             {
                 var properties = entry.EntityType.GetProperties().ToList();
-                var comparers = GetStructuralComparers(properties);
+                var comparers = GetKeyComparers(properties);
                 var valueBuffer = new object[properties.Count];
                 var concurrencyConflicts = new Dictionary<IProperty, object>();
 
                 for (var index = 0; index < valueBuffer.Length; index++)
                 {
-                    if (IsConcurrencyConflict(entry, properties[index], _rows[key][index], concurrencyConflicts))
+                    if (IsConcurrencyConflict(entry, properties[index], row[index], concurrencyConflicts))
                     {
                         continue;
                     }
 
                     valueBuffer[index] = entry.IsModified(properties[index])
                         ? SnapshotValue(properties[index], comparers[index], entry)
-                        : _rows[key][index];
+                        : row[index];
                 }
 
                 if (concurrencyConflicts.Count > 0)
@@ -211,8 +295,19 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             }
         }
 
-        private void BumpValueGenerators(object[] row)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual void BumpValueGenerators(object[] row)
         {
+            if (BaseTable != null)
+            {
+                BaseTable.BumpValueGenerators(row);
+            }
+
             if (_integerGenerators != null)
             {
                 foreach (var generator in _integerGenerators.Values)
@@ -222,13 +317,23 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             }
         }
 
-        // WARNING: The Ubigia provider is using EF internal code here. This should not be copied by other providers. See #15096
-#pragma warning disable EF1001 // Internal API
-        private TKey CreateKey(IUpdateEntry entry) => _keyValueFactory.CreateFromCurrentValues((InternalEntityEntry)entry);
-#pragma warning restore EF1001 // Internal API
+        private TKey CreateKey(IUpdateEntry entry)
+            => _keyValueFactory.CreateFromCurrentValues(entry);
 
         private static object SnapshotValue(IProperty property, ValueComparer comparer, IUpdateEntry entry)
-            => SnapshotValue(comparer, entry.GetCurrentValue(property));
+        {
+            var value = SnapshotValue(comparer, entry.GetCurrentValue(property));
+
+            var converter = property.GetValueConverter()
+                ?? property.FindTypeMapping()?.Converter;
+
+            if (converter != null)
+            {
+                value = converter.ConvertToProvider(value);
+            }
+
+            return value;
+        }
 
         private static object SnapshotValue(ValueComparer comparer, object value)
             => comparer == null ? value : comparer.Snapshot(value);
@@ -239,7 +344,8 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         /// <param name="entry"> The update entry which resulted in the conflict(s). </param>
         /// <param name="concurrencyConflicts"> The conflicting properties with their associated database values. </param>
         protected virtual void ThrowUpdateConcurrencyException(
-            [NotNull] IUpdateEntry entry, [NotNull] Dictionary<IProperty, object> concurrencyConflicts)
+            [NotNull] IUpdateEntry entry,
+            [NotNull] Dictionary<IProperty, object> concurrencyConflicts)
         {
             Check.NotNull(entry, nameof(entry));
             Check.NotNull(concurrencyConflicts, nameof(concurrencyConflicts));

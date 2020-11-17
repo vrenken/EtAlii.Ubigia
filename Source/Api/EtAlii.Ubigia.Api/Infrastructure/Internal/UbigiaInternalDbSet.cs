@@ -12,7 +12,10 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     #pragma warning restore EF1001
         where TEntity : class
     {
-        public UbigiaInternalDbSet([NotNull] DbContext context) : base(context)
+        public UbigiaInternalDbSet([NotNull] DbContext context, [CanBeNull] string entityTypeName) 
+#pragma warning disable EF1001
+            : base(context, entityTypeName)
+#pragma warning restore EF1001
         {
         }
     }

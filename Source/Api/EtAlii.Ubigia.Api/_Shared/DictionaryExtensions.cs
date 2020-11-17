@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using JetBrains.Annotations;
 
-// ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore.Utilities
 {
     [DebuggerStepThrough]

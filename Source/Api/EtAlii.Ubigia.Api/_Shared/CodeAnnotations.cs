@@ -3,7 +3,6 @@
 
 using System;
 
-// ReSharper disable once CheckNamespace
 namespace JetBrains.Annotations
 {
     [AttributeUsage(
@@ -74,7 +73,8 @@ namespace JetBrains.Annotations
         }
 
         public UsedImplicitlyAttribute(
-            ImplicitUseKindFlags useKindFlags, ImplicitUseTargetFlags targetFlags)
+            ImplicitUseKindFlags useKindFlags,
+            ImplicitUseTargetFlags targetFlags)
         {
             UseKindFlags = useKindFlags;
             TargetFlags = targetFlags;

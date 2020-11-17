@@ -1,23 +1,22 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Storage;
-
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using System.Reflection;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
 
     public partial class UbigiaShapedQueryCompilingExpressionVisitor
     {
-        private class CustomShaperCompilingExpressionVisitor : ExpressionVisitor
+        private sealed class CustomShaperCompilingExpressionVisitor : ExpressionVisitor
         {
             private readonly bool _tracking;
 
@@ -26,36 +25,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _tracking = tracking;
             }
 
-            private static readonly MethodInfo IncludeReferenceMethodInfo
+            private static readonly MethodInfo _includeReferenceMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(IncludeReference));
 
-            private static readonly MethodInfo IncludeCollectionMethodInfo
+            private static readonly MethodInfo _includeCollectionMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(IncludeCollection));
 
-            private static readonly MethodInfo MaterializeCollectionMethodInfo
+            private static readonly MethodInfo _materializeCollectionMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(MaterializeCollection));
 
-            private static readonly MethodInfo MaterializeSingleResultMethodInfo
+            private static readonly MethodInfo _materializeSingleResultMethodInfo
                 = typeof(CustomShaperCompilingExpressionVisitor).GetTypeInfo()
                     .GetDeclaredMethod(nameof(MaterializeSingleResult));
-
-            private static void SetIsLoadedNoTracking(object entity, INavigation navigation)
-                => ((ILazyLoader)(navigation
-                            .DeclaringEntityType
-                            .GetServiceProperties()
-                            .FirstOrDefault(p => p.ClrType == typeof(ILazyLoader)))
-                        ?.GetGetter().GetClrValue(entity))
-                    ?.SetLoaded(entity, navigation.Name);
 
             private static void IncludeReference<TEntity, TIncludingEntity, TIncludedEntity>(
                 QueryContext queryContext,
                 TEntity entity,
                 TIncludedEntity relatedEntity,
-                INavigation navigation,
-                INavigation inverseNavigation,
+                INavigationBase navigation,
+                INavigationBase inverseNavigation,
                 Action<TIncludingEntity, TIncludedEntity> fixup,
                 bool trackingQuery)
                 where TIncludingEntity : class, TEntity
@@ -75,14 +66,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     }
                     else
                     {
-                        SetIsLoadedNoTracking(includingEntity, navigation);
+                        navigation.SetIsLoadedWhenNoTracking(includingEntity);
                         if (relatedEntity != null)
                         {
                             fixup(includingEntity, relatedEntity);
                             if (inverseNavigation != null
-                                && !inverseNavigation.IsCollection())
+                                && !inverseNavigation.IsCollection)
                             {
-                                SetIsLoadedNoTracking(relatedEntity, inverseNavigation);
+                                inverseNavigation.SetIsLoadedWhenNoTracking(relatedEntity);
                             }
                         }
                     }
@@ -94,8 +85,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 IEnumerable<ValueBuffer> innerValueBuffers,
                 Func<QueryContext, ValueBuffer, TIncludedEntity> innerShaper,
                 TEntity entity,
-                INavigation navigation,
-                INavigation inverseNavigation,
+                INavigationBase navigation,
+                INavigationBase inverseNavigation,
                 Action<TIncludingEntity, TIncludedEntity> fixup,
                 bool trackingQuery)
                 where TIncludingEntity : class, TEntity
@@ -113,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     }
                     else
                     {
-                        SetIsLoadedNoTracking(entity, navigation);
+                        navigation.SetIsLoadedWhenNoTracking(entity);
                     }
 
                     foreach (var valueBuffer in innerValueBuffers)
@@ -125,7 +116,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                             fixup(includingEntity, relatedEntity);
                             if (inverseNavigation != null)
                             {
-                                SetIsLoadedNoTracking(relatedEntity, inverseNavigation);
+                                inverseNavigation.SetIsLoadedWhenNoTracking(relatedEntity);
                             }
                         }
                     }
@@ -160,29 +151,31 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitExtension(Expression extensionExpression)
             {
+                Check.NotNull(extensionExpression, nameof(extensionExpression));
+
                 if (extensionExpression is IncludeExpression includeExpression)
                 {
                     var entityClrType = includeExpression.EntityExpression.Type;
                     var includingClrType = includeExpression.Navigation.DeclaringEntityType.ClrType;
-                    var inverseNavigation = includeExpression.Navigation.FindInverse();
-                    var relatedEntityClrType = includeExpression.Navigation.GetTargetType().ClrType;
+                    var inverseNavigation = includeExpression.Navigation.Inverse;
+                    var relatedEntityClrType = includeExpression.Navigation.TargetEntityType.ClrType;
                     if (includingClrType != entityClrType
                         && includingClrType.IsAssignableFrom(entityClrType))
                     {
                         includingClrType = entityClrType;
                     }
 
-                    if (includeExpression.Navigation.IsCollection())
+                    if (includeExpression.Navigation.IsCollection)
                     {
                         var collectionShaper = (CollectionShaperExpression)includeExpression.NavigationExpression;
                         return Expression.Call(
-                            IncludeCollectionMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
+                            _includeCollectionMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
                             QueryCompilationContext.QueryContextParameter,
                             collectionShaper.Projection,
                             Expression.Constant(((LambdaExpression)Visit(collectionShaper.InnerShaper)).Compile()),
                             includeExpression.EntityExpression,
                             Expression.Constant(includeExpression.Navigation),
-                            Expression.Constant(inverseNavigation, typeof(INavigation)),
+                            Expression.Constant(inverseNavigation, typeof(INavigationBase)),
                             Expression.Constant(
                                 GenerateFixup(
                                     includingClrType, relatedEntityClrType, includeExpression.Navigation, inverseNavigation).Compile()),
@@ -190,12 +183,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     }
 
                     return Expression.Call(
-                        IncludeReferenceMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
+                        _includeReferenceMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
                         QueryCompilationContext.QueryContextParameter,
                         includeExpression.EntityExpression,
                         includeExpression.NavigationExpression,
                         Expression.Constant(includeExpression.Navigation),
-                        Expression.Constant(inverseNavigation, typeof(INavigation)),
+                        Expression.Constant(inverseNavigation, typeof(INavigationBase)),
                         Expression.Constant(
                             GenerateFixup(
                                 includingClrType, relatedEntityClrType, includeExpression.Navigation, inverseNavigation).Compile()),
@@ -204,26 +197,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 if (extensionExpression is CollectionShaperExpression collectionShaperExpression)
                 {
+                    var navigation = collectionShaperExpression.Navigation;
+                    var collectionAccessor = navigation?.GetCollectionAccessor();
+                    var collectionType = collectionAccessor?.CollectionType ?? collectionShaperExpression.Type;
                     var elementType = collectionShaperExpression.ElementType;
-                    var collectionType = collectionShaperExpression.Type;
 
                     return Expression.Call(
-                        MaterializeCollectionMethodInfo.MakeGenericMethod(elementType, collectionType),
+                        _materializeCollectionMethodInfo.MakeGenericMethod(elementType, collectionType),
                         QueryCompilationContext.QueryContextParameter,
                         collectionShaperExpression.Projection,
                         Expression.Constant(((LambdaExpression)Visit(collectionShaperExpression.InnerShaper)).Compile()),
-                        Expression.Constant(
-                            collectionShaperExpression.Navigation?.GetCollectionAccessor(),
-                            typeof(IClrCollectionAccessor)));
+                        Expression.Constant(collectionAccessor, typeof(IClrCollectionAccessor)));
                 }
 
                 if (extensionExpression is SingleResultShaperExpression singleResultShaperExpression)
                 {
+                    var innerShaper = (LambdaExpression)Visit(singleResultShaperExpression.InnerShaper);
+
                     return Expression.Call(
-                        MaterializeSingleResultMethodInfo.MakeGenericMethod(singleResultShaperExpression.Type),
+                        _materializeSingleResultMethodInfo.MakeGenericMethod(singleResultShaperExpression.Type),
                         QueryCompilationContext.QueryContextParameter,
                         singleResultShaperExpression.Projection,
-                        Expression.Constant(((LambdaExpression)Visit(singleResultShaperExpression.InnerShaper)).Compile()));
+                        Expression.Constant(innerShaper.Compile()));
                 }
 
                 return base.VisitExtension(extensionExpression);
@@ -232,14 +227,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             private static LambdaExpression GenerateFixup(
                 Type entityType,
                 Type relatedEntityType,
-                INavigation navigation,
-                INavigation inverseNavigation)
+                INavigationBase navigation,
+                INavigationBase inverseNavigation)
             {
                 var entityParameter = Expression.Parameter(entityType);
                 var relatedEntityParameter = Expression.Parameter(relatedEntityType);
                 var expressions = new List<Expression>
                 {
-                    navigation.IsCollection()
+                    navigation.IsCollection
                         ? AddToCollectionNavigation(entityParameter, relatedEntityParameter, navigation)
                         : AssignReferenceNavigation(entityParameter, relatedEntityParameter, navigation)
                 };
@@ -247,7 +242,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (inverseNavigation != null)
                 {
                     expressions.Add(
-                        inverseNavigation.IsCollection()
+                        inverseNavigation.IsCollection
                             ? AddToCollectionNavigation(relatedEntityParameter, entityParameter, inverseNavigation)
                             : AssignReferenceNavigation(relatedEntityParameter, entityParameter, inverseNavigation));
                 }
@@ -258,7 +253,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             private static Expression AssignReferenceNavigation(
                 ParameterExpression entity,
                 ParameterExpression relatedEntity,
-                INavigation navigation)
+                INavigationBase navigation)
             {
                 return entity.MakeMemberAccess(navigation.GetMemberInfo(forMaterialization: true, forSet: true)).Assign(relatedEntity);
             }
@@ -266,15 +261,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             private static Expression AddToCollectionNavigation(
                 ParameterExpression entity,
                 ParameterExpression relatedEntity,
-                INavigation navigation)
+                INavigationBase navigation)
                 => Expression.Call(
                     Expression.Constant(navigation.GetCollectionAccessor()),
-                    CollectionAccessorAddMethodInfo,
+                    _collectionAccessorAddMethodInfo,
                     entity,
                     relatedEntity,
                     Expression.Constant(true));
 
-            private static readonly MethodInfo CollectionAccessorAddMethodInfo = typeof(IClrCollectionAccessor).GetTypeInfo().GetDeclaredMethod(nameof(IClrCollectionAccessor.Add));
+            private static readonly MethodInfo _collectionAccessorAddMethodInfo
+                = typeof(IClrCollectionAccessor).GetTypeInfo()
+                    .GetDeclaredMethod(nameof(IClrCollectionAccessor.Add));
         }
     }
 }
