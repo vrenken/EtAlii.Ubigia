@@ -6,6 +6,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  nugetPackagesFolder: $(Pipeline.Workspace)/.nuget/packages
 
 trigger:
   - master
@@ -49,15 +50,24 @@ jobs:
             sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             # $(Build.SourcesDirectory)
 
-      - task: DotNetCoreCLI@2
-        displayName: 'Run: dotnet restore'
+      - task: Cache@2
         inputs:
-          command: 'restore'
-          projects: |
-            Source/**/*.csproj
-            !Source/**/ProjectToExclude.csproj
-          feedsToUse: config
-          nugetConfigPath: Source/NuGet.config
+          key: 'nuget | "$(Agent.OS)" | $(Build.SourcesDirectory)/**/packages.lock.json'
+          restoreKeys: |
+            nuget | "$(Agent.OS)"
+            nuget
+          path: $(nugetPackagesFolder)
+        displayName: Cache NuGet packages
+        
+#      - task: DotNetCoreCLI@2
+#        displayName: 'Run: dotnet restore'
+#        inputs:
+#          command: 'restore'
+#          projects: |
+#            Source/**/*.csproj
+#            !Source/**/ProjectToExclude.csproj
+#          feedsToUse: config
+#          nugetConfigPath: Source/NuGet.config
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
