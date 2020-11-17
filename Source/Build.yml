@@ -43,8 +43,9 @@ jobs:
           projectKey: ${{ variables.sonarQubeProject }}
           extraProperties: |
             # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/Source/**/*.coveragexml
-            sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/Source/**/coverage.opencover.xml
-            sonar.coverage.exclusions=”Source/**/*.Tests.cs”
+            sona.projectBaseDir=$(Build.SourcesDirectory)
+            sonar.coverage.exclusions=”/**/*.Tests.cs”
+            sonar.cs.opencover.reportsPaths=/**/coverage.opencover.xml
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet restore'
@@ -66,16 +67,16 @@ jobs:
           arguments: ' --no-restore --configuration $(BuildConfiguration) /p:UbigiaIsRunningOnBuildAgent=true -nodeReuse:false -maxCpuCount:8'
 
 # TEST
-      - task: DotNetCoreCLI@2
-        displayName: 'Run: dotnet test'
-        inputs:
-          command: test
-          # The WebApi tests won't run nicely on the build agent. No idea why.
-          projects: |
-            Source/**/*.Tests.csproj
-            !Source/**/*.WebApi.Tests.csproj
-          arguments: '/p:SolutionDir=$(Build.SourcesDirectory)/Source --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
-        continueOnError: true
+#      - task: DotNetCoreCLI@2
+#        displayName: 'Run: dotnet test'
+#        inputs:
+#          command: test
+#          # The WebApi tests won't run nicely on the build agent. No idea why.
+#          projects: |
+#            Source/**/*.Tests.csproj
+#            !Source/**/*.WebApi.Tests.csproj
+#          arguments: '/p:SolutionDir=$(Build.SourcesDirectory)/Source --no-restore --no-build --collect:"XPlat Code Coverage" -nodeReuse:false -maxCpuCount:8 -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+#        continueOnError: true
 
       - task: SonarQubeAnalyze@4
         displayName: 'SonarQube: analyse'
