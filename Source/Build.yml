@@ -38,14 +38,12 @@ jobs:
       - task: SonarQubePrepare@4
         displayName: 'SonarQube: prepare'
         inputs:
-          SonarQube: 'Avalon SonarQube'
-          scannerMode: 'MSBuild'
+          scannerMode: 'CLI'
           projectKey: ${{ variables.sonarQubeProject }}
+          configMode: 'file'
           extraProperties: |
-            # sonar.cs.vscoveragexml.reportsPaths=$(Build.SourcesDirectory)/Source/**/*.coveragexml
-            sona.projectBaseDir=$(Build.SourcesDirectory)
-            sonar.coverage.exclusions=”/**/*.Tests.cs”
-            sonar.cs.opencover.reportsPaths=/**/coverage.opencover.xml
+            sonar.coverage.exclusions=**/*.Tests.cs
+            sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet restore'
