@@ -59,15 +59,15 @@ jobs:
           path: $(nugetPackagesFolder)
         displayName: Cache NuGet packages
         
-#      - task: DotNetCoreCLI@2
-#        displayName: 'Run: dotnet restore'
-#        inputs:
-#          command: 'restore'
-#          projects: |
-#            Source/**/*.csproj
-#            !Source/**/ProjectToExclude.csproj
-#          feedsToUse: config
-#          nugetConfigPath: Source/NuGet.config
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet restore'
+        inputs:
+          command: 'restore'
+          projects: |
+            Source/**/*.csproj
+            !Source/**/ProjectToExclude.csproj
+          feedsToUse: config
+          nugetConfigPath: Source/NuGet.config
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
