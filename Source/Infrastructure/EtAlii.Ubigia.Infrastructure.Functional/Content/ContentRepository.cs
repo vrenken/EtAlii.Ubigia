@@ -40,6 +40,7 @@
                 throw new ContentRepositoryException("Content already stored");
             }
 
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
             if (contentParts.Any(part => part.Stored))
             {
                 throw new ContentRepositoryException("Some parts of the content are already stored");
