@@ -6,8 +6,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  NUGET_PACKAGES: $(Build.SourcesDirectory)/.nuget/packages
-  buildDirectory: '$(Build.SourcesDirectory)'
+  dotNetSdkVersion: '5.0.100'
 
 trigger:
   - master
@@ -25,17 +24,17 @@ jobs:
       demands:
         #- SpecialSoftware # Check if SpecialSoftware capability exists
         # Check if Agent.OS == Windows_NT
-        - Agent.OS -equals Windows_NT 
+        - Agent.OS -equals Windows_NT
       #vmImage: 'ubuntu-latest'    # For Docker.
       #vmImage: 'windows-latest'   # For Windows.
     steps:
-    
-# BUILD
+
+      # BUILD
       - task: UseDotNet@2
-        displayName: 'Use: dotnet SDK 5.0.100'
+        displayName: 'Use: dotnet SDK ${{ variables.dotNetSdkVersion }}'
         inputs:
           packageType: 'sdk'
-          version: '5.0.100'
+          version: ${{ variables.dotNetSdkVersion }}
 
       - task: NugetToolInstaller@1
 
@@ -51,79 +50,23 @@ jobs:
             sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             # $(Build.SourcesDirectory)
 
-    
-      - script: dotnet nuget locals global-packages -l
-        displayName: 'dotnet nuget locals global-packages -l'
-    
-      - task: PowerShell@2
+      - task: DotNetCoreCLI@2
+        displayName: 'Run: dotnet restore'
         inputs:
-          targetType: 'inline'
-          script: |
-            $cache = dotnet nuget locals global-packages -l
-            $cacheLocation = $cache.Replace('info : global-packages: ', '')
-            Write-Host $cacheLocation
-            Write-Host "##vso[task.setvariable variable=NUGET_PACKAGES;]$cacheLocation"
-    
-      #    pwsh: true
-    
-      - task: Cache@2
-        inputs:
-          key: 'nuget | "$(Agent.OS)" | PipelineCaching/packages.lock.json'
-          restoreKeys: |
-            nuget | "$(Agent.OS)"
-            nuget
-          path: $(NUGET_PACKAGES)
-          cacheHitVar: CACHE_RESTORED
-        displayName: Cache NuGet packages
-    
-      - script: dotnet restore
-        displayName: 'dotnet restore'
-        condition: ne(variables.CACHE_RESTORED, 'true')
-        workingDirectory: $(buildDirectory)
-
-#      - task: DotNetCoreCLI@2
-#        displayName: 'Run: dotnet restore'
-#        condition: ne(variables.CACHE_RESTORED, 'true')
-#        inputs:
-#          command: 'restore'
-#          projects: |
-#            Source/**/*.csproj
-#            !Source/**/ProjectToExclude.csproj
-#          feedsToUse: config
-#          nugetConfigPath: Source/NuGet.config
-    
-      - script: dir
-        displayName: 'Displaying NuGet folder'
-        enabled: true
-        condition: always()
-        workingDirectory: $(NUGET_PACKAGES)
-    
-      - task: CopyFiles@2
-        displayName: Copy packages.lock.json file
-        enabled: false
-        inputs:
-          sourceFolder: $(buildDirectory)/PipelineCaching
-          contents: packages.lock.json
-          targetFolder:  $(Build.ArtifactStagingDirectory)
-    
-      - task: PublishBuildArtifacts@1
-        displayName: Publish packages.lock.json file
-        enabled: false
-        inputs:
-          pathToPublish: $(Build.ArtifactStagingDirectory)
-          artifactName: LockedJson
-
+          command: 'restore'
+          projects: Source/**/*.csproj
+          feedsToUse: config
+          nugetConfigPath: Source/NuGet.config
 
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet build'
         inputs:
           command: 'build'
-          projects: |
-            Source/**/*.sln
-            !Source/**/StorageBrowser.csproj
+          projects: Source/**/*.sln
+#            !Source/**/StorageBrowser.csproj
           arguments: ' --no-restore --configuration $(BuildConfiguration) /p:UbigiaIsRunningOnBuildAgent=true -nodeReuse:false -maxCpuCount:8'
 
-# TEST
+      # TEST
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet test'
         inputs:
