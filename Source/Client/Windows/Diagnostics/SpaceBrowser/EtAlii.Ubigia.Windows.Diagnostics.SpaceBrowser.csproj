@@ -3,11 +3,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Description>StorageBrowser</Description>
+    <Description>SpaceBrowser</Description>
     <ProjectGuid>73759ec5-502d-4fd7-b78f-804c29f8bed0</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>

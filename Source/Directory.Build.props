@@ -24,5 +24,13 @@
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
 
   </PropertyGroup>
+
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <Description>Unit test project</Description>
+    <OutputType>Library</OutputType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
 </Project>
 

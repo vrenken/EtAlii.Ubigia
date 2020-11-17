@@ -2,10 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>1a8ebc3e-54d9-44d6-b1c9-94614e0ad0eb</ProjectGuid>
-    <Description />
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

@@ -3,10 +3,6 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>8131bac6-52a8-4ef0-9cbb-522025fe161f</ProjectGuid>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Description />
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />

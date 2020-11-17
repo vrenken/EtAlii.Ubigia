@@ -1,10 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>6a427c5c-9f40-4642-f760-94ab42da6fff</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
-    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />

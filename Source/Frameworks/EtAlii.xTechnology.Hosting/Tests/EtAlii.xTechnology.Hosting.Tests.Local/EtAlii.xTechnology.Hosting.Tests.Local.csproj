@@ -1,8 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
     <ProjectGuid>30BE97EC-145E-45B6-DDCC-2C0C5AFB1AAC</ProjectGuid>
   </PropertyGroup>
   
