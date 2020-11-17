@@ -9,6 +9,8 @@ variables:
 
 trigger:
   - master
+  - feature/*
+  - release/*
 
 name: ${{ variables.buildDisplayName }}
 
