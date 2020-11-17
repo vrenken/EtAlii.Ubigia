@@ -6,7 +6,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  nugetPackagesFolder: $(Pipeline.Workspace)/.nuget/packages
+  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
 
 trigger:
   - master
@@ -56,7 +56,7 @@ jobs:
           restoreKeys: |
             nuget | "$(Agent.OS)"
             nuget
-          path: $(nugetPackagesFolder)
+          path: $(NUGET_PACKAGES)
         displayName: Cache NuGet packages
         
       - task: DotNetCoreCLI@2

@@ -24,6 +24,7 @@
          For this we setup the build using the pattern described on the website below:
          https://blog.soenneker.com/how-to-setup-nuget-caching-in-azure-devops-8d94c57b5321 -->
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <DisableImplicitNuGetFallbackFolder>true</DisableImplicitNuGetFallbackFolder>
     
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
