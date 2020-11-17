@@ -19,6 +19,11 @@
 
     <LangVersion>9</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+    <!-- We want to be able to cache NuGet packages on the build server
+         For this we setup the build using the pattern described on the website below:
+         https://blog.soenneker.com/how-to-setup-nuget-caching-in-azure-devops-8d94c57b5321 -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
