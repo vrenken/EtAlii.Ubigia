@@ -40,10 +40,10 @@ jobs:
         inputs:
           SonarQube: 'Avalon SonarQube'
           scannerMode: 'CLI'
-          projectKey: ${{ variables.sonarQubeProject }}
           configMode: 'file'
           extraProperties: |
             sonar.coverage.exclusions=**/*.Tests.cs
+            sonar.projectKey=${{ variables.sonarQubeProject }}
             sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             # $(Build.SourcesDirectory)
 
