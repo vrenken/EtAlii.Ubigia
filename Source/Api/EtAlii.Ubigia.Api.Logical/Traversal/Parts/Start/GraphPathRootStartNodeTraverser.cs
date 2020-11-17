@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             parameters.Input.SubscribeAsync(
                 onError: e => parameters.Output.OnError(e),
-                onNext: async o =>
+                onNext: async _ =>
                 {
                     var root = await parameters.Context.Roots.Get(rootName);
                     parameters.Output.OnNext(root.Identifier);

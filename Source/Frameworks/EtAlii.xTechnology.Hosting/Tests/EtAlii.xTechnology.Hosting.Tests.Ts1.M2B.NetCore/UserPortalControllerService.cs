@@ -14,7 +14,7 @@
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
         {
             //applicationBuilder.UseBranchWithServices(Port, "/user/portal",
-            applicationBuilder.Use(async (c, next) =>
+            applicationBuilder.Use(async (c, _) =>
             {
                 await c.Response.WriteAsync("USER PORTAL!");
             });

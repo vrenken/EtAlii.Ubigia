@@ -43,10 +43,10 @@
                     }));
 
             // Let's flush the log when the process exits.
-            AppDomain.CurrentDomain.ProcessExit += (o, e) => Log.CloseAndFlush();
+            AppDomain.CurrentDomain.ProcessExit += (_, _) => Log.CloseAndFlush();
 
             // And log all unhandled exceptions.
-            AppDomain.CurrentDomain.UnhandledException += (o, e) => Log.Error((Exception) e.ExceptionObject, "Unhandled exception");
+            AppDomain.CurrentDomain.UnhandledException += (_, e) => Log.Error((Exception) e.ExceptionObject, "Unhandled exception");
         }
     }
 }

@@ -35,8 +35,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
-                .Register(variable => variable is INode, (variable, variableName) => ToPathSubject((INode)variable))
-                .Register(variable => variable is PathSubject, (variable, variableName) => (Subject)variable);
+                .Register(variable => variable is INode, (variable, _) => ToPathSubject((INode)variable))
+                .Register(variable => variable is PathSubject, (variable, _) => (Subject)variable);
 
             _parserSelector = new Selector<Subject, ISubjectParser>()
                 .Register(s => s is NonRootedPathSubject, nonRootedPathSubjectParser)

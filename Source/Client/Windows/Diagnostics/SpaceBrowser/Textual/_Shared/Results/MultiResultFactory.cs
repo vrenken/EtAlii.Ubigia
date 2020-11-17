@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                 .Register(o => o is IPropertyDictionary, ConvertSingle)
                 .Register(o => o is string, ConvertSingle)
                 .Register(o => o is IEnumerable, ConvertMultiple)
-                .Register(o => true, ConvertSingle);
+                .Register(_ => true, ConvertSingle);
         }
 
         private Result[] ConvertMultiple(object o, object group)
