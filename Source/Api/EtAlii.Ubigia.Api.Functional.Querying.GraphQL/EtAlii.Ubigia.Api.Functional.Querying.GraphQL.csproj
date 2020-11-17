@@ -16,15 +16,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GraphQL" Version="3.1.4" >
-      <PrivateAssets>all</PrivateAssets> <!-- Currently GraphQL has a conflict with the .NET 5.0 assemblies. Should get remove when fixed. -->
-    </PackageReference>
-    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.1.4" >
-      <PrivateAssets>all</PrivateAssets> <!-- Currently GraphQL has a conflict with the .NET 5.0 assemblies. Should get remove when fixed. -->
-    </PackageReference>
-    <PackageReference Include="GraphQL.Server.Core" Version="4.3.0" >
-      <PrivateAssets>all</PrivateAssets> <!-- Currently GraphQL has a conflict with the .NET 5.0 assemblies. Should get remove when fixed. -->
-    </PackageReference>
+    <PackageReference Include="GraphQL" Version="3.1.4" />
+    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.1.4" />
+    <PackageReference Include="GraphQL.Server.Core" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Processing" />
