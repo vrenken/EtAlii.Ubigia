@@ -4,14 +4,14 @@
 namespace EtAlii.Ubigia.Api.Metadata.Conventions
 {
     using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Conventions;
     using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///     <para>
-    ///         A builder for building conventions for the Ubigia provider.
+    ///         A builder for building conventions for th Ubigia provider.
     ///     </para>
     ///     <para>
     ///         The service lifetime is <see cref="ServiceLifetime.Scoped" /> and multiple registrations
@@ -33,34 +33,62 @@ namespace EtAlii.Ubigia.Api.Metadata.Conventions
         {
         }
 
-        /// <summary>
-        ///     <para>
-        ///         Call this method to build a <see cref="ConventionSet" /> for the Ubigia provider when using
-        ///         the <see cref="ModelBuilder" /> outside of <see cref="DbContext.OnModelCreating" />.
-        ///     </para>
-        ///     <para>
-        ///         Note that it is unusual to use this method.
-        ///         Consider using <see cref="DbContext" /> in the normal way instead.
-        ///     </para>
-        /// </summary>
-        /// <returns> The convention set. </returns>
-        public static ConventionSet Build(string address, string storage, string username, string password)
+        /// <inheritdoc />
+        public override ConventionSet CreateConventionSet()
         {
-            var serviceProvider = new ServiceCollection()
-                .AddEntityFrameworkUbigiaDatabase()
-                .AddDbContext<DbContext>(
-                    (p, o) =>
-                        o.UseUbigiaContext(address, storage, username, password)
-                            .UseInternalServiceProvider(p))
-                .BuildServiceProvider();
+            var conventionSet = base.CreateConventionSet();
 
-            using (var serviceScope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetService<DbContext>())
-                {
-                    return ConventionSet.CreateConventionSet(context);
-                }
-            }
+            conventionSet.ModelFinalizingConventions.Add(new DefiningQueryRewritingConvention(Dependencies));
+
+            return conventionSet;
         }
+        //
+        // /// <summary>
+        // ///     <para>
+        // ///         Call this method to build a <see cref="ConventionSet" /> for the Ubigia provider when using
+        // ///         the <see cref="ModelBuilder" /> outside of <see cref="DbContext.OnModelCreating" />.
+        // ///     </para>
+        // ///     <para>
+        // ///         Note that it is unusual to use this method.
+        // ///         Consider using <see cref="DbContext" /> in the normal way instead.
+        // ///     </para>
+        // /// </summary>
+        // /// <returns> The convention set. </returns>
+        // public static ConventionSet Build()
+        // {
+        //     using var serviceScope = CreateServiceScope();
+        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>();
+        //     return ConventionSet.CreateConventionSet(context);
+        // }
+        //
+        // /// <summary>
+        // ///     <para>
+        // ///         Call this method to build a <see cref="ModelBuilder" /> for SQLite outside of <see cref="DbContext.OnModelCreating" />.
+        // ///     </para>
+        // ///     <para>
+        // ///         Note that it is unusual to use this method.
+        // ///         Consider using <see cref="DbContext" /> in the normal way instead.
+        // ///     </para>
+        // /// </summary>
+        // /// <returns> The convention set. </returns>
+        // public static ModelBuilder CreateModelBuilder()
+        // {
+        //     using var serviceScope = CreateServiceScope();
+        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>();
+        //     return new ModelBuilder(ConventionSet.CreateConventionSet(context), context.GetService<ModelDependencies>());
+        // }
+        //
+        // private static IServiceScope CreateServiceScope()
+        // {
+        //     var serviceProvider = new ServiceCollection()
+        //         .AddEntityFrameworkUbigiaDatabase()
+        //         .AddDbContext<DbContext>(
+        //             (p, o) =>
+        //                 o.UseUbigiaContext(Guid.NewGuid().ToString())
+        //                     .UseInternalServiceProvider(p))
+        //         .BuildServiceProvider();
+        //
+        //     return serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        // }
     }
 }

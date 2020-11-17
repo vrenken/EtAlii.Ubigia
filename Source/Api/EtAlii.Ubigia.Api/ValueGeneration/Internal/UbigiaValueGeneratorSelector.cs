@@ -1,18 +1,17 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using EtAlii.Ubigia.Api.Storage.Internal;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Utilities;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace EtAlii.Ubigia.Api.ValueGeneration.Internal
 {
+    using System;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using EtAlii.Ubigia.Api.Storage.Internal;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Utilities;
+    using Microsoft.EntityFrameworkCore.ValueGeneration;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     ///     <para>

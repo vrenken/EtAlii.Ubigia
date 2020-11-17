@@ -3,10 +3,9 @@
 
 namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 {
-    using EtAlii.Ubigia.Api.Storage;
     using Microsoft.EntityFrameworkCore.Infrastructure;
+    using EtAlii.Ubigia.Api.Storage;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///     <para>

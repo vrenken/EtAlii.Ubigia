@@ -9,8 +9,8 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     using System.Text;
     using JetBrains.Annotations;
     using Microsoft.EntityFrameworkCore.Infrastructure;
-    using Microsoft.Extensions.DependencyInjection;
     using EtAlii.Ubigia.Api.Storage;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -87,14 +87,14 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             _databaseRoot = copyFrom._databaseRoot;
         }
 
-
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
         ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected virtual UbigiaOptionsExtension Clone() => new UbigiaOptionsExtension(this);
+        protected virtual UbigiaOptionsExtension Clone()
+            => new UbigiaOptionsExtension(this);
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -168,7 +168,8 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public virtual void ApplyServices(IServiceCollection services) => services.AddEntityFrameworkUbigiaDatabase();
+        public virtual void ApplyServices(IServiceCollection services)
+            => services.AddEntityFrameworkUbigiaDatabase();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -189,9 +190,11 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             {
             }
 
-            private new UbigiaOptionsExtension Extension => (UbigiaOptionsExtension)base.Extension;
+            private new UbigiaOptionsExtension Extension
+                => (UbigiaOptionsExtension)base.Extension;
 
-            public override bool IsDatabaseProvider => true;
+            public override bool IsDatabaseProvider
+                => true;
 
             public override string LogFragment
             {
@@ -213,7 +216,8 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
                 }
             }
 
-            public override long GetServiceProviderHashCode() => Extension._databaseRoot?.GetHashCode() ?? 0L;
+            public override long GetServiceProviderHashCode()
+                => Extension._databaseRoot?.GetHashCode() ?? 0L;
 
             public override void PopulateDebugInfo(IDictionary<string, string> debugInfo)
                 => debugInfo["UbigiaDatabase:DatabaseRoot"]

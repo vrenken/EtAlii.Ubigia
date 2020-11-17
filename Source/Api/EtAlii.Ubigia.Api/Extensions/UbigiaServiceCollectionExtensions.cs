@@ -10,6 +10,7 @@ namespace Microsoft.Extensions.DependencyInjection
     using Microsoft.EntityFrameworkCore.Infrastructure;
     using EtAlii.Ubigia.Api.Diagnostics.Internal;
     using EtAlii.Ubigia.Api.Infrastructure.Internal;
+    using EtAlii.Ubigia.Api.Internal;
     using EtAlii.Ubigia.Api.Metadata.Conventions;
     using EtAlii.Ubigia.Api.Query.Internal;
     using EtAlii.Ubigia.Api.Storage.Internal;
@@ -55,12 +56,10 @@ namespace Microsoft.Extensions.DependencyInjection
                 .TryAdd<IDatabaseCreator, UbigiaDatabaseCreator>()
                 .TryAdd<IQueryContextFactory, UbigiaQueryContextFactory>()
                 .TryAdd<IProviderConventionSetBuilder, UbigiaConventionSetBuilder>()
+                .TryAdd<IModelValidator, UbigiaModelValidator>()
                 .TryAdd<ITypeMappingSource, UbigiaTypeMappingSource>()
-
-                // New Query pipeline
                 .TryAdd<IShapedQueryCompilingExpressionVisitorFactory, UbigiaShapedQueryCompilingExpressionVisitorFactory>()
                 .TryAdd<IQueryableMethodTranslatingExpressionVisitorFactory, UbigiaQueryableMethodTranslatingExpressionVisitorFactory>()
-                .TryAdd<IQueryTranslationPostprocessorFactory, UbigiaQueryTranslationPostprocessorFactory>()
                 .TryAdd<ISingletonOptions, IUbigiaSingletonOptions>(p => p.GetService<IUbigiaSingletonOptions>())
                 .TryAddProviderSpecificServices(
                     b => b

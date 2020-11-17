@@ -1,11 +1,15 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Api.Query.Internal
+namespace EtAlii.Ubigia.Api.Internal
 {
+    using System;
     using JetBrains.Annotations;
-    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Utilities;
+    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -13,20 +17,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
     ///     any release. You should only use it directly in your code with extreme caution and knowing that
     ///     doing so can result in application failures when updating to a new Entity Framework Core release.
     /// </summary>
-    public class UbigiaShapedQueryCompilingExpressionVisitorFactory : IShapedQueryCompilingExpressionVisitorFactory
+    public class UbigiaModelValidator : ModelValidator
     {
-        private readonly ShapedQueryCompilingExpressionVisitorDependencies _dependencies;
-
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
         ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public UbigiaShapedQueryCompilingExpressionVisitorFactory(
-            [NotNull] ShapedQueryCompilingExpressionVisitorDependencies dependencies)
+        public UbigiaModelValidator([NotNull] ModelValidatorDependencies dependencies)
+            : base(dependencies)
         {
-            _dependencies = dependencies;
         }
 
         /// <summary>
@@ -35,11 +36,35 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        public virtual ShapedQueryCompilingExpressionVisitor Create(QueryCompilationContext queryCompilationContext)
+        public override void Validate(IModel model, IDiagnosticsLogger<DbLoggerCategory.Model.Validation> logger)
         {
-            Check.NotNull(queryCompilationContext, nameof(queryCompilationContext));
+            base.Validate(model, logger);
 
-            return new UbigiaShapedQueryCompilingExpressionVisitor(_dependencies, queryCompilationContext);
+            ValidateDefiningQuery(model, logger);
+        }
+
+        /// <summary>
+        ///     Validates the configuration of defining queries in the model.
+        /// </summary>
+        /// <param name="model"> The model to validate. </param>
+        /// <param name="logger"> The logger to use. </param>
+        protected virtual void ValidateDefiningQuery(
+            [NotNull] IModel model,
+            [NotNull] IDiagnosticsLogger<DbLoggerCategory.Model.Validation> logger)
+        {
+            Check.NotNull(model, nameof(model));
+
+            foreach (var entityType in model.GetEntityTypes())
+            {
+                if (entityType.GetUbigiaQuery() != null)
+                {
+                    if (entityType.BaseType != null)
+                    {
+                        throw new InvalidOperationException(
+                            CoreStrings.DerivedTypeDefiningQuery(entityType.DisplayName(), entityType.BaseType.DisplayName()));
+                    }
+                }
+            }
         }
     }
 }

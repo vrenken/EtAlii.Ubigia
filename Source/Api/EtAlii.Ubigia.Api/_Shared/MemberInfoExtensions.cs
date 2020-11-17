@@ -3,7 +3,6 @@
 
 using System.Linq;
 
-// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
     internal static class MemberInfoExtensions
@@ -19,9 +18,21 @@ namespace System.Reflection
                     : Equals(propertyInfo, otherPropertyInfo)
                     || (propertyInfo.Name == otherPropertyInfo.Name
                         && (propertyInfo.DeclaringType == otherPropertyInfo.DeclaringType
-                            || propertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(otherPropertyInfo.DeclaringType!)
-                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType!)
+                            || propertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(otherPropertyInfo.DeclaringType)
+                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType)
                             || propertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces.Contains(otherPropertyInfo.DeclaringType)
+                            || otherPropertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces
+                                .Contains(propertyInfo.DeclaringType))));
+
+        public static bool IsOverridenBy(this MemberInfo propertyInfo, MemberInfo otherPropertyInfo)
+            => propertyInfo == null
+                ? otherPropertyInfo == null
+                : (otherPropertyInfo == null
+                    ? false
+                    : Equals(propertyInfo, otherPropertyInfo)
+                    || (propertyInfo.Name == otherPropertyInfo.Name
+                        && (propertyInfo.DeclaringType == otherPropertyInfo.DeclaringType
+                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType)
                             || otherPropertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces
                                 .Contains(propertyInfo.DeclaringType))));
 
@@ -31,5 +42,8 @@ namespace System.Reflection
             var index = name.LastIndexOf('.');
             return index >= 0 ? name.Substring(index + 1) : name;
         }
+
+        public static bool IsReallyVirtual(this MethodInfo method)
+            => method.IsVirtual && !method.IsFinal;
     }
 }

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     using System.Linq;
     using System.Reflection;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Internal;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -48,26 +48,18 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             return contextType.GetRuntimeProperties()
                 .Where(
                     p => !p.IsStatic()
-                        && !p.GetIndexParameters().Any()
-                        && p.DeclaringType != typeof(UbigiaDbContext)
-                        && p.PropertyType.GetTypeInfo().IsGenericType
-                        && (p.PropertyType.GetGenericTypeDefinition() == typeof(IUbigiaDbSet<>)
-#pragma warning disable CS0618 // Type or member is obsolete
-                            || p.PropertyType.GetGenericTypeDefinition() == typeof(DbQuery<>)))
-#pragma warning restore CS0618 // Type or member is obsolete
+                         && !p.GetIndexParameters().Any()
+                         && p.DeclaringType != typeof(UbigiaDbContext)
+                         && p.PropertyType.GetTypeInfo().IsGenericType
+                         && p.PropertyType.GetGenericTypeDefinition() == typeof(IUbigiaDbSet<>))
                 .OrderBy(p => p.Name)
                 .Select(
-#pragma warning disable EF1001
                     p => new DbSetProperty(
-#pragma warning restore EF1001
                         p.Name,
-                        p.PropertyType.GetTypeInfo().GenericTypeArguments.Single(),
+                        p.PropertyType.GenericTypeArguments.Single(),
 #pragma warning disable EF1001
-                        p.SetMethod == null ? null : factory.Create(p),
+                        p.SetMethod == null ? null : factory.Create(p)))
 #pragma warning restore EF1001
-#pragma warning disable CS0618 // Type or member is obsolete
-                        p.PropertyType.GetGenericTypeDefinition() == typeof(DbQuery<>)))
-#pragma warning restore CS0618 // Type or member is obsolete
                 .ToArray();
         }
     }
