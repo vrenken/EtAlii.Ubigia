@@ -21,7 +21,7 @@
 
                 _watermarkFinder = Observable.Interval(TimeSpan.FromSeconds(1))
                     .ObserveOnDispatcher()
-                    .Subscribe(i =>
+                    .Subscribe(_ =>
                     {
                         var watermark = FindVisualChildren(this, "DefaultLayer").FirstOrDefault();
                         if (watermark != _watermark)

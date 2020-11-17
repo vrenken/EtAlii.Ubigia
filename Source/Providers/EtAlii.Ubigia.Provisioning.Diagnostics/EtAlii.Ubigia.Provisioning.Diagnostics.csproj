@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>e466af44-433f-4e42-ac7b-c034d4b75b5a</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Clients\**" />

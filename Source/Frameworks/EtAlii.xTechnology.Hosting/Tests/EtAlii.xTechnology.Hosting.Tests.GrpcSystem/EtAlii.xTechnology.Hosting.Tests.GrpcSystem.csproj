@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <ProjectGuid>8D680266-AD08-48E5-98D5-57E304FB14D0</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>

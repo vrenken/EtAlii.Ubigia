@@ -6,7 +6,6 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Ntfs</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Ntfs</PackageTags>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>2FB9D0D5-DE7B-44EB-AC89-81DE306D9554</ProjectGuid>
   </PropertyGroup>
 
@@ -14,7 +13,7 @@
     <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

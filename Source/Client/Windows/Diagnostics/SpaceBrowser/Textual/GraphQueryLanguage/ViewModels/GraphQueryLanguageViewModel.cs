@@ -49,7 +49,7 @@
             _queryChangedSubscription = Observable.FromEvent((handler) => SourceChanged += handler, (handler) => SourceChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseGraphQueryLanguageUnitOfwork(this), parseQueryUnitOfworkHandler));
+                                .Subscribe(_ => _graphContext.UnitOfWorkProcessor.Process(new ParseGraphQueryLanguageUnitOfwork(this), parseQueryUnitOfworkHandler));
 
             Source = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.GraphQueryLanguage.Templates.SimpleQuery.gql"), textTemplateQueryHandler).Single();
         }

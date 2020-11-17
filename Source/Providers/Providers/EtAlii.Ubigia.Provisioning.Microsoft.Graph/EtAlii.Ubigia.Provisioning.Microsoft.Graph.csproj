@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>5c4f1648-3f06-47ce-8598-914aac67f9c1</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Version>$(PackageVersion)</Version>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.EtAlii.xTechnology.Diagnostics/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.EtAlii.xTechnology.Diagnostics</PackageProjectUrl>
@@ -28,7 +27,7 @@
     <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
     <PackageReference Include="SerilogMetrics" Version="2.1.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="1.7.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
   </ItemGroup>
   
 </Project>

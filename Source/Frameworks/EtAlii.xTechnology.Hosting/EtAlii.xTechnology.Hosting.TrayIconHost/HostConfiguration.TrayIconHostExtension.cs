@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting
 
         private static Icon ToIcon(Assembly assembly, string resource)
         {
-            var resourceNamespace = Path.GetFileNameWithoutExtension(assembly.CodeBase);
+            var resourceNamespace = Path.GetFileNameWithoutExtension(assembly.Location);
             using (var stream = assembly.GetManifestResourceStream($"{resourceNamespace}.{resource}"))
             {
                 if (stream == null)

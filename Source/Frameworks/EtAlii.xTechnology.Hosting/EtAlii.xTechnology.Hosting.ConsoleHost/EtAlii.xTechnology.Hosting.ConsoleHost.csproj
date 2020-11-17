@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>25D3A122-9734-4E23-B894-E2C760BE5247</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
@@ -11,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
 </Project>

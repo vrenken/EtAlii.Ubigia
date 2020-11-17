@@ -44,12 +44,12 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                             viewModel.CanExecute = true;
                             
                         },
-                        onNext: o2 => { });
+                        onNext: _ => { });
                 });
 
             // And we want to disable the buttons at the first result.
             results.FirstOrDefaultAsync()
-                .Subscribe(o =>
+                .Subscribe(_ =>
                 {
                     viewModel.CanExecute = false;
                     viewModel.CanStop = true;
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                 {
                     o.Output
                         .Subscribe(
-                            onNext: o2 => { },
+                            onNext: _ => { },
                             onCompleted: () =>
                             {
                                 viewModel.Errors = errors.ToArray();

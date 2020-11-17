@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
     <ProjectGuid>9234ACDF-5339-4C48-917C-31246FDABEDE</ProjectGuid>
@@ -11,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
-    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.9" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Service.Grpc\EtAlii.xTechnology.Hosting.Service.Grpc.csproj" />

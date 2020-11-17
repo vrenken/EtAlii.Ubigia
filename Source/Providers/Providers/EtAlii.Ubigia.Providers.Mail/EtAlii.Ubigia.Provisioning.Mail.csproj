@@ -1,9 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <ProjectGuid>857e613f-2fd6-4dd6-80d3-2a4a5a46a6e1</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
