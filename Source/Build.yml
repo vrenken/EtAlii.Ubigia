@@ -6,7 +6,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  #NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+  NUGET_PACKAGES: $(Build.SourcesDirectory)/.nuget/packages
   buildDirectory: '$(Build.SourcesDirectory)'
 
 trigger:
@@ -76,21 +76,21 @@ jobs:
           cacheHitVar: CACHE_RESTORED
         displayName: Cache NuGet packages
     
-#      - script: dotnet restore
-#        displayName: 'dotnet restore'
-#        condition: ne(variables.CACHE_RESTORED, 'true')
-#        workingDirectory: $(buildDirectory)
-
-      - task: DotNetCoreCLI@2
-        displayName: 'Run: dotnet restore'
+      - script: dotnet restore
+        displayName: 'dotnet restore'
         condition: ne(variables.CACHE_RESTORED, 'true')
-        inputs:
-          command: 'restore'
-          projects: |
-            Source/**/*.csproj
-            !Source/**/ProjectToExclude.csproj
-          feedsToUse: config
-          nugetConfigPath: Source/NuGet.config
+        workingDirectory: $(buildDirectory)
+
+#      - task: DotNetCoreCLI@2
+#        displayName: 'Run: dotnet restore'
+#        condition: ne(variables.CACHE_RESTORED, 'true')
+#        inputs:
+#          command: 'restore'
+#          projects: |
+#            Source/**/*.csproj
+#            !Source/**/ProjectToExclude.csproj
+#          feedsToUse: config
+#          nugetConfigPath: Source/NuGet.config
     
       - script: dir
         displayName: 'Displaying NuGet folder'
