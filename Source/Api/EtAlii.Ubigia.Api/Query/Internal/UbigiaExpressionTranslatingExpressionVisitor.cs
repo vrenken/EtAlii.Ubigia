@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 && binaryExpression.Left is NewArrayExpression
                 && binaryExpression.NodeType == ExpressionType.Equal)
             {
-                return Visit(ConvertObjectArrayEqualityComparison(binaryExpression.Left, binaryExpression.Right));
+                return Visit(ConvertObjectArrayEqualityComparison(binaryExpression.Left, binaryExpression.Right))!;
             }
 
             var newLeft = Visit(binaryExpression.Left);
@@ -162,8 +162,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 // Visited expression could be null, We need to pass MemberInitExpression
                 && TryRewriteEntityEquality(
                     binaryExpression.NodeType,
+                    // ReSharper disable ConstantNullCoalescingCondition
                     newLeft ?? binaryExpression.Left,
                     newRight ?? binaryExpression.Right,
+                    // ReSharper restore ConstantNullCoalescingCondition
                     equalsMethod: false,
                     out var result))
             {
@@ -229,7 +231,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 || ifTrue == null
                 || ifFalse == null)
             {
-                return null;
+                return null!;
             }
 
             if (test.Type == typeof(bool?))
@@ -289,8 +291,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitInvocation(InvocationExpression invocationExpression)
-            => null;
+        protected override Expression VisitInvocation(InvocationExpression invocationExpression) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -298,8 +299,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitLambda<T>(Expression<T> lambdaExpression)
-            => null;
+        protected override Expression VisitLambda<T>(Expression<T> lambdaExpression) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -307,8 +307,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitListInit(ListInitExpression listInitExpression)
-            => null;
+        protected override Expression VisitListInit(ListInitExpression listInitExpression) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -366,7 +365,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var expression = Visit(memberAssignment.Expression);
             if (expression == null)
             {
-                return null;
+                return null!;
             }
 
             if (IsConvertedToNullable(expression, memberAssignment.Expression))
@@ -641,7 +640,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var subquery = (UbigiaQueryExpression)subqueryTranslation.QueryExpression;
                 if (subqueryTranslation.ResultCardinality == ResultCardinality.Enumerable)
                 {
-                    return null;
+                    return null!;
                 }
 
                 var shaperExpression = subqueryTranslation.ShaperExpression;
@@ -665,7 +664,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     && (convertedType == null
                         || convertedType.MakeNullable() == innerExpression.Type)))
                 {
-                    return null;
+                    return null!;
                 }
 
                 return ProcessSingleResultScalar(
@@ -687,7 +686,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var argument = Visit(methodCallExpression.Arguments[i]);
                     if (TranslationFailed(methodCallExpression.Arguments[i], argument))
                     {
-                        return null;
+                        return null!;
                     }
 
                     visitedArguments[i - 1] = argument;
@@ -720,7 +719,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (TranslationFailed(left)
                     || TranslationFailed(right))
                 {
-                    return null;
+                    return null!;
                 }
 
                 @object = left;
@@ -735,7 +734,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 {
                     return Visit(
                         ConvertObjectArrayEqualityComparison(
-                            methodCallExpression.Arguments[0], methodCallExpression.Arguments[1]));
+                            methodCallExpression.Arguments[0], methodCallExpression.Arguments[1]))!;
                 }
 
                 var left = Visit(methodCallExpression.Arguments[0]);
@@ -754,7 +753,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (TranslationFailed(left)
                     || TranslationFailed(right))
                 {
-                    return null;
+                    return null!;
                 }
 
                 arguments = new[] { left, right };
@@ -773,7 +772,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (TranslationFailed(enumerable)
                     || TranslationFailed(item))
                 {
-                    return null;
+                    return null!;
                 }
 
                 arguments = new[] { enumerable, item };
@@ -792,7 +791,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (TranslationFailed(enumerable)
                     || TranslationFailed(item))
                 {
-                    return null;
+                    return null!;
                 }
 
                 @object = enumerable;
@@ -803,7 +802,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 @object = Visit(methodCallExpression.Object);
                 if (TranslationFailed(methodCallExpression.Object, @object))
                 {
-                    return null;
+                    return null!;
                 }
 
                 arguments = new Expression[methodCallExpression.Arguments.Count];
@@ -812,7 +811,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var argument = Visit(methodCallExpression.Arguments[i]);
                     if (TranslationFailed(methodCallExpression.Arguments[i], argument))
                     {
-                        return null;
+                        return null!;
                     }
 
                     arguments[i] = argument;
@@ -872,7 +871,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var newArgument = Visit(argument);
                 if (newArgument == null)
                 {
-                    return null;
+                    return null!;
                 }
 
                 if (IsConvertedToNullable(newArgument, argument))
@@ -902,7 +901,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var newExpression = Visit(expression);
                 if (newExpression == null)
                 {
-                    return null;
+                    return null!;
                 }
 
                 if (IsConvertedToNullable(newExpression, expression))
@@ -981,7 +980,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
             }
 
-            return null;
+            return null!;
         }
 
         /// <summary>
@@ -997,7 +996,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var newOperand = Visit(unaryExpression.Operand);
             if (newOperand == null)
             {
-                return null;
+                return null!;
             }
 
             if (newOperand is EntityReferenceExpression entityReferenceExpression
@@ -1075,6 +1074,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         {
             if (entityReferenceExpression.ParameterEntity != null)
             {
+                // ReSharper disable once PossibleNullReferenceException
                 var result = ((EntityProjectionExpression)Visit(entityReferenceExpression.ParameterEntity.ValueBufferExpression))
                     .BindProperty(property);
 
@@ -1282,6 +1282,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 || IsNullConstantExpression(right))
             {
                 var nonNullEntityReference = IsNullConstantExpression(left) ? rightEntityReference : leftEntityReference;
+                // ReSharper disable once PossibleNullReferenceException
                 var entityType1 = nonNullEntityReference.EntityType;
                 var primaryKeyProperties1 = entityType1.FindPrimaryKey()?.Properties;
                 if (primaryKeyProperties1 == null)
