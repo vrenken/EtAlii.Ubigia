@@ -28,7 +28,6 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="18.2.0.57" />
     <PackageReference Include="Syncfusion.SfChart.WPF" Version="18.2.0.57" />
     <PackageReference Include="Syncfusion.SfGrid.WPF" Version="18.2.0.57" />
-    <PackageReference Include="System.Reactive.PlatformServices" Version="5.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.19">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
