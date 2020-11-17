@@ -2,14 +2,7 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
-
-    <Description>
-    </Description>
-
     <ProjectGuid>67cf69e5-7550-4a02-8198-7f28b045df67</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

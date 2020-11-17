@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>32ac736d-b3a2-4ab2-ef5d-10ad4a893a30</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

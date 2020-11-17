@@ -3,7 +3,6 @@
   <PropertyGroup>
   </PropertyGroup>
   
-  
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
 

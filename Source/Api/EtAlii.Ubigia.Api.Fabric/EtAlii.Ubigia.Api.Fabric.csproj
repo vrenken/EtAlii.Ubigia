@@ -5,7 +5,6 @@
     <ProjectGuid>d2adf122-c8a0-458a-819c-2b5592eef8b2</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Fabric</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags />
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>

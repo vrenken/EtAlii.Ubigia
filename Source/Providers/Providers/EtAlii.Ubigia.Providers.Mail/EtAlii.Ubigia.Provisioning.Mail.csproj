@@ -2,13 +2,7 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
-
-    <Description></Description>
-
     <ProjectGuid>857e613f-2fd6-4dd6-80d3-2a4a5a46a6e1</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 

@@ -2,13 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-
-    <Description>Unit test project</Description>
-
     <ProjectGuid>b5b27438-0c6d-499d-beac-4c17bcd6b4ec</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon />
     <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Program</StartupObject>

@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <Description>Unit test project</Description>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <OutputType>Library</OutputType>
     <DebugType>Full</DebugType>
     <ProjectGuid>4F8B2631-CDA7-4B99-9AF3-B891139D023E</ProjectGuid>
   </PropertyGroup>

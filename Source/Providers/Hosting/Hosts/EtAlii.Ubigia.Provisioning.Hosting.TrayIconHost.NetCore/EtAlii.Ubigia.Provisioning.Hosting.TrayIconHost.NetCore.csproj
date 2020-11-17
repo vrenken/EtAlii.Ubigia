@@ -3,11 +3,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
-
     <ProjectGuid>bfba3c11-7d9f-4c55-bc08-e34a42719b5f</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <AssemblyName>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</AssemblyName>
     <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</RootNamespace>

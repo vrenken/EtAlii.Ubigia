@@ -5,7 +5,6 @@
     <ProjectGuid>394628b7-7f88-489b-b049-a0ed14921410</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags />
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying</RootNamespace>
   </PropertyGroup>

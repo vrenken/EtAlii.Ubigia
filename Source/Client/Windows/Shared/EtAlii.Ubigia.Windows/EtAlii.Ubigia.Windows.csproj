@@ -3,11 +3,7 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
-    <Description>StorageBrowser</Description>
     <ProjectGuid>38ff565d-898f-4f18-81e3-edae23e60598</ProjectGuid>
-    <PackageProjectUrl />
-    <PackageReleaseNotes />
-    <PackageTags />
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>

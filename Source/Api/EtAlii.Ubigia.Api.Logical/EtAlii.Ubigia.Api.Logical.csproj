@@ -5,7 +5,6 @@
     <ProjectGuid>44d2c48f-c147-4ebf-9055-fec0acd31afd</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Logical</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags />
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>

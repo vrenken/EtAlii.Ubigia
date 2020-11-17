@@ -1,9 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <UseWPF>true</UseWPF>
     <ProjectGuid>8021144c-1ae4-46b2-ad45-a65f9a8ebfa5</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.InMemory\EtAlii.Ubigia.Persistence.InMemory.csproj" />

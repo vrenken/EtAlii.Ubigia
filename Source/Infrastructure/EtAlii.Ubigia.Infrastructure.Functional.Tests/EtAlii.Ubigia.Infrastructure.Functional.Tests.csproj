@@ -1,9 +1,6 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
-    <UseWPF>true</UseWPF>
     <ProjectGuid>12bfe8e1-b1d7-4f16-bfe6-f97503aa483c</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
