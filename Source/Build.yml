@@ -43,7 +43,7 @@ jobs:
           projectKey: ${{ variables.sonarQubeProject }}
           configMode: 'file'
           extraProperties: |
-            sonar.coverage.exclusions=**/*.Tests.cs”
+            sonar.coverage.exclusions=**/*.Tests.cs
             sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
             # $(Build.SourcesDirectory)
 
