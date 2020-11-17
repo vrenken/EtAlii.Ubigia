@@ -3,9 +3,15 @@
   <PropertyGroup>
   </PropertyGroup>
   
+  <ItemGroup>
+    <!-- The .DotSettings file is maintained by Rider/Resharper - no need to show it. -->
+    <None Remove="*.csproj.DotSettings" />
+    <!-- The lock file is only there to facilitate build server caching - no need to show it. -->
+    <None Remove="packages.lock.json" />
+  </ItemGroup>
+  
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
   <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
-
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" Label="Microsoft.NET.Test.Sdk (.targets)" />
     <PackageReference Include="xunit" Version="2.4.1" Label="Xunit.Version (.targets)" />
     <PackageReference Include="xunit.assert" Version="2.4.1" Label="Xunit.Assert (.targets)" />
