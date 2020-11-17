@@ -154,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             if (newLeft == null
                 || newRight == null)
             {
-                return null;
+                return null!;
             }
 
             if ((binaryExpression.NodeType == ExpressionType.Equal
