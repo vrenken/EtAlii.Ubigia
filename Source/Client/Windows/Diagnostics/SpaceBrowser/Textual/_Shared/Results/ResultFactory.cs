@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                 .Register(o => o is string, (o, g) => ToResult((string)o, g))
                 .Register(o => o is DateTime, (o, g) => ToResult((DateTime)o, g))
                 .Register(o => o == null, (o, g) => new Result(null, "None", new PropertyDictionary { ["Value"] = o }, g))
-                .Register(o => true, (o, g) => new Result(null, o.GetType().Name, new PropertyDictionary {["Value"] = o }, g));
+                .Register(_ => true, (o, g) => new Result(null, o.GetType().Name, new PropertyDictionary {["Value"] = o }, g));
         }
 
         public Result Convert(object o, object group)

@@ -18,7 +18,7 @@
         public void Serialize<T>(string fileName, T item)
             where T : class
         {
-            lock (_lockObjects.GetOrAdd(fileName, s => new object()))
+            lock (_lockObjects.GetOrAdd(fileName, _ => new object()))
             {
                 _decoree.Serialize(fileName, item);
 
@@ -29,7 +29,7 @@
 
         public void Serialize(string fileName, PropertyDictionary item)
         {
-            lock (_lockObjects.GetOrAdd(fileName, s => new object()))
+            lock (_lockObjects.GetOrAdd(fileName, _ => new object()))
             {
                 _decoree.Serialize(fileName, item);
 
@@ -40,7 +40,7 @@
         public T Deserialize<T>(string fileName)
             where T : class
         {
-            lock (_lockObjects.GetOrAdd(fileName, s => new object()))
+            lock (_lockObjects.GetOrAdd(fileName, _ => new object()))
             {
                 var result = _decoree.Deserialize<T>(fileName);
 
@@ -52,7 +52,7 @@
 
         public PropertyDictionary Deserialize(string fileName)
         {
-            lock (_lockObjects.GetOrAdd(fileName, s => new object()))
+            lock (_lockObjects.GetOrAdd(fileName, _ => new object()))
             {
                 var result = _decoree.Deserialize(fileName);
 

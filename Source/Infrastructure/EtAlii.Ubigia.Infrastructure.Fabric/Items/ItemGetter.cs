@@ -46,7 +46,7 @@
                 items.Add(item);
             }
 
-            items.CollectionChanged += (o, e) => OnItemsChanged<T>(e, folder);
+            items.CollectionChanged += (_, e) => OnItemsChanged<T>(e, folder);
 
             return items;
         }

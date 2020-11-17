@@ -34,16 +34,16 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             _toIdentifierConverterSelector = new Selector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>>()
                 .Register(i => i is PathSubject, (c, i, s) => ConvertPathToIds(c, (PathSubject)i, s))
-                .Register(i => i is Identifier, (c, i, s) => Observable.Return((Identifier)i))
-                .Register(i => i is IInternalNode, (c, i, s) => Observable.Return(((IInternalNode)i).Id))
-                .Register(i => true, (c, i, s) => { throw new ScriptProcessingException("Unable to convert input for Rename function processing"); });
+                .Register(i => i is Identifier, (_, i, _) => Observable.Return((Identifier)i))
+                .Register(i => i is IInternalNode, (_, i, _) => Observable.Return(((IInternalNode)i).Id))
+                .Register(_ => true, (_, _, _) => throw new ScriptProcessingException("Unable to convert input for Rename function processing"));
 
             _toNameConverterSelector = new Selector2<int, object, object, Func<object, object, string>>()
-                .Register((c, f, s) => c == 1 && f is string, (f, s) => (string)f)
-                .Register((c, f, s) => c == 1 && f is IObservable<object>, (f, s) => ((IObservable<object>)f).ToEnumerable().Cast<string>().Single())
-                .Register((c, f, s) => c == 2 && s is string, (f, s) => (string)s)
-                .Register((c, f, s) => c == 2 && s is IObservable<object>, (f, s) => ((IObservable<object>)s).ToEnumerable().Cast<string>().Single())
-                .Register((c, f, s) => true, (f, s) => { throw new ScriptProcessingException("Unable to convert name input for Rename function processing"); });
+                .Register((c, f, _) => c == 1 && f is string, (f, _) => (string)f)
+                .Register((c, f, _) => c == 1 && f is IObservable<object>, (f, _) => ((IObservable<object>)f).ToEnumerable().Cast<string>().Single())
+                .Register((c, _, s) => c == 2 && s is string, (_, s) => (string)s)
+                .Register((c, _, s) => c == 2 && s is IObservable<object>, (_, s) => ((IObservable<object>)s).ToEnumerable().Cast<string>().Single())
+                .Register((_, _, _) => true, (_, _) => throw new ScriptProcessingException("Unable to convert name input for Rename function processing"));
         }
 
         public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)

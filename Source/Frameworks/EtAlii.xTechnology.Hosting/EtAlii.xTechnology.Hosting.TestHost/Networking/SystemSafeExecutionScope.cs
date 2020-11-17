@@ -53,7 +53,7 @@ namespace EtAlii.xTechnology.Hosting
                 mutex.SetAccessControl(securitySettings);
             }
 
-            AppDomain.CurrentDomain.ProcessExit += (sender, args) => mutex.Close();
+            AppDomain.CurrentDomain.ProcessExit += (_, _) => mutex.Close();
             return mutex;
         }
 

@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     viewModel.CanStop = false;
                     viewModel.CanExecute = true;
                 },
-                onNext: o =>
+                onNext: _ =>
                 {
                     viewModel.CanExecute = false;
                     viewModel.CanStop = true;
