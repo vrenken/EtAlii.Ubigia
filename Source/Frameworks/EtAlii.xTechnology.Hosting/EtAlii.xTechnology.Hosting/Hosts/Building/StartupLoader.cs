@@ -293,6 +293,7 @@ namespace EtAlii.xTechnology.Hosting
             return new ConfigureServicesBuilder(servicesMethod);
         }
 
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
         private static MethodInfo FindMethod(Type startupType, string methodName, string environmentName, Type returnType = null, bool required = true)
         {
             var methodNameWithEnv = string.Format(CultureInfo.InvariantCulture, methodName, environmentName);
@@ -320,8 +321,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 if (required)
                 {
-                    throw new InvalidOperationException(
-                        $"A public method named '{methodNameWithEnv}' or '{methodNameWithNoEnv}' could not be found in the '{startupType.FullName}' type.");
+                    throw new InvalidOperationException($"A public method named '{methodNameWithEnv}' or '{methodNameWithNoEnv}' could not be found in the '{startupType.FullName}' type.");
 
                 }
                 return null;
@@ -330,8 +330,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 if (required)
                 {
-                    throw new InvalidOperationException(
-                        $"The '{methodInfo.Name}' method in the type '{startupType.FullName}' must have a return type of '{returnType.Name}'.");
+                    throw new InvalidOperationException($"The '{methodInfo.Name}' method in the type '{startupType.FullName}' must have a return type of '{returnType.Name}'.");
                 }
                 return null;
             }
