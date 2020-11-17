@@ -6,7 +6,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+  #NUGET_PACKAGES: $(Pipeline.Workspace)/.nuget/packages
+  buildDirectory: '$(Build.SourcesDirectory)'
 
 trigger:
   - master
