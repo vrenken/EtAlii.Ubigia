@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using CA = System.Diagnostics.CodeAnalysis;
 
+// ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore.Utilities
 {
     [DebuggerStepThrough]
@@ -85,6 +86,7 @@ namespace Microsoft.EntityFrameworkCore.Utilities
         {
             NotNull(value, parameterName);
 
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
             if (value.Any(e => e == null))
             {
                 NotEmpty(parameterName, nameof(parameterName));
@@ -101,7 +103,8 @@ namespace Microsoft.EntityFrameworkCore.Utilities
         {
             NotNull(value, parameterName);
 
-            if (value.Any(s => string.IsNullOrWhiteSpace(s)))
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
+            if (value.Any(string.IsNullOrWhiteSpace))
             {
                 NotEmpty(parameterName, nameof(parameterName));
 

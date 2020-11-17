@@ -4,6 +4,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 
+// ReSharper disable once CheckNamespace
 namespace System.Text
 {
     internal static class StringBuilderExtensions

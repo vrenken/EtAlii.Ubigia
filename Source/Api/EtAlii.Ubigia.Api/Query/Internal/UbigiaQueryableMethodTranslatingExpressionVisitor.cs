@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
     ///     any release. You should only use it directly in your code with extreme caution and knowing that
     ///     doing so can result in application failures when updating to a new Entity Framework Core release.
     /// </summary>
-    public class UbigiaQueryableMethodTranslatingExpressionVisitor : QueryableMethodTranslatingExpressionVisitor
+    public sealed class UbigiaQueryableMethodTranslatingExpressionVisitor : QueryableMethodTranslatingExpressionVisitor
     {
         private readonly UbigiaExpressionTranslatingExpressionVisitor _expressionTranslator;
         private readonly WeakEntityExpandingExpressionVisitor _weakEntityExpandingExpressionVisitor;
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected UbigiaQueryableMethodTranslatingExpressionVisitor(
+        private UbigiaQueryableMethodTranslatingExpressionVisitor(
             [NotNull] UbigiaQueryableMethodTranslatingExpressionVisitor parentVisitor)
             : base(parentVisitor.Dependencies, parentVisitor.QueryCompilationContext, subquery: true)
         {
@@ -1290,8 +1290,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _expressionTranslator = expressionTranslator;
             }
 
-            public string TranslationErrorDetails
-                => _expressionTranslator.TranslationErrorDetails;
+            // ReSharper disable once UnusedMember.Local
+            public string TranslationErrorDetails => _expressionTranslator.TranslationErrorDetails;
 
             public Expression Expand(UbigiaQueryExpression queryExpression, Expression lambdaBody)
             {

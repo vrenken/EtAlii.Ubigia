@@ -26,13 +26,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
     /// </summary>
     public partial class UbigiaQueryExpression : Expression, IPrintableExpression
     {
-        private static readonly ConstructorInfo _valueBufferConstructor
-            = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
+        private static readonly ConstructorInfo ValueBufferConstructor = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
 
-        private static readonly PropertyInfo _valueBufferCountMemberInfo
-            = typeof(ValueBuffer).GetProperty(nameof(ValueBuffer.Count));
+        // ReSharper disable once UnusedMember.Local
+        private static readonly PropertyInfo ValueBufferCountMemberInfo = typeof(ValueBuffer).GetProperty(nameof(ValueBuffer.Count));
 
-        private readonly List<Expression> _valueBufferSlots = new List<Expression>();
+        private readonly List<Expression> _valueBufferSlots = new();
 
         private readonly IDictionary<EntityProjectionExpression, IDictionary<IProperty, int>> _entityProjectionCache
             = new Dictionary<EntityProjectionExpression, IDictionary<IProperty, int>>();
@@ -163,7 +162,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         typeof(ResultEnumerable).GetConstructors().Single(),
                         Lambda<Func<ValueBuffer>>(
                             New(
-                                _valueBufferConstructor,
+                                ValueBufferConstructor,
                                 NewArrayInit(typeof(object), ServerQueryExpression))));
                 }
                 else
@@ -345,7 +344,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -414,7 +413,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -431,7 +430,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             ServerQueryExpression = Call(
                 EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                 ServerQueryExpression,
-                New(_valueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
+                New(ValueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
 
             _valueBufferSlots.Clear();
         }
@@ -477,7 +476,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -504,15 +503,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             PushdownIntoSubquery();
 
             var selectMethod = (MethodCallExpression)ServerQueryExpression;
+            // ReSharper disable UnusedVariable
             var groupBySource = selectMethod.Arguments[0];
             var elementSelector = selectMethod.Arguments[1];
+            // ReSharper restore UnusedVariable
             _groupingParameter = Parameter(typeof(IGrouping<ValueBuffer, ValueBuffer>), "grouping");
             var groupingKeyAccessExpression = PropertyOrField(_groupingParameter, nameof(IGrouping<int, int>.Key));
             var groupingKeyExpressions = new List<Expression>();
             groupingKey = GetGroupingKey(groupingKey, groupingKeyExpressions, groupingKeyAccessExpression);
             var keySelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         groupingKeyExpressions.Select(e => e.Type.IsValueType ? Convert(e, typeof(object)) : e))),
@@ -650,7 +651,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -778,15 +779,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        _valueBufferConstructor,
+                        ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
-                            Enumerable.Range(0, index - outerIndex).Select(i => Constant(null))))),
+                            Enumerable.Range(0, index - outerIndex).Select(_ => Constant(null))))),
                 collectionParameter);
 
             resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -887,7 +888,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -991,15 +992,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        _valueBufferConstructor,
+                        ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
-                            Enumerable.Range(0, resultValueBufferExpressions.Count - outerIndex).Select(i => Constant(null))))),
+                            Enumerable.Range(0, resultValueBufferExpressions.Count - outerIndex).Select(_ => Constant(null))))),
                 collectionParameter);
 
             resultSelector = Lambda(
                 New(
-                    _valueBufferConstructor,
+                    ValueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -1043,17 +1044,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 // Also lift nested entity projections
-                foreach (var navigation in entityProjection.EntityType.GetAllBaseTypes()
+                foreach (var innerNavigation in entityProjection.EntityType.GetAllBaseTypes()
                     .Concat(entityProjection.EntityType.GetDerivedTypesInclusive())
                     .SelectMany(EntityTypeExtensions.GetDeclaredNavigations))
                 {
-                    var boundEntityShaperExpression = entityProjection.BindNavigation(navigation);
+                    var boundEntityShaperExpression = entityProjection.BindNavigation(innerNavigation);
                     if (boundEntityShaperExpression != null)
                     {
-                        var innerEntityProjection = (EntityProjectionExpression)boundEntityShaperExpression.ValueBufferExpression;
-                        var newInnerEntityProjection = CopyEntityProjectionToOuter(innerEntityProjection);
+                        var innerEntityProjection2 = (EntityProjectionExpression)boundEntityShaperExpression.ValueBufferExpression;
+                        var newInnerEntityProjection = CopyEntityProjectionToOuter(innerEntityProjection2);
                         boundEntityShaperExpression = boundEntityShaperExpression.Update(newInnerEntityProjection);
-                        newEntityProjection.AddNavigationBinding(navigation, boundEntityShaperExpression);
+                        newEntityProjection.AddNavigationBinding(innerNavigation, boundEntityShaperExpression);
                     }
                 }
 
