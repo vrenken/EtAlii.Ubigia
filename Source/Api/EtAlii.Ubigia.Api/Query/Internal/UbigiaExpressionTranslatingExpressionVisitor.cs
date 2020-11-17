@@ -30,39 +30,33 @@ namespace EtAlii.Ubigia.Api.Query.Internal
     /// </summary>
     public class UbigiaExpressionTranslatingExpressionVisitor : ExpressionVisitor
     {
-        private const string _runtimeParameterPrefix = QueryCompilationContext.QueryParameterPrefix + "entity_equality_";
+        private const string RuntimeParameterPrefix = QueryCompilationContext.QueryParameterPrefix + "entity_equality_";
 
-        private static readonly MemberInfo _valueBufferIsEmpty = typeof(ValueBuffer).GetMember(nameof(ValueBuffer.IsEmpty))[0];
+        private static readonly MemberInfo ValueBufferIsEmpty = typeof(ValueBuffer).GetMember(nameof(ValueBuffer.IsEmpty))[0];
 
-        private static readonly MethodInfo _parameterValueExtractor =
-            typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(ParameterValueExtractor));
+        private static readonly MethodInfo ParameterValueExtractorMethodInfo = typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(ParameterValueExtractor));
 
-        private static readonly MethodInfo _parameterListValueExtractor =
-            typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(ParameterListValueExtractor));
+        private static readonly MethodInfo ParameterListValueExtractorMethodInfo = typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(ParameterListValueExtractor));
 
-        private static readonly MethodInfo _getParameterValueMethodInfo =
-            typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(GetParameterValue));
+        private static readonly MethodInfo GetParameterValueMethodInfo = typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(GetParameterValue));
 
-        private static readonly MethodInfo _likeMethodInfo = typeof(DbFunctionsExtensions).GetRuntimeMethod(
+        private static readonly MethodInfo LikeMethodInfo = typeof(DbFunctionsExtensions).GetRuntimeMethod(
             nameof(DbFunctionsExtensions.Like), new[] { typeof(DbFunctions), typeof(string), typeof(string) });
 
-        private static readonly MethodInfo _likeMethodInfoWithEscape = typeof(DbFunctionsExtensions).GetRuntimeMethod(
+        private static readonly MethodInfo LikeMethodInfoWithEscape = typeof(DbFunctionsExtensions).GetRuntimeMethod(
             nameof(DbFunctionsExtensions.Like), new[] { typeof(DbFunctions), typeof(string), typeof(string), typeof(string) });
 
-        private static readonly MethodInfo _ubigiaLikeMethodInfo =
-            typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(UbigiaLike));
+        private static readonly MethodInfo UbigiaLikeMethodInfo = typeof(UbigiaExpressionTranslatingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(UbigiaLike));
 
         // Regex special chars defined here:
         // https://msdn.microsoft.com/en-us/library/4edbef7e(v=vs.110).aspx
-        private static readonly char[] _regexSpecialChars
-            = { '.', '$', '^', '{', '[', '(', '|', ')', '*', '+', '?', '\\' };
+        private static readonly char[] RegexSpecialChars = { '.', '$', '^', '{', '[', '(', '|', ')', '*', '+', '?', '\\' };
 
-        private static readonly string _defaultEscapeRegexCharsPattern = BuildEscapeRegexCharsPattern(_regexSpecialChars);
+        private static readonly string DefaultEscapeRegexCharsPattern = BuildEscapeRegexCharsPattern(RegexSpecialChars);
 
-        private static readonly TimeSpan _regexTimeout = TimeSpan.FromMilliseconds(value: 1000.0);
+        private static readonly TimeSpan RegexTimeout = TimeSpan.FromMilliseconds(value: 1000.0);
 
-        private static string BuildEscapeRegexCharsPattern(IEnumerable<char> regexSpecialChars)
-            => string.Join("|", regexSpecialChars.Select(c => @"\" + c));
+        private static string BuildEscapeRegexCharsPattern(IEnumerable<char> regexSpecialChars) => string.Join("|", regexSpecialChars.Select(c => @"\" + c));
 
         private readonly QueryCompilationContext _queryCompilationContext;
         private readonly QueryableMethodTranslatingExpressionVisitor _queryableMethodTranslatingExpressionVisitor;
@@ -330,15 +324,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             if (memberExpression.Expression != null
                 && innerExpression == null)
             {
-                return null;
+                return null!;
             }
 
-            if (TryBindMember(innerExpression, MemberIdentity.Create(memberExpression.Member), memberExpression.Type) is Expression result)
+            var result = TryBindMember(innerExpression, MemberIdentity.Create(memberExpression.Member), memberExpression.Type); 
+            if (result != null)
             {
                 return result;
             }
 
-            var updatedMemberExpression = (Expression)memberExpression.Update(innerExpression);
+            var updatedMemberExpression = (Expression)memberExpression.Update(innerExpression!);
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (innerExpression != null
                 && innerExpression.Type.IsNullableType()
                 && ShouldApplyNullProtectionForMemberAccess(innerExpression.Type, memberExpression.Member.Name))
@@ -608,19 +604,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                                 : null;
                         }
 
-                        var result = Expression.Call(
+                        var innerResult = Expression.Call(
                             EnumerableMethods.Select.MakeGenericMethod(typeof(ValueBuffer), selector.Type),
                             groupingElement.Source,
                             Expression.Lambda(selector, groupingElement.ValueBufferParameter));
 
                         if (groupingElement.IsDistinct)
                         {
-                            result = Expression.Call(
+                            innerResult = Expression.Call(
                                 EnumerableMethods.Distinct.MakeGenericMethod(selector.Type),
-                                result);
+                                innerResult);
                         }
 
-                        return result;
+                        return innerResult;
                     }
 
                     static GroupingElementExpression ApplySelector(
@@ -679,8 +675,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     methodCallExpression.Type);
             }
 
-            if (methodCallExpression.Method == _likeMethodInfo
-                || methodCallExpression.Method == _likeMethodInfoWithEscape)
+            if (methodCallExpression.Method == LikeMethodInfo
+                || methodCallExpression.Method == LikeMethodInfoWithEscape)
             {
                 // EF.Functions.Like
                 var visitedArguments = new Expression[3];
@@ -697,7 +693,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     visitedArguments[i - 1] = argument;
                 }
 
-                return Expression.Call(_ubigiaLikeMethodInfo, visitedArguments);
+                return Expression.Call(UbigiaLikeMethodInfo, visitedArguments);
             }
 
             Expression @object = null;
@@ -728,7 +724,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 @object = left;
-                arguments = new Expression[1] { right };
+                arguments = new[] { right };
             }
             else if (method.Name == nameof(object.Equals)
                 && methodCallExpression.Object == null
@@ -761,7 +757,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return null;
                 }
 
-                arguments = new Expression[2] { left, right };
+                arguments = new[] { left, right };
             }
             else if (method.IsGenericMethod
                 && method.GetGenericMethodDefinition().Equals(EnumerableMethods.Contains))
@@ -780,7 +776,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return null;
                 }
 
-                arguments = new Expression[2] { enumerable, item };
+                arguments = new[] { enumerable, item };
             }
             else if (methodCallExpression.Arguments.Count == 1
                 && method.IsContainsMethod())
@@ -800,7 +796,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 @object = enumerable;
-                arguments = new Expression[1] { item };
+                arguments = new[] { item };
             }
             else
             {
@@ -841,7 +837,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             // if object is nullable, add null safeguard before calling the function
             // we special-case Nullable<>.GetValueOrDefault, which doesn't need the safeguard
             if (methodCallExpression.Object != null
-                && @object.Type.IsNullableType()
+                && @object!.Type.IsNullableType()
                 && methodCallExpression.Method.Name != nameof(Nullable<int>.GetValueOrDefault))
             {
                 var result = (Expression)methodCallExpression.Update(
@@ -933,7 +929,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             if (parameterExpression.Name?.StartsWith(QueryCompilationContext.QueryParameterPrefix, StringComparison.Ordinal) == true)
             {
                 return Expression.Call(
-                    _getParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
+                    GetParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
                     QueryCompilationContext.QueryContextParameter,
                     Expression.Constant(parameterExpression.Name));
             }
@@ -1153,7 +1149,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 variables: new[] { valueBufferVariable },
                 Expression.Assign(valueBufferVariable, singleResult),
                 Expression.Condition(
-                    Expression.MakeMemberAccess(valueBufferVariable, _valueBufferIsEmpty),
+                    Expression.MakeMemberAccess(valueBufferVariable, ValueBufferIsEmpty),
                     Expression.Default(type),
                     replacedReadExpression));
         }
@@ -1239,11 +1235,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 case MethodCallExpression methodCallExpression
                     when methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == _getParameterValueMethodInfo:
+                    && methodCallExpression.Method.GetGenericMethodDefinition() == GetParameterValueMethodInfo:
                     var parameterName = (string)((ConstantExpression)methodCallExpression.Arguments[1]).Value;
                     var lambda = Expression.Lambda(
                         Expression.Call(
-                            _parameterListValueExtractor.MakeGenericMethod(entityType.ClrType, property.ClrType.MakeNullable()),
+                            ParameterListValueExtractorMethodInfo.MakeGenericMethod(entityType.ClrType, property.ClrType.MakeNullable()),
                             QueryCompilationContext.QueryContextParameter,
                             Expression.Constant(parameterName, typeof(string)),
                             Expression.Constant(property, typeof(IProperty))),
@@ -1251,7 +1247,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     );
 
                     var newParameterName =
-                        $"{_runtimeParameterPrefix}"
+                        $"{RuntimeParameterPrefix}"
                         + $"{parameterName.Substring(QueryCompilationContext.QueryParameterPrefix.Length)}_{property.Name}";
 
                     rewrittenSource = _queryCompilationContext.RegisterRuntimeParameter(newParameterName, lambda);
@@ -1365,18 +1361,18 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 case MethodCallExpression methodCallExpression
                     when methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == _getParameterValueMethodInfo:
+                    && methodCallExpression.Method.GetGenericMethodDefinition() == GetParameterValueMethodInfo:
                     var parameterName = (string)((ConstantExpression)methodCallExpression.Arguments[1]).Value;
                     var lambda = Expression.Lambda(
                         Expression.Call(
-                            _parameterValueExtractor.MakeGenericMethod(property.ClrType.MakeNullable()),
+                            ParameterValueExtractorMethodInfo.MakeGenericMethod(property.ClrType.MakeNullable()),
                             QueryCompilationContext.QueryContextParameter,
                             Expression.Constant(parameterName, typeof(string)),
                             Expression.Constant(property, typeof(IProperty))),
                         QueryCompilationContext.QueryContextParameter);
 
                     var newParameterName =
-                        $"{_runtimeParameterPrefix}"
+                        $"{RuntimeParameterPrefix}"
                         + $"{parameterName.Substring(QueryCompilationContext.QueryParameterPrefix.Length)}_{property.Name}";
 
                     return _queryCompilationContext.RegisterRuntimeParameter(newParameterName, lambda);
@@ -1432,7 +1428,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             switch (expression)
 #pragma warning restore IDE0066 // Convert switch statement to expression
             {
-                case ConstantExpression constantExpression:
+                case ConstantExpression:
                     return true;
 
                 case NewExpression newExpression:
@@ -1520,8 +1516,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var escapeRegexCharsPattern
                 = singleEscapeCharacter == null
-                    ? _defaultEscapeRegexCharsPattern
-                    : BuildEscapeRegexCharsPattern(_regexSpecialChars.Where(c => c != singleEscapeCharacter));
+                    ? DefaultEscapeRegexCharsPattern
+                    : BuildEscapeRegexCharsPattern(RegexSpecialChars.Where(c => c != singleEscapeCharacter));
 
             var regexPattern
                 = Regex.Replace(
@@ -1529,7 +1525,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     escapeRegexCharsPattern,
                     c => @"\" + c,
                     default,
-                    _regexTimeout);
+                    RegexTimeout);
 
             var stringBuilder = new StringBuilder();
 
@@ -1568,7 +1564,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 matchExpression,
                 @"\A" + regexPattern + @"\s*\z",
                 RegexOptions.IgnoreCase | RegexOptions.Singleline,
-                _regexTimeout);
+                RegexTimeout);
         }
 
         private sealed class EntityReferenceFindingExpressionVisitor : ExpressionVisitor

@@ -16,7 +16,7 @@ namespace System
     [DebuggerStepThrough]
     internal static class SharedTypeExtensions
     {
-        private static readonly Dictionary<Type, string> _builtInTypeNames = new Dictionary<Type, string>
+        private static readonly Dictionary<Type, string> BuiltInTypeNames = new Dictionary<Type, string>
         {
             { typeof(bool), "bool" },
             { typeof(byte), "byte" },
@@ -318,7 +318,7 @@ namespace System
         public static IEnumerable<MemberInfo> GetMembersInHierarchy(this Type type, string name)
             => type.GetMembersInHierarchy().Where(m => m.Name == name);
 
-        private static readonly Dictionary<Type, object> _commonTypeDictionary = new Dictionary<Type, object>
+        private static readonly Dictionary<Type, object> CommonTypeDictionary = new Dictionary<Type, object>
         {
 #pragma warning disable IDE0034 // Simplify 'default' expression - default causes default(object)
             { typeof(int), default(int) },
@@ -349,7 +349,7 @@ namespace System
             // A bit of perf code to avoid calling Activator.CreateInstance for common types and
             // to avoid boxing on every call. This is about 50% faster than just calling CreateInstance
             // for all value types.
-            return _commonTypeDictionary.TryGetValue(type, out var value)
+            return CommonTypeDictionary.TryGetValue(type, out var value)
                 ? value
                 : Activator.CreateInstance(type);
         }
@@ -406,7 +406,7 @@ namespace System
             {
                 ProcessArrayType(builder, type, fullName);
             }
-            else if (_builtInTypeNames.TryGetValue(type, out var builtInName))
+            else if (BuiltInTypeNames.TryGetValue(type, out var builtInName))
             {
                 builder.Append(builtInName);
             }
@@ -419,7 +419,7 @@ namespace System
         private static void ProcessArrayType(StringBuilder builder, Type type, bool fullName)
         {
             var innerType = type;
-            while (innerType.IsArray)
+            while (innerType!.IsArray)
             {
                 innerType = innerType.GetElementType();
             }
@@ -437,7 +437,7 @@ namespace System
 
         private static void ProcessGenericType(StringBuilder builder, Type type, Type[] genericArguments, int length, bool fullName)
         {
-            var offset = type.IsNested ? type.DeclaringType.GetGenericArguments().Length : 0;
+            var offset = type.IsNested ? type.DeclaringType!.GetGenericArguments().Length : 0;
 
             if (fullName)
             {
@@ -483,7 +483,7 @@ namespace System
 
         public static IEnumerable<string> GetNamespaces([NotNull] this Type type)
         {
-            if (_builtInTypeNames.ContainsKey(type))
+            if (BuiltInTypeNames.ContainsKey(type))
             {
                 yield break;
             }
@@ -503,10 +503,10 @@ namespace System
         }
 
         public static ConstantExpression GetDefaultValueConstant(this Type type)
-            => (ConstantExpression)_generateDefaultValueConstantMethod
+            => (ConstantExpression)GenerateDefaultValueConstantMethod
                 .MakeGenericMethod(type).Invoke(null, Array.Empty<object>());
 
-        private static readonly MethodInfo _generateDefaultValueConstantMethod =
+        private static readonly MethodInfo GenerateDefaultValueConstantMethod =
             typeof(SharedTypeExtensions).GetTypeInfo().GetDeclaredMethod(nameof(GenerateDefaultValueConstant));
 
         private static ConstantExpression GenerateDefaultValueConstant<TDefault>()

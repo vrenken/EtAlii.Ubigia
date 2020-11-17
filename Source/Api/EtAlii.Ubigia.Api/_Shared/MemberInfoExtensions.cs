@@ -3,6 +3,7 @@
 
 using System.Linq;
 
+// ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
     internal static class MemberInfoExtensions
@@ -13,16 +14,14 @@ namespace System.Reflection
         public static bool IsSameAs(this MemberInfo propertyInfo, MemberInfo otherPropertyInfo)
             => propertyInfo == null
                 ? otherPropertyInfo == null
-                : (otherPropertyInfo == null
-                    ? false
-                    : Equals(propertyInfo, otherPropertyInfo)
-                    || (propertyInfo.Name == otherPropertyInfo.Name
-                        && (propertyInfo.DeclaringType == otherPropertyInfo.DeclaringType
-                            || propertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(otherPropertyInfo.DeclaringType)
-                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType)
-                            || propertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces.Contains(otherPropertyInfo.DeclaringType)
-                            || otherPropertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces
-                                .Contains(propertyInfo.DeclaringType))));
+                : otherPropertyInfo != null && (Equals(propertyInfo, otherPropertyInfo)
+                                                || propertyInfo.Name == otherPropertyInfo.Name
+                                                && (propertyInfo.DeclaringType == otherPropertyInfo.DeclaringType
+                                                    || propertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(otherPropertyInfo.DeclaringType!)
+                                                    || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType!)
+                                                    || propertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces.Contains(otherPropertyInfo.DeclaringType)
+                                                    || otherPropertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces
+                                                        .Contains(propertyInfo.DeclaringType)));
 
         public static bool IsOverridenBy(this MemberInfo propertyInfo, MemberInfo otherPropertyInfo)
             => propertyInfo == null

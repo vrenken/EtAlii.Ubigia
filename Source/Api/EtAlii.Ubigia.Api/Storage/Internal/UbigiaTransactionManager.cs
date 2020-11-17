@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
     /// </summary>
     public class UbigiaTransactionManager : IDbContextTransactionManager, ITransactionEnlistmentManager
     {
-        private static readonly UbigiaTransaction _stubTransaction = new UbigiaTransaction();
+        private static readonly UbigiaTransaction StubTransaction = new UbigiaTransaction();
 
         private readonly IDiagnosticsLogger<DbLoggerCategory.Database.Transaction> _logger;
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             _logger.TransactionIgnoredWarning();
 
-            return _stubTransaction;
+            return StubTransaction;
         }
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         {
             _logger.TransactionIgnoredWarning();
 
-            return Task.FromResult<IDbContextTransaction>(_stubTransaction);
+            return Task.FromResult<IDbContextTransaction>(StubTransaction);
         }
 
         /// <summary>

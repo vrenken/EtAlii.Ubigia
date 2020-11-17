@@ -3,6 +3,7 @@
 
 namespace EtAlii.Ubigia.Api.Storage
 {
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Infrastructure;
 
     /// <summary>
@@ -10,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Storage
     ///     across context instances and service providers as long as the same instance
     ///     of this type is passed to
     ///     <see
-    ///         cref="UbigiaDbContextOptionsExtensions.UseUbigiaDatabase{TContext}(DbContextOptionsBuilder{TContext},string,System.Action{Infrastructure.UbigiaDbContextOptionsBuilder})" />
+    ///         cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext{TContext}(DbContextOptionsBuilder{TContext},string,string,string,string,System.Action{Infrastructure.UbigiaDbContextOptionsBuilder})" />
     /// </summary>
     public sealed class UbigiaDatabaseRoot
     {

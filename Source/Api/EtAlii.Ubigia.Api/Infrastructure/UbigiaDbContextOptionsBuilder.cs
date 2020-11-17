@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure
     ///     <para>
     ///         Instances of this class are returned from a call to
     ///         <see
-    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaDatabase(DbContextOptionsBuilder, string, System.Action{UbigiaDbContextOptionsBuilder})" />
+    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext(DbContextOptionsBuilder, string, string, string, string, System.Action{UbigiaDbContextOptionsBuilder})" />
     ///         and it is not designed to be directly constructed in your application code.
     ///     </para>
     /// </summary>
@@ -54,7 +54,8 @@ namespace EtAlii.Ubigia.Api.Infrastructure
         /// <param name="obj"> The object to compare with the current object. </param>
         /// <returns> <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj)
+        public override bool Equals(object obj) 
+            // ReSharper disable once BaseObjectEqualsIsObjectEquals
             => base.Equals(obj);
 
         /// <summary>
@@ -63,6 +64,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure
         /// <returns> A hash code for the current object. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
+            // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
             => base.GetHashCode();
 
         #endregion
