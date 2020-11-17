@@ -6,8 +6,6 @@
   <ItemGroup>
     <!-- The .DotSettings file is maintained by Rider/Resharper - no need to show it. -->
     <None Remove="*.csproj.DotSettings" />
-    <!-- The lock file is only there to facilitate build server caching - no need to show it. -->
-    <None Remove="packages.lock.json" />
   </ItemGroup>
   
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
