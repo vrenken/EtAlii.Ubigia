@@ -9,8 +9,6 @@
 
   <ItemGroup>
     <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
-    <PackageReference Include="GraphQL" Version="3.1.4" />
-    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
