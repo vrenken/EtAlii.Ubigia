@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
     <Description>StorageBrowser</Description>
     <ProjectGuid>a15e7ac6-b912-47c4-83ea-16851e6c3b88</ProjectGuid>

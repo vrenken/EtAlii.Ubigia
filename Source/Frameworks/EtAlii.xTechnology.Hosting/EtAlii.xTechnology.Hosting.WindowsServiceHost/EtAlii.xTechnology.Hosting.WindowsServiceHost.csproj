@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>83119830-E244-40D2-A45A-9A2B2205E11B</ProjectGuid>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
   </PropertyGroup>

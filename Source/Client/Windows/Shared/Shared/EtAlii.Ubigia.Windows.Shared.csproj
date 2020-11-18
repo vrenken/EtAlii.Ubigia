@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>8f93df78-e2be-4b18-8506-f80c87bde1cc</ProjectGuid>
     <UseWpf>true</UseWpf>
   </PropertyGroup>
