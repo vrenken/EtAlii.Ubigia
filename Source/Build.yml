@@ -7,6 +7,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   dotNetSdkVersion: '5.0.100'
+  shouldRunSonarQube: contains(variables['build.sourceBranch'], 'refs/heads/master')
 
 trigger:
   - master
@@ -40,6 +41,7 @@ jobs:
 
       - task: SonarQubePrepare@4
         displayName: 'SonarQube: prepare'
+        condition: ${{ variables.shouldRunSonarQube }}
         inputs:
           SonarQube: 'Avalon SonarQube'
           scannerMode: 'CLI'
@@ -80,10 +82,12 @@ jobs:
 
       - task: SonarQubeAnalyze@4
         displayName: 'SonarQube: analyse'
+        condition: ${{ variables.shouldRunSonarQube }}
 
 
       - task: SonarQubePublish@4
         displayName: 'SonarQube: publish'
+        condition: ${{ variables.shouldRunSonarQube }}
         inputs:
           pollingTimeoutSec: '300'
 
