@@ -147,11 +147,11 @@
             try
             {
                 var request = new AdminAccountMultipleRequest();
-                var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
-    
-                var account = response.Accounts.ToLocal();
-                result.AddRange(account);
+                var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+                await foreach (var response in call.ResponseStream.ReadAllAsync())
+                {
+                    result.Add(response.Account.ToLocal()); // TODO: AsyncEnumerable 
+                }
             }
             catch (RpcException e)
             {

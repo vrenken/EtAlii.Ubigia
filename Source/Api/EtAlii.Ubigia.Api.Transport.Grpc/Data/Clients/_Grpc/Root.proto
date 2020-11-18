@@ -8,7 +8,7 @@ package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 service RootGrpcService
 {
 	rpc GetSingle (RootSingleRequest) returns (RootSingleResponse) {}
-	rpc GetMultiple (RootMultipleRequest) returns (RootMultipleResponse) {}
+	rpc GetMultiple (RootMultipleRequest) returns (stream RootMultipleResponse) {}
 	rpc Post (RootPostSingleRequest) returns (RootSingleResponse) {}
 	rpc Put (RootSingleRequest) returns (RootSingleResponse) {}
 	rpc Delete (RootSingleRequest) returns (RootSingleResponse) {}
@@ -43,5 +43,5 @@ message RootSingleResponse
 
 message RootMultipleResponse
 {
-	repeated Root Roots = 1;
+	Root Root = 1;
 }

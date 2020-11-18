@@ -122,9 +122,11 @@
             try
             {
                 var request = new AdminStorageMultipleRequest();
-                var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
-                result.AddRange(response.Storages.ToLocal());
+                var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+                await foreach (var response in call.ResponseStream.ReadAllAsync())
+                {
+                    result.Add(response.Storage.ToLocal()); // TODO: AsyncEnumerable 
+                }
             }
             catch (RpcException e)
             {

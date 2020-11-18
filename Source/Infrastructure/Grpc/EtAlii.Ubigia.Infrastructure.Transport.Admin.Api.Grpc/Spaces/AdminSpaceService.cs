@@ -45,17 +45,19 @@
         }
 
         // Get all Items
-        public override Task<SpaceMultipleResponse> GetMultiple(SpaceMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(SpaceMultipleRequest request, IServerStreamWriter<SpaceMultipleResponse> responseStream, ServerCallContext context)
         {
             var accountId = request.AccountId.ToLocal();
             
-            var spaces = _items
-                .GetAll(accountId)
-                .ToWire();
-            var response = new SpaceMultipleResponse();
-            response.Spaces.AddRange(spaces);
-
-            return Task.FromResult(response);
+            var spaces = _items.GetAll(accountId); // TODO: AsyncEnumerable
+            foreach (var space in spaces)
+            {
+                var response = new SpaceMultipleResponse
+                {
+                    Space = space.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
 
         // Add item
