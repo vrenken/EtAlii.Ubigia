@@ -7,12 +7,14 @@
 
     public partial class EntryHub
     {
-        public Entry GetSingle(Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> GetSingle(Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
         {
             Entry response;
             try
             {
-                response = _items.Get(entryId, entryRelations);
+                response = await _items
+                    .Get(entryId, entryRelations)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -21,12 +23,18 @@
             return response;
         }
 
-        public IEnumerable<Entry> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IEnumerable<Entry>> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
         {
-            Entry[] response;
+            var response = new List<Entry>(); 
             try
             {
-                response = entryIds.Select(entryId => _items.Get(entryId, entryRelations)).ToArray();
+                foreach (var entryId in entryIds)
+                {
+                    var entry = await _items
+                        .Get(entryId, entryRelations)
+                        .ConfigureAwait(false);
+                    response.Add(entry); // TODO: AsyncEnumerable 
+                }
             }
             catch (Exception e)
             {
@@ -42,7 +50,8 @@
             {
                 response = await _items
                     .GetRelated(entryId, entriesWithRelation, entryRelations)
-                    .ToArrayAsync();   // TODO: AsyncEnumerable
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);   // TODO: AsyncEnumerable
             }
             catch (Exception e)
             {

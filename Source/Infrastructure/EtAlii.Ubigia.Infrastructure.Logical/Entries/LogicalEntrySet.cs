@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalEntrySet : ILogicalEntrySet
@@ -27,17 +28,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _entryPreparer.Prepare(spaceId, id);
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
             return _fabricContext.Entries.Get(identifier, entryRelations);
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             return _fabricContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
             return _fabricContext.Entries.Get(identifiers, entryRelations);
         }

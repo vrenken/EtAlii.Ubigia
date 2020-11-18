@@ -5,6 +5,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     internal class DebuggingEntryRepositoryDecorator : IEntryRepository
@@ -16,21 +17,19 @@
             _repository = entryRepository;
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
         {
-            var entries = _repository.Get(identifiers, entryRelations);
-
-            foreach (var entry in entries)
+            var items = _repository.Get(identifiers, entryRelations);
+            await foreach (var item in items)
             {
-                EnsureUniqueComponents(entry);
+                EnsureUniqueComponents(item);
+                yield return item;
             }
-
-            return entries;
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
         {
-            var entry = _repository.Get(identifier, entryRelations);
+            var entry = await _repository.Get(identifier, entryRelations);
 
             EnsureUniqueComponents(entry);
 
@@ -39,12 +38,12 @@
 
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
-            var entries = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
+            var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
 
-            await foreach(var entry in entries)
+            await foreach(var item in items)
             {
-                EnsureUniqueComponents(entry);
-                yield return entry;
+                EnsureUniqueComponents(item);
+                yield return item;
             }
         }
 

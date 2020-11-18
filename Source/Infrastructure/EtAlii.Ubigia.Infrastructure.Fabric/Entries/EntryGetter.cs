@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class EntryGetter : IEntryGetter
@@ -13,107 +13,124 @@
             _storage = storage;
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
-            return identifiers.Select(identifier => Get(identifier, entryRelations))
-                              .AsEnumerable();
+            foreach (var identifier in identifiers)
+            {
+                yield return await Get(identifier, entryRelations);
+            }
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
-            var entry = Get(identifier, entriesWithRelation);
+            var entry = await Get(identifier, entriesWithRelation);
 
-            var entries = new List<Entry>();
+            var entries = AddHierarchicalEntries(entriesWithRelation, entryRelations, entry);
+            await foreach (var e in entries)
+            {
+                yield return e;
+            }
 
-            AddHierarchicalEntries(entriesWithRelation, entryRelations, entry, entries);
+            entries = AddIndexEntries(entriesWithRelation, entryRelations, entry);
+            await foreach (var e in entries)
+            {
+                yield return e;
+            }
 
-            AddIndexEntries(entriesWithRelation, entryRelations, entries, entry);
+            entries = AddSequentialEntries(entriesWithRelation, entryRelations, entry);
+            await foreach (var e in entries)
+            {
+                yield return e;
+            }
 
-            AddSequentialEntries(entriesWithRelation, entryRelations, entry, entries);
-
-            AddTemporalEntries(entriesWithRelation, entryRelations, entry, entries);
-
-            return entries;
+            entries = AddTemporalEntries(entriesWithRelation, entryRelations, entry);
+            await foreach (var e in entries)
+            {
+                yield return e;
+            }
         }
 
-        private void AddTemporalEntries(
+        private async IAsyncEnumerable<Entry> AddTemporalEntries(
             EntryRelation entriesWithRelation, 
             EntryRelation entryRelations, 
-            IReadOnlyEntry entry,
-            List<Entry> entries)
+            IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
             {
-                var downdateEntry = Get(entry.Downdate.Id, entryRelations);
-                entries.Add(downdateEntry);
+                yield return await Get(entry.Downdate.Id, entryRelations);
             }
 
             if (entriesWithRelation.HasFlag(EntryRelation.Update))
             {
-                entries.AddRange(entry.Updates.Select(relation => Get(relation.Id, entryRelations)));
+                foreach (var update in entry.Updates)
+                {
+                    yield return await Get(update.Id, entryRelations);
+                }
             }
         }
 
-        private void AddSequentialEntries(
+        private async IAsyncEnumerable<Entry> AddSequentialEntries(
             EntryRelation entriesWithRelation, 
             EntryRelation entryRelations, 
-            IReadOnlyEntry entry,
-            List<Entry> entries)
+            IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
             {
-                var previousEntry = Get(entry.Previous.Id, entryRelations);
-                entries.Add(previousEntry);
+                yield return await Get(entry.Previous.Id, entryRelations);
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Next) || entry.Next == Relation.None) return;
-            var nextEntry = Get(entry.Next.Id, entryRelations);
-            entries.Add(nextEntry);
+            if (!entriesWithRelation.HasFlag(EntryRelation.Next) || entry.Next == Relation.None) yield break;
+            yield return await Get(entry.Next.Id, entryRelations);
         }
 
-        private void AddIndexEntries(
+        private async IAsyncEnumerable<Entry> AddIndexEntries(
             EntryRelation entriesWithRelation, 
-            EntryRelation entryRelations, 
-            List<Entry> entries, 
+            EntryRelation entryRelations,
             IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Index))
             {
-                entries.AddRange(entry.Indexes.Select(relation => Get(relation.Id, entryRelations)));
+                foreach (var index in entry.Indexes)
+                {
+                    yield return await Get(index.Id, entryRelations);
+                }
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Indexed) || entry.Indexed == Relation.None) return;
-            var indexedEntry = Get(entry.Parent.Id, entryRelations);
-            entries.Add(indexedEntry);
+            if (!entriesWithRelation.HasFlag(EntryRelation.Indexed) || entry.Indexed == Relation.None) yield break;
+            yield return await Get(entry.Parent.Id, entryRelations);
         }
 
-        private void AddHierarchicalEntries(
+        private async IAsyncEnumerable<Entry> AddHierarchicalEntries(
             EntryRelation entriesWithRelation, 
             EntryRelation entryRelations, 
-            IReadOnlyEntry entry,
-            List<Entry> entries)
+            IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Parent))
             {
                 if (entry.Parent != Relation.None)
                 {
-                    var parentEntry = Get(entry.Parent.Id, entryRelations);
-                    entries.Add(parentEntry);
+                    yield return await Get(entry.Parent.Id, entryRelations);
                 }
 
                 if (entry.Parent2 != Relation.None)
                 {
-                    var parent2Entry = Get(entry.Parent2.Id, entryRelations);
-                    entries.Add(parent2Entry);
+                    yield return await Get(entry.Parent2.Id, entryRelations);
                 }
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Child)) return;
-            entries.AddRange(entry.Children.Select(relation => Get(relation.Id, entryRelations)));
-            entries.AddRange(entry.Children2.Select(relation => Get(relation.Id, entryRelations)));
+            if (!entriesWithRelation.HasFlag(EntryRelation.Child)) yield break;
+            foreach (var child in entry.Children)
+            {
+                yield return await Get(child.Id, entryRelations);
+            }
+
+            foreach (var child2 in entry.Children2)
+            {
+                yield return await Get(child2.Id, entryRelations);
+            }
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
 
@@ -158,7 +175,8 @@
                 RetrieveAndAdd<IndexedComponent>(containerId, selectedComponents);
             }
 
-            return EntryHelper.Compose(selectedComponents, true);
+            var entry = EntryHelper.Compose(selectedComponents, true);
+            return Task.FromResult(entry);
         }
 
         private void RetrieveAndAddAll<T>(ContainerIdentifier containerId, List<IComponent> componentsToAddTo)

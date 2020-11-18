@@ -2,6 +2,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using Serilog;
 
     internal class LoggingEntryGetterDecorator : IEntryGetter
@@ -14,12 +15,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
             return _decoree.Get(identifiers, entryRelations);
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
             _logger.Verbose("Getting entry: {identifier}", identifier.ToTimeString());
 
@@ -27,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
         }
 
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             _logger.Verbose("Getting entries for: {identifier}", identifier.ToTimeString());
 

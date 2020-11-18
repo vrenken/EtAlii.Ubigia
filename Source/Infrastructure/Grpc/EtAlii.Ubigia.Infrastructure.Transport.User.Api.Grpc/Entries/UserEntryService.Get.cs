@@ -7,26 +7,30 @@
 
     public partial class UserEntryService
     {
-        public override Task<EntrySingleResponse> GetSingle(EntrySingleRequest request, ServerCallContext context)
+        public override async Task<EntrySingleResponse> GetSingle(EntrySingleRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
-            var entry = _items.Get(entryId, entryRelations);
+            var entry = await _items
+                .Get(entryId, entryRelations)
+                .ConfigureAwait(false);
             
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         public override async Task GetMultiple(EntryMultipleRequest request, IServerStreamWriter<EntryMultipleResponse> responseStream, ServerCallContext context)
         {
             var entryIds = request.EntryIds.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
-            var entries = _items.Get(entryIds, entryRelations); // TODO: AsyncEnumerable
+            var entries = _items
+                .Get(entryIds, entryRelations)
+                .ConfigureAwait(false); 
 
-            foreach (var entry in entries)
+            await foreach (var entry in entries)
             {
                 var response = new EntryMultipleResponse
                 {
@@ -41,7 +45,9 @@
             var entryId = request.EntryId.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
             var entriesWithRelation = request.EntriesWithRelation.ToLocal();
-            var entries = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
+            var entries = _items
+                .GetRelated(entryId, entriesWithRelation, entryRelations)
+                .ConfigureAwait(false);
 
             await foreach (var entry in entries)
             {

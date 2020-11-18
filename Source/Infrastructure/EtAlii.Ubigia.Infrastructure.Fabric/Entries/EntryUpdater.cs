@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class EntryUpdater : IEntryUpdater
     {
@@ -16,26 +17,26 @@
             _entryGetter = entryGetter;
         }
 
-        public void Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
+        public async Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            Update((Entry)entry, changedComponents);
+            await Update((Entry)entry, changedComponents);
         }
 
-        public void Update(Entry entry, IEnumerable<IComponent> changedComponents)
+        public async Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            EnsureModelConsistensy(entry, changedComponents);
+            await EnsureModelConsistency(entry, changedComponents);
         }
 
-        private void EnsureModelConsistensy(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureModelConsistency(Entry entry, IEnumerable<IComponent> components)
         {
-            EnsureFirstTypeHierarchicalConsistency(entry, components);
-            EnsureSecondTypeHierarchicalConsistency(entry, components);
-            EnsureSequentialConsistency(entry, components);
-            EnsureTransformationalConsistency(entry, components);
-            EnsureIndexedConsistency(entry, components);
+            await EnsureFirstTypeHierarchicalConsistency(entry, components);
+            await EnsureSecondTypeHierarchicalConsistency(entry, components);
+            await EnsureSequentialConsistency(entry, components);
+            await EnsureTransformationalConsistency(entry, components);
+            await EnsureIndexedConsistency(entry, components);
         }
 
-        private void EnsureSequentialConsistency(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureSequentialConsistency(Entry entry, IEnumerable<IComponent> components)
         {
             var previousComponent = components.OfType<PreviousComponent>()
                                               .SingleOrDefault();
@@ -44,7 +45,7 @@
                 var previousId = previousComponent.Relation.Id;
                 if (previousId != Identifier.Empty)
                 {
-                    var previous = (IEditableEntry)_entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next);
+                    var previous = (IEditableEntry) await _entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next);
                     if (previous.Next == Relation.None)
                     {
                         //_logger.Verbose("Updating entry - Adding relation from previous to next: [0] => [1]", previousId.ToTimeString(), entry.Id.ToTimeString())
@@ -63,16 +64,17 @@
             }
         }
 
-        private void EnsureTransformationalConsistency(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureTransformationalConsistency(Entry entry, IEnumerable<IComponent> components)
         {
-            var downdateComponent = components.OfType<DowndateComponent>()
-                                              .SingleOrDefault();
+            var downdateComponent = components
+                .OfType<DowndateComponent>()
+                .SingleOrDefault();
             if (downdateComponent != null)
             {
                 var downdateId = downdateComponent.Relation.Id;
                 if (downdateId != Identifier.Empty)
                 {
-                    var downdate = (IEditableEntry)_entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update);
+                    var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update);
                     if (!downdate.Updates.Contains(entry.Id)) 
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
@@ -91,7 +93,7 @@
             }
         }
 
-        private void EnsureFirstTypeHierarchicalConsistency(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureFirstTypeHierarchicalConsistency(Entry entry, IEnumerable<IComponent> components)
         {
             var parentComponent = components.OfType<ParentComponent>()
                                             .SingleOrDefault();
@@ -100,7 +102,7 @@
                 var parentId = parentComponent.Relation.Id;
                 if (parentId != Identifier.Empty)
                 {
-                    var parent = (IEditableEntry)_entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child);
+                    var parent = (IEditableEntry)await _entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child);
                     if (!parent.Children.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
@@ -119,7 +121,7 @@
             }
         }
 
-        private void EnsureSecondTypeHierarchicalConsistency(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureSecondTypeHierarchicalConsistency(Entry entry, IEnumerable<IComponent> components)
         {
             var parent2Component = components.OfType<Parent2Component>()
                                              .SingleOrDefault();
@@ -128,7 +130,7 @@
                 var parent2Id = parent2Component.Relation.Id;
                 if (parent2Id != Identifier.Empty)
                 {
-                    var parent2 = (IEditableEntry)_entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child);
+                    var parent2 = (IEditableEntry)await _entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child);
                     if (!parent2.Children2.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
@@ -147,13 +149,13 @@
             }
         }
 
-        private void EnsureIndexedConsistency(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsureIndexedConsistency(Entry entry, IEnumerable<IComponent> components)
         {
-            EnsuredIndexedConsistencyFromIndexedToIndex(entry, components);
-            EnsuredIndexedConsistencyFromIndexToIndexed(entry, components);
+            await EnsuredIndexedConsistencyFromIndexedToIndex(entry, components);
+            await EnsuredIndexedConsistencyFromIndexToIndexed(entry, components);
         }
 
-        private void EnsuredIndexedConsistencyFromIndexToIndexed(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsuredIndexedConsistencyFromIndexToIndexed(Entry entry, IEnumerable<IComponent> components)
         {
             var indexesComponents = components.OfType<IndexesComponent>();
             foreach (var indexesComponent in indexesComponents)
@@ -163,7 +165,7 @@
                     var indexId = indexesRelation.Id;
                     if (indexId != Identifier.Empty)
                     {
-                        var index = (IEditableEntry) _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed);
+                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed);
                         if (index.Indexed == Relation.None)
                         {
                             //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
@@ -184,7 +186,7 @@
             }
         }
 
-        private void EnsuredIndexedConsistencyFromIndexedToIndex(Entry entry, IEnumerable<IComponent> components)
+        private async Task EnsuredIndexedConsistencyFromIndexedToIndex(Entry entry, IEnumerable<IComponent> components)
         {
             var indexedComponent = components.OfType<IndexedComponent>()
                 .SingleOrDefault();
@@ -193,7 +195,7 @@
                 var indexedId = indexedComponent.Relation.Id;
                 if (indexedId != Identifier.Empty)
                 {
-                    var indexed = (IEditableEntry) _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed);
+                    var indexed = (IEditableEntry)await _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed);
                     if (!indexed.Indexes.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())

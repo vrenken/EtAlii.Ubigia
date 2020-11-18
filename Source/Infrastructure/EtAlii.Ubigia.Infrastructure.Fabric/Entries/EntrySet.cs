@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class EntrySet : IEntrySet
     {
@@ -18,17 +19,17 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _entryStorer = entryStorer;
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
             return _entryGetter.Get(identifier, entryRelations);
         }
 
-        public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             return _entryGetter.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
             return _entryGetter.Get(identifiers, entryRelations);
         }
@@ -53,14 +54,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _entryStorer.Store(entry, out storedComponents);
         }
 
-        public void Update(Entry entry, IEnumerable<IComponent> changedComponents)
+        public Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            _entryUpdater.Update(entry, changedComponents);
+            return _entryUpdater.Update(entry, changedComponents);
         }
 
-        public void Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
+        public Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            _entryUpdater.Update(entry, changedComponents);
+            return _entryUpdater.Update(entry, changedComponents);
         }
     }
 }
