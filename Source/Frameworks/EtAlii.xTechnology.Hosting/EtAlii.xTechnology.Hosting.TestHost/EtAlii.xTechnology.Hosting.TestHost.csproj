@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
     <ProjectGuid>3CD64B65-53A9-4CD8-917C-31FFBBEC099B</ProjectGuid>
     <Description>Package that enables a host to be used in (unit)testing scenarios.</Description>
     <PackageTags>hosting test unittest Asp.Net Core 3.1</PackageTags>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.0" />

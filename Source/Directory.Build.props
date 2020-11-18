@@ -12,23 +12,34 @@
     <Company>EtAlii</Company>
     <Product>Ubigia</Product>
 
-    <UbigiaBuildPackages>false</UbigiaBuildPackages>
     <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
     <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
+    <UbigiaGuiApplicationTargetFramework>$(UbigiaApplicationTargetFramework)-windows</UbigiaGuiApplicationTargetFramework>
+    <UbigiaTestApplicationTargetFramework>$(UbigiaApplicationTargetFramework)-windows</UbigiaTestApplicationTargetFramework>
+    
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
     <LangVersion>9</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    
+
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors>true</WarningsAsErrors>
+
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
 
   </PropertyGroup>
 
+  <PropertyGroup>
+    <IsUbigiaTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">true</IsUbigiaTestProject>
+    <IsUbigiaApplication>false</IsUbigiaApplication>
+    <IsUbigiaLibrary>false</IsUbigiaLibrary>
+  </PropertyGroup>
+  
   <!-- The PropertyGroup below is used to configure all test projects. -->
-  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+  <PropertyGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
+    <TargetFramework>$(UbigiaTestApplicationTargetFramework)</TargetFramework>
     <Description>Unit test project</Description>
     <OutputType>Library</OutputType>
     <IsPackable>false</IsPackable>

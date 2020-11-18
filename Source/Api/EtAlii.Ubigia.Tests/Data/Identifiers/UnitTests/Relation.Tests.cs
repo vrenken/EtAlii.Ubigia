@@ -212,7 +212,7 @@
             var relation1 = Relation.Create(identifier, 0);
 
             // Act.
-            var areEqual = relation1 == null;
+            var areEqual = relation1 == Relation.None;
 
             // Assert.
             Assert.False(areEqual);

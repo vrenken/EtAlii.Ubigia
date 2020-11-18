@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
     <UseWPF>true</UseWPF>
     <Description>SpaceBrowser</Description>
     <ProjectGuid>73759ec5-502d-4fd7-b78f-804c29f8bed0</ProjectGuid>

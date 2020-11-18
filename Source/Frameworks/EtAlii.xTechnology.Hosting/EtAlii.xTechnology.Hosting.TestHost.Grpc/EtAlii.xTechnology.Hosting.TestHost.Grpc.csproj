@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
     <ProjectGuid>9234ACDF-5339-4C48-917C-31246FDABEDE</ProjectGuid>
     <Description>Package that helps (unit)testing Grpc scenarios.</Description>
     <PackageTags>hosting test Grpc unittest Asp.Net Core 3.1</PackageTags>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
