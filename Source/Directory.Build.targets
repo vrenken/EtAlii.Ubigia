@@ -9,7 +9,7 @@
   </ItemGroup>
   
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
-  <ItemGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
+  <ItemGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.0" Label="Microsoft.NET.Test.Sdk (.targets)" />
     <PackageReference Include="xunit" Version="2.4.1" Label="Xunit.Version (.targets)" />
     <PackageReference Include="xunit.assert" Version="2.4.1" Label="Xunit.Assert (.targets)" />
@@ -21,6 +21,5 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <!--    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />-->
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>c53cf7f6-40bb-4e22-b4d6-bec861d69dda</ProjectGuid>
     <UseWPF>true</UseWPF>
     <OutputType>Exe</OutputType>
