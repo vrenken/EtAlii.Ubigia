@@ -52,20 +52,22 @@
         }
 
         // Get all Items
-        public override Task<SpaceMultipleResponse> GetMultiple(SpaceMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(SpaceMultipleRequest request, IServerStreamWriter<SpaceMultipleResponse> responseStream, ServerCallContext context)
         {
             var authenticationTokenHeader = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
             var authenticationToken = authenticationTokenHeader.Value;
             _authenticationTokenVerifier.Verify(authenticationToken, out var account, Role.User, Role.System);
             var accountId = account.Id;
             
-            var spaces = _items
-                .GetAll(accountId)
-                .ToWire();
-            var response = new SpaceMultipleResponse();
-            response.Spaces.AddRange(spaces);
-
-            return Task.FromResult(response);
+            var spaces = _items.GetAll(accountId); // TODO: AsyncEnumerable
+            foreach (var space in spaces)
+            {
+                var response = new SpaceMultipleResponse
+                {
+                    Space = space.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
 
         // Add item

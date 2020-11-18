@@ -8,7 +8,7 @@ package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 service SpaceGrpcService
 {
 	rpc GetSingle (SpaceSingleRequest) returns (SpaceSingleResponse) {}
-	rpc GetMultiple (SpaceMultipleRequest) returns (SpaceMultipleResponse) {}
+	rpc GetMultiple (SpaceMultipleRequest) returns (stream SpaceMultipleResponse) {}
 	rpc Post (SpacePostSingleRequest) returns (SpaceSingleResponse) {}
 	rpc Put (SpaceSingleRequest) returns (SpaceSingleResponse) {}
 	rpc Delete (SpaceSingleRequest) returns (SpaceSingleResponse) {}
@@ -41,5 +41,5 @@ message SpaceSingleResponse
 
 message SpaceMultipleResponse
 {
-	repeated Space Spaces = 1;
+	Space Space = 1;
 }

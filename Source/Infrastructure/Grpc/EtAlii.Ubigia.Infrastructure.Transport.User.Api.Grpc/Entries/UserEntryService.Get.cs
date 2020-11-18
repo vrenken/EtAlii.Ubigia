@@ -20,31 +20,37 @@
             return Task.FromResult(response);
         }
 
-        public override Task<EntryMultipleResponse> GetMultiple(EntryMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(EntryMultipleRequest request, IServerStreamWriter<EntryMultipleResponse> responseStream, ServerCallContext context)
         {
             var entryIds = request.EntryIds.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
-            var entries = _items.Get(entryIds, entryRelations);
+            var entries = _items.Get(entryIds, entryRelations); // TODO: AsyncEnumerable
 
-            var response = new EntryMultipleResponse();
-            response.Entries.AddRange(entries.ToWire());
-            return Task.FromResult(response);
+            foreach (var entry in entries)
+            {
+                var response = new EntryMultipleResponse
+                {
+                    Entry = entry.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
-        public override async Task<EntryMultipleResponse> GetRelated(EntryRelatedRequest request, ServerCallContext context)
+
+        public override async Task GetRelated(EntryRelatedRequest request, IServerStreamWriter<EntryMultipleResponse> responseStream, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
             var entriesWithRelation = request.EntriesWithRelation.ToLocal();
             var entries = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
 
-            var response = new EntryMultipleResponse(); // TODO: AsyncEnumerable - refactor to grpc stream?
-
             await foreach (var entry in entries)
             {
-                response.Entries.Add(entry.ToWire());
+                var response = new EntryMultipleResponse
+                {
+                    Entry = entry.ToWire()
+                };
+                await responseStream.WriteAsync(response);
             }
-            
-            return response;
         }
     }
 }

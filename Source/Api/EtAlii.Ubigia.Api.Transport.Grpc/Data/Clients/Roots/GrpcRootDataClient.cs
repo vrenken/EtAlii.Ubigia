@@ -84,12 +84,15 @@
 
         public async IAsyncEnumerable<Root> GetAll()
         {
-            IEnumerable<Root> result; 
+            var result = new List<Root>(); 
             try
             {
                 var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() }; 
-                var response = await _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                result = response.Roots.ToLocal();
+                var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+                await foreach (var response in call.ResponseStream.ReadAllAsync())
+                {
+                    result.Add(response.Root.ToLocal()); // TODO: AsyncEnumerable 
+                }
             }
             catch (RpcException e)
             {

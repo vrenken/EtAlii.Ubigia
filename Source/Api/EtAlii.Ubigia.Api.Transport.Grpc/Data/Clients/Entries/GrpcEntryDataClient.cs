@@ -113,11 +113,10 @@
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
-            var response = await _client.GetRelatedAsync(request, _transport.AuthenticationHeaders);
-            var result = response.Entries.ToLocal();
-            foreach (var item in result)
+            var call = _client.GetRelated(request, _transport.AuthenticationHeaders);
+            await foreach (var response in call.ResponseStream.ReadAllAsync())
             {
-                yield return item;
+                yield return response.Entry.ToLocal();
             }
         }
 

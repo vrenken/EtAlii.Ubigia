@@ -130,10 +130,11 @@
                 {                               
                     AccountId = GuidExtension.ToWire(accountId),
                 };
-                var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
-    
-                result.AddRange(response.Spaces.ToLocal());
+                var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+                await foreach (var response in call.ResponseStream.ReadAllAsync())
+                {
+                    result.Add(response.Space.ToLocal()); // TODO: AsyncEnumerable 
+                }
             }
             catch (RpcException e)
             {

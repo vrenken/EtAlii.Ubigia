@@ -19,17 +19,20 @@
         
 //        // Get all spaces for the specified accountid
 //        public IEnumerable<Root> GetForSpace(Guid spaceId)
-        public override Task<RootMultipleResponse> GetMultiple(RootMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(RootMultipleRequest request, IServerStreamWriter<RootMultipleResponse> responseStream, ServerCallContext context)
         {
             var spaceId = request.SpaceId.ToLocal();
             
             var roots = _items
-                .GetAll(spaceId)
-                .ToWire();
-            var response = new RootMultipleResponse();
-            response.Roots.AddRange(roots);
-
-            return Task.FromResult(response);
+                .GetAll(spaceId); // TODO: AsyncEnumerable
+            foreach (var root in roots)
+            {
+                var response = new RootMultipleResponse
+                {
+                    Root = root.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
 
         //public Root GetByName(string rootName)
