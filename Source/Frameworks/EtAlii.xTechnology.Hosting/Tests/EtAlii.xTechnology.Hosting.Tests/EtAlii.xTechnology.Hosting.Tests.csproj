@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <!-- No need to make this one target Windows. -->
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>FCC5D2A9-0EE7-49BF-A208-3FB3AB5D0466</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>

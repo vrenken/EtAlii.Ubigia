@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>28B64BB8-2C2B-4AC9-8F61-4073A63D32B5</ProjectGuid>
     <Description>Package that contains everything needed to enable Rest based hosting.</Description>
