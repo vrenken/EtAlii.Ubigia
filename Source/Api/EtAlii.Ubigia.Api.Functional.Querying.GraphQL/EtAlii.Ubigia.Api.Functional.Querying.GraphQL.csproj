@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>{60146C7A-1B67-4ED1-A5DB-5801AE0C5FED}</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
@@ -20,7 +19,6 @@
     <PackageReference Include="GraphQL" Version="3.1.4" />
     <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.1.4" />
     <PackageReference Include="GraphQL.Server.Core" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Processing" />

@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using CA = System.Diagnostics.CodeAnalysis;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.EntityFrameworkCore.Utilities
@@ -85,6 +86,7 @@ namespace Microsoft.EntityFrameworkCore.Utilities
         {
             NotNull(value, parameterName);
 
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
             if (value.Any(e => e == null))
             {
                 NotEmpty(parameterName, nameof(parameterName));
@@ -95,8 +97,25 @@ namespace Microsoft.EntityFrameworkCore.Utilities
             return value;
         }
 
+        public static IReadOnlyList<string> HasNoEmptyElements(
+            IReadOnlyList<string> value,
+            [InvokerParameterName] [NotNull] string parameterName)
+        {
+            NotNull(value, parameterName);
+
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
+            if (value.Any(string.IsNullOrWhiteSpace))
+            {
+                NotEmpty(parameterName, nameof(parameterName));
+
+                throw new ArgumentException(AbstractionsStrings.CollectionArgumentHasEmptyElements(parameterName));
+            }
+
+            return value;
+        }
+
         [Conditional("DEBUG")]
-        public static void DebugAssert(bool condition, string message)
+        public static void DebugAssert([CA.DoesNotReturnIfAttribute(false)] bool condition, string message)
         {
             if (!condition)
             {

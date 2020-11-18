@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     using System;
     using Microsoft.EntityFrameworkCore.Diagnostics;
     using Microsoft.EntityFrameworkCore.Infrastructure;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.EntityFrameworkCore;
     using EtAlii.Ubigia.Api.Storage;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     ///     <para>

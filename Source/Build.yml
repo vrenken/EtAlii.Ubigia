@@ -6,9 +6,12 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
+  dotNetSdkVersion: '5.0.100'
 
 trigger:
   - master
+  - feature/*
+  - release/*
 
 name: ${{ variables.buildDisplayName }}
 
@@ -21,17 +24,17 @@ jobs:
       demands:
         #- SpecialSoftware # Check if SpecialSoftware capability exists
         # Check if Agent.OS == Windows_NT
-        - Agent.OS -equals Windows_NT 
+        - Agent.OS -equals Windows_NT
       #vmImage: 'ubuntu-latest'    # For Docker.
       #vmImage: 'windows-latest'   # For Windows.
     steps:
-    
-# BUILD
+
+      # BUILD
       - task: UseDotNet@2
-        displayName: 'Use: dotnet SDK 3.1.403'
+        displayName: 'Use: dotnet SDK ${{ variables.dotNetSdkVersion }}'
         inputs:
           packageType: 'sdk'
-          version: '3.1.403'
+          version: ${{ variables.dotNetSdkVersion }}
 
       - task: NugetToolInstaller@1
 
@@ -51,9 +54,7 @@ jobs:
         displayName: 'Run: dotnet restore'
         inputs:
           command: 'restore'
-          projects: |
-            Source/**/*.csproj
-            !Source/**/ProjectToExclude.csproj
+          projects: Source/**/*.csproj
           feedsToUse: config
           nugetConfigPath: Source/NuGet.config
 
@@ -61,12 +62,11 @@ jobs:
         displayName: 'Run: dotnet build'
         inputs:
           command: 'build'
-          projects: |
-            Source/**/*.sln
-            !Source/**/StorageBrowser.csproj
+          projects: Source/**/*.sln
+#            !Source/**/StorageBrowser.csproj
           arguments: ' --no-restore --configuration $(BuildConfiguration) /p:UbigiaIsRunningOnBuildAgent=true -nodeReuse:false -maxCpuCount:8'
 
-# TEST
+      # TEST
       - task: DotNetCoreCLI@2
         displayName: 'Run: dotnet test'
         inputs:

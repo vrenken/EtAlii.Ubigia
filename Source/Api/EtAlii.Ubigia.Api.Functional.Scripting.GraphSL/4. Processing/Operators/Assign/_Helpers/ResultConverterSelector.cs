@@ -18,11 +18,11 @@
             Register(o => o is IEnumerable<INode>, (o, s, output) => Convert(((IEnumerable<INode>)o).Cast<IInternalNode>(), s, output))
                 .Register(o => o is INode[], (o, s, output) => Convert(((INode[])o).Cast<IInternalNode>(), s, output))
                 .Register(o => o is INode, OnNext)
-                .Register(o => o is IEnumerable<IReadOnlyEntry>, (o, s, output) => Convert<IReadOnlyEntry>(o, output))
-                .Register(o => o is IReadOnlyEntry[], (o, s, output) => Convert<IReadOnlyEntry>(o, output))
+                .Register(o => o is IEnumerable<IReadOnlyEntry>, (o, _, output) => Convert<IReadOnlyEntry>(o, output))
+                .Register(o => o is IReadOnlyEntry[], (o, _, output) => Convert<IReadOnlyEntry>(o, output))
                 .Register(o => o is IReadOnlyEntry, OnNext)
-                .Register(o => o is IEnumerable<Identifier>, (o, s, output) => Convert<Identifier>(o, output))
-                .Register(o => o is Identifier[], (o, s, output) => Convert<Identifier>(o, output))
+                .Register(o => o is IEnumerable<Identifier>, (o, _, output) => Convert<Identifier>(o, output))
+                .Register(o => o is Identifier[], (o, _, output) => Convert<Identifier>(o, output))
                 .Register(o => o is Identifier, OnNext)
                 .Register(o => o is string, OnNext)
                 .Register(o => o is int, OnNext)
@@ -31,7 +31,7 @@
                 .Register(o => o is DateTime, OnNext)
                 .Register(o => o is TimeSpan, OnNext)
                 .Register(o => o == null, OnNext)
-                .Register(o => true, OnNext);
+                .Register(_ => true, OnNext);
         }
 
         private Task OnNext(object o, ExecutionScope scope, IObserver<object> output)

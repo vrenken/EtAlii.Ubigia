@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public LoggingHost(IHost decoree)
         {
             _decoree = decoree;
-            _decoree.PropertyChanged += (o, e) => PropertyChanged?.Invoke(this, e);
+            _decoree.PropertyChanged += (_, e) => PropertyChanged?.Invoke(this, e);
 
             _configurableHost = (IConfigurableHost) decoree;
             _configurableHost.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);

@@ -21,7 +21,7 @@
                     {
                         while (partition.MoveNext())
                         {
-                            await body(partition.Current).ContinueWith(t =>
+                            await body(partition.Current).ContinueWith(_ =>
                             {
                                 //observe exceptions
                             });
@@ -43,7 +43,7 @@
                     {
                         while (partition.MoveNext())
                         {
-                            await body(partition.Current.Value, partition.Current.Key).ContinueWith(t =>
+                            await body(partition.Current.Value, partition.Current.Key).ContinueWith(_ =>
                             {
                                 //observe exceptions
                             });

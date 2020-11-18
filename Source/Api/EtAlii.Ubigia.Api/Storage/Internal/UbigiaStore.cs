@@ -3,17 +3,16 @@
 
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
-
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using JetBrains.Annotations;
     using Microsoft.EntityFrameworkCore.Diagnostics;
     using EtAlii.Ubigia.Api.Internal;
+    using EtAlii.Ubigia.Api.ValueGeneration.Internal;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Update;
-    using Microsoft.EntityFrameworkCore;
-    using EtAlii.Ubigia.Api.ValueGeneration.Internal;
+    using Microsoft.EntityFrameworkCore.Utilities;
 
     /// <summary>
     ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -29,17 +28,6 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         private readonly object _lock = new object();
 
         private Dictionary<object, IUbigiaTable> _tables;
-
-        /// <summary>
-        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
-        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
-        ///     any release. You should only use it directly in your code with extreme caution and knowing that
-        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
-        /// </summary>
-        public UbigiaStore([NotNull] IUbigiaTableFactory tableFactory)
-            : this(tableFactory, useNameMatching: false)
-        {
-        }
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -67,9 +55,10 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
             lock (_lock)
             {
                 var entityType = property.DeclaringEntityType;
-                var key = _useNameMatching ? (object)entityType.Name : entityType;
 
-                return EnsureTable(key, entityType).GetIntegerValueGenerator<TProperty>(property);
+                return EnsureTable(entityType).GetIntegerValueGenerator<TProperty>(
+                    property,
+                    entityType.GetDerivedTypesInclusive().Select(type => EnsureTable(type)).ToArray());
             }
         }
 
@@ -149,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
                 {
                     foreach (var et in entityType.GetDerivedTypesInclusive().Where(et => !et.IsAbstract()))
                     {
-                        var key = _useNameMatching ? (object)et.Name : et;
+                        var key = _useNameMatching ? (object)et.FullName() : et;
                         if (_tables.TryGetValue(key, out var table))
                         {
                             data.Add(new UbigiaTableSnapshot(et, table.SnapshotRows()));
@@ -181,10 +170,9 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
                     var entry = entries[i];
                     var entityType = entry.EntityType;
 
-                    Debug.Assert(!entityType.IsAbstract());
+                    Check.DebugAssert(!entityType.IsAbstract(), "entityType is abstract");
 
-                    var key = _useNameMatching ? (object)entityType.Name : entityType;
-                    var table = EnsureTable(key, entityType);
+                    var table = EnsureTable(entityType);
 
                     if (entry.SharedIdentityEntry != null)
                     {
@@ -219,19 +207,28 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         }
 
         // Must be called from inside the lock
-        private IUbigiaTable EnsureTable(object key, IEntityType entityType)
+        private IUbigiaTable EnsureTable(IEntityType entityType)
         {
             if (_tables == null)
             {
                 _tables = CreateTables();
             }
 
-            if (!_tables.TryGetValue(key, out var table))
+            IUbigiaTable baseTable = null;
+
+            var entityTypes = entityType.GetAllBaseTypesInclusive();
+            foreach (var currentEntityType in entityTypes)
             {
-                _tables.Add(key, table = _tableFactory.Create(entityType));
+                var key = _useNameMatching ? (object)currentEntityType.FullName() : currentEntityType;
+                if (!_tables.TryGetValue(key, out var table))
+                {
+                    _tables.Add(key, table = _tableFactory.Create(currentEntityType, baseTable));
+                }
+
+                baseTable = table;
             }
 
-            return table;
+            return _tables[_useNameMatching ? (object)entityType.FullName() : entityType];
         }
     }
 }

@@ -600,7 +600,7 @@
             /// <returns>Тот же параметр или подставной.</returns>
             protected override Expression VisitParameter(ParameterExpression node)
             {
-                var replacer = _lambdaArgsToSearch.Where(t => t == node).Select((t, i) => _lambdaArgsToReplace.Skip(i).First()).FirstOrDefault();
+                var replacer = _lambdaArgsToSearch.Where(t => t == node).Select((_, i) => _lambdaArgsToReplace.Skip(i).First()).FirstOrDefault();
                 if (replacer != null)
                     return replacer;
                 return base.VisitParameter(node);

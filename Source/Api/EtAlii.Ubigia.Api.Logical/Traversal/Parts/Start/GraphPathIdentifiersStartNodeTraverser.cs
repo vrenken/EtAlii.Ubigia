@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var identifiers = ((GraphIdentifiersStartNode) parameters.Part).Identifiers;
             parameters.Input.Subscribe(
                 onError: e => parameters.Output.OnError(e),
-                onNext: o =>
+                onNext: _ =>
                 {
                     foreach (var identifier in identifiers)
                     {

@@ -44,10 +44,12 @@ namespace Moppet.Lapa
 		/// <param name="right">Right chain.</param>
 		public LpsAlternatives(ICollection<LpsParser> left, ICollection<LpsParser> right)
 		{
+			// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
             if (left.Any(l => l == null))
                 throw new ArgumentNullException(nameof(left), "One of item in arguments is null.");
             if (right.Any(r => r == null))
                 throw new ArgumentNullException(nameof(right), "One of item in arguments is null.");
+            // ReSharper restore ParameterOnlyUsedForPreconditionCheck.Local
 
             _mParsers = new List<LpsParser>(left.Count + right.Count);
             _mParsers.AddRange(left);

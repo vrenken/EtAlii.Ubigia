@@ -3,35 +3,45 @@
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata;
     using Microsoft.EntityFrameworkCore.Query;
     using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
 
     public partial class UbigiaShapedQueryCompilingExpressionVisitor : ShapedQueryCompilingExpressionVisitor
     {
         private readonly Type _contextType;
-        private readonly IDiagnosticsLogger<DbLoggerCategory.Query> _logger;
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public UbigiaShapedQueryCompilingExpressionVisitor(
-            ShapedQueryCompilingExpressionVisitorDependencies dependencies,
-            QueryCompilationContext queryCompilationContext)
+            [NotNull] ShapedQueryCompilingExpressionVisitorDependencies dependencies,
+            [NotNull] QueryCompilationContext queryCompilationContext)
             : base(dependencies, queryCompilationContext)
         {
             _contextType = queryCompilationContext.ContextType;
-            _logger = AppContext.TryGetSwitch("Microsoft.EntityFrameworkCore.Issue21016", out var isEnabled) && isEnabled
-                ? queryCompilationContext.Logger
-                : null;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override Expression VisitExtension(Expression extensionExpression)
         {
+            Check.NotNull(extensionExpression, nameof(extensionExpression));
+
             switch (extensionExpression)
             {
                 case UbigiaQueryExpression ubigiaQueryExpression:
@@ -48,8 +58,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             return base.VisitExtension(extensionExpression);
         }
 
-        protected override Expression VisitShapedQueryExpression(ShapedQueryExpression shapedQueryExpression)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override Expression VisitShapedQuery(ShapedQueryExpression shapedQueryExpression)
         {
+            Check.NotNull(shapedQueryExpression, nameof(shapedQueryExpression));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)shapedQueryExpression.QueryExpression;
 
             var shaper = new ShaperExpressionProcessingExpressionVisitor(
@@ -62,28 +80,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             shaper = new UbigiaProjectionBindingRemovingExpressionVisitor().Visit(shaper);
 
-            shaper = new CustomShaperCompilingExpressionVisitor(IsTracking).Visit(shaper);
+            shaper = new CustomShaperCompilingExpressionVisitor(
+                QueryCompilationContext.QueryTrackingBehavior == QueryTrackingBehavior.TrackAll).Visit(shaper);
 
             var shaperLambda = (LambdaExpression)shaper;
 
             return Expression.New(
-                typeof(QueryingEnumerable<>).MakeGenericType(shaperLambda!.ReturnType).GetConstructors()[0],
+                typeof(QueryingEnumerable<>).MakeGenericType(shaperLambda.ReturnType).GetConstructors()[0],
                 QueryCompilationContext.QueryContextParameter,
                 innerEnumerable,
                 Expression.Constant(shaperLambda.Compile()),
                 Expression.Constant(_contextType),
-                Expression.Constant(_logger, typeof(IDiagnosticsLogger<DbLoggerCategory.Query>)));
+                Expression.Constant(
+                    QueryCompilationContext.QueryTrackingBehavior == QueryTrackingBehavior.NoTrackingWithIdentityResolution));
         }
 
-        private static readonly MethodInfo TableMethodInfo = typeof(UbigiaShapedQueryCompilingExpressionVisitor).GetTypeInfo().GetDeclaredMethod(nameof(Table));
+        private static readonly MethodInfo TableMethodInfo
+            = typeof(UbigiaShapedQueryCompilingExpressionVisitor).GetTypeInfo()
+                .GetDeclaredMethod(nameof(Table));
 
         private static IEnumerable<ValueBuffer> Table(
             QueryContext queryContext,
             IEntityType entityType)
-        {
-            return ((UbigiaQueryContext)queryContext).Store
-                .GetTables(entityType)
-                .SelectMany(t => t.Rows.Select(vs => new ValueBuffer(vs)));
-        }
+            => ((UbigiaQueryContext)queryContext).GetValueBuffers(entityType);
     }
 }

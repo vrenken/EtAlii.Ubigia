@@ -31,13 +31,13 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             _converterSelector = new Selector<object, Func<IFunctionContext, ExecutionScope, object, Task<int>>>()
                 .Register(o => o is PathSubject, (context, scope, o) => CountPath(context, (PathSubject)o, scope))
-                .Register(o => o is Identifier, (context, scope, o) => Task.FromResult(1))
-                .Register(o => o is IInternalNode, (context, scope, o) => Task.FromResult(1))
-                .Register(o => o is IObservable<object>, (context, scope, o) => CountObservable((IObservable<object>)o))
-                .Register(o => o is IEnumerable<Identifier>, (context, scope, o) => Task.FromResult(((IEnumerable<Identifier>)o).Count()))
-                .Register(o => o is IEnumerable<IInternalNode>, (context, scope, o) => Task.FromResult(((IEnumerable<IInternalNode>)o).Count()))
-                .Register(o => o == null, (context, scope, o) => Task.FromException<int>(new ScriptProcessingException("No empty argument is allowed for Count function processing")))
-                .Register(o => true, (context, scope, o) => Task.FromException<int>(new ScriptProcessingException("Unable to convert arguments for Count function processing")));
+                .Register(o => o is Identifier, (_, _, _) => Task.FromResult(1))
+                .Register(o => o is IInternalNode, (_, _, _) => Task.FromResult(1))
+                .Register(o => o is IObservable<object>, (_, _, o) => CountObservable((IObservable<object>)o))
+                .Register(o => o is IEnumerable<Identifier>, (_, _, o) => Task.FromResult(((IEnumerable<Identifier>)o).Count()))
+                .Register(o => o is IEnumerable<IInternalNode>, (_, _, o) => Task.FromResult(((IEnumerable<IInternalNode>)o).Count()))
+                .Register(o => o == null, (_, _, _) => Task.FromException<int>(new ScriptProcessingException("No empty argument is allowed for Count function processing")))
+                .Register(_ => true, (_, _, _) => Task.FromException<int>(new ScriptProcessingException("Unable to convert arguments for Count function processing")));
         }
 
         public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)

@@ -1,19 +1,19 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
+	using System;
 	using System.Threading.Tasks;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Hosting.Server;
-	using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 	public class TestHostManager : HostManagerBase
 	{
-		public KestrelServer Server { get; private set; }
+		private IDisposable _server;
 		
 		protected override IWebHost CreateHost(IWebHostBuilder webHostBuilder, out bool hostIsAlreadyStarted)
 		{
 			hostIsAlreadyStarted = false;
 			var host = webHostBuilder.Build();
-			Server = (KestrelServer)host.Services.GetService(typeof(IServer));
+			_server = (IDisposable)host.Services.GetService(typeof(IServer));
 			return host;
 		}
 		
@@ -21,8 +21,8 @@
 		{
 			await base.Stopped();
 
-			Server.Dispose();
-			Server = null;
+			_server.Dispose();
+			_server = null;
 		}
 	}
 }

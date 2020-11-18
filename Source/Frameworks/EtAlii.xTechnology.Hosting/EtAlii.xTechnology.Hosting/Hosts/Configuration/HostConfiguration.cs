@@ -98,7 +98,7 @@
                 throw new InvalidOperationException("Systems configuration already defined");
             }
 
-            CreateSystems = (host, systemFactory, serviceFactory, moduleFactory) =>
+            CreateSystems = (host, systemFactory, _, _) =>
             {
                 return systemConfigurations
                     .Select(scs => systemFactory.Create(host, scs, Details))

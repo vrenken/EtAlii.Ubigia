@@ -6,12 +6,11 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Azure</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Azure</PackageTags>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <ProjectGuid>FE45A439-36D7-4F47-AECE-5F4824AD2007</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

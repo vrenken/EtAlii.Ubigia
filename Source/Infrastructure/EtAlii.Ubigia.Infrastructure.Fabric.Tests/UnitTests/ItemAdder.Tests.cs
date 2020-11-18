@@ -120,7 +120,7 @@
                 new Space { Id = secondId },
                 new Space { Id = thirdId },
             });
-            items.CollectionChanged += (o, e) => throw new ApplicationException();
+            items.CollectionChanged += (_, _) => throw new ApplicationException();
 
             // Act.
             var act = new Action(() =>

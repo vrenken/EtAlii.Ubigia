@@ -70,15 +70,15 @@
             
             container.Register(() => _configurationDetails);
 
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationVerifier>());
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationBuilder>());
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationBuilder>());
 
-            services.AddSingleton(svc => (AdminAuthenticationService) container.GetInstance<IAdminAuthenticationService>());
-            services.AddSingleton(svc => (AdminStorageService) container.GetInstance<IAdminStorageService>());
-            services.AddSingleton(svc => (AdminAccountService) container.GetInstance<IAdminAccountService>());
-            services.AddSingleton(svc => (AdminSpaceService) container.GetInstance<IAdminSpaceService>());
-            services.AddSingleton(svc => (AdminInformationService) container.GetInstance<IAdminInformationService>());
+            services.AddSingleton(_ => (AdminAuthenticationService) container.GetInstance<IAdminAuthenticationService>());
+            services.AddSingleton(_ => (AdminStorageService) container.GetInstance<IAdminStorageService>());
+            services.AddSingleton(_ => (AdminAccountService) container.GetInstance<IAdminAccountService>());
+            services.AddSingleton(_ => (AdminSpaceService) container.GetInstance<IAdminSpaceService>());
+            services.AddSingleton(_ => (AdminInformationService) container.GetInstance<IAdminInformationService>());
             
             var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
             

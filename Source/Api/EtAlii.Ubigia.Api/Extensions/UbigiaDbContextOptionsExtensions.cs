@@ -11,6 +11,7 @@ namespace Microsoft.EntityFrameworkCore
     using Microsoft.EntityFrameworkCore.Utilities;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Diagnostics;
+    using EtAlii.Ubigia.Api.Infrastructure;
     using EtAlii.Ubigia.Api.Storage;
     using Microsoft.EntityFrameworkCore.Internal;
 
@@ -159,8 +160,10 @@ namespace Microsoft.EntityFrameworkCore
             // Ubigia specifics.
             // We want to replace the DbSets with our own variation.
             // Reason is that not everything that the EF allows is a good match for accessing a Ubigia store.
+#pragma warning disable EF1001
             optionsBuilder.ReplaceService<IDbSetSource, UbigiaDbSetSource>();
             optionsBuilder.ReplaceService<IDbSetFinder, UbigiaDbSetFinder>();
+#pragma warning restore EF1001
 
             return optionsBuilder;
         }

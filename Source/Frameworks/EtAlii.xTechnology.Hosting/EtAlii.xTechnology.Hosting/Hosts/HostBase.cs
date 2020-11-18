@@ -91,7 +91,7 @@
                 .WaitAndRetryAsync(
                     5,
                     retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    async (exception, timeSpan, context) =>
+                    async (exception, _, _) =>
                     {
                         Trace.WriteLine($"Fatal exception in hosting: {exception}");
                         Trace.WriteLine("Unable to start hosting");
@@ -119,7 +119,7 @@
                 .WaitAndRetry(
                     5,
                     retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (exception, timeSpan, context) =>
+                    (exception, _, _) =>
                     {
                         State = State.Error;
                         Trace.WriteLine($"Fatal exception in hosting: {exception}");

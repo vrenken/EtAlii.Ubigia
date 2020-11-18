@@ -26,15 +26,13 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         public UbigiaTypeMapping(
             [NotNull] Type clrType,
             [CanBeNull] ValueComparer comparer = null,
-            [CanBeNull] ValueComparer keyComparer = null,
-            [CanBeNull] ValueComparer structuralComparer = null)
+            [CanBeNull] ValueComparer keyComparer = null)
             : base(
                 new CoreTypeMappingParameters(
                     clrType,
                     converter: null,
                     comparer,
-                    keyComparer,
-                    structuralComparer))
+                    keyComparer))
         {
         }
 

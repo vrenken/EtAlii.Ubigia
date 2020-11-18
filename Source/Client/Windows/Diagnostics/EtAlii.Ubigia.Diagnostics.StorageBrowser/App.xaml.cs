@@ -19,7 +19,7 @@
         {
             if (Debugger.IsAttached)
             {
-                DispatcherUnhandledException += (sender, e) =>
+                DispatcherUnhandledException += (_, e) =>
                 {
                     MessageBox.Show($"Unhandled exception: {Environment.NewLine} " +
                                     $"{Environment.NewLine}" +
