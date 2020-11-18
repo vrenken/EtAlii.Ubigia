@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+    <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>a98f0e7f-d0d4-46ae-9937-1e2e3b503114</ProjectGuid>
     <UseWPF>true</UseWPF>
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost</RootNamespace>

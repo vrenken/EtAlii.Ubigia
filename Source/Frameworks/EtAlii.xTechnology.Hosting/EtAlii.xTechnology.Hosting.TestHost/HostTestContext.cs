@@ -16,6 +16,7 @@ namespace EtAlii.xTechnology.Hosting
 		{
 		}
 	}
+	
 	public class HostTestContext<THost> : IHostTestContext
 		where THost: class, IHost
     {

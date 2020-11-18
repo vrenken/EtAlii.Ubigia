@@ -1,13 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
+        <TargetFramework>$(UbigiaGuiApplicationTargetFramework)</TargetFramework>
         <ProjectGuid>CE3ADEFA-E754-457B-9C86-6D6F747E4F5D</ProjectGuid>
         <OutputType>library</OutputType>
         <UseWPF>true</UseWPF>
         <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
         <Description>Package that enables a host to be started as a tray icon application.</Description>
         <PackageTags>hosting console command</PackageTags>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
 
     <ItemGroup>

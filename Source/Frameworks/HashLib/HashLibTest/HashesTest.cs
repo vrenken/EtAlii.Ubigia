@@ -258,12 +258,6 @@
             _testContext.Test(HashFactory.Crypto.CreateWhirlpool());
         }
 
-        [Fact(Skip = "Not working (yet)")]
-        public void Crypto_ExtremelyLong()
-        {
-            _testContext.TestExtremelyLong();
-        }
-
         [Fact]
         public void HashLib_Crypto_Gost()
         {

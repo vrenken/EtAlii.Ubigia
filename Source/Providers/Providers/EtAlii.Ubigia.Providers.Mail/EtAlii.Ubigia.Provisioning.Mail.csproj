@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
-    <UseWPF>true</UseWPF>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>857e613f-2fd6-4dd6-80d3-2a4a5a46a6e1</ProjectGuid>
   </PropertyGroup>
 
@@ -23,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MailSystem.NET" Version="2.0.1" >
+    <PackageReference Include="MailSystem.NET" Version="2.0.1">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
   </ItemGroup>

@@ -5,7 +5,6 @@
     <ProjectGuid>28E8DEB8-2B23-4A99-8d71-40F3AE3DF2B5</ProjectGuid>
     <Description>Package that contains everything needed to enable GRPC based hosting.</Description>
     <PackageTags>hosting GRPC NetCore Protobuf</PackageTags>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
   <ItemGroup>

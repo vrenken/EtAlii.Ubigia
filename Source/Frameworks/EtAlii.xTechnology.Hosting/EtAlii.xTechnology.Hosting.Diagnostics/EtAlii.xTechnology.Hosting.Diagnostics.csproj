@@ -5,7 +5,6 @@
     <ProjectGuid>844213A4-D956-44B8-8858-63E2B9002AD4</ProjectGuid>
     <Description>Package that contains diagnostics components related to the generic hosting components.</Description>
     <PackageTags>hosting diagnostics logging</PackageTags>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="DataConnectionFactory.Extensions.cs" />

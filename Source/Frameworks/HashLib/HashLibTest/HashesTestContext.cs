@@ -1,19 +1,12 @@
 ﻿namespace HashLib.Tests
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
     using HashLib;
     using HashLibTest;
-    using TomanuExtensions;
-    using TomanuExtensions.TestUtils;
     using TomanuExtensions.Utils;
     using Xunit;
 
@@ -49,137 +42,7 @@
                 () => Random.NextDoublesFull(Random.Next(0, 200)),
             }.AsReadOnly();
         }
-
-        private volatile int _transformRounds = 100;
-
-        public void TestExtremelyLong()
-        {
-            const int sleepTimeMs = 10;
-            var threads = Environment.ProcessorCount;
-            const float targetCpuLoad = 0.4f;
-
-            Assert.True(threads <= Environment.ProcessorCount);
- 
-            var pi = new ProgressIndicator("Crypto +4GB Test");
-
-            pi.AddLine($"Configuration: {threads} threads, CPU Load: {targetCpuLoad * 100}%");
-
-            var src = new CancellationTokenSource();
-            
-            var regulator = Task.Factory.StartNew(_ => 
-            {
-                var pc = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-
-                var cpuLoad = new List<float>();
-
-                for (;;)
-                {
-                    const int probeDeltaMs = 200;
-                    const int probeCount = 30;
-                    const int regulateCount = 10;
-
-                    for (var i = 0; i < regulateCount; i++)
-                    {
-                        Thread.Sleep(probeDeltaMs);
-
-                        cpuLoad.Add(pc.NextValue() / 100);
-
-                        if (src.IsCancellationRequested)
-                            break;
-                    }
-
-                    while (cpuLoad.Count > probeCount)
-                        cpuLoad.RemoveFirst();
-
-                    var oldTransformRounds = _transformRounds;
-
-                    var avgCpuLoad = cpuLoad.Average();
-
-                    if (avgCpuLoad >= targetCpuLoad)
-                    {
-                        _transformRounds = (int)Math.Round(_transformRounds * 0.9);
-
-                        if (oldTransformRounds == _transformRounds)
-                            // ReSharper disable once NonAtomicCompoundOperator
-                            _transformRounds--;
-                    }
-                    else
-                    {
-                        _transformRounds = (int)Math.Round(_transformRounds * 1.1);
-
-                        if (oldTransformRounds == _transformRounds)
-                            // ReSharper disable once NonAtomicCompoundOperator
-                            _transformRounds++;
-                    }
-
-                    if (_transformRounds == 0)
-                        _transformRounds = 1;
-
-                    if (src.IsCancellationRequested)
-                        break;
-                }
-            }, src.Token);
-
-            var partitioner = Partitioner.Create(Hashes.CryptoAll, EnumerablePartitionerOptions.None);
-
-            Parallel.ForEach(partitioner, new ParallelOptions() { MaxDegreeOfParallelism = threads }, ht =>
-            {
-                var hash = (IHash)Activator.CreateInstance(ht);
-
-                pi.AddLine($"{Hashes.CryptoAll.IndexOf(ht) + 1} / {Hashes.CryptoAll.Count} - {hash.Name} - {0}%");
-
-                var testData = TestData.Load(hash);
-
-                var testDataIndex = 0;
-
-                for (var i = 0; i < testData.Count; i++)
-                {
-                    if (testData.GetRepeat(i) == 1)
-                        continue;
-
-                    testDataIndex++;
-
-                    var repeats = (ulong)testData.GetRepeat(i);
-                    var data = testData.GetData(i);
-                    var expectedResult = Converters.ConvertBytesToHexString(testData.GetHash(i));
-
-                    hash.Initialize();
-
-                    var transformCounter = _transformRounds;
-                    var progress = DateTime.Now;
-
-                    for (ulong j = 0; j < repeats; j++)
-                    {
-                        hash.TransformBytes(data);
-
-                        transformCounter--;
-                        if (transformCounter == 0)
-                        {
-                            Thread.Sleep(sleepTimeMs);
-                            transformCounter = _transformRounds;
-                        }
-
-                        if (DateTime.Now - progress > TimeSpan.FromSeconds(5))
-                        {
-                            pi.AddLine(
-                                $"{Hashes.CryptoAll.IndexOf(ht) + 1} / {testDataIndex} / {Hashes.CryptoAll.Count} - {hash.Name} - {j * 100 / repeats}%");
-                            progress = DateTime.Now;
-                        }
-                    }
-
-                    var result = hash.TransformFinal();
-
-                    Assert.Equal(expectedResult, Converters.ConvertBytesToHexString(result.GetBytes()));//, hash.ToString());
-
-                    pi.AddLine(
-                        $"{Hashes.CryptoAll.IndexOf(ht) + 1} / {testDataIndex} / {Hashes.CryptoAll.Count} - {hash.Name} - {"OK"}");
-                }
-            });
-
-            src.Cancel();
-            regulator.Wait();
-        }
-
+        
         public void Test(IHash aHash)
         {
             TestHashSize(aHash);
@@ -535,7 +398,7 @@
 
                         Assert.Equal(h1, h2);
 
-                        h1 = aHash.ComputeBytes(HashLib.ArrayExtensions.SubArray(data, i, i * 7));
+                        h1 = aHash.ComputeBytes(data.SubArray(i, i * 7));
                         ms.Seek(i, SeekOrigin.Begin);
                         h2 = aHash.ComputeStream(ms, i * 7);
 
