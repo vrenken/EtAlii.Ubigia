@@ -70,7 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Provisioning", "Provisionin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{49340CF0-CC2A-4FB0-AE63-C78AD0F57073}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.NetCore", "Providers\Hosting\Hosts\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.NetCore\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.NetCore.csproj", "{B5B27438-0C6D-499D-BEAC-4C17BCD6B4EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost", "Providers\Hosting\Hosts\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.csproj", "{B5B27438-0C6D-499D-BEAC-4C17BCD6B4EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Time", "Providers\Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Provisioning.Time.csproj", "{429540D9-9CF8-47A7-B2AF-CE2E66E8784B}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -99,7 +99,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning"
 		{B2437364-7A9D-4798-B429-59E9FF9308E9} = {B2437364-7A9D-4798-B429-59E9FF9308E9}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.NetCore", "Providers\Hosting\Hosts\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.NetCore\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.NetCore.csproj", "{BFBA3C11-7D9F-4C55-BC08-E34A42719B5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost", "Providers\Hosting\Hosts\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.csproj", "{BFBA3C11-7D9F-4C55-BC08-E34A42719B5F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Windows.Mvvm", "Client\Windows\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj", "{946DD197-89B2-48F9-87C0-82E3D17E55DC}"
 EndProject
