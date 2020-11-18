@@ -11,8 +11,8 @@
         public static Ipv4FreePortFinder Current => Instance.Value;
         private static readonly Lazy<Ipv4FreePortFinder> Instance = new Lazy<Ipv4FreePortFinder>(() => 
         {
-            AppDomain.CurrentDomain.UnhandledException += (sender, args) => Instance.Value.Dispose();
-            AppDomain.CurrentDomain.DomainUnload += (sender, args) => Instance.Value.Dispose();
+            AppDomain.CurrentDomain.UnhandledException += (_, _) => Instance.Value.Dispose();
+            AppDomain.CurrentDomain.DomainUnload += (_, _) => Instance.Value.Dispose();
             
             return new Ipv4FreePortFinder();
         });

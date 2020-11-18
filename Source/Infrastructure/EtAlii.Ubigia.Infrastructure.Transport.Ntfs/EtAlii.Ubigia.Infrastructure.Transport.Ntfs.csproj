@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>dec3af7a-4ded-4985-a3b9-fec93f30263d</ProjectGuid>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

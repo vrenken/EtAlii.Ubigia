@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Description>Package that contains the core client components needed to communicate with Ubigia server components.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api</PackageProjectUrl>
@@ -13,6 +12,6 @@
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Linq.Async" Version="4.1.1" />
+    <PackageReference Include="System.Linq.Async" Version="5.0.0" />
   </ItemGroup>
 </Project>

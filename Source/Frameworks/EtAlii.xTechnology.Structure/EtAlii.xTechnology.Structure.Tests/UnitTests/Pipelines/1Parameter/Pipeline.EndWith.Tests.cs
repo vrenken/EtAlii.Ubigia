@@ -58,7 +58,7 @@
             // Act.
             var pipeline = new Pipeline<int>()
                 .StartWith(i => i + 1)
-                .EndWith(i => { });
+                .EndWith(_ => { });
 
             // Assert.
             Assert.IsAssignableFrom<IPipeline<int>>(pipeline);
@@ -72,7 +72,7 @@
             // Act.
             var pipeline = new Pipeline<string>()
                 .StartWith(s => s + "Postfix")
-                .EndWith(s => { });
+                .EndWith(_ => { });
 
             // Assert.
             Assert.IsAssignableFrom<IPipeline<string>>(pipeline);

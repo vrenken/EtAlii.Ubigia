@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             _selector = new Selector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>>()
                 .Register(part => part is ConstantPathSubjectPart, GetConstantPathSubjectPartContent)
                 .Register(part => part is VariablePathSubjectPart, GetVariablePathSubjectPartContent)
-                .Register(part => true, (part, scope) => Task.FromResult((string)null));
+                .Register(_ => true, (_, _) => Task.FromResult((string)null));
         }
 
         public Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope)

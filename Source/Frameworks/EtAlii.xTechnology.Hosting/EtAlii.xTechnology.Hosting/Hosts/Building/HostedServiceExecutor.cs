@@ -25,15 +25,16 @@ namespace EtAlii.xTechnology.Hosting
 
         public Task StartAsync(CancellationToken token)
         {
-            return ExecuteAsync(service => service.StartAsync(token));
+            return ExecuteAsync(service => service.StartAsync(token), true);
         }
 
         public Task StopAsync(CancellationToken token)
         {
-            return ExecuteAsync(service => service.StopAsync(token), throwOnFirstFailure: false);
+            return ExecuteAsync(service => service.StopAsync(token), false);
         }
 
-        private async Task ExecuteAsync(Func<IHostedService, Task> callback, bool throwOnFirstFailure = true)
+        // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
+        private async Task ExecuteAsync(Func<IHostedService, Task> callback, bool throwOnFirstFailure)
         {
             List<Exception> exceptions = null;
 

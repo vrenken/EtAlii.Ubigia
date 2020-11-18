@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Version>$(PackageVersion)</Version>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.MicroContainer/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.MicroContainer</PackageProjectUrl>

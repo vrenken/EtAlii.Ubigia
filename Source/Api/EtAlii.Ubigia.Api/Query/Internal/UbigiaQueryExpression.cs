@@ -1,29 +1,37 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Storage;
-
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using EtAlii.Ubigia.Api.Internal;
     using Microsoft.EntityFrameworkCore;
-
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
+    using ExpressionExtensions = Microsoft.EntityFrameworkCore.Infrastructure.ExpressionExtensions;
+    /// <summary>
+    ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+    ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+    ///     any release. You should only use it directly in your code with extreme caution and knowing that
+    ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+    /// </summary>
     public partial class UbigiaQueryExpression : Expression, IPrintableExpression
     {
-        private static readonly ConstructorInfo ValueBufferConstructor
-            = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
+        private static readonly ConstructorInfo ValueBufferConstructor = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
 
-        private static readonly PropertyInfo ValueBufferCountMemberInfo
-            = typeof(ValueBuffer).GetTypeInfo().GetProperty(nameof(ValueBuffer.Count));
+        // ReSharper disable once UnusedMember.Local
+        private static readonly PropertyInfo ValueBufferCountMemberInfo = typeof(ValueBuffer).GetProperty(nameof(ValueBuffer.Count));
 
-        private readonly List<Expression> _valueBufferSlots = new List<Expression>();
+        private readonly List<Expression> _valueBufferSlots = new();
 
         private readonly IDictionary<EntityProjectionExpression, IDictionary<IProperty, int>> _entityProjectionCache
             = new Dictionary<EntityProjectionExpression, IDictionary<IProperty, int>>();
@@ -33,45 +41,95 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         private IDictionary<ProjectionMember, Expression> _projectionMapping = new Dictionary<ProjectionMember, Expression>();
         private ParameterExpression _groupingParameter;
 
-        public virtual IReadOnlyList<Expression> Projection => _valueBufferSlots;
-        public virtual Expression ServerQueryExpression { get; set; }
-        public virtual ParameterExpression CurrentParameter => _groupingParameter ?? _valueBufferParameter;
-        public override Type Type => typeof(IEnumerable<ValueBuffer>);
-        public sealed override ExpressionType NodeType => ExpressionType.Extension;
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual IReadOnlyList<Expression> Projection
+            => _valueBufferSlots;
 
-        public UbigiaQueryExpression(IEntityType entityType)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual Expression ServerQueryExpression { get; private set; }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual ParameterExpression CurrentParameter
+            => _groupingParameter ?? _valueBufferParameter;
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public override Type Type
+            => typeof(IEnumerable<ValueBuffer>);
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public sealed override ExpressionType NodeType
+            => ExpressionType.Extension;
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public UbigiaQueryExpression([NotNull] IEntityType entityType)
         {
             _valueBufferParameter = Parameter(typeof(ValueBuffer), "valueBuffer");
-            // ReSharper disable once VirtualMemberCallInConstructor
             ServerQueryExpression = new UbigiaTableExpression(entityType);
             var readExpressionMap = new Dictionary<IProperty, Expression>();
+            var discriminatorProperty = entityType.GetDiscriminatorProperty();
             foreach (var property in entityType.GetAllBaseTypesInclusive().SelectMany(et => et.GetDeclaredProperties()))
             {
-#pragma warning disable EF1001 // Internal API
                 readExpressionMap[property] = CreateReadValueExpression(property.ClrType, property.GetIndex(), property);
-#pragma warning restore EF1001 // Internal API
             }
 
-            foreach (var property in entityType.GetDerivedTypes().SelectMany(et => et.GetDeclaredProperties()))
+            foreach (var derivedEntityType in entityType.GetDerivedTypes())
             {
-                readExpressionMap[property] = Condition(
-                    LessThan(
-#pragma warning disable EF1001 // Internal API
-                        Constant(property.GetIndex()),
-#pragma warning restore EF1001 // Internal API
-                        MakeMemberAccess(
-                            _valueBufferParameter,
-                            ValueBufferCountMemberInfo)),
-#pragma warning disable EF1001 // Internal API
-                    CreateReadValueExpression(property.ClrType, property.GetIndex(), property),
-#pragma warning restore EF1001 // Internal API
-                    Default(property.ClrType));
+                var entityCheck = derivedEntityType.GetConcreteDerivedTypesInclusive()
+                    .Select(
+                        e => discriminatorProperty.GetKeyValueComparer().ExtractEqualsBody(
+                            readExpressionMap[discriminatorProperty],
+                            Constant(e.GetDiscriminatorValue(), discriminatorProperty.ClrType)))
+                    .Aggregate((l, r) => OrElse(l, r));
+
+                foreach (var property in derivedEntityType.GetDeclaredProperties())
+                {
+                    readExpressionMap[property] = Condition(
+                        entityCheck,
+                        CreateReadValueExpression(property.ClrType, property.GetIndex(), property),
+                        Default(property.ClrType));
+                }
             }
 
             var entityProjection = new EntityProjectionExpression(entityType, readExpressionMap);
             _projectionMapping[new ProjectionMember()] = entityProjection;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual Expression GetSingleScalarProjection()
         {
             var expression = CreateReadValueExpression(ServerQueryExpression.Type, 0, null);
@@ -80,9 +138,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             ConvertToEnumerable();
 
-            return new ProjectionBindingExpression(this, new ProjectionMember(), expression.Type);
+            return new ProjectionBindingExpression(this, new ProjectionMember(), expression.Type.MakeNullable());
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void ConvertToEnumerable()
         {
             if (ServerQueryExpression.Type.TryGetSequenceType() == null)
@@ -110,7 +174,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
-        public virtual void ReplaceProjectionMapping(IDictionary<ProjectionMember, Expression> projectionMappings)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual void ReplaceProjectionMapping([NotNull] IDictionary<ProjectionMember, Expression> projectionMappings)
         {
             _projectionMapping.Clear();
             foreach (var kvp in projectionMappings)
@@ -119,7 +189,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
-        public virtual IDictionary<IProperty, int> AddToProjection(EntityProjectionExpression entityProjectionExpression)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual IDictionary<IProperty, int> AddToProjection([NotNull] EntityProjectionExpression entityProjectionExpression)
         {
             if (!_entityProjectionCache.TryGetValue(entityProjectionExpression, out var indexMap))
             {
@@ -135,14 +211,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             return indexMap;
         }
 
-        public virtual int AddToProjection(Expression expression)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual int AddToProjection([NotNull] Expression expression)
         {
             _valueBufferSlots.Add(expression);
 
             return _valueBufferSlots.Count - 1;
         }
 
-        public virtual int AddSubqueryProjection(ShapedQueryExpression shapedQueryExpression, out Expression innerShaper)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual int AddSubqueryProjection(
+            [NotNull] ShapedQueryExpression shapedQueryExpression,
+            [CanBeNull] out Expression innerShaper)
         {
             var subquery = (UbigiaQueryExpression)shapedQueryExpression.QueryExpression;
             subquery.ApplyProjection();
@@ -166,7 +256,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             return AddToProjection(serverQueryExpression);
         }
 
-        private class ShaperRemappingExpressionVisitor : ExpressionVisitor
+        private sealed class ShaperRemappingExpressionVisitor : ExpressionVisitor
         {
             private readonly IDictionary<ProjectionMember, Expression> _projectionMapping;
 
@@ -181,31 +271,46 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     && projectionBindingExpression.ProjectionMember != null)
                 {
                     var mappingValue = ((ConstantExpression)_projectionMapping[projectionBindingExpression.ProjectionMember]).Value;
-                    if (mappingValue is IDictionary<IProperty, int> indexMap)
-                    {
-                        return new ProjectionBindingExpression(projectionBindingExpression.QueryExpression, indexMap);
-                    }
-
-                    if (mappingValue is int index)
-                    {
-                        return new ProjectionBindingExpression(
-                            projectionBindingExpression.QueryExpression, index, projectionBindingExpression.Type);
-                    }
-
-                    throw new InvalidOperationException("Invalid ProjectionMapping.");
+                    return mappingValue is IDictionary<IProperty, int> indexMap
+                        ? new ProjectionBindingExpression(projectionBindingExpression.QueryExpression, indexMap)
+                        : mappingValue is int index
+                            ? new ProjectionBindingExpression(
+                                projectionBindingExpression.QueryExpression, index, projectionBindingExpression.Type)
+                            : throw new InvalidOperationException(CoreStrings.UnknownEntity("ProjectionMapping"));
                 }
 
                 return base.Visit(expression);
             }
         }
 
-#pragma warning disable EF1001 // Internal API
-        private IEnumerable<IProperty> GetAllPropertiesInHierarchy(IEntityType entityType) => entityType.GetTypesInHierarchy().SelectMany(EntityTypeExtensions.GetDeclaredProperties);
-#pragma warning restore EF1001 // Internal API
+        private IEnumerable<IProperty> GetAllPropertiesInHierarchy(IEntityType entityType)
+            => entityType.GetAllBaseTypes().Concat(entityType.GetDerivedTypesInclusive())
+                .SelectMany(EntityTypeExtensions.GetDeclaredProperties);
 
-        public virtual Expression GetMappedProjection(ProjectionMember member)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual Expression GetMappedProjection([NotNull] ProjectionMember member)
             => _projectionMapping[member];
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual void UpdateServerQueryExpression([NotNull] Expression serverQueryExpression)
+            => ServerQueryExpression = serverQueryExpression;
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void PushdownIntoSubquery()
         {
             var clientProjection = _valueBufferSlots.Count != 0;
@@ -268,11 +373,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void ApplyDefaultIfEmpty()
         {
             if (_valueBufferSlots.Count != 0)
             {
-                throw new InvalidOperationException("Cannot apply DefaultIfEmpty after a client-evaluated projection.");
+                throw new InvalidOperationException(UbigiaStrings.DefaultIfEmptyAppliedAfterProjection);
             }
 
             var result = new Dictionary<ProjectionMember, Expression>();
@@ -325,17 +436,18 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         }
 
         private static IPropertyBase InferPropertyFromInner(Expression expression)
-        {
-            if (expression is MethodCallExpression methodCallExpression
+            => expression is MethodCallExpression methodCallExpression
                 && methodCallExpression.Method.IsGenericMethod
-                && methodCallExpression.Method.GetGenericMethodDefinition() == EntityMaterializerSource.TryReadValueMethod)
-            {
-                return (IPropertyBase)((ConstantExpression)methodCallExpression.Arguments[2]).Value;
-            }
+                && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod
+                    ? (IPropertyBase)((ConstantExpression)methodCallExpression.Arguments[2]).Value
+                    : null;
 
-            return null;
-        }
-
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void ApplyProjection()
         {
             if (_valueBufferSlots.Count == 0)
@@ -378,7 +490,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 selectorLambda);
         }
 
-        public virtual UbigiaGroupByShaperExpression ApplyGrouping(Expression groupingKey, Expression shaperExpression)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual UbigiaGroupByShaperExpression ApplyGrouping(
+            [NotNull] Expression groupingKey,
+            [NotNull] Expression shaperExpression)
         {
             PushdownIntoSubquery();
 
@@ -418,12 +538,6 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             switch (key)
             {
                 case NewExpression newExpression:
-                    // For .NET Framework only. If ctor is null that means the type is struct and has no ctor args.
-                    if (newExpression.Constructor == null)
-                    {
-                        return newExpression;
-                    }
-
                     var arguments = new Expression[newExpression.Arguments.Count];
                     for (var i = 0; i < arguments.Length; i++)
                     {
@@ -456,30 +570,27 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 default:
                     var index = groupingExpressions.Count;
                     groupingExpressions.Add(key);
-                    return CreateReadValueExpression(
-                        groupingKeyAccessExpression,
+                    return groupingKeyAccessExpression.CreateValueBufferReadValueExpression(
                         key.Type,
                         index,
                         InferPropertyFromInner(key));
             }
         }
 
-        private static Expression CreateReadValueExpression(
-            Expression valueBufferParameter, Type type, int index, IPropertyBase property)
-            => Call(
-                EntityMaterializerSource.TryReadValueMethod.MakeGenericMethod(type),
-                valueBufferParameter,
-                Constant(index),
-                Constant(property, typeof(IPropertyBase)));
-
         private Expression CreateReadValueExpression(Type type, int index, IPropertyBase property)
-            => CreateReadValueExpression(_valueBufferParameter, type, index, property);
+            => _valueBufferParameter.CreateValueBufferReadValueExpression(type, index, property);
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void AddInnerJoin(
-            UbigiaQueryExpression innerQueryExpression,
-            LambdaExpression outerKeySelector,
-            LambdaExpression innerKeySelector,
-            Type transparentIdentifierType)
+            [NotNull] UbigiaQueryExpression innerQueryExpression,
+            [NotNull] LambdaExpression outerKeySelector,
+            [NotNull] LambdaExpression innerKeySelector,
+            [CanBeNull] Type transparentIdentifierType)
         {
             var outerParameter = Parameter(typeof(ValueBuffer), "outer");
             var innerParameter = Parameter(typeof(ValueBuffer), "inner");
@@ -500,7 +611,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
@@ -524,7 +635,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
@@ -561,11 +672,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             _projectionMapping = projectionMapping;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual void AddLeftJoin(
-            UbigiaQueryExpression innerQueryExpression,
-            LambdaExpression outerKeySelector,
-            LambdaExpression innerKeySelector,
-            Type transparentIdentifierType)
+            [NotNull] UbigiaQueryExpression innerQueryExpression,
+            [NotNull] LambdaExpression outerKeySelector,
+            [NotNull] LambdaExpression innerKeySelector,
+            [CanBeNull] Type transparentIdentifierType)
         {
             // GroupJoin phase
             var groupTransparentIdentifierType = TransparentIdentifierFactory.Create(
@@ -600,7 +717,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var projectionMapping = new Dictionary<ProjectionMember, Expression>();
             var replacingVisitor = new ReplacingExpressionVisitor(
                 new Expression[] { CurrentParameter, innerQueryExpression.CurrentParameter },
-                new Expression[] { MakeMemberAccess(outerParameter, outerMemberInfo), innerParameter});
+                new Expression[] { MakeMemberAccess(outerParameter, outerMemberInfo), innerParameter });
 
             var index = 0;
             outerMemberInfo = transparentIdentifierType.GetTypeInfo().GetDeclaredField("Outer");
@@ -613,7 +730,6 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        // ReSharper disable once PossibleNullReferenceException
                         readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
                     }
 
@@ -624,7 +740,6 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 {
                     var replacedExpression = replacingVisitor.Visit(projection.Value);
                     resultValueBufferExpressions.Add(replacedExpression);
-                    // ReSharper disable once PossibleNullReferenceException
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
                         = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
                 }
@@ -667,7 +782,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
-                            Enumerable.Range(0, index - outerIndex).Select(i => Constant(null))))),
+                            Enumerable.Range(0, index - outerIndex).Select(_ => Constant(null))))),
                 collectionParameter);
 
             resultSelector = Lambda(
@@ -691,7 +806,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             _projectionMapping = projectionMapping;
         }
 
-        public virtual void AddSelectMany(UbigiaQueryExpression innerQueryExpression, Type transparentIdentifierType, bool innerNullable)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        public virtual void AddSelectMany(
+            [NotNull] UbigiaQueryExpression innerQueryExpression,
+            [CanBeNull] Type transparentIdentifierType,
+            bool innerNullable)
         {
             var outerParameter = Parameter(typeof(ValueBuffer), "outer");
             var innerParameter = Parameter(typeof(ValueBuffer), "inner");
@@ -783,12 +907,18 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             _projectionMapping = projectionMapping;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public virtual EntityShaperExpression AddNavigationToWeakEntityType(
-            EntityProjectionExpression entityProjectionExpression,
-            INavigation navigation,
-            UbigiaQueryExpression innerQueryExpression,
-            LambdaExpression outerKeySelector,
-            LambdaExpression innerKeySelector)
+            [NotNull] EntityProjectionExpression entityProjectionExpression,
+            [NotNull] INavigation navigation,
+            [NotNull] UbigiaQueryExpression innerQueryExpression,
+            [NotNull] LambdaExpression outerKeySelector,
+            [NotNull] LambdaExpression innerKeySelector)
         {
             // GroupJoin phase
             var groupTransparentIdentifierType = TransparentIdentifierFactory.Create(
@@ -823,43 +953,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var projectionMapping = new Dictionary<ProjectionMember, Expression>();
             var replacingVisitor = new ReplacingExpressionVisitor(
                 new Expression[] { CurrentParameter, innerQueryExpression.CurrentParameter },
-                new Expression[] { MakeMemberAccess(outerParameter, outerMemberInfo), innerParameter});
-            var index = 0;
-
-            EntityProjectionExpression CopyEntityProjectionToOuter(EntityProjectionExpression entityProjection)
-            {
-                var readExpressionMap = new Dictionary<IProperty, Expression>();
-                foreach (var property in GetAllPropertiesInHierarchy(entityProjection.EntityType))
-                {
-                    var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
-                    resultValueBufferExpressions.Add(replacedExpression);
-                    readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
-                }
-
-                var newEntityProjection = new EntityProjectionExpression(entityProjection.EntityType, readExpressionMap);
-                if (ReferenceEquals(entityProjectionExpression, entityProjection))
-                {
-                    entityProjectionExpression = newEntityProjection;
-                }
-
-                // Also lift nested entity projections
-#pragma warning disable EF1001 // Internal API
-                foreach (var innerNavigation in entityProjection.EntityType.GetTypesInHierarchy().SelectMany(EntityTypeExtensions.GetDeclaredNavigations))
-#pragma warning restore EF1001 // Internal API
-                {
-                    var boundEntityShaperExpression = entityProjection.BindNavigation(innerNavigation);
-                    if (boundEntityShaperExpression != null)
-                    {
-                        // ReSharper disable once VariableHidesOuterVariable
-                        var innerEntityProjection = (EntityProjectionExpression)boundEntityShaperExpression.ValueBufferExpression;
-                        var newInnerEntityProjection = CopyEntityProjectionToOuter(innerEntityProjection);
-                        boundEntityShaperExpression = boundEntityShaperExpression.Update(newInnerEntityProjection);
-                        newEntityProjection.AddNavigationBinding(innerNavigation, boundEntityShaperExpression);
-                    }
-                }
-
-                return newEntityProjection;
-            }
+                new Expression[] { MakeMemberAccess(outerParameter, outerMemberInfo), innerParameter });
 
             foreach (var projection in _projectionMapping)
             {
@@ -871,14 +965,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 {
                     var replacedExpression = replacingVisitor.Visit(projection.Value);
                     resultValueBufferExpressions.Add(replacedExpression);
-                    projectionMapping[projection.Key]
-                        = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
+                    projectionMapping[projection.Key] = CreateReadValueExpression(
+                        replacedExpression.Type, resultValueBufferExpressions.Count - 1, InferPropertyFromInner(projection.Value));
                 }
             }
 
             _projectionMapping = projectionMapping;
-
-            var outerIndex = index;
+            var outerIndex = resultValueBufferExpressions.Count;
             var nullableReadValueExpressionVisitor = new NullableReadValueExpressionVisitor();
             var innerEntityProjection = (EntityProjectionExpression)innerQueryExpression.GetMappedProjection(new ProjectionMember());
 
@@ -888,7 +981,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var replacedExpression = replacingVisitor.Visit(innerEntityProjection.BindProperty(property));
                 replacedExpression = nullableReadValueExpressionVisitor.Visit(replacedExpression);
                 resultValueBufferExpressions.Add(replacedExpression);
-                innerReadExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                innerReadExpressionMap[property] = CreateReadValueExpression(
+                    replacedExpression.Type, resultValueBufferExpressions.Count - 1, property);
             }
 
             innerEntityProjection = new EntityProjectionExpression(innerEntityProjection.EntityType, innerReadExpressionMap);
@@ -901,7 +995,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         ValueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
-                            Enumerable.Range(0, index - outerIndex).Select(i => Constant(null))))),
+                            Enumerable.Range(0, resultValueBufferExpressions.Count - outerIndex).Select(_ => Constant(null))))),
                 collectionParameter);
 
             resultSelector = Lambda(
@@ -926,10 +1020,63 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             entityProjectionExpression.AddNavigationBinding(navigation, entityShaper);
 
             return entityShaper;
+
+            EntityProjectionExpression CopyEntityProjectionToOuter(EntityProjectionExpression entityProjection)
+            {
+                var readExpressionMap = new Dictionary<IProperty, Expression>();
+                foreach (var property in GetAllPropertiesInHierarchy(entityProjection.EntityType))
+                {
+                    var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
+                    var valueBufferIndex = GetValueBufferIndex(replacedExpression);
+                    while (valueBufferIndex >= resultValueBufferExpressions.Count)
+                    {
+                        resultValueBufferExpressions.Add(Constant(null));
+                    }
+                    resultValueBufferExpressions[valueBufferIndex] = replacedExpression;
+                    readExpressionMap[property] = CreateReadValueExpression(
+                        replacedExpression.Type, valueBufferIndex, property);
+                }
+
+                var newEntityProjection = new EntityProjectionExpression(entityProjection.EntityType, readExpressionMap);
+                if (ReferenceEquals(entityProjectionExpression, entityProjection))
+                {
+                    entityProjectionExpression = newEntityProjection;
+                }
+
+                // Also lift nested entity projections
+                foreach (var innerNavigation in entityProjection.EntityType.GetAllBaseTypes()
+                    .Concat(entityProjection.EntityType.GetDerivedTypesInclusive())
+                    .SelectMany(EntityTypeExtensions.GetDeclaredNavigations))
+                {
+                    var boundEntityShaperExpression = entityProjection.BindNavigation(innerNavigation);
+                    if (boundEntityShaperExpression != null)
+                    {
+                        var innerEntityProjection2 = (EntityProjectionExpression)boundEntityShaperExpression.ValueBufferExpression;
+                        var newInnerEntityProjection = CopyEntityProjectionToOuter(innerEntityProjection2);
+                        boundEntityShaperExpression = boundEntityShaperExpression.Update(newInnerEntityProjection);
+                        newEntityProjection.AddNavigationBinding(innerNavigation, boundEntityShaperExpression);
+                    }
+                }
+
+                return newEntityProjection;
+            }
+
+            static int GetValueBufferIndex(Expression expression)
+                => expression is ConditionalExpression conditionalExpression
+                    ? GetValueBufferIndex(conditionalExpression.IfTrue)
+                    : (int)((ConstantExpression)((MethodCallExpression)expression).Arguments[1]).Value;
         }
 
-        public virtual void Print(ExpressionPrinter expressionPrinter)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        void IPrintableExpression.Print(ExpressionPrinter expressionPrinter)
         {
+            Check.NotNull(expressionPrinter, nameof(expressionPrinter));
+
             expressionPrinter.AppendLine(nameof(UbigiaQueryExpression) + ": ");
             using (expressionPrinter.Indent())
             {
@@ -939,6 +1086,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     expressionPrinter.Visit(ServerQueryExpression);
                 }
 
+                expressionPrinter.AppendLine();
                 expressionPrinter.AppendLine("ProjectionMapping:");
                 using (expressionPrinter.Indent())
                 {
@@ -946,6 +1094,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         expressionPrinter.Append("Member: " + projectionMapping.Key + " Projection: ");
                         expressionPrinter.Visit(projectionMapping.Value);
+                        expressionPrinter.AppendLine(",");
                     }
                 }
 
@@ -953,24 +1102,25 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
-        private class NullableReadValueExpressionVisitor : ExpressionVisitor
+        private sealed class NullableReadValueExpressionVisitor : ExpressionVisitor
         {
             protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
             {
-                if (methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == EntityMaterializerSource.TryReadValueMethod
-                    && !methodCallExpression.Type.IsNullableType())
-                {
-                    return Call(
-                        EntityMaterializerSource.TryReadValueMethod.MakeGenericMethod(methodCallExpression.Type.MakeNullable()),
-                        methodCallExpression.Arguments);
-                }
+                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
 
-                return base.VisitMethodCall(methodCallExpression);
+                return methodCallExpression.Method.IsGenericMethod
+                    && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod
+                    && !methodCallExpression.Type.IsNullableType()
+                    ? Call(
+                        ExpressionExtensions.ValueBufferTryReadValueMethod.MakeGenericMethod(methodCallExpression.Type.MakeNullable()),
+                        methodCallExpression.Arguments)
+                    : base.VisitMethodCall(methodCallExpression);
             }
 
             protected override Expression VisitConditional(ConditionalExpression conditionalExpression)
             {
+                Check.NotNull(conditionalExpression, nameof(conditionalExpression));
+
                 var test = Visit(conditionalExpression.Test);
                 var ifTrue = Visit(conditionalExpression.IfTrue);
                 var ifFalse = Visit(conditionalExpression.IfFalse);

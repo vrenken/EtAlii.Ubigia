@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <GeneratePackageOnBuild>$(UbigiaBuildPackages)</GeneratePackageOnBuild>
     <Version>$(PackageVersion)</Version>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics</PackageProjectUrl>

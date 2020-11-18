@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines
             var operationChain = (IOperationChain<TIn, TOut>)registration;
             var nextOperation = (IOperationChain<TOut, TOut>)newRegistration;
             operationChain.Register(nextOperation.Process);
-            nextOperation.Register(v => { });
+            nextOperation.Register(_ => { });
 
             return pipeline;
         }

@@ -3,9 +3,9 @@
     <ProjectGuid>5b004e8e-46cb-4f89-9318-ca3f34a0a933</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.0.3" />
-    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.0.3" />
-    <PackageReference Include="Microsoft.WSMan.Management" Version="7.0.3" />
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.1.0" />
+    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="7.1.0" />
+    <PackageReference Include="Microsoft.WSMan.Management" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj" />

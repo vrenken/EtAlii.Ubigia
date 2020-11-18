@@ -31,6 +31,7 @@
                 throw new ContentDefinitionRepositoryException("Content definition already stored");
             }
 
+            // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
             if (contentDefinition.Parts.Any(part => part.Stored))
             {
                 throw new ContentDefinitionRepositoryException("Some parts of the content definition are already stored");
@@ -38,7 +39,7 @@
 
             try
             {
-                // We need to clear the parts before they are stored. Else they are persited in the contentdefinition file itself.
+                // We need to clear the parts before they are stored. Else they are persisted in the content definition file itself.
                 var contentDefinitionParts = new List<ContentDefinitionPart>(contentDefinition.Parts);
                 contentDefinition.Parts.Clear();
 

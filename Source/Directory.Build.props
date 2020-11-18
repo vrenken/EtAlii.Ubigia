@@ -14,10 +14,11 @@
 
     <UbigiaBuildPackages>false</UbigiaBuildPackages>
     <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
-    <UbigiaApplicationTargetFramework>netcoreapp3.1</UbigiaApplicationTargetFramework>
+    <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
-    <LangVersion>8</LangVersion>
+    <LangVersion>9</LangVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
@@ -25,11 +26,12 @@
 
   </PropertyGroup>
 
+  <!-- The PropertyGroup below is used to configure all test projects. -->
   <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <Description>Unit test project</Description>
     <OutputType>Library</OutputType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
 </Project>

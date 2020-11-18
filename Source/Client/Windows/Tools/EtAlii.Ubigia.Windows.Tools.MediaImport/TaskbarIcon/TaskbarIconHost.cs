@@ -25,7 +25,7 @@
             {
                 TaskbarIcon.Visibility = Visibility.Visible;
             });
-            Task.Delay(500).ContinueWith((o) => _folderMonitorManager.Start());
+            Task.Delay(500).ContinueWith(_ => _folderMonitorManager.Start());
         }
 
         //public void Stop()

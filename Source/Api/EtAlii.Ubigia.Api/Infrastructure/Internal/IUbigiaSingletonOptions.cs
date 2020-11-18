@@ -3,10 +3,9 @@
 
 namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 {
-    using EtAlii.Ubigia.Api.Storage;
     using Microsoft.EntityFrameworkCore.Infrastructure;
+    using EtAlii.Ubigia.Api.Storage;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///     <para>
@@ -17,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     ///     </para>
     ///     <para>
     ///         The service lifetime is <see cref="ServiceLifetime.Singleton" /> and multiple registrations
-    ///         are allowed. This means a single instance of each service is used by many <see cref="DbContext" />
+    ///         are allowed. This means a single instance of each service is used by many <see cref="UbigiaDbContext" />
     ///         instances. The implementation must be thread-safe.
     ///         This service cannot depend on services registered as <see cref="ServiceLifetime.Scoped" />.
     ///     </para>

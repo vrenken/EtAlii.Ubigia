@@ -1,19 +1,22 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Reflection;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Storage;
-
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
+    using ExpressionExtensions = Microsoft.EntityFrameworkCore.Infrastructure.ExpressionExtensions;
+
     public partial class UbigiaShapedQueryCompilingExpressionVisitor
     {
-        private class UbigiaProjectionBindingRemovingExpressionVisitor : ExpressionVisitor
+        private sealed class UbigiaProjectionBindingRemovingExpressionVisitor : ExpressionVisitor
         {
             private readonly IDictionary<ParameterExpression, (IDictionary<IProperty, int> IndexMap, ParameterExpression valueBuffer)>
                 _materializationContextBindings
@@ -21,6 +24,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitBinary(BinaryExpression binaryExpression)
             {
+                Check.NotNull(binaryExpression, nameof(binaryExpression));
+
                 if (binaryExpression.NodeType == ExpressionType.Assign
                     && binaryExpression.Left is ParameterExpression parameterExpression
                     && parameterExpression.Type == typeof(MaterializationContext))
@@ -55,13 +60,18 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
             {
+                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+
                 if (methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == EntityMaterializerSource.TryReadValueMethod)
+                    && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
                 {
                     var property = (IProperty)((ConstantExpression)methodCallExpression.Arguments[2]).Value;
                     var (indexMap, valueBuffer) =
                         _materializationContextBindings[
                             (ParameterExpression)((MethodCallExpression)methodCallExpression.Arguments[0]).Object];
+
+                    Check.DebugAssert(
+                        property != null || methodCallExpression.Type.IsNullableType(), "Must read nullable value without property");
 
                     return Expression.Call(
                         methodCallExpression.Method,
@@ -75,17 +85,21 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitExtension(Expression extensionExpression)
             {
+                Check.NotNull(extensionExpression, nameof(extensionExpression));
+
                 if (extensionExpression is ProjectionBindingExpression projectionBindingExpression)
                 {
                     var queryExpression = (UbigiaQueryExpression)projectionBindingExpression.QueryExpression;
                     var projectionIndex = (int)GetProjectionIndex(queryExpression, projectionBindingExpression);
                     var valueBuffer = queryExpression.CurrentParameter;
+                    var property = InferPropertyFromInner(queryExpression.Projection[projectionIndex]);
 
-                    return Expression.Call(
-                        EntityMaterializerSource.TryReadValueMethod.MakeGenericMethod(projectionBindingExpression.Type),
-                        valueBuffer,
-                        Expression.Constant(projectionIndex),
-                        Expression.Constant(InferPropertyFromInner(queryExpression.Projection[projectionIndex]), typeof(IPropertyBase)));
+                    Check.DebugAssert(
+                        property != null
+                        || projectionBindingExpression.Type.IsNullableType()
+                        || projectionBindingExpression.Type == typeof(ValueBuffer), "Must read nullable value without property");
+
+                    return valueBuffer.CreateValueBufferReadValueExpression(projectionBindingExpression.Type, projectionIndex, property);
                 }
 
                 return base.VisitExtension(extensionExpression);
@@ -95,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             {
                 if (expression is MethodCallExpression methodCallExpression
                     && methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == EntityMaterializerSource.TryReadValueMethod)
+                    && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
                 {
                     return (IPropertyBase)((ConstantExpression)methodCallExpression.Arguments[2]).Value;
                 }
@@ -104,7 +118,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
 
             private object GetProjectionIndex(
-                UbigiaQueryExpression queryExpression, ProjectionBindingExpression projectionBindingExpression)
+                UbigiaQueryExpression queryExpression,
+                ProjectionBindingExpression projectionBindingExpression)
             {
                 return projectionBindingExpression.ProjectionMember != null
                     ? ((ConstantExpression)queryExpression.GetMappedProjection(projectionBindingExpression.ProjectionMember)).Value

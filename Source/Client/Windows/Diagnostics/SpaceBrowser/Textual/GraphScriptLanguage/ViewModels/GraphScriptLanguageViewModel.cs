@@ -51,7 +51,7 @@
             _scriptChangedSubscription = Observable.FromEvent((handler) => SourceChanged += handler, (handler) => SourceChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseGraphScriptLanguageUnitOfwork(this), parseScriptUnitOfworkHandler));
+                                .Subscribe(_ => _graphContext.UnitOfWorkProcessor.Process(new ParseGraphScriptLanguageUnitOfwork(this), parseScriptUnitOfworkHandler));
 
             Source = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.GraphScriptLanguage.Templates.SimpleScript.gsl"), textTemplateQueryHandler).Single();
         }

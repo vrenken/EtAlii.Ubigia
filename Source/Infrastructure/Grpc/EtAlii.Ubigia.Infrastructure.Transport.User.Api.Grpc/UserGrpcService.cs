@@ -68,19 +68,19 @@
             container.Register<IUserContentService, UserContentService>();
             container.Register<IUserContentDefinitionService, UserContentDefinitionService>();
 
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationVerifier>());
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationTokenVerifier>()); 
-            services.AddSingleton(svc => container.GetInstance<ISimpleAuthenticationBuilder>());
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>()); 
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationBuilder>());
             
-            services.AddSingleton(svc => (UserAuthenticationService) container.GetInstance<IUserAuthenticationService>());
-            services.AddSingleton(svc => (UserStorageService) container.GetInstance<IUserStorageService>());
-            services.AddSingleton(svc => (UserAccountService) container.GetInstance<IUserAccountService>());
-            services.AddSingleton(svc => (UserSpaceService) container.GetInstance<IUserSpaceService>());
-            services.AddSingleton(svc => (UserRootService) container.GetInstance<IUserRootService>());
-            services.AddSingleton(svc => (UserEntryService) container.GetInstance<IUserEntryService>());
-            services.AddSingleton(svc => (UserPropertiesService) container.GetInstance<IUserPropertiesService>());
-            services.AddSingleton(svc => (UserContentService) container.GetInstance<IUserContentService>());
-            services.AddSingleton(svc => (UserContentDefinitionService) container.GetInstance<IUserContentDefinitionService>());
+            services.AddSingleton(_ => (UserAuthenticationService) container.GetInstance<IUserAuthenticationService>());
+            services.AddSingleton(_ => (UserStorageService) container.GetInstance<IUserStorageService>());
+            services.AddSingleton(_ => (UserAccountService) container.GetInstance<IUserAccountService>());
+            services.AddSingleton(_ => (UserSpaceService) container.GetInstance<IUserSpaceService>());
+            services.AddSingleton(_ => (UserRootService) container.GetInstance<IUserRootService>());
+            services.AddSingleton(_ => (UserEntryService) container.GetInstance<IUserEntryService>());
+            services.AddSingleton(_ => (UserPropertiesService) container.GetInstance<IUserPropertiesService>());
+            services.AddSingleton(_ => (UserContentService) container.GetInstance<IUserContentService>());
+            services.AddSingleton(_ => (UserContentDefinitionService) container.GetInstance<IUserContentDefinitionService>());
             
 			var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
             services

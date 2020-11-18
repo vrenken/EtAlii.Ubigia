@@ -15,7 +15,7 @@
             _selector = new Selector<SequencePart, Func<object, ISequencePartExecutionPlanner>>()
                 .Register(part => part is Operator, part => (ISequencePartExecutionPlanner)operatorExecutionPlannerSelector.Select(part))
                 .Register(part => part is Subject, part => (ISequencePartExecutionPlanner)subjectExecutionPlannerSelector.Select(part))
-                .Register(part => part is Comment, part => commentExecutionPlanner);
+                .Register(part => part is Comment, _ => commentExecutionPlanner);
         }
 
         public IExecutionPlanner Select(object item)

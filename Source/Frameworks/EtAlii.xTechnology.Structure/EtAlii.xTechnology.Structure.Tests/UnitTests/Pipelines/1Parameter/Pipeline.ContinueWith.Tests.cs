@@ -58,7 +58,7 @@
             // Act.
             var registration = new Pipeline<int>()
                 .StartWith(i => i + 1)
-                .ContinueWith(i => { });
+                .ContinueWith(_ => { });
 
             // Assert.
             Assert.IsAssignableFrom<IOperationRegistration<int, int, int>>(registration);
@@ -72,7 +72,7 @@
             // Act.
             var registration = new Pipeline<string>()
                 .StartWith(i => i + 1)
-                .ContinueWith(i => { });
+                .ContinueWith(_ => { });
 
             // Assert.
             Assert.IsAssignableFrom<IOperationRegistration<string, string, string>>(registration);

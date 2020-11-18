@@ -109,7 +109,7 @@
 
             // We need to halt execution of the next sequence until the current one has finished.
             observableSequenceOutput.Subscribe(
-                onNext: o => { }, 
+                onNext: _ => { }, 
                 onError: e =>
                 {
                     exception = e;
@@ -127,7 +127,7 @@
                 // But also if we don't attach the original observable sequence output.
                 continueEvent.Reset();
                 originalObservableSequenceOutput.Subscribe(
-                    onNext: o => { }, 
+                    onNext: _ => { }, 
                     onError: e =>
                     {
                         exception = e;

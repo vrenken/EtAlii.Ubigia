@@ -33,7 +33,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics
         }
 
         private static readonly string TransactionPrefix = DbLoggerCategory.Database.Transaction.Name + ".";
-        private static EventId MakeTransactionId(Id id) => new EventId((int)id, TransactionPrefix + id);
+
+        private static EventId MakeTransactionId(Id id) => new ((int)id, TransactionPrefix + id);
 
         /// <summary>
         ///     <para>
@@ -49,7 +50,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics
         public static readonly EventId TransactionIgnoredWarning = MakeTransactionId(Id.TransactionIgnoredWarning);
 
         private static readonly string UpdatePrefix = DbLoggerCategory.Update.Name + ".";
-        private static EventId MakeUpdateId(Id id) => new EventId((int)id, UpdatePrefix + id);
+
+        private static EventId MakeUpdateId(Id id) => new((int)id, UpdatePrefix + id);
 
         /// <summary>
         ///     <para>

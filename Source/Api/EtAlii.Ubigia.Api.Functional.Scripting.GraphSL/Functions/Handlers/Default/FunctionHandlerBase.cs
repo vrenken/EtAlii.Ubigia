@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             ToIdentifierConverterSelector = new Selector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>>()
                 .Register(i => i is PathSubject, (c, i, s) => ConvertPathToIds(c, (PathSubject)i, s))
-                .Register(i => i is Identifier, (c, i, s) => Observable.Return((Identifier)i))
-                .Register(i => i is IInternalNode, (c, i, s) => Observable.Return(((IInternalNode)i).Id))
-                .Register(i => true, (c, i, s) => { throw new ScriptProcessingException("Unable to convert input for Function processing"); });
+                .Register(i => i is Identifier, (_, i, _) => Observable.Return((Identifier)i))
+                .Register(i => i is IInternalNode, (_, i, _) => Observable.Return(((IInternalNode)i).Id))
+                .Register(_ => true, (_, _, _) => throw new ScriptProcessingException("Unable to convert input for Function processing"));
         }
 
         private IObservable<Identifier> ConvertPathToIds(IFunctionContext context, PathSubject pathSubject, ExecutionScope scope)

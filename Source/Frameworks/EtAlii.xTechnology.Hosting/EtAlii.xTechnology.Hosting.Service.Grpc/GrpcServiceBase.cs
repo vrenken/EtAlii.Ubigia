@@ -46,7 +46,7 @@
 
             var property = options.GetType().GetProperty("ListenOptions", BindingFlags.NonPublic | BindingFlags.Instance);
 
-            var listenOptions = property!.GetValue(options) as List<ListenOptions>;
+            var listenOptions = property!.GetValue(options) as IEnumerable<ListenOptions>;
             if (listenOptions!.Any(lo => Equals(lo.IPEndPoint.Address, ipAddress) && lo.IPEndPoint.Port == HostString.Port)) return;
             
             if (Equals(ipAddress, IPAddress.None))

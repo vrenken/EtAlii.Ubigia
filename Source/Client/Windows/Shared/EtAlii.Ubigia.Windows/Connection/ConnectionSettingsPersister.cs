@@ -5,7 +5,6 @@
     using System.IO;
     using System.IO.IsolatedStorage;
     using System.Linq;
-    using System.Runtime.Serialization.Formatters.Binary;
     using System.Security.Cryptography;
     using System.Text;
     using EtAlii.Ubigia.Windows.Mvvm;
@@ -21,14 +20,11 @@
 
         private void Load(out string password, BinaryReader reader)
         {
-            var formatter = new BinaryFormatter();
-
-            var currentSettings = (ConnectionSettings)formatter.Deserialize(reader.BaseStream);
-            _viewModel.Address = currentSettings.Address;
-            _viewModel.Account = currentSettings.Account;
-            _viewModel.Space = currentSettings.Space;
-            _viewModel.Transport = (TransportType)Enum.Parse(typeof(TransportType), currentSettings.TransportType);
-            password = currentSettings.Password;
+            _viewModel.Address = reader.ReadString();
+            _viewModel.Account = reader.ReadString();
+            _viewModel.Space = reader.ReadString();
+            _viewModel.Transport = (TransportType)Enum.Parse(typeof(TransportType), reader.ReadString());
+            password = reader.ReadString();
             _viewModel.IsTested = reader.ReadBoolean();
             _viewModel.RememberPassword = reader.ReadBoolean();
             var totalServers = reader.ReadInt32();
@@ -36,7 +32,15 @@
             var previousSettings = new List<ConnectionSettings>();
             for (var i = 0; i < totalServers; i++)
             {
-                var previousSetting = (ConnectionSettings)formatter.Deserialize(reader.BaseStream);
+                var previousSetting = new ConnectionSettings
+                {
+                    Address = reader.ReadString(),
+                    Account = reader.ReadString(),
+                    Space = reader.ReadString(),
+                    Password = reader.ReadString(),
+                    TransportType = reader.ReadString()
+                };
+                
                 previousSettings.Add(previousSetting);
             }
             _viewModel.PreviousSettings = previousSettings;
@@ -44,17 +48,24 @@
 
         private void Save(string password, BinaryWriter writer)
         {
-            var formatter = new BinaryFormatter();
-            
             var currentSettings = DetermineCurrentSettings(password);
-            formatter.Serialize(writer.BaseStream, currentSettings);
+            
+            writer.Write(currentSettings.Address);
+            writer.Write(currentSettings.Account);
+            writer.Write(currentSettings.Space);
+            writer.Write(currentSettings.TransportType);
+            writer.Write(currentSettings.Password);
             writer.Write(_viewModel.IsTested);
             writer.Write(_viewModel.RememberPassword);
             var previousSettings = DeterminePreviousSettings(password);
             writer.Write(previousSettings.Count);
             foreach (var previousSetting in previousSettings)
             {
-                formatter.Serialize(writer.BaseStream, previousSetting);
+                writer.Write(previousSetting.Address);
+                writer.Write(previousSetting.Account);
+                writer.Write(previousSetting.Space);
+                writer.Write(previousSetting.Password);
+                writer.Write(previousSetting.TransportType);
             }
         }
 

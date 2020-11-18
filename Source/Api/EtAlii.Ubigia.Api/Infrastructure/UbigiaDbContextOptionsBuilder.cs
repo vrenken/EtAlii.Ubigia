@@ -1,13 +1,13 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.ComponentModel;
-using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore.Utilities;
-
-// ReSharper disable once CheckNamespace
-namespace Microsoft.EntityFrameworkCore.Infrastructure
+namespace EtAlii.Ubigia.Api.Infrastructure
 {
+    using System.ComponentModel;
+    using JetBrains.Annotations;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Utilities;
+
     /// <summary>
     ///     <para>
     ///         Allows Ubigia specific configuration to be performed on <see cref="DbContextOptions" />.
@@ -15,7 +15,7 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
     ///     <para>
     ///         Instances of this class are returned from a call to
     ///         <see
-    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,string,string,string,string,System.Action{Microsoft.EntityFrameworkCore.Infrastructure.UbigiaDbContextOptionsBuilder})" />
+    ///             cref="UbigiaDbContextOptionsExtensions.UseUbigiaContext(DbContextOptionsBuilder, string, string, string, string, System.Action{UbigiaDbContextOptionsBuilder})" />
     ///         and it is not designed to be directly constructed in your application code.
     ///     </para>
     /// </summary>
@@ -45,24 +45,27 @@ namespace Microsoft.EntityFrameworkCore.Infrastructure
         /// </summary>
         /// <returns> A string that represents the current object. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string ToString() => base.ToString();
+        public override string ToString()
+            => base.ToString();
 
         /// <summary>
         ///     Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj"> The object to compare with the current object. </param>
-        /// <returns> true if the specified object is equal to the current object; otherwise, false. </returns>
+        /// <returns> <see langword="true" /> if the specified object is equal to the current object; otherwise, <see langword="false" />. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        // ReSharper disable once BaseObjectEqualsIsObjectEquals
-        public override bool Equals(object obj) => base.Equals(obj);
+        public override bool Equals(object obj) 
+            // ReSharper disable once BaseObjectEqualsIsObjectEquals
+            => base.Equals(obj);
 
         /// <summary>
         ///     Serves as the default hash function.
         /// </summary>
         /// <returns> A hash code for the current object. </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode()
+            // ReSharper disable once BaseObjectGetHashCodeCallInGetHashCode
+            => base.GetHashCode();
 
         #endregion
     }

@@ -29,10 +29,10 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             _converterSelector = new Selector<object, Func<object, string, PathSubjectPart[]>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPath((string)variable, variableName))
-                .Register(variable => variable is INode, (variable, variableName) => ToPath((INode)variable))
-                .Register(variable => variable is NonRootedPathSubject, (variable, variableName) => ((NonRootedPathSubject)variable).Parts)
-                .Register(variable => variable is StringConstantSubject, (variable, variableName) => ToPath((StringConstantSubject)variable))
-                .Register(variable => variable is RootedPathSubject, (variable, variableName) => ToPath((RootedPathSubject)variable));
+                .Register(variable => variable is INode, (variable, _) => ToPath((INode)variable))
+                .Register(variable => variable is NonRootedPathSubject, (variable, _) => ((NonRootedPathSubject)variable).Parts)
+                .Register(variable => variable is StringConstantSubject, (variable, _) => ToPath((StringConstantSubject)variable))
+                .Register(variable => variable is RootedPathSubject, (variable, _) => ToPath((RootedPathSubject)variable));
 
             _parserSelector = new Selector<Subject, ISubjectParser>()
                 .Register(s => s is NonRootedPathSubject, nonRootedPathSubjectParser)

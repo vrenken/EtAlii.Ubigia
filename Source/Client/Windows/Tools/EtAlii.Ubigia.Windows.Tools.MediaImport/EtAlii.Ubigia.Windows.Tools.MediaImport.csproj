@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <ProjectGuid>c53cf7f6-40bb-4e22-b4d6-bec861d69dda</ProjectGuid>
     <UseWPF>true</UseWPF>
-    <OutputType>WinExe</OutputType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <OutputType>Exe</OutputType>
+    
     <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
   </PropertyGroup>
   <ItemGroup>

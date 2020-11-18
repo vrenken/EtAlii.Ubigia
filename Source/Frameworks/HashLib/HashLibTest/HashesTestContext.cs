@@ -66,7 +66,7 @@
 
             var src = new CancellationTokenSource();
             
-            var regulator = Task.Factory.StartNew(token => 
+            var regulator = Task.Factory.StartNew(_ => 
             {
                 var pc = new PerformanceCounter("Processor", "% Processor Time", "_Total");
 

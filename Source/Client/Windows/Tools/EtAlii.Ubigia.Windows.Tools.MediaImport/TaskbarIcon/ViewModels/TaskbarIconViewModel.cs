@@ -47,7 +47,7 @@
             //sb.AppendFormat("Address: [0]", configuration.Address)
             ToolTipText = sb.ToString();
 
-            ExitApplicationCommand = new RelayCommand(o =>
+            ExitApplicationCommand = new RelayCommand(_ =>
             {
                 _folderMonitorManager.Stop();
                 Application.Current.Shutdown();

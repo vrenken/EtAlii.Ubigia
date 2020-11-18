@@ -41,7 +41,7 @@
             {
                 Name = name,
                 ResolvedType = graphType,
-                Resolver = new FuncFieldResolver<object>(context => dynamicObjects.Values.Select(v => v.Instance)),
+                Resolver = new FuncFieldResolver<object>(_ => dynamicObjects.Values.Select(v => v.Instance)),
             };
 
             return result;

@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)-windows</TargetFramework>
     <ProjectGuid>920d4f04-07a0-455f-ae93-d921bf6f73aa</ProjectGuid>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost.Grpc\EtAlii.xTechnology.Hosting.TestHost.Grpc.csproj" />

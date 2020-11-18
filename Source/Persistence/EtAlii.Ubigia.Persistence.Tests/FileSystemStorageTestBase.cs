@@ -13,7 +13,7 @@
         protected FileSystemStorageTestBase()
         {
             Directory.CreateDirectory(RootFolder);
-            AppDomain.CurrentDomain.ProcessExit += (o,e) => DeleteTestData();
+            AppDomain.CurrentDomain.ProcessExit += (_,_) => DeleteTestData();
         }
         
         public void Dispose()

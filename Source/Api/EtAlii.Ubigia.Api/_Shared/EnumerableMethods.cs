@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 
 // ReSharper disable once CheckNamespace
-namespace Microsoft.EntityFrameworkCore
+namespace EtAlii.Ubigia
 {
     internal static class EnumerableMethods
     {

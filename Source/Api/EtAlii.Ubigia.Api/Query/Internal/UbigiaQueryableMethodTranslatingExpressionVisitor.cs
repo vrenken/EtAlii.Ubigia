@@ -1,59 +1,120 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Storage;
-
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Reflection;
+    using JetBrains.Annotations;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Diagnostics;
+    using Microsoft.EntityFrameworkCore.Infrastructure;
+    using Microsoft.EntityFrameworkCore.Metadata;
+    using Microsoft.EntityFrameworkCore.Query;
+    using Microsoft.EntityFrameworkCore.Storage;
+    using Microsoft.EntityFrameworkCore.Utilities;
 
-    public class UbigiaQueryableMethodTranslatingExpressionVisitor : QueryableMethodTranslatingExpressionVisitor
+    /// <summary>
+    ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+    ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+    ///     any release. You should only use it directly in your code with extreme caution and knowing that
+    ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+    /// </summary>
+    public sealed class UbigiaQueryableMethodTranslatingExpressionVisitor : QueryableMethodTranslatingExpressionVisitor
     {
-        private static readonly MethodInfo EntityFrameworkPropertyMethod = typeof(EF).GetTypeInfo().GetDeclaredMethod(nameof(EF.Property));
-
         private readonly UbigiaExpressionTranslatingExpressionVisitor _expressionTranslator;
         private readonly WeakEntityExpandingExpressionVisitor _weakEntityExpandingExpressionVisitor;
         private readonly UbigiaProjectionBindingExpressionVisitor _projectionBindingExpressionVisitor;
         private readonly IModel _model;
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         public UbigiaQueryableMethodTranslatingExpressionVisitor(
-            QueryableMethodTranslatingExpressionVisitorDependencies dependencies,
-            IModel model)
-            : base(dependencies, subquery: false)
+            [NotNull] QueryableMethodTranslatingExpressionVisitorDependencies dependencies,
+            [NotNull] QueryCompilationContext queryCompilationContext)
+            : base(dependencies, queryCompilationContext, subquery: false)
         {
-            _expressionTranslator = new UbigiaExpressionTranslatingExpressionVisitor(this);
+            _expressionTranslator = new UbigiaExpressionTranslatingExpressionVisitor(queryCompilationContext, this);
             _weakEntityExpandingExpressionVisitor = new WeakEntityExpandingExpressionVisitor(_expressionTranslator);
             _projectionBindingExpressionVisitor = new UbigiaProjectionBindingExpressionVisitor(this, _expressionTranslator);
-            _model = model;
+            _model = queryCompilationContext.Model;
         }
 
-        protected UbigiaQueryableMethodTranslatingExpressionVisitor(
-            UbigiaQueryableMethodTranslatingExpressionVisitor parentVisitor)
-            : base(parentVisitor.Dependencies, subquery: true)
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        private UbigiaQueryableMethodTranslatingExpressionVisitor(
+            [NotNull] UbigiaQueryableMethodTranslatingExpressionVisitor parentVisitor)
+            : base(parentVisitor.Dependencies, parentVisitor.QueryCompilationContext, subquery: true)
         {
-            _expressionTranslator = parentVisitor._expressionTranslator;
-            _weakEntityExpandingExpressionVisitor = parentVisitor._weakEntityExpandingExpressionVisitor;
+            _expressionTranslator = new UbigiaExpressionTranslatingExpressionVisitor(QueryCompilationContext, parentVisitor);
+            _weakEntityExpandingExpressionVisitor = new WeakEntityExpandingExpressionVisitor(_expressionTranslator);
             _projectionBindingExpressionVisitor = new UbigiaProjectionBindingExpressionVisitor(this, _expressionTranslator);
             _model = parentVisitor._model;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override QueryableMethodTranslatingExpressionVisitor CreateSubqueryVisitor()
             => new UbigiaQueryableMethodTranslatingExpressionVisitor(this);
 
-        protected override ShapedQueryExpression CreateShapedQueryExpression(Type elementType)
-            => CreateShapedQueryExpression(_model.FindEntityType(elementType));
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+        {
+            if (methodCallExpression.Method.IsGenericMethod
+                && methodCallExpression.Arguments.Count == 1
+                && methodCallExpression.Arguments[0].Type.TryGetSequenceType() != null
+                && string.Equals(methodCallExpression.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
+            {
+                return Visit(methodCallExpression.Arguments[0]);
+            }
 
-        private static ShapedQueryExpression CreateShapedQueryExpression(IEntityType entityType)
+            return base.VisitMethodCall(methodCallExpression);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        [Obsolete("Use overload which takes IEntityType.")]
+        protected override ShapedQueryExpression CreateShapedQueryExpression(Type elementType)
+        {
+            Check.NotNull(elementType, nameof(elementType));
+
+            return CreateShapedQueryExpression(_model.FindEntityType(elementType));
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression CreateShapedQueryExpression(IEntityType entityType)
+            => CreateShapedQueryExpressionStatic(entityType);
+
+        private static ShapedQueryExpression CreateShapedQueryExpressionStatic(IEntityType entityType)
         {
             var queryExpression = new UbigiaQueryExpression(entityType);
 
@@ -68,76 +129,129 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     false));
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateAll(ShapedQueryExpression source, LambdaExpression predicate)
         {
-            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
-            predicate = TranslateLambdaExpression(source, predicate, preserveType: true);
-            if (predicate == null)
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(predicate, nameof(predicate));
+
+            predicate = Expression.Lambda(Expression.Not(predicate.Body), predicate.Parameters);
+            source = TranslateWhere(source, predicate);
+            if (source == null)
             {
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression =
-                Expression.Call(
-                    EnumerableMethods.All.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                    ubigiaQueryExpression.ServerQueryExpression,
-                    predicate);
+            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
+            if (source.ShaperExpression is GroupByShaperExpression)
+            {
+                ubigiaQueryExpression.ReplaceProjectionMapping(new Dictionary<ProjectionMember, Expression>());
+                ubigiaQueryExpression.PushdownIntoSubquery();
+            }
 
-            return source;
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Not(
+                    Expression.Call(
+                        EnumerableMethods.AnyWithoutPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
+                        ubigiaQueryExpression.ServerQueryExpression)));
+
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), typeof(bool)));
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateAny(ShapedQueryExpression source, LambdaExpression predicate)
         {
-            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
-            if (ubigiaQueryExpression == null) throw new ArgumentNullException(nameof(ubigiaQueryExpression));
-
-            if (predicate == null)
+            if (predicate != null)
             {
-                ubigiaQueryExpression.ServerQueryExpression = Expression.Call(
-                    EnumerableMethods.AnyWithoutPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                    ubigiaQueryExpression.ServerQueryExpression);
-            }
-            else
-            {
-                predicate = TranslateLambdaExpression(source, predicate, preserveType: true);
-                if (predicate == null)
+                source = TranslateWhere(source, predicate);
+                if (source == null)
                 {
                     return null;
                 }
-
-                ubigiaQueryExpression.ServerQueryExpression = Expression.Call(
-                    EnumerableMethods.AnyWithPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                    ubigiaQueryExpression.ServerQueryExpression,
-                    predicate);
             }
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
+            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-            return source;
+            if (source.ShaperExpression is GroupByShaperExpression)
+            {
+                ubigiaQueryExpression.ReplaceProjectionMapping(new Dictionary<ProjectionMember, Expression>());
+                ubigiaQueryExpression.PushdownIntoSubquery();
+            }
+
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
+                    EnumerableMethods.AnyWithoutPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
+                    ubigiaQueryExpression.ServerQueryExpression));
+
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), typeof(bool)));
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateAverage(ShapedQueryExpression source, LambdaExpression selector, Type resultType)
-            => TranslateScalarAggregate(source, selector, nameof(Enumerable.Average));
+        {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(resultType, nameof(resultType));
 
+            return TranslateScalarAggregate(source, selector, nameof(Enumerable.Average), resultType);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateCast(ShapedQueryExpression source, Type resultType)
         {
-            if (source.ShaperExpression.Type == resultType)
-            {
-                return source;
-            }
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(resultType, nameof(resultType));
 
-            source.ShaperExpression = Expression.Convert(source.ShaperExpression, resultType);
-
-            return source;
+            return source.ShaperExpression.Type != resultType
+                ? source.UpdateShaperExpression(Expression.Convert(source.ShaperExpression, resultType))
+                : source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateConcat(ShapedQueryExpression source1, ShapedQueryExpression source2)
-            => TranslateSetOperation(EnumerableMethods.Concat, source1, source2);
+        {
+            Check.NotNull(source1, nameof(source1));
+            Check.NotNull(source2, nameof(source2));
 
+            return TranslateSetOperation(EnumerableMethods.Concat, source1, source2);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateContains(ShapedQueryExpression source, Expression item)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(item, nameof(item));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
             item = TranslateExpression(item, preserveType: true);
             if (item == null)
@@ -145,7 +259,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression =
+            ubigiaQueryExpression.UpdateServerQueryExpression(
                 Expression.Call(
                     EnumerableMethods.Contains.MakeGenericMethod(item.Type),
                     Expression.Call(
@@ -153,80 +267,132 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         ubigiaQueryExpression.ServerQueryExpression,
                         Expression.Lambda(
                             ubigiaQueryExpression.GetMappedProjection(new ProjectionMember()), ubigiaQueryExpression.CurrentParameter)),
-                    item);
+                    item));
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
-
-            return source;
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), typeof(bool)));
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateCount(ShapedQueryExpression source, LambdaExpression predicate)
         {
-            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
+            Check.NotNull(source, nameof(source));
 
-            if (predicate == null)
+            if (predicate != null)
             {
-                ubigiaQueryExpression.ServerQueryExpression =
-                    Expression.Call(
-                        EnumerableMethods.CountWithoutPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                        ubigiaQueryExpression.ServerQueryExpression);
-            }
-            else
-            {
-                predicate = TranslateLambdaExpression(source, predicate, preserveType: true);
-                if (predicate == null)
+                source = TranslateWhere(source, predicate);
+                if (source == null)
                 {
                     return null;
                 }
-
-                ubigiaQueryExpression.ServerQueryExpression =
-                    Expression.Call(
-                        EnumerableMethods.CountWithPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                        ubigiaQueryExpression.ServerQueryExpression,
-                        predicate);
             }
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
+            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-            return source;
+            if (source.ShaperExpression is GroupByShaperExpression)
+            {
+                ubigiaQueryExpression.ReplaceProjectionMapping(new Dictionary<ProjectionMember, Expression>());
+                ubigiaQueryExpression.PushdownIntoSubquery();
+            }
+
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
+                    EnumerableMethods.CountWithoutPredicate.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
+                    ubigiaQueryExpression.ServerQueryExpression));
+
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), typeof(int)));
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateDefaultIfEmpty(ShapedQueryExpression source, Expression defaultValue)
         {
+            Check.NotNull(source, nameof(source));
+
             if (defaultValue == null)
             {
                 ((UbigiaQueryExpression)source.QueryExpression).ApplyDefaultIfEmpty();
-                source.ShaperExpression = MarkShaperNullable(source.ShaperExpression);
-
-                return source;
+                return source.UpdateShaperExpression(MarkShaperNullable(source.ShaperExpression));
             }
 
             return null;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateDistinct(ShapedQueryExpression source)
         {
+            Check.NotNull(source, nameof(source));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
             ubigiaQueryExpression.PushdownIntoSubquery();
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
                     EnumerableMethods.Distinct.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                    ubigiaQueryExpression.ServerQueryExpression);
+                    ubigiaQueryExpression.ServerQueryExpression));
 
             return source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateElementAtOrDefault(
-            ShapedQueryExpression source, Expression index, bool returnDefault)
-            => null;
-
-        protected override ShapedQueryExpression TranslateExcept(ShapedQueryExpression source1, ShapedQueryExpression source2)
-            => TranslateSetOperation(EnumerableMethods.Except, source1, source2);
-
-        protected override ShapedQueryExpression TranslateFirstOrDefault(
-            ShapedQueryExpression source, LambdaExpression predicate, Type returnType, bool returnDefault)
+            ShapedQueryExpression source,
+            Expression index,
+            bool returnDefault)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(index, nameof(index));
+
+            return null;
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression TranslateExcept(ShapedQueryExpression source1, ShapedQueryExpression source2)
+        {
+            Check.NotNull(source1, nameof(source1));
+            Check.NotNull(source2, nameof(source2));
+
+            return TranslateSetOperation(EnumerableMethods.Except, source1, source2);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression TranslateFirstOrDefault(
+            ShapedQueryExpression source,
+            LambdaExpression predicate,
+            Type returnType,
+            bool returnDefault)
+        {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(returnType, nameof(returnType));
+
             return TranslateSingleResultOperator(
                 source,
                 predicate,
@@ -236,9 +402,21 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     : EnumerableMethods.FirstWithoutPredicate);
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateGroupBy(
-            ShapedQueryExpression source, LambdaExpression keySelector, LambdaExpression elementSelector, LambdaExpression resultSelector)
+            ShapedQueryExpression source,
+            LambdaExpression keySelector,
+            LambdaExpression elementSelector,
+            LambdaExpression resultSelector)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(keySelector, nameof(keySelector));
+
             var remappedKeySelector = RemapLambdaBody(source, keySelector);
 
             var translatedKey = TranslateGroupingKey(remappedKeySelector);
@@ -250,28 +428,25 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
-                source.ShaperExpression = ubigiaQueryExpression.ApplyGrouping(translatedKey, source.ShaperExpression);
+                var groupByShaper = ubigiaQueryExpression.ApplyGrouping(translatedKey, source.ShaperExpression);
 
                 if (resultSelector == null)
                 {
-                    return source;
+                    return source.UpdateShaperExpression(groupByShaper);
                 }
 
                 var original1 = resultSelector.Parameters[0];
                 var original2 = resultSelector.Parameters[1];
 
                 var newResultSelectorBody = new ReplacingExpressionVisitor(
-                        new Expression[] { original1, original2 },
-                        new[] { ((GroupByShaperExpression)source.ShaperExpression).KeySelector, source.ShaperExpression })
-                    .Visit(resultSelector.Body);
+                    new Expression[] { original1, original2 },
+                    new[] { groupByShaper.KeySelector, groupByShaper }).Visit(resultSelector.Body);
 
                 newResultSelectorBody = ExpandWeakEntities(ubigiaQueryExpression, newResultSelectorBody);
-
-                source.ShaperExpression = _projectionBindingExpressionVisitor.Translate(ubigiaQueryExpression, newResultSelectorBody);
-
+                var newShaper = _projectionBindingExpressionVisitor.Translate(ubigiaQueryExpression, newResultSelectorBody);
                 ubigiaQueryExpression.PushdownIntoSubquery();
 
-                return source;
+                return source.UpdateShaperExpression(newShaper);
             }
 
             return null;
@@ -282,12 +457,6 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             switch (expression)
             {
                 case NewExpression newExpression:
-                    // For .NET Framework only. If ctor is null that means the type is struct and has no ctor args.
-                    if (newExpression.Constructor == null)
-                    {
-                        return newExpression;
-                    }
-
                     if (newExpression.Arguments.Count == 0)
                     {
                         return newExpression;
@@ -328,7 +497,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return memberInitExpression.Update(updatedNewExpression, newBindings);
 
                 default:
-                    var translation = _expressionTranslator.Translate(expression);
+                    var translation = TranslateExpression(expression);
                     if (translation == null)
                     {
                         return null;
@@ -340,27 +509,66 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateGroupJoin(
-            ShapedQueryExpression outer, ShapedQueryExpression inner, LambdaExpression outerKeySelector, LambdaExpression innerKeySelector,
-            LambdaExpression resultSelector)
-            => null;
-
-        protected override ShapedQueryExpression TranslateIntersect(ShapedQueryExpression source1, ShapedQueryExpression source2)
-            => TranslateSetOperation(EnumerableMethods.Intersect, source1, source2);
-
-        protected override ShapedQueryExpression TranslateJoin(
-            ShapedQueryExpression outer, ShapedQueryExpression inner, LambdaExpression outerKeySelector, LambdaExpression innerKeySelector,
+            ShapedQueryExpression outer,
+            ShapedQueryExpression inner,
+            LambdaExpression outerKeySelector,
+            LambdaExpression innerKeySelector,
             LambdaExpression resultSelector)
         {
-            outerKeySelector = TranslateLambdaExpression(outer, outerKeySelector);
-            innerKeySelector = TranslateLambdaExpression(inner, innerKeySelector);
+            Check.NotNull(outer, nameof(outer));
+            Check.NotNull(inner, nameof(inner));
+            Check.NotNull(outerKeySelector, nameof(outerKeySelector));
+            Check.NotNull(innerKeySelector, nameof(innerKeySelector));
+            Check.NotNull(resultSelector, nameof(resultSelector));
+
+            return null;
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression TranslateIntersect(ShapedQueryExpression source1, ShapedQueryExpression source2)
+        {
+            Check.NotNull(source1, nameof(source1));
+            Check.NotNull(source2, nameof(source2));
+
+            return TranslateSetOperation(EnumerableMethods.Intersect, source1, source2);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression TranslateJoin(
+            ShapedQueryExpression outer,
+            ShapedQueryExpression inner,
+            LambdaExpression outerKeySelector,
+            LambdaExpression innerKeySelector,
+            LambdaExpression resultSelector)
+        {
+            Check.NotNull(outer, nameof(outer));
+            Check.NotNull(inner, nameof(inner));
+            Check.NotNull(resultSelector, nameof(resultSelector));
+
+            (outerKeySelector, innerKeySelector) = ProcessJoinKeySelector(outer, inner, outerKeySelector, innerKeySelector);
+
             if (outerKeySelector == null
                 || innerKeySelector == null)
             {
                 return null;
             }
-
-            (outerKeySelector, innerKeySelector) = AlignKeySelectorTypes(outerKeySelector, innerKeySelector);
 
             var transparentIdentifierType = TransparentIdentifierFactory.Create(
                 resultSelector.Parameters[0].Type,
@@ -372,21 +580,91 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 innerKeySelector,
                 transparentIdentifierType);
 
+#pragma warning disable CS0618 // Type or member is obsolete See issue#21200
             return TranslateResultSelectorForJoin(
                 outer,
                 resultSelector,
                 inner.ShaperExpression,
                 transparentIdentifierType);
+#pragma warning restore CS0618 // Type or member is obsolete
+        }
+
+        private (LambdaExpression OuterKeySelector, LambdaExpression InnerKeySelector) ProcessJoinKeySelector(
+            ShapedQueryExpression outer,
+            ShapedQueryExpression inner,
+            LambdaExpression outerKeySelector,
+            LambdaExpression innerKeySelector)
+        {
+            var left = RemapLambdaBody(outer, outerKeySelector);
+            var right = RemapLambdaBody(inner, innerKeySelector);
+
+            var joinCondition = TranslateExpression(Expression.Equal(left, right));
+
+            var (outerKeyBody, innerKeyBody) = DecomposeJoinCondition(joinCondition);
+
+            if (outerKeyBody == null
+                || innerKeyBody == null)
+            {
+                return (null, null);
+            }
+
+            outerKeySelector = Expression.Lambda(outerKeyBody, ((UbigiaQueryExpression)outer.QueryExpression).CurrentParameter);
+            innerKeySelector = Expression.Lambda(innerKeyBody, ((UbigiaQueryExpression)inner.QueryExpression).CurrentParameter);
+
+            return AlignKeySelectorTypes(outerKeySelector, innerKeySelector);
+        }
+
+        private static (Expression, Expression) DecomposeJoinCondition(Expression joinCondition)
+        {
+            var leftExpressions = new List<Expression>();
+            var rightExpressions = new List<Expression>();
+
+            return ProcessJoinCondition(joinCondition, leftExpressions, rightExpressions)
+                ? leftExpressions.Count == 1
+                    ? (leftExpressions[0], rightExpressions[0])
+                    : (CreateAnonymousObject(leftExpressions), CreateAnonymousObject(rightExpressions))
+                : (null, null);
+
+            // Ubigia joins need to use AnonymousObject to perform correct key comparison for server side joins
+            static Expression CreateAnonymousObject(List<Expression> expressions)
+                => Expression.New(
+#pragma warning disable EF1001 // Internal EF Core API usage.
+                    // #20565
+                    AnonymousObject.AnonymousObjectCtor,
+#pragma warning restore EF1001 // Internal EF Core API usage.
+                    Expression.NewArrayInit(
+                        typeof(object),
+                        expressions.Select(e => Expression.Convert(e, typeof(object)))));
+        }
+
+        private static bool ProcessJoinCondition(
+            Expression joinCondition,
+            List<Expression> leftExpressions,
+            List<Expression> rightExpressions)
+        {
+            if (joinCondition is BinaryExpression binaryExpression)
+            {
+                if (binaryExpression.NodeType == ExpressionType.Equal)
+                {
+                    leftExpressions.Add(binaryExpression.Left);
+                    rightExpressions.Add(binaryExpression.Right);
+
+                    return true;
+                }
+
+                if (binaryExpression.NodeType == ExpressionType.AndAlso)
+                {
+                    return ProcessJoinCondition(binaryExpression.Left, leftExpressions, rightExpressions)
+                        && ProcessJoinCondition(binaryExpression.Right, leftExpressions, rightExpressions);
+                }
+            }
+
+            return false;
         }
 
         private static (LambdaExpression OuterKeySelector, LambdaExpression InnerKeySelector)
             AlignKeySelectorTypes(LambdaExpression outerKeySelector, LambdaExpression innerKeySelector)
         {
-            static bool IsConvertedToNullable(Expression outer, Expression inner)
-                => outer.Type.IsNullableType()
-                    && !inner.Type.IsNullableType()
-                    && outer.Type.UnwrapNullableType() == inner.Type;
-
             if (outerKeySelector.Body.Type != innerKeySelector.Body.Type)
             {
                 if (IsConvertedToNullable(outerKeySelector.Body, innerKeySelector.Body))
@@ -402,11 +680,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
 
             return (outerKeySelector, innerKeySelector);
+
+            static bool IsConvertedToNullable(Expression outer, Expression inner)
+                => outer.Type.IsNullableType()
+                    && !inner.Type.IsNullableType()
+                    && outer.Type.UnwrapNullableType() == inner.Type;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateLastOrDefault(
-            ShapedQueryExpression source, LambdaExpression predicate, Type returnType, bool returnDefault)
+            ShapedQueryExpression source,
+            LambdaExpression predicate,
+            Type returnType,
+            bool returnDefault)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(returnType, nameof(returnType));
+
             return TranslateSingleResultOperator(
                 source,
                 predicate,
@@ -416,19 +711,30 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     : EnumerableMethods.LastWithoutPredicate);
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateLeftJoin(
-            ShapedQueryExpression outer, ShapedQueryExpression inner, LambdaExpression outerKeySelector, LambdaExpression innerKeySelector,
+            ShapedQueryExpression outer,
+            ShapedQueryExpression inner,
+            LambdaExpression outerKeySelector,
+            LambdaExpression innerKeySelector,
             LambdaExpression resultSelector)
         {
-            outerKeySelector = TranslateLambdaExpression(outer, outerKeySelector);
-            innerKeySelector = TranslateLambdaExpression(inner, innerKeySelector);
+            Check.NotNull(outer, nameof(outer));
+            Check.NotNull(inner, nameof(inner));
+            Check.NotNull(resultSelector, nameof(resultSelector));
+
+            (outerKeySelector, innerKeySelector) = ProcessJoinKeySelector(outer, inner, outerKeySelector, innerKeySelector);
+
             if (outerKeySelector == null
                 || innerKeySelector == null)
             {
                 return null;
             }
-
-            (outerKeySelector, innerKeySelector) = AlignKeySelectorTypes(outerKeySelector, innerKeySelector);
 
             var transparentIdentifierType = TransparentIdentifierFactory.Create(
                 resultSelector.Parameters[0].Type,
@@ -440,54 +746,91 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 innerKeySelector,
                 transparentIdentifierType);
 
+#pragma warning disable CS0618 // Type or member is obsolete See issue#21200
             return TranslateResultSelectorForJoin(
                 outer,
                 resultSelector,
                 MarkShaperNullable(inner.ShaperExpression),
                 transparentIdentifierType);
+#pragma warning restore CS0618 // Type or member is obsolete
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateLongCount(ShapedQueryExpression source, LambdaExpression predicate)
         {
-            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
+            Check.NotNull(source, nameof(source));
 
-            if (predicate == null)
+            if (predicate != null)
             {
-                ubigiaQueryExpression.ServerQueryExpression =
-                    Expression.Call(
-                        EnumerableMethods.LongCountWithoutPredicate.MakeGenericMethod(
-                            ubigiaQueryExpression.CurrentParameter.Type),
-                        ubigiaQueryExpression.ServerQueryExpression);
-            }
-            else
-            {
-                predicate = TranslateLambdaExpression(source, predicate, preserveType: true);
-                if (predicate == null)
+                source = TranslateWhere(source, predicate);
+                if (source == null)
                 {
                     return null;
                 }
-
-                ubigiaQueryExpression.ServerQueryExpression =
-                    Expression.Call(
-                        EnumerableMethods.LongCountWithPredicate.MakeGenericMethod(
-                            ubigiaQueryExpression.CurrentParameter.Type),
-                        ubigiaQueryExpression.ServerQueryExpression,
-                        predicate);
             }
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
+            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-            return source;
+            if (source.ShaperExpression is GroupByShaperExpression)
+            {
+                ubigiaQueryExpression.ReplaceProjectionMapping(new Dictionary<ProjectionMember, Expression>());
+                ubigiaQueryExpression.PushdownIntoSubquery();
+            }
+
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
+                    EnumerableMethods.LongCountWithoutPredicate.MakeGenericMethod(
+                        ubigiaQueryExpression.CurrentParameter.Type),
+                    ubigiaQueryExpression.ServerQueryExpression));
+
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), typeof(long)));
         }
 
-        protected override ShapedQueryExpression TranslateMax(ShapedQueryExpression source, LambdaExpression selector, Type resultType)
-            => TranslateScalarAggregate(source, selector, nameof(Enumerable.Max));
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
+        protected override ShapedQueryExpression TranslateMax(
+            ShapedQueryExpression source,
+            LambdaExpression selector,
+            Type resultType)
+        {
+            Check.NotNull(source, nameof(source));
 
+            return TranslateScalarAggregate(source, selector, nameof(Enumerable.Max), resultType);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateMin(ShapedQueryExpression source, LambdaExpression selector, Type resultType)
-            => TranslateScalarAggregate(source, selector, nameof(Enumerable.Min));
+        {
+            Check.NotNull(source, nameof(source));
 
+            return TranslateScalarAggregate(source, selector, nameof(Enumerable.Min), resultType);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateOfType(ShapedQueryExpression source, Type resultType)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(resultType, nameof(resultType));
+
             if (source.ShaperExpression is EntityShaperExpression entityShaperExpression)
             {
                 var entityType = entityShaperExpression.EntityType;
@@ -496,75 +839,55 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return source;
                 }
 
-#pragma warning disable EF1001 // Internal API
+                var parameterExpression = Expression.Parameter(entityShaperExpression.Type);
+                var predicate = Expression.Lambda(Expression.TypeIs(parameterExpression, resultType), parameterExpression);
+                source = TranslateWhere(source, predicate);
+                if (source == null)
+                {
+                    // EntityType is not part of hierarchy
+                    return null;
+                }
+
                 var baseType = entityType.GetAllBaseTypes().SingleOrDefault(et => et.ClrType == resultType);
-#pragma warning restore EF1001 // Internal API                
                 if (baseType != null)
                 {
-                    source.ShaperExpression = entityShaperExpression.WithEntityType(baseType);
-
-                    return source;
+                    return source.UpdateShaperExpression(entityShaperExpression.WithEntityType(baseType));
                 }
 
-                var derivedType = entityType.GetDerivedTypes().SingleOrDefault(et => et.ClrType == resultType);
-                if (derivedType != null)
-                {
-                    var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
-                    var discriminatorProperty = entityType.GetDiscriminatorProperty();
-                    var parameter = Expression.Parameter(entityType.ClrType);
+                var derivedType = entityType.GetDerivedTypes().Single(et => et.ClrType == resultType);
+                var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-                    var callEntityFrameworkProperty = Expression.Call(
-                        EntityFrameworkPropertyMethod.MakeGenericMethod(
-                            discriminatorProperty.ClrType),
-                        parameter,
-                        Expression.Constant(discriminatorProperty.Name));
+                var projectionBindingExpression = (ProjectionBindingExpression)entityShaperExpression.ValueBufferExpression;
+                var projectionMember = projectionBindingExpression.ProjectionMember;
+                Check.DebugAssert(new ProjectionMember().Equals(projectionMember), "Invalid ProjectionMember when processing OfType");
 
-                    var equals = Expression.Equal(
-                        callEntityFrameworkProperty,
-                        Expression.Constant(derivedType.GetDiscriminatorValue(), discriminatorProperty.ClrType));
-
-                    foreach (var derivedDerivedType in derivedType.GetDerivedTypes())
+                var entityProjectionExpression = (EntityProjectionExpression)ubigiaQueryExpression.GetMappedProjection(projectionMember);
+                ubigiaQueryExpression.ReplaceProjectionMapping(
+                    new Dictionary<ProjectionMember, Expression>
                     {
-                        equals = Expression.OrElse(
-                            equals,
-                            Expression.Equal(
-                                callEntityFrameworkProperty,
-                                Expression.Constant(derivedDerivedType.GetDiscriminatorValue(), discriminatorProperty.ClrType)));
-                    }
+                        { projectionMember, entityProjectionExpression.UpdateEntityType(derivedType) }
+                    });
 
-                    var discriminatorPredicate = TranslateLambdaExpression(source, Expression.Lambda(equals, parameter));
-                    if (discriminatorPredicate == null)
-                    {
-                        return null;
-                    }
-
-                    ubigiaQueryExpression.ServerQueryExpression = Expression.Call(
-                        EnumerableMethods.Where.MakeGenericMethod(typeof(ValueBuffer)),
-                        ubigiaQueryExpression.ServerQueryExpression,
-                        discriminatorPredicate);
-
-                    var projectionBindingExpression = (ProjectionBindingExpression)entityShaperExpression.ValueBufferExpression;
-                    var projectionMember = projectionBindingExpression.ProjectionMember;
-                    var entityProjection = (EntityProjectionExpression)ubigiaQueryExpression.GetMappedProjection(projectionMember);
-
-                    ubigiaQueryExpression.ReplaceProjectionMapping(
-                        new Dictionary<ProjectionMember, Expression>
-                        {
-                            { projectionMember, entityProjection.UpdateEntityType(derivedType) }
-                        });
-
-                    source.ShaperExpression = entityShaperExpression.WithEntityType(derivedType);
-
-                    return source;
-                }
+                return source.UpdateShaperExpression(entityShaperExpression.WithEntityType(derivedType));
             }
 
             return null;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateOrderBy(
-            ShapedQueryExpression source, LambdaExpression keySelector, bool ascending)
+            ShapedQueryExpression source,
+            LambdaExpression keySelector,
+            bool ascending)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(keySelector, nameof(keySelector));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
             keySelector = TranslateLambdaExpression(source, keySelector);
@@ -574,20 +897,46 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
 
             var orderBy = ascending ? EnumerableMethods.OrderBy : EnumerableMethods.OrderByDescending;
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
                     orderBy.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type, keySelector.ReturnType),
                     ubigiaQueryExpression.ServerQueryExpression,
-                    keySelector);
+                    keySelector));
 
             return source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateReverse(ShapedQueryExpression source)
-            => null;
+        {
+            Check.NotNull(source, nameof(source));
 
+            var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
+
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
+                    EnumerableMethods.Reverse.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
+                    ubigiaQueryExpression.ServerQueryExpression));
+
+            return source;
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSelect(ShapedQueryExpression source, LambdaExpression selector)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(selector, nameof(selector));
+
             if (selector.Body == selector.Parameters[0])
             {
                 return source;
@@ -599,19 +948,30 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             var groupByQuery = source.ShaperExpression is GroupByShaperExpression;
             var queryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
-            source.ShaperExpression = _projectionBindingExpressionVisitor.Translate(queryExpression, newSelectorBody);
-
+            var newShaper = _projectionBindingExpressionVisitor.Translate(queryExpression, newSelectorBody);
             if (groupByQuery)
             {
                 queryExpression.PushdownIntoSubquery();
             }
 
-            return source;
+            return source.UpdateShaperExpression(newShaper);
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSelectMany(
-            ShapedQueryExpression source, LambdaExpression collectionSelector, LambdaExpression resultSelector)
+            ShapedQueryExpression source,
+            LambdaExpression collectionSelector,
+            LambdaExpression resultSelector)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(collectionSelector, nameof(collectionSelector));
+            Check.NotNull(resultSelector, nameof(resultSelector));
+
             var defaultIfEmpty = new DefaultIfEmptyFindingExpressionVisitor().IsOptional(collectionSelector);
             var collectionSelectorBody = RemapLambdaBody(source, collectionSelector);
 
@@ -628,17 +988,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 ((UbigiaQueryExpression)source.QueryExpression).AddSelectMany(
                     (UbigiaQueryExpression)inner.QueryExpression, transparentIdentifierType, defaultIfEmpty);
 
+#pragma warning disable CS0618 // Type or member is obsolete See issue#21200
                 return TranslateResultSelectorForJoin(
                     source,
                     resultSelector,
                     innerShaperExpression,
                     transparentIdentifierType);
+#pragma warning restore CS0618 // Type or member is obsolete
             }
 
             return null;
         }
 
-        private class DefaultIfEmptyFindingExpressionVisitor : ExpressionVisitor
+        private sealed class DefaultIfEmptyFindingExpressionVisitor : ExpressionVisitor
         {
             private bool _defaultIfEmpty;
 
@@ -653,6 +1015,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
             {
+                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+
                 if (methodCallExpression.Method.IsGenericMethod
                     && methodCallExpression.Method.GetGenericMethodDefinition() == QueryableMethods.DefaultIfEmptyWithoutArgument)
                 {
@@ -663,8 +1027,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSelectMany(ShapedQueryExpression source, LambdaExpression selector)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(selector, nameof(selector));
+
             var innerParameter = Expression.Parameter(selector.ReturnType.TryGetSequenceType(), "i");
             var resultSelector = Expression.Lambda(
                 innerParameter, Expression.Parameter(source.Type.TryGetSequenceType()), innerParameter);
@@ -672,9 +1045,21 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             return TranslateSelectMany(source, selector, resultSelector);
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSingleOrDefault(
-            ShapedQueryExpression source, LambdaExpression predicate, Type returnType, bool returnDefault)
+            ShapedQueryExpression source,
+            LambdaExpression predicate,
+            Type returnType,
+            bool returnDefault)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(returnType, nameof(returnType));
+
             return TranslateSingleResultOperator(
                 source,
                 predicate,
@@ -684,8 +1069,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     : EnumerableMethods.SingleWithoutPredicate);
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSkip(ShapedQueryExpression source, Expression count)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(count, nameof(count));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
             count = TranslateExpression(count);
             if (count == null)
@@ -693,23 +1087,54 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
                     EnumerableMethods.Skip.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
                     ubigiaQueryExpression.ServerQueryExpression,
-                    count);
+                    count));
 
             return source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSkipWhile(ShapedQueryExpression source, LambdaExpression predicate)
-            => null;
+        {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(predicate, nameof(predicate));
 
+            return null;
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateSum(ShapedQueryExpression source, LambdaExpression selector, Type resultType)
-            => TranslateScalarAggregate(source, selector, nameof(Enumerable.Sum));
+        {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(resultType, nameof(resultType));
 
+            return TranslateScalarAggregate(source, selector, nameof(Enumerable.Sum), resultType);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateTake(ShapedQueryExpression source, Expression count)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(count, nameof(count));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
             count = TranslateExpression(count);
             if (count == null)
@@ -717,20 +1142,40 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
                     EnumerableMethods.Take.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
                     ubigiaQueryExpression.ServerQueryExpression,
-                    count);
+                    count));
 
             return source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateTakeWhile(ShapedQueryExpression source, LambdaExpression predicate)
-            => null;
+        {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(predicate, nameof(predicate));
 
+            return null;
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateThenBy(ShapedQueryExpression source, LambdaExpression keySelector, bool ascending)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(keySelector, nameof(keySelector));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
             keySelector = TranslateLambdaExpression(source, keySelector);
             if (keySelector == null)
@@ -738,21 +1183,41 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
                     (ascending ? EnumerableMethods.ThenBy : EnumerableMethods.ThenByDescending)
                     .MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type, keySelector.ReturnType),
                     ubigiaQueryExpression.ServerQueryExpression,
-                    keySelector);
+                    keySelector));
 
             return source;
         }
 
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateUnion(ShapedQueryExpression source1, ShapedQueryExpression source2)
-            => TranslateSetOperation(EnumerableMethods.Union, source1, source2);
+        {
+            Check.NotNull(source1, nameof(source1));
+            Check.NotNull(source2, nameof(source2));
 
+            return TranslateSetOperation(EnumerableMethods.Union, source1, source2);
+        }
+
+        /// <summary>
+        ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
+        ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
+        ///     any release. You should only use it directly in your code with extreme caution and knowing that
+        ///     doing so can result in application failures when updating to a new Entity Framework Core release.
+        /// </summary>
         protected override ShapedQueryExpression TranslateWhere(ShapedQueryExpression source, LambdaExpression predicate)
         {
+            Check.NotNull(source, nameof(source));
+            Check.NotNull(predicate, nameof(predicate));
+
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
             predicate = TranslateLambdaExpression(source, predicate, preserveType: true);
             if (predicate == null)
@@ -760,29 +1225,34 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null;
             }
 
-            ubigiaQueryExpression.ServerQueryExpression = Expression.Call(
-                EnumerableMethods.Where.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                ubigiaQueryExpression.ServerQueryExpression,
-                predicate);
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(
+                    EnumerableMethods.Where.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
+                    ubigiaQueryExpression.ServerQueryExpression,
+                    predicate));
 
             return source;
         }
 
         private Expression TranslateExpression(Expression expression, bool preserveType = false)
         {
-            var result = _expressionTranslator.Translate(expression);
-
-            if (expression != null
-                && result != null
-                && preserveType
-                && expression.Type != result.Type)
+            var translation = _expressionTranslator.Translate(expression);
+            if (translation == null && _expressionTranslator.TranslationErrorDetails != null)
             {
-                result = expression.Type == typeof(bool)
-                    ? Expression.Equal(result, Expression.Constant(true, result.Type))
-                    : (Expression)Expression.Convert(result, expression.Type);
+                AddTranslationErrorDetails(_expressionTranslator.TranslationErrorDetails);
             }
 
-            return result;
+            if (expression != null
+                && translation != null
+                && preserveType
+                && expression.Type != translation.Type)
+            {
+                translation = expression.Type == typeof(bool)
+                    ? Expression.Equal(translation, Expression.Constant(true, translation.Type))
+                    : (Expression)Expression.Convert(translation, expression.Type);
+            }
+
+            return translation;
         }
 
         private LambdaExpression TranslateLambdaExpression(
@@ -810,7 +1280,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         internal Expression ExpandWeakEntities(UbigiaQueryExpression queryExpression, Expression lambdaBody)
             => _weakEntityExpandingExpressionVisitor.Expand(queryExpression, lambdaBody);
 
-        private class WeakEntityExpandingExpressionVisitor : ExpressionVisitor
+        private sealed class WeakEntityExpandingExpressionVisitor : ExpressionVisitor
         {
             private UbigiaQueryExpression _queryExpression;
             private readonly UbigiaExpressionTranslatingExpressionVisitor _expressionTranslator;
@@ -820,7 +1290,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _expressionTranslator = expressionTranslator;
             }
 
-            public virtual Expression Expand(UbigiaQueryExpression queryExpression, Expression lambdaBody)
+            // ReSharper disable once UnusedMember.Local
+            public string TranslationErrorDetails => _expressionTranslator.TranslationErrorDetails;
+
+            public Expression Expand(UbigiaQueryExpression queryExpression, Expression lambdaBody)
             {
                 _queryExpression = queryExpression;
 
@@ -829,6 +1302,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitMember(MemberExpression memberExpression)
             {
+                Check.NotNull(memberExpression, nameof(memberExpression));
+
                 var innerExpression = Visit(memberExpression.Expression);
 
                 return TryExpand(innerExpression, MemberIdentity.Create(memberExpression.Member))
@@ -837,6 +1312,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
             {
+                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+
                 if (methodCallExpression.TryGetEFPropertyArguments(out var source, out var navigationName))
                 {
                     source = Visit(source);
@@ -845,13 +1322,26 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         ?? methodCallExpression.Update(null, new[] { source, methodCallExpression.Arguments[1] });
                 }
 
+                if (methodCallExpression.TryGetEFPropertyArguments(out source, out navigationName))
+                {
+                    source = Visit(source);
+
+                    return TryExpand(source, MemberIdentity.Create(navigationName))
+                        ?? methodCallExpression.Update(source, new[] { methodCallExpression.Arguments[0] });
+                }
+
                 return base.VisitMethodCall(methodCallExpression);
             }
 
             protected override Expression VisitExtension(Expression extensionExpression)
-                => extensionExpression is EntityShaperExpression
+            {
+                Check.NotNull(extensionExpression, nameof(extensionExpression));
+
+                return extensionExpression is EntityShaperExpression
+                    || extensionExpression is ShapedQueryExpression
                     ? extensionExpression
                     : base.VisitExtension(extensionExpression);
+            }
 
             private Expression TryExpand(Expression source, MemberIdentity member)
             {
@@ -882,7 +1372,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return null;
                 }
 
-                var targetEntityType = navigation.GetTargetType();
+                var targetEntityType = navigation.TargetEntityType;
                 if (targetEntityType == null
                     || (!targetEntityType.HasDefiningNavigation()
                         && !targetEntityType.IsOwned()))
@@ -891,9 +1381,9 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
 
                 var foreignKey = navigation.ForeignKey;
-                if (navigation.IsCollection())
+                if (navigation.IsCollection)
                 {
-                    var innerShapedQuery = CreateShapedQueryExpression(targetEntityType);
+                    var innerShapedQuery = CreateShapedQueryExpressionStatic(targetEntityType);
                     var innerQueryExpression = (UbigiaQueryExpression)innerShapedQuery.QueryExpression;
 
                     var makeNullable = foreignKey.PrincipalKey.Properties
@@ -901,17 +1391,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         .Select(p => p.ClrType)
                         .Any(t => t.IsNullableType());
 
-#pragma warning disable EF1001 // Internal API
-                    var outerKey = entityShaperExpression.CreateKeyAccessExpression(
-#pragma warning restore EF1001 // Internal API
-                        navigation.IsDependentToPrincipal()
+                    var outerKey = entityShaperExpression.CreateKeyValuesExpression(
+                        navigation.IsOnDependent
                             ? foreignKey.Properties
                             : foreignKey.PrincipalKey.Properties,
                         makeNullable);
-#pragma warning disable EF1001 // Internal API
-                    var innerKey = innerShapedQuery.ShaperExpression.CreateKeyAccessExpression(
-#pragma warning restore EF1001 // Internal API
-                        navigation.IsDependentToPrincipal()
+                    var innerKey = innerShapedQuery.ShaperExpression.CreateKeyValuesExpression(
+                        navigation.IsOnDependent
                             ? foreignKey.PrincipalKey.Properties
                             : foreignKey.Properties,
                         makeNullable);
@@ -927,10 +1413,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         : Expression.Equal(outerKey, innerKey);
 
                     var correlationPredicate = _expressionTranslator.Translate(predicate);
-                    innerQueryExpression.ServerQueryExpression = Expression.Call(
-                        EnumerableMethods.Where.MakeGenericMethod(innerQueryExpression.CurrentParameter.Type),
-                        innerQueryExpression.ServerQueryExpression,
-                        Expression.Lambda(correlationPredicate, innerQueryExpression.CurrentParameter));
+                    innerQueryExpression.UpdateServerQueryExpression(
+                        Expression.Call(
+                            EnumerableMethods.Where.MakeGenericMethod(innerQueryExpression.CurrentParameter.Type),
+                            innerQueryExpression.ServerQueryExpression,
+                            Expression.Lambda(correlationPredicate, innerQueryExpression.CurrentParameter)));
 
                     return innerShapedQuery;
                 }
@@ -944,7 +1431,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var innerShaper = entityProjectionExpression.BindNavigation(navigation);
                 if (innerShaper == null)
                 {
-                    var innerShapedQuery = CreateShapedQueryExpression(targetEntityType);
+                    var innerShapedQuery = CreateShapedQueryExpressionStatic(targetEntityType);
                     var innerQueryExpression = (UbigiaQueryExpression)innerShapedQuery.QueryExpression;
 
                     var makeNullable = foreignKey.PrincipalKey.Properties
@@ -952,17 +1439,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         .Select(p => p.ClrType)
                         .Any(t => t.IsNullableType());
 
-#pragma warning disable EF1001 // Internal API
-                    var outerKey = entityShaperExpression.CreateKeyAccessExpression(
-#pragma warning restore EF1001 // Internal API
-                        navigation.IsDependentToPrincipal()
+                    var outerKey = entityShaperExpression.CreateKeyValuesExpression(
+                        navigation.IsOnDependent
                             ? foreignKey.Properties
                             : foreignKey.PrincipalKey.Properties,
                         makeNullable);
-#pragma warning disable EF1001 // Internal API
-                    var innerKey = innerShapedQuery.ShaperExpression.CreateKeyAccessExpression(
-#pragma warning restore EF1001 // Internal API
-                        navigation.IsDependentToPrincipal()
+                    var innerKey = innerShapedQuery.ShaperExpression.CreateKeyValuesExpression(
+                        navigation.IsOnDependent
                             ? foreignKey.PrincipalKey.Properties
                             : foreignKey.Properties,
                         makeNullable);
@@ -980,7 +1463,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         }
 
         private ShapedQueryExpression TranslateScalarAggregate(
-            ShapedQueryExpression source, LambdaExpression selector, string methodName)
+            ShapedQueryExpression source,
+            LambdaExpression selector,
+            string methodName,
+            Type returnType)
         {
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
@@ -1001,15 +1487,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 ? method.MakeGenericMethod(typeof(ValueBuffer), selector.ReturnType)
                 : method.MakeGenericMethod(typeof(ValueBuffer));
 
-            ubigiaQueryExpression.ServerQueryExpression
-                = Expression.Call(
-                    method,
-                    ubigiaQueryExpression.ServerQueryExpression,
-                    selector);
+            ubigiaQueryExpression.UpdateServerQueryExpression(
+                Expression.Call(method, ubigiaQueryExpression.ServerQueryExpression, selector));
 
-            source.ShaperExpression = ubigiaQueryExpression.GetSingleScalarProjection();
-
-            return source;
+            return source.UpdateShaperExpression(Expression.Convert(ubigiaQueryExpression.GetSingleScalarProjection(), returnType));
 
             MethodInfo GetMethod()
                 => methodName switch
@@ -1018,12 +1499,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     nameof(Enumerable.Max) => EnumerableMethods.GetMaxWithSelector(selector.ReturnType),
                     nameof(Enumerable.Min) => EnumerableMethods.GetMinWithSelector(selector.ReturnType),
                     nameof(Enumerable.Sum) => EnumerableMethods.GetSumWithSelector(selector.ReturnType),
-                    _ => throw new InvalidOperationException("Invalid Aggregate Operator encountered."),
+                    _ => throw new InvalidOperationException(CoreStrings.UnknownEntity("Aggregate Operator")),
                 };
         }
 
         private ShapedQueryExpression TranslateSingleResultOperator(
-            ShapedQueryExpression source, LambdaExpression predicate, Type returnType, MethodInfo method)
+            ShapedQueryExpression source,
+            LambdaExpression predicate,
+            Type returnType,
+            MethodInfo method)
         {
             var ubigiaQueryExpression = (UbigiaQueryExpression)source.QueryExpression;
 
@@ -1036,19 +1520,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
             }
 
-            ubigiaQueryExpression.ServerQueryExpression =
+            ubigiaQueryExpression.UpdateServerQueryExpression(
                 Expression.Call(
                     method.MakeGenericMethod(ubigiaQueryExpression.CurrentParameter.Type),
-                    ubigiaQueryExpression.ServerQueryExpression);
+                    ubigiaQueryExpression.ServerQueryExpression));
 
             ubigiaQueryExpression.ConvertToEnumerable();
 
-            if (source.ShaperExpression.Type != returnType)
-            {
-                source.ShaperExpression = Expression.Convert(source.ShaperExpression, returnType);
-            }
-
-            return source;
+            return source.ShaperExpression.Type != returnType
+                ? source.UpdateShaperExpression(Expression.Convert(source.ShaperExpression, returnType))
+                : source;
         }
 
         private ShapedQueryExpression TranslateSetOperation(
@@ -1064,10 +1545,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             ubigiaQueryExpression1.PushdownIntoSubquery();
             ubigiaQueryExpression2.PushdownIntoSubquery();
 
-            ubigiaQueryExpression1.ServerQueryExpression = Expression.Call(
-                setOperationMethodInfo.MakeGenericMethod(typeof(ValueBuffer)),
-                ubigiaQueryExpression1.ServerQueryExpression,
-                ubigiaQueryExpression2.ServerQueryExpression);
+            ubigiaQueryExpression1.UpdateServerQueryExpression(
+                Expression.Call(
+                    setOperationMethodInfo.MakeGenericMethod(typeof(ValueBuffer)),
+                    ubigiaQueryExpression1.ServerQueryExpression,
+                    ubigiaQueryExpression2.ServerQueryExpression));
 
             return source1;
         }
