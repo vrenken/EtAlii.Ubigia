@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class EntryRepository : IEntryRepository
@@ -14,23 +14,23 @@
             _logicalContext = logicalContext;
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
         {
             return _logicalContext.Entries.Get(identifier, entryRelations);
         }
 
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
-            return _logicalContext.Entries
-                .GetRelated(identifier, entriesWithRelation, entryRelations)
-                .ToAsyncEnumerable();
-            // TODO: AsyncEnumerable
+            return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
         {
-            return identifiers.Select(identifier => _logicalContext.Entries.Get(identifier, entryRelations));
+            foreach (var identifier in identifiers)
+            {
+                yield return await _logicalContext.Entries.Get(identifier, entryRelations);
+            }
         }
 
         public Entry Prepare(Guid spaceId)

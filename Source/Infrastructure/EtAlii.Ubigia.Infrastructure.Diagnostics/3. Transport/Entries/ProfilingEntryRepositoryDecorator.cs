@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
 
@@ -31,26 +32,29 @@
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
-            var result = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
-            await foreach (var item in result)
+            var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
+            await foreach (var item in items)
             {
                 yield return item;
             }
             _profiler.WriteSample(GetRelatedCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
-            var entries = _repository.Get(identifiers, entryRelations);
+            var items = _repository.Get(identifiers, entryRelations);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return entries;
         }
 
-        public Entry Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
-            var entry = _repository.Get(identifier, entryRelations);
+            var entry = await _repository.Get(identifier, entryRelations);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
