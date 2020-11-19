@@ -3,6 +3,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     public class ItemsSet : IItemsSet
     {
@@ -47,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _itemGetter.Get(items, id);
         }
 
-        public ObservableCollection<T> GetItems<T>(string folder) 
+        public Task<ObservableCollection<T>> GetItems<T>(string folder) 
             where T : class, IIdentifiable
         {
             return _itemGetter.GetItems<T>(folder);

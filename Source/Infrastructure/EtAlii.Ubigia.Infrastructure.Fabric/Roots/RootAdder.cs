@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class RootAdder : IRootAdder
@@ -17,9 +18,9 @@
         }
 
 
-        public Root Add(Guid spaceId, Root root)
+        public async Task<Root> Add(Guid spaceId, Root root)
         {
-            var canAdd = CanAdd(spaceId, root);
+            var canAdd = await CanAdd(spaceId, root);
             if (canAdd)
             {
                 root.Id = root.Id != Guid.Empty ? root.Id : Guid.NewGuid();
@@ -29,7 +30,7 @@
             return canAdd ? root : null;
         }
 
-        protected bool CanAdd(Guid spaceId, Root item)
+        private async Task<bool> CanAdd(Guid spaceId, Root item)
         {
             if (item == null)
             {
@@ -52,7 +53,7 @@
             //]
             if (canAdd)
             {
-                canAdd = _rootGetter.Get(spaceId, item.Name) == null;
+                canAdd = await _rootGetter.Get(spaceId, item.Name) == null;
             }
 
             return canAdd;

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -16,14 +15,17 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<Root> Add(string name)
+        public async Task<Root> Add(string name)
         {
             var root = new Root
             {
                 Name = name,
             };
-            var result = _infrastructure.Roots.Add(Connection.Space.Id, root);
-            return Task.FromResult(result);
+            var result = await _infrastructure.Roots
+                .Add(Connection.Space.Id, root)
+                .ConfigureAwait(false);
+
+            return result;
         }
 
         public Task Remove(Guid id)
@@ -32,7 +34,7 @@
             return Task.CompletedTask;
         }
 
-        public Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Root> Change(Guid rootId, string rootName)
         {
             var root = new Root
             {
@@ -40,26 +42,32 @@
                 Name = rootName,
             };
 
-            var result = _infrastructure.Roots.Update(Connection.Space.Id, rootId, root);
-            return Task.FromResult(result);
+            var result = await _infrastructure.Roots
+                .Update(Connection.Space.Id, rootId, root)
+                .ConfigureAwait(false);
+            return result;
         }
 
-        public Task<Root> Get(string rootName)
+        public async Task<Root> Get(string rootName)
         {
-            var result = _infrastructure.Roots.Get(Connection.Space.Id, rootName);
-            return Task.FromResult(result);
+            var result = await _infrastructure.Roots
+                .Get(Connection.Space.Id, rootName)
+                .ConfigureAwait(false);
+            return result;
         }
 
-        public Task<Root> Get(Guid rootId)
+        public async Task<Root> Get(Guid rootId)
         {
-            var result = _infrastructure.Roots.Get(Connection.Space.Id, rootId);
-            return Task.FromResult(result);
+            var result = await _infrastructure.Roots
+                .Get(Connection.Space.Id, rootId)
+                .ConfigureAwait(false);
+            return result;
         }
 
         public IAsyncEnumerable<Root> GetAll()
         {
-            var result = _infrastructure.Roots.GetAll(Connection.Space.Id);
-            return result.ToAsyncEnumerable(); // TODO: ASyncEnumerable
+            return _infrastructure.Roots
+                .GetAll(Connection.Space.Id);
         }
     }
 }

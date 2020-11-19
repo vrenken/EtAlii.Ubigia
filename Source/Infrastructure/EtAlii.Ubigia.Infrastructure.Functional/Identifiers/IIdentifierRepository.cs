@@ -1,11 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IIdentifierRepository
     {
-        Identifier GetTail(Guid spaceId);
-        Identifier GetCurrentHead(Guid spaceId);
-        Identifier GetNextHead(Guid spaceId, out Identifier previousHeadIdentifier);
+        Task<Identifier> GetTail(Guid spaceId);
+        Task<Identifier> GetCurrentHead(Guid spaceId);
+        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId);
     }
 }

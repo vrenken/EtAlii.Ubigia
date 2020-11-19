@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     public interface IItemsSet
     {
@@ -19,7 +20,7 @@
         T Get<T>(IList<T> items, Guid id)
             where T : class, IIdentifiable;
 
-        ObservableCollection<T> GetItems<T>(string folder)
+        Task<ObservableCollection<T>> GetItems<T>(string folder)
             where T : class, IIdentifiable;
 
 

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
     using HashLib;
 
@@ -19,7 +20,7 @@
             _contentDefinitionPartGetter = contentDefinitionPartGetter;
         }
 
-        public void Store(Identifier identifier, ContentPart contentPart)
+        public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             if (identifier == Identifier.Empty)
             {
@@ -32,7 +33,7 @@
             }
 
 
-            var contentDefinitionPart = _contentDefinitionPartGetter.Get(identifier, contentPart.Id);
+            var contentDefinitionPart = await _contentDefinitionPartGetter.Get(identifier, contentPart.Id);
 
             var hash = _hash.ComputeBytes(contentPart.Data);
             var checksum = hash.GetULong();

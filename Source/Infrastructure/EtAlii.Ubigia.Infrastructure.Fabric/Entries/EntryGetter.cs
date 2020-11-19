@@ -130,72 +130,124 @@
             }
         }
 
-        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
 
             var selectedComponents = new List<IComponent>();
 
-            RetrieveAndAdd<IdentifierComponent>(containerId, selectedComponents);
-            RetrieveAndAdd<TypeComponent>(containerId, selectedComponents);
-            RetrieveAndAdd<TagComponent>(containerId, selectedComponents);
+            var components = RetrieveAndAdd<IdentifierComponent>(containerId);
+            await foreach(var component in components)
+            {
+                selectedComponents.Add(component);
+            }
+            components = RetrieveAndAdd<TypeComponent>(containerId);
+            await foreach(var component in components)
+            {
+                selectedComponents.Add(component);
+            }
+            components = RetrieveAndAdd<TagComponent>(containerId);
+            await foreach(var component in components)
+            {
+                selectedComponents.Add(component);
+            }
 
             if (entryRelations.HasFlag(EntryRelation.Previous))
             {
-                RetrieveAndAdd<PreviousComponent>(containerId, selectedComponents);
+                components = RetrieveAndAdd<PreviousComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Next))
             {
-                RetrieveAndAdd<NextComponent>(containerId, selectedComponents);
+                components = RetrieveAndAdd<NextComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Update))
             {
-                RetrieveAndAddAll<UpdatesComponent>(containerId, selectedComponents);
+                components = RetrieveAndAddAll<UpdatesComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Downdate))
             {
-                RetrieveAndAdd<DowndateComponent>(containerId, selectedComponents);
+                components = RetrieveAndAdd<DowndateComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Parent))
             {
-                RetrieveAndAdd<ParentComponent>(containerId, selectedComponents);
-                RetrieveAndAdd<Parent2Component>(containerId, selectedComponents);
+                components = RetrieveAndAdd<ParentComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
+                components = RetrieveAndAdd<Parent2Component>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Child))
             {
-                RetrieveAndAddAll<ChildrenComponent>(containerId, selectedComponents);
-                RetrieveAndAddAll<Children2Component>(containerId, selectedComponents);
+                components = RetrieveAndAddAll<ChildrenComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
+                components = RetrieveAndAddAll<Children2Component>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Index))
             {
-                RetrieveAndAddAll<IndexesComponent>(containerId, selectedComponents);
+                components = RetrieveAndAddAll<IndexesComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
             if (entryRelations.HasFlag(EntryRelation.Indexed))
             {
-                RetrieveAndAdd<IndexedComponent>(containerId, selectedComponents);
+                components = RetrieveAndAdd<IndexedComponent>(containerId);
+                await foreach(var component in components)
+                {
+                    selectedComponents.Add(component);
+                }
             }
 
             var entry = EntryHelper.Compose(selectedComponents, true);
-            return Task.FromResult(entry);
+            return entry;
         }
 
-        private void RetrieveAndAddAll<T>(ContainerIdentifier containerId, List<IComponent> componentsToAddTo)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId)
             where T : CompositeComponent
         {
             var components = _storage.Components.RetrieveAll<T>(containerId);
-            if (components != null)
+            await foreach (var component in components)
             {
-                componentsToAddTo.AddRange(components);
+                yield return component;
             }
         }
 
-        private void RetrieveAndAdd<T>(ContainerIdentifier containerId, List<IComponent> componentsToAddTo)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId)
             where T : NonCompositeComponent
         {
-            var component = _storage.Components.Retrieve<T>(containerId);
+            var component = await _storage.Components.Retrieve<T>(containerId);
             if (component != null)
             {
-                componentsToAddTo.Add(component);
+                yield return component;
             }
         }
     }

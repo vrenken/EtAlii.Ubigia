@@ -6,8 +6,8 @@
 
     public interface ILogicalEntrySet
     {
-        Entry Prepare(Guid spaceId);
-        Entry Prepare(Guid spaceId, Identifier id);
+        Task<Entry> Prepare(Guid spaceId);
+        Task<Entry> Prepare(Guid spaceId, Identifier id);
 
         Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
         IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);

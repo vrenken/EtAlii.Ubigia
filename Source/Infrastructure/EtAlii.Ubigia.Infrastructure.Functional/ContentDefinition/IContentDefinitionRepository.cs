@@ -1,9 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
+    using System.Threading.Tasks;
+
     public interface IContentDefinitionRepository
     {
         void Store(Identifier identifier, ContentDefinition contentDefinition);
-        void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
-        IReadOnlyContentDefinition Get(Identifier identifier);
+        Task Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
+        Task<IReadOnlyContentDefinition> Get(Identifier identifier);
     }
 }

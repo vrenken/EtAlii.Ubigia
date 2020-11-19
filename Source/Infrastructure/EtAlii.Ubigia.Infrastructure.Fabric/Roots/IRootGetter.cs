@@ -2,11 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IRootGetter
     {
-        IEnumerable<Root> GetAll(Guid spaceId);
-        Root Get(Guid spaceId, Guid rootId);
-        Root Get(Guid spaceId, string name);
+        IAsyncEnumerable<Root> GetAll(Guid spaceId);
+        Task<Root> Get(Guid spaceId, Guid rootId);
+        Task<Root> Get(Guid spaceId, string name);
     }
 }

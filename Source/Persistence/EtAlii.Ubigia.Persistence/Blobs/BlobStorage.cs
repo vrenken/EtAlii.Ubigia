@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class BlobStorage : IBlobStorage
     {
@@ -56,7 +57,7 @@
             }
         }
 
-        public T Retrieve<T>(ContainerIdentifier container)
+        public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : BlobBase
         {
             if (container == ContainerIdentifier.Empty)
@@ -66,7 +67,9 @@
 
             try
             {
-                return _blobRetriever.Retrieve<T>(container);
+                return await _blobRetriever
+                    .Retrieve<T>(container)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -74,7 +77,7 @@
             }
         }
 
-        public T Retrieve<T>(ContainerIdentifier container, ulong position)
+        public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position)
             where T : BlobPartBase
         {
             if (container == ContainerIdentifier.Empty)
@@ -84,7 +87,9 @@
 
             try
             {
-                return _blobPartRetriever.Retrieve<T>(container, position);
+                return await _blobPartRetriever
+                    .Retrieve<T>(container, position)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {

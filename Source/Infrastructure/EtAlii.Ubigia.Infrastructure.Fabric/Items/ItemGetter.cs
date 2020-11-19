@@ -5,6 +5,7 @@
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class ItemGetter : IItemGetter
@@ -33,7 +34,7 @@
             return items.SingleOrDefault(item => item.Id == id);
         }
 
-        public ObservableCollection<T> GetItems<T>(string folder)
+        public async Task<ObservableCollection<T>> GetItems<T>(string folder)
             where T : class, IIdentifiable
         {
             var items = new ObservableCollection<T>();
@@ -42,7 +43,7 @@
             var itemIds = _storage.Items.Get(containerId);
             foreach (var itemId in itemIds)
             {
-                var item = _storage.Items.Retrieve<T>(itemId, containerId);
+                var item = await _storage.Items.Retrieve<T>(itemId, containerId);
                 items.Add(item);
             }
 

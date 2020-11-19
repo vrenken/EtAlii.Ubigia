@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class RootGetter : IRootGetter
@@ -14,31 +15,28 @@
             _storage = storage;
         }
 
-        public IEnumerable<Root> GetAll(Guid spaceId)
+        public async IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
-            var items = new List<Root>();
-
             var containerId = _storage.ContainerProvider.ForRoots(spaceId);
 
             var itemIds = _storage.Items.Get(containerId);
             foreach (var itemId in itemIds)
             {
-                var item = _storage.Items.Retrieve<Root>(itemId, containerId);
-                items.Add(item);
+                var item = await _storage.Items.Retrieve<Root>(itemId, containerId);
+                yield return item;
             }
-            return items;
         }
 
-        public Root Get(Guid spaceId, Guid rootId)
+        public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             var containerId = _storage.ContainerProvider.ForRoots(spaceId);
             return _storage.Items.Retrieve<Root>(rootId, containerId);
         }
 
-        public Root Get(Guid spaceId, string name)
+        public async Task<Root> Get(Guid spaceId, string name)
         {
             var roots = GetAll(spaceId);
-            var root = roots.SingleOrDefault(r => r.Name == name);
+            var root = await roots.SingleOrDefaultAsync(r => r.Name == name);
             return root;
         }
     }

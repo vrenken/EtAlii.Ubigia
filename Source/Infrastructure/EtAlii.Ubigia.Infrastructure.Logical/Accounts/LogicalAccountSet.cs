@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalAccountSet : ILogicalAccountSet
@@ -66,7 +67,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
 
-        private ObservableCollection<Account> InitializeItems() =>_fabric.Items.GetItems<Account>(Folder);
+        private ObservableCollection<Account> InitializeItems()
+        {
+            var task = _fabric.Items.GetItems<Account>(Folder);
+            return task.GetAwaiter().GetResult();
+        }
 
         public Account Add(Account item, AccountTemplate template, out bool isAdded)
         {
@@ -92,7 +97,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabric.Items.Get(Items, id);
         }
 
-        public ObservableCollection<Account> GetItems()
+        public Task<ObservableCollection<Account>> GetItems()
         {
             return _fabric.Items.GetItems<Account>(Folder);
         }

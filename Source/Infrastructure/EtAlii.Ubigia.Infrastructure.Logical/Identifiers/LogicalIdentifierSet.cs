@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public class LogicalIdentifierSet : ILogicalIdentifierSet
     {
@@ -15,19 +16,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _identifierTailGetter = identifierTailGetter;
         }
 
-        public Identifier GetTail(Guid spaceId)
+        public Task<Identifier> GetTail(Guid spaceId)
         {
             return _identifierTailGetter.Get(spaceId);
         }
 
-        public Identifier GetCurrentHead(Guid spaceId)
+        public Task<Identifier> GetCurrentHead(Guid spaceId)
         {
             return _identifierHeadGetter.GetCurrent(spaceId);
         }
 
-        public Identifier GetNextHead(Guid spaceId, out Identifier previousHeadIdentifier)
+        public Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId)
         {
-            return _identifierHeadGetter.GetNext(spaceId, out previousHeadIdentifier);
+            return _identifierHeadGetter.GetNext(spaceId);
         }
     }
 }

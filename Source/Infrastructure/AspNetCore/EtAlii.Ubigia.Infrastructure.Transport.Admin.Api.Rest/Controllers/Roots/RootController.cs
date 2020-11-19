@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
@@ -19,7 +20,7 @@
 
         // Get all spaces for the specified accountid
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery]Guid spaceId, [FromQuery(Name = "rootId")]string id, [FromQuery]string idType)
+        public async Task<IActionResult> Get([RequiredFromQuery]Guid spaceId, [FromQuery(Name = "rootId")]string id, [FromQuery]string idType)
         {
             IActionResult response;
             try
@@ -36,14 +37,20 @@
                     {
                         case "rootId":
                             var rootId = Guid.Parse(id);
-                            root = _items.Get(spaceId, rootId);
+                            root = await _items
+                                .Get(spaceId, rootId)
+                                .ConfigureAwait(false);
                             break;
                         case "rootName":
                             var rootName = id;
-                            root = _items.Get(spaceId, rootName);
+                            root = await _items
+                                .Get(spaceId, rootName)
+                                .ConfigureAwait(false);
                             break;
                         default:
-                            root = _items.Get(spaceId, id);
+                            root = await _items
+                                .Get(spaceId, id)
+                                .ConfigureAwait(false);
                             break;
                     }
                     response = Ok(root);
@@ -106,12 +113,14 @@
         //]
         // Add item
         [HttpPost]
-        public IActionResult Post([RequiredFromQuery]Guid spaceId, [FromBody]Root root)
+        public async Task<IActionResult> Post([RequiredFromQuery]Guid spaceId, [FromBody]Root root)
         {
             IActionResult response;
             try
             {
-                root = _items.Add(spaceId, root);
+                root = await _items
+                    .Add(spaceId, root)
+                    .ConfigureAwait(false);
 
                 if (root == null)
                 {
@@ -129,12 +138,14 @@
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [FromBody]Root root)
+        public async Task<IActionResult> Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [FromBody]Root root)
         {
             IActionResult response;
             try
             {
-                var result = _items.Update(spaceId, rootId, root);
+                var result = await _items
+                    .Update(spaceId, rootId, root)
+                    .ConfigureAwait(false);
 
                 response = Ok(result);
             }

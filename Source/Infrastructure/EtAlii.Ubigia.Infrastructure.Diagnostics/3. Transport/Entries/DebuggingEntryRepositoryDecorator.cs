@@ -39,7 +39,6 @@
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
-
             await foreach(var item in items)
             {
                 EnsureUniqueComponents(item);
@@ -47,16 +46,14 @@
             }
         }
 
-        public Entry Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid spaceId)
         {
-            var entry = _repository.Prepare(spaceId);
-            return entry;
+            return _repository.Prepare(spaceId);
         }
 
-        public Entry Prepare(Guid spaceId, Identifier identifier)
+        public Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
-            var entry = _repository.Prepare(spaceId, identifier);
-            return entry;
+            return _repository.Prepare(spaceId, identifier);
         }
 
         public Entry Store(Entry entry)

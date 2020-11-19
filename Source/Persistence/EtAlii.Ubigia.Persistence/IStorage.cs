@@ -10,7 +10,7 @@
         
         IPropertiesStorage Properties { get; }
 
-        IItemStorage Items { get; } // TODO: AsyncEnumerable
+        IItemStorage Items { get; } 
         IComponentStorage Components { get; }
         IBlobStorage Blobs { get; }
         IContainerProvider ContainerProvider { get; }

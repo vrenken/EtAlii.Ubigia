@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
 
@@ -16,12 +17,14 @@
             _items = items;
         }
 
-        public ContentDefinition Get(Identifier entryId)
+        public async Task<ContentDefinition> Get(Identifier entryId)
         {
             ContentDefinition response = null;
             try
             {
-                response = (ContentDefinition)_items.Get(entryId);
+                response = (ContentDefinition)await _items
+                    .Get(entryId)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -48,7 +51,7 @@
         }
 
         // Post a new ContentDefinitionPart for the specified entry.
-        public void PostPart(Identifier entryId, ulong contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
+        public async Task PostPart(Identifier entryId, ulong contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
         {
             try
             {
@@ -58,7 +61,9 @@
                 }
 
                 // Store the ContentDefinition.
-                _items.Store(entryId, contentDefinitionPart);
+                await _items
+                    .Store(entryId, contentDefinitionPart)
+                    .ConfigureAwait(false);
 
                 // Send the updated event.
                 SignalUpdated(entryId);

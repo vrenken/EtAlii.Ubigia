@@ -24,6 +24,8 @@
 
             LogicalTestContext = new LogicalTestContextFactory().Create();
 
+            AppDomain.CurrentDomain.ProcessExit += OnProcessExit;
+
             using (var _ = new SystemSafeExecutionScope(_uniqueId))
             {
                 // Getting Temp file names to use
@@ -37,7 +39,9 @@
             }
         }
 
-        public void Dispose()
+        private void OnProcessExit(object sender, EventArgs e) => RemoveTestFiles();
+
+        private void RemoveTestFiles()
         {
             if (File.Exists(TestFile2MImage))
             {
@@ -53,6 +57,13 @@
             {
                 File.Delete(TestFile100MRaw);
             }
+        }
+        public void Dispose()
+        {
+            RemoveTestFiles();
+            AppDomain.CurrentDomain.ProcessExit -= OnProcessExit;
+
+
             LogicalTestContext = null;
         }
     }

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class IdentifierRepository : IIdentifierRepository
@@ -12,17 +13,17 @@
             _logicalContext = logicalContext;
         }
 
-        public Identifier GetCurrentHead(Guid spaceId)
+        public Task<Identifier> GetCurrentHead(Guid spaceId)
         {
             return _logicalContext.Identifiers.GetCurrentHead(spaceId);
         }
 
-        public Identifier GetNextHead(Guid spaceId, out Identifier previousHeadIdentifier)
+        public Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId)
         {
-            return _logicalContext.Identifiers.GetNextHead(spaceId, out previousHeadIdentifier);
+            return _logicalContext.Identifiers.GetNextHead(spaceId);
         }
 
-        public Identifier GetTail(Guid spaceId)
+        public Task<Identifier> GetTail(Guid spaceId)
         {
             return _logicalContext.Identifiers.GetTail(spaceId);
         }

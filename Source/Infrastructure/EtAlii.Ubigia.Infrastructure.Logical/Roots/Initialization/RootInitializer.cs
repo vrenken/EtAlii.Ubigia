@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     internal class RootInitializer : IRootInitializer
@@ -14,11 +15,11 @@
             _entries = entries;
         }
 
-        public void Initialize(Guid spaceId, Root root)
+        public async Task Initialize(Guid spaceId, Root root)
         {
             if (root.Identifier == Identifier.Empty)
             {
-                var entry = (IEditableEntry) _entries.Prepare(spaceId);
+                var entry = (IEditableEntry)await _entries.Prepare(spaceId);
                 entry.Type = root.Name;
 
                 //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail)
@@ -26,7 +27,7 @@
 
                 _fabric.Entries.Store(entry);
                 root.Identifier = entry.Id;
-                _fabric.Roots.Update(spaceId, root.Id, root);
+                await _fabric.Roots.Update(spaceId, root.Id, root);
             }
         }
     }

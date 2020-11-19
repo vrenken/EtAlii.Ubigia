@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,14 @@
         }
 
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
+        public async Task<IActionResult> Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
         {
             IActionResult response;
             try
             {
-                var contentDefinition = _items.Get(entryId);
+                var contentDefinition = await _items
+                    .Get(entryId)
+                    .ConfigureAwait(false);
                 response = Ok((ContentDefinition)contentDefinition);
             }
             catch (Exception ex)
@@ -54,7 +57,7 @@
 
         // Post a new ContentDefinitionPart for the specified entry.
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] ulong contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
+        public async Task<IActionResult> Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] ulong contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         {
             // Remark. We cannot have two post methods at the same time. The hosting 
             // framework gets confused and does not out of the box know what method to choose.
@@ -71,7 +74,9 @@
                 }
 
                 // Store the ContentDefinition.
-                _items.Store(entryId, contentDefinitionPart);
+                await _items
+                    .Store(entryId, contentDefinitionPart)
+                    .ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok();

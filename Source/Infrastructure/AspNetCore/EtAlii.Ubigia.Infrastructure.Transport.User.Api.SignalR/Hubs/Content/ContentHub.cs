@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
 
@@ -16,12 +17,14 @@
             _items = items;
         }
 
-        public Content Get(Identifier entryId)
+        public async Task<Content> Get(Identifier entryId)
         {
-            Content response = null;
+            Content response;
             try
             {
-                response = (Content)_items.Get(entryId);
+                response = (Content)await _items
+                    .Get(entryId)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -30,12 +33,14 @@
             return response;
         }
 
-        public ContentPart GetPart(Identifier entryId, ulong contentPartId)
+        public async Task<ContentPart> GetPart(Identifier entryId, ulong contentPartId)
         {
-            ContentPart response = null;
+            ContentPart response;
             try
             {
-                response = (ContentPart)_items.Get(entryId, contentPartId);
+                response = (ContentPart)await _items
+                    .Get(entryId, contentPartId)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -50,12 +55,14 @@
         /// <param name="entryId"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public void Post(Identifier entryId, Content content)
+        public async Task Post(Identifier entryId, Content content)
         {
             try
             {
                 // Store the content.
-                _items.Store(entryId, content);
+                await _items
+                    .Store(entryId, content)
+                    .ConfigureAwait(false);
 
                 // Send the updated event.
                 SignalUpdated(entryId);
@@ -73,7 +80,7 @@
         /// <param name="contentPartId"></param>
         /// <param name="contentPart"></param>
         /// <returns></returns>
-        public void PostPart(Identifier entryId, ulong contentPartId, ContentPart contentPart)
+        public async Task PostPart(Identifier entryId, ulong contentPartId, ContentPart contentPart)
         {
             try
             {
@@ -84,7 +91,9 @@
 
 
                 // Store the content.
-                _items.Store(entryId, contentPart);
+                await _items
+                    .Store(entryId, contentPart)
+                    .ConfigureAwait(false);
 
                 // Send the updated event.
                 SignalUpdated(entryId);

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -19,7 +20,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void BlobSummaryCalculator_Calculate()
+        public async Task BlobSummaryCalculator_Calculate()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -29,14 +30,14 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
 
             // Assert.
             Assert.NotNull(summary);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void BlobSummaryCalculator_Calculate_With_All_Parts()
+        public async Task BlobSummaryCalculator_Calculate_With_All_Parts()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -52,7 +53,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
 
             // Assert.
             Assert.NotNull(summary);
@@ -66,7 +67,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void BlobSummaryCalculator_Calculate_With_Some_Parts()
+        public async Task BlobSummaryCalculator_Calculate_With_Some_Parts()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -84,7 +85,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
 
             // Assert.
             Assert.NotNull(summary);

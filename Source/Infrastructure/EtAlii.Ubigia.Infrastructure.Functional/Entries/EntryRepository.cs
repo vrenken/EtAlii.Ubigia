@@ -33,12 +33,12 @@
             }
         }
 
-        public Entry Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid spaceId)
         {
             return _logicalContext.Entries.Prepare(spaceId);
         }
 
-        public Entry Prepare(Guid spaceId, Identifier identifier)
+        public Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
             return _logicalContext.Entries.Prepare(spaceId, identifier);
         }

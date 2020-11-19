@@ -41,7 +41,19 @@
                 await WaitAndTestResponse(response, HttpMethod.Get, address);
                 return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
             }
+            catch (UnauthorizedInfrastructureOperationException)
+            {
+                throw;
+            }
+            catch (InvalidInfrastructureOperationException)
+            {
+                throw;
+            }
             catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(GetErrorMessage, e.InnerException);
+            }
+            catch (Exception e)
             {
                 throw new InfrastructureConnectionException(GetErrorMessage, e);
             }
@@ -59,14 +71,26 @@
             where TResult : class
         {
             using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
-            
+
             try
             {
                 var response = await client.PostAsync(address, value, _formatter);
                 await WaitAndTestResponse(response, HttpMethod.Post, address);
-                return await response.Content.ReadAsAsync<TResult>(new[] { _formatter });
+                return await response.Content.ReadAsAsync<TResult>(new[] {_formatter});
+            }
+            catch (UnauthorizedInfrastructureOperationException)
+            {
+                throw;
+            }
+            catch (InvalidInfrastructureOperationException)
+            {
+                throw;
             }
             catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(PostErrorMessage, e.InnerException);
+            }
+            catch (Exception e)
             {
                 throw new InfrastructureConnectionException(PostErrorMessage, e);
             }
@@ -81,7 +105,19 @@
                 var response = await client.DeleteAsync(address);
                 await WaitAndTestResponse(response, HttpMethod.Delete, address);
             }
+            catch (UnauthorizedInfrastructureOperationException)
+            {
+                throw;
+            }
+            catch (InvalidInfrastructureOperationException)
+            {
+                throw;
+            }
             catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(DeleteErrorMessage, e.InnerException);
+            }
+            catch (Exception e)
             {
                 throw new InfrastructureConnectionException(DeleteErrorMessage, e);
             }
@@ -97,7 +133,19 @@
                 await WaitAndTestResponse(response, HttpMethod.Put, address);
                 return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
             }
+            catch (UnauthorizedInfrastructureOperationException)
+            {
+                throw;
+            }
+            catch (InvalidInfrastructureOperationException)
+            {
+                throw;
+            }
             catch (AggregateException e)
+            {
+                throw new InfrastructureConnectionException(PutErrorMessage, e.InnerException);
+            }
+            catch (Exception e)
             {
                 throw new InfrastructureConnectionException(PutErrorMessage, e);
             }

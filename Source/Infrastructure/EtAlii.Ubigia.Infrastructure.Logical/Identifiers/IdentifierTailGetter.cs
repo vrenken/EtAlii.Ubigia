@@ -2,6 +2,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     public class IdentifierTailGetter : IIdentifierTailGetter
     {
@@ -9,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private readonly ILogicalContext _context;
         private readonly Dictionary<Guid, Identifier> _cachedTailIdentifiers;
-        private readonly object _lockObject = new object();
+        private readonly SemaphoreSlim _lockObject = new(1,1); // TODO: This lock-object should be shared with the head getter.
 
         public IdentifierTailGetter(
             IIdentifierRootUpdater rootUpdater, 
@@ -20,31 +22,36 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _cachedTailIdentifiers = new Dictionary<Guid, Identifier>();
         }
 
-        public Identifier Get(Guid spaceId)
+        public async Task<Identifier> Get(Guid spaceId)
         {
-            lock (_lockObject)
+            await _lockObject.WaitAsync();
+            try
             {
                 if (!_cachedTailIdentifiers.TryGetValue(spaceId, out var tailIdentifier))
                 {
-                    tailIdentifier = DetermineTail(spaceId);
+                    tailIdentifier = await DetermineTail(spaceId);
                     _cachedTailIdentifiers[spaceId] = tailIdentifier;
                 }
                 return tailIdentifier;
             }
+            finally
+            {
+                _lockObject.Release();
+            }
         }
 
-        private Identifier DetermineTail(Guid spaceId)
+        private async Task<Identifier> DetermineTail(Guid spaceId)
         {
             // load from root "Tail"
 
-            var root = _context.Roots.Get(spaceId, DefaultRoot.Tail);
-            var tailIdentifier = root != null ? root.Identifier : Identifier.Empty;
+            var root = await _context.Roots.Get(spaceId, DefaultRoot.Tail);
+            var tailIdentifier = root?.Identifier ?? Identifier.Empty;
 
             if (tailIdentifier == Identifier.Empty)
             {
                 // Determine from disk.
                 tailIdentifier = DetermineTailFromDisk(spaceId);
-                _rootUpdater.Update(spaceId, DefaultRoot.Tail, tailIdentifier);
+                await _rootUpdater.Update(spaceId, DefaultRoot.Tail, tailIdentifier);
             }
             return tailIdentifier;
         }

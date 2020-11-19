@@ -1,10 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IIdentifierHeadGetter
     {
-        Identifier GetCurrent(Guid spaceId);
-        Identifier GetNext(Guid spaceId, out Identifier previousHeadIdentifier);
+        Task<Identifier> GetCurrent(Guid spaceId);
+        Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId);
     }
 }
