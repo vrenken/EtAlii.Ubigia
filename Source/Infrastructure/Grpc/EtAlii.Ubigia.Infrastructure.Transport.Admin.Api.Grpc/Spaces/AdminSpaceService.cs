@@ -49,12 +49,12 @@
         {
             var accountId = request.AccountId.ToLocal();
             
-            var spaces = _items.GetAll(accountId); // TODO: AsyncEnumerable
-            foreach (var space in spaces)
+            var items = _items.GetAll(accountId); 
+            await foreach (var item in items)
             {
                 var response = new SpaceMultipleResponse
                 {
-                    Space = space.ToWire()
+                    Space = item.ToWire()
                 };
                 await responseStream.WriteAsync(response);
             }

@@ -49,7 +49,7 @@
         }
 
 
-        public IEnumerable<Space> GetAll(Guid accountId)
+        public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             return _logicalContext.Spaces.GetAll(accountId);
         }

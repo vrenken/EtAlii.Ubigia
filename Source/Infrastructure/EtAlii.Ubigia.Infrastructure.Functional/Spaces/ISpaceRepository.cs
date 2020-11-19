@@ -6,7 +6,7 @@
 
     public interface ISpaceRepository 
     {
-        IEnumerable<Space> GetAll(Guid accountId);
+        IAsyncEnumerable<Space> GetAll(Guid accountId);
         Space Get(Guid accountId, string spaceName);
 
         IAsyncEnumerable<Space> GetAll();

@@ -20,7 +20,7 @@
         public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable
         {
-            return items.ToAsyncEnumerable(); // TODO: AsyncEnumerable
+            return items.ToAsyncEnumerable();
         }
 
         public T Get<T>(IList<T> items, Guid id)

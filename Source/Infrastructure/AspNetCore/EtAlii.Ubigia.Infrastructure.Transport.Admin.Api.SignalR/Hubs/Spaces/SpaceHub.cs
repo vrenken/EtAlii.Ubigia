@@ -25,19 +25,41 @@
 			_authenticationTokenConverter = authenticationTokenConverter;
 		}
 
-		// Get all spaces for the specified accountid
-		public IEnumerable<Space> GetAllForAccount(Guid accountId)
+		/// <summary>
+		/// Get all spaces for the specified account id.
+		/// </summary>
+		/// <param name="accountId"></param>
+		/// <returns></returns>
+		/// <exception cref="InvalidOperationException"></exception>
+		public async IAsyncEnumerable<Space> GetAllForAccount(Guid accountId)
         {
-            IEnumerable<Space> response;
-            try
-            {
-                response = _items.GetAll(accountId);
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Space GET client request", e);
-            }
-            return response;
+	        // The structure below might seem weird.
+	        // But it is not possible to combine a try-catch with the yield needed
+	        // enumerating an IAsyncEnumerable.
+	        // The only way to solve this is using the enumerator. 
+	        var enumerator = _items.GetAll(accountId)
+		        .GetAsyncEnumerator();
+	        var hasResult = true;
+	        while (hasResult)
+	        {
+		        Space item;
+		        try
+		        {
+			        hasResult = await enumerator
+				        .MoveNextAsync()
+				        .ConfigureAwait(false);
+			        item = hasResult ? enumerator.Current : null;
+		        }
+		        catch (Exception e)
+		        {
+			        throw new InvalidOperationException("Unable to serve a Space GET client request", e);
+		        }
+
+		        if (item != null)
+		        {
+			        yield return item;
+		        }
+	        }
         }
 
 		public Space GetForAccount(Guid accountId, string spaceName)
