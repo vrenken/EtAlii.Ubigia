@@ -52,8 +52,8 @@
 
         public async IAsyncEnumerable<Root> GetAll()
         {
-            var result = await _invoker.Invoke<IEnumerable<Root>>(_connection, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
-            foreach (var item in result)
+            var items = _invoker.Stream<Root>(_connection, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
+            await foreach (var item in items)
             {
                 yield return item;
             }

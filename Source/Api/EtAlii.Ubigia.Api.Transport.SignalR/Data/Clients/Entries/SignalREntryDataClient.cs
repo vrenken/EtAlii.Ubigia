@@ -37,10 +37,7 @@
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await scope.Cache.GetEntry(entryIdentifier, async () =>
-            {
-                return await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations);
-            });
+            return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations));
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
@@ -48,11 +45,7 @@
             // TODO: this can be improved by using one single Web API call.
             foreach (var entryIdentifier in entryIdentifiers)
             {
-                var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
-                {
-                    return await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations);
-                });
-                yield return entry;
+                yield return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations));
             }
         }
 
@@ -63,8 +56,8 @@
 
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
-            var result = await _invoker.Invoke<IEnumerable<Entry>>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
-            foreach (var item in result)
+            var items = _invoker.Stream<Entry>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
+            await foreach (var item in items)
             {
                 yield return item;
             }

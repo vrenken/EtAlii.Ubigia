@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
@@ -19,26 +18,51 @@
             _items = items;
         }
 
-        // Get all spaces for the specified accountid
-        public async Task<IEnumerable<Root>> GetForSpace(Guid spaceId) 
+        /// <summary>
+        /// Get all spaces for the specified space id.
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        public async IAsyncEnumerable<Root> GetForSpace(Guid spaceId) 
         {
-            IEnumerable<Root> response;
-            try
+            // The structure below might seem weird.
+            // But it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = _items
+                .GetAll(spaceId)
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                response = await _items
-                    .GetAll(spaceId)
-                    .ToArrayAsync()
-                    .ConfigureAwait(false); // TODO: AsyncEnumerable
+                Root item;
+                try
+                {
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
+                }
+                catch (Exception e)
+                {
+                    throw new InvalidOperationException("Unable to serve a Root GET client request", e);
+                }
+                if (item != null)
+                {
+                    yield return item;
+                }
             }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Root GET client request", e);
-            }
-            return response;
         }
 
 
-        // Get Item by id
+        /// <summary>
+        /// Get Root by id.
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="rootId"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<Root> GetById(Guid spaceId, Guid rootId)
         {
             Root response;
@@ -55,7 +79,13 @@
             return response;
         }
 
-        // Get Item by id
+        /// <summary>
+        /// Get Root by name.
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="rootName"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<Root> GetByName(Guid spaceId, string rootName)
         {
             Root response;
@@ -72,7 +102,13 @@
             return response;
         }
 
-        // Add item
+        /// <summary>
+        /// Add a root.
+        /// </summary>
+        /// <param name="spaceId"></param>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         public async Task<Root> Post(Guid spaceId, Root root)
         {
             Root response;
