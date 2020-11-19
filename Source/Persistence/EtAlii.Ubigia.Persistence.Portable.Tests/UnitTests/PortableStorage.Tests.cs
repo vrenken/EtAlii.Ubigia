@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using System;
+    using System.IO;
     using PCLStorage;
     using Xunit;
 
@@ -10,13 +11,13 @@
         public void PortableStorage_Create()
         {
             // Arrange.
+            var folderName = $"C:\\Temp\\{Guid.NewGuid()}";
             var serializer = new Serializer();
             var internalBsonItemSerializer = new InternalBsonItemSerializer(serializer);
             var internalBsonPropertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
-
             var storageConfiguration = new StorageConfiguration()
                 .Use("Test");
-            var folderStorage = new FileSystemFolder($"C:\\Temp\\{Guid.NewGuid()}");
+            var folderStorage = new FileSystemFolder(folderName);
             var storageSerializer = new PortableStorageSerializer(internalBsonItemSerializer, internalBsonPropertiesSerializer, folderStorage);
             var pathBuilder = new PortablePathBuilder(storageConfiguration, storageSerializer);
             var folderManager = new PortableFolderManager(storageSerializer, folderStorage);
@@ -48,6 +49,12 @@
 
             // Assert.
             Assert.NotNull(storage);
+            
+            // Assure.
+            if (Directory.Exists(folderName))
+            {
+                Directory.Delete(folderName, true);
+            }
         }
     }
 }

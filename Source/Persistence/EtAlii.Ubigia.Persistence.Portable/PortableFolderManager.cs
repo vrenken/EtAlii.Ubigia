@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using PCLStorage;
 
     internal class PortableFolderManager : IFolderManager
@@ -36,24 +37,21 @@
             _serializer.Serialize(fileName, item);
         }
 
-        public T LoadFromFolder<T>(string folderName, string itemName)
+        public async Task<T> LoadFromFolder<T>(string folderName, string itemName)
             where T : class
         {
             T item = null;
 
-            var getFolderTask = _storage.GetFolderAsync(folderName);
-            getFolderTask.Wait();
-            var folderEntry = getFolderTask.Result;
+            var folderEntry = await _storage.GetFolderAsync(folderName);
             if (folderEntry != null)
             {
                 var fileName = string.Format(_serializer.FileNameFormat, itemName);
-                var checkFileExistsTask = folderEntry.CheckExistsAsync(fileName);
-                checkFileExistsTask.Wait();
-                var exists = checkFileExistsTask.Result == ExistenceCheckResult.FileExists;
+                var checkFileExists = await folderEntry.CheckExistsAsync(fileName);
+                var exists = checkFileExists == ExistenceCheckResult.FileExists;
                 if (exists)
                 {
                     fileName = PortablePath.Combine(folderName, fileName);
-                    item = _serializer.Deserialize<T>(fileName);
+                    item = await _serializer.Deserialize<T>(fileName);
                 }
             }
 
@@ -82,17 +80,16 @@
             {
                 return files.AsEnumerable();
             }
-            else if (parts.Length == 2)
+
+            if (parts.Length == 2)
             {
                 var start = parts[0];
                 var end = parts[1];
                 return files.Where(name => name.StartsWith(start) && name.EndsWith(end))
-                            .AsEnumerable();
+                    .AsEnumerable();
             }
-            else
-            {
-                throw new NotSupportedException("Unable to enumerate the files using the specified search pattern: " + searchPattern);
-            }
+
+            throw new NotSupportedException("Unable to enumerate the files using the specified search pattern: " + searchPattern);
         }
 
         public IEnumerable<string> EnumerateDirectories(string folderName)

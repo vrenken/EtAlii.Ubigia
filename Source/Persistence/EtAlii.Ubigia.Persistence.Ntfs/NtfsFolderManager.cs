@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading.Tasks;
     using Microsoft.Experimental.IO;
 
     internal class NtfsFolderManager : IFolderManager
@@ -39,7 +40,7 @@
             return fileInfo.Length;
         }
 
-        public T LoadFromFolder<T>(string folderName, string itemName)
+        public async Task<T> LoadFromFolder<T>(string folderName, string itemName)
             where T : class
         {
             T item = null;
@@ -51,7 +52,7 @@
 
                 if (LongPathFile.Exists(fileName))
                 {
-                    item = _serializer.Deserialize<T>(fileName);
+                    item = await _serializer.Deserialize<T>(fileName);
                 }
             }
             return item;

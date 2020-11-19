@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
+
     public class ContentSet : IContentSet
     {
         private readonly IContentGetter _contentGetter;
@@ -20,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
 
-        public IReadOnlyContent Get(Identifier identifier)
+        public Task<IReadOnlyContent> Get(Identifier identifier)
         {
             return _contentGetter.Get(identifier);
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
+        public Task<IReadOnlyContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             return _contentPartGetter.Get(identifier, contentPartId);
         }

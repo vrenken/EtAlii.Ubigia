@@ -84,21 +84,36 @@
 
         public async IAsyncEnumerable<Root> GetAll()
         {
-            IEnumerable<Root> result; 
-            try
-            {
-                var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() }; 
-                var response = await _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                result = response.Roots.ToLocal();
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcRootDataClient)}.GetAll()", e);
-            }
+            var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() }; 
+            var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
 
-            foreach (var item in result)
+            // The structure below might seem weird,
+            // but it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = call.ResponseStream
+                .ReadAllAsync()
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                yield return item; // TODO: AsyncEnumerable - refactor to grpc stream?
+                RootMultipleResponse item;
+                try
+                {
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
+                }
+                catch (RpcException e)
+                {
+                    throw new InvalidInfrastructureOperationException($"{nameof(GrpcRootDataClient)}.GetAll()", e);
+                }
+
+                if (item != null)
+                {
+                    yield return item.Root.ToLocal();
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
@@ -8,13 +9,15 @@
     {
         // Get a new prepared entry for the specified spaceId
         [HttpPost]
-        public IActionResult Post([RequiredFromQuery]Guid spaceId)
+        public async Task<IActionResult> Post([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
             {
                 // Prepare the entry.
-                var entry = _items.Prepare(spaceId);
+                var entry = await _items
+                    .Prepare(spaceId)
+                    .ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok(entry);

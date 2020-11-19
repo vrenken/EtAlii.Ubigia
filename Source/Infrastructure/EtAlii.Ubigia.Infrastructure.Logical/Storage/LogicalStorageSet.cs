@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task Start()
         {
-            var items = _fabric.Items.GetItems<Storage>(Folder);
+            var items = await _fabric.Items.GetItems<Storage>(Folder);
 
             // TODO: This test to see if the local storage has already been added is not very stable. 
             // Please find another way to determine that the local storage needs initialization.
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return Items.SingleOrDefault(storage => storage.Name == name);
         }
 
-        public IEnumerable<Storage> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabric.Items.Get(Items, id);
         }
 
-        public ObservableCollection<Storage> GetItems()
+        public Task<ObservableCollection<Storage>> GetItems()
         {
             return _fabric.Items.GetItems<Storage>(Folder);
         }

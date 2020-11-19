@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class ContentDefinitionRepository : IContentDefinitionRepository
@@ -66,7 +67,7 @@
             }
         }
 
-        public void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public async Task Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             if (identifier == Identifier.Empty)
             {
@@ -85,7 +86,7 @@
 
             try
             {
-                var contentDefinition = _logicalContext.ContentDefinition.Get(identifier) as ContentDefinition;
+                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier) as ContentDefinition;
                 if (contentDefinition == null)
                 {
                     throw new ContentDefinitionRepositoryException("Content definition not stored yet");
@@ -102,7 +103,7 @@
             }
         }
 
-        public IReadOnlyContentDefinition Get(Identifier identifier)
+        public async Task<IReadOnlyContentDefinition> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {
@@ -111,13 +112,13 @@
 
             try
             {
-                var contentDefinition = (ContentDefinition)_logicalContext.ContentDefinition.Get(identifier);
+                var contentDefinition = (ContentDefinition)await _logicalContext.ContentDefinition.Get(identifier);
 
                 if (contentDefinition != null)
                 {
                     foreach (var contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
                     {
-                        var contentDefinitionPart = (ContentDefinitionPart)_logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
+                        var contentDefinitionPart = (ContentDefinitionPart)await _logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
                         contentDefinition.Parts.Add(contentDefinitionPart);
                     }
                 }

@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IRootAdder
     {
-        Root Add(Guid spaceId, Root root);
+        Task<Root> Add(Guid spaceId, Root root);
     }
 }

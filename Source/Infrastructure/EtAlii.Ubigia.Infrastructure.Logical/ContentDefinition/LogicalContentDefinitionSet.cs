@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalContentDefinitionSet : ILogicalContentDefinitionSet
@@ -11,12 +12,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext = fabricContext;
         }
 
-        public IReadOnlyContentDefinition Get(Identifier identifier)
+        public Task<IReadOnlyContentDefinition> Get(Identifier identifier)
         {
             return _fabricContext.ContentDefinition.Get(identifier);
         }
 
-        public IReadOnlyContentDefinitionPart Get(Identifier identifier, ulong contentDefinitionPartId)
+        public Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             return _fabricContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
         }

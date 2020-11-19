@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using PCLStorage;
 
     internal partial class PortableFileManager : IFileManager
@@ -51,18 +52,16 @@
             }
         }
 
-        public T LoadFromFile<T>(string path)
+        public async Task<T> LoadFromFile<T>(string path)
             where T : class
         {
             T item = null;
 
-            var checkExistsAsyncTask = _storage.CheckExistsAsync(path);
-            checkExistsAsyncTask.Wait();
-
-            var exists = checkExistsAsyncTask.Result == ExistenceCheckResult.FileExists;
+            var checkExists= await _storage.CheckExistsAsync(path);
+            var exists = checkExists == ExistenceCheckResult.FileExists;
             if (exists)
             {
-                item = _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path);
             }
 
             return item;
@@ -121,7 +120,7 @@
             using var source = openSourceFileTask.Result;
             using var target = openTargetFileTask.Result;
             
-            var bytesRead = -1;
+            int bytesRead;
             do
             {
                 bytesRead = source.Read(data, 0, bytesInMegaByte);

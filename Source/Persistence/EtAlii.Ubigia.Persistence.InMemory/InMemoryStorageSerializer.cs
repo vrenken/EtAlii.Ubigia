@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory
 {
+    using System.Threading.Tasks;
+
     public class InMemoryStorageSerializer : IStorageSerializer
     {
         private readonly IInternalItemSerializer _itemSerializer;
@@ -36,11 +38,11 @@
             file.Content = stream.ToArray();
         }
 
-        public T Deserialize<T>(string fileName)
+        public async Task<T> Deserialize<T>(string fileName)
             where T : class
         {
-            using var stream = _inMemoryItemsHelper.OpenFile(fileName);
-            return _itemSerializer.Deserialize<T>(stream);
+            await using var stream = _inMemoryItemsHelper.OpenFile(fileName);
+            return await _itemSerializer.Deserialize<T>(stream);
         }
 
         public PropertyDictionary Deserialize(string fileName)

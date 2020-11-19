@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System.IO;
+    using System.Threading.Tasks;
 
     public partial class InMemoryFileManager : IFileManager
     {
@@ -51,7 +52,7 @@
             }
         }
 
-        public T LoadFromFile<T>(string path)
+        public async Task<T> LoadFromFile<T>(string path)
             where T : class
         {
             T item = null;
@@ -62,7 +63,7 @@
 
             if (_inMemoryItems.Exists(path))
             {
-                item = _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path);
             }
 
             return item;

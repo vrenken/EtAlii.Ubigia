@@ -16,22 +16,24 @@
             return Task.CompletedTask;
         }
 
-        public Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            _infrastructure.ContentDefinition.Store(identifier, contentDefinitionPart); 
+            await _infrastructure.ContentDefinition
+                .Store(identifier, contentDefinitionPart)
+                .ConfigureAwait(false); 
             MarkAsStored(contentDefinitionPart);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString())
             //await _client.Post(address, contentDefinitionPart)
 
             //MarkAsStored(contentDefinitionPart)
-            return Task.CompletedTask;
         }
 
-        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            var result = _infrastructure.ContentDefinition.Get(identifier);
-            return Task.FromResult(result);
+            return await _infrastructure.ContentDefinition
+                .Get(identifier)
+                .ConfigureAwait(false);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
             //var contentDefinition = await _client.Get<ContentDefinition>(address)

@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
+
     public interface IBlobPartRetriever
     {
-        T Retrieve<T>(ContainerIdentifier container, ulong position)
+        Task<T> Retrieve<T>(ContainerIdentifier container, ulong position)
             where T : BlobPartBase;
     }
 }

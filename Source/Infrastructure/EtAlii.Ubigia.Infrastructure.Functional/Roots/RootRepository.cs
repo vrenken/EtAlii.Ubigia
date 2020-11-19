@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class RootRepository : IRootRepository
@@ -13,22 +14,22 @@
             _logicalContext = logicalContext;
         }
 
-        public IEnumerable<Root> GetAll(Guid spaceId)
+        public IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             return _logicalContext.Roots.GetAll(spaceId);
         }
 
-        public Root Get(Guid spaceId, Guid rootId)
+        public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             return _logicalContext.Roots.Get(spaceId, rootId);
         }
 
-        public Root Get(Guid spaceId, string name)
+        public Task<Root> Get(Guid spaceId, string name)
         {
             return _logicalContext.Roots.Get(spaceId, name);
         }
 
-        public Root Add(Guid spaceId, Root root)
+        public Task<Root> Add(Guid spaceId, Root root)
         {
             return _logicalContext.Roots.Add(spaceId, root);
         }
@@ -43,7 +44,7 @@
             _logicalContext.Roots.Remove(spaceId, root);
         }
 
-        public Root Update(Guid spaceId, Guid rootId, Root root)
+        public Task<Root> Update(Guid spaceId, Guid rootId, Root root)
         {
             return _logicalContext.Roots.Update(spaceId, rootId, root);
         }

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
@@ -53,7 +54,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppFileManager_LoadFromFile_String()
+        public async Task NetCoreAppFileManager_LoadFromFile_String()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -63,14 +64,14 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var loadedFile = Storage.FileManager.LoadFromFile<string>(file);
+            var loadedFile = await Storage.FileManager.LoadFromFile<string>(file);
 
             // Assert.
             Assert.Equal(file, loadedFile);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppFileManager_LoadFromFile_Ulong()
+        public async Task NetCoreAppFileManager_LoadFromFile_Ulong()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -81,7 +82,7 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var resultPackage = Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
+            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
 
             // Assert.
             Assert.Equal(startPackage.Value, resultPackage.Value);
@@ -122,7 +123,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppFileManager_LoadFromFile_Ulong_LongFilename()
+        public async Task NetCoreAppFileManager_LoadFromFile_Ulong_LongFilename()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateLongContainerIndentifier(Storage.ContainerProvider);
@@ -133,7 +134,7 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var resultPackage = Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
+            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
 
             // Assert.
             Assert.Equal(startPackage.Value, resultPackage.Value);

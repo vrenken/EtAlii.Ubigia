@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class EntryPreparer : IEntryPreparer
     {
@@ -11,27 +12,28 @@
             _context = context;
         }
 
-        public Entry Prepare(Guid spaceId)
+        public async Task<Entry> Prepare(Guid spaceId)
         {
             // ReSharper disable once NotAccessedVariable
-            Identifier previousHeadIdentifier; // We don't seem to wire up the head in our preparation. This feels incorrect.
-            var currentHeadIdentifier = _context.Identifiers.GetNextHead(spaceId, out previousHeadIdentifier);
+            var head = await _context.Identifiers.GetNextHead(spaceId);
+            // ReSharper disable once UnusedVariable
+            var previousHeadIdentifier = head.PreviousHeadIdentifier; // We don't seem to wire up the head in our preparation. This feels incorrect.
 
             //var relation = Relation.NewRelation(previousHeadIdentifier)
-            var entry = Entry.NewEntry(currentHeadIdentifier);//, relation)
+            var entry = Entry.NewEntry(head.NextHeadIdentifier);//, relation)
 
             _context.Entries.Store(entry);
 
             return entry;
         }
 
-        public Entry Prepare(Guid spaceId, Identifier id)
+        public Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
             var entry = Entry.NewEntry(id, Relation.None);
 
             _context.Entries.Store(entry);
 
-            return entry;
+            return Task.FromResult(entry);
         }
     }
 }

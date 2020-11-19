@@ -8,8 +8,8 @@ package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 service EntryGrpcService
 {
 	rpc GetSingle (EntrySingleRequest) returns (EntrySingleResponse) {}
-    rpc GetMultiple (EntryMultipleRequest) returns (EntryMultipleResponse) {}
-    rpc GetRelated (EntryRelatedRequest) returns (EntryMultipleResponse) {}
+    rpc GetMultiple (EntryMultipleRequest) returns (stream EntryMultipleResponse) {}
+    rpc GetRelated (EntryRelatedRequest) returns (stream EntryMultipleResponse) {}
     rpc Post (EntryPostRequest) returns (EntrySingleResponse) {}
 	rpc Put (EntryPutRequest) returns (EntrySingleResponse) {}
 	rpc Delete (EntrySingleRequest) returns (EntrySingleResponse) {}
@@ -40,7 +40,7 @@ message EntrySingleResponse
 
 message EntryMultipleResponse
 {
-	repeated Entry Entries = 1;
+	Entry Entry = 1;
 }
 
 message EntryPostRequest

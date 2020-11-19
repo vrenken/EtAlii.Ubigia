@@ -7,44 +7,56 @@
 
     public partial class UserEntryService
     {
-        public override Task<EntrySingleResponse> GetSingle(EntrySingleRequest request, ServerCallContext context)
+        public override async Task<EntrySingleResponse> GetSingle(EntrySingleRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
-            var entry = _items.Get(entryId, entryRelations);
+            var entry = await _items
+                .Get(entryId, entryRelations)
+                .ConfigureAwait(false);
             
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
-        public override Task<EntryMultipleResponse> GetMultiple(EntryMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(EntryMultipleRequest request, IServerStreamWriter<EntryMultipleResponse> responseStream, ServerCallContext context)
         {
             var entryIds = request.EntryIds.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
-            var entries = _items.Get(entryIds, entryRelations);
+            var entries = _items
+                .Get(entryIds, entryRelations)
+                .ConfigureAwait(false); 
 
-            var response = new EntryMultipleResponse();
-            response.Entries.AddRange(entries.ToWire());
-            return Task.FromResult(response);
+            await foreach (var entry in entries)
+            {
+                var response = new EntryMultipleResponse
+                {
+                    Entry = entry.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
-        public override async Task<EntryMultipleResponse> GetRelated(EntryRelatedRequest request, ServerCallContext context)
+
+        public override async Task GetRelated(EntryRelatedRequest request, IServerStreamWriter<EntryMultipleResponse> responseStream, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var entryRelations = request.EntryRelations.ToLocal();
             var entriesWithRelation = request.EntriesWithRelation.ToLocal();
-            var entries = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
-
-            var response = new EntryMultipleResponse(); // TODO: AsyncEnumerable - refactor to grpc stream?
+            var entries = _items
+                .GetRelated(entryId, entriesWithRelation, entryRelations)
+                .ConfigureAwait(false);
 
             await foreach (var entry in entries)
             {
-                response.Entries.Add(entry.ToWire());
+                var response = new EntryMultipleResponse
+                {
+                    Entry = entry.ToWire()
+                };
+                await responseStream.WriteAsync(response);
             }
-            
-            return response;
         }
     }
 }

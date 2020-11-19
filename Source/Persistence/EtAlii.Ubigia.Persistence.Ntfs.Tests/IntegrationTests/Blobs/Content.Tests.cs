@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -20,7 +21,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void Content_Store_And_Retrieve_Check_Parts()
+        public async Task Content_Store_And_Retrieve_Check_Parts()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -28,7 +29,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, content);
-            var retrievedContent = Storage.Blobs.Retrieve<Content>(containerId);
+            var retrievedContent = await Storage.Blobs.Retrieve<Content>(containerId);
 
             // Assert.
             AssertData.AreEqual(content, retrievedContent, false);
@@ -54,13 +55,13 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void Content_Retrieve_None_Existing()
+        public async Task Content_Retrieve_None_Existing()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var content = Storage.Blobs.Retrieve<Content>(containerId);
+            var content = await Storage.Blobs.Retrieve<Content>(containerId);
 
             // Assert.
             Assert.Null(content);

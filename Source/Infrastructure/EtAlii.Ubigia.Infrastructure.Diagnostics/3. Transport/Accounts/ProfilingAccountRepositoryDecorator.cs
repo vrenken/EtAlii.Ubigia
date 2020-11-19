@@ -58,12 +58,15 @@
             return account;
         }
 
-        public IEnumerable<Account> GetAll()
+        public async IAsyncEnumerable<Account> GetAll()
         {
             var start = Environment.TickCount;
-            var accounts = _repository.GetAll();
+            var items = _repository.GetAll();
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return accounts;
         }
 
         public Account Get(Guid itemId)

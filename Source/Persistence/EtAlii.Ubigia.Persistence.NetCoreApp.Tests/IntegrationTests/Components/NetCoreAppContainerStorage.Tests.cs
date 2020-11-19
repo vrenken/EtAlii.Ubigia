@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -38,7 +39,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_Entry()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_Entry()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -50,7 +51,7 @@
             Storage.Components.Store(containerId, entryComponent);
 
             // Act.
-            var retrievedEntry = Storage.Components.Retrieve<IdentifierComponent>(containerId);
+            var retrievedEntry = await Storage.Components.Retrieve<IdentifierComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedEntry);
@@ -58,7 +59,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_ChildrenComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_ChildrenComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -70,7 +71,9 @@
             Storage.Components.Store(containerId, originalChildren);
 
             // Act.
-            var retrievedChildren = Storage.Components.RetrieveAll<ChildrenComponent>(containerId).SingleOrDefault();
+            var retrievedChildren = await Storage.Components
+                .RetrieveAll<ChildrenComponent>(containerId)
+                .SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(retrievedChildren);
@@ -113,7 +116,7 @@
         */
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_ParentComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_ParentComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -125,7 +128,7 @@
             Storage.Components.Store(containerId, originalParent);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<ParentComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<ParentComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -136,7 +139,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_NextComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_NextComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -148,7 +151,7 @@
             Storage.Components.Store(containerId, originalNext);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<NextComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<NextComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -159,7 +162,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_PreviousComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_PreviousComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -171,7 +174,7 @@
             Storage.Components.Store(containerId, originalPrevious);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<PreviousComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<PreviousComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -182,7 +185,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_UpdateComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_UpdateComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -194,7 +197,9 @@
             Storage.Components.Store(containerId, originalUpdates);
 
             // Act.
-            var retrievedData = Storage.Components.RetrieveAll<UpdatesComponent>(containerId);
+            var retrievedData = await Storage.Components
+                .RetrieveAll<UpdatesComponent>(containerId)
+                .ToArrayAsync();
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -205,7 +210,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_DowndateComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_DowndateComponent()
         {
             // Arrange.
             var storageId = Guid.NewGuid();
@@ -217,7 +222,7 @@
             Storage.Components.Store(containerId, originalDowndate);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<DowndateComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<DowndateComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -339,7 +344,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_TypeComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_TypeComponent()
         {
             // Arrange.
             var type = Guid.NewGuid().ToString();
@@ -350,7 +355,7 @@
             Storage.Components.Store(containerId, originalType);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<TypeComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<TypeComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -361,7 +366,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NetCoreAppComponentStorage_Store_Retrieve_TagComponent()
+        public async Task NetCoreAppComponentStorage_Store_Retrieve_TagComponent()
         {
             // Arrange.
             var tag = Guid.NewGuid().ToString();
@@ -372,7 +377,7 @@
             Storage.Components.Store(containerId, originalTag);
 
             // Act.
-            var retrievedData = Storage.Components.Retrieve<TagComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<TagComponent>(containerId);
 
             // Assert.
             Assert.NotNull(retrievedData);

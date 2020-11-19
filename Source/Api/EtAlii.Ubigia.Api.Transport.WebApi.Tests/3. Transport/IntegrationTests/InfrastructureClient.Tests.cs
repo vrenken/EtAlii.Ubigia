@@ -84,7 +84,7 @@
             var act = new Func<Task>(async () => await client.Get<TestStatus>(null));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidOperationException>(act);
+            await Assert.ThrowsAsync<InfrastructureConnectionException>(act);
         }
     }
 }

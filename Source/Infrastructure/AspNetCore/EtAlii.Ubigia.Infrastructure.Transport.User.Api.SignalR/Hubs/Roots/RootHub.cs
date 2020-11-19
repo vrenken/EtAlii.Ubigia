@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
 
@@ -18,12 +20,15 @@
         }
 
         // Get all spaces for the specified accountid
-        public IEnumerable<Root> GetForSpace(Guid spaceId)
+        public async Task<IEnumerable<Root>> GetForSpace(Guid spaceId) 
         {
             IEnumerable<Root> response;
             try
             {
-                response = _items.GetAll(spaceId);
+                response = await _items
+                    .GetAll(spaceId)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false); // TODO: AsyncEnumerable
             }
             catch (Exception e)
             {
@@ -34,12 +39,14 @@
 
 
         // Get Item by id
-        public Root GetById(Guid spaceId, Guid rootId)
+        public async Task<Root> GetById(Guid spaceId, Guid rootId)
         {
             Root response;
             try
             {
-                response = _items.Get(spaceId, rootId);
+                response = await _items
+                    .Get(spaceId, rootId)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -49,12 +56,14 @@
         }
 
         // Get Item by id
-        public Root GetByName(Guid spaceId, string rootName)
+        public async Task<Root> GetByName(Guid spaceId, string rootName)
         {
             Root response;
             try
             {
-                response = _items.Get(spaceId, rootName);
+                response = await _items
+                    .Get(spaceId, rootName)
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -64,12 +73,14 @@
         }
 
         // Add item
-        public Root Post(Guid spaceId, Root root)
+        public async Task<Root> Post(Guid spaceId, Root root)
         {
             Root response;
             try
             {
-                response = _items.Add(spaceId, root);
+                response = await _items
+                    .Add(spaceId, root)
+                    .ConfigureAwait(false);
 
                 if (response == null)
                 {
@@ -87,12 +98,14 @@
         }
 
         // Update Item by id
-        public Root Put(Guid spaceId, Guid rootId, Root root)
+        public async Task<Root> Put(Guid spaceId, Guid rootId, Root root)
         {
             Root response;
             try
             {
-                response = _items.Update(spaceId, rootId, root);
+                response = await _items
+                    .Update(spaceId, rootId, root)
+                    .ConfigureAwait(false);
 
                 // Send the changed event.
                 SignalChanged(root.Id); // spaceId, 

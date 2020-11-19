@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,14 @@
         }
 
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId)
+        public async Task<IActionResult> Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId)
         {
             IActionResult response;
             try
             {
-                var content = _items.Get(entryId);
+                var content = await _items
+                    .Get(entryId)
+                    .ConfigureAwait(false);
                 response = Ok((Content) content);
             }
             catch (Exception ex)
@@ -33,12 +36,14 @@
         }
 
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]ulong contentPartId)
+        public async Task<IActionResult> Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]ulong contentPartId)
         {
             IActionResult response;
             try
             {
-                var contentPart = _items.Get(entryId, contentPartId);
+                var contentPart = await _items
+                    .Get(entryId, contentPartId)
+                    .ConfigureAwait(false);
                 response = Ok((ContentPart) contentPart);
             }
             catch (Exception ex)
@@ -55,13 +60,15 @@
         /// <param name="content"></param>
         /// <returns></returns>
         [HttpPost] 
-        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
+        public async Task<IActionResult> Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
         {
             IActionResult response;
             try
             {
                 // Store the content.
-                _items.Store(entryId, content);
+                await _items
+                    .Store(entryId, content)
+                    .ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok();
@@ -81,7 +88,7 @@
         /// <param name="contentPart"></param>
         /// <returns></returns>
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] ulong contentPartId, [FromBody] ContentPart contentPart)
+        public async Task<IActionResult> Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] ulong contentPartId, [FromBody] ContentPart contentPart)
         {
             // Remark. We cannot have two post methods at the same time. The hosting 
             // framework gets confused and does not out of the box know what method to choose.
@@ -98,7 +105,9 @@
                 }
 
                 // Store the content.
-                _items.Store(entryId, contentPart);
+                await _items
+                    .Store(entryId, contentPart)
+                    .ConfigureAwait(false);
 
                 // Create the response.
                 response = Ok();

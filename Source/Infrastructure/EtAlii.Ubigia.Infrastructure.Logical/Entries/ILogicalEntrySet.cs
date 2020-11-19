@@ -2,15 +2,16 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface ILogicalEntrySet
     {
-        Entry Prepare(Guid spaceId);
-        Entry Prepare(Guid spaceId, Identifier id);
+        Task<Entry> Prepare(Guid spaceId);
+        Task<Entry> Prepare(Guid spaceId, Identifier id);
 
-        Entry Get(Identifier identifier, EntryRelation entryRelations);
-        IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
-        IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
+        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
+        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
 
         Entry Store(IEditableEntry entry);
         Entry Store(Entry entry);

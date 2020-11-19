@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -47,7 +48,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableJsonItemSerializer_Deserialize_Item()
+        public async Task PortableJsonItemSerializer_Deserialize_Item()
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
@@ -62,7 +63,7 @@
 
             // Act.
             storageSerializer.Serialize(fileName, testItem);
-            var retrievedTestItem = storageSerializer.Deserialize<SimpleTestItem>(fileName);
+            var retrievedTestItem = await storageSerializer.Deserialize<SimpleTestItem>(fileName);
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);

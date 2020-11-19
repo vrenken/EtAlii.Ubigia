@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -143,7 +144,7 @@
         }
 
         [Fact]
-        public void InMemoryItemStorage_Store_Retrieve_SimpleTestItem()
+        public async Task InMemoryItemStorage_Store_Retrieve_SimpleTestItem()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -152,7 +153,7 @@
 
             // Act.
             Storage.Items.Store(item, id, containerId);
-            var retrievedItem = Storage.Items.Retrieve<SimpleTestItem>(id, containerId);
+            var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(id, containerId);
 
             // Assert.
             Assert.NotNull(retrievedItem);
@@ -161,7 +162,7 @@
         }
 
         [Fact]
-        public void InMemoryItemStorage_Store_Retrieve_1000_SimpleTestItems()
+        public async Task InMemoryItemStorage_Store_Retrieve_1000_SimpleTestItems()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -180,7 +181,7 @@
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                var retrievedItem = Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId);
+                var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId);
 
                 // Assert.
                 Assert.NotNull(retrievedItem);

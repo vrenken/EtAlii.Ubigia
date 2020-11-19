@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
+
     public interface IBlobSummaryCalculator
     {
-        BlobSummary Calculate<T>(ContainerIdentifier container)
+        Task<BlobSummary> Calculate<T>(ContainerIdentifier container)
             where T: BlobBase;
     }
 }

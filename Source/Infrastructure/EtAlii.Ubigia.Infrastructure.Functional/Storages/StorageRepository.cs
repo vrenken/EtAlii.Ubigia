@@ -33,7 +33,7 @@
             return _logicalContext.Storages.Get(name);
         }
 
-        public IEnumerable<Storage> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
             return _logicalContext.Storages.GetAll();
         }

@@ -18,16 +18,18 @@
         }
         
         
-        public override Task<ContentDefinitionGetResponse> Get(ContentDefinitionGetRequest request, ServerCallContext context)
+        public override async Task<ContentDefinitionGetResponse> Get(ContentDefinitionGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
-            var contentDefinition = (ContentDefinition)_items.Get(entryId);
+            var contentDefinition = (ContentDefinition)await _items
+                .Get(entryId)
+                .ConfigureAwait(false);
 
             var response = new ContentDefinitionGetResponse
             {
                 ContentDefinition = contentDefinition.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         public override Task<ContentDefinitionPostResponse> Post(ContentDefinitionPostRequest request, ServerCallContext context)
@@ -41,7 +43,7 @@
             return Task.FromResult(response);
         }
 
-        public override Task<ContentDefinitionPartPostResponse> PostPart(ContentDefinitionPartPostRequest request, ServerCallContext context)
+        public override async Task<ContentDefinitionPartPostResponse> PostPart(ContentDefinitionPartPostRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var contentDefinitionPart = request.ContentDefinitionPart.ToLocal();
@@ -52,10 +54,12 @@
                     throw new InvalidOperationException("ContentDefinitionPartId does not match");
                 }
 
-            _items.Store(entryId, contentDefinitionPart);
+            await _items
+                .Store(entryId, contentDefinitionPart)
+                .ConfigureAwait(false);
 
             var response = new ContentDefinitionPartPostResponse();
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

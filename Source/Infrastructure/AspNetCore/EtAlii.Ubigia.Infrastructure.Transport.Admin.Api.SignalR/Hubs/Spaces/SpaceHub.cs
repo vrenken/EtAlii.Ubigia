@@ -76,18 +76,35 @@
 		}
 
 		// Get all Items
-		public IEnumerable<Space> GetAll()
+		public async IAsyncEnumerable<Space> GetAll()
         {
-            IEnumerable<Space> response;
-            try
-            {
-                response = _items.GetAll();
-            }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Space GET client request", e);
-            }
-            return response;
+	        // The structure below might seem weird,
+	        // but it is not possible to combine a try-catch with the yield needed
+	        // enumerating an IAsyncEnumerable.
+	        // The only way to solve this is using the enumerator. 
+	        var enumerator = _items
+		        .GetAll()
+		        .GetAsyncEnumerator();
+	        var hasResult = true;
+	        while (hasResult)
+	        {
+		        Space item;
+		        try
+		        {
+			        hasResult = await enumerator
+				        .MoveNextAsync()
+				        .ConfigureAwait(false);
+			        item = hasResult ? enumerator.Current : null;
+		        }
+		        catch (Exception e)
+		        {
+			        throw new InvalidOperationException("Unable to serve a Space GET client request", e);
+		        }
+		        if (item != null)
+		        {
+			        yield return item;
+		        }
+	        }
         }
 
         // Get Item by id

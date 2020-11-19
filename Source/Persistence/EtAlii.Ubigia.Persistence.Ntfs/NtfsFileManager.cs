@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System.IO;
+    using System.Threading.Tasks;
     using Microsoft.Experimental.IO;
 
     internal partial class NtfsFileManager : IFileManager
@@ -45,7 +46,7 @@
             }
         }
 
-        public T LoadFromFile<T>(string path)
+        public async Task<T> LoadFromFile<T>(string path)
             where T : class
         {
             T item = null;
@@ -56,7 +57,7 @@
 
             if (LongPathFile.Exists(path))
             {
-                item = _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path);
             }
 
             return item;

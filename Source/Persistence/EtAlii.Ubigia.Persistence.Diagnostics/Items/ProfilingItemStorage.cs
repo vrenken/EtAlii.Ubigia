@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
 
     public class ProfilingItemStorage : IItemStorage
@@ -37,10 +38,10 @@
             _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }
 
-        public T Retrieve<T>(Guid id, ContainerIdentifier container) where T : class
+        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container) where T : class
         {
             var startTicks = Environment.TickCount;
-            var result = _storage.Retrieve<T>(id, container);
+            var result = await _storage.Retrieve<T>(id, container);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(RetrieveCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
             return result;

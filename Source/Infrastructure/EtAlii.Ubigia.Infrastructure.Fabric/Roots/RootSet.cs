@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class RootSet : IRootSet
     {
@@ -22,22 +23,22 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _rootUpdater = rootUpdater;
         }
 
-        public Root Add(Guid spaceId, Root root)
+        public Task<Root> Add(Guid spaceId, Root root)
         {
             return _rootAdder.Add(spaceId, root);
         }
 
-        public IEnumerable<Root> GetAll(Guid spaceId)
+        public IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             return _rootGetter.GetAll(spaceId);
         }
 
-        public Root Get(Guid spaceId, Guid rootId)
+        public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             return _rootGetter.Get(spaceId, rootId);
         }
 
-        public Root Get(Guid spaceId, string name)
+        public Task<Root> Get(Guid spaceId, string name)
         {
             return _rootGetter.Get(spaceId, name);
         }
@@ -52,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _rootRemover.Remove(spaceId, root);
         }
 
-        public Root Update(Guid spaceId, Guid rootId, Root updatedRoot)
+        public Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
             return _rootUpdater.Update(spaceId, rootId, updatedRoot);
         }

@@ -118,22 +118,36 @@
 
         public async IAsyncEnumerable<Storage> GetAll()
         {
-            var result = new List<Storage>(); // TODO: AsyncEnumerable
-            try
-            {
-                var request = new AdminStorageMultipleRequest();
-                var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
-                result.AddRange(response.Storages.ToLocal());
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcStorageDataClient)}.GetAll()", e);
-            }
+            var request = new AdminStorageMultipleRequest();
+            var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
 
-            foreach (var item in result)
+            // The structure below might seem weird,
+            // but it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = call.ResponseStream
+                .ReadAllAsync()
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                yield return item;
+                StorageMultipleResponse item;
+                try
+                {
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
+                }
+                catch (RpcException e)
+                {
+                    throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.GetAll()", e);
+                }
+
+                if (item != null)
+                {
+                    yield return item.Storage.ToLocal();
+                }
             }
         }
 

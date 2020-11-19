@@ -104,7 +104,7 @@ namespace EtAlii.xTechnology.Hosting
             Action<IApplicationBuilder> configuration,
             Func<IServiceCollection, IServiceProvider> configureServices)
         {
-            if (path.HasValue && path.Value.EndsWith("/", StringComparison.Ordinal))
+            if (path.HasValue && path.Value!.EndsWith("/", StringComparison.Ordinal))
             {
                 throw new ArgumentException("The path must not end with a '/'", nameof(path));
             }

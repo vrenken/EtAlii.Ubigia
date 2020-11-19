@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
 
@@ -24,28 +25,28 @@
         }
 
 
-        public Identifier GetTail(Guid spaceId)
+        public async Task<Identifier> GetTail(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var result = _repository.GetTail(spaceId);
+            var result = await _repository.GetTail(spaceId);
             _profiler.WriteSample(GetTailCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return result;
         }
 
-        public Identifier GetCurrentHead(Guid spaceId)
+        public async Task<Identifier> GetCurrentHead(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var result = _repository.GetCurrentHead(spaceId);
+            var result = await _repository.GetCurrentHead(spaceId);
             _profiler.WriteSample(GetCurrentHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return result;
         }
 
-        public Identifier GetNextHead(Guid spaceId, out Identifier previousHeadIdentifier)
+        public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNextHead(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var result = _repository.GetNextHead(spaceId, out previousHeadIdentifier);
+            var head = await _repository.GetNextHead(spaceId);
             _profiler.WriteSample(GetGetNextHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return result;
+            return head;
         }
     }
 }

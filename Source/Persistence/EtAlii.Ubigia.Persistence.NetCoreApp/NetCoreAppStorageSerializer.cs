@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp
 {
     using System.IO;
+    using System.Threading.Tasks;
 
     public class NetCoreAppStorageSerializer : IStorageSerializer
     {
@@ -32,7 +33,7 @@
             _propertiesSerializer.Serialize(stream, item);
         }
 
-        public T Deserialize<T>(string fileName)
+        public Task<T> Deserialize<T>(string fileName)
             where T : class
         {
             using var stream = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);

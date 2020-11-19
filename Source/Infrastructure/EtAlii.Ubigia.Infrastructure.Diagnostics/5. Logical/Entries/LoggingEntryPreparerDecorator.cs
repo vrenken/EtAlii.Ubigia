@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Serilog;
 
@@ -14,13 +15,13 @@
             _entryPreparer = entryPreparer;
         }
 
-        public Entry Prepare(Guid spaceId, Identifier id)
+        public Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
             _logger.Verbose("Preparing entry for space: {spaceId} (Id: {identifier})", spaceId, id);
             return _entryPreparer.Prepare(spaceId);
         }
 
-        public Entry Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid spaceId)
         {
             _logger.Verbose("Preparing entry for space: {spaceId}", spaceId);
             return _entryPreparer.Prepare(spaceId);
