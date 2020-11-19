@@ -49,19 +49,21 @@
             return storage;
         }
 
-        public IEnumerable<Storage> GetAll()
+        public async IAsyncEnumerable<Storage> GetAll()
         {
             var message = "Getting all storages";
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var storages = _repository.GetAll();
+            var items = _repository.GetAll();
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got all storages (Duration: {Duration}ms)";
             _logger.Information(message, duration);
-
-            return storages;
         }
 
         public Storage Get(Guid itemId)

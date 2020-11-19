@@ -9,7 +9,7 @@
 		Account Get(string accountName);
 		Account Get(string accountName, string password);
 
-        IEnumerable<Account> GetAll();
+        IAsyncEnumerable<Account> GetAll();
         Account Get(Guid itemId);
 
         Task<Account> Add(Account item, AccountTemplate template);

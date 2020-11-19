@@ -48,12 +48,12 @@
         // Get all Items
         public override async Task GetMultiple(AccountMultipleRequest request, IServerStreamWriter<AccountMultipleResponse> responseStream, ServerCallContext context)
         {
-            var accounts = _items.GetAll(); // TODO: AsyncEnumerable 
-            foreach (var account in accounts)
+            var items = _items.GetAll();  
+            await foreach (var item in items)
             {
                 var response = new AccountMultipleResponse
                 {
-                    Account = account.ToWire()
+                    Account = item.ToWire()
                 };
                 await responseStream.WriteAsync(response);
             }

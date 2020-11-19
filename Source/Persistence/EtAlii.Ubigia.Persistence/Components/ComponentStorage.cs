@@ -53,23 +53,33 @@
                 throw new StorageException("No container specified");
             }
 
-            var components = new List<T>(); // TODO: AsyncEnumerable
-            try
+            // The structure below might seem weird,
+            // but it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = _componentRetriever
+                .RetrieveAll<T>(container)
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                var items = _componentRetriever.RetrieveAll<T>(container);
-                await foreach (var item in items) 
+                T item;
+                try
                 {
-                    components.Add(item);
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
                 }
-            }
-            catch (Exception e)
-            {
-                throw new StorageException("Unable to retrieve components from the specified container", e);
-            }
+                catch (Exception e)
+                {
+                    throw new StorageException("Unable to retrieve components from the specified container", e);
+                }
 
-            foreach (var component in components)
-            {
-                yield return component;
+                if (item != null)
+                {
+                    yield return item;
+                }
             }
         }
 

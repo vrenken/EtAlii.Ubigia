@@ -208,13 +208,15 @@
             var addedAccount2 = await repository.Add(account, AccountTemplate.User);
 
             // Act.
-            var accounts = repository.GetAll();
+            var accounts = await repository
+	            .GetAll()
+	            .ToArrayAsync();
             
             // Assert.
             Assert.NotNull(addedAccount1);
             Assert.NotNull(addedAccount2);
             Assert.NotNull(accounts);
-            Assert.True(accounts.Count() >= 2);
+            Assert.True(accounts.Length >= 2);
         }
 
         private Account CreateAccount()

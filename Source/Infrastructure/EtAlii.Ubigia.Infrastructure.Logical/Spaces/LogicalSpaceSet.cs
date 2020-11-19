@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return space;
         }
 
-        public IEnumerable<Space> GetAll()
+        public IAsyncEnumerable<Space> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }

@@ -52,12 +52,15 @@
             return storage;
         }
 
-        public IEnumerable<Storage> GetAll()
+        public async IAsyncEnumerable<Storage> GetAll()
         {
             var start = Environment.TickCount;
-            var storages = _repository.GetAll();
+            var items = _repository.GetAll();
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return storages;
         }
 
         public Storage Get(Guid itemId)

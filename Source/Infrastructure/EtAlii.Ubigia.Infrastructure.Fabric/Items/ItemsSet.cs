@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _itemAdder.Add(items, cannAddFunction, item);
         }
 
-        public IEnumerable<T> GetAll<T>(IList<T> items) 
+        public IAsyncEnumerable<T> GetAll<T>(IList<T> items) 
             where T : class, IIdentifiable
         {
             return _itemGetter.GetAll(items);

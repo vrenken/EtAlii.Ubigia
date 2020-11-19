@@ -13,7 +13,7 @@
 
         Space Add(Space item, SpaceTemplate template, out bool isAdded);
 
-        IEnumerable<Space> GetAll();
+        IAsyncEnumerable<Space> GetAll();
 
         Space Get(Guid id);
 
