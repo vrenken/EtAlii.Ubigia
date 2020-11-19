@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     internal class ComponentStorage : IComponentStorage
     {
@@ -44,7 +45,7 @@
             }
         }
 
-        public IEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
+        public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
             where T : CompositeComponent
         {
             if (container == ContainerIdentifier.Empty)
@@ -52,17 +53,37 @@
                 throw new StorageException("No container specified");
             }
 
-            try
+            // The structure below might seem weird,
+            // but it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = _componentRetriever
+                .RetrieveAll<T>(container)
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                return _componentRetriever.RetrieveAll<T>(container);
-            }
-            catch (Exception e)
-            {
-                throw new StorageException("Unable to retrieve components from the specified container", e);
+                T item;
+                try
+                {
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
+                }
+                catch (Exception e)
+                {
+                    throw new StorageException("Unable to retrieve components from the specified container", e);
+                }
+
+                if (item != null)
+                {
+                    yield return item;
+                }
             }
         }
 
-        public T Retrieve<T>(ContainerIdentifier container)
+        public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : NonCompositeComponent
         {
             if (container == ContainerIdentifier.Empty)
@@ -72,7 +93,7 @@
 
             try
             {
-                return _componentRetriever.Retrieve<T>(container);
+                return await _componentRetriever.Retrieve<T>(container);
             }
             catch (Exception e)
             {

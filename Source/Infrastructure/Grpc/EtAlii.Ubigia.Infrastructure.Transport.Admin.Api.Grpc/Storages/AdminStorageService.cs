@@ -55,22 +55,23 @@
         }
 
         // Get all Items
-        public override Task<StorageMultipleResponse> GetMultiple(StorageMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(StorageMultipleRequest request, IServerStreamWriter<StorageMultipleResponse> responseStream, ServerCallContext context)
         {
-            var storages = _items
-                .GetAll()
-                .ToWire();
-            var response = new StorageMultipleResponse();
-            response.Storages.AddRange(storages);
-
-            return Task.FromResult(response);
+            var items = _items.GetAll();
+            await foreach (var item in items)
+            {
+                var response = new StorageMultipleResponse
+                {
+                    Storage = item.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
 
         public override async Task<StorageSingleResponse> Post(StorageSingleRequest request, ServerCallContext context)
         {
             var storage = request.Storage.ToLocal();
             storage = await _items.Add(storage);
-
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System.IO;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
 
     //[Obsolete("JSON based storage has some serious drawbacks. Do not use!")]
@@ -27,12 +28,13 @@
             _serializer.Serialize(writer, item);
         }
 
-        public T Deserialize<T>(Stream stream) where T : class
+        public Task<T> Deserialize<T>(Stream stream) where T : class
         {
             using var textReader = new StreamReader(stream);
             using var reader = new JsonTextReader(textReader);
             
-            return _serializer.Deserialize<T>(reader);
+            var item = _serializer.Deserialize<T>(reader);
+            return Task.FromResult(item);
         }
     }
 }

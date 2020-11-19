@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -67,9 +66,7 @@
 
         public IAsyncEnumerable<Account> GetAll()
         {
-            return _infrastructure.Accounts
-                .GetAll()
-                .ToAsyncEnumerable();
+            return _infrastructure.Accounts.GetAll();
         }
     }
 }

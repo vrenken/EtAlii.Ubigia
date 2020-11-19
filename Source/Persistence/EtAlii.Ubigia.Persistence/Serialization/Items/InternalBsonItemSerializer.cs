@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System.IO;
+    using System.Threading.Tasks;
     using Newtonsoft.Json.Bson;
 
     public class InternalBsonItemSerializer : IInternalItemSerializer
@@ -21,12 +22,12 @@
             _serializer.Serialize(writer, new[] { item });
         }
 
-        public T Deserialize<T>(Stream stream) where T : class
+        public Task<T> Deserialize<T>(Stream stream) where T : class
         {
             using var reader = new BsonDataReader(stream) {CloseInput = false, ReadRootValueAsArray = true};
             
             var items = _serializer.Deserialize<T[]>(reader);
-            return items[0];
+            return Task.FromResult(items[0]);
         }
     }
 }

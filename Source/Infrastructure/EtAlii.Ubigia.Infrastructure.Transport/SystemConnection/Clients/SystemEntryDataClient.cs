@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -15,10 +14,12 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<IEditableEntry> Prepare()
+        public async Task<IEditableEntry> Prepare()
         {
-            var result = _infrastructure.Entries.Prepare(Connection.Space.Id);
-            return Task.FromResult<IEditableEntry>(result);
+            var result = await _infrastructure.Entries
+                .Prepare(Connection.Space.Id)
+                .ConfigureAwait(false);
+            return result;
         }
 
         public Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
@@ -27,22 +28,25 @@
             return Task.FromResult<IReadOnlyEntry>(result);
         }
 
-        public Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = _infrastructure.Entries.Get(root.Identifier);
-            return Task.FromResult<IReadOnlyEntry>(result);
+            var result = await _infrastructure.Entries
+                .Get(root.Identifier)
+                .ConfigureAwait(false);
+            return result;
         }
 
-        public Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = _infrastructure.Entries.Get(entryIdentifier, entryRelations);
-            return Task.FromResult<IReadOnlyEntry>(result);
+            var result = await _infrastructure.Entries
+                .Get(entryIdentifier, entryRelations)
+                .ConfigureAwait(false);
+            return result;
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = _infrastructure.Entries.Get(entryIdentifiers, entryRelations);
-            return result.ToAsyncEnumerable(); // TODO: AsyncEnumerable
+            return _infrastructure.Entries.Get(entryIdentifiers, entryRelations);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)

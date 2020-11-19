@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System.IO;
+    using System.Threading.Tasks;
     using Microsoft.Experimental.IO;
 
     public class NtfsStorageSerializer : IStorageSerializer
@@ -33,7 +34,7 @@
             _propertiesSerializer.Serialize(stream, item);
         }
 
-        public T Deserialize<T>(string fileName)
+        public Task<T> Deserialize<T>(string fileName)
             where T : class
         {
             using var stream = LongPathFile.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);

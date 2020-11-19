@@ -8,7 +8,7 @@ package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 service StorageGrpcService  
 {
     rpc GetSingle (StorageSingleRequest) returns (StorageSingleResponse) {}
-    rpc GetMultiple (StorageMultipleRequest) returns (StorageMultipleResponse) {}
+    rpc GetMultiple (StorageMultipleRequest) returns (stream StorageMultipleResponse) {}
 	rpc GetLocal (StorageSingleRequest) returns (StorageSingleResponse) {}
 	rpc Post (StorageSingleRequest) returns (StorageSingleResponse) {}
 	rpc Put (StorageSingleRequest) returns (StorageSingleResponse) {}
@@ -36,5 +36,5 @@ message StorageSingleResponse
 
 message StorageMultipleResponse
 {
-    repeated Storage Storages = 1;
+    Storage Storage = 1;
 }

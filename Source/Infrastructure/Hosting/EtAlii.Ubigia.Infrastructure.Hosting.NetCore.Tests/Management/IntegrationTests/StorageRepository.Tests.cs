@@ -125,13 +125,15 @@
             var addedStorage2 = await repository.Add(storage);
 
 			// Act.
-            var storages = repository.GetAll();
+            var storages = await repository
+	            .GetAll()
+	            .ToArrayAsync();
 
 	        // Assert.
 	        Assert.NotNull(addedStorage1);
 	        Assert.NotNull(addedStorage2);
 	        Assert.NotNull(storages);
-            Assert.True(storages.Count() >= 2);
+            Assert.True(storages.Length >= 2);
         }
 
 

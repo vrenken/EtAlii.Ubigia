@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
+
     public interface IContentPartStorer
     {
-        void Store(Identifier identifier, ContentPart contentPart);
+        Task Store(Identifier identifier, ContentPart contentPart);
     }
 }

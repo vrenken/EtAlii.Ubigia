@@ -1,13 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public interface IImmutableFolderManager
     {
         void SaveToFolder<T>(T item, string itemName, string folder)
             where T : class;
 
-        T LoadFromFolder<T>(string folderName, string itemName)
+        Task<T> LoadFromFolder<T>(string folderName, string itemName)
             where T : class;
 
         IEnumerable<string> EnumerateFiles(string folderName);

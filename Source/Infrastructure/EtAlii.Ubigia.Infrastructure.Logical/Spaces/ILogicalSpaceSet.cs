@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     public interface ILogicalSpaceSet
     {
@@ -12,11 +13,11 @@
 
         Space Add(Space item, SpaceTemplate template, out bool isAdded);
 
-        IEnumerable<Space> GetAll();
+        IAsyncEnumerable<Space> GetAll();
 
         Space Get(Guid id);
 
-        ObservableCollection<Space> GetItems();
+        Task<ObservableCollection<Space>> GetItems();
 
         void Remove(Guid itemId);
 

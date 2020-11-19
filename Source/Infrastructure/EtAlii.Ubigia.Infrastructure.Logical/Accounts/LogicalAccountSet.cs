@@ -4,12 +4,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalAccountSet : ILogicalAccountSet
     {
         private readonly IFabricContext _fabric;
-        private readonly object _lockObject = new object();
+        private readonly object _lockObject = new();
 
         private const string Folder = "Accounts";
 
@@ -65,8 +66,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return originalItem;
         }
 
-
-        private ObservableCollection<Account> InitializeItems() =>_fabric.Items.GetItems<Account>(Folder);
+        private ObservableCollection<Account> InitializeItems()
+        {
+            var task = _fabric.Items.GetItems<Account>(Folder);
+            return task.GetAwaiter().GetResult();
+        }
 
         public Account Add(Account item, AccountTemplate template, out bool isAdded)
         {
@@ -82,7 +86,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return account;
         }
 
-        public IEnumerable<Account> GetAll()
+        public IAsyncEnumerable<Account> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
@@ -92,7 +96,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabric.Items.Get(Items, id);
         }
 
-        public ObservableCollection<Account> GetItems()
+        public Task<ObservableCollection<Account>> GetItems()
         {
             return _fabric.Items.GetItems<Account>(Folder);
         }

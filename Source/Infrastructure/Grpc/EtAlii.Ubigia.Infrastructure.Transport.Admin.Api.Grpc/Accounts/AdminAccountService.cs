@@ -46,15 +46,17 @@
         }
 
         // Get all Items
-        public override Task<AccountMultipleResponse> GetMultiple(AccountMultipleRequest request, ServerCallContext context)
+        public override async Task GetMultiple(AccountMultipleRequest request, IServerStreamWriter<AccountMultipleResponse> responseStream, ServerCallContext context)
         {
-            var accounts = _items
-                .GetAll()
-                .ToWire();
-            var response = new AccountMultipleResponse();
-            response.Accounts.AddRange(accounts);
-
-            return Task.FromResult(response);
+            var items = _items.GetAll();  
+            await foreach (var item in items)
+            {
+                var response = new AccountMultipleResponse
+                {
+                    Account = item.ToWire()
+                };
+                await responseStream.WriteAsync(response);
+            }
         }
 
         public override async Task<AccountSingleResponse> Post(AccountPostSingleRequest request, ServerCallContext context)

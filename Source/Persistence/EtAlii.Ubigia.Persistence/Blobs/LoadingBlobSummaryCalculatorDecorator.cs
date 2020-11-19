@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
+
     internal class LoadingBlobSummaryCalculatorDecorator : IBlobSummaryCalculator
     {
         private readonly IBlobSummaryCalculator _blobSummaryCalculator;
@@ -13,7 +15,7 @@
             _blobSummaryCalculator = blobSummaryCalculator;
         }
 
-        public BlobSummary Calculate<T>(ContainerIdentifier container)
+        public async Task<BlobSummary> Calculate<T>(ContainerIdentifier container)
             where T : BlobBase
         {
             BlobSummary summary;
@@ -26,12 +28,12 @@
             if (_fileManager.Exists(path))
             {
                 // Yup, we have a summary file. Lets load it.
-                summary = _fileManager.LoadFromFile<BlobSummary>(path);
+                summary = await _fileManager.LoadFromFile<BlobSummary>(path);
             }
             else
             {
                 // Nope, the summary file is not yet available. Lets calculate the summary.
-                summary = _blobSummaryCalculator.Calculate<T>(container);
+                summary = await _blobSummaryCalculator.Calculate<T>(container);
 
                 if (summary != null && summary.IsComplete)
                 {

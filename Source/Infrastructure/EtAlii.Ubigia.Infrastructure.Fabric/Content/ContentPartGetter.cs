@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class ContentPartGetter : IContentPartGetter
@@ -11,10 +12,10 @@
             _storage = storage;
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
+        public async Task<IReadOnlyContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            var contentPart = _storage.Blobs.Retrieve<ContentPart>(containerId, contentPartId);
+            var contentPart = await _storage.Blobs.Retrieve<ContentPart>(containerId, contentPartId);
             return contentPart;
         }
     }

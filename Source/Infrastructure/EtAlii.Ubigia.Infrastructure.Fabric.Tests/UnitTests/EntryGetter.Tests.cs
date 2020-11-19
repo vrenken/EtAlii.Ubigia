@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
     using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Tests;
@@ -19,7 +20,7 @@
         }
         
         [Fact]
-        public void EntryGetter_Get_All() 
+        public async Task EntryGetter_Get_All() 
         {
             // Arrange.
             var storage = CreateTestStorage();
@@ -28,7 +29,7 @@
             var testIdentifier = new TestIdentifierFactory().Create();
 
             // Act.
-            var item = entryGetter.Get(testIdentifier, EntryRelation.All);
+            var item = await entryGetter.Get(testIdentifier, EntryRelation.All);
 
             // Assert.
             Assert.Equal(Identifier.Empty,item.Id);

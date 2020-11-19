@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp
 {
     using System.IO;
+    using System.Threading.Tasks;
 
     internal partial class NetCoreAppFileManager : IFileManager
     {
@@ -44,7 +45,7 @@
             }
         }
 
-        public T LoadFromFile<T>(string path)
+        public async Task<T> LoadFromFile<T>(string path)
             where T : class
         {
             T item = null;
@@ -55,7 +56,7 @@
 
             if (File.Exists(path))
             {
-                item = _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path);
             }
 
             return item;

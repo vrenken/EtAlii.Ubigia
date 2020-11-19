@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
+
     public interface IStorageSerializer
     {
         string FileNameFormat { get; }
@@ -9,7 +11,7 @@
 
         void Serialize(string fileName, PropertyDictionary item);
 
-        T Deserialize<T>(string fileName)
+        Task<T> Deserialize<T>(string fileName)
             where T : class;
 
         PropertyDictionary Deserialize(string fileName);

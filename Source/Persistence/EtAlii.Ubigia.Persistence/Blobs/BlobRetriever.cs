@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
+
     internal class BlobRetriever : IBlobRetriever
     {
         private readonly IPathBuilder _pathBuilder;
@@ -16,7 +18,7 @@
             _blobSummaryCalculator = blobSummaryCalculator;
         }
 
-        public T Retrieve<T>(ContainerIdentifier container) 
+        public async Task<T> Retrieve<T>(ContainerIdentifier container) 
             where T : BlobBase
         {
             var blobName = BlobHelper.GetName<T>();
@@ -27,10 +29,14 @@
 
             if (_folderManager.Exists(folder))
             {
-                blob = _folderManager.LoadFromFolder<T>(folder, "Blob");
+                blob = await _folderManager
+                    .LoadFromFolder<T>(folder, "Blob")
+                    .ConfigureAwait(false);
                 BlobHelper.SetStored(blob, true);
 
-                var summary = _blobSummaryCalculator.Calculate<T>(container);
+                var summary = await _blobSummaryCalculator
+                    .Calculate<T>(container)
+                    .ConfigureAwait(false);
                 BlobHelper.SetSummary(blob, summary);
             }
 

@@ -4,12 +4,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalSpaceSet : ILogicalSpaceSet
     {
         private readonly IFabricContext _fabric;
-        private readonly object _lockObject = new object();
+        private readonly object _lockObject = new();
 
         private const string Folder = "Spaces";
 
@@ -60,8 +61,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Space> InitializeItems()
         {
-            var items = _fabric.Items.GetItems<Space>(Folder);
-            return items;
+            var task = _fabric.Items.GetItems<Space>(Folder);
+            return task.GetAwaiter().GetResult();
         }
 
         public Space Add(Space item, SpaceTemplate template, out bool isAdded)
@@ -71,7 +72,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return space;
         }
 
-        public IEnumerable<Space> GetAll()
+        public IAsyncEnumerable<Space> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
@@ -81,7 +82,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabric.Items.Get(Items, id);
         }
 
-        public ObservableCollection<Space> GetItems()
+        public Task<ObservableCollection<Space>> GetItems()
         {
             return _fabric.Items.GetItems<Space>(Folder);
         }

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     internal class BlobSummaryCalculator : IBlobSummaryCalculator
     {
@@ -13,7 +14,7 @@
             _fileManager = fileManager;
         }
 
-        public BlobSummary Calculate<T>(ContainerIdentifier container)
+        public async Task<BlobSummary> Calculate<T>(ContainerIdentifier container)
             where T: BlobBase
         {
             var summary = (BlobSummary)null;
@@ -26,7 +27,9 @@
             if (_fileManager.Exists(path))
             {
                 // Yup, we have a blob file. Lets load it.
-                var blob = _fileManager.LoadFromFile<T>(path);
+                var blob = await _fileManager
+                    .LoadFromFile<T>(path)
+                    .ConfigureAwait(false);
 
                 ulong totalAvailableParts = 0;
                 var availableParts = new List<ulong>();

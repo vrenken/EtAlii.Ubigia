@@ -8,7 +8,7 @@ package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 service AccountGrpcService
 {
 	rpc GetSingle (AccountSingleRequest) returns (AccountSingleResponse) {}
-	rpc GetMultiple (AccountMultipleRequest) returns (AccountMultipleResponse) {}
+	rpc GetMultiple (AccountMultipleRequest) returns (stream AccountMultipleResponse) {}
 	rpc Post (AccountPostSingleRequest) returns (AccountSingleResponse) {}
 	rpc Put (AccountSingleRequest) returns (AccountSingleResponse) {}
 	rpc Delete (AccountSingleRequest) returns (AccountSingleResponse) {}
@@ -40,5 +40,5 @@ message AccountSingleResponse
 
 message AccountMultipleResponse
 {
-	repeated Account Accounts = 1;
+	Account Account = 1;
 }

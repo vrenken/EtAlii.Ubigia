@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class ItemStorage : IItemStorage
     {
@@ -66,14 +67,14 @@
             }
         }
 
-        public T Retrieve<T>(Guid id, ContainerIdentifier container) 
+        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container) 
             where T : class
         {
             try
             {
                 var idName = id.ToString();
                 var fileName = _pathBuilder.GetFileName(idName, container);
-                return _fileManager.LoadFromFile<T>(fileName);
+                return await _fileManager.LoadFromFile<T>(fileName);
             }
             catch (Exception e)
             {

@@ -14,15 +14,17 @@
             _context = context;
         }
 
-        public Task Initialize(Space space, SpaceTemplate template)
+        public async Task Initialize(Space space, SpaceTemplate template)
         {
             var storageId = _context.Storages.GetLocal().Id;
             var accountId = space.AccountId;
             var spaceId = space.Id;
 
-            var roots = _context.Roots.GetAll(spaceId);
+            var hasRoots = await _context.Roots
+                .GetAll(spaceId)
+                .AnyAsync();
 
-            if (roots.Any())
+            if (hasRoots)
             {
                 throw new InvalidOperationException("The space already contains roots");
             }
@@ -37,7 +39,7 @@
             for (var i = 0; i < rootEntryCount; i++)
             {
                 var newId = Identifier.NewIdentifier(spaceIdentifier, 0, 0, (ulong)i);
-                var entry = (IEditableEntry)_context.Entries.Prepare(spaceId, newId);
+                var entry = (IEditableEntry)await _context.Entries.Prepare(spaceId, newId);
                 entry.Type = rootsToCreate[i];
                 if (i == 0)
                 {
@@ -55,10 +57,8 @@
 
             foreach (var rootEntry in rootEntries)
             {
-                _context.Roots.Add(spaceId, new Root { Name = rootEntry.Type, Identifier = rootEntry.Id });
+                await _context.Roots.Add(spaceId, new Root { Name = rootEntry.Type, Identifier = rootEntry.Id });
             }
-
-            return Task.CompletedTask;
         }
     }
 }

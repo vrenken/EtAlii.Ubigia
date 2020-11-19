@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Threading.Tasks;
 
     public class InMemoryFolderManager : IFolderManager
     {
@@ -44,7 +45,7 @@
             return _inMemoryItemsHelper.GetLenght(fileName);
         }
 
-        public T LoadFromFolder<T>(string folderName, string itemName)
+        public async Task<T> LoadFromFolder<T>(string folderName, string itemName)
             where T : class
         {
             T item = null;
@@ -56,7 +57,7 @@
 
                 if (_inMemoryItems.Exists(fileName))
                 {
-                    item = _serializer.Deserialize<T>(fileName);
+                    item = await _serializer.Deserialize<T>(fileName);
                 }
             }
             return item;

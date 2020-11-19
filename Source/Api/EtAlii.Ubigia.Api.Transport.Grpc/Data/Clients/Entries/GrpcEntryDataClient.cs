@@ -71,30 +71,40 @@
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
-        {                
-            var result = new List<IReadOnlyEntry>();
-            try
+        {
+            // TODO: this can be improved by using one single Web API call.
+
+            // The structure below might seem weird,
+            // but it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            using var enumerator = entryIdentifiers
+                .GetEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                // TODO: this can be improved by using one single Web API call.
-                foreach (var entryIdentifier in entryIdentifiers)
+                IReadOnlyEntry item;
+                try
                 {
-                    var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
+                    hasResult = enumerator.MoveNext();
+                    
+                    item = await scope.Cache.GetEntry(enumerator.Current, async () =>
                     {
-                        var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
+                        var request = new EntrySingleRequest { EntryId = enumerator.Current.ToWire(), EntryRelations = entryRelations.ToWire() };
                         var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                         return response.Entry.ToLocal();
                     });
-                    result.Add(entry);
-                }
-            }
-            catch (RpcException e)
-            {
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcEntryDataClient)}.Get()", e);
-            }
 
-            foreach (var item in result)
-            {
-                yield return item; // TODO: AsyncEnumerable - refactor to grpc stream?
+                }
+                catch (RpcException e)
+                {
+                    throw new InvalidInfrastructureOperationException($"{nameof(GrpcEntryDataClient)}.Get()", e);
+                }
+
+                if (item != null)
+                {
+                    yield return item;
+                }
             }
         }
 
@@ -113,11 +123,10 @@
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
-            var response = await _client.GetRelatedAsync(request, _transport.AuthenticationHeaders);
-            var result = response.Entries.ToLocal();
-            foreach (var item in result)
+            var call = _client.GetRelated(request, _transport.AuthenticationHeaders);
+            await foreach (var response in call.ResponseStream.ReadAllAsync())
             {
-                yield return item;
+                yield return response.Entry.ToLocal();
             }
         }
 

@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     public interface ILogicalAccountSet
     {
@@ -11,11 +12,11 @@
 
         Account Add(Account item, AccountTemplate template, out bool isAdded);
 
-        IEnumerable<Account> GetAll();
+        IAsyncEnumerable<Account> GetAll();
 
         Account Get(Guid id);
 
-        ObservableCollection<Account> GetItems();
+        Task<ObservableCollection<Account>> GetItems();
 
         void Remove(Guid itemId);
 

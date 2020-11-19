@@ -9,7 +9,7 @@
         IEnumerable<Space> GetAll(Guid accountId);
         Space Get(Guid accountId, string spaceName);
 
-		IEnumerable<Space> GetAll();
+        IAsyncEnumerable<Space> GetAll();
         Space Get(Guid itemId);
 
         Task<Space> Add(Space item, SpaceTemplate template);

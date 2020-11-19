@@ -3,18 +3,21 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class EntryController
     {
         [HttpGet]
-        public IActionResult GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
             {
-                var entry = _items.Get(entryId, entryRelations);
+                var entry = await _items
+                    .Get(entryId, entryRelations)
+                    .ConfigureAwait(false);
                 response = Ok(entry);
             }
             catch (Exception ex)
@@ -25,12 +28,19 @@
         }
 
         [HttpGet]
-        public IActionResult GetMultiple([RequiredFromQuery, ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetMultiple([RequiredFromQuery, ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
             {
-                var entries = entryIds.Select(entryId => _items.Get(entryId, entryRelations)).ToArray();
+                var entries = new List<Entry>();
+                foreach (var entryId in entryIds)
+                {
+                    var entry = await _items
+                        .Get(entryId, entryRelations)
+                        .ConfigureAwait(false);
+                    entries.Add(entry); // TODO: AsyncEnumerable 
+                }
                 response = Ok(entries);
             }
             catch (Exception ex)
@@ -41,13 +51,15 @@
         }
 
         [HttpGet]
-        //public IActionResult GetRelated([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
-        public IActionResult GetRelated([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetRelated([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
             {
-                var entries = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
+                var entries = await _items
+                    .GetRelated(entryId, entriesWithRelation, entryRelations)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
                 response = Ok(entries);
             }
             catch (Exception ex)

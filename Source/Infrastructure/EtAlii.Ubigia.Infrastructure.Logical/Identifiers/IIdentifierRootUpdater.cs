@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IIdentifierRootUpdater
     {
-        void Update(Guid spaceId, string name, Identifier id);
-
+        Task Update(Guid spaceId, string name, Identifier id);
     }
 }

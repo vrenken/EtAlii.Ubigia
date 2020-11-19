@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class AzureFolderManager : IFolderManager
     {
@@ -11,7 +12,7 @@
             throw new NotImplementedException();
         }
 
-        public T LoadFromFolder<T>(string folderName, string itemName)
+        public Task<T> LoadFromFolder<T>(string folderName, string itemName)
             where T : class
         {
             throw new NotImplementedException();

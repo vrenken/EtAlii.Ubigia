@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
+
     public interface IContentDefinitionGetter
     {
-        IReadOnlyContentDefinition Get(Identifier identifier);
+        Task<IReadOnlyContentDefinition> Get(Identifier identifier);
     }
 }

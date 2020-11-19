@@ -43,7 +43,7 @@
             return _logicalContext.Spaces.Get(itemId);
         }
 
-        public IEnumerable<Space> GetAll()
+        public IAsyncEnumerable<Space> GetAll()
         {
             return _logicalContext.Spaces.GetAll();
         }
