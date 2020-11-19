@@ -63,7 +63,7 @@
 
         public static Root CreateRoot()
         {
-            return new
+            return new Root
             {
                 Name = Guid.NewGuid().ToString(),
             };
