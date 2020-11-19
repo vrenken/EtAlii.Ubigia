@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Logical
                             entry = path[i - 1];
 
                             var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Parent, parameters.Scope);
-                            await foreach (var child in children) // TODO: AsyncEnumerable - Can't we yield here somehow? 
+                            await foreach (var child in children) // We cannot yield here somehow as the update method both adds and removes items. 
                             {
                                 await Update(results, child, parameters.Context, parameters.Scope);
                             }
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 entry = path[i - 1];
 
                 var children = context.Entries.GetRelated(entry.Id, EntryRelation.Parent, scope);
-                await foreach (var child in children)
+                await foreach (var child in children) // We cannot yield here somehow as the update method both adds and removes items.
                 {
                     await Update(result, child, context, scope);
                 }

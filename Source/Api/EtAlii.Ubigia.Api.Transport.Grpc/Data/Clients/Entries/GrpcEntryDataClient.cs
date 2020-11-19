@@ -74,12 +74,11 @@
         {
             // TODO: this can be improved by using one single Web API call.
 
-            // The structure below might seem weird,
-            // but it is not possible to combine a try-catch with the yield needed
+            // The structure below might seem weird.
+            // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
             // The only way to solve this is using the enumerator. 
-            using var enumerator = entryIdentifiers
-                .GetEnumerator();
+            using var enumerator = entryIdentifiers.GetEnumerator();
             var hasResult = true;
             while (hasResult)
             {
@@ -88,12 +87,14 @@
                 {
                     hasResult = enumerator.MoveNext();
                     
-                    item = await scope.Cache.GetEntry(enumerator.Current, async () =>
-                    {
-                        var request = new EntrySingleRequest { EntryId = enumerator.Current.ToWire(), EntryRelations = entryRelations.ToWire() };
-                        var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                        return response.Entry.ToLocal();
-                    });
+                    item = hasResult
+                        ? await scope.Cache.GetEntry(enumerator.Current, async () =>
+                        {
+                            var request = new EntrySingleRequest { EntryId = enumerator.Current.ToWire(), EntryRelations = entryRelations.ToWire() };
+                            var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                            return response.Entry.ToLocal();
+                        })
+                        : null;
 
                 }
                 catch (RpcException e)
