@@ -18,43 +18,49 @@
             _items = items;
         }
 
-        public override Task<ContentGetResponse> Get(ContentGetRequest request, ServerCallContext context)
+        public override async Task<ContentGetResponse> Get(ContentGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
-            var content = (Content)_items.Get(entryId);
+            var content = (Content)await _items
+                .Get(entryId)
+                .ConfigureAwait(false);
 
             var response = new ContentGetResponse
             {
                 Content = content.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
-        public override Task<ContentPartGetResponse> GetPart(ContentPartGetRequest request, ServerCallContext context)
+        public override async Task<ContentPartGetResponse> GetPart(ContentPartGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var contentPartId = request.ContentPartId;
 
-            var contentPart = (ContentPart)_items.Get(entryId, contentPartId);
+            var contentPart = (ContentPart)await _items
+                .Get(entryId, contentPartId)
+                .ConfigureAwait(false);
             var response = new ContentPartGetResponse
             {
                 ContentPart = contentPart.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
-        public override Task<ContentPostResponse> Post(ContentPostRequest request, ServerCallContext context)
+        public override async Task<ContentPostResponse> Post(ContentPostRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var content = request.Content.ToLocal();
 
-            _items.Store(entryId, content);
+            await _items
+                .Store(entryId, content)
+                .ConfigureAwait(false);
             
             var response = new ContentPostResponse();
-            return Task.FromResult(response);
+            return response;
         }
 
-        public override Task<ContentPartPostResponse> PostPart(ContentPartPostRequest request, ServerCallContext context)
+        public override async Task<ContentPartPostResponse> PostPart(ContentPartPostRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
             var contentPartId = request.ContentPartId;
@@ -65,10 +71,12 @@
                 throw new InvalidOperationException("ContentPartId does not match");
             }
         
-            _items.Store(entryId, contentPart );
+            await _items
+                .Store(entryId, contentPart )
+                .ConfigureAwait(false);
             
             var response = new ContentPartPostResponse();
-            return Task.FromResult(response);
+            return response;
         }
     }
 }

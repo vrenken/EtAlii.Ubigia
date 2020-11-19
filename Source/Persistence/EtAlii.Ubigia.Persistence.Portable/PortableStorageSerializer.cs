@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using PCLStorage;
 
     public class PortableStorageSerializer : IStorageSerializer
@@ -66,7 +67,7 @@
             _propertiesSerializer.Serialize(stream, item);
         }
 
-        public T Deserialize<T>(string fileName)
+        public async Task<T> Deserialize<T>(string fileName)
             where T : class
         {
             var parts = fileName.Split(PortablePath.DirectorySeparatorChar);
@@ -74,19 +75,11 @@
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
             var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
-            var getFolderTask = _storage.GetFolderAsync(folderName);
-            getFolderTask.Wait();
-            var folder = getFolderTask.Result;
+            var folder = await _storage.GetFolderAsync(folderName);
+            var file = await folder.GetFileAsync(fileName);
+            await using var stream = await file.OpenAsync(FileAccess.Read);
 
-            var getFileTask = folder.GetFileAsync(fileName);
-            getFileTask.Wait();
-
-            var openFileTask = getFileTask.Result.OpenAsync(FileAccess.Read);
-            openFileTask.Wait();
-
-            using var stream = openFileTask.Result;
-
-            return _itemSerializer.Deserialize<T>(stream);
+            return await _itemSerializer.Deserialize<T>(stream);
         }
 
         public PropertyDictionary Deserialize(string fileName)

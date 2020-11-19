@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using System.Threading.Tasks;
+
     public class ContentDefinitionSet : IContentDefinitionSet
     {
         private readonly IContentDefinitionGetter _contentDefinitionGetter;
@@ -20,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
 
-        public IReadOnlyContentDefinition Get(Identifier identifier)
+        public Task<IReadOnlyContentDefinition> Get(Identifier identifier)
         {
             return _contentDefinitionGetter.Get(identifier);
         }
 
-        public IReadOnlyContentDefinitionPart Get(Identifier identifier, ulong contentDefinitionPartId)
+        public Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             return _contentDefinitionPartGetter.Get(identifier, contentDefinitionPartId);
         }

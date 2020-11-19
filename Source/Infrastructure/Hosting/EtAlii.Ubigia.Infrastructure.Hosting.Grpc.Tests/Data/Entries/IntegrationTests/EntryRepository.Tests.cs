@@ -26,7 +26,7 @@
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             // Act.
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
@@ -42,7 +42,7 @@
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             // Act.
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
             Assert.NotNull(entry);
@@ -58,7 +58,7 @@
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             // Act.
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
             Assert.NotNull(entry);
@@ -74,7 +74,7 @@
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             // Act.
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
             Assert.NotNull(entry);
@@ -87,7 +87,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             entry = context.Host.Infrastructure.Entries.Store(entry);
@@ -106,8 +106,8 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry1 = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
-            var entry2 = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry1 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry2 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
             entry2 = context.Host.Infrastructure.Entries.Store(entry2);
 
             // Act.
@@ -284,9 +284,9 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var parentEntry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var parentEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
             parentEntry = context.Host.Infrastructure.Entries.Store(parentEntry);
-            var childEntry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var childEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             childEntry.Parent = Relation.NewRelation(parentEntry.Id);
@@ -305,9 +305,9 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var parent2Entry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var parent2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
             parent2Entry = context.Host.Infrastructure.Entries.Store(parent2Entry);
-            var child2Entry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var child2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             child2Entry.Parent2 = Relation.NewRelation(parent2Entry.Id);
@@ -326,9 +326,9 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var index = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
             index = context.Host.Infrastructure.Entries.Store(index);
-            var entry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             entry.Indexes.Add(index.Id);
@@ -347,9 +347,9 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
             entry = context.Host.Infrastructure.Entries.Store(entry);
-            var index = (IEditableEntry)context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             index.Indexed = Relation.NewRelation(entry.Id);
@@ -519,7 +519,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
             Assert.True(context.Host.Storage.FolderManager.Exists(folder));

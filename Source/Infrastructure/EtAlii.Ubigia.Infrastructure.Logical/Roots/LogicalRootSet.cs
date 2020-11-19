@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalRootSet : ILogicalRootSet
@@ -15,28 +16,28 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _rootInitializer = rootInitializer;
         }
 
-        public Root Add(Guid spaceId, Root root)
+        public async Task<Root> Add(Guid spaceId, Root root)
         {
-            root = _fabricContext.Roots.Add(spaceId, root);
+            root = await _fabricContext.Roots.Add(spaceId, root);
             var isAdded = root != null;
             if (isAdded)
             {
-                _rootInitializer.Initialize(spaceId, root);
+                await _rootInitializer.Initialize(spaceId, root);
             }
             return root;
         }
 
-        public IEnumerable<Root> GetAll(Guid spaceId)
+        public IAsyncEnumerable<Root> GetAll(Guid spaceId)
         {
             return _fabricContext.Roots.GetAll(spaceId);
         }
 
-        public Root Get(Guid spaceId, Guid rootId)
+        public Task<Root> Get(Guid spaceId, Guid rootId)
         {
             return _fabricContext.Roots.Get(spaceId, rootId);
         }
 
-        public Root Get(Guid spaceId, string name)
+        public Task<Root> Get(Guid spaceId, string name)
         {
             return _fabricContext.Roots.Get(spaceId, name);
         }
@@ -51,7 +52,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext.Roots.Remove(spaceId, root);
         }
 
-        public Root Update(Guid spaceId, Guid rootId, Root updatedRoot)
+        public Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
             return _fabricContext.Roots.Update(spaceId, rootId, updatedRoot);
         }

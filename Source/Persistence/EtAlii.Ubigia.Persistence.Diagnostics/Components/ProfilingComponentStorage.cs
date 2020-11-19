@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
 
     public class ProfilingComponentStorage : IComponentStorage
@@ -38,24 +39,27 @@
             return result;
         }
 
-        public T Retrieve<T>(ContainerIdentifier container)
+        public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : NonCompositeComponent
         {
             var startTicks = Environment.TickCount;
-            var result = _storage.Retrieve<T>(container);
+            var result = await _storage.Retrieve<T>(container);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(RetrieveCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
             return result;
         }
 
-        public IEnumerable<T> RetrieveAll<T>(ContainerIdentifier container) 
+        public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container) 
             where T : CompositeComponent
         {
             var startTicks = Environment.TickCount;
-            var result = _storage.RetrieveAll<T>(container);
+            var items = _storage.RetrieveAll<T>(container);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(RetrieveAllCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
-            return result;
         }
 
         public void Store<T>(ContainerIdentifier container, T component) 

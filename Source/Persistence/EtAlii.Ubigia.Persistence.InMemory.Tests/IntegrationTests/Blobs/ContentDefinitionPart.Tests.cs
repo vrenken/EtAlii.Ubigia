@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -20,7 +21,7 @@
         }
 
         [Fact]
-        public void ContentDefinitionPart_Store_And_Retrieve_Check_Id()
+        public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Id()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -28,14 +29,14 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
+            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Id, retrievedContentDefinitionPart.Id);
         }
 
         [Fact]
-        public void ContentDefinitionPart_Store_And_Retrieve_Check_Size()
+        public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Size()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -43,14 +44,14 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
+            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Size, retrievedContentDefinitionPart.Size);
         }
 
         [Fact]
-        public void ContentDefinitionPart_Store_And_Retrieve_Check_Checksum()
+        public async Task ContentDefinitionPart_Store_And_Retrieve_Check_Checksum()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -58,7 +59,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
+            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Checksum, retrievedContentDefinitionPart.Checksum);
@@ -99,11 +100,11 @@
         }
 
         [Fact]
-        public void ContentDefinitionPart_Retrieve_None_Existing()
+        public async Task ContentDefinitionPart_Retrieve_None_Existing()
         {
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
-            var contentDefinitionPart = Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, 1000);
+            var contentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, 1000);
             Assert.Null(contentDefinitionPart);
         }
     }

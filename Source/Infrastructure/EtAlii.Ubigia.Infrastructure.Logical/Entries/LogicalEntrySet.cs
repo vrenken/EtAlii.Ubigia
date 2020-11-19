@@ -18,12 +18,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _entryPreparer = entryPreparer;
         }
 
-        public Entry Prepare(Guid spaceId)
+        public Task<Entry> Prepare(Guid spaceId)
         {
             return _entryPreparer.Prepare(spaceId);
         }
 
-        public Entry Prepare(Guid spaceId, Identifier id)
+        public Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
             return _entryPreparer.Prepare(spaceId, id);
         }

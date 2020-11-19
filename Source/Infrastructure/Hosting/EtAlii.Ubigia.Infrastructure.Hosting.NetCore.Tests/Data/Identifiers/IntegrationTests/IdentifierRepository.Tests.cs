@@ -21,7 +21,7 @@
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
-            var identifier = context.Host.Infrastructure.Identifiers.GetCurrentHead(space.Id);
+            var identifier = await context.Host.Infrastructure.Identifiers.GetCurrentHead(space.Id);
             Assert.NotEqual(identifier, Identifier.Empty);
         }
 
@@ -32,10 +32,10 @@
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
-            var identifier = context.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out var previousHeadIdentifier);
-            Assert.NotEqual(identifier, Identifier.Empty);
-            Assert.NotEqual(previousHeadIdentifier, Identifier.Empty);
-            Assert.NotEqual(identifier, previousHeadIdentifier);
+            var head = await context.Host.Infrastructure.Identifiers.GetNextHead(space.Id);
+            Assert.NotEqual(head.NextHeadIdentifier, Identifier.Empty);
+            Assert.NotEqual(head.PreviousHeadIdentifier, Identifier.Empty);
+            Assert.NotEqual(head.NextHeadIdentifier, head.PreviousHeadIdentifier);
         }
 
         [Fact]
@@ -45,7 +45,7 @@
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
-            var identifier = context.Host.Infrastructure.Identifiers.GetTail(space.Id);
+            var identifier = await context.Host.Infrastructure.Identifiers.GetTail(space.Id);
             Assert.NotEqual(identifier, Identifier.Empty);
         }
     }

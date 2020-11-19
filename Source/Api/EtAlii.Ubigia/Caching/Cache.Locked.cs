@@ -11,9 +11,9 @@
     /// </summary>
     public class Cache
     {
-        private readonly SemaphoreSlim _propertiesSemaphore = new SemaphoreSlim(1,1);
-        private readonly SemaphoreSlim _entriesSemaphore = new SemaphoreSlim(1,1);
-        private readonly SemaphoreSlim _relatedEntriesSemaphore = new SemaphoreSlim(1,1);
+        private readonly SemaphoreSlim _propertiesSemaphore = new(1,1);
+        private readonly SemaphoreSlim _entriesSemaphore = new(1,1);
+        private readonly SemaphoreSlim _relatedEntriesSemaphore = new(1,1);
         private readonly bool _cacheEnabled;
         private readonly IDictionary<Identifier, IReadOnlyEntry> _entries;
 

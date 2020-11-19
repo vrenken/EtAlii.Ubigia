@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public class IdentifierRootUpdater : IIdentifierRootUpdater
     {
@@ -11,17 +12,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _context = context;
         }
 
-        public void Update(Guid spaceId, string name, Identifier id)
+        public async Task Update(Guid spaceId, string name, Identifier id)
         {
-            var root = _context.Roots.Get(spaceId, name);
+            var root = await _context.Roots.Get(spaceId, name);
             if (root == null)
             {
-                _context.Roots.Add(spaceId, new Root { Name = name, Identifier = id });
+                await _context.Roots.Add(spaceId, new Root { Name = name, Identifier = id });
             }
             else
             {
                 root.Identifier = id;
-                _context.Roots.Update(spaceId, root.Id, root);
+                await _context.Roots.Update(spaceId, root.Id, root);
             }
         }
     }

@@ -13,7 +13,7 @@
             IEditableEntry previousEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
                 createdEntries[i] = createdEntry;
                 if (previousEntry != null)
                 {
@@ -32,7 +32,7 @@
             IEditableEntry parentEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
                 if (parentEntry != null)
                 {
                     createdEntry.Parent = Relation.NewRelation(parentEntry.Id);
@@ -50,7 +50,7 @@
             IEditableEntry parent2Entry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
                 if (parent2Entry != null)
                 {
                     createdEntry.Parent2 = Relation.NewRelation(parent2Entry.Id);
@@ -63,7 +63,7 @@
 
         public static Root CreateRoot()
         {
-            return new Root
+            return new
             {
                 Name = Guid.NewGuid().ToString(),
             };

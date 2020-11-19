@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     internal class ContentRepository : IContentRepository
@@ -14,11 +15,12 @@
             _logicalContext = logicalContext;
         }
 
-        public void Store(Identifier identifier, Content content)
+        public Task Store(Identifier identifier, Content content)
         {
-            Store(identifier, content, new ContentPart[] { });
+            return Store(identifier, content, new ContentPart[] { });
         }
-        public void Store(Identifier identifier, Content content, IEnumerable<ContentPart> contentParts)
+        
+        public Task Store(Identifier identifier, Content content, IEnumerable<ContentPart> contentParts)
         {
             if (identifier == Identifier.Empty)
             {
@@ -74,9 +76,11 @@
             {
                 throw new ContentRepositoryException("Unable to store the content for the specified identifier", e);
             }
+
+            return Task.CompletedTask;
         }
 
-        public void Store(Identifier identifier, ContentPart contentPart)
+        public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             if (identifier == Identifier.Empty)
             {
@@ -95,8 +99,7 @@
 
             try
             {
-                var content = _logicalContext.Content.Get(identifier) as Content;
-                if (content == null)
+                if (!(await _logicalContext.Content.Get(identifier) is Content content))
                 {
                     throw new ContentRepositoryException("Content not stored yet");
                 }
@@ -116,7 +119,7 @@
             }
         }
 
-        public IReadOnlyContent Get(Identifier identifier)
+        public async Task<IReadOnlyContent> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {
@@ -125,7 +128,7 @@
 
             try
             {
-                return _logicalContext.Content.Get(identifier);
+                return await _logicalContext.Content.Get(identifier);
             }
             catch (Exception e)
             {
@@ -133,7 +136,7 @@
             }
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
+        public async Task<IReadOnlyContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             if (identifier == Identifier.Empty)
             {
@@ -142,7 +145,7 @@
 
             try
             {
-                return _logicalContext.Content.Get(identifier, contentPartId);
+                return await _logicalContext.Content.Get(identifier, contentPartId);
             }
             catch (Exception e)
             {

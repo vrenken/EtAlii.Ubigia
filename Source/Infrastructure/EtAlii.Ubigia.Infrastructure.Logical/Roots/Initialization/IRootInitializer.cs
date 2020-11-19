@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IRootInitializer
     {
-        void Initialize(Guid spaceId, Root root);
+        Task Initialize(Guid spaceId, Root root);
     }
 }

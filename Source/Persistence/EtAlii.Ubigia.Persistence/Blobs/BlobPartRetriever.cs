@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System.Threading.Tasks;
 
     internal class BlobPartRetriever : IBlobPartRetriever
     {
@@ -12,7 +13,7 @@
             _pathBuilder = pathBuilder;
         }
 
-        public T Retrieve<T>(ContainerIdentifier container, ulong position) 
+        public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position) 
             where T : BlobPartBase
         {
             var blobName = BlobPartHelper.GetName<T>();
@@ -25,7 +26,9 @@
             var path = _pathBuilder.GetFileName(fileName, container);
             if (_fileManager.Exists(path))
             {
-                blobPart = _fileManager.LoadFromFile<T>(path);
+                blobPart = await _fileManager
+                    .LoadFromFile<T>(path)
+                    .ConfigureAwait(false);
                 BlobPartHelper.SetStored(blobPart, true);
             }
 

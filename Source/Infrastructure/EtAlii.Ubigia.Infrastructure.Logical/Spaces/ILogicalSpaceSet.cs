@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
 
     public interface ILogicalSpaceSet
     {
@@ -16,7 +17,7 @@
 
         Space Get(Guid id);
 
-        ObservableCollection<Space> GetItems();
+        Task<ObservableCollection<Space>> GetItems();
 
         void Remove(Guid itemId);
 

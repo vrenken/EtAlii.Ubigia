@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Azure
 {
     using System;
+    using System.Threading.Tasks;
 
     public partial class AzureFileManager : IFileManager
     {
@@ -10,7 +11,7 @@
             throw new NotImplementedException();
         }
 
-        public T LoadFromFile<T>(string path)
+        public Task<T> LoadFromFile<T>(string path)
             where T : class
         {
             throw new NotImplementedException();

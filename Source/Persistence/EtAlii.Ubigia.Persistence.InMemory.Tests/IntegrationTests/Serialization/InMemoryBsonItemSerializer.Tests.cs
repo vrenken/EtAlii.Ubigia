@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
@@ -48,7 +49,7 @@
         }
 
         [Fact]
-        public void InMemoryBsonItemSerializer_Deserialize_Item()
+        public async Task InMemoryBsonItemSerializer_Deserialize_Item()
         {
             // Arrange.
             var serializer = new Serializer();
@@ -63,7 +64,7 @@
 
             // Act.
             storageSerializer.Serialize(fileName, testItem);
-            var retrievedTestItem = storageSerializer.Deserialize<SimpleTestItem>(fileName);
+            var retrievedTestItem = await storageSerializer.Deserialize<SimpleTestItem>(fileName);
             if (Storage.InMemoryItems.Exists(fileName))
             {
                 Storage.InMemoryItems.Delete(fileName);

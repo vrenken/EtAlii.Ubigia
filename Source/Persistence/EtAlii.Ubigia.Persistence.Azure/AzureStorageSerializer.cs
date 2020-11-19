@@ -1,13 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Azure
 {
     using System;
+    using System.Threading.Tasks;
 
     public class AzureStorageSerializer : IStorageSerializer
     {
         public string FileNameFormat { get; } = "{0}.bson";
 
 
-        public T Deserialize<T>(string fileName)
+        public Task<T> Deserialize<T>(string fileName)
             where T : class
         {
             throw new NotImplementedException();

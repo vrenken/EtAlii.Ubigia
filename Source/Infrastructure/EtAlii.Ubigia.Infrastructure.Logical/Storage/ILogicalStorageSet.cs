@@ -17,7 +17,7 @@
 
         Storage Get(Guid id);
 
-        ObservableCollection<Storage> GetItems();
+        Task<ObservableCollection<Storage>> GetItems();
 
         void Remove(Guid itemId);
 

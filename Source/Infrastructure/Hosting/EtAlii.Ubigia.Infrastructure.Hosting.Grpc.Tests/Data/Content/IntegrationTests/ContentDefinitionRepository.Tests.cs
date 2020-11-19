@@ -22,7 +22,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
@@ -38,7 +38,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
@@ -57,7 +57,7 @@
 			// Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Act.
             var act = new Action(() =>
@@ -75,7 +75,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
@@ -95,12 +95,12 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Arrange.
-            var retrievedContentDefinition = context.Host.Infrastructure.ContentDefinition.Get(entry.Id);
+            var retrievedContentDefinition = await context.Host.Infrastructure.ContentDefinition.Get(entry.Id);
 
             // Assert.
             Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
@@ -112,14 +112,14 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Act.
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
 
             // Assert.
             Assert.True(contentDefinitionPart.Stored);
@@ -131,20 +131,17 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             
             // Act.
-            var act = new Action(() =>
-            {
-                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
-            });
+            var act = new Func<Task>(async () => await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart));
 
             // Assert.
-            Assert.Throws<ContentDefinitionRepositoryException>(act);
+            await Assert.ThrowsAsync<ContentDefinitionRepositoryException>(act);
         }
 
         [Fact]
@@ -153,22 +150,19 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPartFirst = _testContext.TestContentDefinitionFactory.CreatePart(0);
             var contentDefinitionPartSecond = _testContext.TestContentDefinitionFactory.CreatePart(0);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
-            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst);
+            await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst);
 
             // Act.
-            var act = new Action(() =>
-            {
-                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartSecond);
-            });
+            var act = new Func<Task>(async () => await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartSecond));
 
             // Assert.
-            Assert.Throws<ContentDefinitionRepositoryException>(act);
+            await Assert.ThrowsAsync<ContentDefinitionRepositoryException>(act);
         }
     }
 }

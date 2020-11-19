@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     internal class ComponentStorage : IComponentStorage
     {
@@ -44,7 +45,7 @@
             }
         }
 
-        public IEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
+        public async IAsyncEnumerable<T> RetrieveAll<T>(ContainerIdentifier container)
             where T : CompositeComponent
         {
             if (container == ContainerIdentifier.Empty)
@@ -52,17 +53,27 @@
                 throw new StorageException("No container specified");
             }
 
+            var components = new List<T>(); // TODO: AsyncEnumerable
             try
             {
-                return _componentRetriever.RetrieveAll<T>(container);
+                var items = _componentRetriever.RetrieveAll<T>(container);
+                await foreach (var item in items) 
+                {
+                    components.Add(item);
+                }
             }
             catch (Exception e)
             {
                 throw new StorageException("Unable to retrieve components from the specified container", e);
             }
+
+            foreach (var component in components)
+            {
+                yield return component;
+            }
         }
 
-        public T Retrieve<T>(ContainerIdentifier container)
+        public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : NonCompositeComponent
         {
             if (container == ContainerIdentifier.Empty)
@@ -72,7 +83,7 @@
 
             try
             {
-                return _componentRetriever.Retrieve<T>(container);
+                return await _componentRetriever.Retrieve<T>(container);
             }
             catch (Exception e)
             {

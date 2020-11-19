@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence;
 
     internal class RootUpdater : IRootUpdater
@@ -14,9 +15,9 @@
             _rootGetter = rootGetter;
         }
 
-        public Root Update(Guid spaceId, Guid rootId, Root updatedRoot)
+        public async Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
-            var rootToUpdate = _rootGetter.Get(spaceId, rootId);
+            var rootToUpdate = await _rootGetter.Get(spaceId, rootId);
 
             if (rootToUpdate.Name != updatedRoot.Name || rootToUpdate.Identifier != updatedRoot.Identifier)
             {

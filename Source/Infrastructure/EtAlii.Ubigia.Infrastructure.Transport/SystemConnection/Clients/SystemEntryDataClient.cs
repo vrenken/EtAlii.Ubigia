@@ -14,10 +14,12 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<IEditableEntry> Prepare()
+        public async Task<IEditableEntry> Prepare()
         {
-            var result = _infrastructure.Entries.Prepare(Connection.Space.Id);
-            return Task.FromResult<IEditableEntry>(result);
+            var result = await _infrastructure.Entries
+                .Prepare(Connection.Space.Id)
+                .ConfigureAwait(false);
+            return result;
         }
 
         public Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
@@ -28,13 +30,17 @@
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = await _infrastructure.Entries.Get(root.Identifier);
+            var result = await _infrastructure.Entries
+                .Get(root.Identifier)
+                .ConfigureAwait(false);
             return result;
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var result = await _infrastructure.Entries.Get(entryIdentifier, entryRelations);
+            var result = await _infrastructure.Entries
+                .Get(entryIdentifier, entryRelations)
+                .ConfigureAwait(false);
             return result;
         }
 

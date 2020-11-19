@@ -59,18 +59,18 @@
             return entry;
         }
 
-        public Entry Prepare(Guid spaceId)
+        public async Task<Entry> Prepare(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var entry = _repository.Prepare(spaceId);
+            var entry = await _repository.Prepare(spaceId);
             _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
 
-        public Entry Prepare(Guid spaceId, Identifier identifier)
+        public async Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
             var start = Environment.TickCount;
-            var entry = _repository.Prepare(spaceId, identifier);
+            var entry = await _repository.Prepare(spaceId, identifier);
             _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
