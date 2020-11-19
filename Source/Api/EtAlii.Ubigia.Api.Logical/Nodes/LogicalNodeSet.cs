@@ -35,12 +35,13 @@
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(Fabric);
             var traverser = GraphPathTraverserFactory.Create(configuration);
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            return results.ToAsyncEnumerable(); // TODO: AsyncEnumerable
+            return Observable
+                .Create<IReadOnlyEntry>(output =>
+                {
+                    traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+                    return Disposable.Empty;
+                })
+                .ToAsyncEnumerable();
         }
 
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)

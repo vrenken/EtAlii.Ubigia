@@ -59,8 +59,8 @@
 		// Get all Items
 		public async IAsyncEnumerable<Account> GetAll()
         {
-            // The structure below might seem weird,
-            // but it is not possible to combine a try-catch with the yield needed
+            // The structure below might seem weird.
+            // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
             // The only way to solve this is using the enumerator. 
             var enumerator = _items

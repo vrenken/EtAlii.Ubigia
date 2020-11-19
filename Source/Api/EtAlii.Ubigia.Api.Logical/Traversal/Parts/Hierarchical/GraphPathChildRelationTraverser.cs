@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 entry = path[i - 1];
 
                 var children = context.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
-                await foreach (var child in children) // TODO: AsyncEnumerable - Can't we yield here somehow? 
+                await foreach (var child in children) // We cannot yield here somehow as the update method both adds and removes items. 
                 {
                     await Update(result, child, context, scope);
                 }
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 case EntryType.Add:
                     list.AddRangeOnce(entry.Children.Select(c => c.Id));
-                    list.AddRangeOnce(entry.Children2.Select(c => c.Id)); // TODO: AsyncEnumerable - Can we solve this with a .DistinctAsync()?
+                    list.AddRangeOnce(entry.Children2.Select(c => c.Id)); 
                     break;
                 case EntryType.Remove:
                     await Remove(list, entry.Children, context, scope);
