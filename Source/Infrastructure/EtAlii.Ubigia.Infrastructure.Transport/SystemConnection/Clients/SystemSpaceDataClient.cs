@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -61,8 +60,7 @@
 
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
-            var spaces = _infrastructure.Spaces.GetAll(accountId);
-            return spaces.ToAsyncEnumerable();
+            return _infrastructure.Spaces.GetAll(accountId);
         }
     }
 }

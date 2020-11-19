@@ -36,12 +36,15 @@
             profiler.Register(UpdateCounter, SamplingType.RawCount, "Milliseconds", "Update space", "The time it takes for the Update method to execute");
         }
 
-        public IEnumerable<Space> GetAll(Guid accountId)
+        public async IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             var start = Environment.TickCount;
-            var spaces = _repository.GetAll(accountId);
+            var items = _repository.GetAll(accountId);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetAllByAccountCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return spaces;        
         }
 
         public Space Get(Guid accountId, string spaceName)

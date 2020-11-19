@@ -9,7 +9,7 @@
     {
         Space Get(Guid accountId, string spaceName);
 
-        IEnumerable<Space> GetAll(Guid accountId);
+        IAsyncEnumerable<Space> GetAll(Guid accountId);
 
         Space Add(Space item, SpaceTemplate template, out bool isAdded);
 

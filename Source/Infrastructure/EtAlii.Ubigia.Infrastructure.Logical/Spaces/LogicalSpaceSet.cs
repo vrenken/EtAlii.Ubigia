@@ -28,9 +28,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return Items.SingleOrDefault(space => space.AccountId == accountId && space.Name == spaceName);
         }
 
-        public IEnumerable<Space> GetAll(Guid accountId)
+        public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
-            return Items.Where(space => space.AccountId == accountId);
+            return Items
+                .Where(space => space.AccountId == accountId)
+                .ToAsyncEnumerable();
         }
 
         private Space UpdateFunction(Space originalItem, Space updatedItem)
