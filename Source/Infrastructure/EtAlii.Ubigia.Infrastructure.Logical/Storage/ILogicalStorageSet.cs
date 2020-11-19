@@ -13,7 +13,7 @@
 
         Task<Storage> Add(Storage item);
 
-        IEnumerable<Storage> GetAll();
+        IAsyncEnumerable<Storage> GetAll();
 
         Storage Get(Guid id);
 

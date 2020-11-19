@@ -197,7 +197,7 @@
         }
 
         [Fact]
-        public void AccountRepository_GetAll_Administrators()
+        public async Task AccountRepository_GetAll_Administrators()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
@@ -208,13 +208,15 @@
             var addedAccount2 = repository.Add(account, AccountTemplate.Administrator);
 
             // Act.
-            var accounts = repository.GetAll();
+            var accounts = await repository
+	            .GetAll()
+	            .ToArrayAsync();
             
             // Assert.
             Assert.NotNull(addedAccount1);
             Assert.NotNull(addedAccount2);
             Assert.NotNull(accounts);
-            Assert.True(accounts.Count() >= 2);
+            Assert.True(accounts.Length >= 2);
         }
 
         private Account CreateAccount()

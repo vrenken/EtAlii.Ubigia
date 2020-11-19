@@ -57,12 +57,12 @@
         // Get all Items
         public override async Task GetMultiple(StorageMultipleRequest request, IServerStreamWriter<StorageMultipleResponse> responseStream, ServerCallContext context)
         {
-            var storages = _items.GetAll();  // TODO: AsyncEnumerable
-            foreach (var storage in storages)
+            var items = _items.GetAll();
+            await foreach (var item in items)
             {
                 var response = new StorageMultipleResponse
                 {
-                    Storage = storage.ToWire()
+                    Storage = item.ToWire()
                 };
                 await responseStream.WriteAsync(response);
             }

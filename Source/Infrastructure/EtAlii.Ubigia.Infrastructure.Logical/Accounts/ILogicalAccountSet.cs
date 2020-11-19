@@ -12,7 +12,7 @@
 
         Account Add(Account item, AccountTemplate template, out bool isAdded);
 
-        IEnumerable<Account> GetAll();
+        IAsyncEnumerable<Account> GetAll();
 
         Account Get(Guid id);
 

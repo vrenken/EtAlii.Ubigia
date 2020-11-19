@@ -14,7 +14,7 @@
             where T : class, IIdentifiable;
 
 
-        IEnumerable<T> GetAll<T>(IList<T> items)
+        IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable;
 
         T Get<T>(IList<T> items, Guid id)

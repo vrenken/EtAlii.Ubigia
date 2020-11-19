@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     public class LogicalAccountSet : ILogicalAccountSet
     {
         private readonly IFabricContext _fabric;
-        private readonly object _lockObject = new object();
+        private readonly object _lockObject = new();
 
         private const string Folder = "Accounts";
 
@@ -66,7 +66,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return originalItem;
         }
 
-
         private ObservableCollection<Account> InitializeItems()
         {
             var task = _fabric.Items.GetItems<Account>(Folder);
@@ -87,7 +86,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return account;
         }
 
-        public IEnumerable<Account> GetAll()
+        public IAsyncEnumerable<Account> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }

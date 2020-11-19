@@ -52,12 +52,15 @@
             return spaces;        
         }
 
-        public IEnumerable<Space> GetAll()
+        public async IAsyncEnumerable<Space> GetAll()
         {
             var start = Environment.TickCount;
-            var spaces = _repository.GetAll();
+            var items = _repository.GetAll();
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return spaces;        
         }
 
         public Space Get(Guid itemId)

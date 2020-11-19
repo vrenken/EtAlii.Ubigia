@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return Items.SingleOrDefault(storage => storage.Name == name);
         }
 
-        public IEnumerable<Storage> GetAll()
+        public IAsyncEnumerable<Storage> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }

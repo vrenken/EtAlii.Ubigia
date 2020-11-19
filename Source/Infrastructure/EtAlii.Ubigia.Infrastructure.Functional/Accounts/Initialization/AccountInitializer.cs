@@ -21,7 +21,7 @@
             var accountId = account.Id;
             var spaces = _context.Spaces.GetAll();
 
-            if (spaces.Any(space => space.AccountId == accountId))
+            if (await spaces.AnyAsync(space => space.AccountId == accountId))
             {
                 throw new InvalidOperationException("The account already contains a space");
             }

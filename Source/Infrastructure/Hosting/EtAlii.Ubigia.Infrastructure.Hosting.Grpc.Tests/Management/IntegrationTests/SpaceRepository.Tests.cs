@@ -103,13 +103,15 @@
             var addedSpace2 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
 
             // Act.
-            var spaces = context.Host.Infrastructure.Spaces.GetAll();
+            var spaces = await context.Host.Infrastructure.Spaces
+	            .GetAll()
+	            .ToArrayAsync();
             
             // Assert.
             Assert.NotNull(addedSpace1);
             Assert.NotNull(addedSpace2);
             Assert.NotNull(spaces);
-            Assert.True(spaces.Count() >= 4);
+            Assert.True(spaces.Length >= 4);
         }
     }
 }

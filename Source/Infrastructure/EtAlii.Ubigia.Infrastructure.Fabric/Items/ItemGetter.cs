@@ -17,10 +17,10 @@
             _storage = storage;
         }
 
-        public IEnumerable<T> GetAll<T>(IList<T> items)
+        public IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable
         {
-            return items;
+            return items.ToAsyncEnumerable(); // TODO: AsyncEnumerable
         }
 
         public T Get<T>(IList<T> items, Guid id)

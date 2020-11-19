@@ -55,8 +55,8 @@
 
         public async IAsyncEnumerable<Storage> GetAll()
         {
-            var result = await _invoker.Invoke<IEnumerable<Storage>>(_connection, SignalRHub.Storage, "GetAll");
-            foreach (var item in result)
+            var items = _invoker.Stream<Storage>(_connection, SignalRHub.Storage, "GetAll");
+            await foreach (var item in items)
             {
                 yield return item;
             }

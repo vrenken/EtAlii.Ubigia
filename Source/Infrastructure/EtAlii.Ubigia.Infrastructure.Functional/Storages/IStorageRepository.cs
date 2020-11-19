@@ -9,7 +9,7 @@
         Storage GetLocal();
         Storage Get(string name);
 
-        IEnumerable<Storage> GetAll();
+        IAsyncEnumerable<Storage> GetAll();
         Storage Get(Guid itemId);
 
         Task<Storage> Add(Storage item);

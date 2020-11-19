@@ -23,10 +23,7 @@ namespace EtAlii.xTechnology.Collections
         /// <param name="item">The item to add to the list.</param>
         public static void AddOnce<T>(this ICollection<T> list, T item)
         {
-            list.AddOnce(item, i =>
-            {
-                return i.Equals(item);
-            });
+            list.AddOnce(item, i => i.Equals(item));
         }
 
         /// <summary>
@@ -39,10 +36,7 @@ namespace EtAlii.xTechnology.Collections
         {
             foreach (var item in itemsToAdd)
             {
-                list.AddOnce(item, i =>
-                {
-                    return i.Equals(item);
-                });
+                list.AddOnce(item, i => i.Equals(item));
             }
         }
 

@@ -28,7 +28,7 @@
             return _logicalContext.Accounts.Get(accountName, password);
         }
 
-        public IEnumerable<Account> GetAll()
+        public IAsyncEnumerable<Account> GetAll()
         {
             return _logicalContext.Accounts.GetAll();
         }
