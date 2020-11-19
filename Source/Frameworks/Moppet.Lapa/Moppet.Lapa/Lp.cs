@@ -1184,7 +1184,7 @@ namespace Moppet.Lapa
 		{
 			bool IEqualityComparer<LpNode>.Equals(LpNode x, LpNode y)
 			{
-				return x.Match.Equals(y.Match);
+				return x!.Match.Equals(y!.Match);
 			}
 			int IEqualityComparer<LpNode>.GetHashCode(LpNode obj)
 			{
@@ -1757,17 +1757,18 @@ namespace Moppet.Lapa
 				list.AddLast(node);
 				return;
 			}
-			var childrens = node.Children.GetEnumerator();
-			if (!childrens.MoveNext())
+
+			using var children = node.Children.GetEnumerator();
+			if (!children.MoveNext())
 			{
 				list.AddLast(node);
 				return;
 			}
 			do
 			{
-				list.AddLast(childrens.Current);
+				list.AddLast(children.Current);
 			}
-			while (childrens.MoveNext());
+			while (children.MoveNext());
 		}
 
         /// <summary>

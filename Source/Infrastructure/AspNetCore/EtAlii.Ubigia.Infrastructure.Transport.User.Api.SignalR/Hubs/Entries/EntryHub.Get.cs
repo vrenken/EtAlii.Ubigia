@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public partial class EntryHub
@@ -23,41 +22,66 @@
             return response;
         }
 
-        public async Task<IEnumerable<Entry>> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
         {
-            var response = new List<Entry>(); 
-            try
+            // The structure below might seem weird.
+            // But it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            using var enumerator = entryIds.GetEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                foreach (var entryId in entryIds)
+                Entry item;
+                try
                 {
-                    var entry = await _items
-                        .Get(entryId, entryRelations)
-                        .ConfigureAwait(false);
-                    response.Add(entry); // TODO: AsyncEnumerable 
+                    hasResult = enumerator.MoveNext();
+                    item = hasResult 
+                        ? await _items
+                            .Get(enumerator.Current, entryRelations)
+                            .ConfigureAwait(false) 
+                        : null;
+                }
+                catch (Exception e)
+                {
+                    throw new InvalidOperationException("Unable to serve a Entries GET client request", e);
+                }
+                if (item != null)
+                {
+                    yield return item;
                 }
             }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a Entries GET client request", e);
-            }
-            return response;
         }
 
-        public async Task<IEnumerable<Entry>> GetRelated(Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
-            IEnumerable<Entry> response;
-            try
+            // The structure below might seem weird.
+            // But it is not possible to combine a try-catch with the yield needed
+            // enumerating an IAsyncEnumerable.
+            // The only way to solve this is using the enumerator. 
+            var enumerator = _items
+                .GetRelated(entryId, entriesWithRelation, entryRelations)
+                .GetAsyncEnumerator();
+            var hasResult = true;
+            while (hasResult)
             {
-                response = await _items
-                    .GetRelated(entryId, entriesWithRelation, entryRelations)
-                    .ToArrayAsync()
-                    .ConfigureAwait(false);   // TODO: AsyncEnumerable
+                Entry item;
+                try
+                {
+                    hasResult = await enumerator
+                        .MoveNextAsync()
+                        .ConfigureAwait(false);
+                    item = hasResult ? enumerator.Current : null;
+                }
+                catch (Exception e)
+                {
+                    throw new InvalidOperationException("Unable to serve a related Entries GET client request", e);
+                }
+                if (item != null)
+                {
+                    yield return item;
+                }
             }
-            catch (Exception e)
-            {
-                throw new InvalidOperationException("Unable to serve a related Entries GET client request", e);
-            }
-            return response;
         }
     }
 }
