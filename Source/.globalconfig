@@ -1,0 +1,30 @@
+# Top level entry required to mark this as a global AnalyzerConfig file
+root = true
+
+[*.cs]
+######## Indentation and spacing ########
+indent_size = 4
+indent_style = space
+tab_width = 4
+dotnet_diagnostic.*.severity = error
+dotnet_diagnostics.CA2000.severity = error
+dotnet_diagnostics.CA2007.severity = error
+dotnet_diagnostics.S1135.severity = error
+
+######## .NET Coding Conventions ########
+
+# CA2000: Dispose objects before losing scope
+
+#dotnet_code_quality.CA2000.severity = error
+#dotnet_code_quality.CA2007.severity = error
+
+csharp_style_var_for_built_in_types=true
+
+
+# Disable regions
+# maybe Stylecop rules?
+# Correct member names
+# correct curly brackets
+# only one class per file.
+# - SA1402 StyleCop.Analyzers
+

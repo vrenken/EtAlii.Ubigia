@@ -22,14 +22,33 @@
     <LangVersion>9</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors>true</WarningsAsErrors>
 
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
-
+    
   </PropertyGroup>
+
+  <!-- Analysis, code conventions and standardization. -->
+  <PropertyGroup>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors>true</WarningsAsErrors>
+    <AnalysisLevel>5.0</AnalysisLevel>
+<!--    <ItemGroup>-->
+<!--      <GlobalAnalyzerConfigFiles Include=".globalconfig" />-->
+<!--    </ItemGroup>-->
+  </PropertyGroup>
+
+<!--  <ItemGroup>-->
+<!--    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0">-->
+<!--      <PrivateAssets>all</PrivateAssets>-->
+<!--      <IncludeAssets>analyzers</IncludeAssets>-->
+<!--    </PackageReference>-->
+<!--    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.14.0.22654">-->
+<!--      <PrivateAssets>all</PrivateAssets>-->
+<!--      <IncludeAssets>analyzers</IncludeAssets>-->
+<!--    </PackageReference>-->
+<!--  </ItemGroup>-->
 
   <PropertyGroup>
     <IsUbigiaTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">true</IsUbigiaTestProject>
