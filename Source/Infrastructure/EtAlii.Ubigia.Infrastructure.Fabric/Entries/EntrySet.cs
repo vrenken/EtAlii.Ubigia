@@ -19,14 +19,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _entryStorer = entryStorer;
         }
 
-        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
-        {
-            return _entryGetter.Get(identifier, entryRelations);
-        }
-
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             return _entryGetter.GetRelated(identifier, entriesWithRelation, entryRelations);
+        }
+
+        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        {
+            return _entryGetter.Get(identifier, entryRelations);
         }
 
         public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
