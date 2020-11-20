@@ -69,7 +69,7 @@ namespace Moppet.Lapa
 			WrapNode = wrapNode;
 			Parser = parser;
 			if (recurse)
-				Recurse = recurse;
+				Recurse = true;
 		}
 
 		#endregion Constructors

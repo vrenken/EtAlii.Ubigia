@@ -17,7 +17,7 @@
             var result = MessageBox.Show(question, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                var window = parameter as StorageWindow;
+                var window = (StorageWindow)parameter;
                 var viewModel = window.DataContext;
                 var globalSettings = Container.GetInstance<IGlobalSettings>();
                 globalSettings.Storage.Remove(viewModel.StorageSettings);
