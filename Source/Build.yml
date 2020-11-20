@@ -7,7 +7,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   dotNetSdkVersion: '5.0.100'
-  shouldRunSonarQube: contains(variables['build.sourceBranch'], 'refs/heads/master')
+  shouldRunSonarQube: eq(variables['build.sourceBranch'], 'refs/heads/master')
 
 trigger:
   - master
