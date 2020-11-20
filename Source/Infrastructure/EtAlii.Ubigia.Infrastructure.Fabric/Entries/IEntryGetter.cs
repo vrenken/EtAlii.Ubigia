@@ -5,8 +5,8 @@
 
     public interface IEntryGetter
     {
-        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
         IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
+        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
         IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
     }
 }
