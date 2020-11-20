@@ -71,7 +71,7 @@ namespace HashLib.Crypto.SHA3
             u = a_y[a_index + a_stripe * 3];
             v = a_y[a_index + a_stripe * 7];
             a_y[a_index + a_stripe * 3] = u + v;
-            a_y[a_index + a_stripe * 7] = (u - v) << (2 * 3); ;
+            a_y[a_index + a_stripe * 7] = (u - v) << (2 * 3); 
 
             a_y[a_index + a_stripe * 6] = ((a_y[a_index + a_stripe * 6] & 255) - (a_y[a_index + a_stripe * 6] >> 8));
             a_y[a_index + a_stripe * 7] = ((a_y[a_index + a_stripe * 7] & 255) - (a_y[a_index + a_stripe * 7] >> 8));

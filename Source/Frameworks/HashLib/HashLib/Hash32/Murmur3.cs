@@ -79,7 +79,7 @@ namespace HashLib.Hash32
                         m_h ^= k;
                         break;
                     }
-                };
+                }
             }
 
             m_h ^= (uint)m_processed_bytes;
@@ -272,7 +272,7 @@ namespace HashLib.Hash32
                     m_h ^= k;
                     break;
                 }
-            };
+            }
 
             m_h ^= (uint)a_data.Length;
 
@@ -437,7 +437,7 @@ namespace HashLib.Hash32
                 k = (k << 15) | (k >> 17);
                 k *= C2;
                 m_h ^= k;
-            };
+            }
 
             m_h ^= (uint)a_data.Length * sizeof(char);
 
@@ -475,7 +475,7 @@ namespace HashLib.Hash32
                 k = (k << 15) | (k >> 17);
                 k *= C2;
                 m_h ^= k;
-            };
+            }
 
             m_h ^= (uint)a_data.Length * sizeof(char);
 
@@ -514,7 +514,7 @@ namespace HashLib.Hash32
                 k = (k << 15) | (k >> 17);
                 k *= C2;
                 m_h ^= k;
-            };
+            }
 
             m_h ^= (uint)a_data.Length * sizeof(short);
 
@@ -553,7 +553,7 @@ namespace HashLib.Hash32
                 k = (k << 15) | (k >> 17);
                 k *= C2;
                 m_h ^= k;
-            };
+            }
 
             m_h ^= (uint)a_data.Length * sizeof(ushort);
 

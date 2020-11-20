@@ -229,7 +229,7 @@ namespace HashLib.Hash128
                         m_h1 ^= k1;
                         break;
                     }
-            };
+            }
 
             m_h1 ^= m_processed_bytes;
             m_h2 ^= m_processed_bytes;

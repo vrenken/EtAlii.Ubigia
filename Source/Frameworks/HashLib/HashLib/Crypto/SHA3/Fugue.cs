@@ -3478,7 +3478,7 @@ namespace HashLib.Crypto.SHA3
                 row2 = ((row2 << 24) | (row2 >> 8));
                 row3 = ((row3 << 24) | (row3 >> 8));
                 m_state[((-3 * (3 * ((j1 + j) % 4) + 3)) + 3 + 36) % 36] = ((row0 ^ col3) & 0x000000ff) ^ ((row1 ^ col0) & 0x0000ff00) ^ ((row2 ^ col1) & 0x00ff0000) ^ ((row3 ^ col2) & 0xff000000);
-            };
+            }
 
             ptr = ptr - 18;
 
