@@ -78,7 +78,7 @@
 
         private void ClearGraph(object parameter)
         {
-            var graphViewModel = parameter as GraphDocumentViewModel;
+            var graphViewModel = (GraphDocumentViewModel)parameter;
             graphViewModel.Clear();
         }
 

@@ -168,10 +168,9 @@
             var account = Guid.NewGuid();
             var space = Guid.NewGuid();
             var first = Identifier.NewIdentifier(storage, account, space);
-            var second = (object)null;
 
             // Act.
-            var result = first.Equals(second);
+            var result = first.Equals(null);
 
             // Assert.
             Assert.False(result, "A identifier should not match with null");

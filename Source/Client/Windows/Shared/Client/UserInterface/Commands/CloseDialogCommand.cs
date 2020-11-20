@@ -10,7 +10,7 @@
     {
         public override void Execute(object parameter)
         {
-            var window = parameter as Window;
+            var window = (Window)parameter;
             window.DialogResult = true;
             window.Close();
 

@@ -17,9 +17,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     }
                     else if (condition.Value != null)
                     {
-                        result = condition.Value.Equals(propertyValue);
+                        result = condition.Value.Equals(null);
                     }
-                    else if (propertyValue == null && condition.Value == null)
+                    else if (condition.Value == null)
                     {
                         result = true;
                     }

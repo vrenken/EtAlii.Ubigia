@@ -235,10 +235,9 @@
             // Arrange.
             var id = _testIdentifierFactory.Create();
             var first = _containerProvider.FromIdentifier(id);
-            var second = (object)null;
 
             // Act.
-            var result = first.Equals(second);
+            var result = first.Equals(null);
 
             // Assert.
             Assert.False(result, "A ContainerIdentifier should not match with null");

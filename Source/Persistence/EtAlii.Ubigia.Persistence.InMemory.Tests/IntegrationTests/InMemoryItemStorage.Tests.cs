@@ -80,10 +80,9 @@
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var id = Guid.NewGuid();
-            object item = null;
 
             // Act.
-            var act = new Action(() => Storage.Items.Store(item, id, containerId));
+            var act = new Action(() => Storage.Items.Store((object)null, id, containerId));
 
             // Assert.
             Assert.Throws<StorageException>(act);

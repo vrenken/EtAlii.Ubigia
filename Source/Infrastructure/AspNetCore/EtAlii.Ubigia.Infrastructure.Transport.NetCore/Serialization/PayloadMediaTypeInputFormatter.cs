@@ -84,7 +84,7 @@
             var firstKey = string.Empty;
             foreach (DictionaryEntry item in dictionary)
             {
-	            if (dictionary.Count == 1 && (item.Key as string) == "Value")
+	            if (dictionary.Count == 1 && item.Key as string == "Value")
 	            {
 		            // Success
 		            return item.Value;

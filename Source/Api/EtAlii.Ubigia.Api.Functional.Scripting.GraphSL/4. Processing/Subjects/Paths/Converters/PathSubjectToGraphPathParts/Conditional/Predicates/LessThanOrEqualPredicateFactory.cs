@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     }
                     else if (condition.Value != null)
                     {
-                        result = Comparer<object>.Default.Compare(condition.Value, propertyValue) <= 0;
+                        result = Comparer<object>.Default.Compare(condition.Value, null) <= 0;
                     }
                     else if (condition.Value == null)
                     {

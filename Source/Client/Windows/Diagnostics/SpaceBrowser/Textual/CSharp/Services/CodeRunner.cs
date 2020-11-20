@@ -20,11 +20,11 @@
 
                 var type = (from t in modules[0].GetTypes()
                              where t.Name == className
-                             select t).FirstOrDefault();
+                             select t).First();
 
                 var method = (from m in type.GetMethods()
                                      where m.Name == "Evaluate"
-                                     select m).FirstOrDefault();
+                                     select m).First();
 
                 result = method.Invoke(instance, null);
             }

@@ -301,12 +301,11 @@
         {
             // Arrange.
             var first = new PropertyDictionary();
-            PropertyDictionary second = null;
             first["Name"] = "John";
             first["Birthdate"] = new DateTime(1978, 07, 29);
 
             // Act.
-            var result = first.CompareTo(second);
+            var result = first.CompareTo(null);
 
             // Assert.
             Assert.Equal(+1, result);

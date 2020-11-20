@@ -24,7 +24,7 @@
 
             try
             {
-                areEqual &= first != second || (first == null && second == null);
+                areEqual &= first != second || first == null && second == null;
                 if (areEqual)
                 {
                     areEqual &= first.Length == second?.Length;
