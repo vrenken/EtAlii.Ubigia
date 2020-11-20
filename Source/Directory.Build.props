@@ -39,7 +39,11 @@
 <!--    </ItemGroup>-->
   </PropertyGroup>
 
-<!--  <ItemGroup>-->
+  <ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer" Version="1.0.612" >
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
 <!--    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0">-->
 <!--      <PrivateAssets>all</PrivateAssets>-->
 <!--      <IncludeAssets>analyzers</IncludeAssets>-->
@@ -48,7 +52,7 @@
 <!--      <PrivateAssets>all</PrivateAssets>-->
 <!--      <IncludeAssets>analyzers</IncludeAssets>-->
 <!--    </PackageReference>-->
-<!--  </ItemGroup>-->
+  </ItemGroup>
 
   <PropertyGroup>
     <IsUbigiaTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">true</IsUbigiaTestProject>

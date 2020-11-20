@@ -92,7 +92,7 @@ namespace HashLib.Hash64
                     h ^= (ulong)a_data[current_index++];
                     h *= M;
                     break;
-            };
+            }
 
             h ^= h >> R;
             h *= M;
