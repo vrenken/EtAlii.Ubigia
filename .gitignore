@@ -13,16 +13,16 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
-x64/
-x86/
-bld/
-[Bb]in/
-[Oo]bj/
-[Ll]og/
+**/[Dd]ebug/
+**/[Dd]ebugPublic/
+**/[Rr]elease/
+**/[Rr]eleases/
+**/x64/
+**/x86/
+**/bld/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -30,7 +30,7 @@ bld/
 #wwwroot/
 
 # MSTest test Results
-[Tt]est[Rr]esult*/
+**/[Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
 # NUNIT
@@ -38,14 +38,14 @@ bld/
 TestResult.xml
 
 # Build Results of an ATL Project
-[Dd]ebugPS/
-[Rr]eleasePS/
+**/[Dd]ebugPS/
+**/[Rr]eleasePS/
 dlldata.c
 
 # .NET Core
 project.lock.json
 project.fragment.lock.json
-artifacts/
+**/artifacts/
 **/Properties/launchSettings.json
 
 *_i.c
@@ -78,7 +78,7 @@ artifacts/
 _Chutzpah*
 
 # Visual C++ cache files
-ipch/
+**/ipch/
 *.aps
 *.ncb
 *.opendb
@@ -95,13 +95,13 @@ ipch/
 *.sap
 
 # TFS 2012 Local Workspace
-$tf/
+**/$tf/
 
 # Guidance Automation Toolkit
 *.gpState
 
 # ReSharper is a .NET coding add-in
-_ReSharper*/
+**/_ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
 
@@ -125,7 +125,7 @@ nCrunchTemp_*
 
 # MightyMoose
 *.mm.*
-AutoTest.Net/
+**/AutoTest.Net/
 
 # Web workbench (sass)
 .sass-cache/
@@ -134,17 +134,17 @@ AutoTest.Net/
 [Ee]xpress/
 
 # DocProject is a documentation generator add-in
-DocProject/buildhelp/
-DocProject/Help/*.HxT
-DocProject/Help/*.HxC
-DocProject/Help/*.hhc
-DocProject/Help/*.hhk
-DocProject/Help/*.hhp
-DocProject/Help/Html2
-DocProject/Help/html
+**/DocProject/buildhelp/
+**/DocProject/Help/*.HxT
+**/DocProject/Help/*.HxC
+**/DocProject/Help/*.hhc
+**/DocProject/Help/*.hhk
+**/DocProject/Help/*.hhp
+**/DocProject/Help/Html2
+**/DocProject/Help/html
 
 # Click-Once directory
-publish/
+**/publish/
 
 # Publish Web Output
 *.[Pp]ublish.xml
@@ -157,7 +157,7 @@ publish/
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
 # in these scripts will be unencrypted
-PublishScripts/
+**/PublishScripts/
 
 # NuGet Packages
 *.nupkg
@@ -172,16 +172,16 @@ PublishScripts/
 *.nuget.targets
 
 # Microsoft Azure Build Output
-csx/
+**/csx/
 *.build.csdef
 
 # Microsoft Azure Emulator
-ecf/
-rcf/
+**/ecf/
+**/rcf/
 
 # Windows Store app package directories and files
-AppPackages/
-BundleArtifacts/
+**/AppPackages/
+**/BundleArtifacts/
 Package.StoreAssociation.xml
 _pkginfo.txt
 
@@ -189,10 +189,10 @@ _pkginfo.txt
 # files ending in .cache can be ignored
 *.[Cc]ache
 # but keep track of directories ending in .cache
-!*.[Cc]ache/
+!**/*.[Cc]ache/
 
 # Others
-ClientBin/
+**/ClientBin/
 ~$*
 *~
 *.dbmdl
@@ -207,13 +207,13 @@ orleans.codegen.cs
 #bower_components/
 
 # RIA/Silverlight projects
-Generated_Code/
+**/Generated_Code/
 
 # Backup & report files from converting an old project file
 # to a newer Visual Studio version. Backup files are not needed,
 # because we have git ;-)
-_UpgradeReport_Files/
-Backup*/
+**/_UpgradeReport_Files/
+Source/Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
@@ -228,17 +228,17 @@ UpgradeLog*.htm
 *.bim_*.settings
 
 # Microsoft Fakes
-FakesAssemblies/
+**/FakesAssemblies/
 
 # GhostDoc plugin setting file
 *.GhostDoc.xml
 
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
-node_modules/
+**/node_modules/
 
 # Typescript v1 declaration files
-typings/
+**/typings/
 
 # Visual Studio 6 build log
 *.plg
@@ -258,11 +258,11 @@ typings/
 _Pvt_Extensions
 
 # Paket dependency manager
-.paket/paket.exe
-paket-files/
+**/.paket/paket.exe
+**/paket-files/
 
 # FAKE - F# Make
-.fake/
+**/.fake/
 
 #==================================================================
 # JetBrains Rider
@@ -270,27 +270,27 @@ paket-files/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries
-.idea/**/shelf
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/**/usage.statistics.xml
+**/.idea/**/dictionaries
+**/.idea/**/shelf
 
 # Generated files
-.idea/**/contentModel.xml
+**/.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
+**/.idea/**/dataSources/
+**/.idea/**/dataSources.ids
+**/.idea/**/dataSources.local.xml
+**/.idea/**/sqlDataSources.xml
+**/.idea/**/dynamic.xml
+**/.idea/**/uiDesigner.xml
+**/.idea/**/dbnavigator.xml
 
 # Gradle
-.idea/**/gradle.xml
-.idea/**/libraries
+**/.idea/**/gradle.xml
+**/.idea/**/libraries
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
@@ -306,25 +306,25 @@ paket-files/
 # *.ipr
 
 # CMake
-cmake-build-*/
+**/cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+**/.idea/**/mongoSettings.xml
 
 # File-based project format
 *.iws
 
 # IntelliJ
-out/
+**/out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
+**/.idea_modules/
 
 # JIRA plugin
 atlassian-ide-plugin.xml
 
 # Cursive Clojure plugin
-.idea/replstate.xml
+**/.idea/replstate.xml
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
@@ -333,17 +333,17 @@ crashlytics-build.properties
 fabric.properties
 
 # Editor-based Rest Client
-.idea/httpRequests
+**/.idea/httpRequests
 
 # Android studio 3.1+ serialized cache file
-.idea/caches/build_file_checksums.ser
+**/.idea/caches/build_file_checksums.ser
 
 #==================================================================
 # CodeRush
-.cr/
+**/.cr/
 
 # Python Tools for Visual Studio (PTVS)
-__pycache__/
+**/__pycache__/
 *.pyc
 
 # Cake - Uncomment if you are using it
