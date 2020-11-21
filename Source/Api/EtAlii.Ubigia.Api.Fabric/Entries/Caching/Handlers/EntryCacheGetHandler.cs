@@ -21,7 +21,7 @@
             var entry = _cacheHelper.Get(identifier);
             if (entry == null)
             {
-                entry = await _contextProvider.Context.Get(identifier, scope);
+                entry = await _contextProvider.Context.Get(identifier, scope).ConfigureAwait(false);
                 if (_cacheHelper.ShouldStore(entry))
                 {
                     _cacheHelper.Store(entry);
@@ -49,7 +49,7 @@
             if (missingIdentifiers.Count > 0)
             {
                 var missingEntries = _contextProvider.Context.Get(missingIdentifiers, scope);
-                await foreach (var missingEntry in missingEntries)
+                await foreach (var missingEntry in missingEntries.ConfigureAwait(false))
                 {
                     if (_cacheHelper.ShouldStore(missingEntry))
                     {

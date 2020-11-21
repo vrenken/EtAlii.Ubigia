@@ -39,40 +39,40 @@
 
         public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return await _retrieveDefinitionHandler.Handle(identifier);
+            return await _retrieveDefinitionHandler.Handle(identifier).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
-            return await _retrievePartHandler.Handle(identifier, contentPartId);
+            return await _retrievePartHandler.Handle(identifier, contentPartId).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
         {
             // TODO: IMPORTANT ISSUE WITH CACHING.
-            return await _retrieveHandler.Handle(identifier); 
+            return await _retrieveHandler.Handle(identifier).ConfigureAwait(false); 
             //return await _contextProvider.Context.Retrieve(identifier)
         }
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await _storeDefinitionHandler.Handle(identifier, contentDefinition);
+            await _storeDefinitionHandler.Handle(identifier, contentDefinition).ConfigureAwait(false);
         }
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await _contextProvider.Context.StoreDefinition(identifier, contentDefinitionPart);
+            await _contextProvider.Context.StoreDefinition(identifier, contentDefinitionPart).ConfigureAwait(false);
         }
 
 
         public async Task Store(Identifier identifier, Content content)
         {
-            await _storeHandler.Handle(identifier, content);
+            await _storeHandler.Handle(identifier, content).ConfigureAwait(false);
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await _storePartHandler.Handle(identifier, contentPart);
+            await _storePartHandler.Handle(identifier, contentPart).ConfigureAwait(false);
         }
 
         public event Action<Identifier> Updated = delegate { };

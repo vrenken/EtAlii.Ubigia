@@ -68,13 +68,13 @@
 
             Stream responseBody = null;
             var requestContent = requestMessage.Content ?? new StreamContent(Stream.Null);
-            var body = await requestContent.ReadAsStreamAsync();
+            var body = await requestContent.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
             contextBuilder.Configure(context =>
             {
                 responseBody = ProcessRequest(requestMessage, context, requestContent, body);
             });
 
-            var httpContext = await contextBuilder.SendAsync(cancellationToken);
+            var httpContext = await contextBuilder.SendAsync(cancellationToken).ConfigureAwait(false);
 
             return BuildResponse(requestMessage, httpContext, responseBody);
         }

@@ -22,7 +22,7 @@
             Status.Description = "Starting Test admin gRPC services";
             Status.Summary = "Starting...";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Test admin gRPC services are available on the address specified below.");
@@ -37,7 +37,7 @@
             Status.Summary = "Stopping...";
             Status.Description = "Stopping Test admin gRPC services";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished providing Test admin gRPC services on the address specified below.");

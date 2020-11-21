@@ -56,7 +56,7 @@
 
             if (File.Exists(path))
             {
-                item = await _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path).ConfigureAwait(false);
             }
 
             return item;

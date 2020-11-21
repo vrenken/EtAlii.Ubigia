@@ -49,7 +49,7 @@
 
             if (_cacheEnabled)
             {
-                await _propertiesSemaphore.WaitAsync();
+                await _propertiesSemaphore.WaitAsync().ConfigureAwait(false);
                 
                 var hasValue = _properties.TryGetValue(identifier, out result);
                 
@@ -57,16 +57,16 @@
                 
                 if(!hasValue)
                 {
-                    await _propertiesSemaphore.WaitAsync();
+                    await _propertiesSemaphore.WaitAsync().ConfigureAwait(false);
 
-                    _properties[identifier] = result = await getter();
+                    _properties[identifier] = result = await getter().ConfigureAwait(false);
                     
                     _propertiesSemaphore.Release();
                 }
             }
             else
             {
-                result = await getter();
+                result = await getter().ConfigureAwait(false);
             }
 
             return result;
@@ -85,7 +85,7 @@
 
             if (_cacheEnabled)
             {
-                await _entriesSemaphore.WaitAsync();
+                await _entriesSemaphore.WaitAsync().ConfigureAwait(false);
 
                 // TODO: This cache is not clever enough yet.
                 var hasValue = _entries.TryGetValue(identifier, out result);
@@ -94,14 +94,14 @@
                 
                 if(!hasValue)
                 {
-                    await _entriesSemaphore.WaitAsync();
-                    _entries[identifier] = result = await getter();
+                    await _entriesSemaphore.WaitAsync().ConfigureAwait(false);
+                    _entries[identifier] = result = await getter().ConfigureAwait(false);
                     _entriesSemaphore.Release();
                 }
             }
             else
             {
-                result = await getter();
+                result = await getter().ConfigureAwait(false);
             }
 
             return result;
@@ -121,7 +121,7 @@
             {
                 var cacheId = new Tuple<Identifier, EntryRelation>(identifier, relation);
 
-                await _relatedEntriesSemaphore.WaitAsync();
+                await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
                 
                 // TODO: This cache is not clever enough yet.
                 var hasValue = _relatedEntries.TryGetValue(cacheId, out var cachedResult);
@@ -137,12 +137,12 @@
                 }
                 else
                 {
-                    await _relatedEntriesSemaphore.WaitAsync();
+                    await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
 
                     var list = new List<IReadOnlyEntry>();
                     var result = getter();
 
-                    await foreach (var item in result)
+                    await foreach (var item in result.ConfigureAwait(false))
                     {
                         list.Add(item);
                         yield return item;
@@ -156,7 +156,7 @@
             else
             {
                 var result = getter();
-                await foreach (var item in result)
+                await foreach (var item in result.ConfigureAwait(false))
                 {
                     yield return item;
                 }

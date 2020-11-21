@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Configuration.Space);
+            var space = await GetSpace(connection.Configuration.Space).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
@@ -22,7 +22,7 @@
 
         private async Task<Space> GetSpace(string spaceName)
         {
-            var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName);
+            var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName).ConfigureAwait(false);
 			if (space == null)
 			{
 				var message = $"Unable to connect to the the specified space ({spaceName})";

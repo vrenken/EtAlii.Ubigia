@@ -17,7 +17,7 @@
 
         public async Task Handle(Identifier identifier, ContentDefinition definition)
         {
-            await _contextProvider.Context.StoreDefinition(identifier, definition);
+            await _contextProvider.Context.StoreDefinition(identifier, definition).ConfigureAwait(false);
 
             if (definition.Summary != null && definition.Summary.IsComplete)
             {

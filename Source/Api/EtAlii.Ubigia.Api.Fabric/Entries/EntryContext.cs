@@ -19,22 +19,22 @@
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await _connection.Entries.Data.Prepare();
+            return await _connection.Entries.Data.Prepare().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Change(entry, scope);
+            return await _connection.Entries.Data.Change(entry, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Get(root, scope, EntryRelation.All);
+            return await _connection.Entries.Data.Get(root, scope, EntryRelation.All).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier identifier, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Get(identifier, scope, EntryRelation.All);
+            return await _connection.Entries.Data.Get(identifier, scope, EntryRelation.All).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)

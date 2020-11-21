@@ -17,12 +17,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await _client.Connect(spaceConnection);
+            await _client.Connect(spaceConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect()
         {
-            await _client.Disconnect();
+            await _client.Disconnect().ConfigureAwait(false);
         }
 
         public async Task<Root> Add(string name)
@@ -31,7 +31,7 @@
             _logger.Information(message, name);
             var start = Environment.TickCount;
 
-            var root = await _client.Add(name);
+            var root = await _client.Add(name).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Added root (Name: {RootName} Duration: {Duration}ms)";
@@ -46,7 +46,7 @@
             _logger.Information(message, id);
             var start = Environment.TickCount;
 
-            await _client.Remove(id);
+            await _client.Remove(id).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Removed root (Id: {RootId} Duration: {Duration}ms)";
@@ -59,7 +59,7 @@
             _logger.Information(message, rootId, rootName);
             var start = Environment.TickCount;
 
-            var root = await _client.Change(rootId, rootName);
+            var root = await _client.Change(rootId, rootName).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Changed root (Id: {RootId} Name: {RootName} Duration: {Duration}ms)";
@@ -74,7 +74,7 @@
             _logger.Information(message, rootName);
             var start = Environment.TickCount;
 
-            var root = await _client.Get(rootName);
+            var root = await _client.Get(rootName).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got root (Name: {RootName} Duration: {}ms)";
@@ -89,7 +89,7 @@
             _logger.Information(message, rootId);
             var start = Environment.TickCount;
 
-            var root = await _client.Get(rootId);
+            var root = await _client.Get(rootId).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got root (Id: {RootId} Duration: {Duration}ms)";
@@ -105,7 +105,7 @@
             var start = Environment.TickCount;
 
             var result = _client.GetAll();
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }

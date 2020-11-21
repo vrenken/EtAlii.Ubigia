@@ -41,7 +41,7 @@
             _logger.Information(message, _address);
             var start = Environment.TickCount;
 
-            await _decoree.Open(accountName, password);
+            await _decoree.Open(accountName, password).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened storage connection (Address: {Address} Duration: {Duration}ms)";
@@ -54,7 +54,7 @@
             _logger.Information(message, _address);
             var start = Environment.TickCount;
 
-            await _decoree.Close();
+            await _decoree.Close().ConfigureAwait(false);
             _address = null;
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;

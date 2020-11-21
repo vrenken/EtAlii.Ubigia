@@ -31,22 +31,22 @@
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await _contextProvider.Context.Prepare();
+            return await _contextProvider.Context.Prepare().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            return await _changeHandler.Handle(entry, scope);
+            return await _changeHandler.Handle(entry, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope)
         {
-            return await _getHandler.Handle(root.Identifier, scope);
+            return await _getHandler.Handle(root.Identifier, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier identifier, ExecutionScope scope)
         {
-            return await _getHandler.Handle(identifier, scope);
+            return await _getHandler.Handle(identifier, scope).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
@@ -71,7 +71,7 @@
         {
             var task = Task.Run(async () =>
             {
-                await _storeHandler.Handle(identifier);
+                await _storeHandler.Handle(identifier).ConfigureAwait(false);
             });
             task.Wait();
             Stored(identifier);

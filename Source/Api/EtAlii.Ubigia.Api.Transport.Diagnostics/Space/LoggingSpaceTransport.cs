@@ -25,7 +25,7 @@
             _logger.Information(message, Address);
             var start = Environment.TickCount;
 
-            await _transport.Start();
+            await _transport.Start().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Started transport (Address: {Address} Duration: {Duration}ms)";
@@ -39,7 +39,7 @@
             _logger.Information(message, Address);
             var start = Environment.TickCount;
 
-            await _transport.Stop();
+            await _transport.Stop().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Stopped transport (Address: {Address} Duration: {Duration}ms)";

@@ -82,7 +82,7 @@
 		    Host = CreateHost(_hostBuilder, out var hostIsAlreadyStarted);
 		    if (!hostIsAlreadyStarted)
 		    {
-			    await Host.StartAsync();
+			    await Host.StartAsync().ConfigureAwait(false);
 		    }
 	    }
 
@@ -93,7 +93,7 @@
 
 	    public virtual async Task Stopped()
 	    {
-		    await Host.StopAsync(TimeSpan.FromMinutes(1));
+		    await Host.StopAsync(TimeSpan.FromMinutes(1)).ConfigureAwait(false);
 		    Host = null;
 	    }
 

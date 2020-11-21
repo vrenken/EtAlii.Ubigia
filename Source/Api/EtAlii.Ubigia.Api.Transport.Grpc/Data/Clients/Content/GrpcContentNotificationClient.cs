@@ -29,7 +29,7 @@
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
 
             // TODO: GRPC
 			//_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute))
@@ -44,7 +44,7 @@
 
         public override async Task Disconnect()
         {
-            await base.Disconnect();
+            await base.Disconnect().ConfigureAwait(false);
 
             //await _connection.DisposeAsync()
             //_connection = null

@@ -18,12 +18,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await _client.Connect(spaceConnection);
+            await _client.Connect(spaceConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect()
         {
-            await _client.Disconnect();
+            await _client.Disconnect().ConfigureAwait(false);
         }
 
         public async Task<IEditableEntry> Prepare()
@@ -32,7 +32,7 @@
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var entry = await _client.Prepare();
+            var entry = await _client.Prepare().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Prepared entry (Id: {EntryId} Duration: {Duration}ms)";
@@ -47,7 +47,7 @@
             _logger.Information(message, entry.Id.ToTimeString());
             var start = Environment.TickCount;
 
-            var changedEntry = await _client.Change(entry, scope);
+            var changedEntry = await _client.Change(entry, scope).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Changed entry (Id: {ChangedEntryId} Duration: {Duration}ms)";
@@ -62,7 +62,7 @@
             _logger.Information(message, root.Name);
             var start = Environment.TickCount;
 
-            var entry = await _client.Get(root, scope, entryRelations);
+            var entry = await _client.Get(root, scope, entryRelations).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got entry (Root: {RootName} Id: {EntryId} Duration: {Duration}ms)";
@@ -77,7 +77,7 @@
             _logger.Information(message, entryIdentifier.ToTimeString());
             var start = Environment.TickCount;
 
-            var entry = await _client.Get(entryIdentifier, scope, entryRelations);
+            var entry = await _client.Get(entryIdentifier, scope, entryRelations).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got entry (Id: {EntryId} Duration: {Duration}ms)";
@@ -93,7 +93,7 @@
             var start = Environment.TickCount;
 
             var result = _client.Get(entryIdentifiers, scope, entryRelations);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item; 
             }
@@ -110,7 +110,7 @@
             var start = Environment.TickCount;
 
             var result = _client.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item; 
             }

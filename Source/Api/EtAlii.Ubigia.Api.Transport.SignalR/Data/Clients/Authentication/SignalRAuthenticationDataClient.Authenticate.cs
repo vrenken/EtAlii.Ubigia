@@ -7,7 +7,9 @@
         public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
             var signalRConnection = (ISignalRSpaceConnection)connection;
-            var authenticationToken = await _signalRAuthenticationTokenGetter.GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await _signalRAuthenticationTokenGetter
+                .GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken)
+                .ConfigureAwait(false);
             
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -23,7 +25,9 @@
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
             var signalRConnection = (ISignalRStorageConnection)connection;
-            var authenticationToken = await _signalRAuthenticationTokenGetter.GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await _signalRAuthenticationTokenGetter
+                .GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken)
+                .ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
