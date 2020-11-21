@@ -57,14 +57,15 @@ namespace Docker.DotNet.Models
             }
         }
 
-        internal static async Task MonitorResponseForMessagesAsync<T>(Task<HttpResponseMessage> responseTask, DockerClient client, CancellationToken cancel, IProgress<T> progress)
+        internal static async Task MonitorResponseForMessagesAsync<T>(Task<HttpResponseMessage> responseTask, DockerClient client, CancellationToken cancellationToken, IProgress<T> progress)
         {
             using var response = await responseTask.ConfigureAwait(false);
             //await client.HandleIfErrorResponseAsync(response.StatusCode, response);
 
-            await using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+            await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
             // ReadLineAsync must be cancelled by closing the whole stream.
-            await using (cancel.Register(() => stream.Dispose()))
+            // ReSharper disable once AccessToDisposedClosure
+            await using (cancellationToken.Register(() => stream.Dispose()))
             {
                 using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
                 {
