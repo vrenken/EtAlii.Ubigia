@@ -16,6 +16,7 @@ namespace Docker.DotNet.Models
         {
             await using var stream = await streamTask.ConfigureAwait(false);
             // ReadLineAsync must be cancelled by closing the whole stream.
+            // ReSharper disable once AccessToDisposedClosure
             await using (cancel.Register(() => stream.Dispose()))
             {
                 using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
