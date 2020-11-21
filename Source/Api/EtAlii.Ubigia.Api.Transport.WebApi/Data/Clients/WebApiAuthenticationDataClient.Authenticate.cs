@@ -16,7 +16,7 @@
                 webApiConnection.AddressFactory,
                 accountName,
                 password,
-                connection.Transport.Address);
+                connection.Transport.Address).ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -38,7 +38,7 @@
                 webApiConnection.AddressFactory, 
                 accountName, 
                 password, 
-                connection.Transport.Address);
+                connection.Transport.Address).ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -59,13 +59,13 @@
 				// These lines are needed to make the downscale from admin/system to user account based authentication tokens.
 	            var credentials = new NetworkCredential(accountName, (string)null);
 	            var localAddress = addressFactory.Create(address, RelativeUri.Authenticate, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
-	            authenticationToken = await client.Get<string>(localAddress, credentials);
+	            authenticationToken = await client.Get<string>(localAddress, credentials).ConfigureAwait(false);
             }
             else
             {
                 var credentials = new NetworkCredential(accountName, password);
                 var localAddress = addressFactory.Create(address, RelativeUri.Authenticate);
-                authenticationToken = await client.Get<string>(localAddress, credentials);
+                authenticationToken = await client.Get<string>(localAddress, credentials).ConfigureAwait(false);
             }
 
             if (string.IsNullOrWhiteSpace(authenticationToken))

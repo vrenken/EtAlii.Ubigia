@@ -13,12 +13,12 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public async Task Open(ISpaceConnection spaceConnection)
         {
-            await Data.Connect(spaceConnection);
+            await Data.Connect(spaceConnection).ConfigureAwait(false);
         }
 
         public async Task Close(ISpaceConnection spaceConnection)
         {
-            await Data.Disconnect();
+            await Data.Disconnect().ConfigureAwait(false);
         }
 
     }

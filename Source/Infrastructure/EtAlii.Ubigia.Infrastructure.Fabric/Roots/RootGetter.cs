@@ -22,7 +22,7 @@
             var itemIds = _storage.Items.Get(containerId);
             foreach (var itemId in itemIds)
             {
-                var item = await _storage.Items.Retrieve<Root>(itemId, containerId);
+                var item = await _storage.Items.Retrieve<Root>(itemId, containerId).ConfigureAwait(false);
                 yield return item;
             }
         }
@@ -36,7 +36,7 @@
         public async Task<Root> Get(Guid spaceId, string name)
         {
             var roots = GetAll(spaceId);
-            var root = await roots.SingleOrDefaultAsync(r => r.Name == name);
+            var root = await roots.SingleOrDefaultAsync(r => r.Name == name).ConfigureAwait(false);
             return root;
         }
     }

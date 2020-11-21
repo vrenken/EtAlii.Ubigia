@@ -69,11 +69,11 @@
             cancellationToken.ThrowIfCancellationRequested();
             CheckNotComplete();
 
-            await _writeLock.WaitAsync(cancellationToken);
+            await _writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
             try
             {
-                await FirstWriteAsync();
-                await _pipe.Writer.FlushAsync(cancellationToken);
+                await FirstWriteAsync().ConfigureAwait(false);
+                await _pipe.Writer.FlushAsync(cancellationToken).ConfigureAwait(false);
             }
             finally
             {
@@ -93,7 +93,7 @@
             var registration = cancellationToken.Register(Cancel);
             try
             {
-                var result = await _pipe.Reader.ReadAsync(cancellationToken);
+                var result = await _pipe.Reader.ReadAsync(cancellationToken).ConfigureAwait(false);
 
                 if (result.Buffer.IsEmpty && result.IsCompleted)
                 {
@@ -137,11 +137,11 @@
             VerifyBuffer(buffer, offset, count, allowEmpty: true);
             CheckNotComplete();
 
-            await _writeLock.WaitAsync(cancellationToken);
+            await _writeLock.WaitAsync(cancellationToken).ConfigureAwait(false);
             try
             {
-                await FirstWriteAsync();
-                await _pipe.Writer.WriteAsync(new ReadOnlyMemory<byte>(buffer, offset, count), cancellationToken);
+                await FirstWriteAsync().ConfigureAwait(false);
+                await _pipe.Writer.WriteAsync(new ReadOnlyMemory<byte>(buffer, offset, count), cancellationToken).ConfigureAwait(false);
             }
             finally
             {

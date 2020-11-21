@@ -33,7 +33,7 @@
             }
 
 
-            var contentDefinitionPart = await _contentDefinitionPartGetter.Get(identifier, contentPart.Id);
+            var contentDefinitionPart = await _contentDefinitionPartGetter.Get(identifier, contentPart.Id).ConfigureAwait(false);
 
             var hash = _hash.ComputeBytes(contentPart.Data);
             var checksum = hash.GetULong();

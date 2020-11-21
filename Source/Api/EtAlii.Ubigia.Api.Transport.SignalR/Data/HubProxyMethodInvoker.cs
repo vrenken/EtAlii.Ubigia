@@ -63,7 +63,7 @@
         {
             try
             {
-                return await connection.InvokeCoreAsync<T>(methodName, parameters);
+                return await connection.InvokeCoreAsync<T>(methodName, parameters).ConfigureAwait(false);
             }
             catch (Exception e) when (
                 e.Message == "Invalid account" || 
@@ -93,7 +93,7 @@
         {
             try
             {
-                await connection.InvokeCoreAsync(methodName, parameters);
+                await connection.InvokeCoreAsync(methodName, parameters).ConfigureAwait(false);
             }
             catch (Exception e) when (
                 e.Message == "Invalid account" ||

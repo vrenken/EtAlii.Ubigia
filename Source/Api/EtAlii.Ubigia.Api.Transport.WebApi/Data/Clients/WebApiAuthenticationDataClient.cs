@@ -8,7 +8,7 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Connect((IWebApiSpaceConnection) spaceConnection);
+            await Connect((IWebApiSpaceConnection) spaceConnection).ConfigureAwait(false);
         }
 
         private Task Connect(IWebApiSpaceConnection connection)

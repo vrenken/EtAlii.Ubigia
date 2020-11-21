@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act);
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/admin/api/UserHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act);
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act);
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
         }
 
         [Fact]
@@ -104,7 +104,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/user/api/AdminHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act);
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
         }
 
         [Fact]

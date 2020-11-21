@@ -49,7 +49,7 @@
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Get(root.Identifier, scope, entryRelations);
+            return await Get(root.Identifier, scope, entryRelations).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
@@ -62,7 +62,7 @@
                     var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                     //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations)
                     return response.Entry.ToLocal();
-                });
+                }).ConfigureAwait(false);
             }
             catch (RpcException e)
             {
@@ -86,15 +86,21 @@
                 try
                 {
                     hasResult = enumerator.MoveNext();
-                    
-                    item = hasResult
-                        ? await scope.Cache.GetEntry(enumerator.Current, async () =>
+
+                    if (hasResult)
+                    {
+                        var current = enumerator.Current;
+                        item = await scope.Cache.GetEntry(current, async () =>
                         {
-                            var request = new EntrySingleRequest { EntryId = enumerator.Current.ToWire(), EntryRelations = entryRelations.ToWire() };
+                            var request = new EntrySingleRequest {EntryId = current.ToWire(), EntryRelations = entryRelations.ToWire()};
                             var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                             return response.Entry.ToLocal();
-                        })
-                        : null;
+                        }).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        item = null;
+                    }
 
                 }
                 catch (RpcException e)
@@ -125,7 +131,7 @@
         {
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
             var call = _client.GetRelated(request, _transport.AuthenticationHeaders);
-            await foreach (var response in call.ResponseStream.ReadAllAsync())
+            await foreach (var response in call.ResponseStream.ReadAllAsync().ConfigureAwait(false))
             {
                 yield return response.Entry.ToLocal();
             }
@@ -133,7 +139,7 @@
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
 
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.Channel);
@@ -141,7 +147,7 @@
 
         public override async Task Disconnect()
         {
-            await base.Disconnect();
+            await base.Disconnect().ConfigureAwait(false);
             _transport = null;
             _client = null;
         }

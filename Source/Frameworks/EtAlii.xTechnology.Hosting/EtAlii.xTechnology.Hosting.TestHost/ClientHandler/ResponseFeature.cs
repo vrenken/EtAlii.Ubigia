@@ -72,8 +72,8 @@
             var prior = _responseStartingAsync;
             _responseStartingAsync = async () =>
             {
-                await callback(state);
-                await prior();
+                await callback(state).ConfigureAwait(false);
+                await prior().ConfigureAwait(false);
             };
         }
 
@@ -84,18 +84,18 @@
             {
                 try
                 {
-                    await callback(state);
+                    await callback(state).ConfigureAwait(false);
                 }
                 finally
                 {
-                    await prior();
+                    await prior().ConfigureAwait(false);
                 }
             };
         }
 
         public async Task FireOnSendingHeadersAsync()
         {
-            await _responseStartingAsync();
+            await _responseStartingAsync().ConfigureAwait(false);
             HasStarted = true;
             _headers.IsReadOnly = true;
         }

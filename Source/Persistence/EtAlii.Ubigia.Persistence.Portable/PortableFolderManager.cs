@@ -42,16 +42,16 @@
         {
             T item = null;
 
-            var folderEntry = await _storage.GetFolderAsync(folderName);
+            var folderEntry = await _storage.GetFolderAsync(folderName).ConfigureAwait(false);
             if (folderEntry != null)
             {
                 var fileName = string.Format(_serializer.FileNameFormat, itemName);
-                var checkFileExists = await folderEntry.CheckExistsAsync(fileName);
+                var checkFileExists = await folderEntry.CheckExistsAsync(fileName).ConfigureAwait(false);
                 var exists = checkFileExists == ExistenceCheckResult.FileExists;
                 if (exists)
                 {
                     fileName = PortablePath.Combine(folderName, fileName);
-                    item = await _serializer.Deserialize<T>(fileName);
+                    item = await _serializer.Deserialize<T>(fileName).ConfigureAwait(false);
                 }
             }
 

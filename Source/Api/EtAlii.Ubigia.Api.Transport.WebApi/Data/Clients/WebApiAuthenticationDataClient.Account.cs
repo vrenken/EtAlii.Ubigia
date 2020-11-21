@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(accountName);
+            var account = await GetAccount(accountName).ConfigureAwait(false);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
@@ -22,7 +22,7 @@
         private async Task<Account> GetAccount(string accountName)
         {
             var address = _connection.AddressFactory.Create(_connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
-            var account = await _connection.Client.Get<Account>(address);
+            var account = await _connection.Client.Get<Account>(address).ConfigureAwait(false);
             if (account == null)
             {
                 var message = $"Unable to connect using the specified account ({accountName})";

@@ -37,9 +37,9 @@
             
             try
             {
-                var response = await client.GetAsync(address);
-                await WaitAndTestResponse(response, HttpMethod.Get, address);
-                return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
+                var response = await client.GetAsync(address).ConfigureAwait(false);
+                await WaitAndTestResponse(response, HttpMethod.Get, address).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<TResult>(new [] {_formatter }).ConfigureAwait(false);
             }
             catch (UnauthorizedInfrastructureOperationException)
             {
@@ -62,7 +62,7 @@
         public async Task<TValue> Post<TValue>(Uri address, TValue value = null, ICredentials credentials = null)
             where TValue : class
         {
-            return await Post<TValue, TValue>(address, value, credentials);
+            return await Post<TValue, TValue>(address, value, credentials).ConfigureAwait(false);
         }
 
         public async Task<TResult> Post<TValue, TResult>(Uri address, TValue value = null,
@@ -74,9 +74,9 @@
 
             try
             {
-                var response = await client.PostAsync(address, value, _formatter);
-                await WaitAndTestResponse(response, HttpMethod.Post, address);
-                return await response.Content.ReadAsAsync<TResult>(new[] {_formatter});
+                var response = await client.PostAsync(address, value, _formatter).ConfigureAwait(false);
+                await WaitAndTestResponse(response, HttpMethod.Post, address).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<TResult>(new[] {_formatter}).ConfigureAwait(false);
             }
             catch (UnauthorizedInfrastructureOperationException)
             {
@@ -102,8 +102,8 @@
             
             try
             {
-                var response = await client.DeleteAsync(address);
-                await WaitAndTestResponse(response, HttpMethod.Delete, address);
+                var response = await client.DeleteAsync(address).ConfigureAwait(false);
+                await WaitAndTestResponse(response, HttpMethod.Delete, address).ConfigureAwait(false);
             }
             catch (UnauthorizedInfrastructureOperationException)
             {
@@ -129,9 +129,9 @@
             
             try
             {
-                var response = await client.PutAsync(address, value, _formatter);
-                await WaitAndTestResponse(response, HttpMethod.Put, address);
-                return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
+                var response = await client.PutAsync(address, value, _formatter).ConfigureAwait(false);
+                await WaitAndTestResponse(response, HttpMethod.Put, address).ConfigureAwait(false);
+                return await response.Content.ReadAsAsync<TValue>(new[] { _formatter }).ConfigureAwait(false);
             }
             catch (UnauthorizedInfrastructureOperationException)
             {
@@ -160,7 +160,7 @@
                 Exception e;
                 string message;
 
-                var error = await GetError(result);
+                var error = await GetError(result).ConfigureAwait(false);
 
                 switch (result.StatusCode)
                 {
@@ -183,7 +183,7 @@
 
         private async Task<string> GetError(HttpResponseMessage response)
         {
-            var errorString = await response.Content.ReadAsStringAsync();
+            var errorString = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             errorString = string.IsNullOrWhiteSpace(errorString) ? "UNKNOWN" : errorString;
             return errorString;
         }
