@@ -11,27 +11,29 @@ using Nuke.Common.Tooling;
 
 public partial class Build
 {
-    IEnumerable<Project> TestProjects => TestPartition.GetCurrent(Solution
+    public IEnumerable<Project> TestProjects => Solution
         .GetProjects("*.Tests*")
         .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
-        .Where(tp => !tp.Name.EndsWith(".WebApi.Tests"))); // The WebApi tests won't run nicely on the build agent. No idea why.
-
-    // public IEnumerable<Project> TestProjects => Solution
-    //     .GetProjects("*.Tests*")
-    //     .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
-    //     .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
+        .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
  
     AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
 
-    [Partition(MaxAvailableBuildAgents)] readonly Partition TestPartition;
-
     const int DegreeOfParallelismOnServerTests = 8;
-    const int DegreeOfParallelismOnLocalTests = 30;
-    const int MaxAvailableBuildAgents = 2;
-    
+    const int DegreeOfParallelismOnLocalTests = 16;
+
+    // Target Test2 => _ => _
+    //     .DependsOn(Compile)
+    //     .Partition(() => TestPartition)
+    //     .ProceedAfterFailure()
+    //     .Executes(() =>
+    //     {
+    //         Xunit2(_ => _
+    //             .CombineWith(TestProjects, (cs,testProject) => cs.))
+    //     });
     Target Test => _ => _
+        .Description("Run dotnet test")
         .DependsOn(Compile)
-        .Partition(() => TestPartition)
+        .ProceedAfterFailure()
         .Executes(() =>
         {
             // Let's go full steam ahead when it is a local build. 
@@ -48,5 +50,4 @@ public partial class Build
                     .SetLogger($"trx;LogFileName={testProject.Name}.trx")
                     .SetCoverletOutput(TestResultsDirectory / $"{testProject.Name}.xml")), degreeOfParallelismWhileTesting, Continue);
         });
-
 }

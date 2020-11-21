@@ -12,13 +12,14 @@ public partial class Build
     // https://youtu.be/yojQXa1x2nc?t=1551
     //[GitVersion] GitVersion GitVersion;
 
-    public IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
+    IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
 
     [Parameter] string NuGetFeedApiKey;
     
-    Target Publish => _ => _
+    Target PublishPackages => _ => _
+        .Description("Run dotnet nuget push")
         //.Requires(() => NuGetFeedApiKey != null)
-        .DependsOn(Pack)
+        .DependsOn(PackPackages)
         .ProceedAfterFailure()
         .Executes(() =>
         {
@@ -27,5 +28,23 @@ public partial class Build
                 .SetApiKey(NuGetFeedApiKey)
                 .CombineWith(Packages, (_, v) => _
                     .SetTargetPath(v)));
+        });
+    
+    
+    Target PublishArtefacts => _ => _
+        .Description("Publish artefacts")
+        .DependsOn(PublishPackages)
+        .ProceedAfterFailure()
+        .Executes(() =>
+        {
+            // Implement as:
+            // https://spzsource.github.io/azure/2020/05/08/nuke-build-on-azure-dev-ops-code-coverage-publication-issue.html
+            
+            // AzurePipelines?.UploadArtifact(ArtifactDirectory);
+            //
+            // AzurePipelines?.PublishCodeCoverage(
+            //     AzurePipelinesCodeCoverageToolType.Cobertura,
+            //     CoverageReportDirectory / "coverage.xml",
+            //     CoverageReportDirectory);
         });
 }

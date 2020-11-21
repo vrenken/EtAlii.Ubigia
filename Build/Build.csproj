@@ -12,4 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Nuke.Common" Version="5.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageDownload Include="dotnet-sonarscanner" Version="[5.0.4]" />
+  </ItemGroup>
 </Project>

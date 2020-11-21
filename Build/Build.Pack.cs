@@ -9,8 +9,10 @@ public partial class Build
     // https://youtu.be/yojQXa1x2nc?t=1551
     //[GitVersion] GitVersion GitVersion;
 
-    Target Pack => _ => _
-        .DependsOn(Test)
+    Target PackPackages => _ => _
+        .Description("Run dotnet pack")
+        .ProceedAfterFailure()
+        .DependsOn(CompleteAnalysis)
         .Executes(() =>
         {
             Logger.Info($"dotnet pack");

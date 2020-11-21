@@ -358,3 +358,7 @@ fabric.properties
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+
+#==================================================================
+# SonarQube dotnet-sonarscanner
+**/.sonarqube/
