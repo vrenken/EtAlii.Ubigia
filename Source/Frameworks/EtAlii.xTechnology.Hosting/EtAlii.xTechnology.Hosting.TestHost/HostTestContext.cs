@@ -55,7 +55,7 @@ namespace EtAlii.xTechnology.Hosting
 		    {
 			    try
 			    {
-				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default));
+				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default).ConfigureAwait(false));
 				    task.GetAwaiter().GetResult();
 			    }
 			    catch (Exception e)
@@ -71,12 +71,12 @@ namespace EtAlii.xTechnology.Hosting
 	    /// <returns></returns>
 	    private async Task<ConfigurationDetails> ParseForTesting(string configurationFile, PortRange portRange)
 	    {
-		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
+		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 	    }
 	    
 	    private async Task StartInternal(PortRange portRange, IDiagnosticsConfiguration diagnosticsConfiguration)
 	    {
-		    var details = await ParseForTesting(_configurationFile, portRange);
+		    var details = await ParseForTesting(_configurationFile, portRange).ConfigureAwait(false);
 		    Folders = details.Folders;
 		    Hosts = details.Hosts;
 		    Ports = details.Ports;
@@ -93,12 +93,12 @@ namespace EtAlii.xTechnology.Hosting
 		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);
 
 		    Host = host;
-		    await host.Start();
+		    await host.Start().ConfigureAwait(false);
 	    }
 	    
 	    public virtual async Task Stop()
 	    {
-		    await Host.Stop();
+		    await Host.Stop().ConfigureAwait(false);
 		    Host = null;
 	    }
 

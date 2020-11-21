@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             dynamic profile = _profiler.Begin("Connect");
 
-            await _decoree.Connect(spaceConnection);
+            await _decoree.Connect(spaceConnection).ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             dynamic profile = _profiler.Begin("Disconnect");
 
-            await _decoree.Disconnect();
+            await _decoree.Disconnect().ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             dynamic profile = _profiler.Begin("Prepare");
 
-            var result = await _decoree.Prepare();
+            var result = await _decoree.Prepare().ConfigureAwait(false);
 
             profile.Result = result;
             _profiler.End(profile);
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             dynamic profile = _profiler.Begin("Change");
 
-            var result = await _decoree.Change(entry, scope);
+            var result = await _decoree.Change(entry, scope).ConfigureAwait(false);
 
             profile.Result = result;
             _profiler.End(profile);
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             dynamic profile = _profiler.Begin("Get by root: " + root.Name);
 
-            var result = await _decoree.Get(root, scope, entryRelations);
+            var result = await _decoree.Get(root, scope, entryRelations).ConfigureAwait(false);
 
             profile.Result = result;
             _profiler.End(profile);
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntryIdentifier = entryIdentifier;
             profile.EntryRelations = entryRelations;
 
-            var result = await _decoree.Get(entryIdentifier, scope, entryRelations);
+            var result = await _decoree.Get(entryIdentifier, scope, entryRelations).ConfigureAwait(false);
 
             profile.Result = result;
             _profiler.End(profile);
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntryRelations = entryRelations;
 
             var result = _decoree.Get(entryIdentifiers, scope, entryRelations);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item; 
             }
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntryRelations = entryRelations;
 
             var result = _decoree.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item; 
             }

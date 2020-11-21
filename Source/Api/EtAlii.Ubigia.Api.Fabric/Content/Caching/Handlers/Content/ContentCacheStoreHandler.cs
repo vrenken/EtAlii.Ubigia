@@ -18,7 +18,7 @@
 
         public async Task Handle(Identifier identifier, Content content)
         {
-            await _contextProvider.Context.Store(identifier, content);
+            await _contextProvider.Context.Store(identifier, content).ConfigureAwait(false);
 
             if (content.Summary != null && content.Summary.IsComplete)
             {

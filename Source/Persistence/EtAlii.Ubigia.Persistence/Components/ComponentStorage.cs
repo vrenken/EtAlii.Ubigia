@@ -93,7 +93,7 @@
 
             try
             {
-                return await _componentRetriever.Retrieve<T>(container);
+                return await _componentRetriever.Retrieve<T>(container).ConfigureAwait(false);
             }
             catch (Exception e)
             {

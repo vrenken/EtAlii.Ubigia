@@ -30,7 +30,7 @@ namespace EtAlii.xTechnology.Hosting
 			    })
 			    .Build();
 
-		    await connection.StartAsync();
+		    await connection.StartAsync().ConfigureAwait(false);
 		    return connection;
 	    }
     }

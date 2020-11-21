@@ -14,7 +14,7 @@
             }
 
             var grpcConnection = (IGrpcSpaceConnection) connection;
-            var storage = await GetConnectedStorage(grpcConnection.Transport);
+            var storage = await GetConnectedStorage(grpcConnection.Transport).ConfigureAwait(false);
 
             if (storage == null)
             {

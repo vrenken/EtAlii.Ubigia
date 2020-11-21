@@ -24,34 +24,34 @@
 
         public async Task Start()
         {
-            await Starting();
+            await Starting().ConfigureAwait(false);
 
             foreach (var service in Services)
             {
-                await service.Start();
+                await service.Start().ConfigureAwait(false);
             }
             foreach (var module in Modules)
             {
-                await module.Start();
+                await module.Start().ConfigureAwait(false);
             }
 
-            await Started();
+            await Started().ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Stopping();
+            await Stopping().ConfigureAwait(false);
 
             foreach (var module in Modules.Reverse())
             {
-                await module.Stop();
+                await module.Stop().ConfigureAwait(false);
             }
             foreach (var service in Services.Reverse())
             {
-                await service.Stop();
+                await service.Stop().ConfigureAwait(false);
             }
 
-            await Stopped();
+            await Stopped().ConfigureAwait(false);
         }
 
         public void Setup(IHost host, IService[] services, IModule[] modules)

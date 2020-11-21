@@ -41,7 +41,7 @@
         public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container) where T : class
         {
             var startTicks = Environment.TickCount;
-            var result = await _storage.Retrieve<T>(id, container);
+            var result = await _storage.Retrieve<T>(id, container).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(RetrieveCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
             return result;

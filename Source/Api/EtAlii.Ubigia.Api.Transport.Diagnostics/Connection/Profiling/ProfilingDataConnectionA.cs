@@ -27,12 +27,12 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task Open()
         {
-            await _decoree.Open();
+            await _decoree.Open().ConfigureAwait(false);
         }
 
         public async Task Close()
         {
-            await _decoree.Close();
+            await _decoree.Close().ConfigureAwait(false);
         }
     }
 }

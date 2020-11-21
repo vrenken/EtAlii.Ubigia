@@ -19,23 +19,23 @@
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
 
             var factory = new HubConnectionFactory();
 
 			_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + "/" + SignalRHub.Account, UriKind.Absolute));
 			_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + "/" + SignalRHub.Space, UriKind.Absolute));
-	        await _accountConnection.StartAsync();
-	        await _spaceConnection.StartAsync();
+	        await _accountConnection.StartAsync().ConfigureAwait(false);
+	        await _spaceConnection.StartAsync().ConfigureAwait(false);
         }
 
         public override async Task Disconnect()
         {
-            await base.Disconnect();
+            await base.Disconnect().ConfigureAwait(false);
 
-            await _accountConnection.DisposeAsync();
+            await _accountConnection.DisposeAsync().ConfigureAwait(false);
             _accountConnection = null;
-            await _spaceConnection.DisposeAsync();
+            await _spaceConnection.DisposeAsync().ConfigureAwait(false);
             _spaceConnection = null;
         }
     }

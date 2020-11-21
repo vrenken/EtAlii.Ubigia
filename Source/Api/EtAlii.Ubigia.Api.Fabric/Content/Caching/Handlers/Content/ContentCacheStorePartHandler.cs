@@ -18,7 +18,7 @@
 
         public async Task Handle(Identifier identifier, ContentPart contentPart)
         {
-            await _contextProvider.Context.Store(identifier, contentPart);
+            await _contextProvider.Context.Store(identifier, contentPart).ConfigureAwait(false);
             _cacheHelper.Store(identifier, contentPart);
         }
     }

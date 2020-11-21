@@ -8,7 +8,7 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Connect((ISpaceConnection<IGrpcSpaceTransport>)spaceConnection);
+            await Connect((ISpaceConnection<IGrpcSpaceTransport>)spaceConnection).ConfigureAwait(false);
         }
 
         public virtual Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)

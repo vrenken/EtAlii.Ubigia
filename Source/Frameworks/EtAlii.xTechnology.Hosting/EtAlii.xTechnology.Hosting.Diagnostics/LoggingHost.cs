@@ -42,19 +42,19 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public async Task Start()
         {
             _logger.Information("Starting host {HostName}", GetType().Name);
-            await _decoree.Start();   
+            await _decoree.Start().ConfigureAwait(false);   
         }
 
         public async Task Stop()
         {
             _logger.Information("Stopping host {HostName}", GetType().Name);
-            await _decoree.Stop();   
+            await _decoree.Stop().ConfigureAwait(false);   
         }
 
         public async Task Shutdown()
         {
             _logger.Information("Shutting down host {HostName}", GetType().Name);
-            await _decoree.Shutdown();
+            await _decoree.Shutdown().ConfigureAwait(false);
         }
 
         public void Setup(ICommand[] commands, Status[] status)

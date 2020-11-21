@@ -20,7 +20,7 @@
             var properties = _cacheHelper.GetProperties(identifier);
             if (properties == null)
             {
-                properties = await _contextProvider.Context.Retrieve(identifier, scope);
+                properties = await _contextProvider.Context.Retrieve(identifier, scope).ConfigureAwait(false);
                 _cacheHelper.StoreProperties(identifier, properties);
             }
             return properties;

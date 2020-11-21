@@ -16,7 +16,7 @@
         {
             foreach (var system in Systems)
             {
-                await system.Start();
+                await system.Start().ConfigureAwait(false);
             }
         }
 
@@ -24,7 +24,7 @@
         {
             foreach (var system in Systems.Reverse())
             {
-                await system.Stop();
+                await system.Stop().ConfigureAwait(false);
             }
         }
     }

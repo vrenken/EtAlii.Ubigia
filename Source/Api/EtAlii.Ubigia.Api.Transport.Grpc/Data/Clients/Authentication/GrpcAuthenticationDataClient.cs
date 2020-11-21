@@ -22,13 +22,13 @@
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
             SetClients(spaceConnection.Transport.Channel);
         }
 
         public override async Task Disconnect() 
         {
-            await base.Disconnect(); 
+            await base.Disconnect().ConfigureAwait(false); 
             _storageClient = null;
             _spaceClient = null;
         }
