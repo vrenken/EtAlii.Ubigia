@@ -14,8 +14,8 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 // More info: https://github.com/nuke-build/nuke/issues/260
 [CheckBuildProjectConfigurations(TimeoutInMilliseconds = 2000)] 
 [ShutdownDotNetAfterServerBuild]
-[AzurePipelines(
-    AzurePipelinesImage.WindowsLatest,
+[AzurePipelines( 
+    AzurePipelinesImage.WindowsLatest, 
     InvokedTargets = new []
         {nameof(Test), 
         nameof(Pack)},
@@ -30,7 +30,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
         "master", 
         "feature/*", 
         "release/*"
-    }
+    } 
 )]
 public partial class Build : NukeBuild
 {
