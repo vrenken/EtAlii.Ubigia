@@ -16,21 +16,27 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [ShutdownDotNetAfterServerBuild]
 [AzurePipelines( 
     AzurePipelinesImage.WindowsLatest, 
-    InvokedTargets = new []
-        {nameof(Test), 
-        nameof(Pack)},
+    InvokedTargets = new[]
+    {
+        nameof(Restore),
+        nameof(PrepareAnalysis),
+        nameof(Compile),
+        nameof(Test),
+        nameof(CompleteAnalysis),
+        nameof(PackPackages),
+        nameof(PublishPackages),
+        nameof(PublishArtefacts)
+    },
     NonEntryTargets = new []
     {
-        nameof(Restore), 
-        nameof(Compile), 
-        nameof(Publish),
+        nameof(Clean), 
     },
     TriggerPathsInclude = new []
     {
         "master", 
         "feature/*", 
         "release/*"
-    } 
+    }
 )]
 public partial class Build : NukeBuild
 {
@@ -43,11 +49,11 @@ public partial class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.Pack);
+    public static int Main() => Execute<Build>(build => build.Test);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
-
+    
     [Solution] readonly Solution Solution;
     [GitRepository] readonly GitRepository GitRepository;
 
@@ -55,6 +61,7 @@ public partial class Build : NukeBuild
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
     Target Clean => _ => _
+        .Description("Clean output")
         .Before(Restore)
         .Executes(() =>
         {
@@ -63,6 +70,7 @@ public partial class Build : NukeBuild
         });
 
     Target Restore => _ => _
+        .Description("Run dotnet restore")
         .Executes(() =>
         {
             DotNetRestore(s => s
@@ -70,7 +78,8 @@ public partial class Build : NukeBuild
         });
 
     Target Compile => _ => _
-        .DependsOn(Restore)
+        .Description("Run dotnet build")
+        .DependsOn(Restore, PrepareAnalysis)
         .Executes(() =>
         {
             DotNetBuild(s => s
