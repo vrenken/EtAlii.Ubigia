@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Settings
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
 
@@ -40,7 +41,7 @@
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Remove:
-                    foreach (StorageSettings storageSettings in e.OldItems)
+                    foreach (StorageSettings storageSettings in e.OldItems ?? Array.Empty<StorageSettings>())
                     {
                         storageSettings.Delete();
                     }

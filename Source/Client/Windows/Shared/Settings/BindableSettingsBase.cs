@@ -17,7 +17,7 @@
         protected RegistryKey GetSubKey(string subKeyName)
         {
             using var productKey = Registry.CurrentUser.CreateSubKey(_registryKey);
-            return productKey.CreateSubKey(subKeyName);
+            return productKey!.CreateSubKey(subKeyName);
         }
 
         protected BindableSettingsBase(string registryKeyName)
@@ -61,17 +61,17 @@
             if (typeof(T) == typeof(bool))
             {
                 value = productKey.GetValue(propertyName, (bool)(object)defaultValue ? 1 : 0);
-                value = (int)value == 1;
+                value = (int)value! == 1;
             }
             else if (typeof(T) == typeof(int))
             {
                 value = productKey.GetValue(propertyName, defaultValue);
-                value = (int)value;
+                value = (int)value!;
             }
             else if (typeof(T) == typeof(double))
             {
                 value = (byte[])productKey.GetValue(propertyName, BitConverter.GetBytes((double)(object)defaultValue));
-                value = BitConverter.ToDouble((byte[])value, 0);
+                value = BitConverter.ToDouble((byte[])value!, 0);
             }
             else if (typeof(T) == typeof(string))
             {
