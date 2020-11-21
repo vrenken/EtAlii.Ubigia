@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
@@ -66,13 +67,13 @@
                 switch (e.Action)
                 {
                     case NotifyCollectionChangedAction.Add:
-                        foreach (var newItem in e.NewItems.Cast<ProfilingResult>())
+                        foreach (var newItem in e.NewItems?.Cast<ProfilingResult>() ?? Array.Empty<ProfilingResult>())
                         {
                             _items.Add(newItem);
                         }
                         break;
                     case NotifyCollectionChangedAction.Remove:
-                        foreach (var oldItem in e.OldItems.Cast<ProfilingResult>())
+                        foreach (var oldItem in e.OldItems?.Cast<ProfilingResult>() ?? Array.Empty<ProfilingResult>())
                         {
                             _items.Add(oldItem);
                         }

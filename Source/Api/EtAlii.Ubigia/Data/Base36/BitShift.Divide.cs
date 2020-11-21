@@ -46,9 +46,11 @@ namespace EtAlii.Ubigia
                     buffer -= divisor;
                 }
                 else
+                {
                     //to keep our place; if buffer < divisor,
                     //then by definition buffer / divisor == 0 R buffer.
                     quotientBuffer = (byte)(quotientBuffer << 1);
+                }
 
                 qBufferLen++;
 
