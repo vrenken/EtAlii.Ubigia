@@ -20,7 +20,7 @@ public partial class Build
     //     .GetProjects("*.Tests*")
     //     .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
     //     .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
-
+ 
     AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
 
     [Partition(MaxAvailableBuildAgents)] readonly Partition TestPartition;
