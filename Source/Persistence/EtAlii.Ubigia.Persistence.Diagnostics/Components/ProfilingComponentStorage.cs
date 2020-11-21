@@ -43,7 +43,7 @@
             where T : NonCompositeComponent
         {
             var startTicks = Environment.TickCount;
-            var result = await _storage.Retrieve<T>(container);
+            var result = await _storage.Retrieve<T>(container).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(RetrieveCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
             return result;
@@ -54,7 +54,7 @@
         {
             var startTicks = Environment.TickCount;
             var items = _storage.RetrieveAll<T>(container);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }

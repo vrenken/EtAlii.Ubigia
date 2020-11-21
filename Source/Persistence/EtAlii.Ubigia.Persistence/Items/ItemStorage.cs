@@ -74,7 +74,7 @@
             {
                 var idName = id.ToString();
                 var fileName = _pathBuilder.GetFileName(idName, container);
-                return await _fileManager.LoadFromFile<T>(fileName);
+                return await _fileManager.LoadFromFile<T>(fileName).ConfigureAwait(false);
             }
             catch (Exception e)
             {

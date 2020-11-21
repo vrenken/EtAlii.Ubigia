@@ -9,7 +9,7 @@
 	{
 		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile, PortRange portRange)
 		{
-			var details = await parser.Parse(configurationFile, false);
+			var details = await parser.Parse(configurationFile, false).ConfigureAwait(false);
 			var configuration = details.Configuration;
 
 			// We create a temporary folder for each of the folder variables

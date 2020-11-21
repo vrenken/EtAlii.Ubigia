@@ -18,12 +18,12 @@
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Post", Connection.Space.Id);
+            return await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Post", Connection.Space.Id).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var result = await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Put", entry);
+            var result = await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Put", entry).ConfigureAwait(false);
             scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
             //scope.Cache.InvalidateEntry(result.Id)
@@ -32,12 +32,12 @@
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Get(root.Identifier, scope, entryRelations);
+            return await Get(root.Identifier, scope, entryRelations).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations));
+            return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations).ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
@@ -45,7 +45,7 @@
             // TODO: this can be improved by using one single Web API call.
             foreach (var entryIdentifier in entryIdentifiers)
             {
-                yield return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations));
+                yield return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations).ConfigureAwait(false)).ConfigureAwait(false);
             }
         }
 
@@ -57,7 +57,7 @@
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             var items = _invoker.Stream<Entry>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -65,18 +65,18 @@
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
 
 			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + "/" + SignalRHub.Entry, UriKind.Absolute));
-	        await _connection.StartAsync();
+	        await _connection.StartAsync().ConfigureAwait(false);
 
         }
 
         public override async Task Disconnect()
         {
-            await base.Disconnect();
+            await base.Disconnect().ConfigureAwait(false);
 
-            await _connection.DisposeAsync();
+            await _connection.DisposeAsync().ConfigureAwait(false);
             _connection = null;
         }
     }

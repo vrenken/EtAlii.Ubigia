@@ -119,7 +119,7 @@
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
+            await base.Connect(spaceConnection).ConfigureAwait(false);
             
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new RootGrpcService.RootGrpcServiceClient(_transport.Channel);
@@ -127,7 +127,7 @@
 
         public override async Task Disconnect()
         {
-            await base.Disconnect();
+            await base.Disconnect().ConfigureAwait(false);
             _transport = null;
             _client = null;
         }

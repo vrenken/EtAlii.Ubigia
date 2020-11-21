@@ -96,18 +96,19 @@
                         Trace.WriteLine($"Fatal exception in hosting: {exception}");
                         Trace.WriteLine("Unable to start hosting");
                         State = State.Error;
-                        await Task.Delay(100);
-                        await Stop();
+                        await Task.Delay(100).ConfigureAwait(false);
+                        await Stop().ConfigureAwait(false);
                     }
                     
                 )
                 .ExecuteAsync(async () =>
                 {
-                    await Starting();
-	                await _systemManager.Start();
+                    await Starting().ConfigureAwait(false);
+	                await _systemManager.Start().ConfigureAwait(false);
                     State = State.Running;
-                    await Started();
-                });
+                    await Started().ConfigureAwait(false);
+                })
+                .ConfigureAwait(false);
         }
 
         public async Task Stop()
@@ -128,16 +129,17 @@
                 )
                 .Execute(async () =>
                 {
-                    await Stopping();
-	                await _systemManager.Stop();
+                    await Stopping().ConfigureAwait(false);
+	                await _systemManager.Stop().ConfigureAwait(false);
                     State = State.Stopped;
-                    await Stopped();
-                });
+                    await Stopped().ConfigureAwait(false);
+                })
+                .ConfigureAwait(false);
         }
 
         public async Task Shutdown()
         {
-            await Stop();
+            await Stop().ConfigureAwait(false);
 
             State = State.Shutdown;
         }

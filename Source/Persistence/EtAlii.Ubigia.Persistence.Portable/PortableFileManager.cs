@@ -57,11 +57,11 @@
         {
             T item = null;
 
-            var checkExists= await _storage.CheckExistsAsync(path);
+            var checkExists= await _storage.CheckExistsAsync(path).ConfigureAwait(false);
             var exists = checkExists == ExistenceCheckResult.FileExists;
             if (exists)
             {
-                item = await _serializer.Deserialize<T>(path);
+                item = await _serializer.Deserialize<T>(path).ConfigureAwait(false);
             }
 
             return item;

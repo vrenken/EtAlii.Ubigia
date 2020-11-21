@@ -52,7 +52,7 @@
                 .Use(Configuration.TransportProvider.GetSpaceTransport(Configuration.Address))
                 .Use(Configuration.Space);
             _connection = new SpaceConnectionFactory().Create(configuration);
-            await _connection.Open(Configuration.AccountName, Configuration.Password);
+            await _connection.Open(Configuration.AccountName, Configuration.Password).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -62,7 +62,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
-            await _connection.Close();
+            await _connection.Close().ConfigureAwait(false);
             _connection = null;
         }
     }

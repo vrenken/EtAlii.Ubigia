@@ -16,7 +16,7 @@
             //applicationBuilder.UseBranchWithServices(Port, "/user/portal",
             applicationBuilder.Use(async (c, _) =>
             {
-                await c.Response.WriteAsync("USER PORTAL!");
+                await c.Response.WriteAsync("USER PORTAL!").ConfigureAwait(false);
             });
             applicationBuilder.UseWelcomePage();
             applicationBuilder.UseMvc();

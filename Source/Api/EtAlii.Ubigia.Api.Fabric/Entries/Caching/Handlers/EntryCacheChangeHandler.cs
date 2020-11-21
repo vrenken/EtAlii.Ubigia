@@ -17,7 +17,7 @@
 
         public async Task<IReadOnlyEntry> Handle(IEditableEntry entry, ExecutionScope scope)
         {
-            var changedEntry = await _contextProvider.Context.Change(entry, scope);
+            var changedEntry = await _contextProvider.Context.Change(entry, scope).ConfigureAwait(false);
 
             if (_cacheHelper.ShouldStore(changedEntry))
             {

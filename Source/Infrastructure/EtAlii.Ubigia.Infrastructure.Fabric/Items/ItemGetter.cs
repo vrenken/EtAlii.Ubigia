@@ -43,7 +43,7 @@
             var itemIds = _storage.Items.Get(containerId);
             foreach (var itemId in itemIds)
             {
-                var item = await _storage.Items.Retrieve<T>(itemId, containerId);
+                var item = await _storage.Items.Retrieve<T>(itemId, containerId).ConfigureAwait(false);
                 items.Add(item);
             }
 

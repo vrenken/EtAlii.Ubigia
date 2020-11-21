@@ -8,7 +8,7 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection);
+            await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection).ConfigureAwait(false);
         }
 
         public virtual Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
@@ -19,7 +19,7 @@
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Disconnect(); 
+            await Disconnect().ConfigureAwait(false); 
         }
 
         public virtual Task Disconnect()

@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting.Service.Rest
 
                 var lines = routes.Select(r => $"{r.Template} => {r.Controller}.{r.Action} {Environment.NewLine}");
                 var content = string.Concat(lines);
-                await context.Response.WriteAsync(content);
+                await context.Response.WriteAsync(content).ConfigureAwait(false);
             });
             return endpoints;
         }

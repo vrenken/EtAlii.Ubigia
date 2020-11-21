@@ -20,8 +20,8 @@
             var definition = _cacheHelper.Get(identifier);
             if (definition == null)
             {
-                definition = await _contextProvider.Context.RetrieveDefinition(identifier);
-                if (definition != null && definition.Summary != null && definition.Summary.IsComplete)
+                definition = await _contextProvider.Context.RetrieveDefinition(identifier).ConfigureAwait(false);
+                if (definition?.Summary != null && definition.Summary.IsComplete)
                 {
                     _cacheHelper.Store(identifier, definition);
                 }

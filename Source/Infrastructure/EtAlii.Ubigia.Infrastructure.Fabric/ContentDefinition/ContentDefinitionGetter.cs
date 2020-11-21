@@ -15,7 +15,7 @@
         public async Task<IReadOnlyContentDefinition> Get(Identifier identifier)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-            var contentDefinition = await _storage.Blobs.Retrieve<ContentDefinition>(containerId);
+            var contentDefinition = await _storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
             return contentDefinition;
         }
     }

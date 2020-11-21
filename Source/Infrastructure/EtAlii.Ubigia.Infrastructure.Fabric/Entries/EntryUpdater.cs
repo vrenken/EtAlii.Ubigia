@@ -19,21 +19,21 @@
 
         public async Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            await Update((Entry)entry, changedComponents);
+            await Update((Entry)entry, changedComponents).ConfigureAwait(false);
         }
 
         public async Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            await EnsureModelConsistency(entry, changedComponents);
+            await EnsureModelConsistency(entry, changedComponents).ConfigureAwait(false);
         }
 
         private async Task EnsureModelConsistency(Entry entry, IEnumerable<IComponent> components)
         {
-            await EnsureFirstTypeHierarchicalConsistency(entry, components);
-            await EnsureSecondTypeHierarchicalConsistency(entry, components);
-            await EnsureSequentialConsistency(entry, components);
-            await EnsureTransformationalConsistency(entry, components);
-            await EnsureIndexedConsistency(entry, components);
+            await EnsureFirstTypeHierarchicalConsistency(entry, components).ConfigureAwait(false);
+            await EnsureSecondTypeHierarchicalConsistency(entry, components).ConfigureAwait(false);
+            await EnsureSequentialConsistency(entry, components).ConfigureAwait(false);
+            await EnsureTransformationalConsistency(entry, components).ConfigureAwait(false);
+            await EnsureIndexedConsistency(entry, components).ConfigureAwait(false);
         }
 
         private async Task EnsureSequentialConsistency(Entry entry, IEnumerable<IComponent> components)
@@ -45,7 +45,7 @@
                 var previousId = previousComponent.Relation.Id;
                 if (previousId != Identifier.Empty)
                 {
-                    var previous = (IEditableEntry) await _entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next);
+                    var previous = (IEditableEntry) await _entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
                     if (previous.Next == Relation.None)
                     {
                         //_logger.Verbose("Updating entry - Adding relation from previous to next: [0] => [1]", previousId.ToTimeString(), entry.Id.ToTimeString())
@@ -74,7 +74,7 @@
                 var downdateId = downdateComponent.Relation.Id;
                 if (downdateId != Identifier.Empty)
                 {
-                    var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update);
+                    var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update).ConfigureAwait(false);
                     if (!downdate.Updates.Contains(entry.Id)) 
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
@@ -102,7 +102,7 @@
                 var parentId = parentComponent.Relation.Id;
                 if (parentId != Identifier.Empty)
                 {
-                    var parent = (IEditableEntry)await _entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child);
+                    var parent = (IEditableEntry)await _entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
                     if (!parent.Children.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
@@ -130,7 +130,7 @@
                 var parent2Id = parent2Component.Relation.Id;
                 if (parent2Id != Identifier.Empty)
                 {
-                    var parent2 = (IEditableEntry)await _entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child);
+                    var parent2 = (IEditableEntry)await _entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
                     if (!parent2.Children2.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
@@ -151,8 +151,8 @@
 
         private async Task EnsureIndexedConsistency(Entry entry, IEnumerable<IComponent> components)
         {
-            await EnsuredIndexedConsistencyFromIndexedToIndex(entry, components);
-            await EnsuredIndexedConsistencyFromIndexToIndexed(entry, components);
+            await EnsuredIndexedConsistencyFromIndexedToIndex(entry, components).ConfigureAwait(false);
+            await EnsuredIndexedConsistencyFromIndexToIndexed(entry, components).ConfigureAwait(false);
         }
 
         private async Task EnsuredIndexedConsistencyFromIndexToIndexed(Entry entry, IEnumerable<IComponent> components)
@@ -165,7 +165,7 @@
                     var indexId = indexesRelation.Id;
                     if (indexId != Identifier.Empty)
                     {
-                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed);
+                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
                         if (index.Indexed == Relation.None)
                         {
                             //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
@@ -195,7 +195,7 @@
                 var indexedId = indexedComponent.Relation.Id;
                 if (indexedId != Identifier.Empty)
                 {
-                    var indexed = (IEditableEntry)await _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed);
+                    var indexed = (IEditableEntry)await _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
                     if (!indexed.Indexes.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())
