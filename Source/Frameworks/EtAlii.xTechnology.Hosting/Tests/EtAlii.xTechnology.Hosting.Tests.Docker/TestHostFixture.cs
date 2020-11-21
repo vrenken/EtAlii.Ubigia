@@ -23,7 +23,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
         public override async Task Start(TestHostFixtureOptions options)
         {
             //await CreateImageWhenNeeded();
-            await base.Start(options);
+            await base.Start(options).ConfigureAwait(false);
         }
 
         // private async Task CreateImageWhenNeeded()
@@ -115,7 +115,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
         {
             try
             {
-                await Task.CompletedTask;//Task.Delay(TimeSpan.FromMinutes(1));// Task.CompletedTask;
+                await Task.CompletedTask.ConfigureAwait(false);//Task.Delay(TimeSpan.FromMinutes(1));// Task.CompletedTask;
                 // var connectionString = GetMsSqlConnectionString(ports.Single());
                 // var connection = new SqlConnection(connectionString);
                 // await connection.OpenAsync();

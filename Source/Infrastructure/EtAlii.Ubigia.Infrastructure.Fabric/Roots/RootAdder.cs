@@ -20,7 +20,7 @@
 
         public async Task<Root> Add(Guid spaceId, Root root)
         {
-            var canAdd = await CanAdd(spaceId, root);
+            var canAdd = await CanAdd(spaceId, root).ConfigureAwait(false);
             if (canAdd)
             {
                 root.Id = root.Id != Guid.Empty ? root.Id : Guid.NewGuid();
@@ -53,7 +53,7 @@
             //]
             if (canAdd)
             {
-                canAdd = await _rootGetter.Get(spaceId, item.Name) == null;
+                canAdd = await _rootGetter.Get(spaceId, item.Name).ConfigureAwait(false) == null;
             }
 
             return canAdd;

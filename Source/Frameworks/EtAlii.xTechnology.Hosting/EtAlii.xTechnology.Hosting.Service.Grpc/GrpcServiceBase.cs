@@ -21,7 +21,7 @@
 
         public override async Task Start()
         {
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
             var host = (IConfigurableHost) Host;
             host.ConfigureKestrel += OnConfigureKestrel;
         }
@@ -30,7 +30,7 @@
         {
             var host = (IConfigurableHost) Host;
             host.ConfigureKestrel -= OnConfigureKestrel;
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
         }
 
         

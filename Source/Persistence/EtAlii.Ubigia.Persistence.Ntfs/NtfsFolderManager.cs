@@ -52,7 +52,7 @@
 
                 if (LongPathFile.Exists(fileName))
                 {
-                    item = await _serializer.Deserialize<T>(fileName);
+                    item = await _serializer.Deserialize<T>(fileName).ConfigureAwait(false);
                 }
             }
             return item;

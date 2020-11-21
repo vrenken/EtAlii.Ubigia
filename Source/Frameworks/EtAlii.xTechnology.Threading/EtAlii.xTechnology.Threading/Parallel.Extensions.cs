@@ -24,7 +24,7 @@
                             await body(partition.Current).ContinueWith(_ =>
                             {
                                 //observe exceptions
-                            });
+                            }).ConfigureAwait(false);
                         }
                     }
                 }));
@@ -46,7 +46,7 @@
                             await body(partition.Current.Value, partition.Current.Key).ContinueWith(_ =>
                             {
                                 //observe exceptions
-                            });
+                            }).ConfigureAwait(false);
                         }
                     }
                 }));

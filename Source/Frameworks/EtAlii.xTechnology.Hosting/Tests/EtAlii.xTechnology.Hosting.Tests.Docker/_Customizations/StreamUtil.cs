@@ -14,14 +14,14 @@ namespace Docker.DotNet.Models
         
         internal static async Task MonitorStreamAsync(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<string> progress)
         {
-            await using var stream = await streamTask;
+            await using var stream = await streamTask.ConfigureAwait(false);
             // ReadLineAsync must be cancelled by closing the whole stream.
             await using (cancel.Register(() => stream.Dispose()))
             {
                 using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
                 {
                     string line;
-                    while ((line = await reader.ReadLineAsync()) != null)
+                    while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                     {
                         progress.Report(line);
                     }
@@ -31,7 +31,7 @@ namespace Docker.DotNet.Models
 
         internal static async Task MonitorStreamForMessagesAsync<T>(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<T> progress)
         {
-            await using var stream = await streamTask;
+            await using var stream = await streamTask.ConfigureAwait(false);
             // ReadLineAsync must be cancelled by closing the whole stream.
             await using (cancel.Register(() => stream.Dispose()))
             {
@@ -40,7 +40,7 @@ namespace Docker.DotNet.Models
                     try
                     {
                         string line;
-                        while ((line = await reader.ReadLineAsync()) != null)
+                        while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                         {
                             var prog = JsonSerializer.DeserializeObject<T>(line);
                             if (prog == null) continue;
@@ -59,10 +59,10 @@ namespace Docker.DotNet.Models
 
         internal static async Task MonitorResponseForMessagesAsync<T>(Task<HttpResponseMessage> responseTask, DockerClient client, CancellationToken cancel, IProgress<T> progress)
         {
-            using var response = await responseTask;
+            using var response = await responseTask.ConfigureAwait(false);
             //await client.HandleIfErrorResponseAsync(response.StatusCode, response);
 
-            await using var stream = await response.Content.ReadAsStreamAsync();
+            await using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
             // ReadLineAsync must be cancelled by closing the whole stream.
             await using (cancel.Register(() => stream.Dispose()))
             {
@@ -71,7 +71,7 @@ namespace Docker.DotNet.Models
                     try
                     {
                         string line;
-                        while ((line = await reader.ReadLineAsync()) != null)
+                        while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                         {
                             var prog = JsonSerializer.DeserializeObject<T>(line);
                             if (prog == null) continue;

@@ -20,7 +20,7 @@
             var content = _cacheHelper.Get(identifier);
             if (content == null)
             {
-                content = await _contextProvider.Context.Retrieve(identifier);
+                content = await _contextProvider.Context.Retrieve(identifier).ConfigureAwait(false);
                 if (content != null && content.Summary.IsComplete)
                 {
                     _cacheHelper.Store(identifier, content);

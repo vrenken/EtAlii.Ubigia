@@ -21,12 +21,12 @@
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _storeHandler.Handle(identifier, properties, scope);
+            await _storeHandler.Handle(identifier, properties, scope).ConfigureAwait(false);
         }
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            return await _retrieveHandler.Handle(identifier, scope);
+            return await _retrieveHandler.Handle(identifier, scope).ConfigureAwait(false);
         }
 
         public event Action<Identifier> Stored = delegate { };
@@ -35,7 +35,7 @@
         {
             var task = Task.Run(async () =>
             {
-                await _storeHandler.Handle(identifier);
+                await _storeHandler.Handle(identifier).ConfigureAwait(false);
             });
             task.Wait();
             Stored(identifier);

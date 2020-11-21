@@ -28,7 +28,7 @@
 
         public async Task Handle(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _contextProvider.Context.Store(identifier, properties, scope);
+            await _contextProvider.Context.Store(identifier, properties, scope).ConfigureAwait(false);
         }
     }
 }
