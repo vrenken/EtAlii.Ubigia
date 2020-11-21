@@ -59,6 +59,7 @@
   <component name="ChangeListManager">
     <list default="true" id="8fae1361-da9a-43aa-8c49-f6d7e2ff04ed" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.idea/.idea.EtAlii.Ubigia/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.EtAlii.Ubigia/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Build/Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Build/Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -139,6 +140,7 @@
     <setting file="file://$PROJECT_DIR$/../Build/Configuration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/D5EDF430-AB5A-4412-A0B9-E75F3C32EB0A/27C/IDbSetFinder.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Client/Windows/Diagnostics/SpaceBrowser/Visual/Graphs/_Shared/Views/GraphViewBase.Watermark.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Git/Github/Vrenken/EtAlii.Ubigia/Build/Build.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Build/Build.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -212,8 +214,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605973303732</updated>
-      <workItem from="1605973319453" duration="307000" />
+      <workItem from="1605973319453" duration="846000" />
     </task>
+    <task id="LOCAL-00001" summary="Next attempt.">
+      <created>1605974171107</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605974171107</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,5 +242,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Next attempt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Next attempt." />
   </component>
 </project>
