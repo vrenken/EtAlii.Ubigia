@@ -57,11 +57,7 @@
     <projectFile>../Build/Build.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fae1361-da9a-43aa-8c49-f6d7e2ff04ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.EtAlii.Ubigia/.idea/contentModel.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.EtAlii.Ubigia/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Build/Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Build/Build.cs" afterDir="false" />
-    </list>
+    <list default="true" id="8fae1361-da9a-43aa-8c49-f6d7e2ff04ed" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +158,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -214,7 +213,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1605973303732</updated>
-      <workItem from="1605973319453" duration="846000" />
+      <workItem from="1605973319453" duration="1517000" />
     </task>
     <task id="LOCAL-00001" summary="Next attempt.">
       <created>1605974171107</created>
@@ -223,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605974171107</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Next attempt.">
+      <created>1605974215848</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605974215848</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
