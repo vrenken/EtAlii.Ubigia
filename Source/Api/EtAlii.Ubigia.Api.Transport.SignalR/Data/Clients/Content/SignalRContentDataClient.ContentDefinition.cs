@@ -6,21 +6,21 @@
     {
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await _invoker.Invoke(_contentDefinitionConnection, SignalRHub.ContentDefinition, "Post", identifier, contentDefinition);
+            await _invoker.Invoke(_contentDefinitionConnection, SignalRHub.ContentDefinition, "Post", identifier, contentDefinition).ConfigureAwait(false);
 
             MarkAsStored(contentDefinition);
         }
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await _invoker.Invoke(_contentDefinitionConnection, SignalRHub.ContentDefinition, "PostPart", identifier, contentDefinitionPart.Id, contentDefinitionPart);
+            await _invoker.Invoke(_contentDefinitionConnection, SignalRHub.ContentDefinition, "PostPart", identifier, contentDefinitionPart.Id, contentDefinitionPart).ConfigureAwait(false);
 
             MarkAsStored(contentDefinitionPart);
         }
 
         public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, SignalRHub.ContentDefinition, "Get", identifier);
+            return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, SignalRHub.ContentDefinition, "Get", identifier).ConfigureAwait(false);
         }
 
         private void MarkAsStored(ContentDefinition contentDefinition)

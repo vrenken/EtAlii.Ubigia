@@ -75,11 +75,11 @@
             parts = parts.Length > 1 ? parts.Take(parts.Length - 1).ToArray() : parts;
             var folderName = string.Join(PortablePath.DirectorySeparatorChar.ToString(), parts);
 
-            var folder = await _storage.GetFolderAsync(folderName);
-            var file = await folder.GetFileAsync(fileName);
-            await using var stream = await file.OpenAsync(FileAccess.Read);
+            var folder = await _storage.GetFolderAsync(folderName).ConfigureAwait(false);
+            var file = await folder.GetFileAsync(fileName).ConfigureAwait(false);
+            await using var stream = await file.OpenAsync(FileAccess.Read).ConfigureAwait(false);
 
-            return await _itemSerializer.Deserialize<T>(stream);
+            return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
         }
 
         public PropertyDictionary Deserialize(string fileName)

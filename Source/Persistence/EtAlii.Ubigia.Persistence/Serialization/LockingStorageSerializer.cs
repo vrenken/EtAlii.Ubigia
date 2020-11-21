@@ -53,10 +53,10 @@
             where T : class
         {
             var lockObject = _lockObjects.GetOrAdd(fileName, _ => new SemaphoreSlim(1, 1));
-            await lockObject.WaitAsync();
+            await lockObject.WaitAsync().ConfigureAwait(false);
             try
             {
-                var result = await _decoree.Deserialize<T>(fileName);
+                var result = await _decoree.Deserialize<T>(fileName).ConfigureAwait(false);
                 return result;
             }
             finally

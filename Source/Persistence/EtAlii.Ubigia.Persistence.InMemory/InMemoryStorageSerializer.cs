@@ -42,7 +42,7 @@
             where T : class
         {
             await using var stream = _inMemoryItemsHelper.OpenFile(fileName);
-            return await _itemSerializer.Deserialize<T>(stream);
+            return await _itemSerializer.Deserialize<T>(stream).ConfigureAwait(false);
         }
 
         public PropertyDictionary Deserialize(string fileName)

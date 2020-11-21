@@ -28,12 +28,12 @@
             if (_fileManager.Exists(path))
             {
                 // Yup, we have a summary file. Lets load it.
-                summary = await _fileManager.LoadFromFile<BlobSummary>(path);
+                summary = await _fileManager.LoadFromFile<BlobSummary>(path).ConfigureAwait(false);
             }
             else
             {
                 // Nope, the summary file is not yet available. Lets calculate the summary.
-                summary = await _blobSummaryCalculator.Calculate<T>(container);
+                summary = await _blobSummaryCalculator.Calculate<T>(container).ConfigureAwait(false);
 
                 if (summary != null && summary.IsComplete)
                 {

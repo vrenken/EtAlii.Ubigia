@@ -17,7 +17,7 @@
 
         public async Task<Root> Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
-            var rootToUpdate = await _rootGetter.Get(spaceId, rootId);
+            var rootToUpdate = await _rootGetter.Get(spaceId, rootId).ConfigureAwait(false);
 
             if (rootToUpdate.Name != updatedRoot.Name || rootToUpdate.Identifier != updatedRoot.Identifier)
             {

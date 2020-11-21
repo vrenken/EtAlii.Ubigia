@@ -19,7 +19,7 @@
 		
 		public override async Task Stopped()
 		{
-			await base.Stopped();
+			await base.Stopped().ConfigureAwait(false);
 
 			_server.Dispose();
 			_server = null;

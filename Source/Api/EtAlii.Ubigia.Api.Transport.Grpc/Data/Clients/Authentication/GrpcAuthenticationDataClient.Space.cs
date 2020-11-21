@@ -14,7 +14,7 @@
             }
 
             var transport = ((IGrpcSpaceConnection) connection).Transport;
-            var space = await GetSpace(connection.Configuration.Space, transport);
+            var space = await GetSpace(connection.Configuration.Space, transport).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);

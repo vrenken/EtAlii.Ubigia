@@ -57,13 +57,13 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
 
-            await Content.Close(this);
-            await Properties.Close(this);
-            await Entries.Close(this);
-            await Roots.Close(this);
-            await Authentication.Close(this);
+            await Content.Close(this).ConfigureAwait(false);
+            await Properties.Close(this).ConfigureAwait(false);
+            await Entries.Close(this).ConfigureAwait(false);
+            await Roots.Close(this).ConfigureAwait(false);
+            await Authentication.Close(this).ConfigureAwait(false);
 
-            await Transport.Stop();
+            await Transport.Stop().ConfigureAwait(false);
             Storage = null;
             Space = null;
         }
@@ -75,20 +75,20 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await Authentication.Data.Authenticate(this, accountName, password);
+            await Authentication.Data.Authenticate(this, accountName, password).ConfigureAwait(false);
 
-            Storage = await Authentication.Data.GetConnectedStorage(this);
+            Storage = await Authentication.Data.GetConnectedStorage(this).ConfigureAwait(false);
 
-            await Authentication.Open(this);
-            await Roots.Open(this);
-            await Entries.Open(this);
-            await Properties.Open(this);
-            await Content.Open(this);
+            await Authentication.Open(this).ConfigureAwait(false);
+            await Roots.Open(this).ConfigureAwait(false);
+            await Entries.Open(this).ConfigureAwait(false);
+            await Properties.Open(this).ConfigureAwait(false);
+            await Content.Open(this).ConfigureAwait(false);
 
-            await Transport.Start();
+            await Transport.Start().ConfigureAwait(false);
 
-			Account = await Authentication.Data.GetAccount(this, accountName);
-	        Space = await Authentication.Data.GetSpace(this);
+			Account = await Authentication.Data.GetAccount(this, accountName).ConfigureAwait(false);
+	        Space = await Authentication.Data.GetSpace(this).ConfigureAwait(false);
         }
 
         #region Disposable

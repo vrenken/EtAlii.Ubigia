@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(accountName);
+            var account = await GetAccount(accountName).ConfigureAwait(false);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-			var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetForAuthenticationToken");
+			var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetForAuthenticationToken").ConfigureAwait(false);
             if (account == null)
             {
                 var message = $"Unable to connect using the specified account ({accountName})";

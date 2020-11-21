@@ -61,8 +61,8 @@
             {
                 try
                 {
-                    await _application.ProcessRequestAsync(_testContext);
-                    await CompleteResponseAsync();
+                    await _application.ProcessRequestAsync(_testContext).ConfigureAwait(false);
+                    await CompleteResponseAsync().ConfigureAwait(false);
                     _application.DisposeContext(_testContext, exception: null);
                 }
                 catch (Exception ex)
@@ -91,9 +91,9 @@
         private async Task CompleteResponseAsync()
         {
             _pipelineFinished = true;
-            await ReturnResponseMessageAsync();
+            await ReturnResponseMessageAsync().ConfigureAwait(false);
             _responseStream.CompleteWrites();
-            await _responseFeature.FireOnResponseCompletedAsync();
+            await _responseFeature.FireOnResponseCompletedAsync().ConfigureAwait(false);
         }
 
         private async Task ReturnResponseMessageAsync()
@@ -106,7 +106,7 @@
                 // Sets HasStarted
                 try
                 {
-                    await _responseFeature.FireOnSendingHeadersAsync();
+                    await _responseFeature.FireOnSendingHeadersAsync().ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {

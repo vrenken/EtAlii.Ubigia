@@ -34,7 +34,7 @@
                     var fileName = _pathBuilder.GetFileNameWithoutExtension(fullFileName);
                     var compositeComponentId = ulong.Parse(fileName);
 
-                    var component = await _fileManager.LoadFromFile<T>(fullFileName);
+                    var component = await _fileManager.LoadFromFile<T>(fullFileName).ConfigureAwait(false);
 
                     ComponentHelper.SetId(component, compositeComponentId);
                     ComponentHelper.SetStored(component, true);
@@ -52,7 +52,7 @@
             //var format = "Retrieving [0] component from: [1]"
             //_logger.Verbose[format, componentName, folder]
 
-            var component = await _folderManager.LoadFromFolder<T>(folder, componentName);
+            var component = await _folderManager.LoadFromFolder<T>(folder, componentName).ConfigureAwait(false);
 
             // Why is this if statement here? I don't like it.
             if (component != null)
