@@ -48,7 +48,10 @@ namespace EtAlii.xTechnology.Threading
                         _current = new KeyValuePair<long, T>(_index.Value, _source.Current);
                         _index.Value = _index.Value + 1;
                     }
-                    else _current = default(KeyValuePair<long, T>);
+                    else
+                    {
+                        _current = default;
+                    }
                 }
                 return rval;
             }
