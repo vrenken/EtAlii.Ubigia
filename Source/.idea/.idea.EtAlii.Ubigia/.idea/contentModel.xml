@@ -6,17 +6,15 @@
     <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\azure-pipelines.yml" t="Include" />
     <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\build" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
+      <e p="boot" t="Include" />
       <e p="Build.Analyse.cs" t="Include" />
       <e p="Build.Clean.cs" t="Include" />
-      <e p="build.cmd" t="Include" />
       <e p="Build.Compile.cs" t="Include" />
       <e p="Build.cs" t="Include" />
       <e p="Build.csproj" t="IncludeRecursive" />
       <e p="Build.Pack.cs" t="Include" />
-      <e p="build.ps1" t="Include" />
       <e p="Build.Publish.cs" t="Include" />
       <e p="Build.Restore.cs" t="Include" />
-      <e p="build.sh" t="Include" />
       <e p="Build.Test.cs" t="Include" />
       <e p="ci" t="Include" />
       <e p="config" t="Include" />
@@ -28,6 +26,9 @@
         </e>
       </e>
     </e>
+    <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\build.cmd" t="Include" />
+    <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\build.ps1" t="Include" />
+    <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\build.sh" t="Include" />
     <e p="C:\Git\Github\Vrenken\EtAlii.Ubigia\Source" t="IncludeFlat">
       <e p=".editorconfig" t="Include" />
       <e p="_Meta" t="Include" />
