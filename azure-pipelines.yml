@@ -21,59 +21,10 @@ stages:
     pool:
       vmImage: 'windows-latest'
     jobs:
-      - job: Clean
-        displayName: 'Clean'
+      - job: CompileTestAnalyseAndPublish
+        displayName: 'CompileTestAnalyseAndPublish'
         dependsOn: [  ]
         steps:
           - task: CmdLine@2
             inputs:
-              script: './build.cmd Clean --skip'
-      - job: PrepareAnalysis
-        displayName: 'PrepareAnalysis'
-        dependsOn: [ Clean ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd PrepareAnalysis --skip'
-      - job: Compile
-        displayName: 'Compile'
-        dependsOn: [ PrepareAnalysis ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd Compile --skip'
-      - job: Test
-        displayName: 'Test'
-        dependsOn: [ Compile ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd Test --skip'
-      - job: CompleteAnalysis
-        displayName: 'CompleteAnalysis'
-        dependsOn: [ Test ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd CompleteAnalysis --skip'
-      - job: PackPackages
-        displayName: 'PackPackages'
-        dependsOn: [ CompleteAnalysis ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd PackPackages --skip'
-      - job: PublishPackages
-        displayName: 'PublishPackages'
-        dependsOn: [ PackPackages ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd PublishPackages --skip'
-      - job: PublishArtefacts
-        displayName: 'PublishArtefacts'
-        dependsOn: [ PublishPackages ]
-        steps:
-          - task: CmdLine@2
-            inputs:
-              script: './build.cmd PublishArtefacts --skip'
+              script: './build.cmd Clean Restore PrepareAnalysis Compile Test CompleteAnalysis PackPackages PublishPackages PublishArtefacts CompileTestAnalyseAndPublish --skip'
