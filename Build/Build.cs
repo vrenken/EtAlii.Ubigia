@@ -75,7 +75,7 @@ public partial class Build : NukeBuild
         {
             DotNetRestore(s => s
                 .SetProjectFile(Solution)
-                .SetConfigFile(RootDirectory / "Nuget.config"));
+                .SetConfigFile(SourceDirectory / "Nuget.config"));
         });
 
     Target Compile => _ => _
