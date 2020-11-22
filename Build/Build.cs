@@ -60,6 +60,8 @@ public partial class Build : NukeBuild
     AbsolutePath SourceDirectory => RootDirectory / "source";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
+    protected override string NuGetPackagesConfigFile => SourceDirectory + "Nuget.config";
+    
     Target Clean => _ => _
         .Description("Clean output")
         .Before(Restore)
@@ -75,7 +77,7 @@ public partial class Build : NukeBuild
         {
             DotNetRestore(s => s
                 .SetProjectFile(Solution)
-                .SetConfigFile(SourceDirectory / "Nuget.config"));
+                .SetConfigFile(NuGetPackagesConfigFile));
         });
 
     Target Compile => _ => _
@@ -86,6 +88,7 @@ public partial class Build : NukeBuild
             DotNetBuild(s => s
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
-                .EnableNoRestore());
+//                .EnableNoRestore()
+            );
         });
 }
