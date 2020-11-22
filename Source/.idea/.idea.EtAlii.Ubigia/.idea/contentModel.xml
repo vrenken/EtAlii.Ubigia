@@ -4544,8 +4544,15 @@
               <e p="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.AssemblyInfo.cs" t="Include" />
               <e p="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser_Content.g.cs" t="Include" />
               <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
+              <e p="Journal" t="Include">
+                <e p="Views" t="Include">
+                  <e p="JournalContent.g.cs" t="Include" />
+                </e>
+              </e>
               <e p="Main" t="Include">
                 <e p="Views" t="Include">
+                  <e p="DocumentDataTemplateContent.g.cs" t="Include" />
+                  <e p="MainContent.g.cs" t="Include" />
                   <e p="MainWindow.g.cs" t="Include" />
                   <e p="NewBackstageTabItem.g.cs" t="Include" />
                   <e p="OpenBackstageTabItem.g.cs" t="Include" />
@@ -4564,6 +4571,7 @@
                   <e p="ProfilingView.g.cs" t="Include" />
                   <e p="Ribbon" t="Include">
                     <e p="ProfilingActionsRibbonGroupBox.g.cs" t="Include" />
+                    <e p="ProfilingFiltersRibbonGroupBox.g.cs" t="Include" />
                     <e p="ProfilingOptionsRibbonGroupBox.g.cs" t="Include" />
                   </e>
                 </e>
@@ -4571,6 +4579,10 @@
               <e p="Textual" t="Include">
                 <e p="_Shared" t="Include">
                   <e p="Views" t="Include">
+                    <e p="Content" t="Include">
+                      <e p="ErrorsView.g.cs" t="Include" />
+                      <e p="ResultsView.g.cs" t="Include" />
+                    </e>
                     <e p="Ribbon" t="Include">
                       <e p="EditRibbonGroupBox.g.cs" t="Include" />
                     </e>
@@ -4578,6 +4590,7 @@
                 </e>
                 <e p="CSharp" t="Include">
                   <e p="Views" t="Include">
+                    <e p="CodeView.g.cs" t="Include" />
                     <e p="Ribbon" t="Include">
                       <e p="CodeMaintenanceRibbonGroupBox.g.cs" t="Include" />
                       <e p="EditCodeRibbonGroupBox.g.cs" t="Include" />
@@ -4616,6 +4629,7 @@
                   <e p="_Shared" t="Include">
                     <e p="Views" t="Include">
                       <e p="GraphContextMenu.g.cs" t="Include" />
+                      <e p="GraphView.g.cs" t="Include" />
                       <e p="Ribbon" t="Include">
                         <e p="ActionsRibbonGroupBox.g.cs" t="Include" />
                         <e p="EntrySelectionRibbonGroupBox.g.cs" t="Include" />
@@ -4625,6 +4639,11 @@
                       </e>
                       <e p="RootsContent.g.cs" t="Include" />
                     </e>
+                  </e>
+                </e>
+                <e p="Tree" t="Include">
+                  <e p="Views" t="Include">
+                    <e p="TreeView.g.cs" t="Include" />
                   </e>
                 </e>
               </e>
@@ -5039,6 +5058,7 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0-windows" t="Include">
+              <e p="App.g.cs" t="Include" />
               <e p="EtAlii.Ubigia.Windows.Client.AssemblyInfo.cs" t="Include" />
               <e p="GeneratedInternalTypeHelper.g.cs" t="Include" />
               <e p="Settings" t="Include">
@@ -5244,6 +5264,9 @@
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0-windows" t="Include">
+              <e p="Connection" t="Include">
+                <e p="ConnectionDialogWindow.g.cs" t="Include" />
+              </e>
               <e p="EtAlii.Ubigia.Windows.Management.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
@@ -5378,6 +5401,7 @@
               <e p="App.g.cs" t="Include" />
               <e p="Configuration" t="Include">
                 <e p="Views" t="Include">
+                  <e p="ConfigurationWindow.g.cs" t="Include" />
                   <e p="EditFolderWindow.g.cs" t="Include" />
                 </e>
               </e>
