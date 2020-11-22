@@ -15,28 +15,20 @@ namespace EtAlii.Ubigia.Pipelines
         AzurePipelinesImage.WindowsLatest, 
         InvokedTargets = new[]
         {
-            // nameof(Clean), 
-            // //nameof(Restore),
-            // nameof(PrepareAnalysis),
-            // nameof(Compile),
-            // nameof(Test),
-            // nameof(CompleteAnalysis),
-            // nameof(PackPackages),
-            // nameof(PublishPackages),
             nameof(CompileTestAnalyseAndPublish)
-        }//,
-        // NonEntryTargets = new []
-        // {
-        //     nameof(Clean), 
-        //     nameof(Restore),
-        //     nameof(PrepareAnalysis),
-        //     nameof(Compile),
-        //     nameof(Test),
-        //     nameof(CompleteAnalysis),
-        //     nameof(PackPackages),
-        //     nameof(PublishPackages),
-        //     nameof(PublishArtefacts)
-        // }
+        },
+        NonEntryTargets = new []
+        {
+            nameof(Clean), 
+            nameof(Restore),
+            nameof(PrepareAnalysis),
+            nameof(Compile),
+            nameof(Test),
+            nameof(CompleteAnalysis),
+            nameof(PackPackages),
+            nameof(PublishPackages),
+            nameof(PublishArtefacts)
+        }
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
     public partial class Build : NukeBuild
