@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target PublishPackages => _ => _
             .Description("Run dotnet nuget push")
+            .DependsOn(PackPackages)
             //.Requires(() => NuGetFeedApiKey != null)
             .ProceedAfterFailure()
             .Executes(() =>
@@ -36,6 +37,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target PublishArtefacts => _ => _
             .Description("Publish artefacts")
+            .DependsOn(PublishPackages)
             //.DependsOn(PublishPackages)
             .ProceedAfterFailure()
             .Executes(() =>

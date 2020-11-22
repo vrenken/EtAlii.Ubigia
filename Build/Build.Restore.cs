@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target Restore => _ => _
             .Description("Run dotnet restore")
+            .DependsOn(Clean)
             .Executes(() =>
             {
                 DotNetRestore(s => s
