@@ -15,8 +15,20 @@ namespace EtAlii.Ubigia.Pipelines
         AzurePipelinesImage.WindowsLatest, 
         InvokedTargets = new[]
         {
+            // nameof(Clean), 
+            // //nameof(Restore),
+            // nameof(PrepareAnalysis),
+            // nameof(Compile),
+            // nameof(Test),
+            // nameof(CompleteAnalysis),
+            // nameof(PackPackages),
+            // nameof(PublishPackages),
+            nameof(CompileTestAnalyseAndPublish)
+        },
+        NonEntryTargets = new []
+        {
             nameof(Clean), 
-            //nameof(Restore),
+            nameof(Restore),
             nameof(PrepareAnalysis),
             nameof(Compile),
             nameof(Test),
@@ -24,19 +36,7 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(PackPackages),
             nameof(PublishPackages),
             nameof(PublishArtefacts)
-        }//,
-        // NonEntryTargets = new []
-        // {
-        //     nameof(Clean), 
-        //     nameof(Restore),
-        //     nameof(PrepareAnalysis),
-        //     nameof(Compile),
-        //     nameof(Test),
-        //     nameof(CompleteAnalysis),
-        //     nameof(PackPackages),
-        //     nameof(PublishPackages),
-        //     nameof(PublishArtefacts)
-        // }
+        }
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
     public partial class Build : NukeBuild
@@ -58,30 +58,9 @@ namespace EtAlii.Ubigia.Pipelines
         
         [Solution] readonly Solution Solution;
         [GitRepository] readonly GitRepository GitRepository;
-        //
-        // Target CompileTestAnalyseAndPublish => _ => _
-        //     .Description("Compile, test, analyse and publish")
-        //     .Executes(Clean)
-        //     .Executes(Restore)
-        //     .Executes(PrepareAnalysis)
-        //     .Executes(Compile)
-        //     .Executes(Test)
-        //     .Executes(CompleteAnalysis)
-        //     .Executes(PackPackages)
-        //     .Executes(PublishPackages)
-        //     .Executes(PublishArtefacts);
-        //
-        // Target CompileTestAnalyseAndPublish2 => _ => _
-        //     .Description("Compile, test, analyse and publish")
-        //     .DependsOn(Clean)
-        //     .DependsOn(Restore)
-        //     .DependsOn(PrepareAnalysis)
-        //     .DependsOn(Compile)
-        //     .DependsOn(Test)
-        //     .DependsOn(CompleteAnalysis)
-        //     .DependsOn(PackPackages)
-        //     .DependsOn(PublishPackages)
-        //     .DependsOn(PublishArtefacts);
 
+        Target CompileTestAnalyseAndPublish => _ => _
+            .Description("Compile, test, analyse and publish")
+            .DependsOn(PublishArtefacts);
     }
 }
