@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Pipelines
             
         Target Clean => _ => _
             .Description("Clean output")
-            .Before(Restore)
+            //.Before(Pr)
             .Executes(() =>
             {
                 SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);

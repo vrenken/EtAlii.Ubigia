@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Pipelines
         InvokedTargets = new[]
         {
             nameof(Clean), 
-            nameof(Restore),
+            //nameof(Restore),
             nameof(PrepareAnalysis),
             nameof(Compile),
             nameof(Test),
@@ -43,6 +43,7 @@ namespace EtAlii.Ubigia.Pipelines
     {
         /// To run nuke locally install it as a global tool:
         /// "dotnet tool install Nuke.GlobalTool --global"
+        /// Or "dotnet tool update Nuke.GlobalTool --global" to update.
         /// 
         /// Support plugins are available for:
         ///   - JetBrains ReSharper        https://nuke.build/resharper
