@@ -1,18 +1,21 @@
 namespace EtAlii.Ubigia.Pipelines
 {
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using Nuke.Common;
+    using Nuke.Common.CI.AzurePipelines;
     using Nuke.Common.IO;
     using Nuke.Common.ProjectModel;
     using Nuke.Common.Tools.Coverlet;
     using Nuke.Common.Tools.DotNet;
     using static Nuke.Common.Tools.DotNet.DotNetTasks;
     using Nuke.Common.Tooling;
+    using Nuke.Common.Utilities.Collections;
 
     public partial class Build
     {
-        public IEnumerable<Project> TestProjects => Solution
+        IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
             .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
             .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
@@ -41,8 +44,21 @@ namespace EtAlii.Ubigia.Pipelines
                         .CombineWith(TestProjects, (cs, testProject) => cs
                             .SetProjectFile(testProject)
                             .SetLogger($"trx;LogFileName={testProject.Name}.trx")
-                            .SetCoverletOutput(TestResultsDirectory / $"{testProject.Name}.xml")),
+                            .SetCoverletOutput($"{testProject.Name}.oc.xml")),
                     degreeOfParallelismWhileTesting, Continue);
+            });
+        
+        Target PublishTestResults => _ => _
+            .Description("Publish test results")
+            .DependsOn(Test)
+            .ProceedAfterFailure()
+            .Executes(() =>
+            {
+                TestResultsDirectory.GlobFiles("*.trx").ForEach(x =>
+                    AzurePipelines?.PublishTestResults(
+                        type: AzurePipelinesTestResultsType.VSTest,
+                        title: $"{Path.GetFileNameWithoutExtension(x)} ({AzurePipelines.StageDisplayName})",
+                        files: new string[] { x }));                
             });
     }
 }
