@@ -60,7 +60,7 @@ public partial class Build : NukeBuild
     AbsolutePath SourceDirectory => RootDirectory / "source";
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
-    protected override string NuGetPackagesConfigFile => SourceDirectory + "Nuget.config";
+    protected override string NuGetPackagesConfigFile => SourceDirectory / "Nuget.config";
     
     Target Clean => _ => _
         .Description("Clean output")
