@@ -33,8 +33,8 @@ namespace EtAlii.Ubigia.Pipelines
                     IsLocalBuild ? DegreeOfParallelismOnLocalTests : DegreeOfParallelismOnServerTests;
 
                 DotNetTest(_ => _
-                        .EnableNoBuild()
-                        .EnableNoRestore()
+                        .SetNoBuild(true)
+                        .SetNoRestore(true)
                         .SetResultsDirectory(TestResultsDirectory)
                         .EnableCollectCoverage()
                         .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
