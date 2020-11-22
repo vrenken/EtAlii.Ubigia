@@ -7687,13 +7687,7 @@
             <e p="IHash.cs" t="Include" />
             <e p="IHashInfo.cs" t="Include" />
             <e p="MultipleTransformsNonBlock.cs" t="Include" />
-            <e p="obj" t="ExcludeRecursive">
-              <e p="Debug" t="Include">
-                <e p="netstandard2.1" t="Include">
-                  <e p="HashLib.AssemblyInfo.cs" t="Include" />
-                </e>
-              </e>
-            </e>
+            <e p="obj" t="ExcludeRecursive" />
           </e>
           <e p="HashLibTest" t="IncludeRecursive">
             <e p="App.config" t="Include" />
@@ -7701,13 +7695,7 @@
             <e p="HashesTest.cs" t="Include" />
             <e p="HashesTestContext.cs" t="Include" />
             <e p="HashLib.Tests.csproj" t="IncludeRecursive" />
-            <e p="obj" t="ExcludeRecursive">
-              <e p="Debug" t="Include">
-                <e p="net5.0-windows" t="Include">
-                  <e p="HashLib.Tests.AssemblyInfo.cs" t="Include" />
-                </e>
-              </e>
-            </e>
+            <e p="obj" t="ExcludeRecursive" />
             <e p="packages.config" t="Include" />
             <e p="TestData" t="Include">
               <e p="Adler32Test.txt" t="Include" />
