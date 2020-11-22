@@ -589,6 +589,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Moppet.Lapa", "Frameworks\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "..\Build\Build.csproj", "{15FA6569-A284-48C5-A4C3-295570ED0C46}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{07D88DC1-7C0C-44DC-9BFC-D55C389C6A24}"
+ProjectSection(SolutionItems) = preProject
+	Frameworks\HashLib\Directory.Build.props = Frameworks\HashLib\Directory.Build.props
+	Frameworks\HashLib\Directory.Build.targets = Frameworks\HashLib\Directory.Build.targets
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -3108,6 +3114,7 @@ Global
 		{8A63B62C-BA63-4CC1-9A13-73E082B2801C} = {70B0CC1F-9F35-448E-86DB-34458A5F9C03}
 		{7367E271-C36B-48DF-94B9-E1E2B26136C6} = {8A63B62C-BA63-4CC1-9A13-73E082B2801C}
 		{15FA6569-A284-48C5-A4C3-295570ED0C46} = {C9537D00-7881-4ACB-9111-9439363F658D}
+		{07D88DC1-7C0C-44DC-9BFC-D55C389C6A24} = {3665753E-28F9-469C-8350-9DDBFD994DB6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

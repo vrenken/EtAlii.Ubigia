@@ -11,9 +11,6 @@
     <Copyright>Copyright 2013</Copyright>
     <PackageTags>Murmur2 Jenkins3 SuperFast AP Bernstein Bernstein1 BKDR DEK DJB ELF FNV FNV1a JS OneAtTime PJW Rotating RS SDBM ShiftAndXor Adler32 CRC32 CRC64 MD5 RIPEMD160 SHA1 SHA256 SHA384 SHA512 GOST HAS160 Haval MD2 MD4 RIPEMD128 RIPEMD256 RIPEMD320 SHA224 Snefru Tiger Tiger2 Whirlpool Blake BlueMidnightWish CubeHash Echo Fugue Groestl Hamsi JH Keccak Luffa Shabal SHAvite3 SIMD Skein HMAC</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    
-    <!-- We don't want this library to completely mess up SonarQube -->
-    <NoWarn>S4143, S2183, S1121, S1905, S3776, S1854, S3963, S101, S2234</NoWarn>
   </PropertyGroup>
 
 </Project>
