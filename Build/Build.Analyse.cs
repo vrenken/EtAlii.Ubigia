@@ -3,6 +3,7 @@ namespace EtAlii.Ubigia.Pipelines
     using Nuke.Common;
     using Nuke.Common.IO;
     using Nuke.Common.Tools.SonarScanner;
+    using static Nuke.Common.Tools.SonarScanner.SonarScannerTasks;
 
     public partial class Build
     {
@@ -19,7 +20,7 @@ namespace EtAlii.Ubigia.Pipelines
             //.Requires(() => NuGetFeedApiKey != null)
             .Executes(() =>
             {
-                SonarScannerTasks.SonarScannerBegin(c => c
+                SonarScannerBegin(c => c
                     .SetFramework("net5.0")
                     .SetSourceExclusions("**/*.Tests.cs")
                     .SetOpenCoverPaths(OpenCoverTestReports)
@@ -35,7 +36,7 @@ namespace EtAlii.Ubigia.Pipelines
             .ProceedAfterFailure()
             .Executes(() =>
             {
-                SonarScannerTasks.SonarScannerEnd(c => c
+                SonarScannerEnd(c => c
                     .SetFramework("net5.0")
                     .SetLogin(SonarQubeToken));
             });
