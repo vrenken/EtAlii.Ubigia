@@ -15,6 +15,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target PrepareAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
+            .DependsOn(Restore)
             //.Requires(() => NuGetFeedApiKey != null)
             .Executes(() =>
             {
@@ -30,6 +31,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target CompleteAnalysis => _ => _
             .Description("Complete SonarQube analysis")
+            .DependsOn(Test)
             .ProceedAfterFailure()
             .Executes(() =>
             {

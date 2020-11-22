@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target PackPackages => _ => _
             .Description("Run dotnet pack")
+            .DependsOn(CompleteAnalysis)
             .ProceedAfterFailure()
             .Executes(() =>
             {

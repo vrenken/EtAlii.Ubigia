@@ -25,6 +25,7 @@ namespace EtAlii.Ubigia.Pipelines
         Target Test => _ => _
             .Description("Run dotnet test")
             .ProceedAfterFailure()
+            .DependsOn(Compile)
             .Executes(() =>
             {
                 // Let's go full steam ahead when it is a local build. 
