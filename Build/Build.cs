@@ -24,8 +24,9 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(PrepareAnalysis),
             nameof(Compile),
             nameof(Test),
-            nameof(CompleteAnalysis),
             nameof(PackPackages),
+            nameof(PublishAnalysisToSonarQube),
+            nameof(PublishTestResults),
             nameof(PublishPackages),
             nameof(PublishArtefacts)
         }
@@ -43,7 +44,7 @@ namespace EtAlii.Ubigia.Pipelines
         ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
         ///   - Microsoft VSCode           https://nuke.build/vscode
 
-        public static int Main() => Execute<Build>(build => build.PublishArtefacts);
+        public static int Main() => Execute<Build>(build => build.CompileTestAnalyseAndPublish);
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
         readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -51,10 +52,13 @@ namespace EtAlii.Ubigia.Pipelines
         [Solution] readonly Solution Solution;
         [GitRepository] readonly GitRepository GitRepository;
 
+        [CI] readonly AzurePipelines AzurePipelines;
+        
         Target CompileTestAnalyseAndPublish => _ => _
             .Description("Compile, test, analyse and publish")
-            //.DependsOn(PublishArtefacts)
-            //.DependsOn(PublishPackages)
-            .DependsOn(CompleteAnalysis);
+            // .DependsOn(PublishArtefacts)
+            // .DependsOn(PublishPackages)
+            .DependsOn(PublishAnalysisToSonarQube)
+            .DependsOn(PublishTestResults);
     }
 }

@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Pipelines
         const string SonarQubeServerUrl = "http://vrenken.duckdns.org:54001";
         const string SonarQubeToken = "fa1be2f386ba177214406e68fb26533f6a8981be";
 
-        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "*.trx";
+        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "*.oc.xml";
 
         Target PrepareAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Pipelines
                     .SetLogin(SonarQubeToken));
             });
 
-        Target CompleteAnalysis => _ => _
+        Target PublishAnalysisToSonarQube => _ => _
             .Description("Complete SonarQube analysis")
             .DependsOn(Test)
             .ProceedAfterFailure()
