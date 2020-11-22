@@ -14,30 +14,16 @@ namespace EtAlii.Ubigia.Pipelines
     {
         public IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
-            .Where(tp =>
-                !tp.Path.ToString()
-                    .EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
-            .Where(tp =>
-                !tp.Name.EndsWith(
-                    ".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
+            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
+            .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
 
         AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
 
         const int DegreeOfParallelismOnServerTests = 8;
         const int DegreeOfParallelismOnLocalTests = 16;
 
-        // Target Test2 => _ => _
-        //     .DependsOn(Compile)
-        //     .Partition(() => TestPartition)
-        //     .ProceedAfterFailure()
-        //     .Executes(() =>
-        //     {
-        //         Xunit2(_ => _
-        //             .CombineWith(TestProjects, (cs,testProject) => cs.))
-        //     });
         Target Test => _ => _
             .Description("Run dotnet test")
-            .DependsOn(Compile)
             .ProceedAfterFailure()
             .Executes(() =>
             {
