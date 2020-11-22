@@ -13,7 +13,7 @@
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
     
     <!-- We don't want this library to completely mess up SonarQube -->
-    <NoWarn>S4143, S2183, S1121, S1905, S3776</NoWarn>
+    <NoWarn>S4143, S2183, S1121, S1905, S3776, S1854, S3963, S101, S2234</NoWarn>
   </PropertyGroup>
 
 </Project>
