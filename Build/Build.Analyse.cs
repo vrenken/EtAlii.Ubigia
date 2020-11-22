@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Pipelines
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using Nuke.Common;
     using Nuke.Common.IO;
     using Nuke.Common.Tools.SonarScanner;
@@ -12,7 +14,7 @@ namespace EtAlii.Ubigia.Pipelines
         const string SonarQubeServerUrl = "http://vrenken.duckdns.org:54001";
         const string SonarQubeToken = "fa1be2f386ba177214406e68fb26533f6a8981be";
 
-        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "*.xml";
+        IEnumerable<string> OpenCoverTestReports => TestResultsDirectory.GlobFiles("*.xml").Select(p => p.ToString());
 
         Target PrepareAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
