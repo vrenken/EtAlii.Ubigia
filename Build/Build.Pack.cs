@@ -7,14 +7,13 @@ namespace EtAlii.Ubigia.Pipelines
     public partial class Build
     {
         // TODO: Implement.
-        // See link below for more information:
+        // See link below for more information.
         // https://youtu.be/yojQXa1x2nc?t=1551
-        //[GitVersion] GitVersion GitVersion;
+        //[GitVersion] GitVersion GitVersion
 
         Target PackPackages => _ => _
             .Description("Run dotnet pack")
             .ProceedAfterFailure()
-            .DependsOn(CompleteAnalysis)
             .Executes(() =>
             {
                 Logger.Info($"dotnet pack");

@@ -8,10 +8,13 @@
       <e p="bin" t="ExcludeRecursive" />
       <e p="boot" t="Include" />
       <e p="Build.Analyse.cs" t="Include" />
+      <e p="Build.Clean.cs" t="Include" />
+      <e p="Build.Compile.cs" t="Include" />
       <e p="Build.cs" t="Include" />
       <e p="Build.csproj" t="IncludeRecursive" />
       <e p="Build.Pack.cs" t="Include" />
       <e p="Build.Publish.cs" t="Include" />
+      <e p="Build.Restore.cs" t="Include" />
       <e p="Build.Test.cs" t="Include" />
       <e p="ci" t="Include" />
       <e p="config" t="Include" />

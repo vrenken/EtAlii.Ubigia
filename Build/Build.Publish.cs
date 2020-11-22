@@ -9,6 +9,8 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
+        AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+
         // TODO: Implement.
         // See link below for more information:
         // https://youtu.be/yojQXa1x2nc?t=1551
@@ -21,7 +23,6 @@ namespace EtAlii.Ubigia.Pipelines
         Target PublishPackages => _ => _
             .Description("Run dotnet nuget push")
             //.Requires(() => NuGetFeedApiKey != null)
-            .DependsOn(PackPackages)
             .ProceedAfterFailure()
             .Executes(() =>
             {
@@ -35,7 +36,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         Target PublishArtefacts => _ => _
             .Description("Publish artefacts")
-            .DependsOn(PublishPackages)
+            //.DependsOn(PublishPackages)
             .ProceedAfterFailure()
             .Executes(() =>
             {
