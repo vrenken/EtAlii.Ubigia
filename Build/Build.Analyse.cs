@@ -34,6 +34,8 @@ public partial class Build
         .DependsOn(Test)
         .Executes(() =>
         {
-            SonarScannerTasks.SonarScannerEnd();
+            SonarScannerTasks.SonarScannerEnd(c => c
+                .SetFramework("net5.0")  
+                .SetLogin(SonarQubeToken));
         });
 }
