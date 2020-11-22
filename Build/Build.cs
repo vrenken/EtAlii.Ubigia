@@ -38,7 +38,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
         "release/*"
     }
 )]
-public partial class Build : NukeBuild
+public partial class Build : NukeBuild 
 {
     /// To run nuke locally install it as a global tool:
     /// "dotnet tool install Nuke.GlobalTool --global"
