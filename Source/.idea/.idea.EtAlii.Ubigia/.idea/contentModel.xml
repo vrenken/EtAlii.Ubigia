@@ -7559,6 +7559,9 @@
           </e>
         </e>
         <e p="HashLib" t="Include">
+          <e p="_Meta" t="Include" />
+          <e p="Directory.Build.props" t="Include" />
+          <e p="Directory.Build.targets" t="Include" />
           <e p="HashLib" t="IncludeRecursive">
             <e p="_HashAlgorithmWrapper.cs" t="Include" />
             <e p="_HashCryptoBuildIn.cs" t="Include" />
