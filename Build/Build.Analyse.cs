@@ -13,7 +13,9 @@ namespace EtAlii.Ubigia.Pipelines
         const string SonarQubeServerUrl = "http://vrenken.duckdns.org:54001";
         const string SonarQubeToken = "fa1be2f386ba177214406e68fb26533f6a8981be";
 
-        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "*.oc.xml";
+        
+        // These Cobertura reports are in OpenCover format.
+        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "**/coverage.cobertura.xml";
 
         Target PrepareAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
@@ -21,11 +23,6 @@ namespace EtAlii.Ubigia.Pipelines
             //.Requires(() => NuGetFeedApiKey != null)
             .Executes(() =>
             {
-                if(!Directory.Exists(TestResultsDirectory))
-                {
-                    Directory.CreateDirectory(TestResultsDirectory);
-                }
-                
                 SonarScannerBegin(c => c
                     .SetFramework("net5.0")
                     .AddSourceExclusions("**/*.Tests.cs")                       // Unit tests should not be taken into consideration with regards of testing.
