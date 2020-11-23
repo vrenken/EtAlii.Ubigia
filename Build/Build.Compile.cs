@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia.Pipelines
             {
                 DotNetBuild(s => s
                     .SetProjectFile(Solution)
+                    .SetNoRestore(true)
                     .SetProperty("UbigiaIsRunningOnBuildAgent", "true")
                     .SetConfiguration(Configuration)
                 );

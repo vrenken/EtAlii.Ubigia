@@ -40,6 +40,7 @@ namespace EtAlii.Ubigia.Pipelines
                         .SetNoRestore(true)
                         .SetResultsDirectory(TestResultsDirectory)
                         .EnableCollectCoverage()
+                        .SetDataCollector("XPlat Code Coverage")
                         .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
                         .CombineWith(TestProjects, (cs, testProject) => cs
                             .SetProjectFile(testProject)
