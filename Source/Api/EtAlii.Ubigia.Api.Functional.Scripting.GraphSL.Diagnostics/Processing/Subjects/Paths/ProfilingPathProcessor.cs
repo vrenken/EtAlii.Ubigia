@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             dynamic profile = _profiler.Begin("Processing path subject: " + pathSubject);
             profile.PathSubject = pathSubject;
 
-            await _decoree.Process(pathSubject, scope, output);
+            await _decoree.Process(pathSubject, scope, output).ConfigureAwait(false);
 
             _profiler.End(profile);
         }

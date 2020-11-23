@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             dynamic profile = _profiler.Begin("Converting to graph path: " + pathSubject);
             profile.PathSubject = pathSubject;
 
-            var result = await _decoree.Convert(pathSubject, scope);
+            var result = await _decoree.Convert(pathSubject, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
