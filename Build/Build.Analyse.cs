@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Pipelines
     using Nuke.Common.IO;
     using Nuke.Common.Tools.SonarScanner;
     using static Nuke.Common.Tools.SonarScanner.SonarScannerTasks;
+    using System.IO;
 
     public partial class Build
     {
@@ -20,6 +21,11 @@ namespace EtAlii.Ubigia.Pipelines
             //.Requires(() => NuGetFeedApiKey != null)
             .Executes(() =>
             {
+                if(!Directory.Exists(TestResultsDirectory))
+                {
+                    Directory.CreateDirectory(TestResultsDirectory);
+                }
+                
                 SonarScannerBegin(c => c
                     .SetFramework("net5.0")
                     .AddSourceExclusions("**/*.Tests.cs")                       // Unit tests should not be taken into consideration with regards of testing.
