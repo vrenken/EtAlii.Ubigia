@@ -44,7 +44,7 @@
                         var executionPlan = executionPlans[executionPlanIndex];
 
                         result.Update(executionPlanIndex, executionPlan);
-                        await ProcessExecutionPlan(executionPlan, schemaOutput, executionScope);
+                        await ProcessExecutionPlan(executionPlan, schemaOutput, executionScope).ConfigureAwait(false);
                     }
                     result.Update(totalExecutionPlans, null);
 
@@ -73,7 +73,7 @@
 
         private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> schemaOutput, SchemaExecutionScope executionScope)
         {
-            var executionPlanOutput = await executionPlan.Execute(executionScope);
+            var executionPlanOutput = await executionPlan.Execute(executionScope).ConfigureAwait(false);
             //var observableQueryOutput = Observable.Empty<Structure>()
 
 //            var originalObservableQueryOutput = await executionPlan.Execute(executionScope)

@@ -41,13 +41,13 @@ namespace EtAlii.Ubigia.Api.Functional
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, structure);
+                    await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, structure).ConfigureAwait(false);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, null);
+                await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
         
@@ -68,13 +68,13 @@ namespace EtAlii.Ubigia.Api.Functional
 //              ? new Script(new Sequence(new SequencePart[] {path, annotation.Operator})) 
 //              : new Script(new Sequence(new SequencePart[] {path, annotation.Operator, annotation.Subject}));
                 var scriptResult = await _scriptContext.Process(mutationScript, executionScope.ScriptScope);
-                await scriptResult.Output;
+                await scriptResult.Output.ConfigureAwait(false);
 
                 // For some operators we need to correct the path as well.
                 path = _pathCorrecter.Correct(annotation, path);
             }
 
-            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, schemaOutput, annotation, structureName, parent, path);
+            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, schemaOutput, annotation, structureName, parent, path).ConfigureAwait(false);
 
         }
 

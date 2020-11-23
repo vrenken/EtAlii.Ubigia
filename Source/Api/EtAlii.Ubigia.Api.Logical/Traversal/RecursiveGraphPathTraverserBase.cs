@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
 
             var result = TraverseRecursive(start, context, scope).Distinct();
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }

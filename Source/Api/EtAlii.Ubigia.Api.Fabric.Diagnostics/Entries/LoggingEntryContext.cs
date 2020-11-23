@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             var start = Environment.TickCount;
 
             var result = _decoree.Get(identifiers, scope);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             var start = Environment.TickCount;
 
             var result = _decoree.GetRelated(identifier, relations, scope);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }

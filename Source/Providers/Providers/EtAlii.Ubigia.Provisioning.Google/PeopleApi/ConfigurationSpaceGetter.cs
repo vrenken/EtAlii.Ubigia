@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                     .Where(s => s.Name == SpaceName.Configuration)
                     .Select(s => new ConfigurationSpace {Account = account, Space = s});
                 
-                await foreach (var item in result)
+                await foreach (var item in result.ConfigureAwait(false))
                 {
                     yield return item;
                 }

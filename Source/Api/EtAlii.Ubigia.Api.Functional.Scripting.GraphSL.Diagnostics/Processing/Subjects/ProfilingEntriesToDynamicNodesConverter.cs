@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             profile.Entries = entries;
 
             var result = _decoree.Convert(entries, scope);
-            await foreach (var item in result)
+            await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             dynamic profile = _profiler.Begin("Converting entry to node");
             profile.Entry = entry;
 
-            var result = await _decoree.Convert(entry, scope);
+            var result = await _decoree.Convert(entry, scope).ConfigureAwait(false);
 
             profile.Result = result;
             _profiler.End(profile);
