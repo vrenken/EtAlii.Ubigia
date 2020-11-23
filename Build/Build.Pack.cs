@@ -18,10 +18,9 @@ namespace EtAlii.Ubigia.Pipelines
         
         [Parameter] string NuGetFeedApiKey;
         
-        Target PackPackages => _ => _
+        Target CreatePackages => _ => _
             .Description("Run dotnet pack")
             .DependsOn(Test)
-            .ProceedAfterFailure()
             .Executes(() =>
             {
                 Logger.Info($"dotnet pack");
@@ -34,16 +33,15 @@ namespace EtAlii.Ubigia.Pipelines
         
         Target PublishPackages => _ => _
             .Description("Run dotnet nuget push")
-            .DependsOn(PackPackages)
+            .DependsOn(CreatePackages)
             //.Requires(() => NuGetFeedApiKey != null)
-            .ProceedAfterFailure()
             .Executes(() =>
             {
-                DotNetNuGetPush(_ => _
-                    .SetSource("https://vrenken.pkgs.visualstudio.com/_packaging/EtAlii.Ubigia/nuget/")
-                    .SetApiKey(NuGetFeedApiKey)
-                    .CombineWith(Packages, (_, v) => _
-                        .SetTargetPath(v)));
+                // DotNetNuGetPush(_ => _
+                //     .SetSource("https://vrenken.pkgs.visualstudio.com/_packaging/EtAlii.Ubigia/nuget/")
+                //     .SetApiKey(NuGetFeedApiKey)
+                //     .CombineWith(Packages, (_, v) => _
+                //         .SetTargetPath(v)));
             });
     }
 }

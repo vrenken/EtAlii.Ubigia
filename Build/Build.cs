@@ -21,12 +21,13 @@ namespace EtAlii.Ubigia.Pipelines
         {
             nameof(Clean), 
             nameof(Restore),
-            nameof(PrepareAnalysis),
+            nameof(PrepareSonarQubeAnalysis),
             nameof(Compile),
             nameof(Test),
-            nameof(PackPackages),
-            nameof(PublishAnalysisToSonarQube),
-            nameof(PublishTestResults),
+            nameof(CreatePackages),
+            nameof(CreateTestCoverageReports),
+            nameof(PublishResultsToSonarQube),
+            nameof(PublishResultsToAzure),
             nameof(PublishPackages),
             nameof(PublishArtefacts)
         }
@@ -56,9 +57,9 @@ namespace EtAlii.Ubigia.Pipelines
         
         Target CompileTestAnalyseAndPublish => _ => _
             .Description("Compile, test, analyse and publish")
-            // .DependsOn(PublishArtefacts)
-            // .DependsOn(PublishPackages)
-            .DependsOn(PublishAnalysisToSonarQube)
-            .DependsOn(PublishTestResults);
+            .DependsOn(PublishArtefacts)
+            .DependsOn(PublishPackages)
+            .DependsOn(PublishResultsToSonarQube)
+            .DependsOn(PublishResultsToAzure);
     }
 }
