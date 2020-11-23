@@ -65,10 +65,8 @@ namespace EtAlii.Ubigia.Api.Functional
             var mutationScript = CreateMutationScript(annotation, path);
             if (mutationScript != null)
             {
-//              ? new Script(new Sequence(new SequencePart[] {path, annotation.Operator})) 
-//              : new Script(new Sequence(new SequencePart[] {path, annotation.Operator, annotation.Subject}));
                 var scriptResult = await _scriptContext.Process(mutationScript, executionScope.ScriptScope);
-                await scriptResult.Output.ConfigureAwait(false);
+                await scriptResult.Output;
 
                 // For some operators we need to correct the path as well.
                 path = _pathCorrecter.Correct(annotation, path);

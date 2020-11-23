@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Prepare();
+            var result = await _decoree.Prepare().ConfigureAwait(false);
             
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Entry prepared (Duration: {Duration}ms)", duration);
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Change(entry, scope);
+            var result = await _decoree.Change(entry, scope).ConfigureAwait(false);
             
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Entry changed (Duration: {Duration}ms)", duration);
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information(message, rootName);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Get(root, scope);
+            var result = await _decoree.Get(root, scope).ConfigureAwait(false);
             
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Entry retrieved for root {Root} (Duration: {Duration}ms)", rootName, duration);
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information(message, identifierTime);
             var start = Environment.TickCount;
 
-            var result = await _decoree.Get(identifier, scope);
+            var result = await _decoree.Get(identifier, scope).ConfigureAwait(false);
             
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Entry retrieved for identifier {Identifier} (Duration: {Duration}ms)", identifierTime, duration);

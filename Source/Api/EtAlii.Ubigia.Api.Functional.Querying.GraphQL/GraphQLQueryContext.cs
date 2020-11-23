@@ -56,7 +56,7 @@
                 throw new InvalidOperationException("Unable to process query");
             }
             var document = query.Document;
-            var schema = await DynamicSchema.Create(_serviceProvider, _operationProcessor, _fieldProcessor, document);
+            var schema = await DynamicSchema.Create(_serviceProvider, _operationProcessor, _fieldProcessor, document).ConfigureAwait(false);
 
             // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
             var configuration = new ExecutionOptions
@@ -74,9 +74,9 @@
                 UserContext = new Dictionary<string, object>{{ "User", null }}// UserContext {User = null} // ctx.User 
             };
 
-            var executionResult = await _executor.ExecuteAsync(configuration);
+            var executionResult = await _executor.ExecuteAsync(configuration).ConfigureAwait(false);
 
-            var dataAsString = await _documentWriter.WriteToStringAsync(executionResult);
+            var dataAsString = await _documentWriter.WriteToStringAsync(executionResult).ConfigureAwait(false);
                 
             return new GraphQLQueryProcessingResult(executionResult, dataAsString);
         }

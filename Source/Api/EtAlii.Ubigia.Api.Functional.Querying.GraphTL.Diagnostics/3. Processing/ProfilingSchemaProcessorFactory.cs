@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
 {
+    using System;
+
     //using EtAlii.Ubigia.Diagnostics.Profiling
 
     internal class ProfilingSchemaProcessorFactory : ISchemaProcessorFactory
@@ -18,10 +20,13 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 
         public ISchemaProcessor Create(SchemaProcessorConfiguration configuration)
         {
-            configuration.Use(new ISchemaProcessorExtension[]
-            {
-                //new ProfilingQueryProcessorExtension2(_profiler), 
-            });
+            var extensions = Array.Empty<ISchemaProcessorExtension>();
+            // var extensions = new ISchemaProcessorExtension[]
+            // [
+            //     new ProfilingQueryProcessorExtension2(_profiler), 
+            // ];
+                
+            configuration.Use(extensions);
 
             return _decoree.Create(configuration);
         }

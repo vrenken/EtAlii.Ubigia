@@ -28,7 +28,7 @@
         {   
             if(parent.Metadata.TryGetValue(ComplexFieldTypeBuilder.NodeMetadataKey, out var node))
             {
-                await AddIdToInstance(name, idDirectiveResult, context, parent, graphTypes, (IInternalNode)node);
+                await AddIdToInstance(name, idDirectiveResult, context, parent, graphTypes, (IInternalNode)node).ConfigureAwait(false);
             }
             else if(parent.Metadata.TryGetValue(ListFieldTypeBuilder.DynamicObjectsMetadataKey, out var dynamicObjects))
             {
@@ -44,7 +44,7 @@
             IGraphTypeServiceProvider graphTypes, 
             IInternalNode node)
         {
-            var idValue = await GetId(node.Id, idDirectiveResult.Path);
+            var idValue = await GetId(node.Id, idDirectiveResult.Path).ConfigureAwait(false);
             
             var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, idValue, out var graphType);
             ((ComplexGraphType<object>) parent).AddField(fieldType);
