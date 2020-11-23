@@ -36,7 +36,7 @@
         {
             foreach (var importer in _importers)
             {
-                await importer.Start();
+                await importer.Start().ConfigureAwait(false);
             }
         }
     }

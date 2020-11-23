@@ -49,7 +49,7 @@
             using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "42"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
-                await Task.Run(() => WriteLogAsync(logger));
+                await Task.Run(() => WriteLogAsync(logger)).ConfigureAwait(false);
             }
 
             // Assert.
@@ -74,7 +74,7 @@
             using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "43"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
-                await Task.Run(WriteLogAsyncWithNewLogger);
+                await Task.Run(WriteLogAsyncWithNewLogger).ConfigureAwait(false);
             }
 
             // Assert.

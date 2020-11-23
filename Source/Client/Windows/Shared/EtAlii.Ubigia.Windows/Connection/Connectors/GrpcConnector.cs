@@ -31,7 +31,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await connection.Open();
+                    await connection.Open().ConfigureAwait(false);
                 });
                 task.Wait();
 

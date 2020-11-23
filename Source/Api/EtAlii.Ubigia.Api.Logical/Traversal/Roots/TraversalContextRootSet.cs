@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             if (!_cache.TryGetValue(name, out var result))
             {
-                _cache[name] = result = await _fabricContext.Roots.Get(name);
+                _cache[name] = result = await _fabricContext.Roots.Get(name).ConfigureAwait(false);
             }
             return result;
         }

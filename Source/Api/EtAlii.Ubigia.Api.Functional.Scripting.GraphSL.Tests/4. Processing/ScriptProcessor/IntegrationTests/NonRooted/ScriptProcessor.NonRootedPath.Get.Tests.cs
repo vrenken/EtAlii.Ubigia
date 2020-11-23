@@ -39,7 +39,7 @@
         public async Task ScriptProcessor_NonRootedPath_Get_GetItem()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "/Time";
             var script = _parser.Parse(query).Script;
@@ -64,7 +64,7 @@
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_1()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= /Time",
@@ -93,7 +93,7 @@
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_2()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 "$var1 <= /\"Time\"",
@@ -123,7 +123,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -155,7 +155,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -187,7 +187,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location += {continent}",
@@ -219,7 +219,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location+={continent}",
@@ -250,7 +250,7 @@
         {
             // Arrange.
             var continent = "Europe";
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
                 $"/Location += {continent}",

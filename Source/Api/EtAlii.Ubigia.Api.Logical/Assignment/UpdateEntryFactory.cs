@@ -23,11 +23,11 @@
             string tag,
             ExecutionScope scope)
         {
-            var newEntry = await _fabric.Entries.Prepare();
+            var newEntry = await _fabric.Entries.Prepare().ConfigureAwait(false);
             newEntry.Type = entry.Type;
             newEntry.Tag = tag;
             newEntry.Downdate = Relation.NewRelation(entry.Id);
-            newEntry = (IEditableEntry)await _fabric.Entries.Change(newEntry, scope);
+            newEntry = (IEditableEntry)await _fabric.Entries.Change(newEntry, scope).ConfigureAwait(false);
             return newEntry;
         }
     }

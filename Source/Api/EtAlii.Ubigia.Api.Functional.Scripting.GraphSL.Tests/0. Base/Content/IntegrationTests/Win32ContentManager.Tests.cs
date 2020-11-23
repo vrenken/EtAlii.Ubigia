@@ -36,12 +36,12 @@
 
         public async Task InitializeAsync()
         {
-            await _testContext.LogicalTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.LogicalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.LogicalTestContext.Stop();
+            await _testContext.LogicalTestContext.Stop().ConfigureAwait(false);
         }
 
         [Fact]
@@ -49,9 +49,9 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
 
             // Act.
             var contentManager = logicalContext.Content;
@@ -67,17 +67,17 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var fileName = Guid.NewGuid().ToString();
             var contentManager = logicalContext.Content;
 
             // Act.
-            var act = new Func<Task>(async () => await contentManager.Upload(fileName, entry.Id));
+            var act = new Func<Task>(async () => await contentManager.Upload(fileName, entry.Id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<ContentManagerException>(act);
+            await Assert.ThrowsAsync<ContentManagerException>(act).ConfigureAwait(false);
         }
 
 
@@ -86,13 +86,13 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
-            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Assert.
         }
@@ -102,15 +102,15 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
 
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -123,14 +123,14 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -143,14 +143,14 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -163,15 +163,15 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Act.
-            await contentManager.Download(retrievedFilePath, entry.Id);
+            await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
@@ -189,15 +189,15 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.
-            await contentManager.Download(retrievedFilePath, entry.Id);
+            await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
@@ -215,16 +215,16 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Download(retrievedFilePath, entry.Id);
+            await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             //// Assert.
@@ -244,16 +244,16 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Download(retrievedFilePath, entry.Id);
+            await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             //// Assert.
@@ -273,16 +273,16 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var root = await logicalContext.Roots.Get("Hierarchy");
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Download(retrievedFilePath, entry.Id);
+            await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
             //// Assert.

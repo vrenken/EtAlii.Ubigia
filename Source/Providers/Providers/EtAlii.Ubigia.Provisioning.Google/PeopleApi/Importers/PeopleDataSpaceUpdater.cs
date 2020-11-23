@@ -29,15 +29,15 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-	        var userConfigurationScriptContext = await _context.CreateScriptContext(configurationSpace.Space);
+	        var userConfigurationScriptContext = await _context.CreateScriptContext(configurationSpace.Space).ConfigureAwait(false);
 	        {
-                var allUserSettings = await _userSettingsGetter.Get(userConfigurationScriptContext);
+                var allUserSettings = await _userSettingsGetter.Get(userConfigurationScriptContext).ConfigureAwait(false);
                 foreach (var userSettings in allUserSettings)
                 {
                     // We don't want to update using deprecated settings, so let's only use them when they are still fresh.
                     if (DateTime.UtcNow - userSettings.Updated < _updateThreshold)
                     {
-                        await UpdateDataSpace(configurationSpace, systemSettings, userSettings);
+                        await UpdateDataSpace(configurationSpace, systemSettings, userSettings).ConfigureAwait(false);
                     }
                 }
             }
@@ -45,14 +45,14 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         private async Task UpdateDataSpace(ConfigurationSpace configurationSpace, SystemSettings systemSettings, UserSettings userSettings)
         {
-	        var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
+	        var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data).ConfigureAwait(false);
 	        {
                 var request = CreateRequest(systemSettings, userSettings);
 	            var feed = request.Execute();//.GetContacts()
                 //feed.AutoPaging = true
                 foreach (var person in feed.Connections)//.Entries)
                 {
-		            await _personSetter.Set(userDataScriptContext, person);
+		            await _personSetter.Set(userDataScriptContext, person).ConfigureAwait(false);
 				}
             }
         }

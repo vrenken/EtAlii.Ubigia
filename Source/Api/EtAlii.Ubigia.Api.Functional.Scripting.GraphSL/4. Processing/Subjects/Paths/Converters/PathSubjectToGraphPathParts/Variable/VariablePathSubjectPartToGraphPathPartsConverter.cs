@@ -70,15 +70,13 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             // We should be able to cope with string constants as well.
             GraphPath result;
-            var pathSubject = subject as PathSubject;
-            var stringConstantSubject = subject as StringConstantSubject;
-            if (pathSubject != null)
+            if (subject is PathSubject pathSubject)
             {
                 result = pathSubject is RelativePathSubject
                     ? await ConvertAsStaticPath(pathSubject, scope)
-                    : await ConvertAsDynamicPath(pathSubject, scope);
+                    : await ConvertAsDynamicPath(pathSubject, scope).ConfigureAwait(false);
             }
-            else if(stringConstantSubject != null)
+            else if(subject is StringConstantSubject stringConstantSubject)
             {
                 var graphNode = new GraphNode(stringConstantSubject.Value);
                 result = new GraphPath(graphNode);
@@ -111,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await _context.PathProcessor.Process(pathSubject, scope, outputObserver);
+                await _context.PathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             });
@@ -149,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             }
             var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
 
-            // There is a possibility that we recieve a string constant that needs to be validated validation.
+            // There is a possibility that we receive a string constant that needs to be validated validation.
             var parser = _parserSelector.Select(pathSubject);
             if (!parser.CanValidate(pathSubject))
             {

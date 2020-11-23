@@ -15,7 +15,7 @@
         public async Task<Entry> Prepare(Guid spaceId)
         {
             // ReSharper disable once NotAccessedVariable
-            var head = await _context.Identifiers.GetNextHead(spaceId);
+            var head = await _context.Identifiers.GetNextHead(spaceId).ConfigureAwait(false);
             // ReSharper disable once UnusedVariable
             var previousHeadIdentifier = head.PreviousHeadIdentifier; // We don't seem to wire up the head in our preparation. This feels incorrect.
 

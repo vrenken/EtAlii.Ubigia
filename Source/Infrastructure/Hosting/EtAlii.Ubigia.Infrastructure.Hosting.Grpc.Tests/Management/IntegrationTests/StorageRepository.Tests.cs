@@ -24,7 +24,7 @@
             var storage = CreateStorage();
 
 			// Act.
-	        var addedStorage = await repository.Add(storage);
+	        var addedStorage = await repository.Add(storage).ConfigureAwait(false);
 
 			// Assert.
 	        Assert.NotNull(addedStorage);
@@ -38,7 +38,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = await repository.Add(storage);
+            var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -61,7 +61,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = await repository.Add(storage);
+            var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -84,7 +84,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = await repository.Add(storage);
+            var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -120,9 +120,9 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage1 = await repository.Add(storage);
+            var addedStorage1 = await repository.Add(storage).ConfigureAwait(false);
             storage = CreateStorage();
-            var addedStorage2 = await repository.Add(storage);
+            var addedStorage2 = await repository.Add(storage).ConfigureAwait(false);
 
 			// Act.
             var storages = await repository
@@ -144,7 +144,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = await repository.Add(storage);
+            var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -165,7 +165,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = await repository.Add(storage);
+            var addedStorage = await repository.Add(storage).ConfigureAwait(false);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 

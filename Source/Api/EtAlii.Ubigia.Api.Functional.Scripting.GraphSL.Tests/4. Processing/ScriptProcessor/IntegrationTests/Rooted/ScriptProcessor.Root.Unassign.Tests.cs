@@ -29,7 +29,7 @@
         public async Task ScriptProcessor_Root_Unassign_Time_Root()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:time <= ";
             var script = _parser.Parse(query).Script;
@@ -58,7 +58,7 @@
         public async Task ScriptProcessor_Root_Unassign_Time_Root_Under_Other_Name()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= ";
             var script = _parser.Parse(query).Script;
@@ -87,7 +87,7 @@
         public async Task ScriptProcessor_Root_Unassign_Object_Root()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:projects <= ";
             var script = _parser.Parse(query).Script;

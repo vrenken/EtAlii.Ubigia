@@ -30,7 +30,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId);
+            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size);
@@ -45,7 +45,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId);
+            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
@@ -60,7 +60,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId);
+            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count);
@@ -97,7 +97,7 @@
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var contentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId);
+            var contentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(contentDefinition);

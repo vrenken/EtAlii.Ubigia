@@ -10,7 +10,7 @@
     {
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
             AccountCmdlet.Current = null;
             SpaceCmdlet.Current = null;
@@ -19,7 +19,7 @@
 
         protected override async Task<Account> ProcessTask()
         {
-            var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
+            var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current).ConfigureAwait(false);
 
             AccountCmdlet.Current = account;
             return account;

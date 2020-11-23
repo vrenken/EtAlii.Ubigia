@@ -14,7 +14,7 @@
                 var size = fileInfo.Length;
                 using (var stream = File.OpenRead(localDataIdentifier))
                 {
-                    await contentManager.Upload(stream, (uint)size, identifier);
+                    await contentManager.Upload(stream, (uint)size, identifier).ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -29,7 +29,7 @@
             {
                 using (var stream = File.Create(localDataIdentifier))
                 {
-                    await contentManager.Download(stream, identifier, validateChecksum);
+                    await contentManager.Download(stream, identifier, validateChecksum).ConfigureAwait(false);
                 }
             }
             catch (Exception e)

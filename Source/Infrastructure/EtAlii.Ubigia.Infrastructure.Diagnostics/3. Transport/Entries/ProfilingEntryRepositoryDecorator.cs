@@ -54,7 +54,7 @@
         public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
-            var entry = await _repository.Get(identifier, entryRelations);
+            var entry = await _repository.Get(identifier, entryRelations).ConfigureAwait(false);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
@@ -62,7 +62,7 @@
         public async Task<Entry> Prepare(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var entry = await _repository.Prepare(spaceId);
+            var entry = await _repository.Prepare(spaceId).ConfigureAwait(false);
             _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
@@ -70,7 +70,7 @@
         public async Task<Entry> Prepare(Guid spaceId, Identifier identifier)
         {
             var start = Environment.TickCount;
-            var entry = await _repository.Prepare(spaceId, identifier);
+            var entry = await _repository.Prepare(spaceId, identifier).ConfigureAwait(false);
             _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }

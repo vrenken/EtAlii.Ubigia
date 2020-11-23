@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             _logger.Information("Getting PeopleApi system settings");
 
-            var result = await _decoree.Get(context);
+            var result = await _decoree.Get(context).ConfigureAwait(false);
 
             _logger.Information("Finished getting PeopleApi system settings");
 

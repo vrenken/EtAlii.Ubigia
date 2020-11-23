@@ -33,13 +33,13 @@
             _configuration = new GraphTLQueryContextConfiguration()
                 .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
                 .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
             
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _context = new GraphTLQueryContextFactory().Create(_configuration);
         
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
+            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false); 
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
@@ -48,7 +48,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _scriptContext = null;
             _context = null;
@@ -103,8 +103,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(query);
-            await result.Completed();
+            var result = await processor.Process(query).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             var structure = result.Structure.SingleOrDefault();
@@ -154,8 +154,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -186,8 +186,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             var structure = result.Structure.SingleOrDefault();
@@ -217,8 +217,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             var structures = result.Structure.ToArray();
@@ -268,8 +268,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -302,8 +302,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -342,8 +342,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             var structure = result.Structure.SingleOrDefault();
@@ -380,8 +380,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -422,8 +422,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             var structure = result.Structure.SingleOrDefault();
@@ -464,8 +464,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -503,8 +503,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(2, result.Structure.Count);
@@ -552,8 +552,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
 
             // Assert.
             Assert.Single(result.Structure);
@@ -594,8 +594,8 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema);
-            await result.Completed();
+            var result = await processor.Process(selectSchema).ConfigureAwait(false);
+            await result.Completed().ConfigureAwait(false);
             var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.

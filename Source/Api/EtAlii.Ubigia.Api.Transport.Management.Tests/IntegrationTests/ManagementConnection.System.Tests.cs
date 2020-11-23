@@ -24,10 +24,10 @@
         public async Task ManagementConnection_System_Account()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var systemAccount = await connection.Accounts.Get("System");
+            var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(systemAccount);
@@ -37,8 +37,8 @@
         public async Task ManagementConnection_System_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var systemAccount = await connection.Accounts.Get("System");
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
 
             // Act.
             var spaces = await connection.Spaces
@@ -56,8 +56,8 @@
         public async Task ManagementConnection_Administrator_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var administratorAccount = await connection.Accounts.Get("Administrator");
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var administratorAccount = await connection.Accounts.Get("Administrator").ConfigureAwait(false);
 
             // Act.
             var spaces = await connection.Spaces

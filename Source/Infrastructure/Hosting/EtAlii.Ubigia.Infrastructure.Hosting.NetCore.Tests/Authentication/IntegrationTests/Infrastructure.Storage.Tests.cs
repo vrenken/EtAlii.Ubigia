@@ -29,7 +29,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Storages, UriParameter.Local);
@@ -50,7 +50,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Storages, UriParameter.Local);
@@ -71,7 +71,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Management.Api.Storages, UriParameter.Local);
@@ -93,10 +93,10 @@
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.
-			var act = new Func<Task>(async () => await client.Get<Storage>(address));
+			var act = new Func<Task>(async () => await client.Get<Storage>(address).ConfigureAwait(false));
 
 			// Assert.
-			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -109,10 +109,10 @@
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.
-			var act = new Func<Task>(async () => await client.Get<IEnumerable<Account>>(address));
+			var act = new Func<Task>(async () => await client.Get<IEnumerable<Account>>(address).ConfigureAwait(false));
 
 			// Assert.
-			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+			await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -124,7 +124,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(TimeSpan.FromSeconds(30));
@@ -146,7 +146,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(TimeSpan.FromSeconds(30));
@@ -168,7 +168,7 @@
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
+			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(TimeSpan.FromSeconds(30));
@@ -194,7 +194,7 @@
 			var act = new Func<Task>(async () =>
             {
                 Thread.Sleep(TimeSpan.FromSeconds(30));
-                var storage = await client.Get<Storage>(address);
+                var storage = await client.Get<Storage>(address).ConfigureAwait(false);
                 Assert.NotNull(storage);
             });
 

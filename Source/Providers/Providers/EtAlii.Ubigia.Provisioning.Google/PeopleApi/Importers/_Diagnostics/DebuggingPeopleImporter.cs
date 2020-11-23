@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             _logger.Information("Starting PeopleImporter");
 
-            await _decoree.Start();
+            await _decoree.Start().ConfigureAwait(false);
 
             _logger.Information("Started PeopleImporter");
         }
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             _logger.Information("Stopping PeopleImporter");
 
-            await _decoree.Stop();
+            await _decoree.Stop().ConfigureAwait(false);
 
             _logger.Information("Stopped PeopleImporter");
         }

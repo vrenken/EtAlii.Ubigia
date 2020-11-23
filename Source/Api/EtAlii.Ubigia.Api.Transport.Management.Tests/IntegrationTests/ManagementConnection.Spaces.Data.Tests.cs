@@ -24,12 +24,12 @@
         public async Task ManagementConnection_Spaces_Add_Single_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -41,15 +41,15 @@
         public async Task ManagementConnection_Spaces_Add_Multiple_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
 
                 // Act.
-                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(space);
@@ -62,13 +62,13 @@
         public async Task ManagementConnection_Spaces_Get_Single_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
-            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Act.
-            space = await connection.Spaces.Get(space.Id);
+            space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -80,16 +80,16 @@
         public async Task ManagementConnection_Spaces_Get_Multiple_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
-                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
 
                 // Act.
-                space = await connection.Spaces.Get(space.Id);
+                space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(space);
@@ -102,8 +102,8 @@
         public async Task ManagementConnection_Spaces_Get_First_Data_Full_Add()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             var spaces = new List<Space>();
 
@@ -112,7 +112,7 @@
                 var name = Guid.NewGuid().ToString();
 
                 // Act.
-                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
                 
                 // Assert.
                 Assert.NotNull(space);
@@ -123,7 +123,7 @@
 
             foreach (var space in spaces)
             {
-                var retrievedSpace = await connection.Spaces.Get(space.Id);
+                var retrievedSpace = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
 
                 Assert.NotNull(retrievedSpace);
                 Assert.Equal(space.Name, retrievedSpace.Name);
@@ -135,8 +135,8 @@
         public async Task ManagementConnection_Spaces_Get_No_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             // Act.
             var retrievedSpaces = await connection.Spaces
@@ -153,8 +153,8 @@
         public async Task ManagementConnection_Spaces_Get_All_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             var spaces = new List<Space>();
 
@@ -162,7 +162,7 @@
             {
                 var name = Guid.NewGuid().ToString();
 
-                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+                var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
                 Assert.NotNull(space);
                 Assert.Equal(name, space.Name);
                 Assert.Equal(account.Id, space.AccountId);
@@ -191,31 +191,31 @@
         public async Task ManagementConnection_Spaces_Change_Data()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
 
-            space = await connection.Spaces.Get(space.Id);
+            space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
 
             name = Guid.NewGuid().ToString();
 
-            space = await connection.Spaces.Change(space.Id, name);
+            space = await connection.Spaces.Change(space.Id, name).ConfigureAwait(false);
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
 
-            space = await connection.Spaces.Get(space.Id);
+            space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
@@ -226,25 +226,25 @@
         public async Task ManagementConnection_Spaces_Delete()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(space);
             Assert.Equal(name, space.Name);
             Assert.Equal(account.Id, space.AccountId);
 
-            space = await connection.Spaces.Get(space.Id);
+            space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
             Assert.NotNull(space);
 
-            await connection.Spaces.Remove(space.Id);
+            await connection.Spaces.Remove(space.Id).ConfigureAwait(false);
 
-            space = await connection.Spaces.Get(space.Id);
+            space = await connection.Spaces.Get(space.Id).ConfigureAwait(false);
             Assert.Null(space);
         }
 
@@ -252,14 +252,14 @@
         public async Task ManagementConnection_Spaces_Delete_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Spaces.Remove(id));
+            var act = new Func<Task>(async () => await connection.Spaces.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
         }
 
 
@@ -268,32 +268,32 @@
         public async Task ManagementConnection_Spaces_Change_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Spaces.Change(id, name));
+            var act = new Func<Task>(async () => await connection.Spaces.Change(id, name).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Spaces_Add_Already_Existing()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await _testContext.TransportTestContext.AddUserAccount(connection);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await _testContext.TransportTestContext.AddUserAccount(connection).ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
-            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(space);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data));
+            var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
         }
     }
 }

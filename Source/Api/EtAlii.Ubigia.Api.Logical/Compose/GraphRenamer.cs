@@ -17,11 +17,11 @@
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
-            var result = await _graphPathTraverser.TraverseToSingle(item, scope);
+            var result = await _graphPathTraverser.TraverseToSingle(item, scope).ConfigureAwait(false);
 
             if (result.Type != newName)
             {
-                result = (IReadOnlyEntry)await _graphUpdater.Update(result, newName, scope);
+                result = (IReadOnlyEntry)await _graphUpdater.Update(result, newName, scope).ConfigureAwait(false);
             }
 
             return result;

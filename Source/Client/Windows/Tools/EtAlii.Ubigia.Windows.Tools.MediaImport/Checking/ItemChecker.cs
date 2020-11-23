@@ -51,7 +51,7 @@
         {
             if (!IsRunning)
             {
-                Task.Run(async () => await Dequeue());
+                Task.Run(async () => await Dequeue()).ConfigureAwait(false);
             }
         }
 
@@ -86,7 +86,7 @@
 
                 while (_queue.TryDequeue(out var action))
                 {
-                    await _itemUpdater.Update(action);
+                    await _itemUpdater.Update(action).ConfigureAwait(false);
                 }
             }
             IsRunning = false;

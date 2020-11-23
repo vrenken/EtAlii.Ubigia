@@ -39,7 +39,7 @@
             for (var i = 0; i < rootEntryCount; i++)
             {
                 var newId = Identifier.NewIdentifier(spaceIdentifier, 0, 0, (ulong)i);
-                var entry = (IEditableEntry)await _context.Entries.Prepare(spaceId, newId);
+                var entry = (IEditableEntry)await _context.Entries.Prepare(spaceId, newId).ConfigureAwait(false);
                 entry.Type = rootsToCreate[i];
                 if (i == 0)
                 {
@@ -57,7 +57,7 @@
 
             foreach (var rootEntry in rootEntries)
             {
-                await _context.Roots.Add(spaceId, new Root { Name = rootEntry.Type, Identifier = rootEntry.Id });
+                await _context.Roots.Add(spaceId, new Root { Name = rootEntry.Type, Identifier = rootEntry.Id }).ConfigureAwait(false);
             }
         }
     }

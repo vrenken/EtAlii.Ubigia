@@ -16,7 +16,7 @@
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
@@ -28,7 +28,7 @@
         {
             _parser = null;
 
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -37,7 +37,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Count_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -74,7 +74,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Count_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -110,7 +110,7 @@
         public async Task ScriptProcessor_NonRootedPath_Function_Count_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",

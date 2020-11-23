@@ -16,14 +16,14 @@
                 Password = accountPassword,
             };
 
-            account = await Connection.Client.Post(address, account);
+            account = await Connection.Client.Post(address, account).ConfigureAwait(false);
             return account;
         }
 
         public async Task Remove(Guid accountId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountId, accountId.ToString());
-            await Connection.Client.Delete(address);
+            await Connection.Client.Delete(address).ConfigureAwait(false);
         }
 
         public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
@@ -36,35 +36,35 @@
             };
 
             var changeAddress = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountId, accountId.ToString());
-            account = await Connection.Client.Put(changeAddress, account);
+            account = await Connection.Client.Put(changeAddress, account).ConfigureAwait(false);
             return account;
         }
 
         public async Task<Account> Change(Account account)
         {
             var changeAddress = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountId, account.Id.ToString());
-            account = await Connection.Client.Put(changeAddress, account);
+            account = await Connection.Client.Put(changeAddress, account).ConfigureAwait(false);
             return account;
         }
 
         public async Task<Account> Get(string accountName)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountName, accountName);
-            var account = await Connection.Client.Get<Account>(address);
+            var account = await Connection.Client.Get<Account>(address).ConfigureAwait(false);
             return account;
         }
 
         public async Task<Account> Get(Guid accountId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountId, accountId.ToString());
-            var account = await Connection.Client.Get<Account>(address);
+            var account = await Connection.Client.Get<Account>(address).ConfigureAwait(false);
             return account;
         }
 
         public async IAsyncEnumerable<Account> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Accounts);
-            var result = await Connection.Client.Get<IEnumerable<Account>>(address);
+            var result = await Connection.Client.Get<IEnumerable<Account>>(address).ConfigureAwait(false);
             foreach (var item in result)
             {
                 yield return item;

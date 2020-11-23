@@ -20,7 +20,7 @@
         {
             var profile = Profiler.Begin("Parsing");
 
-            var result = await _decoree.Parse(text);
+            var result = await _decoree.Parse(text).ConfigureAwait(false);
 
             Profiler.End(profile);
 
@@ -32,7 +32,7 @@
             dynamic profile = Profiler.Begin("Process");
             profile.Query = query;
             
-            var result = await _decoree.Process(query);
+            var result = await _decoree.Process(query).ConfigureAwait(false);
 
             Profiler.End(profile);
 

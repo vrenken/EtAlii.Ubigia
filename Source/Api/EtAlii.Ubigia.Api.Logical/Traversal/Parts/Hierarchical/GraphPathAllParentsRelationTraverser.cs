@@ -17,14 +17,14 @@ namespace EtAlii.Ubigia.Api.Logical
                         var results = new List<Identifier>();
                         var path = new List<IReadOnlyEntry>();
 
-                        var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                        var entry = await parameters.Context.Entries.Get(start, parameters.Scope).ConfigureAwait(false);
 
                         do
                         {
                             path.Add(entry);
                             var entries = await parameters.Context.Entries
                                 .GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope)
-                                .ToArrayAsync();
+                                .ToArrayAsync().ConfigureAwait(false);
                             if (entries.Multiple())
                             {
                                 throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");
@@ -38,9 +38,9 @@ namespace EtAlii.Ubigia.Api.Logical
                             entry = path[i - 1];
 
                             var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Parent, parameters.Scope);
-                            await foreach (var child in children)
+                            await foreach (var child in children.ConfigureAwait(false))
                             {
-                                await Update(results, child, parameters.Context, parameters.Scope);
+                                await Update(results, child, parameters.Context, parameters.Scope).ConfigureAwait(false);
                             }
                         }
 
@@ -58,14 +58,14 @@ namespace EtAlii.Ubigia.Api.Logical
             var result = new List<Identifier>();
             var path = new List<IReadOnlyEntry>();
 
-            var entry = await context.Entries.Get(start, scope);
+            var entry = await context.Entries.Get(start, scope).ConfigureAwait(false);
 
             do
             {
                 path.Add(entry);
                 var entries = await context.Entries
                     .GetRelated(entry.Id, EntryRelation.Downdate, scope)
-                    .ToArrayAsync();
+                    .ToArrayAsync().ConfigureAwait(false);
                 if (entries.Multiple())
                 {
                     throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");
@@ -79,9 +79,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 entry = path[i - 1];
 
                 var children = context.Entries.GetRelated(entry.Id, EntryRelation.Parent, scope);
-                await foreach (var child in children) // We cannot yield here somehow as the update method both adds and removes items. 
+                await foreach (var child in children.ConfigureAwait(false)) // We cannot yield here somehow as the update method both adds and removes items. 
                 {
-                    await Update(result, child, context, scope);
+                    await Update(result, child, context, scope).ConfigureAwait(false);
                 }
             }
 
@@ -107,8 +107,8 @@ namespace EtAlii.Ubigia.Api.Logical
                     }
                     break;
                 case EntryType.Remove:
-                    await Remove(list, entry.Parent, context, scope);
-                    await Remove(list, entry.Parent2, context, scope);
+                    await Remove(list, entry.Parent, context, scope).ConfigureAwait(false);
+                    await Remove(list, entry.Parent2, context, scope).ConfigureAwait(false);
                     break;
             }
         }
@@ -118,10 +118,10 @@ namespace EtAlii.Ubigia.Api.Logical
             if (relation != Relation.None)
             {
                 var idToRemove = relation.Id;
-                var entry = await context.Entries.Get(idToRemove, scope);
+                var entry = await context.Entries.Get(idToRemove, scope).ConfigureAwait(false);
                 if (entry.Downdate != Relation.None && !list.Remove(entry.Downdate.Id))
                 {
-                    await Remove(list, entry.Downdate, context, scope);
+                    await Remove(list, entry.Downdate, context, scope).ConfigureAwait(false);
                 }
             }
         }

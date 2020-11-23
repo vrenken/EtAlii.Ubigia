@@ -15,12 +15,12 @@
         public async Task InitializeAsync()
         {
             _testContext = new TransportTestContext().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -28,13 +28,13 @@
         public async Task ManagementConnection_Storages_Add()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
 
             // Act.
-            var storage = await connection.Storages.Add(name, address);
+            var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(storage);
@@ -46,7 +46,7 @@
         public async Task ManagementConnection_Storages_Add_Multiple()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             for(var i=0; i<10; i++)
             {
@@ -54,7 +54,7 @@
                 var address = Guid.NewGuid().ToString();
 
                 // Act.
-                var storage = await connection.Storages.Add(name, address);
+                var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
             
                 // Assert.
                 Assert.NotNull(storage);
@@ -67,15 +67,15 @@
         public async Task ManagementConnection_Storages_Get()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
 
-            var storage = await connection.Storages.Add(name, address);
+            var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
 
             // Act.
-            storage = await connection.Storages.Get(storage.Id);
+            storage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(storage);
@@ -87,13 +87,13 @@
         public async Task ManagementConnection_Storages_Get_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
-            await connection.Storages.Add(name, address);
+            await connection.Storages.Add(name, address).ConfigureAwait(false);
 
             // Act.
-            var nonExistingStorage = await connection.Storages.Get(Guid.NewGuid());
+            var nonExistingStorage = await connection.Storages.Get(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(nonExistingStorage);
@@ -103,16 +103,16 @@
         public async Task ManagementConnection_Storages_Get_Multiple()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
                 var address = Guid.NewGuid().ToString();
-                var storage = await connection.Storages.Add(name, address);
+                var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
 
                 // Act.
-                storage = await connection.Storages.Get(storage.Id);
+                storage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(storage);
@@ -125,7 +125,7 @@
         public async Task ManagementConnection_Storages_Get_First_Full_Add()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var storages = new List<Storage>();
 
             for (var i = 0; i < 10; i++)
@@ -133,7 +133,7 @@
                 var name = Guid.NewGuid().ToString();
                 var address = Guid.NewGuid().ToString();
 
-                var storage = await connection.Storages.Add(name, address);
+                var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
                 Assert.NotNull(storage);
                 Assert.Equal(name, storage.Name);
                 Assert.Equal(address, storage.Address);
@@ -143,7 +143,7 @@
             // Act.
             foreach (var storage in storages)
             {
-                var retrievedStorage = await connection.Storages.Get(storage.Id);
+                var retrievedStorage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedStorage);
@@ -160,7 +160,7 @@
             var expectedStorageAddress = new Uri($"{_testContext.Context.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Context.ServiceDetails.ManagementAddress.Host}/").ToString();
 
             // Act.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var retrievedStorage = await connection.Storages
                 .GetAll()
                 .SingleOrDefaultAsync();
@@ -175,7 +175,7 @@
         public async Task ManagementConnection_Storages_Get_All()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var storages = new List<Storage>(); 
             for (var i = 0; i < 10; i++)
@@ -183,7 +183,7 @@
                 var name = Guid.NewGuid().ToString();
                 var address = Guid.NewGuid().ToString();
 
-                var storage = await connection.Storages.Add(name, address);
+                var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
                 Assert.NotNull(storage);
                 Assert.Equal(name, storage.Name);
                 Assert.Equal(address, storage.Address);
@@ -211,17 +211,17 @@
         public async Task ManagementConnection_Storages_Change()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 	        var index = 10;
             var name = Guid.NewGuid().ToString();
             var address = $"http://www.host{++index}.com";
 
-			var storage = await connection.Storages.Add(name, address);
+			var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
 
-            storage = await connection.Storages.Get(storage.Id);
+            storage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
@@ -230,14 +230,14 @@
 	        address = $"http://www.host{++index}.com";
 
             // Act.
-            storage = await connection.Storages.Change(storage.Id, name, address);
+            storage = await connection.Storages.Change(storage.Id, name, address).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
 
-            storage = await connection.Storages.Get(storage.Id);
+            storage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
@@ -247,22 +247,22 @@
         public async Task ManagementConnection_Storages_Delete()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
 
-            var storage = await connection.Storages.Add(name, address);
+            var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
 
-            storage = await connection.Storages.Get(storage.Id);
+            storage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
             Assert.NotNull(storage);
 
             // Act.
-            await connection.Storages.Remove(storage.Id);
-            var nonExistingStorage = await connection.Storages.Get(storage.Id);
+            await connection.Storages.Remove(storage.Id).ConfigureAwait(false);
+            var nonExistingStorage = await connection.Storages.Get(storage.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(nonExistingStorage);
@@ -272,37 +272,37 @@
         public async Task ManagementConnection_Storages_Delete_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Storages.Remove(id));
+            var act = new Func<Task>(async () => await connection.Storages.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Change_Non_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address));
+            var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Add_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false);
+            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
@@ -316,7 +316,7 @@
         public async Task ManagementConnection_Storages_Get_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false);
+            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Get(Guid.NewGuid()))
@@ -330,7 +330,7 @@
         public async Task ManagementConnection_Storages_Remove_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false);
+            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Remove(Guid.NewGuid()))
@@ -344,7 +344,7 @@
         public async Task ManagementConnection_Storages_Get_All_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false);
+            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.GetAll())
@@ -358,7 +358,7 @@
         public async Task ManagementConnection_Storages_Change_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection(false);
+            var connection = await _testContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Storages.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
@@ -373,17 +373,17 @@
         public async Task ManagementConnection_Storages_Add_Already_Existing()
         {
             // Arrange.
-            var connection = await _testContext.CreateManagementConnection();
+            var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
-            var storage = await connection.Storages.Add(name, address);
+            var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
             Assert.NotNull(storage);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Storages.Add(name, address));
+            var act = new Func<Task>(async () => await connection.Storages.Add(name, address).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
     }
 }

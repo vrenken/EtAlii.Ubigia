@@ -40,7 +40,7 @@
             }
             else
             {
-                newEntry = (IEditableEntry)await _context.Logical.Nodes.Add(parentId, part.Name, scope);
+                newEntry = (IEditableEntry)await _context.Logical.Nodes.Add(parentId, part.Name, scope).ConfigureAwait(false);
                 parentId = newEntry.Id;
             }
 

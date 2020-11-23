@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
                         else
                         {
-                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, limit); // EntryRelation.Child, 
+                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, limit).ConfigureAwait(false); // EntryRelation.Child, 
                         }
                         foreach (var result in results.Distinct())
                         {
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
 
             var result = new List<Identifier>();
-            await TraverseChildren(result, start, context, scope, limit); // EntryRelation.Child, 
+            await TraverseChildren(result, start, context, scope, limit).ConfigureAwait(false); // EntryRelation.Child, 
             var results = result.Distinct();
             
             foreach (var item in results)
@@ -81,16 +81,16 @@ namespace EtAlii.Ubigia.Api.Logical
             //EntryRelation entryRelation, 
             int limit)
         {
-            start = await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope).SingleOrDefaultAsync();
+            start = await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             result.Add(start);
 
             if (limit > 1)
             {
                 var subItems = _graphPathChildrenRelationTraverser.Traverse(null, start, context, scope);
 
-                await foreach (var subItem in subItems)
+                await foreach (var subItem in subItems.ConfigureAwait(false))
                 {
-                    await TraverseChildren(result, subItem, context, scope, limit - 1); // , entryRelation
+                    await TraverseChildren(result, subItem, context, scope, limit - 1).ConfigureAwait(false); // , entryRelation
                 }
             }
         }

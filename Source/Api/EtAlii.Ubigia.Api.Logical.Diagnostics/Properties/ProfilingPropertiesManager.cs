@@ -19,7 +19,7 @@
             dynamic profile = _profiler.Begin("Get: " + identifier.ToTimeString());
             profile.Identifier = identifier.ToString();
 
-            var result = await _decoree.Get(identifier, scope);
+            var result = await _decoree.Get(identifier, scope).ConfigureAwait(false);
             profile.Result = result;
 
             _profiler.End(profile);
@@ -33,7 +33,7 @@
             profile.Identifier = identifier.ToString();
             profile.Properties = properties;
 
-            await _decoree.Set(identifier, properties, scope);
+            await _decoree.Set(identifier, properties, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -43,7 +43,7 @@
             dynamic profile = _profiler.Begin("Checking for properties: " + identifier.ToTimeString());
             profile.Identifier = identifier.ToString();
 
-            var result = await _decoree.HasProperties(identifier, scope);
+            var result = await _decoree.HasProperties(identifier, scope).ConfigureAwait(false);
 
             profile.Result = result;
             profile.Action = "Checking for properties: " + identifier.ToTimeString() + (!result ? "" : " - AVAILABLE");

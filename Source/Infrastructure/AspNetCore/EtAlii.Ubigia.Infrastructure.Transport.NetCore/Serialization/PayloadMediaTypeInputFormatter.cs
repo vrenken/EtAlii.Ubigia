@@ -47,7 +47,7 @@
 
 			var request = context.HttpContext.Request;
 			var result = ReadFromStream(context.ModelType, request.Body);
-			return await InputFormatterResult.SuccessAsync(result);
+			return await InputFormatterResult.SuccessAsync(result).ConfigureAwait(false);
 		}
 
 		private object ReadFromStream(Type type, Stream readStream)

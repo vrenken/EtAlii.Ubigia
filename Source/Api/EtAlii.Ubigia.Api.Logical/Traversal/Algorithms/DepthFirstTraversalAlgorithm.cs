@@ -26,7 +26,7 @@
                     await foreach (var relatedNode in relatedNodes)
                     {
                         var subGraphPath = new GraphPath(subPathParts);
-                        await Traverse(subGraphPath, relatedNode, context, scope, finalOutput);
+                        await Traverse(subGraphPath, relatedNode, context, scope, finalOutput).ConfigureAwait(false);
                     }
                 }
                 else

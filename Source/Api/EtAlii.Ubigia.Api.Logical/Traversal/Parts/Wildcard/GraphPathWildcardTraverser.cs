@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
                         else
                         {
-                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope).ConfigureAwait(false);
                             if (regex.IsMatch(entry.Type))
                             {
                                 parameters.Output.OnNext(entry.Id);
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                var entry = await context.Entries.Get(start, scope);
+                var entry = await context.Entries.Get(start, scope).ConfigureAwait(false);
                 if (regex.IsMatch(entry.Type))
                 {
                     yield return entry.Id;

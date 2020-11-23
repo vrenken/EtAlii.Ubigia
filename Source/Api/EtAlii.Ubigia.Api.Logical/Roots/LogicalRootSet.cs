@@ -37,27 +37,27 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<Root> Add(string name)
         {
-            return await _fabric.Roots.Add(name);
+            return await _fabric.Roots.Add(name).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid id)
         {
-            await _fabric.Roots.Remove(id);
+            await _fabric.Roots.Remove(id).ConfigureAwait(false);
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
         {
-            return await _fabric.Roots.Change(rootId, rootName);
+            return await _fabric.Roots.Change(rootId, rootName).ConfigureAwait(false);
         }
 
         public async Task<Root> Get(string rootName)
         {
-            return await _fabric.Roots.Get(rootName);
+            return await _fabric.Roots.Get(rootName).ConfigureAwait(false);
         }
 
         public async Task<Root> Get(Guid rootId)
         {
-            return await _fabric.Roots.Get(rootId);
+            return await _fabric.Roots.Get(rootId).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<Root> GetAll()

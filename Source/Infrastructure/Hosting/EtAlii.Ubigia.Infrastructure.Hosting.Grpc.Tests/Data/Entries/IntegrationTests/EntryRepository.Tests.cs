@@ -23,10 +23,10 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
@@ -39,10 +39,10 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -55,10 +55,10 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -71,10 +71,10 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -86,8 +86,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             entry = context.Host.Infrastructure.Entries.Store(entry);
@@ -105,9 +105,9 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry1 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
-            var entry2 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var entry1 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
+            var entry2 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             entry2 = context.Host.Infrastructure.Entries.Store(entry2);
 
             // Act.
@@ -131,13 +131,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -152,13 +152,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -174,13 +174,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -197,13 +197,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -220,13 +220,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -241,13 +241,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -262,13 +262,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             for (var i = 1; i < Count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -283,17 +283,17 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var parentEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var parentEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             parentEntry = context.Host.Infrastructure.Entries.Store(parentEntry);
-            var childEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var childEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             childEntry.Parent = Relation.NewRelation(parentEntry.Id);
             childEntry = context.Host.Infrastructure.Entries.Store(childEntry);
 
             // Assert.
-            parentEntry = await context.Host.Infrastructure.Entries.Get(parentEntry.Id, EntryRelation.Parent | EntryRelation.Child);
+            parentEntry = await context.Host.Infrastructure.Entries.Get(parentEntry.Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
             Assert.True(parentEntry.Children.Count == 1);
             var childId = parentEntry.Children.First().Relations.First().Id;
             Assert.Equal(childEntry.Id, childId);
@@ -304,17 +304,17 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var parent2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var parent2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             parent2Entry = context.Host.Infrastructure.Entries.Store(parent2Entry);
-            var child2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var child2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             child2Entry.Parent2 = Relation.NewRelation(parent2Entry.Id);
             child2Entry = context.Host.Infrastructure.Entries.Store(child2Entry);
 
             // Assert.
-            parent2Entry = await context.Host.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelation.Parent | EntryRelation.Child);
+            parent2Entry = await context.Host.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
             Assert.True(parent2Entry.Children2.Count == 1);
             var child2Id = parent2Entry.Children2.First().Relations.First().Id;
             Assert.Equal(child2Entry.Id, child2Id);
@@ -325,17 +325,17 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             index = context.Host.Infrastructure.Entries.Store(index);
-            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             entry.Indexes.Add(index.Id);
             entry = context.Host.Infrastructure.Entries.Store(entry);
 
             // Assert.
-            index = await context.Host.Infrastructure.Entries.Get(index.Id, EntryRelation.Index | EntryRelation.Indexed);
+            index = await context.Host.Infrastructure.Entries.Get(index.Id, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
             Assert.NotEqual(Relation.None, index.Indexed);
             Assert.Equal(index.Indexed.Id, entry.Id);
         }
@@ -346,17 +346,17 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             entry = context.Host.Infrastructure.Entries.Store(entry);
-            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
             index.Indexed = Relation.NewRelation(entry.Id);
             index = context.Host.Infrastructure.Entries.Store(index);
 
             // Assert.
-            entry = await context.Host.Infrastructure.Entries.Get(entry.Id, EntryRelation.Index | EntryRelation.Indexed);
+            entry = await context.Host.Infrastructure.Entries.Get(entry.Id, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
             Assert.True(entry.Indexes.Contains(index.Id));
         }
 
@@ -365,13 +365,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -389,13 +389,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -413,13 +413,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -437,13 +437,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -462,13 +462,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -490,13 +490,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure);
+            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[Count];
 
             // Act.
             for (var i = 0; i < Count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -518,8 +518,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
             Assert.True(context.Host.Storage.FolderManager.Exists(folder));

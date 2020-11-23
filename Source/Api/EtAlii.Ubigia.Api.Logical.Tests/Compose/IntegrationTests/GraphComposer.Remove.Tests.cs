@@ -17,21 +17,21 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var item = Guid.NewGuid().ToString();
-            var addedEntry = await composer.Add(entry.Id, item, scope);
+            var addedEntry = await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(fabric)
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration);
@@ -44,28 +44,28 @@
             var updatedEntry = await results.SingleAsync();
 
             // Act.
-            var removedEntry = await composer.Remove(updatedEntry.Id, item, scope);
+            var removedEntry = await composer.Remove(updatedEntry.Id, item, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var addUpdatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
+            var addUpdatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addUpdatedEntry);
             Assert.Equal(hierarchy.Last(), addUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var addLinkedEntry = await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var addLinkedEntry = await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addLinkedEntry);
             Assert.Equal(EntryType.Add, addLinkedEntry.Type);
-            var addFinalEntry = await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var addFinalEntry = await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addFinalEntry);
             Assert.Equal(item, addFinalEntry.Type);
             Assert.Equal(addedEntry.Id, addFinalEntry.Id);
 
-            var removeUpdatedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
+            var removeUpdatedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeUpdatedEntry);
             Assert.Equal(hierarchy.Last(), removeUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var removeLinkedEntry = await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var removeLinkedEntry = await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeLinkedEntry);
             Assert.Equal(EntryType.Remove, removeLinkedEntry.Type);
-            var removeFinalEntry = await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var removeFinalEntry = await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeFinalEntry);
             Assert.Equal(item, removeFinalEntry.Type);
             Assert.Equal(removedEntry.Id, removeFinalEntry.Id);
@@ -77,19 +77,19 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
+            var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var entry = hierarchyResult.Item1;
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
-            await composer.Add(entry.Id, item, scope);
+            await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
@@ -105,7 +105,7 @@
             var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, item + "Wrong", scope));
 
             // Assert.
-            await Assert.ThrowsAsync<GraphComposeException>(act);
+            await Assert.ThrowsAsync<GraphComposeException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -114,19 +114,19 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
+            var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var entry = hierarchyResult.Item1;
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
-            await composer.Add(entry.Id, item, scope);
+            await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
                 .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
@@ -142,7 +142,7 @@
             var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, "Wrong" + item, scope));
 
             // Assert.
-            await Assert.ThrowsAsync<GraphComposeException>(act);
+            await Assert.ThrowsAsync<GraphComposeException>(act).ConfigureAwait(false);
         }
     }
 }

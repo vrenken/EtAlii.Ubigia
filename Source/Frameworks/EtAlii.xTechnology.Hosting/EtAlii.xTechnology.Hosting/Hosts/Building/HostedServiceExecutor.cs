@@ -42,7 +42,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 try
                 {
-                    await callback(service);
+                    await callback(service).ConfigureAwait(false);
                 }
                 catch (Exception ex)
                 {

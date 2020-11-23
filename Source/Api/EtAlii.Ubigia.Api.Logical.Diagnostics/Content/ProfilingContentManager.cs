@@ -22,7 +22,7 @@
             dynamic profile = _profiler.Begin("Upload");
             profile.SizeInBytes = sizeInBytes;
 
-            await _decoree.Upload(stream, sizeInBytes, identifier);
+            await _decoree.Upload(stream, sizeInBytes, identifier).ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -32,7 +32,7 @@
             dynamic profile = _profiler.Begin("Download");
             profile.ValidateChecksum = validateChecksum;
 
-            await _decoree.Download(stream, identifier, validateChecksum);
+            await _decoree.Download(stream, identifier, validateChecksum).ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -41,7 +41,7 @@
         {
             var profile = _profiler.Begin("HasContent");
 
-            var result = await _decoree.HasContent(identifier);
+            var result = await _decoree.HasContent(identifier).ConfigureAwait(false);
 
             _profiler.End(profile);
 

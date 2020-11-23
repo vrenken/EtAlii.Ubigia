@@ -101,7 +101,7 @@
             try
             {
                 var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
-                item = await _items.Add(item, template);
+                item = await _items.Add(item, template).ConfigureAwait(false);
                 response = Ok(item);
             }
             catch (Exception ex)

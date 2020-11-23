@@ -51,7 +51,7 @@
 
         public override async Task Stop()
         {
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
 	        _channel?.Dispose();
 	        _channel = null;

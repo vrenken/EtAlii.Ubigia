@@ -25,7 +25,7 @@
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await _pathProcessor.Process(pathSubject, scope, outputObserver);
+                await _pathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             });
@@ -35,7 +35,7 @@
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope);
+                    var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope).ConfigureAwait(false);
                     output.OnNext(entry);
                 });
         }

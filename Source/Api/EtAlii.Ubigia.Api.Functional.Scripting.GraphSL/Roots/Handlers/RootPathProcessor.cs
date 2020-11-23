@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             MatchResult match = null;
             foreach (var rh in rootHandlerMapper.AllowedRootHandlers)
             {
-                var m = await _rootHandlerPathMatcher.Match(scriptScope, rh, path);
+                var m = await _rootHandlerPathMatcher.Match(scriptScope, rh, path).ConfigureAwait(false);
                 if (m != MatchResult.NoMatch)
                 {
                     match = m;

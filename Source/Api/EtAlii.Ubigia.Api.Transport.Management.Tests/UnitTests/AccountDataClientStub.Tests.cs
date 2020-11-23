@@ -26,7 +26,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            var account = await accountDataClientStub.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.User);
+            var account = await accountDataClientStub.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.User).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(account);
@@ -39,7 +39,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            var account = await accountDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var account = await accountDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(account);
@@ -52,7 +52,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            await accountDataClientStub.Connect(null);
+            await accountDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -64,7 +64,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            await accountDataClientStub.Disconnect(null);
+            await accountDataClientStub.Disconnect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -76,7 +76,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            var account = await accountDataClientStub.Get(Guid.NewGuid());
+            var account = await accountDataClientStub.Get(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(account);
@@ -89,7 +89,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            var account = await accountDataClientStub.Get(Guid.NewGuid().ToString());
+            var account = await accountDataClientStub.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(account);
@@ -117,7 +117,7 @@
             var accountDataClientStub = new AccountDataClientStub();
 
             // Act.
-            await accountDataClientStub.Remove(Guid.NewGuid());
+            await accountDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
         }

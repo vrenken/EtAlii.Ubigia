@@ -25,7 +25,7 @@
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 
         public Task DisposeAsync()
@@ -41,9 +41,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person");
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName");
+            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -73,9 +73,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person");
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName");
+            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -105,9 +105,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person");
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName");
+            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -138,9 +138,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person");
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName");
+            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -171,9 +171,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person");
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName");
+            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();

@@ -30,27 +30,27 @@
 
         public async Task Open()
         {
-            await _decoree.Open();
+            await _decoree.Open().ConfigureAwait(false);
         }
 
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
         {
-            return await _decoree.OpenSpace(accountId, spaceId);
+            return await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
         }
 
         public async Task<IDataConnection> OpenSpace(Space space)
         {
-            return await _decoree.OpenSpace(space);
+            return await _decoree.OpenSpace(space).ConfigureAwait(false);
         }
 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            return await _decoree.OpenSpace(accountName,spaceName);
+            return await _decoree.OpenSpace(accountName,spaceName).ConfigureAwait(false);
         }
 
         public async Task Close()
         {
-            await _decoree.Close();
+            await _decoree.Close().ConfigureAwait(false);
         }
 
         #region Disposable

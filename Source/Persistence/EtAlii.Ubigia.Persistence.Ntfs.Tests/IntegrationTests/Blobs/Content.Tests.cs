@@ -29,7 +29,7 @@
 
             // Act.
             Storage.Blobs.Store(containerId, content);
-            var retrievedContent = await Storage.Blobs.Retrieve<Content>(containerId);
+            var retrievedContent = await Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             AssertData.AreEqual(content, retrievedContent, false);
@@ -61,7 +61,7 @@
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var content = await Storage.Blobs.Retrieve<Content>(containerId);
+            var content = await Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(content);

@@ -24,12 +24,12 @@
         {
             Diagnostics = DiagnosticsConfiguration.Default;
             LogicalTestContext = new LogicalTestContextFactory().Create();
-            await LogicalTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await LogicalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await LogicalTestContext.Stop();
+            await LogicalTestContext.Stop().ConfigureAwait(false);
             LogicalTestContext = null;
             Diagnostics = null;
         }

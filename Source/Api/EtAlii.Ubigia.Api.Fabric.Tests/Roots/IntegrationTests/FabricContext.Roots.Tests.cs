@@ -21,7 +21,7 @@
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
                 .Use(DiagnosticsConfiguration.Default);
@@ -42,7 +42,7 @@
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -59,7 +59,7 @@
             _fabric.Roots.Added += (id) => { addedId = id; addedEvent.Set(); };
             
             // Act.
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             addedEvent.WaitOne(TimeSpan.FromSeconds(10));
 
             // Assert.
@@ -76,7 +76,7 @@
                 var name = Guid.NewGuid().ToString();
 
                 // Act.
-                var root = await _fabric.Roots.Add(name);
+                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(root);
@@ -89,10 +89,10 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
 
             // Act.
-            root = await _fabric.Roots.Get(root.Id);
+            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -104,10 +104,10 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
 
             // Act.
-            root = await _fabric.Roots.Get(root.Name);
+            root = await _fabric.Roots.Get(root.Name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
@@ -121,10 +121,10 @@
             {
                 // Arrange.
                 var name = Guid.NewGuid().ToString();
-                var root = await _fabric.Roots.Add(name);
+                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
 
                 // Act.
-                root = await _fabric.Roots.Get(root.Id);
+                root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(root);
@@ -140,7 +140,7 @@
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
-                var root = await _fabric.Roots.Add(name);
+                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
                 Assert.NotNull(root);
                 Assert.Equal(name, root.Name);
                 roots.Add(root);
@@ -149,7 +149,7 @@
             foreach (var root in roots)
             {
                 // Act.
-                var retrievedRoot = await _fabric.Roots.Get(root.Id);
+                var retrievedRoot = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedRoot);
@@ -180,7 +180,7 @@
             {
                 var name = Guid.NewGuid().ToString();
 
-                var root = await _fabric.Roots.Add(name);
+                var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
                 Assert.NotNull(root);
                 Assert.Equal(name, root.Name);
                 roots.Add(root);
@@ -207,21 +207,21 @@
             // Arrange.
             var name = Guid.NewGuid().ToString();
 
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id);
+            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
             name = Guid.NewGuid().ToString();
 
             // Act.
-            root = await _fabric.Roots.Change(root.Id, name);
+            root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id);
+            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
         }
@@ -232,14 +232,14 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             var changedEvent = new ManualResetEvent(false);
             var changedId = Guid.Empty;
             _fabric.Roots.Changed += (id) => { changedId = id; changedEvent.Set(); };
             name = Guid.NewGuid().ToString();
 
             // Act.
-            root = await _fabric.Roots.Change(root.Id, name);
+            root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false);
             changedEvent.WaitOne(TimeSpan.FromSeconds(10));
 
             // Assert.
@@ -253,17 +253,17 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
             Assert.Equal(name, root.Name);
-            root = await _fabric.Roots.Get(root.Id);
+            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.NotNull(root);
 
             // Act.
-            await _fabric.Roots.Remove(root.Id);
+            await _fabric.Roots.Remove(root.Id).ConfigureAwait(false);
 
             // Assert.
-            root = await _fabric.Roots.Get(root.Id);
+            root = await _fabric.Roots.Get(root.Id).ConfigureAwait(false);
             Assert.Null(root);
         }
 
@@ -292,10 +292,10 @@
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Remove(id));
+            var act = new Func<Task>(async () => await _fabric.Roots.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -306,10 +306,10 @@
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Change(id, name));
+            var act = new Func<Task>(async () => await _fabric.Roots.Change(id, name).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -398,14 +398,14 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var root = await _fabric.Roots.Add(name);
+            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             Assert.NotNull(root);
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Roots.Add(name));
+            var act = new Func<Task>(async () => await _fabric.Roots.Add(name).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
     }
 }

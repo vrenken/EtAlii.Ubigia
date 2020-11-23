@@ -18,23 +18,23 @@
 
         public override async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await base.Connect(storageConnection);
+            await base.Connect(storageConnection).ConfigureAwait(false);
 
             var factory = new HubConnectionFactory();
 
 			_accountConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Account, UriKind.Absolute));
 			_storageConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Storage, UriKind.Absolute));
-	        await _accountConnection.StartAsync();
-	        await _storageConnection.StartAsync();
+	        await _accountConnection.StartAsync().ConfigureAwait(false);
+	        await _storageConnection.StartAsync().ConfigureAwait(false);
         }
 
         public override async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await base.Disconnect(storageConnection);
+            await base.Disconnect(storageConnection).ConfigureAwait(false);
 
-            await _accountConnection.DisposeAsync();
+            await _accountConnection.DisposeAsync().ConfigureAwait(false);
             _accountConnection = null;
-            await _storageConnection.DisposeAsync();
+            await _storageConnection.DisposeAsync().ConfigureAwait(false);
             _storageConnection = null;
         }
     }

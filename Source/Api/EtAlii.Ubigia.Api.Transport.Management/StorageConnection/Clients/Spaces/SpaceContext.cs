@@ -19,7 +19,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
 
-            return await Data.Add(accountId, spaceName, spaceTemplate);
+            return await Data.Add(accountId, spaceName, spaceTemplate).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid spaceId)
@@ -28,7 +28,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            await Data.Remove(spaceId);
+            await Data.Remove(spaceId).ConfigureAwait(false);
         }
 
         public async Task<Space> Change(Guid spaceId, string spaceName)
@@ -37,7 +37,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Change(spaceId, spaceName);
+            return await Data.Change(spaceId, spaceName).ConfigureAwait(false);
         }
 
         public async Task<Space> Get(Guid accountId, string spaceName)
@@ -46,7 +46,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(accountId, spaceName);
+            return await Data.Get(accountId, spaceName).ConfigureAwait(false);
         }
 
         public async Task<Space> Get(Guid spaceId)
@@ -55,7 +55,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(spaceId);
+            return await Data.Get(spaceId).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<Space> GetAll(Guid accountId)

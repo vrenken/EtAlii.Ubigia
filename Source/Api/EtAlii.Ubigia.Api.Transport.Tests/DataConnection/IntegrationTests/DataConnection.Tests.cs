@@ -27,7 +27,7 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             // Assert.
         }
@@ -40,8 +40,8 @@
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Data);
-            await connection.Open();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Data).ConfigureAwait(false);
+            await connection.Open().ConfigureAwait(false);
 
             // Assert.
         }
@@ -54,8 +54,8 @@
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Configuration);
-            await connection.Open();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Configuration).ConfigureAwait(false);
+            await connection.Open().ConfigureAwait(false);
 
             // Assert.
         }
@@ -67,13 +67,13 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -83,13 +83,13 @@
             var connection1 = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection1.Open();
+            await connection1.Open().ConfigureAwait(false);
 
             // Act.
             var connection2 = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName,
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection2.Open();
+            await connection2.Open().ConfigureAwait(false);
 
             // Assert.
             Assert.True(connection1.IsConnected);
@@ -105,7 +105,7 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
 
             // Act.
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             // Assert.
             Assert.True(connection.IsConnected);
@@ -120,10 +120,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -135,10 +135,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -150,10 +150,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System + "BAAD", false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -165,10 +165,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -180,10 +180,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -193,13 +193,13 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Open());
+            var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -208,8 +208,8 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToExistingSpace(
                 _testContext.TransportTestContext.Context.SystemAccountName, 
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false);
-            await connection.Open();
-            await connection.Close();
+            await connection.Open().ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -218,22 +218,22 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false);
-            await connection.Open();
-            await connection.Close();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false).ConfigureAwait(false);
+            await connection.Open().ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task DataConnection_Close()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(false);
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(false).ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Close());
+            var act = new Func<Task>(async () => await connection.Close().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
     }
 }

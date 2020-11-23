@@ -22,27 +22,27 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         public async Task<Root> Add(string name)
         {
-            return await _decoree.Add(name);
+            return await _decoree.Add(name).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid id)
         {
-            await _decoree.Remove(id);
+            await _decoree.Remove(id).ConfigureAwait(false);
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
         {
-            return await _decoree.Change(rootId, rootName);
+            return await _decoree.Change(rootId, rootName).ConfigureAwait(false);
         }
 
         public async Task<Root> Get(string rootName)
         {
-            return await _decoree.Get(rootName);
+            return await _decoree.Get(rootName).ConfigureAwait(false);
         }
 
         public async Task<Root> Get(Guid rootId)
         {
-            return await _decoree.Get(rootId);
+            return await _decoree.Get(rootId).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<Root> GetAll()

@@ -21,7 +21,7 @@
                 {
                     //WriteVerbose(verboseDescription)
                     //WriteDebug($"Removing account [{TargetAccount.Name}]")
-                    await PowerShellClient.Current.ManagementConnection.Accounts.Remove(TargetAccount.Id);
+                    await PowerShellClient.Current.ManagementConnection.Accounts.Remove(TargetAccount.Id).ConfigureAwait(false);
                     if (AccountCmdlet.Current != null && AccountCmdlet.Current.Id == TargetAccount.Id)
                     {
                         AccountCmdlet.Current = null;

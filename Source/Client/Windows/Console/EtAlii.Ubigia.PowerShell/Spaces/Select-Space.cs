@@ -15,7 +15,7 @@
     {
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
             SpaceCmdlet.Current = null;
             RootCmdlet.Current = null;
@@ -34,7 +34,7 @@
 
                 if (TargetSpace != null)
                 {
-                    var connection = await PowerShellClient.Current.ManagementConnection.OpenSpace(TargetSpace.AccountId, TargetSpace.Id);
+                    var connection = await PowerShellClient.Current.ManagementConnection.OpenSpace(TargetSpace.AccountId, TargetSpace.Id).ConfigureAwait(false);
                     var fabricContextConfiguration = new FabricContextConfiguration()
                         .Use(connection)
                         .Use(DiagnosticsConfiguration.Default);

@@ -14,12 +14,12 @@
 
         public async Task InitializeAsync()
         {
-            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.TransportTestContext.Stop();
+            await _testContext.TransportTestContext.Stop().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -28,7 +28,7 @@
             // Arrange.
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(connection.Details.ManagementAddress);

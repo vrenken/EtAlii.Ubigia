@@ -20,13 +20,13 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         public async Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation)
         {
-            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation);
+            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             fabricContextConfiguration.Use(connection);
         }
 
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
-            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation);
+            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
                 .Use(DiagnosticsConfiguration.Default);
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                 hierarchy[i] = Guid.NewGuid().ToString();
             }
 
-            var entry = await CreateHierarchy(fabric, parent, hierarchy);
+            var entry = await CreateHierarchy(fabric, parent, hierarchy).ConfigureAwait(false);
 
             return new Tuple<IEditableEntry, string[]>(entry, hierarchy);
         }
@@ -56,12 +56,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                     .GetRelated(parent.Id, EntryRelation.Child, scope)
                     .SingleOrDefaultAsync(e => e.Type == EntryType.Add);
                 
-                var updatedParent = await fabric.Entries.Prepare();
+                var updatedParent = await fabric.Entries.Prepare().ConfigureAwait(false);
                 updatedParent.Type = parent.Type;
                 updatedParent.Downdate = Relation.NewRelation(parent.Id);
-                updatedParent = (IEditableEntry)await fabric.Entries.Change(updatedParent, scope);
+                updatedParent = (IEditableEntry)await fabric.Entries.Change(updatedParent, scope).ConfigureAwait(false);
 
-                var linkEntry = await fabric.Entries.Prepare();
+                var linkEntry = await fabric.Entries.Prepare().ConfigureAwait(false);
                 linkEntry.Parent = Relation.NewRelation(updatedParent.Id);
 
                 if (previousLink != null)
@@ -69,12 +69,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                     linkEntry.Downdate = Relation.NewRelation(previousLink.Id);
                 }
                 linkEntry.Type = EntryType.Add;
-                linkEntry = (IEditableEntry)await fabric.Entries.Change(linkEntry, scope);
+                linkEntry = (IEditableEntry)await fabric.Entries.Change(linkEntry, scope).ConfigureAwait(false);
 
-                var childEntry = await fabric.Entries.Prepare();
+                var childEntry = await fabric.Entries.Prepare().ConfigureAwait(false);
                 childEntry.Type = child;
                 childEntry.Parent = Relation.NewRelation(linkEntry.Id);
-                parent = (IEditableEntry)await fabric.Entries.Change(childEntry, scope);
+                parent = (IEditableEntry)await fabric.Entries.Change(childEntry, scope).ConfigureAwait(false);
             }
             return parent;
         }
@@ -83,12 +83,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         public async Task Start(PortRange portRange)
         {
-            await Transport.Start(portRange);
+            await Transport.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Transport.Stop();
+            await Transport.Stop().ConfigureAwait(false);
         }
 
         #endregion start/stop

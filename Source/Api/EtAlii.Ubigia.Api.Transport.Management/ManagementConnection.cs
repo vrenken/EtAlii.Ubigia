@@ -36,16 +36,16 @@
         /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
         {
-            var account = await Accounts.Get(accountId);
-            var space = await Spaces.Get(spaceId);
-            return await OpenSpace(account.Name, space.Name);
+            var account = await Accounts.Get(accountId).ConfigureAwait(false);
+            var space = await Spaces.Get(spaceId).ConfigureAwait(false);
+            return await OpenSpace(account.Name, space.Name).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Space space)
         {
-            var account = await Accounts.Get(space.AccountId);
-            return await OpenSpace(account.Name, space.Name);
+            var account = await Accounts.Get(space.AccountId).ConfigureAwait(false);
+            return await OpenSpace(account.Name, space.Name).ConfigureAwait(false);
         }
  
         /// <inheritdoc />
@@ -67,7 +67,7 @@
                 .Use(address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
-            await dataConnection.Open();
+            await dataConnection.Open().ConfigureAwait(false);
             return dataConnection;
         }
 
@@ -82,7 +82,7 @@
             var configuration = new StorageConnectionConfiguration()
                 .Use(Configuration.TransportProvider.GetStorageTransport(Configuration.Address));
             _connection = new StorageConnectionFactory().Create(configuration);
-            await _connection.Open(Configuration.AccountName, Configuration.Password);
+            await _connection.Open(Configuration.AccountName, Configuration.Password).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -93,7 +93,7 @@
                 throw new InvalidInfrastructureOperationException("The connection is already closed");
             }
 
-            await _connection.Close();
+            await _connection.Close().ConfigureAwait(false);
             _connection = null;
         }
 

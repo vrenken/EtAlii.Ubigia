@@ -95,7 +95,7 @@
             IActionResult response;
             try
             {
-                item = await _items.Add(item);
+                item = await _items.Add(item).ConfigureAwait(false);
                 response = Ok(item);
             }
             catch (Exception ex)

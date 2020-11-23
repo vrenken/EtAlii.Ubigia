@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await context.PathProcessor.Process(pathSubject, scope, outputObserver);
+                await context.PathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             });

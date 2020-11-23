@@ -26,7 +26,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            var storage = await storageDataClientStub.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var storage = await storageDataClientStub.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(storage);
@@ -39,7 +39,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            var storage = await storageDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var storage = await storageDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(storage);
@@ -52,7 +52,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            await storageDataClientStub.Connect(null);
+            await storageDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -64,7 +64,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            await storageDataClientStub.Disconnect(null);
+            await storageDataClientStub.Disconnect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -76,7 +76,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            var storage = await storageDataClientStub.Get(Guid.NewGuid());
+            var storage = await storageDataClientStub.Get(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(storage);
@@ -89,7 +89,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-            var storage = await storageDataClientStub.Get(Guid.NewGuid().ToString());
+            var storage = await storageDataClientStub.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(storage);
@@ -117,7 +117,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Act.
-           await storageDataClientStub.Remove(Guid.NewGuid());
+           await storageDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
         }

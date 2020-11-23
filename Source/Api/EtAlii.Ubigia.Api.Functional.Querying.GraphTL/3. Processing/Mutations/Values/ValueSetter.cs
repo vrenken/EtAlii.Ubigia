@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia.Api.Functional
             if (annotation == null)
             {
                 // No traversal, just set a property.
-                return await _propertiesValueSetter.Set(valueName, structure, value, executionScope);
+                return await _propertiesValueSetter.Set(valueName, structure, value, executionScope).ConfigureAwait(false);
             }
             if (annotation.Source != null)
             {
                 // @value(\#LastName) traversal set, i.e. a path to another node.
-                return await _pathValueSetter.Set(valueName, (string) value, structure, annotation.Source, executionScope);
+                return await _pathValueSetter.Set(valueName, (string) value, structure, annotation.Source, executionScope).ConfigureAwait(false);
             }
             // @value() traversal set, i.e. no path but the node itself.
             return new Value(valueName, structure.Node.Type);

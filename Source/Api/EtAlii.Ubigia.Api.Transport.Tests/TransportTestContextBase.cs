@@ -58,12 +58,12 @@
         public async Task Start(PortRange portRange) 
         {
             Context = _testHostFactory.Create<THostTestContext>();
-            await Context.Start(portRange);
+            await Context.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()  
         {
-            await Context.Stop();
+            await Context.Stop().ConfigureAwait(false);
             Context = null;
             //SpaceName = null
         }

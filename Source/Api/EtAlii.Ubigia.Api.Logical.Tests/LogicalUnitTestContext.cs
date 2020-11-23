@@ -14,12 +14,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             DiagnosticsConfiguration = EtAlii.xTechnology.Diagnostics.DiagnosticsConfiguration.Default;
             FabricTestContext = new FabricTestContextFactory().Create();
-            await FabricTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await FabricTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await FabricTestContext.Stop();
+            await FabricTestContext.Stop().ConfigureAwait(false);
             FabricTestContext = null;
             DiagnosticsConfiguration = null;
         }

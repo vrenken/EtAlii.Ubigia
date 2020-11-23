@@ -28,7 +28,7 @@
             Status.Description = "Starting...";
             Status.Summary = "Starting Ubigia NTFS storage subsystem";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Ubigia NTFS storage subsystem is operational using the folder specified below.");
@@ -43,7 +43,7 @@
             Status.Description = "Stopping...";
             Status.Summary = "Stopping Ubigia NTFS storage subsystem";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished stopping Ubigia NTFS storage subsystem from the folder specified below.");

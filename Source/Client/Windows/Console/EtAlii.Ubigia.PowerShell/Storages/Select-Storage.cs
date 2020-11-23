@@ -40,7 +40,7 @@
             try
             {
                 managementAddress = new Uri(Address, UriKind.Absolute);
-                await PowerShellClient.Current.OpenManagementConnection(managementAddress, AccountName, Password);
+                await PowerShellClient.Current.OpenManagementConnection(managementAddress, AccountName, Password).ConfigureAwait(false);
                 //WriteDebug($"Using storage at {Address} [{PowerShellClient.Current.Client.AuthenticationToken}]")
                 storage = PowerShellClient.Current.ManagementConnection.Storage;
                 dataAddress = PowerShellClient.Current.ManagementConnection.Details.DataAddress;

@@ -27,7 +27,7 @@
                 .Use(address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
-            await dataConnection.Open();
+            await dataConnection.Open().ConfigureAwait(false);
             return dataConnection;
         }
 
@@ -41,7 +41,7 @@
                 .Use(_configuration.TransportProvider)
                 .Use(address);
             var managementConnection = new ManagementConnectionFactory().Create(connectionConfiguration);
-            await managementConnection.Open();
+            await managementConnection.Open().ConfigureAwait(false);
             return managementConnection;
         }
 

@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async (root) =>
                 {
-                    await _context.Logical.Roots.Add(root.Name);
+                    await _context.Logical.Roots.Add(root.Name).ConfigureAwait(false);
                     parameters.Output.OnNext(root.Name);
                 });
             return Task.CompletedTask;

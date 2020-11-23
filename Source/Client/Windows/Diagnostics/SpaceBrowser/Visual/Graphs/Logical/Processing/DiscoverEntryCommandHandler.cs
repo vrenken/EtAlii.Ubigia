@@ -80,7 +80,7 @@
                 IReadOnlyEntry entry = null;
                 var task = Task.Run(async () =>
                 {
-                    entry = await _fabric.Entries.Get(identifier, new ExecutionScope(false));
+                    entry = await _fabric.Entries.Get(identifier, new ExecutionScope(false)).ConfigureAwait(false);
                 });
                 task.Wait();
 

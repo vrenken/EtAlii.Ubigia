@@ -32,19 +32,19 @@
                 if (spaceInfoProvider.Space != null)
                 {
                     address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Spaces, UriParameter.SpaceId, spaceInfoProvider.Space.Id.ToString());
-                    space = address != null ? await _client.Get<Space>(address) : null;
+                    space = address != null ? await _client.Get<Space>(address).ConfigureAwait(false) : null;
                 }
                 else if (!string.IsNullOrWhiteSpace(spaceInfoProvider.SpaceName))
                 {
-                    var targetAccount = await _accountResolver.Get((IAccountInfoProvider)spaceInfoProvider, currentAccount);
+                    var targetAccount = await _accountResolver.Get((IAccountInfoProvider)spaceInfoProvider, currentAccount).ConfigureAwait(false);
                     address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Spaces, UriParameter.AccountId, targetAccount.Id.ToString());
-                    var spaces = await _client.Get<IEnumerable<Space>>(address);
+                    var spaces = await _client.Get<IEnumerable<Space>>(address).ConfigureAwait(false);
                     space = spaces.FirstOrDefault(s => s.Name == spaceInfoProvider.SpaceName);
                 }
                 else if (spaceInfoProvider.SpaceId != Guid.Empty)
                 {
                     address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Spaces, UriParameter.SpaceId, spaceInfoProvider.SpaceId.ToString());
-                    space = address != null ? await _client.Get<Space>(address) : null;
+                    space = address != null ? await _client.Get<Space>(address).ConfigureAwait(false) : null;
                 }
             }
 

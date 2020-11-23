@@ -52,19 +52,19 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async() =>
             {
-                await systemSettingsSetter.Set(context, null);
+                await systemSettingsSetter.Set(context, null).ConfigureAwait(false);
             });
 
             // Assert.
-            await Assert.ThrowsAsync<ArgumentNullException>(act);
+            await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -75,14 +75,14 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var systemSettings = TestSystemSettings.Create();
 
             // Act.
-            await systemSettingsSetter.Set(context, systemSettings);
+            await systemSettingsSetter.Set(context, systemSettings).ConfigureAwait(false);
 
             // Assert.
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -99,18 +99,18 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();
 
             // Act.
-            await systemSettingsSetter.Set(context, firstSystemSettings);
+            await systemSettingsSetter.Set(context, firstSystemSettings).ConfigureAwait(false);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
-            await systemSettingsSetter.Set(context, secondSystemSettings);
+            await systemSettingsSetter.Set(context, secondSystemSettings).ConfigureAwait(false);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
@@ -129,9 +129,9 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
-            var addedSpace = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System).ConfigureAwait(false);
+            var addedSpace = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System).ConfigureAwait(false);
             //var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName)
             
             var firstSystemSettings = TestSystemSettings.Create();
@@ -139,39 +139,39 @@
             var thirdSystemSettings = TestSystemSettings.Create();
 
             // Act.
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             var context = new GraphSLScriptContextFactory().Create(configuration);
 
-            await systemSettingsSetter.Set(context, firstSystemSettings);
+            await systemSettingsSetter.Set(context, firstSystemSettings).ConfigureAwait(false);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
             
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             context = new GraphSLScriptContextFactory().Create(configuration);
             
-            await systemSettingsSetter.Set(context, secondSystemSettings);
+            await systemSettingsSetter.Set(context, secondSystemSettings).ConfigureAwait(false);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
             
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             context = new GraphSLScriptContextFactory().Create(configuration);
             
-            await systemSettingsSetter.Set(context, thirdSystemSettings);
+            await systemSettingsSetter.Set(context, thirdSystemSettings).ConfigureAwait(false);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
             
@@ -191,9 +191,9 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System).ConfigureAwait(false);
             managementConnection.Dispose();
 
             var firstSystemSettings = TestSystemSettings.Create();
@@ -201,41 +201,41 @@
             var thirdSystemSettings = TestSystemSettings.Create();
 
             // Act.
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             var context = new GraphSLScriptContextFactory().Create(configuration);
 
-            await systemSettingsSetter.Set(context, firstSystemSettings);
+            await systemSettingsSetter.Set(context, firstSystemSettings).ConfigureAwait(false);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
             managementConnection.Dispose();
             
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             context = new GraphSLScriptContextFactory().Create(configuration);
             
-            await systemSettingsSetter.Set(context, secondSystemSettings);
+            await systemSettingsSetter.Set(context, secondSystemSettings).ConfigureAwait(false);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
             managementConnection.Dispose();
             
-            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            connection = await managementConnection.OpenSpace(accountName, spaceName);
+            managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            connection = await managementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(connection);
             context = new GraphSLScriptContextFactory().Create(configuration);
             
-            await systemSettingsSetter.Set(context, thirdSystemSettings);
+            await systemSettingsSetter.Set(context, thirdSystemSettings).ConfigureAwait(false);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
             managementConnection.Dispose();

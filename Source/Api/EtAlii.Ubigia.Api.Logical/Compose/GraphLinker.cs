@@ -25,20 +25,20 @@
         public async Task<IReadOnlyEntry> Link(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
             // The GraphComposer cannot handle multiple updates yet.
-            var locationEntry = await _graphPathTraverser.TraverseToSingle(location, scope);
+            var locationEntry = await _graphPathTraverser.TraverseToSingle(location, scope).ConfigureAwait(false);
 
             // The GraphComposer cannot handle multiple updates yet.
             //var itemEntry = await _graphPathTraverser.TraverseToSingle(item, scope)
 
             // Let's check if a path already exists.
-            var linkAddResult = await _graphLinkAdder.GetLink(itemName, locationEntry, scope);
+            var linkAddResult = await _graphLinkAdder.GetLink(itemName, locationEntry, scope).ConfigureAwait(false);
             var locationLinkOriginalEntry = linkAddResult.Item1;
             var locationResult = linkAddResult.Item2;
             if (locationResult == null)
             {
-                var locationUpdateEntry = await _graphUpdater.Update(locationEntry, scope);
-                var locationLinkUpdateEntry = await _graphLinkAdder.AddLink(locationUpdateEntry, locationLinkOriginalEntry, EntryType.Add, scope);
-                await _graphChildAdder.AddChild(locationLinkUpdateEntry.Id, itemName, scope);
+                var locationUpdateEntry = await _graphUpdater.Update(locationEntry, scope).ConfigureAwait(false);
+                var locationLinkUpdateEntry = await _graphLinkAdder.AddLink(locationUpdateEntry, locationLinkOriginalEntry, EntryType.Add, scope).ConfigureAwait(false);
+                await _graphChildAdder.AddChild(locationLinkUpdateEntry.Id, itemName, scope).ConfigureAwait(false);
             }
 
             throw new NotImplementedException();

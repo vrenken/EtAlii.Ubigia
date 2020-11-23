@@ -29,7 +29,7 @@
                 {
                     var request = new AuthenticationRequest { AccountName = accountName, Password = null, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsAsync(request);
-                    await call.ResponseAsync;
+                    await call.ResponseAsync.ConfigureAwait(false);
                     //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
                     
@@ -41,7 +41,7 @@
                 {
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsync(request);
-                    await call.ResponseAsync;
+                    await call.ResponseAsync.ConfigureAwait(false);
                     //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
                     

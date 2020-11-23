@@ -22,7 +22,7 @@
             IReadOnlyEntry entry = null;
             var task = Task.Run(async () =>
             {
-                entry = await _fabric.Entries.Get(command.Identifier, new ExecutionScope(false));
+                entry = await _fabric.Entries.Get(command.Identifier, new ExecutionScope(false)).ConfigureAwait(false);
             });
             task.Wait();
 

@@ -17,14 +17,14 @@
                 Address = storageAddress,
             };
 
-            storage = await Connection.Client.Post(addAddress, storage);
+            storage = await Connection.Client.Post(addAddress, storage).ConfigureAwait(false);
             return storage;
         }
 
         public async Task Remove(Guid storageId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages, UriParameter.StorageId, storageId.ToString());
-            await Connection.Client.Delete(address);
+            await Connection.Client.Delete(address).ConfigureAwait(false);
         }
 
         public async Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
@@ -37,28 +37,28 @@
             };
 
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages, UriParameter.StorageId, storageId.ToString());
-            storage = await Connection.Client.Put(address, storage);
+            storage = await Connection.Client.Put(address, storage).ConfigureAwait(false);
             return storage;
         }
 
         public async Task<Storage> Get(string storageName)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages, UriParameter.StorageName, storageName);
-            var storage = await Connection.Client.Get<Storage>(address);
+            var storage = await Connection.Client.Get<Storage>(address).ConfigureAwait(false);
             return storage;
         }
 
         public async Task<Storage> Get(Guid storageId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages, UriParameter.StorageId, storageId.ToString());
-            var storage = await Connection.Client.Get<Storage>(address);
+            var storage = await Connection.Client.Get<Storage>(address).ConfigureAwait(false);
             return storage;
         }
 
         public async IAsyncEnumerable<Storage> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Storages);
-            var result = await Connection.Client.Get<IEnumerable<Storage>>(address);
+            var result = await Connection.Client.Get<IEnumerable<Storage>>(address).ConfigureAwait(false);
             foreach (var item in result)
             {
                 yield return item;

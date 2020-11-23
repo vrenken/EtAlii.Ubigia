@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 var matcher = _rootHandlerPathPartMatcherSelector.Select(templatePart);
 
                 // 2. Find first matching rest.
-                rest = await FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, isFirst);
+                rest = await FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, isFirst).ConfigureAwait(false);
                 isFirst = false;
 
                 // 3. Get all matches + rests
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 foreach (var m in matches)
                 {
                     var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
-                    var canMatch = await matcher.CanMatch(parameters);
+                    var canMatch = await matcher.CanMatch(parameters).ConfigureAwait(false);
                     if (canMatch)
                     {
                         match = m;

@@ -24,7 +24,7 @@
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await Execute(scope, outputObserver);
+                await Execute(scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             }).ToHotObservable();

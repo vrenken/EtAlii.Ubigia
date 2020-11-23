@@ -34,12 +34,12 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 if (!_cache.TryGetValue(entryIdentifier, out result))
                 {
-                    _cache[entryIdentifier] = result = await _context.Entries.Get(entryIdentifier, scope);
+                    _cache[entryIdentifier] = result = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
                 }
             }
             else
             {
-                result = await _context.Entries.Get(entryIdentifier, scope);
+                result = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
             }
 
             return result;
@@ -55,12 +55,12 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     if (!_cache.TryGetValue(entryIdentifier, out match))
                     {
-                        _cache[entryIdentifier] = match = await _context.Entries.Get(entryIdentifier, scope);
+                        _cache[entryIdentifier] = match = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
                     }
                 }
                 else
                 {
-                    match = await _context.Entries.Get(entryIdentifier, scope);
+                    match = await _context.Entries.Get(entryIdentifier, scope).ConfigureAwait(false);
                 }
 
                 yield return match;

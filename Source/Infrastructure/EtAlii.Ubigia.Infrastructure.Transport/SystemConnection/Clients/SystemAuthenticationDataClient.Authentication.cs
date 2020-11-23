@@ -10,7 +10,7 @@
 
         public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            var authenticationToken = await GetAuthenticationToken(password); // accountName, 
+            var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName, 
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -25,7 +25,7 @@
 
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            var authenticationToken = await GetAuthenticationToken(password); // accountName, 
+            var authenticationToken = await GetAuthenticationToken(password).ConfigureAwait(false); // accountName, 
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {

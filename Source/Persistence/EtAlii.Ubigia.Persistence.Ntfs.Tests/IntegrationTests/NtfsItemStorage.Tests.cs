@@ -106,7 +106,7 @@
 
             // Act.
             Storage.Items.Store(item, id, containerId);
-            var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(id, containerId);
+            var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(id, containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedItem);
@@ -134,7 +134,7 @@
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId);
+                var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedItem);

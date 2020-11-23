@@ -29,7 +29,7 @@
         {
             foreach (var identifier in identifiers)
             {
-                yield return await _logicalContext.Entries.Get(identifier, entryRelations);
+                yield return await _logicalContext.Entries.Get(identifier, entryRelations).ConfigureAwait(false);
             }
         }
 

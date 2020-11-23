@@ -20,7 +20,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
 
-            return await Data.Add(accountName, accountPassword, accountTemplate);
+            return await Data.Add(accountName, accountPassword, accountTemplate).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid accountId)
@@ -29,7 +29,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            await Data.Remove(accountId);
+            await Data.Remove(accountId).ConfigureAwait(false);
         }
 
         public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
@@ -38,7 +38,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Change(accountId, accountName, accountPassword);
+            return await Data.Change(accountId, accountName, accountPassword).ConfigureAwait(false);
         }
 
         public async Task<Account> Change(Account account)
@@ -47,7 +47,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Change(account);
+            return await Data.Change(account).ConfigureAwait(false);
         }
 
         public async Task<Account> Get(string accountName)
@@ -56,7 +56,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(accountName);
+            return await Data.Get(accountName).ConfigureAwait(false);
         }
 
         public async Task<Account> Get(Guid accountId)
@@ -65,7 +65,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(accountId);
+            return await Data.Get(accountId).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<Account> GetAll()

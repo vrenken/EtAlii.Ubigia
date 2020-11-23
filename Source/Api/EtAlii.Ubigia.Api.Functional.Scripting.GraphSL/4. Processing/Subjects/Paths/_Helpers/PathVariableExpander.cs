@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                         throw new ScriptProcessingException($"Variable {variableName} not assigned");
                     }
 
-                    var parts = await _variablePathSubjectPartToPathConverter.Convert(variable);
+                    var parts = await _variablePathSubjectPartToPathConverter.Convert(variable).ConfigureAwait(false);
                     result.AddRange(parts);
 
                 }

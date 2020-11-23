@@ -56,7 +56,7 @@
                 {
                     Space = item.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -67,7 +67,7 @@
             var spaceTemplate = request.Template;
             var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
             
-            space = await _items.Add(space, template);
+            space = await _items.Add(space, template).ConfigureAwait(false);
 
             var response = new SpaceSingleResponse
             {

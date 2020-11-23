@@ -24,7 +24,7 @@
                 AccountId = accountId,
             };
 
-            space = await _infrastructure.Spaces.Add(space, template);
+            space = await _infrastructure.Spaces.Add(space, template).ConfigureAwait(false);
             return space;
         }
 

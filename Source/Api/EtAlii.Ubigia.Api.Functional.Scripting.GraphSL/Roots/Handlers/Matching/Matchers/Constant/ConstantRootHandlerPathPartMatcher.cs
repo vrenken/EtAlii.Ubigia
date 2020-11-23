@@ -27,7 +27,7 @@
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {
-                var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+                var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope).ConfigureAwait(false);
                 if (content != null)
                 {
                     var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;

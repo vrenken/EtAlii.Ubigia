@@ -15,7 +15,7 @@
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
@@ -27,7 +27,7 @@
         {
             _parser = null;
 
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -36,7 +36,7 @@
         {
             // Arrange.
             const string text = "id('First') <= /Time";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -50,7 +50,7 @@
 
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -60,7 +60,7 @@
         {
             // Arrange.
             const string text = "id('First', 'Second') <= /Time";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -73,7 +73,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -82,7 +82,7 @@
         {
             // Arrange.
             const string text = "id($path, 'First', 'Second')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -95,7 +95,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -105,7 +105,7 @@
         {
             // Arrange.
             const string text = "id($path, 'First')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -118,7 +118,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -128,7 +128,7 @@
         {
             // Arrange.
             const string text = "id(\"/Hierarchy\", 'First', 'Second')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -141,7 +141,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -150,7 +150,7 @@
         {
             // Arrange.
             const string text = "id(\"/Hierarchy\", 'First')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -163,7 +163,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -172,7 +172,7 @@
         {
             // Arrange.
             const string text = "id('/Hierarchy', 'First', 'Second')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -185,7 +185,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 
@@ -196,7 +196,7 @@
         {
             // Arrange.
             const string text = "id('/Hierarchy', 'First')";
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -209,7 +209,7 @@
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
             //Assert.Equal(1, parseResult.Errors.Length)
         }
 

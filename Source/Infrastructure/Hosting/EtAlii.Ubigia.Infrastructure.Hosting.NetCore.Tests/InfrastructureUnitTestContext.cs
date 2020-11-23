@@ -29,12 +29,12 @@
 
         public async Task InitializeAsync()
         {
-            await HostTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await HostTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await HostTestContext.Stop();
+            await HostTestContext.Stop().ConfigureAwait(false);
             HostTestContext = null;
         }
     }

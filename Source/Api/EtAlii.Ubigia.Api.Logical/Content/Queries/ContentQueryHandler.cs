@@ -14,7 +14,7 @@
 
         public async Task<IReadOnlyContent> Execute(ContentQuery query)
         {
-            var content = await _fabric.Content.Retrieve(query.Identifier);
+            var content = await _fabric.Content.Retrieve(query.Identifier).ConfigureAwait(false);
             return content;
         }
     }

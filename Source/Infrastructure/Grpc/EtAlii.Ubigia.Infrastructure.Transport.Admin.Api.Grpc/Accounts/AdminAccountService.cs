@@ -55,7 +55,7 @@
                 {
                     Account = item.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -65,7 +65,7 @@
             var accountTemplate = request.Template;
             var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
             
-            account = await _items.Add(account, template);
+            account = await _items.Add(account, template).ConfigureAwait(false);
 
             var response = new AccountSingleResponse
             {

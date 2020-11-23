@@ -22,16 +22,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
         public async Task Open(IStorageConnection storageConnection)
         {
-            await Data.Connect(storageConnection);
-            await Notifications.Connect(storageConnection);
+            await Data.Connect(storageConnection).ConfigureAwait(false);
+            await Notifications.Connect(storageConnection).ConfigureAwait(false);
 
             Connection = storageConnection;
         }
 
         public async Task Close(IStorageConnection storageConnection)
         {
-            await Notifications.Disconnect(storageConnection);
-            await Data.Disconnect(storageConnection);
+            await Notifications.Disconnect(storageConnection).ConfigureAwait(false);
+            await Data.Disconnect(storageConnection).ConfigureAwait(false);
 
             Connection = null;
         }

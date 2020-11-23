@@ -40,10 +40,10 @@
             var requiredParts = _contentPartCalculator.GetRequiredParts(sizeInBytes);
             var partSize = _contentPartCalculator.GetPartSize(sizeInBytes);
 
-            var contentDefinition = await _contentDefinitionQueryHandler.Execute(new ContentDefinitionQuery(identifier, sizeInBytes, requiredParts, partSize));
-            var content = await _contentNewQueryHandler.Execute(new ContentNewQuery(identifier, sizeInBytes, requiredParts, partSize));
+            var contentDefinition = await _contentDefinitionQueryHandler.Execute(new ContentDefinitionQuery(identifier, sizeInBytes, requiredParts, partSize)).ConfigureAwait(false);
+            var content = await _contentNewQueryHandler.Execute(new ContentNewQuery(identifier, sizeInBytes, requiredParts, partSize)).ConfigureAwait(false);
 
-            await _contentPartStoreCommandHandler.Execute(new ContentPartStoreCommand(stream, sizeInBytes, requiredParts, partSize, identifier, contentDefinition, content));
+            await _contentPartStoreCommandHandler.Execute(new ContentPartStoreCommand(stream, sizeInBytes, requiredParts, partSize, identifier, contentDefinition, content)).ConfigureAwait(false);
         }
 
         public async Task Download(Stream stream, Identifier identifier, bool validateChecksum = false)
@@ -58,10 +58,10 @@
                 throw new NotImplementedException();
             }
 
-            var content = await _contentQueryHandler.Execute(new ContentQuery(identifier));
+            var content = await _contentQueryHandler.Execute(new ContentQuery(identifier)).ConfigureAwait(false);
             if (content != null && content.Summary.IsComplete)
             {
-                await _contentPartQueryHandler.Execute(new ContentPartQuery(stream, identifier, content));
+                await _contentPartQueryHandler.Execute(new ContentPartQuery(stream, identifier, content)).ConfigureAwait(false);
             }
         }
 

@@ -66,7 +66,7 @@
                 {
                     Space = item.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -78,7 +78,7 @@
             // A user can only create data spaces.
             var template = SpaceTemplate.Data;
             
-            space = await _items.Add(space, template);
+            space = await _items.Add(space, template).ConfigureAwait(false);
 
             var response = new SpaceSingleResponse
             {

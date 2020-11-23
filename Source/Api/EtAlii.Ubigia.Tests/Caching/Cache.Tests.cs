@@ -25,7 +25,7 @@
             var cache = new Cache();
 
             // Act.
-            var entry = await cache.GetEntry(identifier, () => Task.FromResult<IReadOnlyEntry>(null));
+            var entry = await cache.GetEntry(identifier, () => Task.FromResult<IReadOnlyEntry>(null)).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(entry);

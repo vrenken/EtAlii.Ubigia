@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
         public async Task SpaceBrowser_MainWindow_Create_With_ViewModel()
         {
             // Arrange.
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
             var diagnostics = DiagnosticsConfiguration.Default;//= new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
             var profiler = new Profiler(ProfilingAspects.Transport.Connection);
 
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
         public async Task SpaceBrowser_RootsViewModel_Create()
         {
             // Arrange.
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
 
             await StaHelper.StartStaTask(() =>
             {
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
         public async Task SpaceBrowser_FunctionalGraphDocumentFactory_Create()
         {
             // Arrange.
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
 
             await StaHelper.StartStaTask(() =>
             {
@@ -188,7 +188,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
             await StaHelper.StartStaTask(async () =>
             {
                 // Arrange.
-                using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+                using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
                 var mainDispatcherInvoker = new MainDispatcherInvoker();
                 
                 // Act.

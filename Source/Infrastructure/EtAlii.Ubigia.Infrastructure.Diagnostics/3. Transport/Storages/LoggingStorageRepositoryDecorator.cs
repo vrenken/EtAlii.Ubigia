@@ -87,7 +87,7 @@
             _logger.Information(message, item.Id);
             var start = Environment.TickCount;
 
-            item = await _repository.Add(item);
+            item = await _repository.Add(item).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Added storage (Id: {StorageId} Duration: {Duration}ms)";

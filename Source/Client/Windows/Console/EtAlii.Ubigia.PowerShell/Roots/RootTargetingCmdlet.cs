@@ -21,9 +21,9 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
-            TargetRoot = await PowerShellClient.Current.RootResolver.Get(this, AccountCmdlet.Current, SpaceCmdlet.Current, RootCmdlet.Current);
+            TargetRoot = await PowerShellClient.Current.RootResolver.Get(this, AccountCmdlet.Current, SpaceCmdlet.Current, RootCmdlet.Current).ConfigureAwait(false);
 
             if (TargetRoot == null)
             {

@@ -36,7 +36,7 @@
                 {
                     Entry = entry.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
 
@@ -55,7 +55,7 @@
                 {
                     Entry = entry.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
     }

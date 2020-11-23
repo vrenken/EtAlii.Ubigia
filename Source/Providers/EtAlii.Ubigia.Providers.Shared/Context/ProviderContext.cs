@@ -25,13 +25,13 @@
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string spaceName)
         {
-            var dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
+            var dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
             return _configuration.CreateScriptContext(dataConnection);
         }
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(Space space)
         {
-            var dataConnection = await ManagementConnection.OpenSpace(space);
+            var dataConnection = await ManagementConnection.OpenSpace(space).ConfigureAwait(false);
             return _configuration.CreateScriptContext(dataConnection);
         }
     }

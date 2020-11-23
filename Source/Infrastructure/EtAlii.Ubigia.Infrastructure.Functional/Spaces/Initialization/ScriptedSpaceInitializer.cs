@@ -18,8 +18,8 @@
         public async Task Initialize(Space space, SpaceTemplate template)
         {
             var systemConnection = _systemConnectionCreationProxy.Request();
-            var managementConnection = await systemConnection.OpenManagementConnection();
-            var spaceConnection = await managementConnection.OpenSpace(space);
+            var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
+            var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)

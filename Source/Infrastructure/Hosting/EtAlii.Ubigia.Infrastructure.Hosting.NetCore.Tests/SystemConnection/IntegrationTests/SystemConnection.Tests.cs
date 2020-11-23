@@ -25,7 +25,7 @@
             // Arrange.
 
             // Act.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -38,11 +38,11 @@
             var userName = "TestUser";
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName });
+            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
 
             // Act.
-            var connection = await systemConnection.OpenSpace("TestUser", "TestSpace");
+            var connection = await systemConnection.OpenSpace("TestUser", "TestSpace").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -60,19 +60,19 @@
             var userName = Guid.NewGuid().ToString();// "TestUser"
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName });
+            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
 
             // Act.
-            var connection = await systemConnection.OpenManagementConnection();
+            var connection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
             Assert.NotNull(connection.Storage);
-            var account = await connection.Accounts.Get(userName);
+            var account = await connection.Accounts.Get(userName).ConfigureAwait(false);
             Assert.NotNull(account);
             Assert.Equal(userName, account.Name);
-            var space = await connection.Spaces.Get(account.Id, spaceName);
+            var space = await connection.Spaces.Get(account.Id, spaceName).ConfigureAwait(false);
             Assert.NotNull(space);
             Assert.Equal(spaceName, space.Name);
         }
@@ -85,10 +85,10 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName });
+            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
 
-            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
+            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);
@@ -129,10 +129,10 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName });
+            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
 
-            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
+            var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);

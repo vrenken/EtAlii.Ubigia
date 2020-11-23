@@ -19,7 +19,7 @@
         
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
                 .Use(DiagnosticsConfiguration.Default);
@@ -38,13 +38,13 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var root = await _fabric.Roots.Get("Hierarchy");
+            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             Assert.NotNull(root);
             var id = root.Identifier;
             Assert.NotEqual(Identifier.Empty, id);
 
             // Act.
-            var entry = await _fabric.Entries.Get(id, scope);
+            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -58,13 +58,13 @@
             var scope = new ExecutionScope(false);
             foreach (var rootName in SpaceTemplate.Data.RootsToCreate)
             {
-                var root = await _fabric.Roots.Get(rootName);
+                var root = await _fabric.Roots.Get(rootName).ConfigureAwait(false);
                 Assert.NotNull(root);
                 var id = root.Identifier;
                 Assert.NotEqual(Identifier.Empty, id);
 
                 // Act.
-                var entry = await _fabric.Entries.Get(id, scope);
+                var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(entry);
@@ -78,7 +78,7 @@
             // Arrange.
 
             // Act.
-            var entry = await _fabric.Entries.Prepare();
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -96,7 +96,7 @@
             var startTicks = Environment.TickCount;
             for (var i = 0; i < count; i++)
             {
-                entries[i] = await _fabric.Entries.Prepare();
+                entries[i] = await _fabric.Entries.Prepare().ConfigureAwait(false);
             }
             var endTicks = Environment.TickCount;
 
@@ -115,13 +115,13 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var entry = await _fabric.Entries.Prepare();
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
 
             // Act.
-            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope);
+            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false);
 
             // Assert.
-            var retrievedEntry = await _fabric.Entries.Get(entry.Id, scope);
+            var retrievedEntry = await _fabric.Entries.Get(entry.Id, scope).ConfigureAwait(false);
             Assert.NotNull(retrievedEntry);
             Assert.NotEqual(Identifier.Empty, retrievedEntry.Id);
         }
@@ -132,14 +132,14 @@
             // Arrange.
             var tag = Guid.NewGuid().ToString();
             var scope = new ExecutionScope(false);
-            var entry = await _fabric.Entries.Prepare();
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
             entry.Tag = tag;
 
             // Act.
-            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope);
+            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false);
 
             // Assert.
-            var retrievedEntry = await _fabric.Entries.Get(entry.Id, scope);
+            var retrievedEntry = await _fabric.Entries.Get(entry.Id, scope).ConfigureAwait(false);
             Assert.NotNull(retrievedEntry);
             Assert.NotEqual(Identifier.Empty, retrievedEntry.Id);
             Assert.Equal(tag, retrievedEntry.Tag);
@@ -154,21 +154,21 @@
             var entries = new IEditableEntry[count];
             for (var i = 0; i < count; i++)
             {
-                entries[i] = await _fabric.Entries.Prepare();
+                entries[i] = await _fabric.Entries.Prepare().ConfigureAwait(false);
             }
 
             // Act.
             var startTicks = Environment.TickCount;
             for (var i = 0; i < count; i++)
             {
-                entries[i] = (IEditableEntry)await _fabric.Entries.Change(entries[i], scope);
+                entries[i] = (IEditableEntry)await _fabric.Entries.Change(entries[i], scope).ConfigureAwait(false);
             }
             var endTicks = Environment.TickCount;
 
             // Assert.
             for (var i = 0; i < count; i++)
             {
-                var retrievedEntry = await _fabric.Entries.Get(entries[i].Id, scope);
+                var retrievedEntry = await _fabric.Entries.Get(entries[i].Id, scope).ConfigureAwait(false);
                 Assert.NotNull(retrievedEntry);
                 Assert.NotEqual(Identifier.Empty, retrievedEntry.Id);
             }
@@ -185,7 +185,7 @@
             _fabric.Entries.Prepared += (i) => { preparedIdentifier = i; preparedEvent.Set(); };
             
             // Act.
-            var entry = await _fabric.Entries.Prepare();
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(entry);
@@ -205,8 +205,8 @@
             _fabric.Entries.Stored += (i) => { storedIdentifier = i; storedEvent.Set(); };
 
             // Act.
-            var entry = await _fabric.Entries.Prepare();
-            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope);
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
+            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false);
             storedEvent.WaitOne(TimeSpan.FromSeconds(10));
 
             // Assert.

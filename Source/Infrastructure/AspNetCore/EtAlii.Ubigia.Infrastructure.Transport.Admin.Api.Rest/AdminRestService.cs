@@ -27,7 +27,7 @@
 		    Status.Description = "Starting...";
 		    Status.Summary = "Starting Ubigia admin REST services";
 
-		    await base.Start();
+		    await base.Start().ConfigureAwait(false);
 
 		    var sb = new StringBuilder();
 		    sb.AppendLine("All OK. Ubigia admin REST services are available on the address specified below.");
@@ -42,7 +42,7 @@
 		    Status.Description = "Stopping...";
 		    Status.Summary = "Stopping Ubigia admin REST services";
 
-		    await base.Stop();
+		    await base.Stop().ConfigureAwait(false);
 
 		    var sb = new StringBuilder();
 		    sb.AppendLine("Finished providing Ubigia admin REST services on the address specified below.");

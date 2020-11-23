@@ -24,7 +24,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(new Uri(_url + identifier), testMessage);
+            await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
         }
 
         [Fact(Skip="Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -35,7 +35,7 @@
                 var httpClientFactory = new DefaultHttpClientFactory();
                 var client = new DefaultInfrastructureClient(httpClientFactory);
 
-                var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute));
+                var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute)).ConfigureAwait(false);
                 Assert.NotNull(result);
                 Assert.Equal("ping", result.First);
                 Assert.Equal("pong", result.Second);
@@ -65,7 +65,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(new Uri(_url + identifier), testMessage);
+            await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
 
             //var result = infrastructureClient.Get<TestMessage>(_url + identifier)
             //Assert.NotNull(result)
@@ -81,10 +81,10 @@
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
             // Act.
-            var act = new Func<Task>(async () => await client.Get<TestStatus>(null));
+            var act = new Func<Task>(async () => await client.Get<TestStatus>(null).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InfrastructureConnectionException>(act);
+            await Assert.ThrowsAsync<InfrastructureConnectionException>(act).ConfigureAwait(false);
         }
     }
 }

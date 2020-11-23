@@ -35,7 +35,7 @@
             var handler = _selector.TrySelect(action);
             if(handler != null)
             {
-                await handler.Handle(action, _localStart, _remoteStart);
+                await handler.Handle(action, _localStart, _remoteStart).ConfigureAwait(false);
             }
         }
 

@@ -22,7 +22,7 @@
             {
                 if (identifier != Identifier.Empty)
                 {
-                    result = await _fabric.Properties.Retrieve(identifier, scope);
+                    result = await _fabric.Properties.Retrieve(identifier, scope).ConfigureAwait(false);
                     if (result == null)
                     {
                         var entries = await _fabric.Entries

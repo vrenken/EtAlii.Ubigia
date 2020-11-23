@@ -22,7 +22,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress);
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress).ConfigureAwait(false);
 
             if (TargetStorage == null)
             {
@@ -35,7 +35,7 @@
         {
             //WriteDebug("Getting storages")
 
-            return await PowerShellClient.Current.ManagementConnection.Storages.GetAll().ToArrayAsync();
+            return await PowerShellClient.Current.ManagementConnection.Storages.GetAll().ToArrayAsync().ConfigureAwait(false);
         }
     }
 }

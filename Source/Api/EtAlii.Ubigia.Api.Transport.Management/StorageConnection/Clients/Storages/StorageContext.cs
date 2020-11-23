@@ -19,7 +19,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
 
-            return await Data.Add(storageName, storageAddress);
+            return await Data.Add(storageName, storageAddress).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid storageId)
@@ -28,7 +28,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            await Data.Remove(storageId);
+            await Data.Remove(storageId).ConfigureAwait(false);
         }
 
         public async Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
@@ -37,7 +37,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Change(storageId, storageName, storageAddress);
+            return await Data.Change(storageId, storageName, storageAddress).ConfigureAwait(false);
         }
 
         public async Task<Storage> Get(string storageName)
@@ -46,7 +46,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(storageName);
+            return await Data.Get(storageName).ConfigureAwait(false);
         }
 
         public async Task<Storage> Get(Guid storageId)
@@ -55,7 +55,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            return await Data.Get(storageId);
+            return await Data.Get(storageId).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<Storage> GetAll()

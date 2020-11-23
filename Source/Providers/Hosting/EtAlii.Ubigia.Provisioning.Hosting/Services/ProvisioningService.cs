@@ -22,7 +22,7 @@
             Status.Description = "Starting...";
             Status.Summary = Status.Description;
 
-            await _provisioning.Start();
+            await _provisioning.Start().ConfigureAwait(false);
 
             
             var sb = new StringBuilder();
@@ -47,7 +47,7 @@
             Status.Description = "Stopping...";
             Status.Summary = Status.Description;
 
-            await _provisioning.Stop();
+            await _provisioning.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Stopped.");

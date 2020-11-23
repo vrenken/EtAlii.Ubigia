@@ -35,7 +35,7 @@
                 }
                 else
                 {
-                    result.Nodes = await _nodeFetcher.FetchAsync(stringValue.Value);
+                    result.Nodes = await _nodeFetcher.FetchAsync(stringValue.Value).ConfigureAwait(false);
                 }
                 result.Path = stringValue.Value;    
             }

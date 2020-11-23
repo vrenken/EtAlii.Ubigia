@@ -29,7 +29,7 @@
 
         public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
         {
-            var entry = await _repository.Get(identifier, entryRelations);
+            var entry = await _repository.Get(identifier, entryRelations).ConfigureAwait(false);
 
             EnsureUniqueComponents(entry);
 

@@ -62,12 +62,12 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
 
-            await Accounts.Close(this);
-            await Storages.Close(this);
-            await Spaces.Close(this);
-            await _information.Close(this);
+            await Accounts.Close(this).ConfigureAwait(false);
+            await Storages.Close(this).ConfigureAwait(false);
+            await Spaces.Close(this).ConfigureAwait(false);
+            await _information.Close(this).ConfigureAwait(false);
             
-            await Transport.Stop();
+            await Transport.Stop().ConfigureAwait(false);
             Storage = null;
         }
 
@@ -78,18 +78,18 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await  _authentication.Data.Authenticate(this, accountName, password);
+            await  _authentication.Data.Authenticate(this, accountName, password).ConfigureAwait(false);
 
-            Storage = await _information.Data.GetConnectedStorage(this);
-            var details = await _information.Data.GetConnectivityDetails(this);
+            Storage = await _information.Data.GetConnectedStorage(this).ConfigureAwait(false);
+            var details = await _information.Data.GetConnectivityDetails(this).ConfigureAwait(false);
             _details.Update(Storage, details.ManagementAddress, details.DataAddress);
                 
-            await _information.Open(this);
-            await Accounts.Open(this);
-            await Storages.Open(this);
-            await Spaces.Open(this);
+            await _information.Open(this).ConfigureAwait(false);
+            await Accounts.Open(this).ConfigureAwait(false);
+            await Storages.Open(this).ConfigureAwait(false);
+            await Spaces.Open(this).ConfigureAwait(false);
 
-            await Transport.Start();
+            await Transport.Start().ConfigureAwait(false);
 
         }
 

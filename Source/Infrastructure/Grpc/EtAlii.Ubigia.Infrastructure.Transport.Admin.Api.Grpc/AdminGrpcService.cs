@@ -28,7 +28,7 @@
             Status.Description = "Starting...";
             Status.Summary = "Starting Ubigia admin gRPC services";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Ubigia admin gRPC services are available on the address specified below.");
@@ -43,7 +43,7 @@
             Status.Description = "Stopping...";
             Status.Summary = "Stopping Ubigia admin gRPC services";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished providing Ubigia admin gRPC services on the address specified below.");

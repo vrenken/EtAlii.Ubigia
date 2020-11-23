@@ -67,7 +67,7 @@
                         .Union(new[] {RoleName})
                         .ToArray();
 
-                    await Connection.Accounts.Change(SelectedAccount);
+                    await Connection.Accounts.Change(SelectedAccount).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -103,7 +103,7 @@
                         .Except(new[] { SelectedRole.Name })
                         .Union(new[] { RoleName })
                         .ToArray();
-                    await Connection.Accounts.Change(SelectedAccount);
+                    await Connection.Accounts.Change(SelectedAccount).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -134,7 +134,7 @@
                     SelectedAccount.Roles = SelectedAccount.Roles
                         .Except(new[] { SelectedRole.Name })
                         .ToArray();
-                    await Connection.Accounts.Change(SelectedAccount);
+                    await Connection.Accounts.Change(SelectedAccount).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -182,7 +182,7 @@
             {
                 if (SelectedAccount != null)
                 {
-                    var account = await Connection.Accounts.Get(SelectedAccount.Id);
+                    var account = await Connection.Accounts.Get(SelectedAccount.Id).ConfigureAwait(false);
                     roles = account.Roles.Select(r => new Role {Name = r});
                 }
             });

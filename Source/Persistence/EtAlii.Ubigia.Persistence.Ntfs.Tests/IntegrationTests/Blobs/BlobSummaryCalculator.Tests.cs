@@ -30,7 +30,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(summary);
@@ -53,7 +53,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(summary);
@@ -85,7 +85,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
-            var summary = await blobSummaryCalculator.Calculate<Content>(containerId);
+            var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(summary);

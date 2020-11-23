@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    await ProcessByInput(context, argumentSet, input, scope, output);
+                    await ProcessByInput(context, argumentSet, input, scope, output).ConfigureAwait(false);
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await context.PathProcessor.Process(path, scope, outputObserver);
+                await context.PathProcessor.Process(path, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             }).ToHotObservable();

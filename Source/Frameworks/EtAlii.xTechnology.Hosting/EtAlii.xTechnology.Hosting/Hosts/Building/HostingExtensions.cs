@@ -201,7 +201,7 @@ namespace EtAlii.xTechnology.Hosting
                     {
                         using var scope = factory.CreateScope();
                         context.RequestServices = scope.ServiceProvider;
-                        await next(context);
+                        await next(context).ConfigureAwait(false);
                     }
 
                     finally
@@ -265,7 +265,7 @@ namespace EtAlii.xTechnology.Hosting
                 {
                     using var scope = factory.CreateScope();
                     branchContext.RequestServices = scope.ServiceProvider;
-                    await next();
+                    await next().ConfigureAwait(false);
                 }
 
                 finally

@@ -8,7 +8,7 @@
         public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             var signalRConnection = (ISignalRStorageConnection)storageConnection;
-            var authenticationToken = await _signalRAuthenticationTokenGetter.GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await _signalRAuthenticationTokenGetter.GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken).ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {

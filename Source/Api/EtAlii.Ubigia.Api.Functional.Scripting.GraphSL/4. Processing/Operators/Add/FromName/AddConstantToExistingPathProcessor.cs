@@ -21,7 +21,7 @@
         {
             var constantPathSubjectPart = new ConstantPathSubjectPart(stringConstant.Value);
             var parentId = id;
-            var addResult = await _recursiveAdder.Add(parentId, constantPathSubjectPart, null, scope);
+            var addResult = await _recursiveAdder.Add(parentId, constantPathSubjectPart, null, scope).ConfigureAwait(false);
             var newEntry = addResult.NewEntry;
             var result = new DynamicNode((IReadOnlyEntry)newEntry);
             output.OnNext(result);
@@ -46,7 +46,7 @@
                 onNext: async o =>
                 {
                     var leftId = _itemToIdentifierConverter.Convert(o);
-                    await Add(leftId, stringConstant, parameters.Scope, parameters.Output);
+                    await Add(leftId, stringConstant, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
             return Task.CompletedTask;
         }

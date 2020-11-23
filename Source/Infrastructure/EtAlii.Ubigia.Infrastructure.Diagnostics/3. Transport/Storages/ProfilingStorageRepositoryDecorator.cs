@@ -74,7 +74,7 @@
         public async Task<Storage> Add(Storage item)
         {
             var start = Environment.TickCount;
-            item = await _repository.Add(item);
+            item = await _repository.Add(item).ConfigureAwait(false);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }

@@ -99,7 +99,7 @@
             Storage response;
             try
             {
-                response = await _items.Add(item);
+                response = await _items.Add(item).ConfigureAwait(false);
             }
             catch (Exception e)
             {

@@ -19,7 +19,7 @@
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -33,7 +33,7 @@
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -51,7 +51,7 @@
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -69,7 +69,7 @@
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>
@@ -94,7 +94,7 @@
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
             
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -116,7 +116,7 @@
 
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>

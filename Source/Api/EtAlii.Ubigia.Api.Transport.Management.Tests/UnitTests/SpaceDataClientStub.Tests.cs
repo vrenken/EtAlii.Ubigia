@@ -26,7 +26,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            var space = await spaceDataClientStub.Add(Guid.NewGuid(), Guid.NewGuid().ToString(), SpaceTemplate.Data);
+            var space = await spaceDataClientStub.Add(Guid.NewGuid(), Guid.NewGuid().ToString(), SpaceTemplate.Data).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(space);
@@ -39,7 +39,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            var space = await spaceDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString());
+            var space = await spaceDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(space);
@@ -52,7 +52,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            await spaceDataClientStub.Connect(null);
+            await spaceDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -64,7 +64,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            await spaceDataClientStub.Disconnect(null);
+            await spaceDataClientStub.Disconnect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -76,7 +76,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            var space = await spaceDataClientStub.Get(Guid.NewGuid());
+            var space = await spaceDataClientStub.Get(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(space);
@@ -89,7 +89,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Act.
-            var space = await spaceDataClientStub.Get(Guid.NewGuid(), Guid.NewGuid().ToString());
+            var space = await spaceDataClientStub.Get(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(space);

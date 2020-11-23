@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile);
+            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -26,7 +26,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var portRange = new PortRange(5000, 6000);
             
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
+            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -41,7 +41,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile);
+            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -57,7 +57,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var portRange = new PortRange(6000, 7000);
 
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
+            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -72,7 +72,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile);
+            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -87,7 +87,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile);
+            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -103,7 +103,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var portRange = new PortRange(5000, 6000);
 
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange);
+            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);

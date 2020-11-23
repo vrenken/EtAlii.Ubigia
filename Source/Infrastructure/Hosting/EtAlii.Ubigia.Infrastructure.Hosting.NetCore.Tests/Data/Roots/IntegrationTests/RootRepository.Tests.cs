@@ -21,9 +21,9 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             Assert.NotNull(addedRoot);
             Assert.NotEqual(addedRoot.Id, Guid.Empty);
         }
@@ -33,13 +33,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             Assert.NotNull(addedRoot);
             Assert.NotEqual(addedRoot.Id, Guid.Empty);
 
-            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id);
+            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.Equal(addedRoot.Id, fetchedRoot.Id);
             Assert.Equal(addedRoot.Name, fetchedRoot.Name);
 
@@ -52,13 +52,13 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             Assert.NotNull(addedRoot);
             Assert.NotEqual(addedRoot.Id, Guid.Empty);
 
-            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Name);
+            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Name).ConfigureAwait(false);
             Assert.Equal(addedRoot.Id, fetchedRoot.Id);
             Assert.Equal(addedRoot.Name, fetchedRoot.Name);
 
@@ -71,18 +71,18 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             Assert.NotNull(addedRoot);
             Assert.NotEqual(addedRoot.Id, Guid.Empty);
 
-            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id);
+            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedRoot);
 
             context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot.Id);
 
-            fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id);
+            fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.Null(fetchedRoot);
         }
 
@@ -91,18 +91,18 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             Assert.NotNull(addedRoot);
             Assert.NotEqual(addedRoot.Id, Guid.Empty);
 
-            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id);
+            var fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.NotNull(fetchedRoot);
 
             context.Host.Infrastructure.Roots.Remove(space.Id, addedRoot);
 
-            fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id);
+            fetchedRoot = await context.Host.Infrastructure.Roots.Get(space.Id, addedRoot.Id).ConfigureAwait(false);
             Assert.Null(fetchedRoot);
         }
 
@@ -111,8 +111,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
-            var root = await context.Host.Infrastructure.Roots.Get(space.Id, Guid.NewGuid());
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var root = await context.Host.Infrastructure.Roots.Get(space.Id, Guid.NewGuid()).ConfigureAwait(false);
             Assert.Null(root);
         }
 
@@ -121,11 +121,11 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot1 = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot1 = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
             root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot2 = await context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot2 = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
 
             // Act.
             var roots = await context.Host.Infrastructure.Roots

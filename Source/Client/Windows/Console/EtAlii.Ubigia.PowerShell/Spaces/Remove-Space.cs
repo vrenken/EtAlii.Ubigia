@@ -21,7 +21,7 @@
                 {
                     //WriteVerbose(verboseDescription)
                     //WriteDebug($"Removing space [{TargetSpace.Name}]")
-                    await PowerShellClient.Current.ManagementConnection.Spaces.Remove(TargetSpace.Id);
+                    await PowerShellClient.Current.ManagementConnection.Spaces.Remove(TargetSpace.Id).ConfigureAwait(false);
                     if (SpaceCmdlet.Current != null && SpaceCmdlet.Current.Id == TargetSpace.Id)
                     {
                         SpaceCmdlet.Current = null;

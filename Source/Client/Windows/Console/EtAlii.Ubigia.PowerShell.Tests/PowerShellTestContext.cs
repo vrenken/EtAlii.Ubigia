@@ -21,7 +21,7 @@
 			// between the host/infrastructure and the unit tests.
 
 			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();
-	        await Context.Start(UnitTestSettings.NetworkPortRange);
+	        await Context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
 			PowerShell = CreatePowerShell();
 			InvokeSelectStorage();
@@ -32,7 +32,7 @@
             PowerShell.Dispose();
             PowerShell = null;
             
-            await Context.Stop();
+            await Context.Stop().ConfigureAwait(false);
             Context = null;
             PowerShellClient.Current = null;
         }

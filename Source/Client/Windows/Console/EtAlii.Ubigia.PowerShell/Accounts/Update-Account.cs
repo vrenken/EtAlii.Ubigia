@@ -13,7 +13,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
             if (Account == null)
             {
@@ -23,7 +23,7 @@
 
         protected override async Task ProcessTask()
         {
-            await PowerShellClient.Current.ManagementConnection.Accounts.Change(Account.Id, Account.Name, Account.Password);
+            await PowerShellClient.Current.ManagementConnection.Accounts.Change(Account.Id, Account.Name, Account.Password).ConfigureAwait(false);
 
             //var verboseDescription = $"Account '{Account.Name}' has been updated."
             //WriteVerbose(verboseDescription)

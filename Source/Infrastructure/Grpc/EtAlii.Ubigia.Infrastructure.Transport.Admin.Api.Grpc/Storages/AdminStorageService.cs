@@ -64,14 +64,14 @@
                 {
                     Storage = item.ToWire()
                 };
-                await responseStream.WriteAsync(response);
+                await responseStream.WriteAsync(response).ConfigureAwait(false);
             }
         }
 
         public override async Task<StorageSingleResponse> Post(StorageSingleRequest request, ServerCallContext context)
         {
             var storage = request.Storage.ToLocal();
-            storage = await _items.Add(storage);
+            storage = await _items.Add(storage).ConfigureAwait(false);
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()

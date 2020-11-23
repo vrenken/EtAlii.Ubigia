@@ -81,7 +81,7 @@
         public async Task<Account> Add(Account item, AccountTemplate template)
         {
             var start = Environment.TickCount;
-            item = await _repository.Add(item, template);
+            item = await _repository.Add(item, template).ConfigureAwait(false);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }

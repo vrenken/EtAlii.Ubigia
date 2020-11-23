@@ -21,9 +21,9 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
             
-            TargetAccount = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
+            TargetAccount = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current).ConfigureAwait(false);
 
             if (TargetAccount == null)
             {

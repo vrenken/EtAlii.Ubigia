@@ -66,7 +66,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Storages.Add(StorageName, StorageAddress);
+                    await Connection.Storages.Add(StorageName, StorageAddress).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -101,7 +101,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Storages.Change(SelectedStorage.Id, StorageName, StorageAddress);
+                    await Connection.Storages.Change(SelectedStorage.Id, StorageName, StorageAddress).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -131,7 +131,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Storages.Remove(SelectedStorage.Id);
+                    await Connection.Storages.Remove(SelectedStorage.Id).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -178,7 +178,7 @@
             IEnumerable<Storage> storages = null;
             var task = Task.Run(async () =>
             {
-                storages = await Connection.Storages.GetAll().ToArrayAsync();
+                storages = await Connection.Storages.GetAll().ToArrayAsync().ConfigureAwait(false);
             });
             task.Wait();
 

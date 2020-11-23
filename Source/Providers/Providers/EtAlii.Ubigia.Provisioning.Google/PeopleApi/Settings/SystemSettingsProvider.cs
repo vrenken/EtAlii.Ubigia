@@ -20,7 +20,7 @@
 
         public async Task Update()
         {
-            SystemSettings = await _getter.Get(_context.SystemScriptContext);
+            SystemSettings = await _getter.Get(_context.SystemScriptContext).ConfigureAwait(false);
         }
     }
 }

@@ -14,7 +14,7 @@
 
             var webApiConnection = (IWebApiConnection)storageConnection;
             var localAddress = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
-            var storage = await webApiConnection.Client.Get<Storage>(localAddress);
+            var storage = await webApiConnection.Client.Get<Storage>(localAddress).ConfigureAwait(false);
 			 
             if (storage == null)
             {
@@ -28,7 +28,7 @@
         {
             var webApiConnection = (IWebApiConnection)storageConnection;
             var address = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Information, UriParameter.Connectivity);
-            var connectivityDetails = await webApiConnection.Client.Get<ConnectivityDetails>(address);
+            var connectivityDetails = await webApiConnection.Client.Get<ConnectivityDetails>(address).ConfigureAwait(false);
             return connectivityDetails;
         }
     }

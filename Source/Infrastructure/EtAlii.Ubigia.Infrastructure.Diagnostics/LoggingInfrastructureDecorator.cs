@@ -33,7 +33,7 @@
         {
             _logger.Information("Starting infrastructure hosting");
 
-            await _decoree.Start();
+            await _decoree.Start().ConfigureAwait(false);
 
             _logger.Information("Started infrastructure hosting");
         }
@@ -42,7 +42,7 @@
         {
             _logger.Information("Stopping infrastructure hosting");
 
-            await _decoree.Stop();
+            await _decoree.Stop().ConfigureAwait(false);
 
             _logger.Information("Stopped infrastructure hosting");
         }

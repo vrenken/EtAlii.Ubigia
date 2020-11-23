@@ -11,12 +11,12 @@
         public async Task InitializeAsync()
         {
             FunctionalTestContext = new FunctionalTestContextFactory().Create();
-            await FunctionalTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await FunctionalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await FunctionalTestContext.Stop();
+            await FunctionalTestContext.Stop().ConfigureAwait(false);
             FunctionalTestContext = null;
         }
     }

@@ -12,7 +12,7 @@
 
         protected override async Task<Root> ProcessTask()
         {
-            var root = await PowerShellClient.Current.Fabric.Roots.Add(RootName);
+            var root = await PowerShellClient.Current.Fabric.Roots.Add(RootName).ConfigureAwait(false);
             return root;
         }
     }

@@ -32,7 +32,7 @@
                 onNext: async o =>
                 {
                     var leftId = _itemToIdentifierConverter.Convert(o);
-                    await Remove(leftId, rightId, parameters.Scope, parameters.Output);
+                    await Remove(leftId, rightId, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
 
             //if [leftIds = = null | | !leftIds.Any[]]
@@ -47,7 +47,7 @@
             ExecutionScope scope,
             IObserver<object> output)
         {
-            var newEntry = await _context.Logical.Nodes.Remove(id, identifierToRemove, scope);
+            var newEntry = await _context.Logical.Nodes.Remove(id, identifierToRemove, scope).ConfigureAwait(false);
             var result = new DynamicNode(newEntry);
             output.OnNext(result);
         }

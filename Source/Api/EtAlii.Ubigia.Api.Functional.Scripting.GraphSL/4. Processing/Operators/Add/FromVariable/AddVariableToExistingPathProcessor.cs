@@ -33,16 +33,16 @@
                     switch (rightResult)
                     {
                         case Identifier identifier:
-                            await AddFromIdentifier(leftIdentifier, identifier, parameters);
+                            await AddFromIdentifier(leftIdentifier, identifier, parameters).ConfigureAwait(false);
                             break;
                         case IReadOnlyEntry entry:
-                            await AddFromIdentifier(leftIdentifier, entry.Id, parameters);
+                            await AddFromIdentifier(leftIdentifier, entry.Id, parameters).ConfigureAwait(false);
                             break;
                         case INode node:
-                            await AddFromIdentifier(leftIdentifier, node.Id, parameters);
+                            await AddFromIdentifier(leftIdentifier, node.Id, parameters).ConfigureAwait(false);
                             break;
                         case string s:
-                            await AddFromString(leftIdentifier, s, parameters);
+                            await AddFromString(leftIdentifier, s, parameters).ConfigureAwait(false);
                             break;
                         default:
                             throw new ScriptProcessingException($"The {GetType().Name} requires a identifier or string to add");
@@ -52,7 +52,7 @@
 
         private async Task AddFromString(Identifier leftIdentifier, string s, OperatorParameters parameters)
         {
-            await _context.Logical.Nodes.Add(leftIdentifier, s, parameters.Scope);
+            await _context.Logical.Nodes.Add(leftIdentifier, s, parameters.Scope).ConfigureAwait(false);
         }
 
         private async Task AddFromIdentifier(Identifier leftIdentifier, Identifier identifierToAdd, OperatorParameters parameters)
@@ -66,7 +66,7 @@
             
             var latestIdentifierToAdd = ((IEditableEntry)entry).Id;
                     
-            var newEntry = await _context.Logical.Nodes.Add(leftIdentifier, latestIdentifierToAdd, parameters.Scope);
+            var newEntry = await _context.Logical.Nodes.Add(leftIdentifier, latestIdentifierToAdd, parameters.Scope).ConfigureAwait(false);
             var result = new DynamicNode(newEntry);
             parameters.Output.OnNext(result);
         }

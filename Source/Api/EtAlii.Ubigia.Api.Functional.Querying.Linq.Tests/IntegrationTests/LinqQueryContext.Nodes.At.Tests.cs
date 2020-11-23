@@ -34,12 +34,12 @@
             
             _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _logicalContext = new LogicalContextFactory().Create(_configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(_configuration);
                 
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
@@ -49,7 +49,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _countryPath = null;
             _context.Dispose();

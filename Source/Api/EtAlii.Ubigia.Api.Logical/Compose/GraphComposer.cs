@@ -26,37 +26,37 @@
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope)
         {
-            return await _graphAdder.Add(parent, child, scope);
+            return await _graphAdder.Add(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, Identifier child, ExecutionScope scope)
         {
-            return await _graphAdder.Add(parent, child, scope);
+            return await _graphAdder.Add(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, string child, ExecutionScope scope)
         {
-            return await _graphRemover.Remove(parent, child, scope);
+            return await _graphRemover.Remove(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, Identifier child, ExecutionScope scope)
         {
-            return await _graphRemover.Remove(parent, child, scope);
+            return await _graphRemover.Remove(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Link(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            return await _graphLinker.Link(location, itemName, item, scope);
+            return await _graphLinker.Link(location, itemName, item, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            return await _graphUnlinker.Unlink(location, itemName, item, scope);
+            return await _graphUnlinker.Unlink(location, itemName, item, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
-            return await _graphRenamer.Rename(item, newName, scope);
+            return await _graphRenamer.Rename(item, newName, scope).ConfigureAwait(false);
         }
     }
 }

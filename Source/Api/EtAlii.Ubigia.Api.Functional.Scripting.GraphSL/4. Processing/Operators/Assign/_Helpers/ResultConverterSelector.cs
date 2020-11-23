@@ -43,7 +43,7 @@
         {
             foreach (var node in nodes)
             {
-                var properties = await _context.Logical.Properties.Get(node.Id, scope) ?? new PropertyDictionary();
+                var properties = await _context.Logical.Properties.Get(node.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
                 node.Update(properties, node.Entry);
 
                 output.OnNext(node);

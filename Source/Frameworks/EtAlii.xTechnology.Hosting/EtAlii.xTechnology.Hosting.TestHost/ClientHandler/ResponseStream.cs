@@ -86,7 +86,7 @@
             return ReadAsync(buffer, offset, count, CancellationToken.None).GetAwaiter().GetResult();
         }
 
-        public async override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public override async Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
         {
             VerifyBuffer(buffer, offset, count, allowEmpty: false);
             CheckAborted();
@@ -97,7 +97,7 @@
 
                 if (result.Buffer.IsEmpty && result.IsCompleted)
                 {
-                    _pipe.Reader.Complete();
+                    await _pipe.Reader.CompleteAsync().ConfigureAwait(false);
                     return 0;
                 }
 
@@ -110,7 +110,7 @@
             }
             finally
             {
-                registration.Dispose();
+                await registration.DisposeAsync();
             }
         }
 

@@ -16,7 +16,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -42,7 +42,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -68,7 +68,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
@@ -95,7 +95,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -121,7 +121,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
@@ -147,7 +147,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -174,7 +174,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -200,7 +200,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -225,7 +225,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -250,7 +250,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -276,7 +276,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);

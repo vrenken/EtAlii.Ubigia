@@ -34,7 +34,7 @@
                 pathSubject = new AbsolutePathSubject(parts.ToArray());
             }
 
-            var graphPath = await _pathSubjectToGraphPathConverter.Convert(pathSubject, scope);
+            var graphPath = await _pathSubjectToGraphPathConverter.Convert(pathSubject, scope).ConfigureAwait(false);
             
             try
             {

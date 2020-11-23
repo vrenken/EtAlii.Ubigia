@@ -32,7 +32,7 @@
             profile.Properties = properties.ToString();
             profile.Location = location.ToString();
 
-            var result = await _decoree.AssignProperties(location, properties, scope);
+            var result = await _decoree.AssignProperties(location, properties, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -46,7 +46,7 @@
             profile.Tag = tag;
             profile.Location = location.ToString();
 
-            var result = await _decoree.AssignTag(location, tag, scope);
+            var result = await _decoree.AssignTag(location, tag, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -60,7 +60,7 @@
             profile.Node = node;
             profile.Location = location.ToString();
 
-            var result = await _decoree.AssignNode(location, node, scope);
+            var result = await _decoree.AssignNode(location, node, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -74,7 +74,7 @@
             profile.Object = o.ToString();
             profile.Location = location.ToString();
 
-            var result = await _decoree.AssignDynamic(location, o, scope);
+            var result = await _decoree.AssignDynamic(location, o, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -87,7 +87,7 @@
             profile.Parent = parent.ToString();
             profile.Child = child;
 
-            var result = await _decoree.Add(parent, child, scope);
+            var result = await _decoree.Add(parent, child, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -100,7 +100,7 @@
             profile.Parent = parent.ToString();
             profile.Child = child.ToString();
 
-            var result = await _decoree.Add(parent, child, scope);
+            var result = await _decoree.Add(parent, child, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -113,7 +113,7 @@
             profile.Parent = parent.ToString();
             profile.Child = child;
 
-            var result = await _decoree.Remove(parent, child, scope);
+            var result = await _decoree.Remove(parent, child, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -126,7 +126,7 @@
             profile.Parent = parent.ToString();
             profile.Child = child.ToString();
 
-            var result = await _decoree.Remove(parent, child, scope);
+            var result = await _decoree.Remove(parent, child, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -139,7 +139,7 @@
             profile.Item = item.ToString();
             profile.NewName = newName;
 
-            var result = await _decoree.Rename(item, newName, scope);
+            var result = await _decoree.Rename(item, newName, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -153,7 +153,7 @@
             profile.ItemName = itemName;
             profile.Item = item.ToString();
 
-            var result = await _decoree.Link(location, itemName, item, scope);
+            var result = await _decoree.Link(location, itemName, item, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -167,7 +167,7 @@
             profile.ItemName = itemName;
             profile.Item = item.ToString();
 
-            var result = await _decoree.Unlink(location, itemName, item, scope);
+            var result = await _decoree.Unlink(location, itemName, item, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -178,7 +178,7 @@
         {
             dynamic profile = _profiler.Begin("Prepare");
 
-            var result = await _decoree.Prepare();
+            var result = await _decoree.Prepare().ConfigureAwait(false);
 
             _profiler.End(profile);
 
@@ -189,7 +189,7 @@
         {
             dynamic profile = _profiler.Begin("Change");
 
-            var result = await _decoree.Change(entry, scope);
+            var result = await _decoree.Change(entry, scope).ConfigureAwait(false);
 
             _profiler.End(profile);
 

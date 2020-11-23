@@ -20,7 +20,7 @@
             //WriteDebug($"Adding space {SpaceName}")
 
             var template = SpaceTemplate.All.Single(t => t.Name == Template);
-            var space = await PowerShellClient.Current.ManagementConnection.Spaces.Add(TargetAccount.Id, SpaceName, template);
+            var space = await PowerShellClient.Current.ManagementConnection.Spaces.Add(TargetAccount.Id, SpaceName, template).ConfigureAwait(false);
 
             return space;
         }

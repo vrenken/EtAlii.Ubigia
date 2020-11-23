@@ -40,10 +40,10 @@
             // Arrange.
 
             // Act.
-            var act = new Func<Task>(async () => await Storage.Components.Retrieve<NonCompositeComponent>(ContainerIdentifier.Empty));
+            var act = new Func<Task>(async () => await Storage.Components.Retrieve<NonCompositeComponent>(ContainerIdentifier.Empty).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<StorageException>(act);
+            await Assert.ThrowsAsync<StorageException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -76,10 +76,10 @@
             // Arrange.
 
             // Act.
-            var act = new Func<Task>(async () => await Storage.Components.RetrieveAll<CompositeComponent>(ContainerIdentifier.Empty).ToArrayAsync());
+            var act = new Func<Task>(async () => await Storage.Components.RetrieveAll<CompositeComponent>(ContainerIdentifier.Empty).ToArrayAsync().ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<StorageException>(act);
+            await Assert.ThrowsAsync<StorageException>(act).ConfigureAwait(false);
         }
 
 
@@ -113,7 +113,7 @@
             Storage.Components.Store(containerId, entryComponent);
 
             // Act.
-            var retrievedEntry = await Storage.Components.Retrieve<IdentifierComponent>(containerId);
+            var retrievedEntry = await Storage.Components.Retrieve<IdentifierComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedEntry);
@@ -191,7 +191,7 @@
             Storage.Components.Store(containerId, originalParent);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<ParentComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<ParentComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -214,7 +214,7 @@
             Storage.Components.Store(containerId, originalNext);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<NextComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<NextComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -237,7 +237,7 @@
             Storage.Components.Store(containerId, originalPrevious);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<PreviousComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<PreviousComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -286,7 +286,7 @@
             Storage.Components.Store(containerId, originalDowndate);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<DowndateComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<DowndateComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -420,7 +420,7 @@
             Storage.Components.Store(containerId, originalType);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<TypeComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<TypeComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -442,7 +442,7 @@
             Storage.Components.Store(containerId, originalTag);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<TagComponent>(containerId);
+            var retrievedData = await Storage.Components.Retrieve<TagComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);

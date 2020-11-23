@@ -12,7 +12,7 @@
         /// </summary>
         public static async Task Main()
         {
-            var details = await new ConfigurationDetailsParser().Parse("settings.json");
+            var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
 
             var applicationConfiguration = new ConfigurationBuilder()
                 .AddConfigurationDetails(details)
