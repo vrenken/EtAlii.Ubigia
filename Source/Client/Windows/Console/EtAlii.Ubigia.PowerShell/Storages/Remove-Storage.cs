@@ -21,7 +21,7 @@
 
         protected override async Task ProcessTask()
         {
-            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress, false);
+            var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.CurrentStorage, StorageCmdlet.CurrentManagementApiAddress, false).ConfigureAwait(false);
 
             var verboseDescription = $"Storage '{storage.Name}' has been removed.";
             //var verboseNegativeDescription = $"Storage '{storage.Name}' has not been removed."
@@ -33,7 +33,7 @@
                 {
                     //WriteVerbose(verboseDescription)
                     //WriteDebug($"Removing storage [{storage.Name}]")
-                    await PowerShellClient.Current.ManagementConnection.Storages.Remove(storage.Id);
+                    await PowerShellClient.Current.ManagementConnection.Storages.Remove(storage.Id).ConfigureAwait(false);
                 }
                 else
                 {

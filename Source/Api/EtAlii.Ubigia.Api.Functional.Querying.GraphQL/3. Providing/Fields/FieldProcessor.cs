@@ -76,7 +76,7 @@
             {
                 var result = idDirectiveResults.Single();
                 context = FieldContext.FromDirectives(Array.Empty<NodesDirectiveResult>());
-                await _idFieldAdder.Add(field.Name, result, context, parent, graphTypes);
+                await _idFieldAdder.Add(field.Name, result, context, parent, graphTypes).ConfigureAwait(false);
             }
 
             return context;

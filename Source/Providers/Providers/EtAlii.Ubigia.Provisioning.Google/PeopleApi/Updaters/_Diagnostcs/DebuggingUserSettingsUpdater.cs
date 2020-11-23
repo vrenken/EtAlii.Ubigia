@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             _logger.Debug("Updating: {userSettingsEmail} ({userSettingsUpdated})", userSettings.Email, userSettings.Updated);
 
-            await _decoree.Update(userSettings, systemSettings, userDataContext, thresholdBeforeExpiration);
+            await _decoree.Update(userSettings, systemSettings, userDataContext, thresholdBeforeExpiration).ConfigureAwait(false);
 
             _logger.Debug("Updated: {userSettingsEmail} ({userSettingsUpdated})", userSettings.Email, userSettings.Updated);
         }

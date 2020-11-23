@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
                         else
                         {
-                            var properties = await parameters.Context.Properties.Retrieve(start, parameters.Scope);
+                            var properties = await parameters.Context.Properties.Retrieve(start, parameters.Scope).ConfigureAwait(false);
                             if (properties != null)
                             {
                                 var shouldAdd = predicate(properties);
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                var properties = await context.Properties.Retrieve(start, scope);
+                var properties = await context.Properties.Retrieve(start, scope).ConfigureAwait(false);
                 if (properties != null)
                 {
                     var shouldAdd = predicate(properties);

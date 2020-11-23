@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onNext: async (o) =>
                 {
                     var converter = _converterSelector.Select(o);
-                    result += await converter(context, scope, o);
+                    result += await converter(context, scope, o).ConfigureAwait(false);
                 });
         }
 
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await context.PathProcessor.Process(pathSubject, scope, outputObserver);
+                await context.PathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             });

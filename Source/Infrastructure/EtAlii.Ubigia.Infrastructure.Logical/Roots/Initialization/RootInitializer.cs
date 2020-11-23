@@ -19,7 +19,7 @@
         {
             if (root.Identifier == Identifier.Empty)
             {
-                var entry = (IEditableEntry)await _entries.Prepare(spaceId);
+                var entry = (IEditableEntry)await _entries.Prepare(spaceId).ConfigureAwait(false);
                 entry.Type = root.Name;
 
                 //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail)
@@ -27,7 +27,7 @@
 
                 _fabric.Entries.Store(entry);
                 root.Identifier = entry.Id;
-                await _fabric.Roots.Update(spaceId, root.Id, root);
+                await _fabric.Roots.Update(spaceId, root.Id, root).ConfigureAwait(false);
             }
         }
     }

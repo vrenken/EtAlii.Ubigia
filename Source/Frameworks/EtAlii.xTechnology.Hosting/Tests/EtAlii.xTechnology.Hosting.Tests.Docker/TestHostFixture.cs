@@ -22,7 +22,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
 
         public override async Task Start(TestHostFixtureOptions options)
         {
-            //await CreateImageWhenNeeded();
+            //await CreateImageWhenNeeded().ConfigureAwait(false);
             await base.Start(options).ConfigureAwait(false);
         }
 
@@ -34,7 +34,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
         //     using var client = new DockerClientConfiguration(dockerUri).CreateClient();
         //
         //     // Let's cleanup old images.
-        //     await client.Images.PruneImagesAsync();
+        //     await client.Images.PruneImagesAsync().ConfigureAwait(false);
         //     
         //     var parameters = new ImageBuildParameters { Tags = new[] { LocalImageName} };
         //     var containerFolder = Path.Combine(Environment.CurrentDirectory, "Container");
@@ -46,7 +46,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
         //         if(m.ErrorMessage != null) Trace.WriteLine(m.ErrorMessage);
         //         if(m.ProgressMessage != null) Trace.WriteLine(m.ProgressMessage);
         //     });
-        //     await StreamUtil.MonitorStreamForMessagesAsync(result, client, CancellationToken.None, progress);
+        //     await StreamUtil.MonitorStreamForMessagesAsync(result, client, CancellationToken.None, progress).ConfigureAwait(false);
         //     
         // }
         protected override CreateContainerParameters GetContainerParameters(int[] ports)
@@ -115,12 +115,12 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
         {
             try
             {
-                await Task.CompletedTask.ConfigureAwait(false);//Task.Delay(TimeSpan.FromMinutes(1));// Task.CompletedTask;
+                await Task.CompletedTask.ConfigureAwait(false);//Task.Delay(TimeSpan.FromMinutes(1));// Task.CompletedTask.ConfigureAwait(false);
                 // var connectionString = GetMsSqlConnectionString(ports.Single());
                 // var connection = new SqlConnection(connectionString);
-                // await connection.OpenAsync();
+                // await connection.OpenAsync().ConfigureAwait(false);
                 // var cmd = new SqlCommand("SELECT GETDATE()", connection);
-                // await cmd.ExecuteScalarAsync();
+                // await cmd.ExecuteScalarAsync().ConfigureAwait(false);
                 return false;
             }
             catch

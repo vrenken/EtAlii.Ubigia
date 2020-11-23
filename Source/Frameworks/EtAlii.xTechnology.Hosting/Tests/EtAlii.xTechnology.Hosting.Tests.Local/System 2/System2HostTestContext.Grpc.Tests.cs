@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantGrpc);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcUserApi];
             var path = context.Paths[TestPath.GrpcUserApi];
 
@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantGrpc);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcAdminApi];
             var path = context.Paths[TestPath.GrpcAdminApi];
 
@@ -49,7 +49,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantGrpc);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcUserApi];
             var path = context.Paths[TestPath.GrpcUserApi];
             var tick = Environment.TickCount;
@@ -68,7 +68,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantGrpc);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.GrpcAdminApi];
             var path = context.Paths[TestPath.GrpcAdminApi];
             var tick = Environment.TickCount;

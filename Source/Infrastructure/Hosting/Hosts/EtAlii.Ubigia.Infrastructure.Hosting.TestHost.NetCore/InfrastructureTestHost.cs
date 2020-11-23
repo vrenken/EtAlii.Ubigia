@@ -22,7 +22,7 @@
 
         protected override async Task Started()
         {
-            await base.Started();
+            await base.Started().ConfigureAwait(false);
 
             _infrastructure = Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
             _storage = Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single();

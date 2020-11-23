@@ -102,7 +102,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     foreach (var result in results.ToEnumerable())
                     {
 
-                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope).ConfigureAwait(false);
                         output.OnNext(renamedItem);
                     }
                 });
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     var results = converter(context, o, scope);
                     foreach (var result in results.ToEnumerable())
                     {
-                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope).ConfigureAwait(false);
                         output.OnNext(renamedItem);
                     }
                 });
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await context.PathProcessor.Process(pathSubject, scope, outputObserver);
+                await context.PathProcessor.Process(pathSubject, scope, outputObserver).ConfigureAwait(false);
 
                 return Disposable.Empty;
             });

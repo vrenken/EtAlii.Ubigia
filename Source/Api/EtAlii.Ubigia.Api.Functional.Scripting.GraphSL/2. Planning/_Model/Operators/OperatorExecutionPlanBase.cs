@@ -30,11 +30,11 @@
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                var leftInput = await Left.Execute(scope);
-                var rightInput = await Right.Execute(scope);
+                var leftInput = await Left.Execute(scope).ConfigureAwait(false);
+                var rightInput = await Right.Execute(scope).ConfigureAwait(false);
 
                 var parameters = new OperatorParameters(scope, Left.Subject, Right.Subject, leftInput, rightInput, outputObserver);
-                await Execute(parameters);
+                await Execute(parameters).ConfigureAwait(false);
 
                 return Disposable.Empty;
             }).ToHotObservable();

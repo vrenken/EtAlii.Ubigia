@@ -29,7 +29,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -46,7 +46,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -63,7 +63,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -80,7 +80,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -97,7 +97,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -114,7 +114,7 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.True(!string.IsNullOrWhiteSpace(token));
@@ -131,10 +131,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -148,10 +148,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -165,10 +165,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -182,10 +182,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 	    [Fact, Trait("Category", TestAssembly.Category)]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
@@ -198,10 +198,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -215,10 +215,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -232,10 +232,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -249,10 +249,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -266,10 +266,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -283,10 +283,10 @@
 		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials).ConfigureAwait(false));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act).ConfigureAwait(false);
 	    }
 	}
 }

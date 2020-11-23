@@ -24,7 +24,7 @@
                 Password = accountPassword,
             };
 
-            account = await _infrastructure.Accounts.Add(account, template);
+            account = await _infrastructure.Accounts.Add(account, template).ConfigureAwait(false);
             return account;
         }
 

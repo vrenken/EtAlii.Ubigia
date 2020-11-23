@@ -24,7 +24,7 @@
             IEditableEntry newEntry = null;
             foreach (var partToAdd in pathToAdd.Parts.OfType<ConstantPathSubjectPart>())
             {
-                var addResult = await _recursiveAdder.Add(parentId, partToAdd, newEntry, scope);
+                var addResult = await _recursiveAdder.Add(parentId, partToAdd, newEntry, scope).ConfigureAwait(false);
                 parentId = addResult.ParentId;
                 newEntry = addResult.NewEntry;
             }

@@ -34,7 +34,7 @@
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration();
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new LogicalContextFactory().CreateForProfiling(configuration);
@@ -49,7 +49,7 @@
             // Arrange.
             var configuration = new LogicalContextConfiguration()
                 .UseLogicalDiagnostics(_diagnostics);
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
 
             // Act.
@@ -65,7 +65,7 @@
             // Arrange.
             var configuration = new LogicalContextConfiguration()
                 .UseLogicalDiagnostics(_diagnostics);
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new LogicalContextFactory().CreateForProfiling(configuration);

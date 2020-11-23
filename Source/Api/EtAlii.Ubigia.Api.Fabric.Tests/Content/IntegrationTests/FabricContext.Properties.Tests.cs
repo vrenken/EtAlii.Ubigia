@@ -16,7 +16,7 @@
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace();
+            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
                 .Use(DiagnosticsConfiguration.Default);
@@ -36,12 +36,12 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var root = await _fabric.Roots.Get("Hierarchy");
-            var entry = await _fabric.Entries.Get(root.Identifier, scope);
+            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
-            await _fabric.Properties.Store(entry.Id, properties, scope);
+            await _fabric.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.True(properties.Stored); 
@@ -52,13 +52,13 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var root = await _fabric.Roots.Get("Hierarchy");
-            var entry = await _fabric.Entries.Get(root.Identifier, scope);
+            var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
+            var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
-            await _fabric.Properties.Store(entry.Id, properties, scope);
+            await _fabric.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
 
             // Act.
-            var retrievedProperties = await _fabric.Properties.Retrieve(entry.Id, scope);
+            var retrievedProperties = await _fabric.Properties.Retrieve(entry.Id, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));

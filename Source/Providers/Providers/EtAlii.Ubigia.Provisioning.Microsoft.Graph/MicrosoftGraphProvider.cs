@@ -37,17 +37,17 @@
         {
             foreach (var importer in _importers)
             {
-                await importer.Stop();
+                await importer.Stop().ConfigureAwait(false);
             }
         }
 
         public async Task Start()
         {
-            await _systemSettingsProvider.Update();
+            await _systemSettingsProvider.Update().ConfigureAwait(false);
 
             foreach (var importer in _importers)
             {
-                await importer.Start();
+                await importer.Start().ConfigureAwait(false);
             }
         }
     }

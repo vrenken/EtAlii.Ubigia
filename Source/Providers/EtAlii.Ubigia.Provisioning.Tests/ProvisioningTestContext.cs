@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string accountPassword, string spaceName)
         {
-            var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
+            var connection = await CreateDataConnection(accountName, accountPassword, spaceName).ConfigureAwait(false);
             
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(true)
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
                 .Use(accountName, spaceName, accountPassword);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             return connection;
         }
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
                 .Use(Context.ServiceDetails.ManagementAddress)
                 .Use(Context.TestAccountName, Context.TestAccountPassword);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
             return connection;
         }
 
@@ -78,12 +78,12 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         public async Task Start(PortRange portRange)
         {
             Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
-            await Context.Start(portRange);
+            await Context.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await Context.Stop();
+            await Context.Stop().ConfigureAwait(false);
             Context = null;
         }
 

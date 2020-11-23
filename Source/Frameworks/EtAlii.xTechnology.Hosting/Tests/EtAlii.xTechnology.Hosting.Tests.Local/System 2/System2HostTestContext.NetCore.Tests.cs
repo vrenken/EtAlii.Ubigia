@@ -12,18 +12,18 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestUserApi];
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
             Assert.Equal(HttpStatusCode.OK,result.StatusCode);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.StartsWith("UserController_", content);
         }
 
@@ -32,19 +32,19 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestUserApi];
             var tick = Environment.TickCount;
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
             Assert.Equal(HttpStatusCode.OK,result.StatusCode);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.StartsWith($"UserController_{tick}", content);
         }
 
@@ -53,17 +53,17 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestAdminApi];
             var path = context.Paths[TestPath.RestUserApi];
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}");
+            var result = await client.GetAsync($"http://localhost:{port}{path}").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.Equal("", content);
             Assert.Equal(HttpStatusCode.NotFound, result.StatusCode);
         }
@@ -73,18 +73,18 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestAdminApi];
             var path = context.Paths[TestPath.RestAdminApi];
             
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(result);
             Assert.Equal(HttpStatusCode.OK,result.StatusCode);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.StartsWith("AdminController_", content);
         }
 
@@ -93,18 +93,18 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestAdminApi];
             var path = context.Paths[TestPath.RestAdminApi];
             var tick = Environment.TickCount;
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.Equal($"AdminController_{tick}", content);
         }
 
@@ -114,17 +114,17 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestAdminApi];
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.Equal("", content);
             Assert.Equal(HttpStatusCode.NotFound, result.StatusCode);
         }
@@ -134,17 +134,17 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestAdminApi] + "/bad";
 
             // Act.
             var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data");
+            var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
-            var content = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
             Assert.Equal("", content);
             Assert.Equal(HttpStatusCode.NotFound, result.StatusCode);
         }

@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             var next = parameters.PathRest.FirstOrDefault();
             if (next == null) return false;
-            var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+            var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope).ConfigureAwait(false);
             if (content == null) return false;
             var regexTemplatePart = (RegexPathSubjectPart) parameters.CurrentTemplatePart;
 

@@ -12,13 +12,13 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub");
-            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} );
+            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub").ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} ).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
@@ -30,7 +30,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         [Fact]
@@ -46,7 +46,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
 
@@ -54,7 +54,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/admin/api/UserHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         [Fact]
@@ -62,13 +62,13 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub");
-            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} );
+            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub").ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} ).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
@@ -80,7 +80,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
@@ -88,7 +88,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         [Fact]
@@ -96,7 +96,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
 
@@ -104,7 +104,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/user/api/AdminHub");
             
             // Assert.
-            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false));
+            await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
         }
 
         [Fact]
@@ -112,14 +112,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
             var tick = Environment.TickCount;
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub");
-            var result = await connection.InvokeCoreAsync("GetComplex", typeof(string), new object[]{ tick.ToString() } );
+            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub").ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetComplex", typeof(string), new object[]{ tick.ToString() } ).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
@@ -131,14 +131,14 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRAdminApi];
             var path = context.Paths[TestPath.SignalRAdminApi];
             var tick = Environment.TickCount;
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://127.0.0.1:{port}{path}/AdminHub");
-            var result = await connection.InvokeCoreAsync("GetComplex", typeof(string), new object[]{ tick.ToString() } );
+            var connection = await context.CreateSignalRConnection($"http://127.0.0.1:{port}{path}/AdminHub").ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetComplex", typeof(string), new object[]{ tick.ToString() } ).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);

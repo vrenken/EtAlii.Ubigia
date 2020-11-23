@@ -26,7 +26,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Add(Guid.NewGuid().ToString());
+            await rootDataClientStub.Add(Guid.NewGuid().ToString()).ConfigureAwait(false);
             
             // Assert.
         }
@@ -38,7 +38,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString());
+            await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
             
             // Assert.
         }
@@ -50,7 +50,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Connect(null);
+            await rootDataClientStub.Connect(null).ConfigureAwait(false);
             
             // Assert.
         }
@@ -62,7 +62,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Disconnect();
+            await rootDataClientStub.Disconnect().ConfigureAwait(false);
             
             // Assert.
         }
@@ -74,7 +74,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            var result = await rootDataClientStub.Get(Guid.NewGuid().ToString());
+            var result = await rootDataClientStub.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result);
@@ -87,7 +87,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            var result = await rootDataClientStub.Get(Guid.NewGuid());
+            var result = await rootDataClientStub.Get(Guid.NewGuid()).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result);
@@ -115,7 +115,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Remove(Guid.NewGuid());
+            await rootDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 
             // Assert.
         }

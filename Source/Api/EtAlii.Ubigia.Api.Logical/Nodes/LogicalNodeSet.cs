@@ -55,80 +55,80 @@
         public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignProperties(location, properties, scope);
+            return await assigner.AssignProperties(location, properties, scope).ConfigureAwait(false);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignTag(location, tag, scope);
+            return await assigner.AssignTag(location, tag, scope).ConfigureAwait(false);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignNode(location, node, scope);
+            return await assigner.AssignNode(location, node, scope).ConfigureAwait(false);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignDynamic(location, o, scope);
+            return await assigner.AssignDynamic(location, o, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Add(parent, child, scope);
+            return await composer.Add(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, Identifier child, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Add(parent, child, scope);
+            return await composer.Add(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, string child, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Remove(parent, child, scope);
+            return await composer.Remove(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, Identifier child, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Remove(parent, child, scope);
+            return await composer.Remove(parent, child, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Link(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Link(location, itemName, item, scope);
+            return await composer.Link(location, itemName, item, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Unlink(location, itemName, item, scope);
+            return await composer.Unlink(location, itemName, item, scope).ConfigureAwait(false);
         }
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await Fabric.Entries.Prepare();
+            return await Fabric.Entries.Prepare().ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            return await Fabric.Entries.Change(entry, scope);
+            return await Fabric.Entries.Change(entry, scope).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
             var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Rename(item, newName, scope);
+            return await composer.Rename(item, newName, scope).ConfigureAwait(false);
         }
     }
 }

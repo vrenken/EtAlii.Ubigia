@@ -24,18 +24,18 @@
         public async Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope)
         {
             // The GraphComposer cannot handle multiple updates yet.
-            var entry = await _graphPathTraverser.TraverseToSingle(parent, scope);
+            var entry = await _graphPathTraverser.TraverseToSingle(parent, scope).ConfigureAwait(false);
 
             // Let's check if a path already exists.
-            var linkAddResult = await _graphLinkAdder.GetLink(child, entry, scope);
+            var linkAddResult = await _graphLinkAdder.GetLink(child, entry, scope).ConfigureAwait(false);
             var originalLinkEntry = linkAddResult.Item1;
             var result = linkAddResult.Item2;
 
             if (result == null)
             {
-                var updateEntry = await _graphUpdater.Update(entry, scope);
-                var updateLinkEntry = await _graphLinkAdder.AddLink(updateEntry, originalLinkEntry, EntryType.Add, scope);
-                result = await _graphChildAdder.AddChild(updateLinkEntry.Id, child, scope);
+                var updateEntry = await _graphUpdater.Update(entry, scope).ConfigureAwait(false);
+                var updateLinkEntry = await _graphLinkAdder.AddLink(updateEntry, originalLinkEntry, EntryType.Add, scope).ConfigureAwait(false);
+                result = await _graphChildAdder.AddChild(updateLinkEntry.Id, child, scope).ConfigureAwait(false);
             }
             return result;
         }
@@ -43,18 +43,18 @@
         public async Task<IReadOnlyEntry> Add(Identifier parent, Identifier child, ExecutionScope scope)
         {
             // The GraphComposer cannot handle multiple updates yet.
-            var entry = await _graphPathTraverser.TraverseToSingle(parent, scope);
+            var entry = await _graphPathTraverser.TraverseToSingle(parent, scope).ConfigureAwait(false);
 
             // Let's check if a path already exists.
-            var linkAddResult = await _graphLinkAdder.GetLink(child, entry, scope);
+            var linkAddResult = await _graphLinkAdder.GetLink(child, entry, scope).ConfigureAwait(false);
             var originalLinkEntry = linkAddResult.Item1;
             var result = linkAddResult.Item2;
 
             if (result == null)
             {
-                var updateEntry = await _graphUpdater.Update(entry, scope);
-                var updateLinkEntry = await _graphLinkAdder.AddLink(updateEntry, originalLinkEntry, EntryType.Add, scope);
-                result = await _graphChildAdder.AddChild(updateLinkEntry.Id, child, scope);
+                var updateEntry = await _graphUpdater.Update(entry, scope).ConfigureAwait(false);
+                var updateLinkEntry = await _graphLinkAdder.AddLink(updateEntry, originalLinkEntry, EntryType.Add, scope).ConfigureAwait(false);
+                result = await _graphChildAdder.AddChild(updateLinkEntry.Id, child, scope).ConfigureAwait(false);
             }
             return result;
         }

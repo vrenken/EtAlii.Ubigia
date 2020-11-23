@@ -54,7 +54,7 @@
             var addedAccount = _logicalContext.Accounts.Add(item, template, out var isAdded);
             if (isAdded)
             {
-                await _accountInitializer.Initialize(addedAccount, template);
+                await _accountInitializer.Initialize(addedAccount, template).ConfigureAwait(false);
             }
 
             return addedAccount;

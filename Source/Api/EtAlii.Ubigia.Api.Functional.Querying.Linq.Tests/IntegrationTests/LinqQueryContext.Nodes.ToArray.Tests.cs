@@ -27,14 +27,14 @@
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
             var context = new LinqQueryContextFactory().Create(configuration);
 
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext).ConfigureAwait(false);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 1);
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 1).ConfigureAwait(false);
             var path = $"{countryPath}/";
 
             var items = context.Nodes.Select(path);
@@ -46,7 +46,7 @@
             Assert.Equal("Overijssel_01", single[0].Type);
             
             // Assure.
-            await configuration.Connection.Close();
+            await configuration.Connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -55,14 +55,14 @@
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
             var context = new LinqQueryContextFactory().Create(configuration);
 
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext).ConfigureAwait(false);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2).ConfigureAwait(false);
             var path = $"{countryPath}/";
             var items = context.Nodes.Select(path);
 
@@ -74,7 +74,7 @@
             Assert.Equal("Overijssel_02", single[1].Type);
                         
             // Assure.
-            await configuration.Connection.Close();
+            await configuration.Connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -83,14 +83,14 @@
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
             var context = new LinqQueryContextFactory().Create(configuration);
 
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext).ConfigureAwait(false);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2).ConfigureAwait(false);
             var path = $"{countryPath}/";
             var items = context.Nodes.Select(path);
 
@@ -102,7 +102,7 @@
             Assert.Equal("Overijssel_02", single[1].ToString());
                         
             // Assure.
-            await configuration.Connection.Close();
+            await configuration.Connection.Close().ConfigureAwait(false);
         }
     }
 }

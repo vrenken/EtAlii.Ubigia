@@ -8,7 +8,7 @@
     {
         protected override async Task<Account> ProcessTask()
         {
-            var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
+            var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current).ConfigureAwait(false);
             return account;
         }
     }

@@ -22,7 +22,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(DateTime.MinValue, addedAccount.Created);
             Assert.Null(addedAccount.Updated);
@@ -36,7 +36,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(Guid.Empty, addedAccount.Id);
 
@@ -55,7 +55,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -70,7 +70,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -89,7 +89,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -104,7 +104,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -123,7 +123,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -138,7 +138,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -153,7 +153,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 
@@ -173,7 +173,7 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.Administrator);
+            var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(addedAccount);
             Assert.NotEqual(addedAccount.Id, Guid.Empty);
 

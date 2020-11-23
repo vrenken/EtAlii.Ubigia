@@ -33,13 +33,13 @@
             _configuration = new GraphQLQueryContextConfiguration()
                 .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
                 .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
             
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
 
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
+            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
@@ -48,7 +48,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _scriptContext = null;
             _queryContext = null;
@@ -62,9 +62,9 @@
             // Arrange.
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             Assert.Empty(parseResult.Errors);                
-            var result = await _queryContext.Process(parseResult.Query);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
              
             // Assert.
             Assert.NotNull(result);
@@ -79,8 +79,8 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
              
             // Assert.
             Assert.NotNull(result.Errors);
@@ -93,12 +93,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\#FamilyName""), nickname, birthdate, lives } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
              
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -108,12 +108,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result).ConfigureAwait(false);
         }
 
         
@@ -122,17 +122,17 @@
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
-            var parseResult = await _queryContext.Parse(queryText);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             
             // Act.
-            var result1 = await _queryContext.Process(parseResult.Query);
-            var result2 = await _queryContext.Process(parseResult.Query);
+            var result1 = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
+            var result2 = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(result1.Errors);
             Assert.Null(result2.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result1);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result2);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result1).ConfigureAwait(false);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result2).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -142,12 +142,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -157,8 +157,8 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -172,12 +172,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -187,12 +187,12 @@
             var queryText = @"query data { person @nodes(path:""person:Doe/John"") { nickname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Johnny"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Johnny"" }}", result).ConfigureAwait(false);
         }
 
         
@@ -210,12 +210,12 @@
                 }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result).ConfigureAwait(false);
         }
 
         
@@ -226,12 +226,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -241,12 +241,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -262,12 +262,12 @@
                           }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -284,12 +284,12 @@
                           }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -306,12 +306,12 @@
                           }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"", ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -321,12 +321,12 @@
             var queryText = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -336,12 +336,12 @@
             var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -351,8 +351,8 @@
             var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -365,8 +365,8 @@
             var queryText = @"query data { droid(id: ""4"") { id, name } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -379,12 +379,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result.Errors);
-            await AssertQuery.ResultsAreNotEqual(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreNotEqual(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -394,12 +394,12 @@
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result).ConfigureAwait(false);
         }
     }
 }

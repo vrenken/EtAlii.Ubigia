@@ -60,7 +60,7 @@
 
                 var results = Observable.Create<GraphQLQueryProcessingResult>(async output =>
                 {
-                    var queryExecutionResults = await _queryContext.Process(viewModel.Query); //, viewModel.Scope)
+                    var queryExecutionResults = await _queryContext.Process(viewModel.Query).ConfigureAwait(false); //, viewModel.Scope)
 
                     output.OnNext(queryExecutionResults);
                     return System.Reactive.Disposables.Disposable.Empty;

@@ -35,10 +35,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task<Identifier> GetCurrent(Guid spaceId)
         {
-            await _lockObject.WaitAsync();
+            await _lockObject.WaitAsync().ConfigureAwait(false);
             try
             {
-                return await GetCurrentInternal(spaceId);
+                return await GetCurrentInternal(spaceId).ConfigureAwait(false);
             }
             finally
             {
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out var headIdentifier))
             {
-                headIdentifier = await DetermineHead(spaceId);
+                headIdentifier = await DetermineHead(spaceId).ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = headIdentifier;
             }
 
@@ -60,14 +60,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         
         public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId)
         {
-            await _lockObject.WaitAsync();
+            await _lockObject.WaitAsync().ConfigureAwait(false);
             try
             {
-                var previousHeadIdentifier = await GetCurrentInternal(spaceId);
+                var previousHeadIdentifier = await GetCurrentInternal(spaceId).ConfigureAwait(false);
 
                 var nextHeadIdentifier = _nextIdentifierGetter.GetNext(spaceId, previousHeadIdentifier);
 
-                await _rootUpdater.Update(spaceId, "Head", nextHeadIdentifier);
+                await _rootUpdater.Update(spaceId, "Head", nextHeadIdentifier).ConfigureAwait(false);
                 _cachedHeadIdentifiers[spaceId] = nextHeadIdentifier;
 
                 return (NextHeadIdentifier: nextHeadIdentifier, PreviousHeadIdentifier: previousHeadIdentifier);
@@ -85,21 +85,21 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             if (_headIsInitialized)
             {
                 // load from root "Head"
-                var root = await _context.Roots.Get(spaceId, DefaultRoot.Head);
+                var root = await _context.Roots.Get(spaceId, DefaultRoot.Head).ConfigureAwait(false);
                 headIdentifier = root?.Identifier ?? Identifier.Empty;
 
                 if (headIdentifier == Identifier.Empty)
                 {
                     // Determine from container storage.
                     headIdentifier = DetermineHeadFromComponentStorage(spaceId);
-                    await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier);
+                    await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
                 }
             }
             else
             {
                 // Determine from container storage.
                 headIdentifier = DetermineHeadFromComponentStorage(spaceId);
-                await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier);
+                await _rootUpdater.Update(spaceId, DefaultRoot.Head, headIdentifier).ConfigureAwait(false);
                 _headIsInitialized = true;
             }
 

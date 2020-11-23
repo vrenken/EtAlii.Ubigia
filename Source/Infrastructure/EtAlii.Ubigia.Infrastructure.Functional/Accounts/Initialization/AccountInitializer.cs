@@ -42,7 +42,7 @@
                 var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out var isAdded);
                 if (isAdded)
                 {
-                    await _spaceInitializer.Initialize(addedSpace, spaceToCreate);
+                    await _spaceInitializer.Initialize(addedSpace, spaceToCreate).ConfigureAwait(false);
                 }
 
             }

@@ -21,7 +21,7 @@
         {
             //WriteDebug($"Adding account [{AccountName}]")
             var template = AccountTemplate.All.Single(t => t.Name == Template);
-            var account = await PowerShellClient.Current.ManagementConnection.Accounts.Add(AccountName, Password, template);
+            var account = await PowerShellClient.Current.ManagementConnection.Accounts.Add(AccountName, Password, template).ConfigureAwait(false);
             return account;
         }
     }

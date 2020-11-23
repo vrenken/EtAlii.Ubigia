@@ -23,7 +23,7 @@
                 Address = storageAddress,
             };
 
-            storage = await _infrastructure.Storages.Add(storage);
+            storage = await _infrastructure.Storages.Add(storage).ConfigureAwait(false);
             return storage;
         }
 

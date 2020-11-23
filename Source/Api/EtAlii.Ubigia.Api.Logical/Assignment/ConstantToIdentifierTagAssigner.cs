@@ -21,11 +21,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<INode> Assign(string constant, Identifier id, ExecutionScope scope)
         {
-            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope);
+            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
             id = latestEntry.Id;
 
-            var entry = await _fabric.Entries.Get(id, scope);
-            var updatedEntry = await _updateEntryFactory.Create(entry, constant, scope);
+            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
+            var updatedEntry = await _updateEntryFactory.Create(entry, constant, scope).ConfigureAwait(false);
 
             var newNode = (IInternalNode)new DynamicNode((IReadOnlyEntry)updatedEntry);
             return newNode;

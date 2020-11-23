@@ -25,14 +25,14 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         protected override async Task Run()
         {
-            var systemSettings = await _systemSettingsGetter.Get(_context.SystemScriptContext);
+            var systemSettings = await _systemSettingsGetter.Get(_context.SystemScriptContext).ConfigureAwait(false);
 
             // Fetch all configuration spaces.
             var configurationSpaces = _configurationSpaceGetter.GetAll();
             await foreach (var configurationSpace in configurationSpaces)
             {
                 // If so, update the People Api in this space.
-                await _peopleApiConfigurationSpaceUpdater.Update(configurationSpace, systemSettings);
+                await _peopleApiConfigurationSpaceUpdater.Update(configurationSpace, systemSettings).ConfigureAwait(false);
             }
         }
     }

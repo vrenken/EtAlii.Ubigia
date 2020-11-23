@@ -86,7 +86,7 @@
 
             try
             {
-                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier) as ContentDefinition;
+                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false) as ContentDefinition;
                 if (contentDefinition == null)
                 {
                     throw new ContentDefinitionRepositoryException("Content definition not stored yet");
@@ -112,13 +112,13 @@
 
             try
             {
-                var contentDefinition = (ContentDefinition)await _logicalContext.ContentDefinition.Get(identifier);
+                var contentDefinition = (ContentDefinition)await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false);
 
                 if (contentDefinition != null)
                 {
                     foreach (var contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
                     {
-                        var contentDefinitionPart = (ContentDefinitionPart)await _logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
+                        var contentDefinitionPart = (ContentDefinitionPart)await _logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId).ConfigureAwait(false);
                         contentDefinition.Parts.Add(contentDefinitionPart);
                     }
                 }

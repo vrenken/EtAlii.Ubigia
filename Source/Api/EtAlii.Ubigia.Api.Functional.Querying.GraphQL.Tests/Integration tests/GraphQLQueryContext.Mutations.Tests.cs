@@ -32,13 +32,13 @@
             _configuration = new GraphQLQueryContextConfiguration()
                 .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
                 .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
             
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
         
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
+            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
@@ -47,7 +47,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _scriptContext = null;
             _queryContext = null;
@@ -69,12 +69,12 @@
                 }";
             
             // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-            var result = await _queryContext.Process(parseResult.Query);
+            var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
+            var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
     }
 }

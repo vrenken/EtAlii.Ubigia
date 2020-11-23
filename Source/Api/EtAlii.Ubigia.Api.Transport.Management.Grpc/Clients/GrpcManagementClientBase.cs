@@ -7,7 +7,7 @@
     {
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Connect((IStorageConnection<IGrpcStorageTransport>)storageConnection);
+            await Connect((IStorageConnection<IGrpcStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public virtual Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
@@ -18,7 +18,7 @@
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection);
+            await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public virtual Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)

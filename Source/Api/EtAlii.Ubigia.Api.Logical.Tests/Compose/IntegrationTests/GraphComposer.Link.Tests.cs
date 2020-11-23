@@ -13,41 +13,41 @@
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
 
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var personRoot = await fabric.Roots.Get("Person");
-            var personEntry = (IEditableEntry)await fabric.Entries.Get(personRoot, scope);
+            var personRoot = await fabric.Roots.Get("Person").ConfigureAwait(false);
+            var personEntry = (IEditableEntry)await fabric.Entries.Get(personRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var firstEntry = hierarchyResult.Item1;
 //            var communicationsHierarchy = hierarchyResult.Item2
 
-            hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, personEntry, depth);
+            hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, personEntry, depth).ConfigureAwait(false);
             var secondEntry = hierarchyResult.Item1;
 //            var personHierarchy = hierarchyResult.Item2
 
             var linkItem = Guid.NewGuid().ToString();
 
             // Act.
-            var addedEntry = await composer.Link(firstEntry.Id, linkItem, secondEntry.Id, scope);
+            var addedEntry = await composer.Link(firstEntry.Id, linkItem, secondEntry.Id, scope).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var updatedEntry = await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync();
+            var updatedEntry = await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(updatedEntry);
             Assert.False(string.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
-            var linkedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var linkedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
-            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync();
+            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(finalEntry);
             Assert.Equal(linkItem, finalEntry.Type);
             Assert.Equal(addedEntry.Id, finalEntry.Id);

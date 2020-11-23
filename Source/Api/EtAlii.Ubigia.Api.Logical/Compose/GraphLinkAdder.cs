@@ -25,11 +25,11 @@
 
         public async Task<IEditableEntry> AddLink(IEditableEntry updateEntry, IReadOnlyEntry originalLinkEntry, string type, ExecutionScope scope)
         {
-            var linkEntry = (IEditableEntry)await _graphChildAdder.AddChild(updateEntry.Id, type, scope);
+            var linkEntry = (IEditableEntry)await _graphChildAdder.AddChild(updateEntry.Id, type, scope).ConfigureAwait(false);
             if (originalLinkEntry != null)
             {
                 linkEntry.Downdate = Relation.NewRelation(originalLinkEntry.Id);
-                linkEntry = (IEditableEntry)await _fabric.Entries.Change(linkEntry, scope);
+                linkEntry = (IEditableEntry)await _fabric.Entries.Change(linkEntry, scope).ConfigureAwait(false);
             }
             return linkEntry;
         }

@@ -75,7 +75,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Accounts.Add(AccountName, AccountPassword, SelectedAccountTemplate);
+                    await Connection.Accounts.Add(AccountName, AccountPassword, SelectedAccountTemplate).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -110,7 +110,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Accounts.Change(SelectedAccount.Id, AccountName, AccountPassword);
+                    await Connection.Accounts.Change(SelectedAccount.Id, AccountName, AccountPassword).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -139,7 +139,7 @@
             {
                 _logger.Verbose("Removing account: {0}", SelectedAccount.Name);
 
-                var task = Task.Run(async () => { await Connection.Accounts.Remove(SelectedAccount.Id); });
+                var task = Task.Run(async () => { await Connection.Accounts.Remove(SelectedAccount.Id).ConfigureAwait(false); });
                 task.Wait();
             }
             catch

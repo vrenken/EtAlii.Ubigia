@@ -16,7 +16,7 @@
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
@@ -28,7 +28,7 @@
         {
             _parser = null;
 
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -36,7 +36,7 @@
         public async Task ScriptProcessor_RootedPath_Media_Select_ManuFacturerDeviceModelDeviceTypeId_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "media:Canon/PowerShot/Gtx123",

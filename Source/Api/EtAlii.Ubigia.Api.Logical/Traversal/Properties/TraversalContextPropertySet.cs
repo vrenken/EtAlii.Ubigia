@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical
             PropertyDictionary result;
             if (!_cache.TryGetValue(entryIdentifier, out result))
             {
-                _cache[entryIdentifier] = result = await _context.Properties.Retrieve(entryIdentifier, scope);
+                _cache[entryIdentifier] = result = await _context.Properties.Retrieve(entryIdentifier, scope).ConfigureAwait(false);
             }
             return result;
         }

@@ -25,7 +25,7 @@
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 
         public Task DisposeAsync()

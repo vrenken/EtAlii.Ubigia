@@ -16,7 +16,7 @@
         public async Task GraphComposer_Create()
         {
             // Arrange.
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);

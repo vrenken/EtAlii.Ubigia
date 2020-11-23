@@ -50,7 +50,7 @@
                     {
                         var sequence = sequences[executionPlanIndex];
                         var executionPlan = executionPlans[executionPlanIndex];
-                        await ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput);
+                        await ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput).ConfigureAwait(false);
                     }
 
                     // After iterating through the sequences script observation has ended. Please keep in mind 
@@ -82,7 +82,7 @@
         {
             var executionScope = new ExecutionScope(_configuration.CachingEnabled);
 
-            var originalObservableSequenceOutput = await executionPlan.Execute(executionScope);
+            var originalObservableSequenceOutput = await executionPlan.Execute(executionScope).ConfigureAwait(false);
             var observableSequenceOutput = Observable.Empty<object>();
 
             // We only show output:

@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async (root) =>
                 {
-                    var createdRoot = await _context.Logical.Roots.Add(root.Name);
+                    var createdRoot = await _context.Logical.Roots.Add(root.Name).ConfigureAwait(false);
                     parameters.Output.OnNext(createdRoot.Identifier);
                 });
             return Task.CompletedTask;

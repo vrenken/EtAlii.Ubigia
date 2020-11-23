@@ -38,13 +38,13 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             _configuration = new GraphTLQueryContextConfiguration()
                 .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
                 .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
             
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _context = new GraphTLQueryContextFactory().Create(_configuration);
         
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
+            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false); 
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _scriptContext = null;
             _context = null;
@@ -94,13 +94,13 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
                 var processor = new SchemaProcessorFactory().Create(configuration);
 
                 // Act.
-                var mutationResult = await processor.Process(mutationSchema);
-                await mutationResult.Completed();
-                var queryResult = await processor.Process(querySchema);
-                await queryResult.Completed();
+                var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
+                await mutationResult.Completed().ConfigureAwait(false);
+                var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
+                await queryResult.Completed().ConfigureAwait(false);
 
             });
-            await isolator();
+            await isolator().ConfigureAwait(false);
             GC.Collect(); // Run explicit GC
 
             // Assert

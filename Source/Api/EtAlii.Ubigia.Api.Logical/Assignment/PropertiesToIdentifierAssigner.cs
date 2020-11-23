@@ -22,11 +22,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<INode> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope)
         {
-            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope);
+            var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
             id = latestEntry.Id;
 
-            var entry = await _fabric.Entries.Get(id, scope);
-            var oldProperties = await _fabric.Properties.Retrieve(entry.Id, scope) ?? new PropertyDictionary();
+            var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
+            var oldProperties = await _fabric.Properties.Retrieve(entry.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
 
             var nodeShouldBeUpdated = ShouldUpdateNode(oldProperties, properties);
             if (!nodeShouldBeUpdated)
@@ -57,9 +57,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 // Only update if we something changed - no need to update them when nothing changed.
                 if (!newProperties .Equals(oldProperties))
                 {
-                    var newEntry = await _updateEntryFactory.Create(entry, scope);
+                    var newEntry = await _updateEntryFactory.Create(entry, scope).ConfigureAwait(false);
 
-                    await _fabric.Properties.Store(newEntry.Id, newProperties , scope);
+                    await _fabric.Properties.Store(newEntry.Id, newProperties , scope).ConfigureAwait(false);
 
                     var newNode = (IInternalNode) new DynamicNode((IReadOnlyEntry) newEntry, newProperties );
                     return newNode;

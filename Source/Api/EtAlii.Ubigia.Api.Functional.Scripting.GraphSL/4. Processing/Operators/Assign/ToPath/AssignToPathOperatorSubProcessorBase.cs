@@ -38,8 +38,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     {
                         var identifier = _itemToIdentifierConverter.Convert(o);
                         var leftPathSubject = (PathSubject)parameters.LeftSubject;
-                        var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope);
-                        var result = await Assign(graphPath, identifier, value, parameters.Scope);
+                        var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope).ConfigureAwait(false);
+                        var result = await Assign(graphPath, identifier, value, parameters.Scope).ConfigureAwait(false);
                         //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope)
                         parameters.Output.OnNext(result);
                     });
@@ -49,17 +49,17 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             if(path.Last() is GraphTaggedNode && o is string tag)
             {
-                return await _context.Logical.Nodes.AssignTag(location, tag, scope);
+                return await _context.Logical.Nodes.AssignTag(location, tag, scope).ConfigureAwait(false);
             }
             switch (o)
             {
-                case IInternalNode node: return await _context.Logical.Nodes.AssignNode(location, node, scope);
-                case IPropertyDictionary properties: return await _context.Logical.Nodes.AssignProperties(location, properties, scope);
+                case IInternalNode node: return await _context.Logical.Nodes.AssignNode(location, node, scope).ConfigureAwait(false);
+                case IPropertyDictionary properties: return await _context.Logical.Nodes.AssignProperties(location, properties, scope).ConfigureAwait(false);
             }
 
             if (IsDynamicObject(o))
             {
-                return await _context.Logical.Nodes.AssignDynamic(location, o, scope);
+                return await _context.Logical.Nodes.AssignDynamic(location, o, scope).ConfigureAwait(false);
             }
             throw new AssignmentException("Object not supported for assignment operations: " + (o != null ? o.ToString() : "NULL"));
         }

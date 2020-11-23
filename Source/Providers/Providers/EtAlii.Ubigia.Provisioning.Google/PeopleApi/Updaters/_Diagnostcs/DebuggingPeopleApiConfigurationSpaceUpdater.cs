@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             _logger.Information("Processing space: {AccountName}/{SpaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
 
-            await _decoree.Update(configurationSpace, systemSettings);
+            await _decoree.Update(configurationSpace, systemSettings).ConfigureAwait(false);
 
             _logger.Information("Processed space: {AccountName}/{SpaceName}", configurationSpace.Account.Name, configurationSpace.Space.Name);
         }

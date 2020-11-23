@@ -8,12 +8,12 @@
     {
         public static async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
         {
-            var space = await CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry previousEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
                 createdEntries[i] = createdEntry;
                 if (previousEntry != null)
                 {
@@ -27,12 +27,12 @@
 
         public static async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
         {
-            var space = await CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parentEntry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
                 if (parentEntry != null)
                 {
                     createdEntry.Parent = Relation.NewRelation(parentEntry.Id);
@@ -45,12 +45,12 @@
 
         public static async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
         {
-            var space = await CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parent2Entry = null;
             for (var i = 0; i < count; i++)
             {
-                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id);
+                var createdEntry = (IEditableEntry)await infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
                 if (parent2Entry != null)
                 {
                     createdEntry.Parent2 = Relation.NewRelation(parent2Entry.Id);
@@ -80,7 +80,7 @@
 
             if (addToRepository)
             {
-                space = await infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+                space = await infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             }
             return space;
         }

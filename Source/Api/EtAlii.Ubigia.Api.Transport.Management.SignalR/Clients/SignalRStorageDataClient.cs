@@ -24,12 +24,12 @@
                 Name = storageName,
                 Address = storageAddress,
             };
-            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Post", storage);
+            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Post", storage).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid storageId)
         {
-            await _invoker.Invoke(_connection, SignalRHub.Storage, "Delete", storageId);
+            await _invoker.Invoke(_connection, SignalRHub.Storage, "Delete", storageId).ConfigureAwait(false);
         }
 
         public async Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
@@ -40,17 +40,17 @@
                 Name = storageName,
                 Address = storageAddress,
             };
-            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Put", storageId, storage);
+            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Put", storageId, storage).ConfigureAwait(false);
         }
 
         public async Task<Storage> Get(string storageName)
         {
-            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "GetByName", storageName);
+            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "GetByName", storageName).ConfigureAwait(false);
         }
 
         public async Task<Storage> Get(Guid storageId)
         {
-            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Get", storageId);
+            return await _invoker.Invoke<Storage>(_connection, SignalRHub.Storage, "Get", storageId).ConfigureAwait(false);
         }
 
         public async IAsyncEnumerable<Storage> GetAll()
@@ -64,23 +64,23 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
+            await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
+            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
             _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Storage, UriKind.Absolute));
-	        await _connection.StartAsync();
+	        await _connection.StartAsync().ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await _connection.DisposeAsync();
+            await _connection.DisposeAsync().ConfigureAwait(false);
             _connection = null;
         }
     }

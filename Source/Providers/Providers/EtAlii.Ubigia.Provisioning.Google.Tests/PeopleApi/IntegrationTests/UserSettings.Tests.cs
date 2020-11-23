@@ -39,19 +39,19 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async() =>
             {
-                await userSettingsSetter.Set(context, email, null);
+                await userSettingsSetter.Set(context, email, null).ConfigureAwait(false);
             });
 
             // Assert.
-            await Assert.ThrowsAsync<ArgumentNullException>(act);
+            await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);
         }
 
         [Fact]
@@ -63,14 +63,14 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var userSettings = TestUserSettings.Create(email);
 
             // Act.
-            await userSettingsSetter.Set(context, email, userSettings);
+            await userSettingsSetter.Set(context, email, userSettings).ConfigureAwait(false);
 
             // Assert.
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
@@ -88,18 +88,18 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            await userSettingsSetter.Set(context, email, firstUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
-            await userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
             processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
@@ -117,16 +117,16 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            await userSettingsSetter.Set(context, email, firstUserSettings);
-            await userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
+            await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
@@ -144,17 +144,17 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            await userSettingsSetter.Set(context, email, firstUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
             var firstResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
-            await userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
             var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
 
             // Assert.
@@ -172,16 +172,16 @@
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
             var email = Guid.NewGuid().ToString();
-            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection().ConfigureAwait(false);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration).ConfigureAwait(false);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName).ConfigureAwait(false);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            await userSettingsSetter.Set(context, email, firstUserSettings);
-            await userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
+            await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
             var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
 
             // Assert.

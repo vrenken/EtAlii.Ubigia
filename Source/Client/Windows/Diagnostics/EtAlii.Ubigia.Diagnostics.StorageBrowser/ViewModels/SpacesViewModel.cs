@@ -70,7 +70,7 @@
             {
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Spaces.Add(SelectedAccount.Id, SpaceName, SelectedSpaceTemplate);
+                    await Connection.Spaces.Add(SelectedAccount.Id, SpaceName, SelectedSpaceTemplate).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -103,7 +103,7 @@
             {
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Spaces.Change(SelectedSpace.Id, SpaceName);
+                    await Connection.Spaces.Change(SelectedSpace.Id, SpaceName).ConfigureAwait(false);
                 });
                 task.Wait();
             }
@@ -132,7 +132,7 @@
             {
                 var task = Task.Run(async () =>
                 {
-                    await Connection.Spaces.Remove(SelectedSpace.Id);
+                    await Connection.Spaces.Remove(SelectedSpace.Id).ConfigureAwait(false);
                 });
                 task.Wait();
             }

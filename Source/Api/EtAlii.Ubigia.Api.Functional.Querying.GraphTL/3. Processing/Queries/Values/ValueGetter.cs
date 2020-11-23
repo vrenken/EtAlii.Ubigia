@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (annotation.Source != null)
             {
                 // @value(\#LastName) traversal, i.e. a path to another node.
-                return await _pathValueGetter.Get(valueName, structure, annotation.Source, executionScope);
+                return await _pathValueGetter.Get(valueName, structure, annotation.Source, executionScope).ConfigureAwait(false);
             }
             // @value() traversal, i.e. no path but the node itself.
             return new Value(valueName, structure.Node.Type);

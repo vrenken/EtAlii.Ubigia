@@ -18,9 +18,9 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
-            TargetEntry = await PowerShellClient.Current.EntryResolver.Get(this, EntryCmdlet.Current);
+            TargetEntry = await PowerShellClient.Current.EntryResolver.Get(this, EntryCmdlet.Current).ConfigureAwait(false);
 
             if (TargetEntry == null)
             {

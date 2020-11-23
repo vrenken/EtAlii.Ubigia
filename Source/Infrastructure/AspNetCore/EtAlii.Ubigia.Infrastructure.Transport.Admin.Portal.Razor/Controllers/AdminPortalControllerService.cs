@@ -23,7 +23,7 @@
             Status.Description = "Starting...";
             Status.Summary = "Starting Ubigia admin portal";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Ubigia admin portal is now available on the address specified below.");
@@ -38,7 +38,7 @@
             Status.Description = "Stopping...";
             Status.Summary = "Stopping Ubigia admin portal";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished providing Ubigia admin portal on the address specified below.");

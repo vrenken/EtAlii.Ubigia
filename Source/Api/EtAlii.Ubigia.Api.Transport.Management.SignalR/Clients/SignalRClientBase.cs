@@ -9,12 +9,12 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
+            await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
+            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public virtual Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)

@@ -41,8 +41,8 @@
                 IReadOnlyEntry entry = null;
                 var task = Task.Run(async () =>
                 {
-                    var root = await _fabric.Roots.Get(DefaultRoot.Head);
-                    entry = await _fabric.Entries.Get(root, new ExecutionScope(false));
+                    var root = await _fabric.Roots.Get(DefaultRoot.Head).ConfigureAwait(false);
+                    entry = await _fabric.Entries.Get(root, new ExecutionScope(false)).ConfigureAwait(false);
                 });
                 task.Wait();
 
@@ -62,8 +62,8 @@
             IReadOnlyEntry entry = null;
             var task = Task.Run(async () =>
             {
-                var root = await _fabric.Roots.Get(DefaultRoot.Tail);
-                entry = await _fabric.Entries.Get(root, new ExecutionScope(false));
+                var root = await _fabric.Roots.Get(DefaultRoot.Tail).ConfigureAwait(false);
+                entry = await _fabric.Entries.Get(root, new ExecutionScope(false)).ConfigureAwait(false);
             });
             task.Wait();
 

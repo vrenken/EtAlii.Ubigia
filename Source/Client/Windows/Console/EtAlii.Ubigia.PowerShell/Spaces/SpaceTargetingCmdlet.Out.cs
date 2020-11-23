@@ -21,9 +21,9 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
-            TargetSpace = await PowerShellClient.Current.SpaceResolver.Get(this, SpaceCmdlet.Current, AccountCmdlet.Current);
+            TargetSpace = await PowerShellClient.Current.SpaceResolver.Get(this, SpaceCmdlet.Current, AccountCmdlet.Current).ConfigureAwait(false);
 
             if (TargetSpace == null)
             {

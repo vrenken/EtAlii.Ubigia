@@ -27,7 +27,7 @@
 
         protected override async Task ProcessTask()
         {
-            await PowerShellClient.Current.ManagementConnection.Storages.Change(Storage.Id, Storage.Name, Storage.Address);
+            await PowerShellClient.Current.ManagementConnection.Storages.Change(Storage.Id, Storage.Name, Storage.Address).ConfigureAwait(false);
 
             //var verboseDescription = $"Storage '{Storage.Name}' has been updated."
             //WriteVerbose(verboseDescription)

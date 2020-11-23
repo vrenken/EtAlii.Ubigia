@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onNext: async o =>
                 {
                     var outputConverter = _resultConverterSelector.Select(o);
-                    await outputConverter(o, parameters.Scope, parameters.Output);
+                    await outputConverter(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
             return Task.CompletedTask;
         }

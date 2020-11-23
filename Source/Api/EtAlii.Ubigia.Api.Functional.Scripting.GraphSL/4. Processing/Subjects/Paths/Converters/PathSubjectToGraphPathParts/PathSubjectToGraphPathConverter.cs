@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 var nextPart = i < pathSubject.Parts.Length - 1 ? pathSubject.Parts[i + 1] : null;
 
                 var converter = _pathSubjectPartConverterSelector.Select(part);
-                var graphPathParts = await converter.Convert(part, i, previousPart, nextPart, scope);
+                var graphPathParts = await converter.Convert(part, i, previousPart, nextPart, scope).ConfigureAwait(false);
 
                 builder.AddRange(graphPathParts);
             }

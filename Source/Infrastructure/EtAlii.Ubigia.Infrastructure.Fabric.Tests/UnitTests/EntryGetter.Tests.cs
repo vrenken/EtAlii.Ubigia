@@ -29,7 +29,7 @@
             var testIdentifier = new TestIdentifierFactory().Create();
 
             // Act.
-            var item = await entryGetter.Get(testIdentifier, EntryRelation.All);
+            var item = await entryGetter.Get(testIdentifier, EntryRelation.All).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(Identifier.Empty,item.Id);

@@ -31,7 +31,7 @@
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 			
 			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
-			await call.ResponseAsync; 
+			await call.ResponseAsync.ConfigureAwait(false); 
 			var authenticationToken = call
 				.GetTrailers()
 				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;
@@ -45,7 +45,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 			
@@ -65,7 +65,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
@@ -85,7 +85,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
@@ -111,7 +111,7 @@
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
             // Assert.
-            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
         }
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -120,7 +120,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
@@ -141,7 +141,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
@@ -162,7 +162,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var headers = await CreateAuthenticationHeaders(channel, context);
+			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
@@ -190,7 +190,7 @@
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
 			// Assert.
-			await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+			await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
 		}
 		
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -206,7 +206,7 @@
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
 			// Assert.
-			await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+			await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
 		}
     }
 }

@@ -128,7 +128,7 @@
 
             try
             {
-                return await _logicalContext.Content.Get(identifier);
+                return await _logicalContext.Content.Get(identifier).ConfigureAwait(false);
             }
             catch (Exception e)
             {
@@ -145,7 +145,7 @@
 
             try
             {
-                return await _logicalContext.Content.Get(identifier, contentPartId);
+                return await _logicalContext.Content.Get(identifier, contentPartId).ConfigureAwait(false);
             }
             catch (Exception e)
             {

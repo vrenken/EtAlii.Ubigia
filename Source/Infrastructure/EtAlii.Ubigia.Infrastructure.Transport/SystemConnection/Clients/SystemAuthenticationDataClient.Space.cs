@@ -12,7 +12,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Account, connection.Configuration.Space);
+            var space = await GetSpace(connection.Account, connection.Configuration.Space).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);

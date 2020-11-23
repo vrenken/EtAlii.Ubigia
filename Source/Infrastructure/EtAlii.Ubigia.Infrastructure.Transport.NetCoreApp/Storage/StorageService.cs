@@ -27,7 +27,7 @@
             Status.Description = "Starting...";
             Status.Summary = "Starting Ubigia NetCore storage subsystem";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Ubigia NetCore storage subsystem is operational using the folder specified below.");
@@ -42,7 +42,7 @@
             Status.Description = "Stopping...";
             Status.Summary = "Stopping Ubigia NetCore storage subsystem";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished stopping Ubigia NetCore storage subsystem from the folder specified below.");

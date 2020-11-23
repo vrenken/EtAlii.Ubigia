@@ -13,7 +13,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
             
             if (Space == null)
             {
@@ -23,7 +23,7 @@
 
         protected override async Task ProcessTask()
         {
-            await PowerShellClient.Current.ManagementConnection.Spaces.Change(Space.Id, Space.Name);
+            await PowerShellClient.Current.ManagementConnection.Spaces.Change(Space.Id, Space.Name).ConfigureAwait(false);
 
             //var verboseDescription = $"Space '{Space.Name}' has been updated."
             //WriteVerbose(verboseDescription)

@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         var path = new List<IReadOnlyEntry>();
                         var results = new List<Identifier>();
 
-                        var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                        var entry = await parameters.Context.Entries.Get(start, parameters.Scope).ConfigureAwait(false);
 
                         do
                         {
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
                             var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Child, parameters.Scope);
                             await foreach (var child in children)
                             {
-                                await Update(results, child, parameters.Context, parameters.Scope);
+                                await Update(results, child, parameters.Context, parameters.Scope).ConfigureAwait(false);
                             }
                         }
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var result = new List<Identifier>();
             var path = new List<IReadOnlyEntry>();
 
-            var entry = await context.Entries.Get(start, scope);
+            var entry = await context.Entries.Get(start, scope).ConfigureAwait(false);
 
             do
             {
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 var children = context.Entries.GetRelated(entry.Id, EntryRelation.Child, scope);
                 await foreach (var child in children) // We cannot yield here somehow as the update method both adds and removes items. 
                 {
-                    await Update(result, child, context, scope);
+                    await Update(result, child, context, scope).ConfigureAwait(false);
                 }
             }
 
@@ -100,8 +100,8 @@ namespace EtAlii.Ubigia.Api.Logical
                     list.AddRangeOnce(entry.Children2.Select(c => c.Id));
                     break;
                 case EntryType.Remove:
-                    await Remove(list, entry.Children, context, scope);
-                    await Remove(list, entry.Children2, context, scope);
+                    await Remove(list, entry.Children, context, scope).ConfigureAwait(false);
+                    await Remove(list, entry.Children2, context, scope).ConfigureAwait(false);
                     break;
             }
         }
@@ -113,10 +113,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 .AsEnumerable();
             foreach (var idToRemove in idsToRemove)
             {
-                var entry = await context.Entries.Get(idToRemove, scope);
+                var entry = await context.Entries.Get(idToRemove, scope).ConfigureAwait(false);
                 if (entry.Downdate != Relation.None && !list.Remove(entry.Downdate.Id))
                 {
-                    await Remove(list, new[] { entry.Downdate }, context, scope);
+                    await Remove(list, new[] { entry.Downdate }, context, scope).ConfigureAwait(false);
                 }
             }
         }

@@ -65,7 +65,7 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var loadedFile = await Storage.FileManager.LoadFromFile<string>(file);
+            var loadedFile = await Storage.FileManager.LoadFromFile<string>(file).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(file, loadedFile);
@@ -83,7 +83,7 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
+            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(startPackage.Value, resultPackage.Value);
@@ -134,7 +134,7 @@
             Assert.True(Storage.FileManager.Exists(file));
 
             // Act.
-            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file);
+            var resultPackage = await Storage.FileManager.LoadFromFile<TestPackage<ulong>>(file).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(startPackage.Value, resultPackage.Value);

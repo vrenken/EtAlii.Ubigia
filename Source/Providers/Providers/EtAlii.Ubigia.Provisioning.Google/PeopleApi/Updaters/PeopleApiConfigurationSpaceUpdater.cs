@@ -25,9 +25,9 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-            var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Space);
+            var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Space).ConfigureAwait(false);
             {
-                var allUserSettings = await _userSettingsGetter.Get(userDataScriptContext);
+                var allUserSettings = await _userSettingsGetter.Get(userDataScriptContext).ConfigureAwait(false);
                 foreach (var userSettings in allUserSettings)
                 {
                     var duration = userSettings.ExpiresIn - _thresholdBeforeExpiration;
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                     //var duration = TimeSpan.FromMinutes(2) 
                     if (userSettings.Updated + duration < DateTime.UtcNow)
                     {
-                        await _userSettingsUpdater.Update(userSettings, systemSettings, userDataScriptContext, _thresholdBeforeExpiration);
+                        await _userSettingsUpdater.Update(userSettings, systemSettings, userDataScriptContext, _thresholdBeforeExpiration).ConfigureAwait(false);
                     }
                 }
             }

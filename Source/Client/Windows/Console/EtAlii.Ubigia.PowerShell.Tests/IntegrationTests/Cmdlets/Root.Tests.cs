@@ -12,7 +12,7 @@
         public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            await _testContext.Start();
+            await _testContext.Start().ConfigureAwait(false);
 
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -29,7 +29,7 @@
 
         public async Task DisposeAsync()
         {
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -38,8 +38,8 @@
         {
             PowerShell_Root_Add();
 
-            await DisposeAsync();
-            await InitializeAsync();
+            await DisposeAsync().ConfigureAwait(false);
+            await InitializeAsync().ConfigureAwait(false);
 
             PowerShell_Roots_Get();
         }

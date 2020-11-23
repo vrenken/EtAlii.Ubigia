@@ -16,7 +16,7 @@
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
@@ -28,7 +28,7 @@
         {
             _parser = null;
 
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -36,7 +36,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYY_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "time:2016",
@@ -77,7 +77,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMM_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -119,7 +119,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDD_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -161,7 +161,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHH_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -203,7 +203,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMM_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -245,7 +245,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSS_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -287,7 +287,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSSMMM_Path()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {

@@ -37,20 +37,20 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
 //        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
 //        {
-//            return await _logical.CreateLogicalContext(openOnCreation);
+//            return await _logical.CreateLogicalContext(openOnCreation).ConfigureAwait(false);
 //        }
 
         public async Task AddPeople(IGraphSLScriptContext context)
         {
-            await AddJohnDoe(context);
-            await AddJaneDoe(context);
-            await AddTonyStark(context);
-            await AddPeterVrenken(context);
-            await AddTanjaVrenken(context);
-            await AddArjanVrenken(context);
-            await AddIdaVrenken(context);
+            await AddJohnDoe(context).ConfigureAwait(false);
+            await AddJaneDoe(context).ConfigureAwait(false);
+            await AddTonyStark(context).ConfigureAwait(false);
+            await AddPeterVrenken(context).ConfigureAwait(false);
+            await AddTanjaVrenken(context).ConfigureAwait(false);
+            await AddArjanVrenken(context).ConfigureAwait(false);
+            await AddIdaVrenken(context).ConfigureAwait(false);
 
-            await AddFriends(context);
+            await AddFriends(context).ConfigureAwait(false);
         }
 
         public async Task AddAddresses(IGraphSLScriptContext context)
@@ -242,12 +242,12 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         
         public async Task Start(PortRange portRange)
         {
-            await _logical.Start(portRange);
+            await _logical.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await _logical.Stop();
+            await _logical.Stop().ConfigureAwait(false);
         }
 
         #endregion start/stop

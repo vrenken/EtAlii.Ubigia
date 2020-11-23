@@ -31,7 +31,7 @@
             var pathSubject = (RelativePathSubject) subject;
 
             // Let's expand all possible variables within the path.
-            var parts = await _pathVariableExpander.Expand(pathSubject.Parts);
+            var parts = await _pathVariableExpander.Expand(pathSubject.Parts).ConfigureAwait(false);
 
             if (parts[1] is IdentifierPathSubjectPart)
             {
@@ -42,11 +42,11 @@
             else if (parts[0] is ParentPathSubjectPart)
             {
                 // Ok, we can translate the path into a rooted path. let's do so.
-                var root = await _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope); 
+                var root = await _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope).ConfigureAwait(false); 
                 var path = parts.Length > 3
                     ? parts.Skip(3).ToArray()
                     : new PathSubjectPart[0];
-                await _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope);
+                await _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope).ConfigureAwait(false);
 
             }
             else

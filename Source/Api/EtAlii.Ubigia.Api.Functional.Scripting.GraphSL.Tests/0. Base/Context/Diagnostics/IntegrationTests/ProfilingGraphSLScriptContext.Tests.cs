@@ -18,7 +18,7 @@
         public Task InitializeAsync()
         {
             _diagnostics = DiagnosticsConfiguration.Default;
-            //_logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            //_logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             return Task.CompletedTask;
         }
 
@@ -36,7 +36,7 @@
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseGraphSLProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new GraphSLScriptContextFactory().Create(configuration);
@@ -52,7 +52,7 @@
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseFunctionalGraphSLDiagnostics(_diagnostics)
                 .UseGraphSLProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new GraphSLScriptContextFactory().Create(configuration);
@@ -68,7 +68,7 @@
             var configuration = new GraphSLScriptContextConfiguration()
                 .UseFunctionalGraphSLDiagnostics(_diagnostics)
                 .UseGraphSLProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new GraphSLScriptContextFactory().Create(configuration);

@@ -37,14 +37,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             if (item != null && Added != null)
             {
-                await Added.Invoke(item);
+                await Added.Invoke(item).ConfigureAwait(false);
             }
             return item;
         }
 
         public async Task Start()
         {
-            var items = await _fabric.Items.GetItems<Storage>(Folder);
+            var items = await _fabric.Items.GetItems<Storage>(Folder).ConfigureAwait(false);
 
             // TODO: This test to see if the local storage has already been added is not very stable. 
             // Please find another way to determine that the local storage needs initialization.
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
                 if (Initialized != null)
                 {
-                    await Initialized(storage);
+                    await Initialized(storage).ConfigureAwait(false);
                 }
             }
 

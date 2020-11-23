@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
                     }
 
-                    var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                    var entry = await parameters.Context.Entries.Get(start, parameters.Scope).ConfigureAwait(false);
 
                     if (name != string.Empty && name != entry.Type)
                     {
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
             }
-            var entry = await context.Entries.Get(start, scope);
+            var entry = await context.Entries.Get(start, scope).ConfigureAwait(false);
             if (name != string.Empty && name != entry.Type)
             {
                 yield break;

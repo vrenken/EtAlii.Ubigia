@@ -110,7 +110,7 @@
             try
             {
                 var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
-                response = await _items.Add(item, template);
+                response = await _items.Add(item, template).ConfigureAwait(false);
             }
             catch (Exception e)
             {

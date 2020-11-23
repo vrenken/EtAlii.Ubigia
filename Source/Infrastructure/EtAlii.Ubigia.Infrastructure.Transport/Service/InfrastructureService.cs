@@ -34,12 +34,12 @@
         public override async Task Start()
         {
             Infrastructure = CreateInfrastructure();
-            await Infrastructure.Start();
+            await Infrastructure.Start().ConfigureAwait(false);
         }
 
         public override async Task Stop()
         {
-            await Infrastructure.Stop();
+            await Infrastructure.Stop().ConfigureAwait(false);
         }
         
         private IInfrastructure CreateInfrastructure()

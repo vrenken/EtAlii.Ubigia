@@ -27,7 +27,7 @@
                 throw new PropertyManagerException("No identifier specified");
             }
 
-            await _fabric.Properties.Store(identifier, properties, scope);
+            await _fabric.Properties.Store(identifier, properties, scope).ConfigureAwait(false);
         }
 
 
@@ -38,7 +38,7 @@
                 throw new PropertyManagerException("No identifier specified");
             }
 
-            return await _propertiesGetter.Get(identifier, scope);
+            return await _propertiesGetter.Get(identifier, scope).ConfigureAwait(false);
         }
 
         public Task<bool> HasProperties(Identifier identifier, ExecutionScope scope)

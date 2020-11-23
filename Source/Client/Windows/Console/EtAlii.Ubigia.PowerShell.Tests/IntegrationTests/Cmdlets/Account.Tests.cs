@@ -12,12 +12,12 @@
         public async Task InitializeAsync()
         {
             _testContext = new PowerShellTestContext();
-            await _testContext.Start();
+            await _testContext.Start().ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.Stop();
+            await _testContext.Stop().ConfigureAwait(false);
             _testContext = null;
         }
 
@@ -39,8 +39,8 @@
         {
             PowerShell_Account_Add();
 
-            await DisposeAsync();
-            await InitializeAsync();
+            await DisposeAsync().ConfigureAwait(false);
+            await InitializeAsync().ConfigureAwait(false);
 
             PowerShell_Accounts_Get();
         }

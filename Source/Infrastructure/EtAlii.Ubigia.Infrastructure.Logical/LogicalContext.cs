@@ -56,14 +56,14 @@
         {
             _fabricContext.Start();
 
-            await Storages.Start();
+            await Storages.Start().ConfigureAwait(false);
             Roots.Start();
         }
 
         public async Task Stop()
         {
             Roots.Stop();
-            await Storages.Stop();
+            await Storages.Stop().ConfigureAwait(false);
 
             _fabricContext.Stop();
         }

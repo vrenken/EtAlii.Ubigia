@@ -49,10 +49,10 @@
                 switch (traversal)
                 {
                     case Traversal.DepthFirst:
-                        await _depthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver);
+                        await _depthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver).ConfigureAwait(false);
                         break;
                     case Traversal.BreadthFirst:
-                        await _breadthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver);
+                        await _breadthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver).ConfigureAwait(false);
                         break;
                 }
 
@@ -69,7 +69,7 @@
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var entry = await context.Entries.Get(o, scope);
+                    var entry = await context.Entries.Get(o, scope).ConfigureAwait(false);
                     output.OnNext(entry);
                 });
         }

@@ -24,12 +24,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task<Identifier> Get(Guid spaceId)
         {
-            await _lockObject.WaitAsync();
+            await _lockObject.WaitAsync().ConfigureAwait(false);
             try
             {
                 if (!_cachedTailIdentifiers.TryGetValue(spaceId, out var tailIdentifier))
                 {
-                    tailIdentifier = await DetermineTail(spaceId);
+                    tailIdentifier = await DetermineTail(spaceId).ConfigureAwait(false);
                     _cachedTailIdentifiers[spaceId] = tailIdentifier;
                 }
                 return tailIdentifier;
@@ -44,14 +44,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             // load from root "Tail"
 
-            var root = await _context.Roots.Get(spaceId, DefaultRoot.Tail);
+            var root = await _context.Roots.Get(spaceId, DefaultRoot.Tail).ConfigureAwait(false);
             var tailIdentifier = root?.Identifier ?? Identifier.Empty;
 
             if (tailIdentifier == Identifier.Empty)
             {
                 // Determine from disk.
                 tailIdentifier = DetermineTailFromDisk(spaceId);
-                await _rootUpdater.Update(spaceId, DefaultRoot.Tail, tailIdentifier);
+                await _rootUpdater.Update(spaceId, DefaultRoot.Tail, tailIdentifier).ConfigureAwait(false);
             }
             return tailIdentifier;
         }

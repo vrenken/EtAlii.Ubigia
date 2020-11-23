@@ -31,7 +31,7 @@
                     Template = template.Name
                 };
                 var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync.ConfigureAwait(false);
     
                 return response.Account.ToLocal();
             }
@@ -50,7 +50,7 @@
                     Id = GuidExtension.ToWire(accountId)
                 };
                 var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-                await call.ResponseAsync;
+                await call.ResponseAsync.ConfigureAwait(false);
             }
             catch (RpcException e)
             {
@@ -74,7 +74,7 @@
                     Account = account,
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync.ConfigureAwait(false);
     
                 return response.Account.ToLocal();
             }
@@ -93,7 +93,7 @@
                     Account = AccountExtension.ToWire(account),
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync.ConfigureAwait(false);
     
                 return response.Account.ToLocal();
             }
@@ -112,7 +112,7 @@
                     Name = accountName,
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync.ConfigureAwait(false);
     
                 return response.Account.ToLocal();
             }
@@ -131,7 +131,7 @@
                     Id = GuidExtension.ToWire(accountId)
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync.ConfigureAwait(false);
     
                 return response.Account.ToLocal();
             }
@@ -178,12 +178,12 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Connect((IStorageConnection<IGrpcStorageTransport>) storageConnection);
+            await Connect((IStorageConnection<IGrpcStorageTransport>) storageConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection);
+            await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)

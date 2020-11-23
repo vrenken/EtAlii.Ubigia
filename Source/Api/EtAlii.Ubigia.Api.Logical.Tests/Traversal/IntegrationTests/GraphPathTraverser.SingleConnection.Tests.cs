@@ -22,7 +22,7 @@
 
         public async Task InitializeAsync()
         {
-            _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+            _fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
         }
 
         public Task DisposeAsync()
@@ -55,10 +55,10 @@
             // Arrange.
             var scope = new ExecutionScope(false);
             const int depth = 5;
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -94,10 +94,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -137,10 +137,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -176,10 +176,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -220,10 +220,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -260,10 +260,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -304,10 +304,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -344,10 +344,10 @@
             // Arrange.
             const int depth = 5;
             var scope = new ExecutionScope(false);
-            var communicationsRoot = await _fabric.Roots.Get("Communication");
-            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
+            var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
+            var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()

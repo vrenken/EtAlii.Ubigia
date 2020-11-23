@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             profile.Identifier = identifier.ToString();
             profile.TraverseToFinal = traverseToFinal;
 
-            var result = await _decoree.TraverseToSingle(identifier, scope, traverseToFinal);
+            var result = await _decoree.TraverseToSingle(identifier, scope, traverseToFinal).ConfigureAwait(false);
 
             Profiler.End(profile);
 

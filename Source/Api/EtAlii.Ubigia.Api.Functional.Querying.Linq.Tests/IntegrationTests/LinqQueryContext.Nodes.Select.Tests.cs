@@ -35,12 +35,12 @@
 
             _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _logicalContext = new LogicalContextFactory().Create(_configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(_configuration);
             
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
             _countryEntry = addResult.Entry;
 
@@ -51,7 +51,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _countryEntry = null;
             _countryPath = null;
@@ -80,7 +80,7 @@
         public async Task Linq_Nodes_Select_Cast_Single_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -95,7 +95,7 @@
         public async Task Linq_Nodes_Select_Cast_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -110,7 +110,7 @@
         public async Task Linq_Nodes_Select_Any_With_Multiple_Items()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 2);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 2).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -139,7 +139,7 @@
         public async Task Linq_Nodes_Select_Any_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1).ConfigureAwait(false);
             var path = $"{_countryPath}/Overijssel_01";
             var items = _context.Nodes.Select(path);
 
@@ -169,7 +169,7 @@
         {
             // Arrange.
             const int regions = 1;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -185,7 +185,7 @@
         {
             // Arrange.
             const int regions = 2;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -202,7 +202,7 @@
         {
             // Arrange.
             const int regions = 5;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -218,7 +218,7 @@
         {
             // Arrange.
             const int regions = 20;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -234,7 +234,7 @@
         {
             // Arrange.
             const int regions = 50;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
@@ -250,7 +250,7 @@
         {
             // Arrange.
             const int regions = 50;
-            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions).ConfigureAwait(false);
             var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
             const int iterations = 20;
@@ -274,9 +274,9 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var locationRoot = await _logicalContext.Roots.Get("Location");
-            var locationEntry = await _logicalContext.Nodes.Select(GraphPath.Create(locationRoot.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locationEntry, "Europe", "NL", "Overijssel");
+            var locationRoot = await _logicalContext.Roots.Get("Location").ConfigureAwait(false);
+            var locationEntry = await _logicalContext.Nodes.Select(GraphPath.Create(locationRoot.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locationEntry, "Europe", "NL", "Overijssel").ConfigureAwait(false);
             var path = $"/Location/Europe/NL/Overijssel";
             var items = _context.Nodes.Select(path);
 

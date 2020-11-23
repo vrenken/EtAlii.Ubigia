@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             var subItems = GetNextRecursion(start, context, scope);
 
-            await foreach (var subItem in subItems)
+            await foreach (var subItem in subItems.ConfigureAwait(false))
             {
                 var subResults = TraverseRecursive(subItem, context, scope);
                 await foreach (var subResult in subResults)

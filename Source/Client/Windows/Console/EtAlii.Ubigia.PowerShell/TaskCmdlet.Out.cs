@@ -39,7 +39,7 @@
         /// <returns>A collection of tasks</returns>
         protected virtual IEnumerable<Task<TOut>> CreateProcessTasks()
         {
-            yield return Task.Run(async () => await ProcessTask());
+            yield return Task.Run(async () => await ProcessTask().ConfigureAwait(false));
         }
 
         /// <summary>

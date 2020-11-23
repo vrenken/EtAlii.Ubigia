@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             foreach (var entry in entries)
             {
                 // We want retrieved nodes to have the properties assigned, right?
-                var properties = await _context.Logical.Properties.Get(entry.Id, scope) ?? new PropertyDictionary();
+                var properties = await _context.Logical.Properties.Get(entry.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
                 yield return new DynamicNode(entry, properties);
             }
         }
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public async Task<DynamicNode> Convert(IReadOnlyEntry entry, ExecutionScope scope)
         {
             // We want retrieved nodes to have the properties assigned, right?
-            var properties = await _context.Logical.Properties.Get(entry.Id, scope) ?? new PropertyDictionary();
+            var properties = await _context.Logical.Properties.Get(entry.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
             return new DynamicNode(entry, properties);
         }
     }

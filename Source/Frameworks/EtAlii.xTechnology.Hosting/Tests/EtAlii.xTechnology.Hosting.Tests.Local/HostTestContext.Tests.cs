@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var context = new HostTestContext(configurationFile);
 
             // Act.
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(context);
@@ -37,10 +37,10 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         {
             // Arrange.
             var context = new HostTestContext(configurationFile);
-            await context.Start(UnitTestSettings.NetworkPortRange);
+            await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             // Act.
-            await context.Stop();
+            await context.Stop().ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(context);

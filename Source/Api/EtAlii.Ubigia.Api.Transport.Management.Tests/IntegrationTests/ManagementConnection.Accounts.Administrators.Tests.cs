@@ -16,24 +16,24 @@
         }
         public async Task InitializeAsync()
         {
-            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange);
+            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.TransportTestContext.Stop();
+            await _testContext.TransportTestContext.Stop().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_InitializeAndCleanupOnly_01()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
-            await connection.Close();
+            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -44,12 +44,12 @@
         public async Task ManagementConnection_Accounts_InitializeAndCleanupOnly_02()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
-            await connection.Close();
+            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -60,12 +60,12 @@
         public async Task ManagementConnection_Accounts_InitializeAndCleanupOnly_03()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
-            await connection.Close();
+            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -76,12 +76,12 @@
         public async Task ManagementConnection_Accounts_InitializeAndCleanupOnly_04()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
-            await connection.Close();
+            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -92,12 +92,12 @@
         public async Task ManagementConnection_Accounts_InitializeAndCleanupOnly_05()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
-            await connection.Close();
+            var account = await connection.Accounts.Add("JohnDoe", "123", AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -110,10 +110,10 @@
             // Arrange.
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -124,14 +124,14 @@
             Assert.NotEqual(Guid.Empty, account.Id);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Add_Multiple_Administrators()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
@@ -140,7 +140,7 @@
                 var password = Guid.NewGuid().ToString();
 
                 // Act.
-                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(account);
@@ -149,7 +149,7 @@
             }
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -160,9 +160,9 @@
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
-            account = await connection.Accounts.Get(account.Id);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -173,14 +173,14 @@
             Assert.NotEqual(Guid.Empty, account.Id);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_Multiple_Administrators()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
@@ -189,8 +189,8 @@
                 var password = Guid.NewGuid().ToString();
 
                 // Act.
-                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
-                account = await connection.Accounts.Get(account.Id);
+                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
+                account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(account);
@@ -199,14 +199,14 @@
             }
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_First_Administrator_Full_Add()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var accounts = new List<Account>();
 
             for (var i = 0; i < 10; i++)
@@ -216,7 +216,7 @@
                 var password = Guid.NewGuid().ToString();
 
                 // Act.
-                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(account);
@@ -228,7 +228,7 @@
             foreach (var account in accounts)
             {
                 // Act.
-                var retrievedAccount = await connection.Accounts.Get(account.Id);
+                var retrievedAccount = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedAccount);
@@ -237,7 +237,7 @@
             }
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -246,7 +246,7 @@
             // Arrange.
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var retrievedAccounts = await connection.Accounts
                 .GetAll()
                 .ToArrayAsync();
@@ -258,14 +258,14 @@
             Assert.Equal(2, retrievedAccounts.Count());
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_All_Administrators()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var accounts = new List<Account>();
 
             for (var i = 0; i < 10; i++)
@@ -275,7 +275,7 @@
                 var password = Guid.NewGuid().ToString();
 
                 // Act.
-                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+                var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
                 // Arrange.
                 Assert.NotNull(account);
@@ -284,7 +284,7 @@
                 accounts.Add(account);
             }
 
-            var retrievedAccounts = await connection.Accounts.GetAll().ToArrayAsync();
+            var retrievedAccounts = await connection.Accounts.GetAll().ToArrayAsync().ConfigureAwait(false);
 
             // We have the system and administrator accounts, 
             // so 2 additional accounts need to be used in the equation.
@@ -299,19 +299,19 @@
             }
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_Administrator()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -319,7 +319,7 @@
             Assert.Equal(password, account.Password);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -334,7 +334,7 @@
             password = Guid.NewGuid().ToString();
 
             // Act.
-            account = await connection.Accounts.Change(account.Id, name, password);
+            account = await connection.Accounts.Change(account.Id, name, password).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -342,7 +342,7 @@
             Assert.Equal(password, account.Password);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -353,19 +353,19 @@
             Assert.NotEqual(Guid.Empty, account.Id);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_Administrator_Roles_01()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -373,7 +373,7 @@
             Assert.Equal(password, account.Password);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -387,7 +387,7 @@
 
 			// Act.
 			account.Roles = new[] { "First", "Second", "Third" };
-            account = await connection.Accounts.Change(account);
+            account = await connection.Accounts.Change(account).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -396,7 +396,7 @@
             Assert.Equal(3, account.Roles.Length);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -408,19 +408,19 @@
             Assert.Equal("Third", account.Roles[2]);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_Administrator_Roles_02()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -428,7 +428,7 @@
             Assert.Equal(password, account.Password);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -439,7 +439,7 @@
 	        Assert.DoesNotContain(null, account.Roles);
 			// Act.
 			account.Roles = new[] { "First", "Second", "Third" };
-            account = await connection.Accounts.Change(account);
+            account = await connection.Accounts.Change(account).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -448,7 +448,7 @@
             Assert.Equal(3, account.Roles.Length);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -461,7 +461,7 @@
 
             // Act.
             account.Roles = new[] { "First", "Second", };
-            account = await connection.Accounts.Change(account);
+            account = await connection.Accounts.Change(account).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -470,7 +470,7 @@
             Assert.Equal(2, account.Roles.Length);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -481,7 +481,7 @@
             Assert.Equal("Second", account.Roles[1]);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
 
@@ -489,12 +489,12 @@
         public async Task ManagementConnection_Accounts_Delete_Administrator()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -502,83 +502,83 @@
             Assert.Equal(password, account.Password);
 
             // Act.
-            account = await connection.Accounts.Get(account.Id);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
 
             // Act.
-            await connection.Accounts.Remove(account.Id);
-            account = await connection.Accounts.Get(account.Id);
+            await connection.Accounts.Remove(account.Id).ConfigureAwait(false);
+            account = await connection.Accounts.Get(account.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(account);
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Delete_Non_Existing_Administrator()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
+            var act = new Func<Task>(async () => await connection.Accounts.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_Non_Existing_Administrator()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
+            var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Add_Already_Existing_Administrator()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection();
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
+            var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false);
             Assert.NotNull(account);
 
             // Act.
-            var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator));
+            var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
 
             // Assure.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Add_Administrator_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.Administrator))
@@ -592,7 +592,7 @@
         public async Task ManagementConnection_Accounts_Get_Administrator_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Get(Guid.NewGuid()))
@@ -606,7 +606,7 @@
         public async Task ManagementConnection_Accounts_Delete_Administrator_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Remove(Guid.NewGuid()))
@@ -620,7 +620,7 @@
         public async Task ManagementConnection_Accounts_GetAll_Administrators_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.GetAll())
@@ -634,7 +634,7 @@
         public async Task ManagementConnection_Accounts_Change_Administrator_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))

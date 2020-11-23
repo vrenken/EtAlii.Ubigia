@@ -24,7 +24,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.Connect(null);
+            await contentDataClientStub.Connect(null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -36,7 +36,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.Disconnect();
+            await contentDataClientStub.Disconnect().ConfigureAwait(false);
 
             // Assert.
         }
@@ -48,7 +48,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            var result = await contentDataClientStub.RetrieveDefinition(Identifier.Empty);
+            var result = await contentDataClientStub.RetrieveDefinition(Identifier.Empty).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(result);
@@ -61,7 +61,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.Store(Identifier.Empty, (ContentPart)null);
+            await contentDataClientStub.Store(Identifier.Empty, (ContentPart)null).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -71,7 +71,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinition)null);
+            await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinition)null).ConfigureAwait(false);
 
             // Assert.
         }
@@ -83,7 +83,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinitionPart)null);
+            await contentDataClientStub.StoreDefinition(Identifier.Empty, (ContentDefinitionPart)null).ConfigureAwait(false);
 
             // Assert.
         }

@@ -13,7 +13,7 @@
 
         protected override async Task BeginProcessingTask()
         {
-            await base.BeginProcessingTask();
+            await base.BeginProcessingTask().ConfigureAwait(false);
 
             if (Root == null)
             {
@@ -23,7 +23,7 @@
 
         protected override async Task ProcessTask()
         {
-            await PowerShellClient.Current.Fabric.Roots.Change(Root.Id, Root.Name);
+            await PowerShellClient.Current.Fabric.Roots.Change(Root.Id, Root.Name).ConfigureAwait(false);
 
             //var verboseDescription = $"Root '{Root.Name}' has been updated."
             //WriteVerbose(verboseDescription)

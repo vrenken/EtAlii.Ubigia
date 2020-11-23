@@ -34,12 +34,12 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
             using (var flow = new AuthorizationCodeFlow(initializer))
             {
-                var result = await flow.RefreshTokenAsync(userSettings.Id, userSettings.RefreshToken, CancellationToken.None);
+                var result = await flow.RefreshTokenAsync(userSettings.Id, userSettings.RefreshToken, CancellationToken.None).ConfigureAwait(false);
                 userSettings.RefreshToken = result.RefreshToken;
                 userSettings.AccessToken = result.AccessToken;
                 userSettings.ExpiresIn = TimeSpan.FromSeconds(result.ExpiresInSeconds ?? thresholdBeforeExpiration.TotalSeconds);
                 userSettings.Updated = DateTime.UtcNow;
-                await _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings);
+                await _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings).ConfigureAwait(false);
             }
         }
     }

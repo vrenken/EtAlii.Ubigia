@@ -25,7 +25,7 @@
 	        Status.Description = "Starting...";
 	        Status.Summary = "Starting Ubigia user SignalR services";
 
-	        await base.Start();
+	        await base.Start().ConfigureAwait(false);
 
 	        var sb = new StringBuilder();
 	        sb.AppendLine("All OK. Ubigia user SignalR services are available on the address specified below.");
@@ -40,7 +40,7 @@
 	        Status.Description = "Stopping...";
 	        Status.Summary = "Stopping Ubigia user SignalR services";
 
-	        await base.Stop();
+	        await base.Stop().ConfigureAwait(false);
 
 	        var sb = new StringBuilder();
 	        sb.AppendLine("Finished providing Ubigia user SignalR services on the address specified below.");

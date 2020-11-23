@@ -69,7 +69,7 @@
         {
             if (ManagementConnection != null && ManagementConnection.IsConnected)
             {
-                await ManagementConnection.Close();
+                await ManagementConnection.Close().ConfigureAwait(false);
             }
 
 	        var configuration = new ManagementConnectionConfiguration()
@@ -77,7 +77,7 @@
                 .Use(address)
                 .Use(accountName, password);
             ManagementConnection = new ManagementConnectionFactory().Create(configuration);
-            await ManagementConnection.Open();
+            await ManagementConnection.Open().ConfigureAwait(false);
         }
     }
 }

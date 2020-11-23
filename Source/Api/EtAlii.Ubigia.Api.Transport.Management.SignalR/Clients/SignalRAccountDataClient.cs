@@ -25,12 +25,12 @@
                 Password = accountPassword,
             };
 
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Post", account, template.Name);
+            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Post", account, template.Name).ConfigureAwait(false);
         }
 
         public async Task Remove(Guid accountId)
         {
-            await _invoker.Invoke(_connection, SignalRHub.Account, "Delete", accountId);
+            await _invoker.Invoke(_connection, SignalRHub.Account, "Delete", accountId).ConfigureAwait(false);
         }
 
         public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
@@ -42,22 +42,22 @@
                 Password = accountPassword,
             };
 
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", accountId, account);
+            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", accountId, account).ConfigureAwait(false);
         }
 
         public async Task<Account> Change(Account account)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", account.Id, account);
+            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", account.Id, account).ConfigureAwait(false);
         }
 
         public async Task<Account> Get(string accountName)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "GetByName", accountName);
+            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "GetByName", accountName).ConfigureAwait(false);
         }
 
         public async Task<Account> Get(Guid accountId)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Get", accountId);
+            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Get", accountId).ConfigureAwait(false);
         }
 
         public async IAsyncEnumerable<Account> GetAll()
@@ -71,23 +71,23 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection);
+            await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
+            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
             _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Account, UriKind.Absolute));
-			await _connection.StartAsync();
+			await _connection.StartAsync().ConfigureAwait(false);
         }
 
         public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await _connection.DisposeAsync();
+            await _connection.DisposeAsync().ConfigureAwait(false);
             _connection = null;
         }
     }

@@ -34,7 +34,7 @@
                 address = _addressFactory.Create(currentStorageApiAddress, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.StorageId.ToString());
             }
 
-            var storage = address != null ? await _client.Get<Storage>(address) : null;
+            var storage = address != null ? await _client.Get<Storage>(address).ConfigureAwait(false) : null;
 
             if (storage == null && useCurrentStorage)
             {

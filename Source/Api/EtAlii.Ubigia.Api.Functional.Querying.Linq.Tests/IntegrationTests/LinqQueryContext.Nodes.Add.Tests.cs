@@ -27,12 +27,12 @@
 
         public async Task InitializeAsync()
         {
-            await TestInitialize();
+            await TestInitialize().ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await TestCleanup();
+            await TestCleanup().ConfigureAwait(false);
         }
 
         private async Task TestInitialize()
@@ -43,12 +43,12 @@
             
             _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _logicalContext = new LogicalContextFactory().Create(_configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(_configuration);
             
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
@@ -58,7 +58,7 @@
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close();
+            await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
             _countryPath = null;
             _context.Dispose();
@@ -182,13 +182,13 @@
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            await TestCleanup();
-            await TestInitialize();
+            await TestCleanup().ConfigureAwait(false);
+            await TestInitialize().ConfigureAwait(false);
 
             // Arrange.
             start = Environment.TickCount;
                         
-            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
             items = _context.Nodes.Select(_countryPath);
 
@@ -200,13 +200,13 @@
             duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            await TestCleanup();
-            await TestInitialize();
+            await TestCleanup().ConfigureAwait(false);
+            await TestInitialize().ConfigureAwait(false);
 
             // Arrange.
             start = Environment.TickCount;
 
-            addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
             items = _context.Nodes.Select(_countryPath);
 

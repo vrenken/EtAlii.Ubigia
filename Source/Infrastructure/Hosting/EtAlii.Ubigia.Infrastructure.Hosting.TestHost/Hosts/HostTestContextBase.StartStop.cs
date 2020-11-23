@@ -8,7 +8,7 @@
     {
         public override async Task Start(PortRange portRange)
         {
-            await base.Start(portRange);
+            await base.Start(portRange).ConfigureAwait(false);
 
             Infrastructure = Host.Infrastructure;
             
@@ -27,7 +27,7 @@
 
         public override async Task Stop()
         {
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
             
             Infrastructure = null;
 

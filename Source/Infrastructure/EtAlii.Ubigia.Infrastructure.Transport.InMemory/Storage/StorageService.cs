@@ -23,7 +23,7 @@
             Status.Description = "Starting...";
             Status.Summary = "Starting Ubigia in-memory storage subsystem";
 
-            await base.Start();
+            await base.Start().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("All OK. Ubigia in-memory storage subsystem is operational.");
@@ -37,7 +37,7 @@
             Status.Description = "Stopping...";
             Status.Summary = "Stopping Ubigia in-memory storage subsystem";
 
-            await base.Stop();
+            await base.Stop().ConfigureAwait(false);
 
             var sb = new StringBuilder();
             sb.AppendLine("Finished stopping Ubigia in-memory storage subsystem.");

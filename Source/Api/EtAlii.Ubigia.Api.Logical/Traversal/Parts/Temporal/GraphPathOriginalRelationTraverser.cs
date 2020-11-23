@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         do
                         {
                             previousResult = result;
-                            downDate = (await parameters.Context.Entries.Get(previousResult, parameters.Scope)).Downdate;
+                            downDate = (await parameters.Context.Entries.Get(previousResult, parameters.Scope).ConfigureAwait(false)).Downdate;
                             result = downDate.Id;
                         }
                         while (downDate != Relation.None);
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Logical
             do
             {
                 previousResult = result;
-                downDate = (await context.Entries.Get(previousResult, scope)).Downdate;
+                downDate = (await context.Entries.Get(previousResult, scope).ConfigureAwait(false)).Downdate;
                 result = downDate.Id;
             }
             while (downDate != Relation.None);

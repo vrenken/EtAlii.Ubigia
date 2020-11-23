@@ -27,7 +27,7 @@
             var addedSpace = _logicalContext.Spaces.Add(item, template, out var isAdded);
             if (isAdded)
             {
-                await _spaceInitializer.Initialize(addedSpace, template);
+                await _spaceInitializer.Initialize(addedSpace, template).ConfigureAwait(false);
             }
 
             return addedSpace;

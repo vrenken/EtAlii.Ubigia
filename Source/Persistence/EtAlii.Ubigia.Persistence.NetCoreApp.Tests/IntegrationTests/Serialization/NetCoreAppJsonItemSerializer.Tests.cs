@@ -63,7 +63,7 @@
 
             // Act.
             storageSerializer.Serialize(fileName, testItem);
-            var retrievedTestItem = await storageSerializer.Deserialize<SimpleTestItem>(fileName);
+            var retrievedTestItem = await storageSerializer.Deserialize<SimpleTestItem>(fileName).ConfigureAwait(false);
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);

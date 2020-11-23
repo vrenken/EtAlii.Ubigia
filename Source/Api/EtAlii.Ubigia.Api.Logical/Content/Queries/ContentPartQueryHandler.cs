@@ -18,13 +18,13 @@
             var totalParts = query.Content.TotalParts;
             for (ulong part = 0; part < totalParts; part++)
             {
-                await GetContentPart(query.Stream, query.Identifier, part); // , query.Content
+                await GetContentPart(query.Stream, query.Identifier, part).ConfigureAwait(false); // , query.Content
             }
         }
 
         private async Task GetContentPart(Stream localDataStream, Identifier identifier, ulong contentPartId) // , IReadOnlyContent content
         {
-            var contentPart = await _fabric.Content.Retrieve(identifier, contentPartId);
+            var contentPart = await _fabric.Content.Retrieve(identifier, contentPartId).ConfigureAwait(false);
             var buffer = contentPart.Data;
             localDataStream.Write(buffer, 0, buffer.Length);
         }

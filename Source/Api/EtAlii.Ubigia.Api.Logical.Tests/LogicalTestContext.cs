@@ -15,13 +15,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)
         {
-            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation);
+            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
         }
         
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
             var configuration = new LogicalContextConfiguration();
-            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation);
+            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
             return new LogicalContextFactory().Create(configuration);
         }
         
@@ -35,19 +35,19 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // [LINK]
             // mm
 
-            var locationRoot = await context.Roots.Get("Location");
+            var locationRoot = await context.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
 
-            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope);
-            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
+            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
+            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
             var path = $"/Location/{continent}/{country}";
             return new LocationAddResult(path, countryEntry);
         }
         
         public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
-            var locationRoot = await context.Roots.Get("Location");
+            var locationRoot = await context.Roots.Get("Location").ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -56,11 +56,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var scope = new ExecutionScope(false);
 
-            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope);
-            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
-            var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope);
-            var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope);
-            await context.Nodes.Add(cityEntry.Id, location, scope);
+            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
+            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
+            var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope).ConfigureAwait(false);
+            var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope).ConfigureAwait(false);
+            await context.Nodes.Add(cityEntry.Id, location, scope).ConfigureAwait(false);
             return $"/Location/{continent}/{country}/{region}/{city}/{location}";
         }
 
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             for (var i = 1; i <= regions; i++)
             {
-                await CreateHierarchy(context, countryEntry, $"Overijssel_{i:00}");
+                await CreateHierarchy(context, countryEntry, $"Overijssel_{i:00}").ConfigureAwait(false);
             }
         }
 
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var result = parent;
             foreach (var element in hierarchy)
             {
-                result = (IEditableEntry)await context.Nodes.Add(result.Id, element, scope);
+                result = (IEditableEntry)await context.Nodes.Add(result.Id, element, scope).ConfigureAwait(false);
             }
             return result;
         }
@@ -89,12 +89,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task Start(PortRange portRange)
         {
-            await _fabric.Start(portRange);
+            await _fabric.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await _fabric.Stop();
+            await _fabric.Stop().ConfigureAwait(false);
         }
 
         #endregion start/stop

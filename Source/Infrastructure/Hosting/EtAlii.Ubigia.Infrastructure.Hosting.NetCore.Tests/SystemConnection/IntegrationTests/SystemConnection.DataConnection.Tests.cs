@@ -27,8 +27,8 @@
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString()
             };
-            _systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames );
+            _systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames ).ConfigureAwait(false);
         }
 
         public Task DisposeAsync()
@@ -46,7 +46,7 @@
             // Arrange.
 
             // Act.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]);
+            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -61,10 +61,10 @@
         public async Task SystemConnection_DataConnection_Open_And_Close_01()
         {
             // Arrange.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]);
+            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
 
             // Act.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -77,10 +77,10 @@
         public async Task SystemConnection_DataConnection_Open_And_Close_And_Open_01()
         {
             // Arrange.
-            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]);
+            var connection = await _systemConnection.OpenSpace(_accountName, _spaceNames[0]).ConfigureAwait(false);
 
             // Act.
-            await connection.Close();
+            await connection.Close().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -89,7 +89,7 @@
             Assert.Null(connection.Space);//, "connection.Space")
 
             // Act.
-            await connection.Open();
+            await connection.Open().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -103,10 +103,10 @@
         public async Task SystemConnection_OpenManagementConnection()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
 
             // Act.
-            var managementConnection = await connection.OpenManagementConnection();
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(managementConnection);
@@ -118,13 +118,13 @@
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -136,13 +136,13 @@
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(account);
@@ -154,15 +154,15 @@
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
 
             // Act.
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data);
+            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -175,15 +175,15 @@
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
 
             // Act.
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data);
+            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(space);
@@ -197,16 +197,16 @@
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
+            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Act.
-            var spaceConnection = await connection.OpenSpace(accountName, space.Name);
+            var spaceConnection = await connection.OpenSpace(accountName, space.Name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(spaceConnection);
@@ -218,16 +218,16 @@
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection();
-            var managementConnection = await connection.OpenManagementConnection();
+            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator);
-            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data);
+            var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.Administrator).ConfigureAwait(false);
+            var space = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Act.
-            var spaceConnection = await connection.OpenSpace(accountName, space.Name);
+            var spaceConnection = await connection.OpenSpace(accountName, space.Name).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(spaceConnection);

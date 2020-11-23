@@ -77,7 +77,7 @@
         public async Task<Space> Add(Space item, SpaceTemplate template)
         {
             var start = Environment.TickCount;
-            item = await _repository.Add(item, template);
+            item = await _repository.Add(item, template).ConfigureAwait(false);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;   
         }

@@ -22,7 +22,7 @@
                 {
                     //WriteVerbose(verboseDescription)
                     //WriteDebug($"Removing root [{TargetRoot.Name}]")
-                    await PowerShellClient.Current.Fabric.Roots.Remove(TargetRoot.Id);
+                    await PowerShellClient.Current.Fabric.Roots.Remove(TargetRoot.Id).ConfigureAwait(false);
                     if (RootCmdlet.Current != null && RootCmdlet.Current.Id == TargetRoot.Id)
                     {
                         RootCmdlet.Current = null;

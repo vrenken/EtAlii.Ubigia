@@ -22,15 +22,15 @@
 
             // Create a system connection.
             var systemConnection = _systemConnectionCreationProxy.Request();
-            var managementConnection = await systemConnection.OpenManagementConnection();
+            var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
 
             // Add the system user.
-            await managementConnection.Accounts.Add(systemAccountName, systemAccountPassword, AccountTemplate.System);
+            await managementConnection.Accounts.Add(systemAccountName, systemAccountPassword, AccountTemplate.System).ConfigureAwait(false);
 
             // Add the system user.
-            await managementConnection.Accounts.Add(administratorAccountName, administratorAccountPassword, AccountTemplate.Administrator);
+            await managementConnection.Accounts.Add(administratorAccountName, administratorAccountPassword, AccountTemplate.Administrator).ConfigureAwait(false);
 
-            await managementConnection.Close();
+            await managementConnection.Close().ConfigureAwait(false);
         }
     }
 }

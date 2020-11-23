@@ -29,15 +29,15 @@
                 .UseTransportDiagnostics(diagnostics);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
-            using var managementConnection = await CreateManagementConnection();
+            using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
             var account = await managementConnection.Accounts.Get(accountName) ??
-                          await managementConnection.Accounts.Add(accountName, accountPassword, AccountTemplate.User);
-            await managementConnection.Spaces.Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data);
-            await managementConnection.Close();
+                          await managementConnection.Accounts.Add(accountName, accountPassword, AccountTemplate.User).ConfigureAwait(false);
+            await managementConnection.Spaces.Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data).ConfigureAwait(false);
+            await managementConnection.Close().ConfigureAwait(false);
 
             if (openOnCreation)
             {
-                await connection.Open();
+                await connection.Open().ConfigureAwait(false);
             }
             return connection;
         }
@@ -58,7 +58,7 @@
             
             if (openOnCreation)
             {
-                await connection.Open();
+                await connection.Open().ConfigureAwait(false);
             }
             return connection;
         }
@@ -77,7 +77,7 @@
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {
-                await connection.Open();
+                await connection.Open().ConfigureAwait(false);
             }
             return connection;
         }

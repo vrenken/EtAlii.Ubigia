@@ -21,7 +21,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var pathToAdd = await GetPathToAdd(parameters);
+            var pathToAdd = await GetPathToAdd(parameters).ConfigureAwait(false);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException($"The {GetType().Name} requires a path on the right side");
@@ -43,7 +43,7 @@
                 onNext: async o => 
                 {
                     var leftId = ItemToIdentifierConverter.Convert(o);
-                    await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
+                    await Add(leftId, pathToAdd, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
         }
 

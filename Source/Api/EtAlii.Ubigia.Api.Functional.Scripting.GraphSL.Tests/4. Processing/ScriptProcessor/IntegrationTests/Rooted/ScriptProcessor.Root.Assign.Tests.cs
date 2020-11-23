@@ -30,7 +30,7 @@
         public async Task ScriptProcessor_Root_Assign_Time_Root()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
@@ -60,7 +60,7 @@
         public async Task ScriptProcessor_Root_Assign_Time_Root_And_Using_Short_RootType()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:time <= Time";
             var script = _parser.Parse(query).Script;
@@ -74,7 +74,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "time");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "time").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);
@@ -88,7 +88,7 @@
         public async Task ScriptProcessor_Root_Assign_Time_Root_Under_Other_Name()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
@@ -102,7 +102,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);
@@ -116,7 +116,7 @@
         public async Task ScriptProcessor_Root_Assign_Time_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= Time";
             var script = _parser.Parse(query).Script;
@@ -130,7 +130,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);
@@ -144,7 +144,7 @@
         public async Task ScriptProcessor_Root_Assign_Object_Root_Under_Other_Name()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
             var script = _parser.Parse(query).Script;
@@ -158,7 +158,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);
@@ -172,7 +172,7 @@
         public async Task ScriptProcessor_Root_Assign_Object_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:projects <= Object";
             var script = _parser.Parse(query).Script;
@@ -186,7 +186,7 @@
             // Act.
             var lastSequence = await processor.Process(script);
             var result = await lastSequence.Output.ToArray();
-            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects");
+            var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);

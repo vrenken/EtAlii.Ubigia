@@ -55,7 +55,7 @@
                     switch (operation.OperationType)
                     {
                         case OperationType.Query:
-                            var registration = await _operationProcessor.Process(operation, (ComplexGraphType<object>)Query);
+                            var registration = await _operationProcessor.Process(operation, (ComplexGraphType<object>)Query).ConfigureAwait(false);
                             await AddDynamicTypes(operation.SelectionSet, registration).ConfigureAwait(false);
                             break;
                         default:

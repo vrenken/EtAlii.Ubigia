@@ -59,7 +59,7 @@
                 {
                     try
                     {
-                        await provider.Start();
+                        await provider.Start().ConfigureAwait(false);
                         providers.Add(provider);
                     }
                     catch (Exception)// e)
@@ -94,7 +94,7 @@
             {
                 try
                 {
-                    await provider.Stop();
+                    await provider.Stop().ConfigureAwait(false);
                 }
                 catch (Exception)// e)
                 {

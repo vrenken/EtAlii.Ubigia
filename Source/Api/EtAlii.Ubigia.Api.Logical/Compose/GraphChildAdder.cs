@@ -26,13 +26,13 @@ namespace EtAlii.Ubigia.Api.Logical
             {
 
                 // We do not support multiple empty childs yet.
-                entry = await _graphPathTraverser.TraverseToSingle(entry.Id, scope);
+                entry = await _graphPathTraverser.TraverseToSingle(entry.Id, scope).ConfigureAwait(false);
             }
             else
             {
-                var newEntry = await _fabric.Entries.Prepare();
+                var newEntry = await _fabric.Entries.Prepare().ConfigureAwait(false);
                 newEntry.Parent = Relation.NewRelation(location);
-                entry = await _fabric.Entries.Change(newEntry, scope);
+                entry = await _fabric.Entries.Change(newEntry, scope).ConfigureAwait(false);
             }
             return entry;
         }
@@ -62,13 +62,13 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphComposeException(message);
             }
 
-            var originalChild = await _fabric.Entries.Get(childId, scope);
-            var updatedChild = await _fabric.Entries.Prepare();
+            var originalChild = await _fabric.Entries.Get(childId, scope).ConfigureAwait(false);
+            var updatedChild = await _fabric.Entries.Prepare().ConfigureAwait(false);
             updatedChild.Parent = Relation.NewRelation(location);
             updatedChild.Type = originalChild.Type;
             updatedChild.Tag = originalChild.Tag;
             updatedChild.Downdate = Relation.NewRelation(originalChild.Id);
-            child = await _fabric.Entries.Change(updatedChild, scope);
+            child = await _fabric.Entries.Change(updatedChild, scope).ConfigureAwait(false);
             return child;
         }
 
@@ -84,10 +84,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphComposeException(message);
             }
 
-            var newEntry = await _fabric.Entries.Prepare();
+            var newEntry = await _fabric.Entries.Prepare().ConfigureAwait(false);
             newEntry.Parent = Relation.NewRelation(location);
             newEntry.Type = name;
-            entry = await _fabric.Entries.Change(newEntry, scope);
+            entry = await _fabric.Entries.Change(newEntry, scope).ConfigureAwait(false);
             return entry;
         }
     }

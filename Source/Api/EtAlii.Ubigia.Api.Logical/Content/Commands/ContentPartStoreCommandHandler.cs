@@ -26,11 +26,11 @@
 
             for (ulong part = 0; part < command.RequiredParts; part++)
             {
-                var bytesToWrite = await GetBytesToWrite(command.Stream, command.PartSize, dataBuffer, part);
+                var bytesToWrite = await GetBytesToWrite(command.Stream, command.PartSize, dataBuffer, part).ConfigureAwait(false);
                 var hasResult = _hash.ComputeBytes(bytesToWrite);
                 var checksum = hasResult.GetULong();
-                await StoreContentDefinitionPart(command.PartSize, command.Identifier, command.ContentDefinition, part, checksum);
-                await StoreContentPart(command.Identifier, command.Content, bytesToWrite, part);
+                await StoreContentDefinitionPart(command.PartSize, command.Identifier, command.ContentDefinition, part, checksum).ConfigureAwait(false);
+                await StoreContentPart(command.Identifier, command.Content, bytesToWrite, part).ConfigureAwait(false);
             }
         }
 
@@ -52,7 +52,7 @@
                     Id = part,
                     Data = bytesToWrite,
                 };
-                await _fabric.Content.Store(identifier, contentPart);
+                await _fabric.Content.Store(identifier, contentPart).ConfigureAwait(false);
             }
         }
 
@@ -60,7 +60,7 @@
         {
             var offset = part * partSize;
             stream.Seek((long)offset, SeekOrigin.Begin);
-            var bytesRead = await stream.ReadAsync(dataBuffer, 0, (int)partSize);
+            var bytesRead = await stream.ReadAsync(dataBuffer, 0, (int)partSize).ConfigureAwait(false);
             var bytesToWrite = new byte[bytesRead];
             Array.Copy(dataBuffer, bytesToWrite, bytesRead);
             return bytesToWrite;
@@ -86,7 +86,7 @@
                     Size = partSize,
                     Checksum = checksum,
                 };
-                await _fabric.Content.StoreDefinition(identifier, contentDefinitionPart);
+                await _fabric.Content.StoreDefinition(identifier, contentDefinitionPart).ConfigureAwait(false);
             }
         }
     }

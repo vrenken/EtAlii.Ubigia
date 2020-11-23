@@ -24,7 +24,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var pathToRemove = await GetPathToRemove(parameters);
+            var pathToRemove = await GetPathToRemove(parameters).ConfigureAwait(false);
             if (pathToRemove == null)
             {
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
@@ -46,7 +46,7 @@
                 onNext: async o =>
                 {
                     var leftId = _itemToIdentifierConverter.Convert(o);
-                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
+                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
 
             //if [leftResult = = null]
@@ -85,7 +85,7 @@
             IObserver<object> output)
         {
             var parentId = id;
-            var removeResult = await _recursiveRemover.Remove(parentId, pathPartToRemove, scope);
+            var removeResult = await _recursiveRemover.Remove(parentId, pathPartToRemove, scope).ConfigureAwait(false);
             var result = new DynamicNode((IReadOnlyEntry)removeResult.NewEntry);
             output.OnNext(result);
         }

@@ -101,7 +101,7 @@
                     $"No supported mapping found for the AssignOperatorProcessor to work with (left: {left}, right: {right})";
                 throw new ScriptProcessingException(message);
             }
-            await assigner.Assign(parameters);
+            await assigner.Assign(parameters).ConfigureAwait(false);
         }
     }
 }

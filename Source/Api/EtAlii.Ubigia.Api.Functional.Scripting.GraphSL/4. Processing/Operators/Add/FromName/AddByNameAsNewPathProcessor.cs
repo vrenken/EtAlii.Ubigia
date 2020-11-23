@@ -24,7 +24,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var pathToAdd = await GetPathToAdd(parameters);
+            var pathToAdd = await GetPathToAdd(parameters).ConfigureAwait(false);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException($"The {GetType().Name} requires a path on the right side");
@@ -40,7 +40,7 @@
                 throw new ScriptProcessingException($"The {GetType().Name} cannot handle empty parts");
             }
 
-            await Add(pathToAdd, parameters.Scope, parameters.Output);
+            await Add(pathToAdd, parameters.Scope, parameters.Output).ConfigureAwait(false);
         }
         
         private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
@@ -68,7 +68,7 @@
                 .ToArray();
 
             var rootPartToAdd = partsToAdd.First();
-            var root = await _context.Logical.Roots.Get(rootPartToAdd.Name);
+            var root = await _context.Logical.Roots.Get(rootPartToAdd.Name).ConfigureAwait(false);
 
             if (root == null)
             {
@@ -79,7 +79,7 @@
             IEditableEntry newEntry = null;
             foreach (var partToAdd in partsToAdd.Skip(1))
             {
-                var addResult = await _recursiveAdder.Add(parentId, partToAdd, newEntry, scope);
+                var addResult = await _recursiveAdder.Add(parentId, partToAdd, newEntry, scope).ConfigureAwait(false);
                 parentId = addResult.ParentId;
                 newEntry = addResult.NewEntry;
             }

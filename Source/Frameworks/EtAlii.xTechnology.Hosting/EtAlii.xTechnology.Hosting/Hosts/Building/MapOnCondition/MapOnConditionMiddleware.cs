@@ -51,7 +51,7 @@ namespace EtAlii.xTechnology.Hosting
 
                 try
                 {
-                    await _options.Branch(context);
+                    await _options.Branch(context).ConfigureAwait(false);
                 }
                 finally
                 {
@@ -61,7 +61,7 @@ namespace EtAlii.xTechnology.Hosting
             }
             else
             {
-                await _next(context);
+                await _next(context).ConfigureAwait(false);
             }
         }
     }

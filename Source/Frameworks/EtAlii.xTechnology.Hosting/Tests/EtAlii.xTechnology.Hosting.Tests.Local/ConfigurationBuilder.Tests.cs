@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task ConfigurationBuilder_Build(string configurationFile)
         {
             // Arrange.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile);
+            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             var configurationBuilder = new ConfigurationBuilder()
                 .AddConfigurationDetails(details);

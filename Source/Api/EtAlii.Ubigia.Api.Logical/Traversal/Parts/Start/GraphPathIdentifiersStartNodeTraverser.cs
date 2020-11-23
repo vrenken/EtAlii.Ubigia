@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 yield return item;
             }
 
-            await Task.CompletedTask;
+            await Task.CompletedTask.ConfigureAwait(false);
         }
     }
 }

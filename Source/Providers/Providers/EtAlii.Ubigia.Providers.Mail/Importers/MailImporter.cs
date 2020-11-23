@@ -32,7 +32,7 @@
             {
                 _logger.Information("Starting mail provider");
 
-                await Stop();
+                await Stop().ConfigureAwait(false);
                 Setup();
 
                 _logger.Information("Started mail provider");

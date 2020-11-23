@@ -18,7 +18,7 @@
             var viewModel = unitOfWork.ScriptViewModel;
 
             viewModel.Errors = new TextualError[] {};
-            var result = await _queryContext.Parse(viewModel.Source);
+            var result = await _queryContext.Parse(viewModel.Source).ConfigureAwait(false);
             viewModel.Query = result.Query;
             viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });
             viewModel.CanExecute = !viewModel.Errors.Any() && !string.IsNullOrWhiteSpace(viewModel.Source);

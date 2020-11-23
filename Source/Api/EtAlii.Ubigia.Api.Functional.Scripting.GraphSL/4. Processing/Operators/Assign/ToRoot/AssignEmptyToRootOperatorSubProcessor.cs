@@ -31,8 +31,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 {
                     try
                     {
-                        var r = await _context.Logical.Roots.Get(root.Name);
-                        await _context.Logical.Roots.Remove(r.Id);
+                        var r = await _context.Logical.Roots.Get(root.Name).ConfigureAwait(false);
+                        await _context.Logical.Roots.Remove(r.Id).ConfigureAwait(false);
                         parameters.Output.OnNext(root.Name);
                     }
                     catch (Exception e)

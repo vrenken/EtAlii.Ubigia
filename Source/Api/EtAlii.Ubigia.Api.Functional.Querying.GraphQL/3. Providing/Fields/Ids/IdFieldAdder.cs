@@ -81,7 +81,7 @@
         private async Task<string> GetId(Identifier startIdentifier, string path)
         {
             path = $"/&{startIdentifier.ToDotSeparatedString()}{path ?? string.Empty}";
-            var subSet = await _nodeFetcher.FetchAsync(path);
+            var subSet = await _nodeFetcher.FetchAsync(path).ConfigureAwait(false);
             return subSet.SingleOrDefault()?.Type;
         }
     }

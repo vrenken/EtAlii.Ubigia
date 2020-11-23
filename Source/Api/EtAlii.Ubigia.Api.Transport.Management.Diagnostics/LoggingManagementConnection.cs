@@ -33,7 +33,7 @@
             _logger.Information(message, address, accountName);
             var start = Environment.TickCount;
 
-            await _decoree.Open();
+            await _decoree.Open().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)";
@@ -48,7 +48,7 @@
             _logger.Information(message, address, space.AccountId, space.Id);
             var start = Environment.TickCount;
 
-            var connection = await _decoree.OpenSpace(space);
+            var connection = await _decoree.OpenSpace(space).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)";
@@ -65,7 +65,7 @@
             _logger.Information(message, address, accountId, spaceId);
             var start = Environment.TickCount;
 
-            var connection = await _decoree.OpenSpace(accountId, spaceId);
+            var connection = await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)";
@@ -82,7 +82,7 @@
             _logger.Information(message, address, accountName, spaceName);
             var start = Environment.TickCount;
 
-            var connection = await _decoree.OpenSpace(accountName, spaceName);
+            var connection = await _decoree.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Opened data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)";
@@ -100,7 +100,7 @@
             _logger.Information(message, address, accountName);
             var start = Environment.TickCount;
 
-            await _decoree.Close();
+            await _decoree.Close().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)";

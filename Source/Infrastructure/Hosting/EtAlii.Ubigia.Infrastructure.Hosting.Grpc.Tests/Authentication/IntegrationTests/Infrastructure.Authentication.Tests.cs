@@ -32,7 +32,7 @@
 	
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -53,7 +53,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -74,7 +74,7 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -95,7 +95,7 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -116,7 +116,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -137,7 +137,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync.ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.NotNull(response);
@@ -160,7 +160,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -176,7 +176,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -192,7 +192,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -208,7 +208,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 	    [Fact, Trait("Category", TestAssembly.Category)]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
@@ -223,7 +223,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -239,7 +239,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -255,7 +255,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -271,7 +271,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -287,7 +287,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -303,7 +303,7 @@
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
+		    await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // UnauthorizedInfrastructureOperationException
 	    }
 	}
 }
