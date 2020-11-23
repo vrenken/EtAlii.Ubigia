@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Pipelines
                         .CombineWith(TestProjects, (cs, testProject) => cs
                             .SetProjectFile(testProject)
                             .SetLogger($"trx;LogFileName={testProject.Name}.trx")
-                            .SetCoverletOutput($"{testProject.Name}.oc.xml")),
+                            .SetCoverletOutput(TestResultsDirectory / $"{testProject.Name}.oc.xml")),
                     degreeOfParallelismWhileTesting, Continue);
             });
         
