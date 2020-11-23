@@ -1288,9 +1288,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 if (primaryKeyProperties1 == null)
                 {
                     throw new InvalidOperationException(CoreStrings.EntityEqualityOnKeylessEntityNotSupported(
-                        nodeType == ExpressionType.Equal
-                            ? equalsMethod ? nameof(object.Equals) : "=="
-                            : equalsMethod ? "!" + nameof(object.Equals) : "!=",
+                        GetOperator(nodeType, equalsMethod),
                         entityType1.DisplayName()));
                 }
 
@@ -1318,14 +1316,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 result = Expression.Constant(false);
                 return true;
             }
-
+            
             var primaryKeyProperties = entityType.FindPrimaryKey()?.Properties;
             if (primaryKeyProperties == null)
             {
                 throw new InvalidOperationException(CoreStrings.EntityEqualityOnKeylessEntityNotSupported(
-                    nodeType == ExpressionType.Equal
-                        ? equalsMethod ? nameof(object.Equals) : "=="
-                        : equalsMethod ? "!" + nameof(object.Equals) : "!=",
+                    GetOperator(nodeType, equalsMethod),
                     entityType.DisplayName()));
             }
 
@@ -1334,9 +1330,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     || rightEntityReference?.SubqueryEntity != null))
             {
                 throw new InvalidOperationException(CoreStrings.EntityEqualityOnCompositeKeyEntitySubqueryNotSupported(
-                    nodeType == ExpressionType.Equal
-                        ? equalsMethod ? nameof(object.Equals) : "=="
-                        : equalsMethod ? "!" + nameof(object.Equals) : "!=",
+                    GetOperator(nodeType, equalsMethod),
                     entityType.DisplayName()));
             }
 
@@ -1350,6 +1344,16 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     .Aggregate((l, r) => Expression.AndAlso(l, r)));
 
             return true;
+        }
+
+        private string GetOperator(ExpressionType nodeType, bool equalsMethod)
+        {
+            if (nodeType == ExpressionType.Equal)
+            {
+                return equalsMethod ? nameof(object.Equals) : "==";
+            }
+
+            return equalsMethod ? "!" + nameof(object.Equals) : "!=";
         }
 
         private Expression CreatePropertyAccessExpression(Expression target, IProperty property)
