@@ -22,7 +22,9 @@ namespace EtAlii.Ubigia.Pipelines
             {
                 SonarScannerBegin(c => c
                     .SetFramework("net5.0")
-                    .SetSourceExclusions("**/*.Tests.cs")
+                    .AddSourceExclusions("**/*.Tests.cs")                       // Unit tests should not be taken into consideration with regards of testing.
+                    .AddSourceExclusions("**/Frameworks/HashLib/**/*.*")        // We don't want the 'old' HashLib to cloud up the SonarQube results. 
+                    .AddSourceExclusions("**/Frameworks/Moppet.Lapa/**/*.*")    // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
                     .SetOpenCoverPaths(OpenCoverTestReports)
                     .SetProjectKey(SonarQubeProjectKey)
                     .SetServer(SonarQubeServerUrl)
