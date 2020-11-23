@@ -7905,6 +7905,9 @@
           </e>
         </e>
         <e p="Moppet.Lapa" t="Include">
+          <e p="_Meta" t="Include" />
+          <e p="Directory.Build.props" t="Include" />
+          <e p="Directory.Build.targets" t="Include" />
           <e p="Moppet.Lapa" t="IncludeRecursive">
             <e p=".nuspec" t="Include" />
             <e p="bin" t="ExcludeRecursive" />
