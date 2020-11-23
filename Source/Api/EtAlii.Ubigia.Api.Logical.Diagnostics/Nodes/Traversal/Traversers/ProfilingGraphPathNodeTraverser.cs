@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
     public class ProfilingGraphPathNodeTraverser : IGraphPathNodeTraverser
@@ -13,7 +14,6 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _decoree = decoree;
             _profiler = profiler.Create(ProfilingAspects.Logical.Traversers);
         }
-
 
         public void Configure(TraversalParameters parameters)
         {

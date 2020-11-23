@@ -13,12 +13,12 @@ namespace EtAlii.xTechnology.MicroContainer
             #if DEBUG
                         var unusedMappings = _mappings
                             .Where(kvp => kvp.Value.Usages == 0)
-                            .ToArray();
+                            .ToArray()
                         if (unusedMappings.Any())
-                        {
-                            var mappings = String.Join("\r\n", unusedMappings.Select(kvp => kvp.Key.FullName));
-                            throw new InvalidOperationException("Unused container registrations found: " + mappings);
-                        }
+                        [
+                            var mappings = String.Join("\r\n", unusedMappings.Select(kvp => kvp.Key.FullName))
+                            throw new InvalidOperationException("Unused container registrations found: " + mappings)
+                        ]
             #endif
             */
             return result;
@@ -30,8 +30,7 @@ namespace EtAlii.xTechnology.MicroContainer
         {
             object instance;
 
-            ContainerRegistration mapping;
-            if (_mappings.TryGetValue(type, out mapping))
+            if (_mappings.TryGetValue(type, out var mapping))
             {
                 /*
                 #if DEBUG

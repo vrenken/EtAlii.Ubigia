@@ -22,7 +22,6 @@
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
             container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
 
-            //container.Register<IServiceProvider>(() => new ContainerGraphTypeServiceProvider(container));
             container.Register<IServiceProvider, GraphTypeServiceProvider>();
 
             container.Register<IDocumentValidator, DocumentValidator>();

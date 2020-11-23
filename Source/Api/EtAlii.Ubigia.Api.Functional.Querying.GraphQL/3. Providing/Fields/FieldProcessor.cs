@@ -45,7 +45,7 @@
                 : Array.Empty<Directive>();
             foreach (var nodesDirective in nodesDirectives)
             {
-                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective, startIdentifiers);
+                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective, startIdentifiers).ConfigureAwait(false);
                 nodesDirectiveResults.Add(directiveResult);
             }
             
@@ -55,7 +55,7 @@
                 : Array.Empty<Directive>();
             foreach (var idDirective in idDirectives)
             {
-                var idDirectiveResult = await _idDirectiveHandler.Handle(idDirective, startIdentifiers);
+                var idDirectiveResult = await _idDirectiveHandler.Handle(idDirective, startIdentifiers).ConfigureAwait(false);
                 idDirectiveResults.Add(idDirectiveResult);
             }
             var hasNodesDirectives = nodesDirectiveResults.Any();

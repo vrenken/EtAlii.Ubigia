@@ -36,14 +36,14 @@
         internal static async Task<Schema> Create(IServiceProvider serviceProvider, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, global::GraphQL.Language.AST.Document document)
         {
             var dynamicSchema = new DynamicSchema(serviceProvider, document, operationProcessor, fieldProcessor);
-            await dynamicSchema.AddDynamicTypes();
+            await dynamicSchema.AddDynamicTypes().ConfigureAwait(false);
             return dynamicSchema;
         }
 
         internal static async Task<Schema> Create(IServiceProvider serviceProvider, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, string query)
         {
             var document = new GraphQLDocumentBuilder().Build(query);
-            return await Create(serviceProvider, operationProcessor, fieldProcessor, document);
+            return await Create(serviceProvider, operationProcessor, fieldProcessor, document).ConfigureAwait(false);
         }
  
         private async Task AddDynamicTypes()
@@ -56,7 +56,7 @@
                     {
                         case OperationType.Query:
                             var registration = await _operationProcessor.Process(operation, (ComplexGraphType<object>)Query);
-                            await AddDynamicTypes(operation.SelectionSet, registration);
+                            await AddDynamicTypes(operation.SelectionSet, registration).ConfigureAwait(false);
                             break;
                         default:
                             throw new NotSupportedException();
@@ -72,10 +72,10 @@
                 switch (selection)
                 {
                     case Field field:
-                        var fieldRegistration = await _fieldProcessor.Process(field, parentContext, _graphTypeServiceProvider);
+                        var fieldRegistration = await _fieldProcessor.Process(field, parentContext, _graphTypeServiceProvider).ConfigureAwait(false);
                         if (field.SelectionSet != null && fieldRegistration != null)
                         {
-                            await AddDynamicTypes(field.SelectionSet, fieldRegistration);
+                            await AddDynamicTypes(field.SelectionSet, fieldRegistration).ConfigureAwait(false);
                         }
                         break;
                 }

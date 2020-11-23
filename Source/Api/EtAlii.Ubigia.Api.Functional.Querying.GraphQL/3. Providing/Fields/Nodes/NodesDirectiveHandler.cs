@@ -28,7 +28,7 @@
                     foreach (var startIdentifier in startIdentifiers)
                     {
                         var path = $"/&{startIdentifier.ToDotSeparatedString()}{stringValue.Value}";
-                        var subSet = await _nodeFetcher.FetchAsync(path);
+                        var subSet = await _nodeFetcher.FetchAsync(path).ConfigureAwait(false);
                         nodes.AddRange(subSet);
                     }
                     result.Nodes = nodes.ToArray(); 

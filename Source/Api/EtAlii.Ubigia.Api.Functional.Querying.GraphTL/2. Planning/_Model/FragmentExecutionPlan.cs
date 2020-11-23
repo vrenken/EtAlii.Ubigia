@@ -28,7 +28,7 @@
         {
             var outputObservable = Observable.Create<Structure>(async outputObserver =>
             {
-                await Execute(executionScope, outputObserver);
+                await Execute(executionScope, outputObserver).ConfigureAwait(false);
 
                 outputObserver.OnCompleted();
                 

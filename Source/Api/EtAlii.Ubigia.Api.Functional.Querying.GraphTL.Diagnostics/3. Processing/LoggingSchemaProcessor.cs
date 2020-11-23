@@ -22,7 +22,7 @@
             _logger.Information(message);
             var start = Environment.TickCount;
 
-            var result = await _processor.Process(schema);
+            var result = await _processor.Process(schema).ConfigureAwait(false);
 
             message = $"Processed query (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Information(message);
