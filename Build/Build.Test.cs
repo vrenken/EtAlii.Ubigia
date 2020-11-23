@@ -1,17 +1,14 @@
 namespace EtAlii.Ubigia.Pipelines
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using Nuke.Common;
-    using Nuke.Common.CI.AzurePipelines;
     using Nuke.Common.IO;
     using Nuke.Common.ProjectModel;
     using Nuke.Common.Tools.Coverlet;
     using Nuke.Common.Tools.DotNet;
     using static Nuke.Common.Tools.DotNet.DotNetTasks;
     using Nuke.Common.Tooling;
-    using Nuke.Common.Utilities.Collections;
 
     public partial class Build
     {
@@ -45,21 +42,9 @@ namespace EtAlii.Ubigia.Pipelines
                         .CombineWith(TestProjects, (cs, testProject) => cs
                             .SetProjectFile(testProject)
                             .SetLogger($"trx;LogFileName={testProject.Name}.trx")
-                            .SetCoverletOutput(TestResultsDirectory / $"{testProject.Name}.oc.xml")),
+                            .SetCoverletOutput(TestResultsDirectory)),
+                            //.SetCoverletOutput(TestResultsDirectory / $"{testProject.Name}.oc.xml")),
                     degreeOfParallelismWhileTesting, Continue);
-            });
-        
-        Target PublishTestResults => _ => _
-            .Description("Publish test results")
-            .DependsOn(Test)
-            .ProceedAfterFailure()
-            .Executes(() =>
-            {
-                TestResultsDirectory.GlobFiles("*.trx").ForEach(x =>
-                    AzurePipelines?.PublishTestResults(
-                        type: AzurePipelinesTestResultsType.VSTest,
-                        title: $"{Path.GetFileNameWithoutExtension(x)} ({AzurePipelines.StageDisplayName})",
-                        files: new string[] { x }));                
             });
     }
 }

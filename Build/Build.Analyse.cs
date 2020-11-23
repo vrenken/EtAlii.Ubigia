@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Pipelines
     using Nuke.Common.IO;
     using Nuke.Common.Tools.SonarScanner;
     using static Nuke.Common.Tools.SonarScanner.SonarScannerTasks;
-    using System.IO;
 
     public partial class Build
     {
@@ -15,12 +14,11 @@ namespace EtAlii.Ubigia.Pipelines
 
         
         // These Cobertura reports are in OpenCover format.
-        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "**/coverage.cobertura.xml";
+        AbsolutePath OpenCoverTestReports => TestResultsDirectory / "*/coverage.cobertura.xml";
 
-        Target PrepareAnalysis => _ => _
+        Target PrepareSonarQubeAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
             .DependsOn(Restore)
-            //.Requires(() => NuGetFeedApiKey != null)
             .Executes(() =>
             {
                 SonarScannerBegin(c => c
@@ -28,21 +26,10 @@ namespace EtAlii.Ubigia.Pipelines
                     .AddSourceExclusions("**/*.Tests.cs")                       // Unit tests should not be taken into consideration with regards of testing.
                     .AddSourceExclusions("**/Frameworks/HashLib/**/*.*")        // We don't want the 'old' HashLib to cloud up the SonarQube results. 
                     .AddSourceExclusions("**/Frameworks/Moppet.Lapa/**/*.*")    // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
-                    .SetOpenCoverPaths(OpenCoverTestReports)
+                    .SetOpenCoverPaths(TestCoverageSonarQubeReport)
                     .SetProjectKey(SonarQubeProjectKey)
                     .SetServer(SonarQubeServerUrl)
                     .SetName("EtAlii.Ubigia")
-                    .SetLogin(SonarQubeToken));
-            });
-
-        Target PublishAnalysisToSonarQube => _ => _
-            .Description("Complete SonarQube analysis")
-            .DependsOn(Test)
-            .ProceedAfterFailure()
-            .Executes(() =>
-            {
-                SonarScannerEnd(c => c
-                    .SetFramework("net5.0")
                     .SetLogin(SonarQubeToken));
             });
     }

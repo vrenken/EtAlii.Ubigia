@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Pipelines
         
         Target Compile => _ => _
             .Description("Run dotnet build")
-            .DependsOn(PrepareAnalysis)
+            .DependsOn(PrepareSonarQubeAnalysis)
             .Executes(() =>
             {
                 DotNetBuild(s => s
