@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
+namespace EtAlii.Ubigia.Windows
 {
     using System;
     using System.Threading;
