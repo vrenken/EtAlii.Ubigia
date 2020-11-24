@@ -1317,7 +1317,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return true;
             }
             
+            // Sonar provides this warning: However entityType cannot be null during a compile debug due to the Debug.Assert above.
+            // 
+#pragma warning disable S2259             
             var primaryKeyProperties = entityType.FindPrimaryKey()?.Properties;
+#pragma warning restore
             if (primaryKeyProperties == null)
             {
                 throw new InvalidOperationException(CoreStrings.EntityEqualityOnKeylessEntityNotSupported(
