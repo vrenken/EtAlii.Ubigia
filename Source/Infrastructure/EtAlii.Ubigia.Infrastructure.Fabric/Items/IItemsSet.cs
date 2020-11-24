@@ -7,13 +7,34 @@
 
     public interface IItemsSet
     {
+        /// <summary>
+        /// Add a new item to the item set.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="item"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         T Add<T>(IList<T> items, T item)
             where T : class, IIdentifiable;
 
+        /// <summary>
+        /// Add a new item to the item set, but first check if the item can be added.  
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="cannAddFunction"></param>
+        /// <param name="item"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item)
             where T : class, IIdentifiable;
 
 
+        /// <summary>
+        /// Return all items registered in this item set.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         IAsyncEnumerable<T> GetAll<T>(IList<T> items)
             where T : class, IIdentifiable;
 
@@ -24,13 +45,35 @@
             where T : class, IIdentifiable;
 
 
+        /// <summary>
+        /// Remove the item with the specified id from the item set. 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="itemId"></param>
+        /// <typeparam name="T"></typeparam>
         void Remove<T>(IList<T> items, Guid itemId)
             where T : class, IIdentifiable;
 
+        /// <summary>
+        /// Remove the specified items from the item set.
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="itemToRemove"></param>
+        /// <typeparam name="T"></typeparam>
         void Remove<T>(IList<T> items, T itemToRemove)
             where T : class, IIdentifiable;
 
 
+        /// <summary>
+        /// Update the item with the specified itemId to the state of updatedItem. 
+        /// </summary>
+        /// <param name="items"></param>
+        /// <param name="updateFunction"></param>
+        /// <param name="folder"></param>
+        /// <param name="itemId"></param>
+        /// <param name="updatedItem"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         T Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem)
             where T : class, IIdentifiable;
     }
