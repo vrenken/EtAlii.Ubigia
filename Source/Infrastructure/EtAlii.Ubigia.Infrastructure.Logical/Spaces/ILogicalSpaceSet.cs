@@ -2,23 +2,18 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Threading.Tasks;
 
     public interface ILogicalSpaceSet
     {
-        Space Get(Guid accountId, string spaceName);
-
         IAsyncEnumerable<Space> GetAll(Guid accountId);
-
-        Space Add(Space item, SpaceTemplate template, out bool isAdded);
-
         IAsyncEnumerable<Space> GetAll();
+
+        Space Get(Guid accountId, string spaceName);
 
         Space Get(Guid id);
 
-        Task<ObservableCollection<Space>> GetItems();
-
+        Space Add(Space item, SpaceTemplate template, out bool isAdded);
+        
         void Remove(Guid itemId);
 
         void Remove(Space itemToRemove);

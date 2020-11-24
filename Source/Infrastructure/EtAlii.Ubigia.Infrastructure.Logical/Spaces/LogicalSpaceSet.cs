@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalSpaceSet : ILogicalSpaceSet
@@ -23,17 +22,28 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabric = fabric;
         }
 
-        public Space Get(Guid accountId, string spaceName)
-        {
-            return Items.SingleOrDefault(space => space.AccountId == accountId && space.Name == spaceName);
-        }
-
         public IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             return Items
                 .Where(space => space.AccountId == accountId)
                 .ToAsyncEnumerable();
         }
+
+        public IAsyncEnumerable<Space> GetAll()
+        {
+            return _fabric.Items.GetAll(Items);
+        }
+
+        public Space Get(Guid id)
+        {
+            return _fabric.Items.Get(Items, id);
+        }
+
+        public Space Get(Guid accountId, string spaceName)
+        {
+            return Items.SingleOrDefault(space => space.AccountId == accountId && space.Name == spaceName);
+        }
+
 
         private Space UpdateFunction(Space originalItem, Space updatedItem)
         {
@@ -72,21 +82,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             var space = _fabric.Items.Add(Items, CannAddFunction, item);
             isAdded = space != null;
             return space;
-        }
-
-        public IAsyncEnumerable<Space> GetAll()
-        {
-            return _fabric.Items.GetAll(Items);
-        }
-
-        public Space Get(Guid id)
-        {
-            return _fabric.Items.Get(Items, id);
-        }
-
-        public Task<ObservableCollection<Space>> GetItems()
-        {
-            return _fabric.Items.GetItems<Space>(Folder);
         }
 
         public void Remove(Guid itemId)

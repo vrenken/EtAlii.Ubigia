@@ -8,9 +8,9 @@
     {
 		Account Get(string accountName);
 		Account Get(string accountName, string password);
+        Account Get(Guid itemId);
 
         IAsyncEnumerable<Account> GetAll();
-        Account Get(Guid itemId);
 
         Task<Account> Add(Account item, AccountTemplate template);
 

@@ -30,6 +30,26 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _localStorageGetter = localStorageGetter;
             _configuration = configuration;
         }
+        
+        public Storage GetLocal()
+        {
+            return _localStorageGetter.GetLocal(Items);
+        }
+
+        public IAsyncEnumerable<Storage> GetAll()
+        {
+            return _fabric.Items.GetAll(Items);
+        }
+
+        public Storage Get(string name)
+        {
+            return Items.SingleOrDefault(storage => storage.Name == name);
+        }
+
+        public Storage Get(Guid id)
+        {
+            return _fabric.Items.Get(Items, id);
+        }
 
         public async Task<Storage> Add(Storage item)
         {
@@ -93,31 +113,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 canAdd = !items.Any(i => (string.CompareOrdinal(i.Name, item.Name) == 0 && string.CompareOrdinal(i.Address, item.Address) == 0) || i.Id == item.Id);
             }
             return canAdd;
-        }
-
-        public Storage GetLocal()
-        {
-            return _localStorageGetter.GetLocal(Items);
-        }
-
-        public Storage Get(string name)
-        {
-            return Items.SingleOrDefault(storage => storage.Name == name);
-        }
-
-        public IAsyncEnumerable<Storage> GetAll()
-        {
-            return _fabric.Items.GetAll(Items);
-        }
-
-        public Storage Get(Guid id)
-        {
-            return _fabric.Items.Get(Items, id);
-        }
-
-        public Task<ObservableCollection<Storage>> GetItems()
-        {
-            return _fabric.Items.GetItems<Storage>(Folder);
         }
 
         public void Remove(Guid itemId)

@@ -34,21 +34,6 @@
             return storage;
         }
 
-        public Storage Get(string name)
-        {
-            var message = "Getting storage (Name: {StorageName})";
-            _logger.Information(message, name);
-            var start = Environment.TickCount;
-
-            var storage = _repository.Get(name);
-            
-            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Got storage (Name: {StorageName} Duration: {Duration}ms)";
-            _logger.Information(message, name, duration);
-
-            return storage;
-        }
-
         public async IAsyncEnumerable<Storage> GetAll()
         {
             var message = "Getting all storages";
@@ -64,6 +49,21 @@
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             message = "Got all storages (Duration: {Duration}ms)";
             _logger.Information(message, duration);
+        }
+
+        public Storage Get(string name)
+        {
+            var message = "Getting storage (Name: {StorageName})";
+            _logger.Information(message, name);
+            var start = Environment.TickCount;
+
+            var storage = _repository.Get(name);
+            
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            message = "Got storage (Name: {StorageName} Duration: {Duration}ms)";
+            _logger.Information(message, name, duration);
+
+            return storage;
         }
 
         public Storage Get(Guid itemId)

@@ -7,8 +7,8 @@
     public interface IEntryRepository
     {
         Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None);
-        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None);
         IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None);
 
         Task<Entry> Prepare(Guid spaceId);
         Task<Entry> Prepare(Guid spaceId, Identifier identifier);

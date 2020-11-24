@@ -47,14 +47,6 @@
             _profiler.WriteSample(GetAllByAccountCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Space Get(Guid accountId, string spaceName)
-        {
-            var start = Environment.TickCount;
-            var spaces = _repository.Get(accountId, spaceName);
-            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return spaces;        
-        }
-
         public async IAsyncEnumerable<Space> GetAll()
         {
             var start = Environment.TickCount;
@@ -64,6 +56,14 @@
                 yield return item;
             }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+        }
+
+        public Space Get(Guid accountId, string spaceName)
+        {
+            var start = Environment.TickCount;
+            var spaces = _repository.Get(accountId, spaceName);
+            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return spaces;        
         }
 
         public Space Get(Guid itemId)

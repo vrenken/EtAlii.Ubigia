@@ -12,15 +12,15 @@
             await Connect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
-        {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
-        }
-
         public virtual Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
             Connection = storageConnection;
             return Task.CompletedTask;
+        }
+        
+        public async Task Disconnect(IStorageConnection storageConnection)
+        {
+            await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);
         }
 
         public virtual Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)

@@ -18,6 +18,11 @@
 			_logicalContext = logicalContext;
         }
 
+        public IAsyncEnumerable<Account> GetAll()
+        {
+            return _logicalContext.Accounts.GetAll();
+        }
+
 		public Account Get(string accountName)
 		{
 			return _logicalContext.Accounts.Get(accountName);
@@ -26,11 +31,6 @@
 		public Account Get(string accountName, string password)
         {
             return _logicalContext.Accounts.Get(accountName, password);
-        }
-
-        public IAsyncEnumerable<Account> GetAll()
-        {
-            return _logicalContext.Accounts.GetAll();
         }
 
         public Account Get(Guid itemId)

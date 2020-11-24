@@ -6,11 +6,11 @@
 
     public interface ISpaceRepository 
     {
-        IAsyncEnumerable<Space> GetAll(Guid accountId);
         Space Get(Guid accountId, string spaceName);
-
-        IAsyncEnumerable<Space> GetAll();
         Space Get(Guid itemId);
+
+        IAsyncEnumerable<Space> GetAll(Guid accountId);
+        IAsyncEnumerable<Space> GetAll();
 
         Task<Space> Add(Space item, SpaceTemplate template);
 

@@ -5,14 +5,17 @@
 
     public class StorageSettings : BindableSettingsBase
     {
-        public StorageSettings()
+        public StorageSettings(string id)
+            : base($"{Settings.StoragesNaming}\\{id}")
         {
+            Id = new Guid(id);
+            
             var bytes = new byte[sizeof(double)];
             using var random = RandomNumberGenerator.Create();
             random.GetNonZeroBytes(bytes);
             _usedCapacity = Convert.ToDouble(bytes); 
         }
-        
+
         public bool MountAsStorage { get => GetValue(ref _mountAsStorage, true); set => SetProperty(ref _mountAsStorage, value); }
         private bool? _mountAsStorage;
 
@@ -39,11 +42,5 @@
 
         public double UsedCapacity { get => GetValue(ref _usedCapacity, 0); set => SetProperty(ref _usedCapacity, value); }
         private double? _usedCapacity;
-
-        public StorageSettings(string id)
-            : base($"{Settings.StoragesNaming}\\{id}")
-        {
-            Id = new Guid(id);
-        }
     }
 }

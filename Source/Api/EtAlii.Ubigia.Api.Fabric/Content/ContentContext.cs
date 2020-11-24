@@ -25,7 +25,12 @@
         {
             return _connection.Content.Data.Retrieve(identifier, contentPartId);
         }
-
+        
+        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        {
+            return _connection.Content.Data.Retrieve(identifier);
+        }
+        
         public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             if (contentDefinition == null)
@@ -65,11 +70,6 @@
             }
 
             return _connection.Content.Data.Store(identifier, contentPart);
-        }
-
-        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
-        {
-            return _connection.Content.Data.Retrieve(identifier);
         }
 
         public event Action<Identifier> Updated = delegate { };

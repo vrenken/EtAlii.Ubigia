@@ -15,6 +15,11 @@
             };
         }
 
+        public static IEnumerable<Space> ToLocal(this IEnumerable<WireProtocol.Space> spaces)
+        {
+            return spaces.Select(s => s.ToLocal());
+        }
+
         public static WireProtocol.Space ToWire(this Space space)
         {
             return space == null ? null : new WireProtocol.Space
@@ -28,11 +33,6 @@
         public static IEnumerable<WireProtocol.Space> ToWire(this IEnumerable<Space> spaces)
         {
             return spaces.Select(s => s.ToWire());
-        }
-        
-        public static IEnumerable<Space> ToLocal(this IEnumerable<WireProtocol.Space> spaces)
-        {
-            return spaces.Select(s => s.ToLocal());
         }
     }
 }

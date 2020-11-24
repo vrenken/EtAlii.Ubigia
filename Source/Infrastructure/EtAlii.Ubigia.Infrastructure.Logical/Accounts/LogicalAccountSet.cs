@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalAccountSet : ILogicalAccountSet
@@ -20,6 +19,16 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         public LogicalAccountSet(IFabricContext fabric)
         {
             _fabric = fabric;
+        }
+
+        public IAsyncEnumerable<Account> GetAll()
+        {
+            return _fabric.Items.GetAll(Items);
+        }
+
+        public Account Get(Guid id)
+        {
+            return _fabric.Items.Get(Items, id);
         }
 
         public Account Get(string accountName)
@@ -84,21 +93,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             isAdded = account != null;
             return account;
-        }
-
-        public IAsyncEnumerable<Account> GetAll()
-        {
-            return _fabric.Items.GetAll(Items);
-        }
-
-        public Account Get(Guid id)
-        {
-            return _fabric.Items.Get(Items, id);
-        }
-
-        public Task<ObservableCollection<Account>> GetItems()
-        {
-            return _fabric.Items.GetItems<Account>(Folder);
         }
 
         public void Remove(Guid itemId)
