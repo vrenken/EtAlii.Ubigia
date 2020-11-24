@@ -58,6 +58,14 @@
             return account;
         }
 
+        public Account Get(Guid itemId)
+        {
+            var start = Environment.TickCount;
+            var account = _repository.Get(itemId);
+            _profiler.WriteSample(GetByIdNoPasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return account;
+        }
+
         public async IAsyncEnumerable<Account> GetAll()
         {
             var start = Environment.TickCount;
@@ -67,15 +75,6 @@
                 yield return item;
             }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-        }
-
-        public Account Get(Guid itemId)
-        {
-            var start = Environment.TickCount;
-            var account = _repository.Get(itemId);
-            _profiler.WriteSample(GetByIdNoPasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return account;
-            
         }
 
         public async Task<Account> Add(Account item, AccountTemplate template)

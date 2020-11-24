@@ -10,8 +10,8 @@
         Task<Entry> Prepare(Guid spaceId, Identifier id);
 
         Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
-        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
         IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
 
         Entry Store(IEditableEntry entry);
         Entry Store(Entry entry);

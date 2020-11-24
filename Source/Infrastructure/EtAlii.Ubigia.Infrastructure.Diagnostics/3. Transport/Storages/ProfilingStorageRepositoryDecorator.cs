@@ -44,14 +44,6 @@
             return storage;
         }
 
-        public Storage Get(string name)
-        {
-            var start = Environment.TickCount;
-            var storage = _repository.Get(name);
-            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return storage;
-        }
-
         public async IAsyncEnumerable<Storage> GetAll()
         {
             var start = Environment.TickCount;
@@ -61,6 +53,14 @@
                 yield return item;
             }
             _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+        }
+
+        public Storage Get(string name)
+        {
+            var start = Environment.TickCount;
+            var storage = _repository.Get(name);
+            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return storage;
         }
 
         public Storage Get(Guid itemId)

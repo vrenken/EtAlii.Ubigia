@@ -28,14 +28,14 @@
             return _logicalContext.Storages.GetLocal();
         }
 
-        public Storage Get(string name)
-        {
-            return _logicalContext.Storages.Get(name);
-        }
-
         public IAsyncEnumerable<Storage> GetAll()
         {
             return _logicalContext.Storages.GetAll();
+        }
+
+        public Storage Get(string name)
+        {
+            return _logicalContext.Storages.Get(name);
         }
 
         public Storage Get(Guid itemId)

@@ -7,9 +7,9 @@
     public interface IStorageRepository 
     {
         Storage GetLocal();
+        IAsyncEnumerable<Storage> GetAll();
         Storage Get(string name);
 
-        IAsyncEnumerable<Storage> GetAll();
         Storage Get(Guid itemId);
 
         Task<Storage> Add(Storage item);

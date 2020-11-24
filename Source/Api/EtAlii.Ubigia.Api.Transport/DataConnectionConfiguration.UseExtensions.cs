@@ -4,15 +4,6 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public static class DataConnectionConfigurationUseExtensions
     {
-        public static TDataConnectionConfiguration Use<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, Func<IDataConnection> factoryExtension)
-            where TDataConnectionConfiguration : DataConnectionConfiguration
-        {
-            var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
-
-            editableConfiguration.FactoryExtension = factoryExtension;
-            return configuration;
-        }
-
         public static TDataConnectionConfiguration UseTransport<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, ITransportProvider transportProvider)
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {
@@ -26,6 +17,15 @@ namespace EtAlii.Ubigia.Api.Transport
 
             editableConfiguration.TransportProvider = transportProvider ?? throw new ArgumentNullException(nameof(transportProvider));
 
+            return configuration;
+        }
+
+        public static TDataConnectionConfiguration Use<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, Func<IDataConnection> factoryExtension)
+            where TDataConnectionConfiguration : DataConnectionConfiguration
+        {
+            var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
+
+            editableConfiguration.FactoryExtension = factoryExtension;
             return configuration;
         }
 

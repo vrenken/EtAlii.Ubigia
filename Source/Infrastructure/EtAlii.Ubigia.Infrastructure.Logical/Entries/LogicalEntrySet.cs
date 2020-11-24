@@ -33,14 +33,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabricContext.Entries.Get(identifier, entryRelations);
         }
 
-        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
-        {
-            return _fabricContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
-        }
-
         public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
         {
             return _fabricContext.Entries.Get(identifiers, entryRelations);
+        }
+
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        {
+            return _fabricContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
         public Entry Store(IEditableEntry entry)

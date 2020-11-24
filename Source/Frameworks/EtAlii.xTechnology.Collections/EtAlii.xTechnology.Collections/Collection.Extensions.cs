@@ -16,17 +16,6 @@ namespace EtAlii.xTechnology.Collections
         }
 
         /// <summary>
-        /// Use this method when you want an item only added once to a list.
-        /// </summary>
-        /// <typeparam name="T">The type of the list and items.</typeparam>
-        /// <param name="list">The list to add the item to.</param>
-        /// <param name="item">The item to add to the list.</param>
-        public static void AddOnce<T>(this ICollection<T> list, T item)
-        {
-            list.AddOnce(item, i => i.Equals(item));
-        }
-
-        /// <summary>
         /// Use this method when you want items only added once to a list.
         /// </summary>
         /// <typeparam name="T">The type of the list and items.</typeparam>
@@ -38,6 +27,17 @@ namespace EtAlii.xTechnology.Collections
             {
                 list.AddOnce(item, i => i.Equals(item));
             }
+        }
+
+        /// <summary>
+        /// Use this method when you want an item only added once to a list.
+        /// </summary>
+        /// <typeparam name="T">The type of the list and items.</typeparam>
+        /// <param name="list">The list to add the item to.</param>
+        /// <param name="item">The item to add to the list.</param>
+        public static void AddOnce<T>(this ICollection<T> list, T item)
+        {
+            list.AddOnce(item, i => i.Equals(item));
         }
 
         /// <summary>

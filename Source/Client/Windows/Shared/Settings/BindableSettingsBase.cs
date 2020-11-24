@@ -14,16 +14,16 @@
         {
         }
 
-        protected RegistryKey GetSubKey(string subKeyName)
-        {
-            using var productKey = Registry.CurrentUser.CreateSubKey(_registryKey);
-            return productKey!.CreateSubKey(subKeyName);
-        }
-
         protected BindableSettingsBase(string registryKeyName)
         {
             var format = string.IsNullOrWhiteSpace(registryKeyName) ? "Software\\{0}" : "Software\\{0}\\{1}";
             _registryKey = string.Format(format, Settings.ProductName, registryKeyName);
+        }
+
+        protected RegistryKey GetSubKey(string subKeyName)
+        {
+            using var productKey = Registry.CurrentUser.CreateSubKey(_registryKey);
+            return productKey!.CreateSubKey(subKeyName);
         }
 
         protected T GetValue<T>(ref T storage, T defaultValue, [CallerMemberName] string propertyName = null)
@@ -31,11 +31,9 @@
         {
             if (storage == null)
             {
-                using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
-                {
-                    storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
-                    SetValue(registryKey, storage, propertyName);
-                }
+                using var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey);
+                storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
+                SetValue(registryKey, storage, propertyName);
             }
             return storage;
         }
@@ -45,11 +43,9 @@
         {
             if (!storage.HasValue)
             {
-                using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
-                {
-                    storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
-                    SetValue(registryKey, storage.Value, propertyName);
-                }
+                using var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey);
+                storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
+                SetValue(registryKey, storage.Value, propertyName);
             }
             return storage.Value;
         }

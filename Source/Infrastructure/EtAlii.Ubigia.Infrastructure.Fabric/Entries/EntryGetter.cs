@@ -21,6 +21,107 @@
             }
         }
 
+        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        {
+            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
+
+            var selectedComponents = new List<IComponent>();
+
+            var components = RetrieveAndAdd<IdentifierComponent>(containerId);
+            await foreach(var component in components.ConfigureAwait(false))
+            {
+                selectedComponents.Add(component);
+            }
+            components = RetrieveAndAdd<TypeComponent>(containerId);
+            await foreach(var component in components.ConfigureAwait(false))
+            {
+                selectedComponents.Add(component);
+            }
+            components = RetrieveAndAdd<TagComponent>(containerId);
+            await foreach(var component in components.ConfigureAwait(false))
+            {
+                selectedComponents.Add(component);
+            }
+
+            if (entryRelations.HasFlag(EntryRelation.Previous))
+            {
+                components = RetrieveAndAdd<PreviousComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Next))
+            {
+                components = RetrieveAndAdd<NextComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Update))
+            {
+                components = RetrieveAndAddAll<UpdatesComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Downdate))
+            {
+                components = RetrieveAndAdd<DowndateComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Parent))
+            {
+                components = RetrieveAndAdd<ParentComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+                components = RetrieveAndAdd<Parent2Component>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Child))
+            {
+                components = RetrieveAndAddAll<ChildrenComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+                components = RetrieveAndAddAll<Children2Component>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Index))
+            {
+                components = RetrieveAndAddAll<IndexesComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+            if (entryRelations.HasFlag(EntryRelation.Indexed))
+            {
+                components = RetrieveAndAdd<IndexedComponent>(containerId);
+                await foreach(var component in components.ConfigureAwait(false))
+                {
+                    selectedComponents.Add(component);
+                }
+            }
+
+            var entry = EntryHelper.Compose(selectedComponents, true);
+            return entry;
+        }
+
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
             var entry = await Get(identifier, entriesWithRelation).ConfigureAwait(false);
@@ -128,107 +229,6 @@
             {
                 yield return await Get(child2.Id, entryRelations).ConfigureAwait(false);
             }
-        }
-
-        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
-        {
-            var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
-
-            var selectedComponents = new List<IComponent>();
-
-            var components = RetrieveAndAdd<IdentifierComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
-            {
-                selectedComponents.Add(component);
-            }
-            components = RetrieveAndAdd<TypeComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
-            {
-                selectedComponents.Add(component);
-            }
-            components = RetrieveAndAdd<TagComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
-            {
-                selectedComponents.Add(component);
-            }
-
-            if (entryRelations.HasFlag(EntryRelation.Previous))
-            {
-                components = RetrieveAndAdd<PreviousComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Next))
-            {
-                components = RetrieveAndAdd<NextComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Update))
-            {
-                components = RetrieveAndAddAll<UpdatesComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Downdate))
-            {
-                components = RetrieveAndAdd<DowndateComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Parent))
-            {
-                components = RetrieveAndAdd<ParentComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-                components = RetrieveAndAdd<Parent2Component>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Child))
-            {
-                components = RetrieveAndAddAll<ChildrenComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-                components = RetrieveAndAddAll<Children2Component>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Index))
-            {
-                components = RetrieveAndAddAll<IndexesComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-            if (entryRelations.HasFlag(EntryRelation.Indexed))
-            {
-                components = RetrieveAndAdd<IndexedComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-            }
-
-            var entry = EntryHelper.Compose(selectedComponents, true);
-            return entry;
         }
 
         private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId)

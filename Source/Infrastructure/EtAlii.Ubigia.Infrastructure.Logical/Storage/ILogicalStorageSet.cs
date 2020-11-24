@@ -2,22 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
     public interface ILogicalStorageSet
     {
         Storage GetLocal();
 
-        Storage Get(string name);
-
-        Task<Storage> Add(Storage item);
-
         IAsyncEnumerable<Storage> GetAll();
 
+        Storage Get(string name);
+        
         Storage Get(Guid id);
 
-        Task<ObservableCollection<Storage>> GetItems();
+        Task<Storage> Add(Storage item);
 
         void Remove(Guid itemId);
 

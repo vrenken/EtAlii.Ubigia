@@ -19,18 +19,17 @@
             return _logicalContext.Entries.Get(identifier, entryRelations);
         }
 
-        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
-        {
-            return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
-        }
-
-
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
         {
             foreach (var identifier in identifiers)
             {
                 yield return await _logicalContext.Entries.Get(identifier, entryRelations).ConfigureAwait(false);
             }
+        }
+
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        {
+            return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }
 
         public Task<Entry> Prepare(Guid spaceId)
