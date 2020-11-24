@@ -16,6 +16,7 @@
             _hostIdentifier = CreateHostIdentifier();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         public async Task<string> GetAuthenticationToken(ISignalRSpaceTransport transport, string accountName, string password, string authenticationToken)
         {
             if (password == null && authenticationToken != null)
@@ -41,6 +42,7 @@
             return authenticationToken;
         }
        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         public async Task<string> GetAuthenticationToken(ISignalRStorageTransport transport, string accountName, string password, string authenticationToken)
         {
             if (password == null && authenticationToken != null)
