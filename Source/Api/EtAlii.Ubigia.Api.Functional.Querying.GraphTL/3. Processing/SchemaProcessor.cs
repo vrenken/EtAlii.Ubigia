@@ -100,6 +100,7 @@
                 }, 
                 onCompleted: () => { continueEvent.Set(); });
             continueEvent.WaitOne();
+
             if (exception != null)
             {
                 throw exception;

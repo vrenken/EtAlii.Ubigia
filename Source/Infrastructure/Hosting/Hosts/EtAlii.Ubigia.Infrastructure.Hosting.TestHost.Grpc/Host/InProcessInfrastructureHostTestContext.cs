@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             }
             
             var bytes = new byte[64];
-            var rnd = RandomNumberGenerator.Create();
+            using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
             HostIdentifier = Convert.ToBase64String(bytes);
         }

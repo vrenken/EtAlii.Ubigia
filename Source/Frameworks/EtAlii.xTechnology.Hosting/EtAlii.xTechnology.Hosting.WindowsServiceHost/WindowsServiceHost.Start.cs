@@ -83,7 +83,7 @@
                 Verb = "runas", // indicates to elevate privileges
             };
 
-            var process = new Process
+            using var process = new Process
             {
                 EnableRaisingEvents = true, // enable WaitForExit()
                 StartInfo = startInfo
