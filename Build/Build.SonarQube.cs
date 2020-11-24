@@ -9,8 +9,8 @@ namespace EtAlii.Ubigia.Pipelines
     {
         const string SonarQubeProjectKey = "EtAlii.Ubigia";
 
-        //const string SonarQubeServerUrl = "http://vrenken.duckdns.org:54001";
-        const string SonarQubeServerUrl = "https://sonarqube.vrenken.duckdns.org";
+        const string SonarQubeServerUrl = "http://vrenken.duckdns.org:54001";
+        //const string SonarQubeServerUrl = "https://sonarqube.vrenken.duckdns.org:54001";
         const string LocalSonarQubeServerUrl = "http://192.168.1.130:9000/";
         const string SonarQubeToken = "fa1be2f386ba177214406e68fb26533f6a8981be";
         
