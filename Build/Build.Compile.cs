@@ -10,16 +10,24 @@ namespace EtAlii.Ubigia.Pipelines
         AbsolutePath SourceDirectory => RootDirectory / "Source";
         
         Target Compile => _ => _
-            .Description("Run dotnet build")
+            .Description("Compile the Ubigia solution")
             .DependsOn(PrepareSonarQubeAnalysis)
-            .Executes(() =>
-            {
-                DotNetBuild(s => s
-                    .SetProjectFile(Solution)
-                    .SetNoRestore(true)
-                    .SetProperty("UbigiaIsRunningOnBuildAgent", "true")
-                    .SetConfiguration(Configuration)
-                );
-            });
+            .Unlisted()
+            .Executes(CompileInternal);
+
+        private void CompileInternal()
+        {
+            DotNetBuild(s => s
+                .SetProjectFile(Solution)
+                .SetNoRestore(true)
+                .SetProperty("UbigiaIsRunningOnBuildAgent", "true")
+                .SetConfiguration(Configuration)
+            );
+        }
+
+// ============= Test Targets 
+
+        Target RunCompile => _ => _
+            .Executes(CompileInternal);
     }
 }
