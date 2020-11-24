@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Net;
     using System.Threading.Tasks;
 
@@ -51,7 +52,7 @@
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
+        [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         private static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, Uri address)
         {
             string authenticationToken;
