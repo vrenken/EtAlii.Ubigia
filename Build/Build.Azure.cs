@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Pipelines
 
                 AzurePipelines?.PublishCodeCoverage(
                     AzurePipelinesCodeCoverageToolType.Cobertura, 
-                    "Cobertura.xml", 
+                    TestReportsDirectory / "Cobertura.xml", 
                     TestReportsDirectory);
             });
         
