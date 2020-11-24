@@ -110,7 +110,7 @@
             }
             finally
             {
-                await registration.DisposeAsync();
+                await registration.DisposeAsync().ConfigureAwait(false);
             }
         }
 

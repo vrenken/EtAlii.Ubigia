@@ -18,7 +18,8 @@
 
             var roots = await PowerShellClient.Current.Fabric.Roots
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
             return roots;
         }
     }

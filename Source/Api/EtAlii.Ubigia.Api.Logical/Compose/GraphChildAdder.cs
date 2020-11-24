@@ -20,7 +20,8 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var entry = await _fabric.Entries
                 .GetRelated(location, EntryRelation.Child, scope)
-                .SingleOrDefaultAsync(); // We do not support multiple empty childs yet.
+                .SingleOrDefaultAsync()  // We do not support multiple empty childs yet.
+                .ConfigureAwait(false); 
 
             if (entry != null)
             {
@@ -55,7 +56,9 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var child = await _fabric.Entries
                 .GetRelated(location, EntryRelation.Child, scope)
-                .SingleOrDefaultAsync(e => e.Id == childId);
+                .SingleOrDefaultAsync(e => e.Id == childId)
+                .ConfigureAwait(false);
+            
             if (child != null)
             {
                 var message = $"Unable to add child '{childId}' to entry: {location}";
@@ -76,8 +79,8 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var entry = await _fabric.Entries
                 .GetRelated(location, EntryRelation.Child, scope)
-                .SingleOrDefaultAsync(e => e.Type == name);
-
+                .SingleOrDefaultAsync(e => e.Type == name)
+                .ConfigureAwait(false);
             if (entry != null)
             {
                 var message = $"Unable to add child '{name}' to entry: {location}";

@@ -17,7 +17,8 @@
 
             var spaces = await PowerShellClient.Current.ManagementConnection.Spaces
                 .GetAll(TargetAccount.Id)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             return spaces;
         }

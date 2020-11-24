@@ -24,7 +24,8 @@ namespace EtAlii.Ubigia.Api.Logical
                             path.Add(entry);
                             var entries = await parameters.Context.Entries
                                 .GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope)
-                                .ToArrayAsync().ConfigureAwait(false);
+                                .ToArrayAsync()
+                                .ConfigureAwait(false);
                             if (entries.Multiple())
                             {
                                 throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");
@@ -65,7 +66,8 @@ namespace EtAlii.Ubigia.Api.Logical
                 path.Add(entry);
                 var entries = await context.Entries
                     .GetRelated(entry.Id, EntryRelation.Downdate, scope)
-                    .ToArrayAsync().ConfigureAwait(false);
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
                 if (entries.Multiple())
                 {
                     throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");

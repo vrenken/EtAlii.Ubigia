@@ -194,7 +194,8 @@
             {
                 accounts = await Connection.Accounts
                     .GetAll()
-                    .ToArrayAsync();
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
             });
             task.Wait();
 

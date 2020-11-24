@@ -77,7 +77,8 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     _cacheRelated[key] = result = await _context.Entries
                         .GetRelated(identifier, relation, scope)
-                        .ToArrayAsync();
+                        .ToArrayAsync()
+                        .ConfigureAwait(false);
                 }
 
                 foreach (var entry in result)

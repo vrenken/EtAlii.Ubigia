@@ -51,7 +51,7 @@
         {
             if (!IsRunning)
             {
-                Task.Run(async () => await Dequeue()).ConfigureAwait(false);
+                Task.Run(async () => await Dequeue().ConfigureAwait(false));
             }
         }
 

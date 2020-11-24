@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -45,7 +46,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
                 // 3. Get all matches + rests
                 var parameters = new MatchParameters(rootHandler, templatePart, rest, scope);
-                if (await matcher.CanMatch(parameters))
+                var canMatch = await matcher.CanMatch(parameters).ConfigureAwait(false); 
+                if (canMatch)
                 {
                     matches = matcher.Match(parameters);
                 }
@@ -53,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 {
                     // We can't match so lets break and ensure that the algorithm returns MatchResult.NoMatch.
                     result.Clear();
-                    rest = new PathSubjectPart[0];
+                    rest = Array.Empty<PathSubjectPart>();
                     break;
                 }
 

@@ -11,7 +11,7 @@
         private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
 	        var applicationConfigurationDetails = await new ConfigurationDetailsParser()
-		        .Parse("settings.json");
+		        .Parse("settings.json").ConfigureAwait(false);
 
 	        var applicationConfiguration = new ConfigurationBuilder()
 		        .AddConfigurationDetails(applicationConfigurationDetails)

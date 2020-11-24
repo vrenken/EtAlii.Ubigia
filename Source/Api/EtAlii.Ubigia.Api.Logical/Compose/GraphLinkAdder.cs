@@ -39,7 +39,8 @@
             IReadOnlyEntry result = null;
             var linkEntry = await _fabric.Entries
                 .GetRelated(entry.Id, EntryRelation.Child, scope)
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync()
+                .ConfigureAwait(false);
             if (linkEntry != null)
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -57,7 +58,8 @@
             IReadOnlyEntry result = null;
             var linkEntry = await _fabric.Entries
                 .GetRelated(entry.Id, EntryRelation.Child, scope)
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync()
+                .ConfigureAwait(false);
             if (linkEntry != null)
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>

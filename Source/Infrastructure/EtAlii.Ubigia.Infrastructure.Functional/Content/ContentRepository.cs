@@ -99,7 +99,8 @@
 
             try
             {
-                if (!(await _logicalContext.Content.Get(identifier) is Content content))
+                var item = await _logicalContext.Content.Get(identifier).ConfigureAwait(false);
+                if (!(item is Content content))
                 {
                     throw new ContentRepositoryException("Content not stored yet");
                 }
