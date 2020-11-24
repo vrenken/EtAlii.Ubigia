@@ -39,7 +39,7 @@
                     var entry = await _items
                         .Get(entryId, entryRelations)
                         .ConfigureAwait(false);
-                    entries.Add(entry); // TODO: AsyncEnumerable 
+                    entries.Add(entry); 
                 }
                 response = Ok(entries);
             }
