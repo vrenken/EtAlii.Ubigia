@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
     using Moppet.Lapa;
 
@@ -32,7 +33,7 @@
         public Sequence Parse(LpNode node, bool restIsAllowed)
         {
             _nodeValidator.EnsureSuccess(node, Id, restIsAllowed);
-            var childNodes = node.Children ?? new LpNode[] { };
+            var childNodes = node.Children ?? Array.Empty<LpNode>();
             var parts = childNodes
                 .Select(childNode => _sequencePartsParser.Parse(childNode))
                 .ToList();

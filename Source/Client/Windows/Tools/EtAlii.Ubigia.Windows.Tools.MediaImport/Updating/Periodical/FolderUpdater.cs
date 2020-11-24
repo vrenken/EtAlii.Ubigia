@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Linq;
@@ -46,7 +47,7 @@
 
             if (remoteItems == null || !remoteItems.Any())
             {
-                remoteItems = new DynamicNode[] {};
+                remoteItems = Array.Empty<DynamicNode>();
             }
 //            var localItems = Directory
 //                .EnumerateFileSystemEntries(folder)

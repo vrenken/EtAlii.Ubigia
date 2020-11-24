@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
     using Moppet.Lapa;
 
@@ -30,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public Subject Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var childNodes = node.Children ?? new LpNode[] { };
+            var childNodes = node.Children ?? Array.Empty<LpNode>();
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
             // A relative path with the length of 1 should not be parsed as a path but as a string constant.

@@ -11,7 +11,7 @@
 
         public FileFunctionHandler()
         {
-            ParameterSets = new ParameterSet[] {};
+            ParameterSets = Array.Empty<ParameterSet>();
             Name = "File";
         }
 

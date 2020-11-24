@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia
         {
             ReadOnlySpan<char> span = base36String.ToLower();
 
-            Span<bool> bits = new bool[]{};
+            Span<bool> bits = Array.Empty<bool>();
 
             var charactersToIterate = span.Length;
 
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia
 
         private static Span<byte> ToBytes(ReadOnlySpan<bool> bits)
         {
-            Span<byte> result = new byte[]{};
+            Span<byte> result = Array.Empty<byte>();
 
             byte currentByte = 0;            
             var bitsToIterate = bits.Length;

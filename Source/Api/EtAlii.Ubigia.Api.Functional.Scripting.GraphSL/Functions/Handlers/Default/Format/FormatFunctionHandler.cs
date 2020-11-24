@@ -11,7 +11,7 @@
 
         public FormatFunctionHandler()
         {
-            ParameterSets = new ParameterSet[] {};
+            ParameterSets = Array.Empty<ParameterSet>();
             Name = "Format";
         }
 

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia
             Span<bool> original = new bool[target.Length];
             target.CopyTo(original);
 
-            target = new bool[] { };
+            target = Array.Empty<bool>();
 
             var bitsToIterate = multiplication.Length;
             for (var i = bitsToIterate - 1; i >= 0; i--)
