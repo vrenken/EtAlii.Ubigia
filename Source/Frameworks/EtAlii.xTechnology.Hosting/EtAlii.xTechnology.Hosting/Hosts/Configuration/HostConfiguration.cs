@@ -124,7 +124,7 @@
         {
             if (extensions == null)
             {
-                throw new ArgumentException(nameof(extensions));
+                throw new ArgumentException("No extensions specified", nameof(extensions));
             }
 
             Extensions = extensions

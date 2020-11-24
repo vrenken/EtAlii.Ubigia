@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             var editableConfiguration = (IEditableProviderConfiguration) configuration;
             
-            editableConfiguration.Factory = factory ?? throw new ArgumentException(nameof(factory));
+            editableConfiguration.Factory = factory ?? throw new ArgumentException("No provider factory specified", nameof(factory));
 
             return configuration;
         }
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             var editableConfiguration = (IEditableProviderConfiguration) configuration;
             
-            editableConfiguration.ManagementConnection = managementConnection ?? throw new ArgumentException(nameof(managementConnection));
+            editableConfiguration.ManagementConnection = managementConnection ?? throw new ArgumentException("No management connection specified", nameof(managementConnection));
 
             return configuration;
         }
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             var editableConfiguration = (IEditableProviderConfiguration) configuration;
             
-            editableConfiguration.SystemScriptContext = systemScriptContext ?? throw new ArgumentException(nameof(systemScriptContext));
+            editableConfiguration.SystemScriptContext = systemScriptContext ?? throw new ArgumentException("No system script context specified", nameof(systemScriptContext));
 
             return configuration;
         }
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             var editableConfiguration = (IEditableProviderConfiguration) configuration;
 
-            editableConfiguration.ScriptContextFactory = scriptContextFactory ?? throw new ArgumentException(nameof(scriptContextFactory));
+            editableConfiguration.ScriptContextFactory = scriptContextFactory ?? throw new ArgumentException("No script context factory specified", nameof(scriptContextFactory));
 
             return configuration;
         }

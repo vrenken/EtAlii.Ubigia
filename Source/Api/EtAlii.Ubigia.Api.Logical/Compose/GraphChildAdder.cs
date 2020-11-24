@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope)
         {
-            if (childId == Identifier.Empty) throw new ArgumentException(nameof(childId));
+            if (childId == Identifier.Empty) throw new ArgumentException("No empty identifiers are allowed whilst adding to the graph", nameof(childId));
             
             return AddChildInternal(location, childId, scope);
         }

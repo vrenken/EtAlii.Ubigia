@@ -12,13 +12,13 @@
 
         public SchemaProcessorConfiguration Use(ISchemaScope scope)
         {
-            SchemaScope = scope ?? throw new ArgumentException(nameof(scope));
+            SchemaScope = scope ?? throw new ArgumentException("No scope specified", nameof(scope));
             return this;
         }
 
         public SchemaProcessorConfiguration Use(IGraphSLScriptContext scriptContext)
         {
-            ScriptContext = scriptContext ?? throw new ArgumentException(nameof(scriptContext));
+            ScriptContext = scriptContext ?? throw new ArgumentException("No script context specified", nameof(scriptContext));
             return this;
         }
     }

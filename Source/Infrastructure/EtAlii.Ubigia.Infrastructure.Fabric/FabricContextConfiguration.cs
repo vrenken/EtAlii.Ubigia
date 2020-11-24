@@ -9,7 +9,7 @@
 
         public FabricContextConfiguration Use(IStorage storage)
         {
-            Storage = storage ?? throw new ArgumentException(nameof(storage));
+            Storage = storage ?? throw new ArgumentException("No storage specified", nameof(storage));
 
             return this;
         }
