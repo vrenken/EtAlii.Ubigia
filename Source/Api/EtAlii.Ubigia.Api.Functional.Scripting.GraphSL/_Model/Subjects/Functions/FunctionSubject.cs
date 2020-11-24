@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
 
     internal class FunctionSubject : Subject
@@ -13,7 +14,7 @@
         public FunctionSubject(string name)
         {
             Name = name;
-            Arguments = new FunctionSubjectArgument[] {};
+            Arguments = Array.Empty<FunctionSubjectArgument>();
         }
 
         public FunctionSubject(string name, FunctionSubjectArgument argument)

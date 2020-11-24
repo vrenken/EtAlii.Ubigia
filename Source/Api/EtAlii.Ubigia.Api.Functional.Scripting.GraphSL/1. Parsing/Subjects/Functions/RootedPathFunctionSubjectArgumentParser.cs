@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
     using Moppet.Lapa;
 
@@ -31,7 +32,7 @@
             _nodeValidator.EnsureSuccess(node, Id);
 
             var root = node.Children.Single(n => n.Id == "root").ToString();
-            var childNodes = node.Children.Single(n => n.Id == "path")?.Children ?? new LpNode[] { };
+            var childNodes = node.Children.Single(n => n.Id == "path")?.Children ?? Array.Empty<LpNode>();
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
             var subject = new RootedPathSubject(root, parts);

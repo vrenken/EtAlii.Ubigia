@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -177,7 +178,7 @@
 
         private void ReloadAvailableRoles()
         {
-            IEnumerable<Role> roles = new Role[] { };
+            IEnumerable<Role> roles = Array.Empty<Role>();
             var task = Task.Run(async () =>
             {
                 if (SelectedAccount != null)

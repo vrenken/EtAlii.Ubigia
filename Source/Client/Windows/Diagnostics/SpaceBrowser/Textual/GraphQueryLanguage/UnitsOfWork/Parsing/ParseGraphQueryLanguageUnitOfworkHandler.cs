@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.xTechnology.Structure.Workflow;
@@ -17,7 +18,7 @@
         {
             var viewModel = unitOfWork.ScriptViewModel;
 
-            viewModel.Errors = new TextualError[] {};
+            viewModel.Errors = Array.Empty<TextualError>();
             var result = await _queryContext.Parse(viewModel.Source).ConfigureAwait(false);
             viewModel.Query = result.Query;
             viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });

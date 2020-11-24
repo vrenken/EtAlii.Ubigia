@@ -11,7 +11,7 @@
         private string _title;
 
         public IEnumerable<TextualError> Errors { get => _errors; set => SetProperty(ref _errors, value); }
-        private IEnumerable<TextualError> _errors = new TextualError[] { };
+        private IEnumerable<TextualError> _errors = Array.Empty<TextualError>();
 
         public bool CanExecute { get => _canExecute; set => SetProperty(ref _canExecute, value); }
         private bool _canExecute;

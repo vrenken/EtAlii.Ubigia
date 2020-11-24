@@ -8,7 +8,7 @@
     public static class ComponentHelper
     {
         private static readonly Dictionary<Type, string> ComponentNames = new Dictionary<Type, string>(); 
-        private static readonly object[] EmptyConstructorParameters = new object[] { };
+        private static readonly object[] EmptyConstructorParameters = Array.Empty<object>();
 
         /// <summary>
         /// TODO: this method could be completely replaced by the Generic GetName method.

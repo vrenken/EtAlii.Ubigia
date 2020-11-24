@@ -119,7 +119,7 @@
                 _viewModel.Address = string.Empty;
                 _viewModel.Account = string.Empty;
                 password = string.Empty;
-                _viewModel.PreviousSettings = new ConnectionSettings[] { };
+                _viewModel.PreviousSettings = Array.Empty<ConnectionSettings>();
             }
         }
 

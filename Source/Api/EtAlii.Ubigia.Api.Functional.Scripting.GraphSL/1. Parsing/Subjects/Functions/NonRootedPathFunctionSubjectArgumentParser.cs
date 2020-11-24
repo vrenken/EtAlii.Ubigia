@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
     using Moppet.Lapa;
 
@@ -24,7 +25,7 @@
         public FunctionSubjectArgument Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var childNodes = node.Children ?? new LpNode[] { };
+            var childNodes = node.Children ?? Array.Empty<LpNode>();
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
             var subject = parts[0] is ParentPathSubjectPart 

@@ -87,7 +87,7 @@
                 var v = Random.NextBytes(i);
 
                 var h1 = aHash.ComputeBytes(v);
-                var h2 = hash2.ComputeBytes(v);
+                var h2 = hash2!.ComputeBytes(v);
 
                 Assert.Equal(h1, h2);//, String.Format("{0}, {1}", a_hash.Name, i));
             }
