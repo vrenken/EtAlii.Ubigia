@@ -54,7 +54,7 @@
         public async IAsyncEnumerable<Root> GetAll()
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString());
-            var result = await Connection.Client.Get<IEnumerable<Root>>(address).ConfigureAwait(false); // TODO: AsyncEnumerable
+            var result = await Connection.Client.Get<IEnumerable<Root>>(address).ConfigureAwait(false); 
             foreach (var item in result)
             {
                 yield return item;
