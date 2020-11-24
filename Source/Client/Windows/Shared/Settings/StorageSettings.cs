@@ -1,9 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Windows.Settings
 {
     using System;
+    using System.Security.Cryptography;
 
     public class StorageSettings : BindableSettingsBase
     {
+        private readonly RandomNumberGenerator _random = RandomNumberGenerator.Create();
+
+        public StorageSettings()
+        {
+            var bytes = new byte[sizeof(double)];
+            _random.GetNonZeroBytes(bytes);
+            _usedCapacity = Convert.ToDouble(bytes); 
+        }
+        
         public bool MountAsStorage { get => GetValue(ref _mountAsStorage, true); set => SetProperty(ref _mountAsStorage, value); }
         private bool? _mountAsStorage;
 
@@ -28,7 +38,7 @@
         public bool UseDataEncryption { get => GetValue(ref _useDataEncryption, false); set => SetProperty(ref _useDataEncryption, value); }
         private bool? _useDataEncryption;
 
-        public double UsedCapacity { get => GetValue(ref _usedCapacity, new Random().NextDouble()); set => SetProperty(ref _usedCapacity, value); }
+        public double UsedCapacity { get => GetValue(ref _usedCapacity, 0); set => SetProperty(ref _usedCapacity, value); }
         private double? _usedCapacity;
 
         public StorageSettings(string id)

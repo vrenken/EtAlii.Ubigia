@@ -128,7 +128,7 @@
             var r8 = aHash.TransformFinal();
 
             aHash = (IHash)Activator.CreateInstance(aHash.GetType());
-            var r9 = aHash.TransformFinal();
+            var r9 = aHash!.TransformFinal();
 
             Assert.Equal(r6, r7);
             Assert.Equal(r7, r8);

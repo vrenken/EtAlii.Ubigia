@@ -107,6 +107,7 @@
                 {
                     throw new ContentRepositoryException("Content part has invalid Id");
                 }
+                // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
                 if (content.Summary.AvailableParts.Any(partId => partId == contentPart.Id))
                 {
                     throw new ContentRepositoryException("Content part already stored");
