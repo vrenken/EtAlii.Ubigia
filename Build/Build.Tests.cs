@@ -45,6 +45,7 @@ namespace EtAlii.Ubigia.Pipelines
                         .SetNoBuild(true)
                         .SetNoRestore(true)
                         .SetResultsDirectory(TestResultsDirectory)
+                        .SetConfiguration(Configuration)
                         .EnableCollectCoverage()
                         .SetDataCollector("XPlat Code Coverage")
                         .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
