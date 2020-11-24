@@ -141,7 +141,7 @@
         private void OnSelectFolder(object obj)
         {
             var window = (Window)obj;
-            var dialog = new FolderBrowserDialog
+            using var dialog = new FolderBrowserDialog
             {
                 Description = @"Select the folder that should be monitored",
                 SelectedPath = LocalFolder,

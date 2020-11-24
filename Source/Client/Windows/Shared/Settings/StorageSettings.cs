@@ -5,12 +5,11 @@
 
     public class StorageSettings : BindableSettingsBase
     {
-        private readonly RandomNumberGenerator _random = RandomNumberGenerator.Create();
-
         public StorageSettings()
         {
             var bytes = new byte[sizeof(double)];
-            _random.GetNonZeroBytes(bytes);
+            using var random = RandomNumberGenerator.Create();
+            random.GetNonZeroBytes(bytes);
             _usedCapacity = Convert.ToDouble(bytes); 
         }
         

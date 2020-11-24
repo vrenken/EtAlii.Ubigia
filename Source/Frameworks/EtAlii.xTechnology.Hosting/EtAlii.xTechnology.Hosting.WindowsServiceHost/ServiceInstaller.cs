@@ -19,7 +19,7 @@
             }
             else
             {
-                var installer = GetInstaller(service);
+                using var installer = GetInstaller(service);
                 installer.Install(new Hashtable());
 
                 if (!HasService(service.Name))
@@ -41,7 +41,7 @@
             }
             else
             {
-                var installer = GetInstaller(service);
+                using var installer = GetInstaller(service);
                 installer.Uninstall(null);
 
                 if (HasService(service.Name))

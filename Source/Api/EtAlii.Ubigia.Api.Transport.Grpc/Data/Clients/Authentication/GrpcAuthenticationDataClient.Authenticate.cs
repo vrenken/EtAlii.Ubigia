@@ -71,7 +71,7 @@
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];
-            var rnd = RandomNumberGenerator.Create();
+            using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
             return Convert.ToBase64String(bytes);
         }

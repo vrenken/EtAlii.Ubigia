@@ -57,7 +57,7 @@
         private byte[] CreateBytes(int length)
         {
             var bytes = new byte[length];
-            var rnd = RandomNumberGenerator.Create();
+            using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
             return bytes;
         }

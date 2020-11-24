@@ -26,7 +26,7 @@
 
             _formatter = new PayloadMediaTypeFormatter();
             var bytes = new byte[64];
-            var rnd = RandomNumberGenerator.Create();
+            using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
             _hostIdentifier = Convert.ToBase64String(bytes);
         }
