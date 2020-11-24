@@ -19,17 +19,28 @@ namespace EtAlii.Ubigia.Pipelines
         },
         NonEntryTargets = new []
         {
+            // Unlisted targets.
             nameof(Clean), 
             nameof(Restore),
             nameof(PrepareSonarQubeAnalysis),
             nameof(Compile),
             nameof(Test),
             nameof(CreatePackages),
-            nameof(CreateTestCoverageReports),
+            nameof(CreateTestReports),
             nameof(PublishResultsToSonarQube),
             nameof(PublishResultsToAzure),
             nameof(PublishPackages),
-            nameof(PublishArtefacts)
+            nameof(PublishArtefactsToAzure),
+            
+            // For testing purposes.
+            nameof(RunRestore),
+            nameof(RunCompile),
+            nameof(RunCreateAndPublishPackages),
+            nameof(RunCompileTestAndPublishToSonarQube),
+            nameof(RunPublishToSonarQube),
+            nameof(RunCreateTestReports),
+            nameof(RunTestsAndCreateTestReports),
+            
         }
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
@@ -46,6 +57,8 @@ namespace EtAlii.Ubigia.Pipelines
         ///   - Microsoft VSCode           https://nuke.build/vscode
 
         public static int Main() => Execute<Build>(build => build.CompileTestAnalyseAndPublish);
+        //public static int Main() => Execute<Build>(build => build.RunCompileAndPublishToSonarQube);
+        
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
         readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -57,7 +70,7 @@ namespace EtAlii.Ubigia.Pipelines
         
         Target CompileTestAnalyseAndPublish => _ => _
             .Description("Compile, test, analyse and publish")
-            .DependsOn(PublishArtefacts)
+            .DependsOn(PublishArtefactsToAzure)
             .DependsOn(PublishPackages)
             .DependsOn(PublishResultsToSonarQube)
             .DependsOn(PublishResultsToAzure);

@@ -5,16 +5,15 @@ namespace EtAlii.Ubigia.Pipelines
     using System.IO;
     using Nuke.Common.CI.AzurePipelines;
     using Nuke.Common.Utilities.Collections;
-    using Nuke.Common.Tools.SonarScanner;
-    using static Nuke.Common.Tools.SonarScanner.SonarScannerTasks;
 
     public partial class Build
     {
         AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
-        Target PublishArtefacts => _ => _
+        Target PublishArtefactsToAzure => _ => _
             .Description("Publish artefacts")
             .DependsOn(Test)
+            .Unlisted()
             //.DependsOn(PublishPackages)
             .ProceedAfterFailure()
             .Executes(() =>
@@ -32,7 +31,8 @@ namespace EtAlii.Ubigia.Pipelines
         
         Target PublishResultsToAzure => _ => _
             .Description("Publish test results to Azure")
-            .DependsOn(CreateTestCoverageReports)
+            .Unlisted()
+            .DependsOn(CreateTestReports)
             .ProceedAfterFailure()
             .Executes(() =>
             {
@@ -44,19 +44,11 @@ namespace EtAlii.Ubigia.Pipelines
 
                 AzurePipelines?.PublishCodeCoverage(
                     AzurePipelinesCodeCoverageToolType.Cobertura, 
-                    TestCoverageCoberturaReportFileName, 
-                    TestCoverageReportsFolder);
+                    "Cobertura.xml", 
+                    TestReportsDirectory);
             });
         
-        Target PublishResultsToSonarQube => _ => _
-            .Description("Publish test results to SonarQube")
-            .DependsOn(CreateTestCoverageReports)
-            .ProceedAfterFailure()
-            .Executes(() =>
-            {
-                SonarScannerEnd(c => c
-                    .SetFramework("net5.0")
-                    .SetLogin(SonarQubeToken));
-            });
+// ============= Test Targets 
+        
     }
 }

@@ -10,10 +10,19 @@ namespace EtAlii.Ubigia.Pipelines
             
         Target Clean => _ => _
             .Description("Clean output")
-            .Executes(() =>
-            {
-                SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
-                EnsureCleanDirectory(ArtifactsDirectory);
-            });
+            .Unlisted()
+            .Executes(CleanInternal);
+
+        private void CleanInternal()
+        {
+            SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
+            EnsureCleanDirectory(ArtifactsDirectory);
+        }
+        
+// ============= Test Targets 
+        
+        Target RunClean => _ => _
+            .Description("Clean output")
+            .Executes(CleanInternal);
     }
 }
