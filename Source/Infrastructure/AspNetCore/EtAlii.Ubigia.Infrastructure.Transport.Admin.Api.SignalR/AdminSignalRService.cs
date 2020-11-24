@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 {
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -53,6 +54,7 @@
             Status.Summary = sb.ToString();
         }
 
+        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
         protected override void ConfigureServices(IServiceCollection services)
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
@@ -71,6 +73,8 @@
                 .AddCors()
                 .AddSignalR(options => 
                 {
+                    // SonarQube: Make sure that this logger's configuration is safe.
+                    // As we only add the logging services this ought to be safe. It is when and how they are configured that matters.
                     if (Debugger.IsAttached)
                     {
                         options.EnableDetailedErrors = Debugger.IsAttached;
