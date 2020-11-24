@@ -24,6 +24,8 @@ namespace EtAlii.Ubigia.Pipelines
         {
             SonarScannerBegin(c => c
                 .SetFramework("net5.0")
+                .SetWebServiceTimeout(120) // Somehow our service is currently flaky.
+                
                 .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")                             // Unit tests should not be taken into consideration with regards of testing.
                 .AddTestFileExclusions(SourceDirectory / "**" / "*.Tests.cs")
                 
