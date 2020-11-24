@@ -22,7 +22,8 @@
 
             var hasRoots = await _context.Roots
                 .GetAll(spaceId)
-                .AnyAsync();
+                .AnyAsync()
+                .ConfigureAwait(false);
 
             if (hasRoots)
             {

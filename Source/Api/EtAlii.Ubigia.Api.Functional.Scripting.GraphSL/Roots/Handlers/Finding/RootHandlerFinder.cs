@@ -15,9 +15,14 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public async Task<IRootHandler> Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
         {
             var rootHandler = rootHandlerMapper.AllowedRootHandlers.FirstOrDefault();
-            return rootHandler != null 
-                ? (await _rootHandlerPathMatcher.Match(scope, rootHandler, rootedPathSubject.Parts))?.RootHandler
-                : null;
+            if (rootHandler != null)
+            {
+                var match = await _rootHandlerPathMatcher
+                    .Match(scope, rootHandler, rootedPathSubject.Parts)
+                    .ConfigureAwait(false); 
+                return match?.RootHandler;
+            }
+            return null;
         }
     }
 }

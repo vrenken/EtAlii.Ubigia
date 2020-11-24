@@ -16,7 +16,7 @@
                 webApiConnection.AddressFactory, 
                 accountName, 
                 password, 
-                storageConnection.Transport.Address);
+                storageConnection.Transport.Address).ConfigureAwait(false);
 
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {

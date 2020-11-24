@@ -21,7 +21,8 @@
             var accountId = account.Id;
             var spaces = _context.Spaces.GetAll();
 
-            if (await spaces.AnyAsync(space => space.AccountId == accountId))
+            var hasSpace = await spaces.AnyAsync(space => space.AccountId == accountId).ConfigureAwait(false);
+            if (hasSpace)
             {
                 throw new InvalidOperationException("The account already contains a space");
             }

@@ -17,7 +17,8 @@
 
             var accounts = await PowerShellClient.Current.ManagementConnection.Accounts
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
             return accounts;
         }
     }

@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             if (subject is PathSubject pathSubject)
             {
                 result = pathSubject is RelativePathSubject
-                    ? await ConvertAsStaticPath(pathSubject, scope)
+                    ? await ConvertAsStaticPath(pathSubject, scope).ConfigureAwait(false)
                     : await ConvertAsDynamicPath(pathSubject, scope).ConfigureAwait(false);
             }
             else if(subject is StringConstantSubject stringConstantSubject)
@@ -90,8 +90,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
         private async Task<GraphPath> ConvertAsStaticPath(PathSubject pathSubject, ExecutionScope scope)
         {
-            var result = (await _context.PathSubjectToGraphPathConverter.Convert(pathSubject, scope))
-                .ToArray();
+            var path = await _context.PathSubjectToGraphPathConverter.Convert(pathSubject, scope).ConfigureAwait(false);
+            var result = path.ToArray();
 
             // A static path cannot have GraphRootStartNodes.
             for (var i = 0; i < result.Length; i++)

@@ -27,7 +27,8 @@
                     {
                         var entries = await _fabric.Entries
                             .GetRelated(identifier, EntryRelation.Downdate, scope)
-                            .ToArrayAsync();
+                            .ToArrayAsync()
+                            .ConfigureAwait(false);
                         if (entries.Multiple())
                         {
                             throw new NotSupportedException("The PropertiesGetter cannot handle multiple downdates.");

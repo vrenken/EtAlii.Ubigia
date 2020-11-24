@@ -184,7 +184,7 @@
             var task = Task.Run(async () =>
             {
                 spaces = SelectedAccount != null 
-                    ? await Connection.Spaces.GetAll(SelectedAccount.Id).ToArrayAsync() 
+                    ? await Connection.Spaces.GetAll(SelectedAccount.Id).ToArrayAsync().ConfigureAwait(false) 
                     : Array.Empty<Space>();
             });
             task.Wait();

@@ -55,7 +55,7 @@ namespace EtAlii.xTechnology.Hosting
 		    {
 			    try
 			    {
-				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default)).ConfigureAwait(false);
+				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default).ConfigureAwait(false));
 				    task.GetAwaiter().GetResult();
 			    }
 			    catch (Exception e)

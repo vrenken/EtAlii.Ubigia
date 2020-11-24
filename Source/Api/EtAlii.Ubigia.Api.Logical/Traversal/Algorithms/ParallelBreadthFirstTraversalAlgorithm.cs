@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         list.Add(result);                        
                     }
                     subResults[index] = list; 
-                });
+                }).ConfigureAwait(false);
 
                 var iterationResult = subResults.SelectMany(sr => sr);
 

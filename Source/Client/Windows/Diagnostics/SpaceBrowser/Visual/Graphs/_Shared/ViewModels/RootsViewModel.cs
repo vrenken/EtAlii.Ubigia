@@ -44,7 +44,8 @@
             {
                 AvailableRoots = await Fabric.Roots
                     .GetAll()
-                    .ToArrayAsync();
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
             });
             task.Wait();
         }
