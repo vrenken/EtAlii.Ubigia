@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Transport
         {
             if (transport == null)
             {
-                throw new ArgumentException(nameof(transport));
+                throw new ArgumentException("No account name specified", nameof(transport));
             }
             if (Transport != null)
             {
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Transport
         {
             if (string.IsNullOrWhiteSpace(space))
             {
-                throw new ArgumentException(nameof(space));
+                throw new ArgumentException("No space specified", nameof(space));
             }
             if (Space != null)
             {

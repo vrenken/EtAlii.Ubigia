@@ -24,7 +24,7 @@
 
         public ILogicalContextConfiguration Use(IFabricContext fabric)
         {
-			Fabric = fabric ?? throw new ArgumentException(nameof(fabric));
+			Fabric = fabric ?? throw new ArgumentException("No fabric context specified", nameof(fabric));
 
             return this;
         }

@@ -25,13 +25,13 @@
 
         public ScriptProcessorConfiguration Use(IScriptScope scope)
         {
-            ScriptScope = scope ?? throw new ArgumentException(nameof(scope));
+            ScriptScope = scope ?? throw new ArgumentException("No script scope specified", nameof(scope));
             return this;
         }
 
         public ScriptProcessorConfiguration Use(ILogicalContext logicalContext)
         {
-            LogicalContext = logicalContext ?? throw new ArgumentException(nameof(logicalContext));
+            LogicalContext = logicalContext ?? throw new ArgumentException("No logical context specified", nameof(logicalContext));
             return this;
         }
 

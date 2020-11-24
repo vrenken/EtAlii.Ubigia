@@ -47,11 +47,11 @@
         {
             if (string.IsNullOrWhiteSpace(accountName))
             {
-                throw new ArgumentException(nameof(accountName));
+                throw new ArgumentException("No account name specified: A management connection cannot be made without account identification", nameof(accountName));
             }
             if (AccountName != null)
             {
-                throw new InvalidOperationException("An accountName has already been assigned to this ManagementConnectionConfiguration");
+                throw new InvalidOperationException("An account name has already been assigned to this ManagementConnectionConfiguration");
             }
             if (Password != null)
             {

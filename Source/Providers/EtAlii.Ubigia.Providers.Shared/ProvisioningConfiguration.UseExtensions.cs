@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Provisioning
             where TProvisioningConfiguration : ProvisioningConfiguration
         {
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
-            editableConfiguration.ProviderConfigurations = providerConfigurations ?? throw new ArgumentException(nameof(providerConfigurations));
+            editableConfiguration.ProviderConfigurations = providerConfigurations ?? throw new ArgumentException("No provider configuration specified", nameof(providerConfigurations));
 
             return configuration;
         }
@@ -24,11 +24,11 @@ namespace EtAlii.Ubigia.Provisioning
         {
             if (string.IsNullOrWhiteSpace(account))
             {
-                throw new ArgumentException(nameof(account));
+                throw new ArgumentException("No account specified", nameof(account));
             }
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentException(nameof(password));
+                throw new ArgumentException("No password specified", nameof(password));
             }
 
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             if (dataConnectionConfigurationFactoryExtension == null)
             {
-                throw new ArgumentException(nameof(dataConnectionConfigurationFactoryExtension));
+                throw new ArgumentException("No extension specified", nameof(dataConnectionConfigurationFactoryExtension));
             }
 
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             if (managementConnectionConfigurationFactoryExtension == null)
             {
-                throw new ArgumentException(nameof(managementConnectionConfigurationFactoryExtension));
+                throw new ArgumentException("No extension specified", nameof(managementConnectionConfigurationFactoryExtension));
             }
 
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Provisioning
         {
             if (scriptContextConfigurationFactoryExtension == null)
             {
-                throw new ArgumentException(nameof(scriptContextConfigurationFactoryExtension));
+                throw new ArgumentException("No extension specified", nameof(scriptContextConfigurationFactoryExtension));
             }
 
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Provisioning
             
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
 
-            editableConfiguration.TransportProviderFactory = transportProviderFactory ?? throw new ArgumentException(nameof(transportProviderFactory));
+            editableConfiguration.TransportProviderFactory = transportProviderFactory ?? throw new ArgumentException("No transport provider factory specified", nameof(transportProviderFactory));
             return configuration;
         }
 
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Provisioning
             
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
 
-            editableConfiguration.StorageTransportProviderFactory = storageTransportProviderFactory ?? throw new ArgumentException(nameof(storageTransportProviderFactory));
+            editableConfiguration.StorageTransportProviderFactory = storageTransportProviderFactory ?? throw new ArgumentException("No storage transport provider factory specified", nameof(storageTransportProviderFactory));
             return configuration;
         }
 

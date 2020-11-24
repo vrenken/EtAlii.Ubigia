@@ -18,12 +18,7 @@
 
         public void Initialize(Func<ISystemConnection> create)
         {
-            if (create == null)
-            {
-                throw new ArgumentException(nameof(create));
-            }
-
-            _create = create;
+            _create = create ?? throw new ArgumentException("No system connection create function specified", nameof(create));
         }
     }
 }

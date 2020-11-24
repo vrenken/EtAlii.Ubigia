@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport
             
             if (string.IsNullOrWhiteSpace(accountName))
             {
-                throw new ArgumentException(nameof(accountName));
+                throw new ArgumentException("No account name specified: A data connection cannot be made without account identification", nameof(accountName));
             }
             if (editableConfiguration.AccountName != null)
             {
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Transport
             }
             if (string.IsNullOrWhiteSpace(space))
             {
-                throw new ArgumentException(nameof(space));
+                throw new ArgumentException("No space specified: A data connection cannot be made without knowing which space to connect to", nameof(space));
             }
             if (editableConfiguration.Space != null)
             {

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
                 throw new InvalidOperationException("A Transport has already been assigned to this StorageConnectionConfiguration");
             }
 
-            editableConfiguration.Transport = transport ?? throw new ArgumentException(nameof(transport));
+            editableConfiguration.Transport = transport ?? throw new ArgumentException("No transport specified", nameof(transport));
             return configuration;
         }
     }

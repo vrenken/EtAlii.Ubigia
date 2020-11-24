@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             if (string.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentException(nameof(name));
+                throw new ArgumentException("No name specified", nameof(name));
             }
 
             if (!serviceDetails.Any())
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             var editableConfiguration = (IEditableInfrastructureConfiguration) configuration;
 	        
-            editableConfiguration.Logical = logical ?? throw new ArgumentException(nameof(logical));
+            editableConfiguration.Logical = logical ?? throw new ArgumentException("No logical context specified", nameof(logical));
 
             return configuration;
         }
