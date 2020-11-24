@@ -24,9 +24,16 @@ namespace EtAlii.Ubigia.Pipelines
         {
             SonarScannerBegin(c => c
                 .SetFramework("net5.0")
-                .AddSourceExclusions(SourceDirectory / "**" / "*.Tests.cs")                             // Unit tests should not be taken into consideration with regards of testing.
-                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     // We don't want the 'old' HashLib to cloud up the SonarQube results. 
-                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")                             // Unit tests should not be taken into consideration with regards of testing.
+                .AddTestFileExclusions(SourceDirectory / "**" / "*.Tests.cs")
+                
+                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")       // We don't want the 'old' HashLib to cloud up the SonarQube results.
+                .AddCoverageExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*") 
+                .AddTestFileExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "HashesTests.cs") 
+            
+                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")    // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                .AddCoverageExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*") 
+                
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
                 .SetVSTestReports(TestResultsDirectory / "*.trx")
                 .SetProjectKey(SonarQubeProjectKey)
