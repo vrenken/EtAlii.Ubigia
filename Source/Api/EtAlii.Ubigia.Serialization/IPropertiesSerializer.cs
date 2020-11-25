@@ -2,10 +2,8 @@
 {
     using System.IO;
 
-    public interface IInternalPropertiesSerializer
+    public interface IPropertiesSerializer
     {
-        string FileNameFormat { get; }
-
         void Serialize(Stream stream, PropertyDictionary item);
         PropertyDictionary Deserialize(Stream stream);
     }

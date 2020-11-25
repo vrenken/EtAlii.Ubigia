@@ -5,16 +5,16 @@
 
     public class InMemoryStorageSerializer : IStorageSerializer
     {
-        private readonly IInternalItemSerializer _itemSerializer;
-        private readonly IInternalPropertiesSerializer _propertiesSerializer;
+        private readonly IItemSerializer _itemSerializer;
+        private readonly IPropertiesSerializer _propertiesSerializer;
 
         private readonly IInMemoryItemsHelper _inMemoryItemsHelper;
 
         public string FileNameFormat { get; } = "{0}.bson";
 
         public InMemoryStorageSerializer(
-            IInternalItemSerializer itemSerializer, 
-            IInternalPropertiesSerializer propertiesSerializer,
+            IItemSerializer itemSerializer, 
+            IPropertiesSerializer propertiesSerializer,
             IInMemoryItemsHelper inMemoryItemsHelper)
         {
             _itemSerializer = itemSerializer;

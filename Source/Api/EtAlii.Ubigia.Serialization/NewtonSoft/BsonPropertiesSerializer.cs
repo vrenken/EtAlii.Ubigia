@@ -3,13 +3,11 @@
     using System.IO;
     using Newtonsoft.Json.Bson;
 
-    public class InternalBsonPropertiesSerializer : IInternalPropertiesSerializer
+    public class BsonPropertiesSerializer : IPropertiesSerializer
     {
         private readonly ISerializer _serializer;
 
-        public string FileNameFormat { get; } = "{0}.bson";
-
-        public InternalBsonPropertiesSerializer(ISerializer serializer)
+        public BsonPropertiesSerializer(ISerializer serializer)
         {
             _serializer = serializer;
         }

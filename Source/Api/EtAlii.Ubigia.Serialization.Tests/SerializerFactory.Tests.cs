@@ -25,7 +25,7 @@
             var factory = new SerializerFactory();
 
             // Act.
-            var serializer = factory.Create();
+            var serializer = factory.Create() as Serializer;
 
             // Assert.
             Assert.NotNull(serializer);

@@ -14,8 +14,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
 
             // Act.
             var storageSerializer = new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
@@ -29,8 +29,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -53,8 +53,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -81,8 +81,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -105,8 +105,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new NetCoreAppStorageSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);

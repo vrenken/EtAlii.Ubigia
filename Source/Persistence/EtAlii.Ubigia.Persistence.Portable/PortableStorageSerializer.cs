@@ -7,15 +7,15 @@
 
     public class PortableStorageSerializer : IStorageSerializer
     {
-        private readonly IInternalItemSerializer _itemSerializer;
-        private readonly IInternalPropertiesSerializer _propertiesSerializer;
+        private readonly IItemSerializer _itemSerializer;
+        private readonly IPropertiesSerializer _propertiesSerializer;
         private readonly IFolder _storage;
 
         public string FileNameFormat { get; } = "{0}.bson";
 
         public PortableStorageSerializer(
-            IInternalItemSerializer itemSerializer, 
-            IInternalPropertiesSerializer propertiesSerializer,
+            IItemSerializer itemSerializer, 
+            IPropertiesSerializer propertiesSerializer,
             IFolder storage)
         {
             _itemSerializer = itemSerializer;

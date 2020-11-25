@@ -4,13 +4,11 @@
     using System.Threading.Tasks;
     using Newtonsoft.Json.Bson;
 
-    public class InternalBsonItemSerializer : IInternalItemSerializer
+    public class BsonItemSerializer : IItemSerializer
     {
         private readonly ISerializer _serializer;
 
-        public string FileNameFormat { get; } = "{0}.bson";
-
-        public InternalBsonItemSerializer(ISerializer serializer)
+        public BsonItemSerializer(ISerializer serializer)
         {
             _serializer = serializer;
         }
