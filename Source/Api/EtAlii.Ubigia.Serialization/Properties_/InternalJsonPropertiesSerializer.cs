@@ -16,7 +16,7 @@
         public InternalJsonPropertiesSerializer(ISerializer serializer)
         {
             _serializer = serializer;
-            _serializer.Formatting = Formatting.Indented;
+            ((Serializer)_serializer).Formatting = Formatting.Indented;
         }
 
         public void Serialize(Stream stream, PropertyDictionary item)
