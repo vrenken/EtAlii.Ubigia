@@ -63,12 +63,9 @@ namespace EtAlii.xTechnology.Threading
             // disposed once all requested InternalEnumerators have been disposed.
             public void DisposeEnumerator()
             {
-                if (_downcountEnumerators)
+                if (_downcountEnumerators && Interlocked.Decrement(ref _activeEnumerators) == 0)
                 {
-                    if (Interlocked.Decrement(ref _activeEnumerators) == 0)
-                    {
-                        _reader.Dispose();
-                    }
+                    _reader.Dispose();
                 }
             }
         }

@@ -16,20 +16,16 @@
 
         public static byte[] Encrypt(byte[] bytes)
         {
-            using (var encryptor = Algorithm.CreateEncryptor())
-            {
-                bytes = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
-                return bytes;
-            }
+            using var encryptor = Algorithm.CreateEncryptor();
+            bytes = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+            return bytes;
         }
 
         public static byte[] Decrypt(byte[] bytes)
         {
-            using (var decryptor = Algorithm.CreateDecryptor())
-            {
-                bytes = decryptor.TransformFinalBlock(bytes, 0, bytes.Length);
-                return bytes;
-            }
+            using var decryptor = Algorithm.CreateDecryptor();
+            bytes = decryptor.TransformFinalBlock(bytes, 0, bytes.Length);
+            return bytes;
         }
     }
 }

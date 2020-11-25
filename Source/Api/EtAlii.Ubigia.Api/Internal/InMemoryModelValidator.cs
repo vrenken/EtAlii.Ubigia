@@ -56,13 +56,10 @@ namespace EtAlii.Ubigia.Api.Internal
 
             foreach (var entityType in model.GetEntityTypes())
             {
-                if (entityType.GetUbigiaQuery() != null)
+                if (entityType.GetUbigiaQuery() != null && entityType.BaseType != null)
                 {
-                    if (entityType.BaseType != null)
-                    {
-                        throw new InvalidOperationException(
-                            CoreStrings.DerivedTypeDefiningQuery(entityType.DisplayName(), entityType.BaseType.DisplayName()));
-                    }
+                    throw new InvalidOperationException(
+                        CoreStrings.DerivedTypeDefiningQuery(entityType.DisplayName(), entityType.BaseType.DisplayName()));
                 }
             }
         }
