@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Serialization;
     using PCLStorage;
 
     public class PortableStorageSerializer : IStorageSerializer

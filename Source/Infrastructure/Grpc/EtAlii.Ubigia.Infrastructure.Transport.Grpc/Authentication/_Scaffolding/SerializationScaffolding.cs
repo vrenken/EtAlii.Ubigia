@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 {
-	using EtAlii.Ubigia.Api.Transport;
-	using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.Ubigia.Serialization;
+    using EtAlii.xTechnology.MicroContainer;
 
 	public class SerializationScaffolding : IScaffolding
 	{

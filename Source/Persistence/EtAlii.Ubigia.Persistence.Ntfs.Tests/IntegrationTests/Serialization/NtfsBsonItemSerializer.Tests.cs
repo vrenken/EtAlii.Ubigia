@@ -4,6 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
+    using EtAlii.Ubigia.Serialization;
     using Xunit;
 
     public class NtfsBsonItemSerializerTests : NtfsStorageTestBase

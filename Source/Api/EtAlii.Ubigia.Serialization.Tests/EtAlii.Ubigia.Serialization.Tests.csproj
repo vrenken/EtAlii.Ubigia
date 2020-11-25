@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ProjectGuid>3d7a47bc-733b-4397-8835-b7e3152dce5e</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Serialization\EtAlii.Ubigia.Serialization.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
+  </ItemGroup>
+
+</Project>

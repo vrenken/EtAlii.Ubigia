@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Azure.Tests
 {
+    using EtAlii.Ubigia.Serialization;
     using Xunit;
 
     public class AzureStorageTests

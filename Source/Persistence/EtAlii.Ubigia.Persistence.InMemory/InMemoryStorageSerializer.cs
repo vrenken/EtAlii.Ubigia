@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Serialization;
 
     public class InMemoryStorageSerializer : IStorageSerializer
     {

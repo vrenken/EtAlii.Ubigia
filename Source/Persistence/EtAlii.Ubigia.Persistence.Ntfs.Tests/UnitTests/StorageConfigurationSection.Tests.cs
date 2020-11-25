@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
     using System.Linq;
+    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 

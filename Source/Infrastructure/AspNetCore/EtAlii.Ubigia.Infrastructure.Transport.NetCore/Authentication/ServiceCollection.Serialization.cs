@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
 {
-	using EtAlii.Ubigia.Api.Transport;
-	using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.Ubigia.Serialization;
+    using Microsoft.Extensions.DependencyInjection;
 	using Newtonsoft.Json;
 
 	public static partial class ServiceCollectionExtensions

@@ -6,8 +6,8 @@
 	using System.IO;
 	using System.Reflection;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Transport;
-	using Microsoft.AspNetCore.Http.Features;
+    using EtAlii.Ubigia.Serialization;
+    using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
 	using Microsoft.Net.Http.Headers;
 	using Newtonsoft.Json;
@@ -84,19 +84,14 @@
             var firstKey = string.Empty;
             foreach (DictionaryEntry item in dictionary)
             {
-	            if (dictionary.Count == 1 && item.Key as string == "Value")
+                if (dictionary.Count == 1 && item.Key as string == "Value")
 	            {
 		            // Success
 		            return item.Value;
 	            }
-	            else
-	            {
-		            if (item.Key != null)
-		            {
-			            firstKey = item.Key.ToString();
-		            }
-		            break;
-	            }
+
+                firstKey = item.Key.ToString();
+                break;
             }
 
             var e2 = new InvalidOperationException("Unexpected Data");
@@ -107,13 +102,11 @@
         }
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
-	    {
-			using (var reader = CreateJsonReader(type, readStream))
-		    {
-			    reader.CloseInput = false;
-				return _serializer.Deserialize(reader, type);
-		    }
-		}
+        {
+            using var reader = CreateJsonReader(type, readStream);
+            reader.CloseInput = false;
+            return _serializer.Deserialize(reader, type);
+        }
 
 	    private JsonReader CreateJsonReader(Type type, Stream readStream)
         {

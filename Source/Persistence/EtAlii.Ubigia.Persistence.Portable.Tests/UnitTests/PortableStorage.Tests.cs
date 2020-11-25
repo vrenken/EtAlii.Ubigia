@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using EtAlii.Ubigia.Serialization;
     using PCLStorage;
     using Xunit;
 

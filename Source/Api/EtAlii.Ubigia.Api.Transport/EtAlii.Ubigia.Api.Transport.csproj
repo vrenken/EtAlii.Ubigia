@@ -8,10 +8,6 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <!-- This reference should not be in such a transport abstraction project. -->
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Serialization\EtAlii.Ubigia.Serialization.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
+    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class GrpcSpaceClientsScaffolding : IScaffolding
@@ -7,8 +8,6 @@
         public void Register(Container container)
         {
             container.Register<ISpaceConnection, GrpcSpaceConnection>();
-
-            //container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>()
 
             container.Register<IAuthenticationDataClient, GrpcAuthenticationDataClient>();
 
@@ -23,6 +22,9 @@
 
             container.Register<IContentDataClient, GrpcContentDataClient>();
             container.Register<IContentNotificationClient, GrpcContentNotificationClient>();
+            
+            // The GrpcPropertiesDataClient requires advanced serialization.
+            container.Register(() => new SerializerFactory().Create());
         }
     }
 }
