@@ -59,42 +59,6 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void IEditableIdentifier_Change()
-        {
-            // Arrange.
-            var storage1 = Guid.NewGuid();
-            var account1 = Guid.NewGuid();
-            var space1 = Guid.NewGuid();
-            const ulong era1 = 1;
-            const ulong period1 = 2;
-            const ulong moment1 = 3;
-
-            var storage2 = Guid.NewGuid();
-            var account2 = Guid.NewGuid();
-            var space2 = Guid.NewGuid();
-            const ulong era2 = 4;
-            const ulong period2 = 5;
-            const ulong moment2 = 6;
-            var identifier = (IEditableIdentifier)Identifier.Create(storage1, account1, space1, era1, period1, moment1);
-
-            // Act.
-            identifier.Storage = storage2;
-            identifier.Account = account2;
-            identifier.Space = space2;
-            identifier.Era = era2;
-            identifier.Period = period2;
-            identifier.Moment = moment2;
-
-            // Assert.
-            Assert.Equal(storage2, identifier.Storage);// The identifier.Storage property has not changed.
-            Assert.Equal(account2, identifier.Account);// The identifier.Account property has not changed.
-            Assert.Equal(space2, identifier.Space);// The identifier.Space property has not changed.
-            Assert.Equal(era2, identifier.Era);// The identifier.Era property has not changed.
-            Assert.Equal(period2, identifier.Period);// The identifier.Period property has not changed.
-            Assert.Equal(moment2, identifier.Moment);// The identifier.Moment property has not changed.
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
         public void Identifier_Based_On_Storage_Account_Space_Are_Equal()
         {
             var storage = Guid.NewGuid();
