@@ -2,7 +2,10 @@
 {
     public class Parent : IParent
     {
-        private static int _counter;
+        public int Counter { get; private set; }
+        
+        public IFirstChild FirstChild { get; }
+        public ISecondChild SecondChild { get; }
 
         /// <summary>
         /// The problem arises because the DronesToolPanelViewModel - which is requested when the two commands are initialized - 
@@ -11,13 +14,13 @@
         /// </summary>
         public Parent(IFirstChild firstChild, ISecondChild secondChild)
         {
-            Counter = ++_counter;
             FirstChild = firstChild;
             SecondChild = secondChild;
         }
 
-        public int Counter { get; }
-        public IFirstChild FirstChild { get; }
-        public ISecondChild SecondChild { get; }
+        public void Initialize()
+        {
+            Counter++;
+        }
     }
 }

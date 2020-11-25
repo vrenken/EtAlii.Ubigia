@@ -1,6 +1,7 @@
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
 
@@ -28,8 +29,20 @@ namespace EtAlii.xTechnology.MicroContainer
         //[Obsolete("This method should be private")]
         public object GetInstance(Type type)
         {
-            object instance;
+            var mappingsToInitialize = new List<ContainerRegistration>();
 
+            var instance = GetInstance(type, mappingsToInitialize);
+
+            foreach (var mapping in mappingsToInitialize)
+            {
+                InitializeInstance(mapping, mapping.Instance);
+            }
+
+            return instance;
+        }
+
+        private object GetInstance(Type type, List<ContainerRegistration> mappingsToInitialize)
+        {
             if (_mappings.TryGetValue(type, out var mapping))
             {
                 /*
@@ -44,30 +57,25 @@ namespace EtAlii.xTechnology.MicroContainer
                         throw new InvalidOperationException("Unable to create instance for type: " + type);
                     }
 
-                    var newInstance = mapping.ConstructMethod == null 
-                        ? CreateInstance(mapping.ConcreteType, null, null) 
+                    var instance = mapping.ConstructMethod == null 
+                        ? CreateInstance(mapping.ConcreteType, null, null, mappingsToInitialize) 
                         : mapping.ConstructMethod();
 
-                    newInstance = DecorateInstanceIfNeeded(mapping, newInstance);
-                    mapping.Instance = newInstance;
-                    InitializeInstance(mapping, mapping.Instance);
+                    mapping.Instance = DecorateInstanceIfNeeded(mapping, instance, mappingsToInitialize);
+                    mappingsToInitialize.Add(mapping);
                 }
-                instance = mapping.Instance;
+                return mapping.Instance;
             }
-            else
-            {
-                throw new InvalidOperationException("No mapping found for type: " + type);
-            }
-            return instance;
+            throw new InvalidOperationException("No mapping found for type: " + type);
         }
 
-        private object DecorateInstanceIfNeeded(ContainerRegistration mapping, object instance)
+        private object DecorateInstanceIfNeeded(ContainerRegistration mapping, object instance, List<ContainerRegistration> registrationsToInitialize)
         {
             foreach (var decoratorMapping in mapping.Decorators)
             {
                 if (mapping.Instance == null)
                 {
-                    var newInstance = CreateInstance(decoratorMapping.DecoratorType, decoratorMapping.ServiceType, instance);
+                    var newInstance = CreateInstance(decoratorMapping.DecoratorType, decoratorMapping.ServiceType, instance, registrationsToInitialize);
                     mapping.Instance = newInstance;
                 }
                 instance = mapping.Instance;
@@ -83,11 +91,11 @@ namespace EtAlii.xTechnology.MicroContainer
             }
         }
 
-        private object CreateInstance(Type type, Type serviceTypeToReplace, object instanceToReplaceServiceTypeWith)
+        private object CreateInstance(Type type, Type serviceTypeToReplace, object instanceToReplaceServiceTypeWith, List<ContainerRegistration> registrationsToInitialize)
         {
             var constructors = type.GetTypeInfo().DeclaredConstructors
                 .Where(c => !c.IsStatic && c.IsPublic)
-                .ToArray();//.GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                .ToArray();
 
             if (constructors.Length > 1)
             {
@@ -115,7 +123,7 @@ namespace EtAlii.xTechnology.MicroContainer
                     }
                     else
                     {
-                        instances[parameterIndex] = GetInstance(parameterType);
+                        instances[parameterIndex] = GetInstance(parameterType, registrationsToInitialize);
                     }
                 }
                 return constructor.Invoke(instances);
@@ -124,7 +132,6 @@ namespace EtAlii.xTechnology.MicroContainer
             {
                 throw new InvalidOperationException("Unable to create instance of type: " + type + " due to issues with parameter: " + parameterIndex + "\r\n", e);
             }
-
         }
     }
 }
