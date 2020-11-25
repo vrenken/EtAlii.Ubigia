@@ -14,12 +14,12 @@
             // Arrange.
             var folderName = $"C:\\Temp\\{Guid.NewGuid()}";
             var serializer = new Serializer();
-            var internalBsonItemSerializer = new InternalBsonItemSerializer(serializer);
-            var internalBsonPropertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var bsonItemSerializer = new BsonItemSerializer(serializer);
+            var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
             var storageConfiguration = new StorageConfiguration()
                 .Use("Test");
             var folderStorage = new FileSystemFolder(folderName);
-            var storageSerializer = new PortableStorageSerializer(internalBsonItemSerializer, internalBsonPropertiesSerializer, folderStorage);
+            var storageSerializer = new PortableStorageSerializer(bsonItemSerializer, bsonPropertiesSerializer, folderStorage);
             var pathBuilder = new PortablePathBuilder(storageConfiguration, storageSerializer);
             var folderManager = new PortableFolderManager(storageSerializer, folderStorage);
             var fileManager = new PortableFileManager(storageSerializer, folderManager, pathBuilder, folderStorage);

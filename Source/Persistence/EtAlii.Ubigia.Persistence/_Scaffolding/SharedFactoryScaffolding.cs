@@ -19,8 +19,8 @@
             container.Register<IPathBuilder, TPathBuilder>();
             container.Register<IContainerProvider, TContainerProvider>();
 
-            container.Register<IInternalItemSerializer, InternalBsonItemSerializer>();
-            container.Register<IInternalPropertiesSerializer, InternalBsonPropertiesSerializer>();
+            container.Register<IItemSerializer, BsonItemSerializer>();
+            container.Register<IPropertiesSerializer, BsonPropertiesSerializer>();
         }
     }
 }

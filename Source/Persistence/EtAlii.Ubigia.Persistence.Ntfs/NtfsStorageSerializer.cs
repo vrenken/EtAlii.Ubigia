@@ -7,14 +7,14 @@
 
     public class NtfsStorageSerializer : IStorageSerializer
     {
-        private readonly IInternalItemSerializer _itemSerializer;
-        private readonly IInternalPropertiesSerializer _propertiesSerializer;
+        private readonly IItemSerializer _itemSerializer;
+        private readonly IPropertiesSerializer _propertiesSerializer;
 
         public string FileNameFormat { get; } = "{0}.bson";
 
         public NtfsStorageSerializer(
-            IInternalItemSerializer itemSerializer, 
-            IInternalPropertiesSerializer propertiesSerializer)
+            IItemSerializer itemSerializer, 
+            IPropertiesSerializer propertiesSerializer)
         {
             _itemSerializer = itemSerializer;
             _propertiesSerializer = propertiesSerializer;

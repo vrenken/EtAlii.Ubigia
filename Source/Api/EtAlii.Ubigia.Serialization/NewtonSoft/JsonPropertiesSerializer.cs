@@ -7,16 +7,14 @@
     /// <summary>
     /// JSON based storage has some serious drawbacks. Do not use!
     /// </summary>
-    public class InternalJsonPropertiesSerializer : IInternalPropertiesSerializer
+    public class JsonPropertiesSerializer : IPropertiesSerializer
     {
         private readonly ISerializer _serializer;
 
-        public string FileNameFormat { get; } = "{0}.json";
-
-        public InternalJsonPropertiesSerializer(ISerializer serializer)
+        public JsonPropertiesSerializer(ISerializer serializer)
         {
             _serializer = serializer;
-            _serializer.Formatting = Formatting.Indented;
+            ((Serializer)_serializer).Formatting = Formatting.Indented;
         }
 
         public void Serialize(Stream stream, PropertyDictionary item)

@@ -13,8 +13,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var itemSerializer = new InternalBsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer(serializer);
+            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
             var inMemoryItems = new InMemoryItems();
             var inMemoryItemsHelpers = new InMemoryItemsHelper(inMemoryItems);
 
@@ -30,8 +30,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var itemSerializer = new InternalBsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer(serializer);
+            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -54,8 +54,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var itemSerializer = new InternalBsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer(serializer);
+            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -84,8 +84,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var itemSerializer = new InternalBsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer(serializer);
+            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -108,8 +108,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var itemSerializer = new InternalBsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var itemSerializer = new BsonItemSerializer(serializer);
+            var propertiesSerializer = new BsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);

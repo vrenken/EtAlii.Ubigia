@@ -10,8 +10,8 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var internalBsonItemSerializer = new InternalBsonItemSerializer(serializer);
-            var internalBsonPropertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var bsonItemSerializer = new BsonItemSerializer(serializer);
+            var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
 
             var storageConfiguration = new StorageConfiguration()
                 .Use("Test");
@@ -46,8 +46,8 @@
 
             // Assert.
             Assert.NotNull(storage);
-            Assert.NotNull(internalBsonItemSerializer);
-            Assert.NotNull(internalBsonPropertiesSerializer);
+            Assert.NotNull(bsonItemSerializer);
+            Assert.NotNull(bsonPropertiesSerializer);
         }
     }
 }

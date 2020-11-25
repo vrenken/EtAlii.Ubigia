@@ -10,14 +10,14 @@
         {
             // Arrange.
             var serializer = new Serializer();
-            var internalBsonItemSerializer = new InternalBsonItemSerializer(serializer);
-            var internalBsonPropertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
+            var bsonItemSerializer = new BsonItemSerializer(serializer);
+            var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
 
             var storageConfiguration = new StorageConfiguration()
                 .Use("Test");
             var inMemoryItems = new InMemoryItems();
             var inMemoryItemsHelper = new InMemoryItemsHelper(inMemoryItems);
-            var storageSerializer = new InMemoryStorageSerializer(internalBsonItemSerializer,internalBsonPropertiesSerializer, inMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(bsonItemSerializer,bsonPropertiesSerializer, inMemoryItemsHelper);
             var pathBuilder = new InMemoryPathBuilder( storageSerializer);
             var folderManager = new InMemoryFolderManager(storageSerializer, inMemoryItems, inMemoryItemsHelper);
             var fileManager = new InMemoryFileManager(storageSerializer, folderManager, pathBuilder, inMemoryItems, inMemoryItemsHelper);

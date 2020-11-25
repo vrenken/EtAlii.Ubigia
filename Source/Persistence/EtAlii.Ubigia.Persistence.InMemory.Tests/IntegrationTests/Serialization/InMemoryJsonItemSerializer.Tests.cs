@@ -13,8 +13,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var inMemoryItems = new InMemoryItems();
             var inMemoryItemsHelpers = new InMemoryItemsHelper(inMemoryItems);
 
@@ -30,8 +30,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -54,8 +54,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -82,8 +82,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
@@ -107,8 +107,8 @@
         {
             // Arrange.
             var serializer = new SerializerFactory().Create();
-            var itemSerializer = new InternalJsonItemSerializer(serializer);
-            var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
+            var itemSerializer = new JsonItemSerializer(serializer);
+            var propertiesSerializer = new JsonPropertiesSerializer(serializer);
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var folder = Storage.PathBuilder.GetFolder(containerId);
