@@ -2,7 +2,7 @@
 {
     using System;
     using System.IO;
-    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Serialization;
     using Newtonsoft.Json.Bson;
 
     public class AuthenticationTokenConverter : IAuthenticationTokenConverter

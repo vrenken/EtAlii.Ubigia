@@ -3,6 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProvisioningScaffolding : IScaffolding

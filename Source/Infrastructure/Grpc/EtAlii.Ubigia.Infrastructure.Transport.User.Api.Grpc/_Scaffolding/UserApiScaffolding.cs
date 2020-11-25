@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
-	using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.MicroContainer;
 
 	public class UserApiScaffolding : IScaffolding
 	{

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
+    using EtAlii.Ubigia.Serialization;
     using Xunit;
 
     public class InMemoryStorageTests

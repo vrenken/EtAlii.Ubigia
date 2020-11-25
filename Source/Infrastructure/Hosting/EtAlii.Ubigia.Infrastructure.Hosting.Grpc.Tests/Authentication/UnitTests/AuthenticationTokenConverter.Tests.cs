@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.Ubigia.Serialization;
     using Newtonsoft.Json;
     using Xunit;
 

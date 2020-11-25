@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class WebApiStorageClientsScaffolding : IScaffolding

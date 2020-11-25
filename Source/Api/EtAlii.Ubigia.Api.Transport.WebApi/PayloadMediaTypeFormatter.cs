@@ -10,7 +10,8 @@
 	using System.Net.Http.Headers;
 	using System.Reflection;
 	using System.Threading.Tasks;
-	using Newtonsoft.Json;
+    using EtAlii.Ubigia.Serialization;
+    using Newtonsoft.Json;
 	using Newtonsoft.Json.Bson;
 
 	public class PayloadMediaTypeFormatter : MediaTypeFormatter

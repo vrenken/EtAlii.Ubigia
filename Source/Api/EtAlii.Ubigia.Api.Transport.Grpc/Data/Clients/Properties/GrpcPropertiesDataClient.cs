@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using EtAlii.Ubigia.Serialization;
     using global::Grpc.Core;
     using Identifier = EtAlii.Ubigia.Identifier;
     using PropertyDictionary = EtAlii.Ubigia.PropertyDictionary;
@@ -10,12 +11,18 @@
     {
         private IGrpcSpaceTransport _transport;
         private PropertiesGrpcService.PropertiesGrpcServiceClient _client;
+        private readonly ISerializer _serializer;
+
+        public GrpcPropertiesDataClient(ISerializer serializer)
+        {
+            _serializer = serializer;
+        }
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
             try
             {
-                var request = new PropertiesPostRequest{EntryId = identifier.ToWire(), PropertyDictionary = properties.ToWire()};
+                var request = new PropertiesPostRequest{EntryId = identifier.ToWire(), PropertyDictionary = properties.ToWire(_serializer)};
                 await _client.PostAsync(request, _transport.AuthenticationHeaders);
                 //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties)
                 PropertiesHelper.SetStored(properties, true);
@@ -34,7 +41,7 @@
                 {
                     var request = new PropertiesGetRequest{ EntryId = identifier.ToWire() };
                     var response = await _client.GetAsync(request, _transport.AuthenticationHeaders);
-                    var result = response.PropertyDictionary.ToLocal();
+                    var result = response.PropertyDictionary.ToLocal(_serializer);
                     
                     if (result != null)
                     {

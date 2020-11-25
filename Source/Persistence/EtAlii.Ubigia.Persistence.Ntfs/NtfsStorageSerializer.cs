@@ -2,6 +2,7 @@
 {
     using System.IO;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Serialization;
     using Microsoft.Experimental.IO;
 
     public class NtfsStorageSerializer : IStorageSerializer

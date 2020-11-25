@@ -5,8 +5,8 @@
 	using System.IO;
 	using System.Reflection;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Transport;
-	using Microsoft.AspNetCore.Http.Features;
+    using EtAlii.Ubigia.Serialization;
+    using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
 	using Microsoft.Net.Http.Headers;
 	using Newtonsoft.Json;

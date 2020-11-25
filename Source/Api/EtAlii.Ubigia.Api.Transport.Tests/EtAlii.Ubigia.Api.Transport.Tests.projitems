@@ -18,8 +18,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentNotificationClientStub.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Properties_\UnitTests\PropertyDictionaryJSonConverter.ReadJSon.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Properties_\UnitTests\PropertyDictionaryJSonConverter.WriteJSon.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
@@ -28,16 +26,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootDataClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootNotificationClientStub.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\SerializerFactory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ITransportTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestMessage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestPackage.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)3. Transport\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataConnection\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Properties_\IntegrationTests" />
     <Folder Include="$(MSBuildThisFileDirectory)Roots\" />
   </ItemGroup>
 </Project>

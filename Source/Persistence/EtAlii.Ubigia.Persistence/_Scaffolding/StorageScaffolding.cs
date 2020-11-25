@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
     public class StorageScaffolding : IScaffolding

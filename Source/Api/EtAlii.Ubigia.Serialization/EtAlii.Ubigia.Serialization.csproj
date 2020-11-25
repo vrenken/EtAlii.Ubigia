@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <Version>$(PackageVersion)</Version>
+    <ProjectGuid>b1b7e0d9-18bc-4f1d-8a5e-92fe19aeae06</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia\EtAlii.Ubigia.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.0.2" />
+  </ItemGroup>
+</Project>

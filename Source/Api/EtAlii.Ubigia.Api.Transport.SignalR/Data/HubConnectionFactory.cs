@@ -4,6 +4,7 @@
 	using System.Collections.Generic;
 	using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using EtAlii.Ubigia.Serialization;
     using Microsoft.AspNetCore.Http.Connections;
 	using Microsoft.AspNetCore.SignalR.Client;
 	using Microsoft.Extensions.DependencyInjection;
