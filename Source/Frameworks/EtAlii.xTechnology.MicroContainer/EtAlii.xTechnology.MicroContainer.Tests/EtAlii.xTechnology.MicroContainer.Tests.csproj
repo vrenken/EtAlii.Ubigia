@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <ProjectGuid>b4d7d8bc-698e-48a6-829b-08c41cdb2adc</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj" />
+  </ItemGroup>
+
+</Project>
