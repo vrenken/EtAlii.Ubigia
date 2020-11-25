@@ -160,7 +160,7 @@
             var keyLength = 128;
             var key = Encoding.ASCII.GetBytes("BaaDFoodFromDeadBeef").Take(keyLength / 8).ToArray();
             var iv = Encoding.ASCII.GetBytes("FoodBaaDFromBeefDead").Take(keyLength / 8).ToArray();
-            var cryptic = new AesCryptoServiceProvider {KeySize = keyLength};
+            using var cryptic = new AesCryptoServiceProvider {KeySize = keyLength};
 
             return new CryptoStream(stream, mode == CryptoStreamMode.Read ? cryptic.CreateDecryptor(key, iv) : cryptic.CreateEncryptor(key, iv), mode);
         }
