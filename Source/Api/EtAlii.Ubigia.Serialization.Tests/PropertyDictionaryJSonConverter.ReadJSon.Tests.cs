@@ -626,7 +626,7 @@
         }
 
 
-        [Fact(Skip = "Gives errors so skipping for now. Should be corrected")]
+        [Fact]
         public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Local()
         {
             // Arrange.
@@ -790,7 +790,7 @@
             Assert.Equal(5, result.Count);
             Assert.Equal("World", result["Hello"]);
             Assert.Equal(1234, result["Int32"]);
-            Assert.Equal(true, result["Boolean"]);
+            Assert.True((bool)result["Boolean"]);
             Assert.Null(result["Null"]);
             Assert.Equal((short)1234, result["Int16"]);
         }
