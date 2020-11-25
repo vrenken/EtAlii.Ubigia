@@ -33,10 +33,10 @@ namespace EtAlii.xTechnology.MicroContainer
 
             var instance = GetInstance(type, mappingsToInitialize);
 
-            foreach (var mapping in mappingsToInitialize)
-            {
-                InitializeInstance(mapping, mapping.Instance);
-            }
+            // foreach (var mapping in mappingsToInitialize)
+            // [
+            //     InitializeInstance(mapping, mapping.Instance)
+            // ]
 
             return instance;
         }
@@ -62,7 +62,9 @@ namespace EtAlii.xTechnology.MicroContainer
                         : mapping.ConstructMethod();
 
                     mapping.Instance = DecorateInstanceIfNeeded(mapping, instance, mappingsToInitialize);
-                    mappingsToInitialize.Add(mapping);
+                    InitializeInstance(mapping, mapping.Instance);
+                    //mappingsToInitialize.Add(mapping)
+                    // TODO: Fix weird container issue. Look in SchemaParserScaffolding.
                 }
                 return mapping.Instance;
             }

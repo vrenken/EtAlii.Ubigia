@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
-
+ 
     internal class SchemaParserScaffolding : IScaffolding
     {
         public void Register(Container container)
@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IRequirementParser, RequirementParser>();
             
             container.Register<IAssignmentParser, AssignmentParser>();
+            // TODO: Fix weird container issue - This registration causes problems.
             container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser => ((KeyValuePairParser)keyValuePairParser).Initialize(container.GetInstance<IAssignmentParser>().Parser));
             
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
@@ -39,12 +40,6 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<ISetAndSelectNodeValueAnnotationParser, SetAndSelectNodeValueAnnotationParser>();
             container.Register<IClearAndSelectNodeValueAnnotationParser, ClearAndSelectNodeValueAnnotationParser>();
             container.Register<ISelectNodeValueAnnotationParser, SelectNodeValueAnnotationParser>();
-
-            //container.Register<IStructureMutationParser, StructureMutationParser>() 
-            //container.Register<IValueMutationParser, ValueMutationParser>()
-
-            // Path helpers
-            //container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>()
         }
     }
 }
