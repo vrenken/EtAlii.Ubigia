@@ -7,60 +7,60 @@
     /// The Ubigia identifier is not based on random values but on a hierarchical structure,
     /// composed of both spatial (Storage/Account/Space) and temporal (Era/Period/Moment) components.
     /// The reasoning is that we want to be able to uniquely identifier each individual change a person or system
-    /// will ever needs. 
+    /// will ever needs.
+    /// Each identifier is composed from both a spatial (Storage, Account, Space) and
+    /// temporal component (Era, Period, Moment). 
     /// </summary>
-    public partial struct Identifier : IEditableIdentifier
+    public readonly partial struct Identifier
     {
-        public Guid Storage => _storage;
-        private Guid _storage;
-        Guid IEditableIdentifier.Storage { get => _storage; set => _storage = value; }
+        /// <summary>
+        /// The storage to which the identifier belongs.
+        /// <remarks>This does not explicitly indicate where the information is stored.</remarks>
+        /// </summary>
+        public Guid Storage { get; }
 
-        public Guid Account => _account;
-        private Guid _account;
-        Guid IEditableIdentifier.Account { get => _account; set => _account = value; }
+        /// <summary>
+        /// The account to which the identifier belongs.
+        /// </summary>
+        public Guid Account { get; }
 
-        public Guid Space => _space;
-        private Guid _space;
-        Guid IEditableIdentifier.Space { get => _space; set => _space = value; }
+        /// <summary>
+        /// The space to which the identifier belongs.
+        /// </summary>
+        public Guid Space { get; }
 
-        public ulong Era => _era;
-        private ulong _era;
-        ulong IEditableIdentifier.Era { get => _era; set => _era = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong Era { get; }
 
-        public ulong Period => _period;
-        private ulong _period;
-        ulong IEditableIdentifier.Period { get => _period; set => _period  = value; }
+        public ulong Period { get; }
 
-        public ulong Moment => _moment;
-        private ulong _moment;
-        ulong IEditableIdentifier.Moment { get => _moment; set => _moment = value; }
-        
-        public static readonly Identifier Empty = new Identifier
-        {
-            _storage = Guid.Empty,
-            _account = Guid.Empty,
-            _space = Guid.Empty,
-            _era = ulong.MinValue,
-            _period = ulong.MinValue,
-            _moment = ulong.MinValue,
-        };
+        public ulong Moment { get; }
+
+        public static readonly Identifier Empty = new
+        (
+            storage: Guid.Empty,
+            account: Guid.Empty,
+            space: Guid.Empty,
+            era: ulong.MinValue,
+            period: ulong.MinValue,
+            moment: ulong.MinValue
+        );
 
         public override string ToString()
         {
-            if(this == Empty)
-            {
-                return $"{GetType().Name}.Empty";
-            }
-
-            return string.Format($"{ToLocationString()}{IdentifierSplitter.Part}{ToTimeString()}");
+            return this == Empty 
+                ? $"{GetType().Name}.Empty" 
+                : string.Format($"{ToLocationString()}{IdentifierSplitter.Part}{ToTimeString()}");
         }
 
         public string ToLocationString()
         {
             return string.Format("{0}{3}{1}{3}{2}",
-                            _storage.ToString().Replace("-", ""),
-                            _account.ToString().Replace("-", ""),
-                            _space.ToString().Replace("-", ""),
+                            Storage.ToString().Replace("-", ""),
+                            Account.ToString().Replace("-", ""),
+                            Space.ToString().Replace("-", ""),
                             IdentifierSplitter.Location);
         }
 

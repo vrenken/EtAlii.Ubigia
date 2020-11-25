@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial struct Identifier : IEquatable<Identifier>
+    public readonly partial struct Identifier : IEquatable<Identifier>
     {
         /// <summary>
         /// Check whether this identifier equals the provided object.

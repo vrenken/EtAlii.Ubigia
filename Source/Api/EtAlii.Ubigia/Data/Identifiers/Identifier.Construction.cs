@@ -2,45 +2,52 @@
 {
     using System;
 
-    public partial struct Identifier
+    public readonly partial struct Identifier
     {
+        private Identifier(Guid storage, Guid account, Guid space, ulong era, ulong period, ulong moment)
+        {
+            Storage = storage;
+            Account = account;
+            Space = space;
+            Era = era;
+            Period = period;
+            Moment = moment;
+        }
+
         public static Identifier NewIdentifier(Guid storage, Guid account, Guid space)
         {
-            return new Identifier
-            {
-                _storage = storage,
-                _account = account,
-                _space = space,
-                _era = ulong.MinValue,
-                _period = ulong.MinValue,
-                _moment = ulong.MinValue
-            };
+            return new(
+                storage: storage,
+                account: account,
+                space: space,
+                era: ulong.MinValue,
+                period: ulong.MinValue,
+                moment: ulong.MinValue
+            );
         }
 
         public static Identifier NewIdentifier(Identifier id, ulong era, ulong period, ulong moment)
         {
-            return new Identifier
-            {
-                _storage = id._storage,
-                _account = id._account,
-                _space = id._space,
-                _era = era,
-                _period = period,
-                _moment = moment
-            };
+            return new(
+                storage: id.Storage,
+                account: id.Account,
+                space: id.Space,
+                era: era,
+                period: period,
+                moment: moment
+            );
         }
 
         public static Identifier Create(Guid storage, Guid account, Guid space, ulong era, ulong period, ulong moment)
         {
-            return new Identifier
-            {
-                _storage = storage,
-                _account = account,
-                _space = space,
-                _era = era,
-                _period = period,
-                _moment = moment
-            };
+            return new(
+                storage: storage,
+                account: account,
+                space: space,
+                era: era,
+                period: period,
+                moment: moment
+            );
         }
     }
 }
