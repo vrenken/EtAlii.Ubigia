@@ -15,13 +15,13 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             container.Register<IModelCount>(() => modelCount);
 
             container.Register<IFirstChild, FirstChild>();
-            container.RegisterInitializer<IFirstChild>(c =>
+            container.RegisterLazyInitializer<IFirstChild>(c =>
             {
                 var p = container.GetInstance<IParent>();
                 ((IInitializable<IParent>)c).Initialize(p);
             });
             container.Register<ISecondChild, SecondChild>();
-            container.RegisterInitializer<ISecondChild>(c =>
+            container.RegisterLazyInitializer<ISecondChild>(c =>
             {
                 var p = container.GetInstance<IParent>();
                 ((IInitializable<IParent>)c).Initialize(p);

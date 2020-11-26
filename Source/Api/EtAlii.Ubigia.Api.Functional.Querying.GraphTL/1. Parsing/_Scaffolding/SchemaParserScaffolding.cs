@@ -16,8 +16,11 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IRequirementParser, RequirementParser>();
             
             container.Register<IAssignmentParser, AssignmentParser>();
-            // TODO: Fix weird container issue - This registration causes problems.
-            container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser => ((KeyValuePairParser)keyValuePairParser).Initialize(container.GetInstance<IAssignmentParser>().Parser));
+            container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser =>
+            {
+                var assignmentParser = container.GetInstance<IAssignmentParser>();
+                ((KeyValuePairParser) keyValuePairParser).Initialize(assignmentParser.Parser);
+            });
             
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
             container.Register<INodeValueFragmentParser, NodeValueFragmentParser>();
