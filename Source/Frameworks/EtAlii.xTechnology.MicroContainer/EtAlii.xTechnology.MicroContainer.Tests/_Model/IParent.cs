@@ -2,8 +2,6 @@
 {
     public interface IParent
     {
-        int Counter { get; }
-
         void Initialize();
     }
 }
