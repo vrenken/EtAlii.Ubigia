@@ -2,13 +2,20 @@
 {
     public class SecondChild : ISecondChild, IInitializable<IParent>
     {
-        public int Counter { get; private set; }
+        private readonly IModelCount _modelCount;
+
+        public SecondChild(IModelCount modelCount)
+        {
+            _modelCount = modelCount;
+            _modelCount.SecondChildConstructorCount += 1;
+        }
+
         public IParent Parent { get; private set; }
 
         public void Initialize(IParent initial)
         {
             Parent = initial;
-            Counter++;
+            _modelCount.SecondChildInitializeCount += 1;
         }
     }
 }

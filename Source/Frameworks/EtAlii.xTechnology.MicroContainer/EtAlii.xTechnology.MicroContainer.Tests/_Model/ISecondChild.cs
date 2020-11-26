@@ -2,8 +2,6 @@
 {
     public interface ISecondChild
     {
-        int Counter { get; }
-
         IParent Parent { get; }
     }
 }

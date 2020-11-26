@@ -2,7 +2,7 @@
 {
     public class Parent : IParent
     {
-        public int Counter { get; private set; }
+        private readonly IModelCount _modelCount;
         
         public IFirstChild FirstChild { get; }
         public ISecondChild SecondChild { get; }
@@ -12,15 +12,17 @@
         /// itself again requires the commands in the constructor. 
         /// The error only occurs when there are at least 2 objects (i.e. commands) injected.
         /// </summary>
-        public Parent(IFirstChild firstChild, ISecondChild secondChild)
+        public Parent(IFirstChild firstChild, ISecondChild secondChild, IModelCount modelCount)
         {
+            _modelCount = modelCount;
+            _modelCount.ParentConstructorCount += 1;
             FirstChild = firstChild;
             SecondChild = secondChild;
         }
 
         public void Initialize()
         {
-            Counter++;
+            _modelCount.ParentInitializeCount += 1;
         }
     }
 }
