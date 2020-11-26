@@ -76,10 +76,6 @@ namespace EtAlii.xTechnology.MicroContainer
                 _mappings[serviceType] = mapping = new ContainerRegistration();
             }
 
-            //if (!_mappings.ContainsKey(serviceType))
-            //{
-            //    throw new InvalidOperationException("Service Type not yet registered: " + serviceType);
-            //}
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException("Service Type should be an interface: " + serviceType);
@@ -107,21 +103,35 @@ namespace EtAlii.xTechnology.MicroContainer
             var serviceType = typeof(T);
 
             // We want a stub in case the service type has not yet been registered.
-	        if (!_mappings.TryGetValue(serviceType, out var mapping))
+            if (!_mappings.TryGetValue(serviceType, out var mapping))
             {
                 _mappings[serviceType] = mapping = new ContainerRegistration();
             }
 
-            //if (!_mappings.ContainsKey(serviceType))
-            //{
-            //    throw new InvalidOperationException("Service Type not registered: " + serviceType);
-            //}
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException("Service Type should be an interface: " + serviceType);
             }
 
-            mapping.Initializers.Add(o => initializer((T)o));
+            mapping.ImmediateInitializers.Add(o => initializer((T)o));
+        }
+
+        public void RegisterLazyInitializer<T>(Action<T> initializer)
+        {
+            var serviceType = typeof(T);
+
+            // We want a stub in case the service type has not yet been registered.
+            if (!_mappings.TryGetValue(serviceType, out var mapping))
+            {
+                _mappings[serviceType] = mapping = new ContainerRegistration();
+            }
+
+            if (!serviceType.GetTypeInfo().IsInterface)
+            {
+                throw new InvalidOperationException("Service Type should be an interface: " + serviceType);
+            }
+
+            mapping.LazyInitializers.Add(o => initializer((T)o));
         }
 
 	    private bool HasRegistration(Type serviceType)
