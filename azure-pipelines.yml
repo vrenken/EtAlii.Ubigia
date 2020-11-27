@@ -5,7 +5,7 @@
 #
 #     - To turn off auto-generation set:
 #
-#         [AzurePipelines (AutoGenerate = false)]
+#         [CustomAzurePipelines (AutoGenerate = false)]
 #
 #     - To trigger manual generation invoke:
 #
@@ -24,6 +24,7 @@ stages:
       - job: CompileTestAnalyseAndPublish
         displayName: 'CompileTestAnalyseAndPublish'
         dependsOn: [  ]
+        timeoutInMinutes: 120
         steps:
           - task: CmdLine@2
             inputs:
