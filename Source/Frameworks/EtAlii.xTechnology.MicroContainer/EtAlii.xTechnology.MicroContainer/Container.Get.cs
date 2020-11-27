@@ -10,13 +10,21 @@ namespace EtAlii.xTechnology.MicroContainer
     {
         /// <summary>
         /// Instantiates and returns an instance that got configured for the specified interface.
-        /// If the instance requires any constructor parameters these will also get instantiated and injected. 
+        /// If the instance requires any constructor parameters these will also get instantiated and injected.
+        ///
+        /// The container works in a way that it tries to create the constructor-injected objects dependency tree.
+        /// During this creation it will run all requested initializations immediately after the construction of
+        /// a single object, and after the root object has been created it will run all lazy registrations.    
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
+        /// <exception cref="InvalidOperationException">In case one of the objects in the DI graph cannot be initialized.
+        /// For example due to a missing registration or when a cyclic dependency has been defined.</exception>
+
         public T GetInstance<T>()
         {
 #if CHECK_USAGE
+            // This check below can be activated to find out which container registrations are not needed.
             var unusedMappings = _mappings
                 .Where(kvp => kvp.Value.Usages == 0)
                 .ToArray();
@@ -26,10 +34,12 @@ namespace EtAlii.xTechnology.MicroContainer
                 throw new InvalidOperationException("Unused container registrations found: " + mappings);
             }
 #endif
-
             var involvedContainerRegistrations = new List<ContainerRegistration>();
             var type = typeof(T);
             var instance = (T)GetInstance(type, involvedContainerRegistrations);
+            
+            // After the requested object has been instantiated we need to make sure the lazy initialization
+            // request are taken care of.   
             foreach (var involvedContainerRegistration in involvedContainerRegistrations)
             {
                 InitializeLazy(involvedContainerRegistration);
@@ -42,6 +52,8 @@ namespace EtAlii.xTechnology.MicroContainer
             if (_mappings.TryGetValue(type, out var mapping))
             {
 #if DEBUG
+                // This check ensures that cyclic dependencies (either through constructor or initializer access) are caught 
+                // when calling the GetInstance method. 
                 if (mapping.UnderConstruction)
                 {
                     throw new InvalidOperationException($"Cyclic dependency detected. Check your registrations and initializations for type: {type}");
@@ -58,6 +70,7 @@ namespace EtAlii.xTechnology.MicroContainer
                     }
 
 #if DEBUG
+                    // We need to indicate when the instance in the mapping is under construction.
                     mapping.UnderConstruction = true;
 #endif
                     var instance = mapping.ConstructMethod == null 
@@ -109,6 +122,15 @@ namespace EtAlii.xTechnology.MicroContainer
             }
         }
 
+        /// <summary>
+        /// Create an instance for the specified type. This requires instantiating its constructor parameters as well. 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="serviceTypeToReplace"></param>
+        /// <param name="instanceToReplaceServiceTypeWith"></param>
+        /// <param name="involvedContainerRegistrations"></param>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         private object CreateInstance(Type type, Type serviceTypeToReplace, object instanceToReplaceServiceTypeWith, List<ContainerRegistration> involvedContainerRegistrations)
         {
             var constructors = type.GetTypeInfo().DeclaredConstructors
@@ -148,7 +170,7 @@ namespace EtAlii.xTechnology.MicroContainer
             }
             catch (Exception e)
             {
-                throw new InvalidOperationException("Unable to create instance of type: " + type + " due to issues with parameter: " + parameterIndex + "\r\n", e);
+                throw new InvalidOperationException($"Unable to create instance of type: {type} due to issues with parameter: {parameterIndex}", e);
             }
         }
     }

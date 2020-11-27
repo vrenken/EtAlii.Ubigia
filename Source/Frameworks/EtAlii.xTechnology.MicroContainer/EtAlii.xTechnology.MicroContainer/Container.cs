@@ -9,6 +9,9 @@ namespace EtAlii.xTechnology.MicroContainer
     /// </summary>
 	public partial class Container
 	{
+        // This mapping contains the understanding of all the objects that the container can instantiate.
+        // It not only contains concrete type registrations but also construction methods, initializer know-how
+        // and the possibility to decorate objects.   
         private readonly Dictionary<Type, ContainerRegistration> _mappings = new();
 	}
 }
