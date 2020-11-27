@@ -7,7 +7,7 @@
         public readonly ulong RequiredParts;
         public readonly ulong PartSize;
 
-        public ContentNewQuery(Identifier identifier, ulong sizeInBytes, ulong requiredParts, ulong partSize)
+        public ContentNewQuery(in Identifier identifier, ulong sizeInBytes, ulong requiredParts, ulong partSize)
         {
             Identifier = identifier;
             SizeInBytes = sizeInBytes;

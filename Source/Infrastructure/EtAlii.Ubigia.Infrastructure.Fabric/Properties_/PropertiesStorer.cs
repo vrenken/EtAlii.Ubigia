@@ -11,7 +11,7 @@
             _storage = storage;
         }
 
-        public void Store(Identifier identifier, PropertyDictionary properties)
+        public void Store(in Identifier identifier, PropertyDictionary properties)
         {
             if (identifier == Identifier.Empty)
             {

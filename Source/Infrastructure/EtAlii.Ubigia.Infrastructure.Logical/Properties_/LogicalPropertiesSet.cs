@@ -11,12 +11,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext = fabricContext;
         }
 
-        public PropertyDictionary Get(Identifier identifier)
+        public PropertyDictionary Get(in Identifier identifier)
         {
             return _fabricContext.Properties.Get(identifier);
         }
 
-        public void Store(Identifier identifier, PropertyDictionary properties)
+        public void Store(in Identifier identifier, PropertyDictionary properties)
         {
             _fabricContext.Properties.Store(identifier, properties);
         }

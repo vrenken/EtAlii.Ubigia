@@ -4,7 +4,7 @@
     {
         public Identifier Identifier { get; }
 
-        public IdentifierPathSubjectPart(Identifier identifier)
+        public IdentifierPathSubjectPart(in Identifier identifier)
         {
             Identifier = identifier;
         }

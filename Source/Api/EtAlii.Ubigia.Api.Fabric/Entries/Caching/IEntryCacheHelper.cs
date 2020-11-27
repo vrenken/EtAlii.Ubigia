@@ -2,7 +2,7 @@
 {
     public interface IEntryCacheHelper
     {
-        IReadOnlyEntry Get(Identifier identifier);
+        IReadOnlyEntry Get(in Identifier identifier);
 
         void Store(IReadOnlyEntry entry);
 

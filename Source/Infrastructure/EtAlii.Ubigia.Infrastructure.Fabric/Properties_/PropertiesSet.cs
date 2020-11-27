@@ -13,12 +13,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _propertiesStorer = propertiesStorer;
         }
 
-        public PropertyDictionary Get(Identifier identifier)
+        public PropertyDictionary Get(in Identifier identifier)
         {
             return _propertiesGetter.Get(identifier);
         }
 
-        public void Store(Identifier identifier, PropertyDictionary properties)
+        public void Store(in Identifier identifier, PropertyDictionary properties)
         {
             _propertiesStorer.Store(identifier, properties);
         }

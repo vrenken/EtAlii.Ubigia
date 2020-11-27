@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabric = fabric;
         }
 
-        public Identifier GetNext(Guid spaceId, Identifier previousHeadIdentifier)
+        public Identifier GetNext(Guid spaceId, in Identifier previousHeadIdentifier)
         {
             var space = _context.Spaces.Get(spaceId);
             var storageId = _context.Storages.GetLocal().Id;

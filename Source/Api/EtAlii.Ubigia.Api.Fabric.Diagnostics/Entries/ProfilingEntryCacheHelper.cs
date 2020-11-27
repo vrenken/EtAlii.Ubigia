@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public IReadOnlyEntry Get(Identifier identifier)
+        public IReadOnlyEntry Get(in Identifier identifier)
         {
             dynamic profile = _profiler.Begin("Getting cached entry: " + identifier.ToTimeString());
             profile.Identifier = identifier;

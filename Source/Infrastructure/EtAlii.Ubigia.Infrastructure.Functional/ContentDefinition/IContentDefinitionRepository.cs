@@ -4,7 +4,7 @@
 
     public interface IContentDefinitionRepository
     {
-        void Store(Identifier identifier, ContentDefinition contentDefinition);
+        void Store(in Identifier identifier, ContentDefinition contentDefinition);
         Task Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
         Task<IReadOnlyContentDefinition> Get(Identifier identifier);
     }

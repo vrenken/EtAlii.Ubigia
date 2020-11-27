@@ -11,7 +11,7 @@
             _storage = storage;
         }
 
-        public void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
             _storage.Blobs.Store(containerId, contentDefinitionPart);

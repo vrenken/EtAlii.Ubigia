@@ -7,7 +7,7 @@
     {
         public readonly Identifier Identifier;
 
-        public ContentQuery(Identifier identifier)
+        public ContentQuery(in Identifier identifier)
         {
             Identifier = identifier;
         }

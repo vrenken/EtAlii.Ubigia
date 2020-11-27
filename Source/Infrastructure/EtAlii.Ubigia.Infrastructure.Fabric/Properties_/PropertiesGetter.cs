@@ -11,7 +11,7 @@
             _storage = storage;
         }
 
-        public PropertyDictionary Get(Identifier identifier)
+        public PropertyDictionary Get(in Identifier identifier)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
             var properties = _storage.Properties.Retrieve(containerId);

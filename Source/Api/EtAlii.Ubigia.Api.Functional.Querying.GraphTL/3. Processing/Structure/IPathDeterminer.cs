@@ -4,6 +4,6 @@
 
     internal interface IPathDeterminer
     {
-        PathSubject Determine(FragmentMetadata fragmentMetadata, NodeAnnotation annotation, Identifier id);
+        PathSubject Determine(FragmentMetadata fragmentMetadata, NodeAnnotation annotation, in Identifier id);
     }
 }

@@ -6,7 +6,7 @@
     {
         Task<IReadOnlyContentDefinition> Get(Identifier identifier);
         Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
-        void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
-        void Store(Identifier identifier, ContentDefinition contentDefinition);
+        void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
+        void Store(in Identifier identifier, ContentDefinition contentDefinition);
     }
 }

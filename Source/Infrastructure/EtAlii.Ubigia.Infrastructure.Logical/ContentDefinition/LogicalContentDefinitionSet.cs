@@ -22,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _fabricContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
         }
 
-        public void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             _fabricContext.ContentDefinition.Store(identifier, contentDefinitionPart);
         }
 
-        public void Store(Identifier identifier, ContentDefinition contentDefinition)
+        public void Store(in Identifier identifier, ContentDefinition contentDefinition)
         {
             _fabricContext.ContentDefinition.Store(identifier, contentDefinition);
         }

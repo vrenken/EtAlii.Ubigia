@@ -38,7 +38,7 @@
             StartRoot = startRoot;
         }
 
-        internal NodeQueryable(IQueryProvider queryProvider, Identifier startIdentifier)
+        internal NodeQueryable(IQueryProvider queryProvider, in Identifier startIdentifier)
             : base(queryProvider)
         {
             if (startIdentifier == Identifier.Empty)

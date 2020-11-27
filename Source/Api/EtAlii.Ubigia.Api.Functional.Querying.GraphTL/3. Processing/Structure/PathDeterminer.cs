@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class PathDeterminer : IPathDeterminer
     {
     
-        public PathSubject Determine(FragmentMetadata fragmentMetadata, NodeAnnotation annotation, Identifier id)
+        public PathSubject Determine(FragmentMetadata fragmentMetadata, NodeAnnotation annotation, in Identifier id)
         {
             var path = annotation?.Source;
 

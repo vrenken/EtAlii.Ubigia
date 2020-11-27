@@ -2,6 +2,6 @@
 {
     public interface IContentDefinitionPartStorer
     {
-        void Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
+        void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
     }
 }

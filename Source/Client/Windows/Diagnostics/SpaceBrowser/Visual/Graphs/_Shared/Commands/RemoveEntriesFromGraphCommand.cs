@@ -10,7 +10,7 @@
         public ProcessReason ProcessReason { get; }
         public int Time { get; set; }
 
-        public RemoveEntriesFromGraphCommand(Identifier identifier, ProcessReason processReason)
+        public RemoveEntriesFromGraphCommand(in Identifier identifier, ProcessReason processReason)
             : this(new[] { identifier }, processReason)
         {
         }

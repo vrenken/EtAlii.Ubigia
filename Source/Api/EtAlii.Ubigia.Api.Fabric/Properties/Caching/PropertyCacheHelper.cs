@@ -9,13 +9,13 @@
             _cacheProvider = cacheProvider;
         }
 
-        public PropertyDictionary GetProperties(Identifier identifier)
+        public PropertyDictionary GetProperties(in Identifier identifier)
         {
             _cacheProvider.Cache.TryGetValue(identifier, out var properties);
             return properties;
         }
 
-        public void StoreProperties(Identifier identifier, PropertyDictionary properties)
+        public void StoreProperties(in Identifier identifier, PropertyDictionary properties)
         {
             _cacheProvider.Cache[identifier] = properties;
         }

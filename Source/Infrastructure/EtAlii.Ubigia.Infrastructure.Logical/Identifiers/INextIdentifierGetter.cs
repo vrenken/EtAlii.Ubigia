@@ -4,6 +4,6 @@
 
     public interface INextIdentifierGetter
     {
-        Identifier GetNext(Guid spaceId, Identifier previousHeadIdentifier);
+        Identifier GetNext(Guid spaceId, in Identifier previousHeadIdentifier);
     }
 }

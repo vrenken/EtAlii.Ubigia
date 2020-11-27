@@ -54,7 +54,7 @@
             });
         }
 
-        private void AddFromRelation(Identifier entryIdentifier, Relation relation, EntryRelation entryRelation, AddEntryToGraphCommand command)
+        private void AddFromRelation(in Identifier entryIdentifier, Relation relation, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
             if (relation != Relation.None)
             {
@@ -63,7 +63,7 @@
             }
         }
 
-        private void AddFromRelations(Identifier entryIdentifier, IEnumerable<Relation> relations, EntryRelation entryRelation, AddEntryToGraphCommand command)
+        private void AddFromRelations(in Identifier entryIdentifier, IEnumerable<Relation> relations, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
             foreach (var relation in relations)
             {
@@ -96,7 +96,7 @@
             }
         }
 
-        private void AddRelation(Identifier from, Identifier to, EntryRelation entryRelation, AddEntryToGraphCommand command)
+        private void AddRelation(in Identifier from, in Identifier to, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
             var fromNode = command.GraphDocumentViewModel.FindNodeByKey(from);
             var toNode = command.GraphDocumentViewModel.FindNodeByKey(to);

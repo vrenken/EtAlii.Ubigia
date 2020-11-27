@@ -34,13 +34,13 @@
             ((IComponentEditableEntry) this).IdComponent = new IdentifierComponent();
         }
 
-        private Entry(Identifier id)
+        private Entry(in Identifier id)
             : this()
         {
             ((IComponentEditableEntry) this).IdComponent = new IdentifierComponent { Id = id };
         }
 
-        private Entry(Identifier id, Relation previous)
+        private Entry(in Identifier id, Relation previous)
             : this(id)
         {
             ((IComponentEditableEntry) this).PreviousComponent = new PreviousComponent { Relation = previous };

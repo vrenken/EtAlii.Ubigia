@@ -103,7 +103,7 @@
         /// <param name="first"></param>
         /// <param name="second"></param>
         /// <returns></returns>
-        public static bool operator ==(Identifier first, Identifier second)
+        public static bool operator ==(in Identifier first, in Identifier second)
         {
             var equals = first.Equals(second);
 
@@ -121,7 +121,7 @@
         /// <param name="first"></param>
         /// <param name="second"></param>
         /// <returns></returns>
-        public static bool operator !=(Identifier first, Identifier second)
+        public static bool operator !=(in Identifier first, in Identifier second)
         {
             var equals = first == second;
             return !equals;

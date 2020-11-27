@@ -7,7 +7,7 @@
         public Identifier Identifier { get; }
         public ProcessReason ProcessReason { get; }
 
-        public RetrieveEntryCommand(Identifier identifier, ProcessReason processReason)
+        public RetrieveEntryCommand(in Identifier identifier, ProcessReason processReason)
         {
             Identifier = identifier;
             ProcessReason = processReason;

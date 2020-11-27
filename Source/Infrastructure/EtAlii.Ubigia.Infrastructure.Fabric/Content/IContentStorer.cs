@@ -2,6 +2,6 @@
 {
     public interface IContentStorer
     {
-        void Store(Identifier identifier, Content content);
+        void Store(in Identifier identifier, Content content);
     }
 }

@@ -24,14 +24,14 @@
             //]
         }
 
-        private void OnPrepared(Identifier identifier)
+        private void OnPrepared(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 
             //Prepared(identifier)
         }
 
-        private void OnStored(Identifier identifier)
+        private void OnStored(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 

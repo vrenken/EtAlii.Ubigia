@@ -24,14 +24,14 @@
             //]
         }
 
-        private void OnUpdated(Identifier identifier)
+        private void OnUpdated(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 
             //Updated(identifier)
         }
 
-        private void OnStored(Identifier identifier)
+        private void OnStored(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 

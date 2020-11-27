@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             });
         }
 
-        private void RemoveNode(Identifier identifier)
+        private void RemoveNode(in Identifier identifier)
         {
             var entryNode = GraphViewModel.FindNodeByKey(identifier);
             if (entryNode != null)

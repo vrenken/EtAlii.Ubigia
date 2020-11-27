@@ -12,7 +12,7 @@
             _logicalContext = logicalContext;
         }
 
-        public void Store(Identifier identifier, PropertyDictionary properties)
+        public void Store(in Identifier identifier, PropertyDictionary properties)
         {
             if (identifier == Identifier.Empty)
             {
@@ -34,7 +34,7 @@
             }
         }
 
-        public PropertyDictionary Get(Identifier identifier)
+        public PropertyDictionary Get(in Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {

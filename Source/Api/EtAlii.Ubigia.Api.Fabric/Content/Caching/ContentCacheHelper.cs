@@ -10,13 +10,13 @@
         }
         
 
-        public IReadOnlyContent Get(Identifier identifier)
+        public IReadOnlyContent Get(in Identifier identifier)
         {
             _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
             return cacheEntry?.Content;
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
+        public IReadOnlyContentPart Get(in Identifier identifier, ulong contentPartId)
         {
             var contentPart = default(IReadOnlyContentPart);
 
@@ -27,7 +27,7 @@
             return contentPart;
         }
 
-        public void Store(Identifier identifier, IReadOnlyContent content)
+        public void Store(in Identifier identifier, IReadOnlyContent content)
         {
             if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
             {
@@ -37,7 +37,7 @@
             cacheEntry.Content = content;
         }
 
-        public void Store(Identifier identifier, IReadOnlyContentPart contentPart)
+        public void Store(in Identifier identifier, IReadOnlyContentPart contentPart)
         {
             if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
             {

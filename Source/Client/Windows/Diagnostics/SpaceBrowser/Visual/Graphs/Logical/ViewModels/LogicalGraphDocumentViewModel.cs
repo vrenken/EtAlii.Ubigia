@@ -13,7 +13,7 @@
         {
         }
 
-        protected override void OnDrop(Identifier identifier)
+        protected override void OnDrop(in Identifier identifier)
         {
             GraphContext.CommandProcessor.Process(new RetrieveEntryCommand(identifier, ProcessReason.Retrieved), GraphContext.RetrieveEntryCommandHandler);
         }

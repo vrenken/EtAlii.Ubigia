@@ -5,7 +5,7 @@
 
     public partial class LocalContentDataClient : LocalDataClientBase<IDataConnection>, IContentDataClient
     {
-        public void Store(Identifier identifier, EtAlii.Ubigia.Content content)
+        public void Store(in Identifier identifier, EtAlii.Ubigia.Content content)
         {
             throw new System.NotImplementedException();
 
@@ -15,7 +15,7 @@
             //BlobHelper.SetStored(content, true)
         }
 
-        public void Store(Identifier identifier, ContentPart contentPart)
+        public void Store(in Identifier identifier, ContentPart contentPart)
         {
             throw new System.NotImplementedException();
 
@@ -25,7 +25,7 @@
             //BlobPartHelper.SetStored(contentPart, true)
         }
 
-        public IReadOnlyContent Retrieve(Identifier identifier)
+        public IReadOnlyContent Retrieve(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 
@@ -34,7 +34,7 @@
             //return content as IReadOnlyContent
         }
 
-        public IReadOnlyContentPart Retrieve(Identifier identifier, ulong contentPartId)
+        public IReadOnlyContentPart Retrieve(in Identifier identifier, ulong contentPartId)
         {
             throw new System.NotImplementedException();
 

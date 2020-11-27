@@ -9,13 +9,13 @@
             _cacheProvider = cacheProvider;
         }
 
-        public IReadOnlyContentDefinition Get(Identifier identifier)
+        public IReadOnlyContentDefinition Get(in Identifier identifier)
         {
             _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
             return cacheEntry != null ? cacheEntry.ContentDefinition : null;
         }
 
-        public void Store(Identifier identifier, IReadOnlyContentDefinition definition)
+        public void Store(in Identifier identifier, IReadOnlyContentDefinition definition)
         {
             if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
             {

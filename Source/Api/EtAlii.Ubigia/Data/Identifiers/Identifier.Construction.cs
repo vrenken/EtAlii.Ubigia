@@ -26,7 +26,7 @@
             );
         }
 
-        public static Identifier NewIdentifier(Identifier id, ulong era, ulong period, ulong moment)
+        public static Identifier NewIdentifier(in Identifier id, ulong era, ulong period, ulong moment)
         {
             return new(
                 storage: id.Storage,

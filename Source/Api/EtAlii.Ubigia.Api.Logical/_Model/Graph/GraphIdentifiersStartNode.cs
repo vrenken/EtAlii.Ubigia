@@ -12,7 +12,7 @@
             Identifiers = identifiers;
         }
 
-        public GraphIdentifiersStartNode(Identifier identifier)
+        public GraphIdentifiersStartNode(in Identifier identifier)
         {
             Identifiers = new[] { identifier };
         }

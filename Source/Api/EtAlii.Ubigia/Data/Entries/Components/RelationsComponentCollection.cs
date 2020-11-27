@@ -13,7 +13,7 @@
         {
         }
 
-        public void Add(Identifier id)
+        public void Add(in Identifier id)
         {
             base.Add(new TRelationsComponent { Relations = new[] { Relation.NewRelation(id) } });
         }

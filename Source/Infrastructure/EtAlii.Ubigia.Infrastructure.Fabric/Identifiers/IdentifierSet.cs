@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _storage.ContainerProvider.ToIdentifier(storageId, accountId, spaceId, newContainerId);
         }
 
-        public Identifier GetNextIdentifierForPreviousHeadIdentifier(Guid storageId, Guid accountId, Guid spaceId, Identifier previousHeadIdentifier)
+        public Identifier GetNextIdentifierForPreviousHeadIdentifier(Guid storageId, Guid accountId, Guid spaceId, in Identifier previousHeadIdentifier)
         {
             // Calculate identifier.
             var containerId = _storage.ContainerProvider.FromIdentifier(previousHeadIdentifier, true);
