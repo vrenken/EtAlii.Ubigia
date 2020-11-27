@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Pipelines
     // More info: https://github.com/nuke-build/nuke/issues/260
     [CheckBuildProjectConfigurations(TimeoutInMilliseconds = 2000)] 
     [ShutdownDotNetAfterServerBuild]
-    [AzurePipelines( 
+    [CustomAzurePipelines( 
         AzurePipelinesImage.WindowsLatest, 
         InvokedTargets = new[]
         {
@@ -40,8 +40,8 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(RunPublishToSonarQube),
             nameof(RunCreateTestReports),
             nameof(RunTestsAndCreateTestReports),
-            
-        }
+        },
+        TimeoutInMinutes = 120
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
     public partial class Build : NukeBuild
@@ -56,7 +56,10 @@ namespace EtAlii.Ubigia.Pipelines
         ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
         ///   - Microsoft VSCode           https://nuke.build/vscode
 
-        public static int Main() => Execute<Build>(build => build.CompileTestAnalyseAndPublish);
+        public static int Main()
+        {
+            return Execute<Build>(build => build.CompileTestAnalyseAndPublish);
+        }
         //public static int Main() => Execute<Build>(build => build.RunCompileAndPublishToSonarQube);
         
 
