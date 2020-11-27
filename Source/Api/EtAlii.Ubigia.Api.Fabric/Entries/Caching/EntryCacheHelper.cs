@@ -12,7 +12,7 @@
             _cacheProvider = cacheProvider;
         }
 
-        public IReadOnlyEntry Get(Identifier identifier)
+        public IReadOnlyEntry Get(in Identifier identifier)
         {
             _cacheProvider.Cache.TryGetValue(identifier, out var entry);
             return entry;
@@ -64,7 +64,7 @@
             }
         }
 
-        private void Invalidate(Identifier identifier)
+        private void Invalidate(in Identifier identifier)
         {
             IReadOnlyEntry entry;
             if (_cacheProvider.Cache.TryGetValue(identifier, out entry))

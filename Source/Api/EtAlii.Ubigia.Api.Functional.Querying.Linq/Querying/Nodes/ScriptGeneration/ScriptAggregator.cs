@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             return sb.ToString();
         }
 
-        public void AddUpdateItem(Identifier identifier, string updateVariableName)
+        public void AddUpdateItem(in Identifier identifier, string updateVariableName)
         {
             var selectItem = $"/&{identifier.ToDotSeparatedString()} <= ${updateVariableName}";
 
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             _variableAssignments.Add(variableName, selectItem);
         }
 
-        public void AddGetItem(Identifier identifier)
+        public void AddGetItem(in Identifier identifier)
         {
             var selectItem = $"/&{identifier.ToDotSeparatedString()}";
 

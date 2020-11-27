@@ -4,7 +4,7 @@
 
     public static class Win32HierarchicalContentManagerExtensions
     {
-        public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, Identifier identifier)
+        public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier)
         {
             try
             {
@@ -21,7 +21,7 @@
             }
         }
 
-        public static void Download(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, Identifier identifier, bool validateChecksum = false)
+        public static void Download(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier, bool validateChecksum = false)
         {
             try
             {
@@ -36,7 +36,7 @@
             }
         }
 
-        public static void Sync(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, Identifier identifier)
+        public static void Sync(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier)
         {
             try
             {

@@ -11,7 +11,7 @@
         {
         }
         
-        public SpaceConsistencyException(Identifier source, Identifier target, string message)
+        public SpaceConsistencyException(in Identifier source, in Identifier target, string message)
             : base(message)
         {
             Data["source"] = source;

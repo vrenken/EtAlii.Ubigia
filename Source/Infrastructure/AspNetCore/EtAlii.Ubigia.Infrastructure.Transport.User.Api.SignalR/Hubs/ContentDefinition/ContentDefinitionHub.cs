@@ -34,7 +34,7 @@
         }
 
         // Post a new contentdefinition for the specified entry.
-        public void Post(Identifier entryId, ContentDefinition contentDefinition)
+        public void Post(in Identifier entryId, ContentDefinition contentDefinition)
         {
             try
             {
@@ -75,7 +75,7 @@
         }
 
 
-        private void SignalUpdated(Identifier identifier)
+        private void SignalUpdated(in Identifier identifier)
         {
             Clients.All.SendAsync("updated", new object[] { identifier });
             //Clients.All.updated(identifier)

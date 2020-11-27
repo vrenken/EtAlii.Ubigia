@@ -7,7 +7,7 @@
         public readonly ulong RequiredParts;
         public readonly ulong PartSize;
 
-        public ContentDefinitionQuery(Identifier identifier, ulong sizeInBytes, ulong requiredParts, ulong partSize)
+        public ContentDefinitionQuery(in Identifier identifier, ulong sizeInBytes, ulong requiredParts, ulong partSize)
         {
             Identifier = identifier;
             SizeInBytes = sizeInBytes;

@@ -21,7 +21,7 @@
         {
         }
 
-        public SpaceFabricException(Identifier source, Identifier target, string message)
+        public SpaceFabricException(in Identifier source, in Identifier target, string message)
             : base(message)
         {
             Data["source"] = source;

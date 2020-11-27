@@ -37,7 +37,7 @@
             //return Get(root.Identifier, entryRelations)
         }
 
-        public IReadOnlyEntry Get(Identifier entryIdentifier, EntryRelation entryRelations = EntryRelation.None)
+        public IReadOnlyEntry Get(in Identifier entryIdentifier, EntryRelation entryRelations = EntryRelation.None)
         {
             throw new System.NotImplementedException();
 
@@ -46,7 +46,7 @@
             //return entry
         }
 
-        public IEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public IEnumerable<IReadOnlyEntry> GetRelated(in Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             throw new System.NotImplementedException();
 

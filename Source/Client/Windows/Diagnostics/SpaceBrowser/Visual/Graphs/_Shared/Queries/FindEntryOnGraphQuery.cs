@@ -6,7 +6,7 @@
     {
         public Identifier Identifier { get; }
 
-        public FindEntryOnGraphQuery(Identifier identifier)
+        public FindEntryOnGraphQuery(in Identifier identifier)
         {
             Identifier = identifier;
         }

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
         void AddVariableAssignment(NodeQueryable<INode> nodeQuery);
         void AddVariableAssignment(IQuerySource querySource);
         string GetScript();
-        void AddUpdateItem(Identifier identifier, string updateVariableName);
-        void AddGetItem(Identifier identifier);
+        void AddUpdateItem(in Identifier identifier, string updateVariableName);
+        void AddGetItem(in Identifier identifier);
     }
 }

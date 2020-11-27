@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="startIdentifier"></param>
         /// <returns></returns>
-        IGraphPathBuilder Add(Identifier startIdentifier);
+        IGraphPathBuilder Add(in Identifier startIdentifier);
         
         /// <summary>
         /// Add a node to the GraphPath to be build.

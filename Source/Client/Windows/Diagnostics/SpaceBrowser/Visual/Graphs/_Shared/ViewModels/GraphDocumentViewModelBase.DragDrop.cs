@@ -20,7 +20,7 @@
             OnDrop(identifier);
         }
 
-        protected virtual void OnDrop(Identifier identifier)
+        protected virtual void OnDrop(in Identifier identifier)
         {
             // Handle a drop of an identifier.
         }

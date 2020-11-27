@@ -4,7 +4,7 @@
 
     public partial struct Relation
     {
-        public static Relation NewRelation(Identifier id)
+        public static Relation NewRelation(in Identifier id)
         {
             return new Relation
             {
@@ -13,7 +13,7 @@
             };
         }
         
-        internal static Relation Create(Identifier id, ulong moment)
+        internal static Relation Create(in Identifier id, ulong moment)
         {
             return new Relation
             {

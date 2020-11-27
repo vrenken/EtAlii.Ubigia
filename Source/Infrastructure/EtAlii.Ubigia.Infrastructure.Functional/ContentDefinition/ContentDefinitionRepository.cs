@@ -15,7 +15,7 @@
             _logicalContext = logicalContext;
         }
 
-        public void Store(Identifier identifier, ContentDefinition contentDefinition)
+        public void Store(in Identifier identifier, ContentDefinition contentDefinition)
         {
             if (identifier == Identifier.Empty)
             {

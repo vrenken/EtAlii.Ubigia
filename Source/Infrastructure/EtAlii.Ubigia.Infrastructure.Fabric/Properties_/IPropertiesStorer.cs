@@ -2,6 +2,6 @@
 {
     public interface IPropertiesStorer
     {
-        void Store(Identifier identifier, PropertyDictionary properties);
+        void Store(in Identifier identifier, PropertyDictionary properties);
     }
 }

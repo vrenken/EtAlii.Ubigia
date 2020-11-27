@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public IReadOnlyContent Get(Identifier identifier)
+        public IReadOnlyContent Get(in Identifier identifier)
         {
             dynamic profile = _profiler.Begin("Getting cached content: " + identifier.ToTimeString());
             profile.Identifier = identifier;
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public IReadOnlyContentPart Get(Identifier identifier, ulong contentPartId)
+        public IReadOnlyContentPart Get(in Identifier identifier, ulong contentPartId)
         {
             dynamic profile = _profiler.Begin("Getting cached content part: " + identifier.ToTimeString() + " - " + contentPartId);
             profile.Identifier = identifier;
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public void Store(Identifier identifier, IReadOnlyContent content)
+        public void Store(in Identifier identifier, IReadOnlyContent content)
         {
             dynamic profile = _profiler.Begin("Storing content in cache: " + identifier.ToTimeString());
             profile.Content = content;
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _profiler.End(profile);
         }
 
-        public void Store(Identifier identifier, IReadOnlyContentPart contentPart)
+        public void Store(in Identifier identifier, IReadOnlyContentPart contentPart)
         {
             dynamic profile = _profiler.Begin("Storing content part in cache: " + identifier.ToTimeString() + " - " + contentPart.Id);
             profile.ContentPart = contentPart;

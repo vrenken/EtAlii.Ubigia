@@ -32,12 +32,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return _contentPartGetter.Get(identifier, contentPartId);
         }
 
-        public void Store(Identifier identifier, ContentPart contentPart)
+        public void Store(in Identifier identifier, ContentPart contentPart)
         {
             _contentPartStorer.Store(identifier, contentPart);
         }
 
-        public void Store(Identifier identifier, Content content)
+        public void Store(in Identifier identifier, Content content)
         {
             _contentStorer.Store(identifier, content);
         }

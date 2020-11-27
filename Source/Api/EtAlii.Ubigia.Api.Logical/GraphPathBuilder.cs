@@ -10,7 +10,7 @@
     {
         private readonly List<GraphPathPart> _parts = new List<GraphPathPart>();
 
-        public IGraphPathBuilder Add(Identifier startIdentifier)
+        public IGraphPathBuilder Add(in Identifier startIdentifier)
         {
             if (_parts.Any())
             {

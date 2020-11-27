@@ -84,7 +84,7 @@
             return ContainerIdentifier.FromPaths(paths);
         }
 
-        public ContainerIdentifier FromIdentifier(Identifier id, bool trimTime = false)
+        public ContainerIdentifier FromIdentifier(in Identifier id, bool trimTime = false)
         {
             string[] paths;
             if (trimTime)

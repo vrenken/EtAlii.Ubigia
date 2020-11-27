@@ -2,7 +2,7 @@
 {
     internal interface IContentDefinitionCacheHelper
     {
-        IReadOnlyContentDefinition Get(Identifier identifier);
-        void Store(Identifier identifier, IReadOnlyContentDefinition definition);
+        IReadOnlyContentDefinition Get(in Identifier identifier);
+        void Store(in Identifier identifier, IReadOnlyContentDefinition definition);
     }
 }

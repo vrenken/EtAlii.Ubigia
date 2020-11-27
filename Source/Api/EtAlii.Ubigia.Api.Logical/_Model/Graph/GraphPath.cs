@@ -41,13 +41,13 @@
             return string.Join("-", _parts.Select(p => "["+ p +"]"));
         }
 
-        public static GraphPath Create(Identifier startIdentifier)
+        public static GraphPath Create(in Identifier startIdentifier)
         {
             var graphStartNode = new GraphIdentifiersStartNode(startIdentifier);
             return new GraphPath(graphStartNode);
         }
 
-        public static GraphPath Create(Identifier startIdentifier, params GraphPathPart[] parts)
+        public static GraphPath Create(in Identifier startIdentifier, params GraphPathPart[] parts)
         {
             return Create(new[] { startIdentifier }, parts);
         }

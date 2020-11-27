@@ -10,12 +10,12 @@
             return new Entry(identifier);
         }
 
-        public static Entry NewEntry(Identifier id, Relation previous)
+        public static Entry NewEntry(in Identifier id, Relation previous)
         {
             return new Entry(id, previous);
         }
 
-        public static Entry NewEntry(Identifier id)
+        public static Entry NewEntry(in Identifier id)
         {
             return new Entry(id);
         }

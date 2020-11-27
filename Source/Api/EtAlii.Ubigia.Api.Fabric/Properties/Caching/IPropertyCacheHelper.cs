@@ -2,7 +2,7 @@
 {
     public interface IPropertyCacheHelper
     {
-        PropertyDictionary GetProperties(Identifier identifier);
-        void StoreProperties(Identifier identifier, PropertyDictionary properties);
+        PropertyDictionary GetProperties(in Identifier identifier);
+        void StoreProperties(in Identifier identifier, PropertyDictionary properties);
     }
 }

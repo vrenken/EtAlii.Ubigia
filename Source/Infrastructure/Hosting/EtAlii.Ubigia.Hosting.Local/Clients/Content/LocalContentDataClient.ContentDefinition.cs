@@ -4,7 +4,7 @@
 
     public partial class LocalContentDataClient : LocalDataClientBase<IDataConnection>, IContentDataClient
     {
-        public void StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        public void StoreDefinition(in Identifier identifier, ContentDefinition contentDefinition)
         {
             throw new System.NotImplementedException();
 
@@ -14,7 +14,7 @@
             //MarkAsStored(contentDefinition)
         }
 
-        public void StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public void StoreDefinition(in Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             throw new System.NotImplementedException();
 
@@ -24,7 +24,7 @@
             //MarkAsStored(contentDefinitionPart)
         }
 
-        public IReadOnlyContentDefinition RetrieveDefinition(Identifier identifier)
+        public IReadOnlyContentDefinition RetrieveDefinition(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 

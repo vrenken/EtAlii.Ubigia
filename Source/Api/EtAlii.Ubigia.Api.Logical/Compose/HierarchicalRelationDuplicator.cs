@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical
             Duplicate(source, target, Identifier.Empty);
         }
 
-        public void Duplicate(IReadOnlyEntry source, IEditableEntry target, Identifier relationToExclude)
+        public void Duplicate(IReadOnlyEntry source, IEditableEntry target, in Identifier relationToExclude)
         {
             DuplicateRelations(source.Children, target.Children, relationToExclude);
             DuplicateRelations(source.Children2, target.Children2, relationToExclude);

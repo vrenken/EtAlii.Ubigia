@@ -8,7 +8,7 @@
         public readonly Identifier Identifier;
         public readonly IReadOnlyContent Content;
 
-        public ContentPartQuery(Stream stream, Identifier identifier, IReadOnlyContent content)
+        public ContentPartQuery(Stream stream, in Identifier identifier, IReadOnlyContent content)
         {
             Stream = stream;
             Identifier = identifier;

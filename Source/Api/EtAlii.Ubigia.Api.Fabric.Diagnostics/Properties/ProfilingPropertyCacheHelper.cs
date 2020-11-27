@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public PropertyDictionary GetProperties(Identifier identifier)
+        public PropertyDictionary GetProperties(in Identifier identifier)
         {
             dynamic profile = _profiler.Begin("Getting cached properties: " + identifier.ToTimeString());
             profile.Identifier = identifier;
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             return result;
         }
 
-        public void StoreProperties(Identifier identifier, PropertyDictionary properties)
+        public void StoreProperties(in Identifier identifier, PropertyDictionary properties)
         {
             dynamic profile = _profiler.Begin("Storing properties in cache: " + identifier.ToTimeString());
             profile.Properties = properties;

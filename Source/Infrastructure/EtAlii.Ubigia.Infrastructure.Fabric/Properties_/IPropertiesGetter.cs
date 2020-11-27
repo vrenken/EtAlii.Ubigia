@@ -2,6 +2,6 @@
 {
     public interface IPropertiesGetter
     {
-        PropertyDictionary Get(Identifier identifier);
+        PropertyDictionary Get(in Identifier identifier);
     }
 }

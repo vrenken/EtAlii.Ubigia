@@ -2,7 +2,7 @@
 {
     public interface IPropertiesRepository
     {
-        void Store(Identifier identifier, PropertyDictionary properties);
-        PropertyDictionary Get(Identifier identifier);
+        void Store(in Identifier identifier, PropertyDictionary properties);
+        PropertyDictionary Get(in Identifier identifier);
     }
 }

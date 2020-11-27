@@ -11,7 +11,7 @@
             _storage = storage;
         }
 
-        public void Store(Identifier identifier, Content content)
+        public void Store(in Identifier identifier, Content content)
         {
             if (identifier == Identifier.Empty)
             {

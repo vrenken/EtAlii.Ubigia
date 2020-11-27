@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             return new Result(node.Entry.Id.ToTimeString(), node.Entry.Type, node.GetProperties(), group);
         }
 
-        private Result ToResult(Identifier identifier, object group)
+        private Result ToResult(in Identifier identifier, object group)
         {
             var properties = new PropertyDictionary
             {

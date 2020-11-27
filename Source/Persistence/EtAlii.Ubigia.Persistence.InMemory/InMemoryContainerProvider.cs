@@ -84,7 +84,7 @@
             return ContainerIdentifier.FromPaths(paths);
         }
 
-        public ContainerIdentifier FromIdentifier(Identifier id, bool trimTime = false)
+        public ContainerIdentifier FromIdentifier(in Identifier id, bool trimTime = false)
         {
             // C:\Users\[User]\AppData\Local\[Company]\[Product]\[Storage]\Entries\[Storage]\[Account]\[Space]\[Period]\[Moment]
             string[] paths;
