@@ -91,7 +91,12 @@
 	            }
 
                 firstKey = item.Key.ToString();
+// S1751 = Loops with at most one iteration should be refactored
+// However I see no easy, simple way to refactor this into a form without a break - It's a non-generic dictionary which
+// has way less ways to access its contents compared to its modern generic brother.
+#pragma warning disable S1751                 
                 break;
+#pragma warning restore S1751                
             }
 
             var e2 = new InvalidOperationException("Unexpected Data");
