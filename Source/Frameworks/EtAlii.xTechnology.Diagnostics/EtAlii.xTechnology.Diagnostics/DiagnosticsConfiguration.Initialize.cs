@@ -4,7 +4,9 @@
     using System.Reflection;
     using Serilog;
     using Serilog.Events;
+    using System.Diagnostics.CodeAnalysis;
 
+    [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
     public partial class DiagnosticsConfiguration
     {
         private static LoggerConfiguration _loggerConfiguration = new LoggerConfiguration();

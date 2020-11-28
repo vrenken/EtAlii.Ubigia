@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Text;
     using Microsoft.AspNetCore.Http;
@@ -11,6 +12,7 @@
         /// Parses the Authorization header and creates account credentials
         /// </summary>
         /// <param name="context"></param>
+        [SuppressMessage("Sonar Code Smell", "S4834:Controlling permissions is security-sensitive", Justification = "Safe to do so here.")]
         public AuthenticationIdentity Get(HttpContext context)
         {
             if (context.Request.Headers.TryGetValue("Authorization", out var values))
