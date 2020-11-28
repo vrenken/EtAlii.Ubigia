@@ -145,11 +145,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     ? default
                     : innerShaper(queryContext, valueBuffer);
 
-            protected override Expression VisitExtension(Expression extensionExpression)
+            protected override Expression VisitExtension(Expression node)
             {
-                Check.NotNull(extensionExpression, nameof(extensionExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (extensionExpression is IncludeExpression includeExpression)
+                if (node is IncludeExpression includeExpression)
                 {
                     var entityClrType = includeExpression.EntityExpression.Type;
                     var includingClrType = includeExpression.Navigation.DeclaringEntityType.ClrType;
@@ -191,7 +191,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         Expression.Constant(_tracking));
                 }
 
-                if (extensionExpression is CollectionShaperExpression collectionShaperExpression)
+                if (node is CollectionShaperExpression collectionShaperExpression)
                 {
                     var navigation = collectionShaperExpression.Navigation;
                     var collectionAccessor = navigation?.GetCollectionAccessor();
@@ -206,7 +206,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         Expression.Constant(collectionAccessor, typeof(IClrCollectionAccessor)));
                 }
 
-                if (extensionExpression is SingleResultShaperExpression singleResultShaperExpression)
+                if (node is SingleResultShaperExpression singleResultShaperExpression)
                 {
                     var innerShaper = (LambdaExpression)Visit(singleResultShaperExpression.InnerShaper);
 
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         Expression.Constant(innerShaper.Compile()));
                 }
 
-                return base.VisitExtension(extensionExpression);
+                return base.VisitExtension(node);
             }
 
             private static LambdaExpression GenerateFixup(

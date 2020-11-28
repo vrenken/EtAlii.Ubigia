@@ -36,9 +36,9 @@
         /// <summary>
         /// Check whether this identifier equals the other identifier.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="other"></param>
         /// <returns></returns>
-        public bool Equals(Identifier id)
+        public bool Equals(Identifier other)
         {
             // Cannot happen. 
             // If parameter is null, return false. 
@@ -64,32 +64,32 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (id.Moment != Moment)
+            if (other.Moment != Moment)
             {
                 return false;
             }
 
-            if (id.Period != Period)
+            if (other.Period != Period)
             {
                 return false;
             }
 
-            if (id.Era != Era)
+            if (other.Era != Era)
             {
                 return false;
             }
 
-            if (id.Space != Space)
+            if (other.Space != Space)
             {
                 return false;
             }
 
-            if (id.Account != Account)
+            if (other.Account != Account)
             {
                 return false;
             }
 
-            if (id.Storage != Storage)
+            if (other.Storage != Storage)
             {
                 return false;
             }
