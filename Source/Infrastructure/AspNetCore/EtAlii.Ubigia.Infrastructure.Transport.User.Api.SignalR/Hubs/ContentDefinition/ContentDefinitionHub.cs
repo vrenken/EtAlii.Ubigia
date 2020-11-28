@@ -34,7 +34,7 @@
         }
 
         // Post a new contentdefinition for the specified entry.
-        public void Post(in Identifier entryId, ContentDefinition contentDefinition)
+        public void Post(Identifier entryId, ContentDefinition contentDefinition)
         {
             try
             {

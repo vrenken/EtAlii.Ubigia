@@ -8,7 +8,7 @@
     {
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public HubBase(ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        protected HubBase(ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {
             _authenticationTokenVerifier = authenticationTokenVerifier;
         }
