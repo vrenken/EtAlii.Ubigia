@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Windows;
     using System.Windows.Input;
     using EtAlii.Ubigia.Windows.Mvvm;
@@ -44,12 +45,12 @@
         
         public bool ShowTransportSelection => Debugger.IsAttached;
 
+        [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Password+username+url is prefilled when the debugger is attached, should not interfere with normal operations.")]
         public ConnectionDialogViewModel(ConnectionDialogWindow window, string defaultServer, string defaultLogin, string defaultPassword)
         {
             _window = window;
-            string password;
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
-            _connectionSettingsPersister.Load(out password);
+            _connectionSettingsPersister.Load(out var password);
 
             if (Debugger.IsAttached)
             {

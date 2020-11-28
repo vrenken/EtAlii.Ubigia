@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
 
     public class DataConnectionStub : IDataConnection
@@ -46,6 +47,7 @@
         }
 
         /// Create a new <see cref="DataConnectionStub" /> instance.
+        [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "This is a stub, only needed for testing/stubbing purposes.")]
         public DataConnectionStub()
         {
             Configuration = new DataConnectionConfiguration();
