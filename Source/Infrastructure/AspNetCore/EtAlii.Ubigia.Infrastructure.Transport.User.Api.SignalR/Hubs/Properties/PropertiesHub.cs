@@ -16,7 +16,7 @@
             _items = items;
         }
 
-        public PropertyDictionary Get(in Identifier entryId)
+        public PropertyDictionary Get(Identifier entryId)
         {
             PropertyDictionary response = null;
             try
@@ -36,7 +36,7 @@
         /// <param name="entryId"></param>
         /// <param name="properties"></param>
         /// <returns></returns>
-        public void Post(in Identifier entryId, PropertyDictionary properties)
+        public void Post(Identifier entryId, PropertyDictionary properties)
         {
             try
             {

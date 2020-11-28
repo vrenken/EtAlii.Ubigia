@@ -13,7 +13,7 @@
                 // Store the entry.
                 response = _items.Store(entry);
 
-                // Send the stord event.
+                // Send the stored event.
                 SignalStored(entry.Id);
             }
             catch (Exception e)
