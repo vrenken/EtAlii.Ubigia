@@ -228,11 +228,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitExtension(Expression extensionExpression)
+        protected override Expression VisitExtension(Expression node)
         {
-            Check.NotNull(extensionExpression, nameof(extensionExpression));
+            Check.NotNull(node, nameof(node));
 
-            if (extensionExpression is EntityShaperExpression entityShaperExpression)
+            if (node is EntityShaperExpression entityShaperExpression)
             {
                 EntityProjectionExpression entityProjectionExpression;
                 if (entityShaperExpression.ValueBufferExpression is ProjectionBindingExpression projectionBindingExpression)
@@ -257,14 +257,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     new ProjectionBindingExpression(_queryExpression, _projectionMembers.Peek(), typeof(ValueBuffer)));
             }
 
-            if (extensionExpression is IncludeExpression includeExpression)
+            if (node is IncludeExpression includeExpression)
             {
                 return _clientEval
                     ? base.VisitExtension(includeExpression)
                     : null;
             }
 
-            throw new InvalidOperationException(CoreStrings.QueryFailed(extensionExpression.Print(), GetType().Name));
+            throw new InvalidOperationException(CoreStrings.QueryFailed(node.Print(), GetType().Name));
         }
 
         /// <summary>

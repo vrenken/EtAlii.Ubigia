@@ -7,7 +7,9 @@ namespace EtAlii.xTechnology.Structure.Pipelines
         IInjectablePipeline<TPipelineIn>
     {
         // ReSharper disable once NotAccessedField.Local
+#pragma warning disable S4487        
         private readonly IServiceProvider _serviceProvider;
+#pragma warning restore S4487        
 
         public InjectablePipeline(IServiceProvider serviceProvider)
         {
@@ -21,7 +23,9 @@ namespace EtAlii.xTechnology.Structure.Pipelines
         IInjectablePipeline<TPipelineIn, TPipelineOut>
     {
         // ReSharper disable once NotAccessedField.Local
+#pragma warning disable S4487        
         private readonly IServiceProvider _serviceProvider;
+#pragma warning restore S4487        
 
         public InjectablePipeline(IServiceProvider serviceProvider)
         {

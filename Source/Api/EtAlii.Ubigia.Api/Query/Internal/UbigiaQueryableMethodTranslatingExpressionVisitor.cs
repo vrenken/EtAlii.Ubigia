@@ -1333,14 +1333,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return base.VisitMethodCall(methodCallExpression);
             }
 
-            protected override Expression VisitExtension(Expression extensionExpression)
+            protected override Expression VisitExtension(Expression node)
             {
-                Check.NotNull(extensionExpression, nameof(extensionExpression));
+                Check.NotNull(node, nameof(node));
 
-                return extensionExpression is EntityShaperExpression
-                    || extensionExpression is ShapedQueryExpression
-                    ? extensionExpression
-                    : base.VisitExtension(extensionExpression);
+                return node is EntityShaperExpression
+                    || node is ShapedQueryExpression
+                    ? node
+                    : base.VisitExtension(node);
             }
 
             private Expression TryExpand(Expression source, MemberIdentity member)

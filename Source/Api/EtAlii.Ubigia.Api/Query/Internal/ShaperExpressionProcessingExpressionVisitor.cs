@@ -39,9 +39,9 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 QueryCompilationContext.QueryContextParameter,
                 _valueBufferParameter);
 
-        protected override Expression VisitExtension(Expression extensionExpression)
+        protected override Expression VisitExtension(Expression node)
         {
-            switch (extensionExpression)
+            switch (node)
             {
                 case EntityShaperExpression entityShaperExpression:
                 {
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 }
             }
 
-            return base.VisitExtension(extensionExpression);
+            return base.VisitExtension(node);
         }
 
         private Expression GenerateKey(ProjectionBindingExpression projectionBindingExpression)

@@ -23,17 +23,17 @@ namespace EtAlii.xTechnology.Threading
         // This will return a static number of enumerators, as opposed to
         // GetOrderableDynamicPartitions(), the result of which can be used to produce
         // any number of enumerators.
-        public override IList<IEnumerator<KeyValuePair<long, T>>> GetOrderablePartitions(int numPartitions)
+        public override IList<IEnumerator<KeyValuePair<long, T>>> GetOrderablePartitions(int partitionCount)
         {
-            if (numPartitions < 1) throw new ArgumentOutOfRangeException(nameof(numPartitions));
+            if (partitionCount < 1) throw new ArgumentOutOfRangeException(nameof(partitionCount));
 
-            var list = new List<IEnumerator<KeyValuePair<long, T>>>(numPartitions);
+            var list = new List<IEnumerator<KeyValuePair<long, T>>>(partitionCount);
 
             // Since we are doing static partitioning, create an InternalEnumerable with reference
             // counting of spawned InternalEnumerators turned on.  Once all of the spawned enumerators
             // are disposed, dynamicPartitions will be disposed.
             var dynamicPartitions = new InternalEnumerable(_referenceEnumerable.GetEnumerator(), true);
-            for (var i = 0; i < numPartitions; i++)
+            for (var i = 0; i < partitionCount; i++)
                 list.Add(dynamicPartitions.GetEnumerator());
 
             return list;

@@ -83,11 +83,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return base.VisitMethodCall(methodCallExpression);
             }
 
-            protected override Expression VisitExtension(Expression extensionExpression)
+            protected override Expression VisitExtension(Expression node)
             {
-                Check.NotNull(extensionExpression, nameof(extensionExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (extensionExpression is ProjectionBindingExpression projectionBindingExpression)
+                if (node is ProjectionBindingExpression projectionBindingExpression)
                 {
                     var queryExpression = (UbigiaQueryExpression)projectionBindingExpression.QueryExpression;
                     var projectionIndex = (int)GetProjectionIndex(queryExpression, projectionBindingExpression);
@@ -102,7 +102,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     return valueBuffer.CreateValueBufferReadValueExpression(projectionBindingExpression.Type, projectionIndex, property);
                 }
 
-                return base.VisitExtension(extensionExpression);
+                return base.VisitExtension(node);
             }
 
             private IPropertyBase InferPropertyFromInner(Expression expression)

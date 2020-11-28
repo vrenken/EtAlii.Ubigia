@@ -38,11 +38,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitExtension(Expression extensionExpression)
+        protected override Expression VisitExtension(Expression node)
         {
-            Check.NotNull(extensionExpression, nameof(extensionExpression));
+            Check.NotNull(node, nameof(node));
 
-            switch (extensionExpression)
+            switch (node)
             {
                 case UbigiaQueryExpression ubigiaQueryExpression:
                     ubigiaQueryExpression.ApplyProjection();
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         Expression.Constant(ubigiaTableExpression.EntityType));
             }
 
-            return base.VisitExtension(extensionExpression);
+            return base.VisitExtension(node);
         }
 
         /// <summary>
