@@ -78,17 +78,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+        protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            if (methodCallExpression.Method.IsGenericMethod
-                && methodCallExpression.Arguments.Count == 1
-                && methodCallExpression.Arguments[0].Type.TryGetSequenceType() != null
-                && string.Equals(methodCallExpression.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
+            if (node.Method.IsGenericMethod
+                && node.Arguments.Count == 1
+                && node.Arguments[0].Type.TryGetSequenceType() != null
+                && string.Equals(node.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
             {
-                return Visit(methodCallExpression.Arguments[0]);
+                return Visit(node.Arguments[0]);
             }
 
-            return base.VisitMethodCall(methodCallExpression);
+            return base.VisitMethodCall(node);
         }
 
         /// <summary>
@@ -1013,17 +1013,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return _defaultIfEmpty;
             }
 
-            protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+            protected override Expression VisitMethodCall(MethodCallExpression node)
             {
-                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == QueryableMethods.DefaultIfEmptyWithoutArgument)
+                if (node.Method.IsGenericMethod
+                    && node.Method.GetGenericMethodDefinition() == QueryableMethods.DefaultIfEmptyWithoutArgument)
                 {
                     _defaultIfEmpty = true;
                 }
 
-                return base.VisitMethodCall(methodCallExpression);
+                return base.VisitMethodCall(node);
             }
         }
 
@@ -1300,37 +1300,37 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return Visit(lambdaBody);
             }
 
-            protected override Expression VisitMember(MemberExpression memberExpression)
+            protected override Expression VisitMember(MemberExpression node)
             {
-                Check.NotNull(memberExpression, nameof(memberExpression));
+                Check.NotNull(node, nameof(node));
 
-                var innerExpression = Visit(memberExpression.Expression);
+                var innerExpression = Visit(node.Expression);
 
-                return TryExpand(innerExpression, MemberIdentity.Create(memberExpression.Member))
-                    ?? memberExpression.Update(innerExpression);
+                return TryExpand(innerExpression, MemberIdentity.Create(node.Member))
+                    ?? node.Update(innerExpression);
             }
 
-            protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+            protected override Expression VisitMethodCall(MethodCallExpression node)
             {
-                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (methodCallExpression.TryGetEFPropertyArguments(out var source, out var navigationName))
+                if (node.TryGetEFPropertyArguments(out var source, out var navigationName))
                 {
                     source = Visit(source);
 
                     return TryExpand(source, MemberIdentity.Create(navigationName))
-                        ?? methodCallExpression.Update(null, new[] { source, methodCallExpression.Arguments[1] });
+                        ?? node.Update(null, new[] { source, node.Arguments[1] });
                 }
 
-                if (methodCallExpression.TryGetEFPropertyArguments(out source, out navigationName))
+                if (node.TryGetEFPropertyArguments(out source, out navigationName))
                 {
                     source = Visit(source);
 
                     return TryExpand(source, MemberIdentity.Create(navigationName))
-                        ?? methodCallExpression.Update(source, new[] { methodCallExpression.Arguments[0] });
+                        ?? node.Update(source, new[] { node.Arguments[0] });
                 }
 
-                return base.VisitMethodCall(methodCallExpression);
+                return base.VisitMethodCall(node);
             }
 
             protected override Expression VisitExtension(Expression node)

@@ -137,19 +137,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitBinary(BinaryExpression binaryExpression)
+        protected override Expression VisitBinary(BinaryExpression node)
         {
-            Check.NotNull(binaryExpression, nameof(binaryExpression));
+            Check.NotNull(node, nameof(node));
 
-            if (binaryExpression.Left.Type == typeof(object[])
-                && binaryExpression.Left is NewArrayExpression
-                && binaryExpression.NodeType == ExpressionType.Equal)
+            if (node.Left.Type == typeof(object[])
+                && node.Left is NewArrayExpression
+                && node.NodeType == ExpressionType.Equal)
             {
-                return Visit(ConvertObjectArrayEqualityComparison(binaryExpression.Left, binaryExpression.Right))!;
+                return Visit(ConvertObjectArrayEqualityComparison(node.Left, node.Right))!;
             }
 
-            var newLeft = Visit(binaryExpression.Left);
-            var newRight = Visit(binaryExpression.Right);
+            var newLeft = Visit(node.Left);
+            var newRight = Visit(node.Right);
 
             if (newLeft == null
                 || newRight == null)
@@ -157,14 +157,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null!;
             }
 
-            if ((binaryExpression.NodeType == ExpressionType.Equal
-                    || binaryExpression.NodeType == ExpressionType.NotEqual)
+            if ((node.NodeType == ExpressionType.Equal
+                    || node.NodeType == ExpressionType.NotEqual)
                 // Visited expression could be null, We need to pass MemberInitExpression
                 && TryRewriteEntityEquality(
-                    binaryExpression.NodeType,
+                    node.NodeType,
                     // ReSharper disable ConstantNullCoalescingCondition
-                    newLeft ?? binaryExpression.Left,
-                    newRight ?? binaryExpression.Right,
+                    newLeft ?? node.Left,
+                    newRight ?? node.Right,
                     // ReSharper restore ConstantNullCoalescingCondition
                     equalsMethod: false,
                     out var result))
@@ -172,15 +172,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return result;
             }
 
-            if (IsConvertedToNullable(newLeft, binaryExpression.Left)
-                || IsConvertedToNullable(newRight, binaryExpression.Right))
+            if (IsConvertedToNullable(newLeft, node.Left)
+                || IsConvertedToNullable(newRight, node.Right))
             {
                 newLeft = ConvertToNullable(newLeft);
                 newRight = ConvertToNullable(newRight);
             }
 
-            if (binaryExpression.NodeType == ExpressionType.Equal
-                || binaryExpression.NodeType == ExpressionType.NotEqual)
+            if (node.NodeType == ExpressionType.Equal
+                || node.NodeType == ExpressionType.NotEqual)
             {
                 var property = FindProperty(newLeft) ?? FindProperty(newRight);
                 if (property != null)
@@ -191,12 +191,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         && comparer.Type.IsAssignableFrom(newLeft.Type)
                         && comparer.Type.IsAssignableFrom(newRight.Type))
                     {
-                        if (binaryExpression.NodeType == ExpressionType.Equal)
+                        if (node.NodeType == ExpressionType.Equal)
                         {
                             return comparer.ExtractEqualsBody(newLeft, newRight);
                         }
 
-                        if (binaryExpression.NodeType == ExpressionType.NotEqual)
+                        if (node.NodeType == ExpressionType.NotEqual)
                         {
                             return Expression.IsFalse(comparer.ExtractEqualsBody(newLeft, newRight));
                         }
@@ -205,12 +205,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
 
             return Expression.MakeBinary(
-                binaryExpression.NodeType,
+                node.NodeType,
                 newLeft,
                 newRight,
-                binaryExpression.IsLiftedToNull,
-                binaryExpression.Method,
-                binaryExpression.Conversion);
+                node.IsLiftedToNull,
+                node.Method,
+                node.Conversion);
         }
 
         /// <summary>
@@ -219,13 +219,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitConditional(ConditionalExpression conditionalExpression)
+        protected override Expression VisitConditional(ConditionalExpression node)
         {
-            Check.NotNull(conditionalExpression, nameof(conditionalExpression));
+            Check.NotNull(node, nameof(node));
 
-            var test = Visit(conditionalExpression.Test);
-            var ifTrue = Visit(conditionalExpression.IfTrue);
-            var ifFalse = Visit(conditionalExpression.IfFalse);
+            var test = Visit(node.Test);
+            var ifTrue = Visit(node.IfTrue);
+            var ifFalse = Visit(node.IfFalse);
 
             if (test == null
                 || ifTrue == null
@@ -239,8 +239,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 test = Expression.Equal(test, Expression.Constant(true, typeof(bool?)));
             }
 
-            if (IsConvertedToNullable(ifTrue, conditionalExpression.IfTrue)
-                || IsConvertedToNullable(ifFalse, conditionalExpression.IfFalse))
+            if (IsConvertedToNullable(ifTrue, node.IfTrue)
+                || IsConvertedToNullable(ifFalse, node.IfFalse))
             {
                 ifTrue = ConvertToNullable(ifTrue);
                 ifFalse = ConvertToNullable(ifFalse);
@@ -291,7 +291,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitInvocation(InvocationExpression invocationExpression) => null!;
+        protected override Expression VisitInvocation(InvocationExpression node) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -299,7 +299,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitLambda<T>(Expression<T> lambdaExpression) => null!;
+        protected override Expression VisitLambda<T>(Expression<T> node) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -307,7 +307,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitListInit(ListInitExpression listInitExpression) => null!;
+        protected override Expression VisitListInit(ListInitExpression node) => null!;
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -315,28 +315,28 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitMember(MemberExpression memberExpression)
+        protected override Expression VisitMember(MemberExpression node)
         {
-            Check.NotNull(memberExpression, nameof(memberExpression));
+            Check.NotNull(node, nameof(node));
 
-            var innerExpression = Visit(memberExpression.Expression);
-            if (memberExpression.Expression != null
+            var innerExpression = Visit(node.Expression);
+            if (node.Expression != null
                 && innerExpression == null)
             {
                 return null!;
             }
 
-            var result = TryBindMember(innerExpression, MemberIdentity.Create(memberExpression.Member), memberExpression.Type); 
+            var result = TryBindMember(innerExpression, MemberIdentity.Create(node.Member), node.Type); 
             if (result != null)
             {
                 return result;
             }
 
-            var updatedMemberExpression = (Expression)memberExpression.Update(innerExpression!);
+            var updatedMemberExpression = (Expression)node.Update(innerExpression!);
             // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (innerExpression != null
                 && innerExpression.Type.IsNullableType()
-                && ShouldApplyNullProtectionForMemberAccess(innerExpression.Type, memberExpression.Member.Name))
+                && ShouldApplyNullProtectionForMemberAccess(innerExpression.Type, node.Member.Name))
             {
                 updatedMemberExpression = ConvertToNullable(updatedMemberExpression);
 
@@ -360,20 +360,20 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override MemberAssignment VisitMemberAssignment(MemberAssignment memberAssignment)
+        protected override MemberAssignment VisitMemberAssignment(MemberAssignment node)
         {
-            var expression = Visit(memberAssignment.Expression);
+            var expression = Visit(node.Expression);
             if (expression == null)
             {
                 return null!;
             }
 
-            if (IsConvertedToNullable(expression, memberAssignment.Expression))
+            if (IsConvertedToNullable(expression, node.Expression))
             {
                 expression = ConvertToNonNullable(expression);
             }
 
-            return memberAssignment.Update(expression);
+            return node.Update(expression);
         }
 
         /// <summary>
@@ -382,46 +382,46 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+        protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+            Check.NotNull(node, nameof(node));
 
-            if (methodCallExpression.Method.IsGenericMethod
-                && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
+            if (node.Method.IsGenericMethod
+                && node.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
             {
-                return methodCallExpression;
+                return node;
             }
 
             // EF.Property case
-            if (methodCallExpression.TryGetEFPropertyArguments(out var source, out var propertyName))
+            if (node.TryGetEFPropertyArguments(out var source, out var propertyName))
             {
-                return TryBindMember(Visit(source), MemberIdentity.Create(propertyName), methodCallExpression.Type)
-                    ?? throw new InvalidOperationException(CoreStrings.QueryUnableToTranslateEFProperty(methodCallExpression.Print()));
+                return TryBindMember(Visit(source), MemberIdentity.Create(propertyName), node.Type)
+                    ?? throw new InvalidOperationException(CoreStrings.QueryUnableToTranslateEFProperty(node.Print()));
             }
 
             // EF Indexer property
-            if (methodCallExpression.TryGetIndexerArguments(_model, out source, out propertyName))
+            if (node.TryGetIndexerArguments(_model, out source, out propertyName))
             {
-                return TryBindMember(Visit(source), MemberIdentity.Create(propertyName), methodCallExpression.Type);
+                return TryBindMember(Visit(source), MemberIdentity.Create(propertyName), node.Type);
             }
 
             // GroupBy Aggregate case
-            if (methodCallExpression.Object == null
-                && methodCallExpression.Method.DeclaringType == typeof(Enumerable)
-                && methodCallExpression.Arguments.Count > 0)
+            if (node.Object == null
+                && node.Method.DeclaringType == typeof(Enumerable)
+                && node.Arguments.Count > 0)
             {
-                if (methodCallExpression.Arguments[0].Type.TryGetElementType(typeof(IQueryable<>)) == null
-                    && Visit(methodCallExpression.Arguments[0]) is GroupingElementExpression groupingElementExpression)
+                if (node.Arguments[0].Type.TryGetElementType(typeof(IQueryable<>)) == null
+                    && Visit(node.Arguments[0]) is GroupingElementExpression groupingElementExpression)
                 {
                     Expression result = null;
-                    switch (methodCallExpression.Method.Name)
+                    switch (node.Method.Name)
                     {
                         case nameof(Enumerable.Average):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplySelector(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             }
 
                             var expression = ApplySelect(groupingElementExpression);
@@ -435,10 +435,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                         case nameof(Enumerable.Count):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplyPredicate(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
 
                                 if (groupingElementExpression == null)
                                 {
@@ -467,10 +467,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                         case nameof(Enumerable.LongCount):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplyPredicate(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
 
                                 if (groupingElementExpression == null)
                                 {
@@ -491,10 +491,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                         case nameof(Enumerable.Max):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplySelector(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             }
 
                             var expression = ApplySelect(groupingElementExpression);
@@ -520,10 +520,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                         case nameof(Enumerable.Min):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplySelector(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             }
 
                             var expression = ApplySelect(groupingElementExpression);
@@ -548,15 +548,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         }
 
                         case nameof(Enumerable.Select):
-                            result = ApplySelector(groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                            result = ApplySelector(groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             break;
 
                         case nameof(Enumerable.Sum):
                         {
-                            if (methodCallExpression.Arguments.Count == 2)
+                            if (node.Arguments.Count == 2)
                             {
                                 groupingElementExpression = ApplySelector(
-                                    groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                                    groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             }
 
                             var expression = ApplySelect(groupingElementExpression);
@@ -569,7 +569,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         }
 
                         case nameof(Enumerable.Where):
-                            result = ApplyPredicate(groupingElementExpression, methodCallExpression.Arguments[1].UnwrapLambdaFromQuote());
+                            result = ApplyPredicate(groupingElementExpression, node.Arguments[1].UnwrapLambdaFromQuote());
                             break;
 
                         default:
@@ -577,7 +577,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                             break;
                     }
 
-                    return result ?? throw new InvalidOperationException(CoreStrings.TranslationFailed(methodCallExpression.Print()));
+                    return result ?? throw new InvalidOperationException(CoreStrings.TranslationFailed(node.Print()));
 
                     GroupingElementExpression ApplyPredicate(GroupingElementExpression groupingElement, LambdaExpression lambdaExpression)
                     {
@@ -634,7 +634,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
 
             // Subquery case
-            var subqueryTranslation = _queryableMethodTranslatingExpressionVisitor.TranslateSubquery(methodCallExpression);
+            var subqueryTranslation = _queryableMethodTranslatingExpressionVisitor.TranslateSubquery(node);
             if (subqueryTranslation != null)
             {
                 var subquery = (UbigiaQueryExpression)subqueryTranslation.QueryExpression;
@@ -671,20 +671,20 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     subquery.ServerQueryExpression,
                     subquery.GetMappedProjection(projectionBindingExpression.ProjectionMember),
                     subquery.CurrentParameter,
-                    methodCallExpression.Type);
+                    node.Type);
             }
 
-            if (methodCallExpression.Method == LikeMethodInfo
-                || methodCallExpression.Method == LikeMethodInfoWithEscape)
+            if (node.Method == LikeMethodInfo
+                || node.Method == LikeMethodInfoWithEscape)
             {
                 // EF.Functions.Like
                 var visitedArguments = new Expression[3];
                 visitedArguments[2] = Expression.Constant(null, typeof(string));
                 // Skip first DbFunctions argument
-                for (var i = 1; i < methodCallExpression.Arguments.Count; i++)
+                for (var i = 1; i < node.Arguments.Count; i++)
                 {
-                    var argument = Visit(methodCallExpression.Arguments[i]);
-                    if (TranslationFailed(methodCallExpression.Arguments[i], argument))
+                    var argument = Visit(node.Arguments[i]);
+                    if (TranslationFailed(node.Arguments[i], argument))
                     {
                         return null!;
                     }
@@ -697,19 +697,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             Expression @object = null;
             Expression[] arguments;
-            var method = methodCallExpression.Method;
+            var method = node.Method;
 
             if (method.Name == nameof(object.Equals)
-                && methodCallExpression.Object != null
-                && methodCallExpression.Arguments.Count == 1)
+                && node.Object != null
+                && node.Arguments.Count == 1)
             {
-                var left = Visit(methodCallExpression.Object);
-                var right = Visit(methodCallExpression.Arguments[0]);
+                var left = Visit(node.Object);
+                var right = Visit(node.Arguments[0]);
 
                 if (TryRewriteEntityEquality(
                     ExpressionType.Equal,
-                    left ?? methodCallExpression.Object,
-                    right ?? methodCallExpression.Arguments[0],
+                    left ?? node.Object,
+                    right ?? node.Arguments[0],
                     equalsMethod: true,
                     out var result))
                 {
@@ -726,24 +726,24 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 arguments = new[] { right };
             }
             else if (method.Name == nameof(object.Equals)
-                && methodCallExpression.Object == null
-                && methodCallExpression.Arguments.Count == 2)
+                && node.Object == null
+                && node.Arguments.Count == 2)
             {
-                if (methodCallExpression.Arguments[0].Type == typeof(object[])
-                    && methodCallExpression.Arguments[0] is NewArrayExpression)
+                if (node.Arguments[0].Type == typeof(object[])
+                    && node.Arguments[0] is NewArrayExpression)
                 {
                     return Visit(
                         ConvertObjectArrayEqualityComparison(
-                            methodCallExpression.Arguments[0], methodCallExpression.Arguments[1]))!;
+                            node.Arguments[0], node.Arguments[1]))!;
                 }
 
-                var left = Visit(methodCallExpression.Arguments[0]);
-                var right = Visit(methodCallExpression.Arguments[1]);
+                var left = Visit(node.Arguments[0]);
+                var right = Visit(node.Arguments[1]);
 
                 if (TryRewriteEntityEquality(
                     ExpressionType.Equal,
-                    left ?? methodCallExpression.Arguments[0],
-                    right ?? methodCallExpression.Arguments[1],
+                    left ?? node.Arguments[0],
+                    right ?? node.Arguments[1],
                     equalsMethod: true,
                     out var result))
                 {
@@ -761,10 +761,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             else if (method.IsGenericMethod
                 && method.GetGenericMethodDefinition().Equals(EnumerableMethods.Contains))
             {
-                var enumerable = Visit(methodCallExpression.Arguments[0]);
-                var item = Visit(methodCallExpression.Arguments[1]);
+                var enumerable = Visit(node.Arguments[0]);
+                var item = Visit(node.Arguments[1]);
 
-                if (TryRewriteContainsEntity(enumerable, item ?? methodCallExpression.Arguments[1], out var result))
+                if (TryRewriteContainsEntity(enumerable, item ?? node.Arguments[1], out var result))
                 {
                     return result;
                 }
@@ -777,13 +777,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 arguments = new[] { enumerable, item };
             }
-            else if (methodCallExpression.Arguments.Count == 1
+            else if (node.Arguments.Count == 1
                 && method.IsContainsMethod())
             {
-                var enumerable = Visit(methodCallExpression.Object);
-                var item = Visit(methodCallExpression.Arguments[0]);
+                var enumerable = Visit(node.Object);
+                var item = Visit(node.Arguments[0]);
 
-                if (TryRewriteContainsEntity(enumerable, item ?? methodCallExpression.Arguments[0], out var result))
+                if (TryRewriteContainsEntity(enumerable, item ?? node.Arguments[0], out var result))
                 {
                     return result;
                 }
@@ -799,17 +799,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             }
             else
             {
-                @object = Visit(methodCallExpression.Object);
-                if (TranslationFailed(methodCallExpression.Object, @object))
+                @object = Visit(node.Object);
+                if (TranslationFailed(node.Object, @object))
                 {
                     return null!;
                 }
 
-                arguments = new Expression[methodCallExpression.Arguments.Count];
+                arguments = new Expression[node.Arguments.Count];
                 for (var i = 0; i < arguments.Length; i++)
                 {
-                    var argument = Visit(methodCallExpression.Arguments[i]);
-                    if (TranslationFailed(methodCallExpression.Arguments[i], argument))
+                    var argument = Visit(node.Arguments[i]);
+                    if (TranslationFailed(node.Arguments[i], argument))
                     {
                         return null!;
                     }
@@ -820,11 +820,11 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             // if the nullability of arguments change, we have no easy/reliable way to adjust the actual methodInfo to match the new type,
             // so we are forced to cast back to the original type
-            var parameterTypes = methodCallExpression.Method.GetParameters().Select(p => p.ParameterType).ToArray();
+            var parameterTypes = node.Method.GetParameters().Select(p => p.ParameterType).ToArray();
             for (var i = 0; i < arguments.Length; i++)
             {
                 var argument = arguments[i];
-                if (IsConvertedToNullable(argument, methodCallExpression.Arguments[i])
+                if (IsConvertedToNullable(argument, node.Arguments[i])
                     && !parameterTypes[i].IsAssignableFrom(argument.Type))
                 {
                     argument = ConvertToNonNullable(argument);
@@ -835,12 +835,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             // if object is nullable, add null safeguard before calling the function
             // we special-case Nullable<>.GetValueOrDefault, which doesn't need the safeguard
-            if (methodCallExpression.Object != null
+            if (node.Object != null
                 && @object!.Type.IsNullableType()
-                && methodCallExpression.Method.Name != nameof(Nullable<int>.GetValueOrDefault))
+                && node.Method.Name != nameof(Nullable<int>.GetValueOrDefault))
             {
-                var result = (Expression)methodCallExpression.Update(
-                    Expression.Convert(@object, methodCallExpression.Object.Type),
+                var result = (Expression)node.Update(
+                    Expression.Convert(@object, node.Object.Type),
                     arguments);
 
                 result = ConvertToNullable(result);
@@ -852,7 +852,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return result;
             }
 
-            return methodCallExpression.Update(@object, arguments);
+            return node.Update(@object, arguments);
         }
 
         /// <summary>
@@ -861,12 +861,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitNew(NewExpression newExpression)
+        protected override Expression VisitNew(NewExpression node)
         {
-            Check.NotNull(newExpression, nameof(newExpression));
+            Check.NotNull(node, nameof(node));
 
             var newArguments = new List<Expression>();
-            foreach (var argument in newExpression.Arguments)
+            foreach (var argument in node.Arguments)
             {
                 var newArgument = Visit(argument);
                 if (newArgument == null)
@@ -882,7 +882,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 newArguments.Add(newArgument);
             }
 
-            return newExpression.Update(newArguments);
+            return node.Update(newArguments);
         }
 
         /// <summary>
@@ -891,12 +891,12 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitNewArray(NewArrayExpression newArrayExpression)
+        protected override Expression VisitNewArray(NewArrayExpression node)
         {
-            Check.NotNull(newArrayExpression, nameof(newArrayExpression));
+            Check.NotNull(node, nameof(node));
 
             var newExpressions = new List<Expression>();
-            foreach (var expression in newArrayExpression.Expressions)
+            foreach (var expression in node.Expressions)
             {
                 var newExpression = Visit(expression);
                 if (newExpression == null)
@@ -912,7 +912,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 newExpressions.Add(newExpression);
             }
 
-            return newArrayExpression.Update(newExpressions);
+            return node.Update(newExpressions);
         }
 
         /// <summary>
@@ -921,19 +921,19 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitParameter(ParameterExpression parameterExpression)
+        protected override Expression VisitParameter(ParameterExpression node)
         {
-            Check.NotNull(parameterExpression, nameof(parameterExpression));
+            Check.NotNull(node, nameof(node));
 
-            if (parameterExpression.Name?.StartsWith(QueryCompilationContext.QueryParameterPrefix, StringComparison.Ordinal) == true)
+            if (node.Name?.StartsWith(QueryCompilationContext.QueryParameterPrefix, StringComparison.Ordinal) == true)
             {
                 return Expression.Call(
-                    GetParameterValueMethodInfo.MakeGenericMethod(parameterExpression.Type),
+                    GetParameterValueMethodInfo.MakeGenericMethod(node.Type),
                     QueryCompilationContext.QueryContextParameter,
-                    Expression.Constant(parameterExpression.Name));
+                    Expression.Constant(node.Name));
             }
 
-            throw new InvalidOperationException(CoreStrings.TranslationFailed(parameterExpression.Print()));
+            throw new InvalidOperationException(CoreStrings.TranslationFailed(node.Print()));
         }
 
         /// <summary>
@@ -942,21 +942,21 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitTypeBinary(TypeBinaryExpression typeBinaryExpression)
+        protected override Expression VisitTypeBinary(TypeBinaryExpression node)
         {
-            Check.NotNull(typeBinaryExpression, nameof(typeBinaryExpression));
+            Check.NotNull(node, nameof(node));
 
-            if (typeBinaryExpression.NodeType == ExpressionType.TypeIs
-                && Visit(typeBinaryExpression.Expression) is EntityReferenceExpression entityReferenceExpression)
+            if (node.NodeType == ExpressionType.TypeIs
+                && Visit(node.Expression) is EntityReferenceExpression entityReferenceExpression)
             {
                 var entityType = entityReferenceExpression.EntityType;
 
-                if (entityType.GetAllBaseTypesInclusive().Any(et => et.ClrType == typeBinaryExpression.TypeOperand))
+                if (entityType.GetAllBaseTypesInclusive().Any(et => et.ClrType == node.TypeOperand))
                 {
                     return Expression.Constant(true);
                 }
 
-                var derivedType = entityType.GetDerivedTypes().SingleOrDefault(et => et.ClrType == typeBinaryExpression.TypeOperand);
+                var derivedType = entityType.GetDerivedTypes().SingleOrDefault(et => et.ClrType == node.TypeOperand);
                 if (derivedType != null)
                 {
                     var discriminatorProperty = entityType.GetDiscriminatorProperty();
@@ -989,37 +989,37 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitUnary(UnaryExpression unaryExpression)
+        protected override Expression VisitUnary(UnaryExpression node)
         {
-            Check.NotNull(unaryExpression, nameof(unaryExpression));
+            Check.NotNull(node, nameof(node));
 
-            var newOperand = Visit(unaryExpression.Operand);
+            var newOperand = Visit(node.Operand);
             if (newOperand == null)
             {
                 return null!;
             }
 
             if (newOperand is EntityReferenceExpression entityReferenceExpression
-                && (unaryExpression.NodeType == ExpressionType.Convert
-                    || unaryExpression.NodeType == ExpressionType.ConvertChecked
-                    || unaryExpression.NodeType == ExpressionType.TypeAs))
+                && (node.NodeType == ExpressionType.Convert
+                    || node.NodeType == ExpressionType.ConvertChecked
+                    || node.NodeType == ExpressionType.TypeAs))
             {
-                return entityReferenceExpression.Convert(unaryExpression.Type);
+                return entityReferenceExpression.Convert(node.Type);
             }
 
-            if (unaryExpression.NodeType == ExpressionType.Convert
-                && newOperand.Type == unaryExpression.Type)
-            {
-                return newOperand;
-            }
-
-            if (unaryExpression.NodeType == ExpressionType.Convert
-                && IsConvertedToNullable(newOperand, unaryExpression))
+            if (node.NodeType == ExpressionType.Convert
+                && newOperand.Type == node.Type)
             {
                 return newOperand;
             }
 
-            var result = (Expression)Expression.MakeUnary(unaryExpression.NodeType, newOperand, unaryExpression.Type);
+            if (node.NodeType == ExpressionType.Convert
+                && IsConvertedToNullable(newOperand, node))
+            {
+                return newOperand;
+            }
+
+            var result = (Expression)Expression.MakeUnary(node.NodeType, newOperand, node.Type);
             if (result is UnaryExpression outerUnary
                 && outerUnary.NodeType == ExpressionType.Convert
                 && outerUnary.Operand is UnaryExpression innerUnary
@@ -1490,7 +1490,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
         [DebuggerStepThrough]
         private static bool TranslationFailed(Expression original, Expression translation)
-            => original != null && (translation == null || translation is EntityReferenceExpression);
+            => original != null && (translation == null || translation is EntityReferenceExpression);   
 
         private static bool TranslationFailed(Expression translation)
             => translation == null || translation is EntityReferenceExpression;
@@ -1589,20 +1589,20 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return _found;
             }
 
-            public override Expression Visit(Expression expression)
+            public override Expression Visit(Expression node)
             {
                 if (_found)
                 {
-                    return expression;
+                    return node;
                 }
 
-                if (expression is EntityReferenceExpression)
+                if (node is EntityReferenceExpression)
                 {
                     _found = true;
-                    return expression;
+                    return node;
                 }
 
-                return base.Visit(expression);
+                return base.Visit(node);
             }
         }
 
