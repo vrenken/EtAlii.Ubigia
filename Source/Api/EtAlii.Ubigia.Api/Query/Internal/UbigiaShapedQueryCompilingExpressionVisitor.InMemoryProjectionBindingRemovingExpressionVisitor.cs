@@ -22,15 +22,15 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _materializationContextBindings
                     = new Dictionary<ParameterExpression, (IDictionary<IProperty, int> IndexMap, ParameterExpression valueBuffer)>();
 
-            protected override Expression VisitBinary(BinaryExpression binaryExpression)
+            protected override Expression VisitBinary(BinaryExpression node)
             {
-                Check.NotNull(binaryExpression, nameof(binaryExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (binaryExpression.NodeType == ExpressionType.Assign
-                    && binaryExpression.Left is ParameterExpression parameterExpression
+                if (node.NodeType == ExpressionType.Assign
+                    && node.Left is ParameterExpression parameterExpression
                     && parameterExpression.Type == typeof(MaterializationContext))
                 {
-                    var newExpression = (NewExpression)binaryExpression.Right;
+                    var newExpression = (NewExpression)node.Right;
 
                     var projectionBindingExpression = (ProjectionBindingExpression)newExpression.Arguments[0];
                     var queryExpression = (UbigiaQueryExpression)projectionBindingExpression.QueryExpression;
@@ -44,43 +44,43 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         Expression.Constant(ValueBuffer.Empty),
                         newExpression.Arguments[1]);
 
-                    return Expression.MakeBinary(ExpressionType.Assign, binaryExpression.Left, updatedExpression);
+                    return Expression.MakeBinary(ExpressionType.Assign, node.Left, updatedExpression);
                 }
 
-                if (binaryExpression.NodeType == ExpressionType.Assign
-                    && binaryExpression.Left is MemberExpression memberExpression
+                if (node.NodeType == ExpressionType.Assign
+                    && node.Left is MemberExpression memberExpression
                     && memberExpression.Member is FieldInfo fieldInfo
                     && fieldInfo.IsInitOnly)
                 {
-                    return memberExpression.Assign(Visit(binaryExpression.Right));
+                    return memberExpression.Assign(Visit(node.Right));
                 }
 
-                return base.VisitBinary(binaryExpression);
+                return base.VisitBinary(node);
             }
 
-            protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+            protected override Expression VisitMethodCall(MethodCallExpression node)
             {
-                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+                Check.NotNull(node, nameof(node));
 
-                if (methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
+                if (node.Method.IsGenericMethod
+                    && node.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
                 {
-                    var property = (IProperty)((ConstantExpression)methodCallExpression.Arguments[2]).Value;
+                    var property = (IProperty)((ConstantExpression)node.Arguments[2]).Value;
                     var (indexMap, valueBuffer) =
                         _materializationContextBindings[
-                            (ParameterExpression)((MethodCallExpression)methodCallExpression.Arguments[0]).Object];
+                            (ParameterExpression)((MethodCallExpression)node.Arguments[0]).Object];
 
                     Check.DebugAssert(
-                        property != null || methodCallExpression.Type.IsNullableType(), "Must read nullable value without property");
+                        property != null || node.Type.IsNullableType(), "Must read nullable value without property");
 
                     return Expression.Call(
-                        methodCallExpression.Method,
+                        node.Method,
                         valueBuffer,
                         Expression.Constant(indexMap[property]),
-                        methodCallExpression.Arguments[2]);
+                        node.Arguments[2]);
                 }
 
-                return base.VisitMethodCall(methodCallExpression);
+                return base.VisitMethodCall(node);
             }
 
             protected override Expression VisitExtension(Expression node)

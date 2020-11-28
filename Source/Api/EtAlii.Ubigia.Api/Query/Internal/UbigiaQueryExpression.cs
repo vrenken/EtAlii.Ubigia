@@ -265,9 +265,9 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 _projectionMapping = projectionMapping;
             }
 
-            public override Expression Visit(Expression expression)
+            public override Expression Visit(Expression node)
             {
-                if (expression is ProjectionBindingExpression projectionBindingExpression
+                if (node is ProjectionBindingExpression projectionBindingExpression
                     && projectionBindingExpression.ProjectionMember != null)
                 {
                     var mappingValue = ((ConstantExpression)_projectionMapping[projectionBindingExpression.ProjectionMember]).Value;
@@ -279,7 +279,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                             : throw new InvalidOperationException(CoreStrings.UnknownEntity("ProjectionMapping"));
                 }
 
-                return base.Visit(expression);
+                return base.Visit(node);
             }
         }
 
@@ -1104,29 +1104,29 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
         private sealed class NullableReadValueExpressionVisitor : ExpressionVisitor
         {
-            protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
+            protected override Expression VisitMethodCall(MethodCallExpression node)
             {
-                Check.NotNull(methodCallExpression, nameof(methodCallExpression));
+                Check.NotNull(node, nameof(node));
 
-                return methodCallExpression.Method.IsGenericMethod
-                    && methodCallExpression.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod
-                    && !methodCallExpression.Type.IsNullableType()
+                return node.Method.IsGenericMethod
+                    && node.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod
+                    && !node.Type.IsNullableType()
                     ? Call(
-                        ExpressionExtensions.ValueBufferTryReadValueMethod.MakeGenericMethod(methodCallExpression.Type.MakeNullable()),
-                        methodCallExpression.Arguments)
-                    : base.VisitMethodCall(methodCallExpression);
+                        ExpressionExtensions.ValueBufferTryReadValueMethod.MakeGenericMethod(node.Type.MakeNullable()),
+                        node.Arguments)
+                    : base.VisitMethodCall(node);
             }
 
-            protected override Expression VisitConditional(ConditionalExpression conditionalExpression)
+            protected override Expression VisitConditional(ConditionalExpression node)
             {
-                Check.NotNull(conditionalExpression, nameof(conditionalExpression));
+                Check.NotNull(node, nameof(node));
 
-                var test = Visit(conditionalExpression.Test);
-                var ifTrue = Visit(conditionalExpression.IfTrue);
-                var ifFalse = Visit(conditionalExpression.IfFalse);
+                var test = Visit(node.Test);
+                var ifTrue = Visit(node.IfTrue);
+                var ifFalse = Visit(node.IfFalse);
 
                 if (ifTrue.Type.IsNullableType()
-                    && conditionalExpression.IfTrue.Type == ifTrue.Type.UnwrapNullableType()
+                    && node.IfTrue.Type == ifTrue.Type.UnwrapNullableType()
                     && ifFalse is DefaultExpression)
                 {
                     ifFalse = Default(ifTrue.Type);

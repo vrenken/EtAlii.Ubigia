@@ -61,6 +61,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 void IDisposable.Dispose()
                 {
+                    // Any instances that should be disposed should be disposed in this method.
+                    // As the code was copied from the EF repository currently nothing is disposed.
                 }
             }
         }
