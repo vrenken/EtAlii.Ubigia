@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Security.Principal;
     using System.Threading;
@@ -26,6 +27,7 @@
 	        _responseBuilder = responseBuilder;
         }
 
+        [SuppressMessage("Sonar Code Smell", "S4834:Controlling permissions is security-sensitive", Justification = "Safe to do so here.")]
         public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
             var identity = _authenticationIdentityProvider.Get(context);
