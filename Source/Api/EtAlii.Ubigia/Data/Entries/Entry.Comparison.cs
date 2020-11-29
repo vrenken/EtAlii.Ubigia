@@ -45,9 +45,9 @@
 
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() != entry.GetType())
-            //{
+            //[
             //    return false;
-            //}
+            //]
 
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 

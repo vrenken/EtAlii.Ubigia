@@ -16,12 +16,6 @@ namespace System.Reactive.Concurrency
     /// </remarks>
     public class DispatcherScheduler : LocalScheduler, ISchedulerPeriodic
     {
-        // /// <summary>
-        // /// Gets the scheduler that schedules work on the current <see cref="System.Windows.Threading.Dispatcher"/>.
-        // /// </summary>
-        // [Obsolete(Constants_WindowsThreading.OBSOLETE_INSTANCE_PROPERTY)]
-        // public static DispatcherScheduler Instance => new DispatcherScheduler(System.Windows.Threading.Dispatcher.CurrentDispatcher);
-
         /// <summary>
         /// Gets the scheduler that schedules work on the <see cref="System.Windows.Threading.Dispatcher"/> for the current thread.
         /// </summary>
@@ -32,7 +26,7 @@ namespace System.Reactive.Concurrency
                 var dispatcher = Windows.Threading.Dispatcher.FromThread(Thread.CurrentThread);
                 if (dispatcher == null)
                 {
-                    throw new InvalidOperationException("NO_DISPATCHER_CURRENT_THREAD"); //Strings_WindowsThreading.NO_DISPATCHER_CURRENT_THREAD);
+                    throw new InvalidOperationException("NO_DISPATCHER_CURRENT_THREAD"); //Strings_WindowsThreading.NO_DISPATCHER_CURRENT_THREAD)
                 }
 
                 return new DispatcherScheduler(dispatcher);

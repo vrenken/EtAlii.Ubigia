@@ -16,12 +16,12 @@ namespace EtAlii.Ubigia
             //
             // // check each bit in the byte. if 1 set to true, if 0 set to false
             // for (var j = 0; j < length; j++)
-            // {
+            // [
             //     for (var i = 0; i < 8; i++)
-            //     {
+            //     [
             //         bitArray[j * 8 + i] = (bytes[j] & (1 << i)) != 0;
-            //     }
-            // }
+            //     ]
+            // ]
             
             ulong buffer = 0;
             byte quotientBuffer = 0;

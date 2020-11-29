@@ -5,8 +5,8 @@
         where TUnitOfWorkHandler : class, IUnitOfWorkHandler
     {
         //IUnitOfWorkHandler IUnitOfWork.GetHandler(Container container)
-        //{
-        //    return container.GetInstance<TUnitOfWorkHandler>();
-        //}
+        //[
+        //    return container.GetInstance<TUnitOfWorkHandler>()
+        //]
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IUnitOfWork 
     {
-        //IUnitOfWorkHandler GetHandler(Container container);
+        //IUnitOfWorkHandler GetHandler(Container container)
     }
 }
