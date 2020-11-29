@@ -78,7 +78,7 @@ namespace EtAlii.xTechnology.Collections
     /// Represents an item in a recursive projection.
     /// </summary>
     /// <typeparam name="T">The type of the item</typeparam>
-    public interface IRecursion<T>
+    public interface IRecursion<out T>
     {
         /// <summary>
         /// Gets the recursive depth.

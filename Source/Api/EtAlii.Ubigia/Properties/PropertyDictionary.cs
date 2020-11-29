@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
 
-    public class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
+    public sealed class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
     {
         public bool Stored { get; internal set; }
 
