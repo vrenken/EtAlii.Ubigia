@@ -16,9 +16,9 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
             // Cannot happen.
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, obj))
-            //{
-            //    return true;
-            //}
+            //[
+            //    return true
+            //]
 
             // If run-time types are not exactly the same, return false. 
             if (GetType() != obj.GetType())

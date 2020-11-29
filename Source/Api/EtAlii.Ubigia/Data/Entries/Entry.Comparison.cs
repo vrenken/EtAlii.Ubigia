@@ -44,9 +44,9 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            //if (this.GetType() != entry.GetType())
+            //if (this.GetType() ne entry.GetType())
             //[
-            //    return false;
+            //    return false
             //]
 
             // Return true if the fields match. 

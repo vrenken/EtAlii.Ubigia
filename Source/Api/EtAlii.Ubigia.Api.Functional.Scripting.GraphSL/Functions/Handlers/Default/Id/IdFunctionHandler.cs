@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     internal class IdFunctionHandler : FunctionHandlerBase, IFunctionHandler
@@ -61,9 +60,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
-                    var converter = ToIdentifierConverterSelector.Select(o);
-                    var results = converter(context, o, scope);
-                    foreach (var result in results.ToEnumerable())
+                    var results = ToIdentifierObservable(context, o, scope);
+                    foreach (var result in results)
                     {
                         output.OnNext(result);
                     }
@@ -83,9 +81,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
-                    var converter = ToIdentifierConverterSelector.Select(o);
-                    var results = converter(context, o, scope);
-                    foreach (var result in results.ToEnumerable())
+                    var results = ToIdentifierObservable(context, o, scope);
+                    foreach (var result in results)
                     {
                         output.OnNext(result);
                     }

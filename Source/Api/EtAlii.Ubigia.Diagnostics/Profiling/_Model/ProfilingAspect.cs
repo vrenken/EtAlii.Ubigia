@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
-    public partial class ProfilingAspect
+    public sealed partial class ProfilingAspect
     {
         public ProfilingLayer Layer { get; }
 

@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia
             }
 
             var builder = new StringBuilder();
-            while (bytes.ToArray().Any(b => b > 0))
+            while (bytes.Any(b => b > 0))
             {
                 bytes = BitShift.Divide(bytes, 36, out var mod);
                 builder.Insert(0, Alphabet[mod]);
@@ -98,9 +98,7 @@ namespace EtAlii.Ubigia
                 if (bitCounter == 8)
                 {
                     Span<byte> newResult = new byte[result.Length + 1];
-                    //Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
                     result.CopyTo(newResult.Slice(1));
-                    //var newResult = result.Slice(1);
                     result = newResult;
                     result[0] = currentByte;
                     currentByte = 0;
@@ -111,9 +109,6 @@ namespace EtAlii.Ubigia
             if (currentByte != 0)
             {
                 Span<byte> newResult = new byte[result.Length + 1];
-                //var newResult = new byte[result.Length + 1];
-                //Buffer.BlockCopy(result, 0, newResult, 1, result.Length);
-                //var newResult = result.Slice(1);
                 result.CopyTo(newResult.Slice(1));
                 result = newResult;
                 result[0] = currentByte;

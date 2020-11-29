@@ -17,9 +17,9 @@
             {
                 var node = (EntryNode)Diagram.SelectedNode.Data;
       //          if[_entryInspectedConfiguration.AutoAdd]
-                {
+      //          [
                     GraphContext.CommandProcessor.Process(new DiscoverEntryCommand(node.Entry, ProcessReason.Discovered, 1), GraphContext.DiscoverEntryCommandHandler);
-                }
+      //          ]
             }
         } 
     }

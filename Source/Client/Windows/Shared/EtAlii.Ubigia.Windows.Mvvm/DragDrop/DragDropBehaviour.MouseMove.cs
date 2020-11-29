@@ -46,7 +46,7 @@
                     element.RemoveHandler(UIElement.MouseMoveEvent, new MouseEventHandler(OnMouseMove));
                 }
 
-                if (newValue != null && newValue is bool value && value)
+                if (newValue is bool value && value)
                 {
                     element.AddHandler(UIElement.MouseMoveEvent, new MouseEventHandler(OnMouseMove));
                 }

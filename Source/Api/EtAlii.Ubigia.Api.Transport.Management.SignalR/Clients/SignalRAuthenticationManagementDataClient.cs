@@ -22,8 +22,8 @@
 
             var factory = new HubConnectionFactory();
 
-			_accountConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Account, UriKind.Absolute));
-			_storageConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Storage, UriKind.Absolute));
+			_accountConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Account, UriKind.Absolute));
+			_storageConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Storage, UriKind.Absolute));
 	        await _accountConnection.StartAsync().ConfigureAwait(false);
 	        await _storageConnection.StartAsync().ConfigureAwait(false);
         }

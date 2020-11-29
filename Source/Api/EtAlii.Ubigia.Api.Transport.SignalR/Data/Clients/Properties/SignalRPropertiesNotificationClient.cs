@@ -27,7 +27,7 @@
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + "/" + _name, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + UriHelper.Delimiter + _name, UriKind.Absolute));
 			_subscriptions = new[]
 			{
 				_connection.On<Identifier>("stored", OnStored),

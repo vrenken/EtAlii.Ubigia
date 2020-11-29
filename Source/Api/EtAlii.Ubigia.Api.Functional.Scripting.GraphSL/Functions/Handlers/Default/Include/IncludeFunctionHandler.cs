@@ -105,9 +105,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
-                    var converter = ToIdentifierConverterSelector.Select(o);
-                    var results = converter(context, o, scope);
-                    foreach (var result in results.ToEnumerable())
+                    var results = ToIdentifierObservable(context, o, scope);
+                    foreach (var result in results)
                     {
                         // Existing output.
                         var parts = new List<PathSubjectPart>(new [] {new IdentifierPathSubjectPart(result) });
