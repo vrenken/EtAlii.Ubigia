@@ -7,7 +7,7 @@
     public class PortableContainerProviderTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory = new(); 
-        private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
+        private readonly IContainerProvider _containerProvider = new PortableContainerProvider();
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortableContainerProvider_FromIds()

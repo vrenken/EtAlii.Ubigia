@@ -3,6 +3,7 @@
     using EtAlii.xTechnology.MicroContainer;
     using PCLStorage;
 
+
     public class PortableStorageExtension : IStorageExtension
     {
         private readonly IFolder _localStorage;
@@ -16,7 +17,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<PortableStorageSerializer, PortableFolderManager, PortableFileManager, PortablePathBuilder, DefaultContainerProvider>(),
+                new SharedFactoryScaffolding<PortableStorageSerializer, PortableFolderManager, PortableFileManager, PortablePathBuilder, PortableContainerProvider>(),
                 new PortableFactoryScaffolding(_localStorage),
             };
 
