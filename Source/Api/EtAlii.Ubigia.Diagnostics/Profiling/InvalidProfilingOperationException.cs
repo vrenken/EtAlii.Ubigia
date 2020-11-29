@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class InvalidProfilingOperationException : Exception
+    public class InvalidProfilingOperationException : Exception
     {
         public InvalidProfilingOperationException()
         {

@@ -1,23 +1,28 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
-    using EtAlii.xTechnology.Structure;
+    using System;
 
     internal class ExecutionPlanCombinerSelector : IExecutionPlanCombinerSelector
     {
-        private readonly ISelector<IExecutionPlanner, IExecutionPlanCombiner> _selector;
+        private readonly ISubjectExecutionPlanCombiner _subjectExecutionPlanCombiner;
+        private readonly IOperatorExecutionPlanCombiner _operatorExecutionPlanCombiner;
 
         public ExecutionPlanCombinerSelector(
             ISubjectExecutionPlanCombiner subjectExecutionPlanCombiner,
             IOperatorExecutionPlanCombiner operatorExecutionPlanCombiner)
         {
-            _selector = new Selector<IExecutionPlanner, IExecutionPlanCombiner>()
-                .Register(planner => planner is ISubjectExecutionPlanner, subjectExecutionPlanCombiner)
-                .Register(planner => planner is IOperatorExecutionPlanner, operatorExecutionPlanCombiner);
+            _subjectExecutionPlanCombiner = subjectExecutionPlanCombiner;
+            _operatorExecutionPlanCombiner = operatorExecutionPlanCombiner;
         }
 
         public IExecutionPlanCombiner Select(IExecutionPlanner planner)
         {
-            return _selector.Select(planner);
+            return planner switch
+            {
+                ISubjectExecutionPlanner => _subjectExecutionPlanCombiner,
+                IOperatorExecutionPlanner => _operatorExecutionPlanCombiner,
+                _ => throw new InvalidOperationException($"Unable to select option for criteria: {(planner != null ? planner.ToString() : "[NULL]")}")
+            };
         }
     }
 }

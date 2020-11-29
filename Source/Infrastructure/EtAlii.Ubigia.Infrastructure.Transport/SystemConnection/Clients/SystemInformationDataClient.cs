@@ -25,9 +25,9 @@
 
             return Task.FromResult(storage);
         }
-        public Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
+        public Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
-            if (storageConnection.Storage != null)
+            if (connection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }

@@ -7,12 +7,12 @@
 
     public partial class GrpcInformationDataClient
     {
-        public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
-            var grpcConnection = (IGrpcStorageConnection)storageConnection;
+            var grpcConnection = (IGrpcStorageConnection)connection;
             SetClients(grpcConnection.Transport.Channel);
 
-            if (storageConnection.Storage != null)
+            if (connection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }

@@ -10,8 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
     class VariablePathSubjectPartToPathConverter : IVariablePathSubjectPartToPathConverter
     {
-        private readonly ISelector<object, Func<object, string, PathSubjectPart[]>> _converterSelector;
-
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;
         private readonly INodeValidator _nodeValidator;
@@ -27,13 +25,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             _nodeValidator = nodeValidator;
             _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
 
-            _converterSelector = new Selector<object, Func<object, string, PathSubjectPart[]>>()
-                .Register(variable => variable is string, (variable, variableName) => ToPath((string)variable, variableName))
-                .Register(variable => variable is INode, (variable, _) => ToPath((INode)variable))
-                .Register(variable => variable is NonRootedPathSubject, (variable, _) => ((NonRootedPathSubject)variable).Parts)
-                .Register(variable => variable is StringConstantSubject, (variable, _) => ToPath((StringConstantSubject)variable))
-                .Register(variable => variable is RootedPathSubject, (variable, _) => ToPath((RootedPathSubject)variable));
-
             _parserSelector = new Selector<Subject, ISubjectParser>()
                 .Register(s => s is NonRootedPathSubject, nonRootedPathSubjectParser)
                 //.Register(s => s is RootedPathSubject, rootedPathSubjectParser)
@@ -44,13 +35,21 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             // TODO: At this moment we only allow single items to be used as path variables.
             var value = await variable.Value.SingleAsync();
-            var converter = _converterSelector.Select(value);
-            return converter(value, variable.Source);
+
+            return value switch
+            {
+                string s => ToPath(s, variable.Source),
+                INode node => ToPath(node),
+                NonRootedPathSubject nonRootedPathSubject => nonRootedPathSubject.Parts,
+                StringConstantSubject stringConstantSubject => ToPath(stringConstantSubject),
+                RootedPathSubject rootedPathSubject => ToPath(rootedPathSubject),
+                _ => throw new InvalidOperationException($"Unable to select option for criteria: {(value != null ? value.ToString() : "[NULL]")}")
+            };
         }
 
         private PathSubjectPart[] ToPath(RootedPathSubject rootedPathSubject)
         {
-            return new PathSubjectPart[0]
+            return Array.Empty<PathSubjectPart>()
                 .Concat(new PathSubjectPart[]
                 {
                     new ParentPathSubjectPart(),
@@ -96,8 +95,13 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 throw new ScriptParserException($"Unable to validate path in variable (variable: {variableName}, path: {pathSubject})");
             }
 
-            var converter = _converterSelector.Select(pathSubject);
-            return converter(pathSubject, variableName);
+            return pathSubject switch
+            {
+                NonRootedPathSubject nonRootedPathSubject => nonRootedPathSubject.Parts,
+                StringConstantSubject stringConstantSubject => ToPath(stringConstantSubject),
+                RootedPathSubject rootedPathSubject => ToPath(rootedPathSubject),
+                _ => throw new InvalidOperationException($"Unable to select option for criteria: {value ?? "[NULL]"}")
+            };
         }
 
     }

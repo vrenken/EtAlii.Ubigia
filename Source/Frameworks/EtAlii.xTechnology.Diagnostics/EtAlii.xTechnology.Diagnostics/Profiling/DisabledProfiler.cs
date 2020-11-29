@@ -32,7 +32,7 @@
             // A disabled profiler has nothing to do (yet).
         }
 
-        public void WriteEvent(string counterName, params object[] sampleData)
+        public void WriteEvent(string counterName, params object[] sampleDatas)
         {
             // A disabled profiler has nothing to do (yet).
         }
