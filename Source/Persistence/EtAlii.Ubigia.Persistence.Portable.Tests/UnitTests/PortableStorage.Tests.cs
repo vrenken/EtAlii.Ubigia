@@ -23,7 +23,7 @@
             var pathBuilder = new PortablePathBuilder(storageConfiguration, storageSerializer);
             var folderManager = new PortableFolderManager(storageSerializer, folderStorage);
             var fileManager = new PortableFileManager(storageSerializer, folderManager, pathBuilder, folderStorage);
-            var azureContainerProvider = new DefaultContainerProvider();
+            var azureContainerProvider = new PortableContainerProvider();
 
             var itemStorage = new ItemStorage(storageSerializer, fileManager, folderManager, pathBuilder);
             var componentStorer = new ComponentStorer(folderManager, pathBuilder);
