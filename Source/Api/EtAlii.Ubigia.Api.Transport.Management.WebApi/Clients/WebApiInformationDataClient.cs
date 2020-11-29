@@ -5,15 +5,15 @@
 
     internal sealed class WebApiInformationDataClient : WebApiClientBase, IInformationDataClient
     {
-        public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
-            if (storageConnection.Storage != null)
+            if (connection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.StorageAlreadyOpen);
             }
 
-            var webApiConnection = (IWebApiConnection)storageConnection;
-            var localAddress = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
+            var webApiConnection = (IWebApiConnection)connection;
+            var localAddress = webApiConnection.AddressFactory.Create(connection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
             var storage = await webApiConnection.Client.Get<Storage>(localAddress).ConfigureAwait(false);
 			 
             if (storage == null)
@@ -24,10 +24,10 @@
             return storage;
         }
 
-        public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection storageConnection)
+        public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var webApiConnection = (IWebApiConnection)storageConnection;
-            var address = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Information, UriParameter.Connectivity);
+            var webApiConnection = (IWebApiConnection)connection;
+            var address = webApiConnection.AddressFactory.Create(connection.Transport.Address, RelativeUri.Data.Information, UriParameter.Connectivity);
             var connectivityDetails = await webApiConnection.Client.Get<ConnectivityDetails>(address).ConfigureAwait(false);
             return connectivityDetails;
         }

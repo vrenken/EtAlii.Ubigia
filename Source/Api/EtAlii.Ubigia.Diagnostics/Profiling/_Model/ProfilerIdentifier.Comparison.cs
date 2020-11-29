@@ -29,25 +29,25 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
             return Equals((ProfilingAspect)obj);
         }
 
-        public bool Equals(ProfilingAspect id)
+        public bool Equals(ProfilingAspect other)
         {
             // Cannot happen. 
             // If parameter is null, return false. 
-            if (ReferenceEquals(id, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
             // Cannot happen.
             // Optimization for a common success case. 
-            if (ReferenceEquals(this, id))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
-            if (GetType() != id.GetType())
+            if (GetType() != other.GetType())
             {
                 return false;
             }
@@ -55,12 +55,12 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (id.Layer != Layer)
+            if (other.Layer != Layer)
             {
                 return false;
             }
 
-            if (id.Id != Id)
+            if (other.Id != Id)
             {
                 return false;
             }

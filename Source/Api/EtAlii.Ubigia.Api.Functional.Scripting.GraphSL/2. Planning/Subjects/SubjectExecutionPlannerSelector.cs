@@ -1,10 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
-    using EtAlii.xTechnology.Structure;
+    using System;
 
     internal class SubjectExecutionPlannerSelector : ISubjectExecutionPlannerSelector
     {
-        private readonly ISelector<Subject, ISubjectExecutionPlanner> _selector;
+        private readonly IAbsolutePathSubjectExecutionPlanner _absolutePathSubjectExecutionPlanner;
+        private readonly IRelativePathSubjectExecutionPlanner _relativePathSubjectExecutionPlanner;
+        private readonly IRootedPathSubjectExecutionPlanner _rootedPathSubjectExecutionPlanner;
+        private readonly IConstantSubjectExecutionPlanner _constantSubjectExecutionPlanner;
+        private readonly IVariableSubjectExecutionPlanner _variableSubjectExecutionPlanner;
+        private readonly IFunctionSubjectExecutionPlanner _functionSubjectExecutionPlanner;
+        private readonly IRootSubjectExecutionPlanner _rootSubjectExecutionPlanner;
+        private readonly IRootDefinitionSubjectExecutionPlanner _rootDefinitionSubjectExecutionPlanner;
 
         public SubjectExecutionPlannerSelector(
             IAbsolutePathSubjectExecutionPlanner absolutePathSubjectExecutionPlanner,
@@ -16,21 +23,30 @@
             IRootSubjectExecutionPlanner rootSubjectExecutionPlanner,
             IRootDefinitionSubjectExecutionPlanner rootDefinitionSubjectExecutionPlanner)
         {
-            _selector = new Selector<Subject, ISubjectExecutionPlanner>()
-                .Register(subject => subject is AbsolutePathSubject, absolutePathSubjectExecutionPlanner)
-                .Register(subject => subject is RootedPathSubject, rootedPathSubjectExecutionPlanner)
-                .Register(subject => subject is RelativePathSubject, relativePathSubjectExecutionPlanner)
-                .Register(subject => subject is ConstantSubject, constantSubjectExecutionPlanner)
-                .Register(subject => subject is VariableSubject, variableSubjectExecutionPlanner)
-                .Register(subject => subject is FunctionSubject, functionSubjectExecutionPlanner)
-                .Register(subject => subject is RootSubject, rootSubjectExecutionPlanner)
-                .Register(subject => subject is RootDefinitionSubject, rootDefinitionSubjectExecutionPlanner);
+            _absolutePathSubjectExecutionPlanner = absolutePathSubjectExecutionPlanner;
+            _relativePathSubjectExecutionPlanner = relativePathSubjectExecutionPlanner;
+            _rootedPathSubjectExecutionPlanner = rootedPathSubjectExecutionPlanner;
+            _constantSubjectExecutionPlanner = constantSubjectExecutionPlanner;
+            _variableSubjectExecutionPlanner = variableSubjectExecutionPlanner;
+            _functionSubjectExecutionPlanner = functionSubjectExecutionPlanner;
+            _rootSubjectExecutionPlanner = rootSubjectExecutionPlanner;
+            _rootDefinitionSubjectExecutionPlanner = rootDefinitionSubjectExecutionPlanner;
         }
 
         public IExecutionPlanner Select(object item)
         {
-            var subject = (Subject) item;
-            return _selector.Select(subject);
+            return item switch
+            {
+                AbsolutePathSubject => _absolutePathSubjectExecutionPlanner,
+                RootedPathSubject => _rootedPathSubjectExecutionPlanner,
+                RelativePathSubject => _relativePathSubjectExecutionPlanner,
+                ConstantSubject => _constantSubjectExecutionPlanner,
+                VariableSubject => _variableSubjectExecutionPlanner,
+                FunctionSubject => _functionSubjectExecutionPlanner,
+                RootSubject => _rootSubjectExecutionPlanner,
+                RootDefinitionSubject => _rootDefinitionSubjectExecutionPlanner,
+                _ => throw new InvalidOperationException($"Unable to select option for criteria: {(item != null ? item.ToString() : "[NULL]")}")
+            };
         }
     }
 }

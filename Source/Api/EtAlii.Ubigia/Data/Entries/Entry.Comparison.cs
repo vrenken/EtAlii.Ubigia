@@ -29,16 +29,16 @@
             return Equals(obj as Entry);
         }
 
-        public bool Equals(Entry entry)
+        public bool Equals(Entry other)
         {
             // If parameter is null, return false. 
-            if (ReferenceEquals(entry, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
             // Optimization for a common success case. 
-            if (ReferenceEquals(this, entry))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -52,7 +52,7 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            return Id == entry.Id;
+            return Id == other.Id;
         }
 
         public override int GetHashCode()

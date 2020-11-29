@@ -78,17 +78,17 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override Expression VisitMethodCall(MethodCallExpression node)
+        protected override Expression VisitMethodCall(MethodCallExpression methodCallExpression)
         {
-            if (node.Method.IsGenericMethod
-                && node.Arguments.Count == 1
-                && node.Arguments[0].Type.TryGetSequenceType() != null
-                && string.Equals(node.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
+            if (methodCallExpression.Method.IsGenericMethod
+                && methodCallExpression.Arguments.Count == 1
+                && methodCallExpression.Arguments[0].Type.TryGetSequenceType() != null
+                && string.Equals(methodCallExpression.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
             {
-                return Visit(node.Arguments[0]);
+                return Visit(methodCallExpression.Arguments[0]);
             }
 
-            return base.VisitMethodCall(node);
+            return base.VisitMethodCall(methodCallExpression);
         }
 
         /// <summary>
@@ -217,13 +217,13 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
-        protected override ShapedQueryExpression TranslateCast(ShapedQueryExpression source, Type resultType)
+        protected override ShapedQueryExpression TranslateCast(ShapedQueryExpression source, Type castType)
         {
             Check.NotNull(source, nameof(source));
-            Check.NotNull(resultType, nameof(resultType));
+            Check.NotNull(castType, nameof(castType));
 
-            return source.ShaperExpression.Type != resultType
-                ? source.UpdateShaperExpression(Expression.Convert(source.ShaperExpression, resultType))
+            return source.ShaperExpression.Type != castType
+                ? source.UpdateShaperExpression(Expression.Convert(source.ShaperExpression, castType))
                 : source;
         }
 

@@ -27,16 +27,16 @@
             return Equals((ContentDefinition)obj);
         }
 
-        public bool Equals(ContentDefinition contentDefinition)
+        public bool Equals(ContentDefinition other)
         {
             // If parameter is null, return false. 
-            if (ReferenceEquals(contentDefinition, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
             // Optimization for a common success case. 
-            if (ReferenceEquals(this, contentDefinition))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
@@ -50,17 +50,17 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (contentDefinition.Checksum != Checksum)
+            if (other.Checksum != Checksum)
             {
                 return false;
             }
 
-            if (contentDefinition.Parts.Count != Parts.Count)
+            if (other.Parts.Count != Parts.Count)
             {
                 return false;
             }
 
-            if (contentDefinition.Size != Size)
+            if (other.Size != Size)
             {
                 return false;
             }

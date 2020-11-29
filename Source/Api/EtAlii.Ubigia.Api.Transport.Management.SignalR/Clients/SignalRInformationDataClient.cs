@@ -37,14 +37,14 @@
             _connection = null;
         }
 
-        public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
-            if (storageConnection.Storage != null)
+            if (connection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.StorageAlreadyOpen);
             }
 
-            var signalRConnection = (ISignalRStorageConnection)storageConnection;
+            var signalRConnection = (ISignalRStorageConnection)connection;
 
             var storage = await GetConnectedStorage(signalRConnection.Transport).ConfigureAwait(false);
 
@@ -69,16 +69,16 @@
             return storage;
         }
 
-        public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection storageConnection)
+        public async Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var signalRConnection = (ISignalRStorageConnection)storageConnection;
+            var signalRConnection = (ISignalRStorageConnection)connection;
             var transport = signalRConnection.Transport;
 
-            var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + "/" + SignalRHub.Information));
-            await connection.StartAsync().ConfigureAwait(false);
+            var hubConnection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + "/" + SignalRHub.Information));
+            await hubConnection.StartAsync().ConfigureAwait(false);
 
-            var details = await _invoker.Invoke<ConnectivityDetails>(connection, SignalRHub.Information, "GetLocalConnectivityDetails").ConfigureAwait(false);
-            await connection.DisposeAsync().ConfigureAwait(false);
+            var details = await _invoker.Invoke<ConnectivityDetails>(hubConnection, SignalRHub.Information, "GetLocalConnectivityDetails").ConfigureAwait(false);
+            await hubConnection.DisposeAsync().ConfigureAwait(false);
             return details;
         }
     }

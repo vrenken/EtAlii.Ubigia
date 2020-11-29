@@ -22,10 +22,10 @@
             return Equals((Relation)obj);
         }
 
-        public bool Equals(Relation obj)
+        public bool Equals(Relation other)
         {
             // If run-time types are not exactly the same, return false. 
-            if (GetType() != obj.GetType())
+            if (GetType() != other.GetType())
             {
                 return false;
             }
@@ -33,12 +33,12 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (obj.Id != Id)
+            if (other.Id != Id)
             {
                 return false;
             }
 
-            if (obj.Moment != Moment)
+            if (other.Moment != Moment)
             {
                 return false;
             }

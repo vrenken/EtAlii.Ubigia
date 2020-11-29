@@ -11,10 +11,10 @@ namespace EtAlii.Ubigia.Provisioning.Time
         /// </summary>
         public IProviderConfiguration Configuration { get; }
 
-        #pragma warning disable S1450
+        #pragma warning disable S1450, S4487
         // ReSharper disable once NotAccessedField.Local
         private readonly ITimeImporter _timeImporter;
-        #pragma warning restore S1450
+        #pragma warning restore S1450, S4487
 
         public TimeProvider(
             IProviderConfiguration configuration, 

@@ -37,19 +37,14 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
+
+            if (_nextRegistration != null)
             {
-                if (_nextRegistration != null)
-                {
-                    return _nextRegistration.Select(criteria);
-                }
-                else
-                {
-                    var message =
-                        $"Unable to select option for criteria: {(criteria != null ? criteria.ToString() : "[NULL]")}";
-                    throw new InvalidOperationException(message);
-                }
+                return _nextRegistration.Select(criteria);
             }
+
+            var message = $"Unable to select option for criteria: {(criteria != null ? criteria.ToString() : "[NULL]")}";
+            throw new InvalidOperationException(message);
         }
 
         [DebuggerStepThrough]
@@ -59,10 +54,8 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
-            {
-                return _nextRegistration != null? _nextRegistration.TrySelect(criteria) : default(TOption);
-            }
+
+            return _nextRegistration != null? _nextRegistration.TrySelect(criteria) : default;
         }
     }
 
@@ -100,19 +93,14 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
+
+            if (_nextRegistration != null)
             {
-                if (_nextRegistration != null)
-                {
-                    return _nextRegistration.Select(criteria1, criteria2);
-                }
-                else
-                {
-                    var message =
-                        $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}";
-                    throw new InvalidOperationException(message);
-                }
+                return _nextRegistration.Select(criteria1, criteria2);
             }
+
+            var message = $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}";
+            throw new InvalidOperationException(message);
         }
 
         [DebuggerStepThrough]
@@ -122,10 +110,8 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
-            {
-                return _nextRegistration != null ? _nextRegistration.TrySelect(criteria1, criteria2) : default(TOption);
-            }
+
+            return _nextRegistration != null ? _nextRegistration.TrySelect(criteria1, criteria2) : default(TOption);
         }
     }
 
@@ -163,19 +149,14 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
+
+            if (_nextRegistration != null)
             {
-                if (_nextRegistration != null)
-                {
-                    return _nextRegistration.Select(criteria1, criteria2, criteria3);
-                }
-                else
-                {
-                    var message =
-                        $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}, {(criteria3 != null ? criteria3.ToString() : "[NULL]")}";
-                    throw new InvalidOperationException(message);
-                }
+                return _nextRegistration.Select(criteria1, criteria2, criteria3);
             }
+
+            var message = $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}, {(criteria3 != null ? criteria3.ToString() : "[NULL]")}";
+            throw new InvalidOperationException(message);
         }
 
         [DebuggerStepThrough]
@@ -185,10 +166,8 @@ namespace EtAlii.xTechnology.Structure
             {
                 return _option;
             }
-            else
-            {
-                return _nextRegistration != null ? _nextRegistration.TrySelect(criteria1, criteria2, criteria3) : default(TOption);
-            }
+
+            return _nextRegistration != null ? _nextRegistration.TrySelect(criteria1, criteria2, criteria3) : default(TOption);
         }
     }
 }
