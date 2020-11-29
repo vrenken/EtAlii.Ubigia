@@ -16,8 +16,8 @@ namespace EtAlii.Ubigia.Pipelines
     {
         IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
-            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")) // We are not interested in .shproj files. These will mess up dotnet test.
-            .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")); // The WebApi tests won't run nicely on the build agent. No idea why.
+            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) // The WebApi tests won't run nicely on the build agent. No idea why.
+            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); // We are not interested in .shproj files. These will mess up dotnet test.
 
         AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
         AbsolutePath TestReportsDirectory => ArtifactsDirectory / "test_reports";
