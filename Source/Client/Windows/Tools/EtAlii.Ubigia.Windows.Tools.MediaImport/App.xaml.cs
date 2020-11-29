@@ -45,14 +45,14 @@
         }
 
         // private IDiagnosticsConfiguration CreateDiagnosticsConfiguration()
-        // {
+        // [
         //     var diagnostics = new DiagnosticsFactory().Create(false, false, false,
         //         () => new DisabledLogFactory(),
         //         () => new DisabledProfilerFactory(),
         //         (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Windows.Tools.MediaImport"),
-        //         (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Windows.Tools.MediaImport"));
+        //         (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Windows.Tools.MediaImport"))
         //     return diagnostics;
-        // }
+        // ]
 
         private IObservableFolderSyncConfigurationCollection CreateFolderSyncConfigurations()
         {

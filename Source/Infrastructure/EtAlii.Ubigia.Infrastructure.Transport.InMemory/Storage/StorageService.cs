@@ -45,12 +45,5 @@
             Status.Description = "Stopped";
             Status.Summary = sb.ToString();
         }
-
-        //
-        // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
-        // {
-        //     status = new Status(nameof(StorageService));
-        //     return Task.CompletedTask;
-        // }
     }
 }

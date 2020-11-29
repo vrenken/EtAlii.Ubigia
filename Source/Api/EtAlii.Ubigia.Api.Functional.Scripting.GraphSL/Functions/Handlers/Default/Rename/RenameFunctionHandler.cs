@@ -1,21 +1,18 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Structure;
 
     internal class RenameFunctionHandler : IFunctionHandler
     {
         public ParameterSet[] ParameterSets { get; }
 
         public string Name { get; }
-
-        private readonly ISelector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>> _toIdentifierConverterSelector;
-        private readonly ISelector<int, object, object, Func<object, object, string>> _toNameConverterSelector;
 
         public RenameFunctionHandler()
         {
@@ -31,19 +28,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 new ParameterSet(false, new Parameter("var", typeof(IObservable<object>)), new Parameter("name", typeof(IObservable<object>)))
             };
             Name = "Rename";
-
-            _toIdentifierConverterSelector = new Selector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>>()
-                .Register(i => i is PathSubject, (c, i, s) => ConvertPathToIds(c, (PathSubject)i, s))
-                .Register(i => i is Identifier, (_, i, _) => Observable.Return((Identifier)i))
-                .Register(i => i is IInternalNode, (_, i, _) => Observable.Return(((IInternalNode)i).Id))
-                .Register(_ => true, (_, _, _) => throw new ScriptProcessingException("Unable to convert input for Rename function processing"));
-
-            _toNameConverterSelector = new Selector2<int, object, object, Func<object, object, string>>()
-                .Register((c, f, _) => c == 1 && f is string, (f, _) => (string)f)
-                .Register((c, f, _) => c == 1 && f is IObservable<object>, (f, _) => ((IObservable<object>)f).ToEnumerable().Cast<string>().Single())
-                .Register((c, _, s) => c == 2 && s is string, (_, s) => (string)s)
-                .Register((c, _, s) => c == 2 && s is IObservable<object>, (_, s) => ((IObservable<object>)s).ToEnumerable().Cast<string>().Single())
-                .Register((_, _, _) => true, (_, _) => throw new ScriptProcessingException("Unable to convert name input for Rename function processing"));
         }
 
         public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
@@ -77,7 +61,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
         private void ProcessByArgument(
             IFunctionContext context, 
-            //ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
             ExecutionScope scope, 
             IObserver<object> output)
@@ -85,8 +68,15 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             var c = argumentSet.Arguments.Length;
             var f = argumentSet.Arguments.Length > 0 ? argumentSet.Arguments[0] : null;
             var s = argumentSet.Arguments.Length > 1 ? argumentSet.Arguments[1] : null;
-            var nameConverter = _toNameConverterSelector.Select(c, f, s);
-            var newName = nameConverter(f, s);
+            
+            var newName = (c, f, s) switch
+            {
+                (1, string st, _) => st,
+                (1, IObservable<object> observable, _) => observable.ToEnumerable().Cast<string>().Single(),
+                (2, string st, _) => st,
+                (2, IObservable<object> observable, _) => observable.ToEnumerable().Cast<string>().Single(),
+                (_,_,_) => throw new ScriptProcessingException("Unable to convert name input for Rename function processing")
+            };
 
             if (!(argumentSet.Arguments[0] is IObservable<object> input))
             {
@@ -97,9 +87,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var converter = _toIdentifierConverterSelector.Select(o);
-                    var results = converter(context, o, scope);
-                    foreach (var result in results.ToEnumerable())
+                    var results = ToIdentifiers(context, o, scope);
+                    foreach (var result in results)
                     {
 
                         var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope).ConfigureAwait(false);
@@ -108,9 +97,18 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 });
         }
 
+        private IEnumerable<Identifier> ToIdentifiers(IFunctionContext context, object o, ExecutionScope scope)
+        {
+            return o switch
+            {
+                PathSubject pathSubject => ConvertPathToIds(context, pathSubject, scope),
+                Identifier identifier => new [] { identifier },
+                IInternalNode internalNode => new [] { internalNode.Id },
+                _ => throw new ScriptProcessingException("Unable to convert input for Rename function processing")
+            };
+        }
         private void ProcessByInput(
             IFunctionContext context, 
-            //ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
             IObservable<object> input, 
             ExecutionScope scope, 
@@ -123,9 +121,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var converter = _toIdentifierConverterSelector.Select(o);
-                    var results = converter(context, o, scope);
-                    foreach (var result in results.ToEnumerable())
+                    var results = ToIdentifiers(context, o, scope);
+                    foreach (var result in results)
                     {
                         var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope).ConfigureAwait(false);
                         output.OnNext(renamedItem);
@@ -133,7 +130,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 });
         }
 
-        private IObservable<Identifier> ConvertPathToIds(IFunctionContext context, PathSubject pathSubject, ExecutionScope scope)
+        private IEnumerable<Identifier> ConvertPathToIds(IFunctionContext context, PathSubject pathSubject, ExecutionScope scope)
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
@@ -144,7 +141,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             return outputObservable
                 .Select(context.ItemToIdentifierConverter.Convert)
-                .ToHotObservable();
+                .ToEnumerable();
         }
     }
 }

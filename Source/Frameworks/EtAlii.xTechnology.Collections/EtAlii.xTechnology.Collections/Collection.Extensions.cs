@@ -96,7 +96,7 @@ namespace EtAlii.xTechnology.Collections
         /// <param name="equalityComparer"></param>
         public static void AddRangeUnique<T>(this ICollection<T> collection, IEnumerable<T> itemsToAdd, IEqualityComparer<T> equalityComparer)
         {
-            var newCollection = collection.ToArray()
+            var newCollection = collection
                                           .Union(itemsToAdd)
                                           .Distinct(equalityComparer);
             collection.Clear();

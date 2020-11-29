@@ -95,8 +95,9 @@
             if (IsDesignMode) return null;
 
             //get the showcase window off the taskbaricon
-            var tb = commandParameter as Hardcodet.Wpf.TaskbarNotification.TaskbarIcon;
-            return tb == null ? null : TryFindParent<Window>(tb);
+            return commandParameter is Hardcodet.Wpf.TaskbarNotification.TaskbarIcon tb 
+                ? TryFindParent<Window>(tb)
+                : null;
         }
 
 
@@ -169,7 +170,7 @@
     public abstract class CommandBase : MarkupExtension
     {
         // ReSharper disable once InconsistentNaming
-        protected static readonly Dictionary<Type, object> Instances = new Dictionary<Type, object>();
+        protected static readonly Dictionary<Type, object> Instances = new();
     }
 
 }

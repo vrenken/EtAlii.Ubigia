@@ -22,11 +22,5 @@
             // Handle Stop.
             return Task.CompletedTask;
         }
-
-        // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
-        // {
-        //     status = new Status(nameof(AdminPortalFileHostingService));
-        //     return Task.CompletedTask;
-        // }
     }
 }

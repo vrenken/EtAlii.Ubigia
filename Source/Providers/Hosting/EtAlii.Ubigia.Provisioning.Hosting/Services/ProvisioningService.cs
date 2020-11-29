@@ -58,11 +58,5 @@
             Status.Description = sb.ToString();
             Status.Summary = Status.Description;
         }
-
-        // protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
-        // {
-        //     status = new Status(nameof(ProvisioningService));
-        //     return Task.CompletedTask;
-        // }
     }
 }
