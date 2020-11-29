@@ -1,12 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
+
     internal partial class MatchResult
     {
         public IRootHandler RootHandler { get; }
         public PathSubjectPart[] Match { get; }
         public PathSubjectPart[] Rest { get; }
 
-        public static readonly MatchResult NoMatch = new MatchResult(null, new PathSubjectPart[0], new PathSubjectPart[0]);
+        public static readonly MatchResult NoMatch = new MatchResult(null, Array.Empty<PathSubjectPart>(), Array.Empty<PathSubjectPart>());
 
         public MatchResult(IRootHandler rootHandler, PathSubjectPart[] match, PathSubjectPart[] rest)
         {

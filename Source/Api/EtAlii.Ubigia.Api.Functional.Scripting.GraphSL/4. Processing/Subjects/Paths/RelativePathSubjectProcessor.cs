@@ -45,7 +45,7 @@
                 var root = await _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope).ConfigureAwait(false); 
                 var path = parts.Length > 3
                     ? parts.Skip(3).ToArray()
-                    : new PathSubjectPart[0];
+                    : Array.Empty<PathSubjectPart>();
                 await _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope).ConfigureAwait(false);
 
             }

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics.Tests
 {
+    using System;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using Xunit;
 
@@ -12,7 +13,7 @@
             // Arrange.
             
             // Act.
-            var profileComposer = new ProfileComposer(new IProfiler[0]);
+            var profileComposer = new ProfileComposer(Array.Empty<IProfiler>());
             
             // Assert.
             Assert.NotNull(profileComposer);

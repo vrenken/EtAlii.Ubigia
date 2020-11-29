@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             // Act.
             var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub").ConfigureAwait(false);
-            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} ).ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), Array.Empty<object>()).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);
@@ -68,7 +68,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             // Act.
             var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub").ConfigureAwait(false);
-            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), new object[]{} ).ConfigureAwait(false);
+            var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), Array.Empty<object>()).ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(result);

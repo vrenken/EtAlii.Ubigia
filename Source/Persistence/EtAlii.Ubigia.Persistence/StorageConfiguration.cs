@@ -19,7 +19,7 @@
 
         public StorageConfiguration()
         {
-            Extensions = new IStorageExtension[0];
+            Extensions = Array.Empty<IStorageExtension>();
         }
 
         public IStorageConfiguration Use(IStorageExtension[] extensions)

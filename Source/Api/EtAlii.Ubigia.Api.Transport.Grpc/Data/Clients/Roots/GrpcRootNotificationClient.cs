@@ -8,7 +8,7 @@
     {
         //private HubConnection _connection
 //        private readonly string _name
-		private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+		private readonly IEnumerable<IDisposable> _subscriptions = Array.Empty<IDisposable>();
 
 		public event Action<Guid> Added = delegate { };
         public event Action<Guid> Changed = delegate { };

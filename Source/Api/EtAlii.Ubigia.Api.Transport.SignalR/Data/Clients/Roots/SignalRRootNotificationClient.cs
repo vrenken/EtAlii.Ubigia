@@ -9,7 +9,7 @@
     {
         private HubConnection _connection;
         private readonly string _name;
-		private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+		private IEnumerable<IDisposable> _subscriptions = Array.Empty<IDisposable>();
 
 		public event Action<Guid> Added = delegate { };
         public event Action<Guid> Changed = delegate { };

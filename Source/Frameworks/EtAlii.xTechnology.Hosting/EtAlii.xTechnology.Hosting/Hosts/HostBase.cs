@@ -22,7 +22,7 @@
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
         public Status[] Status => _status; 
-        private Status[] _status = new Status[0];
+        private Status[] _status = Array.Empty<Status>();
 
 	    private readonly ISystemManager _systemManager;
 

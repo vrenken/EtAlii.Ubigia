@@ -7,10 +7,10 @@
 
     public static class BlobHelper
     {
-        private static readonly Dictionary<Type, string> BlobNames = new Dictionary<Type, string>();
-        private static readonly object[] EmptyConstructorParameters = { }; 
+        private static readonly Dictionary<Type, string> BlobNames = new();
+        private static readonly object[] EmptyConstructorParameters = Array.Empty<object>(); 
 
-        private static readonly object LockObject = new object();
+        private static readonly object LockObject = new();
         
         public static string GetName<T>()
             where T : BlobBase

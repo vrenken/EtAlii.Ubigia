@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
+    using System;
+
     internal class TestRootHandlerMapper : IRootHandlerMapper
     {
         public string Name { get; }
@@ -9,7 +11,7 @@
         public TestRootHandlerMapper()
         {
             Name = "TestRoot";
-            AllowedRootHandlers = new IRootHandler[0];
+            AllowedRootHandlers = Array.Empty<IRootHandler>();
         }
     }
 }
