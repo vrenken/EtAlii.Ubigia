@@ -73,8 +73,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             {
                 (1, string st, _) => st,
                 (1, IObservable<object> observable, _) => observable.ToEnumerable().Cast<string>().Single(),
-                (2, string st, _) => st,
-                (2, IObservable<object> observable, _) => observable.ToEnumerable().Cast<string>().Single(),
+                (2, _, string st) => st,
+                (2, _, IObservable<object> observable) => observable.ToEnumerable().Cast<string>().Single(),
                 (_,_,_) => throw new ScriptProcessingException("Unable to convert name input for Rename function processing")
             };
 
