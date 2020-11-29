@@ -9,12 +9,12 @@
     {
         public override Task<UserGetResponse> GetSimple(SimpleUserGetRequest request, ServerCallContext context)
         {
-            return Task.FromResult(new UserGetResponse() { Result = nameof(UserGrpcService) });
+            return Task.FromResult(new UserGetResponse { Result = nameof(UserGrpcService) });
         }
 
         public override Task<UserGetResponse> GetComplex(ComplexUserGetRequest request, ServerCallContext context)
         {
-            return Task.FromResult(new UserGetResponse() { Result = nameof(UserGrpcService) + "_" + request.Postfix });
+            return Task.FromResult(new UserGetResponse { Result = nameof(UserGrpcService) + "_" + request.Postfix });
         }
     }
 }

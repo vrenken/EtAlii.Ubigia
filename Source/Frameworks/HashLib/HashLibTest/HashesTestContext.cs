@@ -163,7 +163,7 @@
             if (aHash is IFastHash32)
             {
                 var fastHash = aHash as IFastHash32;
-                var fastList = new List<Action>()
+                var fastList = new List<Action>
                 {
                     () => fastHash.ComputeByteFast(55), 
                     () => fastHash.ComputeBytesFast(new byte[] { 0x55, 0x55 }), 
@@ -281,9 +281,9 @@
 
         protected void TestMultipleTransforms(IHash aHash)
         {
-            TestMultipleTransforms(aHash, aHash, new List<int>() { 0, 0 });
-            TestMultipleTransforms(aHash, aHash, new List<int>() { 1, 0 });
-            TestMultipleTransforms(aHash, aHash, new List<int>() { 0, 1 });
+            TestMultipleTransforms(aHash, aHash, new List<int> { 0, 0 });
+            TestMultipleTransforms(aHash, aHash, new List<int> { 1, 0 });
+            TestMultipleTransforms(aHash, aHash, new List<int> { 0, 1 });
 
             for (var tries = 0; tries < 10; tries++)
             {
@@ -493,7 +493,7 @@
 
             Assert.True(aNotBuildInHmac is HMACNotBuildInAdapter);
 
-            var keysLength = new List<int>() { 0, 1, 7, 51, 121, 512, 1023 };
+            var keysLength = new List<int> { 0, 1, 7, 51, 121, 512, 1023 };
             keysLength.Add(aBuildInHmac.BlockSize - 1);
             keysLength.Add(aBuildInHmac.BlockSize);
             keysLength.Add(aBuildInHmac.BlockSize + 1);

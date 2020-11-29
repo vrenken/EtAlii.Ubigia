@@ -17,7 +17,7 @@
         public static WireProtocol.Guid ToWire(this Guid id)
         {
             var bytes = id.ToByteArray();
-            return new WireProtocol.Guid()
+            return new WireProtocol.Guid
             {
                 Data1 = BitConverter.ToUInt64(bytes, 0),
                 Data2 = BitConverter.ToUInt64(bytes, 8),

@@ -67,7 +67,7 @@
             {
                 var propertyName = kvp.Key.ToLower();
                 var value = kvp.Value;
-                var fieldType = new FieldType()
+                var fieldType = new FieldType
                 {
                     Name = propertyName,
                     Description = $"Dynamic field {propertyName}",

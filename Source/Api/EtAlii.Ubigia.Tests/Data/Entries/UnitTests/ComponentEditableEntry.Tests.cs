@@ -31,7 +31,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new ParentComponent() { Relation = relation, Stored = true };
+            var component = new ParentComponent { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).ParentComponent = component;
@@ -48,7 +48,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new Parent2Component() { Relation = relation, Stored = true };
+            var component = new Parent2Component { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).Parent2Component = component;
@@ -65,7 +65,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new PreviousComponent() { Relation = relation, Stored = true };
+            var component = new PreviousComponent { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).PreviousComponent = component;
@@ -83,7 +83,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new NextComponent() { Relation = relation, Stored = true };
+            var component = new NextComponent { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).NextComponent = component;
@@ -100,7 +100,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new DowndateComponent() { Relation = relation, Stored = true };
+            var component = new DowndateComponent { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).DowndateComponent = component;
@@ -117,7 +117,7 @@
             var otherId = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var relation = Relation.Create(otherId, 2);
-            var component = new IndexedComponent() { Relation = relation, Stored = true };
+            var component = new IndexedComponent { Relation = relation, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).IndexedComponent = component;
@@ -133,7 +133,7 @@
             var id = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var type = Guid.NewGuid().ToString();
-            var component = new TypeComponent() { Type = type, Stored = true };
+            var component = new TypeComponent { Type = type, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).TypeComponent = component;
@@ -149,7 +149,7 @@
             var id = new TestIdentifierFactory().Create();
             var entry = Entry.NewEntry(id);
             var tag = Guid.NewGuid().ToString();
-            var component = new TagComponent() { Tag = tag, Stored = true };
+            var component = new TagComponent { Tag = tag, Stored = true };
 
             // Act.
             ((IComponentEditableEntry)entry).TagComponent = component;
