@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
     using System.Linq;
     using Moppet.Lapa;
 
@@ -54,7 +55,7 @@
             var parameterNodes = _nodeFinder.FindFirst(node, ParametersId);
 
             var childNodes = parameterNodes == null
-                ? new LpNode[] { }
+                ? Array.Empty<LpNode>()
                 : parameterNodes.Children
                     .Where(child => child.Id != null)
                     .ToArray();

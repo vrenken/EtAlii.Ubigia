@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         /// <summary>
         /// An empty FunctionHandlersProvider.
         /// </summary>
-        public static IFunctionHandlersProvider Empty { get; } = new FunctionHandlersProvider(new IFunctionHandler[] {});
+        public static IFunctionHandlersProvider Empty { get; } = new FunctionHandlersProvider(Array.Empty<IFunctionHandler>());
 
         public FunctionHandlersProvider(IFunctionHandler[] functionHandlers)
         {

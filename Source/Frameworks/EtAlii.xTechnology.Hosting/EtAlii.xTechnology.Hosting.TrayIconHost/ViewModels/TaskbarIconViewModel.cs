@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
+    using System;
     using System.Drawing;
     using System.Text;
     using System.Windows;
@@ -16,7 +17,7 @@
         private string _toolTipText;
 
         public MenuItemViewModel[] MenuItems { get => _menuItems; private set => SetProperty(ref _menuItems, value); }
-        private MenuItemViewModel[] _menuItems = new MenuItemViewModel[0];
+        private MenuItemViewModel[] _menuItems = Array.Empty<MenuItemViewModel>();
 
         public TaskbarIconViewModel(IHostCommandsConverter hostCommandsConverter)
         {

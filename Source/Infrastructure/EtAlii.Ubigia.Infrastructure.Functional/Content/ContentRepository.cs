@@ -17,7 +17,7 @@
 
         public Task Store(Identifier identifier, Content content)
         {
-            return Store(identifier, content, new ContentPart[] { });
+            return Store(identifier, content, Array.Empty<ContentPart>());
         }
         
         public Task Store(Identifier identifier, Content content, IEnumerable<ContentPart> contentParts)

@@ -29,8 +29,8 @@
 
         public HostConfiguration()
         {
-            Extensions = new IHostExtension[0];
-            Commands = new ICommand[0];
+            Extensions = Array.Empty<IHostExtension>();
+            Commands = Array.Empty<ICommand>();
         }
 
         public IHostConfiguration Use(ConfigurationDetails details)

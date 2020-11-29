@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Persistence
 {
+    using System;
+
     internal class BlobStorer : IBlobStorer
     {
         private readonly IPathBuilder _pathBuilder;
@@ -24,7 +26,7 @@
             BlobHelper.SetSummary(blob, null);
             _folderManager.SaveToFolder(blob, "Blob", folder);
             BlobHelper.SetStored(blob, true);
-            BlobHelper.SetSummary(blob, BlobSummary.Create(false, blob, new ulong[] { }));
+            BlobHelper.SetSummary(blob, BlobSummary.Create(false, blob, Array.Empty<ulong>()));
         }
     }
 }

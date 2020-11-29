@@ -17,9 +17,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public async Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
-            var matches = new[] { new MatchResult(rootHandler, new PathSubjectPart[0], path) };
+            var matches = new[] { new MatchResult(rootHandler, Array.Empty<PathSubjectPart>(), path) };
             var templateParts = new Queue<PathSubjectPart>(rootHandler.Template);
-            var rest = new PathSubjectPart[0];
+            var rest = Array.Empty<PathSubjectPart>();
             var isFirst = true;
 
             while (matches.Any())

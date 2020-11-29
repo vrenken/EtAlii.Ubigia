@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using System;
+
     internal class RootHandlerMappersProvider : IRootHandlerMappersProvider
     {
         public IRootHandlerMapper[] RootHandlerMappers { get; }
@@ -7,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         /// <summary>
         /// An empty RootHandlerMappersProvider.
         /// </summary>
-        public static IRootHandlerMappersProvider Empty { get; } = new RootHandlerMappersProvider(new IRootHandlerMapper[] {});
+        public static IRootHandlerMappersProvider Empty { get; } = new RootHandlerMappersProvider(Array.Empty<IRootHandlerMapper>());
 
         public RootHandlerMappersProvider(IRootHandlerMapper[] rootHandlerMappers)
         {

@@ -6,7 +6,7 @@
     {
         public Account()
         {
-            Roles = new string[0];
+            Roles = Array.Empty<string>();
         }
 
         public Guid Id { get; set; }

@@ -76,7 +76,7 @@
             var authenticationTokenConverter = new AuthenticationTokenConverter(serializer);
 
             // Act.
-            var token = authenticationTokenConverter.FromBytes(new byte[] { });
+            var token = authenticationTokenConverter.FromBytes(Array.Empty<byte>());
 
             // Assert.
             Assert.Null(token);

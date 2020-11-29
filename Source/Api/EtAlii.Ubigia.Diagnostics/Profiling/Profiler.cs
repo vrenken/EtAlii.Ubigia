@@ -30,7 +30,7 @@
                 }
             }
         }
-        private ProfilingAspect[] _aspects = new ProfilingAspect[0];
+        private ProfilingAspect[] _aspects = Array.Empty<ProfilingAspect>();
 
         public event Action AspectsChanged;
 
