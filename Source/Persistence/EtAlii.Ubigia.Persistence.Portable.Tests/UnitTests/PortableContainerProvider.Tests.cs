@@ -6,8 +6,8 @@
 
     public class PortableContainerProviderTests
     {
-        private readonly TestIdentifierFactory _testIdentifierFactory = new TestIdentifierFactory(); 
-        private readonly IContainerProvider _containerProvider = new PortableContainerProvider();
+        private readonly TestIdentifierFactory _testIdentifierFactory = new(); 
+        private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortableContainerProvider_FromIds()
@@ -216,7 +216,7 @@
             var containerId = ContainerIdentifier.FromPaths();
 
             // Assert.
-            Assert.Equal($"{typeof(ContainerIdentifier).Name}.Empty", containerId.ToString());
+            Assert.Equal($"{nameof(ContainerIdentifier)}.Empty", containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -16,7 +16,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<PortableStorageSerializer, PortableFolderManager, PortableFileManager, PortablePathBuilder, PortableContainerProvider>(),
+                new SharedFactoryScaffolding<PortableStorageSerializer, PortableFolderManager, PortableFileManager, PortablePathBuilder, DefaultContainerProvider>(),
                 new PortableFactoryScaffolding(_localStorage),
             };
 

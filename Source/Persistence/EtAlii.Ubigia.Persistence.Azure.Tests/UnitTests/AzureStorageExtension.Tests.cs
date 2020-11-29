@@ -28,7 +28,7 @@
             extension.Initialize(container);
 
             // Assert.
-            Assert.IsType<AzureContainerProvider>(container.GetInstance<IContainerProvider>());
+            Assert.IsType<DefaultContainerProvider>(container.GetInstance<IContainerProvider>());
         }
     }
 }

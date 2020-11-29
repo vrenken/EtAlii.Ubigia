@@ -6,8 +6,8 @@
 
     public class NetCoreAppContainerProviderTests
     {
-        private readonly TestIdentifierFactory _testIdentifierFactory = new TestIdentifierFactory();
-        private readonly IContainerProvider _containerProvider = new NetCoreAppContainerProvider();
+        private readonly TestIdentifierFactory _testIdentifierFactory = new();
+        private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NetCoreAppContainerProvider_FromIds()
@@ -154,7 +154,7 @@
             var containerId = ContainerIdentifier.FromPaths();
 
             // Assert.
-            Assert.Equal($"{typeof(ContainerIdentifier).Name}.Empty", containerId.ToString());
+            Assert.Equal($"{nameof(ContainerIdentifier)}.Empty", containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -8,7 +8,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<AzureStorageSerializer, AzureFolderManager, AzureFileManager, AzurePathBuilder, AzureContainerProvider>(),
+                new SharedFactoryScaffolding<AzureStorageSerializer, AzureFolderManager, AzureFileManager, AzurePathBuilder, DefaultContainerProvider>(),
                 new AzureFactoryScaffolding(),
             };
 

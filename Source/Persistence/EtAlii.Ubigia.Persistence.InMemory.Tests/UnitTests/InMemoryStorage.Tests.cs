@@ -21,7 +21,7 @@
             var pathBuilder = new InMemoryPathBuilder( storageSerializer);
             var folderManager = new InMemoryFolderManager(storageSerializer, inMemoryItems, inMemoryItemsHelper);
             var fileManager = new InMemoryFileManager(storageSerializer, folderManager, pathBuilder, inMemoryItems, inMemoryItemsHelper);
-            var inMemoryContainerProvider = new InMemoryContainerProvider();
+            var inMemoryContainerProvider = new DefaultContainerProvider();
 
             var itemStorage = new ItemStorage(storageSerializer, fileManager, folderManager, pathBuilder);
             var componentStorer = new ComponentStorer(folderManager, pathBuilder);

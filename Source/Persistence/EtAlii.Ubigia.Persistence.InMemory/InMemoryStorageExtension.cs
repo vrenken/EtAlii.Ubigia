@@ -8,7 +8,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<InMemoryStorageSerializer, InMemoryFolderManager, InMemoryFileManager, InMemoryPathBuilder, InMemoryContainerProvider>(),
+                new SharedFactoryScaffolding<InMemoryStorageSerializer, InMemoryFolderManager, InMemoryFileManager, InMemoryPathBuilder, DefaultContainerProvider>(),
                 new InMemoryFactoryScaffolding(),
             };
 

@@ -17,7 +17,7 @@
 
         public static object CreateInstance(PropertyDictionary properties)
         {
-            var typeName = $"{typeof(DynamicObject).Name}_{Guid.NewGuid():N}";
+            var typeName = $"{nameof(DynamicObject)}_{Guid.NewGuid():N}";
             var typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(object));
 
             foreach (var kvp in properties)
