@@ -27,7 +27,7 @@
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + "/" + SignalRHub.Space, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Space, UriKind.Absolute));
             await _connection.StartAsync().ConfigureAwait(false);
         }
 
@@ -62,7 +62,7 @@
 
         private async Task<Storage> GetConnectedStorage(ISignalRStorageTransport transport)
         {
-            var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + "/" + SignalRHub.Information), transport.AuthenticationToken);
+            var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Information), transport.AuthenticationToken);
             await connection.StartAsync().ConfigureAwait(false);
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Information, "GetLocalStorage").ConfigureAwait(false);
             await connection.DisposeAsync().ConfigureAwait(false);
@@ -74,7 +74,7 @@
             var signalRConnection = (ISignalRStorageConnection)connection;
             var transport = signalRConnection.Transport;
 
-            var hubConnection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + "/" + SignalRHub.Information));
+            var hubConnection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + UriHelper.Delimiter + SignalRHub.Information));
             await hubConnection.StartAsync().ConfigureAwait(false);
 
             var details = await _invoker.Invoke<ConnectivityDetails>(hubConnection, SignalRHub.Information, "GetLocalConnectivityDetails").ConfigureAwait(false);

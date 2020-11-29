@@ -31,7 +31,7 @@
             var address = _factory.Create(_storage, "test");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + "test", address.ToString());
+            Assert.Equal(BaseAddress + UriHelper.Delimiter + "test", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -43,7 +43,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "firstvalue", "secondKey", "secondvalue");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + "test?firstkey=firstvalue&secondKey=secondvalue", address.ToString());
+            Assert.Equal(BaseAddress + UriHelper.Delimiter + "test?firstkey=firstvalue&secondKey=secondvalue", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -55,7 +55,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "first=value", "secondKey", "second&value");
 
             // Assert.
-            Assert.Equal(BaseAddress + "/" + "test?firstkey=first%3Dvalue&secondKey=second%26value", address.ToString());
+            Assert.Equal(BaseAddress + UriHelper.Delimiter + "test?firstkey=first%3Dvalue&secondKey=second%26value", address.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -79,7 +79,7 @@
             var address = _factory.Create(_storage, null);
 
             // Assert.
-            Assert.Equal(BaseAddress + "/", address.ToString());
+            Assert.Equal(BaseAddress + UriHelper.Delimiter, address.ToString());
         }
     }
 }

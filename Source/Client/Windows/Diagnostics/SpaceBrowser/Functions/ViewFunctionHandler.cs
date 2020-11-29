@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
@@ -84,9 +83,8 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                 {
                     if (graphDocumentViewModel != null)
                     {
-                        var converter = ToIdentifierConverterSelector.Select(o);
-                        var results = converter(context, o, scope);
-                        foreach (var result in results.ToEnumerable())
+                        var results = ToIdentifierObservable(context, o, scope);
+                        foreach (var result in results)
                         {
                             graphDocumentViewModel.GraphContext.CommandProcessor.Process(new RetrieveEntryCommand(result, ProcessReason.Retrieved), graphDocumentViewModel.GraphContext.RetrieveEntryCommandHandler);
                         }

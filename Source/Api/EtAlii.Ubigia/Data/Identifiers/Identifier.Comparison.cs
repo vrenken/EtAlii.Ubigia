@@ -21,7 +21,7 @@
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, obj))
             //[
-            //    return true;
+            //    return true
             //]
 
             // If run-time types are not exactly the same, return false. 
@@ -44,21 +44,21 @@
             // If parameter is null, return false. 
             //if (Object.ReferenceEquals(id, null))
             //[
-            //    return false;
+            //    return false
             //]
 
             // Cannot happen.
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, id))
             //[
-            //    return true;
+            //    return true
             //]
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() != id.GetType())
             //[
-            //    return false;
+            //    return false
             //]
 
             // Return true if the fields match. 
@@ -110,7 +110,7 @@
             // Cannot happen.
             //else if ((object)first == null && (object)second == null)
             //[
-            //    equals = true;
+            //    equals = true
             //]
             return equals;
         }

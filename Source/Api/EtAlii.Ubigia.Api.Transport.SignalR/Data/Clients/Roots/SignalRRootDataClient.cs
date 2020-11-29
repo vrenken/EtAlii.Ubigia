@@ -63,7 +63,7 @@
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + "/" + SignalRHub.Root, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Root, UriKind.Absolute));
 	        await _connection.StartAsync().ConfigureAwait(false);
         }
 

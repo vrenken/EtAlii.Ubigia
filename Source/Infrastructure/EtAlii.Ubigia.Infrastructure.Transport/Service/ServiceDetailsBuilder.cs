@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 serviceDetails.Add(signalRServiceDetails);
             }
 
-            // Again ugly, but for now we need to maek this builder compatible with both the REST/SignalR AND Grpc services.
+            // Again ugly, but for now we need to make this builder compatible with both the REST/SignalR AND Grpc services.
             // For this we need to be somewhat sneaky on how to build our details.
             // In a future refactoring all configurations will be merged into one single big one. 
             if (!configurationDetails.Paths.ContainsKey("SignalRApiRest") && !configurationDetails.Paths.ContainsKey("UserApiRest"))
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 serviceDetails.Add(grpcServiceDetails);
             }
 
-            if (serviceDetails.Count(sd => sd.IsSystemService) == 0)
+            if (!serviceDetails.Any(sd => sd.IsSystemService))
             {
                 throw new NotSupportedException("Unable to classify one of the services as the system service");
             }

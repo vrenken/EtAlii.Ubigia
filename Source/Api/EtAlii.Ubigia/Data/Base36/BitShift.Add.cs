@@ -53,8 +53,6 @@ namespace EtAlii.Ubigia
             {
                 Span<bool> newTarget = new bool[target.Length + 1];
                 target.CopyTo(newTarget.Slice(1));
-                //var newTarget = target.Slice(1);//.CopyTo(newTarget);
-                //Buffer.BlockCopy(target, 0, newTarget, 1, target.Length);
                 target = newTarget;
                 target[0] = true;
                 carry >>= 1;
