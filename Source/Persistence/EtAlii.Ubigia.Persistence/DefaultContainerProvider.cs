@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Persistence.Azure
+﻿namespace EtAlii.Ubigia.Persistence 
 {
     using System;
 
-    public class AzureContainerProvider : IContainerProvider
+    public class DefaultContainerProvider : IContainerProvider
     {
         private const string EntriesFolderName = "Entries";
 
@@ -48,7 +48,7 @@
             };
             return ContainerIdentifier.FromPaths(paths);
         }
-
+ 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, string era, string period, string moment)
         {
             var paths = new[] 

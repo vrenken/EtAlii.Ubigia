@@ -15,7 +15,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<NetCoreAppStorageSerializer, NetCoreAppFolderManager, NetCoreAppFileManager, NetCoreAppPathBuilder, NetCoreAppContainerProvider>(),
+                new SharedFactoryScaffolding<NetCoreAppStorageSerializer, NetCoreAppFolderManager, NetCoreAppFileManager, NetCoreAppPathBuilder, DefaultContainerProvider>(),
             };
 
             foreach (var scaffolding in scaffoldings)

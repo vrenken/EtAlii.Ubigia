@@ -6,8 +6,8 @@
 
     public class AzureContainerProviderTests
     {
-        private readonly TestIdentifierFactory _testIdentifierFactory = new TestIdentifierFactory();
-        private readonly IContainerProvider _containerProvider = new AzureContainerProvider();
+        private readonly TestIdentifierFactory _testIdentifierFactory = new();
+        private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void AzureContainerProvider_FromIds()

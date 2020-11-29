@@ -19,7 +19,7 @@
             var pathBuilder = new AzurePathBuilder(storageConfiguration);
             var folderManager = new AzureFolderManager();
             var fileManager = new AzureFileManager();
-            var azureContainerProvider = new AzureContainerProvider();
+            var azureContainerProvider = new DefaultContainerProvider();
 
             var itemStorage = new ItemStorage(storageSerializer, fileManager, folderManager, pathBuilder);
             var componentStorer = new ComponentStorer(folderManager, pathBuilder);

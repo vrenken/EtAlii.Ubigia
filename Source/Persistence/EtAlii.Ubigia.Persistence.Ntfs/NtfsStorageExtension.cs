@@ -15,7 +15,7 @@
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<NtfsStorageSerializer, NtfsFolderManager, NtfsFileManager, NtfsPathBuilder, NtfsContainerProvider>(),
+                new SharedFactoryScaffolding<NtfsStorageSerializer, NtfsFolderManager, NtfsFileManager, NtfsPathBuilder, DefaultContainerProvider>(),
             };
 
             foreach (var scaffolding in scaffoldings)
