@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public const string Systems2VariantGrpc = "System 2/settings_variant_grpc.json"; 
         public const string Systems2VariantSignalR = "System 2/settings_variant_signalr.json"; 
         
-        private readonly IReadOnlyList<object[]> _data = new List<object[]>()
+        private readonly IReadOnlyList<object[]> _data = new List<object[]>
         {
             new object[] {Systems1Variant1},
             new object[] {Systems1Variant2},

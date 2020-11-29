@@ -573,7 +573,7 @@
             /// <returns>Копия.</returns>
             public Expression<TDelegate> ReplaceArgs<TDelegate>(Expression<TDelegate> lambda, ParameterExpression oldParam, ParameterExpression newParam)
             {
-                return ReplaceArgs(lambda, new List<ParameterExpression>() { oldParam }, new List<ParameterExpression>() { newParam });
+                return ReplaceArgs(lambda, new List<ParameterExpression> { oldParam }, new List<ParameterExpression> { newParam });
             }
 
             /// <summary>
