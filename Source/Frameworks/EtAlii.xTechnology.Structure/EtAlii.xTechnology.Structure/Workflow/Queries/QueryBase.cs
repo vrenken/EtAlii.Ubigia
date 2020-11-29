@@ -5,8 +5,8 @@
         where TQueryHandler : class, IQueryHandler<TResult>
     {
         //IQueryHandler<TResult> IQuery<TResult>.GetHandler(Container container)
-        //{
-        //    return container.GetInstance<TQueryHandler>();
-        //}
+        //[
+        //    return container.GetInstance<TQueryHandler>()
+        //]
     }
 }

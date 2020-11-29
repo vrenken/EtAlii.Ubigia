@@ -20,9 +20,9 @@
             // Cannot happen.
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, obj))
-            //{
+            //[
             //    return true;
-            //}
+            //]
 
             // If run-time types are not exactly the same, return false. 
             if (GetType() != obj.GetType())
@@ -43,23 +43,23 @@
             // Cannot happen. 
             // If parameter is null, return false. 
             //if (Object.ReferenceEquals(id, null))
-            //{
+            //[
             //    return false;
-            //}
+            //]
 
             // Cannot happen.
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, id))
-            //{
+            //[
             //    return true;
-            //}
+            //]
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() != id.GetType())
-            //{
+            //[
             //    return false;
-            //}
+            //]
 
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
@@ -109,9 +109,9 @@
 
             // Cannot happen.
             //else if ((object)first == null && (object)second == null)
-            //{
+            //[
             //    equals = true;
-            //}
+            //]
             return equals;
         }
 

@@ -26,7 +26,7 @@
                                     $"{e.Exception.Message}{Environment.NewLine}" +
                                     $"{Environment.NewLine}" +
                                     $"{e.Exception.StackTrace}", "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
+                    //Logger.ReportUnhandledException(e.Exception) // Disabled because of performance loss.
                     //e.Handled = true
                 };
             }
@@ -38,7 +38,7 @@
             var account = e.Args.Length > 1 ? e.Args[1] : string.Empty;
             var password = e.Args.Length > 2 ? e.Args[2] : string.Empty;
 
-            var diagnostics = DiagnosticsConfiguration.Default;//new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.StorageBrowser");
+            var diagnostics = DiagnosticsConfiguration.Default;//new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.StorageBrowser")
 
             IManagementConnection connection;
             var factory = new ManagementConnectionFactory();
