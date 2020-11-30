@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    class StartHostCommand : HostCommandBase, IStartHostCommand
+    internal class StartHostCommand : HostCommandBase, IStartHostCommand
     {
         public string Name => "Admin/Provisioning service/Start";
 

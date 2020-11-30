@@ -115,7 +115,7 @@ namespace EtAlii.xTechnology.Hosting
                 }
             }
 
-            Func<IServiceCollection, IServiceProvider> ConfigureServices(
+            private Func<IServiceCollection, IServiceProvider> ConfigureServices(
                 Func<IServiceCollection, IServiceProvider> configureServicesCallback,
                 Action<object> configureContainerCallback)
             {

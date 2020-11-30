@@ -56,7 +56,7 @@
         }
 
 
-        void OnHostPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnHostPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {

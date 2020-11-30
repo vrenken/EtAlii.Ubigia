@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    class ShutdownHostCommand : HostCommandBase, IShutdownHostCommand
+    internal class ShutdownHostCommand : HostCommandBase, IShutdownHostCommand
     {
         public string Name => "Shutdown";
 

@@ -472,7 +472,7 @@
         /// <typeparam name="T">Тип.</typeparam>
         /// <param name="n">Имя.</param>
         /// <returns>Выражение.</returns>
-        static ParameterExpression Var<T>(string n)
+        private static ParameterExpression Var<T>(string n)
         {
             return Expression.Variable(typeof(T), n);
         }
@@ -483,7 +483,7 @@
         /// <typeparam name="T">Тип.</typeparam>
         /// <param name="n">Имя.</param>
         /// <returns>Выражение.</returns>
-        static ParameterExpression Param<T>(string n)
+        private static ParameterExpression Param<T>(string n)
         {
             return Expression.Parameter(typeof(T), n);
         }
@@ -494,7 +494,7 @@
         /// <param name="text">Text.</param>
         /// <param name="len">Сколько символов взять.</param>
         /// <returns>Выражение.</returns>
-        static Expression LpNode_Take(Expression text, Expression len)
+        private static Expression LpNode_Take(Expression text, Expression len)
         {
             // return Expression.Call(typeof(LpNode).GetMethod("Take", new Type[] { typeof(LpText), typeof(int) }), text, len);
             return Expression.New(LpNodeTextIntStringConstructorInfo, text, len, Expression.Constant(null, typeof(string)));
@@ -505,7 +505,7 @@
         /// </summary>
         /// <param name="text">Text.</param>
         /// <returns>Выражение.</returns>
-        static Expression LpNode_Fail(Expression text)
+        private static Expression LpNode_Fail(Expression text)
         {
             // return Expression.Call(typeof(LpNode).GetMethod("Fail", new Type[] { typeof(LpText) }), text);
             return Expression.New(LpNodeTextConstructorInfo, text);
@@ -516,7 +516,7 @@
         /// </summary>
         /// <param name="text">Переменная.</param>
         /// <returns>Доступ к свойству.</returns>
-        static Expression LpText_Length(Expression text)
+        private static Expression LpText_Length(Expression text)
         {
             return Expression.PropertyOrField(text, "Length");
         }
@@ -526,7 +526,7 @@
         /// </summary>
         /// <param name="text">Переменная.</param>
         /// <returns>Доступ к свойству.</returns>
-        static Expression LpText_Source(Expression text)
+        private static Expression LpText_Source(Expression text)
         {
             return Expression.PropertyOrField(text, "Source");
         }
@@ -536,7 +536,7 @@
         /// </summary>
         /// <param name="text">Переменная.</param>
         /// <returns>Доступ к свойству.</returns>
-        static Expression LpText_Index(Expression text)
+        private static Expression LpText_Index(Expression text)
         {
             return Expression.PropertyOrField(text, "Index");
         }
@@ -548,7 +548,7 @@
         /// <param name="predicate">Выражение.</param>
         /// <param name="arg">Аргумент.</param>
         /// <returns>Тело выражения.</returns>
-        static Expression ExtractBody(Expression<Func<char, bool>> predicate, ParameterExpression arg)
+        private static Expression ExtractBody(Expression<Func<char, bool>> predicate, ParameterExpression arg)
         {
             var rep = new LambdaParameterReplacer();
             return rep.ReplaceArgs(predicate, predicate.Parameters[0], arg).Body;
@@ -557,7 +557,7 @@
         /// <summary>
         /// A class for copying lambda expressions.
         /// </summary>
-        class LambdaParameterReplacer : ExpressionVisitor
+        private class LambdaParameterReplacer : ExpressionVisitor
         {
             private IEnumerable<ParameterExpression> _lambdaArgsToSearch = new List<ParameterExpression>();
             private IEnumerable<ParameterExpression> _lambdaArgsToReplace = new List<ParameterExpression>();

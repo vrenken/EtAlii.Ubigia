@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    class PathVariableExpander : IPathVariableExpander
+    internal class PathVariableExpander : IPathVariableExpander
     {
         private readonly IScriptProcessingContext _context;
         private readonly IVariablePathSubjectPartToPathConverter _variablePathSubjectPartToPathConverter;

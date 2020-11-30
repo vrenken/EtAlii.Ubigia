@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System;
     using System.Collections.Generic;
 
-    class ErrorWriter : IErrorWriter
+    internal class ErrorWriter : IErrorWriter
     {
         private readonly IStatusWriter _statusWriter;
 

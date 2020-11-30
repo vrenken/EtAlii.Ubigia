@@ -2,7 +2,7 @@
 {
     using System.Diagnostics;
 
-    class ProcessStarter : IProcessStarter
+    internal class ProcessStarter : IProcessStarter
     {
         public void StartProcess(string folder, string fileName, string arguments = "")
         {

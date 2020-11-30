@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Linq;
     using System.Threading.Tasks;
 
-    class AllNextRootHandlerPathPartMatcher : IAllNextRootHandlerPathPartMatcher
+    internal class AllNextRootHandlerPathPartMatcher : IAllNextRootHandlerPathPartMatcher
     {
         public MatchResult[] Match(MatchParameters parameters)
         {

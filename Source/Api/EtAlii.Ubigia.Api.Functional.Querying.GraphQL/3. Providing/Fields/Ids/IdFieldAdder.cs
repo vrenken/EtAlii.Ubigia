@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using GraphQL.Types;
 
-    class IdFieldAdder : IIdFieldAdder
+    internal class IdFieldAdder : IIdFieldAdder
     {
         private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder;
         private readonly INodeFetcher _nodeFetcher;

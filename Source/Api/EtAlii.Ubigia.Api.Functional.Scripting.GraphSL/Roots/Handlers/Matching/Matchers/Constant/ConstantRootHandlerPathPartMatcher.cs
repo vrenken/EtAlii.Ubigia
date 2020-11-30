@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    class ConstantRootHandlerPathPartMatcher : IConstantRootHandlerPathPartMatcher
+    internal class ConstantRootHandlerPathPartMatcher : IConstantRootHandlerPathPartMatcher
     {
         private readonly IPathSubjectPartContentGetter _pathSubjectPartContentGetter;
 

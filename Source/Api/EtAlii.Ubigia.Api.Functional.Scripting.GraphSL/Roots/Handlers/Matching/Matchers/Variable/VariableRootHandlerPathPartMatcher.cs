@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System.Threading.Tasks;
 
-    class VariableRootHandlerPathPartMatcher : IVariableRootHandlerPathPartMatcher
+    internal class VariableRootHandlerPathPartMatcher : IVariableRootHandlerPathPartMatcher
     {
         public MatchResult[] Match(MatchParameters parameters)
         {

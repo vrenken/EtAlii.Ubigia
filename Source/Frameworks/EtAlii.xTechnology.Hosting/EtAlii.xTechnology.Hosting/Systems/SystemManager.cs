@@ -3,7 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    class SystemManager : ISystemManager
+    internal class SystemManager : ISystemManager
     {
 	    public ISystem[] Systems { get; private set; }
 
