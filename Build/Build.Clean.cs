@@ -15,6 +15,11 @@ namespace EtAlii.Ubigia.Pipelines
 
         private void CleanInternal()
         {
+            Logger.Info($"==== SonarQubeProjectKey:  {SonarQubeProjectKey ?? "NULL"}");
+            Logger.Info($"==== SonarQubeServerToken: {SonarQubeServerToken ?? "NULL"}");
+            Logger.Info($"==== SonarQubeServerUrl:   {SonarQubeServerUrl ?? "NULL"}");
+            Logger.Info($"==== NuGetFeedToken:       {NuGetFeedToken ?? "NULL"}");
+            Logger.Info($"==== NuGetFeedUrl:         {NuGetFeedUrl ?? "NULL"}");
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
             EnsureCleanDirectory(ArtifactsDirectory);
         }
