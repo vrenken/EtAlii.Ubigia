@@ -10,7 +10,7 @@
             var container = new Container();
 
             container.Register<ISystem, ProvisioningSystem>();
-            container.Register<ISystemCommandsFactory, SystemCommandsFactory>();
+            container.Register<ISystemCommandsFactory, ProvisioningSystemCommandsFactory>();
 
             return container.GetInstance<ISystem>();
         }

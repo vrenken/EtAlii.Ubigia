@@ -10,7 +10,7 @@
             var container = new Container();
 
             container.Register<ISystem, InfrastructureSystem>();
-            container.Register<ISystemCommandsFactory, SystemCommandsFactory>();
+            container.Register<ISystemCommandsFactory, InfrastructureSystemCommandsFactory>();
 
             container.Register(() => configuration);
             container.Register(() => configurationDetails);
