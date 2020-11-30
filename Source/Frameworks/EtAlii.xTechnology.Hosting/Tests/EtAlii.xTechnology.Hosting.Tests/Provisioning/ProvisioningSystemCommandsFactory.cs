@@ -1,5 +1,6 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests
+﻿namespace EtAlii.xTechnology.Hosting.Tests.Provisioning
 {
+    using EtAlii.xTechnology.Hosting.Tests.Provisioning.Firewall;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProvisioningSystemCommandsFactory : ISystemCommandsFactory

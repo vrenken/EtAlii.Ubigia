@@ -1,4 +1,4 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests
+﻿namespace EtAlii.xTechnology.Hosting.Tests.Provisioning
 {
     public interface IOpenProvisioningPortalCommand : ICommand
     {
