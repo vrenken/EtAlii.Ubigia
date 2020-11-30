@@ -19,7 +19,7 @@ stages:
     displayName: 'windows-latest'
     dependsOn: [  ]
     pool:
-      vmImage: 'windows-latest'
+      name: 'Avalon agent pool'
     jobs:
       - job: CompileTestAnalyseAndPublish
         displayName: 'CompileTestAnalyseAndPublish'
