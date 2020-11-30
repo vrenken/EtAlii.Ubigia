@@ -19,6 +19,17 @@ namespace EtAlii.Ubigia.Pipelines
         {
         }
 
+        protected override AzurePipelinesStage GetStage(
+            AzurePipelinesImage image, 
+            IReadOnlyCollection<ExecutableTarget> relevantTargets)
+        {
+            var stage = base.GetStage(image, relevantTargets);
+            return new CustomAzurePipelinesStage(stage)
+            {
+                Pool = Pool
+            };
+        }
+
         protected override AzurePipelinesJob GetJob(
             ExecutableTarget executableTarget, 
             LookupTable<ExecutableTarget, AzurePipelinesJob> jobs, 
