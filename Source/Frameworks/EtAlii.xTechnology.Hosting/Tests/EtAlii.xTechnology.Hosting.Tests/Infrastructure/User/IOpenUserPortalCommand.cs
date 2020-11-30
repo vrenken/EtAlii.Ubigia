@@ -1,4 +1,4 @@
-namespace EtAlii.xTechnology.Hosting.Tests
+namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User
 {
     public interface IOpenUserPortalCommand : ICommand
     {

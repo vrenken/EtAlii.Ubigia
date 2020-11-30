@@ -1,5 +1,8 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests
+﻿namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure
 {
+    using EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin;
+    using EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Firewall;
+    using EtAlii.xTechnology.Hosting.Tests.Infrastructure.User;
     using EtAlii.xTechnology.MicroContainer;
 
     public class InfrastructureSystemCommandsFactory : ISystemCommandsFactory

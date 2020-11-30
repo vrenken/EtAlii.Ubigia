@@ -1,4 +1,4 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests
+﻿namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     internal class OpenAdminPortalCommand : SystemCommandBase, IOpenAdminPortalCommand

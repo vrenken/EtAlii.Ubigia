@@ -1,4 +1,4 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests
+﻿namespace EtAlii.xTechnology.Hosting.Tests.Provisioning.Firewall
 {
     public class ConfigureProvisioningFirewallRulesCommand : ConfigureFirewallRulesCommandBase
     {
