@@ -24,12 +24,12 @@ namespace Docker.DotNet.Models
 
         public T DeserializeObject<T>(string json)
         {
-            return JsonConvert.DeserializeObject<T>(json, this._settings);
+            return JsonConvert.DeserializeObject<T>(json, _settings);
         }
 
         public string SerializeObject<T>(T value)
         {
-            return JsonConvert.SerializeObject(value, this._settings);
+            return JsonConvert.SerializeObject(value, _settings);
         }
     }
 }

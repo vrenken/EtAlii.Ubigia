@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
-    class RegexRootHandlerPathPartMatcher : IRegexRootHandlerPathPartMatcher
+    internal class RegexRootHandlerPathPartMatcher : IRegexRootHandlerPathPartMatcher
     {
         private readonly IPathSubjectPartContentGetter _pathSubjectPartContentGetter;
 

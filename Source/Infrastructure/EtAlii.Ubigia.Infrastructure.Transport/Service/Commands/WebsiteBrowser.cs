@@ -2,7 +2,7 @@
 {
     using System.Diagnostics;
 
-    class WebsiteBrowser : IWebsiteBrowser
+    internal class WebsiteBrowser : IWebsiteBrowser
     {
         public void BrowseTo(string relativeAddress)
         {

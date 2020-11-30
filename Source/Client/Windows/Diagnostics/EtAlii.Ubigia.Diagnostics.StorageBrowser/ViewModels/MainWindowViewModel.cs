@@ -36,7 +36,7 @@
             Accounts.PropertyChanged += OnAccountsPropertyChanged; 
         }
 
-        void OnAccountsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnAccountsPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {

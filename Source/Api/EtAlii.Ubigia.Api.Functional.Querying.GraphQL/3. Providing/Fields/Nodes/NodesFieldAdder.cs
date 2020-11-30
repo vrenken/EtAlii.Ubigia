@@ -3,7 +3,7 @@
     using System.Linq;
     using GraphQL.Types;
 
-    class NodesFieldAdder : INodesFieldAdder
+    internal class NodesFieldAdder : INodesFieldAdder
     {
         private readonly IComplexFieldTypeBuilder _complexFieldTypeBuilder;
         //private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder

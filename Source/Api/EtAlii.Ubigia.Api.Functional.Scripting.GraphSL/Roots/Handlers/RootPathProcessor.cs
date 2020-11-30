@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System;
     using System.Threading.Tasks;
 
-    class RootPathProcessor : IRootPathProcessor
+    internal class RootPathProcessor : IRootPathProcessor
     {
         private readonly IScriptProcessingContext _processingContext;
         private readonly IRootHandlerMapperFinder _rootHandlerMapperFinder;

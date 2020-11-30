@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using EtAlii.xTechnology.Hosting;
 
-    class OpenUserPortalCommand : SystemCommandBase, IOpenUserPortalCommand
+    internal class OpenUserPortalCommand : SystemCommandBase, IOpenUserPortalCommand
     {
         public string Name => "User/User portal";
 

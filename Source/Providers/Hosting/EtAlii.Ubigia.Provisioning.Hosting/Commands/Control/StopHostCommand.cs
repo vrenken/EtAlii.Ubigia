@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    class StopHostCommand : HostCommandBase, IStopHostCommand
+    internal class StopHostCommand : HostCommandBase, IStopHostCommand
     {
         public string Name => "Admin/Provisioning service/Stop";
 

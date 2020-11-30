@@ -64,7 +64,7 @@
             }
         }
 
-        void _watermark_IsVisibleChanged(object sender, EventArgs e)
+        private void _watermark_IsVisibleChanged(object sender, EventArgs e)
         {
             RemoveVisibilityHandler();
             ClearWatermark();

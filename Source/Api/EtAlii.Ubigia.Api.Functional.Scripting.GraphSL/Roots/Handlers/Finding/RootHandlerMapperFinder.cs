@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System.Linq;
 
-    class RootHandlerMapperFinder : IRootHandlerMapperFinder
+    internal class RootHandlerMapperFinder : IRootHandlerMapperFinder
     {
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
 

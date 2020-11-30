@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using EtAlii.xTechnology.Structure;
     using Moppet.Lapa;
 
-    class VariablePathSubjectPartToPathConverter : IVariablePathSubjectPartToPathConverter
+    internal class VariablePathSubjectPartToPathConverter : IVariablePathSubjectPartToPathConverter
     {
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;

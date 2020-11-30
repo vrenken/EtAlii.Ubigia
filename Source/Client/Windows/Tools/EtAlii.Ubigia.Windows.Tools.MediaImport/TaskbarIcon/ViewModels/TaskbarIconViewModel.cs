@@ -57,7 +57,7 @@
             ShowAboutCommand = new RelayCommand(ShowAbout);
         }
 
-        void OnMonitorManagerPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void OnMonitorManagerPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             CanShowConfiguration = _folderMonitorManager.IsRunning;
             CanShowStatus = _folderMonitorManager.IsRunning;

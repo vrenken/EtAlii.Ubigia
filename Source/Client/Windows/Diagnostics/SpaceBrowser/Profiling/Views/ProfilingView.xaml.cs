@@ -19,7 +19,7 @@
         {
             InitializeComponent();
 
-            this.Unloaded += OnUnload;
+            Unloaded += OnUnload;
 
             //gridTreeControl.ModelLoaded += (sender, args) =>
             //[

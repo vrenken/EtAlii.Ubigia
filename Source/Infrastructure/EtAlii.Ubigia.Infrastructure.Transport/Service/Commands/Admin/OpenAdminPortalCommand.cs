@@ -3,7 +3,7 @@
     using EtAlii.xTechnology.Hosting;
 
     // ReSharper disable once ClassNeverInstantiated.Global
-    class OpenAdminPortalCommand : SystemCommandBase, IOpenAdminPortalCommand
+    internal class OpenAdminPortalCommand : SystemCommandBase, IOpenAdminPortalCommand
     {
         public string Name => "Admin/Admin portal";
 

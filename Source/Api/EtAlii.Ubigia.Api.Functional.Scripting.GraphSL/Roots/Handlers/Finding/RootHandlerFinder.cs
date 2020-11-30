@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Linq;
     using System.Threading.Tasks;
 
-    class RootHandlerFinder : IRootHandlerFinder
+    internal class RootHandlerFinder : IRootHandlerFinder
     {
         private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
 

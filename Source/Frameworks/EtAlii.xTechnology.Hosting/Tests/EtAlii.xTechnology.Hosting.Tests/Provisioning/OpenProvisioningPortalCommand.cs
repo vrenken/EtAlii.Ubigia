@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.xTechnology.Hosting.Tests
 {
     // ReSharper disable once ClassNeverInstantiated.Global
-    class OpenProvisioningPortalCommand : SystemCommandBase, IOpenProvisioningPortalCommand
+    internal class OpenProvisioningPortalCommand : SystemCommandBase, IOpenProvisioningPortalCommand
     {
         public string Name => "Provisioning/Provisioning portal";
 

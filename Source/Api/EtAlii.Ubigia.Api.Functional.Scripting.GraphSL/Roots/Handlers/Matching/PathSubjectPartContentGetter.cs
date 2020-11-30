@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Structure;
 
-    class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
+    internal class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
     {
         private readonly ISelector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>> _selector;
 

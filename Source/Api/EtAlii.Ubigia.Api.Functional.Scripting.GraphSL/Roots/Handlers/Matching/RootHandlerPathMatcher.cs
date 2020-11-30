@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     using System.Linq;
     using System.Threading.Tasks;
 
-    class RootHandlerPathMatcher : IRootHandlerPathMatcher
+    internal class RootHandlerPathMatcher : IRootHandlerPathMatcher
     {
         private readonly IRootHandlerPathPartMatcherSelector _rootHandlerPathPartMatcherSelector;
 
