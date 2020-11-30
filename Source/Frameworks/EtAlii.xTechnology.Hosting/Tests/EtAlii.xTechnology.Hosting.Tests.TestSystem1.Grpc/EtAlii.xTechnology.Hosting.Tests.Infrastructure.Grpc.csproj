@@ -7,9 +7,6 @@
     <None Remove="Infrastructure\Commands\Admin\Firewall\ConfigureFirewall.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Infrastructure\Commands\Admin\Firewall\ConfigureFirewall.ps1" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.Service.Grpc\EtAlii.xTechnology.Hosting.Service.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests\EtAlii.xTechnology.Hosting.Tests.csproj" />
   </ItemGroup>
