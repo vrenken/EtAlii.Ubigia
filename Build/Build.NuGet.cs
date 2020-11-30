@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Pipelines
     using static Nuke.Common.Tools.DotNet.DotNetTasks;
     using System.Collections.Generic;
     using Nuke.Common.IO;
+    using Nuke.Common.Tooling;
 
     public partial class Build
     {
@@ -15,7 +16,8 @@ namespace EtAlii.Ubigia.Pipelines
 
         IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
         
-        [Parameter] string NuGetFeedApiKey;
+        [Parameter("NuGet publish feed url")] readonly string NuGetFeedUrl;
+        [Parameter("NuGet publish feed token")] readonly string NuGetFeedToken;
         
         Target Restore => _ => _
             .Description("Run dotnet restore")
@@ -50,16 +52,17 @@ namespace EtAlii.Ubigia.Pipelines
             .Description("Run dotnet nuget push")
             .DependsOn(CreatePackages)
             .Unlisted()
-            //.Requires(() => NuGetFeedApiKey != null)
+            .Requires(() => NuGetFeedToken != null)
+            .Requires(() => NuGetFeedUrl != null)
             .Executes(PublishPackagesInternal);
 
         private void PublishPackagesInternal()
         {
-            // DotNetNuGetPush(_ => _
-            //     .SetSource("https://vrenken.pkgs.visualstudio.com/_packaging/EtAlii.Ubigia/nuget/")
-            //     .SetApiKey(NuGetFeedApiKey)
-            //     .CombineWith(Packages, (_, v) => _
-            //         .SetTargetPath(v)));
+            DotNetNuGetPush(_ => _
+                .SetSource(NuGetFeedUrl)
+                .SetApiKey(NuGetFeedToken)
+                .CombineWith(Packages, (_, v) => _
+                    .SetTargetPath(v)));
         }
 
 // ============= Test Targets 

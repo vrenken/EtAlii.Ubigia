@@ -41,6 +41,14 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(RunCreateTestReports),
             nameof(RunTestsAndCreateTestReports),
         },
+        ImportSecrets = new[]
+        {
+            nameof(SonarQubeProjectKey),
+            nameof(SonarQubeServerUrl),
+            nameof(SonarQubeServerToken),
+            nameof(NuGetFeedUrl),
+            nameof(NuGetFeedToken)
+        },
         TimeoutInMinutes = 120
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]

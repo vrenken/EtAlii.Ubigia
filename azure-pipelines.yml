@@ -29,3 +29,9 @@ stages:
           - task: CmdLine@2
             inputs:
               script: './build.cmd Clean Restore PrepareSonarQubeAnalysis Compile Test CreateTestReports CreatePackages PublishResultsToAzure PublishResultsToSonarQube PublishPackages PublishArtefactsToAzure CompileTestAnalyseAndPublish --skip'
+            env:
+              SonarQubeProjectKey: $(SonarQubeProjectKey)
+              SonarQubeServerUrl: $(SonarQubeServerUrl)
+              SonarQubeServerToken: $(SonarQubeServerToken)
+              NuGetFeedUrl: $(NuGetFeedUrl)
+              NuGetFeedToken: $(NuGetFeedToken)
