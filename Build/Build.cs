@@ -49,6 +49,7 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(NuGetFeedUrl),
             nameof(NuGetFeedToken)
         },
+        Pool = "Avalon agent pool",
         TimeoutInMinutes = 120
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
