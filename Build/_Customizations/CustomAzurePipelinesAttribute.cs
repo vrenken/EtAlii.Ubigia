@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Pipelines
 
     public class CustomAzurePipelinesAttribute : AzurePipelinesAttribute
     {
+        public string Pool { get; set; }
         public int TimeoutInMinutes { get; set; } = 60;
         public CustomAzurePipelinesAttribute(AzurePipelinesImage image, params AzurePipelinesImage[] images) : base(image, images)
         {
@@ -26,6 +27,7 @@ namespace EtAlii.Ubigia.Pipelines
             var job = base.GetJob(executableTarget, jobs, relevantTargets);
             return new CustomAzurePipelinesJob(job)
             {
+                Pool = Pool,
                 TimeoutInMinutes = TimeoutInMinutes
             };
         }

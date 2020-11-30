@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Pipelines
     public class CustomAzurePipelinesJob : AzurePipelinesJob
     {
         public int TimeoutInMinutes { get; set; } = 60;
+        public string Pool { get; set; }
         public CustomAzurePipelinesJob(AzurePipelinesJob job)
         {
             Name = job.Name;
@@ -34,7 +35,14 @@ namespace EtAlii.Ubigia.Pipelines
                 {
                     using (writer.WriteBlock("pool:"))
                     {
-                        writer.WriteLine($"vmImage: {Image.Value.GetValue().SingleQuote().SingleQuote()}");
+                        if (Pool != null)
+                        {
+                            writer.WriteLine($"name: {Pool.SingleQuote()}");
+                        }
+                        else
+                        {
+                            writer.WriteLine($"vmImage: {Image.Value.GetValue().SingleQuote()}");
+                        }
                     }
                 }
 
