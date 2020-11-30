@@ -41,8 +41,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
                 .SetVSTestReports(TestResultsDirectory / "*.trx")
                 .SetProjectKey(SonarQubeProjectKey)
-                //.SetServer(IsLocalBuild ? LocalSonarQubeServerUrl : SonarQubeServerUrl)
-                .SetServer(LocalSonarQubeServerUrl)
+                .SetServer(IsLocalBuild ? LocalSonarQubeServerUrl : SonarQubeServerUrl)
                 .SetName(SonarQubeProjectKey)
                 .SetLogin(SonarQubeServerToken));
         }
