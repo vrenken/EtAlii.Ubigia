@@ -20,6 +20,14 @@ dotnet_style_qualification_for_event = false:error
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:error
 dotnet_style_readonly_field = true:error
 csharp_prefer_static_local_function = false:error # We don't want static methods.
+###### Make private fields underscored.
+dotnet_naming_symbols.private_fields.applicable_kinds                           = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities                 = private
+dotnet_naming_style.private_fields_must_be_underscored_style.capitalization     = camel_case
+dotnet_naming_style.private_fields_must_be_underscored_style.required_prefix    = _
+dotnet_naming_rule.private_fields_must_be_underscored.style                     = private_fields_must_be_underscored_style
+dotnet_naming_rule.private_fields_must_be_underscored.symbols                   = private_fields
+dotnet_naming_rule.private_fields_must_be_underscored.severity                  = error
 
 ###### Make public elements capitalized.
 # # Defining the 'public_symbols' symbol group
@@ -34,7 +42,7 @@ csharp_prefer_static_local_function = false:error # We don't want static methods
 # dotnet_naming_rule.public_members_must_be_capitalized.style    = first_word_upper_case_style
 # # and setting the severity.
 # dotnet_naming_rule.public_members_must_be_capitalized.severity = suggestion
-# dotnet_diagnostic.IDE1006.severity = error
+dotnet_diagnostic.IDE1006.severity = error
 
 ######## Quality ########################
 # https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/
