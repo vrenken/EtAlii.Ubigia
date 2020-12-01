@@ -20,23 +20,46 @@ dotnet_style_qualification_for_event = false:error
 dotnet_style_require_accessibility_modifiers = for_non_interface_members:error
 dotnet_style_readonly_field = true:error
 csharp_prefer_static_local_function = false:error # We don't want static methods.
-###### Make private fields underscored.
-dotnet_naming_symbols.private_fields.applicable_kinds                           = field
-dotnet_naming_symbols.private_fields.applicable_accessibilities                 = private
-dotnet_naming_style.private_fields_must_be_underscored_style.capitalization     = camel_case
-dotnet_naming_style.private_fields_must_be_underscored_style.required_prefix    = _
-dotnet_naming_rule.private_fields_must_be_underscored.style                     = private_fields_must_be_underscored_style
-dotnet_naming_rule.private_fields_must_be_underscored.symbols                   = private_fields
-dotnet_naming_rule.private_fields_must_be_underscored.severity                  = error
 
-###### Make static fields pascal case.
-dotnet_naming_symbols.static_fields.applicable_kinds                           = field
-dotnet_naming_symbols.static_fields.applicable_accessibilities                 = private
-dotnet_naming_symbols.static_fields.required_modifiers                         = static
-dotnet_naming_style.static_fields_must_be_pascal_case_style.capitalization     = pascal_case
-dotnet_naming_rule.static_fields_must_be_pascal_case.style                     = static_fields_must_be_pascal_case_style
-dotnet_naming_rule.static_fields_must_be_pascal_case.symbols                   = static_fields
-dotnet_naming_rule.static_fields_must_be_pascal_case.severity                  = error
+###### Usings styling
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+csharp_qualified_using_at_nested_scope = true:error
+
+###### Bracket styling
+csharp_new_line_before_open_brace = methods
+# accessors, anonymous_methods, anonymous_types, control_blocks, events, indexers, lambdas, local_functions, methods, object_collection_array_initializers, properties, types - Require braces to be on a new line for the specified code element ("Allman" style).
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+###### Make private fields underscored.
+dotnet_naming_symbols.private_fields.applicable_kinds                   = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities         = private
+dotnet_naming_style.private_fields_style.capitalization                 = camel_case
+dotnet_naming_style.private_fields_style.required_prefix                = _
+dotnet_naming_rule.private_fields_rule.style                            = private_fields_style
+dotnet_naming_rule.private_fields_rule.symbols                          = private_fields
+dotnet_naming_rule.private_fields_rule.severity                         = error
+
+###### Make static fields underscore + camel case.
+dotnet_naming_symbols.private_static_fields.applicable_kinds            = field
+dotnet_naming_symbols.private_static_fields.applicable_accessibilities  = private
+dotnet_naming_symbols.private_static_fields.required_modifiers          = static
+dotnet_naming_style.private_static_fields_style.capitalization          = camel_case
+dotnet_naming_style.private_static_fields_style.required_prefix         = _
+dotnet_naming_rule.private_static_fields_rule.style                     = private_static_fields_style
+dotnet_naming_rule.private_static_fields_rule.symbols                   = private_static_fields
+dotnet_naming_rule.private_static_fields_rule.severity                  = error
+
+###### Make public static fields pascal case.
+dotnet_naming_symbols.public_static_fields.applicable_kinds             = field
+dotnet_naming_symbols.public_static_fields.applicable_accessibilities   = public
+dotnet_naming_symbols.public_static_fields.required_modifiers           = static
+dotnet_naming_style.public_static_fields_style.capitalization           = pascal_case
+dotnet_naming_rule.public_static_fields_rule.style                      = public_static_fields_style
+dotnet_naming_rule.public_static_fields_rule.symbols                    = public_static_fields
+dotnet_naming_rule.public_static_fields_rule.severity                   = error
 
 ###### Make public elements capitalized.
 # # Defining the 'public_symbols' symbol group

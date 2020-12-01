@@ -178,7 +178,7 @@
             });
 
             // Assert.
-            foreach (var character in NormalCharacters)
+            foreach (var character in _normalCharacters)
             {
                 act(character);
                 Assert.NotEqual(0, count);
@@ -201,7 +201,7 @@
             });
 
             // Assert.
-            foreach (var character in NormalCharacters)
+            foreach (var character in _normalCharacters)
             {
                 act(character);
                 Assert.NotEqual(0, count);
@@ -225,7 +225,7 @@
             });
 
             // Assert.
-            foreach (var character in SpecialCharacters)
+            foreach (var character in _specialCharacters)
             {
                 act(character);
                 Assert.NotEqual(0, count);
@@ -249,7 +249,7 @@
             });
 
             // Assert.
-            foreach (var character in SpecialCharacters)
+            foreach (var character in _specialCharacters)
             {
                 var result = act(character);
                 Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -270,7 +270,7 @@
             });
 
             // Assert.
-            foreach (var character in SpecialCharacters2)
+            foreach (var character in _specialCharacters2)
             {
                 var result = act(character);
                 Assert.DoesNotContain(result.Errors, e => e.Exception is ScriptParserException);

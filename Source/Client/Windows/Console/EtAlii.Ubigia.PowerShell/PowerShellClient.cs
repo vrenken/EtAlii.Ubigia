@@ -19,7 +19,7 @@
         public const string Copyright = "Copyright ©  2014";
 
         public static IPowerShellClient Current { get => GetCurrentClient(); set => SetCurrentClient(value); }
-        private static IPowerShellClient _currentPowerShellClient;
+        private static IPowerShellClient _current;
 
         public IStorageResolver StorageResolver { get; }
 
@@ -56,12 +56,12 @@
 
         private static IPowerShellClient GetCurrentClient()
         {
-            return _currentPowerShellClient ??= new PowerShellClientFactory().Create<PowerShellClient>();
+            return _current ??= new PowerShellClientFactory().Create<PowerShellClient>();
         }
         
         private static void SetCurrentClient(IPowerShellClient current)
         {
-            _currentPowerShellClient = current;
+            _current = current;
         }
 
 
