@@ -14,18 +14,25 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
-        IEnumerable<Project> TestProjects => Solution
+        private IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
-            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) // The WebApi tests won't run nicely on the build agent. No idea why.
-            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); // We are not interested in .shproj files. These will mess up dotnet test.
+            
+            // The WebApi tests won't run nicely on the build agent. No idea why.
+            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
+            
+            // The SpaceBrowser tests won't run nicely on a headless build agent.
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
+            
+            // We are not interested in .shproj files. These will mess up dotnet test.
+            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); 
 
-        AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
-        AbsolutePath TestReportsDirectory => ArtifactsDirectory / "test_reports";
-        RelativePath FrameworkMoppetLapaDirectory => (RelativePath)"Frameworks" / "Moppet.Lapa";
-        RelativePath FrameworkHashLibDirectory => (RelativePath)"Frameworks" / "HashLib";
+        private AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
+        private AbsolutePath TestReportsDirectory => ArtifactsDirectory / "test_reports";
+        private RelativePath FrameworkMoppetLapaDirectory => (RelativePath)"Frameworks" / "Moppet.Lapa";
+        private RelativePath FrameworkHashLibDirectory => (RelativePath)"Frameworks" / "HashLib";
         
-        const int DegreeOfParallelismOnServerTests = 5;
-        const int DegreeOfParallelismOnLocalTests = 16;
+        private const int DegreeOfParallelismOnServerTests = 5;
+        private const int DegreeOfParallelismOnLocalTests = 16;
 
         Target Test => _ => _
             .Description("Run dotnet test")
@@ -56,7 +63,7 @@ namespace EtAlii.Ubigia.Pipelines
                     degreeOfParallelismWhileTesting, Continue);
         }
         
-        Target CreateTestReports => _ => _
+        private Target CreateTestReports => _ => _
             .DependsOn(Test)
             .Unlisted()
             .Description("Create test coverage reports")
