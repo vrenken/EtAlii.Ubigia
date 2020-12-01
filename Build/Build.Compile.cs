@@ -7,9 +7,9 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
-        AbsolutePath SourceDirectory => RootDirectory / "Source";
+        private AbsolutePath SourceDirectory => RootDirectory / "Source";
         
-        Target Compile => _ => _
+        private Target Compile => _ => _
             .Description("Compile the Ubigia solution")
             .DependsOn(PrepareSonarQubeAnalysis)
             .Unlisted()
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Pipelines
 
 // ============= Test Targets 
 
-        Target RunCompile => _ => _
+        private Target RunCompile => _ => _
             .Executes(CompileInternal);
     }
 }

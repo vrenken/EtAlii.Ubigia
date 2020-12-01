@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Pipelines
         [Parameter("SonarQube server url")] readonly string SonarQubeServerUrl;
         [Parameter("SonarQube server token")] readonly string SonarQubeServerToken;
 
-        const string LocalSonarQubeServerUrl = "http://192.168.1.130:9000/";
+        private const string LocalSonarQubeServerUrl = "http://192.168.1.130:9000/";
         
-        Target PrepareSonarQubeAnalysis => _ => _
+        private Target PrepareSonarQubeAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
             .DependsOn(Restore)
             .Requires(() => SonarQubeProjectKey != null)
@@ -28,14 +28,17 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetFramework("net5.0")
                 .SetWebServiceTimeout(120) // Somehow our service is currently flaky.
                 
-                .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")                             // Unit tests should not be taken into consideration with regards of testing.
+                // Unit tests should not be taken into consideration with regards of testing.
+                .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")                             
                 .AddTestFileExclusions(SourceDirectory / "**" / "*.Tests.cs")
                 
-                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     // We don't want the 'old' HashLib to cloud up the SonarQube results.
+                // We don't want the 'old' HashLib to cloud up the SonarQube results.
+                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     
                 .AddCoverageExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*") 
                 .AddTestFileExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "HashesTests.cs") 
             
-                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  
                 .AddCoverageExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*") 
                 
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
@@ -46,7 +49,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetLogin(SonarQubeServerToken));
         }
         
-        Target PublishResultsToSonarQube => _ => _
+        private Target PublishResultsToSonarQube => _ => _
             .Description("Publish test results to SonarQube")
             .Unlisted()
             .DependsOn(CreateTestReports)
@@ -62,7 +65,7 @@ namespace EtAlii.Ubigia.Pipelines
 
 // ============= Test Targets 
         
-        Target RunCompileTestAndPublishToSonarQube => _ => _
+        private Target RunCompileTestAndPublishToSonarQube => _ => _
             .Executes(() =>
             {
                 PrepareSonarQubeAnalysisInternal();
@@ -72,7 +75,7 @@ namespace EtAlii.Ubigia.Pipelines
                 PublishResultsToSonarQubeInternal();
             });
         
-        Target RunPublishToSonarQube => _ => _
+        private Target RunPublishToSonarQube => _ => _
             .Executes(() =>
             {
                 PrepareSonarQubeAnalysisInternal();

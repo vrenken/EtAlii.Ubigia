@@ -14,12 +14,12 @@ namespace EtAlii.Ubigia.Pipelines
         // https://youtu.be/yojQXa1x2nc?t=1551
         //[GitVersion] GitVersion GitVersion;
 
-        IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
+        private IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
         
         [Parameter("NuGet publish feed url")] readonly string NuGetFeedUrl;
         [Parameter("NuGet publish feed token")] readonly string NuGetFeedToken;
         
-        Target Restore => _ => _
+        private Target Restore => _ => _
             .Description("Run dotnet restore")
             .Unlisted()
             .DependsOn(Clean)
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetConfigFile(SourceDirectory / "Nuget.config"));
         }
         
-        Target CreatePackages => _ => _
+        private Target CreatePackages => _ => _
             .Description("Run dotnet pack")
             .DependsOn(Test)
             .Unlisted()
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetVersion("0.1.0"));
         }
         
-        Target PublishPackages => _ => _
+        private Target PublishPackages => _ => _
             .Description("Run dotnet nuget push")
             .DependsOn(CreatePackages)
             .Unlisted()
@@ -67,10 +67,10 @@ namespace EtAlii.Ubigia.Pipelines
 
 // ============= Test Targets 
 
-        Target RunRestore => _ => _
+        private Target RunRestore => _ => _
             .Executes(RestoreInternal);
         
-        Target RunCreateAndPublishPackages => _ => _
+        private Target RunCreateAndPublishPackages => _ => _
             .Executes(CreatePackagesInternal)
             .Executes(PublishPackagesInternal);
     }

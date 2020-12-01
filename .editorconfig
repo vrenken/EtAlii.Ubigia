@@ -29,6 +29,15 @@ dotnet_naming_rule.private_fields_must_be_underscored.style                     
 dotnet_naming_rule.private_fields_must_be_underscored.symbols                   = private_fields
 dotnet_naming_rule.private_fields_must_be_underscored.severity                  = error
 
+###### Make static fields pascal case.
+dotnet_naming_symbols.static_fields.applicable_kinds                           = field
+dotnet_naming_symbols.static_fields.applicable_accessibilities                 = private
+dotnet_naming_symbols.static_fields.required_modifiers                         = static
+dotnet_naming_style.static_fields_must_be_pascal_case_style.capitalization     = pascal_case
+dotnet_naming_rule.static_fields_must_be_pascal_case.style                     = static_fields_must_be_pascal_case_style
+dotnet_naming_rule.static_fields_must_be_pascal_case.symbols                   = static_fields
+dotnet_naming_rule.static_fields_must_be_pascal_case.severity                  = error
+
 ###### Make public elements capitalized.
 # # Defining the 'public_symbols' symbol group
 # dotnet_naming_symbols.public_symbols.applicable_kinds           = property,method,field,event,delegate

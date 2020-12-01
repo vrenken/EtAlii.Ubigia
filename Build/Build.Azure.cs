@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
-        AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
+        private AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
-        Target PublishArtefactsToAzure => _ => _
+        private Target PublishArtefactsToAzure => _ => _
             .Description("Publish artefacts")
             .DependsOn(Test)
             .Unlisted()
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Pipelines
                 //     CoverageReportDirectory);
             });
         
-        Target PublishResultsToAzure => _ => _
+        private Target PublishResultsToAzure => _ => _
             .Description("Publish test results to Azure")
             .Unlisted()
             .DependsOn(CreateTestReports)

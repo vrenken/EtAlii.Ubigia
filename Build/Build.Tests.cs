@@ -69,19 +69,25 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetReports(TestResultsDirectory / "*/coverage.opencover.xml")
                 .SetTargetDirectory(TestReportsDirectory)
                 .SetReportTypes(ReportTypes.Cobertura, ReportTypes.HtmlInline_AzurePipelines_Dark)
-                .AddFileFilters(SourceDirectory / "**" / "*.Tests.cs")                             // Unit tests should not be taken into consideration with regards of testing.
-                .AddFileFilters((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     // We don't want the 'old' HashLib to cloud up the SonarQube results. 
-                .AddFileFilters((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                
+                // Unit tests should not be taken into consideration with regards of testing.
+                .AddFileFilters(SourceDirectory / "**" / "*.Tests.cs")                               
+                
+                // We don't want the 'old' HashLib to cloud up the SonarQube results.
+                .AddFileFilters((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     
+                
+                // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
+                .AddFileFilters((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  
 
             );
         }
 
 // ============= Test Targets 
 
-        Target RunTestsAndCreateTestReports => _ => _
+        private Target RunTestsAndCreateTestReports => _ => _
             .Executes(TestInternal)
             .Executes(CreateTestReportsInternal);
-        Target RunCreateTestReports => _ => _
+        private Target RunCreateTestReports => _ => _
             .Executes(CreateTestReportsInternal);
 
     }
