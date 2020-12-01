@@ -24,7 +24,7 @@ stages:
       - job: CompileTestAnalyseAndPublish
         displayName: 'CompileTestAnalyseAndPublish'
         dependsOn: [  ]
-        timeoutInMinutes: 120
+        timeoutInMinutes: 480
         steps:
           - task: CmdLine@2
             inputs:
