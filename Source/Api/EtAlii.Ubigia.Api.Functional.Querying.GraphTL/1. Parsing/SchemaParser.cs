@@ -42,7 +42,7 @@
 
         public SchemaParseResult Parse(string text)
         {
-            text = text ?? string.Empty;
+            text ??= string.Empty;
 
             // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs). 
 //            text = text.Replace("\r\n", "\n")

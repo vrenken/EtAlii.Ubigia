@@ -16,7 +16,7 @@ namespace System
     [DebuggerStepThrough]
     internal static class SharedTypeExtensions
     {
-        private static readonly Dictionary<Type, string> BuiltInTypeNames = new Dictionary<Type, string>
+        private static readonly Dictionary<Type, string> _builtInTypeNames = new() 
         {
             { typeof(bool), "bool" },
             { typeof(byte), "byte" },
@@ -318,7 +318,7 @@ namespace System
         public static IEnumerable<MemberInfo> GetMembersInHierarchy(this Type type, string name)
             => type.GetMembersInHierarchy().Where(m => m.Name == name);
 
-        private static readonly Dictionary<Type, object> CommonTypeDictionary = new Dictionary<Type, object>
+        private static readonly Dictionary<Type, object> _commonTypeDictionary = new() 
         {
 #pragma warning disable IDE0034 // Simplify 'default' expression - default causes default(object)
             { typeof(int), default(int) },
@@ -349,7 +349,7 @@ namespace System
             // A bit of perf code to avoid calling Activator.CreateInstance for common types and
             // to avoid boxing on every call. This is about 50% faster than just calling CreateInstance
             // for all value types.
-            return CommonTypeDictionary.TryGetValue(type, out var value)
+            return _commonTypeDictionary.TryGetValue(type, out var value)
                 ? value
                 : Activator.CreateInstance(type);
         }
@@ -406,7 +406,7 @@ namespace System
             {
                 ProcessArrayType(builder, type, fullName);
             }
-            else if (BuiltInTypeNames.TryGetValue(type, out var builtInName))
+            else if (_builtInTypeNames.TryGetValue(type, out var builtInName))
             {
                 builder.Append(builtInName);
             }
@@ -483,7 +483,7 @@ namespace System
 
         public static IEnumerable<string> GetNamespaces([NotNull] this Type type)
         {
-            if (BuiltInTypeNames.ContainsKey(type))
+            if (_builtInTypeNames.ContainsKey(type))
             {
                 yield break;
             }
@@ -503,10 +503,10 @@ namespace System
         }
 
         public static ConstantExpression GetDefaultValueConstant(this Type type)
-            => (ConstantExpression)GenerateDefaultValueConstantMethod
+            => (ConstantExpression)_generateDefaultValueConstantMethod
                 .MakeGenericMethod(type).Invoke(null, Array.Empty<object>());
 
-        private static readonly MethodInfo GenerateDefaultValueConstantMethod =
+        private static readonly MethodInfo _generateDefaultValueConstantMethod =
             typeof(SharedTypeExtensions).GetTypeInfo().GetDeclaredMethod(nameof(GenerateDefaultValueConstant));
 
         private static ConstantExpression GenerateDefaultValueConstant<TDefault>()

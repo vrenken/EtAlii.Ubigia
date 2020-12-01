@@ -9,12 +9,12 @@
     {
         private IScriptParser _parser;
         
-        private static readonly char[] NormalCharacters = new []
+        private static readonly char[] _normalCharacters = 
         {
             'a', 'b', 'z', '1', '2', '_',
         };
 
-        private static readonly char[] SpecialCharacters = new[]
+        private static readonly char[] _specialCharacters = 
         {
             '+', '-',
             ' ',
@@ -24,7 +24,7 @@
             '.', ',',
         };
 
-        private static readonly char[] SpecialCharacters2 = new[]
+        private static readonly char[] _specialCharacters2 = 
         {
             '+', '-',
             ' ',
