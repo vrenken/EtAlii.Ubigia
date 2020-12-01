@@ -2,8 +2,8 @@
 {
     public class IndexesComponent : RelationsComponent  
     {
-        protected internal override string GetName() => Name;
-        private const string Name = "Indexes";
+        protected internal override string Name => _name;
+        private const string _name = "Indexes";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

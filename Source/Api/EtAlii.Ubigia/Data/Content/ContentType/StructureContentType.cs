@@ -2,12 +2,12 @@
 {
     public class StructureContentType : ContentType
     {
-        private const string StructureContentTypeId = "Structure";
+        private const string _structureContentTypeId = "Structure";
 
-        public ContentType Hierarchy { get; } = new ContentType(StructureContentTypeId, "Hierarchy");
+        public ContentType Hierarchy { get; } = new(_structureContentTypeId, "Hierarchy");
 
         internal StructureContentType()
-            : base(StructureContentTypeId)
+            : base(_structureContentTypeId)
         {
         }
     }

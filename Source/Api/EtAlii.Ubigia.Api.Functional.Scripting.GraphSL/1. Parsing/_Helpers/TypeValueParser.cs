@@ -11,7 +11,7 @@
 
         public string Id { get; } = "TypeValue";
 
-        private const string ValueId = "Value";
+        private const string _valueId = "Value";
 
         public TypeValueParser(
             INodeValidator nodeValidator, 
@@ -22,7 +22,7 @@
             _nodeFinder = nodeFinder;
 
             Parser = new LpsParser(Id, true,
-                new LpsParser(ValueId, true,
+                new LpsParser(_valueId, true,
                     Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)) +
                     (Lp.Char('.') + Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
                 )
@@ -33,7 +33,7 @@
         public string Parse(LpNode node)
         {     
             _nodeValidator.EnsureSuccess(node, Id);
-            var type = _nodeFinder.FindFirst(node, ValueId).Match.ToString();
+            var type = _nodeFinder.FindFirst(node, _valueId).Match.ToString();
             return type;
         }
 

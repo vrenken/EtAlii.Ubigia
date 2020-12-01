@@ -11,7 +11,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IIntegerValueParser _integerValueParser;
-        private const string LimitTextId = "LimitText";
+        private const string _limitTextId = "LimitText";
 
         public TraversingWildcardPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -25,7 +25,7 @@
             Parser = new LpsParser(Id, true,
                 Lp.One(c => c == '*') +
 
-                new LpsParser(LimitTextId, true, _integerValueParser.Parser).Maybe() +
+                new LpsParser(_limitTextId, true, _integerValueParser.Parser).Maybe() +
                 Lp.One(c => c == '*'));
         }
 

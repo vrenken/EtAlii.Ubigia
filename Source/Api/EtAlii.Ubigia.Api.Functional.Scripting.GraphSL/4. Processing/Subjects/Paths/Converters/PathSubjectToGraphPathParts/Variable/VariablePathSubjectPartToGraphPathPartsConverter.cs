@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
     internal class VariablePathSubjectPartToGraphPathPartsConverter : IVariablePathSubjectPartToGraphPathPartsConverter
     {
-        private const string Id = "VariablePathSubjectPart";
+        private const string _id = "VariablePathSubjectPart";
         private readonly IScriptProcessingContext _context;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             _context = context;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
-            _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
+            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
 
             _nodeValidator = nodeValidator;
 
@@ -128,7 +128,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             // TODO: This class should also be able to cope with rooted paths.
             var node = _nonRootedParser.Do(value);
-            _nodeValidator.EnsureSuccess(node, Id, false);
+            _nodeValidator.EnsureSuccess(node, _id, false);
             var childNode = node.Children.Single();
 
             return ParsePath(value, variableName, childNode);

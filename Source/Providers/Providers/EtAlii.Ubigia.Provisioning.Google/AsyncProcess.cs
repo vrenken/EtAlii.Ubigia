@@ -9,14 +9,14 @@ namespace EtAlii.Ubigia.Provisioning.Google
     public abstract class AsyncProcess
     {
         private Task _task;
-        private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
+        private readonly AutoResetEvent _stopEvent = new(false);
         private readonly WaitHandle[] _events;
 
         protected TimeSpan Interval { get; set; } = TimeSpan.FromMinutes(1);
 
         public event Action<Exception> Error; 
 
-        private static readonly object LockObject = new object(); 
+        private static readonly object _lockObject = new(); 
 
         protected AsyncProcess()
         {
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
             {
                 try
                 {
-                    lock (LockObject)
+                    lock (_lockObject)
                     {
                         var task = Run();
                         task.Wait();

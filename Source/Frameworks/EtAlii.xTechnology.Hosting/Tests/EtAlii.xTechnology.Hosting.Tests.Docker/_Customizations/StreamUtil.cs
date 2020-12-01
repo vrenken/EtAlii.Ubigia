@@ -10,7 +10,7 @@ namespace Docker.DotNet.Models
 
     internal static class StreamUtil
     {
-        private static readonly JsonSerializer JsonSerializer = new JsonSerializer();
+        private static readonly JsonSerializer _jsonSerializer = new();
         
         internal static async Task MonitorStreamAsync(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<string> progress)
         {
@@ -43,7 +43,7 @@ namespace Docker.DotNet.Models
                         string line;
                         while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                         {
-                            var prog = JsonSerializer.DeserializeObject<T>(line);
+                            var prog = _jsonSerializer.DeserializeObject<T>(line);
                             if (prog == null) continue;
 
                             progress.Report(prog);
@@ -75,7 +75,7 @@ namespace Docker.DotNet.Models
                         string line;
                         while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                         {
-                            var prog = JsonSerializer.DeserializeObject<T>(line);
+                            var prog = _jsonSerializer.DeserializeObject<T>(line);
                             if (prog == null) continue;
 
                             progress.Report(prog);

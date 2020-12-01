@@ -9,9 +9,9 @@
     {
         public bool Stored { get; internal set; }
 
-        private static readonly char[] TrimChars = new[] {' ', '-'};
+        private static readonly char[] _trimChars = {' ', '-'};
 
-        private static readonly IEqualityComparer<object> ValueComparer = EqualityComparer<object>.Default;
+        private static readonly IEqualityComparer<object> _valueComparer = EqualityComparer<object>.Default;
 
         public PropertyDictionary()
         {
@@ -152,7 +152,7 @@
             foreach (var pair in this)
             {
                 var otherValue = other[pair.Key];
-                if (!ValueComparer.Equals(pair.Value, otherValue))
+                if (!_valueComparer.Equals(pair.Value, otherValue))
                 {
                     return false;
                 }
@@ -168,7 +168,7 @@
                 sb.AppendFormat("{0}: \"{1}\" - ", kvp.Key, kvp.Value);
             }
 
-            return sb.ToString().TrimEnd(TrimChars);
+            return sb.ToString().TrimEnd(_trimChars);
         }
     }
 }

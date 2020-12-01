@@ -9,8 +9,6 @@
     {
         public string Id { get; } = "StructureQuery";
 
-        private const string ChildStructureQueryId = "ChildStructureQuery"; 
-        private const string ChildStructureQueryHeaderId = "ChildStructureQueryHeader"; 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
@@ -18,10 +16,12 @@
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly INodeValueFragmentParser _nodeValueFragmentParser;
         private readonly IRequirementParser _requirementParser;
-
         private readonly INodeAnnotationsParser _annotationParser;
-        private const string NameId = "NameId";
-        private const string FragmentsId = "FragmentsId";
+
+        private const string _nameId = "NameId";
+        private const string _fragmentsId = "FragmentsId";
+        private const string _childStructureQueryId = "ChildStructureQuery"; 
+        private const string _childStructureQueryHeaderId = "ChildStructureQueryHeader"; 
 
         public StructureFragmentParser(
             INodeValidator nodeValidator,
@@ -43,9 +43,9 @@
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var structureQueryParser = new LpsParser(ChildStructureQueryId);
+            var structureQueryParser = new LpsParser(_childStructureQueryId);
 
-            var fragmentsParser = new LpsParser(FragmentsId, true, 
+            var fragmentsParser = new LpsParser(_fragmentsId, true, 
                 structureQueryParser | 
                 _nodeValueFragmentParser.Parser); //.Debug("VQ", true)
             
@@ -63,10 +63,10 @@
                 fragments.Maybe(),
                 newLineParser.OptionalMultiple + end);
 
-            var name = Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId);
+            var name = Lp.Name().Id(_nameId) | _quotedTextParser.Parser.Wrap(_nameId);
 
             var parserBody = (_requirementParser.Parser + name + newLineParser.OptionalMultiple +
-                             _annotationParser.Parser.Maybe()).Wrap(ChildStructureQueryHeaderId) + newLineParser.OptionalMultiple +
+                             _annotationParser.Parser.Maybe()).Wrap(_childStructureQueryHeaderId) + newLineParser.OptionalMultiple +
                              scopedFragments;
 
             Parser = new LpsParser(Id, true, parserBody + newLineParser.OptionalMultiple);
@@ -83,19 +83,19 @@
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
-            var headerNode = _nodeFinder.FindFirst(node, ChildStructureQueryHeaderId);
+            var headerNode = _nodeFinder.FindFirst(node, _childStructureQueryHeaderId);
             
             var requirementNode = _nodeFinder.FindFirst(headerNode, _requirementParser.Id);
             var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
 
-            var nameNode = _nodeFinder.FindFirst(headerNode, NameId);
+            var nameNode = _nodeFinder.FindFirst(headerNode, _nameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
             
             var annotationMatch = _nodeFinder.FindFirst(headerNode, _annotationParser.Id);
             var annotation = annotationMatch != null ? _annotationParser.Parse(annotationMatch) : null;
 
-            var fragmentNodes = _nodeFinder.FindAll(node, FragmentsId);
+            var fragmentNodes = _nodeFinder.FindAll(node, _fragmentsId);
 
             var valueFragments = new List<ValueFragment>();
             var structureFragments = new List<StructureFragment>();
@@ -108,9 +108,9 @@
                     var valueQuery = _nodeValueFragmentParser.Parse(child);
                     valueFragments.Add(valueQuery);
                 }
-                else if (child.Id == ChildStructureQueryId)
+                else if (child.Id == _childStructureQueryId)
                 {
-                    var childStructureQuery = Parse(child, ChildStructureQueryId, true);
+                    var childStructureQuery = Parse(child, _childStructureQueryId, true);
                     structureFragments.Add(childStructureQuery);
                 }
             }

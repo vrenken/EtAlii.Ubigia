@@ -4,14 +4,14 @@
 
     public class DefaultContainerProvider : IContainerProvider
     {
-        private const string EntriesFolderName = "Entries";
+        private const string _entriesFolderName = "Entries";
 
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId)
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId.ToString(),
                 accountId.ToString(),
                 spaceId.ToString()
@@ -23,7 +23,7 @@
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId.ToString(),
                 accountId.ToString(),
                 spaceId.ToString(),
@@ -38,7 +38,7 @@
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -53,7 +53,7 @@
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -91,7 +91,7 @@
             {
                 paths = new[] 
                 {
-                    EntriesFolderName,
+                    _entriesFolderName,
                     id.Storage.ToString(),
                     id.Account.ToString(),
                     id.Space.ToString(),
@@ -101,7 +101,7 @@
             {
                 paths = new[] 
                 {
-                    EntriesFolderName,
+                    _entriesFolderName,
                     id.Storage.ToString(),
                     id.Account.ToString(),
                     id.Space.ToString(),

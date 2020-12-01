@@ -8,7 +8,7 @@
     {
         public Relation Parent2 => ((IComponentEditableEntry) this).Parent2Component.Relation;
 
-        public IEnumerable<Relation> Children2 { get { return _children2.SelectMany(component => component.Relations); } }
+        public IEnumerable<Relation> Children2 => _children2.SelectMany(component => component.Relations);
         private readonly Children2ComponentCollection _children2;
 
 

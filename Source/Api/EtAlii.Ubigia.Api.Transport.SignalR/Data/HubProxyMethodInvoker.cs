@@ -7,7 +7,7 @@
 
     public class HubProxyMethodInvoker : IHubProxyMethodInvoker
     {
-        private const string ErrorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'";
+        private const string _errorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'";
 
         public async IAsyncEnumerable<T> Stream<T>(HubConnection connection, string proxyName, string methodName, params object[] parameters)
             where T: class
@@ -44,12 +44,12 @@
                 }
                 catch (AggregateException e)
                 {
-                    var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                    var message = string.Format(_errorMessageFormat, methodName, proxyName);
                     throw new InvalidInfrastructureOperationException(message, e.InnerException);
                 }
                 catch (Exception e)
                 {
-                    var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                    var message = string.Format(_errorMessageFormat, methodName, proxyName);
                     throw new InvalidInfrastructureOperationException(message, e);
                 }
                 if (item != null)
@@ -79,12 +79,12 @@
             }
             catch (AggregateException e)
             {
-                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(_errorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(_errorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }
@@ -109,12 +109,12 @@
             }
             catch (AggregateException e)
             {
-                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(_errorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(_errorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }

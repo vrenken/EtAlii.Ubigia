@@ -9,25 +9,25 @@
 
     public static class BlobPartHelper
     {
-        private static readonly Dictionary<Type, string> BlobPartNames = new Dictionary<Type, string>(); 
-        private static readonly object[] EmptyConstructorParameters = Array.Empty<object>();
+        private static readonly Dictionary<Type, string> _blobPartNames = new(); 
+        private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
-        private static readonly object LockObject = new object();
+        private static readonly object _lockObject = new();
 
         public static string GetName<T>()
             where T : BlobPartBase
         {
-            lock (LockObject)
+            lock (_lockObject)
             {
                 var type = typeof(T);
-                if (!BlobPartNames.TryGetValue(type, out var name))
+                if (!_blobPartNames.TryGetValue(type, out var name))
                 {
                     var constructor = type.GetTypeInfo()
                         .DeclaredConstructors
                         .First(c => !c.IsStatic && c.GetParameters().Length == 0);
-                    var instance = (T) constructor.Invoke(EmptyConstructorParameters);
+                    var instance = (T) constructor.Invoke(_emptyConstructorParameters);
                     name = instance.Name;
-                    BlobPartNames[type] = name;
+                    _blobPartNames[type] = name;
                 }
                 return name;
             }

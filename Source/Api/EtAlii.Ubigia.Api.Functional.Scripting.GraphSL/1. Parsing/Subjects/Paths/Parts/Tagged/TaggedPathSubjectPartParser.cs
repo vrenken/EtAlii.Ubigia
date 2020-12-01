@@ -10,8 +10,8 @@
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const string NameTextId = "NameText";
-        private const string TagTextId = "TagText";
+        private const string _nameTextId = "NameText";
+        private const string _tagTextId = "TagText";
 
         public TaggedPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -22,15 +22,15 @@
             _nodeFinder = nodeFinder;
 
             var nameTextParser = new LpsParser("Name", true,
-                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(NameTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(NameTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(NameTextId) + Lp.One(c => c == '\''))
+                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(_nameTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_nameTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_nameTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             var tagTextParser = new LpsParser("Tag", true,
-                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(TagTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(TagTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(TagTextId) + Lp.One(c => c == '\''))
+                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(_tagTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_tagTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_tagTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             Parser = new LpsParser(Id, true,
@@ -48,8 +48,8 @@
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var nameText = GetMatch(node, NameTextId);
-            var tagText = GetMatch(node, TagTextId);
+            var nameText = GetMatch(node, _nameTextId);
+            var tagText = GetMatch(node, _tagTextId);
             return new TaggedPathSubjectPart(nameText, tagText);
         }
 

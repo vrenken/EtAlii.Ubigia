@@ -6,7 +6,7 @@
 
     internal class ScriptParser : IScriptParser
     {
-        private const string Id = "Script";
+        private const string _id = "Script";
 
 //        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
 
@@ -28,7 +28,7 @@
             var firstParser = newLineParser.Optional + sequenceParser.Parser;
             var nextParser = newLineParser.Required + sequenceParser.Parser;
 
-            _parser = new LpsParser(Id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional); 
+            _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional); 
         }
 
         public ScriptParseResult Parse(string text)
@@ -46,7 +46,7 @@
             {
                 var node = _parser.Do(text);
 
-                _nodeValidator.EnsureSuccess(node, Id, false);
+                _nodeValidator.EnsureSuccess(node, _id, false);
 
                 //var sequences = node.Children
                 //    .Where(n => n.Id == SequenceParser.Id)

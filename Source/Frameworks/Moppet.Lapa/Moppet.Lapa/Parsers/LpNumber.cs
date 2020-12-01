@@ -45,17 +45,17 @@ namespace Moppet.Lapa.Parsers
         /// <summary>
         /// Function to determine the affiliation to the character hexadecimal number.
         /// </summary>
-        public static Func<char, bool> IsHex { get { return (c) => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F'); } }
+        public static Func<char, bool> IsHex => c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
 
         /// <summary>
         /// Function to determine the accessories symbol to the octal number.
         /// </summary>
-        public static Func<char, bool> IsOctal { get { return c => c >= '0' && c <= '8'; } }
+        public static Func<char, bool> IsOctal => c => c >= '0' && c <= '8';
 
         /// <summary>
         /// Function to determine the accessories symbol of the Roman number.
         /// </summary>
-        public static Func<char, bool> IsRoman { get { return c => c == 'I' || c == 'V' || c == 'X' || c == 'L' || c == 'C' || c == 'D' || c == 'M'; } }
+        public static Func<char, bool> IsRoman => c => c == 'I' || c == 'V' || c == 'X' || c == 'L' || c == 'C' || c == 'D' || c == 'M';
 
         /// <summary>
         /// The parser is a simple decimal numbers with a positive test of its value.
@@ -79,13 +79,13 @@ namespace Moppet.Lapa.Parsers
         public static LpsParser Positive(long minValue, long maxValue, int minDigits = 1)
         {
             if (minValue > maxValue)
-                throw new ArgumentOutOfRangeException("maxValue", "maxValue must be greater or equal minValue.");
+                throw new ArgumentOutOfRangeException(nameof(maxValue), "maxValue must be greater or equal minValue.");
 
             if (minValue < 0)
-                throw new ArgumentOutOfRangeException("minValue");
+                throw new ArgumentOutOfRangeException(nameof(minValue));
             
             if (minDigits < 1)
-                throw new ArgumentOutOfRangeException("minDigits");
+                throw new ArgumentOutOfRangeException(nameof(minDigits));
 
             var maxDigits = 1;
             var rest = maxValue / 10;

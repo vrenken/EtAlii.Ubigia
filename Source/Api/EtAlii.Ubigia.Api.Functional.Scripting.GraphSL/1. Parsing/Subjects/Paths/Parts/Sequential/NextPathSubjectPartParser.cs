@@ -10,8 +10,8 @@
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string RelationId = @">";
-        private const string RelationDescription = @"NEXT_OF";
+        private const string _relationId = @">";
+        private const string _relationDescription = @"NEXT_OF";
 
         public NextPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -19,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
 
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
             Parser = new LpsParser(Id, true, relationParser);
         }
 

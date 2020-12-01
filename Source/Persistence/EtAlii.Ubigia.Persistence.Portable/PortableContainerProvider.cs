@@ -4,13 +4,13 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
     public class PortableContainerProvider : IContainerProvider
     {
-        private const string EntriesFolderName = "Entries";
+        private const string _entriesFolderName = "Entries";
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId)
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 Base36Convert.ToString(storageId),
                 Base36Convert.ToString(accountId),
                 Base36Convert.ToString(spaceId)
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 Base36Convert.ToString(storageId),
                 Base36Convert.ToString(accountId),
                 Base36Convert.ToString(spaceId),
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
         {
             var paths = new[] 
             {
-                EntriesFolderName,
+                _entriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
             {
                 paths = new[] 
                 {
-                    EntriesFolderName,
+                    _entriesFolderName,
                     Base36Convert.ToString(id.Storage),
                     Base36Convert.ToString(id.Account),
                     Base36Convert.ToString(id.Space),
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
             {
                 paths = new[] 
                 {
-                    EntriesFolderName,
+                    _entriesFolderName,
                     Base36Convert.ToString(id.Storage),
                     Base36Convert.ToString(id.Account),
                     Base36Convert.ToString(id.Space),

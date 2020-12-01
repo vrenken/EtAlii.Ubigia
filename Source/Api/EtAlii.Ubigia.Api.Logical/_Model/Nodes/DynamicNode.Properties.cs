@@ -65,17 +65,17 @@
 
         public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
-            throw new NotSupportedException(NotSupportedErrorMessage);
+            throw new NotSupportedException(_notSupportedErrorMessage);
         }
 
         public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
         {
-            throw new NotSupportedException(NotSupportedErrorMessage);
+            throw new NotSupportedException(_notSupportedErrorMessage);
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            throw new NotSupportedException(NotSupportedErrorMessage);
+            throw new NotSupportedException(_notSupportedErrorMessage);
         }
 
         #endregion Not supported actions.

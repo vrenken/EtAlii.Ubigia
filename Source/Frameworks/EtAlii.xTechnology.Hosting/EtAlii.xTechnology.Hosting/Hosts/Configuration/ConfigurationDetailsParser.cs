@@ -7,17 +7,17 @@ namespace EtAlii.xTechnology.Hosting
 
 	public class ConfigurationDetailsParser
 	{
-		private const string FolderPattern = @"(?<={{FOLDER:)(\w+?)@([0-9A-Za-z \\%]+?)(?=}})";
-		private const string PortPattern = @"(?<={{PORT:)(\w+?)@(\d+?)(?=}})";
-		private const string PathPattern = @"(?<={{PATH:)(\w+?)@([0-9A-Za-z\/]*?)(?=}})";
-		private const string HostPattern = @"(?<={{HOST:)(\w+?)@([0-9A-Za-z.]+?)(?=}})";
+		private const string _folderPattern = @"(?<={{FOLDER:)(\w+?)@([0-9A-Za-z \\%]+?)(?=}})";
+		private const string _portPattern = @"(?<={{PORT:)(\w+?)@(\d+?)(?=}})";
+		private const string _pathPattern = @"(?<={{PATH:)(\w+?)@([0-9A-Za-z\/]*?)(?=}})";
+		private const string _hostPattern = @"(?<={{HOST:)(\w+?)@([0-9A-Za-z.]+?)(?=}})";
 		
 	    public async Task<ConfigurationDetails> Parse(string configurationFile, bool replace = true)
 	    {
 		    var configuration = await File.ReadAllTextAsync(configurationFile).ConfigureAwait(false);
 
 		    // Folder matching.
-		    var folderMatches = Regex.Matches(configuration, FolderPattern);
+		    var folderMatches = Regex.Matches(configuration, _folderPattern);
 		    var folders = new Dictionary<string, string>();
 		    
 		    foreach (Match match in folderMatches)
@@ -33,7 +33,7 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Host matching.
-		    var hostMatches = Regex.Matches(configuration, HostPattern);
+		    var hostMatches = Regex.Matches(configuration, _hostPattern);
 		    var hosts = new Dictionary<string, string>();
 		    
 		    foreach (Match match in hostMatches)
@@ -49,7 +49,7 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Port matching.
-		    var portMatches = Regex.Matches(configuration, PortPattern);
+		    var portMatches = Regex.Matches(configuration, _portPattern);
 		    var ports = new Dictionary<string, int>();
 		    
 		    foreach (Match match in portMatches)
@@ -66,7 +66,7 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Path matching.
-		    var pathMatches = Regex.Matches(configuration, PathPattern);
+		    var pathMatches = Regex.Matches(configuration, _pathPattern);
 		    var paths = new Dictionary<string, string>();
 		    
 		    foreach (Match match in pathMatches)

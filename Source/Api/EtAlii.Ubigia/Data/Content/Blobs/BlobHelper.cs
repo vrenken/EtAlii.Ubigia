@@ -7,26 +7,26 @@
 
     public static class BlobHelper
     {
-        private static readonly Dictionary<Type, string> BlobNames = new();
-        private static readonly object[] EmptyConstructorParameters = Array.Empty<object>(); 
+        private static readonly Dictionary<Type, string> _blobNames = new();
+        private static readonly object[] _emptyConstructorParameters = Array.Empty<object>(); 
 
-        private static readonly object LockObject = new();
+        private static readonly object _lockObject = new();
         
         public static string GetName<T>()
             where T : BlobBase
         {
-            lock(LockObject)
+            lock(_lockObject)
             {
                 var type = typeof(T);
-                if (!BlobNames.TryGetValue(type, out var name))
+                if (!_blobNames.TryGetValue(type, out var name))
                 {
                     var constructor = type.GetTypeInfo()
                         .DeclaredConstructors
                         .Where(c => !c.IsStatic)
                         .First(c => c.GetParameters().Length == 0);
-                    var instance = (T)constructor.Invoke(EmptyConstructorParameters);
+                    var instance = (T)constructor.Invoke(_emptyConstructorParameters);
                     name = instance.Name;
-                    BlobNames[type] = name;
+                    _blobNames[type] = name;
                 }
                 return name;
             }

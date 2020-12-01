@@ -7,8 +7,8 @@
 
     public static class ComponentHelper
     {
-        private static readonly Dictionary<Type, string> ComponentNames = new Dictionary<Type, string>(); 
-        private static readonly object[] EmptyConstructorParameters = Array.Empty<object>();
+        private static readonly Dictionary<Type, string> _componentNames = new(); 
+        private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         /// <summary>
         /// TODO: this method could be completely replaced by the Generic GetName method.
@@ -17,7 +17,7 @@
         /// <returns></returns>
         public static string GetName(IComponent containerComponent)
         {
-            return ((ComponentBase)containerComponent).GetName();
+            return ((ComponentBase)containerComponent).Name;
         }
 
         public static string GetName<T>()
@@ -25,14 +25,14 @@
         {
             var type = typeof(T);
 
-            if (!ComponentNames.TryGetValue(type, out var name))
+            if (!_componentNames.TryGetValue(type, out var name))
             {
                 var constructor = type.GetTypeInfo()
                                       .DeclaredConstructors
                                       .First(c => !c.IsStatic && c.GetParameters().Length == 0);
-                var instance = (T)constructor.Invoke(EmptyConstructorParameters);
-                name = instance.GetName();
-                ComponentNames[type] = name;
+                var instance = (T)constructor.Invoke(_emptyConstructorParameters);
+                name = instance.Name;
+                _componentNames[type] = name;
             }
             return name;
         }
