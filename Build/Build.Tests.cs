@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Pipelines
         RelativePath FrameworkMoppetLapaDirectory => (RelativePath)"Frameworks" / "Moppet.Lapa";
         RelativePath FrameworkHashLibDirectory => (RelativePath)"Frameworks" / "HashLib";
         
-        const int DegreeOfParallelismOnServerTests = 3;
+        const int DegreeOfParallelismOnServerTests = 5;
         const int DegreeOfParallelismOnLocalTests = 16;
 
         Target Test => _ => _
