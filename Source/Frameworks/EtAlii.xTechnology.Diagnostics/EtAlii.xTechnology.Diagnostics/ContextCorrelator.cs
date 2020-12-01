@@ -10,10 +10,10 @@ namespace EtAlii.xTechnology.Diagnostics
     {
         private static ImmutableDictionary<string, object> Items
         {
-            get => InternalItems.Value ?? (InternalItems.Value = ImmutableDictionary<string, object>.Empty);
-            set => InternalItems.Value = value;
+            get => _internalItems.Value ?? (_internalItems.Value = ImmutableDictionary<string, object>.Empty);
+            set => _internalItems.Value = value;
         }
-        private static readonly AsyncLocal<ImmutableDictionary<string, object>> InternalItems = new AsyncLocal<ImmutableDictionary<string, object>>();
+        private static readonly AsyncLocal<ImmutableDictionary<string, object>> _internalItems = new();
 
         public static object GetValue(string key) => Items[key];
 

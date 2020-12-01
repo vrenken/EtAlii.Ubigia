@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                 case UbigiaTableExpression ubigiaTableExpression:
                     return Expression.Call(
-                        TableMethodInfo,
+                        _tableMethodInfo,
                         QueryCompilationContext.QueryContextParameter,
                         Expression.Constant(ubigiaTableExpression.EntityType));
             }
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     QueryCompilationContext.QueryTrackingBehavior == QueryTrackingBehavior.NoTrackingWithIdentityResolution));
         }
 
-        private static readonly MethodInfo TableMethodInfo
+        private static readonly MethodInfo _tableMethodInfo
             = typeof(UbigiaShapedQueryCompilingExpressionVisitor).GetTypeInfo()
                 .GetDeclaredMethod(nameof(Table));
 

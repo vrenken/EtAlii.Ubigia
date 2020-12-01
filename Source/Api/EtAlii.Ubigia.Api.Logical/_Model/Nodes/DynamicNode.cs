@@ -5,7 +5,7 @@
 
     public sealed partial class DynamicNode : DynamicObject, IInternalNode
     {
-        private const string NotSupportedErrorMessage = "This action is not supported on DynamicNode instances";
+        private const string _notSupportedErrorMessage = "This action is not supported on DynamicNode instances";
 
         // TODO: There should be no properties on the Node base class.
 

@@ -2,7 +2,7 @@
 {
     public class ContentPartCalculator : IContentPartCalculator
     {
-        private const ulong BytesInMegaByte = 1024 * 1024;
+        private const ulong _bytesInMegaByte = 1024 * 1024;
 
         public ulong GetRequiredParts(ulong totalBytes)
         {
@@ -16,7 +16,7 @@
 
         public ulong GetPartSize(ulong totalBytes)
         {
-            return BytesInMegaByte;
+            return _bytesInMegaByte;
         }
 
 

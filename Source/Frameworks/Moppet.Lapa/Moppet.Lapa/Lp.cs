@@ -442,41 +442,29 @@ namespace Moppet.Lapa
 		/// End of the text block, ie successful returns an empty line if the balance is empty.
 		/// </summary>
 		/// <returns>Tekstovogo parser thread blocks.</returns>
-		public static LpsParser End
-		{
-            get { return new LpsParser((text) => text.Length == 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text)); }
-		}
+		public static LpsParser End => new(text => text.Length == 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
 
         /// <summary>
         /// Successful returns an empty line if there is some more text.
         /// </summary>
         /// <returns>parser.</returns>
-        public static LpsParser NotEnd
-        {
-            get { return new LpsParser((text) => text.Length > 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text)); }
-        }
+        public static LpsParser NotEnd => new(text => text.Length > 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
 
-		/// <summary>
+        /// <summary>
 		/// Parser empty successful match. 
 		/// Always returns a blank line.
         /// </summary>
 		/// <returns>parser.</returns>
-		public static LpsParser Empty
-		{
-            get { return new LpsParser("Empty", (text) => new LpNode(new LpText(text.Source, text.Index, 0), text)); }
-		}
+		public static LpsParser Empty => new("Empty", text => new LpNode(new LpText(text.Source, text.Index, 0), text));
 
         /// <summary>
         /// Parser that always returns failure have not even begun to parse the text. 
         /// This is good to use a parser combinator satisfying Lp.If.
         /// </summary>
         /// <returns>parser.</returns>
-        public static LpsParser Fail
-        {
-            get { return new LpsParser("Fail", (p) => new LpNode(p)); }
-        }
+        public static LpsParser Fail => new("Fail", p => new LpNode(p));
 
-		/// <summary>
+        /// <summary>
         /// Returns the maximum length of line, or null. 
         /// Match all must belong to one source.
         /// </summary>
@@ -1788,7 +1776,7 @@ namespace Moppet.Lapa
                 list.Add(node);
                 return;
             }
-            var childrens = node.Children.GetEnumerator();
+            using var childrens = node.Children.GetEnumerator();
             if (!childrens.MoveNext())
             {
                 list.Add(node);

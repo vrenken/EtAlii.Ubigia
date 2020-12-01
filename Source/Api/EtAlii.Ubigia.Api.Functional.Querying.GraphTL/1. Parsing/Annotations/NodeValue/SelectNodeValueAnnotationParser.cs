@@ -10,7 +10,7 @@
         public string Id { get; } = nameof(SelectNodeValueAnnotation);
         public LpsParser Parser { get; }
         
-        private const string SourceId = "Source";
+        private const string _sourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -31,7 +31,7 @@
 
             // @value(SOURCE)
             // @value()
-            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValue + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
@@ -41,7 +41,7 @@
             _nodeValidator.EnsureSuccess(node, Id);
 
             PathSubject sourcePath = null;
-            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
             if(sourceNode != null)
             {
                 var sourceChildNode = sourceNode.Children.Single();

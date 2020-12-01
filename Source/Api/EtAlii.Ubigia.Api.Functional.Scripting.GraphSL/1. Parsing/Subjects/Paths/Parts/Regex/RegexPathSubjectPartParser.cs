@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const string TextId = "Text";
+        private const string _textId = "Text";
 
         public RegexPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -29,9 +29,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
 
             Parser = new LpsParser
                 (Id, true,
-                Lp.InBrackets(startDoubleQuote, Lp.OneOrMore(c => c != '\"').Id(TextId, true), endDoubleQuote)
+                Lp.InBrackets(startDoubleQuote, Lp.OneOrMore(c => c != '\"').Id(_textId, true), endDoubleQuote)
                     |
-                Lp.InBrackets(startSingleQuote, Lp.OneOrMore(c => c != '\'').Id(TextId, true), endSingleQuote)
+                Lp.InBrackets(startSingleQuote, Lp.OneOrMore(c => c != '\'').Id(_textId, true), endSingleQuote)
                 );
         }
 
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
             return new RegexPathSubjectPart(text);
         }
 

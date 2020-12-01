@@ -8,7 +8,7 @@
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {
-        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder(); 
+        private static readonly ModuleBuilder _moduleBuilder = CreateModuleBuilder(); 
 
         private static ModuleBuilder CreateModuleBuilder()
         {
@@ -20,7 +20,7 @@
         private static TypeInfo BuildInstanceType() 
         {
             var typeName = $"{nameof(DynamicObjectGraphType)}_{Guid.NewGuid():N}";
-            var typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
+            var typeBuilder = _moduleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
             return typeBuilder.CreateTypeInfo();
         }
         

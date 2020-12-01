@@ -6,7 +6,7 @@
 
     public static class DynamicObject
     {
-        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder();  
+        private static readonly ModuleBuilder _moduleBuilder = CreateModuleBuilder();  
 
         private static ModuleBuilder CreateModuleBuilder()
         {
@@ -18,7 +18,7 @@
         public static object CreateInstance(PropertyDictionary properties)
         {
             var typeName = $"{nameof(DynamicObject)}_{Guid.NewGuid():N}";
-            var typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(object));
+            var typeBuilder = _moduleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(object));
 
             foreach (var kvp in properties)
             {

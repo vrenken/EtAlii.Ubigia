@@ -10,8 +10,8 @@
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string RelationId = @"<";
-        private const string RelationDescription = @"PREVIOUS_OF";
+        private const string _relationId = @"<";
+        private const string _relationDescription = @"PREVIOUS_OF";
 
         public PreviousPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -22,7 +22,7 @@
             Parser = new LpsParser
             (
                 Id, true,
-                pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId) +
+                pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId) +
                 Lp.Lookahead(Lp.Not(Lp.ZeroOrMore(' ') + Lp.Char('=')))
             );
 //            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId) +

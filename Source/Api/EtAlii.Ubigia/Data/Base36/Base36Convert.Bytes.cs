@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia
 
         //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
         //but uses all 26 English letters a-z instead of just a-f.
-        private static readonly char[] Alphabet = 
+        private static readonly char[] _alphabet = 
         {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
             'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia
             for(var i = charactersToIterate - 1; i>=0; i--)
             {
                 var character = span[i];
-                var characterValue = (byte)Characters.IndexOf(character);
+                var characterValue = (byte)_characters.IndexOf(character);
                 var characterBits = ToBits(characterValue);
                 for (var m = 0; m < charactersToIterate - i - 1; m++)
                 {
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia
             while (bytes.Any(b => b > 0))
             {
                 bytes = BitShift.Divide(bytes, 36, out var mod);
-                builder.Insert(0, Alphabet[mod]);
+                builder.Insert(0, _alphabet[mod]);
             }
 
             var result = builder

@@ -2,8 +2,8 @@
 {
     public class ParentComponent : RelationComponent
     {
-        protected internal override string GetName() => Name;
-        private const string Name = "Parent";
+        protected internal override string Name => _name;
+        private const string _name = "Parent";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

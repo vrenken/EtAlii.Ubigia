@@ -8,11 +8,11 @@
 
     public sealed partial class Ipv4FreePortFinder
     {
-        public static Ipv4FreePortFinder Current => Instance.Value;
-        private static readonly Lazy<Ipv4FreePortFinder> Instance = new Lazy<Ipv4FreePortFinder>(() => 
+        public static Ipv4FreePortFinder Current => _current.Value;
+        private static readonly Lazy<Ipv4FreePortFinder> _current = new(() => 
         {
-            AppDomain.CurrentDomain.UnhandledException += (_, _) => Instance.Value.Dispose();
-            AppDomain.CurrentDomain.DomainUnload += (_, _) => Instance.Value.Dispose();
+            AppDomain.CurrentDomain.UnhandledException += (_, _) => _current.Value.Dispose();
+            AppDomain.CurrentDomain.DomainUnload += (_, _) => _current.Value.Dispose();
             
             return new Ipv4FreePortFinder();
         });
@@ -43,7 +43,7 @@
         public PortRange Get(PortRange fromRange, ushort numberOfPorts, TimeSpan lease)
         {
             // We want to allow only one thread access to the port range magic at any given moment.
-            using (var _ = new SystemSafeExecutionScope(UniqueId))
+            using (var _ = new SystemSafeExecutionScope(_uniqueId))
             {
                 var result = GetInternal(fromRange, numberOfPorts, lease);
                 return result;

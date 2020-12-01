@@ -18,8 +18,8 @@
         public const string Id = "KeyValuePair";
         string IKeyValuePairParser.Id { get; } = Id;
 
-        private const string KeyId = "Key";
-        private const string ValueId = "Value";
+        private const string _keyId = "Key";
+        private const string _valueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
         private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
@@ -80,22 +80,22 @@
             
             Parser = new LpsParser(Id, true,
                 (
-                    Lp.Name().Id(KeyId) |
-                    _quotedTextParser.Parser.Wrap(KeyId)
+                    Lp.Name().Id(_keyId) |
+                    _quotedTextParser.Parser.Wrap(_keyId)
                 ) +
                 separator +
-                new LpsParser(ValueId, true, _typeParsers).Maybe());
+                new LpsParser(_valueId, true, _typeParsers).Maybe());
         }
 
         public KeyValuePair<string, object> Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
             
-            var keyNode = _nodeFinder.FindFirst(node, KeyId);
+            var keyNode = _nodeFinder.FindFirst(node, _keyId);
             var constantNode = keyNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var key = constantNode == null ? keyNode.Match.ToString() : _quotedTextParser.Parse(constantNode);
 
-            var valueNode = _nodeFinder.FindFirst(node, ValueId);
+            var valueNode = _nodeFinder.FindFirst(node, _valueId);
 
             object value = null;
 

@@ -261,7 +261,7 @@
             AssertEqual(iterations, convertedBytes, originalBytes);
         }
 
-        private static readonly char[] Alphabet = 
+        private static readonly char[] _alphabet = 
         {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
             'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
@@ -281,7 +281,7 @@
                 var characters = new char[4];
                 for (var c = 0; c < characters.Length; c++)
                 {
-                    characters[c] = Alphabet[random.Next(Alphabet.Length)];
+                    characters[c] = _alphabet[random.Next(_alphabet.Length)];
                 }
                 originalStrings.Add(new string(characters));
             }
@@ -316,7 +316,7 @@
                 var characters = new char[4];
                 for (var c = 0; c < characters.Length; c++)
                 {
-                    characters[c] = Alphabet[random.Next(Alphabet.Length)];
+                    characters[c] = _alphabet[random.Next(_alphabet.Length)];
                 }
                 originalStrings.Add(new string(characters));
             }

@@ -26,10 +26,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
     /// </summary>
     public partial class UbigiaQueryExpression : Expression, IPrintableExpression
     {
-        private static readonly ConstructorInfo ValueBufferConstructor = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
+        private static readonly ConstructorInfo _valueBufferConstructor = typeof(ValueBuffer).GetConstructors().Single(ci => ci.GetParameters().Length == 1);
 
         // ReSharper disable once UnusedMember.Local
-        private static readonly PropertyInfo ValueBufferCountMemberInfo = typeof(ValueBuffer).GetProperty(nameof(ValueBuffer.Count));
+        private static readonly PropertyInfo _valueBufferCountMemberInfo = typeof(ValueBuffer).GetProperty(nameof(ValueBuffer.Count));
 
         private readonly List<Expression> _valueBufferSlots = new();
 
@@ -162,7 +162,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         typeof(ResultEnumerable).GetConstructors().Single(),
                         Lambda<Func<ValueBuffer>>(
                             New(
-                                ValueBufferConstructor,
+                                _valueBufferConstructor,
                                 NewArrayInit(typeof(object), ServerQueryExpression))));
                 }
                 else
@@ -344,7 +344,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -413,7 +413,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -430,7 +430,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             ServerQueryExpression = Call(
                 EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                 ServerQueryExpression,
-                New(ValueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
+                New(_valueBufferConstructor, NewArrayInit(typeof(object), Enumerable.Repeat(Constant(null), _valueBufferSlots.Count))));
 
             _valueBufferSlots.Clear();
         }
@@ -476,7 +476,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var selectorLambda = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         _valueBufferSlots
@@ -513,7 +513,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             groupingKey = GetGroupingKey(groupingKey, groupingKeyExpressions, groupingKeyAccessExpression);
             var keySelector = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         groupingKeyExpressions.Select(e => e.Type.IsValueType ? Convert(e, typeof(object)) : e))),
@@ -651,7 +651,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -779,7 +779,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        ValueBufferConstructor,
+                        _valueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
                             Enumerable.Range(0, index - outerIndex).Select(_ => Constant(null))))),
@@ -787,7 +787,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             resultSelector = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -888,7 +888,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             var resultSelector = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions
@@ -992,7 +992,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     EnumerableMethods.DefaultIfEmptyWithArgument.MakeGenericMethod(typeof(ValueBuffer)),
                     collection,
                     New(
-                        ValueBufferConstructor,
+                        _valueBufferConstructor,
                         NewArrayInit(
                             typeof(object),
                             Enumerable.Range(0, resultValueBufferExpressions.Count - outerIndex).Select(_ => Constant(null))))),
@@ -1000,7 +1000,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
             resultSelector = Lambda(
                 New(
-                    ValueBufferConstructor,
+                    _valueBufferConstructor,
                     NewArrayInit(
                         typeof(object),
                         resultValueBufferExpressions

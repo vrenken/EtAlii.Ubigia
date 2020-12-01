@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
 
     public class TestHostFixture : BaseFixture<TestHostFixtureOptions>
     {
-        private const string LocalImageName = "etalii-xtechnology-hosting-dockerhost:latest";
+        private const string _localImageName = "etalii-xtechnology-hosting-dockerhost:latest";
         public TestHostFixture() : base("EtAlii.xTechnology.Hosting.Test", 1)
         {
         }
@@ -86,7 +86,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Docker
                 AttachStdin = true,
                 AttachStderr = true,
                 OpenStdin = true,
-                Image = LocalImageName,
+                Image = _localImageName,
                 HostConfig = new HostConfig
                 {
                     AutoRemove = true,

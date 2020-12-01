@@ -12,25 +12,25 @@
     /// </summary>
     public static class LpLex
     {
-        private static readonly MethodInfo StringGetCharsMethodInfo;
+        private static readonly MethodInfo _stringGetCharsMethodInfo;
 
-        private static readonly ConstructorInfo LpNodeTextConstructorInfo;
-        private static readonly ConstructorInfo LpNodeTextIntStringConstructorInfo;
+        private static readonly ConstructorInfo _lpNodeTextConstructorInfo;
+        private static readonly ConstructorInfo _lpNodeTextIntStringConstructorInfo;
 
 
         static LpLex()
         {
             var stringTypeInfo = typeof (string).GetTypeInfo();
-            StringGetCharsMethodInfo = stringTypeInfo.GetDeclaredMethod("get_Chars");
+            _stringGetCharsMethodInfo = stringTypeInfo.GetDeclaredMethod("get_Chars");
 
             var lpNodeTypeInfo = typeof (LpNode).GetTypeInfo();
-            LpNodeTextConstructorInfo = lpNodeTypeInfo.DeclaredConstructors.Single(
+            _lpNodeTextConstructorInfo = lpNodeTypeInfo.DeclaredConstructors.Single(
                 c =>
                 {
                     var parameters = c.GetParameters();
                     return parameters.Length == 1 && parameters[0].ParameterType == typeof (LpText);
                 });
-            LpNodeTextIntStringConstructorInfo = lpNodeTypeInfo.DeclaredConstructors.Single(
+            _lpNodeTextIntStringConstructorInfo = lpNodeTypeInfo.DeclaredConstructors.Single(
                 c =>
                 {
                     var parameters = c.GetParameters();
@@ -74,7 +74,7 @@
                     Expression.LessThan(cur, end),
                     Expression.Block
                     (
-                        Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                        Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
                         Expression.IfThen                                                                              // if (predicate(ch)) { ind++; cur++; goto loopLabel; }
                         (
                             pred, Expression.Block
@@ -129,7 +129,7 @@
                     Expression.LessThan(cur, end),
                     Expression.Block
                     (
-                        Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                        Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
                         Expression.IfThen                                                                              // if (predicate(ch)) { ind++; cur++; goto loopLabel; }
                         (
                             pred, Expression.Block
@@ -192,7 +192,7 @@
                     Expression.LessThan(cur, end),
                     Expression.Block
                     (
-                        Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                        Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
                         Expression.IfThen                                                                              // if (predicate(ch)) { ind++; cur++; goto loopLabel; }
                         (
                             pred, Expression.Block
@@ -255,7 +255,7 @@
 
                 // if (end <= 0) return LpNode.Fail(text)
                 Expression.IfThen(Expression.LessThanOrEqual(end, Expression.Constant(0)), Expression.Return(returnTarget, LpNode_Fail(text))),
-                Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
 
                 // if (!first(ch)) return LpNode.Fail(text)
                 Expression.IfThen(Expression.Not(first), Expression.Return(returnTarget, LpNode_Fail(text))),
@@ -270,7 +270,7 @@
                     Expression.LessThan(cur, end),
                     Expression.Block
                     (
-                        Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                        Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
                         Expression.IfThen                                                                              // if (next(ch)) { ind++; cur++; goto loopLabel; }
                         (
                             next, Expression.Block
@@ -341,7 +341,7 @@
 
                 // if (end <= 0) return LpNode.Fail(text)
                 Expression.IfThen(Expression.LessThanOrEqual(end, Expression.Constant(0)), Expression.Return(returnTarget, LpNode_Fail(text))),
-                Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)), // ch = str[ind]
+                Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)), // ch = str[ind]
 
                 // if (!first(ch)) return LpNode.Fail(text)
                 Expression.IfThen(Expression.Not(first), Expression.Return(returnTarget, LpNode_Fail(text))),
@@ -357,7 +357,7 @@
                     Expression.Block
                     (
                         // ch = str[ind]
-                        Expression.Assign(ch, Expression.Call(str, StringGetCharsMethodInfo, ind)),
+                        Expression.Assign(ch, Expression.Call(str, _stringGetCharsMethodInfo, ind)),
 
                         // if (last(ch)) { dash = false; ind++; cur++; goto loopLabel; }
                         Expression.IfThenElse
@@ -452,7 +452,7 @@
                     Expression.GreaterThan(Expression.PropertyOrField(text, "Length"), Expression.Constant(0)),
                     Expression.Block
                     (
-                        Expression.Assign(ch, Expression.Call(LpText_Source(text), StringGetCharsMethodInfo, LpText_Index(text))), // ch = text.Source[text.Index]
+                        Expression.Assign(ch, Expression.Call(LpText_Source(text), _stringGetCharsMethodInfo, LpText_Index(text))), // ch = text.Source[text.Index]
                         Expression.IfThen(pred, Expression.Return(returnTarget, LpNode_Take(text, Expression.Constant(1))))
                     )
                 ),
@@ -497,7 +497,7 @@
         private static Expression LpNode_Take(Expression text, Expression len)
         {
             // return Expression.Call(typeof(LpNode).GetMethod("Take", new Type[] { typeof(LpText), typeof(int) }), text, len);
-            return Expression.New(LpNodeTextIntStringConstructorInfo, text, len, Expression.Constant(null, typeof(string)));
+            return Expression.New(_lpNodeTextIntStringConstructorInfo, text, len, Expression.Constant(null, typeof(string)));
         }
 
         /// <summary>
@@ -508,7 +508,7 @@
         private static Expression LpNode_Fail(Expression text)
         {
             // return Expression.Call(typeof(LpNode).GetMethod("Fail", new Type[] { typeof(LpText) }), text);
-            return Expression.New(LpNodeTextConstructorInfo, text);
+            return Expression.New(_lpNodeTextConstructorInfo, text);
         }
 
         /// <summary>

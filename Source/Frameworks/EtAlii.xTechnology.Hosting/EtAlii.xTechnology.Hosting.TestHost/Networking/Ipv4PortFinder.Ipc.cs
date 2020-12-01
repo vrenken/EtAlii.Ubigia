@@ -5,7 +5,7 @@
 
     public sealed partial class Ipv4FreePortFinder
     {
-        private static readonly Guid UniqueId = Guid.Parse("0EFB08CD-7EBF-4D6E-9D91-D73C3CA98CAC"); 
+        private static readonly Guid _uniqueId = Guid.Parse("0EFB08CD-7EBF-4D6E-9D91-D73C3CA98CAC"); 
         
         private readonly string _memoryMappedIpcFileName;
         private readonly int _fileSize; 

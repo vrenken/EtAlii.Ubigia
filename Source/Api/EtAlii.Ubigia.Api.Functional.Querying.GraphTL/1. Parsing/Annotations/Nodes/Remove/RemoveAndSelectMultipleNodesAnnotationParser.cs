@@ -10,8 +10,8 @@ namespace EtAlii.Ubigia.Api.Functional
         public string Id { get; } = nameof(RemoveAndSelectMultipleNodesAnnotation);
         public LpsParser Parser { get; }
         
-        private const string SourceId = "Source";
-        private const string NameId = "Name";
+        private const string _sourceId = "Source";
+        private const string _nameId = "Name";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -35,8 +35,8 @@ namespace EtAlii.Ubigia.Api.Functional
             _quotedTextParser = quotedTextParser;
             
             // @nodes-remove(SOURCE, NAME)
-            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | _quotedTextParser.Parser);
+            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var nameParser = new LpsParser(_nameId, true, Lp.Name().Wrap(_nameId) | _quotedTextParser.Parser);
             
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodesRemove + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
         }
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
             var sourceChildNode = sourceNode.Children.Single();
             var sourcePath = sourceChildNode.Id switch
             {
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
 
-            var nameNode = _nodeFinder.FindFirst(node, NameId);
+            var nameNode = _nodeFinder.FindFirst(node, _nameId);
             var nameChildNode = nameNode.Children.Single();
             var name = nameChildNode.Id switch
             {
