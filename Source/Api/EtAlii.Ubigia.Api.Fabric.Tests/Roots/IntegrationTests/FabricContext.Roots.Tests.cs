@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -54,17 +54,21 @@
         {
             // Arrange.
             var name = Guid.NewGuid().ToString();
-            var addedEvent = new ManualResetEvent(false);
-            var addedId = Guid.Empty;
-            _fabric.Roots.Added += (id) => { addedId = id; addedEvent.Set(); };
-            
-            // Act.
-            var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
-            addedEvent.WaitOne(TimeSpan.FromSeconds(10));
+            Root root = null;
 
+            // Act.
+            var action = await ActionAssert
+                .RaisesAsync<Guid>(
+                m => _fabric.Roots.Added += m,
+                m => _fabric.Roots.Added -= m,
+                async () => root = await _fabric.Roots.Add(name).ConfigureAwait(false))
+                .ConfigureAwait(false);
+            
             // Assert.
-            Assert.NotEqual(Guid.Empty, addedId);
+            var addedId = action.Argument;
+            Assert.NotNull(root);
             Assert.Equal(root.Id, addedId);
+            Assert.NotEqual(Guid.Empty, addedId);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -235,16 +239,18 @@
             // Arrange.
             var name = Guid.NewGuid().ToString();
             var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
-            var changedEvent = new ManualResetEvent(false);
-            var changedId = Guid.Empty;
-            _fabric.Roots.Changed += (id) => { changedId = id; changedEvent.Set(); };
             name = Guid.NewGuid().ToString();
-
+            
             // Act.
-            root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false);
-            changedEvent.WaitOne(TimeSpan.FromSeconds(10));
+            var action = await ActionAssert
+                .RaisesAsync<Guid>(
+                    m => _fabric.Roots.Changed += m,
+                    m => _fabric.Roots.Changed -= m,
+                    async () => root = await _fabric.Roots.Change(root.Id, name).ConfigureAwait(false))
+                .ConfigureAwait(false);
 
             // Assert.
+            var changedId = action.Argument;
             Assert.NotEqual(Guid.Empty, changedId);
             Assert.Equal(root.Id, changedId);
         }
