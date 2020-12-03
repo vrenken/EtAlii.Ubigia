@@ -17,7 +17,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.RestUserApi];
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.
@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var tick = Environment.TickCount;
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
             
             // Assert.
@@ -58,7 +58,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.RestUserApi];
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}").ConfigureAwait(false);
             
             // Assert.
@@ -78,7 +78,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.RestAdminApi];
             
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
 
             // Assert.
@@ -99,7 +99,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var tick = Environment.TickCount;
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
             
             // Assert.
@@ -119,7 +119,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.RestAdminApi];
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.
@@ -139,7 +139,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.RestAdminApi] + "/bad";
 
             // Act.
-            var client = context.CreateClient();
+            using var client = context.CreateClient();
             var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
             
             // Assert.

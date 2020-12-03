@@ -37,7 +37,7 @@
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var context = new LogicalContextFactory().CreateForProfiling(configuration);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration);
 
             // Assert.
             Assert.NotNull(context);
@@ -53,7 +53,7 @@
 
 
             // Act.
-            var context = new LogicalContextFactory().CreateForProfiling(configuration);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration);
 
             // Assert.
             Assert.NotNull(context);
@@ -68,7 +68,7 @@
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var context = new LogicalContextFactory().CreateForProfiling(configuration);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration);
 
             // Assert.
             Assert.NotNull(context);

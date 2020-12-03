@@ -56,10 +56,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
-            var contentDefinitionPart = (ContentDefinitionPart)null;
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, (ContentDefinitionPart)null).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);
@@ -186,11 +185,10 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
-            var contentDefinitionPart = (ContentDefinitionPart)null;
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, (ContentDefinitionPart)null).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);

@@ -10,7 +10,7 @@
             // Arrange.
 
             // Act.
-            var changeTracker = new ChangeTracker();
+            using var changeTracker = new ChangeTracker();
 
             // Assert.
             Assert.NotNull(changeTracker);

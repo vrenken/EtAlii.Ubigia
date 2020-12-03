@@ -61,7 +61,14 @@
                 {
                     while (e is AggregateException aggregateException)
                     {
-                        e = aggregateException.InnerException;
+                        if (aggregateException.InnerException != null) 
+                        {
+                            e = aggregateException.InnerException;
+                        }
+                        else 
+                        {
+                            break;
+                        }
                     }
 
                     // An exception on this level should be propagated to the script output observer.

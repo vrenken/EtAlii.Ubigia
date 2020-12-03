@@ -97,7 +97,8 @@ namespace TomanuExtensions
             var settings = new XmlWriterSettings();
             settings.Indent = true;
 
-            using (XmlWriter writer = new NoNamespacesXmlWriter(XmlWriter.Create(a_stream, settings)))
+            using var innerWriter = XmlWriter.Create(a_stream, settings);
+            using XmlWriter writer = new NoNamespacesXmlWriter(innerWriter);
             {
                 writer.WriteStartDocument();
                 a_write_func(writer);
