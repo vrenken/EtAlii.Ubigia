@@ -89,7 +89,7 @@ dotnet_diagnostic.CA2007.severity = error   # Do not directly await a Task (Use 
 dotnet_diagnostic.S1135.severity = warning  # Complete the task associated to this 'TODO' comment. 
 dotnet_diagnostic.MA0049.severity = error   # [Meziantou] Type name should not match namespace
 dotnet_diagnostic.CA1724.severity = warning # Type name should not match namespace
-dotnet_diagnostic.CA1822.severity = warning # Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. 
+dotnet_diagnostic.CA1822.severity = silent  # Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. 
 #dotnet_code_quality.ca1822.api_surface = private, internal
 
 
