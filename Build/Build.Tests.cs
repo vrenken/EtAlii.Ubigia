@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Pipelines
             .GetProjects("*.Tests*")
             
             // The WebApi tests won't run nicely on the build agent. No idea why.
-            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
+            .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
             
             // The SpaceBrowser tests won't run nicely on a headless build agent.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
@@ -31,8 +31,8 @@ namespace EtAlii.Ubigia.Pipelines
         private RelativePath FrameworkMoppetLapaDirectory => (RelativePath)"Frameworks" / "Moppet.Lapa";
         private RelativePath FrameworkHashLibDirectory => (RelativePath)"Frameworks" / "HashLib";
         
-        private const int DegreeOfParallelismOnServerTests = 5;
-        private const int DegreeOfParallelismOnLocalTests = 16;
+        private const int _degreeOfParallelismOnServerTests = 5;
+        private const int _degreeOfParallelismOnLocalTests = 16;
 
         Target Test => _ => _
             .Description("Run dotnet test")
@@ -45,8 +45,8 @@ namespace EtAlii.Ubigia.Pipelines
         {
                 // Let's go full steam ahead when it is a local build. 
                 var degreeOfParallelismWhileTesting = IsLocalBuild 
-                    ? DegreeOfParallelismOnLocalTests 
-                    : DegreeOfParallelismOnServerTests;
+                    ? _degreeOfParallelismOnLocalTests 
+                    : _degreeOfParallelismOnServerTests;
 
                 DotNetTest(_ => _
                         .SetNoBuild(true)
