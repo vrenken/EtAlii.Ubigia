@@ -4,7 +4,7 @@
 
     public static class Aes
     {
-        private static readonly SymmetricAlgorithm Algorithm = CreateAesCryptoServiceProvider();
+        private static readonly SymmetricAlgorithm _algorithm = CreateAesCryptoServiceProvider();
 
         private static SymmetricAlgorithm CreateAesCryptoServiceProvider()
         {
@@ -16,14 +16,14 @@
 
         public static byte[] Encrypt(byte[] bytes)
         {
-            using var encryptor = Algorithm.CreateEncryptor();
+            using var encryptor = _algorithm.CreateEncryptor();
             bytes = encryptor.TransformFinalBlock(bytes, 0, bytes.Length);
             return bytes;
         }
 
         public static byte[] Decrypt(byte[] bytes)
         {
-            using var decryptor = Algorithm.CreateDecryptor();
+            using var decryptor = _algorithm.CreateDecryptor();
             bytes = decryptor.TransformFinalBlock(bytes, 0, bytes.Length);
             return bytes;
         }

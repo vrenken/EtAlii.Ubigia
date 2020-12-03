@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly object _lockObject = new();
 
-        private const string Folder = "Spaces";
+        private const string _folder = "Spaces";
 
         private ObservableCollection<Space> Items { get { lock (_lockObject) { return _items ??= InitializeItems(); } } }
         private ObservableCollection<Space> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Space> InitializeItems()
         {
-            var task = _fabric.Items.GetItems<Space>(Folder);
+            var task = _fabric.Items.GetItems<Space>(_folder);
             return task.GetAwaiter().GetResult();
         }
 
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Space Update(Guid itemId, Space updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
         }
     }
 }

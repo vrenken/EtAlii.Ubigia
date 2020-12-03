@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly ILogicalContextConfiguration _configuration;
 //        private readonly object _lockObject = new object()
 
-        private const string Folder = "Storages";
+        private const string _folder = "Storages";
 
         private ObservableCollection<Storage> Items { get; set; }
 
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task Start()
         {
-            var items = await _fabric.Items.GetItems<Storage>(Folder).ConfigureAwait(false);
+            var items = await _fabric.Items.GetItems<Storage>(_folder).ConfigureAwait(false);
 
             // TODO: This test to see if the local storage has already been added is not very stable. 
             // Please find another way to determine that the local storage needs initialization.
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Storage Update(Guid itemId, Storage updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
         }
     }
 }

@@ -37,7 +37,7 @@
         private string _accountPassword;
 
         #pragma warning disable S2068 // False positives. The below isn't a password.
-        private const string AccountPasswordProperty = "AccountPassword";
+        private const string _accountPasswordProperty = "AccountPassword";
         #pragma warning restore S2068 
 
         public AccountTemplate[] AvailableAccountTemplates => AccountTemplate.All;
@@ -179,7 +179,7 @@
                 case AccountNameProperty:
                     SelectedAccountTemplate = null;
                     break;
-                case AccountPasswordProperty:
+                case _accountPasswordProperty:
                     SelectedAccountTemplate = null;
                     break;
             }
