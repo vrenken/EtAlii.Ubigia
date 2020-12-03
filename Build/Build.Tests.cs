@@ -18,10 +18,12 @@ namespace EtAlii.Ubigia.Pipelines
             .GetProjects("*.Tests*")
             
             // The WebApi tests won't run nicely on the build agent. No idea why.
-            .Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
+            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
             
             // The SpaceBrowser tests won't run nicely on a headless build agent.
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
+            //.Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
+            
+            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
             
             // We are not interested in .shproj files. These will mess up dotnet test.
             .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); 
