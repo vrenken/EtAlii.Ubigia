@@ -104,7 +104,8 @@
             // Act.
             var storages = await storageDataClientStub
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Empty(storages);

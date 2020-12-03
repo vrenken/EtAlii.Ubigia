@@ -249,7 +249,8 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
             var retrievedAccounts = await connection.Accounts
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(retrievedAccounts);

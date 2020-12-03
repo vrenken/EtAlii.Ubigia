@@ -153,9 +153,9 @@
 
             // Act.
             await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
-            var firstResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
+            var firstResult = (await userSettingsGetter.Get(context).ConfigureAwait(false)).Single(s => s.Email == email);
             await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
-            var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
+            var secondResult = (await userSettingsGetter.Get(context).ConfigureAwait(false)).Single(s => s.Email == email);
 
             // Assert.
             TestUserSettings.AreEqual(firstUserSettings, firstResult);
@@ -182,7 +182,7 @@
             // Act.
             await userSettingsSetter.Set(context, email, firstUserSettings).ConfigureAwait(false);
             await userSettingsSetter.Set(context, email, secondUserSettings).ConfigureAwait(false);
-            var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
+            var secondResult = (await userSettingsGetter.Get(context).ConfigureAwait(false)).Single(s => s.Email == email);
 
             // Assert.
             TestUserSettings.AreEqual(secondUserSettings, secondResult);

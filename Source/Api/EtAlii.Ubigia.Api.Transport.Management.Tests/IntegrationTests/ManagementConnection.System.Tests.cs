@@ -43,7 +43,8 @@
             // Act.
             var spaces = await connection.Spaces
                 .GetAll(systemAccount.Id)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
@@ -62,7 +63,8 @@
             // Act.
             var spaces = await connection.Spaces
                 .GetAll(administratorAccount.Id)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(2, spaces.Count());

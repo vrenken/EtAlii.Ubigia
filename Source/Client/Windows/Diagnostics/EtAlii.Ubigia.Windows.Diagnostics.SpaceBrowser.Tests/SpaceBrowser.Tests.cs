@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 // Assert.
                 Assert.Throws<XamlParseException>(act);
                 Assert.Null(window);
-            });
+            }).ConfigureAwait(false);
         }
         
         [Fact]
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
 
                 // Assert.
                 Assert.NotNull(window);
-            });
+            }).ConfigureAwait(false);
         }
         
         [Fact]
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 // Assert.
                 Assert.NotNull(window);
                 Assert.NotNull(window.ViewModel);
-            });
+            }).ConfigureAwait(false);
         }
         
         [Fact]
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 Assert.NotNull(vm.BeginEntryDragCommand);
                 Assert.NotEmpty(vm.AvailableRoots);
                 Assert.Null(vm.SelectedRoot);
-            });
+            }).ConfigureAwait(false);
         }
         
         [Fact(Skip = "Missing DocumentContext instance to fulfill test")]
@@ -135,7 +135,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 
                 // Assert.
                 Assert.NotNull(document);
-            });
+            }).ConfigureAwait(false);
         }
 
         [Fact(Skip = "Missing System.Reactive stuff to fulfill test")]
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 
                 // Assert.
                 Assert.NotNull(view);
-            });
+            }).ConfigureAwait(false);
         }
 
         [Fact]
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Tests
                 Assert.NotNull(vm);
                 Assert.Empty(vm.Items);
                 Assert.Equal(300, vm.Size);
-            });
+            }).ConfigureAwait(false);
         }
     }
 }

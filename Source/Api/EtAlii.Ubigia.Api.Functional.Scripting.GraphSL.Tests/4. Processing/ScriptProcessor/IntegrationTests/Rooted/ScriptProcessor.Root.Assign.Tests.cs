@@ -46,7 +46,8 @@
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots
                 .GetAll()
-                .SingleOrDefaultAsync(r => r.Name == "time");
+                .SingleOrDefaultAsync(r => r.Name == "time")
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(script);

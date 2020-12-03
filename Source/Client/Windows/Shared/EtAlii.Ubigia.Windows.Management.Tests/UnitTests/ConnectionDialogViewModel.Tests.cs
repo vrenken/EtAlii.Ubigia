@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Windows.Management.Tests
 
                 // Assert.
                 Assert.NotNull(viewModel);
-            });
+            }).ConfigureAwait(false);
         }
     }
 }

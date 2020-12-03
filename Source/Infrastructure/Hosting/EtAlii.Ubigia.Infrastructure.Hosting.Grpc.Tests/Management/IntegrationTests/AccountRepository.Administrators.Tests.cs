@@ -210,7 +210,8 @@
             // Act.
             var accounts = await repository
 	            .GetAll()
-	            .ToArrayAsync();
+	            .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(addedAccount1);

@@ -164,7 +164,8 @@
             // Act.
             var retrievedRoots = await _fabric.Roots
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedRoots);
@@ -189,7 +190,8 @@
             // Act.
             var retrievedRoots = await _fabric.Roots
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(roots.Count + SpaceTemplate.Data.RootsToCreate.Length, retrievedRoots.Count());

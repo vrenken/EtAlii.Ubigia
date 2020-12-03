@@ -105,7 +105,8 @@
             // Act.
             var spaces = await context.Host.Infrastructure.Spaces
 	            .GetAll()
-	            .ToArrayAsync();
+	            .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(addedSpace1);

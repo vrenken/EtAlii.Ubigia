@@ -18,7 +18,7 @@
 
                 // Assert.
                 Assert.NotNull(connectionSettingsPersister);
-            });
+            }).ConfigureAwait(false);
         }
     }
 }

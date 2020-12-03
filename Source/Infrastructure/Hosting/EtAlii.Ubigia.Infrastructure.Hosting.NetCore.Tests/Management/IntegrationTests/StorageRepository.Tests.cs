@@ -127,7 +127,8 @@
 			// Act.
             var storages = await repository
 	            .GetAll()
-	            .ToArrayAsync();
+	            .ToArrayAsync()
+                .ConfigureAwait(false);
 
 	        // Assert.
 	        Assert.NotNull(addedStorage1);

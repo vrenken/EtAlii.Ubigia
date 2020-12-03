@@ -102,7 +102,8 @@
             // Act.
             var result = await rootDataClientStub
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.Empty(result);

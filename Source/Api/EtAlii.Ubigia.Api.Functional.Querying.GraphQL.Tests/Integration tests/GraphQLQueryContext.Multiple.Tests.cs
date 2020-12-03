@@ -86,7 +86,7 @@
                         { 'nickName':'Bengel' },
                         { 'nickName':'Scheetje' }
                     ]
-                }", result);
+                }", result).ConfigureAwait(false);
         }
         
         
@@ -122,7 +122,7 @@
                         { 'firstname':'Arjan', 'nickName':'Bengel' },
                         { 'firstname':'Ida', 'nickName':'Scheetje' }
                     ]
-                }", result);
+                }", result).ConfigureAwait(false);
         }
         
         
@@ -208,7 +208,7 @@
                             {'name':'Peter','nickName':'Pete', 'lastname': 'Vrenken'}
                         ]
                     }
-                }", result);
+                }", result).ConfigureAwait(false);
         }
             
         
@@ -272,8 +272,7 @@
                         {'nickName':'Bengel','firstname':'Arjan','lastname':'Vrenken'},
                         {'nickName':'Scheetje','firstname':'Ida','lastname':'Vrenken'}
                     ]
-                }", result);
-            
+                }", result).ConfigureAwait(false);
         }
     }
 }
