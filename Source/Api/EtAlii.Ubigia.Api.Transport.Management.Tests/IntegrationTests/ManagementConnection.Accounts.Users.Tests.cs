@@ -139,7 +139,8 @@
             // Act.
             var retrievedAccounts = await connection.Accounts
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedAccounts);

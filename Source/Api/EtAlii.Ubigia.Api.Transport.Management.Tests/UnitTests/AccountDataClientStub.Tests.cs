@@ -104,7 +104,8 @@
             // Act.
             var accounts = await accountDataClientStub
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Empty(accounts);

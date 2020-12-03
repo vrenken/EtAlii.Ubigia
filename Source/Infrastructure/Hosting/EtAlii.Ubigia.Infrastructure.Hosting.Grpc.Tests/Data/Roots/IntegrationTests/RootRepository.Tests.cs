@@ -130,7 +130,8 @@
             // Act.
             var roots = await context.Host.Infrastructure.Roots
 	            .GetAll(space.Id)
-	            .ToArrayAsync();
+	            .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(addedRoot1);

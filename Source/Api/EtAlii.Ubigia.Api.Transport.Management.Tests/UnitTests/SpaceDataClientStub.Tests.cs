@@ -104,7 +104,8 @@
             // Act.
             var spaces = await spaceDataClientStub
                 .GetAll(Guid.NewGuid())
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Empty(spaces);

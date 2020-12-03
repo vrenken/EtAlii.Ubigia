@@ -73,7 +73,8 @@
             // Act.
             var retrievedChildren = await Storage.Components
                 .RetrieveAll<ChildrenComponent>(containerId)
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedChildren);
@@ -199,7 +200,8 @@
             // Act.
             var retrievedData = await Storage.Components
                 .RetrieveAll<UpdatesComponent>(containerId)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);

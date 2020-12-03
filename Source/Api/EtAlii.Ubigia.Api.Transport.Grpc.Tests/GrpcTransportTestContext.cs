@@ -29,7 +29,7 @@
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
-            var account = await managementConnection.Accounts.Get(accountName) ??
+            var account = await managementConnection.Accounts.Get(accountName).ConfigureAwait(false) ??
                           await managementConnection.Accounts.Add(accountName, accountPassword, AccountTemplate.User).ConfigureAwait(false);
             await managementConnection.Spaces.Add(account.Id, spaceName, spaceTemplate ?? SpaceTemplate.Data).ConfigureAwait(false);
             await managementConnection.Close().ConfigureAwait(false);

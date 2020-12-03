@@ -190,7 +190,7 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
 
             // Act.
-            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<ArgumentNullException>(act).ConfigureAwait(false);

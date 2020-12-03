@@ -102,7 +102,7 @@
             var updatedEntry = await results.SingleAsync();
 
             // Act.
-            var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, item + "Wrong", scope));
+            var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, item + "Wrong", scope).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<GraphComposeException>(act).ConfigureAwait(false);
@@ -139,7 +139,7 @@
             var updatedEntry = await results.SingleAsync();
 
             // Act.
-            var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, "Wrong" + item, scope));
+            var act = new Func<Task>(async () => await composer.Remove(updatedEntry.Id, "Wrong" + item, scope).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<GraphComposeException>(act).ConfigureAwait(false);

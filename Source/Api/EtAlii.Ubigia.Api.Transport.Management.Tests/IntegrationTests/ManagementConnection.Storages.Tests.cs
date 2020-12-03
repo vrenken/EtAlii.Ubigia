@@ -163,7 +163,8 @@
             var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
             var retrievedStorage = await connection.Storages
                 .GetAll()
-                .SingleOrDefaultAsync();
+                .SingleOrDefaultAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(retrievedStorage);
@@ -193,7 +194,8 @@
             // Act.
             var retrievedStorages = await connection.Storages
                 .GetAll()
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(storages.Count + 1, retrievedStorages.Length);

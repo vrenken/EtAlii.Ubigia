@@ -54,7 +54,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             {
                 var previousLink = await fabric.Entries
                     .GetRelated(parent.Id, EntryRelation.Child, scope)
-                    .SingleOrDefaultAsync(e => e.Type == EntryType.Add);
+                    .SingleOrDefaultAsync(e => e.Type == EntryType.Add)
+                    .ConfigureAwait(false);
                 
                 var updatedParent = await fabric.Entries.Prepare().ConfigureAwait(false);
                 updatedParent.Type = parent.Type;

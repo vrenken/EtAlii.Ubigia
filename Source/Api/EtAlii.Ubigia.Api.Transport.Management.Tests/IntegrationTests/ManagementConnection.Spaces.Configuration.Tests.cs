@@ -128,7 +128,8 @@
             // Act.
             var retrievedSpaces = await connection.Spaces
                 .GetAll(account.Id)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
             
             // Assert.
             Assert.NotNull(retrievedSpaces);
@@ -159,7 +160,8 @@
             // Act.
             var retrievedSpaces = await connection.Spaces
                 .GetAll(account.Id)
-                .ToArrayAsync();
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
             // Each user is initialized with at least a configuration and a data space. so we need to add two to the amount of spaces we expect.
