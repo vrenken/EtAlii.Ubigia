@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Pipelines
         private const int _degreeOfParallelismOnServerTests = 5;
         private const int _degreeOfParallelismOnLocalTests = 16;
 
-        Target Test => _ => _
+        private Target Test => _ => _
             .Description("Run dotnet test")
             .ProceedAfterFailure()
             .Unlisted()
