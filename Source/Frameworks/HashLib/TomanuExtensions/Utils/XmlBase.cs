@@ -23,7 +23,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_source"></param>
         protected XmlBase(XmlBase a_source)
         {
-            var ms = new MemoryStream();
+            using var ms = new MemoryStream();
             a_source.Save(ms);
             ms.Position = 0;
             Load(ms);
@@ -102,10 +102,10 @@ namespace TomanuExtensions.Utils
             if (xml_base == null)
                 return false;
 
-            var ms1 = new MemoryStream();
+            using var ms1 = new MemoryStream();
             xml_base.Save(ms1);
 
-            var ms2 = new MemoryStream();
+            using var ms2 = new MemoryStream();
             Save(ms2);
 
             return ms1.ToArray().AreSame(ms2.ToArray());
@@ -117,7 +117,7 @@ namespace TomanuExtensions.Utils
         /// <returns></returns>
         public override int GetHashCode()
         {
-            var ms = new MemoryStream();
+            using var ms = new MemoryStream();
             Save(ms);
             return ArrayExtensions.GetHashCode(ms.ToArray());
         }

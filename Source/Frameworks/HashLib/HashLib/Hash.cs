@@ -360,8 +360,8 @@ namespace HashLib
             var lockObject = new object();
             //var queue = new System.Collections.Concurrent.ConcurrentQueue<byte[]>();
             var queue = new System.Collections.Generic.Queue<byte[]>();
-            var data_ready = new System.Threading.AutoResetEvent(false);
-            var prepare_data = new System.Threading.AutoResetEvent(false);
+            using var data_ready = new System.Threading.AutoResetEvent(false);
+            using var prepare_data = new System.Threading.AutoResetEvent(false);
 
             var reader = Task.Factory.StartNew(delegate()
             {

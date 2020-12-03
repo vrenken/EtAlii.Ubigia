@@ -28,7 +28,7 @@
             // We need to create execution plans for all of the sequences.
             var executionPlans = _schemaExecutionPlanner.Plan(schema);
             var rootMetadata = executionPlans?.FirstOrDefault()?.Metadata ?? new FragmentMetadata(null, Array.Empty<FragmentMetadata>());
-            var totalExecutionPlans = executionPlans.Length;
+            var totalExecutionPlans = executionPlans?.Length ?? 0;
 
             var result = new SchemaProcessingResult(schema, totalExecutionPlans, new ReadOnlyObservableCollection<Structure>(rootMetadata.Items));
 
@@ -56,7 +56,14 @@
                 {
                     while (e is AggregateException aggregateException)
                     {
-                        e = aggregateException.InnerException;
+                        if (aggregateException.InnerException != null) 
+                        {
+                            e = aggregateException.InnerException;
+                        }
+                        else 
+                        {
+                            break;
+                        }
                     }
 
                     // An exception on this level should be propagated to the query output observer.

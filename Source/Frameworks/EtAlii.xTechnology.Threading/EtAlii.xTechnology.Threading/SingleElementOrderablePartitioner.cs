@@ -32,9 +32,11 @@ namespace EtAlii.xTechnology.Threading
             // Since we are doing static partitioning, create an InternalEnumerable with reference
             // counting of spawned InternalEnumerators turned on.  Once all of the spawned enumerators
             // are disposed, dynamicPartitions will be disposed.
-            var dynamicPartitions = new InternalEnumerable(_referenceEnumerable.GetEnumerator(), true);
-            for (var i = 0; i < partitionCount; i++)
+            using var dynamicPartitions = new InternalEnumerable(_referenceEnumerable.GetEnumerator(), true);
+            for (var i = 0; i < partitionCount; i++) 
+            {
                 list.Add(dynamicPartitions.GetEnumerator());
+            }
 
             return list;
         }
