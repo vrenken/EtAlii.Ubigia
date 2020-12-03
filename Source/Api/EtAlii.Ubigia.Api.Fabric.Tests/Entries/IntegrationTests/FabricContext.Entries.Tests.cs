@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System;
-    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -180,17 +180,20 @@
         public async Task FabricContext_Entries_Event_Prepared()
         {
             // Arrange.
-            var preparedEvent = new ManualResetEvent(false);
-            var preparedIdentifier = Identifier.Empty;
-            _fabric.Entries.Prepared += (i) => { preparedIdentifier = i; preparedEvent.Set(); };
+            IEditableEntry entry = null;
             
             // Act.
-            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
+            var action = await ActionAssert
+                .RaisesAsync<Identifier>(
+                    m => _fabric.Entries.Prepared += m,
+                    m => _fabric.Entries.Prepared -= m,
+                    async () => entry = await _fabric.Entries.Prepare().ConfigureAwait(false))
+                .ConfigureAwait(false);
 
             // Assert.
+            var preparedIdentifier = action.Argument;
             Assert.NotNull(entry);
             Assert.NotEqual(Identifier.Empty, entry.Id);
-            preparedEvent.WaitOne(TimeSpan.FromSeconds(10));
             Assert.NotEqual(Identifier.Empty, preparedIdentifier);
             Assert.Equal(entry.Id, preparedIdentifier);
         }
@@ -200,16 +203,19 @@
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            var storedEvent = new ManualResetEvent(false);
-            var storedIdentifier = Identifier.Empty;
-            _fabric.Entries.Stored += (i) => { storedIdentifier = i; storedEvent.Set(); };
+            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
 
             // Act.
-            var entry = await _fabric.Entries.Prepare().ConfigureAwait(false);
-            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false);
-            storedEvent.WaitOne(TimeSpan.FromSeconds(10));
+            var action = await ActionAssert
+                .RaisesAsync<Identifier>(
+                    m => _fabric.Entries.Stored += m,
+                    m => _fabric.Entries.Stored -= m,
+                    async () => entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false))
+                .ConfigureAwait(false);
 
+            
             // Assert.
+            var storedIdentifier = action.Argument;
             Assert.NotEqual(Identifier.Empty, storedIdentifier);
             Assert.Equal(entry.Id, storedIdentifier);
         }
