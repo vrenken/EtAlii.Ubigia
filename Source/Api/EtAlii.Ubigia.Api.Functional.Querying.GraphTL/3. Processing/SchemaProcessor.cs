@@ -41,7 +41,7 @@
                     for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
                         //var sequence = sequences[executionPlanIndex]
-                        var executionPlan = executionPlans[executionPlanIndex];
+                        var executionPlan = executionPlans![executionPlanIndex];
 
                         result.Update(executionPlanIndex, executionPlan);
                         await ProcessExecutionPlan(executionPlan, schemaOutput, executionScope).ConfigureAwait(false);
