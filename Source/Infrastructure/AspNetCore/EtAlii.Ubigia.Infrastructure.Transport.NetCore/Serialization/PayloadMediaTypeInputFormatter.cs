@@ -15,12 +15,11 @@
 
 	public class PayloadMediaTypeInputFormatter : InputFormatter
 	{
-        private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
-        private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
-        private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
+        private static readonly Type _openDictionaryType = typeof(Dictionary<,>);
+        private static readonly TypeInfo _enumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
+        private static readonly TypeInfo _dictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
 
-        // ReSharper disable once InconsistentNaming
-        public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
+        public static readonly MediaTypeHeaderValue MediaType = new("application/bson");
 		private readonly ISerializer _serializer;
 
 		public PayloadMediaTypeInputFormatter()
@@ -69,7 +68,7 @@
             if (!IsSimpleType(type) && type != typeof(byte[])) return ReadFromStreamInternal(type, readStream);
             
             // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
-            var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
+            var dictionaryType = _openDictionaryType.MakeGenericType(typeof(string), type);
             if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
             {
 	            // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
@@ -131,7 +130,7 @@
             {
                 // Special case discussed at http://stackoverflow.com/questions/16910369/bson-array-deserialization-with-json-net
                 // Dispensed with string (aka IEnumerable<char>) case above in ReadFromStream()
-                reader.ReadRootValueAsArray = EnumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !DictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo());
+                reader.ReadRootValueAsArray = _enumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !_dictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo());
             }
             catch
             {

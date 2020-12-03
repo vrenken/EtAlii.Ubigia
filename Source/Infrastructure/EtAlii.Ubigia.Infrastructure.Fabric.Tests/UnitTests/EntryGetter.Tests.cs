@@ -8,12 +8,12 @@
 
     public sealed class EntryGetterTests
     {
-        private const string TestStorageName = "InMemory Test storage";
+        private const string _testStorageName = "InMemory Test storage";
         
         private IStorage CreateTestStorage()
         {
             var storageConfiguration = new StorageConfiguration()
-                .Use(TestStorageName)
+                .Use(_testStorageName)
                 .UseInMemoryStorage();
             var storage = new StorageFactory().Create(storageConfiguration);
             return storage;
