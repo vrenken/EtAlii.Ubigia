@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Pipelines
             //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
             
             // The SpaceBrowser tests won't run nicely on a headless build agent.
-            //.Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
             
             .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
             
