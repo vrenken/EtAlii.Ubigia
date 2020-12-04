@@ -2,7 +2,7 @@
 
 using System.Diagnostics;
 
-namespace HashLib.Checksum
+namespace HashLib
 {
     public static class CRC32Polynomials
     {

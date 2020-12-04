@@ -17,8 +17,10 @@
         public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
         {
 	        var handler = _testContext.CreateHandler();
-			var client = new HttpClient(new TestHttpClientMessageHandler(handler, credentials, hostIdentifier, authenticationToken));
-
+#pragma warning disable CA2000 // The HttpClient is instructed to dispose the handler.            
+			var client = new HttpClient(new TestHttpClientMessageHandler(handler, credentials, hostIdentifier, authenticationToken), true);
+#pragma warning restore CA2000
+            
 	        // Set the Accept header for BSON.
 	        client.DefaultRequestHeaders.Accept.Clear();
 			client.DefaultRequestHeaders.Accept.Add(PayloadMediaTypeFormatter.MediaType);

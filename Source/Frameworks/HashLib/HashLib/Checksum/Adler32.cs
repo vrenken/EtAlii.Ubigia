@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 // ReSharper disable all
 
-namespace HashLib.Checksum
+namespace HashLib
 {
     internal class Adler32 : Hash, IChecksum, IBlockHash, IHash32
     {

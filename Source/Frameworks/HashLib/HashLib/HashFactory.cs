@@ -122,7 +122,7 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC32_IEEE()
             {
-                return new HashLib.Checksum.CRC32_IEEE();
+                return new CRC32_IEEE();
             }
 
             /// <summary>
@@ -131,7 +131,7 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC32_CASTAGNOLI()
             {
-                return new HashLib.Checksum.CRC32_CASTAGNOLI();
+                return new CRC32_CASTAGNOLI();
             }
 
             /// <summary>
@@ -140,7 +140,7 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC32_KOOPMAN()
             {
-                return new HashLib.Checksum.CRC32_KOOPMAN();
+                return new CRC32_KOOPMAN();
             }
 
             /// <summary>
@@ -149,17 +149,17 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC32_Q()
             {
-                return new HashLib.Checksum.CRC32_Q();
+                return new CRC32_Q();
             }
 
             public static IHash CreateCRC32(uint a_polynomial, uint a_initial_value = uint.MaxValue, uint a_final_xor = uint.MaxValue)
             {
-                return new HashLib.Checksum.CRC32(a_polynomial, a_initial_value, a_final_xor);
+                return new CRC32(a_polynomial, a_initial_value, a_final_xor);
             }
 
             public static IHash CreateAdler32()
             {
-                return new HashLib.Checksum.Adler32();
+                return new Adler32();
             }
 
             /// <summary>
@@ -168,7 +168,7 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC64_ISO()
             {
-                return new HashLib.Checksum.CRC64_ISO();
+                return new CRC64_ISO();
             }
 
             /// <summary>
@@ -177,12 +177,12 @@ namespace HashLib
             /// <returns></returns>
             public static IHash CreateCRC64_ECMA()
             {
-                return new HashLib.Checksum.CRC64_ECMA();
+                return new CRC64_ECMA();
             }
 
             public static IHash CreateCRC64(ulong a_polynomial, ulong a_initial_value = ulong.MaxValue, ulong a_final_xor = ulong.MaxValue)
             {
-                return new HashLib.Checksum.CRC64(a_polynomial, a_initial_value, a_final_xor);
+                return new CRC64(a_polynomial, a_initial_value, a_final_xor);
             }
         }
 
