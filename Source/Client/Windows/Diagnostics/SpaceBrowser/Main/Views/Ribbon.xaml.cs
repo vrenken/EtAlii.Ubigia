@@ -8,10 +8,8 @@
     /// </summary>
     public partial class Ribbon
     {
-        // ReSharper disable InconsistentNaming
         public object LastFocusedDocument { get => GetValue(LastFocusedDocumentProperty); set => SetValue(LastFocusedDocumentProperty, value); }
         public static readonly DependencyProperty LastFocusedDocumentProperty = DependencyProperty.Register("LastFocusedDocument", typeof(object), typeof(Ribbon), new PropertyMetadata(null, OnLastFocusedDocumentChanged));
-        // ReSharper restore InconsistentNaming
 
         public Ribbon()
         {

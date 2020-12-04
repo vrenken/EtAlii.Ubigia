@@ -18,22 +18,22 @@
         }
 
         // ReSharper disable InconsistentNaming
-        public static readonly GraphRelation AllChildren = new GraphRelation("ALLCHILDREN");
-        public static readonly GraphRelation Children = new GraphRelation("CHILDREN");
-        public static readonly GraphRelation AllParents = new GraphRelation("ALLPARENTS");
-        public static readonly GraphRelation Parent = new GraphRelation("PARENT");
-        public static readonly GraphRelation AllNext = new GraphRelation("ALLNEXT");
-        public static readonly GraphRelation Next = new GraphRelation("NEXT");
-        public static readonly GraphRelation AllPrevious = new GraphRelation("ALLPREVIOUS");
-        public static readonly GraphRelation Previous = new GraphRelation("PREVIOUS");
-        public static readonly GraphRelation AllUpdates = new GraphRelation("ALLUPDATES");
-        public static readonly GraphRelation Updates = new GraphRelation("UPDATES");
-        public static readonly GraphRelation AllDowndates = new GraphRelation("ALLDOWNDATES");
-        public static readonly GraphRelation Downdate = new GraphRelation("DOWNDATE");
-        public static readonly GraphRelation First = new GraphRelation("FIRST");
-        public static readonly GraphRelation Last = new GraphRelation("LAST");
-        public static readonly GraphRelation Original = new GraphRelation("ORIGINAL");
-        public static readonly GraphRelation Final = new GraphRelation("FINAL");
+        public static readonly GraphRelation AllChildren = new("ALLCHILDREN");
+        public static readonly GraphRelation Children = new("CHILDREN");
+        public static readonly GraphRelation AllParents = new("ALLPARENTS");
+        public static readonly GraphRelation Parent = new("PARENT");
+        public static readonly GraphRelation AllNext = new("ALLNEXT");
+        public static readonly GraphRelation Next = new("NEXT");
+        public static readonly GraphRelation AllPrevious = new("ALLPREVIOUS");
+        public static readonly GraphRelation Previous = new("PREVIOUS");
+        public static readonly GraphRelation AllUpdates = new("ALLUPDATES");
+        public static readonly GraphRelation Updates = new("UPDATES");
+        public static readonly GraphRelation AllDowndates = new("ALLDOWNDATES");
+        public static readonly GraphRelation Downdate = new("DOWNDATE");
+        public static readonly GraphRelation First = new("FIRST");
+        public static readonly GraphRelation Last = new("LAST");
+        public static readonly GraphRelation Original = new("ORIGINAL");
+        public static readonly GraphRelation Final = new("FINAL");
         // ReSharper restore InconsistentNaming
     }
 }

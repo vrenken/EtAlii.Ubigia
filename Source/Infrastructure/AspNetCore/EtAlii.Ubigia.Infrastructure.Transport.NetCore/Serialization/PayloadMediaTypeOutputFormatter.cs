@@ -4,7 +4,7 @@
 	using System.Collections.Generic;
 	using System.IO;
 	using System.Reflection;
-	using System.Threading.Tasks;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
     using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
@@ -89,8 +89,7 @@
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
-            using var innerWriter = new BinaryWriter(writeStream);
-            using var writer = new BsonDataWriter(innerWriter) { CloseOutput = false };
+            using var writer = new BsonDataWriter(writeStream) { CloseOutput = false };
 
             _serializer.Serialize(writer, value);
 			writer.Flush();

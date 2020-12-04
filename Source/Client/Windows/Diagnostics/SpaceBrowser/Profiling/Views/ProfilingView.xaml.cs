@@ -8,10 +8,8 @@
 
     public partial class ProfilingView //, IProfilingView
     {
-        // ReSharper disable InconsistentNaming
         public bool AutoExpandNodes { get => (bool)GetValue(AutoExpandNodesProperty); set => SetValue(AutoExpandNodesProperty, value); }
         public static readonly DependencyProperty AutoExpandNodesProperty = DependencyProperty.Register("AutoExpandNodes", typeof(bool), typeof(ProfilingView), new PropertyMetadata(false));
-        // ReSharper restore InconsistentNaming
 
         private readonly IDisposable _expandAllAtTheEndSubscription;
         private readonly IDisposable _expandAlwaysSubscription;

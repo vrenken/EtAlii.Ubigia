@@ -7,13 +7,11 @@
 
     public partial class ScriptResultView
     {
-        // ReSharper disable InconsistentNaming
         public IEnumerable ItemsSource { get => (IEnumerable)GetValue(ItemsSourceProperty); set => SetValue(ItemsSourceProperty, value ?? Array.Empty<object>()); }
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ScriptResultView), new PropertyMetadata(null, OnItemsSourceChanged));
 
         public GridVirtualizingCollectionView ItemsSourceView { get => (GridVirtualizingCollectionView)GetValue(ItemsSourceViewProperty); set => SetValue(ItemsSourceViewProperty, value); }
         public static readonly DependencyProperty ItemsSourceViewProperty = DependencyProperty.Register("ItemsSourceView", typeof(GridVirtualizingCollectionView), typeof(ScriptResultView), null);
-        // ReSharper restore InconsistentNaming
 
         public ScriptResultView()
         {
