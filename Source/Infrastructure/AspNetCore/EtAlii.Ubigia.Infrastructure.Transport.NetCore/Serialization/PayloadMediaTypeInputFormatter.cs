@@ -10,22 +10,20 @@
     using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
 	using Microsoft.Net.Http.Headers;
-	using Newtonsoft.Json;
-	using Newtonsoft.Json.Bson;
+    using Newtonsoft.Json.Bson;
 
 	public class PayloadMediaTypeInputFormatter : InputFormatter
 	{
         private static readonly Type _openDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo _enumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
         private static readonly TypeInfo _dictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
-
-        public static readonly MediaTypeHeaderValue MediaType = new("application/bson");
+        private static readonly MediaTypeHeaderValue _mediaType = new("application/bson");
 		private readonly ISerializer _serializer;
 
 		public PayloadMediaTypeInputFormatter()
 		{
 		    // Set default supported media type
-		    SupportedMediaTypes.Add(MediaType);
+		    SupportedMediaTypes.Add(_mediaType);
 			_serializer = new SerializerFactory().Create();
 		}
 
@@ -107,13 +105,6 @@
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
         {
-            using var reader = CreateJsonReader(type, readStream);
-            reader.CloseInput = false;
-            return _serializer.Deserialize(reader, type);
-        }
-
-	    private JsonReader CreateJsonReader(Type type, Stream readStream)
-        {
             if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
@@ -124,7 +115,8 @@
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            var reader = new BsonDataReader(new BinaryReader(readStream));
+            using var innerReader = new BinaryReader(readStream);
+            using var reader = new BsonDataReader(innerReader) {CloseInput = false};
 
             try
             {
@@ -138,8 +130,8 @@
                 ((IDisposable)reader).Dispose();
                 throw;
             }
-
-            return reader;
+            
+            return _serializer.Deserialize(reader, type);
         }
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
