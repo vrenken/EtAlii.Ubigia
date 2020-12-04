@@ -17,8 +17,10 @@ namespace EtAlii.xTechnology.Hosting
 	    public static TGrpcClient CreateClient<TGrpcClient>(this IHostTestContext context, string address, Func<GrpcChannel, TGrpcClient> construct)
 		    where TGrpcClient: ClientBase
 	    {
+#pragma warning disable CA2000 // This channel's lifetime will be controlled by the client that will consume it.            
 		    var channel = CreateChannel(context, address);
 		    return construct(channel);
+#pragma warning restore CA2000             
 	    }
 
 	    public static GrpcChannel CreateChannel(this IHostTestContext context, Uri address) => CreateChannel(context, address.ToString());

@@ -6,7 +6,6 @@
 
     public partial class ResultsView
     {
-        // ReSharper disable InconsistentNaming
         public IEnumerable ItemsSource { get => (IEnumerable)GetValue(ItemsSourceProperty); set => SetValue(ItemsSourceProperty, value ?? Array.Empty<object>()); }
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ResultsView), new PropertyMetadata(Array.Empty<object>(), OnItemsSourceChanged));
 
@@ -15,7 +14,6 @@
 
         public object Source { get => GetValue(SourceProperty); set => SetValue(SourceProperty, value); }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ResultsView), new PropertyMetadata(null, OnSourceChanged));
-        // ReSharper restore InconsistentNaming
 
         public ResultsView()
         {

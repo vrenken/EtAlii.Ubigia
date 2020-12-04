@@ -9,22 +9,19 @@
 	using System.Net.Http.Formatting;
 	using System.Net.Http.Headers;
 	using System.Reflection;
-	using System.Threading.Tasks;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
-    using Newtonsoft.Json;
-	using Newtonsoft.Json.Bson;
+    using Newtonsoft.Json.Bson;
 
 	public class PayloadMediaTypeFormatter : MediaTypeFormatter
     {
-	    // ReSharper disable InconsistentNaming
-        private static readonly Type OpenDictionaryType = typeof(Dictionary<,>); 
-        private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
-        private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
+        private static readonly Type _openDictionaryType = typeof(Dictionary<,>); 
+        private static readonly TypeInfo _enumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
+        private static readonly TypeInfo _dictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
 
-        public static readonly MediaTypeWithQualityHeaderValue MediaType = new MediaTypeWithQualityHeaderValue("application/bson");
-	    public static readonly MediaTypeHeaderValue ContentMediaType = new MediaTypeHeaderValue("application/bson");
+        public static readonly MediaTypeWithQualityHeaderValue MediaType = new("application/bson");
+	    public static readonly MediaTypeHeaderValue ContentMediaType = new("application/bson");
 	    private readonly ISerializer _serializer;
-	    // ReSharper restore InconsistentNaming
 
 		public PayloadMediaTypeFormatter()
 		{
@@ -74,7 +71,7 @@
             if (IsSimpleType(type))
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
-                var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
+                var dictionaryType = _openDictionaryType.MakeGenericType(typeof(string), type);
                 if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
                 {
                     // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
@@ -119,14 +116,6 @@
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
 	    {
-		    using var reader = CreateJsonReader(type, readStream);
-		    
-		    reader.CloseInput = false;
-		    return _serializer.Deserialize(reader, type);
-	    }
-
-	    private JsonReader CreateJsonReader(Type type, Stream readStream)
-        {
             if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
@@ -137,13 +126,14 @@
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            var reader = new BsonDataReader(new BinaryReader(readStream));
+            using var innerReader = new BinaryReader(readStream);
+            using var reader = new BsonDataReader(innerReader) {CloseInput = false};
 
             try
             {
                 // Special case discussed at http://stackoverflow.com/questions/16910369/bson-array-deserialization-with-json-net
                 // Dispensed with string (aka IEnumerable<char>) case above in ReadFromStream()
-                reader.ReadRootValueAsArray = EnumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !DictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo());
+                reader.ReadRootValueAsArray = _enumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !_dictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo());
             }
             catch
             {
@@ -151,9 +141,9 @@
                 ((IDisposable)reader).Dispose();
                 throw;
             }
-
-            return reader;
-        }
+		    
+		    return _serializer.Deserialize(reader, type);
+	    }
 
 
 	    public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
@@ -209,19 +199,13 @@
 
 	    private void WriteToStreamInternal(object value, Stream writeStream)
 	    {
-		    using var writer = CreateJsonWriter(writeStream);
-		    
-		    writer.CloseOutput = false;
-		    _serializer.Serialize(writer, value);
-		    writer.Flush();
-	    }
-
-		private JsonWriter CreateJsonWriter(Stream writeStream)
-        {
             if (writeStream == null) throw new ArgumentNullException(nameof(writeStream));
 
-            return new BsonDataWriter(new BinaryWriter(writeStream));
-        }
+            using var writer = new BsonDataWriter(writeStream) {CloseOutput = false};
+
+            _serializer.Serialize(writer, value);
+		    writer.Flush();
+	    }
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
         // JsonObject.
