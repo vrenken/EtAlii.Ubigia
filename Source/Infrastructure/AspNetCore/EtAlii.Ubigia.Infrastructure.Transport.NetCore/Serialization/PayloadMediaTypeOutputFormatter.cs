@@ -9,19 +9,17 @@
     using Microsoft.AspNetCore.Http.Features;
 	using Microsoft.AspNetCore.Mvc.Formatters;
 	using Microsoft.Net.Http.Headers;
-	using Newtonsoft.Json;
-	using Newtonsoft.Json.Bson;
+    using Newtonsoft.Json.Bson;
 
 	public class PayloadMediaTypeOutputFormatter : OutputFormatter
 	{
-		// ReSharper disable once InconsistentNaming
-        public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
+        private static readonly MediaTypeHeaderValue _mediaType = new("application/bson");
 		private readonly ISerializer _serializer;
 
 		public PayloadMediaTypeOutputFormatter()
 		{
 		    // Set default supported media type
-		    SupportedMediaTypes.Add(MediaType);
+		    SupportedMediaTypes.Add(_mediaType);
 			_serializer = new SerializerFactory().Create();
 		}
 
@@ -72,39 +70,31 @@
                 {
                     { "Value", value },
                 };
-	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);
+	            WriteToStreamInternal(temporaryDictionary, writeStream);
 			}
 			else
             {
-
-				WriteToStreamInternal(type, value, writeStream);
+                if (type == null)
+                {
+                    throw new ArgumentNullException(nameof(type));
+                }
+				WriteToStreamInternal(value, writeStream);
             }
         }
 
-	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)
+	    private void WriteToStreamInternal(object value, Stream writeStream)
 	    {
-			using (var writer = CreateJsonWriter(type, writeStream))
-		    {
-			    writer.CloseOutput = false;
-			    _serializer.Serialize(writer, value);
-			    writer.Flush();
-		    }
-		}
-
-		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
-        {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
             if (writeStream == null)
             {
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
-            return new BsonDataWriter(new BinaryWriter(writeStream));
-        }
+            using var innerWriter = new BinaryWriter(writeStream);
+            using var writer = new BsonDataWriter(innerWriter) { CloseOutput = false };
+
+            _serializer.Serialize(writer, value);
+			writer.Flush();
+		}
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
         // JsonObject.

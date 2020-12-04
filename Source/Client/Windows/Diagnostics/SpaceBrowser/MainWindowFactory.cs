@@ -85,6 +85,7 @@
                 .UseGraphSLProfiling();
             
             // Then the fabric context.
+#pragma warning disable CA2000 // The fabric context and logical context are consumed by the other context instances.  
             var fabricContext = new FabricContextFactory().CreateForProfiling(configuration);
             container.Register<IFabricContext>(() => fabricContext);
             container.Register(() => fabricContext);
@@ -92,7 +93,7 @@
             var logicalContext = new LogicalContextFactory().CreateForProfiling(configuration);
             container.Register<ILogicalContext>(() => logicalContext);
             container.Register(() => logicalContext);
-
+#pragma warning restore CA2000
 
             container.Register(() => new GraphSLScriptContextFactory().Create(configuration));
             container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
