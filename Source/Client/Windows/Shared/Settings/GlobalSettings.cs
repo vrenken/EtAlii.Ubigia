@@ -24,7 +24,7 @@
 
         public GlobalSettings()
         {
-            using (var storagesKey = GetSubKey(Settings.StoragesNaming))
+            using (var storagesKey = GetSubKey(SettingsKey.StoragesNaming))
             {
                 foreach (var storageKey in storagesKey.GetSubKeyNames())
                 {
