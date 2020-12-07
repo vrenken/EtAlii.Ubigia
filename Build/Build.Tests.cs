@@ -24,6 +24,9 @@ namespace EtAlii.Ubigia.Pipelines
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
             
             .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
+            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
+            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
+        
             
             // We are not interested in .shproj files. These will mess up dotnet test.
             .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); 
