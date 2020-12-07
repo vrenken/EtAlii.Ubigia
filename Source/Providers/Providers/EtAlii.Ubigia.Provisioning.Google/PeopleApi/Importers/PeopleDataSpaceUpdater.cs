@@ -78,9 +78,13 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 			};
 
 	        var initializer = new BaseClientService.Initializer();
-			var service = new PeopleServiceService(initializer);
+
+#pragma warning disable CA2000 // The lifetime of this service is handled by the ListRequest.  
+            var service = new PeopleServiceService(initializer);
+#pragma warning restore CA2000   
 			//var builder = new global::Google.Apis.Requests.RequestBuilder()
 	        return new PeopleResource.ConnectionsResource.ListRequest(service, "people/me");
+            
 			//builder.
 			//var parameters = new OAuth2Parameters()
 			//         parameters.AccessToken = userSettings.AccessToken
