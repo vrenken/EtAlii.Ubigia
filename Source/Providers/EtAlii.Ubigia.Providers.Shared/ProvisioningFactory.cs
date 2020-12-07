@@ -4,7 +4,7 @@
 
     public class ProvisioningFactory : IProvisioningFactory
     {
-        public IProvisioning Create(IProvisioningConfiguration configuration)
+        public IProvisioningManager Create(IProvisioningConfiguration configuration)
         {
             var container = new Container();
 
@@ -24,7 +24,7 @@
                 extension.Initialize(container);
             }
 
-            return container.GetInstance<IProvisioning>();
+            return container.GetInstance<IProvisioningManager>();
         }
     }
 }

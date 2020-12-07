@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public interface IProvisioning
+    public interface IProvisioningManager
     {
         string Status { get; }
 
