@@ -23,7 +23,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <ubigia:Ribbon 
+        <ubigia:ApplicationRibbon 
             Grid.Row="0" DataContext="{Binding}"
             LastFocusedDocument="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
 

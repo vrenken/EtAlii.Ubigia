@@ -1,5 +1,5 @@
 ﻿<fluent:Ribbon 
-    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Ribbon"
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.ApplicationRibbon"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
