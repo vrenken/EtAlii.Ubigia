@@ -6,7 +6,7 @@
     public class StorageSettings : BindableSettingsBase
     {
         public StorageSettings(string id)
-            : base($"{Settings.StoragesNaming}\\{id}")
+            : base($"{SettingsKey.StoragesNaming}\\{id}")
         {
             Id = new Guid(id);
             
@@ -19,7 +19,7 @@
         public bool MountAsStorage { get => GetValue(ref _mountAsStorage, true); set => SetProperty(ref _mountAsStorage, value); }
         private bool? _mountAsStorage;
 
-        public string Name { get => GetValue(ref _name, $"Unnamed {Settings.StorageNaming}"); set => SetProperty(ref _name, value); }
+        public string Name { get => GetValue(ref _name, $"Unnamed {SettingsKey.StorageNaming}"); set => SetProperty(ref _name, value); }
         private string _name;
 
         public Guid Id { get; }
