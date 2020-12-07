@@ -15,8 +15,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             _timePreparer = timePreparer;
 
             Template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter)
             };
         }
 

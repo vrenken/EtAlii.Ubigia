@@ -12,9 +12,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             Template = new PathSubjectPart[]
             {
-                new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter), 
+                new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter), 
                 new ParentPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+                new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter)
             };
         }
 

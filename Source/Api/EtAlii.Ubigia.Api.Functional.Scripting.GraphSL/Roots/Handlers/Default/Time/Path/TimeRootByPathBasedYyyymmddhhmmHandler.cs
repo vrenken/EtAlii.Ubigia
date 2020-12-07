@@ -14,11 +14,11 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             _timePreparer = timePreparer;
             Template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.HourFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MinuteFormatter)
             };
         }
 

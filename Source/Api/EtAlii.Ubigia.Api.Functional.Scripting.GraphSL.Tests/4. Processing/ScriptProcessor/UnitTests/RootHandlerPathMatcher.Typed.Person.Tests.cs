@@ -14,8 +14,8 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -40,9 +40,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -68,8 +68,8 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -95,9 +95,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -121,9 +121,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -147,9 +147,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -173,9 +173,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -200,9 +200,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -226,9 +226,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -253,9 +253,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
