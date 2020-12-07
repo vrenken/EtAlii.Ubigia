@@ -112,9 +112,10 @@
             scriptOutput.OnNext(sequenceResult);
 
             Exception exception = null;
-            var continueEvent = new ManualResetEvent(false);
+            using var continueEvent = new ManualResetEvent(false);
 
             // We need to halt execution of the next sequence until the current one has finished.
+            // ReSharper disable AccessToDisposedClosure
             observableSequenceOutput.Subscribe(
                 onNext: _ => { }, 
                 onError: e =>
@@ -124,6 +125,8 @@
                 }, 
                 onCompleted: () => { continueEvent.Set(); });
             continueEvent.WaitOne();
+            // ReSharper restore AccessToDisposedClosure
+
             if (exception != null)
             {
                 throw exception;

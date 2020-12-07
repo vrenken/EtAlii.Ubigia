@@ -95,11 +95,12 @@
             //queryOutput.OnNext(sequenceResult)
 
             Exception exception = null;
-            var continueEvent = new ManualResetEvent(false);
+            using var continueEvent = new ManualResetEvent(false);
 
             // We need to halt execution of the next sequence until the current one has finished.
+            // ReSharper disable AccessToDisposedClosure
             executionPlanOutput.Subscribe(
-                onNext: o => schemaOutput.OnNext(o), 
+                onNext: schemaOutput.OnNext, 
                 onError: e =>
                 {
                     exception = e;
@@ -107,6 +108,7 @@
                 }, 
                 onCompleted: () => { continueEvent.Set(); });
             continueEvent.WaitOne();
+            // ReSharper disable restore AccessToDisposedClosure
 
             if (exception != null)
             {
