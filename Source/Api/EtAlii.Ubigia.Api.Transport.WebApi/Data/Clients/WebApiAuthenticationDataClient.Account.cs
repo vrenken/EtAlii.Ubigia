@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-            var address = _connection.AddressFactory.Create(_connection.Transport, RelativeUri.Data.Accounts, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
+            var address = _connection.AddressFactory.Create(_connection.Transport, RelativeDataUri.Accounts, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
             var account = await _connection.Client.Get<Account>(address).ConfigureAwait(false);
             if (account == null)
             {

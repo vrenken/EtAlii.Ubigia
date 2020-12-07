@@ -6,7 +6,7 @@
     {
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             await Connection.Client.Post(address, contentDefinition).ConfigureAwait(false);
 
             MarkAsStored(contentDefinition);
@@ -20,7 +20,7 @@
             // It might not be the best fit to alter this in PUT, but as the WebApi interface
             // is the least important one this will do for now.
             // We've got bigger fish to fry.
-            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
             await Connection.Client.Put(address, contentDefinitionPart).ConfigureAwait(false);
 
             MarkAsStored(contentDefinitionPart);
@@ -28,7 +28,7 @@
 
         public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             var contentDefinition = await Connection.Client.Get<ContentDefinition>(address).ConfigureAwait(false);
             return contentDefinition;
         }

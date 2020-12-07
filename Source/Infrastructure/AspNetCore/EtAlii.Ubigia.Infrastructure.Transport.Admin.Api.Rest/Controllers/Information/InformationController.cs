@@ -2,12 +2,13 @@
 {
 	using System;
 	using EtAlii.Ubigia.Api.Transport;
-	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Mvc;
 
 	[RequiresAuthenticationToken(Role.Admin)]
-    [Route(RelativeUri.Management.Api.Information)]
+    [Route(RelativeManagementUri.Information)]
     public class InformationController : RestController
     {
 	    private readonly IConfigurationDetails _configurationDetails;

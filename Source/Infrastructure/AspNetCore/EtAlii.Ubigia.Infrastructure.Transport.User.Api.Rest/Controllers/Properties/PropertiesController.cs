@@ -1,12 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.User)]
-    [Route(RelativeUri.Data.Api.Properties)]
+    [Route(RelativeDataUri.Properties)]
     public class PropertiesController : RestController
     {
         private readonly IPropertiesRepository _properties;
