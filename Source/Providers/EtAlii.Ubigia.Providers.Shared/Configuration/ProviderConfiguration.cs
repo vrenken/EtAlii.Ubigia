@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 
-    public class ProviderConfiguration : Configuration, IProviderConfiguration, IEditableProviderConfiguration
+    public class ProviderConfiguration : ConfigurationBase, IProviderConfiguration, IEditableProviderConfiguration
     {
         IGraphSLScriptContext IEditableProviderConfiguration.SystemScriptContext { get => SystemScriptContext; set => SystemScriptContext = value; }
         public IGraphSLScriptContext SystemScriptContext { get; private set; }

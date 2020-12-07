@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class InfrastructureConfiguration : Configuration, IInfrastructureConfiguration, IEditableInfrastructureConfiguration
+    public class InfrastructureConfiguration : ConfigurationBase, IInfrastructureConfiguration, IEditableInfrastructureConfiguration
     {
         /// <inheritdoc />
         ILogicalContext IEditableInfrastructureConfiguration.Logical { get => Logical; set => Logical = value; }

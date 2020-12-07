@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class DataConnectionConfiguration : Configuration, IDataConnectionConfiguration, IEditableDataConnectionConfiguration
+    public class DataConnectionConfiguration : ConfigurationBase, IDataConnectionConfiguration, IEditableDataConnectionConfiguration
     {
         ITransportProvider IEditableDataConnectionConfiguration.TransportProvider { get => TransportProvider; set => TransportProvider = value; }
         public ITransportProvider TransportProvider { get; private set; }

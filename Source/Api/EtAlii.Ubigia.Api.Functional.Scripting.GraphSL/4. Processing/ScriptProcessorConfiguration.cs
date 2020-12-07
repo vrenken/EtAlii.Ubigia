@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Logical;
 
-    public class ScriptProcessorConfiguration : Configuration, IScriptProcessorConfiguration
+    public class ScriptProcessorConfiguration : ConfigurationBase, IScriptProcessorConfiguration
     {
         public IScriptScope ScriptScope { get; private set; }
 

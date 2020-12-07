@@ -42,8 +42,8 @@
         /// <param name="otherConfiguration"></param>
         /// <typeparam name="TConfiguration"></typeparam>
         /// <returns></returns>
-        public static TConfiguration Use<TConfiguration>(this TConfiguration configuration, Configuration otherConfiguration)
-            where TConfiguration : Configuration
+        public static TConfiguration Use<TConfiguration>(this TConfiguration configuration, ConfigurationBase otherConfiguration)
+            where TConfiguration : ConfigurationBase
         {
             var editableConfiguration = (IEditableConfiguration) configuration;
 

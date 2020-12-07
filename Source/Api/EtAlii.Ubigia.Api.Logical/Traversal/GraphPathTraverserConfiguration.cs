@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.Ubigia.Api.Fabric;
 
-    public class GraphPathTraverserConfiguration : Configuration, IGraphPathTraverserConfiguration
+    public class GraphPathTraverserConfiguration : ConfigurationBase, IGraphPathTraverserConfiguration
     {
         public IFabricContext FabricContext { get; private set; }
 

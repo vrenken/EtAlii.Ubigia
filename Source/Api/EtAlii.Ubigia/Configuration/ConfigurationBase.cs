@@ -7,7 +7,7 @@
     /// This is the base class for all configuration classes.
     /// It provides out of the box support for extensions.
     /// </summary>
-    public abstract class Configuration : IConfiguration, IEditableConfiguration
+    public abstract class ConfigurationBase : IConfiguration, IEditableConfiguration
     {
         /// <summary>
         /// The extensions added to this configuration.
@@ -20,7 +20,7 @@
         /// <summary>
         /// Creates a new Configuration instance. 
         /// </summary>
-        protected Configuration()
+        protected ConfigurationBase()
         {
             Extensions = Array.Empty<IExtension>();
         }
