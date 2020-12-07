@@ -3,7 +3,9 @@
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api.Logical;
 
+#pragma warning disable CA1724// This class really has a purpose.
     public sealed class Structure
+#pragma warning restore CA1724
     {
         //public Identifier Id [ get ]
         public string Type { get; }

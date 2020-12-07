@@ -17,7 +17,10 @@
             // No arguments? Run the Service and exit when service exits.
             if (!args.Any())
             {
-                System.ServiceProcess.ServiceBase.Run(new WindowsService(serviceLogic, serviceDetails));
+#pragma warning disable CA2000 // We cannot dispose the service as its lifetime gets managed by ServiceBase.Run.
+                var service = new WindowsService(serviceLogic, serviceDetails);
+#pragma warning restore CA2000
+                System.ServiceProcess.ServiceBase.Run(service);
                 return;
             }
 
