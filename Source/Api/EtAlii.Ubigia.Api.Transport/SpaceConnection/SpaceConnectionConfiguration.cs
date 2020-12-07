@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
-    public class SpaceConnectionConfiguration : Configuration, ISpaceConnectionConfiguration
+    public class SpaceConnectionConfiguration : ConfigurationBase, ISpaceConnectionConfiguration
     {
         public ISpaceTransport Transport { get; private set; }
 

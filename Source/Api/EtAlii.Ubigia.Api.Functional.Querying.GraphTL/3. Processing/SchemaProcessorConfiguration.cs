@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class SchemaProcessorConfiguration : Configuration, ISchemaProcessorConfiguration
+    public class SchemaProcessorConfiguration : ConfigurationBase, ISchemaProcessorConfiguration
     {
         public ISchemaScope SchemaScope { get; private set; }
         

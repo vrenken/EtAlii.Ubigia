@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Transport
         public static TDataConnectionConfiguration Use<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, DataConnectionConfiguration otherConfiguration)
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {
-            configuration.Use((Configuration)otherConfiguration);
+            configuration.Use((ConfigurationBase)otherConfiguration);
 
             var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
 

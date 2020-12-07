@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ManagementConnectionConfiguration : Configuration, IManagementConnectionConfiguration
+    public class ManagementConnectionConfiguration : ConfigurationBase, IManagementConnectionConfiguration
     {
         public IStorageTransportProvider TransportProvider { get; private set; }
 

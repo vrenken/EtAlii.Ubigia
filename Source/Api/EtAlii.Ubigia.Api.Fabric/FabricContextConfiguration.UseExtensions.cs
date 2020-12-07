@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, FabricContextConfiguration otherConfiguration)
             where TFabricContextConfiguration: FabricContextConfiguration
         {
-            configuration.Use((Configuration)otherConfiguration);
+            configuration.Use((ConfigurationBase)otherConfiguration);
 
             var editableConfiguration = (IEditableFabricContextConfiguration) configuration;
 

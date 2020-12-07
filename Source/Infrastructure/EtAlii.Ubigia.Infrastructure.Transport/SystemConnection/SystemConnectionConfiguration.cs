@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public class SystemConnectionConfiguration : Configuration, ISystemConnectionConfiguration, IEditableSystemConnectionConfiguration
+    public class SystemConnectionConfiguration : ConfigurationBase, ISystemConnectionConfiguration, IEditableSystemConnectionConfiguration
     {
         IStorageTransportProvider IEditableSystemConnectionConfiguration.TransportProvider { get => TransportProvider; set => TransportProvider = value; }
 

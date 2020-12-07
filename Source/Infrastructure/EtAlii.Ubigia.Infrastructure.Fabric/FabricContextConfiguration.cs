@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Persistence;
 
-    public class FabricContextConfiguration : Configuration
+    public class FabricContextConfiguration : ConfigurationBase
     {
         public IStorage Storage { get; private set; }
 

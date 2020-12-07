@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 
-    public class ProvisioningConfiguration : Configuration, IProvisioningConfiguration, IEditableProvisioningConfiguration
+    public class ProvisioningConfiguration : ConfigurationBase, IProvisioningConfiguration, IEditableProvisioningConfiguration
     {
         ProviderConfiguration[] IEditableProvisioningConfiguration.ProviderConfigurations { get => ProviderConfigurations; set => ProviderConfigurations = value; }
         public ProviderConfiguration[] ProviderConfigurations { get; private set; }
