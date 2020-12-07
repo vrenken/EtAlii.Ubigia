@@ -23,9 +23,10 @@ namespace EtAlii.Ubigia.Pipelines
             // The SpaceBrowser tests won't run nicely on a headless build agent.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
             
-            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
-            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
-            .Where(tp => !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Fabric.WebApi.Tests"))
         
             
             // We are not interested in .shproj files. These will mess up dotnet test.
