@@ -2,6 +2,6 @@
 {
     public interface IProvisioningFactory
     {
-        IProvisioning Create(IProvisioningConfiguration configuration);
+        IProvisioningManager Create(IProvisioningConfiguration configuration);
     }
 }

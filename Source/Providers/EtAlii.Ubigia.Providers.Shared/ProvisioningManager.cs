@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class Provisioning : IProvisioning
+    public class ProvisioningManager : IProvisioningManager
     {
         public IGraphSLScriptContext Data { get; }
 
@@ -16,7 +16,7 @@
 
         public string Status => _providerManager.Status;
 
-        protected Provisioning(
+        protected ProvisioningManager(
             IGraphSLScriptContext data,
             IProvisioningConfiguration configuration,
             IProviderManager providerManager)

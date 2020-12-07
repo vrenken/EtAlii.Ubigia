@@ -5,16 +5,16 @@
 
     public class ProvisioningHostExtension : IHostExtension
     {
-        private readonly IProvisioning _provisioning;
+        private readonly IProvisioningManager _provisioningManager;
 
-        public ProvisioningHostExtension(IProvisioning provisioning)
+        public ProvisioningHostExtension(IProvisioningManager provisioningManager)
         {
-            _provisioning = provisioning;
+            _provisioningManager = provisioningManager;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _provisioning);
+            container.Register(() => _provisioningManager);
             container.Register<IProvisioningService, ProvisioningService>();
         }
     }

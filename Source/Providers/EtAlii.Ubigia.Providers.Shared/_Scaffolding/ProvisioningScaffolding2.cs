@@ -18,7 +18,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IProvisioning, Provisioning>();
+            container.Register<IProvisioningManager, ProvisioningManager>();
             container.Register(() => _configuration);
 
             container.Register(() =>
