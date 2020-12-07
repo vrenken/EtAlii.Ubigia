@@ -135,6 +135,7 @@
             if (originalObservableSequenceOutput != null)
             {
                 // But also if we don't attach the original observable sequence output.
+                // ReSharper disable AccessToDisposedClosure
                 continueEvent.Reset();
                 originalObservableSequenceOutput.Subscribe(
                     onNext: _ => { }, 
@@ -145,6 +146,7 @@
                     }, 
                     onCompleted: () => continueEvent.Set());
                 continueEvent.WaitOne();
+                // ReSharper restore AccessToDisposedClosure
                 if (exception != null)
                 {
                     throw exception;

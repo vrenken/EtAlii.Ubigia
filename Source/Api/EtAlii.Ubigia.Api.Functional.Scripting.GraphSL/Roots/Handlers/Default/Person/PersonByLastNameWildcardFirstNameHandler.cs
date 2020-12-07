@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             Template = new PathSubjectPart[]
             {
                 new WildcardPathSubjectPart("*"), new ParentPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter), 
+                new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter), 
             };
         }
 

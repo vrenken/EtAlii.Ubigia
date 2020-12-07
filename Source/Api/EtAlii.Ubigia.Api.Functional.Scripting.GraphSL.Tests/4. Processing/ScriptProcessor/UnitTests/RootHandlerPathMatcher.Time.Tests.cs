@@ -24,12 +24,12 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.SecondFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.HourFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MinuteFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.SecondFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -62,12 +62,12 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.SecondFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.HourFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MinuteFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.SecondFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -96,12 +96,12 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.SecondFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.HourFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MinuteFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.SecondFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -130,12 +130,12 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.SecondFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.HourFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MinuteFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.SecondFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -166,9 +166,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -197,9 +197,9 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TimePathFormatter.DayFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -228,7 +228,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                    new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -258,7 +258,7 @@
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new ParentPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -289,7 +289,7 @@
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new ParentPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -314,7 +314,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -338,7 +338,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -362,7 +362,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -386,7 +386,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -410,7 +410,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -434,7 +434,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -458,7 +458,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
@@ -482,7 +482,7 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
+                new TypedPathSubjectPart(TimePathFormatter.YearFormatter)
             };
             var path = new PathSubjectPart[]
             {
