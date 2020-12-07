@@ -1,12 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
     using System;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.User)]
-    [Route(RelativeUri.Data.Api.Storages)]
+    [Route(RelativeDataUri.Storages)]
     public class StorageController : RestController
     {
         private readonly IStorageRepository _items;

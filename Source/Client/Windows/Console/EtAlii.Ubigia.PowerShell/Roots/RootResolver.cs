@@ -6,6 +6,9 @@
     using EtAlii.Ubigia.PowerShell.Spaces;
     using EtAlii.Ubigia.PowerShell.Storages;
 
+    /// <summary>
+    /// A resolver able to retrieve roots.
+    /// </summary>
     public class RootResolver : IRootResolver
     {
         private readonly IAddressFactory _addressFactory;
@@ -19,6 +22,14 @@
             _spaceResolver = spaceResolver;
         }
 
+        /// <summary>
+        /// Get a root using the specified info provider, current account, space and root.
+        /// </summary>
+        /// <param name="rootInfoProvider"></param>
+        /// <param name="currentAccount"></param>
+        /// <param name="currentSpace"></param>
+        /// <param name="currentRoot"></param>
+        /// <returns></returns>
         public async Task<Root> Get(IRootInfoProvider rootInfoProvider, Account currentAccount, Space currentSpace, Root currentRoot)
         {
             Root root = null;
@@ -29,19 +40,19 @@
 
                 if (rootInfoProvider.Root != null)
                 {
-                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.RootId, rootInfoProvider.Root.Id.ToString());
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeDataUri.Roots, UriParameter.RootId, rootInfoProvider.Root.Id.ToString());
                     root = address != null ? await _client.Get<Root>(address).ConfigureAwait(false) : null;
                 }
                 else if (rootInfoProvider.RootId != Guid.Empty)
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount).ConfigureAwait(false);
-                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString(), UriParameter.IdType, "rootId");
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeDataUri.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString(), UriParameter.IdType, "rootId");
                     root = address != null ? await _client.Get<Root>(address).ConfigureAwait(false) : null;
                 }
                 else if (!string.IsNullOrEmpty(rootInfoProvider.RootName))
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount).ConfigureAwait(false);
-                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootName, UriParameter.IdType, "rootName");
+                    address = _addressFactory.Create(StorageCmdlet.CurrentDataApiAddress, RelativeDataUri.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootName, UriParameter.IdType, "rootName");
                     root = address != null ? await _client.Get<Root>(address).ConfigureAwait(false) : null;
                 }
             }

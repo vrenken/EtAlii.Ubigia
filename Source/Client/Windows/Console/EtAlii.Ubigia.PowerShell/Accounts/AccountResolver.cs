@@ -7,6 +7,9 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.PowerShell.Storages;
 
+    /// <summary>
+    /// A resolver able to retrieve accounts.
+    /// </summary>
     public class AccountResolver : IAccountResolver
     {
         private readonly IAddressFactory _addressFactory;
@@ -18,6 +21,13 @@
             _addressFactory = addressFactory;
         }
 
+        /// <summary>
+        /// Get a account using the specified info provider, current account and current storage.
+        /// </summary>
+        /// <param name="accountInfoProvider"></param>
+        /// <param name="currentAccount"></param>
+        /// <param name="currentStorage"></param>
+        /// <returns></returns>
         public async Task<Account> Get(IAccountInfoProvider accountInfoProvider, Account currentAccount, Storage currentStorage = null)
         {
             Account account = null;
@@ -27,18 +37,18 @@
                 Uri address;
                 if (accountInfoProvider.Account != null)
                 {
-                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
+                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeDataUri.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
                     account = address != null ? await _client.Get<Account>(address).ConfigureAwait(false) : null;
                 }
                 else if (!string.IsNullOrWhiteSpace(accountInfoProvider.AccountName))
                 {
-                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Accounts);
+                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeDataUri.Accounts);
                     var accounts = await _client.Get<IEnumerable<Account>>(address).ConfigureAwait(false);
                     account = accounts.FirstOrDefault(u => u.Name == accountInfoProvider.AccountName);
                 }
                 else if (accountInfoProvider.AccountId != Guid.Empty)
                 {
-                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.AccountId.ToString());
+                    address = _addressFactory.Create(StorageCmdlet.CurrentManagementApiAddress, RelativeDataUri.Accounts, UriParameter.AccountId, accountInfoProvider.AccountId.ToString());
                     account = address != null ? await _client.Get<Account>(address).ConfigureAwait(false) : null;
                 }
             }

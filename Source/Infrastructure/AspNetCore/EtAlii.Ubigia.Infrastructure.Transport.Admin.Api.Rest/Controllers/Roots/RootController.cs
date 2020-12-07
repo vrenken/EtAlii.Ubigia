@@ -2,12 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.Admin)]
-    [Route(RelativeUri.Management.Api.Roots)]
+    [Route(RelativeManagementUri.Roots)]
     public class RootController : RestController
     {
         private readonly IRootRepository _items;

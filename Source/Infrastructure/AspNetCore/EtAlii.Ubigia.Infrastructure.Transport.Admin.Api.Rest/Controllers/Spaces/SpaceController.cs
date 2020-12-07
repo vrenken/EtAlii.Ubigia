@@ -3,12 +3,13 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.Admin)]
-    [Route(RelativeUri.Management.Api.Spaces)]
+    [Route(RelativeManagementUri.Spaces)]
     public class SpaceController : RestController
     {
 	    private readonly ISpaceRepository _items;

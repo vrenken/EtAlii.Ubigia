@@ -6,7 +6,6 @@
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Api.Transport.WebApi;
 	using Xunit;
-	using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.NetCore.RelativeUri;
 
 	[Trait("Technology", "NetCore")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>

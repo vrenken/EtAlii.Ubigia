@@ -26,7 +26,7 @@
 	        //var spaces = await _connection.Client.Get<IEnumerable<Space>>(address)
 	        //return spaces.FirstOrDefault(s => s.Name == spaceName)
 
-	        var address = _connection.AddressFactory.Create(_connection.Transport, RelativeUri.Data.Spaces, UriParameter.SpaceName, spaceName, UriParameter.AuthenticationToken);
+	        var address = _connection.AddressFactory.Create(_connection.Transport, RelativeDataUri.Spaces, UriParameter.SpaceName, spaceName, UriParameter.AuthenticationToken);
 	        return _connection.Client.Get<Space>(address);
         }
 	}

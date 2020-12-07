@@ -3,12 +3,13 @@
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using Microsoft.AspNetCore.Mvc;
 
 	[RequiresAuthenticationToken(Role.Admin)]
-    [Route(RelativeUri.Management.Api.Accounts)]
+    [Route(RelativeManagementUri.Accounts)]
     public class AccountController : RestController
     {
 	    private readonly IAccountRepository _items;

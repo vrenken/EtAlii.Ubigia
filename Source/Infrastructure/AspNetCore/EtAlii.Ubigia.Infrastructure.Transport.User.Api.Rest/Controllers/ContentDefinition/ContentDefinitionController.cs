@@ -2,12 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.User)]
-    [Route(RelativeUri.Data.Api.ContentDefinition)]
+    [Route(RelativeDataUri.ContentDefinition)]
     public class ContentDefinitionController : RestController
     {
         private readonly IContentDefinitionRepository _items;
