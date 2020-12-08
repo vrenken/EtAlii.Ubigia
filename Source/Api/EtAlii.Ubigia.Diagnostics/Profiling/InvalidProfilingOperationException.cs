@@ -1,10 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
     using System;
+    using System.Runtime.Serialization;
 
-    public class InvalidProfilingOperationException : Exception
+    [Serializable]
+    public sealed class InvalidProfilingOperationException : Exception
     {
-        public InvalidProfilingOperationException()
+        private InvalidProfilingOperationException(SerializationInfo info, StreamingContext context) 
+            : base(info, context)
         {
         }
 

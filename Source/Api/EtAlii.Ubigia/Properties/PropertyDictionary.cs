@@ -3,8 +3,10 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Runtime.Serialization;
     using System.Text;
 
+    [Serializable]
     public sealed class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
     {
         public bool Stored { get; internal set; }
@@ -13,6 +15,11 @@
 
         private static readonly IEqualityComparer<object> _valueComparer = EqualityComparer<object>.Default;
 
+        private PropertyDictionary(SerializationInfo info, StreamingContext context)
+            : base(info, context) 
+        {
+        }
+        
         public PropertyDictionary()
         {
         }
