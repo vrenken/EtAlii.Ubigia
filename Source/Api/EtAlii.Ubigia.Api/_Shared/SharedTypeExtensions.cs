@@ -10,6 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using JetBrains.Annotations;
 
+#pragma warning disable CA2208 // This file will change.
+
 // ReSharper disable once CheckNamespace
 namespace System
 {
@@ -165,7 +167,6 @@ namespace System
             var sequenceType = TryGetSequenceType(type);
             if (sequenceType == null)
             {
-                // TODO: Add exception message
                 throw new ArgumentException();
             }
 
