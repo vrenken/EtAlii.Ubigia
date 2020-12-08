@@ -29,7 +29,7 @@
                 return Task.FromException(new InvalidOperationException("Wrong value type"));
             }
 
-            if (rawValue.IndexOf(IdentifierSplitter.Separator, StringComparison.Ordinal) == -1)
+            if (rawValue.Contains(IdentifierSplitter.Separator, StringComparison.Ordinal))
             {
                 return Task.FromException(new InvalidOperationException("No separator found"));
             }
