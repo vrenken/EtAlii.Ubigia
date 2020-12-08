@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$/../../../.gitignore" />
     <content url="file://$MODULE_DIR$/../../../.nuke" />
     <content url="file://$MODULE_DIR$/../../../Build" />
+    <content url="file://$MODULE_DIR$/../../../NuGet.config" />
     <content url="file://$MODULE_DIR$/../.." />
     <content url="file://$MODULE_DIR$/../../../azure-pipelines.yml" />
     <content url="file://$MODULE_DIR$/../../../build.cmd" />
