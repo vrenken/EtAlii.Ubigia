@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Pipelines
 
         private IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
         
-        [Parameter("NuGet publish feed url")] readonly string NuGetFeedUrl;
+        [Parameter("NuGet publish feed source")] readonly string NuGetFeedSource;
         [Parameter("NuGet publish feed token")] readonly string NuGetFeedToken;
         
         private Target Restore => _ => _
@@ -53,18 +53,15 @@ namespace EtAlii.Ubigia.Pipelines
             .DependsOn(CreatePackages)
             .Unlisted()
             .Requires(() => NuGetFeedToken != null)
-            .Requires(() => NuGetFeedUrl != null)
+            .Requires(() => NuGetFeedSource != null)
             .Executes(PublishPackagesInternal);
 
         private void PublishPackagesInternal()
         {
             DotNetNuGetPush(_ => _
-                .SetSource("EtAlii.Ubigia")//NuGetFeedUrl)
+                .SetSource(NuGetFeedSource)
                 .SetApiKey(NuGetFeedToken)
-                .SetTimeout(60)
-                .SetNoServiceEndpoint(false)
                 .SetSkipDuplicate(true)
-                .SetDisableBuffering(true)
                 .CombineWith(Packages, (_, v) => _
                     .SetTargetPath(v)));
         }
