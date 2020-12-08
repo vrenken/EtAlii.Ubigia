@@ -13,7 +13,7 @@
                 var sb = new StringBuilder();
                 for (var i = 0; i < _indention; i++)
                 {
-                    sb.Append("\t");
+                    sb.Append('\t');
                 }
                 var spaces = sb.ToString();
 
