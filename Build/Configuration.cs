@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Pipelines
     using Nuke.Common.Tooling;
 
     [TypeConverter(typeof(TypeConverter<Configuration>))]
+#pragma warning disable CA1724 
     public class Configuration : Enumeration
+#pragma warning restore CA1724 
     {
 
         public static readonly Configuration Debug = new Configuration {Value = nameof(Debug)};

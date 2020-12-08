@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Pipelines
     using Nuke.Common.CI.AzurePipelines;
     using Nuke.Common.Utilities.Collections;
 
+#pragma warning disable CA1724 
     public partial class Build
+#pragma warning restore CA1724 
     {
         private AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
