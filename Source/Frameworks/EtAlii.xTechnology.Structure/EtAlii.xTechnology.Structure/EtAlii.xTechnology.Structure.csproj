@@ -4,9 +4,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Version>$(PackageVersion)</Version>
     <ProjectGuid>07D8DC8C-87F9-4DF7-935F-E0C0B2A66983</ProjectGuid>
-    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Structure/license.txt</PackageLicenseUrl>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Structure</PackageProjectUrl>
-    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Structure/nuget_icon.png</PackageIconUrl>
     <Description>A package that provides a helping hand in structuring code.</Description>
     <PackageTags>SOLID query command workflow selection patterns</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>

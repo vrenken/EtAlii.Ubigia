@@ -4,9 +4,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Version>$(PackageVersion)</Version>
     <ProjectGuid>51A03AFF-A29D-48D0-8A52-5BEC47A3611C</ProjectGuid>
-    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading/license.txt</PackageLicenseUrl>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading</PackageProjectUrl>
-    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Threading/nuget_icon.png</PackageIconUrl>
     <Description>A collection of basic extensions on the common BCL System.Threading namespace.</Description>
     <PackageTags>threading parallel thread task</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
