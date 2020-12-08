@@ -3,7 +3,7 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>5a686657-cd47-461e-8cb6-1d927d93f814</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Fabric</PackageProjectUrl>
-    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>

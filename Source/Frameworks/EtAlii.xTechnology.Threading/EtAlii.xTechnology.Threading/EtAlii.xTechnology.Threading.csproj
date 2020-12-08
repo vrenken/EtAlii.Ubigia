@@ -6,7 +6,7 @@
     <ProjectGuid>51A03AFF-A29D-48D0-8A52-5BEC47A3611C</ProjectGuid>
     <Description>A collection of basic extensions on the common BCL System.Threading namespace.</Description>
     <PackageTags>threading parallel thread task</PackageTags>
-    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>

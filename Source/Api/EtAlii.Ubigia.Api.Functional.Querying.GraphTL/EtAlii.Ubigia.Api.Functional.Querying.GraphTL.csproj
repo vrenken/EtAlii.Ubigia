@@ -3,7 +3,7 @@
         <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
         <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
         <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
-        <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+        <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
     </PropertyGroup>

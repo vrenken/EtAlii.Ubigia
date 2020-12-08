@@ -4,7 +4,7 @@
     <Description>Package that contains the implementation needed to store data on the NTFS filesystem.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Ntfs</PackageProjectUrl>
-    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Ntfs</PackageTags>
     <ProjectGuid>2FB9D0D5-DE7B-44EB-AC89-81DE306D9554</ProjectGuid>
   </PropertyGroup>

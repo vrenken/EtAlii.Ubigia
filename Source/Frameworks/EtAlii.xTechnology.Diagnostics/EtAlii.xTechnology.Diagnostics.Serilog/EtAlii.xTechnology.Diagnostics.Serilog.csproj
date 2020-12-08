@@ -5,7 +5,7 @@
     <Version>$(PackageVersion)</Version>
     <Description>A package that contains a logging implementation that uses the Serilog logging system.</Description>
     <PackageTags>di dependency injection solid</PackageTags>
-    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageId>EtAlii.xTechnology.Diagnostics.Serilog</PackageId>
     <AssemblyName>EtAlii.xTechnology.Diagnostics.Serilog</AssemblyName>
     <RootNamespace>EtAlii.xTechnology.Diagnostics.Serilog</RootNamespace>
