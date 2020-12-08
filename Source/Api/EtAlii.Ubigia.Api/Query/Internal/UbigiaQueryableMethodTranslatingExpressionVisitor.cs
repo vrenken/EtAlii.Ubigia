@@ -1,6 +1,8 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+#pragma warning disable S4136 // Method overloads should be grouped together => Third party class so we won't fix this for now.
+
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
     using System;
