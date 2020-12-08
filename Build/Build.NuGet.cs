@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Pipelines
             Logger.Info($"dotnet pack");
 
             DotNetPack(_ => _
-                .SetProject(Solution.GetProject("EtAlii.Ubigia"))
+                .SetProject(Solution)
                 .SetOutputDirectory(ArtifactsDirectory)
                 .SetVersion("0.1.0"));
         }
