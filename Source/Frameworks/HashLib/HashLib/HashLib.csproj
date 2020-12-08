@@ -5,6 +5,7 @@
     <ProjectGuid>A89B17A7-8CCF-4005-85C0-AC0D842AEDCB</ProjectGuid>
     <Version>2.1.0.2</Version>
     <Authors>tomanu</Authors>
+    <IsPackable>false</IsPackable>
     <PackageLicenseUrl>http://opensource.org/licenses/MS-PL</PackageLicenseUrl>
     <PackageProjectUrl>http://hashlib.codeplex.com/SourceControl/latest#HashLib/</PackageProjectUrl>
     <Description>Implementations of many hashing algorithms: for hashtables, cryptographic purpose and checksums.</Description>

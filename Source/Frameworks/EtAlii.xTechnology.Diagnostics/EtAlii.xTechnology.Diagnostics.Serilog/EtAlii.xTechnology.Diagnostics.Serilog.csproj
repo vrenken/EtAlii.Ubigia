@@ -3,9 +3,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Version>$(PackageVersion)</Version>
-    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics/license.txt</PackageLicenseUrl>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics</PackageProjectUrl>
-    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.xTechnology.Diagnostics/nuget_icon.png</PackageIconUrl>
     <Description>A package that contains a logging implementation that uses the Serilog logging system.</Description>
     <PackageTags>di dependency injection solid</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
