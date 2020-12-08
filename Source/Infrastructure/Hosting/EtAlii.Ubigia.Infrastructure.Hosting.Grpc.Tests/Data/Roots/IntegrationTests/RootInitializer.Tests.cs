@@ -13,7 +13,8 @@
     public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
-
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
+        
         public RootInitializerTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -24,8 +25,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var root = InfrastructureTestHelper.CreateRoot();
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var root = _infrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -56,8 +57,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var root = InfrastructureTestHelper.CreateRoot();
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var root = _infrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -91,8 +92,8 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
-            var root = InfrastructureTestHelper.CreateRoot();
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var root = _infrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);
             root = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
