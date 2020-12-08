@@ -170,10 +170,10 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public static implicit operator Func<LpText, IEnumerable<LpNode>>(LpsParser parser)
 		{
-			return (text) =>
+			return text =>
 			{
 				var result = parser.Do(text);
-				return result.Success ? new[] { result } : new LpNode[0];
+				return result.Success ? new[] { result } : Array.Empty<LpNode>();
 			};
 		}
 
@@ -184,10 +184,10 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public static explicit operator LpmParser(LpsParser parser)
 		{
-			return new LpmParser(parser.Identifier, (text) =>
+			return new(parser.Identifier, text =>
 			{
 				var result = parser.Do(text);
-				return result.Success ? new[] { result } : new LpNode[0];
+				return result.Success ? new[] { result } : Array.Empty<LpNode>();
 			});
 		}
 
