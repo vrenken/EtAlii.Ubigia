@@ -69,11 +69,13 @@ namespace Moppet.Lapa
                 //res = m_parser(text);
                 //m_stack.Remove(added);
 
-                LinkedListNode<LpText> added = null;
+                LinkedListNode<LpText> added;
                 lock (Stack)
                 {
-                    if (Stack.FindLast(text) != null)
-                        return new LpNode[0];
+                    if (Stack.FindLast(text) != null) 
+                    {
+                        return Array.Empty<LpNode>();
+                    }
                     added = Stack.AddLast(text);
                 }
                 res = Parser(text);
@@ -188,11 +190,11 @@ namespace Moppet.Lapa
 		/// <returns>The resulting parser.</returns>
 		public static LpmParser operator +(LpsParser left, LpmParser right)
 		{
-			return new LpmParser((p) =>
+			return new(p =>
 			{
 				var prevResult = left.Do(p);
 				if (!prevResult.Success)
-					return new LpNode[0];
+					return Array.Empty<LpNode>();
 				return right.Do(prevResult.Rest).Select(next => LpNode.Concat(prevResult, next));
 			});
 		}

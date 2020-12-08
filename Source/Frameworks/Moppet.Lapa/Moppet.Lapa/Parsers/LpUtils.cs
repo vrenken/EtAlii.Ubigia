@@ -131,11 +131,11 @@ namespace Moppet.Lapa.Parsers
         public static Func<LpText, IEnumerable<TResult>> NamedParams<TResult>(char maybeLeftQuote, char maybeRightQuote, Func<string, string, TResult> nameValueConverter)
         {
             var parser = NamedParams(maybeLeftQuote, maybeRightQuote);
-            return (text) =>
+            return text =>
             {
                 var result = parser.Do(text);
                 if (!result.Success)
-                    return new TResult[0];
+                    return Array.Empty<TResult>();
 
                 return result.Children.Where(n => n.Id == "Param").Select(n =>
                 {
