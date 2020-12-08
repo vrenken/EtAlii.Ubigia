@@ -30,9 +30,11 @@
             var result = TimeSpan.MinValue;
 
             var timeNode = _nodeFinder.FindFirst(node, "TimeSpan");
-            if (timeNode != null)
+            if (timeNode != null) 
             {
+#pragma warning disable CA1806 // Do not ignore method results. However there is nothing we can do here right now.
                 LpDateTime.TryParseTimeSpan(timeNode, ref result);
+#pragma warning restore CA1806                
             }
 
             return result;
