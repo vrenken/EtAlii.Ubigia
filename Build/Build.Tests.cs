@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Pipelines
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
             
             //.Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
-            //.Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
-            //.Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Fabric.WebApi.Tests"))
         
             
