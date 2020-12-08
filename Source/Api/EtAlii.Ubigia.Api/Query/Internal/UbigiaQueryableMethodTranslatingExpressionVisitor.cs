@@ -1309,7 +1309,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var innerExpression = Visit(node.Expression);
 
                 return TryExpand(innerExpression, MemberIdentity.Create(node.Member))
-                    ?? node.Update(innerExpression);
+                    ?? node.Update(innerExpression!);
             }
 
             protected override Expression VisitMethodCall(MethodCallExpression node)

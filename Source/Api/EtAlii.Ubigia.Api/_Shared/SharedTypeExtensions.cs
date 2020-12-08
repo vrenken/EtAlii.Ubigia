@@ -427,7 +427,7 @@ namespace System
 
             ProcessType(builder, innerType, fullName);
 
-            while (type.IsArray)
+            while (type!.IsArray)
             {
                 builder.Append('[');
                 builder.Append(',', type.GetArrayRank() - 1);
