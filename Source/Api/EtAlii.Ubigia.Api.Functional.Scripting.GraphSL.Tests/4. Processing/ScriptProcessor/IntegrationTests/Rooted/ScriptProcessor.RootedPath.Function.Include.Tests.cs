@@ -24,7 +24,7 @@
         public void Dispose()
         {
             _parser = null;
-        }
+            GC.SuppressFinalize(this);        }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_01()

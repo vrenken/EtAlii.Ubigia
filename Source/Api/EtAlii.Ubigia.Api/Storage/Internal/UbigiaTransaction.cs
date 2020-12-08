@@ -70,6 +70,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         /// </summary>
         public virtual void Dispose()
         {
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>

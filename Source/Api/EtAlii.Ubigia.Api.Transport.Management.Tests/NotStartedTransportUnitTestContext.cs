@@ -20,6 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         {
             TransportTestContext = null;
             Diagnostics = null;
+            GC.SuppressFinalize(this);
         }
     }
 }

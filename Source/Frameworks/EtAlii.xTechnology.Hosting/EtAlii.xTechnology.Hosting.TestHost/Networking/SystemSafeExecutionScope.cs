@@ -85,6 +85,7 @@ namespace EtAlii.xTechnology.Hosting
                 _mutex.ReleaseMutex();
             }
             _mutex.Close();
+            GC.SuppressFinalize(this);
         }
     }
 }

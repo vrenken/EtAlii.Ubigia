@@ -20,6 +20,7 @@
         {
             _factory = null;
             _storage = null;
+            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
