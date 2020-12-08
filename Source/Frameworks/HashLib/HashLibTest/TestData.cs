@@ -77,7 +77,7 @@ namespace HashLibTest
                 }
                 else if (line == "Messsage:")
                 {
-                    m_datas.Add(new byte[0]);
+                    m_datas.Add(Array.Empty<byte>());
                 }
                 else if (line.StartsWith("Text: "))
                 {
