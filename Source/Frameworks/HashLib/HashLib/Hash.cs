@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 // ReSharper disable all
-
+#pragma warning disable CA2208 // External file, for now no need to cleanup.
 namespace HashLib
 {
     internal abstract class Hash : IHash
