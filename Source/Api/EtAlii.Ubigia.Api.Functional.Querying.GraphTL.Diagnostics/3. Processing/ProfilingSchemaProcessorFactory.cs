@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             // var extensions = new ISchemaProcessorExtension[]
             // [
             //     new ProfilingQueryProcessorExtension2(_profiler), 
-            // ];
+            // ]
                 
             configuration.Use(extensions);
 

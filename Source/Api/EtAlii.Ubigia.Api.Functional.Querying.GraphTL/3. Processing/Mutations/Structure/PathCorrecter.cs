@@ -62,9 +62,9 @@ namespace EtAlii.Ubigia.Api.Functional
             if (onlyOneSingleNode)
             {
 //                if (annotation.Source is StringConstantSubject stringConstantSubject)
-//                {
-//                    correctedParts.AddRange(new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(stringConstantSubject.Value)});
-//                }
+//                [
+//                    correctedParts.AddRange(new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(stringConstantSubject.Value)})
+//                ]
 //                else 
                 if (annotation.Source is RelativePathSubject relativePathSubject)
                 {

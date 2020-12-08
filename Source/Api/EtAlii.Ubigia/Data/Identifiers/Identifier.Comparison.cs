@@ -56,7 +56,7 @@
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
-            //if (this.GetType() != id.GetType())
+            //if (this.GetType() ne id.GetType())
             //[
             //    return false
             //]
@@ -108,7 +108,7 @@
             var equals = first.Equals(second);
 
             // Cannot happen.
-            //else if ((object)first == null && (object)second == null)
+            //else if ((object)first eq null && (object)second eq null)
             //[
             //    equals = true
             //]

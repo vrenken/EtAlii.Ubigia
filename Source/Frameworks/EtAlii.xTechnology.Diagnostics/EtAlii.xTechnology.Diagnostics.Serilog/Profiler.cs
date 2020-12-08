@@ -1,75 +1,75 @@
-﻿//using Gibraltar.Agent.Metrics;
-//using System.Collections.Generic;
+﻿//using Gibraltar.Agent.Metrics
+//using System.Collections.Generic
 
 //namespace EtAlii.xTechnology.Diagnostics
-//{
-//    using System;
+//[
+//    using System
 
 //    public class Profiler : IProfiler
-//    {
-//        private readonly Dictionary<string, SampledMetric> _sampledMetrics;
-//        private readonly Dictionary<string, EventMetric> _eventMetrics;
-//        private readonly Dictionary<string, EventMetricValue[]> _eventMetricsValues;
+//    [
+//        private readonly Dictionary<string, SampledMetric> _sampledMetrics
+//        private readonly Dictionary<string, EventMetric> _eventMetrics
+//        private readonly Dictionary<string, EventMetricValue[]> _eventMetricsValues
 
-//        private readonly string _metricsSystem;
-//        private readonly string _categoryName;
+//        private readonly string _metricsSystem
+//        private readonly string _categoryName
 
 
 //        public Profiler(string metricsSystem, string categoryName)
-//        {
-//            _sampledMetrics = new Dictionary<string,SampledMetric>();
-//            _eventMetrics = new Dictionary<string, EventMetric>();
-//            _eventMetricsValues = new Dictionary<string, EventMetricValue[]>();
-//            _metricsSystem = metricsSystem;
-//            _categoryName = categoryName;
-//        }
+//        [
+//            _sampledMetrics = new Dictionary<string,SampledMetric>()
+//            _eventMetrics = new Dictionary<string, EventMetric>()
+//            _eventMetricsValues = new Dictionary<string, EventMetricValue[]>()
+//            _metricsSystem = metricsSystem
+//            _categoryName = categoryName
+//        ]
 
 //        public void RegisterEventMetric(string counterName, string valueName, Type valueType,
 //            EtAlii.xTechnology.Logging.SummaryFunction summaryFunction, string unitCaption, string metricCaption,
 //            string description)
-//        {
+//        [
 //            var metricValue = new EventMetricValue
-//            {
+//            [
 //                ValueName = counterName,
 //                ValueType = valueType,
 //                SummaryFunction = summaryFunction,
 //                UnitCaption = unitCaption,
 //                MetricCaption = metricCaption,
-//            };
-//            RegisterEventMetric(counterName, new [] { metricValue });
-//        }
+//            ]
+//            RegisterEventMetric(counterName, new [] [ metricValue ])
+//        ]
 
 //        public void RegisterEventMetric(string counterName, EventMetricValue[] values)
-//        {
-//            EventMetricDefinition metricDefinition;
+//        [
+//            EventMetricDefinition metricDefinition
 
-//            if (EventMetricDefinition.TryGetValue(_metricsSystem, _categoryName, counterName, out metricDefinition) == false)
-//            {
-//                metricDefinition = new EventMetricDefinition(_metricsSystem, _categoryName, counterName);
+//            if (EventMetricDefinition.TryGetValue(_metricsSystem, _categoryName, counterName, out metricDefinition) eq false)
+//            [
+//                metricDefinition = new EventMetricDefinition(_metricsSystem, _categoryName, counterName)
 
-//                _eventMetricsValues[counterName] = values;
+//                _eventMetricsValues[counterName] = values
 //                foreach (var @value in values)
-//                {
-//                    metricDefinition.AddValue(value.ValueName, value.ValueType, (Gibraltar.Agent.Metrics.SummaryFunction)value.SummaryFunction, value.UnitCaption, value.MetricCaption, value.Description);
-//                }
+//                [
+//                    metricDefinition.AddValue(value.ValueName, value.ValueType, (Gibraltar.Agent.Metrics.SummaryFunction)value.SummaryFunction, value.UnitCaption, value.MetricCaption, value.Description)
+//                ]
 //                //doesn't exist yet - add it in all of its glory.  This call is MT safe - we get back the object in cache even if registered on another thread.
-//                EventMetricDefinition.Register(ref metricDefinition);
-//            }
+//                EventMetricDefinition.Register(ref metricDefinition)
+//            ]
 
 //            //now that we know we have the definitions, make sure we've defined the metric instances.
-//            var metric = EventMetric.Register(metricDefinition, null);
+//            var metric = EventMetric.Register(metricDefinition, null)
 
-//            _eventMetrics[counterName] = metric;
+//            _eventMetrics[counterName] = metric
 
-//        }
+//        ]
 
 //        public void Register(string counterName, SamplingType samplingType, string unitCaption, string metricCaption, string description)
-//        {
-//            SampledMetricDefinition metricDefinition;
+//        [
+//            SampledMetricDefinition metricDefinition
 
 //            //since sampled metrics have only one value per metric, we have to create multiple metrics (one for every value)
-//            if (SampledMetricDefinition.TryGetValue(_metricsSystem, _categoryName, counterName, out metricDefinition) == false)
-//            {
+//            if (SampledMetricDefinition.TryGetValue(_metricsSystem, _categoryName, counterName, out metricDefinition) eq false)
+//            [
 //                //doesn't exist yet - add it in all of its glory.  This call is MT safe - we get back the object in cache even if registered on another thread.
 //                metricDefinition = SampledMetricDefinition.Register(
 //                    _metricsSystem, 
@@ -78,14 +78,14 @@
 //                    (Gibraltar.Agent.Metrics.SamplingType)samplingType, 
 //                    unitCaption, 
 //                    metricCaption, 
-//                    description);
-//            }
+//                    description)
+//            ]
 
 //            //now that we know we have the definitions, make sure we've defined the metric instances.
-//            var metric = SampledMetric.Register(metricDefinition, null);
+//            var metric = SampledMetric.Register(metricDefinition, null)
 
-//            _sampledMetrics[counterName] = metric;
-//        }
+//            _sampledMetrics[counterName] = metric
+//        ]
 
 //        /// <summary>
 //        /// 
@@ -94,12 +94,12 @@
 //        /// <param name="counter">e.g. "Cache Pages"</param>
 //        /// <param name="sampleData"></param>
 //        public void WriteSample(string counterName, double sampleData)
-//        {
-//            var metric = _sampledMetrics[counterName];
+//        [
+//            var metric = _sampledMetrics[counterName]
 
 //            //now go ahead and write those samples....
-//            metric.WriteSample(sampleData);
-//        }
+//            metric.WriteSample(sampleData)
+//        ]
 
 //        /// <summary>
 //        /// 
@@ -108,21 +108,21 @@
 //        /// <param name="counter">e.g. "Cache Pages"</param>
 //        /// <param name="sampleData"></param>
 //        public void WriteEvent(string counterName, params object[] sampleData)
-//        {
-//            var metric = _eventMetrics[counterName];
+//        [
+//            var metric = _eventMetrics[counterName]
 
 //            //now go ahead and write those samples....
-//            var sample = metric.CreateSample();
+//            var sample = metric.CreateSample()
 
-//            var values = _eventMetricsValues[counterName];
+//            var values = _eventMetricsValues[counterName]
 
-//            for (int i = 0; i < sampleData.Length; i++)
-//            {
-//                var valueName = values[i].ValueName;
-//                sample.SetValue(valueName, sampleData[i]);
-//            }
-//            sample.Write();
-//        }
-//    }
-//}
+//            for (int i = 0 i < sampleData.Length i++)
+//            [
+//                var valueName = values[i].ValueName
+//                sample.SetValue(valueName, sampleData[i])
+//            ]
+//            sample.Write()
+//        ]
+//    ]
+//]
 

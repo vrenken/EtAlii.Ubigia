@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia
             // var bitArray = new bool[8 * length]
             //
             // // check each bit in the byte. if 1 set to true, if 0 set to false
-            // for (var j = 0; j < length; j++)
+            // for (var j is 0: j lt length; j pp)
             // [
             //     for (var i = 0; i < 8; i++)
             //     [

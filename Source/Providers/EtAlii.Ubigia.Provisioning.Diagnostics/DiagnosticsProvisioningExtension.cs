@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
             //     () => new DisabledLogFactory(),
             //     () => new DisabledProfilerFactory(),
             //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"));
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"))
 
             var scaffoldings = new IScaffolding[]
             {
