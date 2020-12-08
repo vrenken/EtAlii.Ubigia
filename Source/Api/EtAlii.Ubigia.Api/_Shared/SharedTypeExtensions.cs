@@ -444,6 +444,7 @@ namespace System
             {
                 if (type.IsNested)
                 {
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
                     ProcessGenericType(builder, type.DeclaringType, genericArguments, offset, fullName);
                     builder.Append('+');
                 }

@@ -87,6 +87,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 && methodCallExpression.Arguments[0].Type.TryGetSequenceType() != null
                 && string.Equals(methodCallExpression.Method.Name, "AsSplitQuery", StringComparison.Ordinal))
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
                 return Visit(methodCallExpression.Arguments[0]);
             }
 
@@ -1244,6 +1245,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 AddTranslationErrorDetails(_expressionTranslator.TranslationErrorDetails);
             }
 
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (expression != null
                 && translation != null
                 && preserveType
