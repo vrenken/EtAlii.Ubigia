@@ -10,8 +10,8 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Transport.Connection));
             
             container.RegisterDecorator(typeof(IDataConnection), typeof(ProfilingDataConnection));
-            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(ProfilingEntryDataClient));
-            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(DebuggingEntryDataClient));
+            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(ProfilingEntryDataClient))
+            //container.RegisterDecorator(typeof(IEntryDataClient), typeof(DebuggingEntryDataClient))
 
             //IEntryNotificationClient
 

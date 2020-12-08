@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor
 {
-    // using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using System.Text;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
@@ -70,17 +69,17 @@
         }
 
         // protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
-        // {
+        // [
         //     applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BasePath,
         //         services =>
-        //         {
-        //             services.AddMvcForTypedController<AdminPortalController>(options => options.EnableEndpointRouting = false);
+        //         [
+        //             services.AddMvcForTypedController<AdminPortalController>(options => options.EnableEndpointRouting = false)
         //             //.AddRazorOptions(options =>
         //             //[
         //             //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace))
         //             //])
-        //         },
-        //         appBuilder => appBuilder.UseWelcomePage().UseMvc());
-        // }
+        //         ],
+        //         appBuilder => appBuilder.UseWelcomePage().UseMvc())
+        // ]
     }
 }

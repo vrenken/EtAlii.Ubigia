@@ -42,7 +42,7 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            //if (this.GetType() != contentDefinition.GetType())
+            //if (this.GetType() ne contentDefinition.GetType())
             //[
             //    return false;
             //]

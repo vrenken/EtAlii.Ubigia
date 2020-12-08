@@ -51,7 +51,7 @@
         //         () => new DisabledProfilerFactory(),
         //         (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Windows.Tools.MediaImport"),
         //         (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Windows.Tools.MediaImport"))
-        //     return diagnostics;
+        //     return diagnostics
         // ]
 
         private IObservableFolderSyncConfigurationCollection CreateFolderSyncConfigurations()

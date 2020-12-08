@@ -55,11 +55,11 @@ namespace EtAlii.Ubigia.Api.Metadata.Conventions
         // /// </summary>
         // /// <returns> The convention set. </returns>
         // public static ConventionSet Build()
-        // {
-        //     using var serviceScope = CreateServiceScope();
-        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>();
-        //     return ConventionSet.CreateConventionSet(context);
-        // }
+        // [
+        //     using var serviceScope = CreateServiceScope()
+        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>()
+        //     return ConventionSet.CreateConventionSet(context)
+        // ]
         //
         // /// <summary>
         // ///     <para>
@@ -72,23 +72,23 @@ namespace EtAlii.Ubigia.Api.Metadata.Conventions
         // /// </summary>
         // /// <returns> The convention set. </returns>
         // public static ModelBuilder CreateModelBuilder()
-        // {
-        //     using var serviceScope = CreateServiceScope();
-        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>();
-        //     return new ModelBuilder(ConventionSet.CreateConventionSet(context), context.GetService<ModelDependencies>());
-        // }
+        // [
+        //     using var serviceScope = CreateServiceScope()
+        //     using var context = serviceScope.ServiceProvider.GetService<DbContext>()
+        //     return new ModelBuilder(ConventionSet.CreateConventionSet(context), context.GetService<ModelDependencies>())
+        // ]
         //
         // private static IServiceScope CreateServiceScope()
-        // {
+        // [
         //     var serviceProvider = new ServiceCollection()
         //         .AddEntityFrameworkUbigiaDatabase()
         //         .AddDbContext<DbContext>(
         //             (p, o) =>
         //                 o.UseUbigiaContext(Guid.NewGuid().ToString())
         //                     .UseInternalServiceProvider(p))
-        //         .BuildServiceProvider();
+        //         .BuildServiceProvider()
         //
-        //     return serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
-        // }
+        //     return serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope()
+        // ]
     }
 }

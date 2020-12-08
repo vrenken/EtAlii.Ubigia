@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Persistence
             //     () => new DisabledLogFactory(),
             //     () => new DisabledProfilerFactory(),
             //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"));
+            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"))
 
             var scaffoldings = new IScaffolding[]
             {
