@@ -13,7 +13,7 @@
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
-
+        
         public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
         {
 	        _testContext = testContext;

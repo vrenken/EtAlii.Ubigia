@@ -8,7 +8,8 @@
     public class IdentifierRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
-
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
+        
         public IdentifierRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -19,7 +20,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var identifier = await context.Host.Infrastructure.Identifiers.GetCurrentHead(space.Id).ConfigureAwait(false);
             Assert.NotEqual(identifier, Identifier.Empty);
@@ -30,7 +31,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var head = await context.Host.Infrastructure.Identifiers.GetNextHead(space.Id).ConfigureAwait(false);
             Assert.NotEqual(head.NextHeadIdentifier, Identifier.Empty);
@@ -43,7 +44,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var identifier = await context.Host.Infrastructure.Identifiers.GetTail(space.Id).ConfigureAwait(false);
             Assert.NotEqual(identifier, Identifier.Empty);

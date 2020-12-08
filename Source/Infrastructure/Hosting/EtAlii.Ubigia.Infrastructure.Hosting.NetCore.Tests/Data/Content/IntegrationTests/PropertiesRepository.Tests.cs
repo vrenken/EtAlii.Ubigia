@@ -8,7 +8,8 @@
     public sealed class PropertiesRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
-
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
+        
         public PropertiesRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -19,7 +20,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
 
@@ -35,7 +36,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
             context.Host.Infrastructure.Properties.Store(entry.Id, properties);

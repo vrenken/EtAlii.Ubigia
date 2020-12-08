@@ -12,7 +12,8 @@
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private const int _count = 10;
-
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
+        
         public EntryRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -23,7 +24,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -39,7 +40,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -55,7 +56,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -71,7 +72,7 @@
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var start = Environment.TickCount;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             // Act.
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -86,7 +87,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
@@ -105,7 +106,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry1 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var entry2 = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             entry2 = context.Host.Infrastructure.Entries.Store(entry2);
@@ -131,7 +132,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 0; i < _count; i++)
@@ -152,7 +153,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 0; i < _count - 1; i++)
@@ -174,7 +175,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 0; i < _count - 1; i++)
@@ -197,7 +198,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 0; i < _count - 1; i++)
@@ -220,7 +221,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 1; i < _count; i++)
@@ -241,7 +242,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 1; i < _count; i++)
@@ -262,7 +263,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             for (var i = 1; i < _count; i++)
@@ -283,7 +284,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var parentEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             parentEntry = context.Host.Infrastructure.Entries.Store(parentEntry);
             var childEntry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -304,7 +305,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var parent2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             parent2Entry = context.Host.Infrastructure.Entries.Store(parent2Entry);
             var child2Entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -325,7 +326,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             index = context.Host.Infrastructure.Entries.Store(index);
             var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -346,7 +347,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             entry = context.Host.Infrastructure.Entries.Store(entry);
             var index = (IEditableEntry)await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
@@ -365,7 +366,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -389,7 +390,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -413,7 +414,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -437,7 +438,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -462,7 +463,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -490,7 +491,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var createdEntries = await InfrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
             var loadedEntries = new IEditableEntry[_count];
 
             // Act.
@@ -518,7 +519,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);

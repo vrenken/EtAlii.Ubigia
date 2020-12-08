@@ -6,7 +6,8 @@
 
     public class InfrastructureTestHelper
     {
-        public static async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
+        
+        public async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
         {
             var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
@@ -25,7 +26,7 @@
             return createdEntries;
         }
 
-        public static async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
+        public async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
         {
             var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
@@ -43,7 +44,7 @@
             return createdEntries;
         }
 
-        public static async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
+        public async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
         {
             var space = await CreateSpace(infrastructure).ConfigureAwait(false);
             var createdEntries = new IEditableEntry[count];
@@ -61,7 +62,7 @@
             return createdEntries;
         }
 
-        public static Root CreateRoot()
+        public Root CreateRoot()
         {
             return new Root
             {
@@ -69,7 +70,7 @@
             };
         }
 
-        public static async Task<Space> CreateSpace(IInfrastructure infrastructure, bool addToRepository = true)
+        public async Task<Space> CreateSpace(IInfrastructure infrastructure, bool addToRepository = true)
         {
             var space = new Space
             {
@@ -84,6 +85,5 @@
             }
             return space;
         }
-
     }
 }

@@ -10,6 +10,7 @@
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
 
         public SpaceRepositoryTests(InfrastructureUnitTestContext testContext)
         {
@@ -21,7 +22,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
@@ -32,7 +33,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
@@ -50,7 +51,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
@@ -69,7 +70,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
@@ -97,9 +98,9 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace1 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
-            space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
+            space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace2 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
 
             // Act.

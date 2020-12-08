@@ -10,7 +10,8 @@
     public sealed class ContentDefinitionRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
-
+        private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
+        
         public ContentDefinitionRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -21,7 +22,7 @@
         {
 			// Arrange.
 			var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
@@ -37,7 +38,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
@@ -56,7 +57,7 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
             // Act.
@@ -74,7 +75,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
@@ -94,7 +95,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
@@ -111,7 +112,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
@@ -130,7 +131,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
@@ -149,7 +150,7 @@
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
+            var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
