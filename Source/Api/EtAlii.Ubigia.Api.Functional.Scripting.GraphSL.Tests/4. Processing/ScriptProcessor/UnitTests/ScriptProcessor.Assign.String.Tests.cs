@@ -22,6 +22,8 @@
         public void Dispose()
         {
             _parser = null;
+            GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

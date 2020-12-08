@@ -19,6 +19,7 @@
         public void Dispose()
         {
             // Dispose any relevant resources.
+            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

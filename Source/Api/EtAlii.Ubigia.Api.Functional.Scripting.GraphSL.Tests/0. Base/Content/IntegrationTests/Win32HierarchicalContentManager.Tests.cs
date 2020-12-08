@@ -27,6 +27,7 @@
             {
                 Directory.Delete(_testFolderSimple, true);
             }
+            GC.SuppressFinalize(this);
         }
 
         [Fact]

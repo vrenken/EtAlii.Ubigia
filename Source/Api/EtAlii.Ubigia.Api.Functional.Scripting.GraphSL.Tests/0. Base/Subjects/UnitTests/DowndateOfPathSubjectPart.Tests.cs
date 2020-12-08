@@ -18,6 +18,7 @@
         public void Dispose()
         {
             //_parser = null
+            GC.SuppressFinalize(this);
         }
 
 

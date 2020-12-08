@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         public void Dispose()
         {
             _parser = null;
+            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

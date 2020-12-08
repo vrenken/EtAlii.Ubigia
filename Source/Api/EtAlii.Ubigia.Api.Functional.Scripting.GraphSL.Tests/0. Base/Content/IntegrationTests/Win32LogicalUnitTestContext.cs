@@ -65,6 +65,7 @@
 
 
             LogicalTestContext = null;
+            GC.SuppressFinalize(this);
         }
     }
 }

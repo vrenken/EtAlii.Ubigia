@@ -15,6 +15,7 @@
         public void Dispose()
         {
             new DefaultInfrastructureClient(null).AuthenticationToken = null;
+            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

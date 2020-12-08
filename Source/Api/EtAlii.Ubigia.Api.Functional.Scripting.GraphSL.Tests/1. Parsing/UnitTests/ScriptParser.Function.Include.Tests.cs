@@ -20,6 +20,7 @@
         public void Dispose()
         {
             _parser = null;
+            GC.SuppressFinalize(this);
         }
 
         [Fact(Skip = "Unable to validate functions during parsing (yet)"), Trait("Category", TestAssembly.Category)]
