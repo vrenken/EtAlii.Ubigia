@@ -33,5 +33,5 @@ stages:
               SonarQubeProjectKey: $(SonarQubeProjectKey)
               SonarQubeServerUrl: $(SonarQubeServerUrl)
               SonarQubeServerToken: $(SonarQubeServerToken)
-              NuGetFeedUrl: $(NuGetFeedUrl)
+              NuGetFeedSource: $(NuGetFeedSource)
               NuGetFeedToken: $(NuGetFeedToken)

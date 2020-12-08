@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(SonarQubeProjectKey),
             nameof(SonarQubeServerUrl),
             nameof(SonarQubeServerToken),
-            nameof(NuGetFeedUrl),
+            nameof(NuGetFeedSource),
             nameof(NuGetFeedToken)
         },
         Pool = "Avalon agent pool",
