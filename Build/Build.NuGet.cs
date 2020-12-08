@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Pipelines
         {
             DotNetRestore(s => s
                 .SetProjectFile(Solution)
-                .SetConfigFile(SourceDirectory / "Nuget.config"));
+                .SetConfigFile(RootDirectory / "Nuget.config"));
         }
         
         private Target CreatePackages => _ => _
