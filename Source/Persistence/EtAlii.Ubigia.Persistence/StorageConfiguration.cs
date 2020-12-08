@@ -26,7 +26,7 @@
         {
             if (extensions == null)
             {
-                throw new ArgumentException("extensions");
+                throw new ArgumentException("No extensions specified", nameof(extensions));
             }
 
             var alreadyRegistered = Extensions.FirstOrDefault(e => extensions.Any(e2 => e2.GetType() == e.GetType()));
