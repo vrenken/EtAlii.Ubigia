@@ -116,9 +116,9 @@ namespace TomanuExtensions.Utils
         public virtual ushort NextUShort(int maxValue)
         {
             if (maxValue > ushort.MaxValue)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(maxValue));
             if (maxValue <= 0)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentOutOfRangeException(nameof(maxValue));
 
             return (ushort)(GenerateUInt() / ((double)ushort.MaxValue / maxValue));
         }
