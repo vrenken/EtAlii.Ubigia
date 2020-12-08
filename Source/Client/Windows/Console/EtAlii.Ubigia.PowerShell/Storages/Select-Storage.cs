@@ -34,7 +34,7 @@
 
         protected override async Task<Storage> ProcessTask()
         {
-            var storage = (Storage) null;
+            Storage storage;
             Uri managementAddress = null;
             Uri dataAddress = null;
             try

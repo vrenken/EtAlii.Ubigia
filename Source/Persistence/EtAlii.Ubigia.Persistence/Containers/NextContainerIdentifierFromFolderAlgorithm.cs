@@ -39,7 +39,7 @@
                 folderToInspect = _pathBuilder.Combine(folderToInspect, periodFolder);
 
                 var momentFolder = _latestEntryGetter.GetLatestEntry(folderToInspect, monentDelta);
-                folderToInspect = _pathBuilder.Combine(folderToInspect, momentFolder);
+                _pathBuilder.Combine(folderToInspect, momentFolder);
 
                 var nextContainerIdentifier = _containerProvider.ForEntry(storageFolder, accountFolder, spaceFolder, eraFolder, periodFolder, momentFolder);
                 return nextContainerIdentifier;
