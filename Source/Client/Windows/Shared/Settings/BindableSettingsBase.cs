@@ -66,8 +66,8 @@
             }
             else if (typeof(T) == typeof(double))
             {
-                value = (byte[])productKey.GetValue(propertyName, BitConverter.GetBytes((double)(object)defaultValue));
-                value = BitConverter.ToDouble((byte[])value!, 0);
+                var bytes = (byte[])productKey.GetValue(propertyName, BitConverter.GetBytes((double)(object)defaultValue));
+                value = BitConverter.ToDouble(bytes!, 0);
             }
             else if (typeof(T) == typeof(string))
             {
@@ -85,7 +85,7 @@
         {
             if (newValue == null)
             {
-                registryKey.DeleteValue(propertyName);
+                registryKey.DeleteValue(propertyName!);
             }
             else if (newValue is bool)
             {
