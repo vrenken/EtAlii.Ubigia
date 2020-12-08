@@ -28,7 +28,7 @@
             throw new NotImplementedException();
         }
 
-        [DllImport("shlwapi.dll", CharSet = CharSet.Auto)]
+        [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
         private static extern bool PathCompactPathEx([Out] StringBuilder pszOut, string szPath, int cchMax, int dwFlags);
 
         public static string CompactPath(string longPathName, int wantedLength)
