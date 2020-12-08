@@ -22,7 +22,7 @@ namespace HashLib
             {
                 if (value == null)
                 {
-                    m_key = new byte[0];
+                    m_key = Array.Empty<byte>();
                 }
                 else
                 {
@@ -35,7 +35,7 @@ namespace HashLib
             : base(a_underlyingHash.HashSize, a_underlyingHash.BlockSize)
         {
             m_hash = a_underlyingHash;
-            m_key = new byte[0];
+            m_key = Array.Empty<byte>();
             m_ipad = new byte[m_hash.BlockSize];
             m_opad = new byte[m_hash.BlockSize];
         }
