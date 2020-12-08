@@ -4,7 +4,7 @@
     <ProjectGuid>fda16bcf-17a2-4273-b5d8-c76d17d2186a</ProjectGuid>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <Description>This library provides client-transport agnostic diagnostic functionalities. It is consumed by all transport specific packages.</Description>
-    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
