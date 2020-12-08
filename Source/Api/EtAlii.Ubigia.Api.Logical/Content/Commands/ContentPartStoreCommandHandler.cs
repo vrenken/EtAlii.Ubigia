@@ -60,7 +60,9 @@
         {
             var offset = part * partSize;
             stream.Seek((long)offset, SeekOrigin.Begin);
+#pragma warning disable CA1835 // No way to elegantly use Memory instances here without breaking apart the complete HasLib implementation.
             var bytesRead = await stream.ReadAsync(dataBuffer, 0, (int)partSize).ConfigureAwait(false);
+#pragma warning restore CA1835            
             var bytesToWrite = new byte[bytesRead];
             Array.Copy(dataBuffer, bytesToWrite, bytesRead);
             return bytesToWrite;
