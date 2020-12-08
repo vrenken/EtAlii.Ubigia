@@ -221,7 +221,7 @@
 
         protected void TestHashSize(IHash aHash)
         {
-            Assert.Equal(aHash.HashSize, aHash.ComputeBytes(new byte[] { }).GetBytes().Length);
+            Assert.Equal(aHash.HashSize, aHash.ComputeBytes(Array.Empty<byte>()).GetBytes().Length);
         }
 
         protected void TestAgainstTestFile(IHash aHash, TestData aTestData = null)
@@ -236,8 +236,10 @@
                 if (aTestData.GetRepeat(i) != 1)
                     continue;
 
-                if (aHash is IWithKey)
-                    (aHash as IWithKey).Key = aTestData.GetKey(i);
+                if (aHash is IWithKey key)
+                {
+                    key.Key = aTestData.GetKey(i);
+                }
 
                 Assert.Equal(outputArray, aHash.ComputeBytes(aTestData.GetData(i)).ToString());//, String.Format("{0}, {1}", a_hash.Name, i));
             }
@@ -257,7 +259,9 @@
 
             var len = 0;
             foreach (var ar in v1)
+            {
                 len += ar.Length;
+            }
 
             var v2 = new byte[len];
 
@@ -270,8 +274,10 @@
 
             aMulti.Initialize();
 
-            for (var i = 0; i < v1.Count; i++)
-                aMulti.TransformBytes(v1[i]);
+            foreach (var t in v1)
+            {
+                aMulti.TransformBytes(t);
+            }
 
             var h1 = aMulti.TransformFinal();
             var h2 = aHash.ComputeBytes(v2);
@@ -297,12 +303,11 @@
                 TestMultipleTransforms(aHash, aHash, list);
             }
 
-            List<object> objects;
             byte[] bytes;
 
             for (var i = 0; i < 10; i++)
             {
-                CreateListForDataTest(out objects, out bytes);
+                CreateListForDataTest(out var objects, out bytes);
 
                 var h1 = aHash.ComputeBytes(bytes);
 
@@ -391,29 +396,27 @@
                     var data = new byte[13 * i];
                     new Random().NextBytes(data);
 
-                    using (var ms = new MemoryStream(data))
-                    {
-                        var h1 = aHash.ComputeBytes(data);
-                        var h2 = aHash.ComputeStream(ms);
+                    using var ms = new MemoryStream(data);
+                    var h1 = aHash.ComputeBytes(data);
+                    var h2 = aHash.ComputeStream(ms);
 
-                        Assert.Equal(h1, h2);
+                    Assert.Equal(h1, h2);
 
-                        h1 = aHash.ComputeBytes(data.SubArray(i, i * 7));
-                        ms.Seek(i, SeekOrigin.Begin);
-                        h2 = aHash.ComputeStream(ms, i * 7);
+                    h1 = aHash.ComputeBytes(data.SubArray(i, i * 7));
+                    ms.Seek(i, SeekOrigin.Begin);
+                    h2 = aHash.ComputeStream(ms, i * 7);
 
-                        Assert.Equal(h1, h2);
+                    Assert.Equal(h1, h2);
 
-                        h1 = aHash.ComputeBytes(data);
-                        aHash.Initialize();
-                        aHash.TransformBytes(data, 0, i * 3);
-                        ms.Seek(i * 3, SeekOrigin.Begin);
-                        aHash.TransformStream(ms, i * 2);
-                        aHash.TransformBytes(data, i * 5);
-                        h2 = aHash.TransformFinal();
+                    h1 = aHash.ComputeBytes(data);
+                    aHash.Initialize();
+                    aHash.TransformBytes(data, 0, i * 3);
+                    ms.Seek(i * 3, SeekOrigin.Begin);
+                    aHash.TransformStream(ms, i * 2);
+                    aHash.TransformBytes(data, i * 5);
+                    h2 = aHash.TransformFinal();
 
-                        Assert.Equal(h1, h2);
-                    }
+                    Assert.Equal(h1, h2);
                 }
 
                 int[] sizes = { 1, 11, 63, 64, 65, 127, 128, 129, 255, 256, 257, 511, 512, 513, 
@@ -424,13 +427,11 @@
                     var data = new byte[size];
                     new Random().NextBytes(data);
 
-                    using (var ms = new MemoryStream(data))
-                    {
-                        var h1 = aHash.ComputeBytes(data);
-                        var h2 = aHash.ComputeStream(ms);
+                    using var ms = new MemoryStream(data);
+                    var h1 = aHash.ComputeBytes(data);
+                    var h2 = aHash.ComputeStream(ms);
 
-                        Assert.Equal(h1, h2);
-                    }
+                    Assert.Equal(h1, h2);
                 }
 
                 {
@@ -493,10 +494,18 @@
 
             Assert.True(aNotBuildInHmac is HMACNotBuildInAdapter);
 
-            var keysLength = new List<int> { 0, 1, 7, 51, 121, 512, 1023 };
-            keysLength.Add(aBuildInHmac.BlockSize - 1);
-            keysLength.Add(aBuildInHmac.BlockSize);
-            keysLength.Add(aBuildInHmac.BlockSize + 1);
+            var keysLength = new List<int> {
+                0,
+                1,
+                7,
+                51,
+                121,
+                512,
+                1023,
+                aBuildInHmac.BlockSize - 1,
+                aBuildInHmac.BlockSize,
+                aBuildInHmac.BlockSize + 1
+            };
 
             var msgsLength = new List<int>();
             msgsLength.AddRange(keysLength);
@@ -535,9 +544,7 @@
 
         public void TestKey(IHash aHash)
         {
-            var hashWithKey = aHash as IHashWithKey;
-
-            if (hashWithKey == null)
+            if (!(aHash is IHashWithKey hashWithKey))
                 return;
 
             var keyLength = hashWithKey.KeyLength ?? 251;
