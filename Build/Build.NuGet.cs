@@ -59,8 +59,12 @@ namespace EtAlii.Ubigia.Pipelines
         private void PublishPackagesInternal()
         {
             DotNetNuGetPush(_ => _
-                .SetSource(NuGetFeedUrl)
+                .SetSource("EtAlii.Ubigia")//NuGetFeedUrl)
                 .SetApiKey(NuGetFeedToken)
+                .SetTimeout(60)
+                .SetNoServiceEndpoint(false)
+                .SetSkipDuplicate(true)
+                .SetDisableBuffering(true)
                 .CombineWith(Packages, (_, v) => _
                     .SetTargetPath(v)));
         }
