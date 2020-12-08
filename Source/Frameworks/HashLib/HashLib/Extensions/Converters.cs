@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Text;
 // ReSharper disable all
+#pragma warning disable CA2208 // External file, for now no need to cleanup.
 
 namespace HashLib
 {
