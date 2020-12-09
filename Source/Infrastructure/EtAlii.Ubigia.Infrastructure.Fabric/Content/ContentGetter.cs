@@ -12,7 +12,7 @@
             _storage = storage;
         }
 
-        public async Task<IReadOnlyContent> Get(Identifier identifier)
+        public async Task<Content> Get(Identifier identifier)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
             var content = await _storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);

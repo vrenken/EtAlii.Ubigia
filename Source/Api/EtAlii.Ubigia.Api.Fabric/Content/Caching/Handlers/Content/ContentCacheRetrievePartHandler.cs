@@ -15,7 +15,7 @@
             _contextProvider = contextProvider;
         }
 
-        public async Task<IReadOnlyContentPart> Handle(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Handle(Identifier identifier, ulong contentPartId)
         {
             var contentPart = _cacheHelper.Get(identifier, contentPartId);
             if (contentPart == null)

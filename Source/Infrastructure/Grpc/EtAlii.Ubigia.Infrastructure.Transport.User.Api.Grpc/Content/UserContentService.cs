@@ -6,8 +6,6 @@
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
-    using Content = EtAlii.Ubigia.Content;
-    using ContentPart = EtAlii.Ubigia.ContentPart;
 
     public class UserContentService : ContentGrpcService.ContentGrpcServiceBase, IUserContentService
     {
@@ -21,7 +19,7 @@
         public override async Task<ContentGetResponse> Get(ContentGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
-            var content = (Content)await _items
+            var content = await _items
                 .Get(entryId)
                 .ConfigureAwait(false);
 
@@ -37,7 +35,7 @@
             var entryId = request.EntryId.ToLocal();
             var contentPartId = request.ContentPartId;
 
-            var contentPart = (ContentPart)await _items
+            var contentPart = await _items
                 .Get(entryId, contentPartId)
                 .ConfigureAwait(false);
             var response = new ContentPartGetResponse

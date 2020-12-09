@@ -19,11 +19,8 @@
                     Checksum = contentDefinition.Checksum,
                     
                     Size = contentDefinition.Size,
+                    Parts = contentDefinition.Parts.Select(p => p.ToLocal()).ToArray()
                 };
-                foreach (var part in contentDefinition.Parts)
-                {
-                    result.Parts.Add(part.ToLocal());
-                }
             }
             return result;
         }

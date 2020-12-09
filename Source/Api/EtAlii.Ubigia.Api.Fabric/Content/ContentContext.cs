@@ -16,17 +16,17 @@
             _connection.Content.Notifications.Stored += OnStored;
         }
 
-        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             return _connection.Content.Data.RetrieveDefinition(identifier);
         }
 
-        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             return _connection.Content.Data.Retrieve(identifier, contentPartId);
         }
         
-        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public Task<Content> Retrieve(Identifier identifier)
         {
             return _connection.Content.Data.Retrieve(identifier);
         }

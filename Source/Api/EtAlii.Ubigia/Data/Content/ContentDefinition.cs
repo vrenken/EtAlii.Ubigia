@@ -2,25 +2,55 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
-    public sealed partial class ContentDefinition : BlobBase, IEquatable<ContentDefinition>, IReadOnlyContentDefinition
+    public sealed partial class ContentDefinition : BlobBase, IEquatable<ContentDefinition>
     {
         internal const string ContentDefinitionName = "ContentDefinition";
 
-        public ulong Size { get; set; }
+        public ulong Size { get; init; }
 
-        public ulong Checksum { get; set; }
+        public ulong Checksum { get; init; }
 
-        public IList<ContentDefinitionPart> Parts { get; } = new List<ContentDefinitionPart>();
+        public ContentDefinitionPart[] Parts { get; init; } = Array.Empty<ContentDefinitionPart>();
 
-        IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts => Parts;
-
-        public static readonly IReadOnlyContentDefinition Empty = new ContentDefinition
+        public static readonly ContentDefinition Empty = new() 
         {
             Checksum = 0,
             Size = 0,
         };
 
-        protected internal override string Name => ContentDefinitionName; 
+        protected internal override string Name => ContentDefinitionName;
+
+        public ContentDefinition ExceptParts()
+        {
+            return new() 
+            {
+                // Blob
+                Stored = Stored,
+                Summary = Summary,
+                TotalParts = TotalParts,
+
+                // ContentDefinition
+                Size = Size,
+                Checksum = Checksum,
+            };
+        }
+        
+        public ContentDefinition WithPart(IEnumerable<ContentDefinitionPart> contentDefinitionParts)
+        {
+            return new() 
+            {
+                // Blob
+                Stored = Stored,
+                Summary = Summary,
+                TotalParts = TotalParts,
+
+                // ContentDefinition
+                Size = Size,
+                Checksum = Checksum,
+                Parts = Parts.Concat(contentDefinitionParts).ToArray()
+            };
+        }
     }
 }

@@ -22,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
 
-        public Task<IReadOnlyContentDefinition> Get(Identifier identifier)
+        public Task<ContentDefinition> Get(Identifier identifier)
         {
             return _contentDefinitionGetter.Get(identifier);
         }
 
-        public Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
+        public Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             return _contentDefinitionPartGetter.Get(identifier, contentDefinitionPartId);
         }

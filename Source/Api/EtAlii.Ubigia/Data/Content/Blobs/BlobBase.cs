@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia
 {
-    public abstract class BlobBase : IBlob
+    public abstract class BlobBase
     {
         public bool Stored { get; internal set; }
 

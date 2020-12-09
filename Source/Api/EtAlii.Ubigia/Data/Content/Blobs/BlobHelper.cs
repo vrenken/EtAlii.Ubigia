@@ -33,19 +33,19 @@
         }
 
 
-        public static string GetName(IBlob blob)
+        public static string GetName(BlobBase blob)
         {
-            return ((BlobBase)blob).Name;
+            return blob.Name;
         }
 
-        public static void SetStored(IBlob blob, bool stored)
+        public static void SetStored(BlobBase blob, bool stored)
         {
-            ((BlobBase)blob).Stored = stored;
+            blob.Stored = stored;
         }
 
-        public static void SetSummary(IBlob blob, BlobSummary summary)
+        public static void SetSummary(BlobBase blob, BlobSummary summary)
         {
-            ((BlobBase)blob).Summary = summary;
+            blob.Summary = summary;
         }
     }
 }

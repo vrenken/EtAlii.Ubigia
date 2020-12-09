@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
-    using ContentDefinition = EtAlii.Ubigia.ContentDefinition;
 
     public class UserContentDefinitionService : ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
     {
@@ -21,7 +20,7 @@
         public override async Task<ContentDefinitionGetResponse> Get(ContentDefinitionGetRequest request, ServerCallContext context)
         {
             var entryId = request.EntryId.ToLocal();
-            var contentDefinition = (ContentDefinition)await _items
+            var contentDefinition = await _items
                 .Get(entryId)
                 .ConfigureAwait(false);
 

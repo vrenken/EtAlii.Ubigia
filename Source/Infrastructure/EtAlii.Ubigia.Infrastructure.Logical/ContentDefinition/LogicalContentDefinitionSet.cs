@@ -12,12 +12,12 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _fabricContext = fabricContext;
         }
 
-        public Task<IReadOnlyContentDefinition> Get(Identifier identifier)
+        public Task<ContentDefinition> Get(Identifier identifier)
         {
             return _fabricContext.ContentDefinition.Get(identifier);
         }
 
-        public Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
+        public Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             return _fabricContext.ContentDefinition.Get(identifier, contentDefinitionPartId);
         }

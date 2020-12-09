@@ -40,23 +40,17 @@
 
             try
             {
+                contentDefinition.TotalParts = (ulong)contentDefinition.Parts.Length;
+
                 // We need to clear the parts before they are stored. Else they are persisted in the content definition file itself.
-                var contentDefinitionParts = new List<ContentDefinitionPart>(contentDefinition.Parts);
-                contentDefinition.Parts.Clear();
+                var contentDefinitionToStore = contentDefinition.ExceptParts();
 
-                if (contentDefinitionParts.Any())
-                {
-                    ulong totalParts = 0;
-                    foreach (var _ in contentDefinitionParts)
-                    {
-                        totalParts += 1;
-                    }
-                    contentDefinition.TotalParts = totalParts;
-                }
-
-                _logicalContext.ContentDefinition.Store(identifier, contentDefinition);
-
-                foreach (var contentDefinitionPart in contentDefinitionParts)
+                _logicalContext.ContentDefinition.Store(identifier, contentDefinitionToStore);
+                
+                // And of course the stored flag should be updated accordingly afterwards. 
+                BlobHelper.SetStored(contentDefinition, contentDefinitionToStore.Stored);
+                
+                foreach (var contentDefinitionPart in contentDefinition.Parts)
                 {
                     _logicalContext.ContentDefinition.Store(identifier, contentDefinitionPart);
                 }
@@ -86,7 +80,7 @@
 
             try
             {
-                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false) as ContentDefinition;
+                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false);
                 if (contentDefinition == null)
                 {
                     throw new ContentDefinitionRepositoryException("Content definition not stored yet");
@@ -103,7 +97,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentDefinition> Get(Identifier identifier)
+        public async Task<ContentDefinition> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {
@@ -112,15 +106,18 @@
 
             try
             {
-                var contentDefinition = (ContentDefinition)await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false);
+                var contentDefinition = await _logicalContext.ContentDefinition.Get(identifier).ConfigureAwait(false);
 
                 if (contentDefinition != null)
                 {
+                    var parts = new List<ContentDefinitionPart>();
                     foreach (var contentDefinitionPartId in contentDefinition.Summary.AvailableParts)
                     {
-                        var contentDefinitionPart = (ContentDefinitionPart)await _logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId).ConfigureAwait(false);
-                        contentDefinition.Parts.Add(contentDefinitionPart);
+                        var contentDefinitionPart = await _logicalContext.ContentDefinition.Get(identifier, contentDefinitionPartId).ConfigureAwait(false);
+                        parts.Add(contentDefinitionPart);
                     }
+
+                    contentDefinition = contentDefinition.WithPart(parts);
                 }
                 return contentDefinition;
             }

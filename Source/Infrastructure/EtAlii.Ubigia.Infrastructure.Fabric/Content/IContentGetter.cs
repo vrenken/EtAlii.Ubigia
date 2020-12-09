@@ -4,6 +4,6 @@
 
     public interface IContentGetter
     {
-        Task<IReadOnlyContent> Get(Identifier identifier);
+        Task<Content> Get(Identifier identifier);
     }
 }

@@ -4,6 +4,6 @@
 
     public interface IContentDefinitionPartGetter
     {
-        Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
+        Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
     }
 }

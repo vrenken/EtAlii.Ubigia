@@ -28,7 +28,7 @@
         /// </summary>
         /// <param name="identifier"></param>
         /// <returns></returns>
-        Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier);
+        Task<ContentDefinition> RetrieveDefinition(Identifier identifier);
 
         /// <summary>
         /// Store the specified <see cref="Content"/> in the given <see cref="Identifier"/>.
@@ -51,7 +51,7 @@
         /// </summary>
         /// <param name="identifier"></param>
         /// <returns></returns>
-        Task<IReadOnlyContent> Retrieve(Identifier identifier);
+        Task<Content> Retrieve(Identifier identifier);
         
         /// <summary>
         /// Retrieve the <see cref="Content"/> as registered under <see cref="contentPartId"/> in the specified identifier. 
@@ -59,7 +59,7 @@
         /// <param name="identifier"></param>
         /// <param name="contentPartId"></param>
         /// <returns></returns>
-        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId);
+        Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId);
     }
 
     /// <summary>

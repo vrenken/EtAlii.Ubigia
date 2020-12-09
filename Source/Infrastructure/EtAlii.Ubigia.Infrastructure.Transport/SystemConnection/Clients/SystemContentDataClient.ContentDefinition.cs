@@ -29,7 +29,7 @@
             //MarkAsStored(contentDefinitionPart)
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             return await _infrastructure.ContentDefinition
                 .Get(identifier)

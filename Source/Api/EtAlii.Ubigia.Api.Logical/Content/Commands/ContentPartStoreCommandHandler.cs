@@ -36,7 +36,7 @@
 
         private async Task StoreContentPart(
             Identifier identifier, 
-            IReadOnlyContent content,
+            Content content,
             byte[] bytesToWrite,
             ulong part)
         {
@@ -71,7 +71,7 @@
         private async Task StoreContentDefinitionPart(
             ulong partSize, 
             Identifier identifier, 
-            IReadOnlyContentDefinition contentDefinition, 
+            ContentDefinition contentDefinition, 
             ulong part,
             ulong checksum)
         {

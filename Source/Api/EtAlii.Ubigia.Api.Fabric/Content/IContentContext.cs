@@ -7,12 +7,12 @@
     {
         Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition);
         Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
-        Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier);
+        Task<ContentDefinition> RetrieveDefinition(Identifier identifier);
 
         Task Store(Identifier identifier, Content content);
         Task Store(Identifier identifier, ContentPart contentPart);
-        Task<IReadOnlyContent> Retrieve(Identifier identifier);
-        Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId);
+        Task<Content> Retrieve(Identifier identifier);
+        Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId);
 
         event Action<Identifier> Updated;
         event Action<Identifier> Stored;

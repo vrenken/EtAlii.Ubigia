@@ -2,10 +2,10 @@ namespace EtAlii.Ubigia.Api.Fabric
 {
     internal interface IContentCacheHelper
     {
-        IReadOnlyContent Get(in Identifier identifier);
-        IReadOnlyContentPart Get(in Identifier identifier, ulong contentPartId);
+        Content Get(in Identifier identifier);
+        ContentPart Get(in Identifier identifier, ulong contentPartId);
 
-        void Store(in Identifier identifier, IReadOnlyContent content);
-        void Store(in Identifier identifier, IReadOnlyContentPart contentPart);
+        void Store(in Identifier identifier, Content content);
+        void Store(in Identifier identifier, ContentPart contentPart);
     }
 }

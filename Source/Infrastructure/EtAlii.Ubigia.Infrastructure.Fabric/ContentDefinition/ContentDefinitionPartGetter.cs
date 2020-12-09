@@ -12,7 +12,7 @@
             _storage = storage;
         }
 
-        public async Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
+        public async Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
             var contentDefinitionPart = await _storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPartId).ConfigureAwait(false);

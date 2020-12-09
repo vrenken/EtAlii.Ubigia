@@ -43,7 +43,7 @@
             }
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public async Task<Content> Retrieve(Identifier identifier)
         {
             try
             {
@@ -58,7 +58,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             try
             {

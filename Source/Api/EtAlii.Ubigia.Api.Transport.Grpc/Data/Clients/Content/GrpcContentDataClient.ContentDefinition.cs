@@ -41,7 +41,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             try
             {

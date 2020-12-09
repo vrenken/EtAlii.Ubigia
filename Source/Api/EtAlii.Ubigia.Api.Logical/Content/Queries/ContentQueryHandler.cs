@@ -12,7 +12,7 @@
             _fabric = fabric;
         }
 
-        public async Task<IReadOnlyContent> Execute(ContentQuery query)
+        public async Task<Content> Execute(ContentQuery query)
         {
             var content = await _fabric.Content.Retrieve(query.Identifier).ConfigureAwait(false);
             return content;

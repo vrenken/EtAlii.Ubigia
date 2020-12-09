@@ -15,8 +15,7 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             ulong result = 0;
-            if (reader.TokenType == JsonToken.Bytes || 
-                reader.TokenType == JsonToken.String)
+            if (reader.TokenType == JsonToken.Bytes || reader.TokenType == JsonToken.String)
             {
                 var bytes = serializer.Deserialize<byte[]>(reader);
                 result = BitConverter.ToUInt64(bytes, 0);

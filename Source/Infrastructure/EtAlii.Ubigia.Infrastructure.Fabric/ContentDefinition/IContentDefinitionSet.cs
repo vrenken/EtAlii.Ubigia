@@ -4,8 +4,8 @@
 
     public interface IContentDefinitionSet
     {
-        Task<IReadOnlyContentDefinition> Get(Identifier identifier);
-        Task<IReadOnlyContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
+        Task<ContentDefinition> Get(Identifier identifier);
+        Task<ContentDefinitionPart> Get(Identifier identifier, ulong contentDefinitionPartId);
         void Store(in Identifier identifier, ContentDefinitionPart contentDefinitionPart);
         void Store(in Identifier identifier, ContentDefinition contentDefinition);
     }

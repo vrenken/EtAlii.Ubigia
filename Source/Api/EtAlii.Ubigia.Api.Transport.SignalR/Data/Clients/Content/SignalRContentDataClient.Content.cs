@@ -19,12 +19,12 @@
             BlobPartHelper.SetStored(contentPart, true);
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public async Task<Content> Retrieve(Identifier identifier)
         {
             return await _invoker.Invoke<Content>(_contentConnection, SignalRHub.Content, "Get", identifier).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             return await _invoker.Invoke<ContentPart>(_contentConnection, SignalRHub.Content, "GetPart", identifier, contentPartId).ConfigureAwait(false);
         }

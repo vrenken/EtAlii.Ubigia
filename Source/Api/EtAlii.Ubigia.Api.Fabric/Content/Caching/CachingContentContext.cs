@@ -37,17 +37,17 @@
             _contextProvider.Context.Stored += OnStored;
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             return await _retrieveDefinitionHandler.Handle(identifier).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             return await _retrievePartHandler.Handle(identifier, contentPartId).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public async Task<Content> Retrieve(Identifier identifier)
         {
             // TODO: IMPORTANT ISSUE WITH CACHING.
             return await _retrieveHandler.Handle(identifier).ConfigureAwait(false); 

@@ -44,7 +44,12 @@
                     }
                 }
 
-                summary = BlobSummary.Create(totalAvailableParts == blob.TotalParts, blob, availableParts.ToArray());
+                summary = new BlobSummary 
+                {
+                    IsComplete = totalAvailableParts == blob.TotalParts, 
+                    TotalParts = blob.TotalParts, 
+                    AvailableParts = availableParts.ToArray()
+                };
             }
 
             return summary;

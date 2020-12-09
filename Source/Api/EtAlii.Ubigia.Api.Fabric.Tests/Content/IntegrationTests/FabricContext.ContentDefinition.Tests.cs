@@ -209,7 +209,7 @@
 
             // Assert.
             Assert.True(_testContext.ContentComparer.AreEqual(contentDefinition, retrievedContentDefinition, false));
-            Assert.Equal((ulong)contentDefinition.Parts.Count, retrievedContentDefinition.Summary.TotalParts);
+            Assert.Equal((ulong)contentDefinition.Parts.Length, retrievedContentDefinition.Summary.TotalParts);
             Assert.True(retrievedContentDefinition.Summary.IsComplete);
         }
 

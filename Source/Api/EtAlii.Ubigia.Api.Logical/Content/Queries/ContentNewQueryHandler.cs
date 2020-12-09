@@ -12,7 +12,7 @@
             _fabric = fabric;
         }
 
-        public async Task<IReadOnlyContent> Execute(ContentNewQuery query)
+        public async Task<Content> Execute(ContentNewQuery query)
         {
             var content = await _fabric.Content.Retrieve(query.Identifier).ConfigureAwait(false);
             if (content == null)
@@ -27,7 +27,7 @@
             return content;
         }
 
-        public async Task<IReadOnlyContent> Execute(Identifier identifier)
+        public async Task<Content> Execute(Identifier identifier)
         {
             var content = await _fabric.Content.Retrieve(identifier).ConfigureAwait(false);
             return content;

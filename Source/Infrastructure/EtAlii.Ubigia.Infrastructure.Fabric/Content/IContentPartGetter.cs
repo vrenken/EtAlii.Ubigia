@@ -4,6 +4,6 @@
 
     public interface IContentPartGetter
     {
-        Task<IReadOnlyContentPart> Get(Identifier identifier, ulong contentPartId);
+        Task<ContentPart> Get(Identifier identifier, ulong contentPartId);
     }
 }

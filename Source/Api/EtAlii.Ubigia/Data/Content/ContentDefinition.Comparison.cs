@@ -55,7 +55,7 @@
                 return false;
             }
 
-            if (other.Parts.Count != Parts.Count)
+            if (other.Parts.Length != Parts.Length)
             {
                 return false;
             }

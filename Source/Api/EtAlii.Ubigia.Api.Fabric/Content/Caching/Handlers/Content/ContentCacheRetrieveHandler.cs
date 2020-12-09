@@ -15,7 +15,7 @@
             _contextProvider = contextProvider;
         }
 
-        public async Task<IReadOnlyContent> Handle(Identifier identifier)
+        public async Task<Content> Handle(Identifier identifier)
         {
             var content = _cacheHelper.Get(identifier);
             if (content == null)

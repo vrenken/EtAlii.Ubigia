@@ -6,9 +6,9 @@
     {
         public readonly Stream Stream;
         public readonly Identifier Identifier;
-        public readonly IReadOnlyContent Content;
+        public readonly Content Content;
 
-        public ContentPartQuery(Stream stream, in Identifier identifier, IReadOnlyContent content)
+        public ContentPartQuery(Stream stream, in Identifier identifier, Content content)
         {
             Stream = stream;
             Identifier = identifier;
