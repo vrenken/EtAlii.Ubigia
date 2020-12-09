@@ -12,7 +12,7 @@
         }
 
         public Task<T> Retrieve<T>(ContainerIdentifier container) 
-            where T : BlobBase
+            where T : Blob
         {
             return _blobRetriever.Retrieve<T>(container);
         }

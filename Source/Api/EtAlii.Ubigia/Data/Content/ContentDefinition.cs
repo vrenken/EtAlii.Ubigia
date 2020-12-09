@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public sealed partial class ContentDefinition : BlobBase, IEquatable<ContentDefinition>
+    public sealed partial class ContentDefinition : Blob, IEquatable<ContentDefinition>
     {
         internal const string ContentDefinitionName = "ContentDefinition";
 

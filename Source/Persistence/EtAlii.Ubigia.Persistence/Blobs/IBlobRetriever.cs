@@ -5,6 +5,6 @@
     public interface IBlobRetriever
     {
         Task<T> Retrieve<T>(ContainerIdentifier container)
-            where T : BlobBase;
+            where T : Blob;
     }
 }

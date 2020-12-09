@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ContentPart : BlobPartBase
+    public class ContentPart : BlobPart
     {
         public byte[] Data { get; init; }
 

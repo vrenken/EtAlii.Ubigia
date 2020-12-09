@@ -14,7 +14,7 @@
         }
 
         public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position) 
-            where T : BlobPartBase
+            where T : BlobPart
         {
             var blobName = BlobPartHelper.GetName<T>();
             container = ContainerIdentifier.Combine(container, blobName);

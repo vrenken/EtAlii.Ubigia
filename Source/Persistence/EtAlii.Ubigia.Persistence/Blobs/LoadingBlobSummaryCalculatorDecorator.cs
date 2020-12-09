@@ -16,7 +16,7 @@
         }
 
         public async Task<BlobSummary> Calculate<T>(ContainerIdentifier container)
-            where T : BlobBase
+            where T : Blob
         {
             BlobSummary summary;
 

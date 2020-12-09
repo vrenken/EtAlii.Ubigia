@@ -12,7 +12,7 @@
         }
 
         public Task<T> Retrieve<T>(ContainerIdentifier container, ulong position) 
-            where T : BlobPartBase
+            where T : BlobPart
         {
             return _blobPartRetriever.Retrieve<T>(container, position);
         }
