@@ -16,7 +16,7 @@
 
         public void Store(ContainerIdentifier container, BlobPart blobPart)
         {
-            var blobName = BlobPartHelper.GetName(blobPart);
+            var blobName = BlobPart.GetName(blobPart);
             container = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(container);
 
@@ -24,9 +24,9 @@
 
             var fileName = string.Format(FileNameFormat, blobPart.Id);
 
-            BlobPartHelper.SetStored(blobPart, false);
+            BlobPart.SetStored(blobPart, false);
             _folderManager.SaveToFolder(blobPart, fileName, folder);
-            BlobPartHelper.SetStored(blobPart, true);
+            BlobPart.SetStored(blobPart, true);
         }
     }
 }

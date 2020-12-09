@@ -12,7 +12,7 @@
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
             //Infrastructure.Post<EtAlii.Ubigia.Content>(address, content)
 
-            //BlobHelper.SetStored(content, true)
+            //Blob.SetStored(content, true)
         }
 
         public void Store(in Identifier identifier, ContentPart contentPart)
@@ -22,7 +22,7 @@
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPart.Id.ToString())
             //Infrastructure.Post<ContentPart>(address, contentPart)
 
-            //BlobPartHelper.SetStored(contentPart, true)
+            //BlobPart.SetStored(contentPart, true)
         }
 
         public IReadOnlyContent Retrieve(in Identifier identifier)

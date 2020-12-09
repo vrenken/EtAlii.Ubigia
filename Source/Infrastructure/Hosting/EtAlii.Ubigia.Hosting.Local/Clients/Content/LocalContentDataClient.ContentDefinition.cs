@@ -37,7 +37,7 @@
         {
             throw new System.NotImplementedException();
 
-            //BlobHelper.SetStored(contentDefinition, true)
+            //Blob.SetStored(contentDefinition, true)
 
             //foreach (var contentDefinitionPart in contentDefinition.Parts)
             //[
@@ -49,7 +49,7 @@
         {
             throw new System.NotImplementedException();
 
-            //BlobPartHelper.SetStored(contentDefinitionPart, true)
+            //BlobPart.SetStored(contentDefinitionPart, true)
         }
     }
 }

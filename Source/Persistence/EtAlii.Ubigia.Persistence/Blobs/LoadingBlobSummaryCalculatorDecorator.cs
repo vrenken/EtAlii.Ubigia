@@ -20,7 +20,7 @@
         {
             BlobSummary summary;
 
-            var blobName = BlobHelper.GetName<T>();
+            var blobName = Blob.GetName<T>();
             var blobContainer = ContainerIdentifier.Combine(container, blobName);
 
             const string fileName = "Summary";

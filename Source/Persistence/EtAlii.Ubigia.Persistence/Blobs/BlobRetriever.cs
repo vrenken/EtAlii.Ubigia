@@ -21,7 +21,7 @@
         public async Task<T> Retrieve<T>(ContainerIdentifier container) 
             where T : Blob
         {
-            var blobName = BlobHelper.GetName<T>();
+            var blobName = Blob.GetName<T>();
             var blobContainer = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(blobContainer);
 
@@ -32,12 +32,12 @@
                 blob = await _folderManager
                     .LoadFromFolder<T>(folder, "Blob")
                     .ConfigureAwait(false);
-                BlobHelper.SetStored(blob, true);
+                Blob.SetStored(blob, true);
 
                 var summary = await _blobSummaryCalculator
                     .Calculate<T>(container)
                     .ConfigureAwait(false);
-                BlobHelper.SetSummary(blob, summary);
+                Blob.SetSummary(blob, summary);
             }
 
             return blob;

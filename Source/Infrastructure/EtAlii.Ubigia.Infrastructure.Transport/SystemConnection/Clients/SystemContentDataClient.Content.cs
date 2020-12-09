@@ -9,7 +9,7 @@
             await _infrastructure.Content
                 .Store(identifier, content)
                 .ConfigureAwait(false);
-            BlobHelper.SetStored(content, true);
+            Blob.SetStored(content, true);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
             //await _client.Post(address, content)
@@ -23,7 +23,7 @@
             await _infrastructure.Content
                 .Store(identifier, contentPart)
                 .ConfigureAwait(false);
-            BlobPartHelper.SetStored(contentPart, true);
+            BlobPart.SetStored(contentPart, true);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPart.Id.ToString())
             //await _client.Post(address, contentPart)

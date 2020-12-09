@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia
 {
-    public abstract class BlobPart
+    public abstract partial class BlobPart
     {
         public bool Stored { get; internal set; }
 

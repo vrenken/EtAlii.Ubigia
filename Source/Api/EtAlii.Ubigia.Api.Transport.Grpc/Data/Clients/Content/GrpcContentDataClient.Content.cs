@@ -18,7 +18,7 @@
                 //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "Post", identifier, content)
     
                 // TODO: Should this call be replaced by get instead? 
-                BlobHelper.SetStored(content, true);
+                Blob.SetStored(content, true);
             }
             catch (RpcException e)
             {
@@ -35,7 +35,7 @@
                 await _contentClient.PostPartAsync(request, _transport.AuthenticationHeaders);
                 //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "PostPart", identifier, contentPart.Id, contentPart)
     
-                BlobPartHelper.SetStored(contentPart, true);
+                BlobPart.SetStored(contentPart, true);
             }
             catch (RpcException e)
             {

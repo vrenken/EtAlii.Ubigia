@@ -16,7 +16,7 @@
         public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position) 
             where T : BlobPart
         {
-            var blobName = BlobPartHelper.GetName<T>();
+            var blobName = BlobPart.GetName<T>();
             container = ContainerIdentifier.Combine(container, blobName);
 
             T blobPart = null;
@@ -29,7 +29,7 @@
                 blobPart = await _fileManager
                     .LoadFromFile<T>(path)
                     .ConfigureAwait(false);
-                BlobPartHelper.SetStored(blobPart, true);
+                BlobPart.SetStored(blobPart, true);
             }
 
             return blobPart;

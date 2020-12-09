@@ -19,7 +19,7 @@
         {
             var summary = (BlobSummary)null;
 
-            var blobName = BlobHelper.GetName<T>();
+            var blobName = Blob.GetName<T>();
             container = ContainerIdentifier.Combine(container, blobName);
 
             const string fileName = "Blob";
