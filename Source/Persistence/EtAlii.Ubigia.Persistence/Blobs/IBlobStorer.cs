@@ -2,6 +2,6 @@
 {
     public interface IBlobStorer
     {
-        void Store(ContainerIdentifier container, BlobBase blob);
+        void Store(ContainerIdentifier container, Blob blob);
     }
 }

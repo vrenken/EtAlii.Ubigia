@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia
 {
-    public class ContentDefinitionPart : BlobPartBase
+    public class ContentDefinitionPart : BlobPart
     {
         public ulong Checksum { get; set; }
         public ulong Size { get; set; }

@@ -4,13 +4,13 @@
 
     public interface IBlobStorage
     {
-        void Store(ContainerIdentifier container, BlobBase blob);
-        void Store(ContainerIdentifier container, BlobPartBase blobPart);
+        void Store(ContainerIdentifier container, Blob blob);
+        void Store(ContainerIdentifier container, BlobPart blobPart);
 
         Task<T> Retrieve<T>(ContainerIdentifier container)
-            where T : BlobBase;
+            where T : Blob;
 
         Task<T> Retrieve<T>(ContainerIdentifier container, ulong position)
-            where T : BlobPartBase;
+            where T : BlobPart;
     }
 }

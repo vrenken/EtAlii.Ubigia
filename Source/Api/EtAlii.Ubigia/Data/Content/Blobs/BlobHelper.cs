@@ -13,7 +13,7 @@
         private static readonly object _lockObject = new();
         
         public static string GetName<T>()
-            where T : BlobBase
+            where T : Blob
         {
             lock(_lockObject)
             {
@@ -33,17 +33,17 @@
         }
 
 
-        public static string GetName(BlobBase blob)
+        public static string GetName(Blob blob)
         {
             return blob.Name;
         }
 
-        public static void SetStored(BlobBase blob, bool stored)
+        public static void SetStored(Blob blob, bool stored)
         {
             blob.Stored = stored;
         }
 
-        public static void SetSummary(BlobBase blob, BlobSummary summary)
+        public static void SetSummary(Blob blob, BlobSummary summary)
         {
             blob.Summary = summary;
         }

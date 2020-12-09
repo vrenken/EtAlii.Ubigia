@@ -5,6 +5,6 @@
     public interface IBlobSummaryCalculator
     {
         Task<BlobSummary> Calculate<T>(ContainerIdentifier container)
-            where T: BlobBase;
+            where T: Blob;
     }
 }

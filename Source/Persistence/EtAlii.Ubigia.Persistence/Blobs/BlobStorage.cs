@@ -23,7 +23,7 @@
             _blobPartRetriever = blobPartRetriever;
         }
 
-        public void Store(ContainerIdentifier container, BlobBase blob)
+        public void Store(ContainerIdentifier container, Blob blob)
         {
             if (container == ContainerIdentifier.Empty)
             {
@@ -40,7 +40,7 @@
             }
         }
 
-        public void Store(ContainerIdentifier container, BlobPartBase blobPart)
+        public void Store(ContainerIdentifier container, BlobPart blobPart)
         {
             if (container == ContainerIdentifier.Empty)
             {
@@ -58,7 +58,7 @@
         }
 
         public async Task<T> Retrieve<T>(ContainerIdentifier container)
-            where T : BlobBase
+            where T : Blob
         {
             if (container == ContainerIdentifier.Empty)
             {
@@ -78,7 +78,7 @@
         }
 
         public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position)
-            where T : BlobPartBase
+            where T : BlobPart
         {
             if (container == ContainerIdentifier.Empty)
             {

@@ -19,7 +19,7 @@
         }
 
         public async Task<T> Retrieve<T>(ContainerIdentifier container) 
-            where T : BlobBase
+            where T : Blob
         {
             var blobName = BlobHelper.GetName<T>();
             var blobContainer = ContainerIdentifier.Combine(container, blobName);
