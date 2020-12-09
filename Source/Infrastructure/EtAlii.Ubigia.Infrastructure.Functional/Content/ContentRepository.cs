@@ -55,7 +55,7 @@
 
                 if (contentParts.Any())
                 {
-                    content.TotalParts = (ulong)contentParts.Count();
+                    content.TotalParts = (ulong)contentParts.Length;
                 }
 
                 _logicalContext.Content.Store(identifier, content);

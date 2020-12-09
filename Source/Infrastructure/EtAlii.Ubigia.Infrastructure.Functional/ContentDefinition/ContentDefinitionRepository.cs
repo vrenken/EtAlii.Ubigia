@@ -40,7 +40,10 @@
 
             try
             {
-                contentDefinition.TotalParts = (ulong)contentDefinition.Parts.Length;
+                if (contentDefinition.Parts.Any())
+                {
+                    contentDefinition.TotalParts = (ulong)contentDefinition.Parts.Length;
+                }
 
                 // We need to clear the parts before they are stored. Else they are persisted in the content definition file itself.
                 var contentDefinitionToStore = contentDefinition.ExceptParts();
