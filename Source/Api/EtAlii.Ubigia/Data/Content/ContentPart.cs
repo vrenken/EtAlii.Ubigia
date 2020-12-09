@@ -11,6 +11,6 @@
             Data = Array.Empty<byte>(),
         };
 
-        protected internal override string Name => Content.ContentName;
+        protected override string Name => Content.ContentName;
     }
 }

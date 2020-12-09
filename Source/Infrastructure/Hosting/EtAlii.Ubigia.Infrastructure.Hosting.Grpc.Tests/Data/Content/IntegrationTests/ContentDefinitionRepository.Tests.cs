@@ -115,7 +115,7 @@
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 1;
+            Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
@@ -134,7 +134,7 @@
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 1;
+            Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             
@@ -153,7 +153,7 @@
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 1;
+            Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPartFirst = _testContext.TestContentDefinitionFactory.CreatePart(0);
             var contentDefinitionPartSecond = _testContext.TestContentDefinitionFactory.CreatePart(0);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);

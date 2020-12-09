@@ -7,12 +7,15 @@
     {
         public static Content ToLocal(this WireProtocol.Content content)
         {
-            return content == null ? null : new Content
+            if (content == null)
             {
-                Stored = content.Stored,
-                Summary = content.Summary?.ToLocal(),
-                TotalParts = content.TotalParts,               
-            };
+                return null;
+            }
+            var result = new Content();
+            Blob.SetTotalParts(result, content.TotalParts);
+            Blob.SetStored(result, content.Stored);
+            Blob.SetSummary(result, content.Summary?.ToLocal());
+            return result;
         }
 
         public static WireProtocol.Content ToWire(this Content content)

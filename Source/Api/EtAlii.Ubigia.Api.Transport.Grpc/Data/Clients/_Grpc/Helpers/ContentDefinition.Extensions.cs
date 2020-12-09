@@ -12,15 +12,14 @@
             { 
                 result = new ContentDefinition
                 {
-    //                Name = contentDefinition.Name
-                    Stored = contentDefinition.Stored,
-                    Summary = contentDefinition.Summary?.ToLocal(),
-                    TotalParts = contentDefinition.TotalParts,               
                     Checksum = contentDefinition.Checksum,
                     
                     Size = contentDefinition.Size,
                     Parts = contentDefinition.Parts.Select(p => p.ToLocal()).ToArray()
                 };
+                Blob.SetTotalParts(result, contentDefinition.TotalParts);
+                Blob.SetStored(result, contentDefinition.Stored);
+                Blob.SetSummary(result, contentDefinition.Summary?.ToLocal());
             }
             return result;
         }
@@ -32,7 +31,6 @@
             {
                 result = new WireProtocol.ContentDefinition
                 {
-//                Name = contentDefinition.Name,
                     Stored = contentDefinition.Stored,
                     Summary = contentDefinition.Summary?.ToWire(),
                     TotalParts = contentDefinition.TotalParts,

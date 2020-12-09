@@ -17,17 +17,16 @@
             var content = new Content();
 
             var parts = (ulong)_random.Next(6, 16);
-            content.TotalParts = parts;
+            Blob.SetTotalParts(content, parts);
 
             return content;
         }
 
         public Content Create(ulong parts)
         {
-            var content = new Content
-            {
-                TotalParts = parts
-            };
+            var content = new Content();
+            Blob.SetTotalParts(content, parts);
+
             return content;
         }
 
@@ -70,10 +69,10 @@
         }
         public ContentPart CreatePart(byte[] data, ulong partId = 0)
         {
-            var contentPart = new ContentPart
+            var contentPart = new ContentPart 
             {
                 Id = partId,
-                Data = data,
+                Data = data
             };
             return contentPart;
         }

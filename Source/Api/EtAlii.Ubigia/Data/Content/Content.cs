@@ -4,6 +4,6 @@
     {
         internal const string ContentName = "Content";
 
-        protected internal override string Name => ContentName;
+        protected override string Name => ContentName;
     }
 }

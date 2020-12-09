@@ -18,11 +18,9 @@
             var contentDefinition = await _fabric.Content.RetrieveDefinition(query.Identifier).ConfigureAwait(false);
             if (contentDefinition == null)
             {
-                var newContentDefinition = new ContentDefinition
-                {
-                    Size = query.SizeInBytes,
-                    TotalParts = query.RequiredParts,
-                };
+                var newContentDefinition = new ContentDefinition { Size = query.SizeInBytes };
+                Blob.SetTotalParts(newContentDefinition, query.RequiredParts);
+
                 await _fabric.Content.StoreDefinition(query.Identifier, newContentDefinition).ConfigureAwait(false);
                 contentDefinition = newContentDefinition;
             }

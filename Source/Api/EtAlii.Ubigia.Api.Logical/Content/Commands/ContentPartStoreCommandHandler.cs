@@ -50,7 +50,7 @@
                 var contentPart = new ContentPart
                 {
                     Id = part,
-                    Data = bytesToWrite,
+                    Data = bytesToWrite
                 };
                 await _fabric.Content.Store(identifier, contentPart).ConfigureAwait(false);
             }

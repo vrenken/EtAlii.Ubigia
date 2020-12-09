@@ -2,12 +2,12 @@
 {
     public abstract partial class Blob
     {
-        public bool Stored { get; internal set; }
+        public bool Stored { get; protected set; }
 
-        protected internal abstract string Name { get; }
+        protected abstract string Name { get; }
 
-        public BlobSummary Summary { get; internal set; }
+        public BlobSummary Summary { get; protected set; }
 
-        public ulong TotalParts { get; set; }
+        public ulong TotalParts { get; protected set; }
     }
 }

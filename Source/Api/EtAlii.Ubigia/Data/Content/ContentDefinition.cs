@@ -14,13 +14,7 @@
 
         public ContentDefinitionPart[] Parts { get; init; } = Array.Empty<ContentDefinitionPart>();
 
-        public static readonly ContentDefinition Empty = new() 
-        {
-            Checksum = 0,
-            Size = 0,
-        };
-
-        protected internal override string Name => ContentDefinitionName;
+        protected override string Name => ContentDefinitionName;
 
         public ContentDefinition ExceptParts()
         {

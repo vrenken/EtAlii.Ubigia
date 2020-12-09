@@ -27,8 +27,8 @@
                 Checksum = (ulong)_random.Next(0, int.MaxValue),
                 Size = (ulong)_random.Next(0, int.MaxValue),
                 Parts = parts.ToArray(),
-                TotalParts = partIds,
             };
+            Blob.SetTotalParts(contentDefinition, partIds);
 
             return contentDefinition;
         }
@@ -51,23 +51,25 @@
             {
                 var checksum = hash.ComputeBytes(data).GetULong();
                 var size = (ulong)data.Length;
-                parts.Add(new ContentDefinitionPart
+                var contentDefinitionPart = new ContentDefinitionPart 
                 {
-                    Checksum = checksum,
                     Id = partId++,
+                    Checksum = checksum,
                     Size = size,
-                });
+                };
+                parts.Add(contentDefinitionPart);
                 totalChecksum ^= checksum;
                 totalSize += size;
             }
             
             var contentDefinition = new ContentDefinition
             {
-                TotalParts = (ulong)datas.Length,
                 Checksum = totalChecksum,
                 Size = totalSize,
                 Parts = parts.ToArray(),
             };
+            Blob.SetTotalParts(contentDefinition, (ulong)datas.Length);
+
             return contentDefinition;
         }
 
@@ -76,21 +78,22 @@
             var parts = new List<ContentDefinitionPart>();
             for (ulong partId = 0; partId < totalParts; partId++)
             {
-                parts.Add(new ContentDefinitionPart
+                var contentDefinitionPart = new ContentDefinitionPart 
                 {
-                    Checksum = (ulong)_random.Next(0, int.MaxValue),
                     Id = partId,
-                    Size = (ulong)_random.Next(0, int.MaxValue),
-                });
+                    Checksum = (ulong) _random.Next(0, int.MaxValue),
+                    Size = (ulong) _random.Next(0, int.MaxValue),
+                }; 
+                parts.Add(contentDefinitionPart);
             }
 
             var contentDefinition = new ContentDefinition
             {
                 Checksum = (ulong)_random.Next(0, int.MaxValue),
                 Size = (ulong)_random.Next(0, int.MaxValue),
-                TotalParts = totalParts,
                 Parts = parts.ToArray(),
             };
+            Blob.SetTotalParts(contentDefinition, totalParts);
 
             return contentDefinition;
         }
@@ -109,7 +112,6 @@
                 Checksum = (ulong)_random.Next(0, int.MaxValue),
                 Size = (ulong)_random.Next(0, int.MaxValue),
             };
-
             return contentDefinitionPart;
         }
 

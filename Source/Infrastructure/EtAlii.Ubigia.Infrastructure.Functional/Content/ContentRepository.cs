@@ -55,7 +55,7 @@
 
                 if (contentParts.Any())
                 {
-                    content.TotalParts = (ulong)contentParts.Length;
+                    Blob.SetTotalParts(content, (ulong)contentParts.Length);
                 }
 
                 _logicalContext.Content.Store(identifier, content);

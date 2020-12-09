@@ -17,10 +17,8 @@
             var content = await _fabric.Content.Retrieve(query.Identifier).ConfigureAwait(false);
             if (content == null)
             {
-                var newContent = new Content
-                {
-                    TotalParts = query.RequiredParts,
-                };
+                var newContent = new Content();
+                Blob.SetTotalParts(newContent, query.RequiredParts);
                 await _fabric.Content.Store(query.Identifier, newContent).ConfigureAwait(false);
                 content = newContent;
             }
