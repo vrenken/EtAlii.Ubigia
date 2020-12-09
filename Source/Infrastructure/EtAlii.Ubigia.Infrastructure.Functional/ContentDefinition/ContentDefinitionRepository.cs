@@ -42,7 +42,7 @@
             {
                 if (contentDefinition.Parts.Any())
                 {
-                    contentDefinition.TotalParts = (ulong)contentDefinition.Parts.Length;
+                    Blob.SetTotalParts(contentDefinition, (ulong)contentDefinition.Parts.Length);
                 }
 
                 // We need to clear the parts before they are stored. Else they are persisted in the content definition file itself.

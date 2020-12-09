@@ -33,11 +33,10 @@
         public void BlobPartHelper_SetId_ContentPart()
         {
             // Arrange.
-            var blobPart = new ContentPart();
             var id = (uint)new Random().Next(0, int.MaxValue);
 
             // Act.
-            BlobPart.SetId(blobPart, id);
+            var blobPart = new ContentPart { Id = id };
 
             // Assert.
             Assert.Equal(id, blobPart.Id);

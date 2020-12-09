@@ -8,7 +8,7 @@
     {
         public static WireProtocol.ContentPart ToWire(this ContentPart contentPart)
         {
-            return new WireProtocol.ContentPart
+            return new() 
             {
                 Id = contentPart.Id,
                 Data = ByteString.CopyFrom(contentPart.Data),
@@ -24,12 +24,9 @@
         
         public static ContentPart ToLocal(this WireProtocol.ContentPart contentPart)
         {
-            return new ContentPart
-            {
-                Id = contentPart.Id,
-                Data = contentPart.Data.ToByteArray(),
-                Stored = contentPart.Stored,
-            };
+            var result = new ContentPart { Data = contentPart.Data.ToByteArray(), Id = contentPart.Id};
+            BlobPart.SetStored(result, contentPart.Stored);
+            return result;
         }
 
         public static IEnumerable<ContentPart> ToLocal(this IEnumerable<WireProtocol.ContentPart> contentParts)

@@ -2,10 +2,10 @@
 {
     public abstract partial class BlobPart
     {
-        public bool Stored { get; internal set; }
+        public bool Stored { get; private set; }
 
-        protected internal abstract string Name { get; }
+        protected abstract string Name { get; }
 
-        public ulong Id { get; set; }
+        public ulong Id { get; init; }
     }
 }

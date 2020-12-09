@@ -73,7 +73,7 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 3;
+            Blob.SetTotalParts(contentDefinition, 3);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
 
@@ -92,7 +92,7 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
-            contentDefinition.TotalParts = 1;
+            Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
 
@@ -111,7 +111,7 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
-            contentDefinition.TotalParts = 1;
+            Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(1);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition).ConfigureAwait(false);
 
@@ -221,7 +221,7 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 2;
+            Blob.SetTotalParts(contentDefinition, 2);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(1);
 
             // Act.
@@ -244,7 +244,7 @@
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
-            contentDefinition.TotalParts = 3;
+            Blob.SetTotalParts(contentDefinition, 3);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
 
             // Act.

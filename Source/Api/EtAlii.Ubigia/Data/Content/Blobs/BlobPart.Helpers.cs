@@ -37,12 +37,7 @@
         {
             return blobPart.Name;
         }
-
-        public static void SetId(BlobPart blobPart, uint id)
-        {
-            blobPart.Id = id;
-        }
-
+        
         public static void SetStored(BlobPart blobPart, bool stored)
         {
             blobPart.Stored = stored;

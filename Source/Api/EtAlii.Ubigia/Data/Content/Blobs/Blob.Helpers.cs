@@ -47,5 +47,10 @@
         {
             blob.Summary = summary;
         }
+        
+        public static void SetTotalParts(Blob blob, ulong totalParts)
+        {
+            blob.TotalParts = totalParts;
+        }
     }
 }
