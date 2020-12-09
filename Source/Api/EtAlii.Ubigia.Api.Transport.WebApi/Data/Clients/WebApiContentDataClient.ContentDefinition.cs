@@ -35,7 +35,7 @@
 
         private void MarkAsStored(ContentDefinition contentDefinition)
         {
-            BlobHelper.SetStored(contentDefinition, true);
+            Blob.SetStored(contentDefinition, true);
 
             foreach (var contentDefinitionPart in contentDefinition.Parts)
             {
@@ -45,7 +45,7 @@
 
         private void MarkAsStored(ContentDefinitionPart contentDefinitionPart)
         {
-            BlobPartHelper.SetStored(contentDefinitionPart, true);
+            BlobPart.SetStored(contentDefinitionPart, true);
         }
     }
 }

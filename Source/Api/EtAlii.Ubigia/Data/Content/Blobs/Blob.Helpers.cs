@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reflection;
 
-    public static class BlobHelper
+    public partial class Blob
     {
         private static readonly Dictionary<Type, string> _blobNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>(); 

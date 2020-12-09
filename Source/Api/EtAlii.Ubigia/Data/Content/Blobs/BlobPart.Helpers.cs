@@ -7,7 +7,7 @@
 
     // TODO: Should be in the fabric namespace.
 
-    public static class BlobPartHelper
+    public partial class BlobPart
     {
         private static readonly Dictionary<Type, string> _blobPartNames = new(); 
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();

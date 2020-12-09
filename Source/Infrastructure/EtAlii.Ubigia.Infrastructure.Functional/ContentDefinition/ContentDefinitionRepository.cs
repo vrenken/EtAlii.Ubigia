@@ -51,7 +51,7 @@
                 _logicalContext.ContentDefinition.Store(identifier, contentDefinitionToStore);
                 
                 // And of course the stored flag should be updated accordingly afterwards. 
-                BlobHelper.SetStored(contentDefinition, contentDefinitionToStore.Stored);
+                Blob.SetStored(contentDefinition, contentDefinitionToStore.Stored);
                 
                 foreach (var contentDefinitionPart in contentDefinition.Parts)
                 {

@@ -9,14 +9,14 @@
             await _invoker.Invoke(_contentConnection, SignalRHub.Content, "Post", identifier, content).ConfigureAwait(false);
 
             // TODO: Should this call be replaced by get instead? 
-            BlobHelper.SetStored(content, true);
+            Blob.SetStored(content, true);
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
             await _invoker.Invoke(_contentConnection, SignalRHub.Content, "PostPart", identifier, contentPart.Id, contentPart).ConfigureAwait(false);
 
-            BlobPartHelper.SetStored(contentPart, true);
+            BlobPart.SetStored(contentPart, true);
         }
 
         public async Task<Content> Retrieve(Identifier identifier)

@@ -18,7 +18,7 @@
         
         public void Store(ContainerIdentifier container, Blob blob)
         {
-            var blobName = BlobHelper.GetName(blob);
+            var blobName = Blob.GetName(blob);
             var logContainer = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(logContainer);
 

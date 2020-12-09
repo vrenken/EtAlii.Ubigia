@@ -10,7 +10,7 @@
             await Connection.Client.Post(address, content).ConfigureAwait(false);
 
             // TODO: Should this call be replaced by get instead? 
-            BlobHelper.SetStored(content, true);
+            Blob.SetStored(content, true);
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
@@ -24,7 +24,7 @@
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPart.Id.ToString());
             await Connection.Client.Put(address, contentPart).ConfigureAwait(false);
 
-            BlobPartHelper.SetStored(contentPart, true);
+            BlobPart.SetStored(contentPart, true);
         }
 
         public async Task<Content> Retrieve(Identifier identifier)
