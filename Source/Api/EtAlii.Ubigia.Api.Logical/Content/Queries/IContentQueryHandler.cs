@@ -4,6 +4,6 @@
 
     public interface IContentQueryHandler
     {
-        Task<IReadOnlyContent> Execute(ContentQuery query);
+        Task<Content> Execute(ContentQuery query);
     }
 }

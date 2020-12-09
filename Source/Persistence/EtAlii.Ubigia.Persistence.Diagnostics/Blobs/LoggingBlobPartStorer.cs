@@ -16,7 +16,7 @@
             _pathBuilder = pathBuilder;
         }
 
-        public void Store(ContainerIdentifier container, IBlobPart blobPart)
+        public void Store(ContainerIdentifier container, BlobPartBase blobPart)
         {
             var blobName = BlobPartHelper.GetName(blobPart);
             var logContainer = ContainerIdentifier.Combine(container, blobName);

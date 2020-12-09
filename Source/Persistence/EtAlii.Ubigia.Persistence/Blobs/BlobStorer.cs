@@ -14,7 +14,7 @@
             _pathBuilder = pathBuilder;
         }
         
-        public void Store(ContainerIdentifier container, IBlob blob)
+        public void Store(ContainerIdentifier container, BlobBase blob)
         {
             var blobName = BlobHelper.GetName(blob);
             container = ContainerIdentifier.Combine(container, blobName);
@@ -26,7 +26,15 @@
             BlobHelper.SetSummary(blob, null);
             _folderManager.SaveToFolder(blob, "Blob", folder);
             BlobHelper.SetStored(blob, true);
-            BlobHelper.SetSummary(blob, BlobSummary.Create(false, blob, Array.Empty<ulong>()));
+            
+            var summary = new BlobSummary 
+            {
+                IsComplete = false, 
+                TotalParts = blob.TotalParts, 
+                AvailableParts = Array.Empty<ulong>()
+            };
+
+            BlobHelper.SetSummary(blob, summary);
         }
     }
 }

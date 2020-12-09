@@ -24,13 +24,13 @@
             //MarkAsStored(contentDefinitionPart)
         }
 
-        public IReadOnlyContentDefinition RetrieveDefinition(in Identifier identifier)
+        public ContentDefinition RetrieveDefinition(in Identifier identifier)
         {
             throw new System.NotImplementedException();
 
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
             //var contentDefinition = Infrastructure.Get<ContentDefinition>(address)
-            //return contentDefinition as IReadOnlyContentDefinition
+            //return contentDefinition as ContentDefinition
         }
 
         private void MarkAsStored(ContentDefinition contentDefinition)

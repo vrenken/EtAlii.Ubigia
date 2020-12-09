@@ -22,7 +22,7 @@
             Content response;
             try
             {
-                response = (Content)await _items
+                response = await _items
                     .Get(entryId)
                     .ConfigureAwait(false);
             }
@@ -38,7 +38,7 @@
             ContentPart response;
             try
             {
-                response = (ContentPart)await _items
+                response = await _items
                     .Get(entryId, contentPartId)
                     .ConfigureAwait(false);
             }

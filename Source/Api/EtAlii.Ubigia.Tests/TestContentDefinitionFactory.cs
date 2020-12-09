@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Tests
 {
     using System;
+    using System.Collections.Generic;
     using HashLib;
 
     public class TestContentDefinitionFactory
@@ -13,20 +14,21 @@
         }
         public ContentDefinition Create()
         {
+            var partIds = (uint)_random.Next(1, 10);
+
+            var parts = new List<ContentDefinitionPart>();
+            for (uint partId = 0; partId < partIds; partId++)
+            {
+                parts.Add(CreatePart(partId));
+            }
+
             var contentDefinition = new ContentDefinition
             {
                 Checksum = (ulong)_random.Next(0, int.MaxValue),
                 Size = (ulong)_random.Next(0, int.MaxValue),
+                Parts = parts.ToArray(),
+                TotalParts = partIds,
             };
-
-            var partIds = (uint)_random.Next(1, 10);
-
-            for (uint partId = 0; partId < partIds; partId++)
-            {
-                contentDefinition.Parts.Add(CreatePart(partId));
-            }
-
-            contentDefinition.TotalParts = partIds;
 
             return contentDefinition;
         }
@@ -39,19 +41,17 @@
         public ContentDefinition Create(byte[][] datas)
         {
             var hash = HashFactory.Checksum.CreateCRC64_ECMA();
-            var contentDefinition = new ContentDefinition
-            {
-                TotalParts = (ulong)datas.Length
-            };
 
             var totalSize = (ulong)0;
             var totalChecksum = (ulong)0;
             var partId = (ulong)0;
+
+            var parts = new List<ContentDefinitionPart>();
             foreach (var data in datas)
             {
                 var checksum = hash.ComputeBytes(data).GetULong();
                 var size = (ulong)data.Length;
-                contentDefinition.Parts.Add(new ContentDefinitionPart
+                parts.Add(new ContentDefinitionPart
                 {
                     Checksum = checksum,
                     Id = partId++,
@@ -60,23 +60,23 @@
                 totalChecksum ^= checksum;
                 totalSize += size;
             }
-            contentDefinition.Checksum = totalChecksum;
-            contentDefinition.Size = totalSize;
+            
+            var contentDefinition = new ContentDefinition
+            {
+                TotalParts = (ulong)datas.Length,
+                Checksum = totalChecksum,
+                Size = totalSize,
+                Parts = parts.ToArray(),
+            };
             return contentDefinition;
         }
 
         public ContentDefinition Create(ulong totalParts)
         {
-            var contentDefinition = new ContentDefinition
-            {
-                Checksum = (ulong)_random.Next(0, int.MaxValue),
-                Size = (ulong)_random.Next(0, int.MaxValue),
-                TotalParts = totalParts,
-            };
-
+            var parts = new List<ContentDefinitionPart>();
             for (ulong partId = 0; partId < totalParts; partId++)
             {
-                contentDefinition.Parts.Add(new ContentDefinitionPart
+                parts.Add(new ContentDefinitionPart
                 {
                     Checksum = (ulong)_random.Next(0, int.MaxValue),
                     Id = partId,
@@ -84,7 +84,13 @@
                 });
             }
 
-            contentDefinition.TotalParts = totalParts;
+            var contentDefinition = new ContentDefinition
+            {
+                Checksum = (ulong)_random.Next(0, int.MaxValue),
+                Size = (ulong)_random.Next(0, int.MaxValue),
+                TotalParts = totalParts,
+                Parts = parts.ToArray(),
+            };
 
             return contentDefinition;
         }

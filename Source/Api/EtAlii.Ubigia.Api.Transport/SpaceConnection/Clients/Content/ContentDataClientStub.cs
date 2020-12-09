@@ -14,9 +14,9 @@
             return Task.CompletedTask;
         }
 
-        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return Task.FromResult<IReadOnlyContentDefinition>(null);
+            return Task.FromResult<ContentDefinition>(null);
         }
 
         public Task Store(Identifier identifier, Content content)
@@ -29,14 +29,14 @@
             return Task.CompletedTask;
         }
 
-        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public Task<Content> Retrieve(Identifier identifier)
         {
-            return Task.FromResult<IReadOnlyContent>(null);
+            return Task.FromResult<Content>(null);
         }
 
-        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
-            return Task.FromResult<IReadOnlyContentPart>(null);
+            return Task.FromResult<ContentPart>(null);
         }
 
         public Task Connect(ISpaceConnection spaceConnection)

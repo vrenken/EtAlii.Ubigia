@@ -18,7 +18,7 @@
             MarkAsStored(contentDefinitionPart);
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, SignalRHub.ContentDefinition, "Get", identifier).ConfigureAwait(false);
         }

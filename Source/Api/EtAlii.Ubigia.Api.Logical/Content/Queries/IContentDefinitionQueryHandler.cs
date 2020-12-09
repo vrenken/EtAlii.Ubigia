@@ -4,6 +4,6 @@
 
     public interface IContentDefinitionQueryHandler
     {
-        Task<IReadOnlyContentDefinition> Execute(ContentDefinitionQuery query);
+        Task<ContentDefinition> Execute(ContentDefinitionQuery query);
     }
 }

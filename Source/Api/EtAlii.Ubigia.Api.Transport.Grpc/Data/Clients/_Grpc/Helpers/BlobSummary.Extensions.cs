@@ -9,7 +9,12 @@
         {
             var availableParts = blobSummary.AvailableParts
                 .ToArray();
-            return BlobSummary.Create(blobSummary.IsComplete, blobSummary.TotalParts, availableParts);
+            return new BlobSummary 
+            {
+                IsComplete = blobSummary.IsComplete, 
+                TotalParts = blobSummary.TotalParts, 
+                AvailableParts = availableParts
+            };
         }
 
         public static WireProtocol.BlobSummary ToWire(this BlobSummary blobSummary)

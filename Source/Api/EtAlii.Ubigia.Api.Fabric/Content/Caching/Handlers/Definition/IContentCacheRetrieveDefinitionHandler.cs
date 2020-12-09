@@ -4,6 +4,6 @@
 
     internal interface IContentCacheRetrieveDefinitionHandler
     {
-        Task<IReadOnlyContentDefinition> Handle(Identifier identifier);
+        Task<ContentDefinition> Handle(Identifier identifier);
     }
 }

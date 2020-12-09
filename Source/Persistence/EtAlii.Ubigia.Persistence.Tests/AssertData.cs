@@ -45,12 +45,12 @@
             Assert.False(areEqual);
         }
 
-        public static void AreEqual(IReadOnlyContentDefinition expected, IReadOnlyContentDefinition actual, bool checkSummary)
+        public static void AreEqual(ContentDefinition expected, ContentDefinition actual, bool checkSummary)
         {
             Assert.Equal(expected.Checksum, actual.Checksum);
             Assert.Equal(expected.Size, actual.Size);
-            var expectedPartCount = expected.Parts.Count();
-            var actualPartCount = actual.Parts.Count();
+            var expectedPartCount = expected.Parts.Length;
+            var actualPartCount = actual.Parts.Length;
             Assert.Equal(expectedPartCount, actualPartCount);
 
             for (var i = 0; i < expectedPartCount; i++)
@@ -74,7 +74,7 @@
             Assert.Equal(expected.TotalParts, actual.TotalParts);
         }
 
-        public static void AreEqual(IReadOnlyContentDefinitionPart expected, IReadOnlyContentDefinitionPart actual)
+        public static void AreEqual(ContentDefinitionPart expected, ContentDefinitionPart actual)
         {
             Assert.NotNull(actual);
             Assert.Equal(expected.Id, actual.Id);
@@ -93,7 +93,7 @@
             }
         }
 
-        public static void AreEqual(IReadOnlyContent expected, IReadOnlyContent actual, bool checkSummary)
+        public static void AreEqual(Content expected, Content actual, bool checkSummary)
         {
             Assert.Equal(expected.TotalParts, actual.TotalParts);
 
@@ -103,7 +103,7 @@
             }
         }
 
-        public static void AreEqual(IReadOnlyContentPart expected, IReadOnlyContentPart actual)
+        public static void AreEqual(ContentPart expected, ContentPart actual)
         {
             AreEqual(expected.Data, actual.Data);
         }

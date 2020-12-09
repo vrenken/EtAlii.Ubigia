@@ -9,8 +9,8 @@
         public readonly ulong RequiredParts;
         public readonly ulong PartSize;
         public readonly Identifier Identifier;
-        public readonly IReadOnlyContentDefinition ContentDefinition;
-        public readonly IReadOnlyContent Content;
+        public readonly ContentDefinition ContentDefinition;
+        public readonly Content Content;
 
         public ContentPartStoreCommand(
             Stream stream,
@@ -18,8 +18,8 @@
             ulong requiredParts,
             ulong partSize,
             Identifier identifier,
-            IReadOnlyContentDefinition contentDefinition,
-            IReadOnlyContent content)
+            ContentDefinition contentDefinition,
+            Content content)
         {
             Stream = stream;
             SizeInBytes = sizeInBytes;

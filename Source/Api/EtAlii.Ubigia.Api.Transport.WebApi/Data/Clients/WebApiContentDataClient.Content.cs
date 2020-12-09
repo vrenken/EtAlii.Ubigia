@@ -27,14 +27,14 @@
             BlobPartHelper.SetStored(contentPart, true);
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public async Task<Content> Retrieve(Identifier identifier)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Content, UriParameter.EntryId, identifier.ToString());
             var content = await Connection.Client.Get<Content>(address).ConfigureAwait(false);
             return content;
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPartId.ToString());
             var contentPart = await Connection.Client.Get<ContentPart>(address).ConfigureAwait(false);

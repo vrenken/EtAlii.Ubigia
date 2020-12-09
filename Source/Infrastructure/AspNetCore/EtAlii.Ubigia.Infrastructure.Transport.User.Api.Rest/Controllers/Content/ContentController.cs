@@ -27,7 +27,7 @@
                 var content = await _items
                     .Get(entryId)
                     .ConfigureAwait(false);
-                response = Ok((Content) content);
+                response = Ok(content);
             }
             catch (Exception ex)
             {
@@ -45,7 +45,7 @@
                 var contentPart = await _items
                     .Get(entryId, contentPartId)
                     .ConfigureAwait(false);
-                response = Ok((ContentPart) contentPart);
+                response = Ok(contentPart);
             }
             catch (Exception ex)
             {

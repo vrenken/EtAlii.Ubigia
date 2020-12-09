@@ -27,7 +27,7 @@
                 var contentDefinition = await _items
                     .Get(entryId)
                     .ConfigureAwait(false);
-                response = Ok((ContentDefinition)contentDefinition);
+                response = Ok(contentDefinition);
             }
             catch (Exception ex)
             {
@@ -36,7 +36,7 @@
             return response;
         }
 
-        // Post a new contentdefinition for the specified entry.
+        // Post a new ContentDefinition for the specified entry.
         [HttpPost]
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
         {

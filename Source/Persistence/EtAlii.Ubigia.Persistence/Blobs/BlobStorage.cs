@@ -23,7 +23,7 @@
             _blobPartRetriever = blobPartRetriever;
         }
 
-        public void Store(ContainerIdentifier container, IBlob blob)
+        public void Store(ContainerIdentifier container, BlobBase blob)
         {
             if (container == ContainerIdentifier.Empty)
             {
@@ -40,7 +40,7 @@
             }
         }
 
-        public void Store(ContainerIdentifier container, IBlobPart blobPart)
+        public void Store(ContainerIdentifier container, BlobPartBase blobPart)
         {
             if (container == ContainerIdentifier.Empty)
             {

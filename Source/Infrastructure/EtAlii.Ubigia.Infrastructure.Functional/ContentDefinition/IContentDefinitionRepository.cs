@@ -6,6 +6,6 @@
     {
         void Store(in Identifier identifier, ContentDefinition contentDefinition);
         Task Store(Identifier identifier, ContentDefinitionPart contentDefinitionPart);
-        Task<IReadOnlyContentDefinition> Get(Identifier identifier);
+        Task<ContentDefinition> Get(Identifier identifier);
     }
 }

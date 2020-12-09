@@ -13,7 +13,7 @@
         }
 
 
-        public async Task<IReadOnlyContentDefinition> Execute(ContentDefinitionQuery query)
+        public async Task<ContentDefinition> Execute(ContentDefinitionQuery query)
         {
             var contentDefinition = await _fabric.Content.RetrieveDefinition(query.Identifier).ConfigureAwait(false);
             if (contentDefinition == null)

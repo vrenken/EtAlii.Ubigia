@@ -33,19 +33,19 @@
             }
         }
 
-        public static string GetName(IBlobPart blobPart)
+        public static string GetName(BlobPartBase blobPart)
         {
-            return ((BlobPartBase)blobPart).Name;
+            return blobPart.Name;
         }
 
-        public static void SetId(IBlobPart blobPart, uint id)
+        public static void SetId(BlobPartBase blobPart, uint id)
         {
-            ((BlobPartBase)blobPart).Id = id;
+            blobPart.Id = id;
         }
 
-        public static void SetStored(IBlobPart blobPart, bool stored)
+        public static void SetStored(BlobPartBase blobPart, bool stored)
         {
-            ((BlobPartBase)blobPart).Stored = stored;
+            blobPart.Stored = stored;
         }
     }
 }

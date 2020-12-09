@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia
 {
-    public class Content : BlobBase, IReadOnlyContent
+    public class Content : BlobBase
     {
         internal const string ContentName = "Content";
 

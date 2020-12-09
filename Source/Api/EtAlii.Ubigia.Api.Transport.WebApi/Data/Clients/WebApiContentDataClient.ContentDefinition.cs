@@ -26,7 +26,7 @@
             MarkAsStored(contentDefinitionPart);
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public async Task<ContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             var contentDefinition = await Connection.Client.Get<ContentDefinition>(address).ConfigureAwait(false);

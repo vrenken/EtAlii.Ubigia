@@ -4,6 +4,6 @@
 
     internal interface IContentCacheRetrievePartHandler
     {
-        Task<IReadOnlyContentPart> Handle(Identifier identifier, ulong contentPartId);
+        Task<ContentPart> Handle(Identifier identifier, ulong contentPartId);
     }
 }

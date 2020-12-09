@@ -22,7 +22,7 @@
             ContentDefinition response = null;
             try
             {
-                response = (ContentDefinition)await _items
+                response = await _items
                     .Get(entryId)
                     .ConfigureAwait(false);
             }
@@ -33,7 +33,7 @@
             return response;
         }
 
-        // Post a new contentdefinition for the specified entry.
+        // Post a new ContentDefinition for the specified entry.
         public void Post(Identifier entryId, ContentDefinition contentDefinition)
         {
             try

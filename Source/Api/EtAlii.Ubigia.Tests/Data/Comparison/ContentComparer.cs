@@ -11,7 +11,7 @@
             _byteArrayComparer = byteArrayComparer;
         }
 
-        public bool AreEqual(IReadOnlyContentDefinition expected, IReadOnlyContentDefinition actual, bool checkSummary)
+        public bool AreEqual(ContentDefinition expected, ContentDefinition actual, bool checkSummary)
         {
             if (expected.Checksum != actual.Checksum)
             {
@@ -21,8 +21,8 @@
             {
                 return false;
             }
-            var expectedPartCount = expected.Parts.Count();
-            var actualPartCount = actual.Parts.Count();
+            var expectedPartCount = expected.Parts.Length;
+            var actualPartCount = actual.Parts.Length;
             if(expectedPartCount != actualPartCount)
             {
                 return false;
@@ -67,7 +67,7 @@
             //Assert.Equal(expected.AvailableParts, actual.TotalParts);
         }
 
-        public bool AreEqual(IReadOnlyContentDefinitionPart expected, IReadOnlyContentDefinitionPart actual)
+        public bool AreEqual(ContentDefinitionPart expected, ContentDefinitionPart actual)
         {
             if (actual == null)
             {
@@ -89,7 +89,7 @@
             return true;
         }
 
-        public bool AreEqual(IReadOnlyContent expected, IReadOnlyContent actual, bool checkSummary)
+        public bool AreEqual(Content expected, Content actual, bool checkSummary)
         {
             if (expected.TotalParts != actual.TotalParts)
             {
@@ -107,7 +107,7 @@
             return true;
         }
 
-        public bool AreEqual(IReadOnlyContentPart expected, IReadOnlyContentPart actual)
+        public bool AreEqual(ContentPart expected, ContentPart actual)
         {
             return _byteArrayComparer.AreEqual(expected.Data, actual.Data);
         }

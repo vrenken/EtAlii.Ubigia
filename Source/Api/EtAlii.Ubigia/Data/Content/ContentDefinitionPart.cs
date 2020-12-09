@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia
 {
-    public class ContentDefinitionPart : BlobPartBase, IReadOnlyContentDefinitionPart
+    public class ContentDefinitionPart : BlobPartBase
     {
         public ulong Checksum { get; set; }
         public ulong Size { get; set; }
 
-        public static readonly IReadOnlyContentDefinitionPart Empty = new ContentDefinitionPart
+        public static readonly ContentDefinitionPart Empty = new() 
         {
             Id = 0,
             Checksum = 0,

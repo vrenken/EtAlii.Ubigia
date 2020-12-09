@@ -4,6 +4,6 @@
 
     internal interface IContentCacheRetrieveHandler
     {
-        Task<IReadOnlyContent> Handle(Identifier identifier);
+        Task<Content> Handle(Identifier identifier);
     }
 }

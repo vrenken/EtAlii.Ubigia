@@ -2,11 +2,11 @@
 {
     using System;
 
-    public class ContentPart : BlobPartBase, IReadOnlyContentPart
+    public class ContentPart : BlobPartBase
     {
-        public byte[] Data { get; set; }
+        public byte[] Data { get; init; }
 
-        public static readonly IReadOnlyContentPart Empty = new ContentPart
+        public static readonly ContentPart Empty = new() 
         {
             Data = Array.Empty<byte>(),
         };

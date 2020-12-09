@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -20,7 +19,7 @@
             return Store(identifier, content, Array.Empty<ContentPart>());
         }
         
-        public Task Store(Identifier identifier, Content content, IEnumerable<ContentPart> contentParts)
+        public Task Store(Identifier identifier, Content content, ContentPart[] contentParts)
         {
             if (identifier == Identifier.Empty)
             {
@@ -50,19 +49,13 @@
             
             try
             {
-                // We need to clear the parts before they are stored. Else they are persited in the content file itself.
+                // We need to clear the parts before they are stored. Else they are persisted in the content file itself.
                 //var contentParts = new List<ContentPart>(content.Parts)
                 //content.Parts.Clear()
 
                 if (contentParts.Any())
                 {
-                    ulong totalParts = 0;
-                    // ReSharper disable once UnusedVariable
-                    foreach (var contentPart in contentParts)
-                    {
-                        totalParts += 1;
-                    }
-                    content.TotalParts = totalParts;
+                    content.TotalParts = (ulong)contentParts.Count();
                 }
 
                 _logicalContext.Content.Store(identifier, content);
@@ -99,8 +92,8 @@
 
             try
             {
-                var item = await _logicalContext.Content.Get(identifier).ConfigureAwait(false);
-                if (!(item is Content content))
+                var content = await _logicalContext.Content.Get(identifier).ConfigureAwait(false);
+                if (content == null)
                 {
                     throw new ContentRepositoryException("Content not stored yet");
                 }
@@ -121,7 +114,7 @@
             }
         }
 
-        public async Task<IReadOnlyContent> Get(Identifier identifier)
+        public async Task<Content> Get(Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {
@@ -138,7 +131,7 @@
             }
         }
 
-        public async Task<IReadOnlyContentPart> Get(Identifier identifier, ulong contentPartId)
+        public async Task<ContentPart> Get(Identifier identifier, ulong contentPartId)
         {
             if (identifier == Identifier.Empty)
             {
