@@ -1,6 +1,8 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+#pragma warning disable S1104 // This code will change. remove this pragma afterwards.
+
 namespace EtAlii.Ubigia.Api.Diagnostics.Internal
 {
     using Microsoft.EntityFrameworkCore.Diagnostics;
