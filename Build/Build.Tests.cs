@@ -26,8 +26,7 @@ namespace EtAlii.Ubigia.Pipelines
             // For whatever weird reason the tests below ned to be disabled on the build server.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.WebApi.Tests"))
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Fabric.WebApi.Tests"))
+            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".WebApi.Tests"))
         
             
             // We are not interested in .shproj files. These will mess up dotnet test.
