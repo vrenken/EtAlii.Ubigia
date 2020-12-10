@@ -1,11 +1,13 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-using System.Linq;
+#pragma warning disable S3358 // This code will change. remove this pragma afterwards.
 
 // ReSharper disable once CheckNamespace
 namespace System.Reflection
 {
+    using System.Linq;
+
     internal static class MemberInfoExtensions
     {
         public static Type GetMemberType(this MemberInfo memberInfo)
