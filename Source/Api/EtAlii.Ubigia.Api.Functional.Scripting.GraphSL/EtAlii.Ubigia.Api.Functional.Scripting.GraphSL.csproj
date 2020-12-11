@@ -11,12 +11,18 @@
     <Compile Remove="Scripting\**" />
     <EmbeddedResource Remove="Scripting\**" />
     <None Remove="Scripting\**" />
+    <Folder Include="0. Base" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting\EtAlii.Ubigia.Api.Functional.Scripting.csproj" />
   </ItemGroup>
+
+  <!-- We want to include the Moppet.Lapa references as assemblies in the NuGet package, -->
+  <!-- and not as a NuGet dependency. -->
   <ItemGroup>
-    <Folder Include="0. Base" />
+    <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" >
+      <IncludeAssets Condition="'$(IsCalledByDotNetPack)' == 'true'">none</IncludeAssets>
+      <PackProjectOutputAsContentInsteadOfNuGetReference>true</PackProjectOutputAsContentInsteadOfNuGetReference>
+    </ProjectReference>
   </ItemGroup>
 </Project>

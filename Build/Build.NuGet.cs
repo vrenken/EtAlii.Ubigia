@@ -44,7 +44,10 @@ namespace EtAlii.Ubigia.Pipelines
 
             DotNetPack(_ => _
                 .SetProject(Solution)
+                .SetNoBuild(true)
+                .SetNoRestore(true)
                 .SetOutputDirectory(ArtifactsDirectory)
+                .SetProperty("IsCalledByDotNetPack", "true")
                 .SetVersion("0.1.0"));
         }
         
@@ -74,5 +77,8 @@ namespace EtAlii.Ubigia.Pipelines
         private Target RunCreateAndPublishPackages => _ => _
             .Executes(CreatePackagesInternal)
             .Executes(PublishPackagesInternal);
+        
+        private Target RunCreatePackages => _ => _
+            .Executes(CreatePackagesInternal);
     }
 }
