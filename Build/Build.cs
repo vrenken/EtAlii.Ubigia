@@ -35,6 +35,7 @@ namespace EtAlii.Ubigia.Pipelines
             // For testing purposes.
             nameof(RunRestore),
             nameof(RunCompile),
+            nameof(RunCreatePackages),
             nameof(RunCreateAndPublishPackages),
             nameof(RunCompileTestAndPublishToSonarQube),
             nameof(RunPublishToSonarQube),
