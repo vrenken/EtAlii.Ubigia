@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(NuGetFeedToken)
         },
         Pool = "Avalon agent pool",
-        TimeoutInMinutes = 480
+        TimeoutInMinutes = 120
         // TriggerPathsInclude = Triggers are still maintained on the server.
     )]
     public partial class Build : NukeBuild
