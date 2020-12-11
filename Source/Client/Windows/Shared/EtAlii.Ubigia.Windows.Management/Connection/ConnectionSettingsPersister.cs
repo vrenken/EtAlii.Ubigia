@@ -49,7 +49,7 @@
             writer.Write(currentSettings.Address);
             writer.Write(currentSettings.Account);
             writer.Write(currentSettings.TransportType);
-            writer.Write(currentSettings.Password);
+            writer.Write(currentSettings.Password ?? string.Empty);
             writer.Write(_viewModel.IsTested);
             writer.Write(_viewModel.RememberPassword);
             var previousSettings = DeterminePreviousSettings(password);
@@ -96,21 +96,14 @@
             password = string.Empty;
             try
             {
-                using (var userStore = IsolatedStorageFile.GetUserStoreForAssembly())
+                using var userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+                if (userStore.FileExists(_viewModel.ConfigurationFileName))
                 {
-                    if (userStore.FileExists(_viewModel.ConfigurationFileName))
-                    {
-                        using (var fileStream = userStore.OpenFile(_viewModel.ConfigurationFileName, FileMode.Open, FileAccess.Read))
-                        {
-                            using (var stream = ToEncryptedStream(fileStream, CryptoStreamMode.Read))
-                            {
-                                using (var reader = new BinaryReader(stream))
-                                {
-                                    Load(out password, reader);
-                                }
-                            }
-                        }
-                    }
+                    using var fileStream = userStore.OpenFile(_viewModel.ConfigurationFileName, FileMode.Open, FileAccess.Read);
+                    using var stream = ToEncryptedStream(fileStream, CryptoStreamMode.Read);
+                    using var reader = new BinaryReader(stream);
+                    
+                    Load(out password, reader);
                 }
             }
             catch
@@ -127,19 +120,12 @@
         {
             try
             {
-                using (var userStore = IsolatedStorageFile.GetUserStoreForAssembly())
-                {
-                    using (var fileStream = userStore.OpenFile(_viewModel.ConfigurationFileName, FileMode.Create, FileAccess.Write))
-                    {
-                        using (var stream = ToEncryptedStream(fileStream, CryptoStreamMode.Write))
-                        {
-                            using (var writer = new BinaryWriter(stream))
-                            {
-                                Save(password, writer);
-                            }
-                        }
-                    }
-                }
+                using var userStore = IsolatedStorageFile.GetUserStoreForAssembly();
+                using var fileStream = userStore.OpenFile(_viewModel.ConfigurationFileName, FileMode.Create, FileAccess.Write);
+                using var stream = ToEncryptedStream(fileStream, CryptoStreamMode.Write);
+                using var writer = new BinaryWriter(stream);
+                
+                Save(password, writer);
             }
             catch
             {
