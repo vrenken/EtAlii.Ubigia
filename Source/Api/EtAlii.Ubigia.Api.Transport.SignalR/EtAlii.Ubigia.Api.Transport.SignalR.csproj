@@ -5,6 +5,8 @@
     <Description>This library provides a SignalR specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />

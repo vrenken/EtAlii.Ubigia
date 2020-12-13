@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <Description>Package that contains the core client components needed to communicate with Ubigia server components.</Description>
+    <Description>Package that contains the core model abstractions needed to communicate with Ubigia server components.</Description>
     <Version>$(PackageVersion)</Version>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>API abstraction Ubigia SDK</PackageTags>
