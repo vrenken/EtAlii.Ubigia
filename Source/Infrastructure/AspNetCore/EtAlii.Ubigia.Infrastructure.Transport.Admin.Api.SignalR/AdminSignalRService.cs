@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
@@ -66,7 +66,7 @@
 
                 .AddSingleton(_configurationDetails) // the configuration details are needed by the InformationController.
 
-                .AddInfrastructureAuthentication(infrastructure)
+                .AddSignalRInfrastructureAuthentication(infrastructure)
                 .AddInfrastructureSerialization()
 
                 .AddRouting()

@@ -2,6 +2,8 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>df76eede-a505-49f0-8e2c-14a4da4488f1</ProjectGuid>
+<!--    <PackProject>true</PackProject>-->
+<!--    <PackageId>$(AssemblyName)</PackageId>-->
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\Routes.cshtml" />
@@ -11,9 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
   </ItemGroup>
 </Project>

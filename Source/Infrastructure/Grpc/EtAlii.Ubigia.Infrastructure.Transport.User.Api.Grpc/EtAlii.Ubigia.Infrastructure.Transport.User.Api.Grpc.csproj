@@ -6,6 +6,7 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
+    <ProjectReference Include="..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc.csproj" />
   </ItemGroup>
 </Project>

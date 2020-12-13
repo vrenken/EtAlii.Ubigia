@@ -3,7 +3,7 @@
 	using System;
 	using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Mvc;
 

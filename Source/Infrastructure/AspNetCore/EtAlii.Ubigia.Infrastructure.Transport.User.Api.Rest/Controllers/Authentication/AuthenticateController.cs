@@ -2,7 +2,7 @@
 {
 	using System;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
 

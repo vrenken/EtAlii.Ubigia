@@ -5,7 +5,7 @@
     using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Builder;
@@ -64,7 +64,7 @@
 		        .AddSingleton(infrastructure.Content)
 		        .AddSingleton(infrastructure.ContentDefinition)
 
-		        .AddInfrastructureAuthentication(infrastructure)
+		        .AddSignalRInfrastructureAuthentication(infrastructure)
 		        .AddInfrastructureSerialization()
 
 		        .AddRouting()
