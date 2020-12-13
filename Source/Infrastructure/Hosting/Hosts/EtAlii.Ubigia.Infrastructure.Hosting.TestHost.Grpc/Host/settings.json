@@ -18,7 +18,7 @@
         ],
         "Modules": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
             "Name": "Admin",
             "####Comment": "// Admin should be accessible over localhost only",
             "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
@@ -37,7 +37,7 @@
             ]
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
             "Name": "User",
             "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
             "Port": "{{PORT:UserPort@64000}}",

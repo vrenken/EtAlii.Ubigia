@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
+﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 //[
 //    using EtAlii.Ubigia.Infrastructure.Transport
 //    using EtAlii.xTechnology.MicroContainer

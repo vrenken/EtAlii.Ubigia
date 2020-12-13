@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
+﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 //[
 //    using System
 //    using EtAlii.Ubigia.Infrastructure.Functional

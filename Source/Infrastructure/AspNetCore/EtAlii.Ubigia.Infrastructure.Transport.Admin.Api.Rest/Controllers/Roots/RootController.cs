@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
     using Microsoft.AspNetCore.Mvc;
 
     [RequiresAuthenticationToken(Role.Admin)]

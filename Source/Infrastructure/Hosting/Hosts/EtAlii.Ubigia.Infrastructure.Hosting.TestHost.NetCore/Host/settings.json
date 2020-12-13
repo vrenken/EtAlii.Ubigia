@@ -18,7 +18,7 @@
         ],
         "Modules": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
             "Name": "Admin",
             "####Comment": "// Admin should be accessible over localhost only",
             "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
@@ -54,7 +54,7 @@
             ]
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
             "Name": "User",
             "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
             "Port": "{{PORT:UserPort@64000}}",

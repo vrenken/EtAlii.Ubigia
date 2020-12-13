@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+    using EtAlii.Ubigia.Infrastructure.Transport.Rest;
     using Microsoft.AspNetCore.Mvc;
 
     public partial class EntryController

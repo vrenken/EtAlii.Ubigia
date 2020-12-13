@@ -7,6 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
   </ItemGroup>
 </Project>

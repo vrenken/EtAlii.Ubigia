@@ -3,10 +3,10 @@
 	using System.Linq;
 	using System.Text;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
+	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;
-	using EtAlii.xTechnology.Hosting.Service.Rest;
-	using Microsoft.AspNetCore.Builder;
+    using EtAlii.xTechnology.Hosting.Service.Rest;
+    using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 
