@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
-        [Parameter("SonarQube project key")] readonly string SonarQubeProjectKey;
-        [Parameter("SonarQube server url")] readonly string SonarQubeServerUrl;
-        [Parameter("SonarQube server token")] readonly string SonarQubeServerToken;
+        [Parameter("SonarQube project key")] public readonly string SonarQubeProjectKey;
+        [Parameter("SonarQube server url")] public readonly string SonarQubeServerUrl;
+        [Parameter("SonarQube server token")] public readonly string SonarQubeServerToken;
 
-        private const string LocalSonarQubeServerUrl = "http://192.168.1.130:9000/";
+        private const string _localSonarQubeServerUrl = "http://192.168.1.130:9000/";
         
         private Target PrepareSonarQubeAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
                 .SetVSTestReports(TestResultsDirectory / "*.trx")
                 .SetProjectKey(SonarQubeProjectKey)
-                .SetServer(IsLocalBuild ? LocalSonarQubeServerUrl : SonarQubeServerUrl)
+                .SetServer(IsLocalBuild ? _localSonarQubeServerUrl : SonarQubeServerUrl)
                 .SetName(SonarQubeProjectKey)
                 .SetLogin(SonarQubeServerToken));
         }

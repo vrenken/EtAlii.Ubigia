@@ -7,8 +7,8 @@ namespace EtAlii.Ubigia.Pipelines
 
     public class CustomAzurePipelinesJob : AzurePipelinesJob
     {
-        public string Pool { get; set; }
-        public int TimeoutInMinutes { get; set; } = 60;
+        public string Pool { get; init; }
+        public int TimeoutInMinutes { get; init; } = 60;
         public CustomAzurePipelinesJob(AzurePipelinesJob job)
         {
             Name = job.Name;
