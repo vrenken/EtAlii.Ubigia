@@ -7,6 +7,8 @@
         <RootNamespace>EtAlii.xTechnology.Hosting</RootNamespace>
         <Description>Package that enables a host to be started as a tray icon application.</Description>
         <PackageTags>hosting console command</PackageTags>
+        <PackProject>true</PackProject>
+        <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
 
     <ItemGroup>

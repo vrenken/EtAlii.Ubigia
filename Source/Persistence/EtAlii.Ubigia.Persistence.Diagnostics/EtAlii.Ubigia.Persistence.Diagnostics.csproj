@@ -6,6 +6,8 @@
     <PackageTags>Storage abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>
     <ProjectGuid>E4CE6C92-A0E1-4273-96B2-DD8724986DD1</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Persistence</RootNamespace>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

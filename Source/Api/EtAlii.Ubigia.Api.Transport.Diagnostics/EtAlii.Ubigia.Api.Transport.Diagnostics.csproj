@@ -4,6 +4,8 @@
     <ProjectGuid>fda16bcf-17a2-4273-b5d8-c76d17d2186a</ProjectGuid>
     <Description>This library provides client-transport agnostic diagnostic functionalities. It is consumed by all transport specific packages.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />

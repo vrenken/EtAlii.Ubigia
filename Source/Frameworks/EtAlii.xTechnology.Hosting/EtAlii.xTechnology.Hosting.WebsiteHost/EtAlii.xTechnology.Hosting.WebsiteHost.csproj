@@ -4,11 +4,10 @@
     <OutputType>library</OutputType>
     <ProjectGuid>A50E8CA4-0D19-4D0E-8DE0-906731183337</ProjectGuid>
     <RootNamespace>EtAlii.xTechnology.Hosting.WebsiteHost.NetCore</RootNamespace>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <Description>Package that enables a host to be hosted as a web application.</Description>
     <PackageTags>hosting console command</PackageTags>
+<!--    <PackProject>true</PackProject>-->
+<!--    <PackageId>$(AssemblyName)</PackageId>-->
   </PropertyGroup>
 
   <ItemGroup>

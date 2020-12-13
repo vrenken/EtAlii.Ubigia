@@ -6,6 +6,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>
     </PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

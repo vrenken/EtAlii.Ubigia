@@ -6,6 +6,8 @@
     <PackageTags>diagnostics debug debugging log logging trace traceing</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <ProjectGuid>8498323A-0910-42E0-A1FA-B21265418DE8</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
 

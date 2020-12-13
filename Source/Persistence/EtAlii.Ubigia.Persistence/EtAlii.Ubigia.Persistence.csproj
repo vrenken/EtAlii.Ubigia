@@ -5,6 +5,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage abstraction Ubigia</PackageTags>
     <ProjectGuid>1BC36B53-03E2-4807-AF38-2F1D203A470E</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -2,6 +2,8 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <ProjectGuid>cc58d7b1-4c3d-4718-a199-115a60a954d3</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />

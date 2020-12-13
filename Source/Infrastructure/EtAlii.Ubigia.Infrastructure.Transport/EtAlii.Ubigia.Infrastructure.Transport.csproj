@@ -3,6 +3,8 @@
     <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
     <OutputType>Library</OutputType>
     <ProjectGuid>f830994b-391f-465a-ab3a-9e1fbdacbe8c</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />

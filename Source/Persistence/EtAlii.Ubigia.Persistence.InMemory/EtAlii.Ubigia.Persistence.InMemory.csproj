@@ -5,6 +5,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia in-memory</PackageTags>
     <ProjectGuid>81447261-6562-40A5-837A-A269306AD78B</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
