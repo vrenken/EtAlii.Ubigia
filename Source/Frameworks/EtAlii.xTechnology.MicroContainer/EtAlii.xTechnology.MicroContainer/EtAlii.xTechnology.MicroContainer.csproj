@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <Version>$(PackageVersion)</Version>
     <Description>A simple (and not optimized) but very pure DI container.</Description>
     <PackageTags>di dependency injection solid</PackageTags>
     <PackageReleaseNotes>Migrated to .NET Standard 1.0</PackageReleaseNotes>

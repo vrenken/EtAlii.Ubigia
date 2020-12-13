@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <Version>$(PackageVersion)</Version>
     <ProjectGuid>07D8DC8C-87F9-4DF7-935F-E0C0B2A66983</ProjectGuid>
     <Description>A package that provides a helping hand in structuring code.</Description>
     <PackageTags>SOLID query command workflow selection patterns</PackageTags>
