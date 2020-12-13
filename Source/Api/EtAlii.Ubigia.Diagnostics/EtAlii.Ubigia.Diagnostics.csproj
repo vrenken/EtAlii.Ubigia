@@ -6,7 +6,6 @@
     <PackageTags>API abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Diagnostics</PackageProjectUrl>
     <ProjectGuid>fea8b5c7-799c-45d1-9659-6708809b0c7c</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>

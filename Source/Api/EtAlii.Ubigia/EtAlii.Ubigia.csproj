@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the core client components needed to communicate with Ubigia server components.</Description>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>API abstraction Ubigia SDK</PackageTags>
     <ProjectGuid>4c26a6cc-cc52-40bb-9bea-793f450bb5e7</ProjectGuid>

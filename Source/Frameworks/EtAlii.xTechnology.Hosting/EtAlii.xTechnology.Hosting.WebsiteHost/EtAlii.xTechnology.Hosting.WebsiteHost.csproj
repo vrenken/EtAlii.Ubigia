@@ -8,7 +8,6 @@
 
   <PropertyGroup>
     <Description>Package that enables a host to be hosted as a web application.</Description>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.xTechnology</PackageProjectUrl>
     <PackageTags>hosting console command</PackageTags>
   </PropertyGroup>
 

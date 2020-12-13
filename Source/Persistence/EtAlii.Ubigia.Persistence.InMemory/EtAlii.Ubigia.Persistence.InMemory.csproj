@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation needed to store data in-memory.</Description>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.InMemory</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia in-memory</PackageTags>
     <ProjectGuid>81447261-6562-40A5-837A-A269306AD78B</ProjectGuid>

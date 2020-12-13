@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation that is portable across multiple client applications.</Description>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Portable</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia portable</PackageTags>
     <ProjectGuid>1AD25D5F-2C61-4D19-849C-A36DA42B195A</ProjectGuid>
