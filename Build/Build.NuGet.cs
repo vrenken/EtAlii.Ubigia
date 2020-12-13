@@ -44,10 +44,8 @@ namespace EtAlii.Ubigia.Pipelines
 
             DotNetPack(_ => _
                 .SetProject(Solution)
-                .SetNoBuild(true)
                 .SetNoRestore(true)
                 .SetOutputDirectory(ArtifactsDirectory)
-                .SetProperty("IsCalledByDotNetPack", "true")
                 .SetVersion("0.1.0"));
         }
         

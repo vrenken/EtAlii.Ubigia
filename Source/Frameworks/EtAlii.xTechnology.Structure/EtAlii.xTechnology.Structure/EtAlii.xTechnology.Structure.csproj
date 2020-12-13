@@ -7,6 +7,8 @@
     <Description>A package that provides a helping hand in structuring code.</Description>
     <PackageTags>SOLID query command workflow selection patterns</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

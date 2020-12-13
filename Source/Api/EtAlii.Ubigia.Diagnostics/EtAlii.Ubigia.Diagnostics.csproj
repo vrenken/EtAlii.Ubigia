@@ -8,6 +8,8 @@
     <Version>$(PackageVersion)</Version>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Diagnostics</PackageProjectUrl>
     <ProjectGuid>fea8b5c7-799c-45d1-9659-6708809b0c7c</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

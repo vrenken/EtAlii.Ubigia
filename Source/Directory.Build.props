@@ -29,24 +29,7 @@
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
     
   </PropertyGroup>
-
-  <!-- ============================================================ -->
-  <!-- package finetuning -->
-  <PropertyGroup>
-    <!-- Some projects - and especially project references - need to know if they are being consumed as part of a build -->
-    <!-- or as part of a dotnet pack operation. For this, the dotnet pack commandline should be extended with: -->
-    <!-- dotnet pack /p:IsCalledByDotNetPack=true -->
-    <IsCalledByDotNetPack Condition="'$(IsCalledByDotNetPack)' == ''">false</IsCalledByDotNetPack>
-    <!-- In case of dotnet pack we want an additional target to be run -->
-    <TargetsForTfmSpecificBuildOutput Condition="'$(IsCalledByDotNetPack)' == 'true'">$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
-  </PropertyGroup>
-  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
-    <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths->WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')->WithMetadataValue('PackProjectOutputAsContentInsteadOfNuGetReference', 'true'))"/>
-    </ItemGroup>
-  </Target>
-  <!-- ============================================================ -->
-
+  
   <!-- Analysis, code conventions and standardization. -->
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -86,5 +69,9 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <!-- We don't want any of the hosting test projects to be packaged. -->
+  <PropertyGroup Condition="$(MSBuildProjectName.Contains('.Hostings.Tests.'))">
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
 </Project>
 

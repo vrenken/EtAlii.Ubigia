@@ -7,6 +7,8 @@
     <Description>A collection of collection enhancing extension methods.</Description>
     <PackageTags>collections</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

@@ -5,23 +5,20 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Logical</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Structure\EtAlii.xTechnology.Structure\EtAlii.xTechnology.Structure.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading.csproj" />
     <PackageReference Include="System.Reactive" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
   </ItemGroup>
 
   <!-- We want to include the HashLib references as assemblies in the NuGet package, -->
   <!-- and not as a NuGet dependency. -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\HashLib\HashLib\HashLib.csproj" >
-      <IncludeAssets Condition="$(IsCalledByDotNetPack) == 'true'">none</IncludeAssets>
-      <PackProjectOutputAsContentInsteadOfNuGetReference>true</PackProjectOutputAsContentInsteadOfNuGetReference>
-    </ProjectReference>
+    <ProjectReference Include="..\..\Frameworks\HashLib\HashLib\HashLib.csproj" />
   </ItemGroup>
 </Project>
