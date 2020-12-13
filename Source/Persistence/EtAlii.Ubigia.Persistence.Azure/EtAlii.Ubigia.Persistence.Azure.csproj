@@ -5,6 +5,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Azure</PackageTags>
     <ProjectGuid>FE45A439-36D7-4F47-AECE-5F4824AD2007</ProjectGuid>
+<!--    <PackProject>true</PackProject>-->
+<!--    <PackageId>$(AssemblyName)</PackageId>-->
   </PropertyGroup>
 
   <ItemGroup>

@@ -6,6 +6,8 @@
         <PackageTags>
         </PackageTags>
         <RootNamespace>EtAlii.Ubigia.Api.Functional.Diagnostics</RootNamespace>
+        <PackProject>true</PackProject>
+        <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />

@@ -5,6 +5,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Ntfs</PackageTags>
     <ProjectGuid>2FB9D0D5-DE7B-44EB-AC89-81DE306D9554</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>

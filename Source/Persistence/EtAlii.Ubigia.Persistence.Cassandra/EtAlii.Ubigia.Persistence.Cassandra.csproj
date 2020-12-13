@@ -5,7 +5,8 @@
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Cassandra</PackageTags>
     <ProjectGuid>5D1EA868-4FC7-40D2-9D6D-B0EBB049163C</ProjectGuid>
-    <RootNamespace>EtAlii.Ubigia.Persistence</RootNamespace>
+<!--    <PackProject>true</PackProject>-->
+<!--    <PackageId>$(AssemblyName)</PackageId>-->
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />

@@ -4,6 +4,8 @@
     <ProjectGuid>7e4d4bb2-36f9-4fee-ae13-1765a065c3bb</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

@@ -5,6 +5,8 @@
     <ProjectGuid>28B64BB8-2C2B-4AC9-8F61-4073A63D32B5</ProjectGuid>
     <Description>Package that contains everything needed to enable Rest based hosting.</Description>
     <PackageTags>hosting Rest NetCore Protobuf</PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
