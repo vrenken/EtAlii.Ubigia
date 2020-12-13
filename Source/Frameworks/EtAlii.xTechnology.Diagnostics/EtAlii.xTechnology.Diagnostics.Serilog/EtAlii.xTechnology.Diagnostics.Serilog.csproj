@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <Version>$(PackageVersion)</Version>
     <Description>A package that contains a logging implementation that uses the Serilog logging system.</Description>
     <PackageTags>di dependency injection solid</PackageTags>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>

@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-    <Version>$(PackageVersion)</Version>
     <ProjectGuid>772E6D20-B77B-4E27-8C47-CE4DCB01158F</ProjectGuid>
     <Description>A collection of collection enhancing extension methods.</Description>
     <PackageTags>collections</PackageTags>
