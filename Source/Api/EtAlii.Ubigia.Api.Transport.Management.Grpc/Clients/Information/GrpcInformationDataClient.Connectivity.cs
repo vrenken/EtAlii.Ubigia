@@ -34,9 +34,9 @@
             return storage;
         }
 
-        public async Task<EtAlii.Ubigia.Api.Transport.ConnectivityDetails> GetConnectivityDetails(IStorageConnection storageConnection)
+        public async Task<EtAlii.Ubigia.Api.Transport.ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var grpcConnection = (IGrpcStorageConnection)storageConnection;
+            var grpcConnection = (IGrpcStorageConnection)connection;
             SetClients(grpcConnection.Transport.Channel);
 
             var request = new ConnectivityDetailsRequest();

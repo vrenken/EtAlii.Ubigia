@@ -2,7 +2,8 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 #pragma warning disable S3358 // This code will change. remove this pragma afterwards.
-#pragma warning disable S1168 // This code will change. remove this pragma afterwards.
+#pragma warning disable S1066 // Collapsible "if" statements should be merged.
+#pragma warning disable S1168 // Empty arrays and collections should be returned instead of null.
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {

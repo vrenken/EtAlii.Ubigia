@@ -116,7 +116,7 @@
 
 //            var values = _eventMetricsValues[counterName]
 
-//            for (int i = 0 i < sampleData.Length i++)
+//            for (int i = 0 i lt sampleData.Length i++)
 //            [
 //                var valueName = values[i].ValueName
 //                sample.SetValue(valueName, sampleData[i])

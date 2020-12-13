@@ -4,6 +4,7 @@
 #pragma warning disable S1128 // This code will change. remove this pragma afterwards.
 #pragma warning disable S3358 // This code will change. remove this pragma afterwards.
 #pragma warning disable S1144 // This code will change. remove this pragma afterwards.
+#pragma warning disable S907 // "goto" statement should not be used.
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
