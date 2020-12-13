@@ -4,6 +4,7 @@
 #pragma warning disable S4136 // This code will change. remove this pragma afterwards.
 #pragma warning disable S3358 // This code will change. remove this pragma afterwards.
 #pragma warning disable S1144 // This code will change. remove this pragma afterwards.
+#pragma warning disable S4144 // Methods should not have identical implementations.
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {

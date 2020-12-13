@@ -12,7 +12,8 @@ using JetBrains.Annotations;
 
 #pragma warning disable CA2208 // This code will change. remove this pragma afterwards.
 #pragma warning disable S3358 // This code will change. remove this pragma afterwards.
-
+#pragma warning disable S3928 // Parameter names used into ArgumentException constructors should match an existing one.
+    
 // ReSharper disable once CheckNamespace
 namespace System
 {

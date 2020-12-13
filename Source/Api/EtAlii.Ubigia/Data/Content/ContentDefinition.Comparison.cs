@@ -44,7 +44,7 @@
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() ne contentDefinition.GetType())
             //[
-            //    return false;
+            //    return false
             //]
 
             // Return true if the fields match. 

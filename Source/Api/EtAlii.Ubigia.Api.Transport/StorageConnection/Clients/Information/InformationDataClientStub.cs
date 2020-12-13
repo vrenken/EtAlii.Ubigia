@@ -8,13 +8,13 @@
     public sealed class InformationDataClientStub : IInformationDataClient 
     {
         /// <inheritdoc />
-        public Task Connect(IStorageConnection connection)
+        public Task Connect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }
 
         /// <inheritdoc />
-        public Task Disconnect(IStorageConnection connection)
+        public Task Disconnect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }

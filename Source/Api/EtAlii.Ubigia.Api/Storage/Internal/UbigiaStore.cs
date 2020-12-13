@@ -1,6 +1,8 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+#pragma warning disable S1121 // Assignments should not be made from within sub-expressions
+
 namespace EtAlii.Ubigia.Api.Storage.Internal
 {
     using System.Collections.Generic;
@@ -25,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         private readonly IUbigiaTableFactory _tableFactory;
         private readonly bool _useNameMatching;
 
-        private readonly object _lock = new object();
+        private readonly object _lock = new();
 
         private Dictionary<object, IUbigiaTable> _tables;
 
