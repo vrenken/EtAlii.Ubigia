@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>6161c876-e5d7-4db9-b759-1f338340ed87</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />

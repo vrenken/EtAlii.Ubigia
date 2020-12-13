@@ -4,7 +4,6 @@
     <ProjectGuid>8ba37f50-b8a0-44d8-9e88-d8db718fcd0d</ProjectGuid>
     <Description>This library provides a WebApi specific transport management layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />

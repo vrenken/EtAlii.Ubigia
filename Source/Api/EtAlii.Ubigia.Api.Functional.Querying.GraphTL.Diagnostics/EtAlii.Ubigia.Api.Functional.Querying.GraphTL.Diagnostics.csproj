@@ -5,7 +5,6 @@
         <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
         <PackageTags>
         </PackageTags>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <RootNamespace>EtAlii.Ubigia.Api.Functional.Diagnostics</RootNamespace>
     </PropertyGroup>
     <ItemGroup>

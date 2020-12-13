@@ -4,7 +4,6 @@
     <ProjectGuid>ef86703d-3523-4afe-817f-76279e6edbe9</ProjectGuid>
     <Description>This library provides a WebApi specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
