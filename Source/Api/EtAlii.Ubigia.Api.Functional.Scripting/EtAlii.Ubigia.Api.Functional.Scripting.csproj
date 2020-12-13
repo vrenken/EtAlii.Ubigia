@@ -2,7 +2,6 @@
   <PropertyGroup>
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>7e4d4bb2-36f9-4fee-ae13-1765a065c3bb</ProjectGuid>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>

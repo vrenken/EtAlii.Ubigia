@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the core storage layer needed to abstract away a platform specific implementation.</Description>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage abstraction Ubigia</PackageTags>
     <ProjectGuid>1BC36B53-03E2-4807-AF38-2F1D203A470E</ProjectGuid>

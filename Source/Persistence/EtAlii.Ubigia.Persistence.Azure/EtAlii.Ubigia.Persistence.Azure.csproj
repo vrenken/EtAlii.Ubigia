@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation needed to store data on Azure.</Description>
     <Version>$(PackageVersion)</Version>
-    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Persistence.Azure</PackageProjectUrl>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Azure</PackageTags>
     <ProjectGuid>FE45A439-36D7-4F47-AECE-5F4824AD2007</ProjectGuid>
