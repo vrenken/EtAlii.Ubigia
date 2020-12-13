@@ -17,10 +17,10 @@
             return Disconnect();
         }
 
-#pragma waring disable S1172 
+#pragma warning disable S1172 
         // ReSharper disable once UnusedParameter.Local
         private Task Connect(IWebApiStorageConnection connection)
-#pragma waring restore S1172
+#pragma warning restore S1172
         {
             //_connection = connection
             return Task.CompletedTask;
