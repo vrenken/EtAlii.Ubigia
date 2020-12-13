@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Pipelines
 
     public class CustomAzurePipelinesStage : AzurePipelinesStage
     {
-        public string Pool { get; set; }
+        public string Pool { get; init; }
 
         public CustomAzurePipelinesStage(AzurePipelinesStage stage)
         {

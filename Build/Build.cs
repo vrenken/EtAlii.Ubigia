@@ -74,12 +74,12 @@ namespace EtAlii.Ubigia.Pipelines
         
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-        private readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+        public readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
         
-        [Solution] private readonly Solution Solution;
-        [GitRepository] private readonly GitRepository GitRepository;
+        [Solution] public readonly Solution Solution;
+        [GitRepository] public readonly GitRepository GitRepository;
 
-        [CI] private readonly AzurePipelines AzurePipelines;
+        [CI] public readonly AzurePipelines AzurePipelines;
         
         private Target CompileTestAnalyseAndPublish => _ => _
             .Description("Compile, test, analyse and publish")
