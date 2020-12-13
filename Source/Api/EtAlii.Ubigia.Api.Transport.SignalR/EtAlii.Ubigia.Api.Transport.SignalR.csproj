@@ -4,7 +4,6 @@
     <ProjectGuid>8ce609fa-3ea9-42a2-a0ee-c495d90e466a</ProjectGuid>
     <Description>This library provides a SignalR specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>

@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>44d2c48f-c147-4ebf-9055-fec0acd31afd</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
