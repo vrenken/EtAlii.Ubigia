@@ -7,9 +7,9 @@ namespace EtAlii.Ubigia.Pipelines
 
     public partial class Build
     {
-        [Parameter("SonarQube project key")] public readonly string SonarQubeProjectKey;
-        [Parameter("SonarQube server url")] public readonly string SonarQubeServerUrl;
-        [Parameter("SonarQube server token")] public readonly string SonarQubeServerToken;
+        [Parameter("SonarQube project key")] private readonly string SonarQubeProjectKey;
+        [Parameter("SonarQube server url")] private readonly string SonarQubeServerUrl;
+        [Parameter("SonarQube server token")] private readonly string SonarQubeServerToken;
 
         private const string _localSonarQubeServerUrl = "http://192.168.1.130:9000/";
         

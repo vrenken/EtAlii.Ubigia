@@ -16,8 +16,8 @@ namespace EtAlii.Ubigia.Pipelines
 
         private IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
         
-        [Parameter("NuGet publish feed source")] public readonly string NuGetFeedSource;
-        [Parameter("NuGet publish feed token")] public readonly string NuGetFeedToken;
+        [Parameter("NuGet publish feed source")] private readonly string NuGetFeedSource;
+        [Parameter("NuGet publish feed token")] private readonly string NuGetFeedToken;
         
         private Target Restore => _ => _
             .Description("Run dotnet restore")
