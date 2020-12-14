@@ -513,14 +513,14 @@
             Assert.NotNull(firstPerson);
             AssertValue("John", firstPerson, "FirstName");
             AssertValue("Doe", firstPerson, "LastName");
-            AssertValue(DateTime.Parse("1978-07-28"), firstPerson, "Birthdate");
+            AssertValue(DateTime.Parse("1977-06-27"), firstPerson, "Birthdate");
             AssertValue("Johnny", firstPerson, "NickName");
 
             var secondPerson = result.Structure[1];
             Assert.NotNull(secondPerson);
             AssertValue("Jane", secondPerson, "FirstName");
             AssertValue("Doe", secondPerson, "LastName");
-            AssertValue(DateTime.Parse("1980-03-04"), secondPerson, "Birthdate");
+            AssertValue(DateTime.Parse("1970-02-03"), secondPerson, "Birthdate");
             AssertValue("Janey", secondPerson, "NickName");
 
         }
@@ -562,7 +562,7 @@
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
-            AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
+            AssertValue(DateTime.Parse("1977-06-27"), person, "Birthdate");
             AssertValue("Johnny", person, "NickName");
 
             Assert.Equal(2, person.Children.Count); 
