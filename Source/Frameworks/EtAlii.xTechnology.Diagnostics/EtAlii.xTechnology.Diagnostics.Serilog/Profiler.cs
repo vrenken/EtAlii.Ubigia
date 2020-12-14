@@ -72,12 +72,12 @@
 //            [
 //                //doesn't exist yet - add it in all of its glory.  This call is MT safe - we get back the object in cache even if registered on another thread.
 //                metricDefinition = SampledMetricDefinition.Register(
-//                    _metricsSystem, 
-//                    _categoryName, 
-//                    counterName, 
-//                    (Gibraltar.Agent.Metrics.SamplingType)samplingType, 
-//                    unitCaption, 
-//                    metricCaption, 
+//                    _metricsSystem,
+//                    _categoryName,
+//                    counterName,
+//                    (Gibraltar.Agent.Metrics.SamplingType)samplingType,
+//                    unitCaption,
+//                    metricCaption,
 //                    description)
 //            ]
 
@@ -88,7 +88,7 @@
 //        ]
 
 //        /// <summary>
-//        /// 
+//        ///
 //        /// </summary>
 //        /// <param name="category">e.g. "Database.Engine"</param>
 //        /// <param name="counter">e.g. "Cache Pages"</param>
@@ -102,7 +102,7 @@
 //        ]
 
 //        /// <summary>
-//        /// 
+//        ///
 //        /// </summary>
 //        /// <param name="category">e.g. "Database.Engine"</param>
 //        /// <param name="counter">e.g. "Cache Pages"</param>
@@ -116,7 +116,7 @@
 
 //            var values = _eventMetricsValues[counterName]
 
-//            for (int i = 0 i lt sampleData.Length i++)
+//            for (int i is 0 i lt sampleData.Length i++)
 //            [
 //                var valueName = values[i].ValueName
 //                sample.SetValue(valueName, sampleData[i])
