@@ -54,7 +54,7 @@ Person @node(Person:Doe/Johhn)
          FirstName @node(),
          LastName @node(\#FamilyName),
          NickName,
-         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+         Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
          {
             FirstName @node(),
             LastName @node(\#FamilyName),
@@ -72,14 +72,14 @@ Person @node(Person:Doe/Johhn)
          FirstName @node(),
          LastName @node(\#FamilyName),
          NickName,
-         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+         Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
          {
             FirstName @node(),
             LastName @node(\#FamilyName),
             NickName
          }  
      },
-     Person @node(Person:Vrenken/Peter)
+     Person @node(Person:Banner/Peter)
      {
          FirstName @node(),
          LastName @node(\#FamilyName),

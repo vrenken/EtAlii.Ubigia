@@ -1,11 +1,11 @@
-﻿person:+=Vrenken/Peter
-person:Vrenken/Peter <= { Birthdate: 1977-06-27, NickName: 'Pete', Lives: 1 }
-person:+=Vrenken/Tanja
-person:Vrenken/Tanja <= { Birthdate: 1970-02-03, NickName: 'LadyL', Lives: 1 }
-person:+=Vrenken/Arjan
-person:Vrenken/Arjan <= { Birthdate: 1988-06-23, NickName: 'Bengel', Lives: 1 }
-person:+=Vrenken/Ida
-person:Vrenken/Ida <= { Birthdate: 1992-02-07, NickName: 'Scheetje', Lives: 1 }
+﻿person:+=Banner/Peter
+person:Banner/Peter <= { Birthdate: 1977-06-27, NickName: 'Pete', Lives: 1 }
+person:+=Banner/Tanja
+person:Banner/Tanja <= { Birthdate: 1970-02-03, NickName: 'LadyL', Lives: 1 }
+person:+=Banner/Arjan
+person:Banner/Arjan <= { Birthdate: 1988-06-23, NickName: 'Bengel', Lives: 1 }
+person:+=Banner/Ida
+person:Banner/Ida <= { Birthdate: 1992-02-07, NickName: 'Scheetje', Lives: 1 }
 person:+=Doe/John
 person:Doe/John  <= { Birthdate: 1977-06-27, NickName: 'Johnny', Lives: 1 }
 person:+=Doe/Jane
@@ -15,18 +15,18 @@ person:Stark/Tony <= { Birthdate: 1976-05-12, NickName: 'Iron Man', Lives: 9 }
 
 person:Doe <= { Type: "FamilyName" }
 person:Stark <= { Type: "FamilyName" }
-person:Vrenken <= { Type: "FamilyName" }
+person:Banner <= { Type: "FamilyName" }
 
-person:Vrenken/Tanja += Friends
-person:Vrenken/Peter += Friends
-person:Vrenken/Ida += Friends
+person:Banner/Tanja += Friends
+person:Banner/Peter += Friends
+person:Banner/Ida += Friends
 person:Doe/Jane += Friends
 person:Doe/John += Friends
 person:Stark/Tony += Friends
 
 person:Stark/Tony/Friends += person:Doe/John
 person:Stark/Tony/Friends += person:Doe/Jane
-person:Stark/Tony/Friends += person:Vrenken/Peter
+person:Stark/Tony/Friends += person:Banner/Peter
 
 person:Doe/John/Friends += person:Stark/Tony
 person:Doe/John/Friends += person:Doe/Jane
@@ -34,28 +34,28 @@ person:Doe/John/Friends += person:Doe/Jane
 person:Doe/Jane/Friends += person:Doe/John
 person:Doe/Jane/Friends += person:Stark/Tony
 
-person:Vrenken/Arjan += Friends
-person:Vrenken/Arjan/Friends += person:Vrenken/Tanja
-person:Vrenken/Arjan/Friends += person:Vrenken/Peter
-person:Vrenken/Arjan/Friends += person:Vrenken/Ida
+person:Banner/Arjan += Friends
+person:Banner/Arjan/Friends += person:Banner/Tanja
+person:Banner/Arjan/Friends += person:Banner/Peter
+person:Banner/Arjan/Friends += person:Banner/Ida
 
-person:Vrenken/Ida/Friends += person:Vrenken/Tanja
-person:Vrenken/Ida/Friends += person:Vrenken/Arjan
-person:Vrenken/Ida/Friends += person:Vrenken/Peter
+person:Banner/Ida/Friends += person:Banner/Tanja
+person:Banner/Ida/Friends += person:Banner/Arjan
+person:Banner/Ida/Friends += person:Banner/Peter
 
-person:Vrenken/Peter/Friends += person:Vrenken/Tanja
-person:Vrenken/Peter/Friends += person:Vrenken/Arjan
-person:Vrenken/Peter/Friends += person:Vrenken/Ida
-person:Vrenken/Peter/Friends += person:Stark/Tony
+person:Banner/Peter/Friends += person:Banner/Tanja
+person:Banner/Peter/Friends += person:Banner/Arjan
+person:Banner/Peter/Friends += person:Banner/Ida
+person:Banner/Peter/Friends += person:Stark/Tony
 
-person:Vrenken/Tanja/Friends += person:Vrenken/Peter
-person:Vrenken/Tanja/Friends += person:Vrenken/Arjan
-person:Vrenken/Tanja/Friends += person:Vrenken/Ida
+person:Banner/Tanja/Friends += person:Banner/Peter
+person:Banner/Tanja/Friends += person:Banner/Arjan
+person:Banner/Tanja/Friends += person:Banner/Ida
 
-person:Vrenken/Ida/Friends/
-person:Vrenken/Arjan/Friends/
-person:Vrenken/Tanja/Friends/
-person:Vrenken/Peter/Friends/
+person:Banner/Ida/Friends/
+person:Banner/Arjan/Friends/
+person:Banner/Tanja/Friends/
+person:Banner/Peter/Friends/
 person:Stark/Tony/Friends/
 person:Doe/Jane/Friends/
 person:Doe/John/Friends/

@@ -235,16 +235,16 @@
             AssertValue("Stark", structures[2], "LastName");
 
             AssertValue("Peter", structures[3], "FirstName");
-            AssertValue("Vrenken", structures[3], "LastName");
+            AssertValue("Banner", structures[3], "LastName");
 
             AssertValue("Tanja", structures[4], "FirstName");
-            AssertValue("Vrenken", structures[4], "LastName");
+            AssertValue("Banner", structures[4], "LastName");
 
             AssertValue("Arjan", structures[5], "FirstName");
-            AssertValue("Vrenken", structures[5], "LastName");
+            AssertValue("Banner", structures[5], "LastName");
 
             AssertValue("Ida", structures[6], "FirstName");
-            AssertValue("Vrenken", structures[6], "LastName");
+            AssertValue("Banner", structures[6], "LastName");
 
         }
 

@@ -45,10 +45,10 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             await AddJohnDoe(context).ConfigureAwait(false);
             await AddJaneDoe(context).ConfigureAwait(false);
             await AddTonyStark(context).ConfigureAwait(false);
-            await AddPeterVrenken(context).ConfigureAwait(false);
-            await AddTanjaVrenken(context).ConfigureAwait(false);
-            await AddArjanVrenken(context).ConfigureAwait(false);
-            await AddIdaVrenken(context).ConfigureAwait(false);
+            await AddPeterBanner(context).ConfigureAwait(false);
+            await AddTanjaBanner(context).ConfigureAwait(false);
+            await AddArjanBanner(context).ConfigureAwait(false);
+            await AddIdaBanner(context).ConfigureAwait(false);
 
             await AddFriends(context).ConfigureAwait(false);
         }
@@ -68,13 +68,13 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             await context.Process(addQuery);
         }
 
-        public async Task AddPeterVrenken(IGraphSLScriptContext context)
+        private async Task AddPeterBanner(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
-                "person:+=Vrenken/Peter",
-                "Person:Vrenken/Peter# <= FirstName",
-                "person:Vrenken/Peter <= { Birthdate: 1977-06-27, NickName: \'Pete\', Lives: 1 }"
+                "person:+=Banner/Peter",
+                "Person:Banner/Peter# <= FirstName",
+                "person:Banner/Peter <= { Birthdate: 1977-06-27, NickName: \'Pete\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -82,47 +82,47 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             await context.Process(addQuery);
         }
 
-        public async Task AddTanjaVrenken(IGraphSLScriptContext context)
+        private async Task AddTanjaBanner(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
-                "person:+=Vrenken/Tanja",
-                "Person:Vrenken/Tanja# <= FirstName",
-                "person:Vrenken/Tanja <= { Birthdate: 1970-02-03, NickName: \'LadyL\', Lives: 1 }"
+                "person:+=Banner/Tanja",
+                "Person:Banner/Tanja# <= FirstName",
+                "person:Banner/Tanja <= { Birthdate: 1970-02-03, NickName: \'LadyL\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
 
-        public async Task AddArjanVrenken(IGraphSLScriptContext context)
+        private async Task AddArjanBanner(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
-                "person:+=Vrenken/Arjan",
-                "Person:Vrenken/Arjan# <= FirstName",
-                "person:Vrenken/Arjan <= { Birthdate: 1988-06-23, NickName: \'Bengel\', Lives: 1 }"
+                "person:+=Banner/Arjan",
+                "Person:Banner/Arjan# <= FirstName",
+                "person:Banner/Arjan <= { Birthdate: 1988-06-23, NickName: \'Bengel\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
-        
-        
-        public async Task AddIdaVrenken(IGraphSLScriptContext context)
+
+
+        private async Task AddIdaBanner(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
-                "person:+=Vrenken/Ida",
-                "Person:Vrenken/Ida# <= FirstName",
-                "person:Vrenken/Ida <= { Birthdate: 1992-02-07, NickName: \'Scheetje\', Lives: 1 }"
+                "person:+=Banner/Ida",
+                "Person:Banner/Ida# <= FirstName",
+                "person:Banner/Ida <= { Birthdate: 1992-02-07, NickName: \'Scheetje\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
-        
-        public async Task AddJohnDoe(IGraphSLScriptContext context)
+
+        private async Task AddJohnDoe(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -135,8 +135,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 
             await context.Process(addQuery);
         }
-        
-        public async Task AddJaneDoe(IGraphSLScriptContext context)
+
+        private async Task AddJaneDoe(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             await context.Process(addQuery);
         }
 
-        public async Task AddTonyStark(IGraphSLScriptContext context)
+        private async Task AddTonyStark(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -164,24 +164,24 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             await context.Process(addQuery);
         }
 
-        public async Task AddFriends(IGraphSLScriptContext context)
+        private async Task AddFriends(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
                 "Person:Doe# <= FamilyName",
                 "Person:Stark# <= FamilyName",
-                "Person:Vrenken# <= FamilyName",
+                "Person:Banner# <= FamilyName",
  
-                "person:Vrenken/Tanja += Friends",
-                "person:Vrenken/Peter += Friends",
-                "person:Vrenken/Ida += Friends",
+                "person:Banner/Tanja += Friends",
+                "person:Banner/Peter += Friends",
+                "person:Banner/Ida += Friends",
                 "person:Doe/Jane += Friends",
                 "person:Doe/John += Friends",
                 "person:Stark/Tony += Friends",
                 
                 "person:Stark/Tony/Friends += person:Doe/John",
                 "person:Stark/Tony/Friends += person:Doe/Jane",
-                "person:Stark/Tony/Friends += person:Vrenken/Peter",
+                "person:Stark/Tony/Friends += person:Banner/Peter",
                 
                 "person:Doe/John/Friends += person:Stark/Tony",
                 "person:Doe/John/Friends += person:Doe/Jane",
@@ -189,28 +189,28 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
                 "person:Doe/Jane/Friends += person:Doe/John",
                 "person:Doe/Jane/Friends += person:Stark/Tony",
 
-                "person:Vrenken/Arjan += Friends",
-                "person:Vrenken/Arjan/Friends += person:Vrenken/Tanja",
-                "person:Vrenken/Arjan/Friends += person:Vrenken/Peter",
-                "person:Vrenken/Arjan/Friends += person:Vrenken/Ida",
+                "person:Banner/Arjan += Friends",
+                "person:Banner/Arjan/Friends += person:Banner/Tanja",
+                "person:Banner/Arjan/Friends += person:Banner/Peter",
+                "person:Banner/Arjan/Friends += person:Banner/Ida",
 
-                "person:Vrenken/Ida/Friends += person:Vrenken/Tanja",
-                "person:Vrenken/Ida/Friends += person:Vrenken/Arjan",
-                "person:Vrenken/Ida/Friends += person:Vrenken/Peter",
+                "person:Banner/Ida/Friends += person:Banner/Tanja",
+                "person:Banner/Ida/Friends += person:Banner/Arjan",
+                "person:Banner/Ida/Friends += person:Banner/Peter",
 
-                "person:Vrenken/Peter/Friends += person:Vrenken/Tanja",
-                "person:Vrenken/Peter/Friends += person:Vrenken/Arjan",
-                "person:Vrenken/Peter/Friends += person:Vrenken/Ida",
-                "person:Vrenken/Peter/Friends += person:Stark/Tony",
+                "person:Banner/Peter/Friends += person:Banner/Tanja",
+                "person:Banner/Peter/Friends += person:Banner/Arjan",
+                "person:Banner/Peter/Friends += person:Banner/Ida",
+                "person:Banner/Peter/Friends += person:Stark/Tony",
                 
-                "person:Vrenken/Tanja/Friends += person:Vrenken/Peter",
-                "person:Vrenken/Tanja/Friends += person:Vrenken/Arjan",
-                "person:Vrenken/Tanja/Friends += person:Vrenken/Ida",
+                "person:Banner/Tanja/Friends += person:Banner/Peter",
+                "person:Banner/Tanja/Friends += person:Banner/Arjan",
+                "person:Banner/Tanja/Friends += person:Banner/Ida",
 
-//                "person:Vrenken/Ida/Friends/",
-//                "person:Vrenken/Arjan/Friends/",
-//                "person:Vrenken/Tanja/Friends/",
-//                "person:Vrenken/Peter/Friends/",
+//                "person:Banner/Ida/Friends/",
+//                "person:Banner/Arjan/Friends/",
+//                "person:Banner/Tanja/Friends/",
+//                "person:Banner/Peter/Friends/",
 //                "person:Stark/Tony/Friends/",
 //                "person:Doe/Jane/Friends/",
 //                "person:Doe/John/Friends/",
@@ -238,8 +238,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 //            var tonyNode = await list[list.Length - 1].Output.ToArray()
         }
 
-        #region start/stop
-        
         public async Task Start(PortRange portRange)
         {
             await _logical.Start(portRange).ConfigureAwait(false);
@@ -249,7 +247,5 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         {
             await _logical.Stop().ConfigureAwait(false);
         }
-
-        #endregion start/stop
     }
 }

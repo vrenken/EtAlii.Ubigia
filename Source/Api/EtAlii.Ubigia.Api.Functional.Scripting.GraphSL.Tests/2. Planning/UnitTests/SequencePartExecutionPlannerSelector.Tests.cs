@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("/Person/Vrenken += Tanja");
+            var parseResult = _parser.Parse("/Person/Banner += Tanja");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("/Person/Vrenken += \"Tanja\"", executionPlan.ToString());
+            Assert.Equal("/Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken += Tanja");
+            var parseResult = _parser.Parse("$var1 <= /Person/Banner += Tanja");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("$var1 <= /Person/Vrenken += \"Tanja\"", executionPlan.ToString());
+            Assert.Equal("$var1 <= /Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken -= Tanja");
+            var parseResult = _parser.Parse("$var1 <= /Person/Banner -= Tanja");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("$var1 <= /Person/Vrenken -= \"Tanja\"", executionPlan.ToString());
+            Assert.Equal("$var1 <= /Person/Banner -= \"Tanja\"", executionPlan.ToString());
         }
 
 
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken/Tanja <= { Gender:'Female'}");
+            var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= { Gender:'Female'}");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("$var1 <= /Person/Vrenken/Tanja <= Gender: Female", executionPlan.ToString());
+            Assert.Equal("$var1 <= /Person/Banner/Tanja <= Gender: Female", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken/Tanja <= $var2");
+            var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("$var1 <= /Person/Vrenken/Tanja <= $var2", executionPlan.ToString());
+            Assert.Equal("$var1 <= /Person/Banner/Tanja <= $var2", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken/Tanja <= $var2 --These are comments");
+            var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2 --These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("$var1 <= /Person/Vrenken/Tanja <= $var2", executionPlan.ToString());
+            Assert.Equal("$var1 <= /Person/Banner/Tanja <= $var2", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("/Person/Vrenken += Tanja");
+            var parseResult = _parser.Parse("/Person/Banner += Tanja");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -163,7 +163,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("/Person/Vrenken += \"Tanja\"", executionPlan.ToString());
+            Assert.Equal("/Person/Banner += \"Tanja\"", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -173,7 +173,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("/Person/Vrenken -= NoOne");
+            var parseResult = _parser.Parse("/Person/Banner -= NoOne");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("/Person/Vrenken -= \"NoOne\"", executionPlan.ToString());
+            Assert.Equal("/Person/Banner -= \"NoOne\"", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -191,7 +191,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("/Person/Vrenken -= NoOne --These are comments");
+            var parseResult = _parser.Parse("/Person/Banner -= NoOne --These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -199,7 +199,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Assert.
             Assert.NotNull(executionPlan);
             Assert.IsType<SequenceExecutionPlan>(executionPlan);
-            Assert.Equal("/Person/Vrenken -= \"NoOne\"", executionPlan.ToString());
+            Assert.Equal("/Person/Banner -= \"NoOne\"", executionPlan.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

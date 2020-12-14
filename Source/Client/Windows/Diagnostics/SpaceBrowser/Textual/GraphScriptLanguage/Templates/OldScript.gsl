@@ -1,6 +1,6 @@
 ﻿#$nickname <= { NickName: "Pete" }
-#/Person/Vrenken/Peter <= $nickname
-#/Person/Vrenken/*
+#/Person/Banner/Peter <= $nickname
+#/Person/Banner/*
 
 #<= /Person/*
 #<= $v2 <= /Person/*

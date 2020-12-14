@@ -20,8 +20,8 @@ query data
 query data 
 { 
     person 
-    @nodes(path:"person:Vrenken/Peter", mode: "Union")
-    @nodes(path:"person:Vrenken/Tanja")
+    @nodes(path:"person:Banner/Peter", mode: "Union")
+    @nodes(path:"person:Banner/Tanja")
     { 
         nickname 
     } 
@@ -31,7 +31,7 @@ query data
 query data 
 { 
     person 
-    @nodes(path:"person:Vrenken/Peter", mode: "Union")
+    @nodes(path:"person:Banner/Peter", mode: "Union")
     { 
         name @id 
     } 
@@ -43,7 +43,7 @@ query data
 #query data
 #@nodes(path:"location:DE/Berlin//", mode: "Intersect")
 #@nodes(path:"time:2012//")
-#@nodes(path:"person:Vrenken/Peter")
+#@nodes(path:"person:Banner/Peter")
 #{ 
 #    person @nodes(path:"\\Contacts\\")
 #    { 
@@ -61,7 +61,7 @@ query data
 { 
     #location @nodes(path:"location:DE/Berlin//", mode: "Intersect")
     #time @nodes(path:"time:2012//")
-    person @nodes(path:"person:Vrenken/Peter")
+    person @nodes(path:"person:Banner/Peter")
     { 
         firstname 
         lastname @id(path:"\\#FamilyName") 
@@ -73,7 +73,7 @@ query data
 { 
     #location @nodes(path:"location:DE/Berlin/*", mode: "Intersect")
     #time @nodes(path:"time:2012/*")
-    person @nodes(path:"person:Vrenken/*")
+    person @nodes(path:"person:Banner/*")
     { 
         firstname 
         lastname @id(path:"\\") 

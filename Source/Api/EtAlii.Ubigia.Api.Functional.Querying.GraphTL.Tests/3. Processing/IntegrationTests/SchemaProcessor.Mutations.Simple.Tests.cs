@@ -152,7 +152,7 @@
                                      FirstName @node(),
                                      LastName @node(\#FamilyName),
                                      NickName,
-                                     Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+                                     Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                      {
                                         FirstName @node(),
                                         LastName @node(\#FamilyName),
@@ -214,7 +214,7 @@
                 AssertValue("Doe", friends[1], "LastName");
                 AssertValue("Janey", friends[1], "NickName");
                 AssertValue("Peter", friends[2], "FirstName");
-                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Banner", friends[2], "LastName");
                 AssertValue("Pete", friends[2], "NickName");
             }
             var mutationFriends = mutationStructure.Children.Where(c => c.Type == "Friend").ToArray();
@@ -283,7 +283,7 @@
                                     LastName @node(\#FamilyName)
                                     NickName
                                     Birthdate
-                                    Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+                                    Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                     {
                                         FirstName @node()
                                         LastName @node(\#FamilyName)
@@ -319,7 +319,7 @@
             AssertValue("Jane", person.Children[1], "FirstName");
             AssertValue("Doe", person.Children[1], "LastName");
             AssertValue("Peter", person.Children[2], "FirstName");
-            AssertValue("Vrenken", person.Children[2], "LastName");
+            AssertValue("Banner", person.Children[2], "LastName");
         }
 
         
@@ -334,7 +334,7 @@
                                          FirstName @node(),
                                          LastName @node(\#FamilyName),
                                          NickName,
-                                         Friend @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+                                         Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                          {
                                             FirstName @node(),
                                             LastName @node(\#FamilyName),
@@ -359,7 +359,7 @@
                                             NickName
                                         }
                                     },
-                                    Person @node(Person:Vrenken/Peter)
+                                    Person @node(Person:Banner/Peter)
                                     {    
                                         FirstName @node(),
                                         LastName @node(\#FamilyName),
@@ -418,24 +418,24 @@
                 AssertValue("Doe", friends[1], "LastName");
                 AssertValue("Janey", friends[1], "NickName");
                 AssertValue("Peter", friends[2], "FirstName");
-                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Banner", friends[2], "LastName");
                 AssertValue("Pete", friends[2], "NickName");
             }
 
-            void AssertPeterVrenkenFriends(Structure[] friends)
+            void AssertPeterBannerFriends(Structure[] friends)
             {
                 Assert.NotNull(friends);
                 Assert.Equal(5, friends.Length);
                 AssertValue("Tanja", friends[0], "FirstName");
-                AssertValue("Vrenken", friends[0], "LastName");
+                AssertValue("Banner", friends[0], "LastName");
                 AssertValue("LadyL", friends[0], "NickName");
 
                 AssertValue("Arjan", friends[1], "FirstName");
-                AssertValue("Vrenken", friends[1], "LastName");
+                AssertValue("Banner", friends[1], "LastName");
                 AssertValue("Bengel", friends[1], "NickName");
 
                 AssertValue("Ida", friends[2], "FirstName");
-                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Banner", friends[2], "LastName");
                 AssertValue("Scheetje", friends[2], "NickName");
 
                 AssertValue("Tony", friends[3], "FirstName");
@@ -460,16 +460,16 @@
             AssertJohnDoeFriends(queryFriends1);
             
             AssertValue("Peter", mutationPerson2, "FirstName");
-            AssertValue("Vrenken", mutationPerson2, "LastName");
+            AssertValue("Banner", mutationPerson2, "LastName");
             AssertValue("Pete", mutationPerson2, "NickName");
             var mutationFriends2 = mutationPerson2.Children.Where(c => c.Type == "Friend").ToArray();
-            AssertPeterVrenkenFriends(mutationFriends2);
+            AssertPeterBannerFriends(mutationFriends2);
          
             AssertValue("Peter", queryPerson2, "FirstName");
-            AssertValue("Vrenken", queryPerson2, "LastName");
+            AssertValue("Banner", queryPerson2, "LastName");
             AssertValue("Pete", queryPerson2, "NickName");
             var queryFriends2 = queryPerson2.Children.Where(c => c.Type == "Friend").ToArray();
-            AssertPeterVrenkenFriends(queryFriends2);
+            AssertPeterBannerFriends(queryFriends2);
         }
 
         private void AssertValue(object expected, Structure structure, string valueName)

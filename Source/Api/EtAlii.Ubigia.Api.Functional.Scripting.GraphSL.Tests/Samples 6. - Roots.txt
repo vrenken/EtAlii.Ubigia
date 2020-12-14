@@ -56,9 +56,9 @@ time:"23:54 12-08-2016"
 time:201608122354
 time:now
 
-person:"Peter Vrenken"
-person:Vrenken/Peter/1
-person:Vrenken/Peter
+person:"Peter Banner"
+person:Banner/Peter/1
+person:Banner/Peter
 
 -- Proposal for root relation (indexing) registration removal--
 --root:text-=/orders/Order.Id
