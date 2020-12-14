@@ -87,8 +87,8 @@ dotnet_style_qualification_for_event = false:error
 
 # Types: use keywords instead of BCL types, and permit var only when the type is clear
 csharp_style_var_for_built_in_types = true:error
-csharp_style_var_when_type_is_apparent = false:none
-csharp_style_var_elsewhere = false:suggestion
+csharp_style_var_when_type_is_apparent = true:warning
+csharp_style_var_elsewhere = true:warning
 dotnet_style_predefined_type_for_locals_parameters_members = true:suggestion
 dotnet_style_predefined_type_for_member_access = true:suggestion
 
@@ -257,21 +257,28 @@ dotnet_diagnostic.IDE1006.severity = error
 # More details: https://github.com/dotnet/roslyn/issues/35690
 # error, warn, info, hidden, suppress.
 #dotnet_diagnostic.*.severity = error
-dotnet_diagnostic.MA0004.severity = error   # [Meziantou] Use ConfigureAwait(false) as the current SynchronizationContext is not needed
-dotnet_diagnostic.S1135.severity = warning  # Complete the task associated to this 'TODO' comment.
-dotnet_diagnostic.MA0049.severity = error   # [Meziantou] Type name should not match namespace
-dotnet_diagnostic.CA1724.severity = warning # Type name should not match namespace
-dotnet_diagnostic.CA1806.severity = error   # Parse calls TryParseTimeSpan but does not explicitly check whether the conversion succeeded. Either use the return value in a conditional statement or verify that the call site expects that the out argument will be set to the default value when the conversion fails.
-dotnet_diagnostic.CA1816.severity = error   # Dispose methods should call SuppressFinalize
-dotnet_diagnostic.CA1822.severity = silent  # Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm.
-dotnet_diagnostic.CA1825.severity = error   # Avoid zero-length array allocations
-dotnet_diagnostic.CA1834.severity = error   # Use 'StringBuilder.Append(char)' instead of 'StringBuilder.Append(string)' when the input is a constant unit string
-dotnet_diagnostic.CA1835.severity = error   # Change the 'ReadAsync' method call to use the 'Stream.ReadAsync(Memory<byte>, CancellationToken)' overload
-dotnet_diagnostic.CA2000.severity = warning # Dispose objects before losing scope
-dotnet_diagnostic.CA2007.severity = error   # Do not directly await a Task (Use ConfigureAwait).
-dotnet_diagnostic.CA2101.severity = error   # Specify marshaling for P/Invoke string arguments
-dotnet_diagnostic.CA2208.severity = error   # Instantiate argument exceptions correctly
-dotnet_diagnostic.CA2249.severity = error   # Consider using 'string.Contains' instead of 'string.IndexOf'
+dotnet_diagnostic.MA0004.severity = error       # [Meziantou] Use ConfigureAwait(false) as the current SynchronizationContext is not needed
+dotnet_diagnostic.S1135.severity = warning      # Complete the task associated to this 'TODO' comment.
+dotnet_diagnostic.MA0049.severity = error       # [Meziantou] Type name should not match namespace
+dotnet_diagnostic.CA1724.severity = warning     # Type name should not match namespace
+dotnet_diagnostic.CA1806.severity = error       # Parse calls TryParseTimeSpan but does not explicitly check whether the conversion succeeded. Either use the return value in a conditional statement or verify that the call site expects that the out argument will be set to the default value when the conversion fails.
+dotnet_diagnostic.CA1816.severity = error       # Dispose methods should call SuppressFinalize
+dotnet_diagnostic.CA1822.severity = silent      # Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm.
+dotnet_diagnostic.CA1825.severity = error       # Avoid zero-length array allocations
+dotnet_diagnostic.CA1834.severity = error       # Use 'StringBuilder.Append(char)' instead of 'StringBuilder.Append(string)' when the input is a constant unit string
+dotnet_diagnostic.CA1835.severity = error       # Change the 'ReadAsync' method call to use the 'Stream.ReadAsync(Memory<byte>, CancellationToken)' overload
+dotnet_diagnostic.CA2000.severity = warning     # Dispose objects before losing scope
+dotnet_diagnostic.CA2007.severity = error       # Do not directly await a Task (Use ConfigureAwait).
+dotnet_diagnostic.CA2101.severity = error       # Specify marshaling for P/Invoke string arguments
+dotnet_diagnostic.CA2208.severity = error       # Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2249.severity = error       # Consider using 'string.Contains' instead of 'string.IndexOf'
+dotnet_diagnostic.IDE0007.severity = error      # Prefer "var" everywhere
+dotnet_diagnostic.IDE0011.severity = warning    # Add braces
+dotnet_diagnostic.IDE0060.severity = warning    # Remove unused parameter
+dotnet_diagnostic.IDE0059.severity = warning    # Unnecessary assignment to a value
+dotnet_diagnostic.IDE0040.severity = warning    # Add accessibility modifiers
+dotnet_diagnostic.IDE0051.severity = warning    # Remove unused private member
+dotnet_diagnostic.IDE0052.severity = warning    # Remove unread private member
 
 # Possible improvements:
 # Disable regions
