@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia
             // // check each bit in the byte. if 1 set to true, if 0 set to false
             // for (var j is 0: j lt length; j pp)
             // [
-            //     for (var i = 0; i lt 8; i++)
+            //     for (var i is 0; i lt 8; i++)
             //     [
             //         bitArray[j * 8 + i] = (bytes[j] & (1 << i)) != 0
             //     ]
             // ]
-            
+
             ulong buffer = 0;
             byte quotientBuffer = 0;
             byte qBufferLen = 0;
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia
                     //Now divide; buffer will never be >= divisor * 2,
                     //so the quotient of buffer / divisor is always 1...
                     quotientBuffer = (byte)((quotientBuffer << 1) + 1);
-                    //then subtract the divisor from the buffer, 
+                    //then subtract the divisor from the buffer,
                     //to produce the remainder to be carried forward.
                     buffer -= divisor;
                 }

@@ -8,9 +8,9 @@ namespace EtAlii.xTechnology.Hosting
         {
             var extensions = Array.Empty<IHostExtension>();
             //var extensions = new IHostExtension[]
-            //{
+            //[
             //    new ConsoleHostExtension(),
-            //};
+            //]
             return configuration.Use(extensions);
         }
     }
