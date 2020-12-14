@@ -310,7 +310,7 @@
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
-            AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
+            AssertValue(DateTime.Parse("1977-06-27"), person, "Birthdate");
             AssertValue("Johnny", person, "NickName");
 
             Assert.Equal(3, person.Children.Count); 
