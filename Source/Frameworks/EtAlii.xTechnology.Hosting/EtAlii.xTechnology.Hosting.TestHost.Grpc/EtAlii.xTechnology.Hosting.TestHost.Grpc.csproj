@@ -8,7 +8,7 @@
     <PackageTags>hosting test Grpc unittest Asp.Net Core 3.1</PackageTags>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Grpc.Net.Client" Version="2.33.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.34.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Service.Grpc\EtAlii.xTechnology.Hosting.Service.Grpc.csproj" />
