@@ -11,15 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-<!--    <PackageReference Include="Microsoft.Owin" Version="4.1.0">-->
-<!--      <NoWarn>NU1701</NoWarn> &lt;!&ndash; Remove when the Owin packages have been made compatible with netcore3.0 and netstandard2.1 &ndash;&gt;-->
-<!--    </PackageReference>-->
-<!--    <PackageReference Include="Owin" Version="1.0.0">-->
-<!--      <NoWarn>NU1701</NoWarn> &lt;!&ndash; Remove when the Owin packages have been made compatible with netcore3.0 and netstandard2.1 &ndash;&gt;-->
-<!--    </PackageReference>-->
-
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
   <ItemGroup>
