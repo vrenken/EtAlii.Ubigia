@@ -17,7 +17,7 @@ $e2 <= /Documents/Files2
 $i1 <= /Documents/Files1/
 $i2 <= /Documents/Files2/
 $i4 <= /Communication/Email/Google/
-$i5 <= /Person/Vrenken/Peter/
+$i5 <= /Person/Banner/Peter/
 
 -- Identifier based variable assignment
 $i7 <= /&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423

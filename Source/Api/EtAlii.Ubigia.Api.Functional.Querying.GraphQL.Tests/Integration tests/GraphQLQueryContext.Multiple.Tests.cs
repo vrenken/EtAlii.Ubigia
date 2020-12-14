@@ -205,7 +205,7 @@
                         [
                             {'name':'John','nickName':'Johnny', 'lastname': 'Doe'},
                             {'name':'Jane','nickName':'Janey', 'lastname': 'Doe'},
-                            {'name':'Peter','nickName':'Pete', 'lastname': 'Vrenken'}
+                            {'name':'Peter','nickName':'Pete', 'lastname': 'Banner'}
                         ]
                     }
                 }", result).ConfigureAwait(false);
@@ -221,7 +221,7 @@
                 { 
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
                     #time @nodes(path:""time:2012//"")
-                    person @nodes(path:""person:Vrenken/Peter"")
+                    person @nodes(path:""person:Banner/Peter"")
                     { 
                         nickname
                         firstname @id
@@ -235,7 +235,7 @@
             
             // Assert.    
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Vrenken'} }", result).ConfigureAwait(false);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Banner'} }", result).ConfigureAwait(false);
             
         }
         
@@ -249,7 +249,7 @@
                 { 
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
                     #time @nodes(path:""time:2012//"")
-                    person @nodes(path:""person:Vrenken/*"")
+                    person @nodes(path:""person:Banner/*"")
                     { 
                         nickName
                         firstname @id
@@ -267,10 +267,10 @@
                 {
                     'person':
                     [
-                        {'nickName':'Pete','firstname':'Peter','lastname':'Vrenken'},
-                        {'nickName':'LadyL','firstname':'Tanja','lastname':'Vrenken'},
-                        {'nickName':'Bengel','firstname':'Arjan','lastname':'Vrenken'},
-                        {'nickName':'Scheetje','firstname':'Ida','lastname':'Vrenken'}
+                        {'nickName':'Pete','firstname':'Peter','lastname':'Banner'},
+                        {'nickName':'LadyL','firstname':'Tanja','lastname':'Banner'},
+                        {'nickName':'Bengel','firstname':'Arjan','lastname':'Banner'},
+                        {'nickName':'Scheetje','firstname':'Ida','lastname':'Banner'}
                     ]
                 }", result).ConfigureAwait(false);
         }

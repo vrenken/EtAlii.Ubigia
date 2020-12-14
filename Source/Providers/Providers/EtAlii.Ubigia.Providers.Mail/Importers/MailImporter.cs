@@ -15,7 +15,7 @@
         private readonly IGraphSLScriptContext _scriptContext;
 
         private Imap4Client _imap;
-        private readonly string username = "vrenken.test@gmail.com";
+        private readonly string username = "banner.test@gmail.com";
         private readonly string password = "@2drinkglas";
         private readonly string server = "imap.gmail.com";
         private int _lastMessageCount;

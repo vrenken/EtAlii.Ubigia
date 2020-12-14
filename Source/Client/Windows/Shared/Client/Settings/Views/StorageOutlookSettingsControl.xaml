@@ -21,7 +21,7 @@
                     Text="Account" 
                     Style="{StaticResource LabelStyle}" />
                     <TextBox 
-                    Text="peter.vrenken@outlook.com"
+                    Text="peter.banner@outlook.com"
                     IsReadOnly="True"
                     Style="{StaticResource TextBoxStyle}" />
                     <TextBlock 

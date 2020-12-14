@@ -15,16 +15,16 @@ Person @node(person:Stark/Tony)
 
 -- ==================================================================================================================
 -- 03. Query with nodes directives at multiple entity paths unioned together returning multiple entries and a normal property
--- @node(path:"person:Vrenken/Peter", mode: "Union)
--- @node(path:"person:Vrenken/Tanja)
+-- @node(path:"person:Banner/Peter", mode: "Union)
+-- @node(path:"person:Banner/Tanja)
 -- { 
 --     nickname 
 -- } 
 
 -- ==================================================================================================================
 -- 04. Query with multiple entity paths unioned together returning multiple entries and a normal property
--- @node(person:Vrenken/Peter", mode: "Union)
--- @node(person:Vrenken/Tanja)
+-- @node(person:Banner/Peter", mode: "Union)
+-- @node(person:Banner/Tanja)
 -- { 
 --     name @id 
 -- } 
@@ -36,7 +36,7 @@ Person @node(person:Stark/Tony)
 -- query data
 -- @nodes(path:"location:DE/Berlin//", mode: "Intersect)
 -- @nodes(path:"time:2012//)
--- @node(path:"person:Vrenken/Peter)
+-- @node(path:"person:Banner/Peter)
 -- { 
 --     person @nodes(path:"\\Contacts\\)
 --     { 
@@ -55,7 +55,7 @@ Person @node(person:Stark/Tony)
 -- { 
 --     #location @nodes(path:"location:DE/Berlin//", mode: "Intersect)
 --     #time @nodes(path:"time:2012//)
---     person @nodes(path:"person:Vrenken/Peter)
+--     person @nodes(path:"person:Banner/Peter)
 --     { 
 --         firstname 
 --         lastname @id(path:"\\#FamilyName) 
@@ -68,7 +68,7 @@ Person @node(person:Stark/Tony)
 -- { 
 --     #location @nodes(path:"location:DE/Berlin/*", mode: "Intersect)
 --     #time @nodes(path:"time:2012/*)
---     person @nodes(path:"person:Vrenken/*)
+--     person @nodes(path:"person:Banner/*)
 --     { 
 --         firstname 
 --         lastname @id(path:"\\) 

@@ -110,7 +110,7 @@
                             LastName @node(\#FamilyName)
                             NickName
                             Birthdate
-                            Friends @nodes-link(/Friends, Person:Vrenken/Peter, /Friends)
+                            Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                             {
                                 FirstName @node()
                                 LastName @node(\#FamilyName)
@@ -137,7 +137,7 @@
             Assert.IsType<LinkAndSelectMultipleNodesAnnotation>(childStructure.Annotation);
             var linkAnnotation = (LinkAndSelectMultipleNodesAnnotation)childStructure.Annotation;
             Assert.Equal("/Friends", linkAnnotation.Source.ToString());
-            Assert.Equal("Person:Vrenken/Peter", linkAnnotation.Target.ToString());
+            Assert.Equal("Person:Banner/Peter", linkAnnotation.Target.ToString());
             Assert.Equal("/Friends", linkAnnotation.TargetLink.ToString());
             
             var valueFragment1 = childStructure.Values.Single(v => v.Name == "FirstName"); 

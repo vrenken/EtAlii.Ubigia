@@ -1,11 +1,11 @@
-﻿person:+=Vrenken/Peter
-person:Vrenken/Peter <= { Birthdate: 1977-06-27, NickName: 'Pete', Lives: 1 }
-person:+=Vrenken/Tanja
-person:Vrenken/Tanja <= { Birthdate: 1970-02-03, NickName: 'LadyL', Lives: 1 }
-person:+=Vrenken/Arjan
-person:Vrenken/Arjan <= { Birthdate: 1988-06-23, NickName: 'Bengel', Lives: 1 }
-person:+=Vrenken/Ida
-person:Vrenken/Ida <= { Birthdate: 1992-02-07, NickName: 'Scheetje', Lives: 1 }
+﻿person:+=Banner/Peter
+person:Banner/Peter <= { Birthdate: 1977-06-27, NickName: 'Pete', Lives: 1 }
+person:+=Banner/Tanja
+person:Banner/Tanja <= { Birthdate: 1970-02-03, NickName: 'LadyL', Lives: 1 }
+person:+=Banner/Arjan
+person:Banner/Arjan <= { Birthdate: 1988-06-23, NickName: 'Bengel', Lives: 1 }
+person:+=Banner/Ida
+person:Banner/Ida <= { Birthdate: 1992-02-07, NickName: 'Scheetje', Lives: 1 }
 person:+=Doe/John
 person:Doe/John  <= { Birthdate: 1977-06-27, NickName: 'Johnny', Lives: 1 }
 person:+=Doe/Jane
@@ -15,19 +15,19 @@ person:Stark/Tony <= { Birthdate: 1976-05-12, NickName: 'Iron Man', Lives: 9 }
 
 person:Doe <= { Type: "FamilyName" }
 person:Stark <= { Type: "FamilyName" }
-person:Vrenken <= { Type: "FamilyName" }
+person:Banner <= { Type: "FamilyName" }
 
 $john <= person:Doe/John
 $jane <= person:Doe/Jane
 $tony <= person:Stark/Tony
-$peter <= person:Vrenken/Peter
-$tanja <= person:Vrenken/Tanja
-$arjan <= person:Vrenken/Arjan
-$ida <= person:Vrenken/Ida
+$peter <= person:Banner/Peter
+$tanja <= person:Banner/Tanja
+$arjan <= person:Banner/Arjan
+$ida <= person:Banner/Ida
 
-person:Vrenken/Tanja += Friends
-person:Vrenken/Peter += Friends
-person:Vrenken/Ida += Friends
+person:Banner/Tanja += Friends
+person:Banner/Peter += Friends
+person:Banner/Ida += Friends
 person:Doe/Jane += Friends
 person:Doe/John += Friends
 person:Stark/Tony += Friends
@@ -42,28 +42,28 @@ person:Doe/John/Friends += $jane
 person:Doe/Jane/Friends += $john
 person:Doe/Jane/Friends += $tony
 
-person:Vrenken/Arjan += Friends
-person:Vrenken/Arjan/Friends += $tanja
-person:Vrenken/Arjan/Friends += $peter
-person:Vrenken/Arjan/Friends += $ida
+person:Banner/Arjan += Friends
+person:Banner/Arjan/Friends += $tanja
+person:Banner/Arjan/Friends += $peter
+person:Banner/Arjan/Friends += $ida
 
-person:Vrenken/Ida/Friends += $tanja
-person:Vrenken/Ida/Friends += $arjan
-person:Vrenken/Ida/Friends += $peter
+person:Banner/Ida/Friends += $tanja
+person:Banner/Ida/Friends += $arjan
+person:Banner/Ida/Friends += $peter
 
-person:Vrenken/Peter/Friends += $tanja
-person:Vrenken/Peter/Friends += $arjan
-person:Vrenken/Peter/Friends += $ida
-person:Vrenken/Peter/Friends += $tony
+person:Banner/Peter/Friends += $tanja
+person:Banner/Peter/Friends += $arjan
+person:Banner/Peter/Friends += $ida
+person:Banner/Peter/Friends += $tony
 
-person:Vrenken/Tanja/Friends += $peter
-person:Vrenken/Tanja/Friends += $arjan
-person:Vrenken/Tanja/Friends += $ida
+person:Banner/Tanja/Friends += $peter
+person:Banner/Tanja/Friends += $arjan
+person:Banner/Tanja/Friends += $ida
 
-person:Vrenken/Ida/Friends/
-person:Vrenken/Arjan/Friends/
-person:Vrenken/Tanja/Friends/
-person:Vrenken/Peter/Friends/
+person:Banner/Ida/Friends/
+person:Banner/Arjan/Friends/
+person:Banner/Tanja/Friends/
+person:Banner/Peter/Friends/
 person:Stark/Tony/Friends/
 person:Doe/Jane/Friends/
 person:Doe/John/Friends/
