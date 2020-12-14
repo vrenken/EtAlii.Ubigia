@@ -259,7 +259,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
             innerShaper = new ShaperRemappingExpressionVisitor(subquery._projectionMapping)
                 .Visit(shapedQueryExpression.ShaperExpression);
 
-            innerShaper = Lambda(innerShaper, subquery.CurrentParameter);
+            innerShaper = Lambda(innerShaper!, subquery.CurrentParameter);
 
             return AddToProjection(serverQueryExpression);
         }
@@ -643,7 +643,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
