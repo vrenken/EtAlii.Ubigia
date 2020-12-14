@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
-            Assert.Equal(new DateTime(1978, 07, 28), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
+            Assert.Equal(new DateTime(1977, 06, 27), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
-            Assert.Equal(new DateTime(1978, 07, 28), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
+            Assert.Equal(new DateTime(1977, 06, 27), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
         }
 
 
@@ -513,7 +513,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
-            Assert.Equal(new DateTime(1978, 07, 28), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
+            Assert.Equal(new DateTime(1977, 06, 27), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
         }
 
 
@@ -532,7 +532,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("John", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["FirstName"]);
             Assert.Equal("Doe", sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["LastName"]);
-            Assert.Equal(new DateTime(1978, 07, 28), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
+            Assert.Equal(new DateTime(1977, 06, 27), sequence.Parts.Skip(2).Cast<ObjectConstantSubject>().First().Values["Birthdate"]);
         }
 
     }
