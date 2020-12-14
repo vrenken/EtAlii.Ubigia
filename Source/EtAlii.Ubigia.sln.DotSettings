@@ -45,6 +45,7 @@
 	<s:Boolean x:Key="/Default/Environment/Filtering/ExcludeCoverageFilters/=_002A_002ETests_003B_002A_003B_002A_003B_002A/@EntryIndexedValue">True</s:Boolean>
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/CustomBuildToolPath/@EntryValue">C:\Program Files\dotnet\sdk\3.1.403\MSBuild.dll</s:String>
 	<s:String x:Key="/Default/Environment/Hierarchy/Build/SolBuilderDuo/UseMsbuildSolutionBuilder/@EntryValue">NewVersion</s:String>
+	<s:String x:Key="/Default/Environment/Hierarchy/NuGetOptions/CredentialProviderPreference/@EntryValue">NuGetPluginsThenRider</s:String>
 	<s:String x:Key="/Default/Environment/Hierarchy/NuGetOptions/IntegratedRestoreEngine/@EntryValue">Automatic</s:String>
 	<s:Boolean x:Key="/Default/Environment/SettingsMigration/IsMigratorApplied/=JetBrains_002EReSharper_002EUnitTestFramework_002ESettings_002EMigrations_002ERemoveBuildPolicyAlwaysMigration/@EntryIndexedValue">True</s:Boolean>
 	<s:Int64 x:Key="/Default/Environment/UnitTesting/ParallelProcessesCount/@EntryValue">8</s:Int64>
