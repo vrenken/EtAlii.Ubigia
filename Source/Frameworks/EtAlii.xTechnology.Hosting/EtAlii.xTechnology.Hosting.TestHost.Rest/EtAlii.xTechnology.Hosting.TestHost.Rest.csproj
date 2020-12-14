@@ -6,6 +6,8 @@
     <ProjectGuid>12345B65-5339-4C48-917C-31628BEC0993</ProjectGuid>
     <Description>Package that helps (unit)testing Rest scenarios.</Description>
     <PackageTags>hosting test Rest unittest Asp.Net Core 3.1</PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Service.Rest\EtAlii.xTechnology.Hosting.Service.Rest.csproj" />

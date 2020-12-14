@@ -15,7 +15,6 @@
       <ProtoCompile>True</ProtoCompile>
       <ProtoRoot />
       <CompileOutputs>True</CompileOutputs>
-      <OutputDir>obj\Debug\netstandard2.1\</OutputDir>
       <Generator>MSBuild:Compile</Generator>
     </Protobuf>
   </ItemGroup>

@@ -6,6 +6,8 @@
     <ProjectGuid>3CD64B65-53A9-4CD8-917C-31FFBBEC099B</ProjectGuid>
     <Description>Package that enables a host to be used in (unit)testing scenarios.</Description>
     <PackageTags>hosting test unittest Asp.Net Core 3.1</PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.1" />

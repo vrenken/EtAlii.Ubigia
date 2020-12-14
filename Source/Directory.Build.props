@@ -1,7 +1,7 @@
 ﻿<!-- Stuff that needs to happen at the start of the MSBuild process should go in the .props file. -->
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.0.0.6</VersionPrefix>
+    <VersionPrefix>1.0.0.7</VersionPrefix>
     <PackageVersion Condition="'$(VersionSuffix)' == ''">$(VersionPrefix)</PackageVersion>
     <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
     <Version>$(PackageVersion)</Version>
@@ -28,9 +28,9 @@
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
-    
+
   </PropertyGroup>
-  
+
   <!-- Analysis, code conventions and standardization. -->
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
@@ -61,7 +61,7 @@
     <IsUbigiaApplication>false</IsUbigiaApplication>
     <IsUbigiaLibrary>false</IsUbigiaLibrary>
   </PropertyGroup>
-  
+
   <!-- The PropertyGroup below is used to configure all test projects. -->
   <PropertyGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
     <TargetFramework>$(UbigiaTestApplicationTargetFramework)</TargetFramework>
