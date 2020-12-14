@@ -1,8 +1,10 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-#pragma warning disable S107 // This code will change. remove this pragma afterwards.
-    
+// This code will change. Remove these pragma afterwards.
+#pragma warning disable S107
+#pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
+
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
     using System;

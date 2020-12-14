@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 #pragma warning disable S1128 // This code will change. remove this pragma afterwards.
+#pragma warning disable S1104 // Fields should not have public accessibility.
 
 namespace EtAlii.Ubigia.Api.Storage
 {
