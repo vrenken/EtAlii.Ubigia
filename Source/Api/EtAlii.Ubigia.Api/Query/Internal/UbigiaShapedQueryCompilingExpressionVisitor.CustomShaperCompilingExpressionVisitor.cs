@@ -172,7 +172,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                             _includeCollectionMethodInfo.MakeGenericMethod(entityClrType, includingClrType, relatedEntityClrType),
                             QueryCompilationContext.QueryContextParameter,
                             collectionShaper.Projection,
-                            Expression.Constant(((LambdaExpression)Visit(collectionShaper.InnerShaper)).Compile()),
+                            Expression.Constant(((LambdaExpression)Visit(collectionShaper.InnerShaper))!.Compile()),
                             includeExpression.EntityExpression,
                             Expression.Constant(includeExpression.Navigation),
                             Expression.Constant(inverseNavigation, typeof(INavigationBase)),
@@ -206,7 +206,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         _materializeCollectionMethodInfo.MakeGenericMethod(elementType, collectionType),
                         QueryCompilationContext.QueryContextParameter,
                         collectionShaperExpression.Projection,
-                        Expression.Constant(((LambdaExpression)Visit(collectionShaperExpression.InnerShaper)).Compile()),
+                        Expression.Constant(((LambdaExpression)Visit(collectionShaperExpression.InnerShaper))!.Compile()),
                         Expression.Constant(collectionAccessor, typeof(IClrCollectionAccessor)));
                 }
 
@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         _materializeSingleResultMethodInfo.MakeGenericMethod(singleResultShaperExpression.Type),
                         QueryCompilationContext.QueryContextParameter,
                         singleResultShaperExpression.Projection,
-                        Expression.Constant(innerShaper.Compile()));
+                        Expression.Constant(innerShaper!.Compile()));
                 }
 
                 return base.VisitExtension(node);
