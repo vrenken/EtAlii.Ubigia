@@ -356,8 +356,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00-7881-4ACB-9111-9439363F658D}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
-		Build.yml.old = Build.yml.old
-		Clean-Output.ps1 = Clean-Output.ps1
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		EtAlii.Ubigia.sln.DotSettings = EtAlii.Ubigia.sln.DotSettings
