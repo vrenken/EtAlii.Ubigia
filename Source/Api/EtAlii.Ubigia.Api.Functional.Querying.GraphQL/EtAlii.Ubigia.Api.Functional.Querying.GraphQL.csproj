@@ -16,9 +16,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GraphQL" Version="3.1.5" />
-    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.1.5" />
-    <PackageReference Include="GraphQL.Server.Core" Version="4.3.1" />
+    <PackageReference Include="GraphQL" Version="3.2.0" />
+    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.2.0" />
+    <PackageReference Include="GraphQL.Server.Core" Version="4.4.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Processing" />
