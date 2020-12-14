@@ -11,6 +11,7 @@
     <Company>EtAlii</Company>
     <Product>Ubigia</Product>
     <PackageProjectUrl>https://github.com/vrenken/EtAlii.Ubigia</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/vrenken/EtAlii.Ubigia</RepositoryUrl>
 
     <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
     <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
