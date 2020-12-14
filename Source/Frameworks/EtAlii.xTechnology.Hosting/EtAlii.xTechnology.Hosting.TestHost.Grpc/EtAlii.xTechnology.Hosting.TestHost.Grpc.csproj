@@ -6,6 +6,8 @@
     <ProjectGuid>9234ACDF-5339-4C48-917C-31246FDABEDE</ProjectGuid>
     <Description>Package that helps (unit)testing Grpc scenarios.</Description>
     <PackageTags>hosting test Grpc unittest Asp.Net Core 3.1</PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.34.0" />

@@ -6,6 +6,8 @@
     <ProjectGuid>55345B65-5339-4C48-917C-31628BEC0955</ProjectGuid>
     <Description>Package that helps (unit)testing Signalr scenarios.</Description>
     <PackageTags>hosting test Signalr unittest Asp.Net Core 3.1</PackageTags>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.1" />
