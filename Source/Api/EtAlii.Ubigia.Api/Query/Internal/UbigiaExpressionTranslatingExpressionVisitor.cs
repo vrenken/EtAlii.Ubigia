@@ -1,9 +1,11 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-#pragma warning disable S3358 // This code will change. remove this pragma afterwards.
+// This code will change. Remove these pragma afterwards.
+#pragma warning disable S3358
 #pragma warning disable S1066 // Collapsible "if" statements should be merged.
 #pragma warning disable S1168 // Empty arrays and collections should be returned instead of null.
+#pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
@@ -330,7 +332,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 return null!;
             }
 
-            var result = TryBindMember(innerExpression, MemberIdentity.Create(node.Member), node.Type); 
+            var result = TryBindMember(innerExpression, MemberIdentity.Create(node.Member), node.Type);
             if (result != null)
             {
                 return result;
@@ -1320,10 +1322,10 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 result = Expression.Constant(false);
                 return true;
             }
-            
+
             // Sonar provides this warning: However entityType cannot be null during a compile debug due to the Debug.Assert above.
-            // 
-#pragma warning disable S2259             
+            //
+#pragma warning disable S2259
             var primaryKeyProperties = entityType.FindPrimaryKey()?.Properties;
 #pragma warning restore
             if (primaryKeyProperties == null)
@@ -1494,7 +1496,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
         [DebuggerStepThrough]
         private static bool TranslationFailed(Expression original, Expression translation)
-            => original != null && (translation == null || translation is EntityReferenceExpression);   
+            => original != null && (translation == null || translation is EntityReferenceExpression);
 
         private static bool TranslationFailed(Expression translation)
             => translation == null || translation is EntityReferenceExpression;

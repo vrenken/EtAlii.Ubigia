@@ -1,10 +1,13 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
-#pragma warning disable S1128 // This code will change. remove this pragma afterwards.
-#pragma warning disable S3358 // This code will change. remove this pragma afterwards.
-#pragma warning disable S1144 // This code will change. remove this pragma afterwards.
-#pragma warning disable S907 // "goto" statement should not be used.
+// This code will change. Remove these pragma afterwards.
+#pragma warning disable S1128
+#pragma warning disable S3358
+#pragma warning disable S1144
+#pragma warning disable S907  // "goto" statement should not be used.
+#pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
+#pragma warning disable S1481 // Unused local variables should be removed
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
