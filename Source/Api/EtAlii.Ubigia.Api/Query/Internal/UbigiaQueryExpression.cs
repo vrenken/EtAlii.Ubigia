@@ -619,7 +619,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
@@ -738,7 +738,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
@@ -749,7 +749,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var replacedExpression = replacingVisitor.Visit(projection.Value);
                     resultValueBufferExpressions.Add(replacedExpression);
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
-                        = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
+                        = CreateReadValueExpression(replacedExpression!.Type, index++, InferPropertyFromInner(projection.Value));
                 }
             }
 
@@ -766,7 +766,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         replacedExpression = nullableReadValueExpressionVisitor.Visit(replacedExpression);
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
@@ -778,7 +778,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     replacedExpression = nullableReadValueExpressionVisitor.Visit(replacedExpression);
                     resultValueBufferExpressions.Add(replacedExpression);
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
-                        = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
+                        = CreateReadValueExpression(replacedExpression!.Type, index++, InferPropertyFromInner(projection.Value));
                 }
             }
 
@@ -844,7 +844,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     {
                         var replacedExpression = replacingVisitor.Visit(entityProjection.BindProperty(property));
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(outerMemberInfo)]
@@ -874,7 +874,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                         }
 
                         resultValueBufferExpressions.Add(replacedExpression);
-                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression.Type, index++, property);
+                        readExpressionMap[property] = CreateReadValueExpression(replacedExpression!.Type, index++, property);
                     }
 
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
@@ -890,7 +890,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
 
                     resultValueBufferExpressions.Add(replacedExpression);
                     projectionMapping[projection.Key.Prepend(innerMemberInfo)]
-                        = CreateReadValueExpression(replacedExpression.Type, index++, InferPropertyFromInner(projection.Value));
+                        = CreateReadValueExpression(replacedExpression!.Type, index++, InferPropertyFromInner(projection.Value));
                 }
             }
 
@@ -974,7 +974,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     var replacedExpression = replacingVisitor.Visit(projection.Value);
                     resultValueBufferExpressions.Add(replacedExpression);
                     projectionMapping[projection.Key] = CreateReadValueExpression(
-                        replacedExpression.Type, resultValueBufferExpressions.Count - 1, InferPropertyFromInner(projection.Value));
+                        replacedExpression!.Type, resultValueBufferExpressions.Count - 1, InferPropertyFromInner(projection.Value));
                 }
             }
 
@@ -990,7 +990,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 replacedExpression = nullableReadValueExpressionVisitor.Visit(replacedExpression);
                 resultValueBufferExpressions.Add(replacedExpression);
                 innerReadExpressionMap[property] = CreateReadValueExpression(
-                    replacedExpression.Type, resultValueBufferExpressions.Count - 1, property);
+                    replacedExpression!.Type, resultValueBufferExpressions.Count - 1, property);
             }
 
             innerEntityProjection = new EntityProjectionExpression(innerEntityProjection.EntityType, innerReadExpressionMap);
@@ -1042,7 +1042,7 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                     }
                     resultValueBufferExpressions[valueBufferIndex] = replacedExpression;
                     readExpressionMap[property] = CreateReadValueExpression(
-                        replacedExpression.Type, valueBufferIndex, property);
+                        replacedExpression!.Type, valueBufferIndex, property);
                 }
 
                 var newEntityProjection = new EntityProjectionExpression(entityProjection.EntityType, readExpressionMap);
@@ -1133,14 +1133,14 @@ namespace EtAlii.Ubigia.Api.Query.Internal
                 var ifTrue = Visit(node.IfTrue);
                 var ifFalse = Visit(node.IfFalse);
 
-                if (ifTrue.Type.IsNullableType()
+                if (ifTrue!.Type.IsNullableType()
                     && node.IfTrue.Type == ifTrue.Type.UnwrapNullableType()
                     && ifFalse is DefaultExpression)
                 {
                     ifFalse = Default(ifTrue.Type);
                 }
 
-                return Condition(test, ifTrue, ifFalse);
+                return Condition(test!, ifTrue, ifFalse!);
             }
         }
     }
