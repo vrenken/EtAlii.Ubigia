@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.MicroContainer
         ///
         /// The container works in a way that it tries to create the constructor-injected objects dependency tree.
         /// During this creation it will run all requested initializations immediately after the construction of
-        /// a single object, and after the root object has been created it will run all lazy registrations.    
+        /// a single object, and after the root object has been created it will run all lazy registrations.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -37,9 +37,9 @@ namespace EtAlii.xTechnology.MicroContainer
             var involvedContainerRegistrations = new List<ContainerRegistration>();
             var type = typeof(T);
             var instance = (T)GetInstance(type, involvedContainerRegistrations);
-            
+
             // After the requested object has been instantiated we need to make sure the lazy initialization
-            // request are taken care of.   
+            // request are taken care of.
             foreach (var involvedContainerRegistration in involvedContainerRegistrations)
             {
                 InitializeLazy(involvedContainerRegistration);
@@ -52,8 +52,8 @@ namespace EtAlii.xTechnology.MicroContainer
             if (_mappings.TryGetValue(type, out var mapping))
             {
 #if DEBUG
-                // This check ensures that cyclic dependencies (either through constructor or initializer access) are caught 
-                // when calling the GetInstance method. 
+                // This check ensures that cyclic dependencies (either through constructor or initializer access) are caught
+                // when calling the GetInstance method.
                 if (mapping.UnderConstruction)
                 {
                     throw new InvalidOperationException($"Cyclic dependency detected. Check your registrations and initializations for type: {type}");
@@ -73,8 +73,8 @@ namespace EtAlii.xTechnology.MicroContainer
                     // We need to indicate when the instance in the mapping is under construction.
                     mapping.UnderConstruction = true;
 #endif
-                    var instance = mapping.ConstructMethod == null 
-                        ? CreateInstance(mapping.ConcreteType, null, null, involvedContainerRegistrations) 
+                    var instance = mapping.ConstructMethod == null
+                        ? CreateInstance(mapping.ConcreteType, null, null, involvedContainerRegistrations)
                         : mapping.ConstructMethod();
                     mapping.Instance = DecorateInstanceIfNeeded(mapping, instance, involvedContainerRegistrations);
 #if DEBUG
@@ -106,7 +106,7 @@ namespace EtAlii.xTechnology.MicroContainer
         {
             foreach (var initializer in mapping.ImmediateInitializers)
             {
-                initializer(mapping.Instance);
+                initializer(mapping.Instance!);
             }
         }
 
@@ -117,13 +117,13 @@ namespace EtAlii.xTechnology.MicroContainer
                 mapping.IsLazyInitialized = true;
                 foreach (var lazyInitializer in mapping.LazyInitializers)
                 {
-                    lazyInitializer.Invoke(mapping.Instance);
+                    lazyInitializer.Invoke(mapping.Instance!);
                 }
             }
         }
 
         /// <summary>
-        /// Create an instance for the specified type. This requires instantiating its constructor parameters as well. 
+        /// Create an instance for the specified type. This requires instantiating its constructor parameters as well.
         /// </summary>
         /// <param name="type"></param>
         /// <param name="serviceTypeToReplace"></param>
@@ -131,7 +131,7 @@ namespace EtAlii.xTechnology.MicroContainer
         /// <param name="involvedContainerRegistrations"></param>
         /// <returns></returns>
         /// <exception cref="InvalidOperationException"></exception>
-        private object CreateInstance(Type type, Type serviceTypeToReplace, object instanceToReplaceServiceTypeWith, List<ContainerRegistration> involvedContainerRegistrations)
+        private object CreateInstance(Type? type, Type? serviceTypeToReplace, object? instanceToReplaceServiceTypeWith, List<ContainerRegistration> involvedContainerRegistrations)
         {
             var constructors = type.GetTypeInfo().DeclaredConstructors
                 .Where(c => !c.IsStatic && c.IsPublic)
@@ -159,7 +159,7 @@ namespace EtAlii.xTechnology.MicroContainer
                     var parameterType = parameters[parameterIndex].ParameterType;
                     if (parameterType == serviceTypeToReplace)
                     {
-                        instances[parameterIndex] = instanceToReplaceServiceTypeWith;
+                        instances[parameterIndex] = instanceToReplaceServiceTypeWith!;
                     }
                     else
                     {
