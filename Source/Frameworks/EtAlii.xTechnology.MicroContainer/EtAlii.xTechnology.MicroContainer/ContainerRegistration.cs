@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.MicroContainer
     {
 #if CHECK_USAGE
         /// <summary>
-        /// Shows how often an instance has been injected. 
+        /// Shows how often an instance has been injected.
         /// </summary>
         public int Usages;
 #endif
@@ -27,37 +27,37 @@ namespace EtAlii.xTechnology.MicroContainer
         /// <summary>
         /// The actual instantiated object. Needed as there might be multiple places where it needs to be injected.
         /// </summary>
-        public object Instance;
-        
+        public object? Instance;
+
         /// <summary>
         /// The concrete type to be used for instantiating the object. This member cannot be set together with the
-        /// ConstructMethod member. 
+        /// ConstructMethod member.
         /// </summary>
-        public Type ConcreteType;
+        public Type? ConcreteType;
 
         /// <summary>
         /// The object constructor function that should be used for instantiating the object. This member cannot be set together with the
-        /// ConcreteType member. 
+        /// ConcreteType member.
         /// </summary>
-        public Func<object> ConstructMethod;
+        public Func<object>? ConstructMethod;
 
         /// <summary>
         /// Returns true when the lazy initialization for this instance has happened.
         /// </summary>
         public bool IsLazyInitialized;
-        
+
         /// <summary>
-        /// State that represents the list of initializers that should be run immediately after the object has been instantiated. 
+        /// State that represents the list of initializers that should be run immediately after the object has been instantiated.
         /// </summary>
         public readonly List<Action<object>> ImmediateInitializers = new();
 
         /// <summary>
-        /// State that represents the list of initializers that should be run after the root object has been instantiated. 
+        /// State that represents the list of initializers that should be run after the root object has been instantiated.
         /// </summary>
         public readonly List<Action<object>> LazyInitializers = new();
 
         /// <summary>
-        /// State that represents the registrations that should be used to decorate the central instance. 
+        /// State that represents the registrations that should be used to decorate the central instance.
         /// </summary>
         public readonly List<DecoratorRegistration> Decorators = new();
     }

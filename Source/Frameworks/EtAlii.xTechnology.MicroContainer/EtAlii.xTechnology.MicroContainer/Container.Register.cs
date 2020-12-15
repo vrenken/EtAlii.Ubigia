@@ -8,7 +8,7 @@ namespace EtAlii.xTechnology.MicroContainer
 	{
         /// <summary>
         /// Register an concrete implementation type to be instantiated wherever the service interface is being used as
-        /// a constructor parameter.  
+        /// a constructor parameter.
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
@@ -35,7 +35,7 @@ namespace EtAlii.xTechnology.MicroContainer
 
         /// <summary>
         /// Register an object instantiation function that will be used to provide the concrete instance wherever the service interface is being used as
-        /// a constructor parameter.  
+        /// a constructor parameter.
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="TImplementation"></typeparam>
@@ -57,13 +57,13 @@ namespace EtAlii.xTechnology.MicroContainer
             {
                 _mappings[serviceType] = mapping = new ContainerRegistration();
             }
-            mapping.ConstructMethod = () => constructMethod();
+            mapping.ConstructMethod = () => constructMethod()!;
             mapping.ConcreteType = typeof(TImplementation);
         }
 
         /// <summary>
         /// Register an object instantiation function that will be used to provide an instance wherever the service interface is being used as
-        /// a constructor parameter.  
+        /// a constructor parameter.
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
@@ -73,7 +73,7 @@ namespace EtAlii.xTechnology.MicroContainer
             if (HasRegistration(serviceType))
             {
                 throw new InvalidOperationException($"Service Type already registered: {serviceType}");
-            
+
             }
             if (!serviceType.GetTypeInfo().IsInterface)
             {
@@ -84,13 +84,13 @@ namespace EtAlii.xTechnology.MicroContainer
             {
                 _mappings[serviceType] = mapping = new ContainerRegistration();
             }
-            mapping.ConstructMethod = () => constructMethod();
+            mapping.ConstructMethod = () => constructMethod()!;
             mapping.ConcreteType = typeof(TService);
         }
 
         /// <summary>
         /// Registers a decorator that will wrap the concrete instance. This is very useful for conditional logic and
-        /// 'meta-behavior' like conditional profiling/logging/debugging.    
+        /// 'meta-behavior' like conditional profiling/logging/debugging.
         /// </summary>
         /// <param name="serviceType"></param>
         /// <param name="decoratorType"></param>
@@ -127,7 +127,7 @@ namespace EtAlii.xTechnology.MicroContainer
 
         /// <summary>
         /// Registers an initializer that will be called right after an object has been constructed.
-        /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.  
+        /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.
         /// </summary>
         /// <param name="initializer"></param>
         /// <typeparam name="T"></typeparam>
@@ -152,7 +152,7 @@ namespace EtAlii.xTechnology.MicroContainer
 
         /// <summary>
         /// Registers a lazy initializer that will be called right after the requested root object has been constructed.
-        /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.  
+        /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.
         /// </summary>
         /// <param name="initializer"></param>
         /// <typeparam name="T"></typeparam>
