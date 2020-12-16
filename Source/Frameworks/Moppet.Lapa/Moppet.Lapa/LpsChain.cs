@@ -26,7 +26,7 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// List of parsers.
 		/// </summary>
-		private List<LpsParser> _mParsers = new List<LpsParser>();
+		private List<LpsParser> _mParsers = new();
 
 		/// <summary>
 		/// The default constructor. An empty chain.
@@ -315,7 +315,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public LpmParser Maybe_()
 		{
-			return new LpmParser((p) => Lp.Maybe_(ToParser(), p));
+			return new((p) => Lp.Maybe_(ToParser(), p));
 		}
 
 		/// <summary>
@@ -325,7 +325,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public LpmParser OneOrMore_()
 		{
-			return new LpmParser((p) => Lp.OneOrMore_(ToParser(), p));
+			return new((p) => Lp.OneOrMore_(ToParser(), p));
 		}
 
 		/// <summary>
@@ -335,7 +335,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public LpmParser ZeroOrMore_()
 		{
-			return new LpmParser((p) => Lp.ZeroOrMore(ToParser(), p));
+			return new(p => Lp.ZeroOrMore(ToParser(), p));
 		}
 
 		/// <summary>

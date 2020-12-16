@@ -6,8 +6,8 @@
     internal class ModellingVisitor : IGraphQLAstVisitor
     {
         public Document Document { get; private set; }
-        protected Stack<object> Stack { get; } = new Stack<object>();
-        
+        protected Stack<object> Stack { get; } = new();
+
         public void Visit(Operation operation)
         {
             switch (operation.OperationType)

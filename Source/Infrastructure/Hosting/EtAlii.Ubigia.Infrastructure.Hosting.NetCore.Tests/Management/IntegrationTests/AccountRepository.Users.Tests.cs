@@ -212,7 +212,7 @@
 	            .GetAll()
 	            .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(addedAccount1);
             Assert.NotNull(addedAccount2);
@@ -222,7 +222,7 @@
 
         private Account CreateAccount()
         {
-            return new Account
+            return new()
             {
                 Name = Guid.NewGuid().ToString(),
                 Password = Guid.NewGuid().ToString(),

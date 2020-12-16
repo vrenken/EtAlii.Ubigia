@@ -5,7 +5,7 @@
         public THostTestContext Create<THostTestContext>()
             where THostTestContext : class, IHostTestContext, new()
         {
-            return new THostTestContext();
+            return new();
         }
     }
 }

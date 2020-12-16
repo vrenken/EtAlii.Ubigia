@@ -7,7 +7,7 @@
     {
         public static ConnectivityDetails ToLocal(this WireProtocol.ConnectivityDetails connectivityDetails)
         {
-            return new ConnectivityDetails
+            return new()
             {
                 ManagementAddress = connectivityDetails.ManagementAddress,
                 DataAddress = connectivityDetails.DataAddress
@@ -20,7 +20,7 @@
         }
         public static WireProtocol.ConnectivityDetails ToWire(this ConnectivityDetails connectivityDetails)
         {
-            return new WireProtocol.ConnectivityDetails
+            return new()
             {
                 ManagementAddress = connectivityDetails.ManagementAddress,
                 DataAddress = connectivityDetails.ManagementAddress,

@@ -5,10 +5,10 @@
         private readonly IPathBuilder _pathBuilder;
         private readonly ILatestEntryGetter _latestEntryGetter;
         private readonly IContainerProvider _containerProvider;
-        private readonly object _lockObject = new object();
+        private readonly object _lockObject = new();
 
         public NextContainerIdentifierFromFolderAlgorithm(
-            IPathBuilder pathBuilder, 
+            IPathBuilder pathBuilder,
             ILatestEntryGetter latestEntryGetter,
             IContainerProvider containerProvider)
         {

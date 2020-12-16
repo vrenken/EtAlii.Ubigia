@@ -21,7 +21,7 @@
         private bool _firstWrite;
         private readonly Action _abortRequest;
 
-        private readonly Pipe _pipe = new Pipe();
+        private readonly Pipe _pipe = new();
 
         internal ResponseStream(Func<Task> onFirstWriteAsync, Action abortRequest)
         {
@@ -151,8 +151,8 @@
 
         private static void VerifyBuffer(
             // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
-            byte[] buffer, 
-            int offset, int count, 
+            byte[] buffer,
+            int offset, int count,
             // ReSharper disable once ParameterOnlyUsedForPreconditionCheck.Local
             bool allowEmpty)
         {

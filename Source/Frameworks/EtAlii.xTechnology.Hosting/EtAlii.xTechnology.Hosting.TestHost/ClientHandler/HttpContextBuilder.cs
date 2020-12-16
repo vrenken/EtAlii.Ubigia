@@ -11,11 +11,11 @@
     {
         private readonly IHttpApplication<Context> _application;
         private readonly HttpContext _httpContext;
-        
-        private readonly TaskCompletionSource<HttpContext> _responseTcs = new TaskCompletionSource<HttpContext>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+        private readonly TaskCompletionSource<HttpContext> _responseTcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
         private readonly ResponseStream _responseStream;
-        private readonly ResponseFeature _responseFeature = new ResponseFeature();
-        private readonly CancellationTokenSource _requestAbortedSource = new CancellationTokenSource();
+        private readonly ResponseFeature _responseFeature = new();
+        private readonly CancellationTokenSource _requestAbortedSource = new();
         private bool _pipelineFinished;
         private Context _testContext;
 
@@ -31,7 +31,7 @@
             _httpContext.Features.Set<IHttpResponseFeature>(_responseFeature);
             var requestLifetimeFeature = new HttpRequestLifetimeFeature {RequestAborted = _requestAbortedSource.Token};
             _httpContext.Features.Set<IHttpRequestLifetimeFeature>(requestLifetimeFeature);
-            
+
             _responseStream = new ResponseStream(ReturnResponseMessageAsync, AbortRequest);
             _responseFeature.Body = _responseStream;
         }

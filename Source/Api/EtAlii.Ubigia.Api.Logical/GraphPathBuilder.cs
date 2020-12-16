@@ -8,7 +8,7 @@
     [DebuggerStepThrough]
     public class GraphPathBuilder : IGraphPathBuilder
     {
-        private readonly List<GraphPathPart> _parts = new List<GraphPathPart>();
+        private readonly List<GraphPathPart> _parts = new();
 
         public IGraphPathBuilder Add(in Identifier startIdentifier)
         {
@@ -46,7 +46,7 @@
 
         public GraphPath ToPath()
         {
-            return new GraphPath(_parts.ToArray());
+            return new(_parts.ToArray());
         }
 
         public void Clear()

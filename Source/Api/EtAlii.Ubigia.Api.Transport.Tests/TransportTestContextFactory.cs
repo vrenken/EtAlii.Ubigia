@@ -7,7 +7,7 @@
         public TTransportTestContext Create<TTransportTestContext>()
             where TTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, new()
         {
-            return new TTransportTestContext(); 
+            return new();
         }
     }
 }

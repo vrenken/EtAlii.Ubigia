@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public abstract class SystemBase : ISystem 
+    public abstract class SystemBase : ISystem
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -75,6 +75,6 @@
         }
 
         protected virtual ICommand[] CreateCommands() => Array.Empty<ICommand>();
-        protected virtual Status CreateInitialStatus() => new Status(GetType().Name);
+        protected virtual Status CreateInitialStatus() => new(GetType().Name);
     }
 }

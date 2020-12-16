@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public IntegerCommand Create(int parameter)
         {
-            return new IntegerCommand(parameter);
+            return new(parameter);
         }
 
         public void  Handle(IntegerCommand command)

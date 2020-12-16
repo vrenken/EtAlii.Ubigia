@@ -23,12 +23,12 @@ namespace Moppet.Lapa
 	/// </summary>
 	public static partial class Lp
 	{
-		/// <summary> 
-		/// Returns all the search matches throughout the text. 
-		/// Sequence is applied to the text parser, passing the remainder of the previous parser successful outcome, until 
-		/// While the text is recognized. Returns all matching results. Found between compliance can not be 
-		/// Breaks. 
-		/// </Summary> 
+		/// <summary>
+		/// Returns all the search matches throughout the text.
+		/// Sequence is applied to the text parser, passing the remainder of the previous parser successful outcome, until
+		/// While the text is recognized. Returns all matching results. Found between compliance can not be
+		/// Breaks.
+		/// </Summary>
 		/// <param name="parser">parser.</param>
 		/// <param name="text">block of text.</param>
 		/// <returns>Results.</Returns>
@@ -48,8 +48,8 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-		/// Consistently applied to the text parser, passing parser residue from the previous result, until 
-		/// yet recognized text. Returns all matching results. Found between compliance can not be 
+		/// Consistently applied to the text parser, passing parser residue from the previous result, until
+		/// yet recognized text. Returns all matching results. Found between compliance can not be
         /// discontinuities.</summary>
         /// <param name="parser">parser.</param>
 		/// <param name="text">text Block.</param>
@@ -69,7 +69,7 @@ namespace Moppet.Lapa
 		public static LpsParser One(Func<char, bool> predicate)
 		{
             //TODO: LpLex to alter in Expression
-            return new LpsParser((p) => p.Length > 0 && predicate(p[0]) ? new LpNode(p, 1) : new LpNode(p));
+            return new(p => p.Length > 0 && predicate(p[0]) ? new LpNode(p, 1) : new LpNode(p));
 		}
 
 		/// <summary>
@@ -79,7 +79,7 @@ namespace Moppet.Lapa
 		/// <returns>Therma parser.</returns>
 		public static LpsParser Char(char ch)
 		{
-            return new LpsParser((p) => p.Length > 0 && p[0] == ch ? new LpNode(p, 1) : new LpNode(p));
+            return new(p => p.Length > 0 && p[0] == ch ? new LpNode(p, 1) : new LpNode(p));
 		}
 
 		/// <summary>
@@ -88,11 +88,11 @@ namespace Moppet.Lapa
 		/// <returns>Therma parser.</returns>
 		public static LpsParser Digit()
 		{
-            return new LpsParser((p) => p.Length > 0 && char.IsDigit(p[0]) ? new LpNode(p, 1) : new LpNode(p));
+            return new(p => p.Length > 0 && char.IsDigit(p[0]) ? new LpNode(p, 1) : new LpNode(p));
 		}
 
         /// <summary>
-        /// Parser one decimal digit in a given range [minValue; maxValue]. 
+        /// Parser one decimal digit in a given range [minValue; maxValue].
         /// For example, you expect only the digit from 1 to 6, then call Lp.Digit (1, 6).
         /// </summary>
         /// <param name="minDigitValue">minimum value  [0;9].</param>
@@ -100,22 +100,22 @@ namespace Moppet.Lapa
         /// <returns>parser.</returns>
         public static LpsParser Digit(int minDigitValue, int maxDigitValue)
         {
-            return new LpsParser((p) =>
+            return new(p =>
             {
                 if (p.Length <= 0 || !char.IsDigit(p[0]))
                     return new LpNode(p);
-                var value = (p[0] - '0');
-                return (minDigitValue >= value && value <= maxDigitValue) ? new LpNode(p, 1) : new LpNode(p);
+                var value = p[0] - '0';
+                return minDigitValue >= value && value <= maxDigitValue ? new LpNode(p, 1) : new LpNode(p);
             });
         }
-		
+
 		/// <summary>
         /// One literal parser.
 		/// </summary>
 		/// <returns>Therma parser.</returns>
 		public static LpsParser Letter()
 		{
-            return new LpsParser((text) => text.Length > 0 && char.IsLetter(text[0]) ? new LpNode(text, 1) : new LpNode(text));
+            return new(text => text.Length > 0 && char.IsLetter(text[0]) ? new LpNode(text, 1) : new LpNode(text));
 		}
 
 		/// <summary>
@@ -124,7 +124,7 @@ namespace Moppet.Lapa
 		/// <returns>Therma parser.</returns>
 		public static LpsParser LetterOrDigit()
 		{
-            return new LpsParser((text) => text.Length > 0 && char.IsLetterOrDigit(text[0]) ? new LpNode(text, 1) : new LpNode(text));
+            return new(text => text.Length > 0 && char.IsLetterOrDigit(text[0]) ? new LpNode(text, 1) : new LpNode(text));
 		}
 
 
@@ -140,7 +140,7 @@ namespace Moppet.Lapa
 		}
 
         /// <summary>
-        /// Parser search string of characters in the specified range. 
+        /// Parser search string of characters in the specified range.
         /// Greedy algorithm, ie, take the maximum allowed sequence.
         /// </summary>
         /// <param name="predicate">Lambda request.</param>
@@ -150,17 +150,17 @@ namespace Moppet.Lapa
         public static LpsParser Range(Expression<Func<char, bool>> predicate, int minCount, int maxCount)
         {
             if (minCount < 0)
-                throw new ArgumentOutOfRangeException("minCount", "minCount must be greater than or equal zero.");
+                throw new ArgumentOutOfRangeException(nameof(minCount), "minCount must be greater than or equal zero.");
 
             if (minCount > maxCount)
-                throw new ArgumentOutOfRangeException("maxCount", "maxCount must be greater than or equal minCount.");
+                throw new ArgumentOutOfRangeException(nameof(maxCount), "maxCount must be greater than or equal minCount.");
 
             var func = LpLex.Range(predicate, minCount, maxCount).Compile();
             return new LpsParser(func);
         }
 
         /// <summary>
-        /// Parser search for the specified number of characters in the range. 
+        /// Parser search for the specified number of characters in the range.
         /// Greedy algorithm, ie, take the maximum allowed sequence.
         /// </summary>
         /// <param name="ch">symbol.</param>
@@ -170,18 +170,18 @@ namespace Moppet.Lapa
         public static LpsParser Range(char ch, int minCount, int maxCount)
         {
             if (minCount < 0)
-                throw new ArgumentOutOfRangeException("minCount", "minCount must be greater than or equal zero.");
+                throw new ArgumentOutOfRangeException(nameof(minCount), "minCount must be greater than or equal zero.");
 
             if (minCount > maxCount)
-                throw new ArgumentOutOfRangeException("maxCount", "maxCount must be greater than or equal minCount.");
+                throw new ArgumentOutOfRangeException(nameof(maxCount), "maxCount must be greater than or equal minCount.");
 
-            return new LpsParser((text) =>
+            return new LpsParser(text =>
             {
-                var end = text.Length > maxCount ? (maxCount + 1) : text.Length;
+                var end = text.Length > maxCount ? maxCount + 1 : text.Length;
                 int cur = 0, ind = text.Index;
                 var str = text.Source;
                 while (cur < end && str[ind] == ch) { ++ind; ++cur; }
-                return (cur >= minCount && cur <= maxCount) ? new LpNode(text, cur) : new LpNode(text);
+                return cur >= minCount && cur <= maxCount ? new LpNode(text, cur) : new LpNode(text);
             });
         }
 
@@ -191,7 +191,7 @@ namespace Moppet.Lapa
         /// <returns>Parser for determining one or more literal.</returns>
 		public static LpsParser Letters()
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
 				int end = text.Length, cur = 0, ind = text.Index;
 				var str = text.Source;
@@ -219,7 +219,7 @@ namespace Moppet.Lapa
         /// <returns>Parser search of one or more characters.</returns>
 		public static LpsParser OneOrMore(char ch)
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
                 //fixed (char* end = text.Source + text.Index + text.Length)
                 //{
@@ -238,8 +238,8 @@ namespace Moppet.Lapa
 
 
 		/// <summary>
-		/// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and 
-        /// requirements followed by other characters. Also the name is always limited reach.		
+		/// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and
+        /// requirements followed by other characters. Also the name is always limited reach.
         /// </summary>
         /// <param name="firstChar">The first character.</param>
         /// <param name="maybeNextChars">Zero or more subsequent characters.</param>
@@ -264,22 +264,22 @@ namespace Moppet.Lapa
 		}
 
         /// <summary>
-        /// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and 
-        /// requirements followed by other characters. Also the name is always limited reach.		
+        /// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and
+        /// requirements followed by other characters. Also the name is always limited reach.
         /// </summary>
 	    public static LpsParser Name()
 	    {
 	        return Lp.Name
 	        (
-	            c => (char.IsLetter(c) || c == '_'),
-	            c => (char.IsLetterOrDigit(c) || c == '_')
+	            c => char.IsLetter(c) || c == '_',
+	            c => char.IsLetterOrDigit(c) || c == '_'
 	        );
 	    }
 
 	    /// <summary>
-        /// Parser an identifier or a domain name, which must start with a certain set of characters (eg letters only) 
-        /// and requirements for subsequent characters other. In behalf of always limited reach. 
-        /// Here name can be written with a hyphen (dashChar), with a dash can not be repeated more than once in a row (-), to be at the beginning or end of the name. 
+        /// Parser an identifier or a domain name, which must start with a certain set of characters (eg letters only)
+        /// and requirements for subsequent characters other. In behalf of always limited reach.
+        /// Here name can be written with a hyphen (dashChar), with a dash can not be repeated more than once in a row (-), to be at the beginning or end of the name.
         /// After a dash or trailing characters allowed lastChars.
         /// </summary>
         /// <param name="firstChars">The first character or characters.</param>
@@ -293,7 +293,7 @@ namespace Moppet.Lapa
             return new LpsParser(func);
         }
 
-		
+
 		/// <summary>
         /// Parser that looks for matches for the specified term.
 		/// </summary>
@@ -301,7 +301,7 @@ namespace Moppet.Lapa
 		/// <returns>result.</returns>
 		public static LpsParser Term(string term)
 		{
-            return new LpsParser((text) => text.StartsWith(term) ? new LpNode(text, term.Length) : new LpNode(text));
+            return new(text => text.StartsWith(term) ? new LpNode(text, term.Length) : new LpNode(text));
 		}
 
 		/// <summary>
@@ -312,14 +312,14 @@ namespace Moppet.Lapa
 		/// <returns>result.</returns>
 		public static LpsParser Term(string term, bool ignoreCase)
         {
-            return new LpsParser((text) => text.StartsWith(term, ignoreCase) ? new LpNode(text, term.Length) : new LpNode(text));
+            return new(text => text.StartsWith(term, ignoreCase) ? new LpNode(text, term.Length) : new LpNode(text));
         }
 
         /// <summary>
-        /// Parser that looks for matches for any given word. 
-        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b ​​and c - is the word. 
-        /// Words are matched in the order in which they are passed as arguments. 
-        /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if 
+        /// Parser that looks for matches for any given word.
+        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b ​​and c - is the word.
+        /// Words are matched in the order in which they are passed as arguments.
+        /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if
         /// We seek "(a | ab)", it is found only the first letter.
         /// </summary>
         /// <param name="words">Words. Empty words can not pass here.</param>
@@ -332,7 +332,7 @@ namespace Moppet.Lapa
 
             // TODO:have the option to speed up the search by using trees and search the hash table.
             //
-            return new LpsParser((text) =>
+            return new(text =>
             {
                 var wc = words.Length;
                 var tl = text.Length;
@@ -351,10 +351,10 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Parser that looks for matches for any given word. 
-        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b and c - is the word. 
-        /// Words are matched in the order in which they are passed as arguments. 
-        /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if 
+        /// Parser that looks for matches for any given word.
+        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b and c - is the word.
+        /// Words are matched in the order in which they are passed as arguments.
+        /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if
         /// We seek "(a | ab)", it is found only the first letter.
         /// </summary>
         /// <param name="ignoreCase"></param>
@@ -368,7 +368,7 @@ namespace Moppet.Lapa
 
             // TODO:have the option to speed up the search by using trees and search the hash table.
             //
-            return new LpsParser((text) =>
+            return new(text =>
             {
                 var wc = words.Length;
                 var tl = text.Length;
@@ -407,8 +407,8 @@ namespace Moppet.Lapa
 
         /// <summary>
         /// Wrap the parser into new parser to wrap the node and mark it by new id.
-        /// 
-        /// Creates an empty wrapper over parser parser, to the resulting node 
+        ///
+        /// Creates an empty wrapper over parser parser, to the resulting node
         /// also wrap in additional node and tag identifier.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -420,11 +420,11 @@ namespace Moppet.Lapa
                 return new LpsParser(id, wrapNode: true, parser: parser.Recurse ? parser.Do : parser.Parser);
             return new LpsParser(id, wrapNode: true, parser: parser.Do);
         }
-        
+
         /// <summary>
         /// Wrap the parser into new parser to wrap the node and mark it by new id.
-        /// 
-        /// Creates an empty wrapper over parser parser, to the resulting node 
+        ///
+        /// Creates an empty wrapper over parser parser, to the resulting node
         /// also wrap in additional node and tag identifier.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -451,21 +451,21 @@ namespace Moppet.Lapa
         public static LpsParser NotEnd => new(text => text.Length > 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
 
         /// <summary>
-		/// Parser empty successful match. 
+		/// Parser empty successful match.
 		/// Always returns a blank line.
         /// </summary>
 		/// <returns>parser.</returns>
 		public static LpsParser Empty => new("Empty", text => new LpNode(new LpText(text.Source, text.Index, 0), text));
 
         /// <summary>
-        /// Parser that always returns failure have not even begun to parse the text. 
+        /// Parser that always returns failure have not even begun to parse the text.
         /// This is good to use a parser combinator satisfying Lp.If.
         /// </summary>
         /// <returns>parser.</returns>
         public static LpsParser Fail => new("Fail", p => new LpNode(p));
 
         /// <summary>
-        /// Returns the maximum length of line, or null. 
+        /// Returns the maximum length of line, or null.
         /// Match all must belong to one source.
         /// </summary>
 		/// <param name="results">Correspondences. Match all must belong to one source.</param>
@@ -496,18 +496,18 @@ namespace Moppet.Lapa
 		/// <returns>Singleparser.</returns>
 		public static LpsParser TakeMax(this LpmParser parser)
 		{
-            return new LpsParser((p) => parser.Do(p).Max() ?? new LpNode(parser.Identifier, p));
+            return new(p => parser.Do(p).Max() ?? new LpNode(parser.Identifier, p));
 		}
 
 		/// <summary>
-        /// Converts multiparser that returns many options indiscriminately into a single (with a result of the parser) 
+        /// Converts multiparser that returns many options indiscriminately into a single (with a result of the parser)
         /// choosing (expecting) the first and only line.
         /// </summary>
 		/// <param name="parser">Multiparser.</param>
 		/// <returns>Singleparser.</returns>
 		public static LpsParser TakeOne(this LpmParser parser)
 		{
-            return new LpsParser((p) => parser.Do(p).FirstOrDefault() ?? new LpNode(parser.Identifier, p));
+            return new(p => parser.Do(p).FirstOrDefault() ?? new LpNode(parser.Identifier, p));
 		}
 
 		/// <summary>
@@ -519,7 +519,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser filter.</returns>
 		public static LpmParser TakeRange(this LpmParser parser, int minLength, int maxLength)
 		{
-			return new LpmParser((p) => parser.Do(p).Where(r => minLength <= r.Match.Length && r.Match.Length <= maxLength));
+			return new(p => parser.Do(p).Where(r => minLength <= r.Match.Length && r.Match.Length <= maxLength));
 		}
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace Moppet.Lapa
         /// <returns>Followed by the parser results.</returns>
         public static LpsParser Treat(this LpsParser parser, Func<LpNode, LpNode> treat)
         {
-            return new LpsParser(parser.Identifier, (t) =>
+            return new(parser.Identifier, t =>
             {
                 var node = parser.Do(t);
                 return treat(node);
@@ -538,7 +538,7 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Adds to the parser function processing (repair or validation) compliance 
+        /// Adds to the parser function processing (repair or validation) compliance
         /// If a match is successful (Success).
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -546,7 +546,7 @@ namespace Moppet.Lapa
         /// <returns>Parser followed by results.</returns>
         public static LpsParser TreatSuccess(this LpsParser parser, Func<LpNode, LpNode> treat)
         {
-            return new LpsParser(parser.Identifier, (t) =>
+            return new(parser.Identifier, t =>
             {
                 var node = parser.Do(t);
                 if (!node.Success)
@@ -556,7 +556,7 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Adds to the parser function processing (repair or validation) compliance 
+        /// Adds to the parser function processing (repair or validation) compliance
         /// if a match fails (! Success).
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -564,7 +564,7 @@ namespace Moppet.Lapa
         /// <returns>Parser followed by results.</returns>
         public static LpsParser TreatFail(this LpsParser parser, Func<LpNode, LpNode> treat)
         {
-            return new LpsParser(parser.Identifier, (t) => 
+            return new(parser.Identifier, t =>
             {
                 var node = parser.Do(t);
                 if (node.Success)
@@ -582,66 +582,66 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser filter.</returns>
 		public static LpmParser Filter(this LpmParser parser, Func<LpText, bool> filter)
 		{
-			return new LpmParser((p) => parser.Do(p).Where(r => filter(r.Match)));
+			return new(p => parser.Do(p).Where(r => filter(r.Match)));
 		}
 
 		/// <summary>
-        /// Parser that analyzes the character underneath the block of text (Lookbehind). 
-        /// Ie he looks at the character back if not first block of text strings. 
-        /// If the symbol satisfies behindChar or if it started a string, returning empty successful match, 
+        /// Parser that analyzes the character underneath the block of text (Lookbehind).
+        /// Ie he looks at the character back if not first block of text strings.
+        /// If the symbol satisfies behindChar or if it started a string, returning empty successful match,
         /// otherwise it returns failure.
         /// </summary>
 		/// <param name="behindChar">F-I identify the correct symbol to us.</param>
 		/// <returns>Success or failure of a blank line.</returns>
 		public static LpsParser Lookbehind(Func<char, bool> behindChar)
 		{
-            return new LpsParser((text) => text.Index <= 0 || behindChar(text[-1]) ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
+            return new(text => text.Index <= 0 || behindChar(text[-1]) ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
 		}
 
         /// <summary>
-        /// Parser that analyzes the character underneath the block of text (lookahead). 
-        /// Ie he looks at the character back if not first block of text strings. 
-        /// If the character is behindChar or if it started a string, returning empty successful match, 
+        /// Parser that analyzes the character underneath the block of text (lookahead).
+        /// Ie he looks at the character back if not first block of text strings.
+        /// If the character is behindChar or if it started a string, returning empty successful match,
         /// otherwise it returns failure.
         /// </summary>
         /// <param name="behindChar">The required character.</param>
         /// <returns>Success or failure of a blank line.</returns>
         public static LpsParser Lookbehind(char behindChar)
         {
-            return new LpsParser((text) => text.Index <= 0 || behindChar == text[-1] ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
+            return new(text => text.Index <= 0 || behindChar == text[-1] ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
         }
 
         /// <summary>
-        /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance 
+        /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance
         /// if the character satisfies or if we end the text, otherwise returns fail.
         /// </summary>
         /// <param name="aheadChar">F-I identify the correct symbol to us.</param>
         /// <returns>Success or failure of a blank line.</returns>
         public static LpsParser Lookahead(Func<char, bool> aheadChar)
         {
-            return new LpsParser((text) => (text.Length <= 0 || aheadChar(text[0]) ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text)));
+            return new(text => text.Length <= 0 || aheadChar(text[0]) ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
         }
 
         /// <summary>
-        /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance 
+        /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance
         /// if the character satisfies or if we end the text, otherwise returns fail.
         /// </summary>
         /// <param name="aheadChar">F-I identify the correct symbol to us.</param>
         /// <returns>Success or failure of a blank line.</returns>
         public static LpsParser Lookahead(char aheadChar)
         {
-            return new LpsParser((text) => (text.Length <= 0 || text[0] == aheadChar ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text)));
+            return new(text => text.Length <= 0 || text[0] == aheadChar ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
         }
 
         /// <summary>
-        /// Applies parser and checks the result to be true, but does not capture it, ie returns an empty successful match, 
+        /// Applies parser and checks the result to be true, but does not capture it, ie returns an empty successful match,
         /// if the parser successfully completed, or if we are at the end of the text, otherwise it returns failure.
         /// </summary>
         /// <param name="ahead">Parser that checks, but what's next there?</param>
         /// <returns>Success or failure of a blank line.</returns>
         public static LpsParser Lookahead(LpsParser ahead)
         {
-            return new LpsParser((text) => (text.Length <= 0 || ahead.Do(text).Success ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text)));
+            return new(text => text.Length <= 0 || ahead.Do(text).Success ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
         }
 
 
@@ -654,32 +654,32 @@ namespace Moppet.Lapa
         /// <returns>Modified parser.</returns>
         public static LpsParser Look(this LpsParser parser, Func<char, bool> behind = null, Func<char, bool> ahead = null)
         {
-            if (ahead != null && behind != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: (t) =>
+            if (ahead != null && behind != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: t =>
             {
                 if (!(t.Index <= 0 || behind(t[-1])))
                     return new LpNode(t);
                 var res = parser.Parser(t);
                 if (res.Match.Length < 0)
                     return res;
-                return (res.Rest.Length <= 0 || ahead(res.Rest[0])) ? res : new LpNode(t);
+                return res.Rest.Length <= 0 || ahead(res.Rest[0]) ? res : new LpNode(t);
             });
 
-            if (behind != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: (t) =>
+            if (behind != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: t =>
             {
                 if (!(t.Index <= 0 || behind(t[-1])))
                     return new LpNode(t);
                 return parser.Parser(t);
             });
 
-            if (ahead != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: (t) =>
+            if (ahead != null) return new LpsParser(id: parser.Identifier, wrapNode: parser.WrapNode, recurse: parser.Recurse, parser: t =>
             {
                 var res = parser.Parser(t);
                 if (res.Match.Length < 0)
                     return res;
-                return (res.Rest.Length <= 0 || ahead(res.Rest[0])) ? res : new LpNode(t);
+                return res.Rest.Length <= 0 || ahead(res.Rest[0]) ? res : new LpNode(t);
             });
 
-            throw new ArgumentNullException("behind");
+            throw new ArgumentNullException(nameof(behind));
         }
 
 		/// <summary>
@@ -691,7 +691,7 @@ namespace Moppet.Lapa
 		/// <returns>S parser condition.</returns>
 		public static LpsParser If(char condition, LpsParser ifTrue, LpsParser ifFalse)
 		{
-			return new LpsParser((t) =>
+			return new(t =>
 			{
 				if (t.Length <= 0)
                     return new LpNode(t);
@@ -708,7 +708,7 @@ namespace Moppet.Lapa
 		/// <returns>S parser condition.</returns>
 		public static LpsParser If(Func<char, bool> condition, LpsParser ifTrue, LpsParser ifFalse)
 		{
-			return new LpsParser((t) =>
+			return new(t =>
 			{
 				if (t.Length <= 0)
                     return new LpNode(t);
@@ -725,11 +725,11 @@ namespace Moppet.Lapa
         /// <returns>S parser condition.</returns>
         public static LpsParser If(LpsParser condition, LpsParser ifTrue, LpsParser ifFalse)
         {
-            return new LpsParser((t) => condition.Do(t).Success ? ifTrue.Do(t) : ifFalse.Do(t));
+            return new(t => condition.Do(t).Success ? ifTrue.Do(t) : ifFalse.Do(t));
         }
 
     	/// <summary>
-		/// Returns specific parser one character. 
+		/// Returns specific parser one character.
 		/// This parser selects a symbol if it is not the start of a chain, which recognizes the parser.
 		/// Lp.Not(Lp.Term("345")).OneOrMore().Do("12345") == "12".
 		/// </summary>
@@ -741,7 +741,7 @@ namespace Moppet.Lapa
 			if (!string.IsNullOrWhiteSpace(parser.Identifier))
 				id = "Not(" + parser.Identifier + ")";
 
-			return new LpsParser((text) =>
+			return new LpsParser(text =>
 			{
                 if (text.Length <= 0)
                     return new LpNode(id, text);
@@ -761,7 +761,7 @@ namespace Moppet.Lapa
 		{
 			var initialLength = text.Length;
 			var currentLength = 0;
-			
+
 			while (++currentLength <= initialLength)
 			{
 				var res = parser.Do(new LpText(text.Source, text.Index + initialLength - currentLength, currentLength));
@@ -772,7 +772,7 @@ namespace Moppet.Lapa
 		}
 
         /// <summary>
-        /// Memorization. You rarely helps accelerate parsing simple designs innogda but it still, it accelerates significantly. 
+        /// Memorization. You rarely helps accelerate parsing simple designs innogda but it still, it accelerates significantly.
         /// A typical parser: (a | a + b | a + b + c | a + b + c + d), where a - portion which is three times again calculated and is therefore suitable for memorizatsii.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -785,7 +785,7 @@ namespace Moppet.Lapa
         }
 
 		/// <summary>
-        /// Memorizatsiya. You rarely helps accelerate parsing simple designs innogda but it still, it accelerates significantly. 
+        /// Memorizatsiya. You rarely helps accelerate parsing simple designs innogda but it still, it accelerates significantly.
         /// A typical parser: (a | a + b | a + b + c | a + b + c + d), where a - portion which is three times again calculated and is therefore suitable for memorizatsii.
         /// </summary>
 		/// <param name="parser">parser.</param>
@@ -794,7 +794,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
         public static LpsParser Mem(this LpsParser parser, IDictionary<LpText, LpMemNode> storage = null, bool sync = true)
 		{
-			return new LpsParser(id: null, wrapNode: false, parser: Mem(parser.Do, storage));
+			return new(id: null, wrapNode: false, parser: Mem(parser.Do, storage));
 		}
 
 
@@ -812,12 +812,11 @@ namespace Moppet.Lapa
 
             if (sync)
             {
-                return (t) =>
+                return t =>
                 {
-                    LpMemNode memRes = null;
                     lock (storage)
                     {
-                        if (storage.TryGetValue(t, out memRes))
+                        if (storage.TryGetValue(t, out var memRes))
                         {
                             ++memRes.Count;
                             return memRes.Node;
@@ -840,10 +839,9 @@ namespace Moppet.Lapa
                     return resultNode;
                 };
             }
-			return (t) =>
+			return t =>
 			{
-                LpMemNode memRes = null;
-                if (storage.TryGetValue(t, out memRes))
+                if (storage.TryGetValue(t, out var memRes))
                 {
                     ++memRes.Count;
                     return memRes.Node;
@@ -869,11 +867,11 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public static LpsParser InBrackets(LpsParser openBracket, LpsParser body, LpsParser closeBracket)
 		{
-			return new LpsParser((new LpBrackets(openBracket, body, closeBracket)).Do);
+			return new(new LpBrackets(openBracket, body, closeBracket).Do);
 		}
 
 		/// <summary>
-        /// Parser to parse the list of one or more elements, recorded, for example, a comma or other delimiter. 
+        /// Parser to parse the list of one or more elements, recorded, for example, a comma or other delimiter.
         /// For example, the numbers 1,2,3.
         /// </summary>
 		/// <param name="listItem">Item.</param>
@@ -881,7 +879,7 @@ namespace Moppet.Lapa
 		/// <returns>greedy parser.</returns>
         public static LpsParser List(LpsParser listItem, char delimiter)
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
 				var last = listItem.Do(text);
 				if (!last.Success)
@@ -907,10 +905,10 @@ namespace Moppet.Lapa
 				return new LpNode(text, last.Rest.Index - text.Index, "List", children);
 			});
 		}
-		
+
 		/// <summary>
-        /// Parser to parse the list of one or more elements, recorded, for example, a comma or other delimiter. 
-        /// For example, the numbers 1,2,3. 
+        /// Parser to parse the list of one or more elements, recorded, for example, a comma or other delimiter.
+        /// For example, the numbers 1,2,3.
         /// Note: for the parameters and maybeSpaces maybeTail not need to do Maybe () itself is taken into account automatically.
         /// </summary>
 		/// <param name="listItem">Item.</param>
@@ -919,7 +917,7 @@ namespace Moppet.Lapa
 		/// <returns>greedy parser.</returns>
 		public static LpsParser List(LpsParser listItem, LpsParser delimiter, LpsParser maybeSpaces = null)
 		{
-			if (maybeSpaces == null) return new LpsParser((text) =>
+			if (maybeSpaces == null) return new LpsParser(text =>
 			{
 				var last = listItem.Do(text);
 				if (!last.Success)
@@ -945,7 +943,7 @@ namespace Moppet.Lapa
 			});
 
 			// ------------------------------------------------------------------
-			return new LpsParser((text) =>
+			return new LpsParser(text =>
 			{
 				var last = listItem.Do(text);
 				if (!last.Success)
@@ -981,7 +979,7 @@ namespace Moppet.Lapa
 
 
         /// <summary>
-        /// This function modifies the parser body, borrowing from it all the properties and child nodes, child nodes still adds 
+        /// This function modifies the parser body, borrowing from it all the properties and child nodes, child nodes still adds
         /// possible tails left and right.
         /// </summary>
 		/// <param name="body">The main body.</param>
@@ -994,7 +992,7 @@ namespace Moppet.Lapa
         }
 
 		/// <summary>
-        /// This function modifies the parser body, borrowing from it all the properties and child nodes, child nodes still adds 
+        /// This function modifies the parser body, borrowing from it all the properties and child nodes, child nodes still adds
         /// possible tails left and right.
         /// </summary>
 		/// <param name="body">The main body.</param>
@@ -1003,7 +1001,7 @@ namespace Moppet.Lapa
 		/// <returns>greedy parser.</returns>
 		public static LpsParser MaybeTails(this LpsParser body, LpsParser maybeLeft, LpsParser maybeRight)
 		{
-			return new LpsParser(id: body.Identifier, wrapNode: body.WrapNode, recurse: body.Recurse, parser: (text) =>
+			return new(id: body.Identifier, wrapNode: body.WrapNode, recurse: body.Recurse, parser: text =>
 			{
                 var children = new List<LpNode>(0x10);
 
@@ -1035,7 +1033,7 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Parser to parse the string of binary operators and operands. For example, one +2-3/9. 
+        /// Parser to parse the string of binary operators and operands. For example, one +2-3/9.
         /// Minimum construction for parsing: a + b, ie right operand is required.
         /// </summary>
 		/// <param name="leftOperand">Left or the first operand.</param>
@@ -1048,7 +1046,7 @@ namespace Moppet.Lapa
 			if (spacesBetween == null)
 				spacesBetween = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r' || c == '\n');
 
-			return new LpsParser((text) =>
+			return new LpsParser(text =>
 			{
 
                 var children = new List<LpNode>(0x10);
@@ -1077,7 +1075,7 @@ namespace Moppet.Lapa
                 var right = rightOperand.Do(rSpaces.Rest); // Right operand.
 				if (right.Match.Length < 0)
 					return right;
-				
+
 				// Further repeating tail (operator-operand).
 				var last = right;
 				while (true)
@@ -1129,8 +1127,8 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Returns a result set with the result of the concatenation prevResults parsing nextParser. 
-        /// Unlike Next, this function filters to prevent empty results looping quantifier for 
+        /// Returns a result set with the result of the concatenation prevResults parsing nextParser.
+        /// Unlike Next, this function filters to prevent empty results looping quantifier for
         /// can not connect to an empty move forward.
         /// </summary>
 		/// <param name="prevResults">Options analysis in the previous step.</param>
@@ -1154,7 +1152,7 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Implementation Distinct field Match, ie nodes are considered equal if the field Match one node coincides with a similar field of another node. 
+        /// Implementation Distinct field Match, ie nodes are considered equal if the field Match one node coincides with a similar field of another node.
         /// Other fields are not involved in the comparison.
         /// </summary>
 		/// <param name="variants">Distinct parsed.</param>
@@ -1181,7 +1179,7 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Removes empty repetitions of correspondences from the list of options parsing. 
+        /// Removes empty repetitions of correspondences from the list of options parsing.
         /// This feature works quickly.
         /// </summary>
 		/// <param name="variants">Distinct parsed.</param>
@@ -1236,7 +1234,7 @@ namespace Moppet.Lapa
 			{
 				// Replays must always clean because the parsing in adverse outcomes can grow exponentially.
 				results = results.DistinctMatches();
-				
+
 				var empty = true;
 				foreach (var oneResult in results)
 				{
@@ -1257,7 +1255,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public static LpmParser OneOrMore_(this LpsParser parser)
 		{
-			return new LpmParser((p) => OneOrMore_(parser, p));
+			return new(p => OneOrMore_(parser, p));
 		}
 
         /// <summary>
@@ -1277,12 +1275,12 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public static LpmParser OneOrMore_(this LpmParser parser)
 		{
-			return new LpmParser((p) => OneOrMore_(parser, p).DistinctMatches());
+			return new(p => OneOrMore_(parser, p).DistinctMatches());
 		}
 
 		/// <summary>
-        /// Consistently applied to the text parser, passing parser residue from the previous result, until 
-        /// yet recognized text. Returns all matching results. Found between compliance can not be 
+        /// Consistently applied to the text parser, passing parser residue from the previous result, until
+        /// yet recognized text. Returns all matching results. Found between compliance can not be
         /// discontinuities.
         /// </summary>
 		/// <param name="parser">parser.</param>
@@ -1301,11 +1299,11 @@ namespace Moppet.Lapa
 		}
 
 
-        
+
         /// <summary>
-        /// Designer parser chain of one or more elements. 
-        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Designer parser chain of one or more elements.
+        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -1316,9 +1314,9 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Designer parser chain of one or more elements. 
-        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Designer parser chain of one or more elements.
+        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -1329,9 +1327,9 @@ namespace Moppet.Lapa
         }
 
 		/// <summary>
-        /// Designer parser chain of one or more elements. 
-        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Designer parser chain of one or more elements.
+        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parserInfo">parserInfo.</param>
@@ -1339,7 +1337,7 @@ namespace Moppet.Lapa
 		public static LpsParser OneOrMore(this LpCover<LpsParser, LpNode> parserInfo)
 		{
             var parser = parserInfo.Parser;
-            if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
 			{
                 var next = parser.Do(text);
 				if (!next.Success)
@@ -1358,7 +1356,7 @@ namespace Moppet.Lapa
 				return new LpNode(text, next.Rest.Index - text.Index, null, list);
 			});
 
-            return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            return new LpsParser(id: null, wrapNode: true, parser: text =>
             {
                 var next = parser.Do(text);
                 if (!next.Success)
@@ -1387,7 +1385,7 @@ namespace Moppet.Lapa
 		/// <returns>Optimized parser.</returns>
 		public static LpsParser Maybe(this LpsParser parser)
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
 				var res = parser.Do(text);
                 return res.Success ? res : new LpNode(new LpText(text.Source, text.Index, 0), text);
@@ -1401,7 +1399,7 @@ namespace Moppet.Lapa
 		/// <returns>Optimized parser.</returns>
 		public static LpsParser TakeMaxOrEmpty(this LpmParser parser)
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
 				var res = parser.Do(text);
 				var node = Max(res);
@@ -1412,13 +1410,13 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Combinatorial. zero or one different.
 		/// </summary>
-		/// <param name="charPredicat">Parser odnogo Symbol - predicate.</param>
+		/// <param name="charPredicate">Parser odnogo Symbol - predicate.</param>
 		/// <param name="text">Text.</param>
 		/// <returns>All matching options.</returns>
-		internal static IEnumerable<LpNode> Maybe_(Func<char, bool> charPredicat, LpText text)
+		internal static IEnumerable<LpNode> Maybe_(Func<char, bool> charPredicate, LpText text)
 		{
             yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
-			if (text.Length > 0 && charPredicat(text[0]))
+			if (text.Length > 0 && charPredicate(text[0]))
                 yield return new LpNode(text, 1);
 		}
 
@@ -1443,7 +1441,7 @@ namespace Moppet.Lapa
 		/// <returns>All matching options.</returns>
 		public static LpmParser Maybe_(this LpsParser parser)
 		{
-			return new LpmParser((p) => Maybe_(parser, p));
+			return new(p => Maybe_(parser, p));
 		}
 
 		/// <summary>
@@ -1453,7 +1451,7 @@ namespace Moppet.Lapa
 		/// <returns>All matching options.</returns>
 		public static LpmParser Maybe_(this LpmParser parser)
 		{
-			return new LpmParser((p) => Maybe(parser, p));
+			return new(p => Maybe(parser, p));
 		}
 
 
@@ -1477,7 +1475,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public static LpsParser Maybe(char ch)
 		{
-            return new LpsParser((t) => t.Length > 0 && t[0] == ch ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
+            return new(t => t.Length > 0 && t[0] == ch ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
 		}
 
         /// <summary>
@@ -1487,7 +1485,7 @@ namespace Moppet.Lapa
         /// <returns>parser.</returns>
         public static LpsParser Maybe(this Func<char, bool> ch)
         {
-            return new LpsParser((t) => t.Length > 0 && ch(t[0]) ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
+            return new(t => t.Length > 0 && ch(t[0]) ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
         }
 
 
@@ -1498,7 +1496,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser.</returns>
 		public static LpmParser Maybe_(char ch)
 		{
-			return new LpmParser((p) => Maybe_(c => c == ch, p));
+			return new(p => Maybe_(c => c == ch, p));
 		}
 
 
@@ -1509,7 +1507,7 @@ namespace Moppet.Lapa
 		/// <returns>parser.</returns>
 		public static LpsParser Maybe(string term)
 		{
-            return new LpsParser((text) => text.StartsWith(term) ? new LpNode(text, term.Length) : new LpNode(new LpText(text.Source, text.Index, 0), text));
+            return new(text => text.StartsWith(term) ? new LpNode(text, term.Length) : new LpNode(new LpText(text.Source, text.Index, 0), text));
 		}
 
 		#endregion // ZeroOrOne
@@ -1517,8 +1515,8 @@ namespace Moppet.Lapa
 		#region ZeroOrMore
 
         /// <summary>
-        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible 
-        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser. 
+        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible
+        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser.
         /// All results are stored in compliance Children property node.
         /// </summary>
         /// <param name="firstItem">Parser first element.</param>
@@ -1530,8 +1528,8 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible 
-        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser. 
+        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible
+        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser.
         /// All results are stored in compliance Children property node.
         /// </summary>
 		/// <param name="firstItem">Parser first element.</param>
@@ -1541,10 +1539,10 @@ namespace Moppet.Lapa
         {
             return firstItem.ToParser().NextZeroOrMore(maybeNextItems);
         }
-		
+
         /// <summary>
-        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible 
-        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser. 
+        /// Variety combinator parser in the chain, which differs from Lp.OneOrMore (LpsParser) that for the analysis of the first element is responsible
+        /// firstItemParser, and for subsequent analysis of the elements responsible maybeNextItemsParser.
         /// All results are stored in compliance Children property node.
         /// </summary>
 		/// <param name="firstItem">Parser first element.</param>
@@ -1556,9 +1554,9 @@ namespace Moppet.Lapa
         }
 
 		/// <summary>
-        /// Implements pattern (firstItem + maybeNextItems *). 
-        /// Variety combiner parserov in Chains, kotoryj otličaetsâ by Lp.OneOrMore (LpsParser) tem, What to understanding Pervogo element otvečaet 
-        /// firstItemParser, and understanding posleduûŝih elements otvečaet maybeNextItemsParser. 
+        /// Implements pattern (firstItem + maybeNextItems *).
+        /// Variety combiner parserov in Chains, kotoryj otličaetsâ by Lp.OneOrMore (LpsParser) tem, What to understanding Pervogo element otvečaet
+        /// firstItemParser, and understanding posleduûŝih elements otvečaet maybeNextItemsParser.
         /// All najdennye matching Reserved v The Children node.
         /// </summary>
 		/// <param name="firstItem">Parser first element.</param>
@@ -1567,7 +1565,7 @@ namespace Moppet.Lapa
         public static LpsParser NextZeroOrMore(this LpUncover<LpsParser, LpNode> firstItem, LpUncover<LpsParser, LpNode> maybeNextItems)
 		{
 
-            if (!maybeNextItems.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            if (!maybeNextItems.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
             {
                 var next = firstItem.Parser.Do(text);
                 if (!next.Success)
@@ -1577,8 +1575,8 @@ namespace Moppet.Lapa
                 if (firstItem.Uncover)
                     list.AddChildrenOrNodeOrNothing(next);
                 else if (next.Match.Length > 0) //TODO: Protest if Length == 0, а next - false
-                    list.Add(next); 
-                
+                    list.Add(next);
+
                 next = maybeNextItems.Parser.Do(next.Rest);
                 while (next.Match.Length > 0)
                 {
@@ -1590,7 +1588,7 @@ namespace Moppet.Lapa
                 return new LpNode(text, next.Rest.Index - text.Index, null, list);
             });
 
-            return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            return new LpsParser(id: null, wrapNode: true, parser: text =>
             {
                 var next = firstItem.Parser.Do(text);
                 if (!next.Success)
@@ -1619,7 +1617,7 @@ namespace Moppet.Lapa
 
 		/*
 		/// <summary>
-		/// Implements the template (first + Maybenext{0,1}). 
+		/// Implements the template (first + Maybenext{0,1}).
 		/// Very similar to the combiner NextZeroOrMore, no otličaetsâ thereof only tem cto instead of {0} worth {0,1}.
 		/// </summary>
 		/// <param name="first">Parser first element.</param>
@@ -1760,8 +1758,8 @@ namespace Moppet.Lapa
 		}
 
         /// <summary>
-        /// Function to add a node to the list. 
-        /// If the node has children, instead of adding children nodes. In other cases, the node is added. 
+        /// Function to add a node to the list.
+        /// If the node has children, instead of adding children nodes. In other cases, the node is added.
         /// This function is used when the option to uncover some specific functions, such MaybeNext.
         /// </summary>
         /// <param name="list">list.</param>
@@ -1770,7 +1768,7 @@ namespace Moppet.Lapa
         {
             if (node.Match.Length <= 0)
                 return;
-            
+
             if (node.Children == null)
             {
                 list.Add(node);
@@ -1801,7 +1799,7 @@ namespace Moppet.Lapa
 
 				if (left.Match.Length <= 0 || left.Rest.Length <= 0)
 					break;
-				
+
 				var right = parser.Do(left.Rest);
 				if (!right.Success)
 					break;
@@ -1816,7 +1814,7 @@ namespace Moppet.Lapa
 		/// <returns>Multiparser that returns all matching options.</returns>
 		public static LpmParser ZeroOrMore_(this LpsParser parser)
 		{
-			return new LpmParser((p) => ZeroOrMore(parser, p));
+			return new(p => ZeroOrMore(parser, p));
 		}
 
         /// <summary>
@@ -1850,7 +1848,7 @@ namespace Moppet.Lapa
 
 				// Replays must always clean because the parsing in adverse outcomes can grow exponentially.
 				results = results.DistinctMatches();
-				
+
 				foreach (var oneResult in results)
 				{
 					if (oneResult.Match.Length <= 0) // Zero already was.
@@ -1873,7 +1871,7 @@ namespace Moppet.Lapa
 		/// <returns>All matching options.</returns>
 		public static LpmParser ZeroOrMore_(this LpmParser parser)
 		{
-			return new LpmParser((p) => ZeroOrMore_(parser, p).DistinctMatches());
+			return new(p => ZeroOrMore_(parser, p).DistinctMatches());
 		}
 
 		/// <summary>
@@ -1898,8 +1896,8 @@ namespace Moppet.Lapa
 
         /// <summary>
         /// Designer parser chain of zero or more elements.
-        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -1910,9 +1908,9 @@ namespace Moppet.Lapa
         }
 
         /// <summary>
-        /// Designer parser chain of zero or more elements. 
-        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Designer parser chain of zero or more elements.
+        /// Returns a parser that consistently applies to the text parser, passing parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parser">parser.</param>
@@ -1923,9 +1921,9 @@ namespace Moppet.Lapa
         }
 
 		/// <summary>
-        /// Designer parser chain of zero or more elements. 
-        /// Returns a parser that consistently applies parserInfo.Parser to text, passing parserInfo.Parser residue from the previous result, as 
-        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be 
+        /// Designer parser chain of zero or more elements.
+        /// Returns a parser that consistently applies parserInfo.Parser to text, passing parserInfo.Parser residue from the previous result, as
+        /// long as the recognized text. Returns and unites all found matching one node. Found between compliance can not be
         /// discontinuities. All results are also stored in conformity Children property node.
         /// </summary>
         /// <param name="parserInfo">parserInfo.</param>
@@ -1933,7 +1931,7 @@ namespace Moppet.Lapa
 		public static LpsParser ZeroOrMore(this LpCover<LpsParser, LpNode> parserInfo)
 		{
             var parser = parserInfo.Parser;
-            if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
 			{
                 var next = parser.Do(text);
 				if (!next.Success)
@@ -1952,7 +1950,7 @@ namespace Moppet.Lapa
 				return new LpNode(text, next.Rest.Index - text.Index, null, list);
 			});
 
-            return new LpsParser(id: null, wrapNode: true, parser: (text) =>
+            return new LpsParser(id: null, wrapNode: true, parser: text =>
             {
                 var next = parser.Do(text);
                 if (!next.Success)
@@ -1977,12 +1975,12 @@ namespace Moppet.Lapa
 		/// <returns>greedy parser.</returns>
 		public static LpsParser ZeroOrMore(char ch)
 		{
-			return new LpsParser((text) =>
+			return new(text =>
 			{
 				int end = text.Length, cur = 0, ind = text.Index;
 				var str = text.Source;
 				while (cur < end && str[ind] == ch) { ++ind; ++cur; }
-                return new LpNode(text, cur); 
+                return new LpNode(text, cur);
 			});
 		}
 

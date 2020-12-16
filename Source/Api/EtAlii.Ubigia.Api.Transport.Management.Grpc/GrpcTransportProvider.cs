@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
         private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
 
 	    private readonly AuthenticationTokenProvider _storageAuthenticationTokenProvider;
-	    
+
 		private GrpcStorageTransportProvider(Func<Uri, GrpcChannel> grpcChannelFactory)
 		{
 			_grpcChannelFactory = grpcChannelFactory;
@@ -30,16 +30,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 	        var authenticationTokenProvider = _storageAuthenticationTokenProvider;
             return new GrpcStorageTransport(address, _grpcChannelFactory, authenticationTokenProvider);
         }
-	    
-	    
+
+
 	    public static GrpcStorageTransportProvider Create(Func<Uri, GrpcChannel> channelFactory)
 	    {
-		    return new GrpcStorageTransportProvider(channelFactory);
+		    return new(channelFactory);
 	    }
 
 	    public static GrpcStorageTransportProvider Create()
 	    {
-		    var channelFactory = new Func<Uri, GrpcChannel>((channelAddress) =>
+		    var channelFactory = new Func<Uri, GrpcChannel>(channelAddress =>
 		    {
 			    //These switches must be set before creating the GrpcChannel/HttpClient.
 			    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);

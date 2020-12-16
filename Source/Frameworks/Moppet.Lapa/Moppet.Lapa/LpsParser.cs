@@ -19,13 +19,13 @@ namespace Moppet.Lapa
 	/// <summary>
     /// parser type Func&lt;LpText, LpNode&gt;.
     /// At the input text. On leaving one option parsing.
-    /// 
+    ///
     /// Class LpsParser constant, ie there are no functions that would change the data class.
 	/// </summary>
 	public sealed class LpsParser : LpBaseParser<LpNode, LpsParser>
 	{
 		#region Constructors
-		
+
 		/// <summary>
         /// The default constructor.
 		/// </summary>
@@ -118,7 +118,7 @@ namespace Moppet.Lapa
 					res.Id = Identifier;
 				}
 			}
-			return res; 
+			return res;
 		}
 
 		/// <summary>
@@ -128,7 +128,7 @@ namespace Moppet.Lapa
 		/// <returns>object parser.</returns>
 		public static implicit operator LpsParser(Func<LpText, LpNode> p)
 		{
-			return new LpsParser(p);
+			return new(p);
 		}
 
 		/// <summary>
@@ -199,8 +199,8 @@ namespace Moppet.Lapa
 		/// <returns>Chain parsers (for deferred construction resulting parser).</returns>
 		public static LpsChain operator + (LpsParser leftParser, LpsParser rightParser)
 		{
-			return new LpsChain(leftParser, rightParser);
-			
+			return new(leftParser, rightParser);
+
 			//return LpsParser.New((text) =>
 			//{
 			//    var left = leftParser.Do(text);
@@ -221,7 +221,7 @@ namespace Moppet.Lapa
 		/// <returns>Chain parsers (for deferred construction resulting parser).</returns>
 		public static LpsChain operator + (LpsParser leftParser, char ch)
 		{
-			return new LpsChain(leftParser, Lp.Char(ch));
+			return new(leftParser, Lp.Char(ch));
 		}
 
 		/// <summary>
@@ -232,7 +232,7 @@ namespace Moppet.Lapa
 		/// <returns>Chain parsers (for deferred construction resulting parser).</returns>
 		public static LpsChain operator + (char ch, LpsParser rightParser)
 		{
-			return new LpsChain(Lp.Char(ch), rightParser);
+			return new(Lp.Char(ch), rightParser);
 		}
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Moppet.Lapa
         /// <returns>Chain parsers (for deferred construction resulting parser).</returns>
         public static LpsChain operator +(Func<char, bool> ch, LpsParser rightParser)
         {
-            return new LpsChain(Lp.One(ch), rightParser);
+            return new(Lp.One(ch), rightParser);
         }
 
 
@@ -255,7 +255,7 @@ namespace Moppet.Lapa
 		/// <returns>Chain parsers (for deferred construction resulting parser).</returns>
 		public static LpsChain operator + (LpsParser leftParser, string term)
 		{
-			return new LpsChain(leftParser, Lp.Term(term));
+			return new(leftParser, Lp.Term(term));
 		}
 
 		/// <summary>
@@ -266,7 +266,7 @@ namespace Moppet.Lapa
         /// <returns>Chain alternatives.</returns>
 		public static LpsAlternatives operator | (LpsParser p1, LpsParser p2)
 		{
-			return new LpsAlternatives(p1, p2);
+			return new(p1, p2);
 		}
 
 		/// <summary>
@@ -277,7 +277,7 @@ namespace Moppet.Lapa
         /// <returns>chain alternatives.</returns>
 		public static LpsAlternatives operator | (LpsParser p1, char ch)
 		{
-			return new LpsAlternatives(p1, Lp.Char(ch));
+			return new(p1, Lp.Char(ch));
 		}
 
 		/// <summary>
@@ -288,7 +288,7 @@ namespace Moppet.Lapa
         /// <returns>chain alternatives.</returns>
 		public static LpsAlternatives operator |(char ch, LpsParser right)
 		{
-			return new LpsAlternatives(Lp.Char(ch), right);
+			return new(Lp.Char(ch), right);
 		}
 
 		/// <summary>
@@ -300,9 +300,9 @@ namespace Moppet.Lapa
 		public static LpsAlternatives operator | (LpsParser left, string term)
 		{
 			if (left == null)
-				throw new ArgumentNullException("left");
+				throw new ArgumentNullException(nameof(left));
 			if (term == null)
-				throw new ArgumentNullException("term");
+				throw new ArgumentNullException(nameof(term));
 
 			return new LpsAlternatives(left, Lp.Term(term));
 		}
@@ -316,9 +316,9 @@ namespace Moppet.Lapa
 		public static LpsAlternatives operator |(string term, LpsParser right)
 		{
 			if (right == null)
-				throw new ArgumentNullException("right");
+				throw new ArgumentNullException(nameof(right));
 			if (term == null)
-				throw new ArgumentNullException("term");
+				throw new ArgumentNullException(nameof(term));
 			return new LpsAlternatives(Lp.Term(term), right);
 		}
 
@@ -332,9 +332,9 @@ namespace Moppet.Lapa
 		public static LpmParser operator | (LpsParser p1, LpmParser p2)
 		{
 			if (p1 == null)
-				throw new ArgumentNullException("p1");
+				throw new ArgumentNullException(nameof(p1));
 			if (p2 == null)
-				throw new ArgumentNullException("p2");
+				throw new ArgumentNullException(nameof(p2));
 
 			return new LpmParser((text) =>
 			{
@@ -353,9 +353,9 @@ namespace Moppet.Lapa
 		public static LpmParser operator | (LpmParser p1, LpsParser p2)
 		{
 			if (p1 == null)
-				throw new ArgumentNullException("p1");
+				throw new ArgumentNullException(nameof(p1));
 			if (p2 == null)
-				throw new ArgumentNullException("p2");
+				throw new ArgumentNullException(nameof(p2));
 
 			return new LpmParser((text) =>
 			{

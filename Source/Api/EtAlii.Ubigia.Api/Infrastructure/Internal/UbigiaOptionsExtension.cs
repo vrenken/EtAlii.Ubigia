@@ -28,20 +28,20 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         /// </summary>
         public virtual string Storage => _storage;
         private string _storage;
-        
+
         public virtual string Username => _username;
         private string _username;
-        
+
         public virtual string Password => _password;
         private string _password;
-        
+
         public virtual string Address => _address;
         private string _address;
-        
+
         public virtual Type TransportType => _transportType;
         private Type _transportType;
-        
-        
+
+
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
         ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         /// </summary>
         public virtual UbigiaDatabaseRoot DatabaseRoot => _databaseRoot;
         private UbigiaDatabaseRoot _databaseRoot;
-        
+
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
         ///     the same compatibility standards as public APIs. It may be changed or removed without notice in
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
             _password = copyFrom._password;
             _address = copyFrom._address;
             _transportType = copyFrom._transportType;
-            
+
             _databaseRoot = copyFrom._databaseRoot;
         }
 
@@ -94,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
         protected virtual UbigiaOptionsExtension Clone()
-            => new UbigiaOptionsExtension(this);
+            => new(this);
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 
             return clone;
         }
-        
+
         public virtual UbigiaOptionsExtension WithAddress([NotNull] string address)
         {
             var clone = Clone();
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
 
             return clone;
         }
-        
+
         public virtual UbigiaOptionsExtension WithUsername([NotNull] string username)
         {
             var clone = Clone();

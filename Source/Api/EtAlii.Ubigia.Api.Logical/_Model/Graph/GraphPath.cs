@@ -11,7 +11,7 @@
         /// <summary>
         /// An Empty GraphPath.
         /// </summary>
-        public static GraphPath Empty { get; } = new GraphPath();
+        public static GraphPath Empty { get; } = new();
 
         private readonly GraphPathPart[] _parts;
 

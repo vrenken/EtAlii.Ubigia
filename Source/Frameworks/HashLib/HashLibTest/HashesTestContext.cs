@@ -12,14 +12,14 @@
 
     public class HashesTestContext
     {
-        public readonly MersenneTwister Random = new MersenneTwister(4563487);
+        public readonly MersenneTwister Random = new(4563487);
         private readonly ReadOnlyCollection<Func<object>> _creators;
 
         public HashesTestContext()
         {
             _creators = new List<Func<object>>
             {
-                () => Random.NextByte(), 
+                () => Random.NextByte(),
                 () => Random.NextChar(),
                 () => Random.NextShort(),
                 () => Random.NextUShort(),
@@ -29,8 +29,8 @@
                 () => Random.NextULong(),
                 () => Random.NextFloatFull(),
                 () => Random.NextDoubleFull(),
-                () => Random.NextString(Random.Next(0, 200)), 
-                () => Random.NextBytes(Random.Next(0, 200)), 
+                () => Random.NextString(Random.Next(0, 200)),
+                () => Random.NextBytes(Random.Next(0, 200)),
                 () => Random.NextChars(Random.Next(0, 200)),
                 () => Random.NextShorts(Random.Next(0, 200)),
                 () => Random.NextUShorts(Random.Next(0, 200)),
@@ -42,7 +42,7 @@
                 () => Random.NextDoublesFull(Random.Next(0, 200)),
             }.AsReadOnly();
         }
-        
+
         public void Test(IHash aHash)
         {
             TestHashSize(aHash);
@@ -165,27 +165,27 @@
                 var fastHash = aHash as IFastHash32;
                 var fastList = new List<Action>
                 {
-                    () => fastHash.ComputeByteFast(55), 
-                    () => fastHash.ComputeBytesFast(new byte[] { 0x55, 0x55 }), 
-                    () => fastHash.ComputeCharFast('c'), 
-                    () => fastHash.ComputeCharsFast(new[] { 'c', 'c' }), 
-                    () => fastHash.ComputeDoubleFast(3.456489566e156), 
-                    () => fastHash.ComputeDoublesFast(new[] { 3.456489566e156, 3.456489566e156 }), 
-                    () => fastHash.ComputeFloatFast(3.45698986e16f), 
-                    () => fastHash.ComputeFloatsFast(new[] { 3.45698986e16f, 3.45698986e16f }), 
-                    () => fastHash.ComputeIntFast(1234567456), 
-                    () => fastHash.ComputeIntsFast(new[] { 1234567456, 1234567456 }), 
-                    () => fastHash.ComputeLongFast(7632345678765765765), 
-                    () => fastHash.ComputeLongsFast(new[] { 7632345678765765765, 7632345678765765765 }), 
-                    () => fastHash.ComputeShortFast(22345), 
-                    () => fastHash.ComputeShortsFast(new short[] { 22345, 22345 }), 
-                    () => fastHash.ComputeStringFast("test"), 
-                    () => fastHash.ComputeUIntFast(3234567456), 
-                    () => fastHash.ComputeUIntsFast(new[] { 3234567456, 3234567456 }), 
-                    () => fastHash.ComputeULongFast(9632345678765765765), 
-                    () => fastHash.ComputeULongsFast(new[] { 9632345678765765765, 9632345678765765765 }), 
-                    () => fastHash.ComputeUShortFast(42345), 
-                    () => fastHash.ComputeUShortsFast(new ushort[] { 42345, 42345 }),   
+                    () => fastHash.ComputeByteFast(55),
+                    () => fastHash.ComputeBytesFast(new byte[] { 0x55, 0x55 }),
+                    () => fastHash.ComputeCharFast('c'),
+                    () => fastHash.ComputeCharsFast(new[] { 'c', 'c' }),
+                    () => fastHash.ComputeDoubleFast(3.456489566e156),
+                    () => fastHash.ComputeDoublesFast(new[] { 3.456489566e156, 3.456489566e156 }),
+                    () => fastHash.ComputeFloatFast(3.45698986e16f),
+                    () => fastHash.ComputeFloatsFast(new[] { 3.45698986e16f, 3.45698986e16f }),
+                    () => fastHash.ComputeIntFast(1234567456),
+                    () => fastHash.ComputeIntsFast(new[] { 1234567456, 1234567456 }),
+                    () => fastHash.ComputeLongFast(7632345678765765765),
+                    () => fastHash.ComputeLongsFast(new[] { 7632345678765765765, 7632345678765765765 }),
+                    () => fastHash.ComputeShortFast(22345),
+                    () => fastHash.ComputeShortsFast(new short[] { 22345, 22345 }),
+                    () => fastHash.ComputeStringFast("test"),
+                    () => fastHash.ComputeUIntFast(3234567456),
+                    () => fastHash.ComputeUIntsFast(new[] { 3234567456, 3234567456 }),
+                    () => fastHash.ComputeULongFast(9632345678765765765),
+                    () => fastHash.ComputeULongsFast(new[] { 9632345678765765765, 9632345678765765765 }),
+                    () => fastHash.ComputeUShortFast(42345),
+                    () => fastHash.ComputeUShortsFast(new ushort[] { 42345, 42345 }),
                 };
 
                 foreach (var fast in fastList)
@@ -419,7 +419,7 @@
                     Assert.Equal(h1, h2);
                 }
 
-                int[] sizes = { 1, 11, 63, 64, 65, 127, 128, 129, 255, 256, 257, 511, 512, 513, 
+                int[] sizes = { 1, 11, 63, 64, 65, 127, 128, 129, 255, 256, 257, 511, 512, 513,
                               1023, 1024, 1025, 4011, 64000, 66000, 250000, Hash.BUFFER_SIZE * 20 + 511};
 
                 foreach (var size in sizes)
@@ -439,7 +439,7 @@
                     new Random().NextBytes(data);
 
                     using var ms = new MemoryStream(data);
-                    
+
                     var ex = false;
 
                     try
@@ -610,7 +610,7 @@
 
             {
                 hashWithKey.Key = null;
-                var key1 = hashWithKey.Key; 
+                var key1 = hashWithKey.Key;
                 hashWithKey.Key = key;
                 Assert.Equal(hashWithKey.Key, key);
                 hashWithKey.Key = null;

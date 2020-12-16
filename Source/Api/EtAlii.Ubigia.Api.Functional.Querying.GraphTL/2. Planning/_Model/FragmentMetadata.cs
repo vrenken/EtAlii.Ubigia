@@ -1,20 +1,20 @@
-﻿namespace EtAlii.Ubigia.Api.Functional 
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.ObjectModel;
 
     internal sealed class FragmentMetadata
     {
-        public ObservableCollection<Structure> Items { get; } = new ObservableCollection<Structure>();
-        
+        public ObservableCollection<Structure> Items { get; } = new();
+
         public FragmentMetadata[] Children { get; }
 
         public FragmentMetadata Parent { get; private set; }
 
         public Fragment Source { get; }
-        
+
         public FragmentMetadata(
             Fragment source,
-            FragmentMetadata[] children) 
+            FragmentMetadata[] children)
         {
             Source = source;
 

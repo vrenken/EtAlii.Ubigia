@@ -16,7 +16,7 @@
 
         public static SimpleTestItem CreateSimpleTestItem()
         {
-            return new SimpleTestItem
+            return new()
             {
                 Name = Guid.NewGuid().ToString(),
                 Value = Guid.NewGuid()
@@ -62,11 +62,11 @@
 
         public static TypeComponent CreateTypeComponent(string type)
         {
-            return new TypeComponent { Type = type };
+            return new() { Type = type };
         }
         public static TagComponent CreateTagComponent(string tag)
         {
-            return new TagComponent { Tag = tag };
+            return new() { Tag = tag };
         }
 
         public static PreviousComponent CreatePreviousComponent(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)

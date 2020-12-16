@@ -16,13 +16,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private readonly Dictionary<Guid, Identifier> _cachedHeadIdentifiers;
 
-        private readonly SemaphoreSlim _lockObject = new SemaphoreSlim(1,1); // TODO: This lockobject should be shared with the tail getter.
+        private readonly SemaphoreSlim _lockObject = new(1,1); // TODO: This lockObject should be shared with the tail getter.
 
         private bool _headIsInitialized;
 
         public IdentifierHeadGetter(
-            INextIdentifierGetter nextIdentifierGetter, 
-            IIdentifierRootUpdater rootUpdater, 
+            INextIdentifierGetter nextIdentifierGetter,
+            IIdentifierRootUpdater rootUpdater,
             ILogicalContext context,
             IFabricContext fabric)
         {
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return headIdentifier;
         }
 
-        
+
         public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId)
         {
             await _lockObject.WaitAsync().ConfigureAwait(false);

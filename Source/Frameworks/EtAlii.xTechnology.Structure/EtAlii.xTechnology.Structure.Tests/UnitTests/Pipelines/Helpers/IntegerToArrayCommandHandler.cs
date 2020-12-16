@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public IntegerToArrayCommand Create(int parameter)
         {
-            return new IntegerToArrayCommand(parameter);
+            return new(parameter);
         }
 
         public void Handle(IntegerToArrayCommand command)

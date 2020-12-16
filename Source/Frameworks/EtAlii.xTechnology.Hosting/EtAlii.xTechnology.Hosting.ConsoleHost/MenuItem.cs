@@ -7,7 +7,7 @@
         public ICommand Command { get; }
 
         public string Header { get; }
-        public List<MenuItem> Items { get; } = new List<MenuItem>();
+        public List<MenuItem> Items { get; } = new();
 
         public MenuItem(string header)
         {

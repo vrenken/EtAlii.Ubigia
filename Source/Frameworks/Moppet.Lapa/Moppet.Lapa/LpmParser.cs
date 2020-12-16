@@ -15,9 +15,9 @@ using System.Linq;
 namespace Moppet.Lapa
 {
 	/// <summary>
-    /// Parser that returns a lot of options analysis, ie generic parser 
+    /// Parser that returns a lot of options analysis, ie generic parser
 	/// Func&lt;LpText, IEnumerable&lt;LpNode&gt;&gt;^t;/LpNode&gt;.
-    /// At the input text. In many embodiments the outlet parsing wherein each variant 
+    /// At the input text. In many embodiments the outlet parsing wherein each variant
     /// - A pair of {Part parsed text; Balance}.
     /// For example, in the line "1234" parsing embodiments may be "", "1", "12", "123", "1234".
 	/// </summary>
@@ -72,7 +72,7 @@ namespace Moppet.Lapa
                 LinkedListNode<LpText> added;
                 lock (Stack)
                 {
-                    if (Stack.FindLast(text) != null) 
+                    if (Stack.FindLast(text) != null)
                     {
                         return Array.Empty<LpNode>();
                     }
@@ -94,7 +94,7 @@ namespace Moppet.Lapa
 					return WrapIdentifiers(res);
 				return SetIdentifiers(res);
 			}
-			return res; 
+			return res;
 		}
 
 
@@ -136,7 +136,7 @@ namespace Moppet.Lapa
 		/// <returns>object parser.</returns>
 		public static implicit operator LpmParser(Func<LpText, IEnumerable<LpNode>> p)
 		{
-			return new LpmParser(p);
+			return new(p);
 		}
 
 		/// <summary>
@@ -179,7 +179,7 @@ namespace Moppet.Lapa
 		/// <returns>The resulting parser.</returns>
 		public static LpmParser operator +(LpmParser left, LpsParser right)
 		{
-			return new LpmParser((p) => And(left, right, p));
+			return new(p => And(left, right, p));
 		}
 
 		/// <summary>
@@ -207,7 +207,7 @@ namespace Moppet.Lapa
 		/// <returns>The resulting parser.</returns>
 		public static LpmParser operator +(LpmParser left, LpmParser right)
 		{
-			return new LpmParser((p) => Lp.Next(left.Do(p), right).DistinctMatches()); // DistinctVoids()
+			return new((p) => Lp.Next(left.Do(p), right).DistinctMatches()); // DistinctVoids()
 		}
 
 		#endregion And
@@ -223,7 +223,7 @@ namespace Moppet.Lapa
 		/// <returns>The resulting parser.</returns>
 		public static LpmParser operator |(LpmParser p1, LpmParser p2)
 		{
-			return new LpmParser((p) => p1.Do(p).Concat(p2.Do(p)).DistinctMatches()); // DistinctVoids()
+			return new((p) => p1.Do(p).Concat(p2.Do(p)).DistinctMatches()); // DistinctVoids()
 		}
 
 

@@ -6,7 +6,7 @@
 
     public class InfrastructureTestHelper
     {
-        
+
         public async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
         {
             var space = await CreateSpace(infrastructure).ConfigureAwait(false);
@@ -64,7 +64,7 @@
 
         public Root CreateRoot()
         {
-            return new Root
+            return new()
             {
                 Name = Guid.NewGuid().ToString(),
             };

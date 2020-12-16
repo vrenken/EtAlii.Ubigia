@@ -5,7 +5,7 @@
 
     public class DefaultModule : ModuleBase
     {
-        private static int _defaultModuleCounter; 
+        private static int _defaultModuleCounter;
 
         public DefaultModule(IConfigurationSection configuration) : base(configuration)
         {
@@ -16,7 +16,7 @@
         }
 
         #pragma warning disable S2696 // Pretty sure this counter won't cause any weird threading issues.
-        protected override Status CreateInitialStatus() => new Status($"Module {++_defaultModuleCounter}");
+        protected override Status CreateInitialStatus() => new($"Module {++_defaultModuleCounter}");
         #pragma warning restore S2696
     }
 }

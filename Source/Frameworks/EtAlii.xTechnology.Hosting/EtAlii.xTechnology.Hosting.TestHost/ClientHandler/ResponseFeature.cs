@@ -10,7 +10,7 @@
     {
         private Func<Task> _responseStartingAsync = () => Task.FromResult(true);
         private Func<Task> _responseCompletedAsync = () => Task.FromResult(true);
-        private readonly HeaderDictionary _headers = new HeaderDictionary();
+        private readonly HeaderDictionary _headers = new();
         private int _statusCode;
         private string _reasonPhrase;
 

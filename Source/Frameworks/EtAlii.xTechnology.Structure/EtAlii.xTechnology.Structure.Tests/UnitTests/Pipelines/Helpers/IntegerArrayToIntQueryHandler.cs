@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public IntegerArrayToIntQuery Create(int[] parameter)
         {
-            return new IntegerArrayToIntQuery(parameter);
+            return new(parameter);
         }
 
         public int Handle(IntegerArrayToIntQuery query)

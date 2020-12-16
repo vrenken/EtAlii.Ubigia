@@ -10,27 +10,27 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
         public ProfilingAspect[] All { get; }
 
 
-        public ProfilingAspect ScriptSet { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Script set");
+        public ProfilingAspect ScriptSet { get; } = new(ProfilingLayer.Functional, "Script set");
 
-        public ProfilingAspect Context { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Context");
+        public ProfilingAspect Context { get; } = new(ProfilingLayer.Functional, "Context");
 
-        public ProfilingAspect ScriptProcessor { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Script processor");
+        public ProfilingAspect ScriptProcessor { get; } = new(ProfilingLayer.Functional, "Script processor");
 
-        public ProfilingAspect ScriptSequenceProcessor { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Sequence processor");
+        public ProfilingAspect ScriptSequenceProcessor { get; } = new(ProfilingLayer.Functional, "Sequence processor");
 
-        public ProfilingAspect ScriptProcessorSubject { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Subject procesor");
+        public ProfilingAspect ScriptProcessorSubject { get; } = new(ProfilingLayer.Functional, "Subject procesor");
 
-        public ProfilingAspect ScriptProcessorPathSubject { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Path subject processor");
+        public ProfilingAspect ScriptProcessorPathSubject { get; } = new(ProfilingLayer.Functional, "Path subject processor");
 
-        public ProfilingAspect ScriptProcessorPathSubjectConversion { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Path conversion");
+        public ProfilingAspect ScriptProcessorPathSubjectConversion { get; } = new(ProfilingLayer.Functional, "Path conversion");
 
-        public ProfilingAspect ScriptProcessorEntryConversion { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Entry conversion");
+        public ProfilingAspect ScriptProcessorEntryConversion { get; } = new(ProfilingLayer.Functional, "Entry conversion");
 
-        public ProfilingAspect ScriptParser { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Script parser");
+        public ProfilingAspect ScriptParser { get; } = new(ProfilingLayer.Functional, "Script parser");
 
-        public ProfilingAspect ScriptSequenceParser { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Sequence parser");
+        public ProfilingAspect ScriptSequenceParser { get; } = new(ProfilingLayer.Functional, "Sequence parser");
 
-        public ProfilingAspect ScriptPathSubjectParser { get; } = new ProfilingAspect(ProfilingLayer.Functional, "Path subject parser");
+        public ProfilingAspect ScriptPathSubjectParser { get; } = new(ProfilingLayer.Functional, "Path subject parser");
 
 
         public FunctionalProfilers()

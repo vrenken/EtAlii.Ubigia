@@ -7,8 +7,8 @@
     {
         public static IdentifierComponent ToLocal(this WireProtocol.IdentifierComponent identifierComponent)
         {
-            return new IdentifierComponent
-            {   
+            return new()
+            {
                 Stored = identifierComponent.Stored,
                 Id = identifierComponent.Identifier.ToLocal(),
             };
@@ -16,7 +16,7 @@
 
         public static WireProtocol.IdentifierComponent ToWire(this IdentifierComponent identifierComponent)
         {
-            return new WireProtocol.IdentifierComponent
+            return new()
             {
                 Stored = identifierComponent.Stored,
                 Identifier = identifierComponent.Id.ToWire(),

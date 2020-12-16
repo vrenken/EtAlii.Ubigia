@@ -4,11 +4,11 @@
     {
         public string Id { get; }
 
-        public static StructureContentType Structure { get; } = new StructureContentType(); 
+        public static StructureContentType Structure { get; } = new();
 
-        public static ImageContentType Image { get; } = new ImageContentType();
+        public static ImageContentType Image { get; } = new();
 
-        public static TimeContentType Time { get; } = new TimeContentType();
+        public static TimeContentType Time { get; } = new();
 
         internal ContentType(params string[] contentTypeParts)
         {

@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public StringCommand Create(string parameter)
         {
-            return new StringCommand(parameter);
+            return new(parameter);
         }
 
         public void Handle(StringCommand command)

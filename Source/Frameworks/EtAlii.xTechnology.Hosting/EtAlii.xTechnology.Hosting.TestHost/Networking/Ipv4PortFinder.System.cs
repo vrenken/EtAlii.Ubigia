@@ -8,9 +8,9 @@
 
     public sealed partial class Ipv4FreePortFinder
     {
-        private readonly Random _random = new Random(Environment.TickCount);
+        private readonly Random _random = new(Environment.TickCount);
         private readonly TimeSpan _waitInterval = TimeSpan.FromSeconds(2);
-        
+
         private ushort[] FindOnSystem(PortRange range, int numberOfPorts, IReadOnlyCollection<PortRegistration> registrations)
         {
             do
@@ -20,10 +20,10 @@
                 var inUsePorts = registrations.Select(r => r.Port)
                     .Concat(properties.GetActiveTcpConnections().SelectMany(c =>
                     {
-                        return c.LocalEndPoint.Address.Equals(c.RemoteEndPoint.Address) 
-                            ? new[] {(ushort) c.LocalEndPoint.Port, (ushort) c.RemoteEndPoint.Port} 
+                        return c.LocalEndPoint.Address.Equals(c.RemoteEndPoint.Address)
+                            ? new[] {(ushort) c.LocalEndPoint.Port, (ushort) c.RemoteEndPoint.Port}
                             : new[] {(ushort) c.LocalEndPoint.Port};
-                    })) // Ignore active connections            
+                    })) // Ignore active connections
                     .Concat(properties.GetActiveTcpListeners().Select(l => (ushort)l.Port)) // Ignore active tcp listeners
                     .Concat(properties.GetActiveUdpListeners().Select(l => (ushort)l.Port)) // Ignore active udp listeners
                     .OrderBy(p => p)

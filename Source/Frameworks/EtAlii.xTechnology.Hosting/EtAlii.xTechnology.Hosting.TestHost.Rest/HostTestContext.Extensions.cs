@@ -8,10 +8,10 @@ namespace EtAlii.xTechnology.Hosting
 	    {
 		    // dynamic kestrelServerOptions = context.Host.Server.Options
 		    // var listenOptions = (List<ListenOptions>)kestrelServerOptions.ListenOptions
-		    
+
 		    //var handler = new ClientHandler()
 		    //context.Host.Server.Options.
-		    return new HttpClient();
+		    return new();
 		    // // var handler = new HttpClientHandler()
 		    // var handler = context.Host.Server.CreateHandler()
 		    // return new HttpClient(handler,true)

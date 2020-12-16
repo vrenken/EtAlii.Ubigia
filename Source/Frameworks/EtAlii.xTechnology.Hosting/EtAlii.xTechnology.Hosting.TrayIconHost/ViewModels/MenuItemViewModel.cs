@@ -7,7 +7,7 @@
         public System.Windows.Input.ICommand Command { get; }
 
         public string Header { get; }
-        public ObservableCollection<MenuItemViewModel> Items { get; } = new ObservableCollection<MenuItemViewModel>();
+        public ObservableCollection<MenuItemViewModel> Items { get; } = new();
 
         public MenuItemViewModel(string header)
         {

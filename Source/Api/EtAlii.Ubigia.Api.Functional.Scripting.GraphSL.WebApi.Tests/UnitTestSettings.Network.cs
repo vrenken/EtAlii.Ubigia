@@ -1,10 +1,10 @@
-    
+
 namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using EtAlii.xTechnology.Hosting;
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new PortRange(UnitTestConstants.NetworkPortRangeStart + 19000, UnitTestConstants.NetworkPortRangeStart + 19499);
+        public static PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 19000, UnitTestConstants.NetworkPortRangeStart + 19499);
     }
-} 
+}

@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         private readonly bool _sensitiveLoggingEnabled;
 
         private readonly ConcurrentDictionary<(IEntityType EntityType, IUbigiaTable BaseTable), Func<IUbigiaTable>> _factories
-            = new ConcurrentDictionary<(IEntityType, IUbigiaTable), Func<IUbigiaTable>>();
+            = new();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to

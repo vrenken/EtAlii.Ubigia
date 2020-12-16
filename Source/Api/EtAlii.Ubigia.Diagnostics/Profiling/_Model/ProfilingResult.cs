@@ -25,7 +25,7 @@
         public double DurationOfSelf => Get<double>(ProfilingProperty.DurationOfSelf);
         public double DurationOfChildren => Get<double>(ProfilingProperty.DurationOfChildren);
 
-        private readonly PropertyDictionary _properties = new PropertyDictionary();
+        private readonly PropertyDictionary _properties = new();
 
         public ReadOnlyObservableCollection<ProfilingResult> Children { get; }
 

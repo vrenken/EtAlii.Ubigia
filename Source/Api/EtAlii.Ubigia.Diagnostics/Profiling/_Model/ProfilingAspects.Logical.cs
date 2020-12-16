@@ -9,19 +9,19 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
     {
         public ProfilingAspect[] All { get; }
 
-        public ProfilingAspect Context { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Context");
+        public ProfilingAspect Context { get; } = new(ProfilingLayer.Logical, "Context");
 
-        public ProfilingAspect NodeSet { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Node set");
+        public ProfilingAspect NodeSet { get; } = new(ProfilingLayer.Logical, "Node set");
 
-        public ProfilingAspect TemporalWeaver { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Temporal weaver");
+        public ProfilingAspect TemporalWeaver { get; } = new(ProfilingLayer.Logical, "Temporal weaver");
 
-        public ProfilingAspect Traversal { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Traversal");
+        public ProfilingAspect Traversal { get; } = new(ProfilingLayer.Logical, "Traversal");
 
-        public ProfilingAspect Traversers { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Traversers");
+        public ProfilingAspect Traversers { get; } = new(ProfilingLayer.Logical, "Traversers");
 
-        public ProfilingAspect Content { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Content");
+        public ProfilingAspect Content { get; } = new(ProfilingLayer.Logical, "Content");
 
-        public ProfilingAspect Properties { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Properties");
+        public ProfilingAspect Properties { get; } = new(ProfilingLayer.Logical, "Properties");
 
         public LogicalProfilers()
         {

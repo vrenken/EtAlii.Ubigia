@@ -20,7 +20,7 @@
         private ulong _periodId;
         private ulong _momentId;
 
-        private readonly object _lockObject = new object();
+        private readonly object _lockObject = new();
 
         public NextContainerIdentifierFromTimeAlgorithm(
             INextContainerIdentifierAlgorithm nextContainerIdentifierAlgorithm,

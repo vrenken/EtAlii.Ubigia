@@ -14,8 +14,8 @@ namespace EtAlii.Ubigia.Api.Query.Internal
         private readonly ParameterExpression _valueBufferParameter;
 
         private readonly IDictionary<Expression, ParameterExpression> _mapping = new Dictionary<Expression, ParameterExpression>();
-        private readonly List<ParameterExpression> _variables = new List<ParameterExpression>();
-        private readonly List<Expression> _expressions = new List<Expression>();
+        private readonly List<ParameterExpression> _variables = new();
+        private readonly List<Expression> _expressions = new();
 
         public ShaperExpressionProcessingExpressionVisitor(
             [CanBeNull] UbigiaQueryExpression queryExpression, [NotNull] ParameterExpression valueBufferParameter)
