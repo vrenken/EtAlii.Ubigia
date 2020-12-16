@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Threading
     {
         // Internal class that serves as a shared enumerable for the
         // underlying collection.
-        private class InternalEnumerable : IEnumerable<KeyValuePair<long, T>>, IDisposable
+        private sealed class InternalEnumerable : IEnumerable<KeyValuePair<long, T>>, IDisposable
         {
             private readonly IEnumerator<T> _reader;
             private bool _disposed;
@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Threading
             private readonly bool _downcountEnumerators;
 
             // "downcountEnumerators" will be true for static partitioning, false for
-            // dynamic partitioning.  
+            // dynamic partitioning.
             public InternalEnumerable(IEnumerator<T> reader, bool downcountEnumerators)
             {
                 _reader = reader;
@@ -45,17 +45,32 @@ namespace EtAlii.xTechnology.Threading
                 return GetEnumerator();
             }
 
+
+            private void Dispose(bool disposing)
+            {
+                if (disposing)
+                {
+                    if (!_disposed)
+                    {
+                        // Only dispose the source enumerator if you are doing dynamic partitioning
+                        if (!_downcountEnumerators)
+                        {
+                            _reader.Dispose();
+                        }
+
+                        _disposed = true;
+                    }
+                }
+            }
             public void Dispose()
             {
-                if (!_disposed)
-                {
-                    // Only dispose the source enumerator if you are doing dynamic partitioning
-                    if (!_downcountEnumerators)
-                    {
-                        _reader.Dispose();
-                    }
-                    _disposed = true;
-                }
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
+
+            ~InternalEnumerable()
+            {
+                Dispose(false);
             }
 
             // Called from Dispose() method of spawned InternalEnumerator.  During
