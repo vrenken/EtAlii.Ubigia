@@ -24,7 +24,7 @@
 	    {
 		    var connectionConfiguration = new SystemConnectionConfiguration()
 			    .Use(Infrastructure)
-			    .Use(SystemTransportProvider.Create(Infrastructure));
+			    .Use(new SystemTransportProvider(Infrastructure));
 		    var connection = new SystemConnectionFactory().Create(connectionConfiguration);
 		    return Task.FromResult(connection);
 	    }
