@@ -10,9 +10,9 @@ namespace EtAlii.xTechnology.Hosting
     ///
     /// The code is based on the splendid work done by the people mentioned in both the code and on the
     /// StackOverflow page found below:
-    /// https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c 
+    /// https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c
     /// </summary>
-    public class SystemSafeExecutionScope : IDisposable
+    public sealed class SystemSafeExecutionScope : IDisposable
     {
         private readonly Guid _uniqueId;
         public static TimeSpan DefaultTimeout { get; set; } = TimeSpan.FromMinutes(10);
@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting
             : this(uniqueId, DefaultTimeout)
         {
         }
-        
+
         public SystemSafeExecutionScope(Guid uniqueId, TimeSpan timeOut)
         {
             _uniqueId = uniqueId;
@@ -38,14 +38,14 @@ namespace EtAlii.xTechnology.Hosting
         {
             // unique id for global mutex - Global prefix means it is global to the machine
             var mutexName = $"Global\\{{{_uniqueId}}}";
-            
+
             // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
-            // edited by 'Marc' to work also on localized systems (don't use just "Everyone") 
+            // edited by 'Marc' to work also on localized systems (don't use just "Everyone")
             var securityIdentifier = (IdentityReference)new SecurityIdentifier(WellKnownSidType.WorldSid, null);
             var allowEveryoneRule = new MutexAccessRule(securityIdentifier, MutexRights.FullControl, AccessControlType.Allow);
             var securitySettings = new MutexSecurity();
             securitySettings.AddAccessRule(allowEveryoneRule);
-        
+
             // edited by MasonGZhwiti to prevent race condition on security settings via VanNguyen
             var mutex = new Mutex(false, mutexName, out var createdNew);
             if (createdNew)
@@ -76,16 +76,26 @@ namespace EtAlii.xTechnology.Hosting
             }
         }
 
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (_hasHandle)
+                {
+                    _mutex.ReleaseMutex();
+                }
+                _mutex.Close();
+            }
+        }
         public void Dispose()
         {
-            if (_mutex == null) return;
-
-            if (_hasHandle)
-            {
-                _mutex.ReleaseMutex();
-            }
-            _mutex.Close();
+            Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        ~SystemSafeExecutionScope()
+        {
+            Dispose(false);
         }
     }
 }
