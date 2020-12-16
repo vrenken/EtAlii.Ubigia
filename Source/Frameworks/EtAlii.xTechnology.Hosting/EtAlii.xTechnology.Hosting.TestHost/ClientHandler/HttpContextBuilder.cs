@@ -63,7 +63,7 @@
                 {
                     await _application.ProcessRequestAsync(_testContext).ConfigureAwait(false);
                     await CompleteResponseAsync().ConfigureAwait(false);
-                    _application.DisposeContext(_testContext, exception: null);
+                    _application.DisposeContext(_testContext, exception: null!);
                 }
                 catch (Exception ex)
                 {
