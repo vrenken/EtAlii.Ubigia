@@ -10,7 +10,7 @@
         private readonly IRootGetter _rootGetter;
 
         public RootAdder(
-            IStorage storage, 
+            IStorage storage,
             IRootGetter rootGetter)
         {
             _storage = storage;
@@ -30,13 +30,18 @@
             return canAdd ? root : null;
         }
 
-        private async Task<bool> CanAdd(Guid spaceId, Root item)
+        private Task<bool> CanAdd(Guid spaceId, Root item)
         {
             if (item == null)
             {
                 throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
+            return CanAddInternal(spaceId, item);
+        }
+
+        private async Task<bool> CanAddInternal(Guid spaceId, Root item)
+        {
             var canAdd = !string.IsNullOrWhiteSpace(item.Name);
             if (canAdd)
             {
