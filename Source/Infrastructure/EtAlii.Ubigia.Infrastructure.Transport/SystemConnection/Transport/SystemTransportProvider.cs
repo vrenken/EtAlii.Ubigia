@@ -9,14 +9,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         private readonly IInfrastructure _infrastructure;
 
-        private SystemTransportProvider(IInfrastructure infrastructure)
+        public SystemTransportProvider(IInfrastructure infrastructure)
         {
             _infrastructure = infrastructure;
-        }
-
-        public static SystemTransportProvider Create(IInfrastructure infrastructure)
-        {
-            return new(infrastructure);
         }
 
         public ISpaceTransport GetSpaceTransport(Uri address)

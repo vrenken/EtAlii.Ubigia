@@ -25,13 +25,13 @@
 
         public override Task Start()
         {
-            // This action is needed because the Logical layer needs a fully functional system connection to do 
+            // This action is needed because the Logical layer needs a fully functional system connection to do
             // the initialization of the storage and spaces.
             // The functional is the only one that can provide these kind of connections.
             Configuration.SystemConnectionCreationProxy.Initialize(() =>
             {
                 var configuration = new SystemConnectionConfiguration()
-                    .Use(SystemTransportProvider.Create(this))
+                    .Use(new SystemTransportProvider(this))
                     .Use(this);
                 return new SystemConnectionFactory().Create(configuration);
             });

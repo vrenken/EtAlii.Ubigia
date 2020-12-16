@@ -14,20 +14,20 @@
 		    : base("Host/settings.json")
 	    {
 	    }
-	    
+
 	    public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
-		    
+
 		    // TODO: Ugly. This needs to change and not be needed at all.
 		    // However, for now it works...
 		    var codeBase = Assembly.GetExecutingAssembly()!.Location;
-		    var isWebApiTestBase = codeBase!.Contains("WebApi.Tests") || 
+		    var isWebApiTestBase = codeBase!.Contains("WebApi.Tests") ||
 		                           codeBase.Contains("PowerShell.Tests");
-		    var isSignalRTestBase = codeBase.Contains("SignalR.Tests") || 
+		    var isSignalRTestBase = codeBase.Contains("SignalR.Tests") ||
 		                            codeBase.Contains("Google.Tests");
 		    var isSystemTestBase = codeBase.Contains("Infrastructure.Hosting.NetCore.Tests");
-		    
+
 		    if (isWebApiTestBase && isSignalRTestBase)
 		    {
 			    throw new NotSupportedException("SignalR and WebApi unit tests cannot live in the same assembly (yet)");
@@ -55,7 +55,7 @@
 	    {
 		    var connectionConfiguration = new SystemConnectionConfiguration()
 			    .Use(Infrastructure)
-			    .Use(SystemTransportProvider.Create(Infrastructure));
+			    .Use(new SystemTransportProvider(Infrastructure));
 		    var connection = new SystemConnectionFactory().Create(connectionConfiguration);
 		    return Task.FromResult(connection);
 	    }
