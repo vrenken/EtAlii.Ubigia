@@ -2,12 +2,12 @@
 <Project>
   <PropertyGroup>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <!-- The .DotSettings file is maintained by Rider/Resharper - no need to show it. -->
     <None Remove="*.csproj.DotSettings" />
   </ItemGroup>
-  
+
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
   <ItemGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" Label="Microsoft.NET.Test.Sdk (.targets)" />
@@ -22,11 +22,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-  
+
+  <!-- We want any non-test project to use nugetizer assistance when creating packages. -->
   <ItemGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
     <PackageReference Include="NuGetizer" Version="0.6.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
+  <!-- We want any non-test project to use the pure nullable convention. -->
+  <PropertyGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 </Project>

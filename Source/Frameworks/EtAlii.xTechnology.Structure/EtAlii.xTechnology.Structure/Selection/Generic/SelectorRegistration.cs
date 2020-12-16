@@ -8,7 +8,7 @@ namespace EtAlii.xTechnology.Structure
         private readonly Func<TCriteria, bool> _predicate;
         private readonly TOption _option;
 
-        private ISelectorRegistration<TCriteria, TOption> _nextRegistration;
+        private ISelectorRegistration<TCriteria, TOption>? _nextRegistration;
 
         [DebuggerStepThrough]
         public SelectorRegistration(Func<TCriteria, bool> predicate, TOption option)
@@ -55,7 +55,9 @@ namespace EtAlii.xTechnology.Structure
                 return _option;
             }
 
-            return _nextRegistration != null? _nextRegistration.TrySelect(criteria) : default;
+            return _nextRegistration != null
+                ? _nextRegistration.TrySelect(criteria)
+                : default;
         }
     }
 
