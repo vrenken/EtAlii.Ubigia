@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 #pragma warning disable S3358 // This code will change. remove this pragma afterwards.
+#pragma warning disable S1125 // Boolean literals should not be redundant
 
 // ReSharper disable once CheckNamespace
 namespace System.Reflection
