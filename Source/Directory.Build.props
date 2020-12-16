@@ -74,5 +74,10 @@
   <PropertyGroup Condition="$(MSBuildProjectName.Contains('.Hostings.Tests.'))">
     <IsPackable>false</IsPackable>
   </PropertyGroup>
+
+  <!-- We want any non-test project to use the pure nullable convention. -->
+  <PropertyGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
 </Project>
 

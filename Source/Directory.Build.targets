@@ -31,8 +31,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <!-- We want any non-test project to use the pure nullable convention. -->
-  <PropertyGroup Condition="'$(IsUbigiaTestProject)' != 'true'">
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
 </Project>
