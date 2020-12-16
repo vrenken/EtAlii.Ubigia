@@ -10,7 +10,10 @@
     {
         public ProfilingResult Parent { get; }
 
+        // We do some fancy nesting here which requires this to be a field.
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
         private readonly bool _showInResults;
+#pragma warning restore S1450
 
         public string Action => Get<string>(ProfilingProperty.Action);
         public string ProfilerName => Get<string>(ProfilingProperty.ProfilerName);
@@ -26,7 +29,7 @@
 
         public ReadOnlyObservableCollection<ProfilingResult> Children { get; }
 
-        private readonly ObservableCollection<ProfilingResult> _items; 
+        private readonly ObservableCollection<ProfilingResult> _items;
 
         public object this[string propertyName]
         {
@@ -39,9 +42,9 @@
         }
 
         public ProfilingResult(
-            ProfilingResult parent, 
-            string profilerName, 
-            ProfilingLayer layer, 
+            ProfilingResult parent,
+            string profilerName,
+            ProfilingLayer layer,
             string action, bool showInResults = true)
         {
             _showInResults = showInResults;
@@ -58,7 +61,7 @@
             Parent = parent;
 
             if(showInResults)
-            { 
+            {
                 Parent?._items.Add(this);
             }
 
@@ -117,7 +120,7 @@
 
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));   
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public override IEnumerable<string> GetDynamicMemberNames()
