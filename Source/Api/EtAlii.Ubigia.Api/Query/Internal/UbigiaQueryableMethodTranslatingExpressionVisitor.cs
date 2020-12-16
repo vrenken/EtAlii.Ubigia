@@ -7,6 +7,7 @@
 #pragma warning disable S1144
 #pragma warning disable S4144 // Methods should not have identical implementations.
 #pragma warning disable S3776 // Cognitive Complexity of methods should not be too high
+#pragma warning disable S1450 // Private fields only used as local variables in methods should become local variables
 
 namespace EtAlii.Ubigia.Api.Query.Internal
 {
