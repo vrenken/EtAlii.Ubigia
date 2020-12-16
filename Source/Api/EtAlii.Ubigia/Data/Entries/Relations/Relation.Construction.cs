@@ -6,22 +6,22 @@
     {
         public static Relation NewRelation(in Identifier id)
         {
-            return new Relation
+            return new()
             {
                 _id = id,
                 _moment = (ulong)DateTime.UtcNow.Ticks,
             };
         }
-        
+
         internal static Relation Create(in Identifier id, ulong moment)
         {
-            return new Relation
+            return new()
             {
                 _id = id,
                 _moment = moment,
             };
         }
-        
-        
+
+
     }
 }

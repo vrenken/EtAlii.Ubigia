@@ -6,7 +6,7 @@
 
     internal class NextCompositeComponentIdAlgorithm : INextCompositeComponentIdAlgorithm
     {
-        private readonly Dictionary<ContainerIdentifier, ulong> _cached = new Dictionary<ContainerIdentifier, ulong>();
+        private readonly Dictionary<ContainerIdentifier, ulong> _cached = new();
 
         public ulong Create(ContainerIdentifier containerIdentifier)
         {
@@ -22,7 +22,7 @@
                 actual = proposed > previous ? proposed : previous;
             }
 
-            // Everything that is older then the proposed value is no longer needed.  
+            // Everything that is older then the proposed value is no longer needed.
             var toRemove = _cached
                 .Where(kvp => kvp.Value < proposed)
                 .ToArray();

@@ -13,14 +13,14 @@ namespace Moppet.Lapa
 	using System.Collections.Generic;
 	using System.Linq;
 
-    // Attention can not be in this class to use the implicit cast to LpsParser! 
+    // Attention can not be in this class to use the implicit cast to LpsParser!
     // This leads to the fact that the reduction manifests itself not where it should.
     //
 
 	/// <summary>
-    /// List of alternatives. This class simplifies the combination of parsers. For example, take a combination of parsers 
-    /// p1 | p2 | p3 | p4, if all 4th parsers are type LpsParser, then it will be 
-    /// formed a list of alternatives which will now be combined into a single optimum parser and thus will 
+    /// List of alternatives. This class simplifies the combination of parsers. For example, take a combination of parsers
+    /// p1 | p2 | p3 | p4, if all 4th parsers are type LpsParser, then it will be
+    /// formed a list of alternatives which will now be combined into a single optimum parser and thus will
     /// selected first successful alternative.
     /// </summary>
 	public sealed class LpsAlternatives : LpParserAttrs<LpsAlternatives>
@@ -28,7 +28,7 @@ namespace Moppet.Lapa
 		/// <summary>
         /// List parsers.
 		/// </summary>
-		private List<LpsParser> _mParsers = new List<LpsParser>();
+		private List<LpsParser> _mParsers = new();
 
 		/// <summary>
 		/// The default constructor.
@@ -85,7 +85,7 @@ namespace Moppet.Lapa
 
 
 		/// <summary>
-        /// Helper function to convert string parser select the first successful alternative. 
+        /// Helper function to convert string parser select the first successful alternative.
         /// From the order of the parsers (alternatives) depends on the speed.
         /// </summary>
 		/// <returns>parser.</returns>
@@ -95,8 +95,8 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Schemer who chooses the first successful alternative (the result of the parser), which is performed for the postcondition behind. 
-        /// This function is particularly advantageous if the alternatives are sorted in order of decreasing probability 
+        /// Schemer who chooses the first successful alternative (the result of the parser), which is performed for the postcondition behind.
+        /// This function is particularly advantageous if the alternatives are sorted in order of decreasing probability
         /// their appearance.
         /// </summary>
 		/// <param name="ifBehind">Postcondition.</param>
@@ -136,7 +136,7 @@ namespace Moppet.Lapa
 		{
 			return parsers.TakeAll().Parser;
 		}
-		
+
 
 		/// <summary>
 		/// An implicit cast.
@@ -258,7 +258,7 @@ namespace Moppet.Lapa
 		/// <returns>Results in a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsAlternatives left, LpsAlternatives right)
 		{
-			return new LpsAlternatives(left._mParsers, right._mParsers);
+			return new(left._mParsers, right._mParsers);
 		}
 
 		/// <summary>
@@ -280,7 +280,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsAlternatives left, char ch)
 		{
-			return new LpsAlternatives(left._mParsers, new[] { Lp.Char(ch) });
+			return new(left._mParsers, new[] { Lp.Char(ch) });
 		}
 
 		/// <summary>
@@ -291,7 +291,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (char ch, LpsAlternatives right)
 		{
-			return new LpsAlternatives(new[] { Lp.Char(ch) }, right._mParsers);
+			return new(new[] { Lp.Char(ch) }, right._mParsers);
 		}
 
 		/// <summary>
@@ -328,7 +328,7 @@ namespace Moppet.Lapa
 		/// <returns>a list of alternatives.</returns>
 		public static LpsAlternatives operator | (LpsParser left, LpsAlternatives right)
 		{
-			return new LpsAlternatives(new[] { left }, right._mParsers);
+			return new(new[] { left }, right._mParsers);
 		}
 
 		/// <summary>
@@ -343,7 +343,7 @@ namespace Moppet.Lapa
             // return left.ToParser() | right.TakeFirst();
 
             // Right behaviour
-            return new LpsAlternatives(new[] { left.ToParser() }, right._mParsers);
+            return new(new[] { left.ToParser() }, right._mParsers);
 		}
 
 		/// <summary>

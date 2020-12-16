@@ -9,7 +9,7 @@
 
         internal static ContainerIdentifier FromPaths(params string[] paths)
         {
-            return new ContainerIdentifier(paths);
+            return new(paths);
         }
     }
 }

@@ -6,7 +6,7 @@
     {
         public static FieldContext FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)
         {
-            return new FieldContext
+            return new()
             {
                 Id = Guid.NewGuid(),
                 NodesDirectiveResults = nodesDirectiveResults

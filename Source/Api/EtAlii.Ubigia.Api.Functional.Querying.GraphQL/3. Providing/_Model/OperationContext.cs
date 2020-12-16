@@ -6,7 +6,7 @@
     {
         public static OperationContext FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)
         {
-            return new OperationContext
+            return new()
             {
                 Id = Guid.NewGuid(),
                 NodesDirectiveResults = nodesDirectiveResults

@@ -17,7 +17,7 @@
             return this == None ? "Relation.None" : $"{Id} ({Moment})";
         }
 
-        public static readonly Relation None = new Relation
+        public static readonly Relation None = new()
         {
             _id = Identifier.Empty,
             _moment = ulong.MinValue,

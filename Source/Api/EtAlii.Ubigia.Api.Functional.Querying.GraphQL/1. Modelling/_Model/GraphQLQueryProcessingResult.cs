@@ -16,7 +16,7 @@
 
         [JsonIgnore]
         public string DataAsString { get; }
-        
+
         public ExecutionErrors Errors { get; }
 
         public string Query { get; }
@@ -35,11 +35,11 @@
             DataAsString = dataAsString;
         }
 
-        
+
         public GraphQLQueryProcessingResult(ExecutionResult result, string dataAsString)
         {
             if (result == null) throw new ArgumentNullException(nameof(result));
-            
+
             Data = result.Data;
             Errors = result.Errors;
             Query = result.Query;
@@ -47,13 +47,13 @@
             Document = result.Document;
             Perf = result.Perf;
             Extensions = result.Extensions;
-            
+
             DataAsString = dataAsString;
         }
 
         public static ExecutionResult ToGraphQlExecutionResult(GraphQLQueryProcessingResult graphQLQueryProcessingResult)
         {
-            return new ExecutionResult
+            return new()
             {
                 Data = graphQLQueryProcessingResult.Data,
                 Errors = graphQLQueryProcessingResult.Errors,

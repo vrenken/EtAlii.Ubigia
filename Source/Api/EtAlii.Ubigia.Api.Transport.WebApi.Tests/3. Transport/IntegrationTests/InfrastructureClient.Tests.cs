@@ -9,7 +9,7 @@
 
     public class InfrastructureClientIntegrationTests
     {
-        private readonly Uri _url = new Uri("http://api.openkeyval.org/", UriKind.Absolute);
+        private readonly Uri _url = new("http://api.openkeyval.org/", UriKind.Absolute);
 
         [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post()

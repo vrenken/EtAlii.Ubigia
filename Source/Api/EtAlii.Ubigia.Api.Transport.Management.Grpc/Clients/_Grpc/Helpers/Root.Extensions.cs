@@ -7,7 +7,7 @@
     {
         public static Root ToLocal(this WireProtocol.Root root)
         {
-            return new Root
+            return new()
             {
                 Id = root.Id.ToLocal(),
                 Identifier = root.Identifier.ToLocal(),
@@ -17,7 +17,7 @@
 
         public static WireProtocol.Root ToWire(this Root root)
         {
-            return new WireProtocol.Root
+            return new()
             {
                 Id = root.Id.ToWire(),
                 Identifier = root.Identifier.ToWire(),

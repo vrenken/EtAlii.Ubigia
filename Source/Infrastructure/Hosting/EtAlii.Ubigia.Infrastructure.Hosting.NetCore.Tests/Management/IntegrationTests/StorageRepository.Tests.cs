@@ -180,7 +180,7 @@
 
         private Storage CreateStorage()
         {
-            return new Storage
+            return new()
             {
                 Name = Guid.NewGuid().ToString(),
                 Address = Guid.NewGuid().ToString(),

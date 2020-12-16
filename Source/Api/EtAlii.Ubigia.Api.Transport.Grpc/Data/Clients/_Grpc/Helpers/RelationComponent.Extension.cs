@@ -8,8 +8,8 @@
         public static TRelationComponent ToLocal<TRelationComponent>(this WireProtocol.RelationComponent relationComponent)
         where TRelationComponent: RelationComponent, new()
         {
-            return new TRelationComponent
-            {   
+            return new()
+            {
                 Stored = relationComponent.Stored,
                 Relation = relationComponent.Relation.ToLocal(),
             };
@@ -17,7 +17,7 @@
 
         public static WireProtocol.RelationComponent ToWire(this RelationComponent relationComponent)
         {
-            return new WireProtocol.RelationComponent
+            return new()
             {
                 Stored = relationComponent.Stored,
                 Relation = relationComponent.Relation.ToWire(),

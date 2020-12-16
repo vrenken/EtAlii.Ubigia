@@ -12,21 +12,21 @@
 
         public static Entry NewEntry(in Identifier id, Relation previous)
         {
-            return new Entry(id, previous);
+            return new(id, previous);
         }
 
         public static Entry NewEntry(in Identifier id)
         {
-            return new Entry(id);
+            return new(id);
         }
 
         /// <summary>
-        /// Instantiate a new entry. 
+        /// Instantiate a new entry.
         /// </summary>
         /// <returns></returns>
         public static Entry NewEntry()
         {
-            return new Entry();
+            return new();
         }
 
     }

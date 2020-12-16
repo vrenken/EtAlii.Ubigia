@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public StringToArrayQuery Create(string parameter)
         {
-            return new StringToArrayQuery(parameter);
+            return new(parameter);
         }
 
         public string[] Handle(StringToArrayQuery query)

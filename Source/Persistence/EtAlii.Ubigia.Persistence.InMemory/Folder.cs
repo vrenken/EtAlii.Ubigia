@@ -4,7 +4,7 @@
 
     public class Folder : Item
     {
-        public List<Item> Items { get; } = new List<Item>();
+        public List<Item> Items { get; } = new();
 
         public Folder(string name)
             : base(name)

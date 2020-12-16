@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
 	    public static GrpcTransportProvider Create(Func<Uri, GrpcChannel> channelFactory)
 	    {
-		    return new GrpcTransportProvider(channelFactory);
+		    return new(channelFactory);
 	    }
 
 	    public static GrpcTransportProvider Create()

@@ -27,7 +27,7 @@
         private IModule ParentModule { get; set; }
 
         private IConfigurableHost _host;
-        
+
         public HostString HostString { get; private set; }
         public PathString PathString { get; private set;}
 
@@ -50,7 +50,7 @@
         }
 
         protected abstract void OnConfigureApplication(IApplicationBuilder applicationBuilder);
-        
+
         public async Task Start()
         {
             await Starting().ConfigureAwait(false);
@@ -92,12 +92,12 @@
             ParentModule = parentModule;
             Status = CreateInitialStatus();
         }
-        
+
         public virtual void Initialize()
         {
             // Host magic.
             HostString = new HostStringBuilder().Build(_configuration, ParentModule, IPAddress.None);
-            
+
             // Path magic.
             PathString = new PathStringBuilder().Build(_configuration, ParentModule);
 
@@ -111,6 +111,6 @@
             }
         }
 
-        protected virtual Status CreateInitialStatus() => new Status(GetType().Name);
+        protected virtual Status CreateInitialStatus() => new(GetType().Name);
     }
 }

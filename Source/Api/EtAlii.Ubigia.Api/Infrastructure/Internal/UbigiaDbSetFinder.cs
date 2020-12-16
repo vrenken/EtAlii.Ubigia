@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Infrastructure.Internal
     /// </summary>
     public class UbigiaDbSetFinder : IDbSetFinder
     {
-        private readonly ConcurrentDictionary<Type, IReadOnlyList<DbSetProperty>> _cache = new ConcurrentDictionary<Type, IReadOnlyList<DbSetProperty>>();
+        private readonly ConcurrentDictionary<Type, IReadOnlyList<DbSetProperty>> _cache = new();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to

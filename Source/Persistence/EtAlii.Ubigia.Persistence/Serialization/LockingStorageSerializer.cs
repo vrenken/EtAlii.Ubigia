@@ -7,7 +7,7 @@
     public class LockingStorageSerializer : IStorageSerializer
     {
         private readonly IStorageSerializer _decoree;
-        private readonly ConcurrentDictionary<string, SemaphoreSlim> _lockObjects = new ConcurrentDictionary<string, SemaphoreSlim>();
+        private readonly ConcurrentDictionary<string, SemaphoreSlim> _lockObjects = new();
 
         public LockingStorageSerializer(IStorageSerializer decoree)
         {

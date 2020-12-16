@@ -15,7 +15,7 @@ namespace Moppet.Lapa
         /// <returns>parser.</returns>
         public static LpsParser Switch(Func<char, LpText, LpNode> parser)
         {
-            return new LpsParser(null, (t) => // The ID is not needed, it suppresses subsidiaries
+            return new(null, (t) => // The ID is not needed, it suppresses subsidiaries
             {
                 if (t.Length <= 0)
                     return new LpNode(t);
@@ -52,7 +52,7 @@ namespace Moppet.Lapa
                     return child.Count == 0 ? next : child[0];
                 return new LpNode(t, next.Rest.Index - t.Index, null, child);
             });
-            
+
             return new LpsParser(null, (t) =>
             {
                 var prev = behindParser.Do(t);

@@ -14,7 +14,7 @@ namespace EtAlii.xTechnology.Structure.Tests
 
         public IntegerArrayOutputCommand Create(int[] parameter)
         {
-            return new IntegerArrayOutputCommand(parameter);
+            return new(parameter);
         }
 
         public void Handle(IntegerArrayOutputCommand query)

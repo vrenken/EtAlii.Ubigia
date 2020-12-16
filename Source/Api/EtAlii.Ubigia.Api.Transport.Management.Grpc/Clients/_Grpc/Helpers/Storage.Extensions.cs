@@ -7,7 +7,7 @@
     {
         public static Storage ToLocal(this WireProtocol.Storage storage)
         {
-            return new Storage
+            return new()
             {
                 Id = storage.Id.ToLocal(),
                 Address = storage.Address,
@@ -22,7 +22,7 @@
 
         public static WireProtocol.Storage ToWire(this Storage storage)
         {
-            return new WireProtocol.Storage
+            return new()
             {
                 Id = storage.Id.ToWire(),
                 Address = storage.Address,

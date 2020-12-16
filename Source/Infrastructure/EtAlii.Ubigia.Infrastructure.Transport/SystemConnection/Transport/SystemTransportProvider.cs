@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public static SystemTransportProvider Create(IInfrastructure infrastructure)
         {
-            return new SystemTransportProvider(infrastructure);
+            return new(infrastructure);
         }
 
         public ISpaceTransport GetSpaceTransport(Uri address)
@@ -28,11 +28,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         {
             return new SystemStorageTransport(address, _infrastructure);
         }
-        
+
         public IStorageTransport GetStorageTransport()
         {
             var serviceDetails = _infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
-            
+
             return new SystemStorageTransport(serviceDetails.ManagementAddress, _infrastructure);
         }
     }

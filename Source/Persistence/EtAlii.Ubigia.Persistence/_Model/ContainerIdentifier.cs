@@ -6,7 +6,7 @@
     {
         public string[] Paths { get; }
 
-        public static readonly ContainerIdentifier Empty = new ContainerIdentifier(Array.Empty<string>());
+        public static readonly ContainerIdentifier Empty = new(Array.Empty<string>());
 
 
         public static ContainerIdentifier Combine(ContainerIdentifier container, params string[] additionalPaths)

@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Storage.Internal
         }
 
         private static Dictionary<object, IUbigiaTable> CreateTables()
-            => new Dictionary<object, IUbigiaTable>();
+            => new();
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to

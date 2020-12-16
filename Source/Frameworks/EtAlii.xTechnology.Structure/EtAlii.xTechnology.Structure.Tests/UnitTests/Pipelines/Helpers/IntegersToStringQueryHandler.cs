@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public IntegersToStringQuery Create(int parameter1, int parameter2)
         {
-            return new IntegersToStringQuery(parameter1, parameter2);
+            return new(parameter1, parameter2);
         }
 
         public string Handle(IntegersToStringQuery query)

@@ -6,7 +6,7 @@
 
     public partial class DynamicNode
     {
-        private PropertyDictionary _properties = new PropertyDictionary();
+        private PropertyDictionary _properties = new();
 
         PropertyDictionary IInternalNode.GetProperties()
         {
@@ -58,7 +58,7 @@
 //        [
 //            //var wasModified = _isModified
 //            _isModified = true
-//            NotifyPropertyChanged(nameof(INode.IsModified)) // this, _isModified, _isModified, 
+//            NotifyPropertyChanged(nameof(INode.IsModified)) // this, _isModified, _isModified,
 //        ]
 
         #region Not supported actions.

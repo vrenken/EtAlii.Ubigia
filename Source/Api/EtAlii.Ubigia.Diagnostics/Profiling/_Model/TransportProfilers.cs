@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
     {
         public ProfilingAspect[] All { get; }
 
-        public ProfilingAspect Connection { get; } = new ProfilingAspect(ProfilingLayer.Transport, "Connection");
+        public ProfilingAspect Connection { get; } = new(ProfilingLayer.Transport, "Connection");
 
-        public ProfilingAspect EntryDataClient { get; } = new ProfilingAspect(ProfilingLayer.Transport, "Entry data client");
+        public ProfilingAspect EntryDataClient { get; } = new(ProfilingLayer.Transport, "Entry data client");
 
         public TransportProfilers()
         {

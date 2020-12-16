@@ -17,10 +17,10 @@ namespace EtAlii.Ubigia.Api.Transport.WebApi
             var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
             return new WebApiTransportProvider(infrastructureClient);
         }
-        
+
         public static WebApiTransportProvider Create(IInfrastructureClient infrastructureClient)
         {
-	        return new WebApiTransportProvider(infrastructureClient);
+	        return new(infrastructureClient);
         }
 
         public ISpaceTransport GetSpaceTransport(Uri address)

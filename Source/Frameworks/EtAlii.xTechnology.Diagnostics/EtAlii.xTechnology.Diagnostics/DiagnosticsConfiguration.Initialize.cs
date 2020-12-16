@@ -9,7 +9,7 @@
     [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
     public partial class DiagnosticsConfiguration
     {
-        private static LoggerConfiguration _loggerConfiguration = new LoggerConfiguration();
+        private static LoggerConfiguration _loggerConfiguration = new();
 
         public static void Update(Func<LoggerConfiguration, LoggerConfiguration> loggerConfiguration)
         {
@@ -20,7 +20,7 @@
         static DiagnosticsConfiguration()
         {
             var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
-            
+
             Update(loggerConfiguration =>
                 loggerConfiguration.MinimumLevel.Verbose()
                     .Enrich.FromLogContext()
@@ -31,13 +31,13 @@
                     .Enrich.WithMachineName()
                     .Enrich.WithEnvironmentUserName()
                     // These ones do not give elegant results during unit tests.
-                    // .Enrich.WithAssemblyName()  
+                    // .Enrich.WithAssemblyName()
                     // .Enrich.WithAssemblyVersion()
                     // Let's do it ourselves.
                     .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
                     .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                     .Enrich.WithMemoryUsage()
-                    .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough  
+                    .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
                     .WriteTo.Async(writeTo =>
                     {
                         writeTo.Seq("http://vrenken.duckdns.org:5341");

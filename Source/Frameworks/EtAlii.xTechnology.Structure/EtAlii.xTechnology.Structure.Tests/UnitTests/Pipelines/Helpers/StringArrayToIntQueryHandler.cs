@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Structure.Tests
     {
         public StringArrayToIntQuery Create(string[] parameter)
         {
-            return new StringArrayToIntQuery(parameter);
+            return new(parameter);
         }
 
         public int Handle(StringArrayToIntQuery query)

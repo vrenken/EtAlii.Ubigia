@@ -9,7 +9,7 @@ namespace Docker.DotNet.Models
     /// </summary>
     internal class JsonSerializer
     {
-        private readonly JsonSerializerSettings _settings = new JsonSerializerSettings
+        private readonly JsonSerializerSettings _settings = new()
         {
             NullValueHandling = NullValueHandling.Ignore,
             Converters = new JsonConverter[]
