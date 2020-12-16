@@ -6,9 +6,9 @@ namespace EtAlii.xTechnology.Threading
 
     public partial class SingleElementOrderablePartitioner<T>
     {
-        // Internal class that serves as a shared enumerator for 
+        // Internal class that serves as a shared enumerator for
         // the underlying collection.
-        private class InternalEnumerator : IEnumerator<KeyValuePair<long, T>>
+        private sealed class InternalEnumerator : IEnumerator<KeyValuePair<long, T>>
         {
             private KeyValuePair<long, T> _current;
             private readonly IEnumerator<T> _source;
@@ -35,7 +35,7 @@ namespace EtAlii.xTechnology.Threading
             }
 
             // This method is the crux of this class.  Under lock, it calls
-            // MoveNext() on the underlying enumerator, grabs Current and index, 
+            // MoveNext() on the underlying enumerator, grabs Current and index,
             // and increments the index.
             bool IEnumerator.MoveNext()
             {
@@ -56,16 +56,28 @@ namespace EtAlii.xTechnology.Threading
                 return rval;
             }
 
-            void IDisposable.Dispose()
+            private void Dispose(bool disposing)
             {
-                if (!_disposed)
+                if (disposing)
                 {
-                    // Delegate to parent enumerable's DisposeEnumerator() method
-                    _controllingEnumerable.DisposeEnumerator();
-                    _disposed = true;
+                    if (!_disposed)
+                    {
+                        // Delegate to parent enumerable's DisposeEnumerator() method
+                        _controllingEnumerable.DisposeEnumerator();
+                        _disposed = true;
+                    }
                 }
             }
+            public void Dispose()
+            {
+                Dispose(true);
+                GC.SuppressFinalize(this);
+            }
 
+            ~InternalEnumerator()
+            {
+                Dispose(false);
+            }
         }
     }
 }
