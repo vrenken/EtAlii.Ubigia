@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_03()
         {
             // Arrange.
-            var text = "/Person/*/.NickName=\"Johnny\"&Birthdate=28-07-1978";
+            var text = "/Person/*/.NickName=\"Johnny\"&Birthdate=27-06-1977";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -250,7 +250,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         {
             // Arrange.
             var text = "/Person/*/.NickName=\"Johnny\"\n" +
-                       " & Birthdate=28-07-1978\n" +
+                       " & Birthdate=27-06-1977\n" +
                        " & IsMale = true";
 
             // Act.
@@ -285,7 +285,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Arrange.
             var text = "/Person/*/.\n" +
                        " NickName=\"Johnny\" & \n" +
-                       " Birthdate=28-07-1978 & \n"+
+                       " Birthdate=27-06-1977 & \n"+
                        " IsMale = true";
 
             // Act.
@@ -319,7 +319,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         {
             // Arrange.
             var text = "/Person/*/John.NickName=\"Johnny\"\n" +
-                       " & Birthdate=28-07-1978\n" +
+                       " & Birthdate=27-06-1977\n" +
                        " & IsMale = true";
 
             // Act.
@@ -355,7 +355,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
         {
             // Arrange.
             var text = "/Person/*/.NickName=\"Johnny\" & \n" +
-                       "Birthdate=28-07-1978 & \n" +
+                       "Birthdate=27-06-1977 & \n" +
                        "IsMale = true";
 
             // Act.
