@@ -2,7 +2,7 @@
 <Project>
 
   <Import Project="..\..\Directory.Build.props"/>
-  
+
   <PropertyGroup>
     <!-- We don't want this library to completely mess up SonarQube -->
     <NoWarn>S4143, S2183, S1121, S1905, S3776, S1854, S3963, S101, S2234, S3928, CA2208, S125, S3247, S2437, S3442, S1185, S3442, S2223, S3247, S1066, S112, CA2000, S1264, S2365, CA1825, S2368, S1128, S927, S1764, S4275, S2328, S107, CA1507, S4136, S1135</NoWarn>

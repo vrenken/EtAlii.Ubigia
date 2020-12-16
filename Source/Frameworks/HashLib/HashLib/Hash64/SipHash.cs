@@ -200,7 +200,7 @@ namespace HashLib.Hash64
         {
             get
             {
-                var key = new byte[KeyLength.Value];
+                var key = new byte[KeyLength!.Value];
 
                 Converters.ConvertULongToBytes(m_key0, key, 0);
                 Converters.ConvertULongToBytes(m_key1, key, 8);
@@ -216,7 +216,7 @@ namespace HashLib.Hash64
                 }
                 else
                 {
-                    Debug.Assert(value.Length == KeyLength.Value);
+                    Debug.Assert(value.Length == KeyLength!.Value);
 
                     m_key0 = Converters.ConvertBytesToULong(value, 0);
                     m_key1 = Converters.ConvertBytesToULong(value, 8);

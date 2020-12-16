@@ -3,10 +3,12 @@
 
   <Import Project="..\..\Directory.Build.targets"/>
 
+  <!-- We do not want any of the the HashLib projects to adhere to the ullable patterns. -->
   <PropertyGroup>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-  
+
   <ItemGroup>
   </ItemGroup>
-  
+
 </Project>

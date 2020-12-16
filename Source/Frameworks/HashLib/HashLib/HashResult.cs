@@ -1,9 +1,10 @@
 ﻿// ReSharper disable All
 
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+
 using System;
 using System.Diagnostics;
 using System.Linq;
-// ReSharper disable ArrangeStaticMemberQualifier
 
 namespace HashLib
 {

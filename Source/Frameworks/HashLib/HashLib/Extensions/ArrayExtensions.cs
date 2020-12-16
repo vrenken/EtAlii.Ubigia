@@ -1,5 +1,7 @@
 ﻿// ReSharper disable all
 
+#pragma warning disable CS8601 // Possible null reference assignment.
+
 using System;
 using System.Diagnostics;
 
