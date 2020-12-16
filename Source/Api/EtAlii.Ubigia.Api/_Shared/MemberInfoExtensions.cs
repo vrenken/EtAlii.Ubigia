@@ -34,7 +34,7 @@ namespace System.Reflection
                     : Equals(propertyInfo, otherPropertyInfo)
                     || (propertyInfo.Name == otherPropertyInfo.Name
                         && (propertyInfo.DeclaringType == otherPropertyInfo.DeclaringType
-                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType)
+                            || otherPropertyInfo.DeclaringType.GetTypeInfo().IsSubclassOf(propertyInfo.DeclaringType!)
                             || otherPropertyInfo.DeclaringType.GetTypeInfo().ImplementedInterfaces
                                 .Contains(propertyInfo.DeclaringType))));
 
