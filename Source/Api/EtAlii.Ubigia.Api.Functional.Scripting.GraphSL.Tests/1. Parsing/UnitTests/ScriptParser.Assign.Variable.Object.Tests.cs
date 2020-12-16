@@ -129,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             var script = _parser.Parse("$johnDoe <= {\r\n" +
                                        "    FirstName: \"John\",\r\n" +
                                        "    LastName: \"Doe\",\r\n" +
-                                       "    Birthdate: 28-07-1978\r\n" +
+                                       "    Birthdate: 27-06-1977\r\n" +
                                        "}").Script;
 
             // Assert.
@@ -504,7 +504,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("$johnDoe <= { FirstName: \"John\", LastName: \"Doe\", Birthdate: 28-07-1978 }").Script;
+            var script = _parser.Parse("$johnDoe <= { FirstName: \"John\", LastName: \"Doe\", Birthdate: 27-06-1977 }").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
