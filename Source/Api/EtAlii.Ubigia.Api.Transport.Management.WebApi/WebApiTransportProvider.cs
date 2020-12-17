@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.xTechnology.Threading;
 
     public class WebApiStorageTransportProvider : IStorageTransportProvider
     {
@@ -12,9 +13,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
             _infrastructureClient = infrastructureClient;
         }
 
-        public static WebApiStorageTransportProvider Create()
+        public static WebApiStorageTransportProvider Create(IContextCorrelator contextCorrelator)
         {
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
             return new WebApiStorageTransportProvider(infrastructureClient);
         }
