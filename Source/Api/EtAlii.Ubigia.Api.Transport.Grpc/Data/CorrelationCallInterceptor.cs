@@ -45,9 +45,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         private void AddHeadersWhenNeeded(Metadata metadata)
         {
-            if (_contextCorrelator.TryGetValue(Correlation.ScriptId, out var correlationId))
+            foreach (var correlationId in Correlation.AllIds)
             {
-                metadata.Add(Correlation.ScriptId, correlationId);
+                if (_contextCorrelator.TryGetValue(correlationId, out var correlationIdValue))
+                {
+                    metadata.Add(correlationId, correlationIdValue);
+                }
             }
         }
     }
