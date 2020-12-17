@@ -1,10 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
+﻿using EtAlii.xTechnology.Threading;
+
+namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    
+
     public class InfrastructureClientUnitTests : IDisposable
     {
         public InfrastructureClientUnitTests()
@@ -22,7 +24,8 @@
         public void InfrastructureClient_New()
         {
             // Arrange.
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var contextCorrelator = new ContextCorrelator();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
 
             // Act.
             var client = new DefaultInfrastructureClient(httpClientFactory);
@@ -35,7 +38,8 @@
         public void InfrastructureClient_New_Has_No_AuthenticationToken()
         {
             // Arrange.
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var contextCorrelator = new ContextCorrelator();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
             // Act.

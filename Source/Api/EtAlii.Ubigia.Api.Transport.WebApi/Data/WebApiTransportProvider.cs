@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     using System;
+    using EtAlii.xTechnology.Threading;
 
     public class WebApiTransportProvider : ITransportProvider
     {
@@ -11,9 +12,9 @@ namespace EtAlii.Ubigia.Api.Transport.WebApi
             _infrastructureClient = infrastructureClient;
         }
 
-        public static WebApiTransportProvider Create()
+        public static WebApiTransportProvider Create(IContextCorrelator contextCorrelator)
         {
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
             return new WebApiTransportProvider(infrastructureClient);
         }

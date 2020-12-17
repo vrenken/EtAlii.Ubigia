@@ -34,7 +34,7 @@
         public async Task<TResult> Get<TResult>(Uri address, ICredentials credentials = null)
         {
             using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
-            
+
             try
             {
                 var response = await client.GetAsync(address).ConfigureAwait(false);
@@ -99,7 +99,7 @@
 	    public async Task Delete(Uri address, ICredentials credentials = null)
         {
             using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
-            
+
             try
             {
                 var response = await client.DeleteAsync(address).ConfigureAwait(false);
@@ -126,7 +126,7 @@
         public async Task<TValue> Put<TValue>(Uri address, TValue value, ICredentials credentials = null)
         {
             using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
-            
+
             try
             {
                 var response = await client.PutAsync(address, value, _formatter).ConfigureAwait(false);
@@ -154,7 +154,7 @@
 
         private async Task WaitAndTestResponse(HttpResponseMessage result, HttpMethod method, Uri address)
         {
-    
+
             if (!result.IsSuccessStatusCode)
             {
                 Exception e;

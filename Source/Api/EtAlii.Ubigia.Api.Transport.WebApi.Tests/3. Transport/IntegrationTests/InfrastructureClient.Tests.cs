@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
+﻿using EtAlii.xTechnology.Threading;
+
+namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
     using System;
     using System.Runtime.InteropServices;
@@ -14,6 +16,7 @@
         [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post()
         {
+            // Arrange.
             var identifier = Guid.NewGuid().ToString().Replace("-", "");
             var testMessage = new TestMessage
             {
@@ -21,10 +24,14 @@
                 Value = new Random().Next(),
             };
 
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var contextCorrelator = new ContextCorrelator();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
+            // Act.
             await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
+
+            // Assert.
         }
 
         [Fact(Skip="Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -32,10 +39,15 @@
         {
             if (IsConnectedToInternet())
             {
-                var httpClientFactory = new DefaultHttpClientFactory();
+                // Arrange.
+                var contextCorrelator = new ContextCorrelator();
+                var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
                 var client = new DefaultInfrastructureClient(httpClientFactory);
 
+                // Act.
                 var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute)).ConfigureAwait(false);
+
+                // Assert.
                 Assert.NotNull(result);
                 Assert.Equal("ping", result.First);
                 Assert.Equal("pong", result.Second);
@@ -55,6 +67,7 @@
         [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post_Get_Result()
         {
+            // Arrange.
             var identifier = Guid.NewGuid().ToString().Replace("-", "");
             var testMessage = new TestMessage
             {
@@ -62,11 +75,14 @@
                 Value = new Random().Next(),
             };
 
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var contextCorrelator = new ContextCorrelator();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
+            // Act.
             await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
 
+            // Assert.
             //var result = infrastructureClient.Get<TestMessage>(_url + identifier)
             //Assert.NotNull(result)
             //Assert.Equal(result.Name, testMessage.Name)
@@ -77,7 +93,8 @@
         public async Task InfrastructureClient_Get_Null()
         {
             // Arrange.
-            var httpClientFactory = new DefaultHttpClientFactory();
+            var contextCorrelator = new ContextCorrelator();
+            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
             // Act.
