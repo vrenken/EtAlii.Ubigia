@@ -62,7 +62,7 @@
             await base.Connect(spaceConnection).ConfigureAwait(false);
             
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
-            _client = new PropertiesGrpcService.PropertiesGrpcServiceClient(_transport.Channel);
+            _client = new PropertiesGrpcService.PropertiesGrpcServiceClient(_transport.CallInvoker);
         }
 
         public override async Task Disconnect()

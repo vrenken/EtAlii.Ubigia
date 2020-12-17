@@ -3,31 +3,37 @@
 	using System;
 	using System.Threading.Tasks;
 	using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Threading;
 	using global::Grpc.Core;
 	using global::Grpc.Net.Client;
+    using global::Grpc.Core.Interceptors;
 
 	public class GrpcSpaceTransport : SpaceTransportBase, IGrpcSpaceTransport
     {
-	    public GrpcChannel Channel => GetChannel();
-	    private GrpcChannel _channel;
+        public CallInvoker CallInvoker => GetCallInvoker();
+        private CallInvoker _callInvoker;
+        private GrpcChannel _channel;
 
 	    public Metadata AuthenticationHeaders { get; set; }
-	    
+
 	    public string AuthenticationToken { get => _authenticationTokenProvider.AuthenticationToken; set => _authenticationTokenProvider.AuthenticationToken = value; }
 	    private readonly IAuthenticationTokenProvider _authenticationTokenProvider;
-	    private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
-	     
+        private readonly IContextCorrelator _contextCorrelator;
+        private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
+
         public GrpcSpaceTransport(
 	        Uri address,
-	        Func<Uri, GrpcChannel> grpcChannelFactory, 
-	        IAuthenticationTokenProvider authenticationTokenProvider)
+	        Func<Uri, GrpcChannel> grpcChannelFactory,
+	        IAuthenticationTokenProvider authenticationTokenProvider,
+            IContextCorrelator contextCorrelator)
 	        : base(address)
         {
 	        _grpcChannelFactory = grpcChannelFactory;
 	        _authenticationTokenProvider = authenticationTokenProvider;
+            _contextCorrelator = contextCorrelator;
         }
 
-	    private GrpcChannel GetChannel()
+	    private CallInvoker GetCallInvoker()
 	    {
 		    var uriAsString = _channel?.Target;
 		    var hasAddress = !string.IsNullOrWhiteSpace(uriAsString);
@@ -39,13 +45,15 @@
 			    var hasSamePort = Address.Port == channelAddress.Port;
 			    if (hasSameHost && hasSamePort)
 			    {
-				    return _channel;
+				    return _callInvoker;
 			    }
 		    }
-		     
-		    return _channel = _grpcChannelFactory.Invoke(Address);
+
+            _channel = _grpcChannelFactory.Invoke(Address);
+            _callInvoker = _channel.Intercept(new CorrelationCallInterceptor(_contextCorrelator));
+            return _callInvoker;
 	    }
-	    
+
         public override async Task Stop()
         {
             await base.Stop().ConfigureAwait(false);

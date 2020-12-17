@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
+    using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -12,8 +13,8 @@
             if (diagnostics.EnableLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptProcessor), typeof(LoggingScriptProcessor));
+                container.Register<IContextCorrelator, ContextCorrelator>();
             }
-
         }
     }
 }

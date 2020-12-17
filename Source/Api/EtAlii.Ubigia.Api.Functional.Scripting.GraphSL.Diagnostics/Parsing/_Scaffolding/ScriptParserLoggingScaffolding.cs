@@ -2,6 +2,7 @@
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Threading;
 
     internal class ScriptParserLoggingScaffolding : IScaffolding
     {
@@ -12,8 +13,8 @@
             if (diagnostics.EnableLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptParser), typeof(LoggingScriptParser));
+                container.Register<IContextCorrelator, ContextCorrelator>();
             }
-
         }
     }
 }

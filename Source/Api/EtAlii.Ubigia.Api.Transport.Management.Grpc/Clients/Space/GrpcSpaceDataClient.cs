@@ -172,7 +172,7 @@
         public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
             _transport = storageConnection.Transport;
-            _client = new SpaceGrpcService.SpaceGrpcServiceClient(_transport.Channel);
+            _client = new SpaceGrpcService.SpaceGrpcServiceClient(_transport.CallInvoker);
             return Task.CompletedTask;
         }
 

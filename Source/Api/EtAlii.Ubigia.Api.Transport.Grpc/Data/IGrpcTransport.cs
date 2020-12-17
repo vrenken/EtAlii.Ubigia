@@ -1,14 +1,17 @@
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using global::Grpc.Core;
-	using global::Grpc.Net.Client;
 
 	public interface IGrpcTransport
     {
-	    GrpcChannel Channel { get; }
-	    
+        /// <summary>
+        /// We want to forward a CallInvoker instead of a GrpcChannel.
+        /// Reason is that a CallInvoker works with Interceptors, whereas the GrpcChannel does not.
+        /// </summary>
+	    CallInvoker CallInvoker { get; }
+
 		string AuthenticationToken { get; set; }
-	    
+
 	    Metadata AuthenticationHeaders { get; set; }
     }
 }

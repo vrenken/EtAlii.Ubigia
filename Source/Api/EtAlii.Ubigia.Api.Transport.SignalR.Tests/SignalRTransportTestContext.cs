@@ -10,13 +10,16 @@
 	using EtAlii.Ubigia.Api.Transport.Tests;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Threading;
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
-	    public override async Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
+        protected override async Task<IDataConnection> CreateDataConnectionToNewSpace(
+            Uri address, string accountName, string accountPassword, bool openOnCreation,
+            IContextCorrelator contextCorrelator, SpaceTemplate spaceTemplate = null)
 	    {
 		    var spaceName = Guid.NewGuid().ToString();
-		    
+
 		    var diagnostics = DiagnosticsConfiguration.Default;
 
 		    var httpMessageHandlerFactory = new Func<HttpMessageHandler>(Context.CreateHandler);
@@ -42,7 +45,7 @@
 		    return connection;
 	    }
 
-	    public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
+        protected override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, IContextCorrelator contextCorrelator, bool openOnCreation)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 
@@ -63,7 +66,7 @@
             return connection;
         }
 
-        public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
+        protected override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, IContextCorrelator contextCorrelator, bool openOnCreation = true)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 

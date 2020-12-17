@@ -2,6 +2,7 @@
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Threading;
 
 	public class AdminApiScaffolding : IScaffolding
 	{
@@ -18,6 +19,7 @@
 			container.Register(() => _infrastructure.Storages);
 			container.Register(() => _infrastructure.Spaces);
 			container.Register(() => _infrastructure.Configuration);
+            container.Register<IContextCorrelator, ContextCorrelator>();
 		}
 	}
 }

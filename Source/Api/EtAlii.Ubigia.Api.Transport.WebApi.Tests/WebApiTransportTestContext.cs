@@ -9,11 +9,13 @@
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
+    using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.Diagnostics;
 
     public class WebApiTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
     {
-        public override async Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
+        protected override async Task<IDataConnection> CreateDataConnectionToNewSpace(
+            Uri address, string accountName, string accountPassword, bool openOnCreation, IContextCorrelator contextCorrelator, SpaceTemplate spaceTemplate = null)
         {
             var spaceName = Guid.NewGuid().ToString();
 
@@ -42,7 +44,7 @@
             return connection;
         }
 
-        public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
+        protected override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, IContextCorrelator contextCorrelator, bool openOnCreation)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 
@@ -55,7 +57,7 @@
                 .Use(accountName, spaceName, accountPassword)
                 .UseTransportDiagnostics(diagnostics);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
-            
+
             if (openOnCreation)
             {
                 await connection.Open().ConfigureAwait(false);
@@ -63,7 +65,7 @@
             return connection;
         }
 
-        public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
+        protected override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, IContextCorrelator contextCorrelator, bool openOnCreation = true)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 

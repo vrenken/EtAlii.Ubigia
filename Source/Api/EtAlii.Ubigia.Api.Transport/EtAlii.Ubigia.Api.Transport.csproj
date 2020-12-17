@@ -8,6 +8,7 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Serialization\EtAlii.Ubigia.Serialization.csproj" />
   </ItemGroup>
 </Project>
