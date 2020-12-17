@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using Serilog;
     using Xunit;
+    using EtAlii.xTechnology.Threading;
 
     public class SerilogForContextTests
     {
@@ -27,9 +28,10 @@
             // Arrange.
             var hasConfiguration = DiagnosticsConfiguration.Default != null;
             var logger = Log.ForContext<SerilogForContextTests>();
+            var contextCorrelator = new ContextCorrelator();
 
             // Act.
-            using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "41"))
+            using (contextCorrelator.BeginLoggingCorrelationScope("TestCorrelationId", "41"))
             {
                 logger.Information("Test to see if this log entry is shown together with a correlation id");
             }
@@ -44,9 +46,10 @@
             // Arrange.
             var hasConfiguration = DiagnosticsConfiguration.Default != null;
             var logger = Log.ForContext<SerilogForContextTests>();
+            var contextCorrelator = new ContextCorrelator();
 
             // Act.
-            using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "42"))
+            using (contextCorrelator.BeginLoggingCorrelationScope("TestCorrelationId", "42"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
                 await Task.Run(() => WriteLogAsync(logger)).ConfigureAwait(false);
@@ -63,9 +66,10 @@
             var hasConfiguration = DiagnosticsConfiguration.Default != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var testClass = new TestClass();
+            var contextCorrelator = new ContextCorrelator();
 
             // Act.
-            using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "42"))
+            using (contextCorrelator.BeginLoggingCorrelationScope("TestCorrelationId", "42"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
                 await Task.Run(() => testClass.WriteLogAsync()).ConfigureAwait(false);
@@ -86,9 +90,10 @@
             // Arrange.
             var hasConfiguration = DiagnosticsConfiguration.Default != null;
             var logger = Log.ForContext<SerilogForContextTests>();
+            var contextCorrelator = new ContextCorrelator();
 
             // Act.
-            using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "43"))
+            using (contextCorrelator.BeginLoggingCorrelationScope("TestCorrelationId", "43"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
                 await Task.Run(WriteLogAsyncWithNewLogger).ConfigureAwait(false);
@@ -110,9 +115,10 @@
             // Arrange.
             var hasConfiguration = DiagnosticsConfiguration.Default != null;
             var logger = Log.ForContext<SerilogForContextTests>();
+            var contextCorrelator = new ContextCorrelator();
 
             // Act.
-            using (ContextCorrelator.BeginCorrelationScope("TestCorrelationId", "44"))
+            using (contextCorrelator.BeginLoggingCorrelationScope("TestCorrelationId", "44"))
             {
                 logger.Information("Test to see if this log entry is shown followed by a correlation id written in an async method");
                 var thread = new Thread(WriteLogAsyncWithNewLogger);

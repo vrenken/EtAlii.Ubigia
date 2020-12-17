@@ -21,7 +21,10 @@
     <PackageReference Include="Serilog.Sinks.Debug" Version="1.0.1" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
     <PackageReference Include="SerilogMetrics" Version="2.1.0" />
-    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading.csproj" />
   </ItemGroup>
   
 </Project>
