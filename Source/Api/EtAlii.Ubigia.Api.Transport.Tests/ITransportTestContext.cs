@@ -18,10 +18,8 @@ namespace EtAlii.Ubigia.Api.Tests
 
         Task<IDataConnection> CreateDataConnectionToNewSpace(bool openOnCreation = true);
         Task<IDataConnection> CreateDataConnectionToNewSpace(string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
-        Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null);
-        Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation);
         Task<IDataConnection> CreateDataConnectionToExistingSpace(string accountName, string accountPassword, string spaceName, bool openOnCreation);
-        
+
         Task<IManagementConnection> CreateManagementConnection(Uri address, string accountName, string password, bool openOnCreation);
         Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true);
 

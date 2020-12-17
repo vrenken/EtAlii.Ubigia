@@ -4,34 +4,40 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Grpc;
 	using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Threading;
+    using global::Grpc.Core.Interceptors;
 	using global::Grpc.Core;
 	using global::Grpc.Net.Client;
 
 	public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
-	    public GrpcChannel Channel => GetChannel();
-	    private GrpcChannel _channel;
+	    public CallInvoker CallInvoker => GetCallInvoker();
+        private CallInvoker _callInvoker;
+        private GrpcChannel _channel;
 
 	    public Metadata AuthenticationHeaders { get; set; }
-	    
+
 		public string AuthenticationToken { get => _authenticationTokenProvider.AuthenticationToken; set => _authenticationTokenProvider.AuthenticationToken = value; }
 	    private readonly IAuthenticationTokenProvider _authenticationTokenProvider;
 	    private readonly Func<Uri, GrpcChannel> _grpcChannelFactory;
+        private readonly IContextCorrelator _contextCorrelator;
 
         public GrpcStorageTransport(Uri address,
-	        Func<Uri, GrpcChannel> grpcChannelFactory, 
-	        IAuthenticationTokenProvider authenticationTokenProvider)
+	        Func<Uri, GrpcChannel> grpcChannelFactory,
+	        IAuthenticationTokenProvider authenticationTokenProvider,
+            IContextCorrelator contextCorrelator)
 	        : base(address)
         {
 	        _grpcChannelFactory = grpcChannelFactory;
 	        _authenticationTokenProvider = authenticationTokenProvider;
+            _contextCorrelator = contextCorrelator;
         }
 
 	    /// <summary>
-	    /// Gets a channel based on the specified Uri. 
+	    /// Gets a CallInvoker based on the specified Uri.
 	    /// </summary>
 	    /// <returns></returns>
-	    private GrpcChannel GetChannel()
+	    private CallInvoker GetCallInvoker()
 	    {
 		    var uriAsString = _channel?.Target;
 		    var hasAddress = !string.IsNullOrWhiteSpace(uriAsString);
@@ -43,11 +49,13 @@
 			    var hasSamePort = Address.Port == channelAddress.Port;
 			    if (hasSameHost && hasSamePort)
 			    {
-				    return _channel;
+				    return _callInvoker;
 			    }
 		    }
-		    return _channel = _grpcChannelFactory.Invoke(Address);
-	    }
+		    _channel = _grpcChannelFactory.Invoke(Address);
+            _callInvoker = _channel.Intercept(new CorrelationCallInterceptor(_contextCorrelator));
+            return _callInvoker;
+        }
 
         public override async Task Stop()
         {
@@ -55,6 +63,7 @@
 
 	        _channel?.Dispose();
 	        _channel = null;
+            _callInvoker = null;
         }
 
         protected override IScaffolding[] CreateScaffoldingInternal()

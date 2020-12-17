@@ -77,7 +77,7 @@
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             using var enumerator = entryIdentifiers.GetEnumerator();
             var hasResult = true;
             while (hasResult)
@@ -142,7 +142,7 @@
             await base.Connect(spaceConnection).ConfigureAwait(false);
 
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
-            _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.Channel);
+            _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.CallInvoker);
         }
 
         public override async Task Disconnect()

@@ -10,12 +10,13 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.xTechnology.Threading;
 
     public class AdminGrpcService : GrpcServiceBase
     {
         private readonly IConfigurationDetails _configurationDetails;
 
-        public AdminGrpcService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
+        public AdminGrpcService(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
             : base(configuration)
         {
             _configurationDetails = configurationDetails;
@@ -59,7 +60,7 @@
 
             var container = new Container();
             new AdminApiScaffolding(infrastructure).Register(container);
-            new AuthenticationScaffolding().Register(container);     
+            new AuthenticationScaffolding().Register(container);
             new SerializationScaffolding().Register(container);
 
             container.Register<IAdminAuthenticationService, AdminAuthenticationService>();
@@ -67,7 +68,7 @@
             container.Register<IAdminAccountService, AdminAccountService>();
             container.Register<IAdminSpaceService, AdminSpaceService>();
             container.Register<IAdminInformationService, AdminInformationService>();
-            
+
             container.Register(() => _configurationDetails);
 
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
@@ -79,15 +80,32 @@
             services.AddSingleton(_ => (AdminAccountService) container.GetInstance<IAdminAccountService>());
             services.AddSingleton(_ => (AdminSpaceService) container.GetInstance<IAdminSpaceService>());
             services.AddSingleton(_ => (AdminInformationService) container.GetInstance<IAdminInformationService>());
-            
+
             var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
-            
+            var contextCorrelator = container.GetInstance<IContextCorrelator>();
+
             services
                 .AddGrpc()
-                .AddServiceOptions<AdminStorageService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<AdminAccountService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<AdminSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<AdminInformationService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier));
+                .AddServiceOptions<AdminStorageService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<AdminAccountService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<AdminSpaceService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<AdminInformationService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                });
         }
 
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)

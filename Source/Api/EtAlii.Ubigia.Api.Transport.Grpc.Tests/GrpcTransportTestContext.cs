@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Threading;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
@@ -13,16 +14,18 @@
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
-        public override async Task<IDataConnection> CreateDataConnectionToNewSpace(Uri address, string accountName, string accountPassword, bool openOnCreation, SpaceTemplate spaceTemplate = null)
+        protected override async Task<IDataConnection> CreateDataConnectionToNewSpace(
+            Uri address, string accountName, string accountPassword,
+            bool openOnCreation, IContextCorrelator contextCorrelator, SpaceTemplate spaceTemplate = null)
         {
             var spaceName = Guid.NewGuid().ToString();
-            
+
             var diagnostics = DiagnosticsConfiguration.Default;
 
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
-            
+
             var connectionConfiguration = new DataConnectionConfiguration()
-                .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory))
+                .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .UseTransportDiagnostics(diagnostics);
@@ -41,14 +44,16 @@
             return connection;
         }
 
-        public override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation)
+        protected override async Task<IDataConnection> CreateDataConnectionToExistingSpace(
+            Uri address, string accountName, string accountPassword,
+            string spaceName, IContextCorrelator contextCorrelator, bool openOnCreation)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 
 			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
-            
+
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory))
+	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .UseTransportDiagnostics(diagnostics);
@@ -61,14 +66,14 @@
             return connection;
         }
 
-        public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
+        protected override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, IContextCorrelator contextCorrelator, bool openOnCreation = true)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory))
+				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory, contextCorrelator))
 				.Use(address)
                 .Use(account, password)
                 .UseTransportDiagnostics(diagnostics);

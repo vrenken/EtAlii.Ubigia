@@ -9,10 +9,11 @@
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.xTechnology.Threading;
 
 	public class UserGrpcService : GrpcServiceBase
     {
-	    public UserGrpcService(IConfigurationSection configuration) 
+	    public UserGrpcService(IConfigurationSection configuration)
             : base(configuration)
 	    {
 	    }
@@ -55,7 +56,7 @@
 
             var container = new Container();
             new UserApiScaffolding(infrastructure).Register(container);
-            new AuthenticationScaffolding().Register(container);     
+            new AuthenticationScaffolding().Register(container);
             new SerializationScaffolding().Register(container);
 
             container.Register<IUserAuthenticationService, UserAuthenticationService>();
@@ -69,9 +70,9 @@
             container.Register<IUserContentDefinitionService, UserContentDefinitionService>();
 
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationVerifier>());
-            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>()); 
+            services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationTokenVerifier>());
             services.AddSingleton(_ => container.GetInstance<ISimpleAuthenticationBuilder>());
-            
+
             services.AddSingleton(_ => (UserAuthenticationService) container.GetInstance<IUserAuthenticationService>());
             services.AddSingleton(_ => (UserStorageService) container.GetInstance<IUserStorageService>());
             services.AddSingleton(_ => (UserAccountService) container.GetInstance<IUserAccountService>());
@@ -81,17 +82,47 @@
             services.AddSingleton(_ => (UserPropertiesService) container.GetInstance<IUserPropertiesService>());
             services.AddSingleton(_ => (UserContentService) container.GetInstance<IUserContentService>());
             services.AddSingleton(_ => (UserContentDefinitionService) container.GetInstance<IUserContentDefinitionService>());
-            
-			var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
+
+            var authenticationTokenVerifier = container.GetInstance<ISimpleAuthenticationTokenVerifier>();
+            var contextCorrelator = container.GetInstance<IContextCorrelator>();
+
             services
                 .AddGrpc()
-                .AddServiceOptions<UserAccountService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserSpaceService>(options => options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserRootService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserEntryService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserPropertiesService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserContentService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier))
-                .AddServiceOptions<UserContentDefinitionService>(options => options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier));
+                .AddServiceOptions<UserAccountService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserSpaceService>(options =>
+                {
+                    options.Interceptors.Add<AccountAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserRootService>(options =>
+                {
+                    options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserEntryService>(options =>
+                {
+                    options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserPropertiesService>(options =>
+                {
+                    options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserContentService>(options =>
+                {
+                    options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                })
+                .AddServiceOptions<UserContentDefinitionService>(options =>
+                {
+                    options.Interceptors.Add<SpaceAuthenticationInterceptor>(authenticationTokenVerifier);
+                    options.Interceptors.Add<CorrelationServiceInterceptor>(contextCorrelator);
+                });
         }
 
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)

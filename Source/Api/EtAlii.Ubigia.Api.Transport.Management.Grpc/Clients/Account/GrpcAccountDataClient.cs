@@ -189,7 +189,7 @@
         public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
             _transport = storageConnection.Transport;
-            _client = new AccountGrpcService.AccountGrpcServiceClient(_transport.Channel);
+            _client = new AccountGrpcService.AccountGrpcServiceClient(_transport.CallInvoker);
             return Task.CompletedTask;
         }
 

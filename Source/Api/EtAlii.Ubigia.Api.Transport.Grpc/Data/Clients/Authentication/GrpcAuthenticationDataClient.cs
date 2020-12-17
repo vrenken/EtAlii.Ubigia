@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
+    using global::Grpc.Core;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
-    using global::Grpc.Net.Client;
     using Account = EtAlii.Ubigia.Account;
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
@@ -23,22 +23,22 @@
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
-            SetClients(spaceConnection.Transport.Channel);
+            SetClients(spaceConnection.Transport.CallInvoker);
         }
 
-        public override async Task Disconnect() 
+        public override async Task Disconnect()
         {
-            await base.Disconnect().ConfigureAwait(false); 
+            await base.Disconnect().ConfigureAwait(false);
             _storageClient = null;
             _spaceClient = null;
         }
-        
-        private void SetClients(GrpcChannel channel)
+
+        private void SetClients(CallInvoker callInvoker)
         {
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
-            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
-            _spaceClient = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(callInvoker);
+            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(callInvoker);
+            _spaceClient = new SpaceGrpcService.SpaceGrpcServiceClient(callInvoker);
         }
-        
+
     }
 }

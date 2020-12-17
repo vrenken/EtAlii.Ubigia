@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using System.Threading.Tasks;
+    using global::Grpc.Core;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-    using global::Grpc.Net.Client;
 
     public partial class GrpcInformationDataClient : GrpcManagementClientBase, IInformationDataClient<IGrpcStorageTransport>
     {
@@ -12,7 +12,7 @@
 
         public override Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            SetClients(storageConnection.Transport.Channel);
+            SetClients(storageConnection.Transport.CallInvoker);
             return Task.CompletedTask;
         }
 
@@ -23,10 +23,10 @@
             return Task.CompletedTask;
         }
 
-        private void SetClients(GrpcChannel channel)
+        private void SetClients(CallInvoker callInvoker)
         {
-            _client = new InformationGrpcService.InformationGrpcServiceClient(channel);
-            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
+            _client = new InformationGrpcService.InformationGrpcServiceClient(callInvoker);
+            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(callInvoker);
         }
     }
 }

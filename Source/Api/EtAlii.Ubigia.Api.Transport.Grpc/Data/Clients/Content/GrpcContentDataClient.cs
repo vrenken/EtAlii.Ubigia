@@ -14,8 +14,8 @@
             await base.Connect(spaceConnection).ConfigureAwait(false);
             
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
-            _contentClient = new ContentGrpcService.ContentGrpcServiceClient(_transport.Channel);
-            _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(_transport.Channel);
+            _contentClient = new ContentGrpcService.ContentGrpcServiceClient(_transport.CallInvoker);
+            _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(_transport.CallInvoker);
         }
 
         public override async Task Disconnect()

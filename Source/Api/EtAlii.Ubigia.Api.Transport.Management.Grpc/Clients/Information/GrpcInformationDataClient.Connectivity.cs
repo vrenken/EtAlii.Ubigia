@@ -10,7 +10,7 @@
         public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
-            SetClients(grpcConnection.Transport.Channel);
+            SetClients(grpcConnection.Transport.CallInvoker);
 
             if (connection.Storage != null)
             {
@@ -37,7 +37,7 @@
         public async Task<EtAlii.Ubigia.Api.Transport.ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
-            SetClients(grpcConnection.Transport.Channel);
+            SetClients(grpcConnection.Transport.CallInvoker);
 
             var request = new ConnectivityDetailsRequest();
             var response = await _client.GetLocalConnectivityDetailsAsync(request, grpcConnection.Transport.AuthenticationHeaders);

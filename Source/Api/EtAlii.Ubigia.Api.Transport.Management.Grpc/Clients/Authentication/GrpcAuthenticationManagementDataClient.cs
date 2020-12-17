@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-    using global::Grpc.Net.Client;
+    using global::Grpc.Core;
 
     public partial class GrpcAuthenticationManagementDataClient : GrpcManagementClientBase, IAuthenticationManagementDataClient<IGrpcStorageTransport>
     {
@@ -16,7 +16,7 @@
 
         public override Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            SetClients(storageConnection.Transport.Channel);
+            SetClients(storageConnection.Transport.CallInvoker);
             return Task.CompletedTask;
         }
 
@@ -26,9 +26,9 @@
             return Task.CompletedTask;
         }
 
-        private void SetClients(GrpcChannel channel)
+        private void SetClients(CallInvoker callInvoker)
         {
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(callInvoker);
         }
     }
 }
