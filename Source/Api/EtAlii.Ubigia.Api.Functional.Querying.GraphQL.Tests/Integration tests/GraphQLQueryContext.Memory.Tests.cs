@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-        
+
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private GraphQLQueryContextConfiguration _configuration;
@@ -34,13 +34,12 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             var start = Environment.TickCount;
 
             _configuration = new GraphQLQueryContextConfiguration()
-                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
@@ -58,40 +57,40 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_Nested_01()
         {
             // Arrange.
             dotMemory.Check();
-            
+
             // Act.
             var isolator = new Func<Task>(async() =>
             {
                 var queryText = @"
-                query data  
-                { 
+                query data
+                {
                     data2 @nodes(path:""/person"")
                     {
                         person1 @nodes(path:""/Stark/Tony"")
-                        { 
-                            nickname 
+                        {
+                            nickname
                         }
                         person2 @nodes(path:""/Doe/John"")
-                        { 
-                            nickname 
+                        {
+                            nickname
                         }
                     }
                 }";
-            
+
                 var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
                 await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             });
             await isolator().ConfigureAwait(false);
             GC.Collect(); // Run explicit GC
-            
+
             // Assert.
-            
+
             // We don't want any memory leaks.
             dotMemory.Check(memory => Assert.Equal(6, memory.GetObjects(where => where.LeakedOnEventHandler()).ObjectsCount));
         }

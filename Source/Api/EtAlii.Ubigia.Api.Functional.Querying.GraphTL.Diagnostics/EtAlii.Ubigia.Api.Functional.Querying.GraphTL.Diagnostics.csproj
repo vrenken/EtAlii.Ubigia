@@ -10,8 +10,8 @@
         <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj" />
     </ItemGroup>
 
 </Project>

@@ -24,7 +24,7 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(DiagnosticsConfiguration.Default);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
@@ -63,7 +63,7 @@
                 m => _fabric.Roots.Added -= m,
                 async () => root = await _fabric.Roots.Add(name).ConfigureAwait(false))
                 .ConfigureAwait(false);
-            
+
             // Assert.
             var addedId = action.Argument;
             Assert.NotNull(root);
@@ -240,7 +240,7 @@
             var name = Guid.NewGuid().ToString();
             var root = await _fabric.Roots.Add(name).ConfigureAwait(false);
             name = Guid.NewGuid().ToString();
-            
+
             // Act.
             var action = await ActionAssert
                 .RaisesAsync<Guid>(
@@ -283,7 +283,7 @@
         //    var root = await connection.Roots.Add(name)
 
         //    var removedEvent = new ManualResetEvent(false)
-        //    var removedId = Guid.Empty; 
+        //    var removedId = Guid.Empty;
 
         //    connection.Roots.Removed += (id) => [ removedId = id; removedEvent.Set(); ]
         //    await connection.Roots.Remove(root.Id)

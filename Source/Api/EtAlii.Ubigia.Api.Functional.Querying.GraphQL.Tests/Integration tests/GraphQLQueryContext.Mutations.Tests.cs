@@ -12,7 +12,7 @@
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-        
+
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private readonly IDocumentWriter _documentWriter;
@@ -30,13 +30,12 @@
             var start = Environment.TickCount;
 
             _configuration = new GraphQLQueryContextConfiguration()
-                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
@@ -60,18 +59,18 @@
         {
             // Arrange.
             var queryText = @"
-                mutation data 
-                { 
+                mutation data
+                {
                     person @node(path:""person:Stark/ += Tony"")
-                    { 
-                        nickname 
+                    {
+                        nickname
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);

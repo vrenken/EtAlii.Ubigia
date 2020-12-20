@@ -1,7 +1,7 @@
 ﻿// We don't want these tests running on the build server.
 #if (UBIGIA_IS_RUNNING_ON_BUILD_AGENT == false)
 
-namespace EtAlii.Ubigia.Api.Functional.Querying.Tests 
+namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System;
     using System.Threading.Tasks;
@@ -36,15 +36,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphTLQueryContextConfiguration()
-                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _context = new GraphTLQueryContextFactory().Create(_configuration);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false); 
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
@@ -70,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             // Act.
             var isolator = new Func<Task>(async () =>
             {
-                var mutationText = 
+                var mutationText =
                     @"Person @node(Person:Doe/John)
                     {
                         Weight <= 160.1,
@@ -78,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
                     }";
                 var mutationSchema = _context.Parse(mutationText).Schema;
 
-                var queryText = 
+                var queryText =
                     @"Person @node(Person:Doe/John)
                     {
                         Weight,
@@ -106,7 +105,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             // Assert
 
             // We don't want any memory leaks.
-            dotMemory.Check(memory => Assert.Equal(6, memory.GetObjects(where => where.LeakedOnEventHandler()).ObjectsCount));            
+            dotMemory.Check(memory => Assert.Equal(6, memory.GetObjects(where => where.LeakedOnEventHandler()).ObjectsCount));
         }
     }
 }

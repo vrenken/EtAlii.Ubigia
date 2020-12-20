@@ -12,7 +12,7 @@
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-        
+
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private readonly IDocumentWriter _documentWriter;
@@ -23,7 +23,7 @@
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;
             _documentWriter = new DocumentWriter(indent: false);
-                
+
         }
 
         public async Task InitializeAsync()
@@ -31,10 +31,9 @@
             var start = Environment.TickCount;
 
             _configuration = new GraphQLQueryContextConfiguration()
-                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
 
@@ -60,42 +59,42 @@
         public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string queryText)
         {
             // Arrange.
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
-            Assert.Empty(parseResult.Errors);                
+            Assert.Empty(parseResult.Errors);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-             
+
             // Assert.
             Assert.NotNull(result);
             Assert.NotNull(title);
             Assert.NotNull(fileName);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Full_Local()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-             
+
             // Assert.
             Assert.NotNull(result.Errors);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Full_Relative()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\#FamilyName""), nickname, birthdate, lives } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-             
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result).ConfigureAwait(false);
@@ -106,24 +105,24 @@
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result).ConfigureAwait(false);
         }
 
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Relative_Twice()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
-            
+
             // Act.
             var result1 = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
             var result2 = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
@@ -140,11 +139,11 @@
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result).ConfigureAwait(false);
@@ -155,190 +154,190 @@
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(result.Errors);
         }
-        
-        
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Local_2()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Local_3()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Doe/John"") { nickname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Johnny"" }}", result).ConfigureAwait(false);
         }
 
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
             var queryText = @"
-                query data 
-                { 
-                    person @nodes(path:""person:Stark/Tony"") 
-                    { 
-                        firstname @id(path:"""") 
-                    } 
+                query data
+                {
+                    person @nodes(path:""person:Stark/Tony"")
+                    {
+                        firstname @id(path:"""")
+                    }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result).ConfigureAwait(false);
         }
 
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_01()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-                
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_04()
         {
             // Arrange.
-            var queryText = @"query data 
-                          { 
-                            person @nodes(path:""person:Stark/Tony"") 
-                            { 
-                                nickname 
-                            } 
+            var queryText = @"query data
+                          {
+                            person @nodes(path:""person:Stark/Tony"")
+                            {
+                                nickname
+                            }
                           }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-                
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_And_Non_Argumented_Id()
         {
             // Arrange.
-            var queryText = @"query data 
-                          { 
-                            person @nodes(path:""person:Stark/Tony"") 
+            var queryText = @"query data
+                          {
+                            person @nodes(path:""person:Stark/Tony"")
                             {
-                                firstname @id 
-                                nickname 
-                            } 
+                                firstname @id
+                                nickname
+                            }
                           }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_And_Argumented_Id()
         {
             // Arrange.
-            var queryText = @"query data 
-                          { 
-                            person @nodes(path:""person:Stark/Tony"") 
+            var queryText = @"query data
+                          {
+                            person @nodes(path:""person:Stark/Tony"")
                             {
                                 lastname @id(path:""\\#FamilyName"")
-                                nickname 
-                            } 
+                                nickname
+                            }
                           }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_02()
         {
             // Arrange.
             var queryText = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-                
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_03()
         {
             // Arrange.
             var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
@@ -349,11 +348,11 @@
         {
             // Arrange.
             var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(result.Errors);
         }
@@ -363,40 +362,40 @@
         {
             // Arrange.
             var queryText = @"query data { droid(id: ""4"") { id, name } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(result.Errors);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(result.Errors);
             await AssertQuery.ResultsAreNotEqual(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
             var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result).ConfigureAwait(false);

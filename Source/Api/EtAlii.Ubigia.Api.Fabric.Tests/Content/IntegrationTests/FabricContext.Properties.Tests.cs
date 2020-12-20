@@ -19,7 +19,7 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(DiagnosticsConfiguration.Default);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

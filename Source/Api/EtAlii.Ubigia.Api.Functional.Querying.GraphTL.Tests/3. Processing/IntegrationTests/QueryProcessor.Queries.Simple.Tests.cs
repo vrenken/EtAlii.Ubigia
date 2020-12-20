@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests 
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System;
     using System.Linq;
@@ -31,15 +31,14 @@
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphTLQueryContextConfiguration()
-                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _context = new GraphTLQueryContextFactory().Create(_configuration);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false); 
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
@@ -56,7 +55,7 @@
             _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
-        
+
         [Fact]
         public Task SchemaProcessor_Create()
         {
@@ -72,11 +71,11 @@
 
             // Assert.
             Assert.NotNull(processor);
-            
+
             return Task.CompletedTask;
         }
-        
-        
+
+
 
         [Fact]
         public async Task SchemaProcessor_Query_Time_Now_By_Structure()
@@ -127,7 +126,7 @@
             AssertTimeValue("Year");
         }
 
-        
+
 
         [Fact]
         public async Task SchemaProcessor_Query_Time_Now_By_Last_Output()
@@ -192,7 +191,7 @@
             // Assert.
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
-            
+
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
         }
@@ -223,14 +222,14 @@
             // Assert.
             var structures = result.Structure.ToArray();
             Assert.NotNull(structures);
-            
-                
+
+
             AssertValue("John", structures[0], "FirstName");
             AssertValue("Doe", structures[0], "LastName");
 
             AssertValue("Jane", structures[1], "FirstName");
             AssertValue("Doe", structures[1], "LastName");
-            
+
             AssertValue("Tony", structures[2], "FirstName");
             AssertValue("Stark", structures[2], "LastName");
 
@@ -275,7 +274,7 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastStructure);
-            
+
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastStructure);
@@ -309,7 +308,7 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastStructure);
-            
+
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastStructure);
@@ -318,7 +317,7 @@
             AssertValue("Stark", structure, "LastName");
         }
 
-        
+
         [Fact]
         public async Task SchemaProcessor_Query_Person_Nested_By_Structure()
         {
@@ -350,13 +349,11 @@
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
-            
+
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
         }
 
-        
-        
         [Fact]
         public async Task SchemaProcessor_Query_Person_Nested_By_Last_Output()
         {
@@ -387,7 +384,7 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastStructure);
-            
+
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
@@ -395,7 +392,6 @@
 
         }
 
-                
         [Fact]
         public async Task SchemaProcessor_Query_Person_Nested_Double_By_Structure()
         {
@@ -432,7 +428,7 @@
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
-            
+
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
         }
@@ -471,7 +467,7 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastStructure);
-            
+
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
@@ -508,7 +504,7 @@
 
             // Assert.
             Assert.Equal(2, result.Structure.Count);
-            
+
             var firstPerson = result.Structure[0];
             Assert.NotNull(firstPerson);
             AssertValue("John", firstPerson, "FirstName");
@@ -524,7 +520,7 @@
             AssertValue("Janey", secondPerson, "NickName");
 
         }
-        
+
         [Fact]
         public async Task SchemaProcessor_Query_Person_Friends()
         {
@@ -557,7 +553,7 @@
 
             // Assert.
             Assert.Single(result.Structure);
-            
+
             var person = result.Structure[0];
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
@@ -565,7 +561,7 @@
             AssertValue(DateTime.Parse("1977-06-27"), person, "Birthdate");
             AssertValue("Johnny", person, "NickName");
 
-            Assert.Equal(2, person.Children.Count); 
+            Assert.Equal(2, person.Children.Count);
             AssertValue("Tony", person.Children[0], "FirstName");
             AssertValue("Stark", person.Children[0], "LastName");
             AssertValue("Jane", person.Children[1], "FirstName");
@@ -608,8 +604,8 @@
             var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
             Assert.NotNull(value);
             Assert.Equal(expected, value.Object);
-            
+
         }
-        
+
     }
 }

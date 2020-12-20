@@ -16,13 +16,13 @@
         {
             _testContext = testContext;
         }
-        
+
         public async Task InitializeAsync()
         {
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(DiagnosticsConfiguration.Default);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
@@ -181,7 +181,7 @@
         {
             // Arrange.
             IEditableEntry entry = null;
-            
+
             // Act.
             var action = await ActionAssert
                 .RaisesAsync<Identifier>(
@@ -213,7 +213,7 @@
                     async () => entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope).ConfigureAwait(false))
                 .ConfigureAwait(false);
 
-            
+
             // Assert.
             var storedIdentifier = action.Argument;
             Assert.NotEqual(Identifier.Empty, storedIdentifier);
