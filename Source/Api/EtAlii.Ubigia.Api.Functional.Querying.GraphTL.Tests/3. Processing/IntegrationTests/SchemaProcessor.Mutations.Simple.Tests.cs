@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests 
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System;
     using System.Linq;
@@ -30,15 +30,14 @@
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphTLQueryContextConfiguration()
-                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphTLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _context = new GraphTLQueryContextFactory().Create(_configuration);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false); 
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
@@ -91,7 +90,7 @@
             Assert.NotNull(mutationStructure);
             var queryStructure = queryResult.Structure.Single();
             Assert.NotNull(queryStructure);
-            
+
             AssertValue(160.1f, mutationStructure, "Weight");
             AssertValue(160.1f, queryStructure, "Weight");
 
@@ -135,7 +134,7 @@
             Assert.NotNull(mutationStructure);
             var queryStructure = queryResult.Structure.Single();
             Assert.NotNull(queryStructure);
-            
+
             AssertValue(160.1f, mutationStructure, "Weight");
             AssertValue(160.1f, queryStructure, "Weight");
 
@@ -157,12 +156,12 @@
                                         FirstName @node(),
                                         LastName @node(\#FamilyName),
                                         NickName
-                                     }  
+                                     }
                                  }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
             var queryText = @"Person @node(Person:Doe/John)
-                              {    
+                              {
                                     FirstName @node(),
                                     LastName @node(\#FamilyName),
                                     NickName
@@ -193,7 +192,7 @@
             Assert.NotNull(mutationStructure);
             var queryStructure = queryResult.Structure.Single();
             Assert.NotNull(queryStructure);
-            
+
             AssertValue("John", mutationStructure, "FirstName");
             AssertValue("John", queryStructure, "FirstName");
 
@@ -261,10 +260,10 @@
             Assert.NotNull(queryStructures);
             Assert.Equal(3, mutationStructures.Length);
             Assert.Equal(3, queryStructures.Length);
-            
+
             var mutationStructure = mutationStructures.Single(s => s.Name == "Mary");
             var queryStructure = queryStructures.Single(s => s.Name == "Mary");
-            
+
             AssertValue(160.1f, mutationStructure, "Weight");
             AssertValue(160.1f, queryStructure, "Weight");
 
@@ -272,7 +271,7 @@
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
-                
+
         [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
@@ -305,7 +304,7 @@
 
             // Assert.
             Assert.Single(result.Structure);
-            
+
             var person = result.Structure[0];
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
@@ -313,7 +312,7 @@
             AssertValue(DateTime.Parse("1977-06-27"), person, "Birthdate");
             AssertValue("Johnny", person, "NickName");
 
-            Assert.Equal(3, person.Children.Count); 
+            Assert.Equal(3, person.Children.Count);
             AssertValue("Tony", person.Children[0], "FirstName");
             AssertValue("Stark", person.Children[0], "LastName");
             AssertValue("Jane", person.Children[1], "FirstName");
@@ -322,7 +321,7 @@
             AssertValue("Banner", person.Children[2], "LastName");
         }
 
-        
+
         [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
         public async Task SchemaProcessor_Mutate_Person_Friends_Bidirectional_01()
         {
@@ -339,7 +338,7 @@
                                             FirstName @node(),
                                             LastName @node(\#FamilyName),
                                             NickName
-                                         }  
+                                         }
                                      }
                                  }";
 
@@ -348,7 +347,7 @@
             var queryText = @"Data
                               {
                                     Person @node(Person:Doe/John)
-                                    {    
+                                    {
                                         FirstName @node(),
                                         LastName @node(\#FamilyName),
                                         NickName
@@ -360,7 +359,7 @@
                                         }
                                     },
                                     Person @node(Person:Banner/Peter)
-                                    {    
+                                    {
                                         FirstName @node(),
                                         LastName @node(\#FamilyName),
                                         NickName
@@ -406,7 +405,7 @@
             var queryPerson2 = queryPeople[1];
             Assert.NotNull(queryPerson2);
 
-                        
+
             void AssertJohnDoeFriends(Structure[] friends)
             {
                 Assert.NotNull(friends);
@@ -452,19 +451,19 @@
             AssertValue("Johnny", mutationPerson1, "NickName");
             var mutationFriends1 = mutationPerson1.Children.Where(c => c.Type == "Friend").ToArray();
             AssertJohnDoeFriends(mutationFriends1);
-         
+
             AssertValue("John", queryPerson1, "FirstName");
             AssertValue("Doe", queryPerson1, "LastName");
             AssertValue("Johnny", queryPerson1, "NickName");
             var queryFriends1 = queryPerson1.Children.Where(c => c.Type == "Friend").ToArray();
             AssertJohnDoeFriends(queryFriends1);
-            
+
             AssertValue("Peter", mutationPerson2, "FirstName");
             AssertValue("Banner", mutationPerson2, "LastName");
             AssertValue("Pete", mutationPerson2, "NickName");
             var mutationFriends2 = mutationPerson2.Children.Where(c => c.Type == "Friend").ToArray();
             AssertPeterBannerFriends(mutationFriends2);
-         
+
             AssertValue("Peter", queryPerson2, "FirstName");
             AssertValue("Banner", queryPerson2, "LastName");
             AssertValue("Pete", queryPerson2, "NickName");
@@ -477,7 +476,7 @@
             var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
             Assert.NotNull(value);
             Assert.Equal(expected, value.Object);
-            
+
         }
     }
 }

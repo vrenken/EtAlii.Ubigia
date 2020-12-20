@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
+﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using System;
     using System.Diagnostics;
@@ -18,7 +18,7 @@
 
         public async Task<SchemaProcessingResult> Process(Schema schema)
         {
-            var message = "Processing query (async)";
+            var message = "Processing query";
             _logger.Information(message);
             var start = Environment.TickCount;
 

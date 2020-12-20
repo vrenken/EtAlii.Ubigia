@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(DiagnosticsConfiguration.Default);
             return new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
                     .GetRelated(parent.Id, EntryRelation.Child, scope)
                     .SingleOrDefaultAsync(e => e.Type == EntryType.Add)
                     .ConfigureAwait(false);
-                
+
                 var updatedParent = await fabric.Entries.Prepare().ConfigureAwait(false);
                 updatedParent.Type = parent.Type;
                 updatedParent.Downdate = Relation.NewRelation(parent.Id);

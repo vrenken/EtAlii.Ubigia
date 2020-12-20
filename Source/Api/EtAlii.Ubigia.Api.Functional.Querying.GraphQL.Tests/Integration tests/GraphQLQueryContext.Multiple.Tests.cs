@@ -12,7 +12,7 @@
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-        
+
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private readonly IDocumentWriter _documentWriter;
@@ -30,10 +30,9 @@
             var start = Environment.TickCount;
 
             _configuration = new GraphQLQueryContextConfiguration()
-                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
-                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
-            
+
             _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
 
@@ -60,19 +59,19 @@
         {
             // Arrange.
             var queryText = @"
-                query data  
-                { 
+                query data
+                {
                     person @nodes(path:""/person/*/*"")
                     {
-                        nickName 
+                        nickName
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
-            // Assert.                           
+
+            // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
@@ -88,27 +87,27 @@
                     ]
                 }", result).ConfigureAwait(false);
         }
-        
-        
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_With_Nested_Id()
         {
             // Arrange.
             var queryText = @"
-                query data  
-                { 
+                query data
+                {
                     person @nodes(path:""/person/*/*"")
                     {
                         firstname @id
-                        nickName 
+                        nickName
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
-            // Assert.                           
+
+            // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
@@ -124,25 +123,25 @@
                     ]
                 }", result).ConfigureAwait(false);
         }
-        
-        
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_02()
         {
             // Arrange.
             var queryText = @"
-                query data  
-                { 
+                query data
+                {
                     person @nodes(path:""/person/Doe/*"")
                     {
-                        nickName 
+                        nickName
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickName': 'Johnny'} , { 'nickName': 'Janey'} ]}", result).ConfigureAwait(false);
@@ -153,47 +152,47 @@
         {
             // Arrange.
             var queryText = @"
-                query data @nodes(path:""person:Doe/*"") 
-                { 
-                    person 
-                    { 
-                        nickName 
-                    } 
+                query data @nodes(path:""person:Doe/*"")
+                {
+                    person
+                    {
+                        nickName
+                    }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickName': 'Johnny'} , { 'nickName': 'Janey'} ]}", result).ConfigureAwait(false);
         }
-        
-        
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_Friends()
         {
             // Arrange.
             var queryText = @"
-                query data  
-                { 
+                query data
+                {
                     person @nodes(path:""person:Stark/Tony"")
                     {
                         name @id,
-                        friends @nodes(path:""/Friends/#FirstName"") 
-                        { 
+                        friends @nodes(path:""/Friends/#FirstName"")
+                        {
                             name @id
                             nickName
-                            lastname @id(path:""\\#FamilyName"") 
-                    } 
+                            lastname @id(path:""\\#FamilyName"")
+                    }
                     }
                 }";
-                        
+
             // Act.
                 var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-                
+
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
@@ -210,58 +209,58 @@
                     }
                 }", result).ConfigureAwait(false);
         }
-            
-        
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_02()
         {
             // Arrange.
             var queryText = @"
-                query data 
-                { 
+                query data
+                {
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
                     #time @nodes(path:""time:2012//"")
                     person @nodes(path:""person:Banner/Peter"")
-                    { 
+                    {
                         nickname
                         firstname @id
-                        lastname @id(path:""\\#FamilyName"") 
+                        lastname @id(path:""\\#FamilyName"")
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
-            // Assert.    
+
+            // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Banner'} }", result).ConfigureAwait(false);
-            
+
         }
-        
-                
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_03()
         {
             // Arrange.
             var queryText = @"
-                query data 
-                { 
+                query data
+                {
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
                     #time @nodes(path:""time:2012//"")
                     person @nodes(path:""person:Banner/*"")
-                    { 
+                    {
                         nickName
                         firstname @id
-                        lastname @id(path:""\\#FamilyName"") 
+                        lastname @id(path:""\\#FamilyName"")
                     }
                 }";
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText).ConfigureAwait(false);
             var result = await _queryContext.Process(parseResult.Query).ConfigureAwait(false);
-            
-            // Assert.    
+
+            // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
