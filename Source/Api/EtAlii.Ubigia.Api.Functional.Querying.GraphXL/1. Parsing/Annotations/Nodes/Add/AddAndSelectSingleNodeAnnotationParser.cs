@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class AddAndSelectSingleNodeAnnotationParser : IAddAndSelectSingleNodeAnnotationParser
     {
         public string Id { get; } = nameof(AddAndSelectSingleNodeAnnotation);
         public LpsParser Parser { get; }
-        
+
         private const string _sourceId = "Source";
         private const string _nameId = "Name";
 
@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IQuotedTextParser _quotedTextParser;
 
         public AddAndSelectSingleNodeAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser,
             IQuotedTextParser quotedTextParser
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional
             // @node-add(PATH, NAME)
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var nameParser = new LpsParser(_nameId, true, Lp.Name().Wrap(_nameId) | _quotedTextParser.Parser);
-            
+
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeAdd + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
         }
 

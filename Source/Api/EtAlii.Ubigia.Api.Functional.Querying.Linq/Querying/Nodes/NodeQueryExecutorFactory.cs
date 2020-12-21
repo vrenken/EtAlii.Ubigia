@@ -1,12 +1,12 @@
 namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class NodeQueryExecutorFactory : INodeQueryExecutorFactory
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
-        public NodeQueryExecutorFactory(IGraphSLScriptContext scriptContext)
+        public NodeQueryExecutorFactory(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }

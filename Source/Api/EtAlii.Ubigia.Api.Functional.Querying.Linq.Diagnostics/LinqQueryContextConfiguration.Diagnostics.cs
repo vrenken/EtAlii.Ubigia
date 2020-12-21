@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public static class LinqQueryContextConfigurationDiagnosticsExtension
     {
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             configuration = configuration.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseFunctionalGraphSLDiagnostics(diagnostics);
+                configuration = configuration.UseFunctionalTraversalDiagnostics(diagnostics);
             }
 
             return configuration;

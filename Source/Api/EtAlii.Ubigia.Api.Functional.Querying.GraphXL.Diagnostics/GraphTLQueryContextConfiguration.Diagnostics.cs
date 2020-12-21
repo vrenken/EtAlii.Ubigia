@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public static class GraphXLQueryContextConfigurationDiagnosticsExtension
     {
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             configuration = configuration.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseFunctionalGraphSLDiagnostics(diagnostics);
+                configuration = configuration.UseFunctionalTraversalDiagnostics(diagnostics);
             }
 
             return configuration;

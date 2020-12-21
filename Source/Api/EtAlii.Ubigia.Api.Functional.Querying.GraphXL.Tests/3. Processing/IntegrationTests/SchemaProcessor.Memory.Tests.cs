@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.Diagnostics;
     using JetBrains.dotMemoryUnit;
     using Xunit;
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 
     public class SchemaProcessorMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private IGraphSLScriptContext _scriptContext;
+        private ITraversalScriptContext _scriptContext;
         private IGraphXLContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
                 .UseFunctionalGraphXLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
+            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
             _context = new GraphXLQueryContextFactory().Create(_configuration);
 
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);

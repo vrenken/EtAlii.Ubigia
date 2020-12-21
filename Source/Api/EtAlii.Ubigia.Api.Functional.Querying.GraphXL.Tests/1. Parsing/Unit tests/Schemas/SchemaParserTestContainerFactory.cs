@@ -1,23 +1,23 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SchemaParserTestContainerFactory 
+    public class SchemaParserTestContainerFactory
     {
         public Container Create()
         {
             var scaffoldings = new IScaffolding[]
             {
                 new SchemaParserScaffolding(),
-                new SequenceParsingScaffolding(), 
-                new SubjectParsingScaffolding(), 
+                new SequenceParsingScaffolding(),
+                new SubjectParsingScaffolding(),
                 new PathSubjectParsingScaffolding(),
-                new OperatorParsingScaffolding(), 
-                new ConstantHelpersScaffolding(), 
+                new OperatorParsingScaffolding(),
+                new ConstantHelpersScaffolding(),
             };
-            
-                        
+
+
             var container = new Container();
 
             foreach (var scaffolding in scaffoldings)

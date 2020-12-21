@@ -3,9 +3,9 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    // TODO: Move to GraphSL project in main repository.
+    // TODO: Move to Traversal project in main repository.
     /// <summary>
-    /// The ExecutionScope contains all details needed to execute GXL/GSL/Linq queries and mutations.
+    /// The ExecutionScope contains all details needed to execute GXL/GTL/Linq queries and mutations.
     /// </summary>
     public class ExecutionScope
     {

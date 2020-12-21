@@ -5,22 +5,22 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class NodeSaveCommand : INodeSaveCommand
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
-        public NodeSaveCommand(IGraphSLScriptContext scriptContext)
+        public NodeSaveCommand(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
-        
+
         public async Task Execute(INode node)
         {
             if (!node.IsModified) return;
-            
+
             var scriptAggregator = new ScriptAggregator();
 
             var scope = new ScriptScope();

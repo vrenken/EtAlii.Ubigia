@@ -1,13 +1,13 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class NodeAnnotationsParser : INodeAnnotationsParser
     {
         public string Id { get; } = nameof(NodeAnnotation);
-        
+
         public LpsParser Parser { get; }
 
         private readonly INodeAnnotationParser[] _parsers;
@@ -15,15 +15,15 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public NodeAnnotationsParser(
             INodeValidator nodeValidator,
-            IAddAndSelectMultipleNodesAnnotationParser addAndSelectMultipleNodesAnnotationParser, 
-            IAddAndSelectSingleNodeAnnotationParser addAndSelectSingleNodeAnnotationParser, 
-            ILinkAndSelectMultipleNodesAnnotationParser linkAndSelectMultipleNodesAnnotationParser, 
-            ILinkAndSelectSingleNodeAnnotationParser linkAndSelectSingleNodeAnnotationParser, 
-            IRemoveAndSelectMultipleNodesAnnotationParser removeAndSelectMultipleNodesAnnotationParser, 
-            IRemoveAndSelectSingleNodeAnnotationParser removeAndSelectSingleNodeAnnotationParser, 
-            ISelectMultipleNodesAnnotationParser selectMultipleNodesAnnotationParser, 
-            ISelectSingleNodeAnnotationParser selectSingleNodeAnnotationParser, 
-            IUnlinkAndSelectMultipleNodesAnnotationParser unlinkAndSelectMultipleNodesAnnotationParser, 
+            IAddAndSelectMultipleNodesAnnotationParser addAndSelectMultipleNodesAnnotationParser,
+            IAddAndSelectSingleNodeAnnotationParser addAndSelectSingleNodeAnnotationParser,
+            ILinkAndSelectMultipleNodesAnnotationParser linkAndSelectMultipleNodesAnnotationParser,
+            ILinkAndSelectSingleNodeAnnotationParser linkAndSelectSingleNodeAnnotationParser,
+            IRemoveAndSelectMultipleNodesAnnotationParser removeAndSelectMultipleNodesAnnotationParser,
+            IRemoveAndSelectSingleNodeAnnotationParser removeAndSelectSingleNodeAnnotationParser,
+            ISelectMultipleNodesAnnotationParser selectMultipleNodesAnnotationParser,
+            ISelectSingleNodeAnnotationParser selectSingleNodeAnnotationParser,
+            IUnlinkAndSelectMultipleNodesAnnotationParser unlinkAndSelectMultipleNodesAnnotationParser,
             IUnlinkAndSelectSingleNodeAnnotationParser unlinkAndSelectSingleNodeAnnotationParser)
         {
             _parsers = new INodeAnnotationParser[]
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 unlinkAndSelectMultipleNodesAnnotationParser,
                 unlinkAndSelectSingleNodeAnnotationParser,
             };
-            
+
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
             Parser = new LpsParser(Id, true, lpsParsers);

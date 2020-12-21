@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class UnlinkAndSelectMultipleNodesAnnotationParser : IUnlinkAndSelectMultipleNodesAnnotationParser
     {
         public string Id { get; } = nameof(UnlinkAndSelectMultipleNodesAnnotation);
         public LpsParser Parser { get; }
-        
+
         private const string _sourceId = "Source";
         private const string _targetId = "Target";
         private const string _targetLinkId = "TargetLink";
@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
         public UnlinkAndSelectMultipleNodesAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -30,15 +30,15 @@ namespace EtAlii.Ubigia.Api.Functional
             _nodeFinder = nodeFinder;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _rootedPathSubjectParser = rootedPathSubjectParser;
-            
+
             // @nodes-unlink(SOURCE, TARGET, TARGET_LINK)
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var targetParser = new LpsParser(_targetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var targetLinkParser = new LpsParser(_targetLinkId, true, nonRootedPathSubjectParser.Parser);
-            
-            Parser = new LpsParser(Id, true, 
-                "@" + AnnotationPrefix.NodesUnlink + "(" + 
-                sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + 
+
+            Parser = new LpsParser(Id, true,
+                "@" + AnnotationPrefix.NodesUnlink + "(" +
+                sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional +
                 targetParser + whitespaceParser.Optional + "," + whitespaceParser.Optional +
                 targetLinkParser + ")");
         }
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 { } id when id == _nonRootedPathSubjectParser.Id => (PathSubject) _nonRootedPathSubjectParser.Parse(sourceChildNode),
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
-            
+
             var targetNode = _nodeFinder.FindFirst(node, _targetId);
             var targetChildNode = targetNode.Children.Single();
             var targetPath = targetChildNode.Id switch

@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class ClearAndSelectNodeValueAnnotationParser : IClearAndSelectNodeValueAnnotationParser
     {
         public string Id { get; } = nameof(ClearAndSelectNodeValueAnnotation);
         public LpsParser Parser { get; }
-        
+
         private const string _sourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
@@ -18,9 +18,9 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
         public ClearAndSelectNodeValueAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             // @value-clear(SOURCE)
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            
+
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValueClear + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
 
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 };
             }
 
-            var sourcePath = path switch 
+            var sourcePath = path switch
             {
                 { } p when p is PathSubject pathSubject => pathSubject,
                 { } p when p is StringConstantSubject stringConstantSubject => new RelativePathSubject(new ConstantPathSubjectPart(stringConstantSubject.Value)),

@@ -5,14 +5,14 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
     using Xunit.Abstractions;
 
     public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private IGraphSLScriptContext _scriptContext;
+        private ITraversalScriptContext _scriptContext;
         private IGraphXLContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
@@ -34,7 +34,7 @@
                 .UseFunctionalGraphXLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
+            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
             _context = new GraphXLQueryContextFactory().Create(_configuration);
 
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);

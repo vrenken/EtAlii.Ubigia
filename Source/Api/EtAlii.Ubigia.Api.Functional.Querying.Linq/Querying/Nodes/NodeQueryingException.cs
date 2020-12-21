@@ -2,12 +2,12 @@
 {
     using System;
     using System.Runtime.Serialization;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     [Serializable]
     public class NodeQueryingException : Exception
     {
-        [NonSerialized] 
+        [NonSerialized]
         // ReSharper disable once NotAccessedField.Local
         private ScriptParseResult _parseResult;
 

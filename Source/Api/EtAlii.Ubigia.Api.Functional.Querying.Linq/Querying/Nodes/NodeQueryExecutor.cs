@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using Remotion.Linq;
 
@@ -12,9 +12,9 @@
     internal class NodeQueryExecutor : INodeQueryExecutor
     {
         private readonly INodeQueryModelVisitor _nodeQueryModelVisitor;
-        private readonly IGraphSLScriptContext _scriptContext;
-        
-        public NodeQueryExecutor(INodeQueryModelVisitor nodeQueryModelVisitor, IGraphSLScriptContext scriptContext)
+        private readonly ITraversalScriptContext _scriptContext;
+
+        public NodeQueryExecutor(INodeQueryModelVisitor nodeQueryModelVisitor, ITraversalScriptContext scriptContext)
         {
             _nodeQueryModelVisitor = nodeQueryModelVisitor;
             _scriptContext = scriptContext;
@@ -29,8 +29,8 @@
         // Executes a query with a single result object, i.e. a query that ends with a result operator such as First, Last, Single, Min, or Max.
         public T ExecuteSingle<T>(QueryModel queryModel, bool returnDefaultWhenEmpty)
         {
-            var collection = ExecuteCollection<T>(queryModel); 
-            return returnDefaultWhenEmpty 
+            var collection = ExecuteCollection<T>(queryModel);
+            return returnDefaultWhenEmpty
                 ? collection.SingleOrDefault()
                 : collection.Single();
         }

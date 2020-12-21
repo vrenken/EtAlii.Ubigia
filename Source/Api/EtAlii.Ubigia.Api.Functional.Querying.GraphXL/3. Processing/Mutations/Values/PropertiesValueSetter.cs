@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class PropertiesValueSetter : IPropertiesValueSetter
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
-        public PropertiesValueSetter(IGraphSLScriptContext scriptContext)
+        public PropertiesValueSetter(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
@@ -18,15 +18,15 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var properties = structure.Node.GetProperties();
             var id = structure.Node.Id;
-            
+
             properties[valueName] = value;
-            
+
             var parts = new PathSubjectPart[] {new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id)};
             var path = new AbsolutePathSubject(parts);
             var script = new Script(new Sequence(new SequencePart[]
             {
-                path, 
-                new AssignOperator(), 
+                path,
+                new AssignOperator(),
                 new ObjectConstantSubject(properties)
             }));
 

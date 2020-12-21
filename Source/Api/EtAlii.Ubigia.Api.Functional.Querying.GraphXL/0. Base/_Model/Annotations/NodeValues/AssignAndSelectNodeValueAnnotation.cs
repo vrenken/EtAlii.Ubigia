@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class AssignAndSelectNodeValueAnnotation : NodeValueAnnotation 
+    public class AssignAndSelectNodeValueAnnotation : NodeValueAnnotation
     {
         public Subject Subject { get; }
-        
+
         public AssignAndSelectNodeValueAnnotation(PathSubject source, Subject subject) : base(source)
         {
             Subject = subject;
