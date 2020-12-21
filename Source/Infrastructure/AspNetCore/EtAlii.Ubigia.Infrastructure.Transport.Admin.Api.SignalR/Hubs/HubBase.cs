@@ -21,13 +21,5 @@
 
             return base.OnConnectedAsync();
         }
-
-        //public override Task OnReconnectedAsync()
-        //[
-        //    var authenticationToken = Context.Headers.Get("Authentication-Token")
-        //    _authenticationTokenVerifier.Verify(authenticationToken, null)
-
-        //    return base.OnReconnected()
-        //]
     }
 }
