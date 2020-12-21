@@ -21,6 +21,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 new ScriptProcessingLoggingScaffolding(),
                 new ScriptProcessingProfilingScaffolding(),
                 new ScriptProcessingDebuggingScaffolding(),
+
+                new ScriptExecutionPlannerLoggingScaffolding(),
             };
 
             foreach (var scaffolding in scaffoldings)
