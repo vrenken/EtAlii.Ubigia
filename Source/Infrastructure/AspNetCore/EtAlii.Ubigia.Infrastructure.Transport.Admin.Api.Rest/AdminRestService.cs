@@ -9,16 +9,20 @@
     using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.xTechnology.Threading;
 
 	public class AdminRestService : ServiceBase
     {
 	    private readonly IConfigurationDetails _configurationDetails;
+        private IContextCorrelator _contextCorrelator;
 
-	    public AdminRestService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
+        public AdminRestService(
+            IConfigurationSection configuration,
+            IConfigurationDetails configurationDetails)
             : base(configuration)
-	    {
-		    _configurationDetails = configurationDetails;
-	    }
+        {
+            _configurationDetails = configurationDetails;
+        }
 
 	    public override async Task Start()
 	    {
@@ -55,6 +59,7 @@
         protected override void ConfigureServices(IServiceCollection services)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
 		        .AddSingleton(infrastructure.Storages)
@@ -84,6 +89,7 @@
 	        applicationBuilder
 		        .UseRouting()
 		        .UseAuthorization()
+                .UseCorrelationIdsFromHeaders(_contextCorrelator)
 		        .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

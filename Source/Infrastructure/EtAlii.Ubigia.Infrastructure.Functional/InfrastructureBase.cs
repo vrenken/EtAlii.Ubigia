@@ -2,15 +2,18 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.Threading;
 
     public abstract class InfrastructureBase : IInfrastructure
     {
+        public IContextCorrelator ContextCorrelator { get; }
+
         /// <inheritdoc />
         public IInfrastructureConfiguration Configuration { get; }
 
         /// <inheritdoc />
         public IInformationRepository Information { get; }
-        
+
         /// <inheritdoc />
         public ISpaceRepository Spaces { get; }
 
@@ -52,8 +55,10 @@
             IContentDefinitionRepository contentDefinition,
             IPropertiesRepository properties,
             IStorageRepository storages,
-            ILogicalContext logicalContext)
+            ILogicalContext logicalContext,
+            IContextCorrelator contextCorrelator)
         {
+            ContextCorrelator = contextCorrelator;
             Configuration = configuration;
             Identifiers = identifiers;
             Entries = entries;

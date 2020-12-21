@@ -3,7 +3,6 @@
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
-    using EtAlii.xTechnology.Threading;
 
     public class AdminRestServiceFactory : ServiceFactoryBase
     {
@@ -15,7 +14,6 @@
 
             container.Register(() => configuration);
             container.Register(() => configurationDetails);
-            container.Register<IContextCorrelator, ContextCorrelator>();
 
             return container.GetInstance<IService>();
         }

@@ -9,10 +9,14 @@
     using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
+    using EtAlii.xTechnology.Threading;
 
 	public class UserRestService : ServiceBase
     {
-        public UserRestService(IConfigurationSection configuration) : base(configuration)
+        private IContextCorrelator _contextCorrelator;
+
+        public UserRestService(
+            IConfigurationSection configuration) : base(configuration)
         {
         }
 
@@ -51,6 +55,7 @@
         protected override void ConfigureServices(IServiceCollection services)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+            _contextCorrelator = infrastructure.ContextCorrelator;
 
 	        services
 		        .AddSingleton(infrastructure.Storages)
@@ -68,7 +73,7 @@
 		        .AddInfrastructureSerialization()
 		        .AddMvcOptions(options =>
 		        {
-			        options.EnableEndpointRouting = false;
+                    options.EnableEndpointRouting = false;
 			        options.InputFormatters.Clear();
 			        options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
 			        options.OutputFormatters.Clear();
@@ -82,6 +87,7 @@
 	        applicationBuilder
 		        .UseRouting()
 		        .UseAuthorization()
+                .UseCorrelationIdsFromHeaders(_contextCorrelator)
 		        .UseEndpoints(endpoints => endpoints.MapControllers());
         }
     }

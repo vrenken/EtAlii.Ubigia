@@ -12,7 +12,7 @@
         private readonly IInfrastructure _infrastructure;
 
         public Uri Address { get; }
-        
+
         public SystemSpaceTransport(Uri address, IInfrastructure infrastructure)
         {
             Address = address;
