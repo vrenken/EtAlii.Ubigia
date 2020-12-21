@@ -15,31 +15,4 @@
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.Service.Rest\EtAlii.xTechnology.Hosting.Service.Rest.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="RequiredFromQueryActionConstraint.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-    <Compile Update="RequiredFromQueryAttribute.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-    <Compile Update="Authentication\Verification\RequiresAuthenticationTokenAttribute.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-    <Compile Update="Authentication\Verification\ServiceCollection.Authentication.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-    <Compile Update="Serialization\ServiceCollection.Serialization.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-  </ItemGroup>
 </Project>
