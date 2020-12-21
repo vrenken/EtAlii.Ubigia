@@ -3,15 +3,15 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class PathValueGetter : IPathValueGetter
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
 
-        public PathValueGetter(IGraphSLScriptContext scriptContext, IRelatedIdentityFinder relatedIdentityFinder)
+        public PathValueGetter(ITraversalScriptContext scriptContext, IRelatedIdentityFinder relatedIdentityFinder)
         {
             _scriptContext = scriptContext;
             _relatedIdentityFinder = relatedIdentityFinder;
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             if (path is RelativePathSubject)
             {
-                // If we have a relative path then we need to find out where it relates to. 
+                // If we have a relative path then we need to find out where it relates to.
                 var id = _relatedIdentityFinder.Find(structure);
                 if (id != Identifier.Empty)
                 {

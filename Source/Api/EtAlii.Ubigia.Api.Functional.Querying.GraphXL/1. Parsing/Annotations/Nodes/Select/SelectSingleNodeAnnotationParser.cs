@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class SelectSingleNodeAnnotationParser : ISelectSingleNodeAnnotationParser
@@ -11,16 +11,16 @@ namespace EtAlii.Ubigia.Api.Functional
         public LpsParser Parser { get; }
 
         private const string _sourceId = "Source";
-        
+
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
         public SelectSingleNodeAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser)
         {

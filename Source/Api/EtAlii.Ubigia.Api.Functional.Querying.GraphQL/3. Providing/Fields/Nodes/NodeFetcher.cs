@@ -4,14 +4,14 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class NodeFetcher : INodeFetcher
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
-        public NodeFetcher(IGraphSLScriptContext scriptContext)
+        public NodeFetcher(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
@@ -22,7 +22,7 @@
             if (scriptParseResult.Errors.Any())
             {
                 var errorsString = string.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
-                
+
                 throw new InvalidOperationException($"Unable to process GraphQL argument 'path' of the start directive:{Environment.NewLine}{errorsString}");
             }
 
@@ -31,7 +31,7 @@
             var results = await lastSequence.Output
                 .Cast<IInternalNode>()
                 .ToArray();
-            
+
 //            if [results.Length = = 0]
 //            [
 //                throw new InvalidOperationException($"Unable to process GraphQL query 'path' does not return any results: [path]")

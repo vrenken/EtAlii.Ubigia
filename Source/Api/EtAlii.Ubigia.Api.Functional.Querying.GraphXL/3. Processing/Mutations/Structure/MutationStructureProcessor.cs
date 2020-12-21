@@ -1,24 +1,24 @@
-namespace EtAlii.Ubigia.Api.Functional 
+namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class MutationStructureProcessor : IMutationStructureProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
         private readonly IPathStructureBuilder _pathStructureBuilder;
         private readonly IPathDeterminer _pathDeterminer;
         private readonly IPathCorrecter _pathCorrecter;
 
         public MutationStructureProcessor(
-            IRelatedIdentityFinder relatedIdentityFinder, 
-            IGraphSLScriptContext scriptContext, 
-            IPathStructureBuilder pathStructureBuilder, 
-            IPathDeterminer pathDeterminer, 
+            IRelatedIdentityFinder relatedIdentityFinder,
+            ITraversalScriptContext scriptContext,
+            IPathStructureBuilder pathStructureBuilder,
+            IPathDeterminer pathDeterminer,
             IPathCorrecter pathCorrecter)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task Process(
             StructureFragment fragment,
             FragmentMetadata fragmentMetadata,
-            SchemaExecutionScope executionScope, 
+            SchemaExecutionScope executionScope,
             IObserver<Structure> schemaOutput)
         {
             var annotation = fragment.Annotation;
@@ -46,17 +46,17 @@ namespace EtAlii.Ubigia.Api.Functional
             }
             else
             {
-                var id = Identifier.Empty; 
+                var id = Identifier.Empty;
                 await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
-        
+
         private async Task Build(
-            SchemaExecutionScope executionScope, 
+            SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> schemaOutput, 
-            NodeAnnotation annotation, 
-            Identifier id, 
+            IObserver<Structure> schemaOutput,
+            NodeAnnotation annotation,
+            Identifier id,
             string structureName,
             Structure parent)
         {
@@ -89,24 +89,24 @@ namespace EtAlii.Ubigia.Api.Functional
                 case LinkAndSelectSingleNodeAnnotation linkAnnotation:
                     return CreateLinkScript(pathSubject, linkAnnotation.Source, linkAnnotation.Target, linkAnnotation.TargetLink);
                 case RemoveAndSelectMultipleNodesAnnotation removeAnnotation:
-                    return new Script(new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), new StringConstantSubject(removeAnnotation.Name) }));                
+                    return new Script(new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), new StringConstantSubject(removeAnnotation.Name) }));
                 case RemoveAndSelectSingleNodeAnnotation removeAnnotation:
                     return new Script(new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), new StringConstantSubject(removeAnnotation.Name) }));
                 case UnlinkAndSelectMultipleNodesAnnotation unlinkAnnotation:
                     return new Script(new []
                     {
-                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),   
-                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),   
-                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),   
-                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),   
+                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),
+                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),
                     });
                 case UnlinkAndSelectSingleNodeAnnotation unlinkAnnotation:
                     return new Script(new []
                     {
-                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),   
-                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),   
-                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),   
-                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),   
+                        new Sequence(new SequencePart[] {pathSubject, new RemoveOperator(), unlinkAnnotation.Source }),
+                        new Sequence(new SequencePart[] {pathSubject, unlinkAnnotation.Source, new RemoveOperator(), unlinkAnnotation.Target }),
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, new RemoveOperator(), unlinkAnnotation.TargetLink }),
+                        new Sequence(new SequencePart[] {unlinkAnnotation.Target, unlinkAnnotation.TargetLink, new RemoveOperator(), pathSubject }),
                     });
                 default:
                     return null;
@@ -121,10 +121,10 @@ namespace EtAlii.Ubigia.Api.Functional
             var absoluteTargetLink = new AbsolutePathSubject(target.Parts.Concat(relativeSource.Parts).ToArray());
             return new Script(new []
             {
-                new Sequence(new SequencePart[] {pathSubject, new AddOperator(), relativeSource }),   
-                new Sequence(new SequencePart[] {absoluteSourceLink, new AddOperator(), target }),   
-                new Sequence(new SequencePart[] {target, new AddOperator(), relativeTarget }),   
-                new Sequence(new SequencePart[] {absoluteTargetLink, new AddOperator(), pathSubject }),   
+                new Sequence(new SequencePart[] {pathSubject, new AddOperator(), relativeSource }),
+                new Sequence(new SequencePart[] {absoluteSourceLink, new AddOperator(), target }),
+                new Sequence(new SequencePart[] {target, new AddOperator(), relativeTarget }),
+                new Sequence(new SequencePart[] {absoluteTargetLink, new AddOperator(), pathSubject }),
             });
 
         }

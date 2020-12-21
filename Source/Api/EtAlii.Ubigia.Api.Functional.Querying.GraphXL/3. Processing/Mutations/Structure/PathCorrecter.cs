@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class PathCorrecter : IPathCorrecter
     {
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional
 //                [
 //                    correctedParts.AddRange(new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart(stringConstantSubject.Value)})
 //                ]
-//                else 
+//                else
                 if (annotation.Source is RelativePathSubject relativePathSubject)
                 {
                     var last = path.Parts.Last();

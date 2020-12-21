@@ -1,13 +1,13 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class NodeValueAnnotationsParser : INodeValueAnnotationsParser
     {
         public string Id { get; } = nameof(NodeValueAnnotation);
-        
+
         public LpsParser Parser { get; }
 
         private readonly INodeValueAnnotationParser[] _parsers;
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
             INodeValidator nodeValidator,
             ISetAndSelectNodeValueAnnotationParser setAndSelectNodeValueAnnotationParser,
             IClearAndSelectNodeValueAnnotationParser clearAndSelectNodeValueAnnotationParser,
-            ISelectNodeValueAnnotationParser selectNodeValueAnnotationParser) 
+            ISelectNodeValueAnnotationParser selectNodeValueAnnotationParser)
         {
             _parsers = new INodeValueAnnotationParser[]
             {
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 clearAndSelectNodeValueAnnotationParser,
                 selectNodeValueAnnotationParser
             };
-            
+
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
             Parser = new LpsParser(Id, true, lpsParsers);

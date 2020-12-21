@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class RemoveAndSelectSingleNodeAnnotationParser : IRemoveAndSelectSingleNodeAnnotationParser
     {
         public string Id { get; } = nameof(RemoveAndSelectSingleNodeAnnotation);
         public LpsParser Parser { get; }
-        
+
         private const string _sourceId = "Source";
         private const string _nameId = "Name";
 
@@ -18,11 +18,11 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
         private readonly IQuotedTextParser _quotedTextParser;
-        
+
         public RemoveAndSelectSingleNodeAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser,
             IQuotedTextParser quotedTextParser
@@ -33,14 +33,14 @@ namespace EtAlii.Ubigia.Api.Functional
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _rootedPathSubjectParser = rootedPathSubjectParser;
             _quotedTextParser = quotedTextParser;
-            
+
             // @node-remove(SOURCE, NAME)
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var nameParser = new LpsParser(_nameId, true, Lp.Name().Wrap(_nameId) | _quotedTextParser.Parser);
-            
+
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeRemove + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
         }
-        
+
         public NodeAnnotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);

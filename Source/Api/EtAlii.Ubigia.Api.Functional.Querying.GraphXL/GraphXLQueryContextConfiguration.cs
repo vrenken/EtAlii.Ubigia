@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class GraphXLQueryContextConfiguration : GraphSLScriptContextConfiguration, IGraphXLQueryContextConfiguration
+    public class GraphXLQueryContextConfiguration : TraversalScriptContextConfiguration, IGraphXLQueryContextConfiguration
     {
     }
 }

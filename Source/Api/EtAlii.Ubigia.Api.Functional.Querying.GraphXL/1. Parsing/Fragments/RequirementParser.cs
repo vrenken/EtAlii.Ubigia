@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class RequirementParser : IRequirementParser
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional
             switch (match)
             {
                 case "?": requirement = Requirement.Optional; break;
-                case "!": requirement = Requirement.Mandatory; break; 
+                case "!": requirement = Requirement.Mandatory; break;
             }
 
             return requirement;

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
     public class GraphXLQueryContextFactory : Factory<IGraphXLContext, GraphXLQueryContextConfiguration, IGraphXLQueryContextExtension>

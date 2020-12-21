@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public class SelectSingleNodeAnnotation : NodeAnnotation
     {
-        public SelectSingleNodeAnnotation(PathSubject source) : base(source) 
+        public SelectSingleNodeAnnotation(PathSubject source) : base(source)
         {
         }
 

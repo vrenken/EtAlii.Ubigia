@@ -3,18 +3,18 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class GraphXLContext : IGraphXLContext
     {
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
         public GraphXLContext(
             ISchemaProcessorFactory schemaProcessorFactory,
             ISchemaParserFactory schemaParserFactory,
-            IGraphSLScriptContext scriptContext)
+            ITraversalScriptContext scriptContext)
         {
             _schemaProcessorFactory = schemaProcessorFactory;
             _schemaParserFactory = schemaParserFactory;

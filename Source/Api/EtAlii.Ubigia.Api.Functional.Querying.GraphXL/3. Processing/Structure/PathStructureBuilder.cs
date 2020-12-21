@@ -3,37 +3,37 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class PathStructureBuilder : IPathStructureBuilder
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly ITraversalScriptContext _scriptContext;
 
-        public PathStructureBuilder(IGraphSLScriptContext scriptContext)
+        public PathStructureBuilder(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
 
         public async Task Build(
-            SchemaExecutionScope executionScope, 
+            SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> schemaOutput, 
-            NodeAnnotation annotation, 
-            string structureName, 
-            Structure parent, 
+            IObserver<Structure> schemaOutput,
+            NodeAnnotation annotation,
+            string structureName,
+            Structure parent,
             PathSubject path)
         {
             if (path == null)
             {
-                // We've got a placeholder root fragment. Let's add a single structure so that 
+                // We've got a placeholder root fragment. Let's add a single structure so that
                 // other structures can be put inside of it.
                 var item = new Structure(structureName, null, parent, null);
                 fragmentMetadata.Items.Add(item);
                 schemaOutput.OnNext(item);
                 return;
             }
-            
+
             var script = new Script(new Sequence(new SequencePart[] {path}));
             var scriptResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
@@ -62,9 +62,9 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         private void Build(
-            IInternalNode node, 
-            IObserver<Structure> schemaOutput, 
-            string structureName, 
+            IInternalNode node,
+            IObserver<Structure> schemaOutput,
+            string structureName,
             FragmentMetadata fragmentMetadata,
             Structure parent)
         {

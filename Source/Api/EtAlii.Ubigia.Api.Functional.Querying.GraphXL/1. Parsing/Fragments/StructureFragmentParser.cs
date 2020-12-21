@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class StructureFragmentParser : IStructureFragmentParser
@@ -20,8 +20,8 @@
 
         private const string _nameId = "NameId";
         private const string _fragmentsId = "FragmentsId";
-        private const string _childStructureQueryId = "ChildStructureQuery"; 
-        private const string _childStructureQueryHeaderId = "ChildStructureQueryHeader"; 
+        private const string _childStructureQueryId = "ChildStructureQuery";
+        private const string _childStructureQueryHeaderId = "ChildStructureQueryHeader";
 
         public StructureFragmentParser(
             INodeValidator nodeValidator,
@@ -29,7 +29,7 @@
             INewLineParser newLineParser,
             IQuotedTextParser quotedTextParser,
             INodeValueFragmentParser nodeValueFragmentParser,
-            INodeAnnotationsParser annotationParser, 
+            INodeAnnotationsParser annotationParser,
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -45,19 +45,19 @@
 
             var structureQueryParser = new LpsParser(_childStructureQueryId);
 
-            var fragmentsParser = new LpsParser(_fragmentsId, true, 
-                structureQueryParser | 
+            var fragmentsParser = new LpsParser(_fragmentsId, true,
+                structureQueryParser |
                 _nodeValueFragmentParser.Parser); //.Debug("VQ", true)
-            
-            var whitespace = whitespaceParser.Optional;//.Debug("W")
-            var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
 
-            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace 
-            var spaceSeparator = whitespaceParser.Required; 
-            var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace; 
+            var whitespace = whitespaceParser.Optional;//.Debug("W")
+            var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace;
+
+            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace
+            var spaceSeparator = whitespaceParser.Required;
+            var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace;
 
             var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));
-            
+
             var scopedFragments = Lp.InBrackets(
                 newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,
                 fragments.Maybe(),
@@ -84,14 +84,14 @@
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
             var headerNode = _nodeFinder.FindFirst(node, _childStructureQueryHeaderId);
-            
+
             var requirementNode = _nodeFinder.FindFirst(headerNode, _requirementParser.Id);
             var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
 
             var nameNode = _nodeFinder.FindFirst(headerNode, _nameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
-            
+
             var annotationMatch = _nodeFinder.FindFirst(headerNode, _annotationParser.Id);
             var annotation = annotationMatch != null ? _annotationParser.Parse(annotationMatch) : null;
 
@@ -99,10 +99,10 @@
 
             var valueFragments = new List<ValueFragment>();
             var structureFragments = new List<StructureFragment>();
-            
+
             foreach (var fragmentNode in fragmentNodes)
             {
-                var child = fragmentNode.Children.Single(); 
+                var child = fragmentNode.Children.Single();
                 if (child.Id == _nodeValueFragmentParser.Id)
                 {
                     var valueQuery = _nodeValueFragmentParser.Parse(child);
@@ -115,15 +115,15 @@
                 }
             }
 
-            var fragmentType = annotation == null || annotation is SelectSingleNodeAnnotation || annotation is SelectMultipleNodesAnnotation 
-                ? FragmentType.Query 
+            var fragmentType = annotation == null || annotation is SelectSingleNodeAnnotation || annotation is SelectMultipleNodesAnnotation
+                ? FragmentType.Query
                 : FragmentType.Mutation;
 
             if (valueFragments.Any(vf => vf.Type == FragmentType.Mutation))
             {
                 fragmentType = FragmentType.Mutation;
             }
-            
+
             return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), fragmentType);
         }
 

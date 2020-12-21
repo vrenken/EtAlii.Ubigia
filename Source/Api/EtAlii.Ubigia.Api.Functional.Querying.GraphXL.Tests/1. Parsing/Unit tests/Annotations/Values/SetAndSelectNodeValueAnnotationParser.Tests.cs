@@ -1,15 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
 
-    public class SetAndSelectNodeValueAnnotationParserTests 
+    public class SetAndSelectNodeValueAnnotationParserTests
     {
         [Fact]
         public void SetAndSelectNodeValueAnnotationParser_Create()
         {
             // Arrange.
-            
+
             // Act.
             var parser = CreateAnnotationParser();
 
@@ -23,18 +23,18 @@
 
             return container.GetInstance<ISetAndSelectNodeValueAnnotationParser>();
         }
-        
+
         [Fact]
         public void SetAndSelectNodeValueAnnotationParser_Parse_Value_LastName_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@node-set(\\LastName, 'Does2')";
-            
+
             // Act.
             var node = parser.Parser.Do(text);
             var annotation = parser.Parse(node);
-            
+
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
@@ -44,18 +44,18 @@
             Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
-                
+
         [Fact]
         public void SetAndSelectNodeValueAnnotationParser_Parse_Value_LastName_02()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@node-set(\\LastName, ""Does2"")";
-            
+
             // Act.
             var node = parser.Parser.Do(text);
             var annotation = parser.Parse(node);
-            
+
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
@@ -65,18 +65,18 @@
             Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
 
-                
+
         [Fact]
         public void SetAndSelectNodeValueAnnotationParser_Parse_Value_Integer()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@node-set(\\Weight, 42)";
-            
+
             // Act.
             var node = parser.Parser.Do(text);
             var annotation = parser.Parse(node);
-            
+
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
@@ -92,11 +92,11 @@
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@node-set(//Nickname, 'Johnny')";
-            
+
             // Act.
             var node = parser.Parser.Do(text);
             var annotation = parser.Parse(node);
-            
+
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
@@ -112,11 +112,11 @@
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@node-set(//Nickname, ""Johnny"")";
-            
+
             // Act.
             var node = parser.Parser.Do(text);
             var annotation = parser.Parse(node);
-            
+
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);

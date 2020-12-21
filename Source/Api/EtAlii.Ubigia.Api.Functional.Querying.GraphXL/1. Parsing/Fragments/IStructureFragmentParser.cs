@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal interface IStructureFragmentParser
     {
         string Id { get; }
-        
+
         LpsParser Parser { get; }
         StructureFragment Parse(LpNode node);
         bool CanParse(LpNode node);

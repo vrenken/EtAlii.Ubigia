@@ -5,14 +5,14 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class NodeReloadCommand : INodeReloadCommand
     {
-        private readonly IGraphSLScriptContext _scriptContext;
-        
-        public NodeReloadCommand(IGraphSLScriptContext scriptContext)
+        private readonly ITraversalScriptContext _scriptContext;
+
+        public NodeReloadCommand(ITraversalScriptContext scriptContext)
         {
             _scriptContext = scriptContext;
         }
@@ -20,7 +20,7 @@
         public async Task Execute(INode node)//, bool updateToLatest = false)
         {
             if (!node.IsModified) return;
-            
+
             var scriptAggregator = new ScriptAggregator();
 
             var scope = new ScriptScope();

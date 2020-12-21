@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class NodeValueAnnotation : Annotation 
+    public class NodeValueAnnotation : Annotation
     {
         /// <summary>
         /// The source path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.

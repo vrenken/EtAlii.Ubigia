@@ -2,14 +2,14 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class SelectNodeValueAnnotationParser : ISelectNodeValueAnnotationParser
     {
         public string Id { get; } = nameof(SelectNodeValueAnnotation);
         public LpsParser Parser { get; }
-        
+
         private const string _sourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
@@ -18,9 +18,9 @@
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
 
         public SelectNodeValueAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -32,7 +32,7 @@
             // @value(SOURCE)
             // @value()
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            
+
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValue + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
 

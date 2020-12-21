@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public class UnlinkAndSelectMultipleNodesAnnotation : NodeAnnotation
     {
@@ -19,7 +19,7 @@
             Target = target;
             TargetLink = targetLink;
         }
-        
+
         public override string ToString()
         {
             return $"@{AnnotationPrefix.NodesUnlink}({Source?.ToString() ?? string.Empty}, {Target?.ToString() ?? string.Empty}, {TargetLink?.ToString() ?? string.Empty})";

@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class SetAndSelectNodeValueAnnotationParser : ISetAndSelectNodeValueAnnotationParser
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private const string _sourceId = "Source";
         private const string _nameId = "Name";
-        
+
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IQuotedTextParser _quotedTextParser;
 
         public SetAndSelectNodeValueAnnotationParser(
-            INodeValidator nodeValidator, 
-            INodeFinder nodeFinder, 
-            INonRootedPathSubjectParser nonRootedPathSubjectParser, 
+            INodeValidator nodeValidator,
+            INodeFinder nodeFinder,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IWhitespaceParser whitespaceParser,
             IQuotedTextParser quotedTextParser
@@ -37,8 +37,8 @@ namespace EtAlii.Ubigia.Api.Functional
             // @node-set(SOURCE, VALUE)
             var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             var nameParser = new LpsParser(_nameId, true, Lp.Name().Wrap(_nameId) | Lp.OneOrMore(c => char.IsLetterOrDigit(c)).Wrap(_nameId) | _quotedTextParser.Parser);
-            
-            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValueSet + "(" + 
+
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeValueSet + "(" +
                                              whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ("," + whitespaceParser.Optional + nameParser + whitespaceParser.Optional).Maybe() + ")");
         }
 

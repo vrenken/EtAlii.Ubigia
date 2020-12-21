@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -21,7 +21,7 @@
             container.Register<ISchemaProcessorFactory, SchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, SchemaParserFactory>();
 
-            container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
+            container.Register(() => new TraversalScriptContextFactory().Create(_configuration));
 
             container.Register(() => new LogicalContextFactory().Create(_configuration));
         }

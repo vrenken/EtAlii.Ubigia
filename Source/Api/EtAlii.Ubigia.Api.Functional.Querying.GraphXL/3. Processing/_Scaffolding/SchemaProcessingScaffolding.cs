@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional 
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class SchemaProcessingScaffolding  : IScaffolding
@@ -15,7 +15,7 @@
         public void Register(Container container)
         {
             container.Register<ISchemaProcessor, SchemaProcessor>();
-            
+
             container.Register<IQueryValueProcessor, QueryValueProcessor>();
             container.Register<IMutationValueProcessor, MutationValueProcessor>();
             container.Register<IValueGetter, ValueGetter>();

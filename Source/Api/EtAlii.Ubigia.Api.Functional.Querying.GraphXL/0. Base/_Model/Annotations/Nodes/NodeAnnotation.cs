@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public abstract class NodeAnnotation : Annotation
     {
@@ -13,7 +13,7 @@
         /// Create a new NodeAnnotation inheriting instance given the specified target.
         /// </summary>
         /// <param name="source"></param>
-        protected NodeAnnotation(PathSubject source) 
+        protected NodeAnnotation(PathSubject source)
         {
             Source = source;
         }

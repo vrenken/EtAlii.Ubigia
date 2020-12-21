@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class SchemaParserFactory : Factory<ISchemaParser, SchemaParserConfiguration, ISchemaParserExtension>, ISchemaParserFactory
@@ -12,11 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional
             return new IScaffolding[]
             {
                 new SchemaParserScaffolding(),
-                new SequenceParsingScaffolding(), 
-                new SubjectParsingScaffolding(), 
+                new SequenceParsingScaffolding(),
+                new SubjectParsingScaffolding(),
                 new PathSubjectParsingScaffolding(),
-                new OperatorParsingScaffolding(), 
-                new ConstantHelpersScaffolding(), 
+                new OperatorParsingScaffolding(),
+                new ConstantHelpersScaffolding(),
             };
         }
     }

@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
@@ -45,7 +45,7 @@
 
             // Assert.
             Assert.Equal("Overijssel_01", single[0].Type);
-            
+
             // Assure.
             await configuration.Connection.Close().ConfigureAwait(false);
         }
@@ -73,7 +73,7 @@
             // Assert.
             Assert.Equal("Overijssel_01", single[0].Type);
             Assert.Equal("Overijssel_02", single[1].Type);
-                        
+
             // Assure.
             await configuration.Connection.Close().ConfigureAwait(false);
         }
@@ -101,7 +101,7 @@
             // Assert.
             Assert.Equal("Overijssel_01", single[0].ToString());
             Assert.Equal("Overijssel_02", single[1].ToString());
-                        
+
             // Assure.
             await configuration.Connection.Close().ConfigureAwait(false);
         }

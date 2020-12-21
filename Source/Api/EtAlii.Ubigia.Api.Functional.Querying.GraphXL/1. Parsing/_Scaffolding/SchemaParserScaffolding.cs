@@ -2,9 +2,9 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
- 
+
     internal class SchemaParserScaffolding : IScaffolding
     {
         public void Register(Container container)
@@ -14,14 +14,14 @@ namespace EtAlii.Ubigia.Api.Functional
 
             container.Register<ISchemaParser, SchemaParser>();
             container.Register<IRequirementParser, RequirementParser>();
-            
+
             container.Register<IAssignmentParser, AssignmentParser>();
             container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser =>
             {
                 var assignmentParser = container.GetInstance<IAssignmentParser>();
                 ((KeyValuePairParser) keyValuePairParser).Initialize(assignmentParser.Parser);
             });
-            
+
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
             container.Register<INodeValueFragmentParser, NodeValueFragmentParser>();
 

@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
     internal class NodeValueFragmentParser : INodeValueFragmentParser
@@ -19,13 +19,13 @@
 
         private const string _keyId = "Key";
         private const string _annotationId = "Annotation";
-        private const string _queryValueId = "QueryValue"; 
+        private const string _queryValueId = "QueryValue";
 
         public NodeValueFragmentParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
             INodeValueAnnotationsParser annotationParser,
-            INodeFinder nodeFinder, 
+            INodeFinder nodeFinder,
             IKeyValuePairParser keyValuePairParser,
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
@@ -39,7 +39,7 @@
 
             var queryParser = new LpsParser(_queryValueId, true, _requirementParser.Parser + (Lp.Name().Id(_keyId) | _quotedTextParser.Parser.Wrap(_keyId)) + new LpsParser(_annotationId, true, whitespaceParser.Required + annotationParser.Parser).Maybe());
 
-            var mutationKeyValueParser = _keyValuePairParser.Parser; 
+            var mutationKeyValueParser = _keyValuePairParser.Parser;
 
             Parser = new LpsParser(Id, true, mutationKeyValueParser | queryParser);
 
@@ -63,7 +63,7 @@
                     throw new SchemaParserException($"Unable to find correctly formatted {nameof(ValueFragment)}.");
             }
         }
-        
+
         private ValueFragment ParseQueryValue(LpNode node)
         {
             var requirementNode = _nodeFinder.FindFirst(node, _requirementParser.Id);
@@ -81,12 +81,12 @@
                 annotation = _annotationParser.Parse(annotationValueNode);
             }
 
-            var fragmentType = annotation == null || annotation is SelectNodeValueAnnotation 
-                ? FragmentType.Query 
+            var fragmentType = annotation == null || annotation is SelectNodeValueAnnotation
+                ? FragmentType.Query
                 : FragmentType.Mutation;
             return new ValueFragment(name, annotation, requirement, fragmentType, null);
         }
-        
+
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
