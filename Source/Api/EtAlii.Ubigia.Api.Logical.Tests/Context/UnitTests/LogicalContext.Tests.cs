@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
     using Xunit;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class LogicalContextTests
     {
@@ -8,7 +10,8 @@
         public void LogicalContext_Create()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration();
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);
@@ -21,7 +24,8 @@
         public void LogicalContext_Dispose()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration();
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
 
             // Act.
             using var context = new LogicalContextFactory().Create(configuration);
@@ -34,7 +38,8 @@
         public void LogicalContext_Create_Check_Components()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration();
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);
