@@ -9,8 +9,8 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphTL.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Grpc.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL")]
