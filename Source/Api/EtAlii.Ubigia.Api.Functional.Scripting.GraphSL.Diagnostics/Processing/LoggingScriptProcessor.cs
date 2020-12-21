@@ -26,8 +26,7 @@
             // For this we create a unique correlationId and pass it through all involved systems.
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
-                var message = "Processing script (async)";
-                _logger.Information(message);
+                _logger.Information("Processing script");
                 var start = Environment.TickCount;
 
                 var result = _processor.Process(script);
