@@ -3,13 +3,15 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Serilog;
+    using EtAlii.xTechnology.Threading;
 
-    public class LoggingInfrastructureDecorator : IInfrastructure
+    public sealed class LoggingInfrastructureDecorator : IInfrastructure
     {
         private readonly IInfrastructure _decoree;
 
+        public IContextCorrelator ContextCorrelator => _decoree.ContextCorrelator;
         public IInfrastructureConfiguration Configuration => _decoree.Configuration;
-        
+
         public IInformationRepository Information => _decoree.Information;
         public IStorageRepository Storages => _decoree.Storages;
         public ISpaceRepository Spaces => _decoree.Spaces;

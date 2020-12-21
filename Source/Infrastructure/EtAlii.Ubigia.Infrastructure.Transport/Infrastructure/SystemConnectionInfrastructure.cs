@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.Threading;
 
     public class SystemConnectionInfrastructure : InfrastructureBase
     {
@@ -18,8 +19,9 @@
             IContentDefinitionRepository contentDefinition,
             IPropertiesRepository properties,
             IStorageRepository storages,
-            ILogicalContext logicalContext)
-            : base(configuration, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext)
+            ILogicalContext logicalContext,
+            IContextCorrelator contextCorrelator)
+            : base(configuration, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator)
         {
         }
 
