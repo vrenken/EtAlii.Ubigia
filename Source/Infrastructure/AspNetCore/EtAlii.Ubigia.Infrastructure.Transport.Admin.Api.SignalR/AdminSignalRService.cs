@@ -11,12 +11,15 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.SignalR;
 
     public class AdminSignalRService : ServiceBase
     {
         private readonly IConfigurationDetails _configurationDetails;
 
-        public AdminSignalRService(IConfigurationSection configuration, IConfigurationDetails configurationDetails) 
+        public AdminSignalRService(
+            IConfigurationSection configuration,
+            IConfigurationDetails configurationDetails)
             : base(configuration)
         {
             _configurationDetails = configurationDetails;
@@ -58,6 +61,7 @@
         protected override void ConfigureServices(IServiceCollection services)
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+
             services
                 .AddSingleton(infrastructure.Accounts)
                 .AddSingleton(infrastructure.Spaces)
@@ -71,13 +75,15 @@
 
                 .AddRouting()
                 .AddCors()
-                .AddSignalR(options => 
+                .AddSignalR(options =>
                 {
+                    options.AddFilter(new CorrelationServiceHubFilter(infrastructure.ContextCorrelator));
+
                     // SonarQube: Make sure that this logger's configuration is safe.
                     // As we only add the logging services this ought to be safe. It is when and how they are configured that matters.
                     if (Debugger.IsAttached)
                     {
-                        options.EnableDetailedErrors = Debugger.IsAttached;
+                        options.EnableDetailedErrors = true;
                     }
                 })
                 .AddNewtonsoftJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
@@ -89,7 +95,7 @@
                 .UseCors(builder =>
                 {
                     builder
-                        .AllowAnyOrigin() 
+                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .WithOrigins($"http://{HostString}");
