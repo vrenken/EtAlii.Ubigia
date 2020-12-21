@@ -24,15 +24,12 @@
                     Name = accountName,
                     Password = accountPassword,
                 });
-    
-                var request = new AdminAccountPostSingleRequest
-                {
-                    Account = account,
-                    Template = template.Name
-                };
-                var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
+
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountPostSingleRequest { Account = account, Template = template.Name };
+                var call = _client.PostAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
-    
+
                 return response.Account.ToLocal();
             }
             catch (RpcException e)
@@ -45,11 +42,9 @@
         {
             try
             {
-                var request = new AdminAccountSingleRequest
-                {
-                    Id = GuidExtension.ToWire(accountId)
-                };
-                var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountSingleRequest { Id = GuidExtension.ToWire(accountId) };
+                var call = _client.DeleteAsync(request, metadata);
                 await call.ResponseAsync.ConfigureAwait(false);
             }
             catch (RpcException e)
@@ -68,14 +63,12 @@
                     Name = accountName,
                     Password = accountPassword,
                 });
-    
-                var request = new AdminAccountSingleRequest
-                {
-                    Account = account,
-                };
-                var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
+
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountSingleRequest { Account = account };
+                var call = _client.PutAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
-    
+
                 return response.Account.ToLocal();
             }
             catch (RpcException e)
@@ -88,13 +81,11 @@
         {
             try
             {
-                var request = new AdminAccountSingleRequest
-                {
-                    Account = AccountExtension.ToWire(account),
-                };
-                var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountSingleRequest { Account = AccountExtension.ToWire(account) };
+                var call = _client.PutAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
-    
+
                 return response.Account.ToLocal();
             }
             catch (RpcException e)
@@ -107,13 +98,11 @@
         {
             try
             {
-                var request = new AdminAccountSingleRequest
-                {
-                    Name = accountName,
-                };
-                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountSingleRequest { Name = accountName };
+                var call = _client.GetSingleAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
-    
+
                 return response.Account.ToLocal();
             }
             catch (RpcException e)
@@ -126,13 +115,11 @@
         {
             try
             {
-                var request = new AdminAccountSingleRequest
-                {
-                    Id = GuidExtension.ToWire(accountId)
-                };
-                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminAccountSingleRequest { Id = GuidExtension.ToWire(accountId) };
+                var call = _client.GetSingleAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
-    
+
                 return response.Account.ToLocal();
             }
             catch (RpcException e)
@@ -143,13 +130,14 @@
 
         public async IAsyncEnumerable<Account> GetAll()
         {
+            var metadata = new Metadata { _transport.AuthenticationHeader };
             var request = new AdminAccountMultipleRequest();
-            var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+            var call = _client.GetMultiple(request, metadata);
 
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = call.ResponseStream
                 .ReadAllAsync()
                 .GetAsyncEnumerator();
