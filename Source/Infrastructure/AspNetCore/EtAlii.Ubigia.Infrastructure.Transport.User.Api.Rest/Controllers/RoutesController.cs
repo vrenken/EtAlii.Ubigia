@@ -15,8 +15,7 @@
         public RoutesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
-            _settings = new JsonSerializerSettings();
-            _settings.Formatting = Formatting.Indented;
+            _settings = new JsonSerializerSettings {Formatting = Formatting.Indented};
         }
 
         [HttpGet]
