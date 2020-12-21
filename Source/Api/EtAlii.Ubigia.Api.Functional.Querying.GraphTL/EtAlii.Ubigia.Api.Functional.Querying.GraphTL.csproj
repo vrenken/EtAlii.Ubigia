@@ -8,15 +8,9 @@
         <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="Scripting\**" />
-        <EmbeddedResource Remove="Scripting\**" />
-        <None Remove="Scripting\**" />
-    </ItemGroup>
-    <ItemGroup>
         <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <Folder Include="0. Base" />
         <Folder Include="1. Parsing\Annotations\_Model" />
     </ItemGroup>
 </Project>
