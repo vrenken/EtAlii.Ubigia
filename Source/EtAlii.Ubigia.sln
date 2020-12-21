@@ -177,9 +177,9 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Fabric.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj", "{60146C7A-1B67-4ED1-A5DB-5801AE0C5FED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Grpc.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Grpc.Tests.csproj", "{6A427C5C-9F40-4642-A760-94F042DA6FFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Grpc.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Grpc.Tests.csproj", "{6A427C5C-9F40-4642-A760-94F042DA6FFF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL.SignalR.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.SignalR.Tests.csproj", "{32AC736D-B3A2-4AB2-A65D-10AD4A8D3030}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL.SignalR.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.SignalR.Tests.csproj", "{32AC736D-B3A2-4AB2-A65D-10AD4A8D3030}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.GraphSL", "Api\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj", "{3974D00B-3C68-4949-94CA-40FA5AC215E1}"
 EndProject
@@ -213,13 +213,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Meta", "_Meta", "{C9537D00
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore", "Api\EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore\EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.csproj", "{D2D0023C-7EDF-47F6-9542-76E1021FA2D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj", "{4674CCEA-DBE5-43AC-94C0-1D0639635C59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.csproj", "{4674CCEA-DBE5-43AC-94C0-1D0639635C59}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Diagnostics", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Diagnostics.csproj", "{B672F721-1F6D-43FE-8435-0C1847BCAAD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Diagnostics", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Diagnostics.csproj", "{B672F721-1F6D-43FE-8435-0C1847BCAAD1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Tests", "Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj", "{B42A4C2B-15B6-4533-B06A-89346FB7AAB6}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.shproj", "{7F142BAB-7A0A-4068-AD49-6B4DA090FA3D}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.shproj", "{7F142BAB-7A0A-4068-AD49-6B4DA090FA3D}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.shproj", "{7175CB15-0138-4010-9066-C0ABE5C00649}"
 EndProject
@@ -243,7 +243,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests", "Api\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests.csproj", "{AD2A6CA0-2D82-465B-A10F-39865C8156ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphTL.WebApi.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.WebApi.Tests.csproj", "{83CDCC84-3C6E-4AFB-B4BF-74B6655A51E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphXL.WebApi.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.WebApi.Tests.csproj", "{83CDCC84-3C6E-4AFB-B4BF-74B6655A51E9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.Linq.WebApi.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.WebApi.Tests.csproj", "{331A5416-4F7E-477D-A89C-D9E47948E73E}"
 EndProject
@@ -442,7 +442,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.projitems*{32ac736d-b3a2-4ab2-a65d-10ad4a8d3030}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.projitems*{32ac736d-b3a2-4ab2-a65d-10ad4a8d3030}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{32ac736d-b3a2-4ab2-ef5d-10ad4a893a30}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.projitems*{32acab6d-b3a2-4ab2-a65d-10ad4a893030}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{331a5416-4f7e-477d-a89c-d9e47948e73e}*SharedItemsImports = 5
@@ -453,16 +453,16 @@ Global
 		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{4f3341b1-1842-4d8a-8fa4-e60dae53bec5}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.projitems*{617a217c-af63-4a8f-a5ff-91ee4aa4b600}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{65613b13-ccc4-47ca-8da2-cfbae750ea54}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.projitems*{6a427c5c-9f40-4642-a760-94f042da6fff}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.projitems*{6a427c5c-9f40-4642-a760-94f042da6fff}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.projitems*{6a427c5c-9f40-4642-f760-94ab42da6fff}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{6aa27c5c-9f40-4642-a760-94b0deda6fff}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{70285ea9-1824-415e-9317-b6846ffb0326}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{70db8c97-0b9a-4313-8580-c3de09c3a10e}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.projitems*{7175cb15-0138-4010-9066-c0abe5c00649}*SharedItemsImports = 13
 		Api\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{77196d0a-341f-46be-9760-d174734f3ed5}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.projitems*{7f142bab-7a0a-4068-ad49-6b4da090fa3d}*SharedItemsImports = 13
+		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.projitems*{7f142bab-7a0a-4068-ad49-6b4da090fa3d}*SharedItemsImports = 13
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{7f3505c3-584f-4549-be37-c639b3732afe}*SharedItemsImports = 5
-		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests.projitems*{83cdcc84-3c6e-4afb-b4bf-74b6655a51e9}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.projitems*{83cdcc84-3c6e-4afb-b4bf-74b6655a51e9}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{85e9cf67-c4a5-47e0-ae62-f8430fdcc498}*SharedItemsImports = 13
 		Api\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.projitems*{9243c0eb-59bd-4dab-b631-cc8b14ba3585}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{a170fe2a-373b-4f24-9f4b-6440ddf2cc04}*SharedItemsImports = 5

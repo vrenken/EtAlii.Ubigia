@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>6a427c5c-9f40-4642-a760-94f042da6fff</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestImage_01.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphXL\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Tests.projitems" Label="Shared" />
+</Project>
