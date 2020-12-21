@@ -35,7 +35,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
             var result = _decoree.Store(entry, out storedComponents);
 
-            _logger.Verbose("Components stored for entry {EntryId}: {@Components}", entryId, storedComponents);
+            _logger
+                .ForContext("StoredComponents", storedComponents)
+                .Verbose("Components stored for entry {EntryId}", entryId);
 
             return result;
         }
@@ -47,7 +49,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
             var result = _decoree.Store(entry, out storedComponents);
 
-            _logger.Verbose("Components stored for entry {EntryId}: {@Components}", entryId, storedComponents);
+            _logger
+                .ForContext("StoredComponents", storedComponents)
+                .Verbose("Components stored for entry {EntryId}", entryId);
 
             return result;
         }
