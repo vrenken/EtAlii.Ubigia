@@ -9,40 +9,40 @@
     [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
     public partial class DiagnosticsConfiguration
     {
-        private static LoggerConfiguration _loggerConfiguration = new();
+        private static readonly LoggerConfiguration _loggerConfiguration = new();
 
-        public static void Update(Func<LoggerConfiguration, LoggerConfiguration> loggerConfiguration)
-        {
-            _loggerConfiguration = loggerConfiguration(_loggerConfiguration);
-            Log.Logger = _loggerConfiguration.CreateLogger();
-        }
-
-        static DiagnosticsConfiguration()
+        public static void Configure(LoggerConfiguration loggerConfiguration)
         {
             var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
 
-            Update(loggerConfiguration =>
-                loggerConfiguration.MinimumLevel.Verbose()
-                    .Enrich.FromLogContext()
-                    .Enrich.WithThreadName()
-                    .Enrich.WithThreadId()
-                    .Enrich.WithProcessName()
-                    .Enrich.WithProcessId()
-                    .Enrich.WithMachineName()
-                    .Enrich.WithEnvironmentUserName()
-                    // These ones do not give elegant results during unit tests.
-                    // .Enrich.WithAssemblyName()
-                    // .Enrich.WithAssemblyVersion()
-                    // Let's do it ourselves.
-                    .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
-                    .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
-                    .Enrich.WithMemoryUsage()
-                    .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
-                    .WriteTo.Async(writeTo =>
-                    {
-                        writeTo.Seq("http://vrenken.duckdns.org:5341");
-                        writeTo.Debug(LogEventLevel.Error);
-                    }));
+            loggerConfiguration.MinimumLevel.Verbose()
+                .Enrich.FromLogContext()
+                .Enrich.WithThreadName()
+                .Enrich.WithThreadId()
+                .Enrich.WithProcessName()
+                .Enrich.WithProcessId()
+                .Enrich.WithMachineName()
+                .Enrich.WithEnvironmentUserName()
+                // These ones do not give elegant results during unit tests.
+                // .Enrich.WithAssemblyName()
+                // .Enrich.WithAssemblyVersion()
+                // Let's do it ourselves.
+                .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
+                .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
+                .Enrich.WithMemoryUsage()
+                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
+                .WriteTo.Async(writeTo =>
+                {
+                    writeTo.Seq("http://vrenken.duckdns.org:5341");
+                    writeTo.Debug(LogEventLevel.Error);
+                });
+        }
+        static DiagnosticsConfiguration()
+        {
+            Configure(_loggerConfiguration);
+            //_loggerConfiguration = loggerConfiguration(_loggerConfiguration);
+            Log.Logger = _loggerConfiguration.CreateLogger();
+
 
             // Let's flush the log when the process exits.
             AppDomain.CurrentDomain.ProcessExit += (_, _) => Log.CloseAndFlush();

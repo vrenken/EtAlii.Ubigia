@@ -20,9 +20,9 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 container.RegisterInitializer<IHost>(host =>
                 {
                     var configurableHost = (IConfigurableHost)host;
-                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog();
+                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsConfiguration.Configure(loggerConfiguration), true);
                 });
-                
+
                 // Register for logging required DI instances.
                 container.RegisterDecorator(typeof(IInstanceCreator), typeof(LoggingInstanceCreator));
             }
