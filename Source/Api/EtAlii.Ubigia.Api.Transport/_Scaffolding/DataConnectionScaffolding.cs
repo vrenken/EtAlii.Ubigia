@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport
 {
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Threading;
 
     internal class DataConnectionScaffolding : IScaffolding
     {
@@ -16,7 +15,6 @@ namespace EtAlii.Ubigia.Api.Transport
         {
             container.Register(() => _configuration);
             container.Register<IDataConnection, DataConnection>();
-            container.Register<IContextCorrelator, ContextCorrelator>();
         }
     }
 }

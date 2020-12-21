@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Threading;
 
     internal class StorageConnectionScaffolding : IScaffolding
     {
@@ -16,6 +17,7 @@
             container.Register(() => _configuration.Transport);
             container.Register(() => _configuration);
 
+            container.Register<IContextCorrelator, ContextCorrelator>();
             container.Register<IAuthenticationManagementContext, AuthenticationManagementContext>();
             container.Register<IInformationContext, InformationContext>();
             container.Register<IStorageContext, StorageContext>();
