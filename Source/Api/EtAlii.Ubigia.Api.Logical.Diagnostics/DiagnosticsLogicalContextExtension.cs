@@ -15,6 +15,12 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         public void Initialize(Container container)
         {
             container.Register(() => _diagnostics);
+
+            if (_diagnostics.EnableLogging)
+            {
+                // TODO: This is wrong and breaks with the scaffolding pattern.
+                container.RegisterDecorator(typeof(ILogicalRootSet), typeof(LoggingLogicalRootSet));
+            }
         }
     }
 }
