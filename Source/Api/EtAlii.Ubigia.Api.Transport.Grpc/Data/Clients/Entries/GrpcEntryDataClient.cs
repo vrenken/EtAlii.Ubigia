@@ -17,9 +17,9 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPostRequest { SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PostAsync(request, _transport.AuthenticationHeaders);
-                //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id)
+                var response = await _client.PostAsync(request, metadata);
                 return response.Entry.ToLocal();
             }
             catch (RpcException e)
@@ -32,9 +32,9 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPutRequest { Entry = ((IComponentEditableEntry)entry).ToWire() };
-                var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
-                //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry)
+                var response = await _client.PutAsync(request, metadata);
 
                 scope.Cache.InvalidateEntry(entry.Id);
                 // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
@@ -58,9 +58,9 @@
             {
                 return await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
+                    var metadata = new Metadata { _transport.AuthenticationHeader };
                     var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
-                    var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                    //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations)
+                    var response = await _client.GetSingleAsync(request, metadata);
                     return response.Entry.ToLocal();
                 }).ConfigureAwait(false);
             }
@@ -92,8 +92,9 @@
                         var current = enumerator.Current;
                         item = await scope.Cache.GetEntry(current, async () =>
                         {
+                            var metadata = new Metadata { _transport.AuthenticationHeader };
                             var request = new EntrySingleRequest {EntryId = current.ToWire(), EntryRelations = entryRelations.ToWire()};
-                            var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                            var response = await _client.GetSingleAsync(request, metadata);
                             return response.Entry.ToLocal();
                         }).ConfigureAwait(false);
                     }
@@ -129,8 +130,9 @@
 
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
+            var metadata = new Metadata { _transport.AuthenticationHeader };
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
-            var call = _client.GetRelated(request, _transport.AuthenticationHeaders);
+            var call = _client.GetRelated(request, metadata);
             await foreach (var response in call.ResponseStream.ReadAllAsync().ConfigureAwait(false))
             {
                 yield return response.Entry.ToLocal();

@@ -10,11 +10,11 @@
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
-	    
+
         public SignalRSpaceTransport(
 	        Uri address,
 	        Func<HttpMessageHandler> httpMessageHandlerFactory,
-			Action<string> authenticationTokenSetter, 
+			Action<string> authenticationTokenSetter,
             Func<string> authenticationTokenGetter)
         : base(address)
         {

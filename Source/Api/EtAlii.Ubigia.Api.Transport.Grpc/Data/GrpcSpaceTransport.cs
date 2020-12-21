@@ -14,7 +14,7 @@
         private CallInvoker _callInvoker;
         private GrpcChannel _channel;
 
-	    public Metadata AuthenticationHeaders { get; set; }
+	    public Metadata.Entry AuthenticationHeader { get; set; }
 
 	    public string AuthenticationToken { get => _authenticationTokenProvider.AuthenticationToken; set => _authenticationTokenProvider.AuthenticationToken = value; }
 	    private readonly IAuthenticationTokenProvider _authenticationTokenProvider;

@@ -66,7 +66,10 @@
             return connection;
         }
 
-        protected override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, IContextCorrelator contextCorrelator, bool openOnCreation = true)
+        protected override async Task<IManagementConnection> CreateManagementConnection(
+            Uri address, string account, string password,
+            IContextCorrelator contextCorrelator,
+            bool openOnCreation = true)
         {
             var diagnostics = DiagnosticsConfiguration.Default;
 

@@ -4,10 +4,11 @@
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Grpc;
 	using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Threading;
-    using global::Grpc.Core.Interceptors;
 	using global::Grpc.Core;
 	using global::Grpc.Net.Client;
+    using EtAlii.xTechnology.Threading;
+    using global::Grpc.Core.Interceptors;
+
 
 	public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
@@ -15,7 +16,7 @@
         private CallInvoker _callInvoker;
         private GrpcChannel _channel;
 
-	    public Metadata AuthenticationHeaders { get; set; }
+	    public Metadata.Entry AuthenticationHeader { get; set; }
 
 		public string AuthenticationToken { get => _authenticationTokenProvider.AuthenticationToken; set => _authenticationTokenProvider.AuthenticationToken = value; }
 	    private readonly IAuthenticationTokenProvider _authenticationTokenProvider;

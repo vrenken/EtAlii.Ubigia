@@ -23,12 +23,10 @@
                     Name = storageName,
                     Address = storageAddress,
                 });
-    
-                var request = new AdminStorageSingleRequest
-                {
-                    Storage = storage,
-                };
-                var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
+
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminStorageSingleRequest { Storage = storage };
+                var call = _client.PostAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
                 return response.Storage.ToLocal();
             }
@@ -42,11 +40,9 @@
         {
             try
             {
-                var request = new AdminStorageSingleRequest
-                {
-                    Id = GuidExtension.ToWire(storageId),
-                };
-                var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminStorageSingleRequest { Id = GuidExtension.ToWire(storageId) };
+                var call = _client.DeleteAsync(request, metadata);
                 await call.ResponseAsync.ConfigureAwait(false);
             }
             catch (RpcException e)
@@ -65,12 +61,10 @@
                     Name = storageName,
                     Address = storageAddress,
                 });
-                
-                var request = new AdminStorageSingleRequest
-                {
-                    Storage = storage,
-                };
-                var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
+
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminStorageSingleRequest { Storage = storage };
+                var call = _client.PutAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
                 return response.Storage.ToLocal();
             }
@@ -84,11 +78,9 @@
         {
             try
             {
-                var request = new AdminStorageSingleRequest
-                {
-                    Name = storageName,
-                };
-                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminStorageSingleRequest { Name = storageName };
+                var call = _client.GetSingleAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
                 return response.Storage?.ToLocal();
             }
@@ -102,11 +94,9 @@
         {
             try
             {
-                var request = new AdminStorageSingleRequest
-                {
-                    Id = GuidExtension.ToWire(storageId),
-                };
-                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new AdminStorageSingleRequest { Id = GuidExtension.ToWire(storageId) };
+                var call = _client.GetSingleAsync(request, metadata);
                 var response = await call.ResponseAsync.ConfigureAwait(false);
                 return response.Storage?.ToLocal();
             }
@@ -118,13 +108,14 @@
 
         public async IAsyncEnumerable<Storage> GetAll()
         {
+            var metadata = new Metadata { _transport.AuthenticationHeader };
             var request = new AdminStorageMultipleRequest();
-            var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+            var call = _client.GetMultiple(request, metadata);
 
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = call.ResponseStream
                 .ReadAllAsync()
                 .GetAsyncEnumerator();

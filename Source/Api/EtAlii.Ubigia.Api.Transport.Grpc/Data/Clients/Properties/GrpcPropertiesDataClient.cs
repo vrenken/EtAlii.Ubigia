@@ -22,9 +22,9 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new PropertiesPostRequest{EntryId = identifier.ToWire(), PropertyDictionary = properties.ToWire(_serializer)};
-                await _client.PostAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties)
+                await _client.PostAsync(request, metadata);
                 PropertiesHelper.SetStored(properties, true);
             }
             catch (RpcException e)
@@ -39,10 +39,11 @@
             {
                 return await scope.Cache.GetProperties(identifier, async () =>
                 {
+                    var metadata = new Metadata { _transport.AuthenticationHeader };
                     var request = new PropertiesGetRequest{ EntryId = identifier.ToWire() };
-                    var response = await _client.GetAsync(request, _transport.AuthenticationHeaders);
+                    var response = await _client.GetAsync(request, metadata);
                     var result = response.PropertyDictionary.ToLocal(_serializer);
-                    
+
                     if (result != null)
                     {
                         PropertiesHelper.SetStored(result, true);
@@ -56,11 +57,11 @@
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcPropertiesDataClient)}.Retrieve()", e);
             }
         }
-        
+
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
-            
+
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new PropertiesGrpcService.PropertiesGrpcServiceClient(_transport.CallInvoker);
         }

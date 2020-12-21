@@ -8,11 +8,11 @@
         private ContentGrpcService.ContentGrpcServiceClient _contentClient;
         private ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient _contentDefinitionClient;
         private IGrpcSpaceTransport _transport;
-                
+
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
-            
+
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _contentClient = new ContentGrpcService.ContentGrpcServiceClient(_transport.CallInvoker);
             _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(_transport.CallInvoker);

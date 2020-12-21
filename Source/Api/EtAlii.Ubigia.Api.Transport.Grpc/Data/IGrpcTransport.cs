@@ -12,6 +12,6 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
 		string AuthenticationToken { get; set; }
 
-	    Metadata AuthenticationHeaders { get; set; }
+        Metadata.Entry AuthenticationHeader { get; set; }
     }
 }

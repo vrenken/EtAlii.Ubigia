@@ -13,10 +13,9 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionPostRequest {EntryId = identifier.ToWire(), ContentDefinition = contentDefinition.ToWire()};
-                await _contentDefinitionClient.PostAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_contentDefinitionConnection, GrpcHub.ContentDefinition, "Post", identifier, contentDefinition)
-    
+                await _contentDefinitionClient.PostAsync(request, metadata);
                 MarkAsStored(contentDefinition);
             }
             catch (RpcException e)
@@ -29,10 +28,9 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionPartPostRequest {EntryId = identifier.ToWire(), ContentDefinitionPart = contentDefinitionPart.ToWire(), ContentDefinitionPartId = contentDefinitionPart.Id };
-                await _contentDefinitionClient.PostPartAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_contentDefinitionConnection, GrpcHub.ContentDefinition, "PostPart", identifier, contentDefinitionPart.Id, contentDefinitionPart)
-    
+                await _contentDefinitionClient.PostPartAsync(request, metadata);
                 MarkAsStored(contentDefinitionPart);
             }
             catch (RpcException e)
@@ -45,10 +43,10 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentDefinitionGetRequest { EntryId = identifier.ToWire() };
-                var response = await _contentDefinitionClient.GetAsync(request, _transport.AuthenticationHeaders);
+                var response = await _contentDefinitionClient.GetAsync(request, metadata);
                 return response.ContentDefinition.ToLocal();
-                //return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, GrpcHub.ContentDefinition, "Get", identifier)
             }
             catch (RpcException e)
             {

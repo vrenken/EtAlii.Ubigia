@@ -11,7 +11,7 @@
     public partial class GrpcAuthenticationManagementDataClient
     {
         private readonly string _hostIdentifier;
-        
+
         public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             try
@@ -24,46 +24,48 @@
                 {
                     throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.NoWayToAuthenticate);
                 }
-    
+
                 if (password == null)
                 {
+                    var metadata = Metadata.Empty;
                     var request = new AuthenticationRequest { AccountName = accountName, Password = null, HostIdentifier = _hostIdentifier };
-                    var call = _client.AuthenticateAsAsync(request);
+                    var call = _client.AuthenticateAsAsync(request, metadata);
                     await call.ResponseAsync.ConfigureAwait(false);
                     //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
-                    
+
                     authenticationToken = call
                         .GetTrailers()
                         .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
                 }
                 if (authenticationToken == null)
                 {
+                    var metadata = Metadata.Empty;
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
-                    var call = _client.AuthenticateAsync(request);
+                    var call = _client.AuthenticateAsync(request, metadata);
                     await call.ResponseAsync.ConfigureAwait(false);
                     //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
-                    
+
                     authenticationToken = call
                         .GetTrailers()
                         .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
                 }
-    
+
                 if (!string.IsNullOrWhiteSpace(authenticationToken))
                 {
                     grpcConnection.Transport.AuthenticationToken = authenticationToken;
-                    grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
+                    grpcConnection.Transport.AuthenticationHeader = new Metadata.Entry(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
                 }
                 else
                 {
-                    grpcConnection.Transport.AuthenticationHeaders = null;
+                    grpcConnection.Transport.AuthenticationHeader = null;
                     var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                     throw new UnauthorizedInfrastructureOperationException(message);
                 }
             }
             catch (RpcException e)
-            {                
+            {
                 var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message, e);
             }

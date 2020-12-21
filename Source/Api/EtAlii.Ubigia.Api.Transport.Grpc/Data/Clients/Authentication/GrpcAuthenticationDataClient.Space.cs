@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using global::Grpc.Core;
     using Space = EtAlii.Ubigia.Space;
 
     public partial class GrpcAuthenticationDataClient
@@ -25,8 +26,9 @@
 
         private async Task<Space> GetSpace(string spaceName, IGrpcTransport transport)
         {
+            var metadata = new Metadata { transport.AuthenticationHeader };
             var request = new SpaceSingleRequest {Name = spaceName};
-            var response = await _spaceClient.GetSingleAsync(request, transport.AuthenticationHeaders);
+            var response = await _spaceClient.GetSingleAsync(request, metadata);
 
             var space = response.Space.ToLocal();
             if (space == null)

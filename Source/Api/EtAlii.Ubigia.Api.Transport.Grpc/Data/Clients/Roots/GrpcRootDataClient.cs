@@ -15,9 +15,10 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var root = new Root { Name = name };
                 var request = new RootPostSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PostAsync(request, _transport.AuthenticationHeaders);
+                var response = await _client.PostAsync(request, metadata);
                 return response.Root.ToLocal();
             }
             catch (RpcException e)
@@ -30,8 +31,9 @@
         {
             try
             {
-                var request = new RootSingleRequest { Id = id.ToWire(), SpaceId = Connection.Space.Id.ToWire() }; 
-                await _client.DeleteAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new RootSingleRequest { Id = id.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
+                await _client.DeleteAsync(request, metadata);
             }
             catch (RpcException e)
             {
@@ -43,9 +45,10 @@
         {
             try
             {
+                var metadata = new Metadata { _transport.AuthenticationHeader };
                 var root = new Root { Id = rootId, Name = rootName };
                 var request = new RootSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
-                var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
+                var response = await _client.PutAsync(request, metadata);
                 return response.Root.ToLocal();
             }
             catch (RpcException e)
@@ -58,8 +61,9 @@
         {
             try
             {
-                var request = new RootSingleRequest { Name = rootName, SpaceId = Connection.Space.Id.ToWire() }; 
-                var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new RootSingleRequest { Name = rootName, SpaceId = Connection.Space.Id.ToWire() };
+                var response = await _client.GetSingleAsync(request, metadata);
                 return response.Root?.ToLocal();
             }
             catch (RpcException e)
@@ -72,8 +76,9 @@
         {
             try
             {
-                var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire() }; 
-                var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var metadata = new Metadata { _transport.AuthenticationHeader };
+                var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
+                var response = await _client.GetSingleAsync(request, metadata);
                 return response.Root?.ToLocal();
             }
             catch (RpcException e)
@@ -84,13 +89,14 @@
 
         public async IAsyncEnumerable<Root> GetAll()
         {
-            var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() }; 
-            var call = _client.GetMultiple(request, _transport.AuthenticationHeaders);
+            var metadata = new Metadata { _transport.AuthenticationHeader };
+            var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire() };
+            var call = _client.GetMultiple(request, metadata);
 
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = call.ResponseStream
                 .ReadAllAsync()
                 .GetAsyncEnumerator();
@@ -120,7 +126,7 @@
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
-            
+
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new RootGrpcService.RootGrpcServiceClient(_transport.CallInvoker);
         }

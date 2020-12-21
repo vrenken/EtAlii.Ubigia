@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using global::Grpc.Core;
     using Storage = EtAlii.Ubigia.Storage;
 
     public partial class GrpcInformationDataClient
@@ -28,8 +29,9 @@
 
         private async Task<Storage> GetConnectedStorage(IGrpcTransport transport)
         {
+            var metadata = new Metadata { transport.AuthenticationHeader };
             var request = new StorageSingleRequest();
-            var response = await _storageClient.GetLocalAsync(request, transport.AuthenticationHeaders);
+            var response = await _storageClient.GetLocalAsync(request, metadata);
             var storage = response.Storage.ToLocal();
             return storage;
         }
@@ -39,8 +41,9 @@
             var grpcConnection = (IGrpcStorageConnection)connection;
             SetClients(grpcConnection.Transport.CallInvoker);
 
+            var metadata = new Metadata { grpcConnection.Transport.AuthenticationHeader };
             var request = new ConnectivityDetailsRequest();
-            var response = await _client.GetLocalConnectivityDetailsAsync(request, grpcConnection.Transport.AuthenticationHeaders);
+            var response = await _client.GetLocalConnectivityDetailsAsync(request, metadata);
             var connectivityDetails = response.ConnectivityDetails.ToLocal();
             return connectivityDetails;
         }
