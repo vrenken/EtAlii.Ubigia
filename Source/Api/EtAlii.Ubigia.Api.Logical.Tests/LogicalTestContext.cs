@@ -3,6 +3,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
+    using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics;
 
     public class LogicalTestContext : ILogicalTestContext
     {
@@ -17,14 +19,15 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
         }
-        
+
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
-            var configuration = new LogicalContextConfiguration();
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
             await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
             return new LogicalContextFactory().Create(configuration);
         }
-        
+
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)
         {
             var scope = new ExecutionScope(false);
@@ -44,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var path = $"/Location/{continent}/{country}";
             return new LocationAddResult(path, countryEntry);
         }
-        
+
         public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
             var locationRoot = await context.Roots.Get("Location").ConfigureAwait(false);

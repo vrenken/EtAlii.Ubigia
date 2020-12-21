@@ -8,7 +8,6 @@
     public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
-        private IDiagnosticsConfiguration _diagnostics;
 
         public ProfilingLogicalContextTests(LogicalUnitTestContext testContext)
         {
@@ -17,7 +16,6 @@
 
         public Task InitializeAsync()
         {
-            _diagnostics = DiagnosticsConfiguration.Default;
             return Task.CompletedTask;
         }
 
@@ -25,7 +23,6 @@
         {
             //_fabricContext.Dispose();
             //_fabricContext = null;
-            _diagnostics = null;
             return Task.CompletedTask;
         }
 
@@ -33,7 +30,8 @@
         public async Task ProfilingLogicalContext_Create_01()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration();
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
@@ -48,7 +46,7 @@
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_diagnostics);
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
 
@@ -64,7 +62,7 @@
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_diagnostics);
+                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
