@@ -2,7 +2,6 @@
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Threading;
 
 	public class UserApiScaffolding : IScaffolding
 	{
@@ -24,8 +23,7 @@
 			container.Register(() => _infrastructure.Content);
 			container.Register(() => _infrastructure.ContentDefinition);
 			container.Register(() => _infrastructure.Configuration);
-
-            container.Register<IContextCorrelator, ContextCorrelator>();
+            container.Register(() => _infrastructure.ContextCorrelator);
         }
 	}
 }
