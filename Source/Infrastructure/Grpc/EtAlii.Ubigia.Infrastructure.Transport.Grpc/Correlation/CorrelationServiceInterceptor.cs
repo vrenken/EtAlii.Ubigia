@@ -2,72 +2,79 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 {
     using System;
     using System.Threading.Tasks;
-    using Serilog;
     using global::Grpc.Core.Interceptors;
     using global::EtAlii.xTechnology.Threading;
     using global::Grpc.Core;
     using EtAlii.xTechnology.Diagnostics;
+    using System.Collections.Generic;
 
+    /// <summary>
+    /// The task of the CorrelationServiceInterceptor is to fetch any correlation Id
+    /// out of the Grpc metadata and re-apply it as a correlation scope.
+    /// This way the correlation Id's cascade from the client into the server.
+    /// </summary>
 	public class CorrelationServiceInterceptor : Interceptor
     {
         private readonly IContextCorrelator _contextCorrelator;
-        private readonly ILogger _logger = Log.ForContext<CorrelationServiceInterceptor>();
 
         public CorrelationServiceInterceptor(IContextCorrelator contextCorrelator)
         {
             _contextCorrelator = contextCorrelator;
         }
 
-        public override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
+        public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(
             TRequest request, ServerCallContext context,
             UnaryServerMethod<TRequest, TResponse> continuation)
         {
-            AddCorrelationIdsFromHeaders(context.RequestHeaders);
-            return base.UnaryServerHandler(request, context, continuation);
+            using var correlations = BeginCorrelation(context.RequestHeaders);
+            return await base.UnaryServerHandler(request, context, continuation).ConfigureAwait(false);
         }
 
-        public override Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(
+        public override async Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(
             IAsyncStreamReader<TRequest> requestStream, ServerCallContext context,
             ClientStreamingServerMethod<TRequest, TResponse> continuation)
         {
-            AddCorrelationIdsFromHeaders(context.RequestHeaders);
-            return base.ClientStreamingServerHandler(requestStream, context, continuation);
+            using var correlations = BeginCorrelation(context.RequestHeaders);
+            return await base.ClientStreamingServerHandler(requestStream, context, continuation).ConfigureAwait(false);
         }
 
-        public override Task DuplexStreamingServerHandler<TRequest, TResponse>(
+        public override async Task DuplexStreamingServerHandler<TRequest, TResponse>(
             IAsyncStreamReader<TRequest> requestStream,
             IServerStreamWriter<TResponse> responseStream, ServerCallContext context,
             DuplexStreamingServerMethod<TRequest, TResponse> continuation)
         {
-            AddCorrelationIdsFromHeaders(context.RequestHeaders);
-            return base.DuplexStreamingServerHandler(requestStream, responseStream, context, continuation);
+            using var correlations = BeginCorrelation(context.RequestHeaders);
+            await base.DuplexStreamingServerHandler(requestStream, responseStream, context, continuation).ConfigureAwait(false);
         }
 
-        public override Task ServerStreamingServerHandler<TRequest, TResponse>(
+        public override async Task ServerStreamingServerHandler<TRequest, TResponse>(
             TRequest request, IServerStreamWriter<TResponse> responseStream,
             ServerCallContext context, ServerStreamingServerMethod<TRequest, TResponse> continuation)
         {
-            AddCorrelationIdsFromHeaders(context.RequestHeaders);
-            return base.ServerStreamingServerHandler(request, responseStream, context, continuation);
+            using var correlations = BeginCorrelation(context.RequestHeaders);
+            await base.ServerStreamingServerHandler(request, responseStream, context, continuation).ConfigureAwait(false);
         }
 
-        private void AddCorrelationIdsFromHeaders(Metadata metadata)
+        private IDisposable BeginCorrelation(Metadata metadata)
         {
-            foreach (var header in metadata)
-            {
-                var key = header.Key;
-                var value = header.Value;
+            var correlations = new List<IDisposable>();
 
-                _logger.Debug("Interpreting header {header}/{value}", key, value);
+            foreach (var entry in metadata)
+            {
+                var key = entry.Key;
+                var value = entry.Value;
+
                 foreach (var correlationId in Correlation.AllIds)
                 {
                     if (string.Equals(correlationId, key, StringComparison.OrdinalIgnoreCase))
                     {
-                        _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                        var correlation = _contextCorrelator.BeginLoggingCorrelationScope(correlationId, value);
+                        correlations.Add(correlation);
                         break;
                     }
                 }
             }
+            return new CompositeDisposable(correlations);
         }
     }
 }

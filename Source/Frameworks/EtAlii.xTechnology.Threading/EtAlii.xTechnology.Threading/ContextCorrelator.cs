@@ -52,36 +52,26 @@ namespace EtAlii.xTechnology.Threading
         /// <exception cref="InvalidOperationException"></exception>
         public IDisposable BeginCorrelationScope(string key, string value, IDisposable relatedDisposable, bool throwWhenAlreadyCorrelated = true)
         {
-            if (!throwWhenAlreadyCorrelated)
+            if (throwWhenAlreadyCorrelated)
             {
-                return BeginCorrelationScopeWhenNeeded(key, value, relatedDisposable);
+                if (Items.ContainsKey(key))
+                {
+                    throw new InvalidOperationException($"{key} is already being correlated!");
+                }
             }
-
-            if (Items.ContainsKey(key))
+            else
             {
-                throw new InvalidOperationException($"{key} is already being correlated!");
-            }
-
-            IDisposable scope = relatedDisposable != null
-                ? new RelatedCorrelationScope(Items, relatedDisposable)
-                : new UnrelatedCorrelationScope(Items);
-
-            Items = Items.Add(key, value);
-
-            return scope;
-        }
-
-        private IDisposable BeginCorrelationScopeWhenNeeded(string key, string value, IDisposable relatedDisposable)
-        {
-            var valueAlreadyInContext = Items.ContainsKey(key);
-            if (valueAlreadyInContext)
-            {
-                return new UnrelatedCorrelationScope(Items);
+                var valueAlreadyInContext = Items.ContainsKey(key);
+                if (valueAlreadyInContext)
+                {
+                    return new UnrelatedCorrelationScope(Items);
+                }
             }
 
             IDisposable scope = relatedDisposable != null
                 ? new RelatedCorrelationScope(Items, relatedDisposable)
                 : new UnrelatedCorrelationScope(Items);
+
             Items = Items.Add(key, value);
             return scope;
         }

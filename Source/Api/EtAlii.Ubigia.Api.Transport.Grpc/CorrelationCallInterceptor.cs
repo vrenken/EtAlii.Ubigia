@@ -4,7 +4,11 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     using global::EtAlii.xTechnology.Threading;
     using global::Grpc.Core;
 
-	public class CorrelationCallInterceptor : Interceptor
+    /// <summary>
+    /// The task of the CorrelationCallInterceptor is to find all context correlation scopes and package and send them into
+    /// Grpc metadata. This is needed to make the client correlation Id's cascade from the client to the server.
+    /// </summary>
+    public class CorrelationCallInterceptor : Interceptor
     {
         private readonly IContextCorrelator _contextCorrelator;
 
@@ -45,6 +49,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         private void AddHeadersWhenNeeded(Metadata metadata)
         {
+
             foreach (var correlationId in Correlation.AllIds)
             {
                 if (_contextCorrelator.TryGetValue(correlationId, out var correlationIdValue))
