@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
         public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
         {
-            _logger.Verbose("Getting entry: {identifier}", identifier.ToTimeString());
+            _logger.Verbose("Getting entry: {Identifier}", identifier.ToTimeString());
 
             return _decoree.Get(identifier, entryRelations);
         }

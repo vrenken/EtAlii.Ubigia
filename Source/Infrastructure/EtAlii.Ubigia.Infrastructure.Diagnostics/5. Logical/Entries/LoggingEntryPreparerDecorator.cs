@@ -17,13 +17,13 @@
 
         public Task<Entry> Prepare(Guid spaceId, Identifier id)
         {
-            _logger.Verbose("Preparing entry for space: {spaceId} (Id: {identifier})", spaceId, id);
+            _logger.Verbose("Preparing entry for space: {SpaceId} (Id: {Identifier})", spaceId, id);
             return _entryPreparer.Prepare(spaceId);
         }
 
         public Task<Entry> Prepare(Guid spaceId)
         {
-            _logger.Verbose("Preparing entry for space: {spaceId}", spaceId);
+            _logger.Verbose("Preparing entry for space: {SpaceId}", spaceId);
             return _entryPreparer.Prepare(spaceId);
         }
     }
