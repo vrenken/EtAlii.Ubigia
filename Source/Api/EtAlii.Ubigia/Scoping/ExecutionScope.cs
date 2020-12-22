@@ -5,7 +5,7 @@
 
     // TODO: Move to Traversal project in main repository.
     /// <summary>
-    /// The ExecutionScope contains all details needed to execute GXL/GTL/Linq queries and mutations.
+    /// The ExecutionScope contains all details needed to execute GCL/GTL/Linq queries and mutations.
     /// </summary>
     public class ExecutionScope
     {

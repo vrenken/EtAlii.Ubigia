@@ -4,9 +4,9 @@
     using System.Linq;
     using Xunit;
 
-    public class FileBasedGraphXLData : TheoryData<string, string, string>
+    public class FileBasedGraphContextData : TheoryData<string, string, string>
     {
-        public FileBasedGraphXLData()
+        public FileBasedGraphContextData()
         {
             var folder = Directory.GetCurrentDirectory();
             var files = Directory.GetFiles(folder, "*Samples*.txt");
