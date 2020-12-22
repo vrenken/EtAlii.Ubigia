@@ -1,0 +1,18 @@
+namespace EtAlii.Ubigia.Api.Functional.Traversal
+{
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
+
+    internal class TraversingWildcardPathSubjectPartToGraphPathPartsConverter : ITraversingWildcardPathSubjectPartToGraphPathPartsConverter
+    {
+        //private readonly IProcessingContext _context
+
+        public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
+        {
+            var limit = ((TraversingWildcardPathSubjectPart)pathSubjectPart).Limit;
+
+            var result = new GraphPathPart[] { new GraphTraversingWildcard(limit) };
+            return Task.FromResult(result);
+        }
+    }
+}

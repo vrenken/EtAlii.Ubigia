@@ -13,7 +13,7 @@
     <None Remove="Scripting\**" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
   </ItemGroup>
 </Project>

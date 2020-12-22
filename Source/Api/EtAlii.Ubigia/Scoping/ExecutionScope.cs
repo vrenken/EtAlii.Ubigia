@@ -3,22 +3,22 @@
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    // TODO: Move to GraphSL project in main repository.
+    // TODO: Move to Traversal project in main repository.
     /// <summary>
-    /// The ExecutionScope contains all details needed to execute GTL/GSL/Linq queries and mutations.
+    /// The ExecutionScope contains all details needed to execute GCL/GTL/Linq queries and mutations.
     /// </summary>
     public class ExecutionScope
     {
         /// <summary>
         /// This is the Cache instance used to reduce unnecessary server calls. As the whole entity and relation
-        /// model is based on immutability local caching can do tremendous wonders. 
+        /// model is based on immutability local caching can do tremendous wonders.
         /// </summary>
         public Cache Cache { get; }
 
-        private readonly Dictionary<string, Regex> _regexes; 
+        private readonly Dictionary<string, Regex> _regexes;
 
         /// <summary>
-        /// Create a new ExecutionScope instance. Set the cacheEnabled to false if the cache should be disabled. 
+        /// Create a new ExecutionScope instance. Set the cacheEnabled to false if the cache should be disabled.
         /// </summary>
         /// <param name="cacheEnabled">False when caching should be disabled.</param>
         public ExecutionScope(bool cacheEnabled)

@@ -5,7 +5,7 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
@@ -90,10 +90,10 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new GraphSLScriptContextConfiguration()
+            var configuration = new TraversalScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
 
             var addQueries = new[]
             {
@@ -134,11 +134,11 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new GraphSLScriptContextConfiguration()
+            var configuration = new TraversalScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
-            
+            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+
             var selectQuery = "<= /Person";
 
             var selectScript = scriptContext.Parse(selectQuery).Script;

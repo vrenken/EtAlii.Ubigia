@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
 
     public class QueryingUnitTestContext : IAsyncLifetime

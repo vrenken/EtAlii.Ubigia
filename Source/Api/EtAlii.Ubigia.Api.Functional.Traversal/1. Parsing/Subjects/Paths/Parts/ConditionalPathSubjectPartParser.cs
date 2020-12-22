@@ -1,0 +1,64 @@
+﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
+{
+    using System.Linq;
+    using Moppet.Lapa;
+
+    internal class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
+    {
+        public string Id { get; } = nameof(ConditionalPathSubjectPart);
+
+        public LpsParser Parser { get; }
+
+        private readonly INodeValidator _nodeValidator;
+        private readonly IConditionParser _conditionParser;
+        private readonly INodeFinder _nodeFinder;
+
+        public ConditionalPathSubjectPartParser(
+            INodeValidator nodeValidator,
+            IConditionParser conditionParser,
+            INewLineParser newLineParser,
+            INodeFinder nodeFinder)
+        {
+            _nodeValidator = nodeValidator;
+            _conditionParser = conditionParser;
+            _nodeFinder = nodeFinder;
+
+            var separator = Lp.Char('&');//.Debug("Separator", true)
+            Parser = new LpsParser(Id, true,
+                Lp.One(c => c == '.') + //.Debug("Point") +
+                newLineParser.OptionalMultiple + //.Debug("NL1") +
+                Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
+                //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")))
+        }
+
+        public bool CanParse(LpNode node)
+        {
+            return node.Id == Id;
+        }
+
+        public PathSubjectPart Parse(LpNode node)
+        {
+            _nodeValidator.EnsureSuccess(node, Id);
+
+            var conditions = _nodeFinder
+                .FindAll(node, _conditionParser.Id)
+                .Select(n => _conditionParser.Parse(n))
+                .ToArray();
+
+            return new ConditionalPathSubjectPart(conditions);
+        }
+
+        public void Validate(PathSubjectPartParserArguments arguments)
+        {
+            if (arguments.PartIndex == 0 || arguments.PartIndex == 1 && !(arguments.Before is VariablePathSubjectPart))
+            {
+                throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
+            }
+        }
+
+        public bool CanValidate(PathSubjectPart part)
+        {
+            return part is ConditionalPathSubjectPart;
+        }
+    }
+}

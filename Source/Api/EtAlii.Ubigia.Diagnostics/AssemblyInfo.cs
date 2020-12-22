@@ -19,9 +19,9 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq.WebApi.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.SignalR.Tests")]

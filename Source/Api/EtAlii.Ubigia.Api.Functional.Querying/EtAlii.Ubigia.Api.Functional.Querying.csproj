@@ -15,7 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
-  </ItemGroup>
 </Project>

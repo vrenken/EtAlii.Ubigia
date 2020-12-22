@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Diagnostics")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Tests")]
 
@@ -9,11 +9,11 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphTL.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.Grpc.Tests")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.WebApi.Tests")]
