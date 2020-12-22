@@ -3,11 +3,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class DiagnosticsGraphXLQueryContextExtension : IGraphXLQueryContextExtension
+    public class DiagnosticsGraphContextExtension : IGraphContextExtension
     {
         private readonly IDiagnosticsConfiguration _diagnostics;
 
-        internal DiagnosticsGraphXLQueryContextExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsGraphContextExtension(IDiagnosticsConfiguration diagnostics)
         {
             _diagnostics = diagnostics;
         }

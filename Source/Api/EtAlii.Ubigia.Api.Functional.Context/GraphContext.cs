@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class GraphXLContext : IGraphXLContext
+    internal class GraphContext : IGraphContext
     {
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
         private readonly ITraversalScriptContext _scriptContext;
 
-        public GraphXLContext(
+        public GraphContext(
             ISchemaProcessorFactory schemaProcessorFactory,
             ISchemaParserFactory schemaParserFactory,
             ITraversalScriptContext scriptContext)

@@ -17,7 +17,7 @@
             //Assert.NotNull(jsonNode);
         }
 
-        [Theory, ClassData(typeof(FileBasedGraphXLData))]
+        [Theory, ClassData(typeof(FileBasedGraphContextData))]
         public void SchemaParser_Parse_From_Files(string fileName, string title, string queryText)
         {
             // Arrange.

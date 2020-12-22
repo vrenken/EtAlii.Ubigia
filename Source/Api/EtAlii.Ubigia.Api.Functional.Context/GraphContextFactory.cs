@@ -3,9 +3,9 @@
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphXLQueryContextFactory : Factory<IGraphXLContext, GraphXLQueryContextConfiguration, IGraphXLQueryContextExtension>
+    public class GraphContextFactory : Factory<IGraphContext, GraphContextConfiguration, IGraphContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(GraphXLQueryContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(GraphContextConfiguration configuration)
         {
             // Let's ensure that the function handler configuration is in fact valid.
             var functionHandlersProvider = configuration.FunctionHandlersProvider;
@@ -19,7 +19,7 @@
 
             return new IScaffolding[]
             {
-                new GraphXLQueryContextScaffolding(configuration),
+                new GraphContextScaffolding(configuration),
 
                 //new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
             };

@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingGraphXLContext : IProfilingGraphXLContext
+    public class ProfilingGraphContext : IProfilingGraphContext
     {
-        private readonly IGraphXLContext _decoree;
+        private readonly IGraphContext _decoree;
         public IProfiler Profiler { get; }
 
-        public ProfilingGraphXLContext(
-            IGraphXLContext decoree,
+        public ProfilingGraphContext(
+            IGraphContext decoree,
             IProfiler profiler)
         {
             _decoree = decoree;

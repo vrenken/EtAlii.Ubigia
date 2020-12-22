@@ -3,12 +3,12 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// A <see cref="GraphXLContext"/> can be used to execute GXL queries on a Ubigia space.
+    /// A <see cref="GraphContext"/> can be used to execute GCL queries on a Ubigia space.
     /// </summary>
-    public interface IGraphXLContext
+    public interface IGraphContext
     {
         /// <summary>
-        /// Parse the specified text into a GXL query.
+        /// Parse the specified text into a GCL query.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
