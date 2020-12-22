@@ -6,7 +6,7 @@ Similar like other technologies Ubigia tries to make the development experience 
 ## Schema definition
 
  - [Graph Context Language - Schema basics](Gcl.Schema.Basics.md)
- - [Graph Context Language - Basic examples](Gcl.Schema.Basics.md)
+ - [Graph Context Language - Basic examples](Gcl.Schema.Basics.Examples.md)
  
 TODO.
 
