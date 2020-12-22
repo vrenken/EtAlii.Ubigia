@@ -18,8 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Internal
     /// </summary>
     public static class UbigiaStrings
     {
-        private static readonly ResourceManager _resourceManager
-            = new ResourceManager("EtAlii.Ubigia.Api.Properties.UbigiaStrings", typeof(UbigiaStrings).Assembly);
+        private static readonly ResourceManager _resourceManager = new ResourceManager("EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Properties.UbigiaStrings", typeof(UbigiaStrings).Assembly);
 
         /// <summary>
         ///     Cannot apply 'DefaultIfEmpty' after a client-evaluated projection. Consider applying 'DefaultIfEmpty' before last 'Select' or use 'AsEnumerable' before 'DefaultIfEmpty' to apply it on client-side.
@@ -96,8 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Internal
     /// </summary>
     public static class UbigiaResources
     {
-        private static readonly ResourceManager _resourceManager
-            = new ResourceManager("EtAlii.Ubigia.Api.Properties.UbigiaStrings", typeof(UbigiaResources).GetTypeInfo().Assembly);
+        private static readonly ResourceManager _resourceManager = new ResourceManager("EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Properties.UbigiaStrings", typeof(UbigiaResources).GetTypeInfo().Assembly);
 
         /// <summary>
         ///     Saved {count} entities to Ubigia store.

@@ -5,14 +5,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using JetBrains.dotMemoryUnit;
     using Xunit;
     using Xunit.Abstractions;
 
     public class GraphQLQueryContextMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private IGraphSLScriptContext _scriptContext;
+        private ITraversalScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
 
         private readonly QueryingUnitTestContext _testContext;
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
                 .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new GraphSLScriptContextFactory().Create(_configuration);
+            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
 
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);

@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>617a217c-af63-4a8f-a5ff-91ee4aa4b600</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="TestImage_01.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Traversal.Tests\EtAlii.Ubigia.Api.Functional.Traversal.Tests.projitems" Label="Shared" />
+
+</Project>

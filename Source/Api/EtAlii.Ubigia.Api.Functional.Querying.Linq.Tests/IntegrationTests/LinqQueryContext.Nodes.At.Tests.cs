@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Scripting.Tests;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -31,14 +31,14 @@
             var start = Environment.TickCount;
 
             _diagnostics = DiagnosticsConfiguration.Default;
-            
+
             _configuration = new LinqQueryContextConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _logicalContext = new LogicalContextFactory().Create(_configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(_configuration);
-                
+
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext).ConfigureAwait(false);
             _countryPath = addResult.Path;
 

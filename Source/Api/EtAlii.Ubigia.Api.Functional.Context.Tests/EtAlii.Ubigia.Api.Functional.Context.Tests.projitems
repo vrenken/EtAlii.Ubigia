@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>FF2EA5E9-BCEA-492C-BA66-25C4DE7D6097</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Functional.Context.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\NodeAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SetAndSelectNodeValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectNodeValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectNodeValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\NodeValueAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParserTestContainerFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Values.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Properties.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking - Alternatives.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Variables.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 6. - Schema.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
+      <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

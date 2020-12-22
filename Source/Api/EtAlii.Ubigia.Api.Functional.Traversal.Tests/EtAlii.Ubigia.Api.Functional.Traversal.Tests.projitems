@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>B77CF34C-3334-40B1-AD13-51F02504D91A</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Functional.Scripting.Traversal.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32ContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32HierarchicalContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32LogicalUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\Win32TestHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\Diagnostics\IntegrationTests\ProfilingTraversalScriptContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalScriptContextFactory.FunctionHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalScriptContextFactory.RootHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\InvalidTestRenameFunctionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\InvalidTestRootHandlerMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestFormatFunctionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRenameFunctionHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRoot2HandlerMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRootHandlerMapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\BooleanValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\DateTimeValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\FloatValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\IntegerValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\LpDateTime.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\RootDefinitionSubjectParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TestExecutionPlanCombinerSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TestSequencePartExecutionPlannerSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TimeSpanValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TypeValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\ConstantPathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\DowndateOfPathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\FunctionSubject.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\NewLineParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\RegexPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Id.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Include.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.New.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Rename.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.ItemsOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.AddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.IdentifierOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.ItemOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.Paths.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tags.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.NonRootedPath.TraverseAll.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RemoveItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.Path.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.NoQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Assign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Unassign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Use.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.AddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.ItemOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.Parse.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.Paths.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.Tags.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Tests2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.UpdateItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableAddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableIdentifierAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableItemAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableItemsAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableStringAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableUpdateItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Conditional.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Hierarchical.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Temporal.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\TypedPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)2. Planning\UnitTests\SequencePartExecutionPlannerSelector.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Advanced.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Anonymous2.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Tag.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.Count.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.Id.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.Include.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.New.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.Rename.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Get.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Conditional.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Hierarchical.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Temporal.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.TraversingWildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Assign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Unassign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Advanced.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Anonymous2.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Tag.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.Count.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.Id.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.Include.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.New.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.Rename.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Get.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Media.Path.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Query.Conditional.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Query.Hierarchical.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Query.Temporal.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Query.TraversingWildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Query.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Path.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Combined.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Combined.NoQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Combined.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.NoQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Locations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Time.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic2.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.String.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Function.Id.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Add.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Remove.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Scripted.Add.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Regex.Person.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Time.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Typed.Person.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\ScopeVariable.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.Dynamic.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.String.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\_Model\TestRootHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScriptingUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RootHandlerFactory.Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionHandlerFactory.Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IFunctionalTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObservableExceptionAssert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScriptParserError.Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestFunctionHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Operators.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Variables.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Objects.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Functions.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 6. - Roots.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 7. - Roots.Definitions.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 8. - Technical.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 9. - Tags.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Content\UnitTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
+  </ItemGroup>
+</Project>
