@@ -4,19 +4,19 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class GraphXLQueryContextScaffolding : IScaffolding
+    internal class GraphContextScaffolding : IScaffolding
     {
-        private readonly GraphXLQueryContextConfiguration _configuration;
+        private readonly GraphContextConfiguration _configuration;
 
-        public GraphXLQueryContextScaffolding(GraphXLQueryContextConfiguration configuration)
+        public GraphContextScaffolding(GraphContextConfiguration configuration)
         {
             _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            container.Register<IGraphXLContext, GraphXLContext>();
-            container.Register<IGraphXLQueryContextConfiguration>(() => _configuration);
+            container.Register<IGraphContext, GraphContext>();
+            container.Register<IGraphContextConfiguration>(() => _configuration);
 
             container.Register<ISchemaProcessorFactory, SchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, SchemaParserFactory>();

@@ -15,11 +15,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     public class SchemaProcessorMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ITraversalScriptContext _scriptContext;
-        private IGraphXLContext _context;
+        private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private IDiagnosticsConfiguration _diagnostics;
-        private GraphXLQueryContextConfiguration _configuration;
+        private GraphContextConfiguration _configuration;
 
         public SchemaProcessorMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -35,17 +35,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var start = Environment.TickCount;
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
-            _configuration = new GraphXLQueryContextConfiguration()
-                .UseFunctionalGraphXLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+            _configuration = new GraphContextConfiguration()
+                .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
-            _context = new GraphXLQueryContextFactory().Create(_configuration);
+            _context = new GraphContextFactory().Create(_configuration);
 
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
 
-            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphXLContext));
+            _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
         }
 
         public async Task DisposeAsync()
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _scriptContext = null;
             _context = null;
 
-            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphXLContext));
+            _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
         }
 
         [Fact]
