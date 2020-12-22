@@ -36,7 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphXLData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />

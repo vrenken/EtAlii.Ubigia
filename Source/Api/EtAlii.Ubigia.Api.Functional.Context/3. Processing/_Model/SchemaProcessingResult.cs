@@ -51,7 +51,7 @@
         }
 
         /// <summary>
-        /// Awaiting this method ensures GXL schema processing has finished.
+        /// Awaiting this method ensures GCL schema processing has finished.
         /// </summary>
         /// <returns></returns>
         public async Task Completed()
