@@ -10,7 +10,6 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
    - Architecture & Design choices
      - [Ubigia Graph Traversal Language](Documentation/Architecture/GraphTraversalLanguage.md)
      - [Ubigia Graph Context Language](Documentation/Architecture/GraphContextLanguage.md)
-     - [Ubigia Graph Query Language](Documentation/Architecture/GraphQueryLanguage.md)
    - Installation process
    - Software dependencies
    - Latest releases
