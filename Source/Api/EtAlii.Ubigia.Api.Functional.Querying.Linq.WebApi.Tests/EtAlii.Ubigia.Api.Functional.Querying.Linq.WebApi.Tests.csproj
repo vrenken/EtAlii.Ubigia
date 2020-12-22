@@ -11,7 +11,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq\EtAlii.Ubigia.Api.Functional.Querying.Linq.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.WebApi.Tests\EtAlii.Ubigia.Api.Logical.WebApi.Tests.csproj" />
   </ItemGroup>

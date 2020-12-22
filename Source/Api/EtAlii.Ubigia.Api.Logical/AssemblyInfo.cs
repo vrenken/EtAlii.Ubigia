@@ -3,7 +3,7 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal")]

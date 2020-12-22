@@ -2,10 +2,10 @@
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL.Grpc.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphXL.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.WebApi.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL.SignalR.Tests")]
