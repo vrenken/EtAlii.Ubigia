@@ -496,7 +496,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                         subquery,
                         out var innerShaper),
                     typeof(IEnumerable<ValueBuffer>)),
-                innerShaper,
+                innerShaper!,
                 navigation,
                 elementType);
 
