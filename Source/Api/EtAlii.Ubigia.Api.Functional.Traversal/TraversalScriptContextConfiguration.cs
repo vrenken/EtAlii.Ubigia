@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Logical;
+    using System;
 
     public class TraversalScriptContextConfiguration : LogicalContextConfiguration, ITraversalScriptContextConfiguration, IEditableTraversalScriptContextConfiguration
     {
@@ -9,6 +10,9 @@
 
         IRootHandlerMappersProvider IEditableTraversalScriptContextConfiguration.RootHandlerMappersProvider { get => RootHandlerMappersProvider; set => RootHandlerMappersProvider = value; }
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
+
+        public Func<IScriptParserFactory> ScriptParserFactory { get; set; }
+        public Func<IScriptProcessorFactory> ScriptProcessorFactory { get; set; }
 
         public TraversalScriptContextConfiguration()
         {

@@ -34,6 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
             var start = Environment.TickCount;
 
             _configuration = new GraphQLQueryContextConfiguration()
+                .UseLapaParser()
                 .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 

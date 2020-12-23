@@ -36,6 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphContextConfiguration()
+                .UseLapaParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 

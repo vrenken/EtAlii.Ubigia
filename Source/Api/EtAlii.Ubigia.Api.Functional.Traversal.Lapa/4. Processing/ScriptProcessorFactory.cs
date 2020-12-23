@@ -20,12 +20,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
 
+                new LapaPathBuildingScaffolding(),
+
                 // Script Parsing
                 new ScriptParserScaffolding(),
 
                 // Additional processing (for path variable parts).
                 new PathSubjectParsingScaffolding(),
-
             };
         }
 

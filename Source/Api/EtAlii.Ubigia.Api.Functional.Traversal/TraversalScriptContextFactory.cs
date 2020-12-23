@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.MicroContainer;
+    using System;
 
     public class TraversalScriptContextFactory : Factory<ITraversalScriptContext, TraversalScriptContextConfiguration, ITraversalScriptContextExtension>
     {
@@ -16,10 +17,24 @@
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
+            if (configuration.ScriptParserFactory == null)
+            {
+                throw new InvalidOperationException("No ScriptParserFactory specified");
+            }
+
+            var scriptParserFactoryProvider = configuration.ScriptParserFactory;
+
+            if (configuration.ScriptProcessorFactory == null)
+            {
+                throw new InvalidOperationException("No ScriptProcessorFactory specified");
+            }
+
+            var scriptProcessorFactoryProvider = configuration.ScriptProcessorFactory;
+
             return new IScaffolding[]
             {
                 new TraversalScriptContextScaffolding(configuration),
-                new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
+                new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider, scriptParserFactoryProvider, scriptProcessorFactoryProvider),
             };
         }
     }

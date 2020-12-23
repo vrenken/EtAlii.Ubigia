@@ -3,7 +3,6 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>3974d00b-3c68-4949-94ca-40fa5ac215e1</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
@@ -15,11 +14,5 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
-  </ItemGroup>
-
-  <!-- We want to include the Moppet.Lapa references as assemblies in the NuGet package, -->
-  <!-- and not as a NuGet dependency. -->
-  <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" />
   </ItemGroup>
 </Project>

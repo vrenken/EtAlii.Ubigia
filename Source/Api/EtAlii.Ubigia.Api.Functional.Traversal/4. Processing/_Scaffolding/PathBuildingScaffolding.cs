@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public void Register(Container container)
         {
-            container.Register<IVariablePathSubjectPartToPathConverter, VariablePathSubjectPartToPathConverter>();
             container.Register<IPathVariableExpander, PathVariableExpander>();
 
             container.Register<IPathSubjectPartToGraphPathPartConverterSelector, PathSubjectPartToGraphPathPartConverterSelector>();
@@ -35,13 +34,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<IDowndatePathSubjectPartToGraphPathPartsConverter, DowndatePathSubjectPartToGraphPathPartsConverter>();
             container.Register<IAllUpdatesPathSubjectPartToGraphPathPartsConverter, AllUpdatesPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IUpdatesPathSubjectPartToGraphPathPartsConverter, UpdatesPathSubjectPartToGraphPathPartsConverter>();
-            container.Register<IVariablePathSubjectPartToGraphPathPartsConverter, VariablePathSubjectPartToGraphPathPartsConverter>();
             container.Register<IPathSubjectToGraphPathConverter, PathSubjectToGraphPathConverter>();
             container.Register<IPathProcessor, PathProcessor>();
-
-            container.Register<IConstantSubjectsParser, ConstantSubjectsParser>();
-            container.Register<IStringConstantSubjectParser, StringConstantSubjectParser>();
-            container.Register<IObjectConstantSubjectParser, ObjectConstantSubjectParser>();
         }
     }
 }
