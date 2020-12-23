@@ -22,6 +22,7 @@
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
             var configuration = new TraversalScriptContextConfiguration()
+                .UseLapaParser()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);

@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal interface IScriptProcessor
+    public interface IScriptProcessor
     {
         IObservable<SequenceProcessingResult> Process(Script script);
     }

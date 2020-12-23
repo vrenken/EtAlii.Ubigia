@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -33,6 +34,7 @@
             _diagnostics = DiagnosticsConfiguration.Default;
 
             _configuration = new LinqQueryContextConfiguration()
+                .UseLapaParser()
                 .UseFunctionalDiagnostics(_diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 

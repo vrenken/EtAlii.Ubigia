@@ -4,6 +4,7 @@
     using System.Linq;
     using Moppet.Lapa;
 
+    // TODO: Rename to LapaScriptParser, same for the ScriptParserFactory and ScriptProcessor and ScriptProcessorFactory.
     internal class ScriptParser : IScriptParser
     {
         private const string _id = "Script";
@@ -33,7 +34,7 @@
 
         public ScriptParseResult Parse(string text)
         {
-            text = text ?? string.Empty;
+            text ??= string.Empty;
 
             // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs).
             text = text.Replace("\r\n", "\n");

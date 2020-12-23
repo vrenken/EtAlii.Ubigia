@@ -103,6 +103,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 _ => throw new InvalidOperationException($"Unable to select option for criteria: {value ?? "[NULL]"}")
             };
         }
-
     }
 }

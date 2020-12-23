@@ -7,6 +7,7 @@
         <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
+        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
         <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
     </ItemGroup>
     <ItemGroup>

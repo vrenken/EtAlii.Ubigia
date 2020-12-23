@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal interface IScriptParserFactory
+    public interface IScriptParserFactory
     {
         IScriptParser Create(ScriptParserConfiguration configuration);
     }

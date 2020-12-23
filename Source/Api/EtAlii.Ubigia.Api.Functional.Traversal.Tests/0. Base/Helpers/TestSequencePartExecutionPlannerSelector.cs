@@ -24,6 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
 
+                new LapaPathBuildingScaffolding(),
+
                 // Script Parsing
                 new ScriptParserScaffolding(),
 
