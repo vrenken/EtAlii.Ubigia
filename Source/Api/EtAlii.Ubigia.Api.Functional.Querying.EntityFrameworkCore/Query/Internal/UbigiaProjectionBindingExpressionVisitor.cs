@@ -214,12 +214,12 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             var ifTrue = Visit(node.IfTrue);
             var ifFalse = Visit(node.IfFalse);
 
-            if (test.Type == typeof(bool?))
+            if (test!.Type == typeof(bool?))
             {
                 test = Expression.Equal(test, Expression.Constant(true, typeof(bool?)));
             }
 
-            return node.Update(test, ifTrue, ifFalse);
+            return node.Update(test, ifTrue!, ifFalse!);
         }
 
         /// <summary>

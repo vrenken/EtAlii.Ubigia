@@ -82,17 +82,17 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
 
                         _expressions.Add(
                             includeExpression.Update(
-                                entity,
+                                entity!,
                                 collectionShaper.Update(
-                                    Visit(collectionShaper.Projection),
+                                    Visit(collectionShaper.Projection)!,
                                     innerShaper)));
                     }
                     else
                     {
                         _expressions.Add(
                             includeExpression.Update(
-                                entity,
-                                Visit(includeExpression.NavigationExpression)));
+                                entity!,
+                                Visit(includeExpression.NavigationExpression)!));
                     }
 
                     return entity;
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                         var innerShaper = new ShaperExpressionProcessingExpressionVisitor(null, innerLambda.Parameters[0])
                             .Inject(innerLambda.Body);
 
-                        _expressions.Add(Expression.Assign(variable, collectionShaperExpression.Update(projection, innerShaper)));
+                        _expressions.Add(Expression.Assign(variable, collectionShaperExpression.Update(projection!, innerShaper)));
                         _mapping[key] = variable;
                     }
 
