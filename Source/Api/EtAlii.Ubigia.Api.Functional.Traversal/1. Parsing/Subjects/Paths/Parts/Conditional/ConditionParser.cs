@@ -1,12 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
-    using EtAlii.xTechnology.Structure;
     using Moppet.Lapa;
 
     internal class ConditionParser : IConditionParser
     {
         private readonly INodeValidator _nodeValidator;
+        private readonly IQuotedTextParser _quotedTextParser;
+        private readonly IDateTimeValueParser _dateTimeValueParser;
+        private readonly ITimeSpanValueParser _timeSpanValueParser;
+        private readonly IBooleanValueParser _booleanValueParser;
+        private readonly IIntegerValueParser _integerValueParser;
+        private readonly IFloatValueParser _floatValueParser;
 
         private readonly INodeFinder _nodeFinder;
 
@@ -19,7 +24,6 @@
         private const string _valueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
-        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
 
         public ConditionParser(
             INodeValidator nodeValidator,
@@ -32,6 +36,12 @@
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
+            _quotedTextParser = quotedTextParser;
+            _dateTimeValueParser = dateTimeValueParser;
+            _timeSpanValueParser = timeSpanValueParser;
+            _booleanValueParser = booleanValueParser;
+            _integerValueParser = integerValueParser;
+            _floatValueParser = floatValueParser;
             _nodeFinder = nodeFinder;
 
             var typeParsers =
@@ -72,14 +82,6 @@
                 node => _nodeFinder.FindFirst(node, floatValueParser.Id),
 
             };
-
-            _valueParserSelector = new Selector<LpNode, Func<LpNode, object>>()
-                .Register(node => node.Id == quotedTextParser.Id, node => quotedTextParser.Parse(node))
-                .Register(node => node.Id == dateTimeValueParser.Id, node => dateTimeValueParser.Parse(node))
-                .Register(node => node.Id == timeSpanValueParser.Id, node => timeSpanValueParser.Parse(node))
-                .Register(node => node.Id == booleanValueParser.Id, node => booleanValueParser.Parse(node))
-                .Register(node => node.Id == integerValueParser.Id, node => integerValueParser.Parse(node))
-                .Register(node => node.Id == floatValueParser.Id, node => floatValueParser.Parse(node));
         }
 
         public Condition Parse(LpNode node)
@@ -100,18 +102,16 @@
             var conditionNode = _nodeFinder.FindFirst(node, _conditionId);
             var condition = conditionNode.Match.ToString();
 
-            ConditionType conditionType;
-            switch (condition)
+            var conditionType = condition switch
             {
-                case "=": conditionType = ConditionType.Equal; break;
-                case "!=": conditionType = ConditionType.NotEqual; break;
-                case "<": conditionType = ConditionType.LessThan; break;
-                case "<=": conditionType = ConditionType.LessThanOrEqual; break;
-                case ">": conditionType = ConditionType.MoreThan; break;
-                case ">=": conditionType = ConditionType.MoreThanOrEqual; break;
-                default:
-                    throw new ScriptParserException("Unable to parse condition: " + condition ?? "<NULL>");
-            }
+                "=" => ConditionType.Equal,
+                "!=" => ConditionType.NotEqual,
+                "<" => ConditionType.LessThan,
+                "<=" => ConditionType.LessThanOrEqual,
+                ">" => ConditionType.MoreThan,
+                ">=" => ConditionType.MoreThanOrEqual,
+                _ => throw new ScriptParserException("Unable to parse condition: " + condition ?? "<NULL>")
+            };
             return new Condition(property, conditionType, value);
         }
 
@@ -124,8 +124,16 @@
                 var innerValueNode = innerValueFinder(valueNode);
                 if (innerValueNode != null)
                 {
-                    var parser = _valueParserSelector.Select(innerValueNode);
-                    value = parser(innerValueNode);
+                    value = innerValueNode switch
+                    {
+                        { } node when node.Id == _quotedTextParser.Id => _quotedTextParser.Parse(node),
+                        { } node when node.Id == _dateTimeValueParser.Id => _dateTimeValueParser.Parse(node),
+                        { } node when node.Id == _timeSpanValueParser.Id => _timeSpanValueParser.Parse(node),
+                        { } node when node.Id == _booleanValueParser.Id => _booleanValueParser.Parse(node),
+                        { } node when node.Id == _integerValueParser.Id => _integerValueParser.Parse(node),
+                        { } node when node.Id == _floatValueParser.Id => _floatValueParser.Parse(node),
+                        _ => throw new NotSupportedException($"Cannot find condition parser for: {innerValueNode.ToString() ?? "NULL"}")
+                    };
                     break;
                 }
             }
