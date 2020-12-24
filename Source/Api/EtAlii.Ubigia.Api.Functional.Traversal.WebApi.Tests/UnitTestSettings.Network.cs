@@ -1,4 +1,3 @@
-
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using EtAlii.xTechnology.Hosting;
