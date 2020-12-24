@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <ProjectGuid>c2d8038f-1c46-4a0a-a996-4c409bf0dc89</ProjectGuid>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal</RootNamespace>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Antlr4 Include="GraphTraversalLanguage.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <GAtn>true</GAtn>
+      <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
+      <Error>true</Error>      
+    </Antlr4>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Antlr4BuildTasks" Version="8.9.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
+  </ItemGroup>
+</Project>
