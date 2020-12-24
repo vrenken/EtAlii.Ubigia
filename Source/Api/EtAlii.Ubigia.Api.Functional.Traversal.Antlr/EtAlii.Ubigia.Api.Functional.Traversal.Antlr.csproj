@@ -11,9 +11,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Antlr4 Include="GraphTraversalLanguage.g4">
+    <Antlr4 Include="Gtl.g4">
       <Listener>false</Listener>
-      <Visitor>false</Visitor>
+      <Visitor>true</Visitor>
       <GAtn>true</GAtn>
       <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
       <Error>true</Error>      
