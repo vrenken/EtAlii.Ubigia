@@ -1,25 +1,20 @@
-﻿using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
-
-namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
+    using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
     using Xunit;
     using Antlr4.Runtime;
 
     public class AntlrParserTests
     {
-        private GtlParser Setup(string text)
-        {
-            var inputStream = new AntlrInputStream(text);
-            var gtlLexer = new GtlLexer(inputStream);
-            var commonTokenStream = new CommonTokenStream(gtlLexer);
-            var gtlParser = new GtlParser(commonTokenStream);
-            return gtlParser;
-        }
         [Fact]
         public void GtlParser_Chat()
         {
             // Arrange.
-            var parser = Setup("john says \"hello\" n michael says \"world\" \n");
+            var text = "john says \"hello\" n michael says \"world\" \n";
+            var inputStream = new AntlrInputStream(text);
+            var gtlLexer = new GtlLexer(inputStream);
+            var commonTokenStream = new CommonTokenStream(gtlLexer);
+            var parser = new GtlParser(commonTokenStream);
 
             // Act.
             var context = parser.chat();
@@ -34,7 +29,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void GtlParser_Line()
         {
             // Arrange.
-            var parser = Setup("john says \"hello\" \n");
+            var text = "john says \"hello\" \n";
+            var inputStream = new AntlrInputStream(text);
+            var gtlLexer = new GtlLexer(inputStream);
+            var commonTokenStream = new CommonTokenStream(gtlLexer);
+            var parser = new GtlParser(commonTokenStream);
 
             // Act.
             var context = parser.line();
@@ -51,7 +50,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void GtlParser_WrongLine()
         {
             // Arrange.
-            var parser = Setup("john sayan \"hello\" \n");
+            var text = "john sayan \"hello\" \n";
+            var inputStream = new AntlrInputStream(text);
+            var gtlLexer = new GtlLexer(inputStream);
+            var commonTokenStream = new CommonTokenStream(gtlLexer);
+            var parser = new GtlParser(commonTokenStream);
 
             // Act.
             var context = parser.line();
