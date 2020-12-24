@@ -11,7 +11,16 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Antlr4 Include="Gtl.g4">
+    <Antlr4 Include="GtlLexer.g4">
+      <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
+      <Error>true</Error>
+<!--      <IntermediateOutputPath>obj\Debug\netstandard2.1\</IntermediateOutputPath>-->
+<!--      <GAtn>true</GAtn>-->
+<!--      <DOptions>language=CSharp</DOptions>-->
+<!--      <ForceAtn>false</ForceAtn>-->
+<!--      <CopyToOutputDirectory>Never</CopyToOutputDirectory>-->
+    </Antlr4>
+    <Antlr4 Include="GtlParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <GAtn>true</GAtn>
