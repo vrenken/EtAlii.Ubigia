@@ -22,23 +22,24 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRenameFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRoot2HandlerMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestRootHandlerMapper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\BooleanValueParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\DateTimeValueParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\FloatValueParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\IntegerValueParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\LpDateTime.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\RootDefinitionSubjectParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TestExecutionPlanCombinerSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TestSequencePartExecutionPlannerSelector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TimeSpanValueParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\TypeValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\BooleanValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\DateTimeValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\FloatValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\IntegerValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\LpDateTime.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\RootDefinitionSubjectParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\TestExecutionPlanCombinerSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\TestSequencePartExecutionPlannerSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\TimeSpanValueParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Helpers\UnitTests\TypeValueParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\ConstantPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\DowndateOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\FunctionSubject.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\NewLineParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\RegexPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\NewLineParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\RegexPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\TypedPathSubjectPartParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\TypedPathSubjectPartParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)2. Planning\UnitTests\SequencePartExecutionPlannerSelector.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Advanced.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Anonymous2.Tests.cs" />
@@ -174,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Content\UnitTests" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Antlr" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
