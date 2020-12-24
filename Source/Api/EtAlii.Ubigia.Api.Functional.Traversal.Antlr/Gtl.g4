@@ -1,5 +1,5 @@
 
-grammar GraphTraversalLanguage;
+grammar Gtl;
 
 @header {
     //using System.Collections.Generic;
