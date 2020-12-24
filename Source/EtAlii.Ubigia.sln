@@ -215,7 +215,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Tests", "Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj", "{B42A4C2B-15B6-4533-B06A-89346FB7AAB6}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Traversal.Tests", "Api\EtAlii.Ubigia.Api.Functional.Context.Tests\EtAlii.Ubigia.Api.Functional.Context.Tests.shproj", "{7F142BAB-7A0A-4068-AD49-6B4DA090FA3D}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Context.Tests", "Api\EtAlii.Ubigia.Api.Functional.Context.Tests\EtAlii.Ubigia.Api.Functional.Context.Tests.shproj", "{7F142BAB-7A0A-4068-AD49-6B4DA090FA3D}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests", "Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.shproj", "{7175CB15-0138-4010-9066-C0ABE5C00649}"
 EndProject
@@ -446,7 +446,7 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
-		Api\EtAlii.Ubigia.Api.Functional.Traversal.Tests\EtAlii.Ubigia.Api.Functional.Context.Tests.projitems*{32ac736d-b3a2-4ab2-a65d-10ad4a8d3030}*SharedItemsImports = 5
+		Api\EtAlii.Ubigia.Api.Functional.Context.Tests\EtAlii.Ubigia.Api.Functional.Context.Tests.projitems*{32ac736d-b3a2-4ab2-a65d-10ad4a8d3030}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{32ac736d-b3a2-4ab2-ef5d-10ad4a893a30}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Tests.projitems*{32acab6d-b3a2-4ab2-a65d-10ad4a893030}*SharedItemsImports = 5
 		Api\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems*{331a5416-4f7e-477d-a89c-d9e47948e73e}*SharedItemsImports = 5
