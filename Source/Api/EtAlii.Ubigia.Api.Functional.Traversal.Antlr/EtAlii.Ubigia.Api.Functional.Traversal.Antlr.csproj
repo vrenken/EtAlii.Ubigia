@@ -14,6 +14,7 @@
     <Antlr4 Include="GtlLexer.g4">
       <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
       <Error>true</Error>
+      <GAtn>false</GAtn>
 <!--      <IntermediateOutputPath>obj\Debug\netstandard2.1\</IntermediateOutputPath>-->
 <!--      <GAtn>true</GAtn>-->
 <!--      <DOptions>language=CSharp</DOptions>-->
@@ -23,7 +24,7 @@
     <Antlr4 Include="GtlParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
-      <GAtn>true</GAtn>
+      <GAtn>false</GAtn>
       <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
       <Error>true</Error>      
     </Antlr4>
@@ -34,5 +35,42 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="4. Processing\AntlrScriptProcessorFactory.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="TraversalScriptContextConfiguration.UseLapaParserExtensions.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="1. Parsing\_Scaffolding\ScriptParserScaffolding.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="1. Parsing\AntlrScriptParser.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="1. Parsing\AntlrScriptParserFactory.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="GtlVisitor.Sequence.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+    <Compile Update="GtlVisitor.Subject.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
   </ItemGroup>
 </Project>

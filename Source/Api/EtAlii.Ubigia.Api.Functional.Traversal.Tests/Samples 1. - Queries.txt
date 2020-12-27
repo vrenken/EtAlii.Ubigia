@@ -1,6 +1,7 @@
 ﻿-- Free form path querying.
 /Documents/Readme.txt
 /Documents/Files/
+/Documents/Tests/Readme.txt
 
 -- Rooted querying.
 Documents:Readme.txt
@@ -49,7 +50,7 @@ Documents:Files/
 /Documents/Files/Image001.jpg/3 	-- 3 levels of children
 /Documents/Files/Image001.jpg\3 	-- 3 levels of parent(s) (Should at least return 'Files')
 /Documents/Files/Image001.jpg/// 	-- To the deepest children
-/Documents/Files/Image001.jpg\\	    -- To the highest parent(s) 
+/Documents/Files/Image001.jpg\\	    -- To the highest parent(s)
 
 -- List based queries
 /Documents/Files/Image001.jpg<		-- Previous
