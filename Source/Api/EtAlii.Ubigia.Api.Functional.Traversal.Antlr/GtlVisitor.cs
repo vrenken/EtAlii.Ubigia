@@ -2,30 +2,21 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
-    using System.Collections.Generic;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public class GtlVisitor : GtlParserBaseVisitor<object>
+    public partial class GtlVisitor : GtlParserBaseVisitor<object>
     {
-        public readonly List<GtlLine> Lines = new();
-
-        public override object VisitLine(GtlParser.LineContext context)
-        {
-            var name = context.name();
-            var opinion = context.opinion();
-
-            var line = new GtlLine(name.GetText(), opinion.GetText().Trim('"'));
-            Lines.Add(line);
-
-            return line;
-        }
+        private const int CommentPrefixLength = 2;
 
         public override object VisitScript(GtlParser.ScriptContext context)
         {
-            var parts = Array.Empty<SequencePart>();
-            var sequence = new Sequence(parts);
-            return new Script(sequence);
+            var sequences = context.children
+                .Select(sequenceContext => Visit(sequenceContext) as Sequence)
+                .Where(part => part != null)
+                .ToArray();
+
+            return new Script(sequences);
         }
     }
 }
