@@ -12,7 +12,7 @@ Documents:Files/
 /Documents/$i1        -- Variable
 /Documents/*          -- Wildcard
 /Persons/*/John       -- Wildcard
-/&2932-232DA2-3F...   -- Identifier
+/&4BE52B49-60EF-41CB-9314-69CC1E1F05B8.9824BEB0-5144-440F-8545-E32E2046AA51.ECDD1E96-6A4B-43AC-A7EE-6B452661C031.93212.54534.9423   -- Identifier
 
 -- Hierarchical queries
 /Documents/Files/Image001.jpg/		-- Children
