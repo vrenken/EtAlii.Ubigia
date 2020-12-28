@@ -179,4 +179,10 @@
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics.csproj" />
+  </ItemGroup>
 </Project>

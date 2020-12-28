@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>

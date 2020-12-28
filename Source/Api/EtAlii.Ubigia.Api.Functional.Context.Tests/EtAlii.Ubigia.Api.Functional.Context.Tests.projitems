@@ -77,6 +77,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Diagnostics\EtAlii.Ubigia.Api.Functional.Context.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
     </Reference>
