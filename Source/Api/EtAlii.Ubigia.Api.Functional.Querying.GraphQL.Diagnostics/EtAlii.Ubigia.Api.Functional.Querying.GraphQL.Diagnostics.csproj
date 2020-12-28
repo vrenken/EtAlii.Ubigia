@@ -10,11 +10,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Scripting\**" />
-    <EmbeddedResource Remove="Scripting\**" />
-    <None Remove="Scripting\**" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics\EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
   </ItemGroup>

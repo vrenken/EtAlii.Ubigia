@@ -7,11 +7,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Scripting\Roots\Handlers\Default\Media\MediaByCompanyFamilyModelHandler.cs" />
-    <Compile Remove="Scripting\Roots\Handlers\Default\Media\MediaByCompanyFamilyModelNumberHandler.cs" />
-    <Compile Remove="Scripting\Roots\Handlers\Default\Media\MediaRootHandlerMapper.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj" />
   </ItemGroup>
 </Project>
