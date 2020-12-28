@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var pathSubjectPart = childContext switch
                 {
-                    GtlParser.TraverserContext traverserContext => Visit(traverserContext) as PathSubjectPart,
+                    GtlParser.Path_part_traverserContext traverserContext => Visit(traverserContext) as PathSubjectPart,
                     _ => new ConstantPathSubjectPart(childContext.GetText()),
                     //_ => throw new ScriptParserException("The parser context could not be understood.")
                 };
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var pathSubjectPart = childContext switch
                 {
-                    GtlParser.TraverserContext traverserContext => Visit(traverserContext) as PathSubjectPart,
+                    GtlParser.Path_part_traverserContext traverserContext => Visit(traverserContext) as PathSubjectPart,
                     _ => new ConstantPathSubjectPart(childContext.GetText()),
                     //_ => throw new ScriptParserException("The parser context could not be understood.")
                 };
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new RelativePathSubject(pathSubjectParts.ToArray());
         }
 
-        public override object VisitTraverser(GtlParser.TraverserContext context)
+        public override object VisitPath_part_traverser(GtlParser.Path_part_traverserContext context)
         {
             return context.GetText() switch
             {
