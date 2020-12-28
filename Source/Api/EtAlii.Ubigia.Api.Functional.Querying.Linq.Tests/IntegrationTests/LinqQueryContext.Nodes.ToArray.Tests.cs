@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
@@ -28,7 +28,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
@@ -57,7 +57,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
@@ -86,7 +86,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.

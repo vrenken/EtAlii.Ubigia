@@ -31,7 +31,7 @@
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 

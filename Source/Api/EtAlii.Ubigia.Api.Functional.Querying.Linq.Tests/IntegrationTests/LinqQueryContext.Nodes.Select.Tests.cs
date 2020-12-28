@@ -3,8 +3,8 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
@@ -35,7 +35,7 @@
             _diagnostics = DiagnosticsConfiguration.Default;
 
             _configuration = new LinqQueryContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .UseFunctionalDiagnostics(_diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
