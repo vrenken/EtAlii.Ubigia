@@ -7,11 +7,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Scripting\Roots\**" />
-    <EmbeddedResource Remove="Scripting\Roots\**" />
-    <None Remove="Scripting\Roots\**" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj" />
   </ItemGroup>
