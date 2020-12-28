@@ -34,10 +34,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var part = new Comment(text);
             return new Sequence(new SequencePart[]{ part });
         }
-
-        public override object VisitWhitespaceSequence(GtlParser.WhitespaceSequenceContext context)
-        {
-            return null;
-        }
     }
 }
