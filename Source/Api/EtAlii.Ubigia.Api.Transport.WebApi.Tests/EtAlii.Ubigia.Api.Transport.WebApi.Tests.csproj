@@ -5,11 +5,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\UnitTestSettings.cs">
