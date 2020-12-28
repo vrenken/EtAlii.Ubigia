@@ -12,28 +12,18 @@
   </ItemGroup>
   <ItemGroup>
     <Antlr4 Include="GtlLexer.g4">
-      <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
+      <Package>$(RootNamespace).Antlr</Package>
       <Error>true</Error>
-      <GAtn>false</GAtn>
-<!--      <IntermediateOutputPath>obj\Debug\netstandard2.1\</IntermediateOutputPath>-->
-<!--      <GAtn>true</GAtn>-->
-<!--      <DOptions>language=CSharp</DOptions>-->
-<!--      <ForceAtn>false</ForceAtn>-->
-<!--      <CopyToOutputDirectory>Never</CopyToOutputDirectory>-->
     </Antlr4>
     <Antlr4 Include="GtlParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
-      <GAtn>false</GAtn>
-      <Package>EtAlii.Ubigia.Api.Functional.Traversal.Antlr</Package>
+      <Package>$(RootNamespace).Antlr</Package>
       <Error>true</Error>      
     </Antlr4>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Antlr4BuildTasks" Version="8.9.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
   </ItemGroup>
 </Project>

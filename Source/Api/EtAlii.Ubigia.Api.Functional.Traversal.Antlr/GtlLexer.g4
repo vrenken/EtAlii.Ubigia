@@ -9,9 +9,9 @@ lexer grammar GtlLexer;
 
 // Hierarchical
 TRAVERSER_CHILDREN      : '\\' ;
-TRAVERSER_CHILDREN_ALL  : '\\\\';
+TRAVERSER_CHILDREN_ALL  : TRAVERSER_CHILDREN TRAVERSER_CHILDREN ;
 TRAVERSER_PARENT        : '/' ;
-TRAVERSER_PARENTS_ALL   : '//' ;
+TRAVERSER_PARENTS_ALL   : TRAVERSER_PARENT TRAVERSER_PARENT ;
 
 ROOT_SEPARATOR          : ':';
 
@@ -26,17 +26,17 @@ OPERATOR_REMOVE         : '-=';
 
 STRING_QUOTED_DOUBLE    : '"' (  '\\"' | ~[<"])*? '"' ;
 STRING_QUOTED_SINGLE    : '\'' (  '\\\'' | ~[<'])*? '\'' ;
-//STRING_NONQUOTED        : (~[\r\n/\\])+;
+STRING_NONQUOTED        : (SPACE | WORD | SPECIAL_CHARACTER)+;
 
-NEWLINE                 : ('\r\n' | '\n')+;// -> channel(HIDDEN);
+fragment SPACE                   : [ \t]+ ;
+fragment WORD                    : [a-zA-Z]+ ;
+fragment SPECIAL_CHARACTER      : [.] ;
+//ANY                     : (~[\r\n] | .)+? ;
 
-SPACE                   : [ \t]+ ;
-WORD                    : [a-zA-Z]+ ;
-ANY                     : .+? ;
+fragment WHITESPACE     : [ \t\f\r\n]+;
+EOL                     : ('\r'? '\n' | '\r')+;
 
-WHITESPACE              : [ \t\f\r\n]+;// -> channel(HIDDEN); // skip whitespaces
-//DISCARDABLE: . -> channel(HIDDEN); // keeping whitespace tokenised makes it easier for syntax highlighting
-
+DISCARDABLE : ( WHITESPACE | EOL ) -> skip ; // keeping whitespace tokenised makes it easier for syntax highlighting
 
 //
 //BOOLEAN                 : (BOOLEAN_FALSE | BOOLEAN_TRUE);
