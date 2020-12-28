@@ -91,7 +91,7 @@
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .Use(dataConnection);
 
             var scriptContext = new TraversalScriptContextFactory().Create(configuration);
@@ -136,7 +136,7 @@
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseLapaParser()
+                .UseTestParser()
                 .Use(dataConnection);
 
             var scriptContext = new TraversalScriptContextFactory().Create(configuration);
