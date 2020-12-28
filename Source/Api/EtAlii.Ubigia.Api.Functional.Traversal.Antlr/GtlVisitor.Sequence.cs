@@ -27,12 +27,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var part = new Comment(text);
             return new Sequence(new SequencePart[]{ part });
         }
-
-        public override object VisitCommentSequence(GtlParser.CommentSequenceContext context)
-        {
-            var text = context.GetText().Substring(CommentPrefixLength);
-            var part = new Comment(text);
-            return new Sequence(new SequencePart[]{ part });
-        }
     }
 }

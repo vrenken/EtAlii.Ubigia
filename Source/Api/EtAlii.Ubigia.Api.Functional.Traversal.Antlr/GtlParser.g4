@@ -12,15 +12,28 @@ options {
      tokenVocab = GtlLexer;
 }
 
-start                   : script ;
+start
+    : script
+    ;
 
-script                  : (sequence EOL | sequence)+;
+script
+    :
+    (
+        sequence EOL |
+        sequence comment EOL |
+        comment EOL |
+        sequence |
+        sequence comment |
+        comment
+    )+
+    ;
+
+comment : COMMENT ;
 
 sequence
     : operand                       # OperandOnlySequence
-    | operand operator operand      # OperandOperatorOperandSequence
-    | operator operand              # OperatorOperandSequence
-    | comment                       # CommentSequence
+    | operand OPERATOR operand      # OperandOperatorOperandSequence
+    | OPERATOR operand              # OperatorOperandSequence
     ;
 
 operand
@@ -28,40 +41,37 @@ operand
     | operand_rooted_path
     ;
 
-operand_non_rooted_path
-    :
-    (
-        ((traverser string)+ traverser) |
-        ((traverser string)+)
-    )
-    ;
-operand_rooted_path
-    :
-        (string ROOT_SEPARATOR string (traverser string)* traverser) |
-        (string ROOT_SEPARATOR string (traverser string)*)
-    |
-        (string ROOT_SEPARATOR string traverser) |
-        (string ROOT_SEPARATOR string)
-    ;
+operand_non_rooted_path : path_part+ ;
 
+operand_rooted_path : root path_part* ;
 
-comment : COMMENT_PREFIX string ;
+root: ROOT;
 
-string
-    : STRING_NONQUOTED
-    | STRING_QUOTED_SINGLE
-    | STRING_QUOTED_DOUBLE
+path_part : (path_part_match | path_part_traverser) ;
+
+path_part_match
+    : PATH_PART_MATCHER_CONSTANT
+    | PATH_PART_MATCHER_REGEX
+    | PATH_PART_MATCHER_VARIABLE
+    | PATH_PART_MATCHER_IDENTIFIER
+    | PATH_PART_MATCHER_WILDCARD
     ;
 
-operator
-    : OPERATOR_ASSIGN
-    | OPERATOR_ADD
-    | OPERATOR_REMOVE
-    ;
-
-traverser
-    : TRAVERSER_PARENT
-    | TRAVERSER_PARENTS_ALL
-    | TRAVERSER_CHILDREN
-    | TRAVERSER_CHILDREN_ALL
+path_part_traverser
+    : PATH_PART_TRAVERSER_PARENT      // Hierarchical
+    | PATH_PART_TRAVERSER_CHILDREN
+    | PATH_PART_TRAVERSER_PREVIOUS_SINGLE    // Sequential
+    | PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE
+    | PATH_PART_TRAVERSER_PREVIOUS_FIRST
+    | PATH_PART_TRAVERSER_NEXT_SINGLE
+    | PATH_PART_TRAVERSER_NEXT_MULTIPLE
+    | PATH_PART_TRAVERSER_NEXT_LAST
+    | PATH_PART_TRAVERSER_DOWNDATE    // Temporal
+    | PATH_PART_TRAVERSER_DOWNDATES
+    | PATH_PART_TRAVERSER_DOWNDATES_ALL
+    | PATH_PART_TRAVERSER_DOWNDATES_OLDEST
+    | PATH_PART_TRAVERSER_UPDATE
+    | PATH_PART_TRAVERSER_UPDATES
+    | PATH_PART_TRAVERSER_UPDATES_ALL
+    | PATH_PART_TRAVERSER_UPDATES_NEWEST
     ;
