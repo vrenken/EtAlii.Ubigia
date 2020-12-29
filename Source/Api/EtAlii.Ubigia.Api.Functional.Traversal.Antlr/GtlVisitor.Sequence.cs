@@ -11,11 +11,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var sequenceParts = new List<SequencePart>();
 
-            var leftOperandContext = context.operand(0);
-            if (leftOperandContext != null)
+            var leftSubjectContext = context.subject(0);
+            if (leftSubjectContext != null)
             {
-                var leftOperand = (SequencePart)Visit(leftOperandContext);
-                sequenceParts.Add(leftOperand);
+                var leftSubject = (SequencePart)Visit(leftSubjectContext);
+                sequenceParts.Add(leftSubject);
             }
 
             var operatorContext = context.OPERATOR();
@@ -25,11 +25,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 sequenceParts.Add(@operator);
             }
 
-            var rightOperandContext = context.operand(1);
-            if (rightOperandContext != null)
+            var rightSubjectContext = context.subject(1);
+            if (rightSubjectContext != null)
             {
-                var rightOperand = (SequencePart)Visit(rightOperandContext);
-                sequenceParts.Add(rightOperand);
+                var rightSubject = (SequencePart)Visit(rightSubjectContext);
+                sequenceParts.Add(rightSubject);
             }
 
             var commentContext = context.comment();

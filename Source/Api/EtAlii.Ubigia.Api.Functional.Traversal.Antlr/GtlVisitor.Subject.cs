@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class GtlVisitor
     {
-        public override object VisitOperand_rooted_path(GtlParser.Operand_rooted_pathContext context)
+        public override object VisitSubject_rooted_path(GtlParser.Subject_rooted_pathContext context)
         {
             var pathSubjectParts = new List<PathSubjectPart>();
 
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new RelativePathSubject(pathSubjectParts.ToArray());
         }
 
-        public override object VisitOperand_non_rooted_path(GtlParser.Operand_non_rooted_pathContext context)
+        public override object VisitSubject_non_rooted_path(GtlParser.Subject_non_rooted_pathContext context)
         {
             var parts = context.children
                 .Select(childContext => (PathSubjectPart)Visit(childContext))
