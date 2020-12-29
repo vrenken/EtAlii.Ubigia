@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var sequences = context.children
                 .Select(sequenceContext => Visit(sequenceContext) as Sequence)
-                .Where(part => part != null)
                 .ToArray();
 
             return new Script(sequences);

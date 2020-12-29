@@ -16,24 +16,25 @@ start
     : script
     ;
 
-script
-    :
-    (
-        sequence EOL |
-        sequence comment EOL |
-        comment EOL |
-        sequence |
-        sequence comment |
-        comment
-    )+
-    ;
+script: sequence+ ;
 
 comment : COMMENT ;
 
 sequence
-    : operand                       # OperandOnlySequence
-    | operand OPERATOR operand      # OperandOperatorOperandSequence
-    | OPERATOR operand              # OperatorOperandSequence
+    : operand EOL
+    | operand OPERATOR operand EOL
+    | OPERATOR operand EOL
+    | operand comment EOL
+    | operand OPERATOR operand comment EOL
+    | OPERATOR operand comment EOL
+    | comment EOL
+    | operand
+    | operand OPERATOR operand
+    | OPERATOR operand
+    | operand comment
+    | operand OPERATOR operand comment
+    | OPERATOR operand comment
+    | comment
     ;
 
 operand
@@ -59,7 +60,9 @@ path_part_match
 
 path_part_traverser
     : PATH_PART_TRAVERSER_PARENT      // Hierarchical
+    | PATH_PART_TRAVERSER_PARENTS_ALL
     | PATH_PART_TRAVERSER_CHILDREN
+    | PATH_PART_TRAVERSER_CHILDREN_ALL
     | PATH_PART_TRAVERSER_PREVIOUS_SINGLE    // Sequential
     | PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE
     | PATH_PART_TRAVERSER_PREVIOUS_FIRST
@@ -70,7 +73,6 @@ path_part_traverser
     | PATH_PART_TRAVERSER_DOWNDATES
     | PATH_PART_TRAVERSER_DOWNDATES_ALL
     | PATH_PART_TRAVERSER_DOWNDATES_OLDEST
-    | PATH_PART_TRAVERSER_UPDATE
     | PATH_PART_TRAVERSER_UPDATES
     | PATH_PART_TRAVERSER_UPDATES_ALL
     | PATH_PART_TRAVERSER_UPDATES_NEWEST

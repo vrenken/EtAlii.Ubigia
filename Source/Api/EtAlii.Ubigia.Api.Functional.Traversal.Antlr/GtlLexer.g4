@@ -9,7 +9,9 @@ lexer grammar GtlLexer;
 
 // Hierarchical
 PATH_PART_TRAVERSER_CHILDREN                        : '\\' ;
+PATH_PART_TRAVERSER_CHILDREN_ALL                    : '\\\\' ;
 PATH_PART_TRAVERSER_PARENT                          : '/' ;
+PATH_PART_TRAVERSER_PARENTS_ALL                     : '//' ;
 
 // Sequential
 PATH_PART_TRAVERSER_PREVIOUS_SINGLE                 : '<' ;
@@ -24,8 +26,7 @@ PATH_PART_TRAVERSER_DOWNDATE                        : '{' ;
 PATH_PART_TRAVERSER_DOWNDATES                       : '{' INTEGER_DECIMAL ;
 PATH_PART_TRAVERSER_DOWNDATES_ALL                   : '{*' ;
 PATH_PART_TRAVERSER_DOWNDATES_OLDEST                : '{{' ;
-PATH_PART_TRAVERSER_UPDATE                          : '}' ;
-PATH_PART_TRAVERSER_UPDATES                         : '}' INTEGER_DECIMAL ;
+PATH_PART_TRAVERSER_UPDATES                         : '}' ;
 PATH_PART_TRAVERSER_UPDATES_ALL                     : '}*' ;
 PATH_PART_TRAVERSER_UPDATES_NEWEST                  : '}}' ;
 
