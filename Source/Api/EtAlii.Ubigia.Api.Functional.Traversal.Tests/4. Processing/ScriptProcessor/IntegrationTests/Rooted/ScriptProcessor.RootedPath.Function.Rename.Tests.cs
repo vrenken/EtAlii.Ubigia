@@ -19,7 +19,7 @@
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
         }
         public void Dispose()
         {

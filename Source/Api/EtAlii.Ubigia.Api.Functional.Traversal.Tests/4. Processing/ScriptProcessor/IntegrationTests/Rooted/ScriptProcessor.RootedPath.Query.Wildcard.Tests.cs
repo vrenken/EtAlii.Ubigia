@@ -21,7 +21,7 @@
         {
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 
