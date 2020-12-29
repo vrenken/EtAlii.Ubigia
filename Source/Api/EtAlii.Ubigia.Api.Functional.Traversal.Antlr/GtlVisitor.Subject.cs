@@ -31,7 +31,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var parts = context.children
                 .Select(childContext => (PathSubjectPart)Visit(childContext))
                 .ToArray();
-            return new RelativePathSubject(parts);
+
+            // A relative path with the length of 1 should not be parsed as a path but as a string constant.
+            var lengthIsOne = parts.Length == 1;
+            return lengthIsOne switch
+            {
+                true when parts[0] is ConstantPathSubjectPart => new StringConstantSubject( ((ConstantPathSubjectPart)parts[0]).Name),
+                true when parts[0] is VariablePathSubjectPart => new VariableSubject(((VariablePathSubjectPart)parts[0]).Name),
+                _ => parts[0] is ParentPathSubjectPart
+                    ? new AbsolutePathSubject(parts)
+                    : (NonRootedPathSubject)new RelativePathSubject(parts)
+            };
         }
 
         public override object VisitPath_part_traverser(GtlParser.Path_part_traverserContext context)
