@@ -46,14 +46,13 @@ subject
 
 subject_non_rooted_path : path_part+ ;
 subject_rooted_path : path_part_root path_part* ;
-subject_constant_string : STRING ;
+subject_constant_string : STRING_QUOTED ;
 subject_constant_object : OBJECT ;
 path_part_root: PATH_PART_MATCHER_ROOT;
 
 path_part : (path_part_match | path_part_traverser) ;
 
 path_part_match
-    //: PATH_PART_MATCHER_ROOT
     : PATH_PART_MATCHER_CONSTANT
     | PATH_PART_MATCHER_REGEX
     | PATH_PART_MATCHER_VARIABLE
@@ -73,10 +72,11 @@ path_part_traverser
     | PATH_PART_TRAVERSER_NEXT_MULTIPLE
     | PATH_PART_TRAVERSER_NEXT_LAST
     | PATH_PART_TRAVERSER_DOWNDATE    // Temporal
-    | PATH_PART_TRAVERSER_DOWNDATES
+    | PATH_PART_TRAVERSER_DOWNDATES_MULTIPLE
     | PATH_PART_TRAVERSER_DOWNDATES_ALL
     | PATH_PART_TRAVERSER_DOWNDATES_OLDEST
     | PATH_PART_TRAVERSER_UPDATES
+    | PATH_PART_TRAVERSER_UPDATES_MULTIPLE
     | PATH_PART_TRAVERSER_UPDATES_ALL
     | PATH_PART_TRAVERSER_UPDATES_NEWEST
     ;
