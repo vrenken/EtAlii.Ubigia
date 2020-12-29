@@ -21,36 +21,39 @@ script: sequence+ ;
 comment : COMMENT ;
 
 sequence
-    : operand EOL
-    | operand OPERATOR operand EOL
-    | OPERATOR operand EOL
-    | operand comment EOL
-    | operand OPERATOR operand comment EOL
-    | OPERATOR operand comment EOL
+    : subject EOL
+    | subject OPERATOR subject EOL
+    | OPERATOR subject EOL
+    | subject comment EOL
+    | subject OPERATOR subject comment EOL
+    | OPERATOR subject comment EOL
     | comment EOL
-    | operand
-    | operand OPERATOR operand
-    | OPERATOR operand
-    | operand comment
-    | operand OPERATOR operand comment
-    | OPERATOR operand comment
+    | subject
+    | subject OPERATOR subject
+    | OPERATOR subject
+    | subject comment
+    | subject OPERATOR subject comment
+    | OPERATOR subject comment
     | comment
     ;
 
-operand
-    : operand_non_rooted_path
-    | operand_rooted_path
+subject
+    : subject_non_rooted_path
+    | subject_rooted_path
+    | subject_constant_string
+    | subject_constant_object
     ;
 
-operand_non_rooted_path : path_part+ ;
-
-operand_rooted_path : root path_part* ;
-
-root: ROOT;
+subject_non_rooted_path : path_part+ ;
+subject_rooted_path : path_part_root path_part* ;
+subject_constant_string : STRING ;
+subject_constant_object : OBJECT ;
+path_part_root: PATH_PART_MATCHER_ROOT;
 
 path_part : (path_part_match | path_part_traverser) ;
 
 path_part_match
+    //: PATH_PART_MATCHER_ROOT
     : PATH_PART_MATCHER_CONSTANT
     | PATH_PART_MATCHER_REGEX
     | PATH_PART_MATCHER_VARIABLE

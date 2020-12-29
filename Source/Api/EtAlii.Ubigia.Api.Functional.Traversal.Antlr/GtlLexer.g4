@@ -15,15 +15,15 @@ PATH_PART_TRAVERSER_PARENTS_ALL                     : '//' ;
 
 // Sequential
 PATH_PART_TRAVERSER_PREVIOUS_SINGLE                 : '<' ;
-PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE               : '<' INTEGER_DECIMAL ;
+PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE               : '<' INTEGER_DECIMAL_UNSIGNED ;
 PATH_PART_TRAVERSER_PREVIOUS_FIRST                  : '<<' ;
 PATH_PART_TRAVERSER_NEXT_SINGLE                     : '>' ;
-PATH_PART_TRAVERSER_NEXT_MULTIPLE                   : '>' INTEGER_DECIMAL ;
+PATH_PART_TRAVERSER_NEXT_MULTIPLE                   : '>' INTEGER_DECIMAL_UNSIGNED ;
 PATH_PART_TRAVERSER_NEXT_LAST                       : '>>' ;
 
 // Temporal
 PATH_PART_TRAVERSER_DOWNDATE                        : '{' ;
-PATH_PART_TRAVERSER_DOWNDATES                       : '{' INTEGER_DECIMAL ;
+PATH_PART_TRAVERSER_DOWNDATES                       : '{' INTEGER_DECIMAL_UNSIGNED ;
 PATH_PART_TRAVERSER_DOWNDATES_ALL                   : '{*' ;
 PATH_PART_TRAVERSER_DOWNDATES_OLDEST                : '{{' ;
 PATH_PART_TRAVERSER_UPDATES                         : '}' ;
@@ -76,8 +76,12 @@ OPERATOR
     | OPERATOR_REMOVE
     ;
 
-fragment ROOT_SEPARATOR                             : ':';
-ROOT                                                : IDENTITY ROOT_SEPARATOR ;
+// Roots
+fragment ROOT_SEPARATOR                             : ':' ;
+fragment ROOT_SUBJECT_PREFIX                        : 'root' ROOT_SEPARATOR ;
+ROOT_SUBJECT                                        : ROOT_SUBJECT_PREFIX IDENTITY ;
+PATH_PART_MATCHER_ROOT                              : IDENTITY ROOT_SEPARATOR ;
+
 // Comments
 fragment COMMENT_PREFIX                             : '--';
 COMMENT                                             : '--' STRING;
@@ -99,6 +103,22 @@ STRING
 fragment VARIABLE_PREFIX                            : '$' ;
 VARIABLE                                            : VARIABLE_PREFIX IDENTITY ;
 
+// Objects.
+fragment OBJECT_PREFIX                              : '{' ;
+fragment OBJECT_POSTFIX                             : '}' ;
+OBJECT
+    : OBJECT_PREFIX (KVP ',')+ OBJECT_POSTFIX
+    | OBJECT_PREFIX (KVP)+ OBJECT_POSTFIX
+    ;
+fragment KVP_SEPARATOR                              : ':' ;
+KVP                                                 : IDENTITY KVP_SEPARATOR KVP_VALUE;
+KVP_VALUE
+    : STRING
+    | FLOAT
+    | BOOLEAN
+    | DATETIME
+    | OBJECT
+    ;
 // Specials =======================================================================
 
 fragment SPACE                                      : [ \t]+ ;
@@ -114,6 +134,8 @@ EOL                                                 : ('\r'? '\n' | '\r')+ ;
 DISCARD                                             : ( WHITESPACE | EOL ) -> skip ;
 
 // Primitives =======================================================================
+
+// Bools
 BOOLEAN_TRUE                                        : ('TRUE' | 'true' | 'True');
 BOOLEAN_FALSE                                       : ('FALSE' | 'false' | 'False');
 BOOLEAN
@@ -121,13 +143,45 @@ BOOLEAN
     | BOOLEAN_TRUE
     ;
 
-INTEGER_DECIMAL                                     : DIGIT_DECIMAL+ ;
-INTEGER_HEX                                         : DIGIT_HEX+ ;
+// Integers
+fragment INTEGER_DECIMAL_UNSIGNED                   : DIGIT_DECIMAL+ ;
+INTEGER_DECIMAL
+    : INTEGER_DECIMAL_UNSIGNED
+    | [+-] INTEGER_DECIMAL_UNSIGNED
+    ;
+fragment INTEGER_HEX                                : DIGIT_HEX+ ;
+
+// Floats
+fragment FLOAT_UNSIGNED                             : DIGIT_DECIMAL+ '.' DIGIT_DECIMAL+ ;
+FLOAT
+    : FLOAT_UNSIGNED
+    | [+-] FLOAT_UNSIGNED
+    ;
+
+// Datetimes.
+fragment DATETIME_DATE_SEPARATOR                    : '-' ;
+fragment DATETIME_DATE_YYYY                         : DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_DATE_MM                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_DATE_DD                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_TIME_SEPARATOR                    : ':' ;
+fragment DATETIME_TIME_HH                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_TIME_MM                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_TIME_SS                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_MS_SEPARATOR                      : '.' ;
+fragment DATETIME_MS                                : DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL ;
+DATETIME
+    : DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS DATETIME_MS_SEPARATOR DATETIME_MS
+    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS
+    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM
+    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD
+    ;
+
+// Identifiers - both Guids and Ubigia Identifiers
 GUID                                                : GUID_BLOCK_8 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_8 GUID_BLOCK_4 ;
 fragment GUID_BLOCK_4                               : DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX ;
 fragment GUID_BLOCK_8                               : DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX ;
 
-IDENTIFIER                                          : GUID '.' GUID '.' GUID '.' INTEGER_DECIMAL '.' INTEGER_DECIMAL '.' INTEGER_DECIMAL ;
+IDENTIFIER                                          : GUID '.' GUID '.' GUID '.' INTEGER_DECIMAL_UNSIGNED '.' INTEGER_DECIMAL_UNSIGNED '.' INTEGER_DECIMAL_UNSIGNED ;
 
 
 fragment IDENTITY_CHAR
