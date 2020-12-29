@@ -21,20 +21,26 @@ script: sequence+ ;
 comment : COMMENT ;
 
 sequence
-    : subject OPERATOR subject comment EOL
-    | subject OPERATOR subject comment
-    | subject OPERATOR subject EOL
-    | subject OPERATOR subject
-    | OPERATOR subject comment EOL
-    | OPERATOR subject comment
-    | OPERATOR subject EOL
-    | OPERATOR subject
+    : subject operator subject comment EOL
+    | subject operator subject comment
+    | subject operator subject EOL
+    | subject operator subject
+    | operator subject comment EOL
+    | operator subject comment
+    | operator subject EOL
+    | operator subject
     | subject comment EOL
     | subject comment
     | subject EOL
     | subject
     | comment EOL
     | comment
+    ;
+
+operator
+    : OPERATOR_ASSIGN
+    | OPERATOR_ADD
+    | OPERATOR_REMOVE
     ;
 
 subject
@@ -46,8 +52,8 @@ subject
 
 subject_non_rooted_path : path_part+ ;
 subject_rooted_path : path_part_root path_part* ;
-subject_constant_string : STRING_QUOTED ;
-subject_constant_object : OBJECT ;
+subject_constant_string : SUBJECT_CONSTANT_STRING ;
+subject_constant_object : SUBJECT_CONSTANT_OBJECT ;
 path_part_root: PATH_PART_MATCHER_ROOT;
 
 path_part : (path_part_match | path_part_traverser) ;

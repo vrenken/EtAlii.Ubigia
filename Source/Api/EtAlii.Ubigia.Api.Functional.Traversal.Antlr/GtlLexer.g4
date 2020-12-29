@@ -45,8 +45,9 @@ PATH_PART_MATCHER_VARIABLE                          : VARIABLE ;
 // Constant
 PATH_PART_MATCHER_CONSTANT
     : STRING_QUOTED
+    // This is a weird rule. It is needed to get the sample*.txt files operational but might become obsolete later.
+    | STRING_UNQUOTED
     | IDENTITY
-    | (~['\r\n])+? // This is a weird rule. It is needed to get the sample*.txt files operational but might become obsolete later.
     ;
 
 // Identifier
@@ -82,14 +83,9 @@ PATH_PART_MATCHER_WILDCARD
     ;
 
 // Operators
-fragment OPERATOR_ASSIGN                            : '<=';
-fragment OPERATOR_ADD                               : '+=';
-fragment OPERATOR_REMOVE                            : '-=';
-OPERATOR
-    : OPERATOR_ASSIGN
-    | OPERATOR_ADD
-    | OPERATOR_REMOVE
-    ;
+OPERATOR_ASSIGN                                     : '<=';
+OPERATOR_ADD                                        : '+=';
+OPERATOR_REMOVE                                     : '-=';
 
 // Roots
 fragment ROOT_SEPARATOR                             : ':' ;
@@ -105,31 +101,33 @@ COMMENT                                             : COMMENT_PREFIX (~[\r\n])*;
 // String
 fragment STRING_QUOTED_DOUBLE                       : '"' (  '\\"' | ~["] | ~[\r\n])*? '"' ;
 fragment STRING_QUOTED_SINGLE                       : '\'' (  '\\\'' | ~['] | ~[\r\n])*? '\'' ;
-
-STRING_QUOTED
+fragment STRING_QUOTED
     : STRING_QUOTED_DOUBLE
     | STRING_QUOTED_SINGLE
     ;
+fragment STRING_UNQUOTED                            : [a-zA-Z0-9]+ ;
+SUBJECT_CONSTANT_STRING                             : STRING_QUOTED ;
 
 // Variables
 fragment VARIABLE_PREFIX                            : '$' ;
-VARIABLE                                            : VARIABLE_PREFIX IDENTITY ;
+fragment VARIABLE                                   : VARIABLE_PREFIX IDENTITY ;
 
 // Objects.
 fragment OBJECT_PREFIX                              : '{' ;
 fragment OBJECT_POSTFIX                             : '}' ;
-OBJECT
+fragment OBJECT
     : OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE ',')+ OBJECT_POSTFIX
     | OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE)+ OBJECT_POSTFIX
     ;
 fragment KVP_SEPARATOR                              : ':' ;
-KVP_VALUE
+fragment KVP_VALUE
     : STRING_QUOTED
     | FLOAT
     | BOOLEAN
     | DATETIME
     | OBJECT
     ;
+SUBJECT_CONSTANT_OBJECT                             : OBJECT ;
 // Specials =======================================================================
 
 fragment SPACE                                      : [ \t]+ ;
@@ -146,16 +144,16 @@ DISCARD                                             : ( WHITESPACE | EOL ) -> sk
 // Primitives =======================================================================
 
 // Bools
-BOOLEAN_TRUE                                        : ('TRUE' | 'true' | 'True');
-BOOLEAN_FALSE                                       : ('FALSE' | 'false' | 'False');
-BOOLEAN
+fragment BOOLEAN_TRUE                               : ('TRUE' | 'true' | 'True');
+fragment BOOLEAN_FALSE                              : ('FALSE' | 'false' | 'False');
+fragment BOOLEAN
     : BOOLEAN_FALSE
     | BOOLEAN_TRUE
     ;
 
 // Integers
 fragment INTEGER_DECIMAL_UNSIGNED                   : DIGIT_DECIMAL+ ;
-INTEGER_DECIMAL
+fragment INTEGER_DECIMAL
     : INTEGER_DECIMAL_UNSIGNED
     | [+-] INTEGER_DECIMAL_UNSIGNED
     ;
@@ -163,7 +161,7 @@ fragment INTEGER_HEX                                : DIGIT_HEX+ ;
 
 // Floats
 fragment FLOAT_UNSIGNED                             : DIGIT_DECIMAL+ '.' DIGIT_DECIMAL+ ;
-FLOAT
+fragment FLOAT
     : FLOAT_UNSIGNED
     | [+-] FLOAT_UNSIGNED
     ;
@@ -179,7 +177,7 @@ fragment DATETIME_TIME_MM                           : DIGIT_DECIMAL DIGIT_DECIMA
 fragment DATETIME_TIME_SS                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
 fragment DATETIME_MS_SEPARATOR                      : '.' ;
 fragment DATETIME_MS                                : DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL ;
-DATETIME
+fragment DATETIME
     : DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS DATETIME_MS_SEPARATOR DATETIME_MS
     | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS
     | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM
@@ -217,7 +215,7 @@ fragment IDENTITY_START_CHAR
    | '\uF900'..'\uFDCF'
    | '\uFDF0'..'\uFFFD'
    ;
-IDENTITY                                            : IDENTITY_START_CHAR IDENTITY_CHAR*;
+fragment IDENTITY                                   : IDENTITY_START_CHAR IDENTITY_CHAR*;
 
 
 //
