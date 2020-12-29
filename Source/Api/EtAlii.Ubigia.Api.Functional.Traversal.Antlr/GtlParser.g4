@@ -21,19 +21,19 @@ script: sequence+ ;
 comment : COMMENT ;
 
 sequence
-    : subject EOL
-    | subject OPERATOR subject EOL
-    | OPERATOR subject EOL
-    | subject comment EOL
-    | subject OPERATOR subject comment EOL
-    | OPERATOR subject comment EOL
-    | comment EOL
-    | subject
-    | subject OPERATOR subject
-    | OPERATOR subject
-    | subject comment
+    : subject OPERATOR subject comment EOL
     | subject OPERATOR subject comment
+    | subject OPERATOR subject EOL
+    | subject OPERATOR subject
+    | OPERATOR subject comment EOL
     | OPERATOR subject comment
+    | OPERATOR subject EOL
+    | OPERATOR subject
+    | subject comment EOL
+    | subject comment
+    | subject EOL
+    | subject
+    | comment EOL
     | comment
     ;
 
