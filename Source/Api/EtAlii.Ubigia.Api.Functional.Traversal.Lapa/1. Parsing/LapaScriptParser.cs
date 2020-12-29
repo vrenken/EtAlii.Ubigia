@@ -4,8 +4,7 @@
     using System.Linq;
     using Moppet.Lapa;
 
-    // TODO: Rename to LapaScriptParser, same for the ScriptParserFactory and ScriptProcessor and ScriptProcessorFactory.
-    internal class ScriptParser : IScriptParser
+    internal class LapaScriptParser : IScriptParser
     {
         private const string _id = "Script";
 
@@ -16,7 +15,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
 
-        public ScriptParser(
+        public LapaScriptParser(
             ISequenceParser sequenceParser,
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
@@ -66,9 +65,6 @@
             return new ScriptParseResult(string.Join(Environment.NewLine, text), script, errors);
         }
 
-        public ScriptParseResult Parse(string[] text)
-        {
-            return Parse(string.Join("\n", text));
-        }
+        public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
     }
 }

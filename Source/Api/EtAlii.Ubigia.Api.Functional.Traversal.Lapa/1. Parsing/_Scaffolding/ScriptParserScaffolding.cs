@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public void Register(Container container)
         {
-            container.Register<IScriptParser, ScriptParser>();
+            container.Register<IScriptParser, LapaScriptParser>();
         }
     }
 }
