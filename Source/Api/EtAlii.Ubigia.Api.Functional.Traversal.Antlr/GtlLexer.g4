@@ -23,10 +23,11 @@ PATH_PART_TRAVERSER_NEXT_LAST                       : '>>' ;
 
 // Temporal
 PATH_PART_TRAVERSER_DOWNDATE                        : '{' ;
-PATH_PART_TRAVERSER_DOWNDATES                       : '{' INTEGER_DECIMAL_UNSIGNED ;
+PATH_PART_TRAVERSER_DOWNDATES_MULTIPLE              : '{' INTEGER_DECIMAL_UNSIGNED ;
 PATH_PART_TRAVERSER_DOWNDATES_ALL                   : '{*' ;
 PATH_PART_TRAVERSER_DOWNDATES_OLDEST                : '{{' ;
 PATH_PART_TRAVERSER_UPDATES                         : '}' ;
+PATH_PART_TRAVERSER_UPDATES_MULTIPLE                : '}' INTEGER_DECIMAL_UNSIGNED ;
 PATH_PART_TRAVERSER_UPDATES_ALL                     : '}*' ;
 PATH_PART_TRAVERSER_UPDATES_NEWEST                  : '}}' ;
 
@@ -42,7 +43,11 @@ PATH_PART_MATCHER_REGEX
 PATH_PART_MATCHER_VARIABLE                          : VARIABLE ;
 
 // Constant
-PATH_PART_MATCHER_CONSTANT                          : STRING ;
+PATH_PART_MATCHER_CONSTANT
+    : STRING_QUOTED
+    | IDENTITY
+    | (~['\r\n])+? // This is a weird rule. It is needed to get the sample*.txt files operational but might become obsolete later.
+    ;
 
 // Identifier
 fragment MATCHER_IDENTIFIER_PREFIX                  : '/&' ;
@@ -53,9 +58,9 @@ fragment MATCHER_WILDCARD_CHAR                      : '*';
 fragment MATCHER_WILDCARD_BEFORE_NONQUOTED          : MATCHER_WILDCARD_CHAR ~[\r\n]+? ;
 fragment MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE      : '"' MATCHER_WILDCARD_CHAR (  '\\"' | ~["\r\n])*? '"' ;
 fragment MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE      : '\'' MATCHER_WILDCARD_CHAR (  '\\\'' | ~['\r\n])*? '\'' ;
-fragment MATCHER_WILDCARD_AFTER_NONQUOTED           : ~[\r\n]+? MATCHER_WILDCARD_CHAR ;
-fragment MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : '"' (  '\\"' | ~["\r\n])*? MATCHER_WILDCARD_CHAR '"' ;
-fragment MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : '\'' (  '\\\'' ~['\r\n])*? MATCHER_WILDCARD_CHAR '\'' ;
+fragment MATCHER_WILDCARD_AFTER_NONQUOTED           : ~[\r\n]+? ~[{] MATCHER_WILDCARD_CHAR ;
+fragment MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : '"' (  '\\"' | ~["\r\n])*? ~[{] MATCHER_WILDCARD_CHAR '"' ;
+fragment MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : '\'' (  '\\\'' ~['\r\n])*? ~[{] MATCHER_WILDCARD_CHAR '\'' ;
 
 PATH_PART_MATCHER_WILDCARD
     : MATCHER_WILDCARD_BEFORE_NONQUOTED
@@ -84,18 +89,15 @@ PATH_PART_MATCHER_ROOT                              : IDENTITY ROOT_SEPARATOR ;
 
 // Comments
 fragment COMMENT_PREFIX                             : '--';
-COMMENT                                             : '--' STRING;
+COMMENT                                             : COMMENT_PREFIX (~[\r\n])*;
 
 
 // String
 fragment STRING_QUOTED_DOUBLE                       : '"' (  '\\"' | ~["] | ~[\r\n])*? '"' ;
 fragment STRING_QUOTED_SINGLE                       : '\'' (  '\\\'' | ~['] | ~[\r\n])*? '\'' ;
-//fragment STRING_NONQUOTED                           : ~[\r\n]+?;
-fragment STRING_NONQUOTED                           : (SPACE | WORD | DIGIT_DECIMAL | SPECIAL_CHARACTER)+;
 
-STRING
-    : STRING_NONQUOTED
-    | STRING_QUOTED_DOUBLE
+STRING_QUOTED
+    : STRING_QUOTED_DOUBLE
     | STRING_QUOTED_SINGLE
     ;
 
@@ -107,13 +109,12 @@ VARIABLE                                            : VARIABLE_PREFIX IDENTITY ;
 fragment OBJECT_PREFIX                              : '{' ;
 fragment OBJECT_POSTFIX                             : '}' ;
 OBJECT
-    : OBJECT_PREFIX (KVP ',')+ OBJECT_POSTFIX
-    | OBJECT_PREFIX (KVP)+ OBJECT_POSTFIX
+    : OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE ',')+ OBJECT_POSTFIX
+    | OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE)+ OBJECT_POSTFIX
     ;
 fragment KVP_SEPARATOR                              : ':' ;
-KVP                                                 : IDENTITY KVP_SEPARATOR KVP_VALUE;
 KVP_VALUE
-    : STRING
+    : STRING_QUOTED
     | FLOAT
     | BOOLEAN
     | DATETIME
@@ -125,7 +126,6 @@ fragment SPACE                                      : [ \t]+ ;
 fragment WORD                                       : [a-zA-Z]+ ;
 fragment DIGIT_DECIMAL                              : [0-9] ;
 fragment DIGIT_HEX                                  : [A-Fa-f0-9] ;
-fragment SPECIAL_CHARACTER                          : [.()] ;
 
 fragment WHITESPACE                                 : [ \t\f\r\n]+ ;
 EOL                                                 : ('\r'? '\n' | '\r')+ ;
