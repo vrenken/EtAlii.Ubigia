@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             where TTraversalScriptContextConfiguration : TraversalScriptContextConfiguration
         {
             var editableConfiguration = (IEditableTraversalScriptContextConfiguration) configuration;
-            editableConfiguration.ScriptParserFactory = () => new ScriptParserFactory();
+            editableConfiguration.ScriptParserFactory = () => new LapaScriptParserFactory();
             editableConfiguration.ScriptProcessorFactory = () => new ScriptProcessorFactory();
 
             return configuration;

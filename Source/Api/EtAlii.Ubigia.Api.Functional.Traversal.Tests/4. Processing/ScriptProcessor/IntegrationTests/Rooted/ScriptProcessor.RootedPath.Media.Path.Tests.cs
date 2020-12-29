@@ -21,7 +21,7 @@
             _diagnostics = DiagnosticsConfiguration.Default;
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
         }
 
         public async Task DisposeAsync()
@@ -33,7 +33,7 @@
         }
 
         [Fact(Skip="No root handlers registered yet")]
-        public async Task ScriptProcessor_RootedPath_Media_Select_ManuFacturerDeviceModelDeviceTypeId_Path()
+        public async Task ScriptProcessor_RootedPath_Media_Select_ManufacturerDeviceModelDeviceTypeId_Path()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
