@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
@@ -73,35 +74,53 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_match(GtlParser.Path_part_matchContext context)
         {
-            var constant = context.PATH_PART_MATCHER_CONSTANT();
-            if (constant != null)
+            var constantPart = context.PATH_PART_MATCHER_CONSTANT();
+            if (constantPart != null)
             {
-                var text = constant.GetText();
+                var text = constantPart.GetText();
                 return new ConstantPathSubjectPart(text);
             }
 
-            var variable = context.PATH_PART_MATCHER_VARIABLE();
-            if (variable != null)
+            var variablePart = context.PATH_PART_MATCHER_VARIABLE();
+            if (variablePart != null)
             {
-                var text = variable.GetText();
+                var text = variablePart.GetText();
                 return new VariablePathSubjectPart(text);
             }
 
-            // var wildcard = context.PATH_PART_MATCHER_WILDCARD();
-            // if (wildcard != null)
+            var identifierPart = context.PATH_PART_MATCHER_IDENTIFIER();
+            if (identifierPart != null)
+            {
+                var parts = identifierPart
+                    .GetText()
+                    .Substring(1)
+                    .Split(".");
+                var storage = Guid.Parse(parts[0]);
+                var account = Guid.Parse(parts[1]);
+                var space = Guid.Parse(parts[2]);
+
+                var era = ulong.Parse(parts[3]);
+                var period = ulong.Parse(parts[4]);
+                var moment = ulong.Parse(parts[5]);
+
+                var identifier = Identifier.Create(storage, account, space, era, period, moment);
+
+                return new IdentifierPathSubjectPart(identifier);
+            }
+
+            // var wildcardPart = context.PATH_PART_MATCHER_WILDCARD();
+            // if (wildcardPart != null)
             // {
-            //     wildcard.
+            //     wildcardPart.
             // }
 
-            // var identifier = context.PATH_PART_MATCHER_IDENTIFIER();
-            // if (identifier != null)
-            // {
-            //     var text = identifier.GetText();
-            //     return new new IdentifierPathSubjectPart() VariablePathSubjectPart(text);
-            // }
+            var pathSubjectPart = base.Visit(context);
+            if (pathSubjectPart is not PathSubjectPart)
+            {
+                throw new ScriptParserException($"The path subject part could not be understood: {context.GetText()}" );
+            }
 
-            return base.Visit(context);
+            return pathSubjectPart;
         }
-
     }
 }
