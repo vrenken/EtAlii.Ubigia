@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
@@ -11,20 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public override object VisitSubject_rooted_path(GtlParser.Subject_rooted_pathContext context)
         {
-            var pathSubjectParts = new List<PathSubjectPart>();
+            var root = context.path_part_root().GetText().TrimEnd(':');
 
-            foreach (var childContext in context.children)
-            {
-                var pathSubjectPart = childContext switch
-                {
-                    GtlParser.Path_part_traverserContext traverserContext => Visit(traverserContext) as PathSubjectPart,
-                    _ => new ConstantPathSubjectPart(childContext.GetText()),
-                    //_ => throw new ScriptParserException("The parser context could not be understood.")
-                };
-                pathSubjectParts.Add(pathSubjectPart);
-            }
+            var parts = context
+                .path_part()
+                .Select(childContext => (PathSubjectPart)Visit(childContext))
+                .ToArray();
 
-            return new RelativePathSubject(pathSubjectParts.ToArray());
+            return new RootedPathSubject(root, parts);
         }
 
         public override object VisitSubject_non_rooted_path(GtlParser.Subject_non_rooted_pathContext context)
@@ -58,15 +51,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             if (context.PATH_PART_TRAVERSER_UPDATES() != null) return new UpdatesPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_DOWNDATES_OLDEST() != null) return new OldestPathSubjectPart(); // TODO: This is fishy, we mix and mingle all and oldest.
             // if (context.PATH_PART_TRAVERSER_DOWNDATES_ALL() != null) return new AllDowndatesPathSubjectPart();
+            if (context.PATH_PART_TRAVERSER_DOWNDATES_OLDEST() != null) return new AllDowndatesPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_UPDATES_NEWEST() != null) return new NewestPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_UPDATES_ALL() != null) return new AllUpdatesPathSubjectPart();
+            if (context.PATH_PART_TRAVERSER_UPDATES_NEWEST() != null) return new AllUpdatesPathSubjectPart();
+
 
             // Sequential
             if (context.PATH_PART_TRAVERSER_PREVIOUS_SINGLE() != null) return new PreviousPathSubjectPart();
             if (context.PATH_PART_TRAVERSER_NEXT_SINGLE() != null) return new NextPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_PREVIOUS_ALL() != null) return new AllPreviousPathSubjectPart(); // This is fishy, we mix and mingle all and oldest.
+            if (context.PATH_PART_TRAVERSER_PREVIOUS_FIRST() != null) return new AllPreviousPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_PREVIOUS_FIRST() != null) return new FirstPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_NEXT_ALL() != null) return new AllNextPathSubjectPart();
+            if (context.PATH_PART_TRAVERSER_NEXT_LAST() != null) return new AllNextPathSubjectPart();
             // if (context.PATH_PART_TRAVERSER_NEXT_LAST() != null) return new LastPathSubjectPart();
 
             throw new ScriptParserException($"The path traverser part could not be understood: {context.GetText()}" );
@@ -84,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var variablePart = context.PATH_PART_MATCHER_VARIABLE();
             if (variablePart != null)
             {
-                var text = variablePart.GetText();
+                var text = variablePart.GetText().Substring(1);
                 return new VariablePathSubjectPart(text);
             }
 

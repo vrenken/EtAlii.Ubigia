@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 parts.Add(leftSubject);
             }
 
-            var operatorContext = context.OPERATOR();
+            var operatorContext = context.@operator();
             if (operatorContext != null)
             {
                 var @operator = (SequencePart)Visit(operatorContext);
@@ -55,6 +55,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var text = context.GetText().Substring(CommentPrefixLength);
             return new Comment(text);
+        }
+
+        public override object VisitOperator(GtlParser.OperatorContext context)
+        {
+            if (context.OPERATOR_ADD() != null) return new AddOperator();
+            if (context.OPERATOR_REMOVE() != null) return new RemoveOperator();
+            if (context.OPERATOR_ASSIGN() != null) return new AssignOperator();
+
+            throw new ScriptParserException($"The operator could not be understood: {context.GetText()}" );
         }
     }
 }
