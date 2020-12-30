@@ -38,9 +38,9 @@ sequence
     ;
 
 operator
-    : OPERATOR_ASSIGN
-    | OPERATOR_ADD
-    | OPERATOR_REMOVE
+    : LCHEVR EQUALS #OperatorAssign
+    | PLUS EQUALS #OperatorAdd
+    | MINUS EQUALS #OperatorRemove
     ;
 
 subject
@@ -48,12 +48,14 @@ subject
     | subject_rooted_path
     | subject_constant_string
     | subject_constant_object
+    | subject_function
     ;
 
 subject_non_rooted_path : path_part+ ;
 subject_rooted_path : path_part_root path_part* ;
 subject_constant_string : SUBJECT_CONSTANT_STRING ;
 subject_constant_object : SUBJECT_CONSTANT_OBJECT ;
+subject_function : SUBJECT_FUNCTION ;
 path_part_root: PATH_PART_MATCHER_ROOT;
 
 path_part : (path_part_match | path_part_traverser) ;
@@ -61,28 +63,79 @@ path_part : (path_part_match | path_part_traverser) ;
 path_part_match
     : PATH_PART_MATCHER_CONSTANT
     | PATH_PART_MATCHER_REGEX
-    | PATH_PART_MATCHER_VARIABLE
-    | PATH_PART_MATCHER_IDENTIFIER
-    | PATH_PART_MATCHER_WILDCARD
+    | path_part_matcher_variable
+    | path_part_matcher_identifier
+    | path_part_matcher_wildcard
+//    | PATH_PART_MATCHER_FUNCTION
     ;
 
 path_part_traverser
-    : PATH_PART_TRAVERSER_PARENT      // Hierarchical
-    | PATH_PART_TRAVERSER_PARENTS_ALL
-    | PATH_PART_TRAVERSER_CHILDREN
-    | PATH_PART_TRAVERSER_CHILDREN_ALL
-    | PATH_PART_TRAVERSER_PREVIOUS_SINGLE    // Sequential
-    | PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE
-    | PATH_PART_TRAVERSER_PREVIOUS_FIRST
-    | PATH_PART_TRAVERSER_NEXT_SINGLE
-    | PATH_PART_TRAVERSER_NEXT_MULTIPLE
-    | PATH_PART_TRAVERSER_NEXT_LAST
-    | PATH_PART_TRAVERSER_DOWNDATE    // Temporal
-    | PATH_PART_TRAVERSER_DOWNDATES_MULTIPLE
-    | PATH_PART_TRAVERSER_DOWNDATES_ALL
-    | PATH_PART_TRAVERSER_DOWNDATES_OLDEST
-    | PATH_PART_TRAVERSER_UPDATES
-    | PATH_PART_TRAVERSER_UPDATES_MULTIPLE
-    | PATH_PART_TRAVERSER_UPDATES_ALL
-    | PATH_PART_TRAVERSER_UPDATES_NEWEST
+    : path_part_traverser_parent      // Hierarchical
+    | path_part_traverser_parents_all
+    | path_part_traverser_children
+    | path_part_traverser_children_all
+    | path_part_traverser_previous_single    // Sequential
+    | path_part_traverser_previous_multiple
+    | path_part_traverser_previous_first
+    | path_part_traverser_next_single
+    | path_part_traverser_next_multiple
+    | path_part_traverser_next_last
+    | path_part_traverser_downdate    // Temporal
+    | path_part_traverser_downdates_multiple
+    | path_part_traverser_downdates_all
+    | path_part_traverser_downdates_oldest
+    | path_part_traverser_updates
+    | path_part_traverser_updates_multiple
+    | path_part_traverser_updates_all
+    | path_part_traverser_updates_newest
     ;
+
+// Hierarchical
+path_part_traverser_parent                          : FSLASH ;                          // /
+path_part_traverser_parents_all                     : FSLASH FSLASH;                    // //
+path_part_traverser_children                        : BSLASH ;                          // \
+path_part_traverser_children_all                    : BSLASH BSLASH ;                   // \\
+
+// Sequential
+path_part_traverser_previous_single                 : LCHEVR ;                          // <
+path_part_traverser_previous_multiple               : LCHEVR INTEGER_LITERAL_UNSIGNED ; // <12
+path_part_traverser_previous_first                  : LCHEVR LCHEVR ;                   // <<
+path_part_traverser_next_single                     : RCHEVR ;                          // >
+path_part_traverser_next_multiple                   : RCHEVR INTEGER_LITERAL_UNSIGNED ; // >12
+path_part_traverser_next_last                       : RCHEVR RCHEVR ;                   // >>
+
+// Temporal
+path_part_traverser_downdate                        : LBRACE ;                          // {
+path_part_traverser_downdates_multiple              : LBRACE INTEGER_LITERAL_UNSIGNED ; // {12
+path_part_traverser_downdates_all                   : LBRACE AST ;                      // {*
+path_part_traverser_downdates_oldest                : LBRACE LBRACE ;                   // {{
+path_part_traverser_updates                         : RBRACE ;                          // }
+path_part_traverser_updates_multiple                : RBRACE INTEGER_LITERAL_UNSIGNED ; // }12
+path_part_traverser_updates_all                     : RBRACE AST ;                      // }*
+path_part_traverser_updates_newest                  : RBRACE RBRACE ;                   // }}
+
+// Wildcards.
+path_part_matcher_wildcard
+    : MATCHER_WILDCARD_BEFORE_NONQUOTED
+    | MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE
+    | MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE
+    | MATCHER_WILDCARD_AFTER_NONQUOTED
+    | MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE
+    | MATCHER_WILDCARD_AFTER_QUOTED_SINGLE
+    ;
+
+
+// Identifier
+path_part_matcher_identifier
+    :
+    AMP
+    GUID DOT
+    GUID DOT
+    GUID DOT
+    INTEGER_LITERAL_UNSIGNED DOT
+    INTEGER_LITERAL_UNSIGNED DOT
+    INTEGER_LITERAL_UNSIGNED
+    ;
+
+// Variable
+path_part_matcher_variable                          : DOLLAR IDENTITY ;

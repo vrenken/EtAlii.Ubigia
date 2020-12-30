@@ -7,30 +7,6 @@ lexer grammar GtlLexer;
     // ReSharper disable all
 }
 
-// Hierarchical
-PATH_PART_TRAVERSER_CHILDREN                        : '\\' ;
-PATH_PART_TRAVERSER_CHILDREN_ALL                    : '\\\\' ;
-PATH_PART_TRAVERSER_PARENT                          : '/' ;
-PATH_PART_TRAVERSER_PARENTS_ALL                     : '//' ;
-
-// Sequential
-PATH_PART_TRAVERSER_PREVIOUS_SINGLE                 : '<' ;
-PATH_PART_TRAVERSER_PREVIOUS_MULTIPLE               : '<' INTEGER_DECIMAL_UNSIGNED ;
-PATH_PART_TRAVERSER_PREVIOUS_FIRST                  : '<<' ;
-PATH_PART_TRAVERSER_NEXT_SINGLE                     : '>' ;
-PATH_PART_TRAVERSER_NEXT_MULTIPLE                   : '>' INTEGER_DECIMAL_UNSIGNED ;
-PATH_PART_TRAVERSER_NEXT_LAST                       : '>>' ;
-
-// Temporal
-PATH_PART_TRAVERSER_DOWNDATE                        : '{' ;
-PATH_PART_TRAVERSER_DOWNDATES_MULTIPLE              : '{' INTEGER_DECIMAL_UNSIGNED ;
-PATH_PART_TRAVERSER_DOWNDATES_ALL                   : '{*' ;
-PATH_PART_TRAVERSER_DOWNDATES_OLDEST                : '{{' ;
-PATH_PART_TRAVERSER_UPDATES                         : '}' ;
-PATH_PART_TRAVERSER_UPDATES_MULTIPLE                : '}' INTEGER_DECIMAL_UNSIGNED ;
-PATH_PART_TRAVERSER_UPDATES_ALL                     : '}*' ;
-PATH_PART_TRAVERSER_UPDATES_NEWEST                  : '}}' ;
-
 // Regex
 fragment MATCHER_REGEX_QUOTED_DOUBLE                : '["' (  '\\"' | ~["])*? '"]' ;
 fragment MATCHER_REGEX_QUOTED_SINGLE                : '[\'' (  '\\\'' | ~['])*? '\']' ;
@@ -39,8 +15,12 @@ PATH_PART_MATCHER_REGEX
     | MATCHER_REGEX_QUOTED_SINGLE
     ;
 
-// Variable
-PATH_PART_MATCHER_VARIABLE                          : VARIABLE ;
+// Functions.
+SUBJECT_FUNCTION
+    : IDENTITY '(' ')'
+    | IDENTITY '(' IDENTITY ')'
+    | IDENTITY '(' (IDENTITY ',')+ ')'
+    ;
 
 // Constant
 PATH_PART_MATCHER_CONSTANT
@@ -50,42 +30,13 @@ PATH_PART_MATCHER_CONSTANT
     | IDENTITY
     ;
 
-// Identifier
-fragment MATCHER_IDENTIFIER_PREFIX                  : '&' ;
-fragment MATCHER_IDENTIFIER_SEPARATOR               : '.' ;
-PATH_PART_MATCHER_IDENTIFIER
-    :
-    MATCHER_IDENTIFIER_PREFIX
-    GUID MATCHER_IDENTIFIER_SEPARATOR
-    GUID MATCHER_IDENTIFIER_SEPARATOR
-    GUID MATCHER_IDENTIFIER_SEPARATOR
-    INTEGER_DECIMAL_UNSIGNED MATCHER_IDENTIFIER_SEPARATOR
-    INTEGER_DECIMAL_UNSIGNED MATCHER_IDENTIFIER_SEPARATOR
-    INTEGER_DECIMAL_UNSIGNED
-    ;
-
 // Wildcards
-fragment MATCHER_WILDCARD_CHAR                      : '*';
-fragment MATCHER_WILDCARD_BEFORE_NONQUOTED          : MATCHER_WILDCARD_CHAR ~[\r\n]+? ;
-fragment MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE      : '"' MATCHER_WILDCARD_CHAR (  '\\"' | ~["\r\n])*? '"' ;
-fragment MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE      : '\'' MATCHER_WILDCARD_CHAR (  '\\\'' | ~['\r\n])*? '\'' ;
-fragment MATCHER_WILDCARD_AFTER_NONQUOTED           : ~[\r\n]+? ~[{] MATCHER_WILDCARD_CHAR ;
-fragment MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : '"' (  '\\"' | ~["\r\n])*? ~[{] MATCHER_WILDCARD_CHAR '"' ;
-fragment MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : '\'' (  '\\\'' ~['\r\n])*? ~[{] MATCHER_WILDCARD_CHAR '\'' ;
-
-PATH_PART_MATCHER_WILDCARD
-    : MATCHER_WILDCARD_BEFORE_NONQUOTED
-    | MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE
-    | MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE
-    | MATCHER_WILDCARD_AFTER_NONQUOTED
-    | MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE
-    | MATCHER_WILDCARD_AFTER_QUOTED_SINGLE
-    ;
-
-// Operators
-OPERATOR_ASSIGN                                     : '<=';
-OPERATOR_ADD                                        : '+=';
-OPERATOR_REMOVE                                     : '-=';
+MATCHER_WILDCARD_BEFORE_NONQUOTED          : AST ~[\r\n]+? ;
+MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE      : '"' AST (  '\\"' | ~["\r\n])*? '"' ;
+MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE      : '\'' AST (  '\\\'' | ~['\r\n])*? '\'' ;
+MATCHER_WILDCARD_AFTER_NONQUOTED           : ~[\r\n]+? ~[{] AST ;
+MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : '"' (  '\\"' | ~["\r\n])*? ~[{] AST '"' ;
+MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : '\'' (  '\\\'' ~['\r\n])*? ~[{] AST '\'' ;
 
 // Roots
 fragment ROOT_SEPARATOR                             : ':' ;
@@ -109,8 +60,7 @@ fragment STRING_UNQUOTED                            : [a-zA-Z0-9]+ ;
 SUBJECT_CONSTANT_STRING                             : STRING_QUOTED ;
 
 // Variables
-fragment VARIABLE_PREFIX                            : '$' ;
-fragment VARIABLE                                   : VARIABLE_PREFIX IDENTITY ;
+VARIABLE                                            : DOLLAR IDENTITY ;
 
 // Objects.
 fragment OBJECT_PREFIX                              : '{' ;
@@ -122,8 +72,10 @@ fragment OBJECT
 fragment KVP_SEPARATOR                              : ':' ;
 fragment KVP_VALUE
     : STRING_QUOTED
-    | FLOAT
-    | BOOLEAN
+    | INTEGER_LITERAL
+    | INTEGER_LITERAL_UNSIGNED
+    | FLOAT_LITERAL
+    | BOOLEAN_LITERAL
     | DATETIME
     | OBJECT
     ;
@@ -132,8 +84,6 @@ SUBJECT_CONSTANT_OBJECT                             : OBJECT ;
 
 fragment SPACE                                      : [ \t]+ ;
 fragment WORD                                       : [a-zA-Z]+ ;
-fragment DIGIT_DECIMAL                              : [0-9] ;
-fragment DIGIT_HEX                                  : [A-Fa-f0-9] ;
 
 fragment WHITESPACE                                 : [ \t\f\r\n]+ ;
 EOL                                                 : ('\r'? '\n' | '\r')+ ;
@@ -143,40 +93,18 @@ DISCARD                                             : ( WHITESPACE | EOL ) -> sk
 
 // Primitives =======================================================================
 
-// Bools
-fragment BOOLEAN_TRUE                               : ('TRUE' | 'true' | 'True');
-fragment BOOLEAN_FALSE                              : ('FALSE' | 'false' | 'False');
-fragment BOOLEAN
-    : BOOLEAN_FALSE
-    | BOOLEAN_TRUE
-    ;
-
-// Integers
-fragment INTEGER_DECIMAL_UNSIGNED                   : DIGIT_DECIMAL+ ;
-fragment INTEGER_DECIMAL
-    : INTEGER_DECIMAL_UNSIGNED
-    | [+-] INTEGER_DECIMAL_UNSIGNED
-    ;
-fragment INTEGER_HEX                                : DIGIT_HEX+ ;
-
-// Floats
-fragment FLOAT_UNSIGNED                             : DIGIT_DECIMAL+ '.' DIGIT_DECIMAL+ ;
-fragment FLOAT
-    : FLOAT_UNSIGNED
-    | [+-] FLOAT_UNSIGNED
-    ;
 
 // Datetimes.
 fragment DATETIME_DATE_SEPARATOR                    : '-' ;
-fragment DATETIME_DATE_YYYY                         : DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL ;
-fragment DATETIME_DATE_MM                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
-fragment DATETIME_DATE_DD                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_DATE_YYYY                         : DIGIT DIGIT DIGIT DIGIT ;
+fragment DATETIME_DATE_MM                           : DIGIT DIGIT ;
+fragment DATETIME_DATE_DD                           : DIGIT DIGIT ;
 fragment DATETIME_TIME_SEPARATOR                    : ':' ;
-fragment DATETIME_TIME_HH                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
-fragment DATETIME_TIME_MM                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
-fragment DATETIME_TIME_SS                           : DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_TIME_HH                           : DIGIT DIGIT ;
+fragment DATETIME_TIME_MM                           : DIGIT DIGIT ;
+fragment DATETIME_TIME_SS                           : DIGIT DIGIT ;
 fragment DATETIME_MS_SEPARATOR                      : '.' ;
-fragment DATETIME_MS                                : DIGIT_DECIMAL DIGIT_DECIMAL DIGIT_DECIMAL ;
+fragment DATETIME_MS                                : DIGIT DIGIT DIGIT ;
 fragment DATETIME
     : DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS DATETIME_MS_SEPARATOR DATETIME_MS
     | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS
@@ -184,13 +112,6 @@ fragment DATETIME
     | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD
     ;
 
-// Guids.
-fragment GUID
-    : GUID_BLOCK_8 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_8 GUID_BLOCK_4
-    | GUID_BLOCK_8 GUID_BLOCK_4 GUID_BLOCK_4 GUID_BLOCK_4 GUID_BLOCK_8 GUID_BLOCK_4
-    ;
-fragment GUID_BLOCK_4                               : DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX ;
-fragment GUID_BLOCK_8                               : DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX DIGIT_HEX ;
 
 // Identities.
 fragment IDENTITY_CHAR
@@ -215,7 +136,7 @@ fragment IDENTITY_START_CHAR
    | '\uF900'..'\uFDCF'
    | '\uFDF0'..'\uFFFD'
    ;
-fragment IDENTITY                                   : IDENTITY_START_CHAR IDENTITY_CHAR*;
+IDENTITY                                   : IDENTITY_START_CHAR IDENTITY_CHAR*;
 
 
 //
@@ -228,3 +149,68 @@ fragment IDENTITY                                   : IDENTITY_START_CHAR IDENTI
 //	[a-zA-Z0-9_äöüÄÖÜáéíóúÁÉÍÓÚâêîôûÂÊÎÔÛàèìòùÀÈÌÒÙãẽĩõũÃẼĨÕŨçÇ];
 //
 //
+
+// =====================================================================================================================
+// New implementation
+
+BYTE_ORDER_MARK: '\u00EF\u00BB\u00BF';
+
+// Bools
+fragment BOOLEAN_TRUE_LITERAL                       : ('TRUE' | 'true' | 'True');
+fragment BOOLEAN_FALSE_LITERAL                      : ('FALSE' | 'false' | 'False');
+BOOLEAN_LITERAL
+    : BOOLEAN_FALSE_LITERAL
+    | BOOLEAN_TRUE_LITERAL
+    ;
+
+// Integers
+INTEGER_LITERAL_UNSIGNED                            : DIGIT+ ;
+INTEGER_LITERAL
+    : INTEGER_LITERAL_UNSIGNED
+    | [+-] INTEGER_LITERAL_UNSIGNED
+    ;
+
+// Hex values.
+HEX_LITERAL                                         : HEX+ ;
+
+// Floats
+fragment FLOAT_LITERAL_UNSIGNED                     : [0-9]+ '.' [0-9]+ ;
+fragment FLOAT_LITERAL
+    : FLOAT_LITERAL_UNSIGNED
+    | [+-] FLOAT_LITERAL_UNSIGNED
+    ;
+
+// Guids.
+GUID
+    : GUID_BLOCK_8 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_4 '-' GUID_BLOCK_8 GUID_BLOCK_4
+    | GUID_BLOCK_8 GUID_BLOCK_4 GUID_BLOCK_4 GUID_BLOCK_4 GUID_BLOCK_8 GUID_BLOCK_4
+    ;
+fragment GUID_BLOCK_4                               : HEX HEX HEX HEX ;
+fragment GUID_BLOCK_8                               : HEX HEX HEX HEX HEX HEX HEX HEX ;
+
+// Characters.
+
+fragment DIGIT                                      : [0-9] ;
+fragment HEX                                        : [A-Fa-f0-9] ;
+
+LPAREN                                              : '(';
+RPAREN                                              : ')';
+LBRACE                                              : '{';
+RBRACE                                              : '}';
+LBRACK                                              : '[';
+RBRACK                                              : ']';
+LCHEVR                                              : '<';
+RCHEVR                                              : '>';
+SEMI                                                : ';';
+COMMA                                               : ',';
+DOT                                                 : '.';
+MINUS                                               : '-';
+PLUS                                                : '+';
+FSLASH                                              : '/';
+BSLASH                                              : '\\';
+EQUALS                                              : '=';
+AMP                                                 : '&';
+AST                                                 : '*';
+DOLLAR                                              : '$';
+
+
