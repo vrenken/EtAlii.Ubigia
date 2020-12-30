@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(script);
-            Assert.True(script.Sequences.Count() == 3);
+            Assert.Equal(3, script.Sequences.Count());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
