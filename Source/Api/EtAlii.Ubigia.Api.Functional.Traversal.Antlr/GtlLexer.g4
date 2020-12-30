@@ -8,34 +8,20 @@ lexer grammar GtlLexer;
 }
 
 // Regex
-fragment MATCHER_REGEX_QUOTED_DOUBLE                : '["' (  '\\"' | ~["])*? '"]' ;
-fragment MATCHER_REGEX_QUOTED_SINGLE                : '[\'' (  '\\\'' | ~['])*? '\']' ;
+fragment MATCHER_REGEX_QUOTED_DOUBLE                : LBRACK DOUBLEQUOTE (  '\\"' | ~["])*? DOUBLEQUOTE RBRACK ;
+fragment MATCHER_REGEX_QUOTED_SINGLE                : LBRACK SINGLEQUOTE (  '\\\'' | ~['])*? SINGLEQUOTE RBRACK ;
 PATH_PART_MATCHER_REGEX
     : MATCHER_REGEX_QUOTED_DOUBLE
     | MATCHER_REGEX_QUOTED_SINGLE
     ;
 
-// Constant
-PATH_PART_MATCHER_CONSTANT
-    : STRING_QUOTED
-    // This is a weird rule. It is needed to get the sample*.txt files operational but might become obsolete later.
-    | STRING_UNQUOTED
-    | IDENTITY
-    ;
-
 // Wildcards
 MATCHER_WILDCARD_BEFORE_NONQUOTED          : AST ~[\r\n]+? ;
-MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE      : '"' AST (  '\\"' | ~["\r\n])*? '"' ;
-MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE      : '\'' AST (  '\\\'' | ~['\r\n])*? '\'' ;
+MATCHER_WILDCARD_BEFORE_QUOTED_DOUBLE      : DOUBLEQUOTE AST (  '\\"' | ~["\r\n])*? DOUBLEQUOTE ;
+MATCHER_WILDCARD_BEFORE_QUOTED_SINGLE      : SINGLEQUOTE AST (  '\\\'' | ~['\r\n])*? SINGLEQUOTE ;
 MATCHER_WILDCARD_AFTER_NONQUOTED           : ~[\r\n]+? ~[{] AST ;
-MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : '"' (  '\\"' | ~["\r\n])*? ~[{] AST '"' ;
-MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : '\'' (  '\\\'' ~['\r\n])*? ~[{] AST '\'' ;
-
-// Roots
-fragment ROOT_SEPARATOR                             : ':' ;
-fragment ROOT_SUBJECT_PREFIX                        : 'root' ROOT_SEPARATOR ;
-ROOT_SUBJECT                                        : ROOT_SUBJECT_PREFIX IDENTITY ;
-PATH_PART_MATCHER_ROOT                              : IDENTITY ROOT_SEPARATOR ;
+MATCHER_WILDCARD_AFTER_QUOTED_DOUBLE       : DOUBLEQUOTE (  '\\"' | ~["\r\n])*? ~[{] AST DOUBLEQUOTE ;
+MATCHER_WILDCARD_AFTER_QUOTED_SINGLE       : SINGLEQUOTE (  '\\\'' ~['\r\n])*? ~[{] AST SINGLEQUOTE ;
 
 // Comments
 fragment COMMENT_PREFIX                             : '--';
@@ -43,35 +29,16 @@ COMMENT                                             : COMMENT_PREFIX (~[\r\n])*;
 
 
 // String
-fragment STRING_QUOTED_DOUBLE                       : '"' (  '\\"' | ~["] | ~[\r\n])*? '"' ;
-fragment STRING_QUOTED_SINGLE                       : '\'' (  '\\\'' | ~['] | ~[\r\n])*? '\'' ;
-fragment STRING_QUOTED
+fragment STRING_QUOTED_DOUBLE                       : DOUBLEQUOTE (  '\\"' | ~["] | ~[\r\n])*? DOUBLEQUOTE ;
+fragment STRING_QUOTED_SINGLE                       : SINGLEQUOTE (  '\\\'' | ~['] | ~[\r\n])*? SINGLEQUOTE ;
+STRING_QUOTED
     : STRING_QUOTED_DOUBLE
     | STRING_QUOTED_SINGLE
     ;
-fragment STRING_UNQUOTED                            : [a-zA-Z0-9]+ ;
-SUBJECT_CONSTANT_STRING                             : STRING_QUOTED ;
+STRING_UNQUOTED                                     : [a-zA-Z0-9]+ ;
 
-// Objects.
-fragment OBJECT
-    : LBRACE (IDENTITY COLON KVP_VALUE) RBRACE
-    | LBRACE (IDENTITY COLON KVP_VALUE COMMA)+ IDENTITY COLON KVP_VALUE RBRACE
-    | LBRACE (IDENTITY COLON KVP_VALUE) RBRACE
-    | LBRACE (IDENTITY COLON KVP_VALUE COMMA)+ IDENTITY COLON KVP_VALUE RBRACE
-    ;
-fragment KVP_VALUE
-    : STRING_QUOTED
-    | INTEGER_LITERAL
-    | INTEGER_LITERAL_UNSIGNED
-    | FLOAT_LITERAL
-    | BOOLEAN_LITERAL
-    | DATETIME
-    | OBJECT
-    ;
-SUBJECT_CONSTANT_OBJECT                             : OBJECT ;
 // Specials =======================================================================
 
-fragment SPACE                                      : [ \t]+ ;
 fragment WORD                                       : [a-zA-Z]+ ;
 
 fragment WHITESPACE                                 : [ \t\f\r\n]+ ;
@@ -81,25 +48,6 @@ EOL                                                 : ('\r'? '\n' | '\r')+ ;
 DISCARD                                             : ( WHITESPACE | EOL ) -> skip ;
 
 // Primitives =======================================================================
-
-
-// Datetimes.
-fragment DATETIME_DATE_SEPARATOR                    : MINUS ;
-fragment DATETIME_DATE_YYYY                         : DIGIT DIGIT DIGIT DIGIT ;
-fragment DATETIME_DATE_MM                           : DIGIT DIGIT ;
-fragment DATETIME_DATE_DD                           : DIGIT DIGIT ;
-fragment DATETIME_TIME_SEPARATOR                    : COLON ;
-fragment DATETIME_TIME_HH                           : DIGIT DIGIT ;
-fragment DATETIME_TIME_MM                           : DIGIT DIGIT ;
-fragment DATETIME_TIME_SS                           : DIGIT DIGIT ;
-fragment DATETIME_MS_SEPARATOR                      : COLON ;
-fragment DATETIME_MS                                : DIGIT DIGIT DIGIT ;
-fragment DATETIME
-    : DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS DATETIME_MS_SEPARATOR DATETIME_MS
-    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS
-    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM
-    | DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD
-    ;
 
 
 // Identities.
@@ -125,7 +73,7 @@ fragment IDENTITY_START_CHAR
    | '\uF900'..'\uFDCF'
    | '\uFDF0'..'\uFFFD'
    ;
-IDENTITY                                   : IDENTITY_START_CHAR IDENTITY_CHAR*;
+IDENTITY                                            : IDENTITY_START_CHAR IDENTITY_CHAR*;
 
 
 //
@@ -163,8 +111,8 @@ INTEGER_LITERAL
 HEX_LITERAL                                         : HEX+ ;
 
 // Floats
-fragment FLOAT_LITERAL_UNSIGNED                     : [0-9]+ '.' [0-9]+ ;
-fragment FLOAT_LITERAL
+fragment FLOAT_LITERAL_UNSIGNED                     : [0-9]+ DOT [0-9]+ ;
+FLOAT_LITERAL
     : FLOAT_LITERAL_UNSIGNED
     | [+-] FLOAT_LITERAL_UNSIGNED
     ;
@@ -179,8 +127,8 @@ fragment GUID_BLOCK_8                               : HEX HEX HEX HEX HEX HEX HE
 
 // Characters.
 
-fragment DIGIT                                      : [0-9] ;
-fragment HEX                                        : [A-Fa-f0-9] ;
+DIGIT                                               : [0-9] ;
+HEX                                                 : [A-Fa-f0-9] ;
 
 LPAREN                                              : '(';
 RPAREN                                              : ')';
@@ -202,5 +150,9 @@ EQUALS                                              : '=';
 AMP                                                 : '&';
 AST                                                 : '*';
 DOLLAR                                              : '$';
+SPACE                                               : ' ';
+SINGLEQUOTE                                         : '\'';
+DOUBLEQUOTE                                         : '"' ;
 
+ROOT_SUBJECT_PREFIX                                 : ('ROOT' | 'root' | 'Root');
 

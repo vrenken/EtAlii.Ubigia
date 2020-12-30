@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public override object VisitSubject_rooted_path(GtlParser.Subject_rooted_pathContext context)
         {
-            var root = context.path_part_root().GetText().TrimEnd(':');
+            var root = context.IDENTITY().GetText();
 
             var parts = context
                 .path_part()
@@ -39,13 +39,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_match(GtlParser.Path_part_matchContext context)
         {
-            var constantPart = context.PATH_PART_MATCHER_CONSTANT();
-            if (constantPart != null)
-            {
-                var text = constantPart.GetText();
-                return new ConstantPathSubjectPart(text);
-            }
-
             // var wildcardPart = context.PATH_PART_MATCHER_WILDCARD();
             // if (wildcardPart != null)
             // {
