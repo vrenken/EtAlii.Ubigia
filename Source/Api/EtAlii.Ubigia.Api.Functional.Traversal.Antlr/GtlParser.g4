@@ -48,15 +48,25 @@ subject
     | subject_rooted_path
     | subject_constant_string
     | subject_constant_object
+    | subject_variable
     | subject_function
     ;
 
-subject_non_rooted_path : path_part+ ;
-subject_rooted_path : path_part_root path_part* ;
-subject_constant_string : SUBJECT_CONSTANT_STRING ;
-subject_constant_object : SUBJECT_CONSTANT_OBJECT ;
-subject_function : SUBJECT_FUNCTION ;
-path_part_root: PATH_PART_MATCHER_ROOT;
+subject_non_rooted_path                             : path_part+ ;
+subject_rooted_path                                 : path_part_root path_part* ;
+subject_constant_string                             : SUBJECT_CONSTANT_STRING ;
+subject_constant_object                             : SUBJECT_CONSTANT_OBJECT ;
+path_part_root                                      : PATH_PART_MATCHER_ROOT;
+subject_variable                                    : DOLLAR IDENTITY ;
+
+
+// Functions.
+subject_function
+    : IDENTITY LPAREN RPAREN
+    | IDENTITY LPAREN IDENTITY RPAREN
+    | IDENTITY LPAREN (IDENTITY COMMA)+ RPAREN
+    ;
+
 
 path_part : (path_part_match | path_part_traverser) ;
 

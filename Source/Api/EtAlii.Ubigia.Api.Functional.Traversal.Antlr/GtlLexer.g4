@@ -15,13 +15,6 @@ PATH_PART_MATCHER_REGEX
     | MATCHER_REGEX_QUOTED_SINGLE
     ;
 
-// Functions.
-SUBJECT_FUNCTION
-    : IDENTITY '(' ')'
-    | IDENTITY '(' IDENTITY ')'
-    | IDENTITY '(' (IDENTITY ',')+ ')'
-    ;
-
 // Constant
 PATH_PART_MATCHER_CONSTANT
     : STRING_QUOTED
@@ -59,17 +52,13 @@ fragment STRING_QUOTED
 fragment STRING_UNQUOTED                            : [a-zA-Z0-9]+ ;
 SUBJECT_CONSTANT_STRING                             : STRING_QUOTED ;
 
-// Variables
-VARIABLE                                            : DOLLAR IDENTITY ;
-
 // Objects.
-fragment OBJECT_PREFIX                              : '{' ;
-fragment OBJECT_POSTFIX                             : '}' ;
 fragment OBJECT
-    : OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE ',')+ OBJECT_POSTFIX
-    | OBJECT_PREFIX (IDENTITY KVP_SEPARATOR KVP_VALUE)+ OBJECT_POSTFIX
+    : LBRACE (IDENTITY COLON KVP_VALUE) RBRACE
+    | LBRACE (IDENTITY COLON KVP_VALUE COMMA)+ IDENTITY COLON KVP_VALUE RBRACE
+    | LBRACE (IDENTITY COLON KVP_VALUE) RBRACE
+    | LBRACE (IDENTITY COLON KVP_VALUE COMMA)+ IDENTITY COLON KVP_VALUE RBRACE
     ;
-fragment KVP_SEPARATOR                              : ':' ;
 fragment KVP_VALUE
     : STRING_QUOTED
     | INTEGER_LITERAL
@@ -95,15 +84,15 @@ DISCARD                                             : ( WHITESPACE | EOL ) -> sk
 
 
 // Datetimes.
-fragment DATETIME_DATE_SEPARATOR                    : '-' ;
+fragment DATETIME_DATE_SEPARATOR                    : MINUS ;
 fragment DATETIME_DATE_YYYY                         : DIGIT DIGIT DIGIT DIGIT ;
 fragment DATETIME_DATE_MM                           : DIGIT DIGIT ;
 fragment DATETIME_DATE_DD                           : DIGIT DIGIT ;
-fragment DATETIME_TIME_SEPARATOR                    : ':' ;
+fragment DATETIME_TIME_SEPARATOR                    : COLON ;
 fragment DATETIME_TIME_HH                           : DIGIT DIGIT ;
 fragment DATETIME_TIME_MM                           : DIGIT DIGIT ;
 fragment DATETIME_TIME_SS                           : DIGIT DIGIT ;
-fragment DATETIME_MS_SEPARATOR                      : '.' ;
+fragment DATETIME_MS_SEPARATOR                      : COLON ;
 fragment DATETIME_MS                                : DIGIT DIGIT DIGIT ;
 fragment DATETIME
     : DATETIME_DATE_YYYY DATETIME_DATE_SEPARATOR DATETIME_DATE_MM DATETIME_DATE_SEPARATOR DATETIME_DATE_DD ' ' DATETIME_TIME_HH DATETIME_TIME_SEPARATOR DATETIME_TIME_MM DATETIME_TIME_SEPARATOR DATETIME_TIME_SS DATETIME_MS_SEPARATOR DATETIME_MS
@@ -202,6 +191,7 @@ RBRACK                                              : ']';
 LCHEVR                                              : '<';
 RCHEVR                                              : '>';
 SEMI                                                : ';';
+COLON                                               : ':';
 COMMA                                               : ',';
 DOT                                                 : '.';
 MINUS                                               : '-';

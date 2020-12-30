@@ -60,5 +60,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             return pathSubjectPart;
         }
+
+        public override object VisitSubject_variable(GtlParser.Subject_variableContext context)
+        {
+            var name = context.IDENTITY().GetText();
+            return new VariableSubject(name);
+        }
     }
 }
