@@ -12,6 +12,8 @@
   </ItemGroup>
   <ItemGroup>
     <Antlr4 Include="GtlLexer.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
       <Package>$(RootNamespace).Antlr</Package>
       <Error>true</Error>
     </Antlr4>
@@ -20,6 +22,12 @@
       <Visitor>true</Visitor>
       <Package>$(RootNamespace).Antlr</Package>
       <Error>true</Error>      
+    </Antlr4>
+    <Antlr4 Include="GtlPrimitives.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Antlr</Package>
+      <Error>true</Error>
     </Antlr4>
   </ItemGroup>
   <ItemGroup>
