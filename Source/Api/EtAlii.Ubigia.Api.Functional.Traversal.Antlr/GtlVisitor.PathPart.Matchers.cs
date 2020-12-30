@@ -26,7 +26,24 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var text = context.IDENTITY().GetText();
             return new VariablePathSubjectPart(text);
+        }
 
+        public override object VisitPath_part_matcher_constant(GtlParser.Path_part_matcher_constantContext context)
+        {
+            var identity = context.IDENTITY();
+            if (identity != null) return new ConstantPathSubjectPart(identity.GetText());
+
+
+            var stringQuoted = context.STRING_QUOTED();
+            if (stringQuoted != null) return new ConstantPathSubjectPart(stringQuoted.GetText());
+
+            var pathSubjectPart = base.VisitPath_part_matcher_constant(context);
+            if (pathSubjectPart is not PathSubjectPart)
+            {
+                throw new ScriptParserException($"The constant path subject part could not be understood: {context.GetText()}" );
+            }
+
+            return pathSubjectPart;
         }
     }
 }

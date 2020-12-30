@@ -50,13 +50,14 @@ subject
     | subject_constant_object
     | subject_variable
     | subject_function
+    | subject_root
     ;
 
 subject_non_rooted_path                             : path_part+ ;
-subject_rooted_path                                 : path_part_root path_part* ;
-subject_constant_string                             : SUBJECT_CONSTANT_STRING ;
-subject_constant_object                             : SUBJECT_CONSTANT_OBJECT ;
-path_part_root                                      : PATH_PART_MATCHER_ROOT;
+subject_rooted_path                                 : IDENTITY COLON path_part* ;
+subject_constant_string                             : STRING_QUOTED ;
+subject_constant_object                             : object ;
+subject_root                                        : ROOT_SUBJECT_PREFIX COLON IDENTITY ;
 subject_variable                                    : DOLLAR IDENTITY ;
 
 
@@ -67,16 +68,14 @@ subject_function
     | IDENTITY LPAREN (IDENTITY COMMA)+ RPAREN
     ;
 
-
 path_part : (path_part_match | path_part_traverser) ;
 
 path_part_match
-    : PATH_PART_MATCHER_CONSTANT
+    : path_part_matcher_constant
     | PATH_PART_MATCHER_REGEX
     | path_part_matcher_variable
     | path_part_matcher_identifier
     | path_part_matcher_wildcard
-//    | PATH_PART_MATCHER_FUNCTION
     ;
 
 path_part_traverser
@@ -147,5 +146,45 @@ path_part_matcher_identifier
     INTEGER_LITERAL_UNSIGNED
     ;
 
+// Constant
+path_part_matcher_constant
+    : STRING_QUOTED
+    | STRING_UNQUOTED
+    // This is a weird rule. It is needed to get the sample*.txt files operational but might become obsolete later.
+    | IDENTITY
+    ;
 // Variable
 path_part_matcher_variable                          : DOLLAR IDENTITY ;
+
+
+// Objects.
+object
+    : LBRACE (IDENTITY COLON kvp_value) RBRACE
+    | LBRACE (IDENTITY COLON kvp_value COMMA)+ IDENTITY COLON kvp_value RBRACE
+    | LBRACE (IDENTITY COLON kvp_value) RBRACE
+    | LBRACE (IDENTITY COLON kvp_value COMMA)+ IDENTITY COLON kvp_value RBRACE
+    ;
+kvp_value
+    : STRING_QUOTED
+    | INTEGER_LITERAL
+    | INTEGER_LITERAL_UNSIGNED
+    | FLOAT_LITERAL
+    | BOOLEAN_LITERAL
+    | datetime
+    | object
+    ;
+
+// Datetimes.
+datetime_date_yyyy                                  : DIGIT DIGIT DIGIT DIGIT ;
+datetime_date_mm                                    : DIGIT DIGIT ;
+datetime_date_dd                                    : DIGIT DIGIT ;
+datetime_time_hh                                    : DIGIT DIGIT ;
+datetime_time_mm                                    : DIGIT DIGIT ;
+datetime_time_ss                                    : DIGIT DIGIT ;
+datetime_ms                                         : DIGIT DIGIT DIGIT ;
+datetime
+    : datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd SPACE datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss COLON datetime_ms
+    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd SPACE datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss
+    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd SPACE datetime_time_hh COLON datetime_time_mm
+    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd
+    ;
