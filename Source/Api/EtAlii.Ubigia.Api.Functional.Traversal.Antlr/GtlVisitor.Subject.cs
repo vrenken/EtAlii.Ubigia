@@ -3,25 +3,36 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
+    using Antlr4.Runtime.Tree;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     public partial class GtlVisitor
     {
         public override object VisitSubject_rooted_path(GtlParser.Subject_rooted_pathContext context)
         {
-            var root = context.IDENTIFIER().GetText();
+            return BuildRootedPathSubject(context.IDENTIFIER(), context.path_part());
+        }
 
-            var parts = context
-                .path_part()
+        private RootedPathSubject BuildRootedPathSubject(ITerminalNode identifier, GtlParser.Path_partContext[] partContexts)
+        {
+            var root = identifier.GetText();
+
+            var parts = partContexts
                 .Select(childContext => (PathSubjectPart)Visit(childContext))
                 .ToArray();
 
             return new RootedPathSubject(root, parts);
+
         }
 
         public override object VisitSubject_non_rooted_path(GtlParser.Subject_non_rooted_pathContext context)
         {
-            var parts = context.children
+            return BuildNonRootedPathSubject(context.path_part());
+        }
+
+        private Subject BuildNonRootedPathSubject(GtlParser.Path_partContext[] partContexts)
+        {
+            var parts = partContexts
                 .Select(childContext => (PathSubjectPart)Visit(childContext))
                 .ToArray();
 
@@ -62,26 +73,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitSubject_constant_string(GtlParser.Subject_constant_stringContext context)
         {
-            var text = context.STRING_QUOTED().GetText().Trim('"', '\'');
+            var text = (string)VisitString_quoted(context.string_quoted());
             return new StringConstantSubject(text);
-        }
-
-        public override object VisitPath_part_matcher_constant_identifier(GtlParser.Path_part_matcher_constant_identifierContext context)
-        {
-            var text = context.IDENTIFIER().GetText();
-            return new ConstantPathSubjectPart(text);
-        }
-
-        public override object VisitPath_part_matcher_constant_quoted(GtlParser.Path_part_matcher_constant_quotedContext context)
-        {
-            var text = context.STRING_QUOTED().GetText().Trim('"', '\'');
-            return new ConstantPathSubjectPart(text);
-        }
-
-        public override object VisitPath_part_matcher_constant_unquoted(GtlParser.Path_part_matcher_constant_unquotedContext context)
-        {
-            var text = context.STRING_UNQUOTED().GetText();
-            return new ConstantPathSubjectPart(text);
         }
     }
 }

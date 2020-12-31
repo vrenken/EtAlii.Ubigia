@@ -50,23 +50,29 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var text = context.IDENTIFIER().GetText();
             return new VariablePathSubjectPart(text);
         }
-        //
-        // public override object VisitPath_part_matcher_constant(GtlParser.Path_part_matcher_constantContext context)
-        // {
-        //     var identity = context.IDENTIFIER();
-        //     if (identity != null) return new ConstantPathSubjectPart(identity.GetText());
-        //
-        //
-        //     var stringQuoted = context.STRING_QUOTED();
-        //     if (stringQuoted != null) return new ConstantPathSubjectPart(stringQuoted.GetText());
-        //
-        //     var pathSubjectPart = base.VisitPath_part_matcher_constant(context);
-        //     if (pathSubjectPart is not PathSubjectPart)
-        //     {
-        //         throw new ScriptParserException($"The constant path subject part could not be understood: {context.GetText()}" );
-        //     }
-        //
-        //     return pathSubjectPart;
-        // }
+
+        public override object VisitPath_part_matcher_constant_integer(GtlParser.Path_part_matcher_constant_integerContext context)
+        {
+            var text = context.INTEGER_LITERAL_UNSIGNED().GetText();
+            return new ConstantPathSubjectPart(text);
+        }
+
+        public override object VisitPath_part_matcher_constant_identifier(GtlParser.Path_part_matcher_constant_identifierContext context)
+        {
+            var text = context.IDENTIFIER().GetText();
+            return new ConstantPathSubjectPart(text);
+        }
+
+        public override object VisitPath_part_matcher_constant_quoted(GtlParser.Path_part_matcher_constant_quotedContext context)
+        {
+            var text = (string)VisitString_quoted(context.string_quoted());
+            return new ConstantPathSubjectPart(text);
+        }
+
+        public override object VisitPath_part_matcher_constant_unquoted(GtlParser.Path_part_matcher_constant_unquotedContext context)
+        {
+            var text = context.STRING_UNQUOTED().GetText();
+            return new ConstantPathSubjectPart(text);
+        }
     }
 }

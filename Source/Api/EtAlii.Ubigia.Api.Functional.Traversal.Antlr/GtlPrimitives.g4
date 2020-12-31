@@ -44,3 +44,5 @@ kvp_value
     | datetime
     | object
     ;
+
+string_quoted                                       : STRING_QUOTED ;
