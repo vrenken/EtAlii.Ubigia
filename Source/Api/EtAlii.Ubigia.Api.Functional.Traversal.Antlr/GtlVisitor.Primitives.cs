@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class GtlVisitor
     {
-        public override object VisitObject(GtlParser.ObjectContext context)
+        public override object VisitString_quoted(GtlParser.String_quotedContext context)
         {
-            return base.VisitObject(context);
+            return context.STRING_QUOTED().GetText().Trim('"', '\'');
         }
     }
 }

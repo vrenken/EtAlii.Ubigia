@@ -57,18 +57,31 @@ subject
 
 subject_non_rooted_path                             : path_part+ ;
 subject_rooted_path                                 : IDENTIFIER COLON path_part* ;
-subject_constant_string                             : STRING_QUOTED ;
+subject_constant_string                             : string_quoted ;
 subject_constant_object                             : object ;
 subject_root                                        : ROOT_SUBJECT_PREFIX COLON IDENTIFIER ;
 subject_variable                                    : DOLLAR IDENTIFIER ;
 
-
 // Functions.
 subject_function
     : IDENTIFIER LPAREN RPAREN
-    | IDENTIFIER LPAREN IDENTIFIER RPAREN
-    | IDENTIFIER LPAREN (IDENTIFIER COMMA)+ RPAREN
+    | IDENTIFIER LPAREN subject_function_argument RPAREN
+    | IDENTIFIER LPAREN (subject_function_argument COMMA)+ subject_function_argument RPAREN
     ;
+
+subject_function_argument
+    : subject_function_argument_identifier
+    | subject_function_argument_string_quoted
+    | subject_function_argument_variable
+    | subject_function_argument_rooted_path
+    | subject_function_argument_non_rooted_path
+    ;
+
+subject_function_argument_identifier                : IDENTIFIER ;
+subject_function_argument_string_quoted             : string_quoted ;
+subject_function_argument_variable                  : DOLLAR IDENTIFIER ;
+subject_function_argument_non_rooted_path           : path_part+ ;
+subject_function_argument_rooted_path               : IDENTIFIER COLON path_part*;
 
 path_part : (path_part_traverser | path_part_match) ;
 
@@ -103,28 +116,28 @@ path_part_traverser
     ;
 
 // Hierarchical
-path_part_traverser_parent                          : FSLASH ;                          // /
 path_part_traverser_parents_all                     : FSLASH FSLASH;                    // //
-path_part_traverser_children                        : BSLASH ;                          // \
+path_part_traverser_parent                          : FSLASH ;                          // /
 path_part_traverser_children_all                    : BSLASH BSLASH ;                   // \\
+path_part_traverser_children                        : BSLASH ;                          // \
 
 // Sequential
+path_part_traverser_previous_first                  : LCHEVR LCHEVR ;                   // <<
 path_part_traverser_previous_single                 : LCHEVR ;                          // <
 path_part_traverser_previous_multiple               : LCHEVR INTEGER_LITERAL_UNSIGNED ; // <12
-path_part_traverser_previous_first                  : LCHEVR LCHEVR ;                   // <<
+path_part_traverser_next_last                       : RCHEVR RCHEVR ;                   // >>
 path_part_traverser_next_single                     : RCHEVR ;                          // >
 path_part_traverser_next_multiple                   : RCHEVR INTEGER_LITERAL_UNSIGNED ; // >12
-path_part_traverser_next_last                       : RCHEVR RCHEVR ;                   // >>
 
 // Temporal
+path_part_traverser_downdates_oldest                : LBRACE LBRACE ;                   // {{
+path_part_traverser_downdates_all                   : LBRACE ASTERIKS ;                 // {*
 path_part_traverser_downdate                        : LBRACE ;                          // {
 path_part_traverser_downdates_multiple              : LBRACE INTEGER_LITERAL_UNSIGNED ; // {12
-path_part_traverser_downdates_all                   : LBRACE ASTERIKS ;                 // {*
-path_part_traverser_downdates_oldest                : LBRACE LBRACE ;                   // {{
+path_part_traverser_updates_newest                  : RBRACE RBRACE ;                   // }}
+path_part_traverser_updates_all                     : RBRACE ASTERIKS ;                 // }*
 path_part_traverser_updates                         : RBRACE ;                          // }
 path_part_traverser_updates_multiple                : RBRACE INTEGER_LITERAL_UNSIGNED ; // }12
-path_part_traverser_updates_all                     : RBRACE ASTERIKS ;                 // }*
-path_part_traverser_updates_newest                  : RBRACE RBRACE ;                   // }}
 
 // Wildcards.
 path_part_matcher_wildcard
@@ -159,13 +172,15 @@ path_part_matcher_tag
     ;
 
 // Constant
-path_part_matcher_constant_quoted                   : STRING_QUOTED ;
+path_part_matcher_constant_quoted                   : string_quoted ;
 path_part_matcher_constant_unquoted                 : STRING_UNQUOTED ;
 path_part_matcher_constant_identifier               : IDENTIFIER ;
+path_part_matcher_constant_integer                  : INTEGER_LITERAL_UNSIGNED ;
 path_part_matcher_constant
     : path_part_matcher_constant_quoted
     | path_part_matcher_constant_unquoted
     | path_part_matcher_constant_identifier
+    | path_part_matcher_constant_integer
     ;
 
 // Variable

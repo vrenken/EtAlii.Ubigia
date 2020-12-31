@@ -86,7 +86,6 @@ DISCARD                                             : ( WHITESPACE | EOL ) -> sk
 
 BYTE_ORDER_MARK: '\u00EF\u00BB\u00BF';
 
-
 // Characters.
 
 DIGIT                                               : [0-9] ;
