@@ -29,16 +29,17 @@ datetime
 
 // Objects.
 object
-    : LBRACE (IDENTITY COLON kvp_value) RBRACE
-    | LBRACE (IDENTITY COLON kvp_value COMMA)+ IDENTITY COLON kvp_value RBRACE
-    | LBRACE (IDENTITY COLON kvp_value) RBRACE
-    | LBRACE (IDENTITY COLON kvp_value COMMA)+ IDENTITY COLON kvp_value RBRACE
+    : LBRACE (IDENTIFIER COLON kvp_value) RBRACE
+    | LBRACE (IDENTIFIER COLON kvp_value COMMA)+ IDENTIFIER COLON kvp_value RBRACE
+    | LBRACE (IDENTIFIER COLON kvp_value) RBRACE
+    | LBRACE (IDENTIFIER COLON kvp_value COMMA)+ IDENTIFIER COLON kvp_value RBRACE
     ;
 kvp_value
     : STRING_QUOTED
     | INTEGER_LITERAL
     | INTEGER_LITERAL_UNSIGNED
     | FLOAT_LITERAL
+    | FLOAT_LITERAL_UNSIGNED
     | BOOLEAN_LITERAL
     | datetime
     | object
