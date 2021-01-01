@@ -29,20 +29,34 @@ datetime
 
 // Objects.
 object
-    : LBRACE (IDENTIFIER COLON kvp_value) RBRACE
-    | LBRACE (IDENTIFIER COLON kvp_value COMMA)+ IDENTIFIER COLON kvp_value RBRACE
-    | LBRACE (IDENTIFIER COLON kvp_value) RBRACE
-    | LBRACE (IDENTIFIER COLON kvp_value COMMA)+ IDENTIFIER COLON kvp_value RBRACE
+    : LBRACE NEWLINE* object_kv_pair_with_comma+ object_kv_pair_without_comma RBRACE
+    | LBRACE NEWLINE* object_kv_pair_without_comma RBRACE
+    | LBRACE NEWLINE* RBRACE
     ;
-kvp_value
-    : STRING_QUOTED
-    | INTEGER_LITERAL
-    | INTEGER_LITERAL_UNSIGNED
-    | FLOAT_LITERAL
-    | FLOAT_LITERAL_UNSIGNED
-    | BOOLEAN_LITERAL
+
+object_kv_pair_without_comma                        : object_kv_key COLON object_kv_value NEWLINE* ;
+object_kv_pair_with_comma                           : object_kv_key COLON object_kv_value NEWLINE* COMMA NEWLINE*;
+
+object_kv_key
+    : identifier
+    | string_quoted
+    ;
+
+object_kv_value
+    : string_quoted
+    | integer_literal
+    | integer_literal_unsigned
+    | float_literal
+    | float_literal_unsigned
+    | boolean_literal
     | datetime
     | object
     ;
 
+identifier                                          : IDENTIFIER ;
 string_quoted                                       : STRING_QUOTED ;
+integer_literal                                     : INTEGER_LITERAL ;
+integer_literal_unsigned                            : INTEGER_LITERAL_UNSIGNED ;
+float_literal                                       : FLOAT_LITERAL ;
+float_literal_unsigned                              : FLOAT_LITERAL_UNSIGNED ;
+boolean_literal                                     : BOOLEAN_LITERAL ;
