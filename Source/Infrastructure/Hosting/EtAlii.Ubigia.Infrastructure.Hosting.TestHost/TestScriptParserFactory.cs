@@ -2,7 +2,11 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+#if USE_LAPA_PARSER_IN_TESTS
+    internal class TestScriptParserFactory : LapaScriptParserFactory
+#else
     internal class TestScriptParserFactory : AntlrScriptParserFactory
+#endif
     {
     }
 }

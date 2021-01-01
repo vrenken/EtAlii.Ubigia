@@ -20,6 +20,9 @@
 
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
+    <UseLapaParserInTests>false</UseLapaParserInTests>
+    <DefineConstants Condition="'$(UseLapaParserInTests)' == 'true'">$(DefineConstants);USE_LAPA_PARSER_IN_TESTS</DefineConstants>
+
     <LangVersion>9</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 

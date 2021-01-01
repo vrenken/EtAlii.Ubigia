@@ -15,7 +15,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public static TTraversalScriptContextConfiguration UseTestParser<TTraversalScriptContextConfiguration>(this TTraversalScriptContextConfiguration configuration)
             where TTraversalScriptContextConfiguration : TraversalScriptContextConfiguration
         {
+#if USE_LAPA_PARSER_IN_TESTS
             return configuration.UseLapaParser();
+#else
+            return configuration.UseAntlrParser();
+#endif
         }
 
     }
