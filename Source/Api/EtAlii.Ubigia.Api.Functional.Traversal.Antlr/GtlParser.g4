@@ -88,6 +88,7 @@ path_part_match
     | path_part_matcher_variable
     | path_part_matcher_wildcard
     | path_part_matcher_tag
+    | path_part_matcher_typed
     ;
 
 path_part_traverser
@@ -135,7 +136,19 @@ path_part_traverser_updates_all                     : RBRACE ASTERIKS ;         
 path_part_traverser_updates                         : RBRACE ;                          // }
 path_part_traverser_updates_multiple                : RBRACE integer_literal_unsigned ; // }12
 
+// Identifier
+path_part_matcher_identifier                        : UBIGIA_IDENTIFIER ;
+
+path_part_matcher_typed                             : LBRACK identifier RBRACK ;
+
 // Wildcards.
+matcher_wildcard                                    : ASTERIKS ;
+matcher_wildcard_before_nonquoted                   : ASTERIKS NO_NEWLINE+? ;
+matcher_wildcard_before_quoted_double               : DOUBLEQUOTE ASTERIKS (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? DOUBLEQUOTE ;
+matcher_wildcard_before_quoted_single               : SINGLEQUOTE ASTERIKS (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? SINGLEQUOTE ;
+matcher_wildcard_after_nonquoted                    : NO_NEWLINE+? NO_LBRACES ASTERIKS ;
+matcher_wildcard_after_quoted_double                : DOUBLEQUOTE (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS DOUBLEQUOTE ;
+matcher_wildcard_after_quoted_single                : SINGLEQUOTE (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS SINGLEQUOTE ;
 path_part_matcher_wildcard
     : matcher_wildcard
     | matcher_wildcard_before_nonquoted
@@ -145,18 +158,6 @@ path_part_matcher_wildcard
     | matcher_wildcard_after_quoted_double
     | matcher_wildcard_after_quoted_single
     ;
-
-matcher_wildcard                                    : ASTERIKS ;
-matcher_wildcard_before_nonquoted                   : ASTERIKS NO_NEWLINE+? ;
-matcher_wildcard_before_quoted_double               : DOUBLEQUOTE ASTERIKS (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? DOUBLEQUOTE ;
-matcher_wildcard_before_quoted_single               : SINGLEQUOTE ASTERIKS (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? SINGLEQUOTE ;
-matcher_wildcard_after_nonquoted                    : NO_NEWLINE+? NO_LBRACES ASTERIKS ;
-matcher_wildcard_after_quoted_double                : DOUBLEQUOTE (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS DOUBLEQUOTE ;
-matcher_wildcard_after_quoted_single                : SINGLEQUOTE (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS SINGLEQUOTE ;
-
-
-// Identifier
-path_part_matcher_identifier                        : UBIGIA_IDENTIFIER ;
 
 path_part_matcher_tag_name_only                     : identifier HASHTAG ;
 path_part_matcher_tag_tag_only                      : HASHTAG identifier ;

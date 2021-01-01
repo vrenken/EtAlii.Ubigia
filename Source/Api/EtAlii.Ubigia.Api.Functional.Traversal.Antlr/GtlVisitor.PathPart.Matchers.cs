@@ -80,5 +80,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var text = context.STRING_UNQUOTED().GetText();
             return new ConstantPathSubjectPart(text);
         }
+
+        public override object VisitPath_part_matcher_typed(GtlParser.Path_part_matcher_typedContext context)
+        {
+            var text = (string)VisitIdentifier(context.identifier());
+            var formatter = TypedPathFormatter.FromString(text.ToUpper());
+            return new TypedPathSubjectPart(formatter);
+        }
     }
 }
