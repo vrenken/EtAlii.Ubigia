@@ -39,26 +39,15 @@ fragment GUID_BLOCK_8                               : HEX HEX HEX HEX HEX HEX HE
 // Bools
 BOOLEAN_LITERAL                                     : TRUE | FALSE ;
 
-// Integers
-INTEGER_LITERAL_UNSIGNED                            : DIGIT+ ;
-INTEGER_LITERAL                                     : PLUS_OR_MINUS INTEGER_LITERAL_UNSIGNED ;
-
-// Hex values.
-HEX_LITERAL                                         : HEX+ ;
-
-// Floats
-FLOAT_LITERAL_UNSIGNED                              : DIGIT+ DOT DIGIT+ ;
-FLOAT_LITERAL                                       : PLUS_OR_MINUS FLOAT_LITERAL_UNSIGNED ;
-
 UBIGIA_IDENTIFIER
     :
     AMPERSAND
     GUID '.'
     GUID '.'
     GUID '.'
-    INTEGER_LITERAL_UNSIGNED '.'
-    INTEGER_LITERAL_UNSIGNED '.'
-    INTEGER_LITERAL_UNSIGNED
+    DIGIT+ '.'
+    DIGIT+ '.'
+    DIGIT+
     ;
 // Specials =======================================================================
 
@@ -86,8 +75,9 @@ BYTE_ORDER_MARK: '\u00EF\u00BB\u00BF';
 
 // Characters.
 
+LETTER                                              : LETTER_CHARACTER ;
 DIGIT                                               : [0-9] ;
-HEX                                                 : [A-Fa-f0-9] ;
+HEX                                                 : [A-Fa-f] | DIGIT ;
 
 LPAREN                                              : '(';
 RPAREN                                              : ')';
@@ -114,16 +104,14 @@ SINGLEQUOTE                                         : '\'';
 DOUBLEQUOTE                                         : '"' ;
 HASHTAG                                             : '#' ;
 
-PLUS_OR_MINUS                                       : [+-] ;
 ROOT_SUBJECT_PREFIX                                 : ('ROOT' | 'root' | 'Root');
 TRUE                                                : ('TRUE' | 'true' | 'True');
 FALSE                                               : ('FALSE' | 'false' | 'False');
 
+
 IDENTIFIER
 	: IDENTIFIER_START_CHARACTER IDENTIFIER_PART_CHARACTER*
 	;
-
-STRING_UNQUOTED : [a-zA-Z0-9.]+;
 
 fragment IDENTIFIER_START_CHARACTER
 	: LETTER_CHARACTER

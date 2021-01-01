@@ -19,20 +19,13 @@ script: sequence+ ;
 comment : COMMENT ;
 
 sequence
-    : subject operator subject comment NEWLINE
-    | subject operator subject comment
-    | subject operator subject NEWLINE
-    | subject operator subject
-    | operator subject comment NEWLINE
-    | operator subject comment
-    | operator subject NEWLINE
-    | operator subject
-    | subject comment NEWLINE
-    | subject comment
-    | subject NEWLINE
-    | subject
-    | comment NEWLINE
-    | comment
+    : subject operator subject comment NEWLINE?
+    | subject operator subject NEWLINE?
+    | operator subject comment NEWLINE?
+    | operator subject NEWLINE?
+    | subject comment NEWLINE?
+    | subject NEWLINE?
+    | comment NEWLINE?
     ;
 
 operator
@@ -61,8 +54,7 @@ subject_variable                                    : DOLLAR identifier ;
 // Functions.
 subject_function
     : identifier LPAREN RPAREN
-    | identifier LPAREN subject_function_argument RPAREN
-    | identifier LPAREN (subject_function_argument COMMA)+ subject_function_argument RPAREN
+    | identifier LPAREN (subject_function_argument COMMA)*? subject_function_argument RPAREN
     ;
 
 subject_function_argument
@@ -170,7 +162,7 @@ path_part_matcher_tag
 
 // Constant
 path_part_matcher_constant_quoted                   : string_quoted ;
-path_part_matcher_constant_unquoted                 : STRING_UNQUOTED ;
+path_part_matcher_constant_unquoted                 : (LETTER | DOT | DIGIT)+ ;
 path_part_matcher_constant_identifier               : identifier ;
 path_part_matcher_constant_integer                  : integer_literal_unsigned ;
 path_part_matcher_constant
