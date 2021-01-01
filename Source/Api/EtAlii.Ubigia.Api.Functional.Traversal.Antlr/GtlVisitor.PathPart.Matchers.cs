@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_matcher_constant_unquoted(GtlParser.Path_part_matcher_constant_unquotedContext context)
         {
-            var text = context.STRING_UNQUOTED().GetText();
+            var text = context.GetText();
             return new ConstantPathSubjectPart(text);
         }
 
