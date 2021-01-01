@@ -62,9 +62,7 @@ UBIGIA_IDENTIFIER
     ;
 // Specials =======================================================================
 
-EOL                                                 : NEWLINE+ ;
-
-fragment NEWLINE
+NEWLINE
 	: '\r\n' | '\r' | '\n'
 	| '\u0085' // <Next Line CHARACTER (U+0085)>'
 	| '\u2028' //'<Line Separator CHARACTER (U+2028)>'
@@ -79,7 +77,7 @@ fragment WHITESPACE
 	;
 
 // keeping whitespace tokenised makes it easier for syntax highlighting
-DISCARD                                             : ( WHITESPACE | EOL ) -> skip ;
+DISCARD                                             : ( WHITESPACE | NEWLINE+ ) -> skip ;
 
 // =====================================================================================================================
 // New implementation

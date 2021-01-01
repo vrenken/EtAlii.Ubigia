@@ -14,28 +14,24 @@ options {
 
 import GtlPrimitives ;
 
-start
-    : script
-    ;
-
 script: sequence+ ;
 
 comment : COMMENT ;
 
 sequence
-    : subject operator subject comment EOL
+    : subject operator subject comment NEWLINE
     | subject operator subject comment
-    | subject operator subject EOL
+    | subject operator subject NEWLINE
     | subject operator subject
-    | operator subject comment EOL
+    | operator subject comment NEWLINE
     | operator subject comment
-    | operator subject EOL
+    | operator subject NEWLINE
     | operator subject
-    | subject comment EOL
+    | subject comment NEWLINE
     | subject comment
-    | subject EOL
+    | subject NEWLINE
     | subject
-    | comment EOL
+    | comment NEWLINE
     | comment
     ;
 
@@ -46,10 +42,10 @@ operator
     ;
 
 subject
-    : subject_non_rooted_path
+    : subject_constant_object
+    | subject_non_rooted_path
     | subject_rooted_path
     | subject_constant_string
-    | subject_constant_object
     | subject_variable
     | subject_function
     | subject_root
@@ -57,8 +53,8 @@ subject
 
 subject_non_rooted_path                             : path_part+ ;
 subject_rooted_path                                 : IDENTIFIER COLON path_part* ;
-subject_constant_string                             : string_quoted ;
 subject_constant_object                             : object ;
+subject_constant_string                             : string_quoted ;
 subject_root                                        : ROOT_SUBJECT_PREFIX COLON IDENTIFIER ;
 subject_variable                                    : DOLLAR IDENTIFIER ;
 

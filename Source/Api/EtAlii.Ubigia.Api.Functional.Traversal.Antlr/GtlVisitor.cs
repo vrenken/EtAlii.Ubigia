@@ -11,8 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitScript(GtlParser.ScriptContext context)
         {
-            var sequences = context.children
-                .Select(sequenceContext => Visit(sequenceContext) as Sequence)
+            var sequences = context.sequence()
+                .Select(sequenceContext => VisitSequence(sequenceContext) as Sequence)
                 .Where(sequence => sequence != null)
                 .ToArray();
 
