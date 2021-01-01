@@ -7,22 +7,28 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class GtlVisitor
     {
+        public override object VisitPath_part_matcher_wildcard(GtlParser.Path_part_matcher_wildcardContext context)
+        {
+            var text = context.GetText();
+            return new WildcardPathSubjectPart(text);
+        }
+
         public override object VisitPath_part_matcher_tag_tag_only(GtlParser.Path_part_matcher_tag_tag_onlyContext context)
         {
-            var tag = context.IDENTIFIER()?.GetText();
+            var tag = (string)VisitIdentifier(context.identifier());
             return new TaggedPathSubjectPart(null, tag);
         }
 
         public override object VisitPath_part_matcher_tag_name_only(GtlParser.Path_part_matcher_tag_name_onlyContext context)
         {
-            var name = context.IDENTIFIER()?.GetText();
+            var name = (string)VisitIdentifier(context.identifier());
             return new TaggedPathSubjectPart(name, null);
         }
 
         public override object VisitPath_part_matcher_tag_and_name(GtlParser.Path_part_matcher_tag_and_nameContext context)
         {
-            var name = context.IDENTIFIER(0)?.GetText();
-            var tag = context.IDENTIFIER(1)?.GetText();
+            var name = (string)VisitIdentifier(context.identifier(0));
+            var tag = (string)VisitIdentifier(context.identifier(1));
 
             return new TaggedPathSubjectPart(name, tag);
         }
@@ -47,19 +53,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_matcher_variable(GtlParser.Path_part_matcher_variableContext context)
         {
-            var text = context.IDENTIFIER().GetText();
+            var text = (string)VisitIdentifier(context.identifier());
             return new VariablePathSubjectPart(text);
         }
 
         public override object VisitPath_part_matcher_constant_integer(GtlParser.Path_part_matcher_constant_integerContext context)
         {
-            var text = context.INTEGER_LITERAL_UNSIGNED().GetText();
-            return new ConstantPathSubjectPart(text);
+            var number = VisitInteger_literal_unsigned(context.integer_literal_unsigned());
+            return new ConstantPathSubjectPart(number.ToString());
         }
 
         public override object VisitPath_part_matcher_constant_identifier(GtlParser.Path_part_matcher_constant_identifierContext context)
         {
-            var text = context.IDENTIFIER().GetText();
+            var text = (string)VisitIdentifier(context.identifier());
             return new ConstantPathSubjectPart(text);
         }
 

@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Globalization;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
@@ -20,6 +21,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitInteger_literal_unsigned(GtlParser.Integer_literal_unsignedContext context) => int.Parse(context.INTEGER_LITERAL_UNSIGNED().GetText(), CultureInfo.InvariantCulture);
 
-        public override object VisitIdentifier(GtlParser.IdentifierContext context) => context.IDENTIFIER().GetText();
+        public override object VisitIdentifier(GtlParser.IdentifierContext context) => context.IDENTIFIER()?.GetText();
+
+        public override object VisitDatetime(GtlParser.DatetimeContext context) => DateTime.Parse(context.GetText(), CultureInfo.InvariantCulture);
     }
 }
