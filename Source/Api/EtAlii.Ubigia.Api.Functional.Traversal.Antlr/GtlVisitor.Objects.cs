@@ -18,8 +18,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 properties.Add(key, value);
             }
 
-            var (lastKey, lastValue) = (KeyValuePair<string, object>)VisitObject_kv_pair_without_comma(context.object_kv_pair_without_comma());
-            properties.Add(lastKey, lastValue);
+            var kvpContext = context.object_kv_pair_without_comma();
+            if (kvpContext != null)
+            {
+                var (lastKey, lastValue) = (KeyValuePair<string, object>)VisitObject_kv_pair_without_comma(kvpContext);
+                properties.Add(lastKey, lastValue);
+            }
 
             return new ObjectConstantSubject(properties);
         }
