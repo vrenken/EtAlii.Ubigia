@@ -34,11 +34,4 @@
     <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="GtlVisitor.Objects.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-  </ItemGroup>
 </Project>
