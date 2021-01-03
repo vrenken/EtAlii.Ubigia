@@ -6,10 +6,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Globalization;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
+    // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
     public partial class GtlVisitor
     {
-        // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
-        public override object VisitString_quoted(GtlParser.String_quotedContext context) => context.STRING_QUOTED().GetText().Trim('"', '\'');
+        public override object VisitString_quoted(GtlParser.String_quotedContext context)
+        {
+            var text = context.STRING_QUOTED().GetText();
+            return text.Substring(1, text.Length - 2);
+        }
 
         public override object VisitBoolean_literal(GtlParser.Boolean_literalContext context) => bool.Parse(context.BOOLEAN_LITERAL().GetText());
 
@@ -35,87 +39,154 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitDatetime_format_1(GtlParser.Datetime_format_1Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
-            var second = context.datetime_time_ss().GetText();
-            var milliSecond = context.datetime_ms().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
+                var second = context.datetime_time_ss().GetText();
+                var milliSecond = context.datetime_ms().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}", "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}",
+                    "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
+
         public override object VisitDatetime_format_2(GtlParser.Datetime_format_2Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
-            var second = context.datetime_time_ss().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
+                var second = context.datetime_time_ss().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss",
+                    CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
+
         public override object VisitDatetime_format_3(GtlParser.Datetime_format_3Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm",
+                    CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
+
         public override object VisitDatetime_format_4(GtlParser.Datetime_format_4Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
+
         public override object VisitDatetime_format_5(GtlParser.Datetime_format_5Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
-            var second = context.datetime_time_ss().GetText();
-            var milliSecond = context.datetime_ms().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
+                var second = context.datetime_time_ss().GetText();
+                var milliSecond = context.datetime_ms().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}", "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}",
+                    "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
+
         public override object VisitDatetime_format_6(GtlParser.Datetime_format_6Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
-            var second = context.datetime_time_ss().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
+                var second = context.datetime_time_ss().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss",
+                    CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
 
         public override object VisitDatetime_format_7(GtlParser.Datetime_format_7Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
-            var hour = context.datetime_time_hh().GetText();
-            var minute = context.datetime_time_mm().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
+                var hour = context.datetime_time_hh().GetText();
+                var minute = context.datetime_time_mm().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm",
+                    CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
 
         public override object VisitDatetime_format_8(GtlParser.Datetime_format_8Context context)
         {
-            var year = context.datetime_date_yyyy().GetText();
-            var month = context.datetime_date_mm().GetText();
-            var day = context.datetime_date_dd().GetText();
+            try
+            {
+                var year = context.datetime_date_yyyy().GetText();
+                var month = context.datetime_date_mm().GetText();
+                var day = context.datetime_date_dd().GetText();
 
-            return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException("Cannot parse DateTime: " + context.GetText(), e);
+            }
         }
     }
 }
