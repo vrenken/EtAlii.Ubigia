@@ -29,6 +29,11 @@
 
                 // Act.
                 var context = parser.script();
+                if (context.exception != null)
+                {
+                    throw new ScriptParserException(context.exception.Message, context.exception);
+                }
+
                 var visitor = new GtlVisitor();
                 script = visitor.Visit(context) as Script;
             }
