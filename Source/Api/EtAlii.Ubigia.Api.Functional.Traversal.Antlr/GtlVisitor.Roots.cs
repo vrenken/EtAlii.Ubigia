@@ -11,16 +11,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var name = context.identifier().GetText();
             var result = new RootSubject(name);
 
-            var parentContext = GetParent<GtlParser.SequenceContext>(context, out var parentOfChild);
+            var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
 
-            if (parentContext.GetChild(0) != parentOfChild)
+            if (before != null)
             {
                 throw new ScriptParserException("A root subject can only be used as first subject.");
             }
 
-            var (_, after) = GetSiblings<GtlParser.SequenceContext>(context);
-            var isAssignmentOperator = after.ChildCount == 1 &&
-                                       after.GetChild(0) is GtlParser.Operator_assignContext;
+            var isAssignmentOperator = after is GtlParser.Operator_assignContext;
 
             if (!isAssignmentOperator)
             {
@@ -34,13 +32,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var type = context.GetText();
             var result = new RootDefinitionSubject(type);
-            var (before, after) = GetSiblings<GtlParser.SequenceContext>(context);
+            var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
             if (before == null)
             {
                 throw new ScriptParserException("A root definition subject can not be used as first subject.");
             }
-            var isAssignmentOperator = before.ChildCount == 1 &&
-                                       before.GetChild(0) is GtlParser.Operator_assignContext;
+            var isAssignmentOperator = before is GtlParser.Operator_assignContext;
             if (!isAssignmentOperator)
             {
                 throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");

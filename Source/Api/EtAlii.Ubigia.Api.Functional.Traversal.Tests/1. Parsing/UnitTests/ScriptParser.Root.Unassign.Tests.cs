@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void ScriptParser_Root_Unassign_Object_Root()
+        public void ScriptParser_Root_UnAssign_Object_Root()
         {
             // Arrange.
             const string query = "root:projects <= ";
