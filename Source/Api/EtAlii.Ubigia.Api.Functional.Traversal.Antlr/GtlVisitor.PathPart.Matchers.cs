@@ -121,6 +121,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitPath_part_matcher_constant_unquoted(GtlParser.Path_part_matcher_constant_unquotedContext context)
         {
             var text = context.GetText();
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                throw new ScriptParserException("Whitespace in a path part requires a quoted string.");
+            }
+            
             return new ConstantPathSubjectPart(text);
         }
 
