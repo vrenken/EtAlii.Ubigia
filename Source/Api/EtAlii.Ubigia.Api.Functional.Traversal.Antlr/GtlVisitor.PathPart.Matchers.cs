@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var (before, _, _) = ParseTreeHelper.GetPathSiblings(context);
 
-            if(before != null)
+            if(before != null && before is not GtlParser.Path_part_traverser_parentContext)
             {
                 throw new ScriptParserException("A identifier path part can only be used at the start of a path");
             }
