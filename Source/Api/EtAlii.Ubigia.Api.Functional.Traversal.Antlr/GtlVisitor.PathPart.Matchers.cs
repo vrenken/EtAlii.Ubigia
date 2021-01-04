@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             if(before != null && before is not GtlParser.Path_part_traverser_parentContext || before != first)
             {
-                throw new ScriptParserException("A identifier path part can only be used at the start of a path");
+                throw new ScriptParserException("A identifier path part can only be used at the start of a path.");
             }
 
             var parts = context
@@ -126,7 +126,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 throw new ScriptParserException("Whitespace in a path part requires a quoted string.");
             }
-            
+
             return new ConstantPathSubjectPart(text);
         }
 
