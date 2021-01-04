@@ -11,13 +11,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
 
-            if (before is GtlParser.Path_part_traverser_parentContext || after is GtlParser.Path_part_traverser_parentContext)
+            if (before is GtlParser.Path_part_traverser_parents_allContext || after is GtlParser.Path_part_traverser_parents_allContext ||
+                before is GtlParser.Path_part_traverser_parentContext || after is GtlParser.Path_part_traverser_parentContext)
             {
                 throw new ScriptParserException("Two parent path separators cannot be combined.");
             }
             if (after is GtlParser.Path_part_traverser_childrenContext)
             {
                 throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
+            }
+            if (after is GtlParser.Path_part_traverser_children_allContext)
+            {
+                throw new ScriptParserException("The parent path separator cannot be followed by an all child path separator.");
             }
 
             return new ParentPathSubjectPart();
@@ -28,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
 
             if (before is GtlParser.Path_part_traverser_parents_allContext || after is GtlParser.Path_part_traverser_parents_allContext ||
-                before is GtlParser.Path_part_traverser_parents_allContext || after is GtlParser.Path_part_traverser_parents_allContext)
+                before is GtlParser.Path_part_traverser_parentContext || after is GtlParser.Path_part_traverser_parentContext)
             {
                 throw new ScriptParserException("The all parents path separator cannot be combined.");
             }
@@ -36,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 throw new ScriptParserException("The all parents path separator cannot be followed by a child path separator.");
             }
-            if (after is GtlParser.Path_part_traverser_childrenContext)
+            if (after is GtlParser.Path_part_traverser_children_allContext)
             {
                 throw new ScriptParserException("The all parents path separator cannot be followed by an all child path separator.");
             }
@@ -48,13 +53,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
 
-            if (before is GtlParser.Path_part_traverser_childrenContext || after is GtlParser.Path_part_traverser_childrenContext)
+            if (before is GtlParser.Path_part_traverser_childrenContext || after is GtlParser.Path_part_traverser_childrenContext ||
+                before is GtlParser.Path_part_traverser_children_allContext || after is GtlParser.Path_part_traverser_children_allContext)
             {
                 throw new ScriptParserException("Two child path separators cannot be combined.");
             }
             if (after is GtlParser.Path_part_traverser_parentContext)
             {
                 throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
+            }
+            if (after is GtlParser.Path_part_traverser_parents_allContext)
+            {
+                throw new ScriptParserException("The child path separator cannot be followed by a all parents path separator.");
             }
 
             return new ChildrenPathSubjectPart();
