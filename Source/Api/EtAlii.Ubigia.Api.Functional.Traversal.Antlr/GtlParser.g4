@@ -38,14 +38,14 @@ operator
     ;
 
 subject
-    : subject_constant_object
-    | subject_non_rooted_path
-    | subject_rooted_path
-    | subject_root_definition
-    | subject_constant_string
-    | subject_variable
+    : subject_root
     | subject_function
-    | subject_root
+    | subject_constant_string
+    | subject_constant_object
+    | subject_root_definition
+    | subject_rooted_path
+    | subject_non_rooted_path
+    | subject_variable
     ;
 
 subject_non_rooted_path                             : path_part+ ;
@@ -76,30 +76,18 @@ subject_function_argument_variable                  : DOLLAR identifier ;
 subject_function_argument_non_rooted_path           : path_part+ ;
 subject_function_argument_rooted_path               : identifier COLON path_part*;
 
-path_part : (path_part_traverser | path_part_match) ;
-
-path_part_match
-    : path_part_matcher_identifier
+path_part
+    : path_part_matcher_traversing_wildcard
+    | path_part_matcher_wildcard
+    | path_part_matcher_tag
+    // path_part_matcher_conditional
     | path_part_matcher_constant
     | path_part_matcher_variable
-    | path_part_matcher_wildcard
-    | path_part_matcher_traversing_wildcard
-    | path_part_matcher_tag
-    | path_part_matcher_typed
-    | path_part_matcher_regex
-    ;
-
-path_part_traverser
-    : path_part_traverser_parents_all      // Hierarchical
+    | path_part_matcher_identifier
+    | path_part_traverser_parents_all      // Hierarchical
     | path_part_traverser_parent
     | path_part_traverser_children_all
     | path_part_traverser_children
-    | path_part_traverser_previous_first    // Sequential
-    | path_part_traverser_previous_multiple
-    | path_part_traverser_previous_single
-    | path_part_traverser_next_last
-    | path_part_traverser_next_multiple
-    | path_part_traverser_next_single
     | path_part_traverser_downdates_oldest    // Temporal
     | path_part_traverser_downdates_multiple
     | path_part_traverser_downdates_all
@@ -108,6 +96,14 @@ path_part_traverser
     | path_part_traverser_updates_multiple
     | path_part_traverser_updates_all
     | path_part_traverser_updates
+    | path_part_traverser_previous_multiple    // Sequential
+    | path_part_traverser_previous_first
+    | path_part_traverser_previous_single
+    | path_part_traverser_next_last
+    | path_part_traverser_next_multiple
+    | path_part_traverser_next_single
+    | path_part_matcher_typed
+    | path_part_matcher_regex
     ;
 
 // Hierarchical

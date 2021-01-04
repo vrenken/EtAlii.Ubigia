@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var(before, after, first) = GetSiblings(partContext, partContext.Parent);
 
-            return (before?.GetChild(0).GetChild(0), after?.GetChild(0).GetChild(0), first?.GetChild(0).GetChild(0));
+            return (before?.GetChild(0), after?.GetChild(0), first?.GetChild(0));
         }
 
         public static (IParseTree before, IParseTree after, IParseTree first) GetSequenceSiblings(IParseTree current)
