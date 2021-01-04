@@ -14,7 +14,7 @@ options {
 
 import GtlPrimitives ;
 
-script: sequence+ ;
+script: sequence+ EOF;
 
 comment : COMMENT ;
 
@@ -28,16 +28,20 @@ sequence
     | comment NEWLINE?
     ;
 
+operator_assign : LCHEVR EQUALS ;
+operator_add : PLUS EQUALS ;
+operator_remove : MINUS EQUALS ;
 operator
-    : LCHEVR EQUALS #OperatorAssign
-    | PLUS EQUALS #OperatorAdd
-    | MINUS EQUALS #OperatorRemove
+    : operator_assign
+    | operator_add
+    | operator_remove
     ;
 
 subject
     : subject_constant_object
     | subject_non_rooted_path
     | subject_rooted_path
+    | subject_root_definition
     | subject_constant_string
     | subject_variable
     | subject_function
@@ -48,8 +52,9 @@ subject_non_rooted_path                             : path_part+ ;
 subject_rooted_path                                 : identifier COLON path_part* ;
 subject_constant_object                             : object ;
 subject_constant_string                             : string_quoted ;
-subject_root                                        : ROOT_SUBJECT_PREFIX COLON identifier ;
+subject_root                                        : ROOT_SUBJECT_PREFIX COLON identifier;
 subject_variable                                    : DOLLAR identifier ;
+subject_root_definition                             : identifier (DOT identifier)* ;
 
 // Functions.
 subject_function
@@ -76,32 +81,33 @@ path_part : (path_part_traverser | path_part_match) ;
 path_part_match
     : path_part_matcher_identifier
     | path_part_matcher_constant
-    | PATH_PART_MATCHER_REGEX
     | path_part_matcher_variable
     | path_part_matcher_wildcard
+    | path_part_matcher_traversing_wildcard
     | path_part_matcher_tag
     | path_part_matcher_typed
+    | path_part_matcher_regex
     ;
 
 path_part_traverser
-    : path_part_traverser_parent      // Hierarchical
-    | path_part_traverser_parents_all
-    | path_part_traverser_children
+    : path_part_traverser_parents_all      // Hierarchical
+    | path_part_traverser_parent
     | path_part_traverser_children_all
-    | path_part_traverser_previous_single    // Sequential
+    | path_part_traverser_children
+    | path_part_traverser_previous_first    // Sequential
     | path_part_traverser_previous_multiple
-    | path_part_traverser_previous_first
-    | path_part_traverser_next_single
-    | path_part_traverser_next_multiple
+    | path_part_traverser_previous_single
     | path_part_traverser_next_last
-    | path_part_traverser_downdate    // Temporal
+    | path_part_traverser_next_multiple
+    | path_part_traverser_next_single
+    | path_part_traverser_downdates_oldest    // Temporal
     | path_part_traverser_downdates_multiple
     | path_part_traverser_downdates_all
-    | path_part_traverser_downdates_oldest
-    | path_part_traverser_updates
+    | path_part_traverser_downdate
+    | path_part_traverser_updates_newest
     | path_part_traverser_updates_multiple
     | path_part_traverser_updates_all
-    | path_part_traverser_updates_newest
+    | path_part_traverser_updates
     ;
 
 // Hierarchical
@@ -136,11 +142,11 @@ path_part_matcher_typed                             : LBRACK identifier RBRACK ;
 // Wildcards.
 matcher_wildcard                                    : ASTERIKS ;
 matcher_wildcard_before_nonquoted                   : ASTERIKS NO_NEWLINE+? ;
-matcher_wildcard_before_quoted_double               : DOUBLEQUOTE ASTERIKS (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? DOUBLEQUOTE ;
-matcher_wildcard_before_quoted_single               : SINGLEQUOTE ASTERIKS (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? SINGLEQUOTE ;
+matcher_wildcard_before_quoted_double               : DOUBLEQUOTE ASTERIKS ( NO_DOUBLEQUOTE | NO_NEWLINE)*? DOUBLEQUOTE ;
+matcher_wildcard_before_quoted_single               : SINGLEQUOTE ASTERIKS ( NO_SINGLEQUOTE | NO_NEWLINE)*? SINGLEQUOTE ;
 matcher_wildcard_after_nonquoted                    : NO_NEWLINE+? NO_LBRACES ASTERIKS ;
-matcher_wildcard_after_quoted_double                : DOUBLEQUOTE (  ESCAPED_DOUBLEQUOTE | NO_DOUBLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS DOUBLEQUOTE ;
-matcher_wildcard_after_quoted_single                : SINGLEQUOTE (  ESCAPED_SINGLEQUOTE | NO_SINGLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS SINGLEQUOTE ;
+matcher_wildcard_after_quoted_double                : DOUBLEQUOTE ( NO_DOUBLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS DOUBLEQUOTE ;
+matcher_wildcard_after_quoted_single                : SINGLEQUOTE ( NO_SINGLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS SINGLEQUOTE ;
 path_part_matcher_wildcard
     : matcher_wildcard
     | matcher_wildcard_before_nonquoted
@@ -150,6 +156,8 @@ path_part_matcher_wildcard
     | matcher_wildcard_after_quoted_double
     | matcher_wildcard_after_quoted_single
     ;
+
+path_part_matcher_traversing_wildcard : ASTERIKS integer_literal_unsigned ASTERIKS ;
 
 path_part_matcher_tag_name_only                     : identifier HASHTAG ;
 path_part_matcher_tag_tag_only                      : HASHTAG identifier ;
@@ -161,7 +169,7 @@ path_part_matcher_tag
     ;
 
 // Constant
-path_part_matcher_constant_quoted                   : string_quoted ;
+path_part_matcher_constant_quoted                   : string_quoted_non_empty ;
 path_part_matcher_constant_unquoted                 : (LETTER | DOT | DIGIT)+ ;
 path_part_matcher_constant_identifier               : identifier ;
 path_part_matcher_constant_integer                  : integer_literal_unsigned ;
@@ -171,6 +179,9 @@ path_part_matcher_constant
     | path_part_matcher_constant_identifier
     | path_part_matcher_constant_integer
     ;
+
+// Regex.
+path_part_matcher_regex                             : LBRACK string_quoted_non_empty RBRACK ;
 
 // Variable
 path_part_matcher_variable                          : DOLLAR identifier ;

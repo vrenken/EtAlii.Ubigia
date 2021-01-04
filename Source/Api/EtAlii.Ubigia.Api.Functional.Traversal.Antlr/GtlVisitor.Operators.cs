@@ -6,8 +6,39 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class GtlVisitor
     {
-        public override object VisitOperatorAdd(GtlParser.OperatorAddContext context) => new AddOperator();
-        public override object VisitOperatorAssign(GtlParser.OperatorAssignContext context) => new AssignOperator();
-        public override object VisitOperatorRemove(GtlParser.OperatorRemoveContext context) => new RemoveOperator();
+        public override object VisitOperator(GtlParser.OperatorContext context)
+        {
+            var result = base.VisitOperator(context);
+
+            var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
+
+            if (before is GtlParser.OperatorContext || after is GtlParser.OperatorContext)
+            {
+                throw new ScriptParserException("Two operators cannot be combined.");
+            }
+            if(before is GtlParser.CommentContext)
+            {
+                throw new ScriptParserException("A operator cannot used in combination with comments.");
+            }
+
+            return result;
+        }
+
+        public override object VisitOperator_add(GtlParser.Operator_addContext context) => new AddOperator();
+
+        public override object VisitOperator_assign(GtlParser.Operator_assignContext context)
+        {
+            var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
+
+            if (before is GtlParser.Subject_non_rooted_pathContext || before is GtlParser.Subject_rooted_pathContext &&
+                after is GtlParser.Subject_non_rooted_pathContext || after is GtlParser.Subject_rooted_pathContext)
+            {
+                throw new ScriptParserException("Two operators cannot be combined.");
+            }
+
+            return new AssignOperator();
+        }
+
+        public override object VisitOperator_remove(GtlParser.Operator_removeContext context) => new RemoveOperator();
     }
 }

@@ -15,6 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return text.Substring(1, text.Length - 2);
         }
 
+        public override object VisitString_quoted_non_empty(GtlParser.String_quoted_non_emptyContext context)
+        {
+            var text = context.STRING_QUOTED_NON_EMPTY().GetText();
+            return text.Substring(1, text.Length - 2);
+        }
+
         public override object VisitBoolean_literal(GtlParser.Boolean_literalContext context) => bool.Parse(context.BOOLEAN_LITERAL().GetText());
 
         public override object VisitFloat_literal(GtlParser.Float_literalContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);

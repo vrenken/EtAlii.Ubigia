@@ -62,6 +62,7 @@ object_kv_value
 
 identifier                                          : IDENTIFIER ;
 string_quoted                                       : STRING_QUOTED ;
+string_quoted_non_empty                             : STRING_QUOTED_NON_EMPTY ;
 integer_literal                                     : (PLUS | MINUS) DIGIT+ ;
 integer_literal_unsigned                            : DIGIT+ ;
 float_literal                                       : (PLUS | MINUS) DIGIT+ DOT DIGIT+ ;

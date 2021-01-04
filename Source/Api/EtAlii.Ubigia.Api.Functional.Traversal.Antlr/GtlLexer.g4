@@ -7,20 +7,19 @@ lexer grammar GtlLexer;
     // ReSharper disable all
 }
 
-// Regex
-fragment MATCHER_REGEX_QUOTED_DOUBLE                : LBRACK DOUBLEQUOTE (  ESCAPED_DOUBLEQUOTE | ~["])*? DOUBLEQUOTE RBRACK ;
-fragment MATCHER_REGEX_QUOTED_SINGLE                : LBRACK SINGLEQUOTE (  ESCAPED_SINGLEQUOTE | ~['])*? SINGLEQUOTE RBRACK ;
-PATH_PART_MATCHER_REGEX
-    : MATCHER_REGEX_QUOTED_DOUBLE
-    | MATCHER_REGEX_QUOTED_SINGLE
-    ;
-
 // Comments
 fragment COMMENT_PREFIX                             : '--';
 COMMENT                                             : COMMENT_PREFIX NO_NEWLINE*;
 
 
 // String
+fragment STRING_QUOTED_NON_EMPTY_DOUBLE             : DOUBLEQUOTE  (~["\\\r\n\u0085\u2028\u2029])+ DOUBLEQUOTE;
+fragment STRING_QUOTED_NON_EMPTY_SINGLE             : SINGLEQUOTE  (~['\\\r\n\u0085\u2028\u2029])+ SINGLEQUOTE;
+STRING_QUOTED_NON_EMPTY
+    : STRING_QUOTED_NON_EMPTY_DOUBLE
+    | STRING_QUOTED_NON_EMPTY_SINGLE
+    ;
+
 fragment STRING_QUOTED_DOUBLE                       : DOUBLEQUOTE  (~["\\\r\n\u0085\u2028\u2029])* DOUBLEQUOTE;
 fragment STRING_QUOTED_SINGLE                       : SINGLEQUOTE  (~['\\\r\n\u0085\u2028\u2029])* SINGLEQUOTE;
 STRING_QUOTED
