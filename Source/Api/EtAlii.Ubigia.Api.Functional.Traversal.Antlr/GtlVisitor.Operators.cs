@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             if (before is GtlParser.Subject_non_rooted_pathContext || before is GtlParser.Subject_rooted_pathContext &&
                 after is GtlParser.Subject_non_rooted_pathContext || after is GtlParser.Subject_rooted_pathContext)
             {
-                throw new ScriptParserException("Two operators cannot be combined.");
+                throw new ScriptParserException("The assign operator cannot assign a path to another path.");
             }
 
             return new AssignOperator();
