@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public partial class ScriptParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void ScriptParser_Root_Unassign_Time_Root()
+        public void ScriptParser_Root_UnAssign_Time_Root()
         {
             // Arrange.
             const string query = "root:time <= ";
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void ScriptParser_Root_Unassign_Time_Root_Under_Other_Name()
+        public void ScriptParser_Root_UnAssign_Time_Root_Under_Other_Name()
         {
             // Arrange.
             const string query = "root:specialtime <= ";
