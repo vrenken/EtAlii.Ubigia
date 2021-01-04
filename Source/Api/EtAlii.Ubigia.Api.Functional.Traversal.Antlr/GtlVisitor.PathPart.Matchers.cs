@@ -71,9 +71,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_matcher_identifier(GtlParser.Path_part_matcher_identifierContext context)
         {
-            var (before, _, _) = ParseTreeHelper.GetPathSiblings(context);
+            var (before, _, first) = ParseTreeHelper.GetPathSiblings(context);
 
-            if(before != null && before is not GtlParser.Path_part_traverser_parentContext)
+            if(before != null && before is not GtlParser.Path_part_traverser_parentContext || before != first)
             {
                 throw new ScriptParserException("A identifier path part can only be used at the start of a path");
             }
