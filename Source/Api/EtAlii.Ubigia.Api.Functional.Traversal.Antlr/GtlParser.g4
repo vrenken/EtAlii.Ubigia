@@ -63,8 +63,8 @@ subject_function
     ;
 
 subject_function_argument
-    : subject_function_argument_identifier
-    | subject_function_argument_string_quoted
+    : subject_function_argument_string_quoted
+    | subject_function_argument_identifier
     | subject_function_argument_variable
     | subject_function_argument_rooted_path
     | subject_function_argument_non_rooted_path
