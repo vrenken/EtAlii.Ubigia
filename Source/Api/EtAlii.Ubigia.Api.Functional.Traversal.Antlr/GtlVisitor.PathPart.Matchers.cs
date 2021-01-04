@@ -97,6 +97,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitPath_part_matcher_variable(GtlParser.Path_part_matcher_variableContext context)
         {
             var text = (string)VisitIdentifier(context.identifier());
+
+            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
+            if (before is GtlParser.Path_part_matcher_variableContext || after is GtlParser.Path_part_matcher_variableContext)
+            {
+                throw new ScriptParserException("A variable path part cannot be combined with another variable path part.");
+            }
             return new VariablePathSubjectPart(text);
         }
 

@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
-    using System.IO;
-    using System.Text;
     using Antlr4.Runtime;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
@@ -27,20 +25,15 @@
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new GtlLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var output = TextWriter.Null;
-                var errorBuilder = new StringBuilder();
-                GtlParser parser;
-                GtlParser.ScriptContext context;
-                using (var errorWriter = new StringWriter(errorBuilder))
-                {
-                    parser = new GtlParser(commonTokenStream, output, errorWriter);
-                    parser.RemoveErrorListeners();
-                    context = parser.script();
-                }
+                var parser = new GtlParser(commonTokenStream);
+                var errorListener = new ScriptErrorListener();
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(errorListener);
+                var context = parser.script();
 
                 if (parser.NumberOfSyntaxErrors != 0)
                 {
-                    var error = errorBuilder.ToString();
+                    var error = errorListener.ToErrorString();
                     throw new ScriptParserException(error);
                 }
                 if (context.exception != null)
