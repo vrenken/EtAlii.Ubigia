@@ -62,9 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            var pathSubject = item as NonRootedPathSubject;
-            var stringConstantSubject = item as StringConstantSubject;
-            if (pathSubject != null)
+            if (item is NonRootedPathSubject pathSubject)
             {
                 var parts = pathSubject.Parts;
 
@@ -82,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     throw new ScriptParserException("A relative path part cannot be used as first subject.");
                 }
             }
-            else if (stringConstantSubject == null)
+            else if (item is not StringConstantSubject)
             {
                 throw new ScriptParserException("Unsupported non-rooted path construction.");
             }
