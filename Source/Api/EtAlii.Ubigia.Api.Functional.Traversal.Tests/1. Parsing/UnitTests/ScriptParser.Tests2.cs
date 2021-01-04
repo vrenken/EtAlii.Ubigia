@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void ScriptParser_Parse_Multiple_Lines__With_Additonal_Newline()
+        public void ScriptParser_Parse_Multiple_Lines__With_Additional_Newline()
         {
             // Arrange.
             var text = "/'First'\n/'Second'\r\n\r\n/'Third'";
