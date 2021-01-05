@@ -51,7 +51,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var removeScript = _parser.Parse("/Person/LastName -= SurName").Script;
@@ -83,7 +83,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -115,7 +115,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -148,7 +148,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -181,7 +181,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 

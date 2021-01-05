@@ -56,7 +56,7 @@
                 .UseFunctionalDiagnostics(_testContext.Diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

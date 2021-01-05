@@ -23,7 +23,7 @@
 //                .Use(sequencePartProcessor)
 //                .Use(diagnostics)
 //                .Use(scope)
-//            var processor = new ScriptProcessorFactory().Create(configuration)
+//            var processor = new TestScriptProcessorFactory().Create(configuration)
 
 //            var sequenceParts = new SequencePart[]
 //            [
@@ -57,7 +57,7 @@
 //                .Use(sequencePartProcessor)
 //                .Use(diagnostics)
 //                .Use(scope)
-//            var processor = new ScriptProcessorFactory().Create(configuration)
+//            var processor = new TestScriptProcessorFactory().Create(configuration)
 
 //            var sequenceParts = new SequencePart[]
 //            [

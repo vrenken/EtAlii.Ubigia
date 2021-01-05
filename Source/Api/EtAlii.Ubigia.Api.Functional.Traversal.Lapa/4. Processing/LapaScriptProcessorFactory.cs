@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptProcessorFactory : Factory<IScriptProcessor, ScriptProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
+    internal class LapaScriptProcessorFactory : Factory<IScriptProcessor, ScriptProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
     {
         protected override IScaffolding[] CreateScaffoldings(ScriptProcessorConfiguration configuration)
         {
