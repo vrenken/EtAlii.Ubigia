@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
+    using System.Reactive.Linq;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -56,7 +56,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new LapaScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -93,7 +93,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new LapaScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -129,7 +129,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new LapaScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

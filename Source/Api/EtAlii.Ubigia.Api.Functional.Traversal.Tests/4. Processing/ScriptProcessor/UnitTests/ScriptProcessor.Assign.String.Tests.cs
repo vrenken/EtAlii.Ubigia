@@ -35,7 +35,7 @@
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -53,7 +53,7 @@
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -72,7 +72,7 @@
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -91,7 +91,7 @@
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -111,7 +111,7 @@
             var configuration = new ScriptProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);

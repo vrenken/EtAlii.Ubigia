@@ -38,7 +38,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -64,7 +64,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -90,7 +90,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);

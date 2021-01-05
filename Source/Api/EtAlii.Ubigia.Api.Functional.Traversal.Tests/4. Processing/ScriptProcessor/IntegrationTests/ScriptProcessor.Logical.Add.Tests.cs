@@ -50,7 +50,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
@@ -74,7 +74,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
@@ -104,7 +104,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
@@ -133,7 +133,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.FirstOrDefaultAsync();
 
@@ -168,7 +168,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -201,7 +201,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var addScript = _parser.Parse("/Person/LastName += \"\"").Script;
@@ -229,7 +229,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -263,7 +263,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -296,7 +296,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -332,7 +332,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var parseResult = _parser.Parse("$var <= \"SurName\"\r\n/Person/LastName += $var");
@@ -368,7 +368,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var parseResult = _parser.Parse("$var <= /Person/LastNameOriginal/SurName\r\n/Person/LastName += $var");

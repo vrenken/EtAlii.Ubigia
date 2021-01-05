@@ -39,7 +39,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             const string arrangeQuery = "root:time <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -68,7 +68,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             const string arrangeQuery = "root:specialtime <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -97,7 +97,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(configuration);
             const string arrangeQuery = "root:projects <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
