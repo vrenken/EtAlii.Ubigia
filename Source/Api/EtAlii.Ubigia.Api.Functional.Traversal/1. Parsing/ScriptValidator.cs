@@ -33,6 +33,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 case Subject subject: ValidateSubject(before, subject, sequencePartPosition, after); break;
                 case Operator @operator: ValidateOperator(before, @operator, sequencePartPosition, after); break;
+                case Comment:
+                    if (after != null)
+                    {
+                        throw new ScriptParserException("A comment cannot be followed by another sequence part.");
+                    }
+                    break;
             }
         }
 
@@ -64,6 +70,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         private void ValidateSubject(SequencePart before, Subject subject, int subjectPosition, SequencePart after)
         {
+            if (before is Subject || after is Subject)
+            {
+                throw new ScriptParserException("Two subjects cannot be combined.");
+            }
+            if (before is Comment)
+            {
+                throw new ScriptParserException("A subject cannot used in combination with comments.");
+            }
+
             switch (subject)
             {
                 case ObjectConstantSubject:
@@ -102,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
                     }
-                    if (after != null)
+                    if (after != null && after is not Comment)
                     {
                         throw new ScriptParserException("Root definition subjects can only be used as the last subject in a sequence.");
                     }
@@ -171,8 +186,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
                     }
-                    else if ((pathPartPosition == 0 && subject is NonRootedPathSubject) ||
-                             (pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart) && !(beforePathPart is VariablePathSubjectPart))
+                    else if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
+                             pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && !(beforePathPart is VariablePathSubjectPart))
                     {
                         throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
                     }
@@ -185,8 +200,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("A tagged path part cannot be combined with other constant, tagged, wildcard or string path parts.");
                     }
-                    else if ((pathPartPosition == 0 && subject is NonRootedPathSubject) ||
-                             (pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart) && !(beforePathPart is VariablePathSubjectPart))
+                    else if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
+                             pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && !(beforePathPart is VariablePathSubjectPart))
                     {
                         throw new ScriptParserException("A tagged path part cannot be used at the beginning of a graph path.");
                     }
@@ -219,7 +234,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     }
                     break;
                 case VariablePathSubjectPart:
-                    // Validate
+                    if (beforePathPart is VariablePathSubjectPart || afterPathPart is VariablePathSubjectPart)
+                    {
+                        throw new ScriptParserException("A variable path part cannot be combined with other variable path parts.");
+                    }
                     break;
                 case IdentifierPathSubjectPart:
                     if ((beforePathPart == null || beforePathPart is ParentPathSubjectPart) && pathPartPosition <= 1)
