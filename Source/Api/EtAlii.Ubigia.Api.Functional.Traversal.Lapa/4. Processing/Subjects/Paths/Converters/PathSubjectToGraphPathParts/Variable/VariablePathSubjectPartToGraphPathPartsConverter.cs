@@ -19,29 +19,25 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly LpsParser _nonRootedParser;
         private readonly INodeValidator _nodeValidator;
         private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
-        private readonly ISelector<Subject,ISubjectParser> _parserSelector;
+        private readonly IScriptValidator _scriptValidator;
 
         public VariablePathSubjectPartToGraphPathPartsConverter(
             IScriptProcessingContext context,
             INonRootedPathSubjectParser nonRootedPathSubjectParser,
             INodeValidator nodeValidator,
-            IConstantSubjectsParser constantSubjectsParser)
+            IScriptValidator scriptValidator)
         {
             _context = context;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
 
             _nodeValidator = nodeValidator;
+            _scriptValidator = scriptValidator;
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
                 .Register(variable => variable is INode, (variable, _) => ToPathSubject((INode)variable))
                 .Register(variable => variable is PathSubject, (variable, _) => (Subject)variable);
-
-            _parserSelector = new Selector<Subject, ISubjectParser>()
-                .Register(s => s is NonRootedPathSubject, nonRootedPathSubjectParser)
-                //.Register(s => s is RootedPathSubject, rootedPathSubjectParser)
-                .Register(s => s is ConstantSubject, constantSubjectsParser);
         }
 
         public async Task<GraphPathPart[]> Convert(
@@ -148,11 +144,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
 
             // There is a possibility that we receive a string constant that needs to be validated validation.
-            var parser = _parserSelector.Select(pathSubject);
-            if (!parser.CanValidate(pathSubject))
-            {
-                throw new ScriptParserException($"Unable to validate path in variable (variable: {variableName}, path: {pathSubject})");
-            }
+            _scriptValidator.Validate(pathSubject);
+
             return pathSubject;
         }
     }
