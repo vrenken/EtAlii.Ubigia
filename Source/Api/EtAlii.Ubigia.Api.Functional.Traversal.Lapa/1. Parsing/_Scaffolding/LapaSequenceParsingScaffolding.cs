@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SequenceParsingScaffolding : IScaffolding
+    internal class LapaSequenceParsingScaffolding : IScaffolding
     {
         public void Register(Container container)
         {

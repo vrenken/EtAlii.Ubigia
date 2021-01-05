@@ -17,9 +17,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             new LapaConstantHelpersScaffolding().Register(container);
             new LapaScriptParserScaffolding().Register(container);
-            new SequenceParsingScaffolding().Register(container);
-            new OperatorParsingScaffolding().Register(container);
-            new SubjectParsingScaffolding().Register(container);
+            new LapaSequenceParsingScaffolding().Register(container);
+            new LapaOperatorParsingScaffolding().Register(container);
+            new LapaSubjectParsingScaffolding().Register(container);
             new LapaPathSubjectParsingScaffolding().Register(container);
 
             _parser = container.GetInstance<ISequenceParser>();
