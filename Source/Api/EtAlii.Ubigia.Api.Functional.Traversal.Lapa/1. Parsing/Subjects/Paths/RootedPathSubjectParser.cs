@@ -48,25 +48,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            var rootedPathSubject = (RootedPathSubject)item;
-            var parts = rootedPathSubject.Parts;
-
-            for (var i = 0; i < parts.Length; i++)
-            {
-                var beforePathPart = i > 0 ? parts[i - 1] : null;
-                var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
-                var part = parts[i];
-                var arguments = new PathSubjectPartParserArguments(item, beforePathPart, part, i, afterPathPart);
-                _pathSubjectPartsParser.Validate(arguments);
-            }
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is RootedPathSubject;
-        }
     }
 }

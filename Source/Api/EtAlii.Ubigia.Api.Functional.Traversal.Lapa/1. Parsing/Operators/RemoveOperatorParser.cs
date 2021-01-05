@@ -26,15 +26,5 @@
             _nodeValidator.EnsureSuccess(node, Id);
             return new RemoveOperator();
         }
-
-        public bool CanValidate(Operator item)
-        {
-            return item is RemoveOperator;
-        }
-
-        public void Validate(SequencePart before, Operator item, int itemIndex, SequencePart after)
-        {
-            // Make sure the after SequencePart can actually be removed from the before SequencePart.
-        }
     }
 }

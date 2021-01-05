@@ -53,27 +53,6 @@
             return new TaggedPathSubjectPart(nameText, tagText);
         }
 
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if (arguments.Before is ConstantPathSubjectPart || arguments.After is ConstantPathSubjectPart ||
-                arguments.Before is WildcardPathSubjectPart || arguments.After is WildcardPathSubjectPart ||
-                arguments.Before is TaggedPathSubjectPart || arguments.After is TaggedPathSubjectPart ||
-                arguments.Before is TraversingWildcardPathSubjectPart || arguments.After is TraversingWildcardPathSubjectPart)
-            {
-                throw new ScriptParserException("A tagged path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-            }
-            else if ((arguments.PartIndex == 0 && arguments.Subject is NonRootedPathSubject) ||
-                     (arguments.PartIndex == 1 && arguments.Before is ParentPathSubjectPart) && !(arguments.Before is VariablePathSubjectPart))
-            {
-                throw new ScriptParserException("A tagged path part cannot be used at the beginning of a graph path.");
-            }
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is TaggedPathSubjectPart;
-        }
-
         private string GetMatch(LpNode node, string id)
         {
             var result = string.Empty;

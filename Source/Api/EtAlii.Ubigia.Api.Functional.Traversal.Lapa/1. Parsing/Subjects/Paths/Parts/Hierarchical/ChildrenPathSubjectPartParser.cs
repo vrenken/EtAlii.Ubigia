@@ -29,27 +29,9 @@
             return new ChildrenPathSubjectPart();
         }
 
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if (arguments.Before is ChildrenPathSubjectPart || arguments.After is ChildrenPathSubjectPart)
-            {
-                throw new ScriptParserException("Two child path separators cannot be combined.");
-            }
-            if (arguments.After is ParentPathSubjectPart)
-            {
-                throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
-            }
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is ChildrenPathSubjectPart;
         }
     }
 }

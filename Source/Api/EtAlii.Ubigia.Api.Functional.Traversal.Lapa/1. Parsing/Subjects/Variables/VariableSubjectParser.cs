@@ -32,15 +32,5 @@
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            // Validate the Subject in combination with the before/after SequencePart combination.
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is VariableSubject;
-        }
     }
 }

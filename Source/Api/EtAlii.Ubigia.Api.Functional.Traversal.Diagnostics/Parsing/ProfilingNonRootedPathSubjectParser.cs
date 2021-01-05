@@ -40,15 +40,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return _decoree.CanParse(node);
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            _decoree.Validate(before, item, itemIndex, after);
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return _decoree.CanValidate(item);
-        }
     }
 }

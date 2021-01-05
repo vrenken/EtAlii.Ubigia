@@ -40,34 +40,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
             return new ConstantPathSubjectPart(text);
         }
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if (arguments.Before is ConstantPathSubjectPart || arguments.After is ConstantPathSubjectPart)
-            {
-                throw new ScriptParserException("Two constant path parts cannot be combined.");
-            }
-            if (arguments.PartIndex != 0 || arguments.After == null)
-            {
-                var constant = (ConstantPathSubjectPart)arguments.Part;
-                if (constant.Name == string.Empty)
-                {
-                    throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                }
-            }
-            if (arguments.PartIndex == 0 && arguments.After != null)
-            {
-                var constant = (ConstantPathSubjectPart)arguments.Part;
-                if (constant.Name == string.Empty)
-                {
-                    throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                }
-            }
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is ConstantPathSubjectPart;
-        }
     }
 }

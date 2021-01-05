@@ -7,9 +7,5 @@
         LpsParser Parser { get; }
         bool CanParse(LpNode node);
         PathSubjectPart Parse(LpNode node);
-
-        bool CanValidate(PathSubjectPart part);
-        void Validate(PathSubjectPartParserArguments arguments);
-
     }
 }

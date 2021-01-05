@@ -28,20 +28,9 @@
             return new VariableFunctionSubjectArgument(text);
         }
 
-        public void Validate(FunctionSubjectArgument before, FunctionSubjectArgument argument, int parameterIndex, FunctionSubjectArgument after)
-        {
-            //((VariableFunctionSubjectArgument)argument).Name.ToCharArray()
-            //    .Count(c => c == "$")
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(FunctionSubjectArgument argument)
-        {
-            return argument is VariableFunctionSubjectArgument;
         }
     }
 }

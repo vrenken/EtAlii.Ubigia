@@ -40,11 +40,5 @@
             var result = parser.Parse(childNode);
             return result;
         }
-
-        public void Validate(FunctionSubjectArgument before, FunctionSubjectArgument argument, int parameterIndex, FunctionSubjectArgument after)
-        {
-            var parser = _parsers.Single(p => p.CanValidate(argument));
-            parser.Validate(before, argument, parameterIndex, after);
-        }
     }
 }

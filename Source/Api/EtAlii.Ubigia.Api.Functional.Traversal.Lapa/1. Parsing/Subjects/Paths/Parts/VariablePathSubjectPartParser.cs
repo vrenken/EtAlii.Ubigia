@@ -28,19 +28,9 @@
             return new VariablePathSubjectPart(text);
         }
 
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            // Validate
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is VariablePathSubjectPart;
         }
     }
 }

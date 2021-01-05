@@ -61,26 +61,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            if (itemIndex == 0 || before == null)
-            {
-                throw new ScriptParserException("A root definition subject can not be used as first subject.");
-            }
-            if (!(before is AssignOperator))
-            {
-                throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
-            }
-            if (after != null)
-            {
-                throw new ScriptParserException("Root definition subjects can only be used as the last subject in a sequence.");
-            }
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is RootDefinitionSubject;
-        }
     }
 }

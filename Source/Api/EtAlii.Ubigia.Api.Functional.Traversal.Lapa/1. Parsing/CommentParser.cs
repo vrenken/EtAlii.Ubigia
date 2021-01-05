@@ -33,15 +33,5 @@
             var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
             return new Comment(text);
         }
-
-        public bool CanValidate(SequencePart part)
-        {
-            return part is Comment;
-        }
-
-        public void Validate(SequencePart before, SequencePart part, int partIndex, SequencePart after)
-        {
-            //throw new System.NotImplementedException()
-        }
     }
 }

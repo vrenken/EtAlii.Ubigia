@@ -43,22 +43,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            var constantSubject = (ConstantSubject)item;
-            var parser = _parsers.Single(p => p.CanValidate(constantSubject));
-            parser.Validate(before, constantSubject, itemIndex, after);
-
-            if (itemIndex == 0)
-            {
-                throw new ScriptParserException("A constant cannot be used as first subject.");
-            }
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is ConstantSubject;
-        }
     }
 }

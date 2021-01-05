@@ -29,23 +29,9 @@
             return new UpdatesPathSubjectPart();
         }
 
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if (arguments.PartIndex == 0)
-            {
-                throw new ScriptParserException("The updates path separator cannot be used to start a path.");
-            }
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is UpdatesPathSubjectPart;
         }
     }
 }

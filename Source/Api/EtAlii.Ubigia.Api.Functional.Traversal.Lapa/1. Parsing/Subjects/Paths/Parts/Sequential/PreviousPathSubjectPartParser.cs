@@ -36,23 +36,9 @@
             return new PreviousPathSubjectPart();
         }
 
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if(arguments.PartIndex == 0)
-            {
-                throw new ScriptParserException("The previous path separator cannot be used to start a path.");
-            }
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is PreviousPathSubjectPart;
         }
     }
 }

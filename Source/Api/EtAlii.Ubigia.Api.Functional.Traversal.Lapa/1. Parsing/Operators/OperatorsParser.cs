@@ -42,27 +42,5 @@
             var result = parser.Parse(childNode);
             return result;
         }
-
-        public bool CanValidate(SequencePart part)
-        {
-            return part is Operator;
-        }
-
-        public void Validate(SequencePart before, SequencePart part, int partIndex, SequencePart after)
-        {
-            var @operator = (Operator)part;
-            var parser = _parsers.Single(p => p.CanValidate(@operator));
-            parser.Validate(before, @operator, partIndex, after);
-
-            if (before is Operator || after is Operator)
-            {
-                throw new ScriptParserException("Two operators cannot be combined.");
-            }
-            if(before is Comment)
-            {
-                throw new ScriptParserException("A operator cannot used in combination with comments.");
-            }
-        }
-
     }
 }

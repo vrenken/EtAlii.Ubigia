@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// <summary>
     /// This is the basic interface of all Moppet.Lapa parsers.
     /// </summary>
-    internal interface IParser<TItem, in TOtherItem> : IParser
+    internal interface IParser<out TItem> : IParser
     {
         /// <summary>
         /// Parse the given node and return an item instance that matches it.
@@ -36,22 +36,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <param name="node"></param>
         /// <returns></returns>
         bool CanParse(LpNode node);
-
-        /// <summary>
-        /// Validate the item after it has been parsed from a node.
-        /// </summary>
-        /// <param name="before"></param>
-        /// <param name="item"></param>
-        /// <param name="itemIndex"></param>
-        /// <param name="after"></param>
-        void Validate(TOtherItem before, TItem item, int itemIndex, TOtherItem after);
-
-        /// <summary>
-        /// Return true when the instance can be validated by the parser.
-        /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        bool CanValidate(TItem item);
-
     }
 }
