@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
                 new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
                 new PathBuildingScaffolding(),
-                new ConstantHelpersScaffolding(),
+                new LapaConstantHelpersScaffolding(),
                 new OperatorProcessingScaffolding(),
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 new LapaScriptParserScaffolding(),
 
                 // Additional processing (for path variable parts).
-                new PathSubjectParsingScaffolding(),
+                new LapaPathSubjectParsingScaffolding(),
 
             };
 

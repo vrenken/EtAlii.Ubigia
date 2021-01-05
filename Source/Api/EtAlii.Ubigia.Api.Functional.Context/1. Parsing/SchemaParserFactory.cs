@@ -14,9 +14,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 new SchemaParserScaffolding(),
                 new SequenceParsingScaffolding(),
                 new SubjectParsingScaffolding(),
-                new PathSubjectParsingScaffolding(),
                 new OperatorParsingScaffolding(),
-                new ConstantHelpersScaffolding(),
+
+                new LapaPathSubjectParsingScaffolding(),
+                new LapaConstantHelpersScaffolding(),
             };
         }
     }
