@@ -56,7 +56,7 @@ subject_constant_object                             : object ;
 subject_constant_string                             : string_quoted ;
 subject_root                                        : ROOT_SUBJECT_PREFIX COLON identifier;
 subject_variable                                    : DOLLAR identifier ;
-subject_root_definition                             : identifier (DOT identifier)* ;
+subject_root_definition                             : identifier (DOT identifier)+ ;
 
 // Functions.
 subject_function
