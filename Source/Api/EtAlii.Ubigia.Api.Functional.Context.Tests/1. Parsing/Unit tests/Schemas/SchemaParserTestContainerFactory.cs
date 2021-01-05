@@ -12,9 +12,10 @@
                 new SchemaParserScaffolding(),
                 new SequenceParsingScaffolding(),
                 new SubjectParsingScaffolding(),
-                new PathSubjectParsingScaffolding(),
                 new OperatorParsingScaffolding(),
-                new ConstantHelpersScaffolding(),
+
+                new LapaPathSubjectParsingScaffolding(),
+                new LapaConstantHelpersScaffolding(),
             };
 
 

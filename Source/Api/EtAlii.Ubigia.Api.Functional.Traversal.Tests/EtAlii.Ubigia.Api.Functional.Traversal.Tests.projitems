@@ -37,6 +37,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\FunctionSubject.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Conditional.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Hierarchical.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Temporal.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
@@ -79,12 +85,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableOutput.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableStringAssignment.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.VariableUpdateItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Conditional.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Hierarchical.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Temporal.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\SequenceParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)2. Planning\UnitTests\SequencePartExecutionPlannerSelector.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Advanced.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Anonymous2.Tests.cs" />

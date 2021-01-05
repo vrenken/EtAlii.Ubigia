@@ -15,12 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var container = new Container();
 
-            new ConstantHelpersScaffolding().Register(container);
+            new LapaConstantHelpersScaffolding().Register(container);
             new LapaScriptParserScaffolding().Register(container);
             new SequenceParsingScaffolding().Register(container);
             new OperatorParsingScaffolding().Register(container);
             new SubjectParsingScaffolding().Register(container);
-            new PathSubjectParsingScaffolding().Register(container);
+            new LapaPathSubjectParsingScaffolding().Register(container);
 
             _parser = container.GetInstance<ISequenceParser>();
         }
