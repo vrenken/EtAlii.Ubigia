@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        private void Validate(Sequence sequence)
+        public void Validate(Sequence sequence)
         {
             var parts = sequence.Parts;
 
@@ -62,6 +62,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             switch (@operator)
             {
                 case AddOperator:
+                    //var pathToAdd = after as PathSubject
+                    //if [pathToAdd ! = null]
+                    //[
+                    //    var firstPath = pathToAdd.Parts.FirstOrDefault()
+                    //    var startsWithRelation = firstPath is ParentPathSubjectPart
+                    //    if [!startsWithRelation]
+                    //    [
+                    //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.")
+                    //    ]
+                    //]
                     break;
                 case RemoveOperator:
                     break;
@@ -74,6 +84,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
+        public void Validate(Subject subject)
+        {
+            ValidateSubject(null, subject, 1, null);
+        }
         private void ValidateSubject(SequencePart before, Subject subject, int subjectPosition, SequencePart after)
         {
             if (before is Subject || after is Subject)
@@ -88,10 +102,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             switch (subject)
             {
                 case ObjectConstantSubject:
-                case StringConstantSubject:
                     if (subjectPosition == 0)
                     {
                         throw new ScriptParserException("An object constant cannot be used as first subject.");
+                    }
+                    break;
+                case StringConstantSubject:
+                    if (subjectPosition == 0)
+                    {
+                        throw new ScriptParserException("A string constant cannot be used as first subject.");
                     }
                     break;
                 case FunctionSubject functionSubject:
@@ -103,6 +122,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                         var argument = arguments[argumentPosition];
                         ValidateFunctionSubjectArgument(beforeArgument, argument, argumentPosition, afterArgument);
                     }
+                    functionSubject.ShouldAcceptInput = after != null;
                     break;
                 case RootSubject:
                     if (subjectPosition != 0 || before != null)
@@ -183,6 +203,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
                     }
+                    //else if [partIndex = = 0 | | partIndex = = 1 & & [before is VariablePathSubjectPart] = = false]
+                    //[
+                    //    throw new ScriptParserException["A traversing wildcard path part cannot be used at the beginning of a graph path."]
+                    //    Not true with rooted paths.
+                    //]
                     break;
                 case WildcardPathSubjectPart:
                     if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
