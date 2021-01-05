@@ -20,9 +20,8 @@
         {
             text ??= string.Empty;
 
-            // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs).
-            //text = text.Replace("\r\n", "\n");
-            //text = text.Replace("\t", " ");
+            // The parsing is based on the sequence parts having a newline at the end. For this purpose we add one just in case.
+            text += Environment.NewLine;
 
             var errors = Array.Empty<ScriptParserError>();
             Script script = null;
