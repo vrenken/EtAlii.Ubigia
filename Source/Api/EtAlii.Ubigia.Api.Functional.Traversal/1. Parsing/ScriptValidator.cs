@@ -17,12 +17,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private void Validate(Sequence sequence)
         {
             var parts = sequence.Parts;
-            for (var i = 0; i < parts.Length; i++)
+
+            // We skip the initial assignment operator to make validation more easy.
+            var startOffset = parts.Length > 0 && parts[0] is AssignOperator
+                ? 1
+                : 0;
+
+            for (var i = startOffset; i < parts.Length; i++)
             {
                 var before = i > 0 ? parts[i - 1] : null;
                 var after = i < parts.Length - 1 ? parts[i + 1] : null;
                 var part = parts[i];
-                Validate(before, part, i, after);
+                Validate(before, part, i - startOffset, after);
             }
 
         }
