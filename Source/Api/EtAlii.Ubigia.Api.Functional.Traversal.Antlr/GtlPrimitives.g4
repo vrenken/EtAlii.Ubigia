@@ -36,12 +36,12 @@ timespan
 
 // Objects.
 object
-    : LBRACE NEWLINE* object_kv_pair_with_comma*? object_kv_pair_without_comma RBRACE
-    | LBRACE NEWLINE* RBRACE
+    : WHITESPACE* LBRACE (WHITESPACE | NEWLINE)* object_kv_pair_with_comma*? WHITESPACE* object_kv_pair_without_comma WHITESPACE* RBRACE WHITESPACE*
+    | WHITESPACE* LBRACE (WHITESPACE | NEWLINE)* RBRACE WHITESPACE*
     ;
 
-object_kv_pair_without_comma                        : object_kv_key COLON object_kv_value NEWLINE* ;
-object_kv_pair_with_comma                           : object_kv_key COLON object_kv_value NEWLINE* COMMA NEWLINE*;
+object_kv_pair_without_comma                        : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value (WHITESPACE | NEWLINE)* ;
+object_kv_pair_with_comma                           : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value (WHITESPACE | NEWLINE)* COMMA (WHITESPACE | NEWLINE)*;
 
 object_kv_key
     : identifier

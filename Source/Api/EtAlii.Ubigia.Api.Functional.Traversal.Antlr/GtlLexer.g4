@@ -57,15 +57,12 @@ NEWLINE
 	| '\u2029' //'<Paragraph Separator CHARACTER (U+2029)>'
 	;
 
-fragment WHITESPACE
+WHITESPACE
 	: UNICODE_CLASS_ZS //'<Any Character With Unicode Class Zs>'
 	| '\u0009' //'<Horizontal Tab Character (U+0009)>'
 	| '\u000B' //'<Vertical Tab Character (U+000B)>'
 	| '\u000C' //'<Form Feed Character (U+000C)>'
 	;
-
-// keeping whitespace tokenised makes it easier for syntax highlighting
-DISCARD                                             : ( WHITESPACE | NEWLINE+ ) -> skip ;
 
 // =====================================================================================================================
 // New implementation
