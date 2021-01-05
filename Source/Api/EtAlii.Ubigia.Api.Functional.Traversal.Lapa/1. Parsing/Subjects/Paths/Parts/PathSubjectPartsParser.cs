@@ -82,12 +82,5 @@
             var result = parser.Parse(childNode);
             return result;
         }
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray()
-            var parser = _parsers.Single(p => p.CanValidate(arguments.Part));
-            parser.Validate(arguments);
-        }
     }
 }

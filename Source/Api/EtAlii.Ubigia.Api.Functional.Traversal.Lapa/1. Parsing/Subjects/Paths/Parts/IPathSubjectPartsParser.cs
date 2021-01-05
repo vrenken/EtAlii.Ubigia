@@ -7,6 +7,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         string Id { get; }
         LpsParser Parser { get; }
         PathSubjectPart Parse(LpNode node);
-        void Validate(PathSubjectPartParserArguments arguments);
     }
 }

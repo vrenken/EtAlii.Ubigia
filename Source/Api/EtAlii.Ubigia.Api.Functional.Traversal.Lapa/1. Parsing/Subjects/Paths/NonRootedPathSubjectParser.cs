@@ -59,36 +59,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            if (item is NonRootedPathSubject pathSubject)
-            {
-                var parts = pathSubject.Parts;
-
-                for (var i = 0; i < parts.Length; i++)
-                {
-                    var beforePathPart = i > 0 ? parts[i - 1] : null;
-                    var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
-                    var part = parts[i];
-                    var arguments = new PathSubjectPartParserArguments(item, beforePathPart, part, i, afterPathPart);
-                    _pathSubjectPartsParser.Validate(arguments);
-                }
-
-                if (itemIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)
-                {
-                    throw new ScriptParserException("A relative path part cannot be used as first subject.");
-                }
-            }
-            else if (item is not StringConstantSubject)
-            {
-                throw new ScriptParserException("Unsupported non-rooted path construction.");
-            }
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is NonRootedPathSubject;
-        }
     }
 }

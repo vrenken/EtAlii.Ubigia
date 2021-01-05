@@ -41,11 +41,5 @@
 
             return result;
         }
-
-        public void Validate(SequencePart before, SequencePart part, int partIndex, SequencePart after)
-        {
-            var parser = _parsers.Single(p => p.CanValidate(part));
-            parser.Validate(before, part, partIndex, after);
-        }
     }
 }

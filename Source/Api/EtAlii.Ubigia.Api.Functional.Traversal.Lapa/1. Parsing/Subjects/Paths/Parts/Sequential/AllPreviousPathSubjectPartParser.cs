@@ -36,36 +36,9 @@
             return new AllPreviousPathSubjectPart();
         }
 
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if(arguments.PartIndex == 0)
-            {
-                throw new ScriptParserException("The all previous path separator cannot be used to start a path.");
-            }
-            if (arguments.Before is PreviousPathSubjectPart || arguments.After is PreviousPathSubjectPart ||
-                arguments.Before is AllPreviousPathSubjectPart || arguments.After is AllPreviousPathSubjectPart)
-            {
-                throw new ScriptParserException("The all previous path separator cannot be combined.");
-            }
-            if (arguments.After is NextPathSubjectPart)
-            {
-                throw new ScriptParserException("The all previous path separator cannot be followed by a next path separator.");
-            }
-            if (arguments.After is AllNextPathSubjectPart)
-            {
-                throw new ScriptParserException("The all previous path separator cannot be followed by an all next path separator.");
-            }
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is AllPreviousPathSubjectPart;
         }
     }
 }

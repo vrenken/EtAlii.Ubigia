@@ -48,34 +48,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var formatter = TypedPathFormatter.FromString(text.ToUpper());
             return new TypedPathSubjectPart(formatter);
         }
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            //if [before is ConstantPathSubjectPart || after is ConstantPathSubjectPart]
-            //[
-            //    throw new ScriptParserException("Two constant path parts cannot be combined.")
-            //]
-            //if [partIndex ! = 0 || after = = null]
-            //[
-            //    var constant = (ConstantPathSubjectPart)part
-            //    if [constant.Name = = string.Empty]
-            //    [
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
-            //    ]
-            //]
-            //if [partIndex = = 0 && after ! = null]
-            //[
-            //    var constant = (ConstantPathSubjectPart)part
-            //    if [constant.Name = = string.Empty]
-            //    [
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
-            //    ]
-            //]
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is TypedPathSubjectPart;
-        }
     }
 }

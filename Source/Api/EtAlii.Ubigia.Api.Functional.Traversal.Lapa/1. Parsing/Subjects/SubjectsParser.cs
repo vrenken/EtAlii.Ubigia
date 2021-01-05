@@ -52,26 +52,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var result = parser.Parse(childNode);
             return result;
         }
-
-        public bool CanValidate(SequencePart part)
-        {
-            return part is Subject;
-        }
-
-        public void Validate(SequencePart before, SequencePart part, int partIndex, SequencePart after)
-        {
-            var subject = (Subject)part;
-            var parser = _parsers.Single(p => p.CanValidate(subject));
-            parser.Validate(before, subject, partIndex, after);
-
-            if (before is Subject || after is Subject)
-            {
-                throw new ScriptParserException("Two subjects cannot be combined.");
-            }
-            if (before is Comment)
-            {
-                throw new ScriptParserException("A subject cannot used in combination with comments.");
-            }
-        }
     }
 }

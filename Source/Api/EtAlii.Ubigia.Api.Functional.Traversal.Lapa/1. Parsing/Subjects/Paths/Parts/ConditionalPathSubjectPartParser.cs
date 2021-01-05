@@ -47,18 +47,5 @@
 
             return new ConditionalPathSubjectPart(conditions);
         }
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if (arguments.PartIndex == 0 || arguments.PartIndex == 1 && !(arguments.Before is VariablePathSubjectPart))
-            {
-                throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
-            }
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is ConditionalPathSubjectPart;
-        }
     }
 }

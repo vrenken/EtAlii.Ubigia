@@ -44,25 +44,5 @@
         {
             return node.Id == Id;
         }
-
-        public void Validate(FunctionSubjectArgument before, FunctionSubjectArgument argument, int parameterIndex, FunctionSubjectArgument after)
-        {
-            var subject = ((RootedPathFunctionSubjectArgument) argument).Subject;
-            var parts = subject.Parts;
-
-            for (var i = 0; i < parts.Length; i++)
-            {
-                var beforePathPart = i > 0 ? parts[i - 1] : null;
-                var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
-                var part = parts[i];
-                var arguments = new PathSubjectPartParserArguments(subject, beforePathPart, part, i, afterPathPart);
-                _pathSubjectPartsParser.Validate(arguments);
-            }
-        }
-
-        public bool CanValidate(FunctionSubjectArgument argument)
-        {
-            return argument is RootedPathFunctionSubjectArgument;
-        }
     }
 }

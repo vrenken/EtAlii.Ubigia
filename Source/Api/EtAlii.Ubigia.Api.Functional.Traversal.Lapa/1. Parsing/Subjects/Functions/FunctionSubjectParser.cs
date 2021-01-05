@@ -70,27 +70,5 @@
         {
             return node.Id == Id;
         }
-
-        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
-        {
-            var functionSubject = (FunctionSubject) item;
-            var parameters = functionSubject.Arguments;
-
-            for (var i = 0; i < parameters.Length; i++)
-            {
-                var beforeParameter = i > 0 ? parameters[i - 1] : null;
-                var afterParameter = i < parameters.Length - 1 ? parameters[i + 1] : null;
-                var parameter = parameters[i];
-                _functionSubjectArgumentsParser.Validate(beforeParameter, parameter, i, afterParameter);
-            }
-
-
-            functionSubject.ShouldAcceptInput = after != null;
-        }
-
-        public bool CanValidate(Subject item)
-        {
-            return item is FunctionSubject;
-        }
     }
 }

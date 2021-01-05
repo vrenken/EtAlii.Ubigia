@@ -29,36 +29,9 @@
             return new AllUpdatesPathSubjectPart();
         }
 
-
-        public void Validate(PathSubjectPartParserArguments arguments)
-        {
-            if(arguments.PartIndex == 0)
-            {
-                throw new ScriptParserException("The all updates path separator cannot be used to start a path.");
-            }
-            if (arguments.Before is UpdatesPathSubjectPart || arguments.After is UpdatesPathSubjectPart ||
-                arguments.Before is AllUpdatesPathSubjectPart || arguments.After is AllUpdatesPathSubjectPart)
-            {
-                throw new ScriptParserException("The all updates path separator cannot be combined.");
-            }
-            if (arguments.After is DowndatePathSubjectPart)
-            {
-                throw new ScriptParserException("The all updates path separator cannot be followed by a downdate path separator.");
-            }
-            if (arguments.After is AllDowndatesPathSubjectPart)
-            {
-                throw new ScriptParserException("The all updates path separator cannot be followed by an all downdates path separator.");
-            }
-        }
-
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
-        }
-
-        public bool CanValidate(PathSubjectPart part)
-        {
-            return part is AllUpdatesPathSubjectPart;
         }
     }
 }
