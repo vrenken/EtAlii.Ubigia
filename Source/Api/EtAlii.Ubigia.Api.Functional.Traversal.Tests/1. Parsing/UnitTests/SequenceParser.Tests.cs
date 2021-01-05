@@ -36,11 +36,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "'First' <= 'Second' <= 'Third'";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
             var act = new Action(() =>
             {
-                _parser.Parse(text);
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
             });
 
             // Assert.
@@ -52,11 +54,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = @"""First"" <= ""Second"" <= ""Third""";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
             var act = new Action(() =>
             {
-                _parser.Parse(text);
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
             });
 
             // Assert.
@@ -69,11 +73,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = @"""First"" <= 'Second' <= ""Third""";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
             var act = new Action(() =>
             {
-                _parser.Parse(text);
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
             });
 
             // Assert.
@@ -123,11 +129,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = @"""Second"" <= $first";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
             var act = new Action(() =>
             {
-                _parser.Parse(text);
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
             });
 
             // Assert.
@@ -156,11 +164,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = @"'Second' <= $first <= ""Third""";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
             var act = new Action(() =>
             {
-                _parser.Parse(text);
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
             });
 
             // Assert.
