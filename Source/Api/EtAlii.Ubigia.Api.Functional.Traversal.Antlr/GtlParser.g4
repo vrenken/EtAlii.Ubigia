@@ -16,7 +16,7 @@ import GtlPrimitives ;
 
 script: (WHITESPACE | NEWLINE)* sequence+ (WHITESPACE | NEWLINE)* EOF;
 
-comment : COMMENT ;
+comment : WHITESPACE* COMMENT ;
 
 sequence
     : subject_operator_pair+ subject_optional? comment? (WHITESPACE | NEWLINE)*  #sequence_pattern_1
