@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
-    using EtAlii.xTechnology.Structure;
     using Moppet.Lapa;
 
     internal class AssignOperatorParser : IAssignOperatorParser
