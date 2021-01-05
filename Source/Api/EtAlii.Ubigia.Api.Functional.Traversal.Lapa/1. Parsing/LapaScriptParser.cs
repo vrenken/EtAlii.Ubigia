@@ -14,16 +14,19 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
+        private readonly IScriptValidator _scriptValidator;
 
         public LapaScriptParser(
             ISequenceParser sequenceParser,
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
-            INewLineParser newLineParser)
+            INewLineParser newLineParser,
+            IScriptValidator scriptValidator)
         {
             _sequenceParser = sequenceParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            _scriptValidator = scriptValidator;
 
             var firstParser = newLineParser.Optional + sequenceParser.Parser;
             var nextParser = newLineParser.Required + sequenceParser.Parser;
@@ -56,6 +59,8 @@
                     .ToArray();
 
                 script = new Script(sequences);
+
+                _scriptValidator.Validate(script);
             }
             catch (Exception e)
             {

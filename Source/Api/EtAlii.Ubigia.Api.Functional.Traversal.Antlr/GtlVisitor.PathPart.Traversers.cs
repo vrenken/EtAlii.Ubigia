@@ -7,89 +7,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     public partial class GtlVisitor
     {
         // Hierarchical.
-        public override object VisitPath_part_traverser_parent(GtlParser.Path_part_traverser_parentContext context)
-        {
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
+        public override object VisitPath_part_traverser_parent(GtlParser.Path_part_traverser_parentContext context) => new ParentPathSubjectPart();
 
-            if (before is GtlParser.Path_part_traverser_parents_allContext || after is GtlParser.Path_part_traverser_parents_allContext ||
-                before is GtlParser.Path_part_traverser_parentContext || after is GtlParser.Path_part_traverser_parentContext)
-            {
-                throw new ScriptParserException("Two parent path separators cannot be combined.");
-            }
-            if (after is GtlParser.Path_part_traverser_childrenContext)
-            {
-                throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
-            }
-            if (after is GtlParser.Path_part_traverser_children_allContext)
-            {
-                throw new ScriptParserException("The parent path separator cannot be followed by an all child path separator.");
-            }
+        public override object VisitPath_part_traverser_parents_all(GtlParser.Path_part_traverser_parents_allContext context) => new AllParentsPathSubjectPart();
 
-            return new ParentPathSubjectPart();
-        }
+        public override object VisitPath_part_traverser_children(GtlParser.Path_part_traverser_childrenContext context) => new ChildrenPathSubjectPart();
 
-        public override object VisitPath_part_traverser_parents_all(GtlParser.Path_part_traverser_parents_allContext context)
-        {
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
-
-            if (before is GtlParser.Path_part_traverser_parents_allContext || after is GtlParser.Path_part_traverser_parents_allContext ||
-                before is GtlParser.Path_part_traverser_parentContext || after is GtlParser.Path_part_traverser_parentContext)
-            {
-                throw new ScriptParserException("The all parents path separator cannot be combined.");
-            }
-            if (after is GtlParser.Path_part_traverser_childrenContext)
-            {
-                throw new ScriptParserException("The all parents path separator cannot be followed by a child path separator.");
-            }
-            if (after is GtlParser.Path_part_traverser_children_allContext)
-            {
-                throw new ScriptParserException("The all parents path separator cannot be followed by an all child path separator.");
-            }
-
-            return new AllParentsPathSubjectPart();
-        }
-
-        public override object VisitPath_part_traverser_children(GtlParser.Path_part_traverser_childrenContext context)
-        {
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
-
-            if (before is GtlParser.Path_part_traverser_childrenContext || after is GtlParser.Path_part_traverser_childrenContext ||
-                before is GtlParser.Path_part_traverser_children_allContext || after is GtlParser.Path_part_traverser_children_allContext)
-            {
-                throw new ScriptParserException("Two child path separators cannot be combined.");
-            }
-            if (after is GtlParser.Path_part_traverser_parentContext)
-            {
-                throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
-            }
-            if (after is GtlParser.Path_part_traverser_parents_allContext)
-            {
-                throw new ScriptParserException("The child path separator cannot be followed by a all parents path separator.");
-            }
-
-            return new ChildrenPathSubjectPart();
-        }
-
-        public override object VisitPath_part_traverser_children_all(GtlParser.Path_part_traverser_children_allContext context)
-        {
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
-
-            if (before is GtlParser.Path_part_traverser_childrenContext || after is GtlParser.Path_part_traverser_childrenContext ||
-                before is GtlParser.Path_part_traverser_children_allContext || after is GtlParser.Path_part_traverser_children_allContext)
-            {
-                throw new ScriptParserException("The all children path separator cannot be combined.");
-            }
-            if (after is GtlParser.Path_part_traverser_parentContext)
-            {
-                throw new ScriptParserException("The all children path separator cannot be followed by a parent path separator.");
-            }
-            if (after is GtlParser.Path_part_traverser_parents_allContext)
-            {
-                throw new ScriptParserException("The all children path separator cannot be followed by an all parents path separator.");
-            }
-
-            return new AllChildrenPathSubjectPart();
-        }
+        public override object VisitPath_part_traverser_children_all(GtlParser.Path_part_traverser_children_allContext context) => new AllChildrenPathSubjectPart();
 
         // TODO: The commented lines are fishy, we mix and mingle all and oldest.
 
