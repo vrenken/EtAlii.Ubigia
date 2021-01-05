@@ -37,10 +37,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\FunctionSubject.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Antlr\AntlrParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\NewLineParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\RegexPathSubjectPartParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\Lapa\TypedPathSubjectPartParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
@@ -175,6 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Content\UnitTests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Antlr\0. Base\UnitTests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Antlr\1. Parsing" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Lapa\0. Base\UnitTests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
