@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia
 
     public static partial class Base36Convert
     {
-                    // This is the number "000000000011111111112222222222333333"
-                    // This is the index  "012345678901234567890123456789012345"
+                     // This is the number "000000000011111111112222222222333333"
+                     // This is the index  "012345678901234567890123456789012345"
         private const string _characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 
         public static ulong ToUInt64(string base36String)
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia
 
             var i = 0;
             var length = base36String.Length;
-            
+
             while (i < length)
             {
                 var characterValue = _characters.IndexOf(base36String[i]);
