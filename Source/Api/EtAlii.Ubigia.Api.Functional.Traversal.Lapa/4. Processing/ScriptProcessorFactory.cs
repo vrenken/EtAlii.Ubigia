@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new LapaPathBuildingScaffolding(),
 
                 // Script Parsing
-                new ScriptParserScaffolding(),
+                new LapaScriptParserScaffolding(),
 
                 // Additional processing (for path variable parts).
                 new PathSubjectParsingScaffolding(),

@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return new IScaffolding[]
             {
-                new ScriptParserScaffolding(),
+                new LapaScriptParserScaffolding(),
                 new SequenceParsingScaffolding(),
                 new SubjectParsingScaffolding(),
                 new PathSubjectParsingScaffolding(),
