@@ -19,14 +19,16 @@ script: sequence+ EOF;
 comment : COMMENT ;
 
 sequence
-    : subject operator subject comment NEWLINE?
-    | subject operator subject NEWLINE?
-    | operator subject comment NEWLINE?
-    | operator subject NEWLINE?
-    | subject comment NEWLINE?
-    | subject NEWLINE?
-    | comment NEWLINE?
+    : subject_operator_pair+ subject_optional? comment? NEWLINE?    #sequence_pattern_1
+    | operator_subject_pair+ operator_optional? comment? NEWLINE?   #sequence_pattern_2
+    | subject comment? NEWLINE?                                     #sequence_pattern_3
+    | comment NEWLINE?                                              #sequence_pattern_4
     ;
+
+subject_operator_pair                               : subject operator ;
+operator_subject_pair                               : operator subject ;
+subject_optional                                    : subject ;
+operator_optional                                   : operator ;
 
 operator_assign : LCHEVR EQUALS ;
 operator_add : PLUS EQUALS ;

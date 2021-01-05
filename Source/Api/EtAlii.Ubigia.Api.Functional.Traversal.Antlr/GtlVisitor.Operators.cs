@@ -30,8 +30,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
 
-            if (before is GtlParser.Subject_non_rooted_pathContext || before is GtlParser.Subject_rooted_pathContext &&
-                after is GtlParser.Subject_non_rooted_pathContext || after is GtlParser.Subject_rooted_pathContext)
+            var beforeIsPath = before is GtlParser.Subject_non_rooted_pathContext || before is GtlParser.Subject_rooted_pathContext;
+            var afterIsPath = after is GtlParser.Subject_non_rooted_pathContext || after is GtlParser.Subject_rooted_pathContext;
+            if (beforeIsPath && afterIsPath)
             {
                 throw new ScriptParserException("The assign operator cannot assign a path to another path.");
             }
