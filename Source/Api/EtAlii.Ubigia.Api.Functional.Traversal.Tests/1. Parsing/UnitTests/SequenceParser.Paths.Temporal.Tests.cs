@@ -191,14 +191,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/Second/Third{{{";
+            var scriptValidator = new ScriptValidator();
 
-            Sequence sequence = null;
             // Act.
-            var act = new Action(() => sequence = _parser.Parse(text));
+            var act = new Action(() =>
+            {
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
+            });
 
             // Assert.
             Assert.Throws<ScriptParserException>(act);
-            Assert.Null(sequence);
         }
 
 
@@ -208,9 +211,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/{{{Second/Third";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
-            var act = new Action(() => _parser.Parse(text));
+            var act = new Action(() =>
+            {
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
+            });
 
             // Assert.
             Assert.Throws<ScriptParserException>(act);
@@ -376,9 +384,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/Second/Third}}}";
+            var scriptValidator = new ScriptValidator();
 
             // Act.
-            var act = new Action(() => _parser.Parse(text));
+            var act = new Action(() =>
+            {
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
+            });
 
             // Assert.
             Assert.Throws<ScriptParserException>(act);
@@ -389,9 +402,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/}}}Second/Third";
-
+            var scriptValidator = new ScriptValidator();
+            
             // Act.
-            var act = new Action(() => _parser.Parse(text));
+            var act = new Action(() =>
+            {
+                var sequence = _parser.Parse(text);
+                scriptValidator.Validate(sequence);
+            });
 
             // Assert.
             Assert.Throws<ScriptParserException>(act);
