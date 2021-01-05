@@ -56,11 +56,13 @@
             catch (ScriptParserException e)
             {
                 errors = new[] { new ScriptParserError(e, e.Message, 0, 0) };
+                script = null;
             }
             catch (Exception e)
             {
                 e = new ScriptParserException(e.Message, e);
                 errors = new[] { new ScriptParserError(e, e.Message, 0, 0) };
+                script = null;
             }
 
             return new ScriptParseResult(string.Join(Environment.NewLine, text), script, errors);
