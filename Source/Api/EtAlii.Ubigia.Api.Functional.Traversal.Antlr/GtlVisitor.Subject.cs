@@ -7,24 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class GtlVisitor
     {
-        public override object VisitSubject(GtlParser.SubjectContext context)
-        {
-            var result = base.VisitSubject(context);
-
-            var (before, after, _) = ParseTreeHelper.GetSequenceSiblings(context);
-
-            if (before is GtlParser.SubjectContext || after is GtlParser.SubjectContext)
-            {
-                throw new ScriptParserException("Two subjects cannot be combined.");
-            }
-            if(before is GtlParser.CommentContext)
-            {
-                throw new ScriptParserException("A subject cannot used in combination with comments.");
-            }
-
-            return result;
-        }
-
         public override object VisitSubject_rooted_path(GtlParser.Subject_rooted_pathContext context)
         {
             var root = (string)VisitIdentifier(context.identifier());
@@ -44,19 +26,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitSubject_non_rooted_path(GtlParser.Subject_non_rooted_pathContext context)
         {
             var result = BuildNonRootedPathSubject(context.path_part());
-
-            if (result is NonRootedPathSubject)
-            {
-                if (context.GetChild(0) is GtlParser.Path_part_matcher_constantContext)
-                {
-                    throw new ScriptParserException("A relative path part cannot be used as first subject.");
-                }
-            }
-            // else if (!(result is StringConstantSubject))
-            // {
-            //      throw new ScriptParserException("Unsupported non-rooted path construction.");
-            // }
-
             return result;
         }
 
@@ -98,28 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitSubject_constant_string(GtlParser.Subject_constant_stringContext context)
         {
             var text = (string)VisitString_quoted(context.string_quoted());
-            var result = new StringConstantSubject(text);
-
-            var (before, _, _) = ParseTreeHelper.GetSequenceSiblings(context);
-            if (before == null)
-            {
-                throw new ScriptParserException("A constant cannot be used as first subject.");
-            }
-
-            return result;
-        }
-
-        public override object VisitSubject_constant_object(GtlParser.Subject_constant_objectContext context)
-        {
-            var result = base.VisitSubject_constant_object(context);
-
-            var (before, _, _) = ParseTreeHelper.GetSequenceSiblings(context);
-            if (before == null)
-            {
-                throw new ScriptParserException("A constant cannot be used as first subject.");
-            }
-
-            return result;
+            return new StringConstantSubject(text);
         }
 
         public override object VisitPath_part_matcher_regex(GtlParser.Path_part_matcher_regexContext context)

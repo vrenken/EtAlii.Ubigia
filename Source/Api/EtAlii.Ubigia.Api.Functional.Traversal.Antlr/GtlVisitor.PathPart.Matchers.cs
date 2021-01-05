@@ -10,43 +10,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitPath_part_matcher_traversing_wildcard(GtlParser.Path_part_matcher_traversing_wildcardContext context)
         {
             var number = (int)VisitInteger_literal_unsigned(context.integer_literal_unsigned());
-            var result = new TraversingWildcardPathSubjectPart(number);
-
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
-
-            if (before is GtlParser.Path_part_matcher_constantContext || after is GtlParser.Path_part_matcher_constantContext ||
-                before is GtlParser.Path_part_matcher_wildcardContext || after is GtlParser.Path_part_matcher_wildcardContext ||
-                before is GtlParser.Path_part_matcher_tagContext || after is GtlParser.Path_part_matcher_tagContext ||
-                before is GtlParser.Path_part_matcher_traversing_wildcardContext || after is GtlParser.Path_part_matcher_traversing_wildcardContext)
-            {
-                throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-            }
-
-            return result;
+            return new TraversingWildcardPathSubjectPart(number);
         }
 
         public override object VisitPath_part_matcher_wildcard(GtlParser.Path_part_matcher_wildcardContext context)
         {
             var text = context.GetText();
-            var result = new WildcardPathSubjectPart(text);
-
-            var isNonRootedPathSubject = context.Parent.Parent is GtlParser.Subject_non_rooted_pathContext;
-
-            var (before, after, first) = ParseTreeHelper.GetPathSiblings(context);
-            if (before is GtlParser.Path_part_matcher_constantContext || after is GtlParser.Path_part_matcher_constantContext ||
-                before is GtlParser.Path_part_matcher_wildcardContext || after is GtlParser.Path_part_matcher_wildcardContext ||
-                before is GtlParser.Path_part_matcher_tagContext || after is GtlParser.Path_part_matcher_tagContext ||
-                before is GtlParser.Path_part_matcher_traversing_wildcardContext || after is GtlParser.Path_part_matcher_traversing_wildcardContext)
-            {
-                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-            }
-
-            if ((first == context && isNonRootedPathSubject) ||
-                (before == first && before is GtlParser.Path_part_traverser_parentContext) && !(before is GtlParser.Path_part_matcher_variableContext))
-            {
-                throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
-            }
-            return result;
+            return new WildcardPathSubjectPart(text);
         }
 
         public override object VisitPath_part_matcher_tag_tag_only(GtlParser.Path_part_matcher_tag_tag_onlyContext context)
@@ -71,13 +41,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitPath_part_matcher_identifier(GtlParser.Path_part_matcher_identifierContext context)
         {
-            var (before, _, first) = ParseTreeHelper.GetPathSiblings(context);
-
-            if(before != null && before is not GtlParser.Path_part_traverser_parentContext || before != first)
-            {
-                throw new ScriptParserException("A identifier path part can only be used at the start of a path.");
-            }
-
             var parts = context
                 .GetText()
                 .Substring(1).Split('.');
@@ -97,12 +60,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitPath_part_matcher_variable(GtlParser.Path_part_matcher_variableContext context)
         {
             var text = (string)VisitIdentifier(context.identifier());
-
-            var (before, after, _) = ParseTreeHelper.GetPathSiblings(context);
-            if (before is GtlParser.Path_part_matcher_variableContext || after is GtlParser.Path_part_matcher_variableContext)
-            {
-                throw new ScriptParserException("A variable path part cannot be combined with another variable path part.");
-            }
             return new VariablePathSubjectPart(text);
         }
 
@@ -127,12 +84,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitPath_part_matcher_constant_unquoted(GtlParser.Path_part_matcher_constant_unquotedContext context)
         {
             var text = context.GetText();
-
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                throw new ScriptParserException("Whitespace in a path part requires a quoted string.");
-            }
-
             return new ConstantPathSubjectPart(text);
         }
 

@@ -9,6 +9,13 @@
     /// </summary>
     internal class AntlrScriptParser : IScriptParser
     {
+        private readonly IScriptValidator _scriptValidator;
+
+        public AntlrScriptParser(IScriptValidator scriptValidator)
+        {
+            _scriptValidator = scriptValidator;
+        }
+
         public ScriptParseResult Parse(string text)
         {
             text ??= string.Empty;
@@ -43,6 +50,8 @@
 
                 var visitor = new GtlVisitor();
                 script = visitor.Visit(context) as Script;
+
+                _scriptValidator.Validate(script);
             }
             catch (ScriptParserException e)
             {
