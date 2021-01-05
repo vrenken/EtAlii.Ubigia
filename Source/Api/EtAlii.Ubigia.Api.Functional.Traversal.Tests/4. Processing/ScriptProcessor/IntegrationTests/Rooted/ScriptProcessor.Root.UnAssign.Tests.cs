@@ -6,13 +6,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootUnassignTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
+    public class ScriptProcessorRootUnAssignTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly ScriptingUnitTestContext _testContext;
 
-        public ScriptProcessorRootUnassignTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootUnAssignTests(ScriptingUnitTestContext testContext)
         {
             _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
@@ -27,7 +27,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_Root_Unassign_Time_Root()
+        public async Task ScriptProcessor_Root_UnAssign_Time_Root()
         {
             // Arrange.
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
@@ -56,7 +56,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_Root_Unassign_Time_Root_Under_Other_Name()
+        public async Task ScriptProcessor_Root_UnAssign_Time_Root_Under_Other_Name()
         {
             // Arrange.
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
@@ -85,7 +85,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_Root_Unassign_Object_Root()
+        public async Task ScriptProcessor_Root_UnAssign_Object_Root()
         {
             // Arrange.
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);

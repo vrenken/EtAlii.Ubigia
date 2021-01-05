@@ -67,7 +67,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.NoQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.SingleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Assign.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Unassign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.UnAssign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Root.Use.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.AddItem.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.RootedPath.ItemOutput.Tests.cs" />
@@ -102,7 +102,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.TraversingWildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Wildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Assign.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Unassign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.UnAssign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Advanced.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Anonymous2.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Object.Tests.cs" />
