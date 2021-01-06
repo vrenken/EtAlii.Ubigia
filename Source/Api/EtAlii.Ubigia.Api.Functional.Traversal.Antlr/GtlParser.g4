@@ -61,7 +61,7 @@ subject_root_definition                             : identifier (DOT identifier
 // Functions.
 subject_function
     : identifier WHITESPACE* LPAREN WHITESPACE* RPAREN WHITESPACE*
-    | identifier WHITESPACE* LPAREN WHITESPACE* (subject_function_argument WHITESPACE* COMMA)*? WHITESPACE* subject_function_argument WHITESPACE* RPAREN WHITESPACE*
+    | identifier WHITESPACE* LPAREN (WHITESPACE* subject_function_argument WHITESPACE* COMMA WHITESPACE*)*? subject_function_argument WHITESPACE* RPAREN WHITESPACE*
     ;
 
 subject_function_argument
