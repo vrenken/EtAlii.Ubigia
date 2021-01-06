@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             switch (part)
             {
                 case Subject subject: ValidateSubject(before, subject, sequencePartPosition, after); break;
-                case Operator @operator: ValidateOperator(before, @operator, sequencePartPosition, after); break;
+                case Operator @operator: ValidateOperator(before, @operator, after); break;
                 case Comment:
                     if (after != null)
                     {
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        private void ValidateOperator(SequencePart before, Operator @operator, int operatorPosition, SequencePart after)
+        private void ValidateOperator(SequencePart before, Operator @operator, SequencePart after)
         {
             if (before is Operator || after is Operator)
             {
@@ -115,12 +115,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     break;
                 case FunctionSubject functionSubject:
                     var arguments = functionSubject.Arguments;
-                    for (var argumentPosition = 0; argumentPosition < arguments.Length; argumentPosition++)
+                    foreach (var argument in arguments)
                     {
-                        var beforeArgument = argumentPosition > 0 ? arguments[argumentPosition - 1] : null;
-                        var afterArgument = argumentPosition < arguments.Length - 1 ? arguments[argumentPosition + 1] : null;
-                        var argument = arguments[argumentPosition];
-                        ValidateFunctionSubjectArgument(beforeArgument, argument, argumentPosition, afterArgument);
+                        ValidateFunctionSubjectArgument(argument);
                     }
                     functionSubject.ShouldAcceptInput = after != null;
                     break;
@@ -443,7 +440,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        private void ValidateFunctionSubjectArgument(FunctionSubjectArgument beforeArgument, FunctionSubjectArgument argument, int argumentPosition, FunctionSubjectArgument afterArgument)
+        private void ValidateFunctionSubjectArgument(FunctionSubjectArgument argument)
         {
             switch (argument)
             {

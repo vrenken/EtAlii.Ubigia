@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class VariablePathSubjectPartToGraphPathPartsConverter : IVariablePathSubjectPartToGraphPathPartsConverter
     {
-        private const string _id = "VariablePathSubjectPart";
         private readonly IScriptProcessingContext _context;
         private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
         private readonly IScriptParser _scriptParser;
