@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return new IScaffolding[]
             {
+                // Processing.
                 new ScriptProcessingScaffolding(configuration),
                 new ScriptExecutionPlanningScaffolding(),
                 new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
@@ -19,14 +20,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
 
-                new LapaPathBuildingScaffolding(),
-                new LapaConstantParsingScaffolding(),
-
                 // Script Parsing
+                // TODO: These should actually be converted into a single+dedicated LapaScriptParser instance registration.
+                // However, for now this move is too big.
                 new LapaScriptParserScaffolding(),
-
-                // Additional processing (for path variable parts).
                 new LapaPathSubjectParsingScaffolding(),
+                new LapaConstantParsingScaffolding(),
+                new LapaSequenceParsingScaffolding(),
+                new LapaSubjectParsingScaffolding(),
+                new LapaOperatorParsingScaffolding(),
             };
         }
 

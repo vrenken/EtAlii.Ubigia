@@ -36,6 +36,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<IUpdatesPathSubjectPartToGraphPathPartsConverter, UpdatesPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IPathSubjectToGraphPathConverter, PathSubjectToGraphPathConverter>();
             container.Register<IPathProcessor, PathProcessor>();
+
+            container.Register<IVariablePathSubjectPartToPathConverter, VariablePathSubjectPartToPathConverter>();
+            container.Register<IVariablePathSubjectPartToGraphPathPartsConverter, VariablePathSubjectPartToGraphPathPartsConverter>();
         }
     }
 }

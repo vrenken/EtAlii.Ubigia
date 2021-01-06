@@ -5,25 +5,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using Moppet.Lapa;
 
     internal class VariablePathSubjectPartToPathConverter : IVariablePathSubjectPartToPathConverter
     {
-        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
-        private readonly LpsParser _nonRootedParser;
-        private readonly INodeValidator _nodeValidator;
-        private const string _id = "VariablePathSubjectPartToPathConverter";
-        private readonly IScriptValidator _scriptValidator;
+        private readonly IScriptParser _scriptParser;
 
-        public VariablePathSubjectPartToPathConverter(
-            INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            INodeValidator nodeValidator,
-            IScriptValidator scriptValidator)
+        public VariablePathSubjectPartToPathConverter(IScriptParser scriptParser)
         {
-            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
-            _nodeValidator = nodeValidator;
-            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
-            _scriptValidator = scriptValidator;
+            _scriptParser = scriptParser;
         }
 
         public async Task<PathSubjectPart[]> Convert(ScopeVariable variable)
@@ -55,16 +44,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 .ToArray();
         }
 
-        private PathSubjectPart[] ToPath(string value, string variableName)
-        {
-            // TODO: This class should also be able to cope with rooted paths.
-            var node = _nonRootedParser.Do(value);
-            _nodeValidator.EnsureSuccess(node, _id, false);
-            var childNode = node.Children.Single();
-
-            return ParsePath(value, variableName, childNode);
-        }
-
         private PathSubjectPart[] ToPath(INode node)
         {
             return new PathSubjectPart[] { new ParentPathSubjectPart(), new IdentifierPathSubjectPart(node.Id) };
@@ -75,16 +54,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new PathSubjectPart[] {new ConstantPathSubjectPart(subject.Value) };
         }
 
-        private PathSubjectPart[] ParsePath(string value, string variableName, LpNode childNode)
+        private PathSubjectPart[] ToPath(string value, string variableName)
         {
-            if (!_nonRootedPathSubjectParser.CanParse(childNode))
+            Subject pathSubject;
+            try
             {
-                throw new ScriptParserException($"Unable to parse variable for path (variable: {variableName}, value: {value})");
+                pathSubject = _scriptParser.ParsePath(value);
             }
-            var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
-
-            // There is a possibility that we receive a string constant that needs to be validated.
-            _scriptValidator.Validate(pathSubject);
+            catch (Exception e)
+            {
+                throw new ScriptParserException($"Unable to parse variable for path (variable: {variableName}, value: {value})", e);
+            }
 
             return pathSubject switch
             {

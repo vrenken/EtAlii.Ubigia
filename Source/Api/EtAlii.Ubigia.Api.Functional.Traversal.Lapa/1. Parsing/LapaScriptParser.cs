@@ -12,19 +12,23 @@
 
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;
+        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
         private readonly IScriptValidator _scriptValidator;
+        private readonly LpsParser _nonRootedParser;
 
         public LapaScriptParser(
             ISequenceParser sequenceParser,
             INodeValidator nodeValidator,
+            INonRootedPathSubjectParser nonRootedPathSubjectParser,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
             IScriptValidator scriptValidator)
         {
             _sequenceParser = sequenceParser;
             _nodeValidator = nodeValidator;
+            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _nodeFinder = nodeFinder;
             _scriptValidator = scriptValidator;
 
@@ -32,6 +36,8 @@
             var nextParser = newLineParser.Required + sequenceParser.Parser;
 
             _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional);
+
+            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
         }
 
         public ScriptParseResult Parse(string text)
@@ -72,5 +78,24 @@
         }
 
         public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
+
+        public Subject ParsePath(string text)
+        {
+            // TODO: This class should also be able to cope with rooted paths.
+            var node = _nonRootedParser.Do(text);
+            _nodeValidator.EnsureSuccess(node, _id, false);
+            var childNode = node.Children.Single();
+
+            if (!_nonRootedPathSubjectParser.CanParse(childNode))
+            {
+                throw new ScriptParserException($"Unable to parse path (text: {text ?? "NULL"})");
+            }
+            var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
+
+            // There is a possibility that we receive a string constant that needs to be validated validation.
+            _scriptValidator.Validate(pathSubject);
+
+            return pathSubject;
+        }
     }
 }
