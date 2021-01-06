@@ -110,7 +110,7 @@
                 case ">": conditionType = ConditionType.MoreThan; break;
                 case ">=": conditionType = ConditionType.MoreThanOrEqual; break;
                 default:
-                    throw new ScriptParserException("Unable to parse condition: " + condition ?? "<NULL>");
+                    throw new ScriptParserException("Unable to parse condition: " + condition);
             }
             return new Condition(property, conditionType, value);
         }
