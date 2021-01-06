@@ -45,13 +45,14 @@ object_kv_pair_with_comma                           : WHITESPACE* object_kv_key 
 
 object_kv_key
     : identifier
-    | string_quoted
+    | string_quoted_non_empty
     ;
 
 object_kv_value
-    : datetime
+    : string_quoted
+    | string_quoted_non_empty
+    | datetime
     | timespan
-    | string_quoted
     | float_literal
     | float_literal_unsigned
     | integer_literal
