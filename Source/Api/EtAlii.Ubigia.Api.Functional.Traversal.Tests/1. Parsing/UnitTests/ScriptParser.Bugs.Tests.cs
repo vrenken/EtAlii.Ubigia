@@ -34,7 +34,24 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Single(parseResult.Errors);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
         }
+
+        [Fact]
+        public void ScriptParser_Bugs_002_Whitespace_between_function_arguments()
+        {
+            // Arrange.
+            const string text = "id(\"/Hierarchy\", 'First','Second')";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+        }
+
+
     }
 }

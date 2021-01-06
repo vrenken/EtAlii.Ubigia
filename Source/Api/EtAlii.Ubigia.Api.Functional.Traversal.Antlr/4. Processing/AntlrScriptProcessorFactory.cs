@@ -15,18 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
                 new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
                 new PathBuildingScaffolding(),
-                //new ConstantHelpersScaffolding(),
                 new OperatorProcessingScaffolding(),
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
 
-                new AntlrPathBuildingScaffolding(),
-
                 // Script Parsing
                 new AntlrScriptParserScaffolding(),
-
-                // Additional processing (for path variable parts).
-                //new PathSubjectParsingScaffolding(),
             };
         }
 
