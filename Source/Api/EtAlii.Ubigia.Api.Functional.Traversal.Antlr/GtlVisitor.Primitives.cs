@@ -11,15 +11,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public override object VisitString_quoted(GtlParser.String_quotedContext context)
         {
-            var text = context.STRING_QUOTED().GetText();
-            return text.Substring(1, text.Length - 2);
+            var text = context?.STRING_QUOTED()?.GetText();
+            return text?.Substring(1, text.Length - 2);
         }
 
         public override object VisitString_quoted_non_empty(GtlParser.String_quoted_non_emptyContext context)
         {
-            var text = context.STRING_QUOTED_NON_EMPTY().GetText();
-            return text.Substring(1, text.Length - 2);
+            var text = context?.STRING_QUOTED_NON_EMPTY()?.GetText();
+            return text?.Substring(1, text.Length - 2);
         }
+
+        public override object VisitIdentifier(GtlParser.IdentifierContext context) => context?.IDENTIFIER()?.GetText();
 
         public override object VisitBoolean_literal(GtlParser.Boolean_literalContext context) => bool.Parse(context.BOOLEAN_LITERAL().GetText());
 
@@ -30,8 +32,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitInteger_literal(GtlParser.Integer_literalContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
         public override object VisitInteger_literal_unsigned(GtlParser.Integer_literal_unsignedContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
-
-        public override object VisitIdentifier(GtlParser.IdentifierContext context) => context.IDENTIFIER()?.GetText();
 
         public override object VisitTimespan(GtlParser.TimespanContext context)
         {

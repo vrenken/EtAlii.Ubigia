@@ -151,21 +151,11 @@ path_part_matcher_identifier                        : UBIGIA_IDENTIFIER ;
 path_part_matcher_typed                             : LBRACK identifier RBRACK ;
 
 // Wildcards.
-matcher_wildcard                                    : ASTERIKS ;
-matcher_wildcard_before_nonquoted                   : ASTERIKS NO_NEWLINE+? ;
-matcher_wildcard_before_quoted_double               : DOUBLEQUOTE ASTERIKS ( NO_DOUBLEQUOTE | NO_NEWLINE)*? DOUBLEQUOTE ;
-matcher_wildcard_before_quoted_single               : SINGLEQUOTE ASTERIKS ( NO_SINGLEQUOTE | NO_NEWLINE)*? SINGLEQUOTE ;
-matcher_wildcard_after_nonquoted                    : NO_NEWLINE+? NO_LBRACES ASTERIKS ;
-matcher_wildcard_after_quoted_double                : DOUBLEQUOTE ( NO_DOUBLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS DOUBLEQUOTE ;
-matcher_wildcard_after_quoted_single                : SINGLEQUOTE ( NO_SINGLEQUOTE | NO_NEWLINE)*? NO_LBRACES ASTERIKS SINGLEQUOTE ;
+matcher_wildcard_quoted                             : string_quoted_non_empty? ASTERIKS string_quoted_non_empty? ;
+matcher_wildcard_nonquoted                          : identifier? ASTERIKS identifier? ;
 path_part_matcher_wildcard
-    : matcher_wildcard
-    | matcher_wildcard_before_nonquoted
-    | matcher_wildcard_before_quoted_double
-    | matcher_wildcard_before_quoted_single
-    | matcher_wildcard_after_nonquoted
-    | matcher_wildcard_after_quoted_double
-    | matcher_wildcard_after_quoted_single
+    : matcher_wildcard_quoted
+    | matcher_wildcard_nonquoted
     ;
 
 path_part_matcher_traversing_wildcard : ASTERIKS integer_literal_unsigned ASTERIKS ;

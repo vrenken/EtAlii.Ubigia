@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using System.Linq;
+    using System.Text;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     public partial class GtlVisitor
@@ -14,9 +15,41 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new TraversingWildcardPathSubjectPart(number);
         }
 
-        public override object VisitPath_part_matcher_wildcard(GtlParser.Path_part_matcher_wildcardContext context)
+        public override object VisitMatcher_wildcard_nonquoted(GtlParser.Matcher_wildcard_nonquotedContext context)
         {
-            var text = context.GetText();
+            var sb = new StringBuilder();
+            if (VisitIdentifier(context.identifier(0)) is string before)
+            {
+                sb.Append(before);
+            }
+
+            sb.Append('*');
+
+            if (VisitIdentifier(context.identifier(1)) is string after)
+            {
+                sb.Append(after);
+            }
+
+            var text = sb.ToString();
+            return new WildcardPathSubjectPart(text);
+        }
+
+        public override object VisitMatcher_wildcard_quoted(GtlParser.Matcher_wildcard_quotedContext context)
+        {
+            var sb = new StringBuilder();
+            if (VisitString_quoted_non_empty(context.string_quoted_non_empty(0)) is string before)
+            {
+                sb.Append(before);
+            }
+
+            sb.Append('*');
+
+            if (VisitString_quoted_non_empty(context.string_quoted_non_empty(1)) is string after)
+            {
+                sb.Append(after);
+            }
+
+            var text = sb.ToString();
             return new WildcardPathSubjectPart(text);
         }
 
@@ -120,7 +153,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 .ToArray();
 
             return new ConditionalPathSubjectPart(conditions);
-
         }
     }
 }

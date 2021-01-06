@@ -122,5 +122,43 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal(1, date.Month);
             Assert.Equal(21, date.Day);
         }
+
+        [Fact]
+        public void ScriptParser_Bugs_006_Enable_Traversing_Wildcards_With_Depth()
+        {
+            // Arrange.
+            const string text = "/Person/*2*/Jo*";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var absolutePathSubject = Assert.IsType<AbsolutePathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var traversingWildcardPathSubjectPart = Assert.IsType<TraversingWildcardPathSubjectPart>(absolutePathSubject.Parts[3]);
+            Assert.Equal(2, traversingWildcardPathSubjectPart.Limit);
+            var wildcardPathSubjectPart = Assert.IsType<WildcardPathSubjectPart>(absolutePathSubject.Parts[5]);
+            Assert.Equal("Jo*", wildcardPathSubjectPart.Pattern);
+        }
+        [Fact]
+        public void ScriptParser_Bugs_007_Enable_Traversing_Quoted_Wildcards_With_Depth()
+        {
+            // Arrange.
+            const string text = "/Person/*2*/\"Jo\"*";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var absolutePathSubject = Assert.IsType<AbsolutePathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var traversingWildcardPathSubjectPart = Assert.IsType<TraversingWildcardPathSubjectPart>(absolutePathSubject.Parts[3]);
+            Assert.Equal(2, traversingWildcardPathSubjectPart.Limit);
+            var wildcardPathSubjectPart = Assert.IsType<WildcardPathSubjectPart>(absolutePathSubject.Parts[5]);
+            Assert.Equal("Jo*", wildcardPathSubjectPart.Pattern);
+        }
+
     }
 }
