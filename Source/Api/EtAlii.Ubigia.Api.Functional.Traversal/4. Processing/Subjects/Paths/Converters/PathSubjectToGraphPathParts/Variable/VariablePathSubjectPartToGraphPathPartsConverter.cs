@@ -9,34 +9,24 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
-    using Moppet.Lapa;
 
     internal class VariablePathSubjectPartToGraphPathPartsConverter : IVariablePathSubjectPartToGraphPathPartsConverter
     {
         private const string _id = "VariablePathSubjectPart";
         private readonly IScriptProcessingContext _context;
-        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
-        private readonly LpsParser _nonRootedParser;
-        private readonly INodeValidator _nodeValidator;
         private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
-        private readonly IScriptValidator _scriptValidator;
+        private readonly IScriptParser _scriptParser;
 
         public VariablePathSubjectPartToGraphPathPartsConverter(
             IScriptProcessingContext context,
-            INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            INodeValidator nodeValidator,
-            IScriptValidator scriptValidator)
+            IScriptParser scriptParser)
         {
             _context = context;
-            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
-            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
-
-            _nodeValidator = nodeValidator;
-            _scriptValidator = scriptValidator;
+            _scriptParser = scriptParser;
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
-                .Register(variable => variable is INode, (variable, _) => ToPathSubject((INode)variable))
+                .Register(variable => variable is INode, (variable, _) => new RelativePathSubject(new IdentifierPathSubjectPart(((INode)variable).Id)))
                 .Register(variable => variable is PathSubject, (variable, _) => (Subject)variable);
         }
 
@@ -122,31 +112,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         private Subject ToPathSubject(string value, string variableName)
         {
-            // TODO: This class should also be able to cope with rooted paths.
-            var node = _nonRootedParser.Do(value);
-            _nodeValidator.EnsureSuccess(node, _id, false);
-            var childNode = node.Children.Single();
-
-            return ParsePath(value, variableName, childNode);
-        }
-
-        private PathSubject ToPathSubject(INode node)
-        {
-            return new RelativePathSubject(new IdentifierPathSubjectPart(node.Id));
-        }
-
-        private Subject ParsePath(string value, string variableName, LpNode childNode)
-        {
-            if (!_nonRootedPathSubjectParser.CanParse(childNode))
+            try
             {
-                throw new ScriptParserException($"Unable to parse variable for path (variable: {variableName}, value: {value})");
+                return _scriptParser.ParsePath(value);
             }
-            var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
-
-            // There is a possibility that we receive a string constant that needs to be validated validation.
-            _scriptValidator.Validate(pathSubject);
-
-            return pathSubject;
+            catch (Exception e)
+            {
+                throw new ScriptParserException($"Unable to parse variable for path (variable: {variableName}, value: {value})", e);
+            }
         }
     }
 }

@@ -24,13 +24,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),
 
-                new LapaPathBuildingScaffolding(),
-
                 // Script Parsing
+                // TODO: These should actually be converted into a single+dedicated LapaScriptParser instance registration.
+                // However, for now this move is too big.
                 new LapaScriptParserScaffolding(),
-
-                // Additional processing (for path variable parts).
                 new LapaPathSubjectParsingScaffolding(),
+                new LapaConstantParsingScaffolding(),
+                new LapaSequenceParsingScaffolding(),
+                new LapaSubjectParsingScaffolding(),
+                new LapaOperatorParsingScaffolding(),
 
             };
 
