@@ -31,14 +31,24 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public override object VisitObject_kv_pair_with_comma(GtlParser.Object_kv_pair_with_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
-            var value = VisitObject_kv_value(context.object_kv_value());
+            object value = null;
+            var valueContext = context.object_kv_value();
+            if (valueContext != null)
+            {
+                value = VisitObject_kv_value(context.object_kv_value());
+            }
             return new KeyValuePair<string, object>(key, value);
         }
 
         public override object VisitObject_kv_pair_without_comma(GtlParser.Object_kv_pair_without_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
-            var value = VisitObject_kv_value(context.object_kv_value());
+            object value = null;
+            var valueContext = context.object_kv_value();
+            if (valueContext != null)
+            {
+                value = VisitObject_kv_value(context.object_kv_value());
+            }
             return new KeyValuePair<string, object>(key, value);
         }
     }

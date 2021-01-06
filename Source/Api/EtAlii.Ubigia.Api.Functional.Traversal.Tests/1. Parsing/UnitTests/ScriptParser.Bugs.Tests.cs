@@ -52,6 +52,35 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(parseResult.Script);
         }
 
+        [Fact]
+        public void ScriptParser_Bugs_002_Whitespace_Between_Function_Arguments()
+        {
+            // Arrange.
+            const string text = "id(\"/Hierarchy\", 'First','Second')";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+        }
+
+        [Fact]
+        public void ScriptParser_Bugs_003_Allow_Unassigned_Object_Properties()
+        {
+            // Arrange.
+            const string text = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : , IntValue : }";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+        }
+
+
 
     }
 }

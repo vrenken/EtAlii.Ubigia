@@ -40,8 +40,8 @@ object
     | WHITESPACE* LBRACE (WHITESPACE | NEWLINE)* RBRACE WHITESPACE*
     ;
 
-object_kv_pair_without_comma                        : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value (WHITESPACE | NEWLINE)* ;
-object_kv_pair_with_comma                           : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value (WHITESPACE | NEWLINE)* COMMA (WHITESPACE | NEWLINE)*;
+object_kv_pair_without_comma                        : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value? (WHITESPACE | NEWLINE)* ;
+object_kv_pair_with_comma                           : WHITESPACE* object_kv_key WHITESPACE* COLON WHITESPACE* object_kv_value? (WHITESPACE | NEWLINE)* COMMA (WHITESPACE | NEWLINE)*;
 
 object_kv_key
     : identifier
