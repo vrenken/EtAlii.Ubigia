@@ -68,7 +68,42 @@
         }
 
         public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
-    }
 
-    public record GtlLine(string Person, string Text);
+        public Subject ParsePath(string text)
+        {
+            Subject pathSubject;
+            try
+            {
+                var inputStream = new AntlrInputStream(text);
+                var gtlLexer = new GtlLexer(inputStream);
+                var commonTokenStream = new CommonTokenStream(gtlLexer);
+                var parser = new GtlParser(commonTokenStream);
+                var errorListener = new ScriptErrorListener();
+                parser.RemoveErrorListeners();
+                parser.AddErrorListener(errorListener);
+                var context = parser.subject_non_rooted_path();
+
+                if (parser.NumberOfSyntaxErrors != 0)
+                {
+                    var error = errorListener.ToErrorString();
+                    throw new ScriptParserException(error);
+                }
+                if (context.exception != null)
+                {
+                    throw new ScriptParserException(context.exception.Message, context.exception);
+                }
+
+                var visitor = new GtlVisitor();
+                pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
+
+                _scriptValidator.Validate(pathSubject);
+            }
+            catch (Exception e)
+            {
+                throw new ScriptParserException(e.Message, e);
+            }
+
+            return pathSubject;
+        }
+    }
 }

@@ -36,7 +36,7 @@
             Assert.Single(parseResult.Errors);
         }
 
-#if UseLapaParserInTests == false
+#if UseLapaParserInTests == true
         // The test below only works on the Antlr4 parser. We still keep it in as the outcome is better than that of the Lapa parser.
 
         [Fact, Trait("Category", TestAssembly.Category)]
