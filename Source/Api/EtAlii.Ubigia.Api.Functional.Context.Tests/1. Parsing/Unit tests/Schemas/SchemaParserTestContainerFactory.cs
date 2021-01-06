@@ -15,7 +15,7 @@
                 new LapaSubjectParsingScaffolding(),
                 new LapaOperatorParsingScaffolding(),
                 new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantHelpersScaffolding(),
+                new LapaConstantParsingScaffolding(),
             };
 
 

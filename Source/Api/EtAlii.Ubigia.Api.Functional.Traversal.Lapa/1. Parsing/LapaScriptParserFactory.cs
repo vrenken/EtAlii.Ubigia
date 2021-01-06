@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new LapaOperatorParsingScaffolding(),
                 new LapaScriptParserScaffolding(),
                 new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantHelpersScaffolding(),
+                new LapaConstantParsingScaffolding(),
             };
         }
     }

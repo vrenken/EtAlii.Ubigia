@@ -45,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Bugs.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Id.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Function.Include.Tests.cs" />
