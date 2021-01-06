@@ -20,7 +20,7 @@
 
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
-    <UseLapaParserInTests>false</UseLapaParserInTests>
+    <UseLapaParserInTests>false</UseLapaParserInTests> <!-- Set to true to use the legacy Lapa parser instead of the Antlr4 one. -->
     <DefineConstants Condition="'$(UseLapaParserInTests)' == 'true'">$(DefineConstants);USE_LAPA_PARSER_IN_TESTS</DefineConstants>
 
     <LangVersion>9</LangVersion>
