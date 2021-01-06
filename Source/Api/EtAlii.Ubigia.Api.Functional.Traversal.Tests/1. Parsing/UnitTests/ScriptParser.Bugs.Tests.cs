@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
+    using System.Linq;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -80,7 +81,46 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(parseResult.Script);
         }
 
+        [Fact]
+        public void ScriptParser_Bugs_004_Enable_Conditional_Path_Parts()
+        {
+            // Arrange.
+            const string text = "Person:Does/.IsMale!=false";
 
+            // Act.
+            var parseResult = _parser.Parse(text);
 
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var rootedPathSubject = Assert.IsType<RootedPathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var conditionalPathSubjectPart = Assert.IsType<ConditionalPathSubjectPart>(rootedPathSubject.Parts[2]);
+            Assert.Equal(ConditionType.NotEqual, conditionalPathSubjectPart.Conditions[0].Type);
+            Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[0].Property);
+        }
+
+        [Fact]
+        public void ScriptParser_Bugs_005_Enable_Multiple_Conditional_Path_Parts()
+        {
+            // Arrange.
+            const string text = "Person:Does/.IsMale!=false&Birthdate=2016-01-21";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var rootedPathSubject = Assert.IsType<RootedPathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var conditionalPathSubjectPart = Assert.IsType<ConditionalPathSubjectPart>(rootedPathSubject.Parts[2]);
+            Assert.Equal(ConditionType.NotEqual, conditionalPathSubjectPart.Conditions[0].Type);
+            Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal(ConditionType.Equal, conditionalPathSubjectPart.Conditions[1].Type);
+            Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
+            var date = Assert.IsType<DateTime>(conditionalPathSubjectPart.Conditions[1].Value);
+            Assert.Equal(2016, date.Year);
+            Assert.Equal(1, date.Month);
+            Assert.Equal(21, date.Day);
+        }
     }
 }

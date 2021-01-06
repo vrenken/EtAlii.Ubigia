@@ -99,6 +99,8 @@ SPACE                                               : ' ';
 SINGLEQUOTE                                         : '\'';
 DOUBLEQUOTE                                         : '"' ;
 HASHTAG                                             : '#' ;
+QUESTION                                            : '?' ;
+EXCLAMATION                                         : '!' ;
 
 ROOT_SUBJECT_PREFIX                                 : ('ROOT' | 'root' | 'Root');
 TRUE                                                : ('TRUE' | 'true' | 'True');

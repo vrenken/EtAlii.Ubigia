@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     public partial class GtlVisitor
@@ -92,6 +93,34 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var text = (string)VisitIdentifier(context.identifier());
             var formatter = TypedPathFormatter.FromString(text.ToUpper());
             return new TypedPathSubjectPart(formatter);
+        }
+
+        public override object VisitPath_part_matcher_conditional(GtlParser.Path_part_matcher_conditionalContext context)
+        {
+            var conditions = context.path_part_matcher_condition()
+                .Select(conditionContext =>
+                {
+                    var property = (string)VisitPath_part_matcher_property(conditionContext.path_part_matcher_property());
+                    var comparison = conditionContext.path_part_matcher_condition_comparison().GetText();
+                    var value = VisitPath_part_matcher_value(conditionContext.path_part_matcher_value());
+
+                    var conditionType = comparison switch
+                    {
+                        "=" => ConditionType.Equal,
+                        "!=" => ConditionType.NotEqual,
+                        "<" => ConditionType.LessThan,
+                        "<=" => ConditionType.LessThanOrEqual,
+                        ">" => ConditionType.MoreThan,
+                        ">=" => ConditionType.MoreThanOrEqual,
+                        _ => throw new ScriptParserException($"Unable to interpret comparison: {comparison ?? "NULL"}")
+                    };
+
+                    return new Condition(property, conditionType, value);
+                })
+                .ToArray();
+
+            return new ConditionalPathSubjectPart(conditions);
+
         }
     }
 }

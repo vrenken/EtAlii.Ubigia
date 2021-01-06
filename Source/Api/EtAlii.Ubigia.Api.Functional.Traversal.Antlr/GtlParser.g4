@@ -67,6 +67,7 @@ subject_function
 subject_function_argument
     : subject_function_argument_string_quoted
     | subject_function_argument_identifier
+    //| subject_function_argument_value
     | subject_function_argument_variable
     | subject_function_argument_rooted_path
     | subject_function_argument_non_rooted_path
@@ -77,12 +78,24 @@ subject_function_argument_string_quoted             : string_quoted ;
 subject_function_argument_variable                  : DOLLAR identifier ;
 subject_function_argument_non_rooted_path           : path_part+ ;
 subject_function_argument_rooted_path               : identifier COLON path_part*;
+// This one should replace both the identifier and string_quoted argument:
+//subject_function_argument_value
+//    : string_quoted
+//    | string_quoted_non_empty
+//    | datetime
+//    | timespan
+//    | float_literal
+//    | float_literal_unsigned
+//    | integer_literal
+//    | integer_literal_unsigned
+//    | boolean_literal
+//    ;
 
 path_part
     : path_part_matcher_traversing_wildcard
     | path_part_matcher_wildcard
     | path_part_matcher_tag
-    // path_part_matcher_conditional
+    | path_part_matcher_conditional
     | path_part_matcher_constant
     | path_part_matcher_variable
     | path_part_matcher_identifier
@@ -184,3 +197,30 @@ path_part_matcher_regex                             : LBRACK string_quoted_non_e
 // Variable
 path_part_matcher_variable                          : DOLLAR identifier ;
 
+// Conditional
+path_part_matcher_conditional                       : DOT (path_part_matcher_condition AMPERSAND)* path_part_matcher_condition ;
+
+path_part_matcher_condition                         : path_part_matcher_property WHITESPACE* path_part_matcher_condition_comparison WHITESPACE* path_part_matcher_value ;
+
+path_part_matcher_property
+    : identifier
+    | string_quoted_non_empty
+    ;
+
+path_part_matcher_value
+    : string_quoted
+    | string_quoted_non_empty
+    | datetime
+    | timespan
+    | float_literal
+    | float_literal_unsigned
+    | integer_literal
+    | integer_literal_unsigned
+    | boolean_literal
+    ;
+
+path_part_matcher_condition_comparison
+    : EXCLAMATION? EQUALS
+    | LCHEVR EQUALS?
+    | RCHEVR EQUALS?
+    ;
