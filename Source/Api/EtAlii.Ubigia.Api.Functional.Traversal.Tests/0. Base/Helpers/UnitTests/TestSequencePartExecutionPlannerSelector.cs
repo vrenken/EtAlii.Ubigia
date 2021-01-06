@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
                 new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
                 new PathBuildingScaffolding(),
-                new LapaConstantHelpersScaffolding(),
+                new LapaConstantParsingScaffolding(),
                 new OperatorProcessingScaffolding(),
                 new ProcessingSelectorsScaffolding(),
                 new FunctionSubjectProcessingScaffolding(),

@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 new LapaSubjectParsingScaffolding(),
                 new LapaOperatorParsingScaffolding(),
                 new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantHelpersScaffolding(),
+                new LapaConstantParsingScaffolding(),
             };
         }
     }

@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public void Register(Container container)
         {
             container.Register<IVariablePathSubjectPartToPathConverter, VariablePathSubjectPartToPathConverter>();
-
             container.Register<IVariablePathSubjectPartToGraphPathPartsConverter, VariablePathSubjectPartToGraphPathPartsConverter>();
 
             container.Register<IConstantSubjectsParser, ConstantSubjectsParser>();

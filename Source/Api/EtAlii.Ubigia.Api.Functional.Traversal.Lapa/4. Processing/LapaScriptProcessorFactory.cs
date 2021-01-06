@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new FunctionSubjectProcessingScaffolding(),
 
                 new LapaPathBuildingScaffolding(),
-                new LapaConstantHelpersScaffolding(),
+                new LapaConstantParsingScaffolding(),
 
                 // Script Parsing
                 new LapaScriptParserScaffolding(),

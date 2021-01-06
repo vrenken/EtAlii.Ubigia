@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var container = new Container();
 
-            new LapaConstantHelpersScaffolding().Register(container);
+            new LapaConstantParsingScaffolding().Register(container);
             new LapaScriptParserScaffolding().Register(container);
             new LapaSequenceParsingScaffolding().Register(container);
             new LapaOperatorParsingScaffolding().Register(container);
