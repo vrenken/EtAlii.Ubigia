@@ -58,14 +58,11 @@ namespace EtAlii.xTechnology.Threading
 
             private void Dispose(bool disposing)
             {
-                if (disposing)
+                if (disposing && !_disposed)
                 {
-                    if (!_disposed)
-                    {
-                        // Delegate to parent enumerable's DisposeEnumerator() method
-                        _controllingEnumerable.DisposeEnumerator();
-                        _disposed = true;
-                    }
+                    // Delegate to parent enumerable's DisposeEnumerator() method
+                    _controllingEnumerable.DisposeEnumerator();
+                    _disposed = true;
                 }
             }
             public void Dispose()

@@ -40,7 +40,7 @@
         static DiagnosticsConfiguration()
         {
             Configure(_loggerConfiguration);
-            //_loggerConfiguration = loggerConfiguration(_loggerConfiguration);
+            //_loggerConfiguration = loggerConfiguration[_loggerConfiguration]
             Log.Logger = _loggerConfiguration.CreateLogger();
 
 

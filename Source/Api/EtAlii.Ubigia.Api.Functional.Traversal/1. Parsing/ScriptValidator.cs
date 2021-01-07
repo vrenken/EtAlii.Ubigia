@@ -246,19 +246,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("Two constant path parts cannot be combined.");
                     }
-                    if (pathPartPosition != 0 || afterPathPart == null)
+                    if ((pathPartPosition != 0 || afterPathPart == null) && constantPathSubjectPart.Name == string.Empty)
                     {
-                        if (constantPathSubjectPart.Name == string.Empty)
-                        {
-                            throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                        }
+                        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
                     }
-                    if (pathPartPosition == 0 && afterPathPart != null)
+                    if ((pathPartPosition == 0 && afterPathPart != null) && constantPathSubjectPart.Name == string.Empty)
                     {
-                        if (constantPathSubjectPart.Name == string.Empty)
-                        {
-                            throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                        }
+                        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
                     }
                     break;
                 case VariablePathSubjectPart:

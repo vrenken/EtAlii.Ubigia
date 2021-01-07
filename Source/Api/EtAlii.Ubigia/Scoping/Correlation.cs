@@ -7,6 +7,6 @@
     {
         public const string ScriptId = "ScriptCorrelationId";
 
-        public static string[] AllIds = {ScriptId};
+        public static readonly string[] AllIds = {ScriptId};
     }
 }

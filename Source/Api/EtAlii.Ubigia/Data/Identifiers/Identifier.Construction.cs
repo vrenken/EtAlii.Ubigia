@@ -4,6 +4,7 @@
 
     public readonly partial struct Identifier
     {
+#pragma warning disable S1144 // SonarQube does not seem to understand the new C#9 new() constructor.
         private Identifier(Guid storage, Guid account, Guid space, ulong era, ulong period, ulong moment)
         {
             Storage = storage;
@@ -13,6 +14,7 @@
             Period = period;
             Moment = moment;
         }
+#pragma warning restore S1144
 
         public static Identifier NewIdentifier(Guid storage, Guid account, Guid space)
         {
