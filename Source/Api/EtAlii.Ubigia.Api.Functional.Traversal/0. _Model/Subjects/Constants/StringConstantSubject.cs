@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal class StringConstantSubject : ConstantSubject
+    public class StringConstantSubject : ConstantSubject
     {
         public readonly string Value;
 
