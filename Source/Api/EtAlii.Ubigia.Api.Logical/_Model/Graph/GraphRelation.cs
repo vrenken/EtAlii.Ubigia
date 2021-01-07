@@ -7,10 +7,12 @@
     {
         private readonly string _name;
 
+#pragma warning disable S1144 // SonarQube does not seem to understand the new C#9 new() constructor.
         private GraphRelation(string name)
         {
             _name = name;
         }
+#pragma warning restore S1144
 
         public override string ToString()
         {

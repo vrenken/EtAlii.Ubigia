@@ -48,18 +48,15 @@ namespace EtAlii.xTechnology.Threading
 
             private void Dispose(bool disposing)
             {
-                if (disposing)
+                if (disposing && !_disposed)
                 {
-                    if (!_disposed)
+                    // Only dispose the source enumerator if you are doing dynamic partitioning
+                    if (!_downcountEnumerators)
                     {
-                        // Only dispose the source enumerator if you are doing dynamic partitioning
-                        if (!_downcountEnumerators)
-                        {
-                            _reader.Dispose();
-                        }
-
-                        _disposed = true;
+                        _reader.Dispose();
                     }
+
+                    _disposed = true;
                 }
             }
             public void Dispose()

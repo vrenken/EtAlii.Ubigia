@@ -40,11 +40,13 @@
             ((IComponentEditableEntry) this).IdComponent = new IdentifierComponent { Id = id };
         }
 
+#pragma warning disable S1144 // SonarQube does not seem to understand the new C#9 new() constructor.
         private Entry(in Identifier id, Relation previous)
             : this(id)
         {
             ((IComponentEditableEntry) this).PreviousComponent = new PreviousComponent { Relation = previous };
         }
+#pragma warning restore S1144
 
         public Identifier Id => ((IComponentEditableEntry) this).IdComponent.Id;
 
