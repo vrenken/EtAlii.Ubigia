@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<INodeAnnotationsParser, NodeAnnotationsParser>();
             container.Register<INodeValueAnnotationsParser, NodeValueAnnotationsParser>();
 
-            container.Register<ISchemaParser, SchemaParser>();
+            container.Register<ISchemaParser, LapaSchemaParser>();
             container.Register<IRequirementParser, RequirementParser>();
 
             container.Register<IAssignmentParser, AssignmentParser>();

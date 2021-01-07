@@ -4,22 +4,22 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class GraphContextScaffolding : IScaffolding
+    internal class LapaGraphContextExtension : IGraphContextExtension
     {
         private readonly GraphContextConfiguration _configuration;
 
-        public GraphContextScaffolding(GraphContextConfiguration configuration)
+        public LapaGraphContextExtension(GraphContextConfiguration configuration)
         {
             _configuration = configuration;
         }
 
-        public void Register(Container container)
+        public void Initialize(Container container)
         {
             container.Register<IGraphContext, GraphContext>();
             container.Register<IGraphContextConfiguration>(() => _configuration);
 
-            container.Register<ISchemaProcessorFactory, SchemaProcessorFactory>();
-            container.Register<ISchemaParserFactory, SchemaParserFactory>();
+            container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();
+            container.Register<ISchemaParserFactory, LapaSchemaParserFactory>();
 
             container.Register(() => new TraversalScriptContextFactory().Create(_configuration));
 

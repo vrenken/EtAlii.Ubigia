@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
+    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
     {
         protected override IScaffolding[] CreateScaffoldings(SchemaProcessorConfiguration configuration)
         {

@@ -28,7 +28,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
@@ -57,7 +57,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
@@ -86,7 +86,7 @@
         {
             // Arrange.
             var configuration = new LinqQueryContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalDiagnostics(_testContext.Diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true).ConfigureAwait(false);
             var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.

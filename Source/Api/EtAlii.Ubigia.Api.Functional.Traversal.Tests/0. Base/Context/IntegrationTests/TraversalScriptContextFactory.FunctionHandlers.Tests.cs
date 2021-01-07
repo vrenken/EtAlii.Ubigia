@@ -19,7 +19,7 @@
         {
             // Arrange.
             var configuration = new TraversalScriptContextConfiguration()
-                    .UseTestParser();
+                    .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
@@ -34,7 +34,7 @@
         {
             // Arrange.
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser();
+                .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
@@ -52,7 +52,7 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -71,7 +71,7 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -97,7 +97,7 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -120,7 +120,7 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
