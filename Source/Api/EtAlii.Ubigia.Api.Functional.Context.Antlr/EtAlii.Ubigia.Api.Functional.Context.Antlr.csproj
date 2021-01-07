@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+        <ProjectGuid>67259294-497b-4002-835f-5cbe53bea71a</ProjectGuid>
+        <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+        <PackProject>true</PackProject>
+        <PackageId>$(AssemblyName)</PackageId>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
+        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+    </ItemGroup>
+</Project>
