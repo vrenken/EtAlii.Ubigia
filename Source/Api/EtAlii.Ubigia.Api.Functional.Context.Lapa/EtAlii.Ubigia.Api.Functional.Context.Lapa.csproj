@@ -1,13 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-        <ProjectGuid>4714520e-f832-4694-941f-43de958884b0</ProjectGuid>
-        <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-        <PackProject>true</PackProject>
-        <PackageId>$(AssemblyName)</PackageId>
+      <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+      <ProjectGuid>4714520e-f832-4694-941f-43de958884b0</ProjectGuid>
+      <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+      <RootNamespace>EtAlii.Ubigia.Api.Functional.Context</RootNamespace>
+      <PackProject>true</PackProject>
+      <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="0. _Model" />
+      <Folder Include="2. Planning" />
     </ItemGroup>
 </Project>

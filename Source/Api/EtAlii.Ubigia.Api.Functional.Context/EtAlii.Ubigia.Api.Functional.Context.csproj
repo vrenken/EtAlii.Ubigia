@@ -1,16 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
-        <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
-        <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-        <PackProject>true</PackProject>
-        <PackageId>$(AssemblyName)</PackageId>
+      <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+      <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
+      <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+      <PackProject>true</PackProject>
+      <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="1. Parsing\Annotations\_Model" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
     </ItemGroup>
 </Project>
