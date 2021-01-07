@@ -54,19 +54,19 @@ As in Ubigia information never gets destroyed the operators needed are relative 
 
 | Operator   | Script representation | Description   	|
 | :---	     | :---                  | :---             |
-| Assign     | <=                    | The Assing operator is used to assign or clear properties, tags or binary/blob data. |
+| Assign     | <=                    | The Assing operator is used two-fold: First to assign or clear properties, tags or binary/blob data, and secondly as a pipe-construct to forward output from for example graph-traversals and functions to following subjects. |
 | Add        | +=                    | The Add operator is used to create links between different nodes in the graph. |
 | Remove     | -=                    | The Remove operator is used to remove links between different nodes in the graph. |
 
 Please take notice that in case of update/clear actions using the Assign operator or an unlink action using the Remove operator the previous state does not get overwritten. It merely gets updated in a similar way that Version-Control-Systems like GIT work.
 
 SUBJECTS
-| Subject       | Script representation | Description   	|
-|:---	        | :---                  | :---            	|
-| Constant	    |                     |               	|
-| Variable	    |                     |               	|
-| Object	    |                     |               	|
-| Path	        |                     |               	|
+| Subject       | Script representation                                                     | Description   	|
+|:---	        | :---                                                                      | :---            	|
+| Constant	    | "Hello!" <br /> 42 <br /> 2012-06-12 <br /> 23.3234 <br /> TRUE / FALSE   |               	|
+| Variable	    | $var1                                                                     |               	|
+| Object	    | { <br />&nbsp;&nbsp;"Name": "John", <br />&nbsp;&nbsp;"Age": 42 <br />}   |               	|
+| Path	        | /Person/Doe/John <br /> Person:"John Doe"                                 |               	|
 
 
 
