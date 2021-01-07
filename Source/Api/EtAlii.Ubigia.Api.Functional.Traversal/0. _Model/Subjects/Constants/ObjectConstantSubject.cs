@@ -2,7 +2,7 @@
 {
     using System.Linq;
 
-    internal class ObjectConstantSubject : ConstantSubject
+    public class ObjectConstantSubject : ConstantSubject
     {
         public readonly IPropertyDictionary Values;
 

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal abstract class ConstantSubject : Subject
+    public abstract class ConstantSubject : Subject
     {
     }
 }
