@@ -7,9 +7,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="0. Base" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
   </ItemGroup>
 </Project>
