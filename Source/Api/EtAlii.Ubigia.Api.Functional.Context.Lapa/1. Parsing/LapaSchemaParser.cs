@@ -7,7 +7,7 @@
 //    using System.Linq
 //    using Moppet.Lapa
 
-    internal class SchemaParser : ISchemaParser
+    internal class LapaSchemaParser : ISchemaParser
     {
         private readonly IStructureFragmentParser _structureFragmentParser;
         private const string _id = "Query";
@@ -18,7 +18,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
 
-        public SchemaParser(
+        public LapaSchemaParser(
             ICommentParser commentParser,
             IStructureFragmentParser structureFragmentParser,
             INodeValidator nodeValidator,

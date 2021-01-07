@@ -9,7 +9,7 @@
         public void SchemaParser_Parse_Mutation_With_Comment_And_Object_Multiple_Lines_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"-- This is a comment
             Data
             {
@@ -31,7 +31,7 @@
         public void SchemaParser_Parse_Mutation_With_Comment_And_Object_Multiple_Lines_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"-- This is a comment
             Data @node(Person:Doe/John)
             {
@@ -54,7 +54,7 @@
         public void SchemaParser_Parse_Mutation_Without_Comment_And_Object_Multiple_Lines_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"Data
             {
                 ""key"" <= ""value""
@@ -77,7 +77,7 @@
         public void SchemaParser_Parse_Mutation_Without_Comment_And_Object_Multiple_Lines_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"
             Data
             {
@@ -101,7 +101,7 @@
         public void SchemaParser_Parse_Mutation_NonRooted_Select()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var schemaText = @"-- Comment goes here.
             Person @node(/Person/Stark/Tony)
             {
@@ -141,7 +141,7 @@
         public void SchemaParser_Parse_Mutation_Annotated_Root()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var annotatedRootPersonText = @"
             Person @node(person:Stephenson/Sabrina)
             {
@@ -184,7 +184,7 @@
         public void SchemaParser_Parse_Mutation_Rooted_Select()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"-- Comment goes here.
             Person @node(Person:Start/Tony)
             {
@@ -222,7 +222,7 @@
         public void SchemaParser_Parse_Mutation_Flat()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"
             Person
             {
@@ -261,7 +261,7 @@
         public void SchemaParser_Parse_Mutation_Flat_Annotated()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"
             Person @node(Person:Doe/John)
             {
@@ -302,7 +302,7 @@
         public void SchemaParser_Parse_Mutation_Nested()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var normalPersonText = @"
             Person
             {
@@ -344,7 +344,7 @@
         public void SchemaParser_Parse_Mutation_Annotated_Element_00()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var annotatedRootPersonText = @"
             Person @node(person:Stark/Tony)
             {
@@ -384,7 +384,7 @@
         public void SchemaParser_Parse_Mutation_Annotated_Element_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var annotatedRootPersonText = @"
             Person
             {
@@ -422,7 +422,7 @@
         public void SchemaParser_Parse_Mutation_Annotated_Element_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
             var annotatedRootPersonText = @"
             Person
             {

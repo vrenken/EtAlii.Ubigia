@@ -17,12 +17,10 @@
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            return new IScaffolding[]
-            {
-                new GraphContextScaffolding(configuration),
+            return System.Array.Empty<IScaffolding>();
+            //new GraphContextScaffolding(configuration),
+            //new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
 
-                //new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
-            };
         }
     }
 }

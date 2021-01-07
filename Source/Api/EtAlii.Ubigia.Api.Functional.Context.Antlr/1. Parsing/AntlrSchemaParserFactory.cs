@@ -1,0 +1,11 @@
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
+
+namespace EtAlii.Ubigia.Api.Functional.Context
+{
+    using EtAlii.xTechnology.MicroContainer;
+
+    internal class AntlrSchemaParserFactory : Factory<ISchemaParser, SchemaParserConfiguration, ISchemaParserExtension>, ISchemaParserFactory
+    {
+        protected override IScaffolding[] CreateScaffoldings(SchemaParserConfiguration configuration) => throw new System.NotImplementedException();
+    }
+}

@@ -35,7 +35,7 @@
         {
             // Arrange.
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -51,7 +51,7 @@
         {
             // Arrange.
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -68,7 +68,7 @@
         {
             // Arrange.
             var configuration = new TraversalScriptContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);

@@ -36,7 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
+                .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
@@ -91,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                     .UseFunctionalDiagnostics(_diagnostics)
                     .Use(scope)
                     .Use(_scriptContext);
-                var processor = new SchemaProcessorFactory().Create(configuration);
+                var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
                 // Act.
                 var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);

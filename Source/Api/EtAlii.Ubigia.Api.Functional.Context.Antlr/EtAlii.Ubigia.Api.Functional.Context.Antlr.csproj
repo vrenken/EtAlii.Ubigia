@@ -12,7 +12,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="0. _Model" />
-      <Folder Include="1. Parsing" />
       <Folder Include="2. Planning" />
       <Folder Include="3. Processing" />
     </ItemGroup>
