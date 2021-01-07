@@ -37,14 +37,37 @@ $location => location:52.2167/6.9000
 
 These examples are fairly straightforward, but only cover a few of the most simple traversals possible. 
 
+## Sequences.
+A GTL script is made up of sequences. Most often a sequence is placed on a single line, but with object assignments it is possible that a sequence covers multiple lines.
+Each sequence is build using _subjects_ and _operators_. Subjects are the content that the sequence works on according to the operators that separates them.
+
+For example:
+```
+$var1   <=       "Hello World"
+SUBJECT OPERATOR SUBJECT
+```
+
+In the example above the <= indicates the assignment operator, "Hello World" a constant subject and $var1 a variable subject.
+
+A sequence is first parsed into its components. From these an execution plan is determined, which can then be run on the data storage. 
+As in Ubigia information never gets destroyed the operators needed are relative few:
+
+OPERATORS
+<=
++= 
+-=
+
+SUBJECTS
+
+
 ## Different types of traversals.
 Traversing information has one logical aspect that cannot be overlooked: it needs to start somewhere. In Ubigia there are two different "sequences" that both have a profound purpose:
 
-- *Absolute sequences*<br/>
-  An absolute sequence has as purpose to start exploring linked information from the outside-in. It always starts at a root (i.e. time, person, location) and from there on traverses inwards. 
+- *Absolute paths*<br/>
+  An absolute path has as purpose to start exploring linked information from the outside-in. It always starts at a root (i.e. time, person, location) and from there on traverses inwards. 
   
-- *Relative sequences*<br/>
-  A relative sequence has as purpose to continue traversal from an already found information element or elements. It's purpose is to explore surroundings of related information items and by doing so facilitate better understanding (and build context). 
+- *Relative paths*<br/>
+  A relative path has as purpose to continue traversal from an already found information element or elements. It's purpose is to explore surroundings of related information items and by doing so facilitate better understanding (and build context). 
 
 ## Directional traversal.
 
