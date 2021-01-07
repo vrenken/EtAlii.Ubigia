@@ -48,7 +48,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
+        // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
         private void ValidateOperator(SequencePart before, Operator @operator, SequencePart after)
+        // ReSharper enable ParameterOnlyUsedForPreconditionCheck.Local
         {
             if (before is Operator || after is Operator)
             {
