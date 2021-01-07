@@ -52,12 +52,22 @@ In the example above the <= indicates the assignment operator, "Hello World" a c
 A sequence is first parsed into its components. From these an execution plan is determined, which can then be run on the data storage. 
 As in Ubigia information never gets destroyed the operators needed are relative few:
 
-OPERATORS
-<=
-+= 
--=
+| Operator   | Script representation | Description   	|
+| :---	     | :---                  | :---             |
+| Assign     | <=                    | The Assing operator is used to assign or clear properties, tags or binary/blob data. |
+| Add        | +=                    | The Add operator is used to create links between different nodes in the graph. |
+| Remove     | -=                    | The Remove operator is used to remove links between different nodes in the graph. |
+
+Please take notice that in case of update/clear actions using the Assign operator or an unlink action using the Remove operator the previous state does not get overwritten. It merely gets updated in a similar way that Version-Control-Systems like GIT work.
 
 SUBJECTS
+| Subject       | Script representation | Description   	|
+|:---	        | :---                  | :---            	|
+| Constant	    |                     |               	|
+| Variable	    |                     |               	|
+| Object	    |                     |               	|
+| Path	        |                     |               	|
+
 
 
 ## Different types of traversals.
