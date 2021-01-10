@@ -9,7 +9,7 @@ parser grammar GtlPrimitives;
 
 options {
      language = CSharp;
-     tokenVocab = GtlLexer;
+     tokenVocab = UbigiaLexer;
 }
 
 // Datetimes.
@@ -64,6 +64,18 @@ object_kv_value
 reserved_words
     : BOOLEAN_LITERAL
     | ROOT_SUBJECT_PREFIX
+//    | ANNOTATION_NODE_ADD
+//    | ANNOTATION_NODES_ADD
+//    | ANNOTATION_NODE_LINK
+//    | ANNOTATION_NODES_LINK
+//    | ANNOTATION_NODE_REMOVE
+//    | ANNOTATION_NODES_REMOVE
+//    | ANNOTATION_NODE
+//    | ANNOTATION_NODES
+//    | ANNOTATION_NODE_UNLINK
+//    | ANNOTATION_NODES_UN_LINK
+//    | ANNOTATION_NODE_VALUE_SET
+//    | ANNOTATION_NODE_VALUE_CLEAR
     ;
 
 identifier                                          : IDENTIFIER | reserved_words ;

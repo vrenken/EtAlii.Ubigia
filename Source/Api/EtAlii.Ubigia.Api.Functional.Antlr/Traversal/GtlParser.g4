@@ -9,7 +9,7 @@ parser grammar GtlParser;
 
 options {
      language = CSharp;
-     tokenVocab = GtlLexer;
+     tokenVocab = UbigiaLexer;
 }
 
 import GtlPrimitives ;

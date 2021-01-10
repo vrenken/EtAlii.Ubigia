@@ -9,7 +9,7 @@ parser grammar GclPrimitives;
 
 options {
      language = CSharp;
-     tokenVocab = GclLexer;
+     tokenVocab = UbigiaLexer;
 }
 
 reserved_words

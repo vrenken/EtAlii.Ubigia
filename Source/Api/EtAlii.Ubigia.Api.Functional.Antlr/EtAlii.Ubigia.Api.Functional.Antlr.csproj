@@ -13,12 +13,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Antlr4 Include="Traversal/GtlLexer.g4">
+    <Antlr4 Include="UbigiaLexer.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace).Traversal.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
     <Antlr4 Include="Traversal/GtlParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
@@ -34,12 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Antlr4 Include="Context/GclLexer.g4">
-      <Listener>false</Listener>
-      <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Context.Antlr</Package>
-      <Error>true</Error>
-    </Antlr4>
     <Antlr4 Include="Context/GclParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>

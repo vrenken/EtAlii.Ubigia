@@ -29,7 +29,7 @@
             try
             {
                 var inputStream = new AntlrInputStream(text);
-                var gtlLexer = new GtlLexer(inputStream);
+                var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
                 var parser = new GtlParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
@@ -75,7 +75,7 @@
             try
             {
                 var inputStream = new AntlrInputStream(text);
-                var gtlLexer = new GtlLexer(inputStream);
+                var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
                 var parser = new GtlParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
