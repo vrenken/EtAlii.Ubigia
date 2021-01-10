@@ -8,6 +8,7 @@
       <PackageId>$(AssemblyName)</PackageId>
     </PropertyGroup>
     <ItemGroup>
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
       <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
     </ItemGroup>
     <ItemGroup>
@@ -15,28 +16,4 @@
       <Folder Include="2. Planning" />
       <Folder Include="3. Processing" />
     </ItemGroup>
-  <ItemGroup>
-    <Antlr4 Include="GclLexer.g4">
-      <Listener>false</Listener>
-      <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Antlr</Package>
-      <Error>true</Error>
-    </Antlr4>
-    <Antlr4 Include="GclParser.g4">
-      <Listener>false</Listener>
-      <Visitor>true</Visitor>
-      <Package>$(RootNamespace).Antlr</Package>
-      <Error>true</Error>
-    </Antlr4>
-    <Antlr4 Include="GclPrimitives.g4">
-      <Listener>false</Listener>
-      <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Antlr</Package>
-      <Error>true</Error>
-    </Antlr4>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
-    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
-  </ItemGroup>  
 </Project>

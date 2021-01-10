@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <ProjectGuid>fbcb2a52-4408-449f-99b0-62a91aeec001</ProjectGuid>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="Traversal/GtlLexer.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="Traversal/GtlParser.g4">
+      <Listener>false</Listener>
+      <Visitor>true</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="Traversal/GtlPrimitives.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="Context/GclLexer.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="Context/GclParser.g4">
+      <Listener>false</Listener>
+      <Visitor>true</Visitor>
+      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="Context/GclPrimitives.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />
+  </ItemGroup>
+
+</Project>

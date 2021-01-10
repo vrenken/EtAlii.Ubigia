@@ -4,54 +4,54 @@
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Traversal.Antlr/GtlLexer.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Traversal/GtlPrimitives.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Traversal.Antlr/GtlParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Context/GclLexer.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Traversal.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Traversal.Antlr/GtlPrimitives.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Context/GclParser.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Traversal.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Context.Antlr/GtlLexer.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Context/GclPrimitives.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Context.Antlr/GclParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Traversal/GtlLexer.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Context.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Context.Antlr/GclPrimitives.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Traversal/GtlParser.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Context.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
