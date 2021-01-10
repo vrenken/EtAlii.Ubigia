@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public override object VisitIdentifier(GtlParser.IdentifierContext context) => context?.IDENTIFIER()?.GetText();
 
-        public override object VisitBoolean_literal(GtlParser.Boolean_literalContext context) => bool.Parse(context.BOOLEAN_LITERAL().GetText());
+        public override object VisitBoolean_literal(GtlParser.Boolean_literalContext context) => bool.Parse(context.GetText());
 
         public override object VisitFloat_literal(GtlParser.Float_literalContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
