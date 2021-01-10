@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class GtlVisitor
+    public partial class TraversalScriptVisitor
     {
-        public override object VisitObject(GtlParser.ObjectContext context)
+        public override object VisitObject(TraversalScriptParser.ObjectContext context)
         {
             var properties = new PropertyDictionary();
 
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new ObjectConstantSubject(properties);
         }
 
-        public override object VisitObject_kv_pair_with_comma(GtlParser.Object_kv_pair_with_commaContext context)
+        public override object VisitObject_kv_pair_with_comma(TraversalScriptParser.Object_kv_pair_with_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
             object value = null;
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new KeyValuePair<string, object>(key, value);
         }
 
-        public override object VisitObject_kv_pair_without_comma(GtlParser.Object_kv_pair_without_commaContext context)
+        public override object VisitObject_kv_pair_without_comma(TraversalScriptParser.Object_kv_pair_without_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
             object value = null;

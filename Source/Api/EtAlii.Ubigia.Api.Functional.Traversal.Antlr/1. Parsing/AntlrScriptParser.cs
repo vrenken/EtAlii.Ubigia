@@ -24,14 +24,14 @@
             text += Environment.NewLine;
 
             var errors = Array.Empty<ScriptParserError>();
-            Script script = null;
+            Script script;
 
             try
             {
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new GtlParser(commonTokenStream);
+                var parser = new TraversalScriptParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -47,7 +47,7 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new GtlVisitor();
+                var visitor = new TraversalScriptVisitor();
                 script = visitor.Visit(context) as Script;
 
                 _scriptValidator.Validate(script);
@@ -77,7 +77,7 @@
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new GtlParser(commonTokenStream);
+                var parser = new TraversalScriptParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -93,7 +93,7 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new GtlVisitor();
+                var visitor = new TraversalScriptVisitor();
                 pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
 
                 _scriptValidator.Validate(pathSubject);

@@ -1,4 +1,4 @@
-parser grammar GtlParser;
+parser grammar TraversalScriptParser;
 
 @header {
     #pragma warning disable CS0115 // CS0115: no suitable method found to override
@@ -12,7 +12,7 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import GtlPrimitives, UbigiaPaths ;
+import TraversalPrimitives, TraversalPathParser ;
 
 script: (WHITESPACE | NEWLINE)* sequence+ (WHITESPACE | NEWLINE)* EOF;
 

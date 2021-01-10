@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class GtlVisitor
+    public partial class TraversalScriptVisitor
     {
-        public override object VisitSequence_pattern_1(GtlParser.Sequence_pattern_1Context context)
+        public override object VisitSequence_pattern_1(TraversalScriptParser.Sequence_pattern_1Context context)
         {
             var parts = new List<SequencePart>();
 
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             return new Sequence(parts.ToArray());
         }
-        public override object VisitSequence_pattern_2(GtlParser.Sequence_pattern_2Context context)
+        public override object VisitSequence_pattern_2(TraversalScriptParser.Sequence_pattern_2Context context)
         {
             var parts = new List<SequencePart>();
 
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             return new Sequence(parts.ToArray());
         }
-        public override object VisitSequence_pattern_3(GtlParser.Sequence_pattern_3Context context)
+        public override object VisitSequence_pattern_3(TraversalScriptParser.Sequence_pattern_3Context context)
         {
             var parts = new List<SequencePart>();
 
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new Sequence(parts.ToArray());
         }
 
-        public override object VisitSequence_pattern_4(GtlParser.Sequence_pattern_4Context context)
+        public override object VisitSequence_pattern_4(TraversalScriptParser.Sequence_pattern_4Context context)
         {
             var parts = new List<SequencePart>();
 
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new Sequence(parts.ToArray());
         }
 
-        public override object VisitComment(GtlParser.CommentContext context)
+        public override object VisitComment(TraversalScriptParser.CommentContext context)
         {
             var text = context.GetText().Substring(CommentPrefixLength);
             return new Comment(text);
