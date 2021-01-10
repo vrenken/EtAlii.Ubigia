@@ -9,7 +9,7 @@ parser grammar GclParser;
 
 options {
      language = CSharp;
-     tokenVocab = GclLexer;
+     tokenVocab = UbigiaLexer;
 }
 
 import GclPrimitives;
