@@ -9,4 +9,7 @@
     <ItemGroup>
       <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="0. CodeGeneration" />
+    </ItemGroup>
 </Project>
