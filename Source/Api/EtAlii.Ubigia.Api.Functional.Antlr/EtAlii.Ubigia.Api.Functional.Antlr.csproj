@@ -13,6 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Antlr4 Include="Traversal\UbigiaPaths.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
     <Antlr4 Include="UbigiaLexer.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>

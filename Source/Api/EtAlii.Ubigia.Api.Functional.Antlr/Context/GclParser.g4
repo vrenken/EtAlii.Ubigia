@@ -12,7 +12,7 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import GclPrimitives;
+import GclPrimitives, UbigiaPaths;
 
 schema                                                  : (comment | WHITESPACE | NEWLINE)* structure_fragment (comment | WHITESPACE | NEWLINE)* EOF ;
 
@@ -105,5 +105,6 @@ node_annotation
     ;
 
 schema_key                                              : identifier | string_quoted_non_empty;
-schema_path                                             : (identifier | DOUBLEQUOTE | WHITESPACE | FSLASH | BSLASH | HASHTAG | COLON | COLON | ASTERIKS)+ | string_quoted_non_empty; // Should be valid rooted or non rooted path.
+//schema_path                                             : (identifier | DOUBLEQUOTE | WHITESPACE | FSLASH | BSLASH | HASHTAG | COLON | COLON | ASTERIKS)+ | string_quoted_non_empty; // Should be valid rooted or non rooted path.
+schema_path                                             : rooted_path | non_rooted_path ;
 comment                                                 : WHITESPACE* COMMENT ;
