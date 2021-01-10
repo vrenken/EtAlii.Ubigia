@@ -107,6 +107,24 @@ ROOT_SUBJECT_PREFIX                                 : ('ROOT' | 'root' | 'Root')
 TRUE                                                : ('TRUE' | 'true' | 'True');
 FALSE                                               : ('FALSE' | 'false' | 'False');
 
+ANNOTATION_NODE_ADD                                 : 'node-add';
+ANNOTATION_NODES_ADD                                : 'nodes-add';
+
+ANNOTATION_NODE_LINK                                : 'node-link';
+ANNOTATION_NODES_LINK                               : 'nodes-link';
+
+ANNOTATION_NODE_REMOVE                              : 'node-remove';
+ANNOTATION_NODES_REMOVE                             : 'nodes-remove';
+
+ANNOTATION_NODE                                     : 'node';
+ANNOTATION_NODES                                    : 'nodes';
+
+ANNOTATION_NODE_UNLINK                              : 'node-unlink';
+ANNOTATION_NODES_UNLINK                             : 'nodes-unlink';
+
+ANNOTATION_NODE_SET                                 : 'node-set';
+ANNOTATION_NODE_CLEAR                               : 'node-clear';
+
 
 IDENTIFIER
 	: IDENTIFIER_START_CHARACTER IDENTIFIER_PART_CHARACTER*
