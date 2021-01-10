@@ -61,7 +61,12 @@ object_kv_value
     | object
     ;
 
-identifier                                          : IDENTIFIER ;
+reserved_words
+    : BOOLEAN_LITERAL
+    | ROOT_SUBJECT_PREFIX
+    ;
+
+identifier                                          : IDENTIFIER | reserved_words ;
 string_quoted                                       : STRING_QUOTED ;
 string_quoted_non_empty                             : STRING_QUOTED_NON_EMPTY ;
 integer_literal                                     : (PLUS | MINUS) DIGIT+ ;

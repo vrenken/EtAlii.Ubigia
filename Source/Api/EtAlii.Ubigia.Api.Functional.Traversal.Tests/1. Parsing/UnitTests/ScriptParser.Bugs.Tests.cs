@@ -160,5 +160,55 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Jo*", wildcardPathSubjectPart.Pattern);
         }
 
+        [Fact]
+        public void ScriptParser_Bugs_008_Root_Keyword_Should_Work_In_Paths()
+        {
+            // Arrange.
+            const string text = "/path/root/two/23/";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var absolutePathSubject = Assert.IsType<AbsolutePathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var constantPathSubjectPart = Assert.IsType<ConstantPathSubjectPart>(absolutePathSubject.Parts[3]);
+            Assert.Equal("root", constantPathSubjectPart.Name);
+        }
+
+        [Fact]
+        public void ScriptParser_Bugs_009_True_Keyword_Should_Work_In_Paths()
+        {
+            // Arrange.
+            const string text = "/path/true/two/23/";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var absolutePathSubject = Assert.IsType<AbsolutePathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var constantPathSubjectPart = Assert.IsType<ConstantPathSubjectPart>(absolutePathSubject.Parts[3]);
+            Assert.Equal("true", constantPathSubjectPart.Name);
+        }
+
+        [Fact]
+        public void ScriptParser_Bugs_010_False_Keyword_Should_Work_In_Paths()
+        {
+            // Arrange.
+            const string text = "/path/False/two/23/";
+
+            // Act.
+            var parseResult = _parser.Parse(text);
+
+            // Assert.
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Script);
+            var absolutePathSubject = Assert.IsType<AbsolutePathSubject>(parseResult.Script.Sequences.First().Parts[1]);
+            var constantPathSubjectPart = Assert.IsType<ConstantPathSubjectPart>(absolutePathSubject.Parts[3]);
+            Assert.Equal("False", constantPathSubjectPart.Name);
+        }
     }
 }
