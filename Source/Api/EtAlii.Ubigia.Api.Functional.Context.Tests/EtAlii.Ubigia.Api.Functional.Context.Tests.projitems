@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. CodeGeneration" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
