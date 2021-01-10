@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Antlr4 Include="Traversal\UbigiaPaths.g4">
+    <Antlr4 Include="TraversalPathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace).Traversal.Antlr</Package>
@@ -25,38 +25,32 @@
       <Package>$(RootNamespace).Traversal.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Antlr4 Include="Traversal/GtlParser.g4">
+    <Antlr4 Include="TraversalScriptParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <Package>$(RootNamespace).Traversal.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="Traversal/GtlPrimitives.g4">
+    <Antlr4 Include="TraversalPrimitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace).Traversal.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Antlr4 Include="Context/GclParser.g4">
+    <Antlr4 Include="ContextSchemaParser.g4">
       <Listener>false</Listener>
       <Visitor>true</Visitor>
       <Package>$(RootNamespace).Context.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="Context/GclPrimitives.g4">
+    <Antlr4 Include="ContextPrimitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace).Context.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
   </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />

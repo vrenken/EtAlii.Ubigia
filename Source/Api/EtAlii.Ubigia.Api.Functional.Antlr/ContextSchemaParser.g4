@@ -1,4 +1,4 @@
-parser grammar GclParser;
+parser grammar ContextSchemaParser;
 
 @header {
     #pragma warning disable CS0115 // CS0115: no suitable method found to override
@@ -12,7 +12,7 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import GclPrimitives, UbigiaPaths;
+import ContextPrimitives, TraversalPathParser;
 
 schema                                                  : (comment | WHITESPACE | NEWLINE)* structure_fragment (comment | WHITESPACE | NEWLINE)* EOF ;
 

@@ -1,4 +1,4 @@
-parser grammar GclPrimitives;
+parser grammar ContextPrimitives;
 
 @header {
     #pragma warning disable CS0115 // CS0115: no suitable method found to override

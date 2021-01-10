@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class GtlVisitor
+    public partial class TraversalScriptVisitor
     {
-        public override object VisitSubject_function(GtlParser.Subject_functionContext context)
+        public override object VisitSubject_function(TraversalScriptParser.Subject_functionContext context)
         {
             var functionName = (string)VisitIdentifier(context.identifier());
             var argumentContexts = context.subject_function_argument();
@@ -21,20 +21,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new FunctionSubject(functionName, arguments);
         }
 
-        public override object VisitSubject_function_argument_identifier(GtlParser.Subject_function_argument_identifierContext context)
+        public override object VisitSubject_function_argument_identifier(TraversalScriptParser.Subject_function_argument_identifierContext context)
         {
             var text = context.GetText();
             return new ConstantFunctionSubjectArgument(text);
 
         }
 
-        public override object VisitSubject_function_argument_string_quoted(GtlParser.Subject_function_argument_string_quotedContext context)
+        public override object VisitSubject_function_argument_string_quoted(TraversalScriptParser.Subject_function_argument_string_quotedContext context)
         {
             var text = (string)VisitString_quoted(context.string_quoted());
             return new ConstantFunctionSubjectArgument(text);
         }
 
-        public override object VisitSubject_function_argument_rooted_path(GtlParser.Subject_function_argument_rooted_pathContext context)
+        public override object VisitSubject_function_argument_rooted_path(TraversalScriptParser.Subject_function_argument_rooted_pathContext context)
         {
             var root = (string)VisitIdentifier(context.identifier());
             var rootedPathSubject = BuildRootedPathSubject(root, context.path_part());
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new RootedPathFunctionSubjectArgument(rootedPathSubject);
         }
 
-        public override object VisitSubject_function_argument_non_rooted_path(GtlParser.Subject_function_argument_non_rooted_pathContext context)
+        public override object VisitSubject_function_argument_non_rooted_path(TraversalScriptParser.Subject_function_argument_non_rooted_pathContext context)
         {
             var subject = BuildNonRootedPathSubject(context.path_part());
 
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             };
         }
 
-        public override object VisitSubject_function_argument_variable(GtlParser.Subject_function_argument_variableContext context)
+        public override object VisitSubject_function_argument_variable(TraversalScriptParser.Subject_function_argument_variableContext context)
         {
             var variableName = (string)VisitIdentifier(context.identifier());
             return new VariableFunctionSubjectArgument(variableName);

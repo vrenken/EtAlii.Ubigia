@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class GtlVisitor : GtlParserBaseVisitor<object>
+    public partial class TraversalScriptVisitor : TraversalScriptParserBaseVisitor<object>
     {
         private const int CommentPrefixLength = 2;
 
-        public override object VisitScript(GtlParser.ScriptContext context)
+        public override object VisitScript(TraversalScriptParser.ScriptContext context)
         {
             var sequences = context.sequence()
                 .Select(sequenceContext => Visit(sequenceContext) as Sequence)
