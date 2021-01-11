@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return text?.Substring(1, text.Length - 2);
         }
 
-        public override object VisitIdentifier(TraversalScriptParser.IdentifierContext context) => context?.IDENTIFIER()?.GetText();
+        public override object VisitIdentifier(TraversalScriptParser.IdentifierContext context) => context?.GetText();
 
         public override object VisitBoolean_literal(TraversalScriptParser.Boolean_literalContext context) => bool.Parse(context.GetText());
 
