@@ -41,6 +41,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestSchemaProcessorFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>

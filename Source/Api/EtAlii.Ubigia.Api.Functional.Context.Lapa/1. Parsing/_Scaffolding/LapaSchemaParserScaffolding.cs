@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SchemaParserScaffolding : IScaffolding
+    internal class LapaSchemaParserScaffolding : IScaffolding
     {
         public void Register(Container container)
         {

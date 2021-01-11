@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
+    internal class AntlrSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
     {
         protected override IScaffolding[] CreateScaffoldings(SchemaProcessorConfiguration configuration)
         {
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 //new FunctionSubjectProcessingScaffolding(),
 
                 // Query Parsing
-                new LapaSchemaParserScaffolding(),
+                new AntlrSchemaParserScaffolding(),
 
                 // Additional processing (for path variable parts).
                 //new PathSubjectParsingScaffolding(),

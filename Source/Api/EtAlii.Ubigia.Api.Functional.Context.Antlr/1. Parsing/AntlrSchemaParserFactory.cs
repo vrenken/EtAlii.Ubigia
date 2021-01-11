@@ -6,6 +6,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class AntlrSchemaParserFactory : Factory<ISchemaParser, SchemaParserConfiguration, ISchemaParserExtension>, ISchemaParserFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(SchemaParserConfiguration configuration) => throw new System.NotImplementedException();
+        protected override IScaffolding[] CreateScaffoldings(SchemaParserConfiguration configuration)
+        {
+            return new IScaffolding[]
+            {
+                new AntlrSchemaParserScaffolding(),
+            };
+        }
     }
 }

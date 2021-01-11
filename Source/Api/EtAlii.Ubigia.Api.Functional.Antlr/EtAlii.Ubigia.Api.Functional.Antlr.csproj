@@ -22,7 +22,7 @@
     <Antlr4 Include="UbigiaLexer.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Package>$(RootNamespace).Antlr</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="TraversalScriptParser.g4">
@@ -50,7 +50,7 @@
       <Error>true</Error>
     </Antlr4>
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="Antlr4BuildTasks" Version="8.9.0" />
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.0" />

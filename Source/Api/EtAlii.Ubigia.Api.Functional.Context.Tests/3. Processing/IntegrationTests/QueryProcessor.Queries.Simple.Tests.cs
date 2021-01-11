@@ -2,9 +2,10 @@
 {
     using System;
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional.Context.Diagnostics;
+    using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -69,7 +70,7 @@
                 .Use(_scriptContext);
 
             // Act.
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(processor);
@@ -101,7 +102,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(query).ConfigureAwait(false);
@@ -152,7 +153,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -184,7 +185,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -215,7 +216,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -266,7 +267,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -300,7 +301,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -340,7 +341,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -376,7 +377,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -417,7 +418,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -459,7 +460,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -498,7 +499,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -547,7 +548,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
@@ -589,7 +590,7 @@
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new LapaSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(selectSchema).ConfigureAwait(false);
