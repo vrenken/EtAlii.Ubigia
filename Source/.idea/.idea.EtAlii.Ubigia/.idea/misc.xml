@@ -46,7 +46,7 @@
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
-          <option name="generateVisitor" value="true" />
+          <option name="generateListener" value="false" />
         </PerGrammarGenerationSettings>
       </list>
     </option>
