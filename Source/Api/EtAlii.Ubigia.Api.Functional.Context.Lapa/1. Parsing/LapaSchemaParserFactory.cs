@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             return new IScaffolding[]
             {
-                new SchemaParserScaffolding(),
+                new LapaSchemaParserScaffolding(),
 
                 new LapaSequenceParsingScaffolding(),
                 new LapaSubjectParsingScaffolding(),

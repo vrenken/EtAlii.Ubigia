@@ -14,6 +14,5 @@
     <ItemGroup>
       <Folder Include="0. _Model" />
       <Folder Include="2. Planning" />
-      <Folder Include="3. Processing" />
     </ItemGroup>
 </Project>

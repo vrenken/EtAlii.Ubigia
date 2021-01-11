@@ -61,12 +61,18 @@ assign_and_select_node_value_with_key_annotation        : WHITESPACE+ ATSIGN ANN
                                                         // @node-set(SOURCE)
 assign_and_select_node_value_without_key_annotation     : WHITESPACE+ ATSIGN ANNOTATION_NODE_SET WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value-clear(SOURCE)
+clear_and_select_node_value_with_key_annotation         : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+                                                        // @value-clear()
+clear_and_select_node_value_without_key_annotation      : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
+                                                        // @value-clear(SOURCE)
 clear_and_select_node_value_annotation                  : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value(SOURCE) or @value()
 select_node_value_annotation                            : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
 node_value_annotation
     : assign_and_select_node_value_with_key_annotation
     | assign_and_select_node_value_without_key_annotation
+    | clear_and_select_node_value_with_key_annotation
+    | clear_and_select_node_value_without_key_annotation
     | clear_and_select_node_value_annotation
     | select_node_value_annotation
     ;

@@ -2,6 +2,7 @@
 {
     using System;
     using Antlr4.Runtime;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     /// <summary>
