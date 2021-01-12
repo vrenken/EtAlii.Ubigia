@@ -14,14 +14,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IScriptProcessingContext _context;
         private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
-        private readonly IScriptParser _scriptParser;
+        private readonly IPathParser _pathParser;
 
         public VariablePathSubjectPartToGraphPathPartsConverter(
             IScriptProcessingContext context,
-            IScriptParser scriptParser)
+            IPathParser pathParser)
         {
             _context = context;
-            _scriptParser = scriptParser;
+            _pathParser = pathParser;
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             try
             {
-                return _scriptParser.ParsePath(value);
+                return _pathParser.ParsePath(value);
             }
             catch (Exception e)
             {

@@ -8,6 +8,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public void Register(Container container)
         {
+            container.Register<IPathParser, AntlrPathParser>();
+
             container.Register<ITraversalValidator, TraversalValidator>();
             container.Register<IScriptParser, AntlrScriptParser>();
         }
