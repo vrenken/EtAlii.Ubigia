@@ -16,7 +16,7 @@
             Assert.NotNull(parser);
         }
 
-        private INodeValueFragmentParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<INodeValueFragmentParser>();
+        private IValueFragmentParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<IValueFragmentParser>();
 
         [Fact]
         public void ValueFragmentParser_Parse_Query_Without_Annotation()
@@ -58,7 +58,7 @@
 
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<SelectNodeValueAnnotation>(annotation);
+            Assert.IsType<SelectValueAnnotation>(annotation);
             Assert.Null(annotation.Source);
         }
 
@@ -81,7 +81,7 @@
 
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<SelectNodeValueAnnotation>(annotation);
+            Assert.IsType<SelectValueAnnotation>(annotation);
             Assert.Equal(@"\\", annotation.Source.ToString());
         }
     }

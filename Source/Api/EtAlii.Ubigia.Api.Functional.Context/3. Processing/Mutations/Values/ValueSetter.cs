@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _propertiesValueSetter = propertiesValueSetter;
             _pathValueSetter = pathValueSetter;
         }
-        public async Task<Value> Set(string valueName, object value, NodeValueAnnotation annotation, SchemaExecutionScope executionScope, Structure structure)
+        public async Task<Value> Set(string valueName, object value, ValueAnnotation annotation, SchemaExecutionScope executionScope, Structure structure)
         {
             if (annotation == null)
             {

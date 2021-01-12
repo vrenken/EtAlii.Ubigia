@@ -2,10 +2,10 @@
 {
     using Xunit;
 
-    public class SelectNodeValueAnnotationParserTests
+    public class SelectValueAnnotationParserTests
     {
         [Fact]
-        public void SelectNodeValueAnnotationParser_Create()
+        public void SelectValueAnnotationParser_Create()
         {
             // Arrange.
 
@@ -16,15 +16,15 @@
             Assert.NotNull(parser);
         }
 
-        private ISelectNodeValueAnnotationParser CreateAnnotationParser()
+        private ISelectValueAnnotationParser CreateAnnotationParser()
         {
             var container = new SchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<ISelectNodeValueAnnotationParser>();
+            return container.GetInstance<ISelectValueAnnotationParser>();
         }
 
         [Fact]
-        public void SelectNodeValueAnnotationParser_Parse_Value_LastName()
+        public void SelectValueAnnotationParser_Parse_Value_LastName()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
@@ -37,13 +37,13 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var valueAnnotation = annotation as SelectNodeValueAnnotation;
+            var valueAnnotation = annotation as SelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
             Assert.Equal(@"\\LastName",valueAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void SelectNodeValueAnnotationParser_Parse_Value()
+        public void SelectValueAnnotationParser_Parse_Value()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
@@ -56,7 +56,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var valueAnnotation = annotation as SelectNodeValueAnnotation;
+            var valueAnnotation = annotation as SelectValueAnnotation;
             Assert.NotNull(valueAnnotation);
             Assert.Null(valueAnnotation.Source);
         }

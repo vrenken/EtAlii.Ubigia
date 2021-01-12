@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public void Register(Container container)
         {
             container.Register<INodeAnnotationsParser, NodeAnnotationsParser>();
-            container.Register<INodeValueAnnotationsParser, NodeValueAnnotationsParser>();
+            container.Register<IValueAnnotationsParser, ValueAnnotationsParser>();
 
             container.Register<ISchemaParser, LapaSchemaParser>();
             container.Register<IRequirementParser, RequirementParser>();
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             });
 
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
-            container.Register<INodeValueFragmentParser, NodeValueFragmentParser>();
+            container.Register<IValueFragmentParser, ValueFragmentParser>();
 
             container.Register<IAddAndSelectMultipleNodesAnnotationParser, AddAndSelectMultipleNodesAnnotationParser>();
             container.Register<IAddAndSelectSingleNodeAnnotationParser, AddAndSelectSingleNodeAnnotationParser>();
@@ -40,9 +40,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IUnlinkAndSelectMultipleNodesAnnotationParser, UnlinkAndSelectMultipleNodesAnnotationParser>();
             container.Register<IUnlinkAndSelectSingleNodeAnnotationParser, UnlinkAndSelectSingleNodeAnnotationParser>();
 
-            container.Register<ISetAndSelectNodeValueAnnotationParser, SetAndSelectNodeValueAnnotationParser>();
-            container.Register<IClearAndSelectNodeValueAnnotationParser, ClearAndSelectNodeValueAnnotationParser>();
-            container.Register<ISelectNodeValueAnnotationParser, SelectNodeValueAnnotationParser>();
+            container.Register<ISetAndSelectValueAnnotationParser, SetAndSelectValueAnnotationParser>();
+            container.Register<IClearAndSelectValueAnnotationParser, ClearAndSelectValueAnnotationParser>();
+            container.Register<ISelectValueAnnotationParser, SelectValueAnnotationParser>();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class NodeValueAnnotation : Annotation
+    public class ValueAnnotation : Annotation
     {
         /// <summary>
         /// The source path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
@@ -13,7 +13,7 @@
         /// Create a new ValueAnnotation using the specified source.
         /// </summary>
         /// <param name="source"></param>
-        public NodeValueAnnotation(PathSubject source)
+        public ValueAnnotation(PathSubject source)
         {
             Source = source;
         }

@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public const string NodeUnlink = "node-unlink";
         public const string NodesUnlink = "nodes-unlink";
 
-        public const string NodeValueSet = "node-set";
-        public const string NodeValueClear = "node-clear";
-        public const string NodeValue = "node";
+        public const string ValueSet = "node-set";
+        public const string ValueClear = "node-clear";
+        public const string Value = "node";
 
     }
 }

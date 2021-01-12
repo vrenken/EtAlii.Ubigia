@@ -20,10 +20,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectSingleNodeAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SetAndSelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\NodeValueAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SetAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ValueAnnotationsParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
@@ -47,6 +47,8 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
     <Folder Include="$(MSBuildThisFileDirectory)0. CodeGeneration" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Antlr\1. Parsing" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />

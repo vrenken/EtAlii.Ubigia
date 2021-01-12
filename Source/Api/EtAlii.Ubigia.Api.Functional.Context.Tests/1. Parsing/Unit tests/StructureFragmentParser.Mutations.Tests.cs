@@ -144,13 +144,13 @@
             var valueFragment1 = structureMutation.Values.Single(v => v.Name == "firstname");
             Assert.NotNull(valueFragment1);
             Assert.Equal(FragmentType.Query, valueFragment1.Type);
-            Assert.IsType<SelectNodeValueAnnotation>(valueFragment1.Annotation);
+            Assert.IsType<SelectValueAnnotation>(valueFragment1.Annotation);
             Assert.Null(valueFragment1.Annotation.Source);
 
             var valueFragment2 = structureMutation.Values.Single(v => v.Name == "lastname");
             Assert.NotNull(valueFragment2);
             Assert.Equal(FragmentType.Query, valueFragment2.Type);
-            Assert.IsType<SelectNodeValueAnnotation>(valueFragment2.Annotation);
+            Assert.IsType<SelectValueAnnotation>(valueFragment2.Annotation);
             Assert.Equal(@"\#FamilyName", valueFragment2.Annotation.Source.ToString());
         }
 
