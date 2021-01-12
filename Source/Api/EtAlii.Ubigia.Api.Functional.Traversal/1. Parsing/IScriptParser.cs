@@ -5,6 +5,9 @@
     /// </summary>
     public interface IScriptParser
     {
+        Subject ParseRootedPath(string text);
+        Subject ParseNonRootedPath(string text);
+
         Subject ParsePath(string text);
         ScriptParseResult Parse(string text);
         ScriptParseResult Parse(string[] text);
