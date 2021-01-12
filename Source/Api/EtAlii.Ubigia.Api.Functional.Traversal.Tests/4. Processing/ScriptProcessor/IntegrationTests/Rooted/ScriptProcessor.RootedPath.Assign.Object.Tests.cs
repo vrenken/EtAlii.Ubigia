@@ -6,14 +6,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathAssignObjectIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathAssignObjectIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

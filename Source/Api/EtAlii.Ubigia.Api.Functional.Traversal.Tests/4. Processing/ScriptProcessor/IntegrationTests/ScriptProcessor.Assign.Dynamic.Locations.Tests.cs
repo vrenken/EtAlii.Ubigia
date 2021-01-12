@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignDynamicLocationsIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorAssignDynamicLocationsIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

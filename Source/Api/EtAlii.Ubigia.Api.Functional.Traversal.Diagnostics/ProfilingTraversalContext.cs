@@ -4,13 +4,13 @@
     using System.Linq;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
-    public class ProfilingTraversalScriptContext : IProfilingTraversalScriptContext
+    public class ProfilingTraversalContext : IProfilingTraversalContext
     {
-        private readonly ITraversalScriptContext _decoree;
+        private readonly ITraversalContext _decoree;
         public IProfiler Profiler { get; }
 
-        public ProfilingTraversalScriptContext(
-            ITraversalScriptContext decoree,
+        public ProfilingTraversalContext(
+            ITraversalContext decoree,
             IProfiler profiler)
         {
             _decoree = decoree;

@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler.End(profile);
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             var identifiers = string.Join(", ", ((GraphIdentifiersStartNode) part).Identifiers.Select(i => i.ToTimeString()));
 

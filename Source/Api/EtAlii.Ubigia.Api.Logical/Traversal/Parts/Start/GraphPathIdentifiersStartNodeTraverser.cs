@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 onCompleted: () => { });// parameters.Output.OnCompleted()])
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             foreach (var item in ((GraphIdentifiersStartNode)part).Identifiers)
             {

@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    public interface ITraversalContext
+    public interface IPathTraversalContext
     {
         ITraversalContextRootSet Roots { get; }
         ITraversalContextEntrySet Entries { get; }

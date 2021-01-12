@@ -90,11 +90,11 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             var addQueries = new[]
             {
@@ -135,11 +135,11 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             var selectQuery = "<= /Person";
 

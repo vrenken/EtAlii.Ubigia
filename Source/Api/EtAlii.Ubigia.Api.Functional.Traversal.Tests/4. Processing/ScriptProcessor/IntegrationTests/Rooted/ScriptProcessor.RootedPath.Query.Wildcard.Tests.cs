@@ -6,13 +6,13 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private ILogicalContext _logicalContext;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathQueryWildcardIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryWildcardIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

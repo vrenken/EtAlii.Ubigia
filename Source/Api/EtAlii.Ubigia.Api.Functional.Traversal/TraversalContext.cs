@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class TraversalScriptContext : ITraversalScriptContext
+    internal class TraversalContext : ITraversalContext
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
@@ -12,7 +12,7 @@
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
-        public TraversalScriptContext(
+        public TraversalContext(
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,

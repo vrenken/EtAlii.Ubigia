@@ -34,7 +34,7 @@
             container.Register<IPathCorrecter, PathCorrecter>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
-            container.Register(() => _configuration.ScriptContext);
+            container.Register(() => _configuration.TraversalContext);
             container.Register(() => _configuration.SchemaScope);
             container.Register(() => _configuration);
         }

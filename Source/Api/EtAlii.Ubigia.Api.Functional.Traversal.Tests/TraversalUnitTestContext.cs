@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptingUnitTestContext : IAsyncLifetime
+    public class TraversalUnitTestContext : IAsyncLifetime
     {
         public ILogicalTestContext LogicalTestContext { get; private set; }
         public IDiagnosticsConfiguration Diagnostics { get; private set; }
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public FileComparer FileComparer { get; }
         public FolderComparer FolderComparer { get; }
 
-        public ScriptingUnitTestContext()
+        public TraversalUnitTestContext()
         {
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);

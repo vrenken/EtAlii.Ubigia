@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<ITraversalContextPropertySet, TraversalContextPropertySet>();
             container.Register<ITraversalContextRootSet, TraversalContextRootSet>();
 
-            container.Register<ITraversalContext, TraversalContext>();
+            container.Register<IPathTraversalContext, PathTraversalContext>();
         }
     }
 }

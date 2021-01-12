@@ -8,13 +8,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathFunctionId(ScriptingUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathFunctionId(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

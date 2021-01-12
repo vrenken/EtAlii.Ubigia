@@ -8,14 +8,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorScriptedAddTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorScriptedAddTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorScriptedAddTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorScriptedAddTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

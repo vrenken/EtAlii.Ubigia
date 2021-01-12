@@ -7,13 +7,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathFunctionRenameTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathFunctionRenameTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathFunctionRenameTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionRenameTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;

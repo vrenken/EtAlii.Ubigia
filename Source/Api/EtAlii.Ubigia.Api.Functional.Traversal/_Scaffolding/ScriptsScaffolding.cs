@@ -24,7 +24,7 @@
 
         public void Register(Container container)
         {
-            container.Register<ITraversalScriptContext, TraversalScriptContext>();
+            container.Register<ITraversalContext, TraversalContext>();
             container.Register(() => _scriptProcessorFactoryProvider());
             container.Register(() => _scriptParserFactoryProvider());
             container.Register(() => _functionHandlersProvider);

@@ -5,16 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// <summary>
     /// Add the configured test GTL parsing to the configuration.
     /// </summary>
-    public static class TraversalScriptContextConfigurationUseTestParserExtension
+    public static class TraversalContextConfigurationUseTestParserExtension
     {
         /// <summary>
         /// Use the text parser configured for testing.
         /// </summary>
         /// <param name="configuration"></param>
-        /// <typeparam name="TTraversalScriptContextConfiguration"></typeparam>
+        /// <typeparam name="TTraversalContextConfiguration"></typeparam>
         /// <returns></returns>
-        public static TTraversalScriptContextConfiguration UseTestTraversalParser<TTraversalScriptContextConfiguration>(this TTraversalScriptContextConfiguration configuration)
-            where TTraversalScriptContextConfiguration : TraversalScriptContextConfiguration
+        public static TTraversalContextConfiguration UseTestTraversalParser<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration)
+            where TTraversalContextConfiguration : TraversalContextConfiguration
         {
 #if USE_LAPA_PARSER_IN_TESTS
             return configuration.UseLapaTraversalParser();

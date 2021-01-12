@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorAssignDynamicTimeIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignDynamicTimeIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignDynamicTimeIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorAssignDynamicTimeIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

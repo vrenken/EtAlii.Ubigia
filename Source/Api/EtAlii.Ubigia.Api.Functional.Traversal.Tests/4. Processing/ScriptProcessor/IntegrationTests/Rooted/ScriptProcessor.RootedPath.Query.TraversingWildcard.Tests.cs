@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryTraversingWildcardIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryTraversingWildcardIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorRootedPathQueryTraversingWildcardIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryTraversingWildcardIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

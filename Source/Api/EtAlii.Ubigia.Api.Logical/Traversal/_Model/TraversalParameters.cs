@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public TraversalParameters(
             GraphPathPart part,
-            ITraversalContext context, 
+            IPathTraversalContext context, 
             ExecutionScope scope, 
             IObserver<Identifier> output, 
             IObservable<Identifier> input)
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         public GraphPathPart Part { get; }
-        public ITraversalContext Context { get; }
+        public IPathTraversalContext Context { get; }
         public ExecutionScope Scope { get; }
         public IObserver<Identifier> Output { get; }
         public IObservable<Identifier> Input { get; }

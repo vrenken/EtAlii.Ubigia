@@ -20,7 +20,7 @@
         public void Register(Container container)
         {
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
-            container.Register(() => new TraversalScriptContextFactory().Create(_configuration));
+            container.Register(() => new TraversalContextFactory().Create(_configuration));
 
             container.Register<IServiceProvider, GraphTypeServiceProvider>();
 

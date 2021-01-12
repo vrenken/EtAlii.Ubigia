@@ -12,12 +12,12 @@
     internal class NodeQueryExecutor : INodeQueryExecutor
     {
         private readonly INodeQueryModelVisitor _nodeQueryModelVisitor;
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public NodeQueryExecutor(INodeQueryModelVisitor nodeQueryModelVisitor, ITraversalScriptContext scriptContext)
+        public NodeQueryExecutor(INodeQueryModelVisitor nodeQueryModelVisitor, ITraversalContext traversalContext)
         {
             _nodeQueryModelVisitor = nodeQueryModelVisitor;
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         // Executes a query with a scalar result, i.e. a query that ends with a result operator such as Count, Sum, or Average.
@@ -44,14 +44,14 @@
 
             _nodeQueryModelVisitor.VisitQueryModel(queryModel);
             var scriptText = _nodeQueryModelVisitor.GetScriptText();
-            var scriptParseResult = _scriptContext.Parse(scriptText);
+            var scriptParseResult = _traversalContext.Parse(scriptText);
             if (scriptParseResult.Errors.Any())
             {
                 throw new NodeQueryingException("Unable to parse script needed to return a collection", scriptParseResult);
             }
 
             // TODO: Attempt to make Linq async.
-            var sequenceProcessingResult = _scriptContext
+            var sequenceProcessingResult = _traversalContext
                 .Process(scriptParseResult.Script, scope)
                 .GetAwaiter().GetResult();
 

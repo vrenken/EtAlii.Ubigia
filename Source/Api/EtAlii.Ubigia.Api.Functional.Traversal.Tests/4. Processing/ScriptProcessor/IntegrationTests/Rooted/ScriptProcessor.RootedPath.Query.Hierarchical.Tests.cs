@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorRootedPathQueryHierarchicalIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryHierarchicalIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

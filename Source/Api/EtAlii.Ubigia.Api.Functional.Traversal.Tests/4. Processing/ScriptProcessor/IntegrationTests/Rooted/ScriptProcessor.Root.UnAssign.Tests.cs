@@ -6,13 +6,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootUnAssignTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
+    public class ScriptProcessorRootUnAssignTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootUnAssignTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootUnAssignTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;

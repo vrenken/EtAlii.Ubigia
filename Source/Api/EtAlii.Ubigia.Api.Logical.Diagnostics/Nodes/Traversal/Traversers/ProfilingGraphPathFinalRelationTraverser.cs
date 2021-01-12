@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         }
 
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Traversing relation: FINAL");
             profile.Part = part;
