@@ -2,10 +2,10 @@
 {
     using Xunit;
 
-    public class LinkAndSelectMultipleNodesAnnotationParserTests
+    public class UnlinkAndSelectMultipleNodesAnnotationParserTests
     {
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Create()
+        public void UnlinkAndSelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
@@ -16,19 +16,19 @@
             Assert.NotNull(parser);
         }
 
-        private ILinkAndSelectMultipleNodesAnnotationParser CreateAnnotationParser()
+        private IUnlinkAndSelectMultipleNodesAnnotationParser CreateAnnotationParser()
         {
-            var container = new SchemaParserTestContainerFactory().Create();
+            var container = new LapaSchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<ILinkAndSelectMultipleNodesAnnotationParser>();
+            return container.GetInstance<IUnlinkAndSelectMultipleNodesAnnotationParser>();
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_01()
+        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-link(/Time, time:'2000-05-02 23:07', /Event)";
+            var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07', /Event)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -37,7 +37,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as LinkAndSelectMultipleNodesAnnotation;
+            var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
             Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
@@ -45,11 +45,11 @@
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_02()
+        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-link(/Time, time:'2000-05-02 23:07',/Event)";
+            var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07',/Event)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -58,7 +58,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as LinkAndSelectMultipleNodesAnnotation;
+            var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
             Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
@@ -66,11 +66,11 @@
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_03()
+        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-link(/Time,time:'2000-05-02 23:07', /Event)";
+            var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -79,7 +79,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as LinkAndSelectMultipleNodesAnnotation;
+            var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
             Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());
@@ -87,11 +87,11 @@
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_04()
+        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_04()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@nodes-link(/Time,time:'2000-05-02 23:07', /Event)";
+            var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -100,7 +100,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as LinkAndSelectMultipleNodesAnnotation;
+            var nodeAnnotation = annotation as UnlinkAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("/Time",nodeAnnotation.Source.ToString());
             Assert.Equal("time:2000-05-02 23:07", nodeAnnotation.Target.ToString());

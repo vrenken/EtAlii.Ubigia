@@ -2,10 +2,10 @@
 {
     using Xunit;
 
-    public class SelectSingleNodeAnnotationParserTests
+    public class SelectMultipleNodesAnnotationParserTests
     {
         [Fact]
-        public void SelectSingleNodeAnnotationParser_Create()
+        public void SelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
@@ -16,19 +16,19 @@
             Assert.NotNull(parser);
         }
 
-        private ISelectSingleNodeAnnotationParser CreateAnnotationParser()
+        private ISelectMultipleNodesAnnotationParser CreateAnnotationParser()
         {
-            var container = new SchemaParserTestContainerFactory().Create();
+            var container = new LapaSchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<ISelectSingleNodeAnnotationParser>();
+            return container.GetInstance<ISelectMultipleNodesAnnotationParser>();
         }
 
         [Fact]
-        public void SelectSingleNodeAnnotationParser_Parse_01()
+        public void SelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node(person:Doe/John)";
+            var text = @"@nodes(person:Doe/*)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -37,16 +37,17 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as SelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
+            Assert.Equal("person:Doe/*", nodeAnnotation.Source.ToString());
         }
+
         [Fact]
-        public void SelectSingleNodeAnnotationParser_Parse_02()
+        public void SelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node(person:Doe/John )";
+            var text = @"@nodes(person:Doe/* )";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -55,17 +56,17 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as SelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
+            Assert.Equal("person:Doe/*", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void SelectSingleNodeAnnotationParser_Parse_03()
+        public void SelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node( person:Doe/John)";
+            var text = @"@nodes( person:Doe/*)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -74,9 +75,9 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as SelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as SelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
-            Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
+            Assert.Equal("person:Doe/*", nodeAnnotation.Source.ToString());
         }
 
     }
