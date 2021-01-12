@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
 
-    public class ScriptValidator : IScriptValidator
+    public class TraversalValidator : ITraversalValidator
     {
         public void Validate(Script script)
         {

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class TraversalScriptVisitor
+    public partial class TraversalVisitor
     {
         public override object VisitOperator_add(TraversalScriptParser.Operator_addContext context) => new AddOperator();
 

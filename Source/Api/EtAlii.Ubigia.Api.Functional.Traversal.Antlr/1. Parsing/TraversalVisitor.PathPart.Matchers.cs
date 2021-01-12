@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Text;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class TraversalScriptVisitor
+    public partial class TraversalVisitor
     {
         public override object VisitPath_part_matcher_traversing_wildcard(TraversalScriptParser.Path_part_matcher_traversing_wildcardContext context)
         {

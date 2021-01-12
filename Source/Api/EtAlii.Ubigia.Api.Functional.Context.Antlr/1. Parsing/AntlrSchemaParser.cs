@@ -4,14 +4,19 @@
     using Antlr4.Runtime;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Context.Antlr;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class AntlrSchemaParser : ISchemaParser
     {
-        private readonly ISchemaValidator _schemaValidator;
+        private readonly IContextValidator _contextValidator;
+        private readonly IScriptParser _scriptParser;
 
-        public AntlrSchemaParser(ISchemaValidator schemaValidator)
+        public AntlrSchemaParser(
+            IContextValidator contextValidator,
+            IScriptParser scriptParser)
         {
-            _schemaValidator = schemaValidator;
+            _contextValidator = contextValidator;
+            _scriptParser = scriptParser;
         }
 
         public SchemaParseResult Parse(string text)
@@ -45,10 +50,10 @@
                     throw new SchemaParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new ContextSchemaVisitor();
+                var visitor = new ContextVisitor(_scriptParser);
                 schema = visitor.Visit(context) as Schema;
 
-                _schemaValidator.Validate(schema);
+                _contextValidator.Validate(schema);
             }
             catch (SchemaParserException e)
             {

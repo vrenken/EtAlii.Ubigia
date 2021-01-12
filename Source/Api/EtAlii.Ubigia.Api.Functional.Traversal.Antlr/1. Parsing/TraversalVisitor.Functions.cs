@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class TraversalScriptVisitor
+    public partial class TraversalVisitor
     {
         public override object VisitSubject_function(TraversalScriptParser.Subject_functionContext context)
         {

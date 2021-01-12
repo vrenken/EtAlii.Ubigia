@@ -16,7 +16,7 @@
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
-        private readonly IScriptValidator _scriptValidator;
+        private readonly ITraversalValidator _traversalValidator;
         private readonly LpsParser _nonRootedParser;
         private readonly LpsParser _rootedParser;
 
@@ -27,14 +27,14 @@
             IRootedPathSubjectParser rootedPathSubjectParser,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
-            IScriptValidator scriptValidator)
+            ITraversalValidator traversalValidator)
         {
             _sequenceParser = sequenceParser;
             _nodeValidator = nodeValidator;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _rootedPathSubjectParser = rootedPathSubjectParser;
             _nodeFinder = nodeFinder;
-            _scriptValidator = scriptValidator;
+            _traversalValidator = traversalValidator;
 
             var firstParser = newLineParser.Optional + sequenceParser.Parser;
             var nextParser = newLineParser.Required + sequenceParser.Parser;
@@ -71,7 +71,7 @@
 
                 script = new Script(sequences);
 
-                _scriptValidator.Validate(script);
+                _traversalValidator.Validate(script);
             }
             catch (Exception e)
             {
@@ -98,7 +98,7 @@
             var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
 
             // There is a possibility that we receive a string constant that needs to be validated validation.
-            _scriptValidator.Validate(pathSubject);
+            _traversalValidator.Validate(pathSubject);
 
             return pathSubject;
         }
@@ -116,7 +116,7 @@
             var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
 
             // There is a possibility that we receive a string constant that needs to be validated validation.
-            _scriptValidator.Validate(pathSubject);
+            _traversalValidator.Validate(pathSubject);
 
             return pathSubject;
         }
@@ -134,7 +134,7 @@
             var pathSubject = _rootedPathSubjectParser.Parse(childNode);
 
             // There is a possibility that we receive a string constant that needs to be validated validation.
-            _scriptValidator.Validate(pathSubject);
+            _traversalValidator.Validate(pathSubject);
 
             return pathSubject;
         }

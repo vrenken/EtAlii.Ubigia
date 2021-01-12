@@ -10,11 +10,11 @@
     /// </summary>
     internal class AntlrScriptParser : IScriptParser
     {
-        private readonly IScriptValidator _scriptValidator;
+        private readonly ITraversalValidator _traversalValidator;
 
-        public AntlrScriptParser(IScriptValidator scriptValidator)
+        public AntlrScriptParser(ITraversalValidator traversalValidator)
         {
-            _scriptValidator = scriptValidator;
+            _traversalValidator = traversalValidator;
         }
 
         public ScriptParseResult Parse(string text)
@@ -48,10 +48,10 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalScriptVisitor();
+                var visitor = new TraversalVisitor();
                 script = visitor.Visit(context) as Script;
 
-                _scriptValidator.Validate(script);
+                _traversalValidator.Validate(script);
             }
             catch (ScriptParserException e)
             {
@@ -94,10 +94,10 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalScriptVisitor();
+                var visitor = new TraversalVisitor();
                 pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
 
-                _scriptValidator.Validate(pathSubject);
+                _traversalValidator.Validate(pathSubject);
             }
             catch (Exception e)
             {
@@ -131,10 +131,10 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalScriptVisitor();
+                var visitor = new TraversalVisitor();
                 pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
 
-                _scriptValidator.Validate(pathSubject);
+                _traversalValidator.Validate(pathSubject);
             }
             catch (Exception e)
             {
@@ -168,10 +168,10 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalScriptVisitor();
+                var visitor = new TraversalVisitor();
                 pathSubject = visitor.VisitSubject_rooted_path(context) as Subject;
 
-                _scriptValidator.Validate(pathSubject);
+                _traversalValidator.Validate(pathSubject);
             }
             catch (Exception e)
             {

@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public interface IScriptValidator
+    public interface ITraversalValidator
     {
         void Validate(Script script);
         void Validate(Subject subject);
