@@ -48,7 +48,7 @@ structure_fragment_body_entry
     ;
 
 structure_fragment                                      : WHITESPACE* requirement? schema_key node_annotation? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body (WHITESPACE | NEWLINE)* RBRACE;
-value_fragment                                          : WHITESPACE* requirement? schema_key node_value_annotation? WHITESPACE* ;
+value_fragment                                          : WHITESPACE* requirement? schema_key value_annotation? WHITESPACE* ;
 
 structure_fragment_body_newline_separated : (structure_fragment_body_entry WHITESPACE* NEWLINE+)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
 structure_fragment_body_comma_separated : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* NEWLINE?)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
@@ -57,24 +57,24 @@ structure_fragment_body
     | structure_fragment_body_comma_separated
     ;
                                                         // @node-set(SOURCE, VALUE)
-assign_and_select_node_value_with_key_annotation        : WHITESPACE+ ATSIGN ANNOTATION_NODE_SET WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+value_annotation_assign_and_select_with_key             : WHITESPACE+ ATSIGN ANNOTATION_NODE_SET WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
                                                         // @node-set(SOURCE)
-assign_and_select_node_value_without_key_annotation     : WHITESPACE+ ATSIGN ANNOTATION_NODE_SET WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
+value_annotation_assign_and_select_without_key          : WHITESPACE+ ATSIGN ANNOTATION_NODE_SET WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value-clear(SOURCE)
-clear_and_select_node_value_with_key_annotation         : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+value_annotation_clear_and_select_with_key              : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
                                                         // @value-clear()
-clear_and_select_node_value_without_key_annotation      : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
+value_annotation_clear_and_select_without_key           : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value-clear(SOURCE)
-clear_and_select_node_value_annotation                  : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
+value_annotation_clear_and_select                       : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value(SOURCE) or @value()
-select_node_value_annotation                            : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
-node_value_annotation
-    : assign_and_select_node_value_with_key_annotation
-    | assign_and_select_node_value_without_key_annotation
-    | clear_and_select_node_value_with_key_annotation
-    | clear_and_select_node_value_without_key_annotation
-    | clear_and_select_node_value_annotation
-    | select_node_value_annotation
+value_annotation_select                                 : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
+value_annotation
+    : value_annotation_assign_and_select_with_key
+    | value_annotation_assign_and_select_without_key
+    | value_annotation_clear_and_select_with_key
+    | value_annotation_clear_and_select_without_key
+    | value_annotation_clear_and_select
+    | value_annotation_select
     ;
 
                                                         // @nodes-add(PATH, NAME)

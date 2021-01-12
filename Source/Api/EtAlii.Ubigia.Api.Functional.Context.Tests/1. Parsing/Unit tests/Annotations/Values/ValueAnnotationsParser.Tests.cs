@@ -2,32 +2,32 @@
 {
     using Xunit;
 
-    public class NodeValueAnnotationsParserTests
+    public class ValueAnnotationsParserTests
     {
         [Fact]
-        public void NodeValueAnnotationsParser_Create()
+        public void ValueAnnotationsParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateNodeValueAnnotationsParser();
+            var parser = CreateValueAnnotationsParser();
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private INodeValueAnnotationsParser CreateNodeValueAnnotationsParser()
+        private IValueAnnotationsParser CreateValueAnnotationsParser()
         {
             var container = new SchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<INodeValueAnnotationsParser>();
+            return container.GetInstance<IValueAnnotationsParser>();
         }
 
         [Fact]
-        public void NodeValueAnnotationsParser_Parse_Value_LastName()
+        public void ValueAnnotationsParser_Parse_Value_LastName()
         {
             // Arrange.
-            var parser = CreateNodeValueAnnotationsParser();
+            var parser = CreateValueAnnotationsParser();
             var text = @"@node(\\LastName)";
 
             // Act.
@@ -38,16 +38,16 @@
             Assert.NotNull(node);
             //Assert.Empty(node.Errors);
             Assert.NotNull(annotation);
-            Assert.IsType<SelectNodeValueAnnotation>(annotation);
+            Assert.IsType<SelectValueAnnotation>(annotation);
             Assert.NotNull(annotation.Source);
             Assert.Equal(@"\\LastName",annotation.Source.ToString());
         }
 
         [Fact]
-        public void NodeValueAnnotationsParser_Parse_Value()
+        public void ValueAnnotationsParser_Parse_Value()
         {
             // Arrange.
-            var parser = CreateNodeValueAnnotationsParser();
+            var parser = CreateValueAnnotationsParser();
             var text = @"@node()";
 
             // Act.
@@ -58,7 +58,7 @@
             Assert.NotNull(node);
             //Assert.Empty(node.Errors);
             Assert.NotNull(annotation);
-            Assert.IsType<SelectNodeValueAnnotation>(annotation);
+            Assert.IsType<SelectValueAnnotation>(annotation);
             Assert.Null(annotation.Source);
         }
     }

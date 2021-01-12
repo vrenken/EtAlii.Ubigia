@@ -17,7 +17,7 @@
             Assert.NotNull(parser);
         }
 
-        private INodeValueFragmentParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<INodeValueFragmentParser>();
+        private IValueFragmentParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<IValueFragmentParser>();
 
         [Fact]
         public void ValueFragmentParser_Parse_Value_Mutation_Space()
@@ -94,10 +94,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectNodeValueAnnotation)annotation).Subject.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
 
         [Fact]
@@ -115,10 +115,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectNodeValueAnnotation)annotation).Subject.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
 
 
@@ -137,10 +137,10 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("Location",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
-            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectNodeValueAnnotation)annotation).Subject.ToString());
+            Assert.Equal("Location:NL/Overijssel/Enschede/Oldebokhoek/52", ((AssignAndSelectValueAnnotation)annotation).Subject.ToString());
         }
 
         [Fact]
@@ -158,11 +158,11 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
             Assert.Null(annotation.Source);
-            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectNodeValueAnnotation)annotation).Subject);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
             Assert.Equal("John", subject.Value);
         }
 
@@ -181,11 +181,11 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);
             Assert.Null(annotation.Source);
-            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectNodeValueAnnotation)annotation).Subject);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
             Assert.Equal("John", subject.Value);
         }
         [Fact]
@@ -203,8 +203,8 @@
             Assert.NotNull(node);
             var annotation = valueFragment.Annotation;
             Assert.NotNull(annotation);
-            Assert.IsType<AssignAndSelectNodeValueAnnotation>(annotation);
-            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectNodeValueAnnotation)annotation).Subject);
+            Assert.IsType<AssignAndSelectValueAnnotation>(annotation);
+            var subject = Assert.IsType<StringConstantSubject>(((AssignAndSelectValueAnnotation)annotation).Subject);
             Assert.Equal("John", subject.Value);
             Assert.Equal("FirstName",valueFragment.Name);
             Assert.Equal(FragmentType.Mutation, valueFragment.Type);

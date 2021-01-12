@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using Moppet.Lapa;
 
-    internal interface INodeValueFragmentParser
+    internal interface IValueFragmentParser
     {
         LpsParser Parser { get; }
         string Id { get; }
