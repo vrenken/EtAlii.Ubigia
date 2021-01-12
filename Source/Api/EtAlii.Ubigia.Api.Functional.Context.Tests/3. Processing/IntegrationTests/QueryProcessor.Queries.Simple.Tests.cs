@@ -13,7 +13,7 @@
 
     public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private ITraversalScriptContext _scriptContext;
+        private ITraversalContext _traversalContext;
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
@@ -37,11 +37,11 @@
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
+            _traversalContext = new TraversalContextFactory().Create(_configuration);
             _context = new GraphContextFactory().Create(_configuration);
 
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddPeople(_traversalContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_traversalContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
         }
@@ -52,7 +52,7 @@
 
             await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
-            _scriptContext = null;
+            _traversalContext = null;
             _context = null;
 
             _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -67,7 +67,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
 
             // Act.
             var processor = new TestSchemaProcessorFactory().Create(configuration);
@@ -101,7 +101,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -152,7 +152,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -184,7 +184,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -215,7 +215,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -266,7 +266,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -300,7 +300,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -340,7 +340,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -376,7 +376,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -417,7 +417,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -459,7 +459,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -498,7 +498,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -547,7 +547,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
@@ -589,7 +589,7 @@
             var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.

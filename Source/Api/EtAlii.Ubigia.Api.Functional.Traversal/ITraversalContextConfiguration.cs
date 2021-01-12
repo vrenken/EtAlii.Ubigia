@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public interface ITraversalScriptContextConfiguration : IConfiguration
+    public interface ITraversalContextConfiguration : IConfiguration
     {
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }

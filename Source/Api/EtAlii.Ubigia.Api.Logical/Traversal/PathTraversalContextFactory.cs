@@ -3,11 +3,11 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class TraversalContextFactory : Factory<ITraversalContext>, ITraversalContextFactory
+    public class PathTraversalContextFactory : Factory<IPathTraversalContext>, IPathTraversalContextFactory
     {
         private readonly IFabricContext _fabricContext;
 
-        public TraversalContextFactory(IFabricContext fabricContext)
+        public PathTraversalContextFactory(IFabricContext fabricContext)
         {
             _fabricContext = fabricContext;
         }

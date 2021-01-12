@@ -21,7 +21,7 @@
             container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, LapaSchemaParserFactory>();
 
-            container.Register(() => new TraversalScriptContextFactory().Create(_configuration));
+            container.Register(() => new TraversalContextFactory().Create(_configuration));
 
             container.Register(() => new LogicalContextFactory().Create(_configuration));
         }

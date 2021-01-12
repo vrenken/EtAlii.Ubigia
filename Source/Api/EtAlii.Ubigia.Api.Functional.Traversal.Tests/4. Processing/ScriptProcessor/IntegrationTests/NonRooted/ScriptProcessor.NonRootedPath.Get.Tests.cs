@@ -8,13 +8,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathGetTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathGetTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathGetTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathGetTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
         }
-        public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
+        public Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             return Task.Run(() =>
             {

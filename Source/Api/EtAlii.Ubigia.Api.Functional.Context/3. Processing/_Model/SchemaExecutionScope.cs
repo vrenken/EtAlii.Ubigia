@@ -4,7 +4,7 @@
 
     internal class SchemaExecutionScope
     {
-        //public ITraversalScriptContext ScriptContext [ get ]
+        //public ITraversalContext TraversalContext [ get ]
 
         public IScriptScope ScriptScope { get; }
 

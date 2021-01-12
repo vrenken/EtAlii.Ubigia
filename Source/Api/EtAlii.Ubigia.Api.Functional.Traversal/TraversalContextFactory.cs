@@ -3,9 +3,9 @@
     using EtAlii.xTechnology.MicroContainer;
     using System;
 
-    public class TraversalScriptContextFactory : Factory<ITraversalScriptContext, TraversalScriptContextConfiguration, ITraversalScriptContextExtension>
+    public class TraversalContextFactory : Factory<ITraversalContext, TraversalContextConfiguration, ITraversalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(TraversalScriptContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(TraversalContextConfiguration configuration)
         {
             // Let's ensure that the function handler configuration is in fact valid.
             var functionHandlersProvider = configuration.FunctionHandlersProvider;
@@ -33,7 +33,7 @@
 
             return new IScaffolding[]
             {
-                new TraversalScriptContextScaffolding(configuration),
+                new TraversalContextScaffolding(configuration),
                 new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider, scriptParserFactoryProvider, scriptProcessorFactoryProvider),
             };
         }

@@ -3,9 +3,9 @@
     using System;
 
     /// <summary>
-    /// A <see cref="TraversalScriptContext"/> can be used to execute GTL scripts on a Ubigia space.
+    /// A <see cref="TraversalContext"/> can be used to execute GTL scripts on a Ubigia space.
     /// </summary>
-    public interface ITraversalScriptContext
+    public interface ITraversalContext
     {
         /// <summary>
         /// Parse the specified text into a GTL script.

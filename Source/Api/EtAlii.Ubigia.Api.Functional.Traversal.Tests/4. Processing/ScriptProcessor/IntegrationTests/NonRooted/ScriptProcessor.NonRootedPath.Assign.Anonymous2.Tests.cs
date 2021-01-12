@@ -6,15 +6,15 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

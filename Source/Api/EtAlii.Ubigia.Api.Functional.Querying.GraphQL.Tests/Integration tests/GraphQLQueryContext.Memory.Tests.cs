@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 
     public class GraphQLQueryContextMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private ITraversalScriptContext _scriptContext;
+        private ITraversalContext _traversalContext;
         private IGraphQLQueryContext _queryContext;
 
         private readonly QueryingUnitTestContext _testContext;
@@ -38,11 +38,11 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
                 .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
+            _traversalContext = new TraversalContextFactory().Create(_configuration);
             _queryContext = new GraphQLQueryContextFactory().Create(_configuration);
 
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddPeople(_traversalContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_traversalContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 
             await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
-            _scriptContext = null;
+            _traversalContext = null;
             _queryContext = null;
 
             _testOutputHelper.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);

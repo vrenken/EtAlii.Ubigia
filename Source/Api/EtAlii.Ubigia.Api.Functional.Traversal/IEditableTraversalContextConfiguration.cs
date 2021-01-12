@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
 
-    public interface IEditableTraversalScriptContextConfiguration
+    public interface IEditableTraversalContextConfiguration
     {
         IFunctionHandlersProvider FunctionHandlersProvider { get; set; }
 

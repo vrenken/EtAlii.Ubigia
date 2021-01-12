@@ -6,13 +6,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathFunctionInclude : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathFunctionInclude : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathFunctionInclude(ScriptingUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathFunctionInclude(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

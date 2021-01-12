@@ -4,13 +4,13 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingTraversalScriptContextTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ProfilingTraversalContextTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         //private ILogicalContext _logicalContext;
 
-        public ProfilingTraversalScriptContextTests(ScriptingUnitTestContext testContext)
+        public ProfilingTraversalContextTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -31,50 +31,50 @@
         }
 
         [Fact]
-        public async Task ProfilingTraversalScriptContext_Create_01()
+        public async Task ProfilingTraversalContext_Create_01()
         {
             // Arrange.
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var context = new TraversalScriptContextFactory().Create(configuration);
+            var context = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);
         }
 
         [Fact]
-        public async Task ProfilingTraversalScriptContext_Create_02()
+        public async Task ProfilingTraversalContext_Create_02()
         {
             // Arrange.
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var context = new TraversalScriptContextFactory().Create(configuration);
+            var context = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);
         }
 
         [Fact]
-        public async Task ProfilingTraversalScriptContext_Create_03()
+        public async Task ProfilingTraversalContext_Create_03()
         {
             // Arrange.
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var context = new TraversalScriptContextFactory().Create(configuration);
+            var context = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);

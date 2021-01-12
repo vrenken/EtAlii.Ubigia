@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorLogicalRemoveTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorLogicalRemoveTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorLogicalRemoveTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorLogicalRemoveTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

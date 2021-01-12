@@ -4,73 +4,73 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public class TraversalScriptContextFactoryFunctionHandlersTests : IClassFixture<ScriptingUnitTestContext>
+    public class TraversalContextFactoryFunctionHandlersTests : IClassFixture<TraversalUnitTestContext>
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public TraversalScriptContextFactoryFunctionHandlersTests(ScriptingUnitTestContext testContext)
+        public TraversalContextFactoryFunctionHandlersTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create()
+        public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                     .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(scriptContext);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create_With_FunctionHandler_None()
+        public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(scriptContext);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create_With_FunctionHandler_Single()
+        public async Task TraversalContextFactory_Create_With_FunctionHandler_Single()
         {
             // Arrange.
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(scriptContext);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create_With_FunctionHandler_Single_Invalid()
+        public async Task TraversalContextFactory_Create_With_FunctionHandler_Single_Invalid()
         {
             // Arrange.
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -78,7 +78,7 @@
             // Act.
             var act = new Action(() =>
             {
-                new TraversalScriptContextFactory().Create(configuration);
+                new TraversalContextFactory().Create(configuration);
             });
 
             // Assert.
@@ -86,7 +86,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create_With_FunctionHandler_Multiple()
+        public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple()
         {
             // Arrange.
             var functionHandlers = new IFunctionHandler[]
@@ -96,20 +96,20 @@
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(scriptContext);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task TraversalScriptContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
+        public async Task TraversalContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
         {
             // Arrange.
             var functionHandlers = new IFunctionHandler[]
@@ -119,7 +119,7 @@
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalScriptContextConfiguration()
+            var configuration = new TraversalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -127,7 +127,7 @@
             // Act.
             var act = new Action(() =>
             {
-                new TraversalScriptContextFactory().Create(configuration);
+                new TraversalContextFactory().Create(configuration);
             });
 
             // Assert.

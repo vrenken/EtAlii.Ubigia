@@ -7,18 +7,18 @@
 
     public class GraphPathTraverser : IGraphPathTraverser
     {
-        private readonly ITraversalContextFactory _traversalContextFactory;
+        private readonly IPathTraversalContextFactory _pathTraversalContextFactory;
         private readonly IBreadthFirstTraversalAlgorithm _breadthFirstTraversalAlgorithm;
         private readonly IDepthFirstTraversalAlgorithm _depthFirstTraversalAlgorithm;
         private readonly ITemporalGraphPathWeaver _temporalGraphPathWeaver;
 
         public GraphPathTraverser(
-            ITraversalContextFactory traversalContextFactory,
+            IPathTraversalContextFactory pathTraversalContextFactory,
             IBreadthFirstTraversalAlgorithm breadthFirstTraversalAlgorithm,
             IDepthFirstTraversalAlgorithm depthFirstTraversalAlgorithm,
             ITemporalGraphPathWeaver temporalGraphPathWeaver)
         {
-            _traversalContextFactory = traversalContextFactory;
+            _pathTraversalContextFactory = pathTraversalContextFactory;
             _breadthFirstTraversalAlgorithm = breadthFirstTraversalAlgorithm;
             _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
             _temporalGraphPathWeaver = temporalGraphPathWeaver;
@@ -42,7 +42,7 @@
             }
 
             // We want a traversal context per traverse action.
-            var context = _traversalContextFactory.Create();
+            var context = _pathTraversalContextFactory.Create();
 
             var innerObservable = Observable.Create<Identifier>(async innerObserver =>
             {

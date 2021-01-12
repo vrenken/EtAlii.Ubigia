@@ -7,14 +7,14 @@
     using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathQueryTemporalIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathQueryTemporalIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathQueryTemporalIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathQueryTemporalIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

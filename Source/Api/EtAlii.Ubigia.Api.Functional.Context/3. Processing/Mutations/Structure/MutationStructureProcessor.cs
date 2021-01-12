@@ -9,20 +9,20 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal class MutationStructureProcessor : IMutationStructureProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
         private readonly IPathStructureBuilder _pathStructureBuilder;
         private readonly IPathDeterminer _pathDeterminer;
         private readonly IPathCorrecter _pathCorrecter;
 
         public MutationStructureProcessor(
             IRelatedIdentityFinder relatedIdentityFinder,
-            ITraversalScriptContext scriptContext,
+            ITraversalContext traversalContext,
             IPathStructureBuilder pathStructureBuilder,
             IPathDeterminer pathDeterminer,
             IPathCorrecter pathCorrecter)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
             _pathStructureBuilder = pathStructureBuilder;
             _pathDeterminer = pathDeterminer;
             _pathCorrecter = pathCorrecter;
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var mutationScript = CreateMutationScript(annotation, path);
             if (mutationScript != null)
             {
-                var scriptResult = await _scriptContext.Process(mutationScript, executionScope.ScriptScope);
+                var scriptResult = await _traversalContext.Process(mutationScript, executionScope.ScriptScope);
                 await scriptResult.Output;
 
                 // For some operators we need to correct the path as well.

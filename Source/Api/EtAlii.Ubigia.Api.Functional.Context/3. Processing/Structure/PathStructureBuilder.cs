@@ -8,11 +8,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class PathStructureBuilder : IPathStructureBuilder
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public PathStructureBuilder(ITraversalScriptContext scriptContext)
+        public PathStructureBuilder(ITraversalContext traversalContext)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public async Task Build(
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             }
 
             var script = new Script(new Sequence(new SequencePart[] {path}));
-            var scriptResult = await _scriptContext.Process(script, executionScope.ScriptScope);
+            var scriptResult = await _traversalContext.Process(script, executionScope.ScriptScope);
 
             var onlyOneSingleNode = annotation is SelectSingleNodeAnnotation ||
                                     annotation is AddAndSelectSingleNodeAnnotation ||
