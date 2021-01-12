@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public partial class ContextVisitor : ContextSchemaParserBaseVisitor<object>
     {
-        private readonly IScriptParser _scriptParser;
+        private readonly IPathParser _pathParser;
 
-        public ContextVisitor(IScriptParser scriptParser)
+        public ContextVisitor(IPathParser pathParser)
         {
-            _scriptParser = scriptParser;
+            _pathParser = pathParser;
         }
 
         public override object VisitSchema(ContextSchemaParser.SchemaContext context)

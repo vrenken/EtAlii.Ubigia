@@ -9,14 +9,14 @@
     internal class AntlrSchemaParser : ISchemaParser
     {
         private readonly IContextValidator _contextValidator;
-        private readonly IScriptParser _scriptParser;
+        private readonly IPathParser _pathParser;
 
         public AntlrSchemaParser(
             IContextValidator contextValidator,
-            IScriptParser scriptParser)
+            IPathParser pathParser)
         {
             _contextValidator = contextValidator;
-            _scriptParser = scriptParser;
+            _pathParser = pathParser;
         }
 
         public SchemaParseResult Parse(string text)
@@ -50,7 +50,7 @@
                     throw new SchemaParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new ContextVisitor(_scriptParser);
+                var visitor = new ContextVisitor(_pathParser);
                 schema = visitor.Visit(context) as Schema;
 
                 _contextValidator.Validate(schema);

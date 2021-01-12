@@ -12,27 +12,19 @@
 
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;
-        private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
-        private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
         private readonly ITraversalValidator _traversalValidator;
-        private readonly LpsParser _nonRootedParser;
-        private readonly LpsParser _rootedParser;
 
         public LapaScriptParser(
             ISequenceParser sequenceParser,
             INodeValidator nodeValidator,
-            INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            IRootedPathSubjectParser rootedPathSubjectParser,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
             ITraversalValidator traversalValidator)
         {
             _sequenceParser = sequenceParser;
             _nodeValidator = nodeValidator;
-            _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
-            _rootedPathSubjectParser = rootedPathSubjectParser;
             _nodeFinder = nodeFinder;
             _traversalValidator = traversalValidator;
 
@@ -40,9 +32,6 @@
             var nextParser = newLineParser.Required + sequenceParser.Parser;
 
             _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional);
-
-            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
-            _rootedParser = new LpsParser(_id, true, _rootedPathSubjectParser.Parser);
         }
 
         public ScriptParseResult Parse(string text)
@@ -83,60 +72,5 @@
         }
 
         public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
-
-        public Subject ParsePath(string text)
-        {
-            // TODO: This class should also be able to cope with rooted paths.
-            var node = _nonRootedParser.Do(text);
-            _nodeValidator.EnsureSuccess(node, _id, false);
-            var childNode = node.Children.Single();
-
-            if (!_nonRootedPathSubjectParser.CanParse(childNode))
-            {
-                throw new ScriptParserException($"Unable to parse path (text: {text ?? "NULL"})");
-            }
-            var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
-
-            // There is a possibility that we receive a string constant that needs to be validated validation.
-            _traversalValidator.Validate(pathSubject);
-
-            return pathSubject;
-        }
-
-        public Subject ParseNonRootedPath(string text)
-        {
-            var node = _nonRootedParser.Do(text);
-            _nodeValidator.EnsureSuccess(node, _id, false);
-            var childNode = node.Children.Single();
-
-            if (!_nonRootedPathSubjectParser.CanParse(childNode))
-            {
-                throw new ScriptParserException($"Unable to parse non-rooted path (text: {text ?? "NULL"})");
-            }
-            var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
-
-            // There is a possibility that we receive a string constant that needs to be validated validation.
-            _traversalValidator.Validate(pathSubject);
-
-            return pathSubject;
-        }
-
-        public Subject ParseRootedPath(string text)
-        {
-            var node = _rootedParser.Do(text);
-            _nodeValidator.EnsureSuccess(node, _id, false);
-            var childNode = node.Children.Single();
-
-            if (!_rootedPathSubjectParser.CanParse(childNode))
-            {
-                throw new ScriptParserException($"Unable to parse rooted path (text: {text ?? "NULL"})");
-            }
-            var pathSubject = _rootedPathSubjectParser.Parse(childNode);
-
-            // There is a possibility that we receive a string constant that needs to be validated validation.
-            _traversalValidator.Validate(pathSubject);
-
-            return pathSubject;
-        }
     }
 }

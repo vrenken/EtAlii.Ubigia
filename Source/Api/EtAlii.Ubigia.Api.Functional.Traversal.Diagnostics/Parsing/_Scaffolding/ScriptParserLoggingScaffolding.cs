@@ -13,6 +13,8 @@
             if (diagnostics.EnableLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptParser), typeof(LoggingScriptParser));
+                container.RegisterDecorator(typeof(IPathParser), typeof(LoggingPathParser));
+
                 container.Register<IContextCorrelator, ContextCorrelator>();
             }
         }
