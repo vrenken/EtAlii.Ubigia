@@ -18,7 +18,7 @@
 
         private ISelectValueAnnotationParser CreateAnnotationParser()
         {
-            var container = new SchemaParserTestContainerFactory().Create();
+            var container = new LapaSchemaParserTestContainerFactory().Create();
 
             return container.GetInstance<ISelectValueAnnotationParser>();
         }

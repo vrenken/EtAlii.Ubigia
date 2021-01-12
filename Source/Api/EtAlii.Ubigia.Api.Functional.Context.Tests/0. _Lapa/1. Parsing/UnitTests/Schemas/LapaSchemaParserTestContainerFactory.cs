@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SchemaParserTestContainerFactory
+    public class LapaSchemaParserTestContainerFactory
     {
         public Container Create()
         {

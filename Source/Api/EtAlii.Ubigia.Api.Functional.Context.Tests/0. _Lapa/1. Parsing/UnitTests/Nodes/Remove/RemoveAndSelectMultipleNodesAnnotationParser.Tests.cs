@@ -2,10 +2,10 @@
 {
     using Xunit;
 
-    public class AddAndSelectSingleNodeAnnotationParserTests
+    public class RemoveAndSelectMultipleNodesAnnotationParserTests
     {
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Create()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
@@ -16,19 +16,19 @@
             Assert.NotNull(parser);
         }
 
-        private IAddAndSelectSingleNodeAnnotationParser CreateAnnotationParser()
+        private IRemoveAndSelectMultipleNodesAnnotationParser CreateAnnotationParser()
         {
-            var container = new SchemaParserTestContainerFactory().Create();
+            var container = new LapaSchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<IAddAndSelectSingleNodeAnnotationParser>();
+            return container.GetInstance<IRemoveAndSelectMultipleNodesAnnotationParser>();
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_01()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/, Potsdam)";
+            var text = @"@nodes-remove(location:DE/Berlin/, Potsdam)";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -37,18 +37,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_02()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/, ""Potsdam"")";
+            var text = @"@nodes-remove(location:DE/Berlin/, ""Potsdam"")";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -57,18 +57,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_03()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin, ""Potsdam"")";
+            var text = @"@nodes-remove(location:DE/Berlin, ""Potsdam"")";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -77,18 +77,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_04()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_04()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/, ""Potsdam"")";
+            var text = @"@nodes-remove(location:DE/Berlin/, ""Potsdam"")";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -97,18 +97,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_05()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_05()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/, 'Potsdam')";
+            var text = @"@nodes-remove(location:DE/Berlin/, 'Potsdam')";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -117,18 +117,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_06()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_06()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/, 'Potsdam')";
+            var text = @"@nodes-remove(location:DE/Berlin/, 'Potsdam')";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -137,18 +137,18 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_07()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_07()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/,'Potsdam')";
+            var text = @"@nodes-remove(location:DE/Berlin/,'Potsdam')";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -157,7 +157,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
@@ -165,11 +165,11 @@
 
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_08()
+        public void RemoveAndSelectMultipleNodesAnnotationParser_Parse_08()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
-            var text = @"@node-add(location:DE/Berlin/,""Potsdam"")";
+            var text = @"@nodes-remove(location:DE/Berlin/,""Potsdam"")";
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -178,10 +178,11 @@
             // Assert.
             Assert.NotNull(node);
             Assert.Empty(node.Rest);
-            var nodeAnnotation = annotation as AddAndSelectSingleNodeAnnotation;
+            var nodeAnnotation = annotation as RemoveAndSelectMultipleNodesAnnotation;
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("Potsdam",nodeAnnotation.Name);
             Assert.Equal("location:DE/Berlin/", nodeAnnotation.Source.ToString());
         }
+
     }
 }
