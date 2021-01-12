@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
-    public partial class TraversalScriptVisitor
+    public partial class TraversalVisitor
     {
         public override object VisitString_quoted(TraversalScriptParser.String_quotedContext context)
         {

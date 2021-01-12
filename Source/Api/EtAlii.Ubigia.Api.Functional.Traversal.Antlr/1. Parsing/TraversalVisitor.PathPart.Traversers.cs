@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class TraversalScriptVisitor
+    public partial class TraversalVisitor
     {
         // Hierarchical.
         public override object VisitPath_part_traverser_parent(TraversalScriptParser.Path_part_traverser_parentContext context) => new ParentPathSubjectPart();

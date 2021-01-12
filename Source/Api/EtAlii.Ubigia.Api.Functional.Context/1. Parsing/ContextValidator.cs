@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    public class SchemaValidator : ISchemaValidator
+    public class ContextValidator : IContextValidator
     {
         public void Validate(Schema schema)
         {

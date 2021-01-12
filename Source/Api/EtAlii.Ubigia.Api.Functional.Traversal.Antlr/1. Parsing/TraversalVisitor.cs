@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
-    public partial class TraversalScriptVisitor : TraversalScriptParserBaseVisitor<object>
+    public partial class TraversalVisitor : TraversalScriptParserBaseVisitor<object>
     {
         private const int CommentPrefixLength = 2;
 

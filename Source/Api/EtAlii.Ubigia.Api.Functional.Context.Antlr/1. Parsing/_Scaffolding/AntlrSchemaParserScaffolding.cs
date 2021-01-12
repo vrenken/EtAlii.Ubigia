@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public void Register(Container container)
         {
-            container.Register<ISchemaValidator, SchemaValidator>();
+            container.Register<IContextValidator, ContextValidator>();
             container.Register<ISchemaParser, AntlrSchemaParser>();
         }
     }

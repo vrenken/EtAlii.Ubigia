@@ -191,13 +191,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/Second/Third{{{";
-            var scriptValidator = new ScriptValidator();
+            var validator = new TraversalValidator();
 
             // Act.
             var act = new Action(() =>
             {
                 var sequence = _parser.Parse(text);
-                scriptValidator.Validate(sequence);
+                validator.Validate(sequence);
             });
 
             // Assert.
@@ -211,13 +211,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/{{{Second/Third";
-            var scriptValidator = new ScriptValidator();
+            var validator = new TraversalValidator();
 
             // Act.
             var act = new Action(() =>
             {
                 var sequence = _parser.Parse(text);
-                scriptValidator.Validate(sequence);
+                validator.Validate(sequence);
             });
 
             // Assert.
@@ -384,13 +384,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/Second/Third}}}";
-            var scriptValidator = new ScriptValidator();
+            var validator = new TraversalValidator();
 
             // Act.
             var act = new Action(() =>
             {
                 var sequence = _parser.Parse(text);
-                scriptValidator.Validate(sequence);
+                validator.Validate(sequence);
             });
 
             // Assert.
@@ -402,13 +402,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var text = "/First/}}}Second/Third";
-            var scriptValidator = new ScriptValidator();
-            
+            var validator = new TraversalValidator();
+
             // Act.
             var act = new Action(() =>
             {
                 var sequence = _parser.Parse(text);
-                scriptValidator.Validate(sequence);
+                validator.Validate(sequence);
             });
 
             // Assert.
