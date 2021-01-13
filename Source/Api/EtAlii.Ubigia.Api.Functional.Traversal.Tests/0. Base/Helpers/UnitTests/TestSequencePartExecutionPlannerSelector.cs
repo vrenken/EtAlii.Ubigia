@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var container = new Container();
 
-            var configuration = new ScriptProcessorConfiguration();
+            var configuration = new TraversalProcessorConfiguration();
 
             var scaffoldings = new IScaffolding[]
             {

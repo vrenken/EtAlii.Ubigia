@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntrlParserExtension : IScriptParserExtension
+    internal class AntrlParserExtension : IScriptParserExtension, IScriptProcessorExtension
     {
         public void Initialize(Container container)
         {

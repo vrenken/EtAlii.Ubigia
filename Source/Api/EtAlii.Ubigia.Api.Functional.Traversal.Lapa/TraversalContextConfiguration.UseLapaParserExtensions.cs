@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var editableConfiguration = (IEditableTraversalContextConfiguration) configuration;
             editableConfiguration.ParserConfiguration = new TraversalParserConfiguration().UseLapa();
-            editableConfiguration.ScriptProcessorFactory = () => new LapaScriptProcessorFactory();
+            editableConfiguration.ProcessorConfiguration = new TraversalProcessorConfiguration().UseLapa();
 
             return configuration;
         }

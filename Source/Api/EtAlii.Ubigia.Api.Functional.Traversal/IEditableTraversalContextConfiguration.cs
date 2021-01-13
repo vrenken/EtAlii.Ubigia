@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
-
     public interface IEditableTraversalContextConfiguration
     {
         IFunctionHandlersProvider FunctionHandlersProvider { get; set; }
@@ -9,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; set; }
 
         TraversalParserConfiguration ParserConfiguration { get; set; }
-        Func<IScriptProcessorFactory> ScriptProcessorFactory { get; set; }
+        TraversalProcessorConfiguration ProcessorConfiguration { get; set; }
     }
 }

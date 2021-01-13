@@ -2,11 +2,20 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-#if USE_LAPA_PARSER_IN_TESTS
-    internal class TestScriptProcessorFactory : LapaScriptProcessorFactory
-#else
-    internal class TestScriptProcessorFactory : AntlrScriptProcessorFactory
-#endif
+    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.Diagnostics;
+
+    internal class TestScriptProcessorFactory : ScriptProcessorFactory
     {
+        public IScriptProcessor Create(ILogicalContext logicalContext, IDiagnosticsConfiguration diagnostics, ScriptScope scope = null)
+        {
+            scope ??= new ScriptScope();
+            var configuration = new TraversalProcessorConfiguration()
+                .UseFunctionalDiagnostics(diagnostics)
+                .UseTestProcessor()
+                .Use(logicalContext)
+                .Use(scope);
+            return Create(configuration);
+        }
     }
 }

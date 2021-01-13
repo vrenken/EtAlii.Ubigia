@@ -30,8 +30,9 @@
             // Arrange.
             var script = _parser.Parse("$var1 <= \"Time\"").Script;
             var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
+            var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
+                .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
 
@@ -48,8 +49,9 @@
             // Arrange.
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1").Script;
             var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
+            var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
+                .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
 
@@ -67,8 +69,9 @@
             // Arrange.
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"Location\"").Script;
             var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
+            var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
+                .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
 
@@ -86,8 +89,9 @@
             // Arrange.
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <=").Script;
             var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
+            var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
+                .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
 
@@ -106,8 +110,9 @@
             // Arrange.
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"\"").Script;
             var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
+            var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
+                .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
 

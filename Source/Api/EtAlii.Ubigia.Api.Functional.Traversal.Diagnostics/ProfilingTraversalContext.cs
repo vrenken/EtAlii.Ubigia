@@ -11,6 +11,7 @@
 
         // This defies the purpose of both the Context and profiling decorator... :-(
         public TraversalParserConfiguration ParserConfiguration => _decoree.ParserConfiguration;
+        public TraversalProcessorConfiguration ProcessorConfiguration => _decoree.ProcessorConfiguration;
 
         public ProfilingTraversalContext(
             ITraversalContext decoree,

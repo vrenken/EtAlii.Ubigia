@@ -1,27 +1,13 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
-
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntlrScriptProcessorFactory : Factory<IScriptProcessor, ScriptProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
+    internal class ScriptProcessorFactory : Factory<IScriptProcessor, TraversalProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(ScriptProcessorConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(TraversalProcessorConfiguration configuration)
         {
-            return new IScaffolding[]
-            {
-                new ScriptProcessingScaffolding(configuration),
-                new ScriptExecutionPlanningScaffolding(),
-                new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
-                new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
-                new PathBuildingScaffolding(),
-                new OperatorProcessingScaffolding(),
-                new ProcessingSelectorsScaffolding(),
-                new FunctionSubjectProcessingScaffolding(),
-
-                // Script Parsing
-                new AntlrScriptParserScaffolding(),
-            };
+            return Array.Empty<IScaffolding>();
         }
 
         protected override void InitializeInstance(IScriptProcessor instance, Container container)

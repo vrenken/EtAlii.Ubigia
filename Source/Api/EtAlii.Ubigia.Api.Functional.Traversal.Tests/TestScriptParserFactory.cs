@@ -2,12 +2,19 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using EtAlii.xTechnology.Diagnostics;
+
     internal class TestScriptParserFactory : ScriptParserFactory
 
     {
         public IScriptParser Create()
         {
-            return Create(new TestTraversalParserConfiguration());
+            var diagnostics = DiagnosticsConfiguration.Default;
+            var configuration = new TraversalParserConfiguration()
+                .UseFunctionalDiagnostics(diagnostics)
+                .UseTestParser();
+
+            return Create(configuration);
         }
     }
 }

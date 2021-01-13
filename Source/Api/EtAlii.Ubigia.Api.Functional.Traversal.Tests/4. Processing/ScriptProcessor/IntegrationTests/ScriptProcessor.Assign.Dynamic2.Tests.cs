@@ -57,11 +57,7 @@
             dynamic secondVariable = new { ObjectType = "Person" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -109,11 +105,7 @@
             dynamic secondVariable = new {ObjectType = "Family"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -161,12 +153,7 @@
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -216,12 +203,7 @@
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -270,12 +252,7 @@
             dynamic secondVariable = new {ObjectType = "Family", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -325,11 +302,7 @@
             dynamic secondVariable = new { ObjectType = "Family" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -380,11 +353,7 @@
             dynamic secondVariable = new { ObjectType = (string)null, Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -435,11 +404,7 @@
             dynamic secondVariable = new { ObjectType = "TEST", Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();

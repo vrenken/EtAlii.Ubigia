@@ -11,11 +11,11 @@
     internal class ScriptProcessor : IScriptProcessor
     {
         private readonly IScriptExecutionPlanner _scriptExecutionPlanner;
-        private readonly IScriptProcessorConfiguration _configuration;
+        private readonly ITraversalProcessorConfiguration _configuration;
 
         public ScriptProcessor(
             IScriptExecutionPlanner scriptExecutionPlanner,
-            IScriptProcessorConfiguration configuration)
+            ITraversalProcessorConfiguration configuration)
         {
             _scriptExecutionPlanner = scriptExecutionPlanner;
             _configuration = configuration;

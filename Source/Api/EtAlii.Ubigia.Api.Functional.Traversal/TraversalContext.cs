@@ -13,16 +13,19 @@
         private readonly ILogicalContext _logicalContext;
 
         public TraversalParserConfiguration ParserConfiguration { get; }
+        public TraversalProcessorConfiguration ProcessorConfiguration { get; }
 
         public TraversalContext(
-            TraversalParserConfiguration traversalParserConfiguration,
+            ITraversalParserConfiguration traversalParserConfiguration,
+            ITraversalProcessorConfiguration traversalProcessorConfiguration,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,
             IScriptParserFactory scriptParserFactory,
             ILogicalContext logicalContext)
         {
-            ParserConfiguration = traversalParserConfiguration;
+            ParserConfiguration = (TraversalParserConfiguration)traversalParserConfiguration;
+            ProcessorConfiguration = (TraversalProcessorConfiguration)traversalProcessorConfiguration;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
@@ -38,12 +41,12 @@
 
         public IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope)
         {
-            var configuration = new ScriptProcessorConfiguration()
-                .UseCaching(_logicalContext.Configuration.CachingEnabled)
-                .Use(scope)
+            var configuration = new TraversalProcessorConfiguration()
+                .Use(ProcessorConfiguration)
                 .Use(_logicalContext)
                 .Use(_functionHandlersProvider)
-                .Use(_rootHandlerMappersProvider);
+                .Use(_rootHandlerMappersProvider)
+                .Use(scope);
             var processor = _scriptProcessorFactory.Create(configuration);
             return processor.Process(script);
         }

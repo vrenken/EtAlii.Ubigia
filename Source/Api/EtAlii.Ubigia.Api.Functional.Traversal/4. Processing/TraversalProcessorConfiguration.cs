@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Logical;
 
-    public class ScriptProcessorConfiguration : ConfigurationBase, IScriptProcessorConfiguration
+    public class TraversalProcessorConfiguration : ConfigurationBase, ITraversalProcessorConfiguration
     {
         public IScriptScope ScriptScope { get; private set; }
 
@@ -15,7 +15,7 @@
 
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
-        public ScriptProcessorConfiguration()
+        public TraversalProcessorConfiguration()
         {
             CachingEnabled = true;
             RootHandlerMappersProvider = EtAlii.Ubigia.Api.Functional.Traversal.RootHandlerMappersProvider.Empty;
@@ -23,31 +23,32 @@
         }
 
 
-        public ScriptProcessorConfiguration Use(IScriptScope scope)
+        public TraversalProcessorConfiguration Use(IScriptScope scope)
         {
             ScriptScope = scope ?? throw new ArgumentException("No script scope specified", nameof(scope));
             return this;
         }
 
-        public ScriptProcessorConfiguration Use(ILogicalContext logicalContext)
+        public TraversalProcessorConfiguration Use(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext ?? throw new ArgumentException("No logical context specified", nameof(logicalContext));
-            return this;
+
+            return UseCaching(logicalContext.Configuration.CachingEnabled);
         }
 
-        public ScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
+        public TraversalProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
             RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
 
-        public ScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
+        public TraversalProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
             FunctionHandlersProvider = functionHandlersProvider;
             return this;
         }
 
-        public ScriptProcessorConfiguration UseCaching(bool cachingEnabled)
+        public TraversalProcessorConfiguration UseCaching(bool cachingEnabled)
         {
             CachingEnabled = cachingEnabled;
             return this;
