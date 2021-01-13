@@ -32,7 +32,7 @@
         public void QueryExecutionPlanner_Plan_Simple_00()
         {
             // Arrange.
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var planner = CreatePlanner();
 
             var queryText = @"

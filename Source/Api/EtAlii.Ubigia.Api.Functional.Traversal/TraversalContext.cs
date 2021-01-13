@@ -12,17 +12,21 @@
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
+        public IPathParserFactory PathParserFactory { get; }
+
         public TraversalContext(
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,
             IScriptParserFactory scriptParserFactory,
+            IPathParserFactory pathParserFactory,
             ILogicalContext logicalContext)
         {
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
             _scriptParserFactory = scriptParserFactory;
+            PathParserFactory = pathParserFactory;
             _logicalContext = logicalContext;
         }
 

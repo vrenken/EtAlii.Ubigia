@@ -8,5 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal class TestSchemaParserFactory : AntlrSchemaParserFactory
 #endif
     {
+        public ISchemaParser Create() => base.Create(new TestSchemaParserConfiguration());
     }
 }
