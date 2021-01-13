@@ -147,6 +147,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestTraversalParserConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestScriptProcessorFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestScriptParserFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TraversalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContextFactory.cs" />

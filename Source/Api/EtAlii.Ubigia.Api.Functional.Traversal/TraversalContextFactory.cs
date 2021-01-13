@@ -17,12 +17,12 @@
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            if (configuration.ScriptParserFactory == null)
+            if (configuration.ParserConfiguration == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ScriptParserFactory)} specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ParserConfiguration)} specified");
             }
 
-            var scriptParserFactoryProvider = configuration.ScriptParserFactory;
+            var parserConfiguration = configuration.ParserConfiguration;
 
             if (configuration.ScriptProcessorFactory == null)
             {
@@ -31,16 +31,9 @@
 
             var scriptProcessorFactoryProvider = configuration.ScriptProcessorFactory;
 
-            if (configuration.PathParserFactory == null)
-            {
-                throw new InvalidOperationException($"No {nameof(configuration.PathParserFactory)} specified");
-            }
-
-            var pathParserFactoryProvider = configuration.PathParserFactory;
-
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(configuration, functionHandlersProvider, rootHandlerMappersProvider, scriptParserFactoryProvider, scriptProcessorFactoryProvider, pathParserFactoryProvider),
+                new TraversalContextScaffolding(configuration, parserConfiguration, functionHandlersProvider, rootHandlerMappersProvider, scriptProcessorFactoryProvider),
             };
         }
     }

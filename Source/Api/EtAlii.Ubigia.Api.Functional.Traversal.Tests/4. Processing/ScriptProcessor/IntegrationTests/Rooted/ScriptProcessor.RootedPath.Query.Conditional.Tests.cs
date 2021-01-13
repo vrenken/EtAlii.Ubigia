@@ -23,9 +23,7 @@
         public async Task InitializeAsync()
         {
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 

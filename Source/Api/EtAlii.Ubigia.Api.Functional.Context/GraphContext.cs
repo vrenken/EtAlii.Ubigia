@@ -24,7 +24,7 @@
         public SchemaParseResult Parse(string text)
         {
             var queryParserConfiguration = new SchemaParserConfiguration()
-                .Use(_traversalContext.PathParserFactory);
+                .Use(_traversalContext.ParserConfiguration);
                 //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
             var parser = _schemaParserFactory.Create(queryParserConfiguration);

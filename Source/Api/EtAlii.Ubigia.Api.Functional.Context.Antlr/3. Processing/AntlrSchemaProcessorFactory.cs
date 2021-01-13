@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 //new FunctionSubjectProcessingScaffolding(),
 
                 // Query Parsing
-                new AntlrSchemaParserScaffolding(configuration.TraversalContext.PathParserFactory),
+                new AntlrSchemaParserScaffolding(configuration.TraversalContext.ParserConfiguration),
 
                 // Additional processing (for path variable parts).
                 //new PathSubjectParsingScaffolding(),

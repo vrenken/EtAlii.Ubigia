@@ -5,11 +5,11 @@
 
     public class SchemaParserConfiguration : ConfigurationBase, ISchemaParserConfiguration
     {
-        public IPathParserFactory PathParserFactory { get; private set; }
+        public TraversalParserConfiguration TraversalParserConfiguration { get; private set; }
 
-        public SchemaParserConfiguration Use(IPathParserFactory pathParserFactory)
+        public SchemaParserConfiguration Use(TraversalParserConfiguration traversalParserConfiguration)
         {
-            PathParserFactory = pathParserFactory ?? throw new ArgumentException("No path parser factory specified", nameof(pathParserFactory));
+            TraversalParserConfiguration = traversalParserConfiguration ?? throw new ArgumentException("No traversal parser configuration specified", nameof(traversalParserConfiguration));
             return this;
         }
 

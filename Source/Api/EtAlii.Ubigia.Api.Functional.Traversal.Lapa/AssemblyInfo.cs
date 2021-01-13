@@ -22,4 +22,3 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.TestHost")]
