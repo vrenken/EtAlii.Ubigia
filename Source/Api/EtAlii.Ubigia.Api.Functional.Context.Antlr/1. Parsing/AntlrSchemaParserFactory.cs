@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             return new IScaffolding[]
             {
-                new AntlrSchemaParserScaffolding(),
+                new AntlrSchemaParserScaffolding(configuration.PathParserFactory),
             };
         }
     }

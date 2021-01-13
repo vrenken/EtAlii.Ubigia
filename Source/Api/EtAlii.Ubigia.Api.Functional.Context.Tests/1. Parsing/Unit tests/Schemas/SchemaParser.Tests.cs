@@ -25,7 +25,7 @@
             title = title;
             fileName = fileName;
 #pragma warning restore 1717
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
 
             // Act.
             var parseResult = parser.Parse(queryText);
@@ -46,7 +46,7 @@
         public void SchemaParser_Parse_Comment()
         {
             // Arrange.
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment { }";
 
 
@@ -63,7 +63,7 @@
         public void SchemaParser_Parse_Comment_And_Object_Single_Line()
         {
             // Arrange.
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment { ""key"": ""value"" }";
 
 
@@ -81,7 +81,7 @@
         public void SchemaParser_Parse_Comment_MultiLine_And_Object()
         {
             // Arrange.
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment on the first line.
             -- And this is a comment on the second line.
             Person
@@ -103,7 +103,7 @@
         public void SchemaParser_Parse_Nested_Mutation()
         {
             // Arrange.
-            var parser = new TestSchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var text = @"Person @nodes(Person:Doe/John)
                        {
                             FirstName @node()

@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; set; }
 
         Func<IScriptParserFactory> ScriptParserFactory { get; set; }
+        Func<IPathParserFactory> PathParserFactory { get; set; }
         Func<IScriptProcessorFactory> ScriptProcessorFactory { get; set; }
     }
 }

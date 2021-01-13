@@ -9,6 +9,9 @@
         private readonly ITraversalContext _decoree;
         public IProfiler Profiler { get; }
 
+        // This defies the purpose of both the Context and profiling decorator... :-(
+        public IPathParserFactory PathParserFactory => _decoree.PathParserFactory;
+
         public ProfilingTraversalContext(
             ITraversalContext decoree,
             IProfiler profiler)

@@ -12,6 +12,7 @@
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
         public Func<IScriptParserFactory> ScriptParserFactory { get; set; }
+        public Func<IPathParserFactory> PathParserFactory { get; set; }
         public Func<IScriptProcessorFactory> ScriptProcessorFactory { get; set; }
 
         public TraversalContextConfiguration()

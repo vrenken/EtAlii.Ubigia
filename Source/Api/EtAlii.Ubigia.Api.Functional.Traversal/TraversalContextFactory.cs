@@ -19,22 +19,28 @@
 
             if (configuration.ScriptParserFactory == null)
             {
-                throw new InvalidOperationException("No ScriptParserFactory specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ScriptParserFactory)} specified");
             }
 
             var scriptParserFactoryProvider = configuration.ScriptParserFactory;
 
             if (configuration.ScriptProcessorFactory == null)
             {
-                throw new InvalidOperationException("No ScriptProcessorFactory specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ScriptProcessorFactory)} specified");
             }
 
             var scriptProcessorFactoryProvider = configuration.ScriptProcessorFactory;
 
+            if (configuration.PathParserFactory == null)
+            {
+                throw new InvalidOperationException($"No {nameof(configuration.PathParserFactory)} specified");
+            }
+
+            var pathParserFactoryProvider = configuration.PathParserFactory;
+
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(configuration),
-                new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider, scriptParserFactoryProvider, scriptProcessorFactoryProvider),
+                new TraversalContextScaffolding(configuration, functionHandlersProvider, rootHandlerMappersProvider, scriptParserFactoryProvider, scriptProcessorFactoryProvider, pathParserFactoryProvider),
             };
         }
     }

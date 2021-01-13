@@ -14,6 +14,8 @@
         /// <returns></returns>
         ScriptParseResult Parse(string text);
 
+        IPathParserFactory PathParserFactory { get; }
+
         // TODO: Add non-async methods.
         //void Process(Script script, IScriptScope scope)
         //void Process(Script script, IScriptScope scope, IProgress<ScriptProcessingProgress> progress)
