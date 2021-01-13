@@ -18,9 +18,7 @@
             await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
         }
 
         public async Task DisposeAsync()

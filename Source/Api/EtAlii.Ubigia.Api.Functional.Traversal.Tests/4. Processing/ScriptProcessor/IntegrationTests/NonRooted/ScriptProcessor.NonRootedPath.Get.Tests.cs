@@ -22,9 +22,7 @@
         public Task InitializeAsync()
         {
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
             return Task.CompletedTask;
         }
 

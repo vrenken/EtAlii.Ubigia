@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public interface ISchemaParserConfiguration : IConfiguration
     {
-        IPathParserFactory PathParserFactory { get; }
+        TraversalParserConfiguration TraversalParserConfiguration { get; }
 
-        SchemaParserConfiguration Use(IPathParserFactory pathParserFactory);
+        SchemaParserConfiguration Use(TraversalParserConfiguration traversalParserConfiguration);
     }
 }

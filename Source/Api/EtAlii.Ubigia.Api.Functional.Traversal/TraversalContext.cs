@@ -12,30 +12,27 @@
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
-        public IPathParserFactory PathParserFactory { get; }
+        public TraversalParserConfiguration ParserConfiguration { get; }
 
         public TraversalContext(
+            TraversalParserConfiguration traversalParserConfiguration,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,
             IScriptParserFactory scriptParserFactory,
-            IPathParserFactory pathParserFactory,
             ILogicalContext logicalContext)
         {
+            ParserConfiguration = traversalParserConfiguration;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
             _scriptParserFactory = scriptParserFactory;
-            PathParserFactory = pathParserFactory;
             _logicalContext = logicalContext;
         }
 
         public ScriptParseResult Parse(string text)
         {
-            var scriptParserConfiguration = new ScriptParserConfiguration();
-                //.Use(_logicalContext.Configuration)
-                //.Use(_diagnostics)
-            var parser = _scriptParserFactory.Create(scriptParserConfiguration);
+            var parser = _scriptParserFactory.Create(ParserConfiguration);
             return parser.Parse(text);
         }
 

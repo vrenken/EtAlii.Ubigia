@@ -36,6 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             editableConfiguration.FunctionHandlersProvider = otherConfiguration.FunctionHandlersProvider;
             editableConfiguration.RootHandlerMappersProvider = otherConfiguration.RootHandlerMappersProvider;
+            editableConfiguration.ParserConfiguration = otherConfiguration.ParserConfiguration;
 
             return configuration;
         }

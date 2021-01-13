@@ -2,9 +2,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class ScriptParserConfigurationDiagnosticsExtension
+    public static class TraversalParserConfigurationDiagnosticsExtension
     {
-        public static ScriptParserConfiguration UseFunctionalDiagnostics(this ScriptParserConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static TraversalParserConfiguration UseFunctionalDiagnostics(this TraversalParserConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IScriptParserExtension[]
             {

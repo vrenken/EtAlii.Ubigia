@@ -9,9 +9,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public TestSchemaParserConfiguration()
         {
 #if USE_LAPA_PARSER_IN_TESTS
-            Use(new LapaPathParserFactory());
+            Use(new TraversalParserConfiguration().UseLapa());
 #else
-            Use(new AntlrPathParserFactory());
+            Use(new TraversalParserConfiguration().UseAntlr());
 #endif
 
         }

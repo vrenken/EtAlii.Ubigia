@@ -12,8 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             where TTraversalContextConfiguration : TraversalContextConfiguration
         {
             var editableConfiguration = (IEditableTraversalContextConfiguration) configuration;
-            editableConfiguration.ScriptParserFactory = () => new AntlrScriptParserFactory();
-            editableConfiguration.PathParserFactory = () => new AntlrPathParserFactory();
+            editableConfiguration.ParserConfiguration = new TraversalParserConfiguration().UseAntlr();
             editableConfiguration.ScriptProcessorFactory = () => new AntlrScriptProcessorFactory();
 
             return configuration;

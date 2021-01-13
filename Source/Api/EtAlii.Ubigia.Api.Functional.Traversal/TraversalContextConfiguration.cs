@@ -11,8 +11,7 @@
         IRootHandlerMappersProvider IEditableTraversalContextConfiguration.RootHandlerMappersProvider { get => RootHandlerMappersProvider; set => RootHandlerMappersProvider = value; }
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
-        public Func<IScriptParserFactory> ScriptParserFactory { get; set; }
-        public Func<IPathParserFactory> PathParserFactory { get; set; }
+        public TraversalParserConfiguration ParserConfiguration { get; set; }
         public Func<IScriptProcessorFactory> ScriptProcessorFactory { get; set; }
 
         public TraversalContextConfiguration()
