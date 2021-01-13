@@ -35,12 +35,7 @@
             // Arrange.
             const string text = "id('First') <= /Time";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -59,12 +54,7 @@
             // Arrange.
             const string text = "id('First', 'Second') <= /Time";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -81,12 +71,7 @@
             // Arrange.
             const string text = "id($path, 'First', 'Second')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -104,12 +89,7 @@
             // Arrange.
             const string text = "id($path, 'First')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -127,12 +107,7 @@
             // Arrange.
             const string text = "id(\"/Hierarchy\", 'First', 'Second')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -149,12 +124,7 @@
             // Arrange.
             const string text = "id(\"/Hierarchy\", 'First')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -171,12 +141,7 @@
             // Arrange.
             const string text = "id('/Hierarchy', 'First', 'Second')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.
@@ -195,12 +160,7 @@
             // Arrange.
             const string text = "id('/Hierarchy', 'First')";
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var parseResult = _parser.Parse(text);
 
             // Act.

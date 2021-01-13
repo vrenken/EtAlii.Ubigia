@@ -49,12 +49,7 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_testContext.Diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _testContext.Diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

@@ -33,12 +33,7 @@
 
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -64,12 +59,7 @@
 
             const string query = "root:time <= Time";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -92,12 +82,7 @@
 
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -120,12 +105,7 @@
 
             const string query = "root:specialtime <= Time";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -148,12 +128,7 @@
 
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -176,12 +151,7 @@
 
             const string query = "root:projects <= Object";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);

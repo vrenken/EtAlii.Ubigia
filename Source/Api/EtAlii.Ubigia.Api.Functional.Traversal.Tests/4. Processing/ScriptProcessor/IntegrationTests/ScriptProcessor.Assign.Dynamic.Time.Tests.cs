@@ -59,11 +59,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -106,11 +102,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -151,11 +143,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -202,11 +190,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -254,11 +238,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -306,11 +286,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

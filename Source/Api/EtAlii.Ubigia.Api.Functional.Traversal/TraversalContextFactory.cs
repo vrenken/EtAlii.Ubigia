@@ -24,16 +24,16 @@
 
             var parserConfiguration = configuration.ParserConfiguration;
 
-            if (configuration.ScriptProcessorFactory == null)
+            if (configuration.ProcessorConfiguration == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ScriptProcessorFactory)} specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ProcessorConfiguration)} specified");
             }
 
-            var scriptProcessorFactoryProvider = configuration.ScriptProcessorFactory;
+            var processorConfiguration = configuration.ProcessorConfiguration;
 
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(configuration, parserConfiguration, functionHandlersProvider, rootHandlerMappersProvider, scriptProcessorFactoryProvider),
+                new TraversalContextScaffolding(configuration, parserConfiguration, processorConfiguration, functionHandlersProvider, rootHandlerMappersProvider),
             };
         }
     }

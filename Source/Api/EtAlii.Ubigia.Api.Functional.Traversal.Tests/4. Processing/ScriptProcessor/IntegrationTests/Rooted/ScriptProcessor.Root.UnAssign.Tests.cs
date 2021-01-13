@@ -32,12 +32,7 @@
 
             const string query = "root:time <= ";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             const string arrangeQuery = "root:time <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -61,12 +56,7 @@
 
             const string query = "root:specialtime <= ";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             const string arrangeQuery = "root:specialtime <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -90,12 +80,7 @@
 
             const string query = "root:projects <= ";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             const string arrangeQuery = "root:projects <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
