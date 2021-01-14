@@ -9,15 +9,15 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public override object VisitValue_query_fragment(ContextSchemaParser.Value_query_fragmentContext context)
         {
             var requirement = (Requirement)VisitRequirement(context.requirement());
-            var name = context.schema_key().ToString();
+            var name = (string)VisitSchema_key(context.schema_key());
             var annotation = VisitValue_annotation(context.value_annotation()) as ValueAnnotation;
             return new ValueFragment(name, annotation, requirement, FragmentType.Query, null);
         }
 
         public override object VisitValue_mutation_fragment(ContextSchemaParser.Value_mutation_fragmentContext context)
         {
-            var name = context.schema_key().ToString();
-            var value = (string)VisitString_quoted_non_empty(context.string_quoted_non_empty());
+            var name = (string)VisitSchema_key(context.schema_key());
+            var value = VisitPrimitive_value(context.primitive_value());
             return new ValueFragment(name, null, Requirement.None, FragmentType.Mutation, value);
         }
     }

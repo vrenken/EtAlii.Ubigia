@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
-
     public static class GraphContextConfigurationUseAntlrParserExtensions
     {
         /// <summary>
@@ -13,11 +11,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public static TGraphContextConfiguration UseAntlrContextParser<TGraphContextConfiguration>(this TGraphContextConfiguration configuration)
             where TGraphContextConfiguration : GraphContextConfiguration
         {
-            configuration.Use(Array.Empty<IGraphContextExtension>());
-            // configuration.Use(new IGraphContextExtension[]
-            // {
-            //     //new LapaGraphContextExtension(configuration),
-            // });
+            configuration.Use(new IGraphContextExtension[]
+            {
+                new AntlrGraphContextExtension(configuration),
+            });
 
             return configuration;
         }

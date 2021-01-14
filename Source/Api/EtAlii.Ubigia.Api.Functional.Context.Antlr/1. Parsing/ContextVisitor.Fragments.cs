@@ -8,13 +8,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public override object VisitRequirement(ContextSchemaParser.RequirementContext context)
         {
-            if(context.QUESTION() != null)
+            if (context != null)
             {
-                return Requirement.Optional;
-            }
-            if (context.EXCLAMATION() != null)
-            {
-                return Requirement.Mandatory;
+                if (context.QUESTION() != null)
+                {
+                    return Requirement.Optional;
+                }
+
+                if (context.EXCLAMATION() != null)
+                {
+                    return Requirement.Mandatory;
+                }
             }
 
             return Requirement.None;

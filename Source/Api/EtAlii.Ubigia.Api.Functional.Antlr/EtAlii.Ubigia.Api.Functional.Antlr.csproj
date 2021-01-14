@@ -13,16 +13,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Antlr4 Include="TraversalPathParser.g4">
-      <Listener>false</Listener>
-      <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Traversal.Antlr</Package>
-      <Error>true</Error>
-    </Antlr4>
     <Antlr4 Include="UbigiaLexer.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace).Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="TraversalPathParser.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="TraversalScriptParser.g4">

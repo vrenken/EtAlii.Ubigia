@@ -14,7 +14,7 @@ options {
 
 import ContextPrimitives, TraversalPrimitives, TraversalPathParser;
 
-schema                                                  : (comment | WHITESPACE | NEWLINE)* structure_fragment (comment | WHITESPACE | NEWLINE)* EOF ;
+schema                                                  : (comment | WHITESPACE | NEWLINE)* structure_fragment? (comment | WHITESPACE | NEWLINE)* EOF ;
 
 //schema_fragment                                         : schema_fragment_title NEWLINE* (schema_fragment_body_newline_separated | schema_fragment_body_comma_separated);
 
@@ -50,7 +50,7 @@ structure_fragment_body_entry
 
 structure_fragment                                      : WHITESPACE* requirement? schema_key node_annotation? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body (WHITESPACE | NEWLINE)* RBRACE;
 value_query_fragment                                    : WHITESPACE* requirement? schema_key value_annotation? WHITESPACE* ;
-value_mutation_fragment                                 : WHITESPACE* schema_key WHITESPACE* LCHEVR EQUALS WHITESPACE* string_quoted_non_empty WHITESPACE* WHITESPACE* ;
+value_mutation_fragment                                 : WHITESPACE* schema_key WHITESPACE* LCHEVR EQUALS WHITESPACE* primitive_value WHITESPACE* WHITESPACE* ;
 
 structure_fragment_body_newline_separated : (structure_fragment_body_entry WHITESPACE* NEWLINE+)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
 structure_fragment_body_comma_separated : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* NEWLINE?)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;

@@ -16,9 +16,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public override object VisitSchema(ContextSchemaParser.SchemaContext context)
         {
-            var fragment = (StructureFragment)VisitStructure_fragment(context.structure_fragment());
+            var fragmentContext = context.structure_fragment();
 
-            return new Schema(fragment);
+            return fragmentContext != null
+                ? new Schema((StructureFragment)VisitStructure_fragment(fragmentContext))
+                : null;
         }
     }
 }

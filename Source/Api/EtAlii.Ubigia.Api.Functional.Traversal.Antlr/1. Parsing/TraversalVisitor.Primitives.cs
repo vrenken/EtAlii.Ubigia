@@ -6,6 +6,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Globalization;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
+    // The method in this class should be kept in sync with the ContextVisitor.Primitives.cs.
+    // Just copy/paste them and rename their context instances accordingly.
+    // There is no easy way to keep only one instance as polymorphism isn't supported in C# using classes.
+
     // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
     public partial class TraversalVisitor
     {
