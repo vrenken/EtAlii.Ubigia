@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Context.Antlr;
 
@@ -10,13 +11,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public override object VisitStructure_fragment(ContextSchemaParser.Structure_fragmentContext context)
         {
             var requirement = (Requirement)VisitRequirement(context.requirement());
-            var name = context.schema_key().ToString();
+            var name = (string)VisitSchema_key(context.schema_key());
             var annotationContext = context.node_annotation();
             var annotation = annotationContext != null
                 ? VisitNode_annotation(annotationContext) as NodeAnnotation
                 : null;
 
-            var fragments = (Fragment[])VisitStructure_fragment_body(context.structure_fragment_body());
+            var bodyContext = context.structure_fragment_body();
+            var fragments = bodyContext != null
+                ? (Fragment[])VisitStructure_fragment_body(bodyContext)
+                : Array.Empty<Fragment>();
 
             var valueFragments = fragments
                 .OfType<ValueFragment>()

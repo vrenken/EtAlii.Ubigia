@@ -77,7 +77,6 @@
             Assert.Equal("name @node(\\#FamilyName)", executionPlans[5].ToString());
             Assert.Equal("first @node(/FirstName)", executionPlans[6].ToString());
             Assert.Equal("last @node()", executionPlans[7].ToString());
-
         }
     }
 }

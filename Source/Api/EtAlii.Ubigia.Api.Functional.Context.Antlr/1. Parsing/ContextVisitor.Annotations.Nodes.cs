@@ -41,7 +41,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path(0));
             var targetPath = (PathSubject)VisitSchema_path(context.schema_path(1));
             var targetLink = (NonRootedPathSubject)VisitSchema_path(context.schema_path(2));
-            var name = (string)VisitSchema_key(context.schema_key());
             return new LinkAndSelectMultipleNodesAnnotation(sourcePath, targetPath, targetLink);
         }
 
@@ -50,7 +49,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path(0));
             var targetPath = (PathSubject)VisitSchema_path(context.schema_path(1));
             var targetLink = (NonRootedPathSubject)VisitSchema_path(context.schema_path(2));
-            var name = (string)VisitSchema_key(context.schema_key());
             return new LinkAndSelectSingleNodeAnnotation(sourcePath, targetPath, targetLink);
         }
 
@@ -60,7 +58,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path(0));
             var targetPath = (PathSubject)VisitSchema_path(context.schema_path(1));
             var targetLink = (NonRootedPathSubject)VisitSchema_path(context.schema_path(2));
-            var name = (string)VisitSchema_key(context.schema_key());
             return new UnlinkAndSelectMultipleNodesAnnotation(sourcePath, targetPath, targetLink);
         }
 
@@ -69,7 +66,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path(0));
             var targetPath = (PathSubject)VisitSchema_path(context.schema_path(1));
             var targetLink = (NonRootedPathSubject)VisitSchema_path(context.schema_path(2));
-            var name = (string)VisitSchema_key(context.schema_key());
             return new UnlinkAndSelectSingleNodeAnnotation(sourcePath, targetPath, targetLink);
         }
 
