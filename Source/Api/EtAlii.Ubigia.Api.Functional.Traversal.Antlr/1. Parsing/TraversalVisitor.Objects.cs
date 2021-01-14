@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public partial class TraversalVisitor
     {
-        public override object VisitObject(TraversalScriptParser.ObjectContext context)
+        public override object VisitObject_value(TraversalScriptParser.Object_valueContext context)
         {
             var properties = new PropertyDictionary();
 

@@ -123,17 +123,7 @@ path_part_matcher_property
     | string_quoted_non_empty
     ;
 
-path_part_matcher_value
-    : string_quoted
-    | string_quoted_non_empty
-    | datetime
-    | timespan
-    | float_literal
-    | float_literal_unsigned
-    | integer_literal
-    | integer_literal_unsigned
-    | boolean_literal
-    ;
+path_part_matcher_value                             : primitive_value ;
 
 path_part_matcher_condition_comparison
     : EXCLAMATION? EQUALS

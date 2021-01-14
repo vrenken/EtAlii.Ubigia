@@ -52,7 +52,7 @@ subject
 
 subject_non_rooted_path                             : non_rooted_path ;
 subject_rooted_path                                 : rooted_path ;
-subject_constant_object                             : object ;
+subject_constant_object                             : object_value ;
 subject_constant_string                             : string_quoted ;
 subject_root                                        : ROOT_SUBJECT_PREFIX COLON identifier;
 subject_variable                                    : DOLLAR identifier ;

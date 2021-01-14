@@ -35,7 +35,7 @@ timespan
     : integer_literal_unsigned COLON integer_literal_unsigned COLON integer_literal_unsigned COLON integer_literal_unsigned DOT integer_literal_unsigned ;
 
 // Objects.
-object
+object_value
     : WHITESPACE* LBRACE (WHITESPACE | NEWLINE)* object_kv_pair_with_comma*? WHITESPACE* object_kv_pair_without_comma WHITESPACE* RBRACE WHITESPACE*
     | WHITESPACE* LBRACE (WHITESPACE | NEWLINE)* RBRACE WHITESPACE*
     ;
@@ -49,6 +49,11 @@ object_kv_key
     ;
 
 object_kv_value
+    : primitive_value
+    | object_value
+    ;
+
+primitive_value
     : string_quoted
     | string_quoted_non_empty
     | datetime
@@ -58,7 +63,6 @@ object_kv_value
     | integer_literal
     | integer_literal_unsigned
     | boolean_literal
-    | object
     ;
 
 reserved_words
