@@ -10,7 +10,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             var requirement = (Requirement)VisitRequirement(context.requirement());
             var name = (string)VisitSchema_key(context.schema_key());
-            var annotation = VisitValue_annotation(context.value_annotation()) as ValueAnnotation;
+            var annotationContext = context.value_annotation();
+            var annotation = annotationContext != null
+                ? VisitValue_annotation(annotationContext) as ValueAnnotation
+                : null;
             return new ValueFragment(name, annotation, requirement, FragmentType.Query, null);
         }
 
