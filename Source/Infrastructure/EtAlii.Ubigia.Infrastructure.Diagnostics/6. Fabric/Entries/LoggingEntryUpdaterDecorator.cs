@@ -17,14 +17,14 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
         public Task Update(IEditableEntry entry, IEnumerable<IComponent> changedComponents)
         {
-            _logger.Verbose("Updating entry: {identifier}", entry.Id.ToTimeString());
+            _logger.Verbose("Updating entry: {Identifier}", entry.Id.ToTimeString());
 
             return _entryUpdater.Update(entry, changedComponents);
         }
 
         public Task Update(Entry entry, IEnumerable<IComponent> changedComponents)
         {
-            _logger.Verbose("Updating entry: {identifier}", entry.Id.ToTimeString());
+            _logger.Verbose("Updating entry: {Identifier}", entry.Id.ToTimeString());
 
             return _entryUpdater.Update(entry, changedComponents);
         }

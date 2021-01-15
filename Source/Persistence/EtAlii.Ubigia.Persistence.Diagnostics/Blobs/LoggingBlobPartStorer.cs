@@ -22,7 +22,7 @@
             var logContainer = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(logContainer);
 
-            _logger.Verbose("Storing {blobName} blob part in: {folder}", blobName, folder);
+            _logger.Verbose("Storing {BlobName} blob part in: {Folder}", blobName, folder);
 
             _decoree.Store(container, blobPart);
         }

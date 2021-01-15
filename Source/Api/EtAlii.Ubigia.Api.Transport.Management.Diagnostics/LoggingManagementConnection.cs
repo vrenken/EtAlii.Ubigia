@@ -29,30 +29,26 @@
             var address = _decoree.Configuration.Address;
             var accountName = _decoree.Configuration.AccountName;
 
-            var message = "Opening management connection (Address: {Address} Account: {AccountName})";
-            _logger.Information(message, address, accountName);
+            _logger.Information("Opening management connection (Address: {Address} Account: {AccountName})", address, accountName);
             var start = Environment.TickCount;
 
             await _decoree.Open().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountName, duration);
+            _logger.Information("Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
         }
 
         public async Task<IDataConnection> OpenSpace(Space space)
         {
             var address = _decoree.Configuration.Address;
 
-            var message = "Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})";
-            _logger.Information(message, address, space.AccountId, space.Id);
+            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, space.AccountId, space.Id);
             var start = Environment.TickCount;
 
             var connection = await _decoree.OpenSpace(space).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)";
-            _logger.Information(message, address, space.AccountId, space.Id, duration);
+            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, space.AccountId, space.Id, duration);
 
             return connection;
         }
@@ -61,15 +57,13 @@
         {
             var address = _decoree.Configuration.Address;
 
-            var message = "Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})";
-            _logger.Information(message, address, accountId, spaceId);
+            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, accountId, spaceId);
             var start = Environment.TickCount;
 
             var connection = await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountId, spaceId, duration);
+            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId} Duration: {Duration}ms)", address, accountId, spaceId, duration);
 
             return connection;
         }
@@ -78,15 +72,13 @@
         {
             var address = _decoree.Configuration.Address;
 
-            var message = "Opening data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName})";
-            _logger.Information(message, address, accountName, spaceName);
+            _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
 
             var connection = await _decoree.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountName, spaceName, duration);
+            _logger.Information("Opened data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
 
             return connection;
         }
@@ -96,15 +88,13 @@
             var address = _decoree.Configuration.Address;
             var accountName = _decoree.Configuration.AccountName;
 
-            var message = "Closing management connection (Address: {Address} Account: {AccountName})";
-            _logger.Information(message, address, accountName);
+            _logger.Information("Closing management connection (Address: {Address} Account: {AccountName})", address, accountName);
             var start = Environment.TickCount;
 
             await _decoree.Close().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountName, duration);
+            _logger.Information("Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
         }
 
         #region Disposable
