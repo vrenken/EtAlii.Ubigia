@@ -17,23 +17,23 @@
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            if (configuration.ParserConfiguration == null)
+            if (configuration.ParserConfigurationProvider == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ParserConfiguration)} specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ParserConfigurationProvider)} specified");
             }
 
-            var parserConfiguration = configuration.ParserConfiguration;
+            var parserConfigurationProvider = configuration.ParserConfigurationProvider;
 
-            if (configuration.ProcessorConfiguration == null)
+            if (configuration.ProcessorConfigurationProvider == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ProcessorConfiguration)} specified");
+                throw new InvalidOperationException($"No {nameof(configuration.ProcessorConfigurationProvider)} specified");
             }
 
-            var processorConfiguration = configuration.ProcessorConfiguration;
+            var processorConfigurationProvider = configuration.ProcessorConfigurationProvider;
 
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(configuration, parserConfiguration, processorConfiguration, functionHandlersProvider, rootHandlerMappersProvider),
+                new TraversalContextScaffolding(configuration, parserConfigurationProvider, processorConfigurationProvider, functionHandlersProvider, rootHandlerMappersProvider),
             };
         }
     }

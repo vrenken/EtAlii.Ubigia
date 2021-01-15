@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using EtAlii.Ubigia.Api.Logical;
 
     public class TraversalContextConfiguration : LogicalContextConfiguration, ITraversalContextConfiguration, IEditableTraversalContextConfiguration
@@ -10,8 +11,8 @@
         IRootHandlerMappersProvider IEditableTraversalContextConfiguration.RootHandlerMappersProvider { get => RootHandlerMappersProvider; set => RootHandlerMappersProvider = value; }
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
-        public TraversalParserConfiguration ParserConfiguration { get; set; }
-        public TraversalProcessorConfiguration ProcessorConfiguration { get; set; }
+        public Func<TraversalParserConfiguration> ParserConfigurationProvider { get; set; }
+        public Func<TraversalProcessorConfiguration> ProcessorConfigurationProvider { get; set; }
 
         public TraversalContextConfiguration()
         {

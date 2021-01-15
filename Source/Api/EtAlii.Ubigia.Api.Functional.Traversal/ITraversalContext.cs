@@ -14,8 +14,8 @@
         /// <returns></returns>
         ScriptParseResult Parse(string text);
 
-        TraversalParserConfiguration ParserConfiguration { get; }
-        TraversalProcessorConfiguration ProcessorConfiguration { get; }
+        Func<TraversalParserConfiguration> ParserConfigurationProvider { get; }
+        Func<TraversalProcessorConfiguration> ProcessorConfigurationProvider { get; }
 
         // TODO: Add non-async methods.
         //void Process(Script script, IScriptScope scope)

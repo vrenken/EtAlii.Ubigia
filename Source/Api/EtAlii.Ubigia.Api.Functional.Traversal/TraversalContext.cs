@@ -12,20 +12,20 @@
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
-        public TraversalParserConfiguration ParserConfiguration { get; }
-        public TraversalProcessorConfiguration ProcessorConfiguration { get; }
+        public Func<TraversalParserConfiguration> ParserConfigurationProvider { get; }
+        public Func<TraversalProcessorConfiguration> ProcessorConfigurationProvider { get; }
 
         public TraversalContext(
-            ITraversalParserConfiguration traversalParserConfiguration,
-            ITraversalProcessorConfiguration traversalProcessorConfiguration,
+            Func<TraversalParserConfiguration> traversalParserConfigurationProvider,
+            Func<TraversalProcessorConfiguration> traversalProcessorConfigurationProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,
             IScriptParserFactory scriptParserFactory,
             ILogicalContext logicalContext)
         {
-            ParserConfiguration = (TraversalParserConfiguration)traversalParserConfiguration;
-            ProcessorConfiguration = (TraversalProcessorConfiguration)traversalProcessorConfiguration;
+            ParserConfigurationProvider = traversalParserConfigurationProvider;
+            ProcessorConfigurationProvider = traversalProcessorConfigurationProvider;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
@@ -35,14 +35,14 @@
 
         public ScriptParseResult Parse(string text)
         {
-            var parser = _scriptParserFactory.Create(ParserConfiguration);
+            var configuration = ParserConfigurationProvider();
+            var parser = _scriptParserFactory.Create(configuration);
             return parser.Parse(text);
         }
 
         public IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope)
         {
-            var configuration = new TraversalProcessorConfiguration()
-                .Use(ProcessorConfiguration)
+            var configuration = ProcessorConfigurationProvider()
                 .Use(_logicalContext)
                 .Use(_functionHandlersProvider)
                 .Use(_rootHandlerMappersProvider)
