@@ -26,15 +26,13 @@
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                var message = "Parsing subject text (Text: {Line})";
-                _logger.Information(message, line);
+                _logger.Information("Parsing subject text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParsePath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                message = "Parsed path text (Text: \"{Line}\" Duration: {Duration}ms)";
-                _logger.Information(message, line, duration);
+                _logger.Information("Parsed path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }
@@ -49,15 +47,13 @@
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                var message = "Parsing non-rooted path text (Text: {Line})";
-                _logger.Information(message, line);
+                _logger.Information("Parsing non-rooted path text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParseNonRootedPath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                message = "Parsed non-rooted path text (Text: \"{Line}\" Duration: {Duration}ms)";
-                _logger.Information(message, line, duration);
+                _logger.Information("Parsed non-rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }
@@ -72,15 +68,13 @@
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                var message = "Parsing rooted path text (Text: {Line})";
-                _logger.Information(message, line);
+                _logger.Information("Parsing rooted path text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParseRootedPath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                message = "Parsed rooted path text (Text: \"{Line}\" Duration: {Duration}ms)";
-                _logger.Information(message, line, duration);
+                _logger.Information("Parsed rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }

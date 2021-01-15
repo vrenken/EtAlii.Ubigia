@@ -21,29 +21,25 @@
 
         public async Task Start()
         {
-            var message = "Starting transport (Address: {Address})";
-            _logger.Information(message, Address);
+            _logger.Information("Starting transport (Address: {Address})", Address);
             var start = Environment.TickCount;
 
             await _transport.Start().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Started transport (Address: {Address} Duration: {Duration}ms)";
-            _logger.Information(message, Address, duration);
+            _logger.Information("Started transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
 
         }
 
         public async Task Stop()
         {
-            var message = "Stopping transport (Address: {Address})";
-            _logger.Information(message, Address);
+            _logger.Information("Stopping transport (Address: {Address})", Address);
             var start = Environment.TickCount;
 
             await _transport.Stop().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Stopped transport (Address: {Address} Duration: {Duration}ms)";
-            _logger.Information(message, Address, duration);
+            _logger.Information("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
         }
 
         IScaffolding[] ISpaceTransport.CreateScaffolding()
