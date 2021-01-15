@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         protected override IScaffolding[] CreateScaffoldings(SchemaProcessorConfiguration configuration)
         {
+            var parserConfiguration = configuration.TraversalContext.ParserConfigurationProvider();
             return new IScaffolding[]
             {
                 new SchemaProcessingScaffolding(configuration),
@@ -21,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 //new FunctionSubjectProcessingScaffolding(),
 
                 // Query Parsing
-                new AntlrSchemaParserScaffolding(configuration.TraversalContext.ParserConfiguration),
+                new AntlrSchemaParserScaffolding(parserConfiguration),
 
                 // Additional processing (for path variable parts).
                 //new PathSubjectParsingScaffolding(),

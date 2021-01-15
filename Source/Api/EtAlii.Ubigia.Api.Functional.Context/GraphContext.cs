@@ -23,8 +23,9 @@
 
         public SchemaParseResult Parse(string text)
         {
+            var parserConfiguration = _traversalContext.ParserConfigurationProvider();
             var queryParserConfiguration = new SchemaParserConfiguration()
-                .Use(_traversalContext.ParserConfiguration);
+                .Use(parserConfiguration);
                 //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
             var parser = _schemaParserFactory.Create(queryParserConfiguration);

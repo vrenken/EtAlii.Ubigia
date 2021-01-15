@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -7,36 +8,33 @@
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly TraversalParserConfiguration _parserConfiguration;
-        private readonly TraversalProcessorConfiguration _processorConfiguration;
+        private readonly Func<TraversalParserConfiguration> _parserConfigurationProvider;
+        private readonly Func<TraversalProcessorConfiguration> _processorConfigurationProvider;
         private readonly TraversalContextConfiguration _configuration;
 
         public TraversalContextScaffolding(
             TraversalContextConfiguration configuration,
-            TraversalParserConfiguration parserConfiguration,
-            TraversalProcessorConfiguration processorConfiguration,
+            Func<TraversalParserConfiguration> parserConfigurationProvider,
+            Func<TraversalProcessorConfiguration> processorConfigurationProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
             _configuration = configuration;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
-            _parserConfiguration = parserConfiguration;
-            _processorConfiguration = processorConfiguration;
+            _parserConfigurationProvider = parserConfigurationProvider;
+            _processorConfigurationProvider = processorConfigurationProvider;
         }
 
         public void Register(Container container)
         {
-            container.Register<ITraversalContext, TraversalContext>();
-            container.Register<ITraversalContextConfiguration>(() => _configuration);
-            container.Register<ITraversalParserConfiguration>(() => _parserConfiguration);
-            container.Register<ITraversalProcessorConfiguration>(() => _processorConfiguration);
-            container.Register(() => _functionHandlersProvider);
-            container.Register(() => _rootHandlerMappersProvider);
-            container.Register(() => new LogicalContextFactory().Create(_configuration));
-            container.Register<IScriptParserFactory, ScriptParserFactory>();
-            container.Register<IPathParserFactory, PathParserFactory>();
-            container.Register<IScriptProcessorFactory, ScriptProcessorFactory>();
+            container.Register<ITraversalContext>(() =>
+            {
+                var scriptParserFactory = new ScriptParserFactory();
+                var scriptProcessorFactory = new ScriptProcessorFactory();
+                var logicalContext = new LogicalContextFactory().Create(_configuration);
+                return new TraversalContext(_parserConfigurationProvider, _processorConfigurationProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
+            });
         }
     }
 }

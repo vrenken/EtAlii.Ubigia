@@ -10,8 +10,8 @@
         public IProfiler Profiler { get; }
 
         // This defies the purpose of both the Context and profiling decorator... :-(
-        public TraversalParserConfiguration ParserConfiguration => _decoree.ParserConfiguration;
-        public TraversalProcessorConfiguration ProcessorConfiguration => _decoree.ProcessorConfiguration;
+        public Func<TraversalParserConfiguration> ParserConfigurationProvider => _decoree.ParserConfigurationProvider;
+        public Func<TraversalProcessorConfiguration> ProcessorConfigurationProvider => _decoree.ProcessorConfigurationProvider;
 
         public ProfilingTraversalContext(
             ITraversalContext decoree,
