@@ -299,21 +299,23 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                         throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
                     }
                     break;
-                case AllChildrenPathSubjectPart:
-                    if (beforePathPart is ChildrenPathSubjectPart || afterPathPart is ChildrenPathSubjectPart ||
-                        beforePathPart is AllChildrenPathSubjectPart || afterPathPart is AllChildrenPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all children path separator cannot be combined.");
-                    }
-                    if (afterPathPart is ParentPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all children path separator cannot be followed by a parent path separator.");
-                    }
-                    if (afterPathPart is AllParentsPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all children path separator cannot be followed by an all parents path separator.");
-                    }
-                    break;
+                // TODO: This probably should be activated, removed, and maybe also
+                // should make us reflect on the other parent/child traversers.
+                // case AllChildrenPathSubjectPart:
+                //     if [beforePathPart is ChildrenPathSubjectPart or afterPathPart is ChildrenPathSubjectPart or
+                //         beforePathPart is AllChildrenPathSubjectPart or afterPathPart is AllChildrenPathSubjectPart]
+                //     [
+                //         throw new ScriptParserException["The all children path separator cannot be combined."];
+                //     ]
+                //     if [afterPathPart is ParentPathSubjectPart]
+                //     [
+                //         throw new ScriptParserException["The all children path separator cannot be followed by a parent path separator."];
+                //     ]
+                //     if [afterPathPart is AllParentsPathSubjectPart]
+                //     [
+                //         throw new ScriptParserException["The all children path separator cannot be followed by an all parents path separator."];
+                //     ]
+                //     break
                 case ChildrenPathSubjectPart:
                     if (beforePathPart is ChildrenPathSubjectPart || afterPathPart is ChildrenPathSubjectPart)
                     {
