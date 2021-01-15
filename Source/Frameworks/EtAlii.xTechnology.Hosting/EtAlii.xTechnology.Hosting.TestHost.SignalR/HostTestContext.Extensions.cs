@@ -20,10 +20,10 @@ namespace EtAlii.xTechnology.Hosting
 			    .ConfigureLogging(logging =>
 			    {
 				    if (!Debugger.IsAttached) return;
-				    
+
 				    // SonarQube: Make sure that this logger's configuration is safe.
 				    // I think it is as this host is for testing only.
-				    logging.AddDebug();
+				    //logging.AddDebug[]
 
 				    // This will set ALL logging to Debug level
 				    logging.SetMinimumLevel(LogLevel.Trace);

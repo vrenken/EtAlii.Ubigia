@@ -2,9 +2,13 @@
 {
     using System.ComponentModel;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
 
     public interface IHost : INotifyPropertyChanged
     {
+        bool ShouldOutputLog { get; set; }
+        LogLevel LogLevel { get; set; }
+
         IHostConfiguration Configuration { get; }
         Task Start();
         Task Stop();

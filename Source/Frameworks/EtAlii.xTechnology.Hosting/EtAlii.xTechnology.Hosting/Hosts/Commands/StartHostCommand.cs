@@ -11,17 +11,17 @@
 
         public void Execute()
         {
+            var logLevel = Host.LogLevel;
+            var shouldOutputLog = Host.ShouldOutputLog;
+
             // Replace the original host by a completely fresh instance.
-            var oldHostManager = ((IConfigurableHost)Host).Manager;
-            var createHost = Host.Configuration.CreateHost;
-            var host = createHost();
-            var hostWrapper = Host as HostWrapper; 
+            var host = Host.Configuration.CreateHost();
+            var hostWrapper = Host as HostWrapper;
             hostWrapper?.Replace(host);
 
-            var newHostManager = ((IConfigurableHost)host).Manager;
-            newHostManager.LogLevel = oldHostManager.LogLevel;
-            newHostManager.ShouldOutputLog = oldHostManager.ShouldOutputLog;
-            
+            Host.LogLevel = logLevel;
+            Host.ShouldOutputLog = shouldOutputLog;
+
             Host.Start();
 
         }

@@ -11,19 +11,17 @@
     {
         IWebHost Host { get; }
 
-        bool ShouldOutputLog { get; set; }
-        LogLevel LogLevel { get; set; }
-
         event Action<IApplicationBuilder> ConfigureApplication;
         event Action<IWebHostBuilder> ConfigureHost;
         event Action<KestrelServerOptions> ConfigureKestrel;
+        event Action<ILoggingBuilder> ConfigureLogging;
 
         Task Started();
         Task Starting();
         Task Stopped();
         Task Stopping();
 
-        void Setup(ref ICommand[] commands, ref Status[] status, IHost host);
+        void Setup(ref ICommand[] commands, IHost host);
         void Initialize();
     }
 }
