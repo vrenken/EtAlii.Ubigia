@@ -216,6 +216,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             var ifTrue = Visit(node.IfTrue);
             var ifFalse = Visit(node.IfFalse);
 
+            // ReSharper disable once PossibleNullReferenceException
             if (test.Type == typeof(bool?))
             {
                 test = Expression.Equal(test, Expression.Constant(true, typeof(bool?)));
