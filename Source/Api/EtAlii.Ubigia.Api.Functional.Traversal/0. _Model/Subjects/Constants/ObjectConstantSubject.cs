@@ -4,16 +4,17 @@
 
     public class ObjectConstantSubject : ConstantSubject
     {
-        public readonly IPropertyDictionary Values;
+        public IPropertyDictionary Values => _values;
+        private readonly IPropertyDictionary _values;
 
         public ObjectConstantSubject(IPropertyDictionary values)
         {
-            Values = values;
+            _values = values;
         }
 
         public override string ToString()
         {
-            var entries = Values.Select(kvp => $"{kvp.Key}: {kvp.Value}");
+            var entries = _values.Select(kvp => $"{kvp.Key}: {kvp.Value}");
             return string.Join(", ", entries);
         }
     }
