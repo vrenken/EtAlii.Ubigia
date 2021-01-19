@@ -9,6 +9,7 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Context.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\CodeProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\ValueFragmentParser.Mutations.Tests.cs" />
@@ -36,11 +37,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaProcessorFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
+    <Folder Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)0. CodeGeneration" />
-    <Folder Include="$(MSBuildThisFileDirectory)0. _Antlr\1. Parsing" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Model\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. Antlr\1. Parsing" />
     <Folder Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes" />
@@ -84,5 +85,10 @@
     <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
     </Reference>
+    
+    <!-- Below is not a normal project reference. It introduces the GCL codegenerator. -->
+    <ProjectReference 
+        Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" 
+        OutputItemType="Analyzer"/>
   </ItemGroup>
 </Project>
