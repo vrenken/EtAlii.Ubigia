@@ -48,6 +48,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
+        public void Validate(Subject subject)
+        {
+            ValidateSubject(null, subject, 1, null);
+        }
+
         // ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
         private void ValidateOperator(SequencePart before, Operator @operator, SequencePart after)
         // ReSharper enable ParameterOnlyUsedForPreconditionCheck.Local
@@ -86,10 +91,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public void Validate(Subject subject)
-        {
-            ValidateSubject(null, subject, 1, null);
-        }
         private void ValidateSubject(SequencePart before, Subject subject, int subjectPosition, SequencePart after)
         {
             if (before is Subject || after is Subject)
@@ -142,7 +143,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
                     }
-                    if (after != null && after is not Comment)
+                    if (after is not null && after is not Comment)
                     {
                         throw new ScriptParserException("Root definition subjects can only be used as the last subject in a sequence.");
                     }
@@ -305,15 +306,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 //     if [beforePathPart is ChildrenPathSubjectPart or afterPathPart is ChildrenPathSubjectPart or
                 //         beforePathPart is AllChildrenPathSubjectPart or afterPathPart is AllChildrenPathSubjectPart]
                 //     [
-                //         throw new ScriptParserException["The all children path separator cannot be combined."];
+                //         throw new ScriptParserException["The all children path separator cannot be combined."]
                 //     ]
                 //     if [afterPathPart is ParentPathSubjectPart]
                 //     [
-                //         throw new ScriptParserException["The all children path separator cannot be followed by a parent path separator."];
+                //         throw new ScriptParserException["The all children path separator cannot be followed by a parent path separator."]
                 //     ]
                 //     if [afterPathPart is AllParentsPathSubjectPart]
                 //     [
-                //         throw new ScriptParserException["The all children path separator cannot be followed by an all parents path separator."];
+                //         throw new ScriptParserException["The all children path separator cannot be followed by an all parents path separator."]
                 //     ]
                 //     break
                 case ChildrenPathSubjectPart:
