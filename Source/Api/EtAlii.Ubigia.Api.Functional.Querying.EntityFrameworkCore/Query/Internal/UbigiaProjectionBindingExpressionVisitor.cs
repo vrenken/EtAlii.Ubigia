@@ -90,6 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
+#pragma warning disable S3776
         public override Expression Visit(Expression node)
         {
             if (node == null)
@@ -187,6 +188,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
 
             return base.Visit(node);
         }
+#pragma warning restore S3776
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
