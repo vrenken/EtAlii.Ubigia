@@ -221,7 +221,9 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                 test = Expression.Equal(test, Expression.Constant(true, typeof(bool?)));
             }
 
+            // ReSharper disable AssignNullToNotNullAttribute
             return node.Update(test, ifTrue, ifFalse);
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         /// <summary>
@@ -288,6 +290,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
         {
             var expression = Visit(node.Expression);
             Expression updatedMemberExpression = node.Update(
+                // ReSharper disable once AssignNullToNotNullAttribute
                 expression != null ? MatchTypes(expression, node.Expression.Type) : expression);
 
             if (expression?.Type.IsNullableValueType() == true)
