@@ -9,9 +9,10 @@
         public FileBasedGraphContextData()
         {
             var folder = Directory.GetCurrentDirectory();
-            var files = Directory.GetFiles(folder, "*Samples*.txt");
+            var files = Directory.GetFiles(folder, "*Samples*.txt")
                 //.Where(fileName => fileName.EndsWith("Samples 0. - Introduction.txt"));
                 //.Where(fileName => !fileName.EndsWith("Samples 2. - Nodes.txt"));
+                .Where(fileName => !fileName.EndsWith("v2.txt"));
 
             foreach (var file in files)
             {
