@@ -61,8 +61,6 @@
         [Fact]
         public async Task SchemaCodeProcessor_Query_Time_Now_By_Structure()
         {
-            HelloWorldGenerated.HelloWorld.SayHello();
-
             // Arrange.
             var queryText = @"Time @node(time:now)
                                {
