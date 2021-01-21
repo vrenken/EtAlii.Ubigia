@@ -9,7 +9,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 3. People interested in the architecture, implementation, how Ubigia works and everything related should check out the "How stuff works" set of pages.
    - Architecture & Design choices
      - [Ubigia Graph Traversal Language](Documentation/Architecture/GraphTraversalLanguage.md)
-     - [Ubigia Graph Context Language](Documentation/Architecture/GraphContextLanguage.md)
+     - [Ubigia Graph Context Language](Documentation/Architecture/Gcl.Introduction.md)
    - Installation process
    - Software dependencies
    - Latest releases

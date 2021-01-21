@@ -1,5 +1,9 @@
 # Graph traversal mapping
 
+The basic principle of graph mapping is simple: where needed the value and structure fragments get assigned a mapping
+to the needed graph path or action.
+
+
 ## Traversal
 To relate graph information to structures and fields [GTL traversal paths](/PathToBeDetermined) need to be used. For queries (i.e. only the fetching of data) these need to be prefixed with the assignment operator <=. The topmost traversal path used in any structure should be a [rooted](/PathToBeDetermined), [absolute](/PathToBeDetermined) or [variable-based](/PathToBeDetermined) path. This will be the starting point of all graph traversals to come.
 
@@ -57,8 +61,8 @@ Example:
 }
 ```
 
-If a structure is mapped to a GTL path, the values in it will by default be filled with properties of the resulting graph nodes. 
-If explicit path assignments are added to fields, and they are not classified as structures themselves then the GCL processing and code generation except a value from the path provided. In that case the GTL path used will convert the resulting [node](/PathToBeDetermined), [property](/PathToBeDetermined), [tag](/PathToBeDetermined) or [blob](/PathToBeDetermined) to an atomic value (i.e. a string, bool, datetime, int, float, or in case of a blob a stream). 
+If a structure is mapped to a GTL path, the values in it will by default be filled with properties of the resulting graph nodes.
+If explicit path assignments are added to fields, and they are not classified as structures themselves then the GCL processing and code generation except a value from the path provided. In that case the GTL path used will convert the resulting [node](/PathToBeDetermined), [property](/PathToBeDetermined), [tag](/PathToBeDetermined) or [blob](/PathToBeDetermined) to an atomic value (i.e. a string, bool, datetime, int, float, or in case of a blob a stream).
 
 Example:
 ```
@@ -66,18 +70,18 @@ Example:
 {
     FirstName,
     LastName <= \#FamilyName,  -- Fetch a parent node with the tag lastname and assign ot to the property LastName
-    Birthday <= .Birthdate     -- Fetch the property birthdate and assign it to the Birthday value    
+    Birthday <= .Birthdate     -- Fetch the property birthdate and assign it to the Birthday value
 }
 ```
 
-The @ character can be used to assign the name of the current graph node to a value. 
+The @ character can be used to assign the name of the current graph node to a value.
 Example:
 ```
 <= Person:Start/Tony
 {
     FirstName @,
-    LastName <= \#FamilyName,  
-    Birthday <= .Birthdate     
+    LastName <= \#FamilyName,
+    Birthday <= .Birthdate
 }
 ```
 
