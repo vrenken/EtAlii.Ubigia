@@ -4,9 +4,9 @@
 
     internal class ScriptProcessingScaffolding : IScaffolding
     {
-        private readonly IScriptProcessorConfiguration _configuration;
+        private readonly ITraversalProcessorConfiguration _configuration;
 
-        public ScriptProcessingScaffolding(IScriptProcessorConfiguration configuration)
+        public ScriptProcessingScaffolding(ITraversalProcessorConfiguration configuration)
         {
             _configuration = configuration;
         }

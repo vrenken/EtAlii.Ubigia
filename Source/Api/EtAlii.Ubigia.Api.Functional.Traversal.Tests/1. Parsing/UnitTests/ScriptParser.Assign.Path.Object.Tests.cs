@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
     using System.Linq;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptParserAssignPathObjectTests : IDisposable
@@ -13,10 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public ScriptParserAssignPathObjectTests()
         {
-            var diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
         }
 
         public void Dispose()

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathAllUpdatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllUpdatesRelationTraverser
     {
-        protected override IAsyncEnumerable<Identifier> GetNextRecursion(Identifier start, ITraversalContext context, ExecutionScope scope)
+        protected override IAsyncEnumerable<Identifier> GetNextRecursion(Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             return context.Entries
                 .GetRelated(start, EntryRelation.Update, scope)

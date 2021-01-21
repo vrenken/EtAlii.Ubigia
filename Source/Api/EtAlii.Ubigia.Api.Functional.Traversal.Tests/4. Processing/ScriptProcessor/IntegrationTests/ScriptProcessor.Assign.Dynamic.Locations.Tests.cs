@@ -7,14 +7,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignDynamicLocationsIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorAssignDynamicLocationsIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -22,9 +22,7 @@
         public async Task InitializeAsync()
         {
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 
@@ -65,11 +63,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -116,11 +110,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -165,11 +155,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -220,11 +206,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -276,11 +258,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -332,11 +310,7 @@
 
             var scope = new ScriptScope();
             scope.Variables["data"] = new ScopeVariable(data, "data");
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

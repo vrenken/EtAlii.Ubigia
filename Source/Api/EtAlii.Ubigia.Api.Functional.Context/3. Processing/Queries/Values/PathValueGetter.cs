@@ -8,12 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class PathValueGetter : IPathValueGetter
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
 
-        public PathValueGetter(ITraversalScriptContext scriptContext, IRelatedIdentityFinder relatedIdentityFinder)
+        public PathValueGetter(
+            ITraversalContext traversalContext,
+            IRelatedIdentityFinder relatedIdentityFinder)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
             _relatedIdentityFinder = relatedIdentityFinder;
         }
 
@@ -34,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     path = new AbsolutePathSubject(parts);
                     var script = new Script(new Sequence(new SequencePart[] {path}));
 
-                    var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
+                    var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
                     var result = await processResult.Output.SingleOrDefaultAsync();
                     if (result is IInternalNode valueNode)
                     {
@@ -46,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             {
                 // We also want to be able to get absolute or rooted paths.
                 var script = new Script(new Sequence(new SequencePart[] {path}));
-                var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
+                var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
                 var result = await processResult.Output.SingleOrDefaultAsync();
                 if (result is IInternalNode valueNode)
                 {

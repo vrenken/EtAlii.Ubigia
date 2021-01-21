@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
     public class SchemaProcessorMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private ITraversalScriptContext _scriptContext;
+        private ITraversalContext _traversalContext;
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
@@ -36,15 +36,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new GraphContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
+                .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
-            _scriptContext = new TraversalScriptContextFactory().Create(_configuration);
+            _traversalContext = new TraversalContextFactory().Create(_configuration);
             _context = new GraphContextFactory().Create(_configuration);
 
-            await _testContext.FunctionalTestContext.AddPeople(_scriptContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddPeople(_traversalContext).ConfigureAwait(false);
+            await _testContext.FunctionalTestContext.AddAddresses(_traversalContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
         }
@@ -55,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             await _configuration.Connection.Close().ConfigureAwait(false);
             _configuration = null;
-            _scriptContext = null;
+            _traversalContext = null;
             _context = null;
 
             _testOutputHelper.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -90,8 +91,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 var configuration = new SchemaProcessorConfiguration()
                     .UseFunctionalDiagnostics(_diagnostics)
                     .Use(scope)
-                    .Use(_scriptContext);
-                var processor = new SchemaProcessorFactory().Create(configuration);
+                    .Use(_traversalContext);
+                var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
                 // Act.
                 var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);

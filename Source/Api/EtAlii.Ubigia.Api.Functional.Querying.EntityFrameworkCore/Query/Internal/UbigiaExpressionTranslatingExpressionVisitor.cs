@@ -1424,7 +1424,9 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             string baseParameterName,
             IProperty property)
         {
+#pragma warning disable S1168
             if (!(context.ParameterValues[baseParameterName] is IEnumerable<TEntity> baseListParameter))
+#pragma warning restore S1168
             {
                 return null;
             }

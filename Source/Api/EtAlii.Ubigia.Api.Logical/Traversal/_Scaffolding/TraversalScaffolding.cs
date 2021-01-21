@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             container.Register<ITemporalGraphPathWeaver, TemporalGraphPathWeaver>();
 
-            container.Register<ITraversalContextFactory, TraversalContextFactory>();
+            container.Register<IPathTraversalContextFactory, PathTraversalContextFactory>();
         }
     }
 }

@@ -16,8 +16,10 @@
         {
             // ReSharper disable once NotAccessedVariable
             var head = await _context.Identifiers.GetNextHead(spaceId).ConfigureAwait(false);
+#pragma warning disable S1481
             // ReSharper disable once UnusedVariable
             var previousHeadIdentifier = head.PreviousHeadIdentifier; // We don't seem to wire up the head in our preparation. This feels incorrect.
+#pragma warning restore S1481
 
             //var relation = Relation.NewRelation(previousHeadIdentifier)
             var entry = Entry.NewEntry(head.NextHeadIdentifier);//, relation)

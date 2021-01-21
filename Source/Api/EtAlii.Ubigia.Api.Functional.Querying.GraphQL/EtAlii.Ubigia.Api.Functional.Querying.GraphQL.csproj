@@ -11,9 +11,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GraphQL" Version="3.2.0" />
-    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.2.0" />
-    <PackageReference Include="GraphQL.Server.Core" Version="4.4.0" />
+    <PackageReference Include="GraphQL" Version="3.3.1" />
+    <PackageReference Include="GraphQL.NewtonsoftJson" Version="3.3.1" />
+    <PackageReference Include="GraphQL.Server.Core" Version="4.4.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Processing" />

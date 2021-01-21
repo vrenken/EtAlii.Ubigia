@@ -32,7 +32,7 @@
         public void QueryExecutionPlanner_Plan_Simple_00()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var planner = CreatePlanner();
 
             var queryText = @"
@@ -77,7 +77,6 @@
             Assert.Equal("name @node(\\#FamilyName)", executionPlans[5].ToString());
             Assert.Equal("first @node(/FirstName)", executionPlans[6].ToString());
             Assert.Equal("last @node()", executionPlans[7].ToString());
-
         }
     }
 }

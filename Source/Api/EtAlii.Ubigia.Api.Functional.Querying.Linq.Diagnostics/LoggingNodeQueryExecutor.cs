@@ -26,8 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
-                var message = "Executing scalar<{Type}> node Linq query transformation";
-                _logger.Information(message, nameof(T));
+                _logger.Information("Executing scalar<{Type}> node Linq query transformation", nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteScalar<T>(queryModel);
@@ -46,8 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
-                var message = "Executing single<{Type}> node Linq query transformation";
-                _logger.Information(message, nameof(T));
+                _logger.Information("Executing single<{Type}> node Linq query transformation", nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteSingle<T>(queryModel, returnDefaultWhenEmpty);
@@ -66,8 +64,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying
             // For this we create a unique correlationId and pass it through all involved systems.
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
-                var message = "Executing collection<{Type}> node Linq query transformation";
-                _logger.Information(message, nameof(T));
+                _logger.Information("Executing collection<{Type}> node Linq query transformation", nameof(T));
                 var start = Environment.TickCount;
 
                 var result = _decoree.ExecuteCollection<T>(queryModel);

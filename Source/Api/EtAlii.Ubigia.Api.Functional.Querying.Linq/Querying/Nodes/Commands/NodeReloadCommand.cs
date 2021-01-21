@@ -10,11 +10,11 @@
 
     internal class NodeReloadCommand : INodeReloadCommand
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public NodeReloadCommand(ITraversalScriptContext scriptContext)
+        public NodeReloadCommand(ITraversalContext traversalContext)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public async Task Execute(INode node)//, bool updateToLatest = false)
@@ -26,10 +26,10 @@
             var scope = new ScriptScope();
             scriptAggregator.AddGetItem(node.Id);
             var scriptText = scriptAggregator.GetScript();
-            var scriptParseResult = _scriptContext.Parse(scriptText);
+            var scriptParseResult = _traversalContext.Parse(scriptText);
 
             // TODO: Attempt to make Linq async.
-            var lastSequence = await _scriptContext.Process(scriptParseResult.Script, scope);
+            var lastSequence = await _traversalContext.Process(scriptParseResult.Script, scope);
             var output = lastSequence.Output.ToEnumerable();
 
             UpdateOriginalNode(node, output);

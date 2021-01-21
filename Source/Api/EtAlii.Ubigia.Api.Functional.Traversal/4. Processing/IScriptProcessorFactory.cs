@@ -2,6 +2,6 @@
 {
     public interface IScriptProcessorFactory
     {
-        IScriptProcessor Create(ScriptProcessorConfiguration configuration);
+        IScriptProcessor Create(TraversalProcessorConfiguration configuration);
     }
 }

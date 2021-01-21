@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class GraphContextConfiguration : TraversalScriptContextConfiguration, IGraphContextConfiguration
+    public class GraphContextConfiguration : TraversalContextConfiguration, IGraphContextConfiguration
     {
     }
 }

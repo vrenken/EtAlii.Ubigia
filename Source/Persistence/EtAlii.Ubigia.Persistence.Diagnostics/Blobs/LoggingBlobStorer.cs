@@ -15,14 +15,14 @@
             _decoree = decoree;
             _pathBuilder = pathBuilder;
         }
-        
+
         public void Store(ContainerIdentifier container, Blob blob)
         {
             var blobName = Blob.GetName(blob);
             var logContainer = ContainerIdentifier.Combine(container, blobName);
             var folder = _pathBuilder.GetFolder(logContainer);
 
-            _logger.Verbose("Storing {blobName} blob in: {folder}", blobName, folder);
+            _logger.Verbose("Storing {BlobName} blob in: {Folder}", blobName, folder);
 
             _decoree.Store(container, blob);
         }

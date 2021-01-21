@@ -13,8 +13,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         //Task<ILogicalContext> CreateLogicalContext(bool openOnCreation);
 
-        Task AddPeople(ITraversalScriptContext context);
-        Task AddAddresses(ITraversalScriptContext context);
+        Task AddPeople(ITraversalContext context);
+        Task AddAddresses(ITraversalContext context);
 
         Task Start(PortRange portRange);
         Task Stop();

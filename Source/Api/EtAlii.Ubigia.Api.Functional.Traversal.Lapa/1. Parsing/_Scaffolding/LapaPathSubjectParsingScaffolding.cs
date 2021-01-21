@@ -6,6 +6,8 @@
     {
         public void Register(Container container)
         {
+            container.Register<IPathParser, LapaPathParser>();
+
             container.Register<INonRootedPathSubjectParser, NonRootedPathSubjectParser>();
             container.Register<IRootedPathSubjectParser, RootedPathSubjectParser>();
             container.Register<IPathSubjectPartsParser, PathSubjectPartsParser>();
@@ -40,7 +42,6 @@
 
             // Path helpers
             container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>();
-
         }
     }
 }

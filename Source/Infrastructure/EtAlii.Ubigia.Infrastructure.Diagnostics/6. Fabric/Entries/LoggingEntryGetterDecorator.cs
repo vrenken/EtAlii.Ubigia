@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
         public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
         {
-            _logger.Verbose("Getting entries for: {identifier}", identifier.ToTimeString());
+            _logger.Verbose("Getting entries for: {Identifier}", identifier.ToTimeString());
 
             return _decoree.GetRelated(identifier, entriesWithRelation, entryRelations);
         }

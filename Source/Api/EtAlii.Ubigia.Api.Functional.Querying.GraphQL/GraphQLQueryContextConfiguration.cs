@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public class GraphQLQueryContextConfiguration : TraversalScriptContextConfiguration, IGraphQLQueryContextConfiguration
+    public class GraphQLQueryContextConfiguration : TraversalContextConfiguration, IGraphQLQueryContextConfiguration
     {
     }
 }

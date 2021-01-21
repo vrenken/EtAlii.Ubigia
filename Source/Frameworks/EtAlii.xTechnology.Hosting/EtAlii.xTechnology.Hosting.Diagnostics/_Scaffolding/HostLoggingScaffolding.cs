@@ -1,7 +1,10 @@
 namespace EtAlii.xTechnology.Hosting.Diagnostics
 {
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Logging;
     using Serilog;
 
     public class HostLoggingScaffolding : IScaffolding
@@ -13,6 +16,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _diagnostics = diagnostics;
         }
 
+        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
         public void Register(Container container)
         {
             if (_diagnostics.EnableLogging) // logging is enabled
@@ -21,6 +25,20 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 {
                     var configurableHost = (IConfigurableHost)host;
                     configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsConfiguration.Configure(loggerConfiguration), true);
+                    configurableHost.ConfigureLogging += logging =>
+                    {
+                        if (!Debugger.IsAttached) return;
+
+                        // SonarQube: Make sure that this logger's configuration is safe.
+                        // I think it is as this host is for testing only.
+                        //logging.AddDebug[]
+
+                        logging.AddFilter(level => host.ShouldOutputLog && level >= host.LogLevel);
+                        logging.AddFilter("Microsoft.AspNetCore.SignalR", level => host.ShouldOutputLog && level >= host.LogLevel);
+                        logging.AddFilter("Microsoft.AspNetCore.Http.Connections", level => host.ShouldOutputLog && level >= host.LogLevel);
+                        logging.SetMinimumLevel(LogLevel.Trace);
+
+                    };
                 });
 
                 // Register for logging required DI instances.

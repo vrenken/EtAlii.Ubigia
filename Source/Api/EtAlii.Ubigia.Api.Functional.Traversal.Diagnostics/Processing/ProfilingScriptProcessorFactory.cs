@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler;
         }
 
-        public IScriptProcessor Create(ScriptProcessorConfiguration configuration)
+        public IScriptProcessor Create(TraversalProcessorConfiguration configuration)
         {
             configuration.Use(new IScriptProcessorExtension[]
             {

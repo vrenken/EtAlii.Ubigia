@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             var name = ((GraphNode) part).Name;
 

@@ -19,9 +19,7 @@
             await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
         }
 
         public async Task DisposeAsync()
@@ -50,12 +48,7 @@
             var selectScript1 = _parser.Parse(selectQuery1).Script;
             var selectScript2 = _parser.Parse(selectQuery2).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

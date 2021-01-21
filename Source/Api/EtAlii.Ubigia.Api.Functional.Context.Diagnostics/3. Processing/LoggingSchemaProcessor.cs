@@ -18,14 +18,13 @@
 
         public async Task<SchemaProcessingResult> Process(Schema schema)
         {
-            var message = "Processing query";
-            _logger.Information(message);
+            _logger.Information("Processing query");
             var start = Environment.TickCount;
 
             var result = await _processor.Process(schema).ConfigureAwait(false);
 
-            message = $"Processed query (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Information(message);
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            _logger.Information("Processed query (Duration: {Duration}ms)", duration);
 
             return result;
         }

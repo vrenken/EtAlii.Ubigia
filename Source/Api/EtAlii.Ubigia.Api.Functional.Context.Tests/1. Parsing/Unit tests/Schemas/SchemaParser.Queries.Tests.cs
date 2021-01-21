@@ -9,7 +9,7 @@
         public void SchemaParser_Parse_Query_Flat_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
             {
@@ -39,7 +39,7 @@
         public void SchemaParser_Parse_Query_Flat_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
             {
@@ -67,7 +67,7 @@
         public void SchemaParser_Parse_Query_Flat_03()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
             {
@@ -95,7 +95,7 @@
         public void SchemaParser_Parse_Query_Flat_04()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
             {
@@ -118,7 +118,7 @@
         public void SchemaParser_Parse_Query_Flat_Annotated_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(Person:Doe/John)
             {
@@ -146,7 +146,7 @@
         public void SchemaParser_Parse_Query_Flat_Annotated_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(Person:Doe/John)
             {
@@ -174,7 +174,7 @@
         public void SchemaParser_Parse_Query_Flat_Annotated_03()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(Person:Doe/John)
             {
@@ -198,7 +198,7 @@
         public void SchemaParser_Parse_Query_Nested_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(person:Doe/John)
             {
@@ -228,7 +228,7 @@
         public void SchemaParser_Parse_Query_Nested_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(person:Doe/John)
             {
@@ -263,7 +263,7 @@
         public void SchemaParser_Parse_Query_Nested_03()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person @node(person:Doe/John)
             {
@@ -298,7 +298,7 @@
         public void SchemaParser_Parse_Query_Annotated_Root_No_Values()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person @node(person:Stephenson/Sabrina)
             {
@@ -334,7 +334,7 @@
         public void SchemaParser_Parse_Query_Annotated_Element_No_Values_01()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person
             {
@@ -363,7 +363,7 @@
         public void SchemaParser_Parse_Query_Annotated_Element_No_Values_02()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person
             {
@@ -399,7 +399,7 @@
         public void SchemaParser_Parse_Query_Nested_04()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var queryText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     Data
@@ -436,7 +436,7 @@
         public void SchemaParser_Parse_Query_Nested_05()
         {
             // Arrange.
-            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var parser = new TestSchemaParserFactory().Create();
             var queryText = @"
             Person @node(person:Doe/John)
             {

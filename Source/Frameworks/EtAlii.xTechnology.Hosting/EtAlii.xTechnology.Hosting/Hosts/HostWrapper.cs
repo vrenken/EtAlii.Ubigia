@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
+    using Microsoft.Extensions.Logging;
 
     public class HostWrapper : IConfigurableHost
     {
@@ -13,10 +14,14 @@
 
         public IHostManager Manager => _host.Manager;
 
+        public bool ShouldOutputLog { get => _host.ShouldOutputLog; set => _host.ShouldOutputLog = value; }
+        public LogLevel LogLevel { get => _host.LogLevel; set => _host.LogLevel = value; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
+        public event Action<ILoggingBuilder> ConfigureLogging;
 
         public IHostConfiguration Configuration => _host.Configuration;
         public State State => _host.State;
@@ -37,6 +42,7 @@
         private void OnConfigureApplication(IApplicationBuilder builder) => ConfigureApplication?.Invoke(builder);
         private void OnConfigureHost(IWebHostBuilder builder) => ConfigureHost?.Invoke(builder);
         private void OnConfigureKestrel(KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
+        private void OnConfigureLogging(ILoggingBuilder builder) => ConfigureLogging?.Invoke(builder);
 
         private void Wire()
         {
@@ -44,6 +50,7 @@
             _host.ConfigureApplication += OnConfigureApplication;
             _host.ConfigureHost += OnConfigureHost;
             _host.ConfigureKestrel += OnConfigureKestrel;
+            _host.ConfigureLogging += OnConfigureLogging;
         }
 
         private void Unwire()
@@ -52,6 +59,7 @@
             _host.ConfigureApplication -= OnConfigureApplication;
             _host.ConfigureHost -= OnConfigureHost;
             _host.ConfigureKestrel -= OnConfigureKestrel;
+            _host.ConfigureLogging -= OnConfigureLogging;
         }
 
         public void Replace(IHost host)
@@ -59,7 +67,7 @@
             Unwire();
             _host = (IConfigurableHost)host;
             Wire();
-            
+
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Commands)));
             // No need to raise PropertyChanged for the State an Status as these will still be State.Shutdown and
             // not initialized yet.

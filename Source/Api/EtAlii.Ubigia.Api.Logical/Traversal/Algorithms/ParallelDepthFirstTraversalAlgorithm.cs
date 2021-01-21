@@ -9,7 +9,7 @@
         //private readonly int _maxDegreeOfParallelism
         //private readonly int ProcessorMultiplier = 2
 
-        public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
+        public Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             throw new NotSupportedException();
             //if [graphPath.Any[]]

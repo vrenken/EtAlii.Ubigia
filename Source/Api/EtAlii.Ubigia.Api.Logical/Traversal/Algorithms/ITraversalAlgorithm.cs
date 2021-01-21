@@ -8,7 +8,7 @@
         Task Traverse(
             GraphPath graphPath,
             Identifier current,
-            ITraversalContext context,
+            IPathTraversalContext context,
             ExecutionScope scope,
             IObserver<Identifier> finalOutput);
     }

@@ -3,10 +3,13 @@
     using System;
     using System.ComponentModel;
     using System.Diagnostics;
+    using System.Linq;
+    using System.Text;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
+    using Microsoft.Extensions.Logging;
     using Polly;
 
     public abstract class HostBase : IConfigurableHost
@@ -15,31 +18,53 @@
         protected IHostManager Manager => _manager;
         private IHostManager _manager;
 
+        public bool ShouldOutputLog { get => _shouldOutputLog; set => PropertyChanged.SetAndRaise(this, ref _shouldOutputLog, value); }
+        private bool _shouldOutputLog;
+
+        public LogLevel LogLevel { get => _logLevel; set => PropertyChanged.SetAndRaise(this, ref _logLevel, value); }
+        private LogLevel _logLevel = LogLevel.Information;
+
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
+        public event Action<ILoggingBuilder> ConfigureLogging;
 
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
-        public Status[] Status => _status; 
+
+        public Status[] Status => _status;
         private Status[] _status = Array.Empty<Status>();
 
 	    private readonly ISystemManager _systemManager;
 
-	    public ISystem[] Systems => _systemManager.Systems; 
+	    public ISystem[] Systems => _systemManager.Systems;
 
-        public ICommand[] Commands => _commands; 
+        public ICommand[] Commands => _commands;
         private ICommand[] _commands;
 
         public IHostConfiguration Configuration { get; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        private readonly Status _selfStatus;
 
         protected HostBase(IHostConfiguration configuration, ISystemManager systemManager)
         {
             Configuration = configuration;
 	        _systemManager = systemManager;
+
+            _selfStatus = new Status(GetType().Name);
+
+            PropertyChanged += OnPropertyChanged;
+            UpdateStatus();
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            UpdateStatus();
+        }
 
         protected virtual Task Starting() => _manager.Starting();
 
@@ -59,12 +84,15 @@
         {
             _commands = commands;
             _manager = manager;
-            _manager.Setup(ref commands, ref status, this);
+            _manager.Setup(ref commands, this);
             _manager.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);
             _manager.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
             _manager.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
+            _manager.ConfigureLogging += builder => ConfigureLogging?.Invoke(builder);
 
-            _status = status;
+            _status = status
+                .Concat(new [] {_selfStatus} )
+                .ToArray();
             _commands = commands;
             foreach (var s in _status)
             {
@@ -99,7 +127,7 @@
                         await Task.Delay(100).ConfigureAwait(false);
                         await Stop().ConfigureAwait(false);
                     }
-                    
+
                 )
                 .ExecuteAsync(async () =>
                 {
@@ -147,6 +175,15 @@
         private void OnStatusPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
+        }
+
+        private void UpdateStatus()
+        {
+            _selfStatus.Title = ".NET Core Host";
+            var sb = new StringBuilder();
+            sb.AppendLine($"Log output: {(ShouldOutputLog ? "Enabled" : "Disabled")}");
+            sb.AppendLine($"Log level: {LogLevel}");
+            _selfStatus.Summary = _selfStatus.Description = sb.ToString();
         }
     }
 }

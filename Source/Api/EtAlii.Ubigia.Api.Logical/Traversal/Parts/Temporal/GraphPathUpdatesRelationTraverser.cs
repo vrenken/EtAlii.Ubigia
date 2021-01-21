@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             return context.Entries
                 .GetRelated(start, EntryRelation.Update, scope)

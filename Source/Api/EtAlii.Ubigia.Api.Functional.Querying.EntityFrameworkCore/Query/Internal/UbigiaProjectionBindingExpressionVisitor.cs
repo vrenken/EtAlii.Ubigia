@@ -90,6 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
         ///     any release. You should only use it directly in your code with extreme caution and knowing that
         ///     doing so can result in application failures when updating to a new Entity Framework Core release.
         /// </summary>
+#pragma warning disable S3776
         public override Expression Visit(Expression node)
         {
             if (node == null)
@@ -187,6 +188,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
 
             return base.Visit(node);
         }
+#pragma warning restore S3776
 
         /// <summary>
         ///     This is an internal API that supports the Entity Framework Core infrastructure and not subject to
@@ -214,12 +216,15 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             var ifTrue = Visit(node.IfTrue);
             var ifFalse = Visit(node.IfFalse);
 
+            // ReSharper disable once PossibleNullReferenceException
             if (test.Type == typeof(bool?))
             {
                 test = Expression.Equal(test, Expression.Constant(true, typeof(bool?)));
             }
 
+            // ReSharper disable AssignNullToNotNullAttribute
             return node.Update(test, ifTrue, ifFalse);
+            // ReSharper restore AssignNullToNotNullAttribute
         }
 
         /// <summary>
@@ -286,6 +291,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
         {
             var expression = Visit(node.Expression);
             Expression updatedMemberExpression = node.Update(
+                // ReSharper disable once AssignNullToNotNullAttribute
                 expression != null ? MatchTypes(expression, node.Expression.Type) : expression);
 
             if (expression?.Type.IsNullableValueType() == true)
@@ -327,6 +333,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                 visitedExpression = Visit(node.Expression);
                 if (visitedExpression == null)
                 {
+                    // ReSharper disable once AssignNullToNotNullAttribute
                     return null;
                 }
 
@@ -351,6 +358,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             var newExpression = Visit(node.NewExpression);
             if (newExpression == null)
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
                 return null;
             }
 
@@ -359,12 +367,14 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             {
                 if (node.Bindings[i].BindingType != MemberBindingType.Assignment)
                 {
+                    // ReSharper disable once AssignNullToNotNullAttribute
                     return null;
                 }
 
                 newBindings[i] = VisitMemberBinding(node.Bindings[i]);
                 if (newBindings[i] == null)
                 {
+                    // ReSharper disable once AssignNullToNotNullAttribute
                     return null;
                 }
             }
@@ -389,10 +399,13 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             }
 
             Expression updatedMethodCallExpression = node.Update(
+                // ReSharper disable once PossibleNullReferenceException
+                // ReSharper disable once ExpressionIsAlwaysNull
                 @object != null ? MatchTypes(@object, node.Object.Type) : @object,
                 arguments);
 
             if (@object?.Type.IsNullableType() == true
+                // ReSharper disable once PossibleNullReferenceException
                 && !node.Object.Type.IsNullableType())
             {
                 var nullableReturnType = node.Type.MakeNullable();
@@ -428,6 +441,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             if (!_clientEval
                 && node.Members == null)
             {
+                // ReSharper disable once AssignNullToNotNullAttribute
                 return null;
             }
 
@@ -447,6 +461,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                     visitedArgument = Visit(argument);
                     if (visitedArgument == null)
                     {
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         return null;
                     }
 
@@ -480,7 +495,8 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
 
             return (node.NodeType == ExpressionType.Convert
                     || node.NodeType == ExpressionType.ConvertChecked)
-                && node.Type == operand.Type
+                   // ReSharper disable once PossibleNullReferenceException
+                   && node.Type == operand.Type
                     ? operand
                     : node.Update(MatchTypes(operand, node.Operand.Type));
         }

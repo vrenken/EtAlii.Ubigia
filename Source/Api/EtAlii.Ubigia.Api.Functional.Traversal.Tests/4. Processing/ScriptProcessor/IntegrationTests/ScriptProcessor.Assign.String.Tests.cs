@@ -4,23 +4,20 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
         //private IScriptParser _parser
         private ILogicalContext _logicalContext;
 
-        public ScriptProcessorAssignStringIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorAssignStringIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
         public async Task InitializeAsync()
         {
-            //var diagnostics = TestDiagnostics.Create();
-            //  var scriptParserConfiguration = new ScriptParserConfiguration()
-            //      .UseFunctionalDiagnostics(diagnostics)
-            //_parser = new ScriptParserFactory().Create(scriptParserConfiguration)
+            //_parser = new TestScriptParserFactory[].Create[]
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 

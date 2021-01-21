@@ -13,9 +13,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32HierarchicalContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32LogicalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\Win32TestHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\Diagnostics\IntegrationTests\ProfilingTraversalScriptContext.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalScriptContextFactory.FunctionHandlers.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalScriptContextFactory.RootHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\Diagnostics\IntegrationTests\ProfilingTraversalContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalContextFactory.FunctionHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TraversalContextFactory.RootHandlers.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\InvalidTestRenameFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\InvalidTestRootHandlerMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\TestFormatFunctionHandler.cs" />
@@ -147,7 +147,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ScriptingUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestScriptProcessorFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestScriptParserFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraversalParserConfiguration.UseTestParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraversalProcessorConfiguration.UseTestProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TraversalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RootHandlerFactory.Extensions.cs" />
@@ -181,6 +185,10 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
+      <Project>{8498323a-0910-42e0-a1fa-b21265418de8}</Project>
+      <Name>EtAlii.xTechnology.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.csproj" />
