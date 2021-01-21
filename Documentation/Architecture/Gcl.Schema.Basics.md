@@ -1,4 +1,4 @@
-# Graph Context Language schema basics
+# Graph Context Language - Introduction
 
 The Graph Context Language is one of the key components that makes distributed traversal of immutable graph data a reality. 
 It is designed using a few guiding principles:
