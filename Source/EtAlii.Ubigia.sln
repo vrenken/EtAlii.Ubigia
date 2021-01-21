@@ -446,6 +446,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Antlr", "Api\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj", "{FBCB2A52-4408-449F-99B0-62A91AEEC001}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{FB14842E-F9DF-467C-8633-CD726C71BEE5}"
+ProjectSection(SolutionItems) = preProject
+	..\Readme.md = ..\Readme.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
+ProjectSection(SolutionItems) = preProject
+	..\Documentation\Architecture\Gcl.Schema.Basics.Examples.md = ..\Documentation\Architecture\Gcl.Schema.Basics.Examples.md
+	..\Documentation\Architecture\Gcl.Schema.Basics.md = ..\Documentation\Architecture\Gcl.Schema.Basics.md
+	..\Documentation\Architecture\Gcl.Schema.Mapping.md = ..\Documentation\Architecture\Gcl.Schema.Mapping.md
+	..\Documentation\Architecture\Gcl.Schema.Results.md = ..\Documentation\Architecture\Gcl.Schema.Results.md
+	..\Documentation\Architecture\GraphContextLanguage.md = ..\Documentation\Architecture\GraphContextLanguage.md
+	..\Documentation\Architecture\GraphTraversalLanguage.md = ..\Documentation\Architecture\GraphTraversalLanguage.md
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Philosophy", "Philosophy", "{BD83EE17-7A41-40B9-9884-07BC2411A9BA}"
+ProjectSection(SolutionItems) = preProject
+	..\Documentation\Philosophy\Interlude.md = ..\Documentation\Philosophy\Interlude.md
+	..\Documentation\Philosophy\Philosophy.md = ..\Documentation\Philosophy\Philosophy.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2612,6 +2633,9 @@ Global
 		{4714520E-F832-4694-941F-43DE958884B0} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
 		{67259294-497B-4002-835F-5CBE53BEA71A} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
 		{FBCB2A52-4408-449F-99B0-62A91AEEC001} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
+		{FB14842E-F9DF-467C-8633-CD726C71BEE5} = {C9537D00-7881-4ACB-9111-9439363F658D}
+		{6DD333C1-4642-480A-8A61-AE92F4237CB0} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
+		{BD83EE17-7A41-40B9-9884-07BC2411A9BA} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
