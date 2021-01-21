@@ -9,8 +9,10 @@
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Basics.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Mapping.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Results.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Specification.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/GraphContextLanguage.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/GraphTraversalLanguage.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gtl.Specification.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Interlude.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Philosophy.md" />
     <content url="file://$MODULE_DIR$/../../../NuGet.config" />
