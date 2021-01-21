@@ -1,6 +1,6 @@
-# Introduction 
+# Introduction
 Ubigia is a philosophy and corresponding family of technologies and applications with as aim to better facilitate information ownership, exchange and entanglement.
-It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems. 
+It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Getting Started
 
@@ -19,15 +19,14 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 
 ## TODO
 
-
 In 2012 I've come to the conclusion that the way we think about digital information is fundamentally flawed,
-or better said based on decades of digital progress that has clouded our vision  
- 
+or better said based on decades of digital progress that has clouded our vision
+
 ## License
 tbd
 
 ## Licenses
-There are many individual gears made by others that make the internals of Ubigia tick. I think each and everyone that worked on them deserves special credits as the whole ecosystem of free packages and libraries is what makes today's software tick. 
+There are many individual gears made by others that make the internals of Ubigia tick. I think each and everyone that worked on them deserves special credits as the whole ecosystem of free packages and libraries is what makes today's software tick.
 
 **Challenging ones:
 
@@ -52,7 +51,7 @@ https://archive.codeplex.com/?p=avalondock
 | Grpc.Tools                           | https://github.com/grpc/grpc                                 | Apache-2.0   |           |     |
 
 **Core technologies
-.NET 
+.NET
 tbd
 
 *Grpc.AspNetCore (Apache-2.0)<br/>

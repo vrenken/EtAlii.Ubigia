@@ -1,4 +1,34 @@
-# Graph Context Language results structuring
+# Graph Context Language result structuring
+
+One perspective to understand database systems is to look at the way they get incorporated into applications.
+There are plenty variations on how this can be done, but the two foremost ones are language specific [Object-relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping),
+and the more generic JSON/XML return values. Surely there are plenty other variations possible but for the sake of simplicity
+we use these two. The latter is more universal, as the responsibility of interpretation still needs to be done by the consuming application.
+The first is more powerful as it can be complemented and fine-tuned to allow as optimal access to the underlying data storage, but
+it comes with a cost: each supported language requires a dedicated implementation which need to be maintained.
+
+Many already existing concepts that somehow relate to the Ubigia challenges have been reviewed, but most - if not all - of them
+do approach the problems the right way. For example: GraphQL is great, especially for building API's. But what it does not
+do is facilitate graph based 'magic'. Entity Framework (Core) is a solid ORM for relational data, and perfectly integrates in C#.
+But it does not fit graph based querying or temporal data very well.
+
+The above mentioned limitations got weighted and helped make the decision for the GCL, and make sure that the language was optimized for 'contextual' result interpretation.
+
+In its simplest form the GCL structure has strong relations to writing [class](https://en.wikipedia.org/wiki/Class_(computer_programming)) definitions.
+The reason for this is simple: The results of a database interaction should be seen as compositions of different [types](https://en.wikipedia.org/wiki/Type_system),
+and writing classes is something most developers need to do today. Keeping the GCL close to defining class definitions, allows
+developers to keep a tight relation between the application logic and the data.
+
+What the Ubigia API libraries do is take a GCL definition (which is often stored inside a .gcl1 file), and convert it into
+a language-typed data structure.
+
+But let's not open up all magic directly at the beginning, and start with the basics. For this this page will show examples
+of the structural principles that make up the GCL language.
+
+Of course one of the most important aspects is to add comments. :-)
+
+## Comments
+Add comments to a context schema by prefixing them with --. Comments can be made everywhere, but always after any 'operational' text or characters.
 
 Example:
 ```
@@ -6,8 +36,8 @@ Example:
 ```
 
 ## Structure
-Use curly brackets to define the hierarchical structure of input and results. 
-It defines scopes that make up logical groups of information that belong together. When working with data it becomes quickly obvious that structures relate to code data classes. The code generation subsystems uses GCL structure information to create corresponding classes, queries and composition hierarchies. 
+Use curly brackets to define the hierarchical structure of input and results.
+It defines scopes that make up logical groups of information that belong together. When working with data it becomes quickly obvious that structures relate to code data classes. The code generation subsystems uses GCL structure information to create corresponding classes, queries and composition hierarchies.
 At the root level of a GCL only one single structure is allowed.
 
 Example of one level of data:
@@ -31,7 +61,7 @@ Person
 ```
 
 ## Fields
-Fields can be separated by both newlines or comma's. If a comma is used within one structure to indicate multiple fields then it should be used for all fields at the same level in the structure. 
+Fields can be separated by both newlines or comma's. If a comma is used within one structure to indicate multiple fields then it should be used for all fields at the same level in the structure.
 A field can also be a structure on itself, still the parsing demands the comma or newline separation to be honoured. Using a different separation pattern in child structures is allowed.
 
 Example using newline-separation of fields:
@@ -75,7 +105,7 @@ Fields and child structures can be labeled as optional using the question mark p
 
 Example:
 ```
-Person 
+Person
 {
     !FirstName,
     !LastName,
@@ -99,8 +129,8 @@ Person
 ```
 
 ## Field types
-Non-structural fields represent atomic values. When no type is defined the code generation and verification will revert back to process data as strings. 
-The type of data cam be specified by using a type modifier prefix. 
+Non-structural fields represent atomic values. When no type is defined the code generation and verification will revert back to process data as strings.
+The type of data cam be specified by using a type modifier prefix.
 Currently the type prefixes defined in the GCL are: string, bool, DateTime, float, int.
 
 Example of fields with type modifier prefixes:
