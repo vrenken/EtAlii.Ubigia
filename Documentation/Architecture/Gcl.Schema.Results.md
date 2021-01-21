@@ -1,9 +1,5 @@
 # Graph Context Language results structuring
 
-## Comments
-Add comments to a context schema by prefixing them with --. 
-Comments can be upt at the start of the line or after structures, fields and paths. 
-
 Example:
 ```
 -- This is a comment.
@@ -97,7 +93,7 @@ Person
 {
     FirstName,
     LastName,
-    Birthdate,
+    Birthday,
     ?IsHandsome
 }
 ```
@@ -113,7 +109,7 @@ Person
 {
     string FirstName,
     string LastName,
-    datetime Birthdate,
+    datetime Birthday,
     bool IsHandsome
 }
 ```
@@ -126,7 +122,7 @@ Person
 {
     string! FirstName,
     string! LastName,
-    datetime Birthdate,
+    datetime Birthday,
     bool? IsHandsome
 }
 ```

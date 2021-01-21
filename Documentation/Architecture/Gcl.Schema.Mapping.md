@@ -12,7 +12,7 @@ Person <= Person:Start/Tony
 }
 ```
 
-The name of the root structure can be ommited for brevety. This is especially handy for code generation. For all child structures names are mandatory as there else is no way to identify and access them.
+The name of the root structure can be ommited for brevety. This is especially handy for code generation where then the .GCL filename will be used to define the root object name. For all child structures names are mandatory as there else is no way to identify and access them.
 
 Example:
 ```
@@ -57,10 +57,33 @@ Example:
 }
 ```
 
+If a structure is mapped to a GTL path, the values in it will by default be filled with properties of the resulting graph nodes. 
+If explicit path assignments are added to fields, and they are not classified as structures themselves then the GCL processing and code generation except a value from the path provided. In that case the GTL path used will convert the resulting [node](/PathToBeDetermined), [property](/PathToBeDetermined), [tag](/PathToBeDetermined) or [blob](/PathToBeDetermined) to an atomic value (i.e. a string, bool, datetime, int, float, or in case of a blob a stream). 
+
+Example:
+```
+<= Person:Start/Tony
+{
+    FirstName,
+    LastName <= \#FamilyName,  -- Fetch a parent node with the tag lastname and assign ot to the property LastName
+    Birthday <= .Birthdate     -- Fetch the property birthdate and assign it to the Birthday value    
+}
+```
+
+The @ character can be used to assign the name of the current graph node to a value. 
+Example:
+```
+<= Person:Start/Tony
+{
+    FirstName @,
+    LastName <= \#FamilyName,  
+    Birthday <= .Birthdate     
+}
+```
+
 
 ## Mutations - setting values
 TODO
 
 ## Mutations - adding entities
 TODO
-
