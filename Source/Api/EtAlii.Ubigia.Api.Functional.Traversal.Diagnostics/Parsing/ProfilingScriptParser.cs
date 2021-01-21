@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
     using System.Linq;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
@@ -49,27 +48,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
                 exceptionProfile.Error = errorMessage;
                 Profiler.End(exceptionProfile);
-            }
-
-            return result;
-        }
-
-        public Subject ParsePath(string text)
-        {
-            Subject result;
-            try
-            {
-                result = _decoree.ParsePath(text);
-
-            }
-            catch (Exception e)
-            {
-                // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = Profiler.Begin("Error: " + e.Message);
-                exceptionProfile.Error = e.Message;
-                Profiler.End(exceptionProfile);
-
-                throw;
             }
 
             return result;

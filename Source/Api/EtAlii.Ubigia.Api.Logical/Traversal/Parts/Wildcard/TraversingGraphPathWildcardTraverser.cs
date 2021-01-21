@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             var limit = ((GraphTraversingWildcard)part).Limit;
             if (limit == 0)
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Logical
         private async Task TraverseChildren(
             ICollection<Identifier> result, 
             Identifier start, 
-            ITraversalContext context,
+            IPathTraversalContext context,
             ExecutionScope scope, 
             //EntryRelation entryRelation, 
             int limit)

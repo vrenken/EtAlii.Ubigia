@@ -21,12 +21,12 @@
             var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
-            var configuration = new TraversalScriptContextConfiguration()
-                .UseLapaParser()
+            var configuration = new TraversalContextConfiguration()
+                .UseAntlrTraversalParser()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);
-            var scriptContext = new TraversalScriptContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(configuration);
 
             var rootsToCreate = template.RootsToCreate;
 

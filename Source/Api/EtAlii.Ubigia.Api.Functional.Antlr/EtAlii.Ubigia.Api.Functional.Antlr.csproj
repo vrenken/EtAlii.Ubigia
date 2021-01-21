@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <ProjectGuid>fbcb2a52-4408-449f-99b0-62a91aeec001</ProjectGuid>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="UbigiaLexer.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="TraversalPathParser.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="TraversalScriptParser.g4">
+      <Listener>false</Listener>
+      <Visitor>true</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="TraversalPrimitives.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="ContextSchemaParser.g4">
+      <Listener>false</Listener>
+      <Visitor>true</Visitor>
+      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="ContextPrimitives.g4">
+      <Listener>false</Listener>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Error>true</Error>
+    </Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4BuildTasks" Version="8.10.0" />
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" />
+  </ItemGroup>
+
+</Project>

@@ -5,8 +5,18 @@
     /// </summary>
     public interface IScriptParser
     {
-        Subject ParsePath(string text);
+        /// <summary>
+        /// Parse the script specified in the provided text.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         ScriptParseResult Parse(string text);
+
+        /// <summary>
+        /// Parse the script specified in the provided lines.
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         ScriptParseResult Parse(string[] text);
     }
 }

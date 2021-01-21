@@ -8,11 +8,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class VariablePathSubjectPartToPathConverter : IVariablePathSubjectPartToPathConverter
     {
-        private readonly IScriptParser _scriptParser;
+        private readonly IPathParser _pathParser;
 
-        public VariablePathSubjectPartToPathConverter(IScriptParser scriptParser)
+        public VariablePathSubjectPartToPathConverter(IPathParser pathParser)
         {
-            _scriptParser = scriptParser;
+            _pathParser = pathParser;
         }
 
         public async Task<PathSubjectPart[]> Convert(ScopeVariable variable)
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Subject pathSubject;
             try
             {
-                pathSubject = _scriptParser.ParsePath(value);
+                pathSubject = _pathParser.ParsePath(value);
             }
             catch (Exception e)
             {

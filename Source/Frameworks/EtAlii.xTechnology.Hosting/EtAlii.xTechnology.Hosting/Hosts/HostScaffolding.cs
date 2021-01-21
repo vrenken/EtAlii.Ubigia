@@ -52,7 +52,7 @@
 
                 // Fetch all status items.
                 var statuses = systems
-                    .SelectMany(GetStatuses) 
+                    .SelectMany(GetStatuses)
                     .Where(status => status != null)
                     .ToArray();
 
@@ -62,12 +62,12 @@
                 // Initialize the services.
                 var systemManager = container.GetInstance<ISystemManager>();
                 systemManager.Setup(systems);
-                
+
                 host.Initialize();
             });
             container.Register<ISystemManager, SystemManager>();
         }
-        
+
         private IEnumerable<Status> GetStatuses(ISystem system)
         {
             yield return system.Status;

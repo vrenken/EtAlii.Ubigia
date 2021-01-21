@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Api.Logical
     public interface IGraphPathPartTraverser
     {
         void Configure(TraversalParameters parameters);
-        IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope);
+        IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope);
     }
 }

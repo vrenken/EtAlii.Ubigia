@@ -7,8 +7,7 @@
     {
         public ISchemaScope SchemaScope { get; private set; }
 
-        public ITraversalScriptContext ScriptContext { get; private set; }
-
+        public ITraversalContext TraversalContext { get; private set; }
 
         public SchemaProcessorConfiguration Use(ISchemaScope scope)
         {
@@ -16,9 +15,9 @@
             return this;
         }
 
-        public SchemaProcessorConfiguration Use(ITraversalScriptContext scriptContext)
+        public SchemaProcessorConfiguration Use(ITraversalContext traversalContext)
         {
-            ScriptContext = scriptContext ?? throw new ArgumentException("No script context specified", nameof(scriptContext));
+            TraversalContext = traversalContext ?? throw new ArgumentException("No traversal context specified", nameof(traversalContext));
             return this;
         }
     }

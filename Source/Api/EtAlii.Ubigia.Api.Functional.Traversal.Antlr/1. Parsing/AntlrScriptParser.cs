@@ -2,6 +2,7 @@
 {
     using System;
     using Antlr4.Runtime;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     /// <summary>
@@ -9,11 +10,11 @@
     /// </summary>
     internal class AntlrScriptParser : IScriptParser
     {
-        private readonly IScriptValidator _scriptValidator;
+        private readonly ITraversalValidator _traversalValidator;
 
-        public AntlrScriptParser(IScriptValidator scriptValidator)
+        public AntlrScriptParser(ITraversalValidator traversalValidator)
         {
-            _scriptValidator = scriptValidator;
+            _traversalValidator = traversalValidator;
         }
 
         public ScriptParseResult Parse(string text)
@@ -24,14 +25,14 @@
             text += Environment.NewLine;
 
             var errors = Array.Empty<ScriptParserError>();
-            Script script = null;
+            Script script;
 
             try
             {
                 var inputStream = new AntlrInputStream(text);
-                var gtlLexer = new GtlLexer(inputStream);
+                var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new GtlParser(commonTokenStream);
+                var parser = new TraversalScriptParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -47,10 +48,10 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new GtlVisitor();
+                var visitor = new TraversalVisitor();
                 script = visitor.Visit(context) as Script;
 
-                _scriptValidator.Validate(script);
+                _traversalValidator.Validate(script);
             }
             catch (ScriptParserException e)
             {
@@ -68,42 +69,5 @@
         }
 
         public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
-
-        public Subject ParsePath(string text)
-        {
-            Subject pathSubject;
-            try
-            {
-                var inputStream = new AntlrInputStream(text);
-                var gtlLexer = new GtlLexer(inputStream);
-                var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new GtlParser(commonTokenStream);
-                var errorListener = new ScriptErrorListener();
-                parser.RemoveErrorListeners();
-                parser.AddErrorListener(errorListener);
-                var context = parser.subject_non_rooted_path();
-
-                if (parser.NumberOfSyntaxErrors != 0)
-                {
-                    var error = errorListener.ToErrorString();
-                    throw new ScriptParserException(error);
-                }
-                if (context.exception != null)
-                {
-                    throw new ScriptParserException(context.exception.Message, context.exception);
-                }
-
-                var visitor = new GtlVisitor();
-                pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
-
-                _scriptValidator.Validate(pathSubject);
-            }
-            catch (Exception e)
-            {
-                throw new ScriptParserException(e.Message, e);
-            }
-
-            return pathSubject;
-        }
     }
 }

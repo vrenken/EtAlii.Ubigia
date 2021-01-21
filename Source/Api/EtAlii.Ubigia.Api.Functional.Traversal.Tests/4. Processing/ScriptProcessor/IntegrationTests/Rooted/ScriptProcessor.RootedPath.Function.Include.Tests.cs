@@ -7,19 +7,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathFunctionIncludeTests : IClassFixture<ScriptingUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathFunctionIncludeTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathFunctionIncludeTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionIncludeTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
         }
         public void Dispose()
         {
@@ -34,12 +32,7 @@
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "<= include(\\02) <= time:\"2017-02-20 20:06:02.123\"";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -67,12 +60,7 @@
                 "<= include(\\02\\06/*) <= time:\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -101,12 +89,7 @@
                 "<= include(\\02/*) <= time:\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -135,12 +118,7 @@
                 "<= include(\\02\\*/*) <= time:\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -169,12 +147,7 @@
                 "<= include(\\*\\*/*) <= time:\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(script);

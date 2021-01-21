@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         ISchemaScope SchemaScope { get; }
 
-        ITraversalScriptContext ScriptContext { get; }
+        ITraversalContext TraversalContext { get; }
 
         SchemaProcessorConfiguration Use(ISchemaScope scope);
-        SchemaProcessorConfiguration Use(ITraversalScriptContext scriptContext);
+        SchemaProcessorConfiguration Use(ITraversalContext traversalContext);
     }
 }

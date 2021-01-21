@@ -9,21 +9,23 @@
     {
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
         public GraphContext(
             ISchemaProcessorFactory schemaProcessorFactory,
             ISchemaParserFactory schemaParserFactory,
-            ITraversalScriptContext scriptContext)
+            ITraversalContext traversalContext)
         {
             _schemaProcessorFactory = schemaProcessorFactory;
             _schemaParserFactory = schemaParserFactory;
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public SchemaParseResult Parse(string text)
         {
-            var queryParserConfiguration = new SchemaParserConfiguration();
+            var parserConfiguration = _traversalContext.ParserConfigurationProvider();
+            var queryParserConfiguration = new SchemaParserConfiguration()
+                .Use(parserConfiguration);
                 //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
             var parser = _schemaParserFactory.Create(queryParserConfiguration);
@@ -34,7 +36,7 @@
         {
             var configuration = new SchemaProcessorConfiguration()
                 .Use(scope)
-                .Use(_scriptContext);
+                .Use(_traversalContext);
             var processor = _schemaProcessorFactory.Create(configuration);
             return processor.Process(schema);
         }

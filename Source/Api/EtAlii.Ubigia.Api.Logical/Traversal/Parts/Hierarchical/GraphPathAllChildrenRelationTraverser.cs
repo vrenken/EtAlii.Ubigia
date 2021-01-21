@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             var result = new List<Identifier>();
             var path = new List<IReadOnlyEntry>();
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
         }
 
-        private async Task Update(List<Identifier> list, IReadOnlyEntry entry, ITraversalContext context, ExecutionScope scope)
+        private async Task Update(List<Identifier> list, IReadOnlyEntry entry, IPathTraversalContext context, ExecutionScope scope)
         {
             switch (entry.Type)
             {
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
         }
 
-        private async Task Remove(List<Identifier> list, IEnumerable<Relation> relations, ITraversalContext context, ExecutionScope scope)
+        private async Task Remove(List<Identifier> list, IEnumerable<Relation> relations, IPathTraversalContext context, ExecutionScope scope)
         {
             var idsToRemove = relations
                 .Select(c => c.Id)

@@ -4,12 +4,14 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
+    using Microsoft.Extensions.Logging;
 
     public interface IConfigurableHost : IHost
     {
         IHostManager Manager { get; }
         event Action<IApplicationBuilder> ConfigureApplication;
         event Action<IWebHostBuilder> ConfigureHost;
-        public event Action<KestrelServerOptions> ConfigureKestrel;
+        event Action<KestrelServerOptions> ConfigureKestrel;
+        event Action<ILoggingBuilder> ConfigureLogging;
     }
 }

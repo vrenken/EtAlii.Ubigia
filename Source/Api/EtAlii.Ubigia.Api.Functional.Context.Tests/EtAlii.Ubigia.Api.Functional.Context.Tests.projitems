@@ -9,52 +9,76 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Context.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectMultipleNodesAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\NodeAnnotationsParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectMultipleNodesAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectMultipleNodesAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SetAndSelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectNodeValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\NodeValueAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\CodeProcessor.Queries.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\ValueFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\ValueFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Nodes\NodeAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Schemas\LapaSchemaParserTestContainerFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\SelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\SetAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\ValueAnnotationsParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Bugs.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\SchemaPocoGenerator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\UserPoco.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParserTestContainerFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphContextConfiguration.UseTestParserExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestSchemaProcessorFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)__TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Model\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. Antlr\1. Parsing" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes" />
     <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction - elaborate - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction - compact - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes - compact - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes - elaborate - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Properties - compact - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Properties - elaborate - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Values - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Values.txt">
@@ -66,7 +90,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking - Alternatives.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking - v2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Variables - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Variables.txt">
@@ -78,9 +108,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Diagnostics\EtAlii.Ubigia.Api.Functional.Context.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Lapa\EtAlii.Ubigia.Api.Functional.Context.Lapa.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
     </Reference>
+    <!-- Below is not a normal project reference. It introduces the GCL codegenerator. -->
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" OutputItemType="Analyzer" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
   </ItemGroup>
 </Project>

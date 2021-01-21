@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             var graphTaggedNode = (GraphTaggedNode)part;
             var name = graphTaggedNode.Name;

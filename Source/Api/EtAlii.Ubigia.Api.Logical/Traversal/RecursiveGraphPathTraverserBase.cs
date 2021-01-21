@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     onCompleted: () => parameters.Output.OnCompleted());
         }
 
-        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             if (start == Identifier.Empty)
             {
@@ -42,12 +42,12 @@ namespace EtAlii.Ubigia.Api.Logical
 
         protected abstract IAsyncEnumerable<Identifier> GetNextRecursion(
             Identifier start, 
-            ITraversalContext context,
+            IPathTraversalContext context,
             ExecutionScope scope); 
 
         private async IAsyncEnumerable<Identifier> TraverseRecursive(
             Identifier start, 
-            ITraversalContext context,
+            IPathTraversalContext context,
             ExecutionScope scope)
         {
             yield return start;

@@ -12,7 +12,7 @@
         {
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
         }
-        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
+        public async Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             if (graphPath.Any())
             {

@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class PropertiesValueSetter : IPropertiesValueSetter
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public PropertiesValueSetter(ITraversalScriptContext scriptContext)
+        public PropertiesValueSetter(ITraversalContext traversalContext)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public async Task<Value> Set(string valueName, Structure structure, object value, SchemaExecutionScope executionScope)
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 new ObjectConstantSubject(properties)
             }));
 
-            var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
+            var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
             var result = await processResult.Output.SingleOrDefaultAsync();
             if (result is IInternalNode valueNode)
             {

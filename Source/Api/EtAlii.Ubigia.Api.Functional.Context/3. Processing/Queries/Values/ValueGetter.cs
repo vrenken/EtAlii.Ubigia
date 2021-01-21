@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async Task<Value> Get(
             string valueName,
-            NodeValueAnnotation annotation,
+            ValueAnnotation annotation,
             SchemaExecutionScope executionScope,
             Structure structure)
         {

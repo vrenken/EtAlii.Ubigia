@@ -43,7 +43,7 @@
             _diagnostics = DiagnosticsConfiguration.Default;
 
             _configuration = new LinqQueryContextConfiguration()
-                .UseTestParser()
+                .UseTestTraversalParser()
                 .UseFunctionalDiagnostics(_diagnostics);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 

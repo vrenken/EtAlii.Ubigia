@@ -16,7 +16,7 @@
         {
             container.Register<ILinqQueryContext, LinqQueryContext>();
 
-            container.Register(() => new TraversalScriptContextFactory().Create(_configuration));
+            container.Register(() => new TraversalContextFactory().Create(_configuration));
             container.Register<IChangeTracker, ChangeTracker>();
 
             container.Register<IIndexSet, IndexSet>();

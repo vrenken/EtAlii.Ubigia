@@ -4,6 +4,6 @@
 
     internal interface IValueGetter
     {
-        Task<Value> Get(string valueName, NodeValueAnnotation annotation, SchemaExecutionScope executionScope, Structure structure);
+        Task<Value> Get(string valueName, ValueAnnotation annotation, SchemaExecutionScope executionScope, Structure structure);
     }
 }

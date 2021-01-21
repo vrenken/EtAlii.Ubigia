@@ -32,13 +32,11 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = "Opening data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})";
-            _logger.Information(message, address, accountName, spaceName);
+            _logger.Information("Opening data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Open().ConfigureAwait(false);
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Opened data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountName, spaceName, duration);
+            _logger.Information("Opened data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
         }
 
         public async Task Close()
@@ -47,13 +45,11 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = "Closing data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})";
-            _logger.Information(message, address, accountName, spaceName);
+            _logger.Information("Closing data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Close().ConfigureAwait(false);
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            message = "Closed data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)";
-            _logger.Information(message, address, accountName, spaceName, duration);
+            _logger.Information("Closed data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
         }
     }
 }

@@ -6,14 +6,14 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<ScriptingUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private readonly ScriptingUnitTestContext _testContext;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathAssignObjectIntegrationTests(ScriptingUnitTestContext testContext)
+        public ScriptProcessorRootedPathAssignObjectIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -21,9 +21,7 @@
         public async Task InitializeAsync()
         {
             _diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
         }
 
@@ -57,12 +55,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -102,12 +95,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -146,12 +134,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -190,12 +173,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -234,12 +212,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -279,12 +252,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -323,12 +291,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -365,12 +328,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -411,12 +369,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -465,12 +418,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -522,12 +470,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -579,12 +522,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -634,12 +572,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -686,12 +619,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -734,12 +662,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -782,12 +705,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -832,12 +750,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -881,12 +794,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -931,12 +839,7 @@
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();

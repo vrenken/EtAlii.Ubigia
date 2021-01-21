@@ -9,16 +9,16 @@
 
     internal class NodeFetcher : INodeFetcher
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public NodeFetcher(ITraversalScriptContext scriptContext)
+        public NodeFetcher(ITraversalContext traversalContext)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public async Task<IInternalNode[]> FetchAsync(string path)
         {
-            var scriptParseResult = _scriptContext.Parse(path);
+            var scriptParseResult = _traversalContext.Parse(path);
             if (scriptParseResult.Errors.Any())
             {
                 var errorsString = string.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
@@ -27,7 +27,7 @@
             }
 
             var scope = new ScriptScope();
-            var lastSequence = await _scriptContext.Process(scriptParseResult.Script, scope);
+            var lastSequence = await _traversalContext.Process(scriptParseResult.Script, scope);
             var results = await lastSequence.Output
                 .Cast<IInternalNode>()
                 .ToArray();

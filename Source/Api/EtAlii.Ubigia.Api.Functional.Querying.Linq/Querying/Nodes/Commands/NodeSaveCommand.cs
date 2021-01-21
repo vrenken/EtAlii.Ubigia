@@ -10,11 +10,11 @@
 
     internal class NodeSaveCommand : INodeSaveCommand
     {
-        private readonly ITraversalScriptContext _scriptContext;
+        private readonly ITraversalContext _traversalContext;
 
-        public NodeSaveCommand(ITraversalScriptContext scriptContext)
+        public NodeSaveCommand(ITraversalContext traversalContext)
         {
-            _scriptContext = scriptContext;
+            _traversalContext = traversalContext;
         }
 
         public async Task Execute(INode node)
@@ -29,10 +29,10 @@
             scope.Variables.Add(updateVariableName, new ScopeVariable(node, "updateVariableName"));
             scriptAggregator.AddUpdateItem(node.Id, updateVariableName);
             var scriptText = scriptAggregator.GetScript();
-            var scriptParseResult = _scriptContext.Parse(scriptText);
+            var scriptParseResult = _traversalContext.Parse(scriptText);
 
             // TODO: Attempt to make Linq async.
-            var lastSequence = await _scriptContext.Process(scriptParseResult.Script, scope);
+            var lastSequence = await _traversalContext.Process(scriptParseResult.Script, scope);
             var output = lastSequence.Output.ToEnumerable();
 
             UpdateOriginalNode(node, output);

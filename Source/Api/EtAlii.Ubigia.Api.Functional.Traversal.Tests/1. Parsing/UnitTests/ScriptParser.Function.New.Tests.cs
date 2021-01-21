@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionNewTests : IDisposable
@@ -11,10 +10,7 @@
 
         public ScriptParserFunctionNewTests()
         {
-            var diagnostics = DiagnosticsConfiguration.Default;
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new TestScriptParserFactory().Create(scriptParserConfiguration);
+            _parser = new TestScriptParserFactory().Create();
         }
 
         public void Dispose()

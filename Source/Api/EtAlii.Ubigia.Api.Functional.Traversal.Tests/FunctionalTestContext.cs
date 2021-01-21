@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 //            return await _logical.CreateLogicalContext(openOnCreation).ConfigureAwait(false);
 //        }
 
-        public async Task AddPeople(ITraversalScriptContext context)
+        public async Task AddPeople(ITraversalContext context)
         {
             await AddJohnDoe(context).ConfigureAwait(false);
             await AddJaneDoe(context).ConfigureAwait(false);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await AddFriends(context).ConfigureAwait(false);
         }
 
-        public async Task AddAddresses(ITraversalScriptContext context)
+        public async Task AddAddresses(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddPeterBanner(ITraversalScriptContext context)
+        private async Task AddPeterBanner(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddTanjaBanner(ITraversalScriptContext context)
+        private async Task AddTanjaBanner(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddArjanBanner(ITraversalScriptContext context)
+        private async Task AddArjanBanner(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -109,7 +109,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
 
 
-        private async Task AddIdaBanner(ITraversalScriptContext context)
+        private async Task AddIdaBanner(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -122,7 +122,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddJohnDoe(ITraversalScriptContext context)
+        private async Task AddJohnDoe(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -136,7 +136,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddJaneDoe(ITraversalScriptContext context)
+        private async Task AddJaneDoe(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddTonyStark(ITraversalScriptContext context)
+        private async Task AddTonyStark(ITraversalContext context)
         {
             var addQueries = new[]
             {
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
         }
 
-        private async Task AddFriends(ITraversalScriptContext context)
+        private async Task AddFriends(ITraversalContext context)
         {
             var addQueries = new[]
             {
