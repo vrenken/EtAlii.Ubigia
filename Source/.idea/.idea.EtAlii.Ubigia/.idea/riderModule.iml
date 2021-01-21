@@ -5,7 +5,16 @@
     <content url="file://$MODULE_DIR$/../../../.gitignore" />
     <content url="file://$MODULE_DIR$/../../../.nuke" />
     <content url="file://$MODULE_DIR$/../../../Build" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Basics.Examples.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Basics.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Mapping.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.Schema.Results.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/GraphContextLanguage.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/GraphTraversalLanguage.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Interlude.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Philosophy.md" />
     <content url="file://$MODULE_DIR$/../../../NuGet.config" />
+    <content url="file://$MODULE_DIR$/../../../Readme.md" />
     <content url="file://$MODULE_DIR$/../.." />
     <content url="file://$MODULE_DIR$/../../../azure-pipelines.yml" />
     <content url="file://$MODULE_DIR$/../../../build.cmd" />
