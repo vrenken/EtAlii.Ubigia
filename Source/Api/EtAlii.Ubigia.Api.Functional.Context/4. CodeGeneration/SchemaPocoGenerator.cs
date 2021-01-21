@@ -11,9 +11,9 @@
     [Generator]
     public class SchemaPocoGenerator : ISourceGenerator
     {
-        public const string UbigiaPocoMustBePartialDiagnosticId = "UB0001";
+        public const string UbigiaPocoMustBePartialDiagnosticId = "UB1001";
 
-        private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new(UbigiaPocoMustBePartialDiagnosticId, "non-partial Ubigia poco class", "all Ubigia poco classes should be partial", "code-generation", DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new(UbigiaPocoMustBePartialDiagnosticId, "non-partial Ubigia poco class", "all Ubigia poco classes should be partial", "Code-Gen", DiagnosticSeverity.Error, true);
 
         public void Initialize(GeneratorInitializationContext context)
         {
