@@ -453,14 +453,16 @@ EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
 ProjectSection(SolutionItems) = preProject
-	..\Documentation\Architecture\Gcl.Schema.Basics.Examples.md = ..\Documentation\Architecture\Gcl.Schema.Basics.Examples.md
-	..\Documentation\Architecture\Gcl.Schema.Basics.md = ..\Documentation\Architecture\Gcl.Schema.Basics.md
-	..\Documentation\Architecture\Gcl.Schema.Mapping.md = ..\Documentation\Architecture\Gcl.Schema.Mapping.md
-	..\Documentation\Architecture\Gcl.Schema.Results.md = ..\Documentation\Architecture\Gcl.Schema.Results.md
-	..\Documentation\Architecture\GraphContextLanguage.md = ..\Documentation\Architecture\GraphContextLanguage.md
 	..\Documentation\Architecture\GraphTraversalLanguage.md = ..\Documentation\Architecture\GraphTraversalLanguage.md
 	..\Documentation\Architecture\Gcl.Specification.md = ..\Documentation\Architecture\Gcl.Specification.md
 	..\Documentation\Architecture\Gtl.Specification.md = ..\Documentation\Architecture\Gtl.Specification.md
+	..\Documentation\Architecture\Gcl.Introduction.md = ..\Documentation\Architecture\Gcl.Introduction.md
+	..\Documentation\Architecture\Gcl.ResultStructuring.md = ..\Documentation\Architecture\Gcl.ResultStructuring.md
+	..\Documentation\Architecture\Gcl.GraphMapping.md = ..\Documentation\Architecture\Gcl.GraphMapping.md
+	..\Documentation\Architecture\Gtl.Introduction.md = ..\Documentation\Architecture\Gtl.Introduction.md
+	..\Documentation\Architecture\Gcl.CodeGeneration.md = ..\Documentation\Architecture\Gcl.CodeGeneration.md
+	..\Documentation\Architecture\Gcl.GraphMutation.md = ..\Documentation\Architecture\Gcl.GraphMutation.md
+	..\Documentation\Architecture\Gcl.AdditionalExamples.md = ..\Documentation\Architecture\Gcl.AdditionalExamples.md
 EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Philosophy", "Philosophy", "{BD83EE17-7A41-40B9-9884-07BC2411A9BA}"
