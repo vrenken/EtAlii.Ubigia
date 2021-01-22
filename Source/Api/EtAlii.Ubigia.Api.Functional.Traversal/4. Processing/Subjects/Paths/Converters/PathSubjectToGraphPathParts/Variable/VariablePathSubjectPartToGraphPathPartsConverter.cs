@@ -8,12 +8,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Structure;
 
     internal class VariablePathSubjectPartToGraphPathPartsConverter : IVariablePathSubjectPartToGraphPathPartsConverter
     {
         private readonly IScriptProcessingContext _context;
-        private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
         private readonly IPathParser _pathParser;
 
         public VariablePathSubjectPartToGraphPathPartsConverter(
@@ -22,11 +20,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             _context = context;
             _pathParser = pathParser;
-
-            _converterSelector = new Selector<object, Func<object, string, Subject>>()
-                .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
-                .Register(variable => variable is INode, (variable, _) => new RelativePathSubject(new IdentifierPathSubjectPart(((INode)variable).Id)))
-                .Register(variable => variable is PathSubject, (variable, _) => (Subject)variable);
         }
 
         public async Task<GraphPathPart[]> Convert(
@@ -49,9 +42,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             // TODO: At this moment we only allow single items to be used as path variables.
             var variableValue = await variable.Value.SingleAsync();
-            var converter = _converterSelector.Select(variableValue);
-            var subject = converter(variableValue, variableName);
 
+            var subject = variableValue switch
+            {
+                string s => ToPathSubject(s, variableName),
+                INode node => new RelativePathSubject(new IdentifierPathSubjectPart(node.Id)),
+                PathSubject ps => ps,
+                _ => throw new ScriptParserException($"Unable to convert variableValue: {variableValue ?? "NULL"}")
+            };
 
             // We should be able to cope with string constants as well.
             GraphPath result;

@@ -3,30 +3,23 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Structure;
 
     internal class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
     {
-        private readonly ISelector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>> _selector;
-
-        public PathSubjectPartContentGetter()
-        {
-            _selector = new Selector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>>()
-                .Register(part => part is ConstantPathSubjectPart, GetConstantPathSubjectPartContent)
-                .Register(part => part is VariablePathSubjectPart, GetVariablePathSubjectPartContent)
-                .Register(_ => true, (_, _) => Task.FromResult((string)null));
-        }
-
         public Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope)
         {
-            var getter = _selector.Select(part);
-            return getter(part, scope);
+            return part switch
+            {
+                ConstantPathSubjectPart constantPathSubjectPart => GetConstantPathSubjectPartContent(constantPathSubjectPart),
+                VariablePathSubjectPart variablePathSubjectPart => GetVariablePathSubjectPartContent(variablePathSubjectPart, scope),
+                {} when true => Task.FromResult((string)null),
+                _ => throw new NotSupportedException($"Cannot find path content in: {part}")
+            };
         }
 
-        private async Task<string> GetVariablePathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
+        private async Task<string> GetVariablePathSubjectPartContent(VariablePathSubjectPart part, IScriptScope scope)
         {
-            var variablePathSubjectPart = (VariablePathSubjectPart)part;
-            if (scope.Variables.TryGetValue(variablePathSubjectPart.Name, out var variable))
+            if (scope.Variables.TryGetValue(part.Name, out var variable))
             {
                 var variableValue = await variable.Value.SingleAsync();
                 return variableValue?.ToString();
@@ -34,10 +27,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return null;
         }
 
-        private Task<string> GetConstantPathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
+        private Task<string> GetConstantPathSubjectPartContent(ConstantPathSubjectPart part)
         {
-            var constantPathSubjectPart = (ConstantPathSubjectPart)part;
-            return Task.FromResult(constantPathSubjectPart.Name);
+            return Task.FromResult(part.Name);
         }
 
     }
