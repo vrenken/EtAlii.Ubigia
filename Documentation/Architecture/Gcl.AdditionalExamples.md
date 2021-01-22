@@ -1,4 +1,4 @@
-# Additional examples
+# Ubigia Graph Context Language - Additional examples
 
 ## Traversal
 
@@ -200,15 +200,15 @@ The result will be enriched using the node, nodes and value annotations added to
 An error is given when any of the the properties not marked as optional cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
-    FirstName @node(),
-    LastName @node(\#FamilyName),
+    FirstName = @node(),
+    LastName = @node(\#FamilyName),
     ?NickName,
-    ?Friends @nodes(/Friends)
+    ?Friends = @nodes(/Friends)
     {
-        FirstName @node(),
-        LastName @node(\#FamilyName)
+        FirstName = @node(),
+        LastName = @node(\#FamilyName)
     }
 }
 ```

@@ -21,3 +21,22 @@ slowly but steadily adopts to the users' needs. for this it both **changes shape
 [IMAGE] to clarify
 
 
+
+## Fragments
+A GCL schema is build using fragments.
+
+Each fragment can either be a value fragment or a structure fragment.
+
+Each fragment has a name by which it can be identified.
+
+
+## Annotations
+
+Each fragment can have a optional annotation.
+
+Each fragment can have a mandatory annotation.
+
+A fragment can either have a optional or a mandatory annotation, not both.
+
+Structure fragments can have a plurality annotation.
+
