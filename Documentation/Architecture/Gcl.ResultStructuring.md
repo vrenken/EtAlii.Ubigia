@@ -1,4 +1,4 @@
-# Graph Context Language result structuring
+# Ubigia Graph Context Language - Result structuring
 
 One perspective to understand database systems is to look at the way they get incorporated into applications.
 There are plenty variations on how this can be done, but the two foremost ones are language specific [Object-relational mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping),

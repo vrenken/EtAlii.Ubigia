@@ -5,7 +5,7 @@
     <content url="file://$MODULE_DIR$/../../../.gitignore" />
     <content url="file://$MODULE_DIR$/../../../.nuke" />
     <content url="file://$MODULE_DIR$/../../../Build" />
-    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.AdditonalExamples.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.AdditionalExamples.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.CodeGeneration.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.GraphMapping.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.GraphMutation.md" />
