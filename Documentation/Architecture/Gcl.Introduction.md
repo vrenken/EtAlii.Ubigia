@@ -20,7 +20,10 @@ which makes the CRUD activities of the Ubigia system complete.
     - [Graph Mutation](Gcl.GraphMutation.md)
     - [Additional examples](Gcl.AdditionalExamples.md)
 3. Code generation
-    - [Implement]
+    - Implementation
+4. Usage
+5. Tips 'n tricks
+
 More reasoning about the GCL and its formal specification can be found [here](Gcl.Specification.md).
 
 

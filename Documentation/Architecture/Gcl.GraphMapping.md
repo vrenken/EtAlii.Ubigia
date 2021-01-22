@@ -3,6 +3,7 @@
 The basic principle of graph mapping is simple: where needed the value and structure fragments get assigned a mapping
 to the needed graph path or action.
 
+- 2 variations.
 
 ## Traversal
 To relate graph information to structures and fields [GTL traversal paths](/PathToBeDetermined) need to be used. For queries (i.e. only the fetching of data) these need to be prefixed with the assignment operator <=. The topmost traversal path used in any structure should be a [rooted](/PathToBeDetermined), [absolute](/PathToBeDetermined) or [variable-based](/PathToBeDetermined) path. This will be the starting point of all graph traversals to come.
