@@ -70,7 +70,7 @@
         {
             var start = Environment.TickCount;
             var items = _repository.GetAll();
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }

@@ -54,7 +54,7 @@
         public async IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             var items = _invoker.Stream<Space>(_connection, SignalRHub.Space, "GetAllForAccount", accountId);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }

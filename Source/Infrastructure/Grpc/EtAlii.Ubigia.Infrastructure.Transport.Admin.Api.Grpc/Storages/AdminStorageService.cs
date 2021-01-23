@@ -31,7 +31,7 @@
         public override Task<StorageSingleResponse> GetSingle(StorageSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Storage storage;
-            
+
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
@@ -44,7 +44,7 @@
                     storage = _items.Get(request.Name);
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Storage GET client request");                
+                    throw new InvalidOperationException("Unable to serve a Storage GET client request");
             }
 
             var response = new StorageSingleResponse
@@ -58,7 +58,7 @@
         public override async Task GetMultiple(StorageMultipleRequest request, IServerStreamWriter<StorageMultipleResponse> responseStream, ServerCallContext context)
         {
             var items = _items.GetAll();
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 var response = new StorageMultipleResponse
                 {
@@ -104,9 +104,9 @@
                     _items.Remove(request.Storage.Id.ToLocal());
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Storage DELETE client request");                
+                    throw new InvalidOperationException("Unable to serve a Storage DELETE client request");
             }
-            
+
             var response = new StorageSingleResponse
             {
                 Storage = request.Storage

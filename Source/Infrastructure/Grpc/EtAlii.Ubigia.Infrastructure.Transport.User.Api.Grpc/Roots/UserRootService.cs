@@ -15,8 +15,8 @@
         {
             _items = items;
         }
-        
-        
+
+
         /// <summary>
         /// Get all spaces for the specified account id
         /// </summary>
@@ -27,11 +27,11 @@
         public override async Task GetMultiple(RootMultipleRequest request, IServerStreamWriter<RootMultipleResponse> responseStream, ServerCallContext context)
         {
             var spaceId = request.SpaceId.ToLocal();
-            
+
             var roots = _items
                 .GetAll(spaceId)
-                .ConfigureAwait(false); 
-            await foreach (var root in roots)
+                .ConfigureAwait(false);
+            await foreach (var root in roots.ConfigureAwait(false))
             {
                 var response = new RootMultipleResponse
                 {
@@ -61,7 +61,7 @@
                     root = await _items.Get(spaceId, request.Name).ConfigureAwait(false);
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Root GET client request");                
+                    throw new InvalidOperationException("Unable to serve a Root GET client request");
             }
 
             var response = new RootSingleResponse
@@ -76,7 +76,7 @@
         {
             var root = request.Root.ToLocal();
             var spaceId = request.SpaceId.ToLocal();
-            
+
             root = await _items
                 .Add(spaceId, root)
                 .ConfigureAwait(false);
@@ -85,7 +85,7 @@
             {
                 Root = root.ToWire()
             };
-            
+
             return response;
         }
 
@@ -95,7 +95,7 @@
         {
             var root = request.Root.ToLocal();
             var spaceId = request.SpaceId.ToLocal();
-            
+
             root = await _items
                 .Update(spaceId, root.Id, root)
                 .ConfigureAwait(false);
@@ -106,8 +106,8 @@
             };
             return response;
         }
-        
-        
+
+
         // Delete Item
         public override Task<RootSingleResponse> Delete(RootSingleRequest request, ServerCallContext context)
         {
@@ -122,9 +122,9 @@
                     _items.Remove(spaceId, request.Root.Id.ToLocal());
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Root DELETE client request");                
+                    throw new InvalidOperationException("Unable to serve a Root DELETE client request");
             }
-            
+
             var response = new RootSingleResponse
             {
                 Root = request.Root

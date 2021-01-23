@@ -40,7 +40,7 @@
         {
             var start = Environment.TickCount;
             var items = _repository.GetAll(accountId);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -51,7 +51,7 @@
         {
             var start = Environment.TickCount;
             var items = _repository.GetAll();
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -63,7 +63,7 @@
             var start = Environment.TickCount;
             var spaces = _repository.Get(accountId, spaceName);
             _profiler.WriteSample(_getByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return spaces;        
+            return spaces;
         }
 
         public Space Get(Guid itemId)
@@ -71,7 +71,7 @@
             var start = Environment.TickCount;
             var space = _repository.Get(itemId);
             _profiler.WriteSample(_getByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return space;   
+            return space;
         }
 
         public async Task<Space> Add(Space item, SpaceTemplate template)
@@ -79,7 +79,7 @@
             var start = Environment.TickCount;
             item = await _repository.Add(item, template).ConfigureAwait(false);
             _profiler.WriteSample(_addCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return item;   
+            return item;
         }
 
         public void Remove(Guid itemId)
@@ -101,7 +101,7 @@
             var start = Environment.TickCount;
             item = _repository.Update(itemId, item);
             _profiler.WriteSample(_updateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return item;   
+            return item;
         }
     }
 }

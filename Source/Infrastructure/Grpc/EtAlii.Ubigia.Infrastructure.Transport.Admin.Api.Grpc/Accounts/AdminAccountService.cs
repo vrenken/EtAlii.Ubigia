@@ -16,13 +16,13 @@
 		{
 			_items = items;
 		}
-	    
-	    
+
+
         //public Account GetByName(string accountName)
         public override Task<AccountSingleResponse> GetSingle(AccountSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Account account;
-            
+
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
@@ -35,7 +35,7 @@
                     account = _items.Get(request.Name);
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Account GET client request");                
+                    throw new InvalidOperationException("Unable to serve a Account GET client request");
             }
 
             var response = new AccountSingleResponse
@@ -48,8 +48,8 @@
         // Get all Items
         public override async Task GetMultiple(AccountMultipleRequest request, IServerStreamWriter<AccountMultipleResponse> responseStream, ServerCallContext context)
         {
-            var items = _items.GetAll();  
-            await foreach (var item in items)
+            var items = _items.GetAll();
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 var response = new AccountMultipleResponse
                 {
@@ -64,7 +64,7 @@
             var account = request.Account.ToLocal();
             var accountTemplate = request.Template;
             var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
-            
+
             account = await _items.Add(account, template).ConfigureAwait(false);
 
             var response = new AccountSingleResponse
@@ -99,9 +99,9 @@
                     _items.Remove(request.Account.Id.ToLocal());
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Account DELETE client request");                
+                    throw new InvalidOperationException("Unable to serve a Account DELETE client request");
             }
-            
+
             var response = new AccountSingleResponse
             {
                 Account = request.Account

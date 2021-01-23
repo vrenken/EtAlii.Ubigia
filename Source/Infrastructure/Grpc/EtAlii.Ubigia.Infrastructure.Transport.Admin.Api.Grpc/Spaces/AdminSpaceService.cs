@@ -21,7 +21,7 @@
         public override Task<SpaceSingleResponse> GetSingle(SpaceSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Space space;
-            
+
             switch (request)
             {
                 case var _ when request.Id != null: // Get Item by id
@@ -34,7 +34,7 @@
                 //    space = _items.Get(request.a.Name)
                 //    break
                 default:
-                    throw new InvalidOperationException("Unable to serve a Space GET client request");                
+                    throw new InvalidOperationException("Unable to serve a Space GET client request");
             }
 
             var response = new SpaceSingleResponse
@@ -48,9 +48,9 @@
         public override async Task GetMultiple(SpaceMultipleRequest request, IServerStreamWriter<SpaceMultipleResponse> responseStream, ServerCallContext context)
         {
             var accountId = request.AccountId.ToLocal();
-            
-            var items = _items.GetAll(accountId); 
-            await foreach (var item in items)
+
+            var items = _items.GetAll(accountId);
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 var response = new SpaceMultipleResponse
                 {
@@ -66,7 +66,7 @@
             var space = request.Space.ToLocal();
             var spaceTemplate = request.Template;
             var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
-            
+
             space = await _items.Add(space, template).ConfigureAwait(false);
 
             var response = new SpaceSingleResponse
@@ -101,9 +101,9 @@
                     _items.Remove(request.Space.Id.ToLocal());
                     break;
                 default:
-                    throw new InvalidOperationException("Unable to serve a Space DELETE client request");                
+                    throw new InvalidOperationException("Unable to serve a Space DELETE client request");
             }
-            
+
             var response = new SpaceSingleResponse
             {
                 Space = request.Space
