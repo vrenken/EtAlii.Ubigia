@@ -1,23 +1,40 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Linq;
 
     internal class ArgumentSetFinder : IArgumentSetFinder
     {
-        private readonly IFunctionSubjectParameterConverterSelector _parameterConverterSelector;
+        private readonly INonRootedPathSubjectFunctionParameterConverter _nonRootedPathSubjectFunctionParameterConverter;
+        private readonly IRootedPathSubjectFunctionParameterConverter _rootedPathSubjectFunctionParameterConverter;
+        private readonly IConstantSubjectFunctionParameterConverter _constantSubjectFunctionParameterConverter;
+        private readonly IVariableSubjectFunctionParameterConverter _variableSubjectFunctionParameterConverter;
 
-        public ArgumentSetFinder(IFunctionSubjectParameterConverterSelector parameterConverterSelector)
+        public ArgumentSetFinder(
+            INonRootedPathSubjectFunctionParameterConverter nonRootedPathSubjectFunctionParameterConverter,
+            IRootedPathSubjectFunctionParameterConverter rootedPathSubjectFunctionParameterConverter,
+            IConstantSubjectFunctionParameterConverter constantSubjectFunctionParameterConverter,
+            IVariableSubjectFunctionParameterConverter variableSubjectFunctionParameterConverter)
         {
-            _parameterConverterSelector = parameterConverterSelector;
+            _nonRootedPathSubjectFunctionParameterConverter = nonRootedPathSubjectFunctionParameterConverter;
+            _rootedPathSubjectFunctionParameterConverter = rootedPathSubjectFunctionParameterConverter;
+            _constantSubjectFunctionParameterConverter = constantSubjectFunctionParameterConverter;
+            _variableSubjectFunctionParameterConverter = variableSubjectFunctionParameterConverter;
         }
 
         public ArgumentSet Find(FunctionSubject functionSubject)
         {
             var arguments = functionSubject.Arguments
-                .Select(p =>
+                .Select(argument =>
                 {
-                    var converter = _parameterConverterSelector.Select(p);
-                    return converter.Convert(p);
+                    return argument switch
+                    {
+                        NonRootedPathFunctionSubjectArgument nonRootedPathFunctionSubjectArgument => _nonRootedPathSubjectFunctionParameterConverter.Convert(nonRootedPathFunctionSubjectArgument),
+                        RootedPathFunctionSubjectArgument rootedPathFunctionSubjectArgument => _rootedPathSubjectFunctionParameterConverter.Convert(rootedPathFunctionSubjectArgument),
+                        ConstantFunctionSubjectArgument constantFunctionSubjectArgument => _constantSubjectFunctionParameterConverter.Convert(constantFunctionSubjectArgument),
+                        VariableFunctionSubjectArgument variableFunctionSubjectArgument => _variableSubjectFunctionParameterConverter.Convert(variableFunctionSubjectArgument),
+                        _ => throw new NotSupportedException($"Cannot process argument: {argument?.ToString() ?? "NULL"}")
+                    };
                 })
                 .ToArray();
             return new ArgumentSet(arguments);

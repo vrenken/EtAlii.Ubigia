@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class AssignCombinedToOutputOperatorSubProcessor : IAssignCombinedToOutputOperatorSubProcessor
     {
-        private readonly IResultConverterSelector _resultConverterSelector;
+        private readonly IResultConverter _resultConverter;
 
-        public AssignCombinedToOutputOperatorSubProcessor(IResultConverterSelector resultConverterSelector)
+        public AssignCombinedToOutputOperatorSubProcessor(IResultConverter resultConverter)
         {
-            _resultConverterSelector = resultConverterSelector;
+            _resultConverter = resultConverter;
         }
 
         public Task Assign(OperatorParameters parameters)
@@ -19,8 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async o =>
                 {
-                    var outputConverter = _resultConverterSelector.Select(o);
-                    await outputConverter(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
+                    await _resultConverter.Convert(o, parameters.Scope, parameters.Output).ConfigureAwait(false);
                 });
             return Task.CompletedTask;
         }

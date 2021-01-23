@@ -47,7 +47,7 @@
             }
             else
             {
-                ReadAsDictionary(reader, properties, serializer); 
+                ReadAsDictionary(reader, properties, serializer);
             }
 
             return properties;
@@ -90,16 +90,14 @@
         {
             if (reader.TokenType != JsonToken.StartObject)
             {
-                throw new JsonSerializationException(
-                    $"Unexpected JSON token when reading PropertyDictionary. Expected StartObject, got {reader.TokenType}.");
+                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected StartObject, got {reader.TokenType}.");
             }
 
             CheckedRead(reader);
 
             if (reader.TokenType != JsonToken.PropertyName)
             {
-                throw new JsonSerializationException(
-                    $"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
+                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
             }
 
             CheckedRead(reader);
@@ -110,8 +108,7 @@
 
             if (reader.TokenType != JsonToken.PropertyName)
             {
-                throw new JsonSerializationException(
-                    $"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
+                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
             }
 
             CheckedRead(reader);
@@ -125,8 +122,7 @@
 
                 if (reader.TokenType != JsonToken.PropertyName)
                 {
-                    throw new JsonSerializationException(
-                        $"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
+                    throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected PropertyName, got {reader.TokenType}.");
                 }
 
                 CheckedRead(reader);
@@ -139,8 +135,7 @@
 
             if (reader.TokenType != JsonToken.EndObject)
             {
-                throw new JsonSerializationException(
-                    $"Unexpected JSON token when reading PropertyDictionary. Expected EndObject, got {reader.TokenType}.");
+                throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected EndObject, got {reader.TokenType}.");
             }
 
             properties.Add(key, value);
