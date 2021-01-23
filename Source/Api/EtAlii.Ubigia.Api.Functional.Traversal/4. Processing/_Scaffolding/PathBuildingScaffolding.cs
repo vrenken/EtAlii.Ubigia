@@ -16,7 +16,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<ITraversingWildcardPathSubjectPartToGraphPathPartsConverter, TraversingWildcardPathSubjectPartToGraphPathPartsConverter>();
 
             container.Register<IConditionalPathSubjectPartToGraphPathPartsConverter, ConditionalPathSubjectPartToGraphPathPartsConverter>();
-            container.Register<IConditionalPredicateFactorySelector, ConditionalPredicateFactorySelector>();
             container.Register<IEqualPredicateFactory, EqualPredicateFactory>();
             container.Register<INotEqualPredicateFactory, NotEqualPredicateFactory>();
             container.Register<ILessThanPredicateFactory, LessThanPredicateFactory>();

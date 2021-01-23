@@ -19,7 +19,6 @@
             container.Register<IPathSubjectForOutputConverter, PathSubjectForOutputConverter>();
             container.Register<IStringConstantSubjectProcessor, StringConstantSubjectProcessor>();
             container.Register<IObjectConstantSubjectProcessor, ObjectConstantSubjectProcessor>();
-            container.Register<IConstantSubjectProcessorSelector, ConstantSubjectProcessorSelector>();
 
             container.Register<IRootSubjectProcessor, RootSubjectProcessor>();
             container.Register<IRootDefinitionSubjectProcessor, RootDefinitionSubjectProcessor>();

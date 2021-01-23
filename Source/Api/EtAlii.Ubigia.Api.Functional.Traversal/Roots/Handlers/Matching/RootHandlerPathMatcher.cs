@@ -7,13 +7,67 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class RootHandlerPathMatcher : IRootHandlerPathMatcher
     {
-        private readonly IRootHandlerPathPartMatcherSelector _rootHandlerPathPartMatcherSelector;
+        private readonly ITypedRootHandlerPathPartMatcher _typedRootHandlerPathPartMatcher;
+        private readonly IRegexRootHandlerPathPartMatcher _regexRootHandlerPathPartMatcher;
+        private readonly IConstantRootHandlerPathPartMatcher _constantRootHandlerPathPartMatcher;
+        private readonly IAllParentsRootHandlerPathPartMatcher _allParentsRootHandlerPathPartMatcher;
+        private readonly IParentRootHandlerPathPartMatcher _parentRootHandlerPathPartMatcher;
+        private readonly IAllChildrenRootHandlerPathPartMatcher _allChildrenRootHandlerPathPartMatcher;
+        private readonly IChildrenRootHandlerPathPartMatcher _childrenRootHandlerPathPartMatcher;
+        private readonly IAllNextRootHandlerPathPartMatcher _allNextRootHandlerPathPartMatcher;
+        private readonly INextRootHandlerPathPartMatcher _nextRootHandlerPathPartMatcher;
+        private readonly IAllPreviousRootHandlerPathPartMatcher _allPreviousRootHandlerPathPartMatcher;
+        private readonly IPreviousRootHandlerPathPartMatcher _previousRootHandlerPathPartMatcher;
+        private readonly IWildcardRootHandlerPathPartMatcher _wildcardRootHandlerPathPartMatcher;
+        private readonly IVariableRootHandlerPathPartMatcher _variableRootHandlerPathPartMatcher;
+        private readonly IConditionalRootHandlerPathPartMatcher _conditionalRootHandlerPathPartMatcher;
+        private readonly IAllUpdatesRootHandlerPathPartMatcher _allUpdatesRootHandlerPathPartMatcher;
+        private readonly IUpdatesRootHandlerPathPartMatcher _updatesRootHandlerPathPartMatcher;
+        private readonly IAllDowndatesRootHandlerPathPartMatcher _allDowndatesRootHandlerPathPartMatcher;
+        private readonly IDowndateRootHandlerPathPartMatcher _downdateRootHandlerPathPartMatcher;
+        private readonly IIdentifierRootHandlerPathPartMatcher _identifierRootHandlerPathPartMatcher;
 
-        public RootHandlerPathMatcher(IRootHandlerPathPartMatcherSelector rootHandlerPathPartMatcherSelector)
+        public RootHandlerPathMatcher(
+            ITypedRootHandlerPathPartMatcher typedRootHandlerPathPartMatcher,
+            IRegexRootHandlerPathPartMatcher regexRootHandlerPathPartMatcher,
+            IConstantRootHandlerPathPartMatcher constantRootHandlerPathPartMatcher,
+            IAllParentsRootHandlerPathPartMatcher allParentsRootHandlerPathPartMatcher,
+            IParentRootHandlerPathPartMatcher parentRootHandlerPathPartMatcher,
+            IAllChildrenRootHandlerPathPartMatcher allChildrenRootHandlerPathPartMatcher,
+            IChildrenRootHandlerPathPartMatcher childrenRootHandlerPathPartMatcher,
+            IAllNextRootHandlerPathPartMatcher allNextRootHandlerPathPartMatcher,
+            INextRootHandlerPathPartMatcher nextRootHandlerPathPartMatcher,
+            IAllPreviousRootHandlerPathPartMatcher allPreviousRootHandlerPathPartMatcher,
+            IPreviousRootHandlerPathPartMatcher previousRootHandlerPathPartMatcher,
+            IWildcardRootHandlerPathPartMatcher wildcardRootHandlerPathPartMatcher,
+            IVariableRootHandlerPathPartMatcher variableRootHandlerPathPartMatcher,
+            IConditionalRootHandlerPathPartMatcher conditionalRootHandlerPathPartMatcher,
+            IAllUpdatesRootHandlerPathPartMatcher allUpdatesRootHandlerPathPartMatcher,
+            IUpdatesRootHandlerPathPartMatcher updatesRootHandlerPathPartMatcher,
+            IAllDowndatesRootHandlerPathPartMatcher allDowndatesRootHandlerPathPartMatcher,
+            IDowndateRootHandlerPathPartMatcher downdateRootHandlerPathPartMatcher,
+            IIdentifierRootHandlerPathPartMatcher identifierRootHandlerPathPartMatcher)
         {
-            _rootHandlerPathPartMatcherSelector = rootHandlerPathPartMatcherSelector;
+            _typedRootHandlerPathPartMatcher = typedRootHandlerPathPartMatcher;
+            _regexRootHandlerPathPartMatcher = regexRootHandlerPathPartMatcher;
+            _constantRootHandlerPathPartMatcher = constantRootHandlerPathPartMatcher;
+            _allParentsRootHandlerPathPartMatcher = allParentsRootHandlerPathPartMatcher;
+            _parentRootHandlerPathPartMatcher = parentRootHandlerPathPartMatcher;
+            _allChildrenRootHandlerPathPartMatcher = allChildrenRootHandlerPathPartMatcher;
+            _childrenRootHandlerPathPartMatcher = childrenRootHandlerPathPartMatcher;
+            _allNextRootHandlerPathPartMatcher = allNextRootHandlerPathPartMatcher;
+            _nextRootHandlerPathPartMatcher = nextRootHandlerPathPartMatcher;
+            _allPreviousRootHandlerPathPartMatcher = allPreviousRootHandlerPathPartMatcher;
+            _previousRootHandlerPathPartMatcher = previousRootHandlerPathPartMatcher;
+            _wildcardRootHandlerPathPartMatcher = wildcardRootHandlerPathPartMatcher;
+            _variableRootHandlerPathPartMatcher = variableRootHandlerPathPartMatcher;
+            _conditionalRootHandlerPathPartMatcher = conditionalRootHandlerPathPartMatcher;
+            _allUpdatesRootHandlerPathPartMatcher = allUpdatesRootHandlerPathPartMatcher;
+            _updatesRootHandlerPathPartMatcher = updatesRootHandlerPathPartMatcher;
+            _allDowndatesRootHandlerPathPartMatcher = allDowndatesRootHandlerPathPartMatcher;
+            _downdateRootHandlerPathPartMatcher = downdateRootHandlerPathPartMatcher;
+            _identifierRootHandlerPathPartMatcher = identifierRootHandlerPathPartMatcher;
         }
-
         public async Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
@@ -38,7 +92,30 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
                 // 1. Get matcher for current template part.
                 var templatePart = templateParts.Dequeue();
-                var matcher = _rootHandlerPathPartMatcherSelector.Select(templatePart);
+
+                IRootHandlerPathPartMatcher matcher = templatePart switch
+                {
+                    TypedPathSubjectPart => _typedRootHandlerPathPartMatcher,
+                    RegexPathSubjectPart => _regexRootHandlerPathPartMatcher,
+                    ConstantPathSubjectPart => _constantRootHandlerPathPartMatcher,
+                    AllParentsPathSubjectPart => _allParentsRootHandlerPathPartMatcher,
+                    ParentPathSubjectPart => _parentRootHandlerPathPartMatcher,
+                    AllChildrenPathSubjectPart => _allChildrenRootHandlerPathPartMatcher,
+                    ChildrenPathSubjectPart => _childrenRootHandlerPathPartMatcher,
+                    AllNextPathSubjectPart => _allNextRootHandlerPathPartMatcher,
+                    NextPathSubjectPart => _nextRootHandlerPathPartMatcher,
+                    AllPreviousPathSubjectPart => _allPreviousRootHandlerPathPartMatcher,
+                    PreviousPathSubjectPart => _previousRootHandlerPathPartMatcher,
+                    WildcardPathSubjectPart => _wildcardRootHandlerPathPartMatcher,
+                    VariablePathSubjectPart => _variableRootHandlerPathPartMatcher,
+                    ConditionalPathSubjectPart => _conditionalRootHandlerPathPartMatcher,
+                    AllUpdatesPathSubjectPart => _allUpdatesRootHandlerPathPartMatcher,
+                    UpdatesPathSubjectPart => _updatesRootHandlerPathPartMatcher,
+                    DowndatePathSubjectPart => _downdateRootHandlerPathPartMatcher,
+                    AllDowndatesPathSubjectPart => _allDowndatesRootHandlerPathPartMatcher,
+                    IdentifierPathSubjectPart => _identifierRootHandlerPathPartMatcher,
+                    _ => throw new NotSupportedException($"Cannot find matcher for {templatePart?.ToString() ?? "NULL"}")
+                };
 
                 // 2. Find first matching rest.
                 rest = await FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, isFirst).ConfigureAwait(false);

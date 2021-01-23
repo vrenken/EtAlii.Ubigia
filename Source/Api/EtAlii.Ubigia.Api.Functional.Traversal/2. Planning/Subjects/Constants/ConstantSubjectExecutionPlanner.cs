@@ -1,20 +1,28 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
+
     internal class ConstantSubjectExecutionPlanner : IConstantSubjectExecutionPlanner
     {
-        private readonly IConstantSubjectProcessorSelector _processorSelector;
+        private readonly IStringConstantSubjectProcessor _stringConstantSubjectProcessor;
+        private readonly IObjectConstantSubjectProcessor _objectConstantSubjectProcessor;
 
-        public ConstantSubjectExecutionPlanner(IConstantSubjectProcessorSelector processorSelector)
+        public ConstantSubjectExecutionPlanner(
+            IStringConstantSubjectProcessor stringConstantSubjectProcessor,
+            IObjectConstantSubjectProcessor objectConstantSubjectProcessor)
         {
-            _processorSelector = processorSelector;
+            _stringConstantSubjectProcessor = stringConstantSubjectProcessor;
+            _objectConstantSubjectProcessor = objectConstantSubjectProcessor;
         }
 
         public ISubjectExecutionPlan Plan(SequencePart part)
         {
-            var constantSubject = (ConstantSubject)part;
-
-            var processor = _processorSelector.Select(constantSubject);
-            return new ConstantSubjectExecutionPlan(constantSubject, processor);
+            return part switch
+            {
+                StringConstantSubject stringConstantSubject => new ConstantSubjectExecutionPlan(stringConstantSubject, _stringConstantSubjectProcessor),
+                ObjectConstantSubject objectConstantSubject => new ConstantSubjectExecutionPlan(objectConstantSubject, _objectConstantSubjectProcessor),
+                _ => throw new NotSupportedException($"Cannot plan constant subject {part?.ToString() ?? "NULL"}")
+            };
         }
     }
 }

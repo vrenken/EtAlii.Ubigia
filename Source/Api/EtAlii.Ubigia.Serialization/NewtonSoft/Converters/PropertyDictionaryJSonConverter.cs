@@ -138,7 +138,7 @@
                 throw new JsonSerializationException($"Unexpected JSON token when reading PropertyDictionary. Expected EndObject, got {reader.TokenType}.");
             }
 
-            properties.Add(key, value);
+            properties.Add(key!, value);
         }
 
         private Type ToType(TypeId typeid)
