@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             container.Register<IPathVariableExpander, PathVariableExpander>();
 
-            container.Register<IPathSubjectPartToGraphPathPartConverterSelector, PathSubjectPartToGraphPathPartConverterSelector>();
             container.Register<IConstantPathSubjectPartToGraphPathPartsConverter, ConstantPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IWildcardPathSubjectPartToGraphPathPartsConverter, WildcardPathSubjectPartToGraphPathPartsConverter>();
             container.Register<ITaggedPathSubjectPartToGraphPathPartsConverter, TaggedPathSubjectPartToGraphPathPartsConverter>();

@@ -12,7 +12,6 @@
             container.Register<IArgumentSetFinder, ArgumentSetFinder>();
 
             container.Register<IFunctionContext, FunctionContext>();
-            container.Register<IFunctionSubjectParameterConverterSelector, FunctionSubjectParameterConverterSelector>();
 
             container.Register<INonRootedPathSubjectFunctionParameterConverter, NonRootedPathSubjectFunctionParameterConverter>();
             container.Register<IRootedPathSubjectFunctionParameterConverter, RootedPathSubjectFunctionParameterConverter>();
