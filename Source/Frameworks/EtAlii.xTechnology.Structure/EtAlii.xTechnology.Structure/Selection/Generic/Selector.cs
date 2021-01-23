@@ -1,4 +1,4 @@
-﻿﻿namespace EtAlii.xTechnology.Structure
+﻿namespace EtAlii.xTechnology.Structure
 {
     using System;
     using System.Diagnostics;

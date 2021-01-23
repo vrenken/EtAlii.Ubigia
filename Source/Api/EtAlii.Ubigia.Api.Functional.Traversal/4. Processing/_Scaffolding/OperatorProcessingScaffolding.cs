@@ -64,7 +64,7 @@
 
             // Processing.
             container.Register<IAddOperatorProcessor, AddOperatorProcessor>();
-            container.Register<IAddOperatorSelector, AddOperatorSelector>();
+
             // Alternatives.
 
             container.Register<IAddByNameAsNewPathProcessor, AddByNameAsNewPathProcessor>();
@@ -80,7 +80,7 @@
 
             // Processing.
             container.Register<IRemoveOperatorProcessor, RemoveOperatorProcessor>();
-            container.Register<IRemoveOperatorSelector, RemoveOperatorSelector>();
+
             // Alternatives.
             container.Register<IRemoveByNameFromAbsolutePathProcessor, RemoveByNameFromAbsolutePathProcessor>();
             container.Register<IRemoveByNameFromRelativePathProcessor, RemoveByNameFromRelativePathProcessor>();

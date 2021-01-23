@@ -1,20 +1,29 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using System.Threading.Tasks;
 
     internal class RemoveOperatorProcessor : IRemoveOperatorProcessor
     {
-        private readonly IRemoveOperatorSelector _selector;
+        private readonly IRemoveByNameFromAbsolutePathProcessor _removeByNameFromAbsolutePathProcessor;
+        private readonly IRemoveByNameFromRelativePathProcessor _removeByNameFromRelativePathProcessor;
 
-        public RemoveOperatorProcessor(IRemoveOperatorSelector selector)
+        public RemoveOperatorProcessor(
+            IRemoveByNameFromAbsolutePathProcessor removeByNameFromAbsolutePathProcessor,
+            IRemoveByNameFromRelativePathProcessor removeByNameFromRelativePathProcessor)
         {
-            _selector = selector;
+            _removeByNameFromAbsolutePathProcessor = removeByNameFromAbsolutePathProcessor;
+            _removeByNameFromRelativePathProcessor = removeByNameFromRelativePathProcessor;
         }
 
         public Task Process(OperatorParameters parameters)
         {
-            var removeOperator = _selector.Select(parameters);
-            return removeOperator.Process(parameters);
+            return parameters switch
+            {
+                {LeftSubject: EmptySubject} => _removeByNameFromAbsolutePathProcessor.Process(parameters),
+                {LeftSubject: not EmptySubject} => _removeByNameFromRelativePathProcessor.Process(parameters),
+                _ => throw new NotSupportedException($"Cannot determine remove path processor for: {parameters?.ToString() ?? "NULL"}")
+            };
         }
     }
 }
