@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
     using System.Threading.Tasks;
 
-    internal abstract class RecursiveGraphPathTraverserBase  
+    internal abstract class RecursiveGraphPathTraverserBase
     {
         public void Configure(TraversalParameters parameters)
         {
@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
 
                         var results = TraverseRecursive(start, parameters.Context, parameters.Scope).Distinct();
-                        await foreach (var result in results)
+                        await foreach (var result in results.ConfigureAwait(false))
                         {
                             parameters.Output.OnNext(result);
                         }
@@ -41,12 +41,12 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         protected abstract IAsyncEnumerable<Identifier> GetNextRecursion(
-            Identifier start, 
+            Identifier start,
             IPathTraversalContext context,
-            ExecutionScope scope); 
+            ExecutionScope scope);
 
         private async IAsyncEnumerable<Identifier> TraverseRecursive(
-            Identifier start, 
+            Identifier start,
             IPathTraversalContext context,
             ExecutionScope scope)
         {
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Logical
             await foreach (var subItem in subItems.ConfigureAwait(false))
             {
                 var subResults = TraverseRecursive(subItem, context, scope);
-                await foreach (var subResult in subResults)
+                await foreach (var subResult in subResults.ConfigureAwait(false))
                 {
                     yield return subResult;
                 }

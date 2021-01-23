@@ -63,7 +63,7 @@
         public async IAsyncEnumerable<Account> GetAll()
         {
             var items = _invoker.Stream<Account>(_connection, SignalRHub.Account, "GetAll");
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }

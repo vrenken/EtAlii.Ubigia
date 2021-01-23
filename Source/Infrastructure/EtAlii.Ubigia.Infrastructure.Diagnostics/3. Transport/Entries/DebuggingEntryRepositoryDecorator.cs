@@ -20,7 +20,7 @@
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
         {
             var items = _repository.Get(identifiers, entryRelations);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 EnsureUniqueComponents(item);
                 yield return item;
@@ -66,7 +66,7 @@
 
             return storedEntry;
         }
-        
+
         public Entry Store(IEditableEntry entry)
         {
             EnsureUniqueComponents((Entry)entry);

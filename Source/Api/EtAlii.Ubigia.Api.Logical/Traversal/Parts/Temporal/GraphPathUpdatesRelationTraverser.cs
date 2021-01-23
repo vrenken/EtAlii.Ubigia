@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class GraphPathUpdatesRelationTraverser : IGraphPathUpdatesRelationTraverser
     {
@@ -14,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         var results = parameters.Context.Entries
                             .GetRelated(start, EntryRelation.Update, parameters.Scope)
                             .Select(e => e.Id);
-                        await foreach (var result in results)
+                        await foreach (var result in results.ConfigureAwait(false))
                         {
                             parameters.Output.OnNext(result);
                         }

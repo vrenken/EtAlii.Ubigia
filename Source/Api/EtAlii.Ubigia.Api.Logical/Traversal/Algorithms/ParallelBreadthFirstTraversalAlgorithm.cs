@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
             _maxDegreeOfParallelism = Environment.ProcessorCount * ProcessorMultiplier;
         }
-        
+
         public async Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             var previousResult = new[] { current };
@@ -38,13 +38,13 @@ namespace EtAlii.Ubigia.Api.Logical
                 await Parallel.ForAsync(previousResult, _maxDegreeOfParallelism, async (identifier, index) =>
                 {
                     var list = new List<Identifier>();
-                    
+
                     var results = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
-                    await foreach (var result in results)
+                    await foreach (var result in results.ConfigureAwait(false))
                     {
-                        list.Add(result);                        
+                        list.Add(result);
                     }
-                    subResults[index] = list; 
+                    subResults[index] = list;
                 }).ConfigureAwait(false);
 
                 var iterationResult = subResults.SelectMany(sr => sr);

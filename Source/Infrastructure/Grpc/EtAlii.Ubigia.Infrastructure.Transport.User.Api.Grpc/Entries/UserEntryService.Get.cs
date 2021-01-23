@@ -14,7 +14,7 @@
             var entry = await _items
                 .Get(entryId, entryRelations)
                 .ConfigureAwait(false);
-            
+
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
@@ -28,9 +28,9 @@
             var entryRelations = request.EntryRelations.ToLocal();
             var entries = _items
                 .Get(entryIds, entryRelations)
-                .ConfigureAwait(false); 
+                .ConfigureAwait(false);
 
-            await foreach (var entry in entries)
+            await foreach (var entry in entries.ConfigureAwait(false))
             {
                 var response = new EntryMultipleResponse
                 {
@@ -49,7 +49,7 @@
                 .GetRelated(entryId, entriesWithRelation, entryRelations)
                 .ConfigureAwait(false);
 
-            await foreach (var entry in entries)
+            await foreach (var entry in entries.ConfigureAwait(false))
             {
                 var response = new EntryMultipleResponse
                 {

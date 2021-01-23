@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             var start = Environment.TickCount;
 
             var items = _decoree.GetAll();
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }

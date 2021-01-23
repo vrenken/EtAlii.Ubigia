@@ -31,14 +31,14 @@ namespace EtAlii.Ubigia.Api.Logical
 
                     if (isLast)
                     {
-                        await foreach (var relatedNode in relatedNodes)
+                        await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
                         {
                             finalOutput.OnNext(relatedNode);
                         }
                     }
                     else
                     {
-                        await foreach (var relatedNode in relatedNodes)
+                        await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
                         {
                             iterationResult.Add(relatedNode);
                         }

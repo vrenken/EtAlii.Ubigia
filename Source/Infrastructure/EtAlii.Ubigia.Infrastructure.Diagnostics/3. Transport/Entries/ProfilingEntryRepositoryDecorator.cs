@@ -13,7 +13,7 @@
 
         private const string _getByIdCounter = "EntryRepository.Get.ById";
         private const string _getRelatedCounter = "EntryRepository.Get.Related";
-        
+
         private const string _prepareCounter = "EntryRepository.Prepare";
         private const string _storeCounter = "EntryRepository.Store";
 
@@ -24,16 +24,16 @@
 
             profiler.Register(_getByIdCounter, SamplingType.RawCount, "Milliseconds", "Get entry by id", "The time it takes for the Get method to execute");
             profiler.Register(_getRelatedCounter, SamplingType.RawCount, "Milliseconds", "Get related entries", "The time it takes for the GetRelated method to execute");
-            
+
             profiler.Register(_prepareCounter, SamplingType.RawCount, "Milliseconds", "Prepare entry", "The time it takes for the Prepare method to execute");
-            profiler.Register(_storeCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute"); 
+            profiler.Register(_storeCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute");
         }
 
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
             var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -44,7 +44,7 @@
         {
             var start = Environment.TickCount;
             var items = _repository.Get(identifiers, entryRelations);
-            await foreach (var item in items)
+            await foreach (var item in items.ConfigureAwait(false))
             {
                 yield return item;
             }
@@ -82,7 +82,7 @@
             _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storedEntry;
         }
-        
+
         public Entry Store(IEditableEntry entry)
         {
             var start = Environment.TickCount;
