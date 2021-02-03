@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\ValueAnnotationsParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Bugs.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.gcl">
+      <Namespace>EtAlii.Ubigia.Api.Functional.Context.Tests.TestNamespace</Namespace>
+    </GclFile>
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\SchemaPocoGenerator.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\UserPoco.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
@@ -57,6 +60,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction - compact - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction - v2.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -69,6 +73,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes - elaborate - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes - v2.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -78,6 +83,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Properties - elaborate - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Properties - v2.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations - Values - v2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -105,18 +111,29 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 6. - Schema.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 7. - Scribbles.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Diagnostics\EtAlii.Ubigia.Api.Functional.Context.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Lapa\EtAlii.Ubigia.Api.Functional.Context.Lapa.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" />
+    <!--<ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" />-->
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
       <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
     </Reference>
-    <!-- Below is not a normal project reference. It introduces the GCL codegenerator. -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" OutputItemType="Analyzer" />
     <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
   </ItemGroup>
+  <ItemGroup>
+    <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" OutputItemType="Analyzer" />
+
+    <Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\4. CodeGeneration\Build\*" >
+        <Link>\%(Filename)%(Extension)</Link>
+    </Content>
+  </ItemGroup>
+
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\4. CodeGeneration\Build\*.props" />
 </Project>

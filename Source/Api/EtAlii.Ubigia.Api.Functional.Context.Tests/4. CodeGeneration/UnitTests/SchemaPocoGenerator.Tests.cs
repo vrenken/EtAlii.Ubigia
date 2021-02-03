@@ -58,12 +58,10 @@
         {
             // Arrange.
             var inputCompilation = CreateCompilation(@"
-            namespace TestCode
+            UserPocoObject = @nodes(Person:Stark/Tony)
             {
-                [UbigiaPoco]
-                public partial class UserPocoObject
-                {
-                }
+                FirstName @node()
+                LastName @node(\#FamilyName)
             }");
             var generator = new SchemaPocoGenerator();
             var driver = (GeneratorDriver)CSharpGeneratorDriver.Create(generator);
@@ -91,12 +89,10 @@
         {
             // Arrange.
             var inputCompilation = CreateCompilation(@"
-            namespace TestCode
+            UserPocoObject = @nodes(Person:Stark/Tony)
             {
-                [UbigiaPoco]
-                public class UserPocoObject
-                {
-                }
+                FirstName @node()
+                LastName @node(\#FamilyName)
             }");
             var generator = new SchemaPocoGenerator();
             var driver = (GeneratorDriver)CSharpGeneratorDriver.Create(generator);
@@ -117,7 +113,7 @@
             var references = new[]
             {
                 MetadataReference.CreateFromFile(typeof(Binder).GetTypeInfo().Assembly.Location),
-                MetadataReference.CreateFromFile(typeof(UbigiaPocoAttribute).GetTypeInfo().Assembly.Location)
+                MetadataReference.CreateFromFile(typeof(SchemaProcessor).GetTypeInfo().Assembly.Location)
             };
             var options = new CSharpCompilationOptions(OutputKind.ConsoleApplication);
             return CSharpCompilation.Create("compilation", syntaxTrees, references, options);

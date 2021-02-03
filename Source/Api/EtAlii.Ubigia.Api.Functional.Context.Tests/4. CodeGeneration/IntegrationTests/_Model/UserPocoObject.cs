@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
-    [UbigiaPoco]
     public partial class UserPocoObject
     {
-        [UbigiaSchema]
         public string Schema { get; } =
             @"Person @nodes(Person:Stark/Tony)
             {

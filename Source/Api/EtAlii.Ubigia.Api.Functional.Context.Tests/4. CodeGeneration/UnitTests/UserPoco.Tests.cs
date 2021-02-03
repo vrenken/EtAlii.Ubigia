@@ -23,7 +23,7 @@
             var poco = new UserPocoObject();
 
             // Act.
-            poco.GeneratedMethod();
+            //poco.GeneratedMethod();
 
             // Assert.
             Assert.NotNull(poco);

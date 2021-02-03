@@ -24,6 +24,7 @@
     <content url="file://$MODULE_DIR$/../../../build.cmd" />
     <content url="file://$MODULE_DIR$/../../../build.ps1" />
     <content url="file://$MODULE_DIR$/../../../build.sh" />
+    <content url="file://$USER_HOME$/.nuget/packages/antlr4.runtime.standard/4.9.1/lib/netstandard2.1/Antlr4.Runtime.Standard.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.8.3/build/netcoreapp2.1" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.testplatform.testhost/16.8.3/build/netcoreapp2.1/x64/Microsoft.TestPlatform.PlatformAbstractions.dll" />
     <content url="file://$USER_HOME$/.nuget/packages/microsoft.testplatform.testhost/16.8.3/build/netcoreapp2.1/x64/testhost.dll" />

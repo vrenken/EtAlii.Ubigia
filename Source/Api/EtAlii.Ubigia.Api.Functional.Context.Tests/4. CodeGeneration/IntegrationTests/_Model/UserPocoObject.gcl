@@ -1,0 +1,5 @@
+﻿UserPocoObject @nodes(Person:Stark/Tony)
+{
+    FirstName @node()
+    LastName @node(\#FamilyName)
+}
