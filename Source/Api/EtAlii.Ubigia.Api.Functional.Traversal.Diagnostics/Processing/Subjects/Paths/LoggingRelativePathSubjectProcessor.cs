@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
-            _logger.Information("Processing relative path {PathSubject}", subject);
+            _logger.Information("Processing relative path {$PathSubject}", subject);
             var start = Environment.TickCount;
 
             await _decoree.Process(subject, scope, output).ConfigureAwait(false);
