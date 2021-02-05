@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$/../../../.gitignore" />
     <content url="file://$MODULE_DIR$/../../../.nuke" />
     <content url="file://$MODULE_DIR$/../../../Build" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Dependencies.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.AdditionalExamples.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.CodeGeneration.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gcl.GraphMapping.md" />
@@ -17,6 +18,7 @@
     <content url="file://$MODULE_DIR$/../../../Documentation/Architecture/Gtl.Specification.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Interlude.md" />
     <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Philosophy.md" />
+    <content url="file://$MODULE_DIR$/../../../Documentation/Philosophy/Strategy.md" />
     <content url="file://$MODULE_DIR$/../../../NuGet.config" />
     <content url="file://$MODULE_DIR$/../../../Readme.md" />
     <content url="file://$MODULE_DIR$/../.." />
