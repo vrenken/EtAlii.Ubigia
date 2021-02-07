@@ -8,10 +8,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
