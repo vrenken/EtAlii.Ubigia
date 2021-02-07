@@ -22,6 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Unit tests\QueryModeller.Tests.cs" />
   </ItemGroup>
   <ItemGroup>
+      <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

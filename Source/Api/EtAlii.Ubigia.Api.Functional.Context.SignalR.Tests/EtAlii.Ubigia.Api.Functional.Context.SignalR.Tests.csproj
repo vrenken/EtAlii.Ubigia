@@ -8,10 +8,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj" />
   </ItemGroup>
