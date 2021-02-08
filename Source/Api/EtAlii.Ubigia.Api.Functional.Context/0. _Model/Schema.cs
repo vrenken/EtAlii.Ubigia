@@ -7,11 +7,16 @@
     public class Schema
 #pragma warning restore CA1724
     {
+        public string Namespace { get; }
+        public string ContextName { get; }
+
         public StructureFragment Structure { get; }
 
-        public Schema(StructureFragment structure)
+        public Schema(StructureFragment structure, string @namespace, string contextName)
         {
             Structure = structure;
+            Namespace = @namespace;
+            ContextName = contextName;
         }
     }
 }

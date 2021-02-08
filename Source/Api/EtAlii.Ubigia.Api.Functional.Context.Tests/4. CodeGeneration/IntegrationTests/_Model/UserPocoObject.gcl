@@ -1,6 +1,0 @@
-﻿-- [Namespace=EtAlii.Ubigia.Api.Functional.Context.Tests]
-UserPocoObjectGenerated @nodes(Person:Stark/Tony)
-{
-    FirstName @node()
-    LastName @node(\#FamilyName)
-}

@@ -17,13 +17,30 @@
         private const string UbigiaPocoMustBePartialDiagnosticId = "UB1001";
         private const string UbigiaInvalidGclSchemaDiagnosticId = "UB1002";
 
-        private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new(UbigiaPocoMustBePartialDiagnosticId, "non-partial Ubigia poco class", "all Ubigia poco classes should be partial", "Code-Gen", DiagnosticSeverity.Error, true);
-        private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new(UbigiaInvalidGclSchemaDiagnosticId, "invalid GCL schema", "all Ubigia GCL schemas should be completely valid", "Code-Gen", DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new
+        (
+            id: UbigiaPocoMustBePartialDiagnosticId,
+            title: "non-partial Ubigia poco class",
+            messageFormat: "all Ubigia poco classes should be partial",
+            category: "Code-Gen",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true
+        );
+
+        private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new
+        (
+            id: UbigiaInvalidGclSchemaDiagnosticId,
+            title: "GCL schema is invalid",
+            messageFormat: "GCL schema is invalid: {0}",
+            category: "Code-Gen",
+            defaultSeverity: DiagnosticSeverity.Error,
+            isEnabledByDefault: true
+        );
+
 
         private ISchemaParser _schemaParser;
         private ILogger _logger;
         private Logger _rootLogger;
-
 
         public void Initialize(GeneratorInitializationContext context)
         {
@@ -38,7 +55,8 @@
             _rootLogger = loggerConfiguration
                 .CreateLogger();
             _logger = _rootLogger
-                .ForContext<SchemaPocoGenerator>();
+                .ForContext<SchemaPocoGenerator>()
+                .ForContext("CodeGeneration", ShortGuid.New());
 
             _logger.Information("Setting up SchemaPocoGenerator");
 
@@ -50,9 +68,12 @@
             _logger.Information("Setting up schema parser");
             try
             {
-                 var configuration = new SchemaParserConfiguration().
-                     Use(new TraversalParserConfiguration().UseAntlr());
-                 _schemaParser = new AntlrSchemaParserFactory().Create(configuration);
+                var traversalConfiguration = new TraversalParserConfiguration()
+                    .UseAntlr();
+                var configuration = new SchemaParserConfiguration()
+                    .Use(traversalConfiguration);
+                _schemaParser = new AntlrSchemaParserFactory()
+                    .Create(configuration);
             }
             catch (Exception e)
             {
@@ -69,7 +90,9 @@
                 var result = _schemaParser.Parse(schemaText);
                 if (result.Errors.Any())
                 {
-                    _logger.ForContext("SchemaParseErrors", result.Errors, true).Information("Parsing schema resulted in errors");
+                    _logger
+                        .ForContext("SchemaParseErrors", result.Errors, true)
+                        .Information("Parsing schema resulted in errors");
 
                     foreach (var error in result.Errors)
                     {
@@ -85,7 +108,9 @@
                 else
                 {
                     schema = result.Schema;
-                    _logger.ForContext("Schema", schema, true).Information("Parsed schema");
+                    _logger
+                        .ForContext("Schema", schema, true)
+                        .Information("Parsed schema");
                     return true;
 
                 }
@@ -101,7 +126,6 @@
         public void Execute(GeneratorExecutionContext context)
         {
             SetupLogging();
-
             _logger.Information("Executing");
 
             SetupParser();
@@ -130,7 +154,10 @@
             using var sourceWriter = new StringWriter();
             using var writer = new IndentedTextWriter(sourceWriter, "\t") {Indent = 0};
 
-            writer.WriteLine("namespace EtAlii.Ubigia.Api.Functional.Context.Tests");
+            var @namespace = schema.Namespace ?? "EtAlii.Ubigia";
+
+            _logger.Information("Writing namespace: {Namespace}", @namespace);
+            writer.WriteLine($"namespace {@namespace}");
             writer.WriteLine("{");
             writer.Indent += 1;
             WriteClass(writer, schema.Structure);
@@ -138,24 +165,16 @@
             writer.WriteLine("}");
 
             var sourceText = SourceText.From(sourceWriter.ToString(), Encoding.UTF8);
-
-// $@"namespace EtAlii.Ubigia.Api.Functional.Context.Tests
-// {{
-//     public partial class {schema.Structure.Name} // {fileName}
-//     {{
-//         public void GeneratedMethod()
-//         {{
-//             // generated code
-//         }}
-//     }}
-// }}", Encoding.UTF8);
-
             context.AddSource($"{fileName}.Gcl.cs", sourceText);
         }
 
         private void WriteClass(IndentedTextWriter writer, StructureFragment structureFragment)
         {
-            writer.WriteLine($"public partial class {structureFragment.Name}");
+            var className = structureFragment.Name;
+            _logger
+                .ForContext("StructureFragment", structureFragment, true)
+                .Information("Writing class: {Class}", className);
+            writer.WriteLine($"public partial class {className}");
             writer.WriteLine("{");
             writer.Indent += 1;
 
@@ -170,7 +189,13 @@
 
         private void WriteProperty(IndentedTextWriter writer, ValueFragment valueFragment)
         {
-            writer.WriteLine($"public object {valueFragment.Name};");
+            var propertyName = valueFragment.Name;
+            _logger
+                .ForContext("ValueFragment", valueFragment, true)
+                .ForContext("Annotation", valueFragment.Annotation.ToString())
+                .Information("Writing property: {Property}", propertyName);
+
+            writer.WriteLine($"public string {propertyName} {{get;}} = \"{valueFragment.Annotation.ToString().Replace("\\", "\\\\")}\";");
         }
     }
 }
