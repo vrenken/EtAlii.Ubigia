@@ -1,20 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
-    public partial class UserPocoObject
-    {
-        public string Schema { get; } =
-            @"Person @nodes(Person:Stark/Tony)
-            {
-                FirstName @node()
-                LastName @node(\#FamilyName)
-            }";
-    }
-
-    public partial class UserPocoObject
+    public class UserPocoObject
     {
         // ReSharper disable UnassignedGetOnlyAutoProperty
-        public string FirstName { get; }
-        public string LastName { get; }
+        public string FirstName2 { get; }
+        public string LastName2 { get; }
     }
 
 // <= Person:Stark/Tony

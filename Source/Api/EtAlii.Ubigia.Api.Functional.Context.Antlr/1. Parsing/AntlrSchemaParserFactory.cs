@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntlrSchemaParserFactory : Factory<ISchemaParser, SchemaParserConfiguration, ISchemaParserExtension>, ISchemaParserFactory
+    public class AntlrSchemaParserFactory : Factory<ISchemaParser, SchemaParserConfiguration, ISchemaParserExtension>, ISchemaParserFactory
     {
         protected override IScaffolding[] CreateScaffoldings(SchemaParserConfiguration configuration)
         {
