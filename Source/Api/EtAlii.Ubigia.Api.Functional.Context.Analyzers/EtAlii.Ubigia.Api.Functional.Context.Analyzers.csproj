@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <ProjectGuid>991dfe15-55a3-4435-81fa-f56e996cd546</ProjectGuid>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" PrivateAssets="all" />
+<!--    <PackageReference Include="StrongNamer" Version="0.2.5" />-->
+  </ItemGroup>
+
+<!--  <PropertyGroup>-->
+<!--    <SignAssembly>true</SignAssembly>-->
+<!--    <AssemblyOriginatorKeyFile>Certificate.snk</AssemblyOriginatorKeyFile>-->
+<!--  </PropertyGroup>-->
+
+  <PropertyGroup>
+    <GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetPackageDependencyTargetPaths;GetUbigiaDependencyTargetPaths</GetTargetPathDependsOn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Package the generator in the analyzer directory of the nuget package -->
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Visible="false" >
+      <Pack>true</Pack>
+      <PackagePath>analyzers/dotnet/cs/</PackagePath>
+    </None>
+
+    <Content Include="4. CodeGeneration\Build\*" >
+      <PackagePath>build\</PackagePath>
+    </Content>
+
+    <None Update="AnalyzerReleases.Shipped.md">
+      <DefaultPackFolder>none</DefaultPackFolder>
+      <BuildAction>None</BuildAction>
+    </None>
+
+    <None Update="AnalyzerReleases.Unshipped.md">
+      <DefaultPackFolder>none</DefaultPackFolder>
+      <BuildAction>None</BuildAction>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Generator dependencies -->
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Serilog" Version="2.10.0" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.1.1" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" PrivateAssets="all" >
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="4. CodeGeneration\SchemaPocoGenerator.Diagnostics.cs" />
+  </ItemGroup>
+
+  <Target Name="GetUbigiaDependencyTargetPaths">
+    <ItemGroup>
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Context\$(OutDir)\EtAlii.Ubigia.Api.Functional.Context.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia\$(OutDir)\EtAlii.Ubigia.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Traversal\$(OutDir)\EtAlii.Ubigia.Api.Functional.Traversal.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Context.Antlr.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="GetPackageDependencyTargetPaths">
+    <ItemGroup>
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgAntlr4_Runtime_Standard)\lib\$(UbigiaLibraryTargetFramework)\*.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog)\lib\netstandard2.0\Serilog.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_Seq)\lib\netstandard1.3\Serilog.Sinks.Seq.dll" IncludeRuntimeDependency="false" />
+
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Formatting_Compact)\lib\netstandard1.1\Serilog.Formatting.Compact.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_PeriodicBatching)\lib\netstandard1.2\Serilog.Sinks.PeriodicBatching.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_File)\lib\netstandard1.3\Serilog.Sinks.File.dll" IncludeRuntimeDependency="false" />
+    </ItemGroup>
+  </Target>
+
+</Project>

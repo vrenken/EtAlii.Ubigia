@@ -1,6 +1,6 @@
 ﻿-- ==================================================================================================================
--- 01. Traverse to a single node and returns it as a named item. 
--- Throws an error if multiple nodes are found. 
+-- 01. Traverse to a single node and returns it as a named item.
+-- Throws an error if multiple nodes are found.
 Person @node(Person:Doe/John)
 {
     FirstName,
@@ -9,7 +9,7 @@ Person @node(Person:Doe/John)
 }
 
 -- ==================================================================================================================
--- 02. Traverse to multiple nodes and returns them as an array.  
+-- 02. Traverse to multiple nodes and returns them as an array.
 -- Does not throw an error when no node or only one node is found.
 Person @nodes(Person:Doe/)
 {
@@ -27,7 +27,7 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
@@ -38,7 +38,7 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
@@ -55,7 +55,7 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
@@ -66,7 +66,7 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
@@ -83,7 +83,7 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
@@ -94,29 +94,13 @@ Data
         FirstName @node(),
         LastName @node(\#FamilyName),
         NickName,
-        Friends @nodes(/Friends/)  
+        Friends @nodes(/Friends/)
         {
             FirstName @node(),
             LastName @node(\#FamilyName)
         }
     }
 }
--- ==================================================================================================================
--- 05. Merge two distinct sets of nodes traversed.
--- Data
--- {
---     Person 
---     @node(person:Doe/John)
---     @nodes(location:DE/Berlin//)
---     @nodes(time:2009//)
---     @union(/Locations/","/Visitors/", "/Events/)
---     {
---         FirstName @node(),
---         LastName @node(\#FamilyName),
---         NickName
---     }
--- } 
-
 
 -- ==================================================================================================================
 -- 06.a Nesting is always possible.
@@ -149,7 +133,7 @@ Data
 }
 
 -- ==================================================================================================================
--- 06.c Nest traversal queries to explore additional context. 
+-- 06.c Nest traversal queries to explore additional context.
 Data
 {
     Person @node(Person:Doe/John)
@@ -162,6 +146,6 @@ Data
             FirstName @node(),
             LastName @node(\#FamilyName),
             NickName
-        }  
+        }
     }
 }

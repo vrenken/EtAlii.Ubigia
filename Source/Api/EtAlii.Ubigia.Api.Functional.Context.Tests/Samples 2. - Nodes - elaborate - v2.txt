@@ -96,21 +96,6 @@ Data
         Longitude = @node(/Position/Longitude)
     }
 }
--- ==================================================================================================================
--- 05. Merge two distinct sets of nodes traversed.
--- Data
--- {
---     Person
---     = @node(person:Doe/John)
---     [] = @nodes(location:DE/Berlin//)
---     [] = @nodes(time:2009//)
---     @union(/Locations/","/Visitors/", "/Events/)
---     {
---         FirstName = @node(),
---         LastName = @node(\#FamilyName),
---         NickName
---     }
--- }
 
 
 -- ==================================================================================================================

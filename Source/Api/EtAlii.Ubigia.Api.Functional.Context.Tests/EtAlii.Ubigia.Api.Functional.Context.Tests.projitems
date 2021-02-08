@@ -25,7 +25,6 @@
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.gcl">
       <Namespace>EtAlii.Ubigia.Api.Functional.Context.Tests.TestNamespace</Namespace>
     </GclFile>
-    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\SchemaPocoGenerator.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\UserPoco.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values" />
@@ -118,22 +117,23 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Diagnostics\EtAlii.Ubigia.Api.Functional.Context.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Lapa\EtAlii.Ubigia.Api.Functional.Context.Lapa.csproj" />
-    <!--<ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" />-->
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
-    <Reference Include="dotMemory.Unit, Version=111.0.0.0, Culture=neutral, PublicKeyToken=1010a0d8d6380325">
-      <HintPath>..\..\..\..\..\Users\vrenk\.nuget\packages\jetbrains.dotmemoryunit\3.1.20200127.214830\lib\netstandard2.0\dotMemory.Unit.dll</HintPath>
-    </Reference>
-    <PackageReference Include="Microsoft.CodeAnalysis.Common" Version="3.8.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" />
+    <!-- <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\EtAlii.Ubigia.Api.Functional.Context.Analyzers.csproj" /> -->
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" />
+    <!--<ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />-->
+    <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
   </ItemGroup>
   <ItemGroup>
     <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" OutputItemType="Analyzer" />
-
-    <Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\4. CodeGeneration\Build\*" >
-        <Link>\%(Filename)%(Extension)</Link>
-    </Content>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\EtAlii.Ubigia.Api.Functional.Context.Analyzers.csproj">
+      <PrivateAssets>all</PrivateAssets>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Analyzer</OutputItemType>
+    </ProjectReference>
+    <!--<Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\$(OutDir)*.dll" OutputItemType="Analyzer" />-->
+    <!-- <Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*">
+      <Link>\%(Filename)%(Extension)</Link>
+    </Content>-->
   </ItemGroup>
-
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\4. CodeGeneration\Build\*.props" />
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*.props" />
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*.targets" />
 </Project>

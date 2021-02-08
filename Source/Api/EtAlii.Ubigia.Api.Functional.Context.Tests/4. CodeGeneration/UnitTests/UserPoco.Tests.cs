@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Context.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers.Tests
 {
     using Xunit;
 
@@ -10,7 +10,7 @@
             // Arrange.
 
             // Act.
-            var poco = new UserPocoObject();
+            var poco = new UserPocoObjectGenerated();
 
             // Assert.
             Assert.NotNull(poco);
@@ -20,14 +20,16 @@
         public void UserPoco_Call_Test_Method()
         {
             // Arrange.
-            var poco = new UserPocoObject();
+            var poco = new UserPocoObjectGenerated();
 
             // Act.
-            //poco.GeneratedMethod();
+            var firstName = poco.FirstName;
+            var lastName = poco.LastName;
 
             // Assert.
             Assert.NotNull(poco);
+            Assert.Null(firstName);
+            Assert.Null(lastName);
         }
-
     }
 }

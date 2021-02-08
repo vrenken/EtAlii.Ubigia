@@ -61,6 +61,7 @@
 
   <PropertyGroup>
     <IsUbigiaTestProject Condition="$(MSBuildProjectName.EndsWith('.Tests')) OR $(MSBuildProjectName.EndsWith('.Tests.Docker')) OR $(MSBuildProjectName.EndsWith('.Tests.Local'))">true</IsUbigiaTestProject>
+    <IsAnalyzerProject Condition="$(MSBuildProjectName.EndsWith('.Analyzers'))">true</IsAnalyzerProject>
     <IsUbigiaApplication>false</IsUbigiaApplication>
     <IsUbigiaLibrary>false</IsUbigiaLibrary>
   </PropertyGroup>

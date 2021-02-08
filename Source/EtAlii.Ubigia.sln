@@ -473,6 +473,8 @@ ProjectSection(SolutionItems) = preProject
 	..\Documentation\Philosophy\Strategy.md = ..\Documentation\Philosophy\Strategy.md
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Context.Analyzers", "Api\EtAlii.Ubigia.Api.Functional.Context.Analyzers\EtAlii.Ubigia.Api.Functional.Context.Analyzers.csproj", "{991DFE15-55A3-4435-81FA-F56E996CD546}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2426,6 +2428,18 @@ Global
 		{FBCB2A52-4408-449F-99B0-62A91AEEC001}.Release|x64.Build.0 = Release|Any CPU
 		{FBCB2A52-4408-449F-99B0-62A91AEEC001}.Release|x86.ActiveCfg = Release|Any CPU
 		{FBCB2A52-4408-449F-99B0-62A91AEEC001}.Release|x86.Build.0 = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|x64.Build.0 = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Debug|x86.Build.0 = Debug|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|x64.ActiveCfg = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|x64.Build.0 = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|x86.ActiveCfg = Release|Any CPU
+		{991DFE15-55A3-4435-81FA-F56E996CD546}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2642,6 +2656,7 @@ Global
 		{FB14842E-F9DF-467C-8633-CD726C71BEE5} = {C9537D00-7881-4ACB-9111-9439363F658D}
 		{6DD333C1-4642-480A-8A61-AE92F4237CB0} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 		{BD83EE17-7A41-40B9-9884-07BC2411A9BA} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
+		{991DFE15-55A3-4435-81FA-F56E996CD546} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
