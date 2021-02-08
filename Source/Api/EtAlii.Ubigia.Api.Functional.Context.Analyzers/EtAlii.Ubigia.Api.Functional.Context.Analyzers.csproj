@@ -9,6 +9,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\EtAlii.Ubigia.Api.Functional.Context.Antlr.csproj" PrivateAssets="all" />
   </ItemGroup>
 
@@ -28,44 +29,37 @@
 
   <ItemGroup>
     <!-- Package the generator in the analyzer directory of the nuget package -->
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Visible="false" >
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Visible="false">
       <Pack>true</Pack>
       <PackagePath>analyzers/dotnet/cs/</PackagePath>
     </None>
 
-    <Content Include="4. CodeGeneration\Build\*" >
+    <Content Include="4. CodeGeneration\Build\*">
       <PackagePath>build\</PackagePath>
     </Content>
 
-    <None Update="AnalyzerReleases.Shipped.md">
-      <DefaultPackFolder>none</DefaultPackFolder>
-      <BuildAction>None</BuildAction>
-    </None>
-
-    <None Update="AnalyzerReleases.Unshipped.md">
-      <DefaultPackFolder>none</DefaultPackFolder>
-      <BuildAction>None</BuildAction>
-    </None>
+    <AdditionalFiles Update="AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Update="AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Generator dependencies -->
-    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" PrivateAssets="all" >
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog" Version="2.10.0" PrivateAssets="all" >
+    <PackageReference Include="Serilog" Version="2.10.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" PrivateAssets="all" >
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" PrivateAssets="all" >
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.1.1" PrivateAssets="all" >
+    <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.1.1" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" PrivateAssets="all" >
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
   </ItemGroup>
@@ -82,6 +76,8 @@
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Context.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Context.Antlr.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\$(OutDir)\EtAlii.xTechnology.Threading.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\$(OutDir)\EtAlii.xTechnology.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
   </Target>

@@ -125,6 +125,8 @@ ANNOTATION_NODES_UNLINK                             : 'nodes-unlink';
 ANNOTATION_NODE_SET                                 : 'node-set';
 ANNOTATION_NODE_CLEAR                               : 'node-clear';
 
+HEADER_OPTION_NAMESPACE                             : ('namespace' | 'Namespace' | 'NAMESPACE');
+HEADER_OPTION_CONTEXT                               : ('context' | 'Context' | 'CONTEXT');
 
 IDENTIFIER
 	: IDENTIFIER_START_CHARACTER IDENTIFIER_PART_CHARACTER*

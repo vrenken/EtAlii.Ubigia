@@ -14,7 +14,11 @@ options {
 
 import ContextPrimitives, TraversalPrimitives, TraversalPathParser;
 
-schema                                                  : (comment | WHITESPACE | NEWLINE)* structure_fragment? (comment | WHITESPACE | NEWLINE)* EOF ;
+schema                                                  : (comment | WHITESPACE | NEWLINE)* header_option_namespace? structure_fragment? (comment | WHITESPACE | NEWLINE)* EOF ;
+
+namespace                                               : schema_key (DOT schema_key)* ;
+header_option_namespace                                 : WHITESPACE* LBRACK WHITESPACE* HEADER_OPTION_NAMESPACE WHITESPACE* EQUALS WHITESPACE* namespace WHITESPACE* RBRACK NEWLINE;
+//header_option_context                                 : WHITESPACE* LBRACK WHITESPACE* HEADER_OPTION_CONTEXT WHITESPACE* EQUALS WHITESPACE* identity WHITESPACE* RBRACK NEWLINE;
 
 requirement                                             : EXCLAMATION | QUESTION ;
 
@@ -89,6 +93,6 @@ node_annotation
     | node_annotation_unlink_and_select_single_node
     ;
 
-schema_key                                              : identifier | string_quoted_non_empty;
+schema_key                                              : identifier | string_quoted_non_empty | reserved_schema_words;
 schema_path                                             : rooted_path | non_rooted_path ;
 comment                                                 : WHITESPACE* COMMENT ;

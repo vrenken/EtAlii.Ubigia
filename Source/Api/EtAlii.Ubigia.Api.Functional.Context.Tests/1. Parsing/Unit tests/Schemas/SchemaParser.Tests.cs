@@ -99,6 +99,29 @@
             Assert.NotNull(parseResult.Schema);
         }
 
+
+        [Fact]
+        public void SchemaParser_Parse_Comment_Object_With_Namespace_Option()
+        {
+            // Arrange.
+            var parser = new TestSchemaParserFactory().Create();
+            var text = @"[namespace=EtAlii.Namespace.Test]
+            Person
+            {
+                ""key"" <= ""value""
+            }";
+
+
+            // Act.
+            var parseResult = parser.Parse(text);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Schema);
+            Assert.Equal("EtAlii.Namespace.Test", parseResult.Schema.Namespace);
+        }
+
         [Fact]
         public void SchemaParser_Parse_Nested_Mutation()
         {
