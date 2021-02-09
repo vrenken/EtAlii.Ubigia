@@ -57,7 +57,7 @@
             TestKey(aHash);
         }
 
-        protected void TestHashResult(IHash aHash)
+        private void TestHashResult(IHash aHash)
         {
             aHash.Initialize();
             aHash.TransformBytes(Random.NextBytes(64));
