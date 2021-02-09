@@ -3,9 +3,6 @@
     <ProjectGuid>83cdcc84-3c6e-4afb-b4bf-74b6655a51e9</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Context.Tests</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="TestImage_01.jpg" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests\EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests.csproj" />
