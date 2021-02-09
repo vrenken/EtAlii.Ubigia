@@ -15,7 +15,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IValueFragmentParser _valueFragmentParser;
-        private readonly IRequirementParser _requirementParser;
+        //private readonly IRequirementParser _requirementParser
         private readonly INodeAnnotationsParser _annotationParser;
 
         private const string _nameId = "NameId";
@@ -38,7 +38,7 @@
             _quotedTextParser = quotedTextParser;
             _valueFragmentParser = valueFragmentParser;
             _annotationParser = annotationParser;
-            _requirementParser = requirementParser;
+            //_requirementParser = requirementParser
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
@@ -65,7 +65,7 @@
 
             var name = Lp.Name().Id(_nameId) | _quotedTextParser.Parser.Wrap(_nameId);
 
-            var parserBody = (_requirementParser.Parser + name + newLineParser.OptionalMultiple +
+            var parserBody = (requirementParser.Parser + name + newLineParser.OptionalMultiple +
                              _annotationParser.Parser.Maybe()).Wrap(_childStructureQueryHeaderId) + newLineParser.OptionalMultiple +
                              scopedFragments;
 
@@ -85,8 +85,8 @@
 
             var headerNode = _nodeFinder.FindFirst(node, _childStructureQueryHeaderId);
 
-            var requirementNode = _nodeFinder.FindFirst(headerNode, _requirementParser.Id);
-            var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
+            //var requirementNode = _nodeFinder.FindFirst(headerNode, _requirementParser.Id);
+            //var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
 
             var nameNode = _nodeFinder.FindFirst(headerNode, _nameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
@@ -124,7 +124,7 @@
                 fragmentType = FragmentType.Mutation;
             }
 
-            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), fragmentType);
+            return new StructureFragment(name, Plurality.Single, annotation, valueFragments.ToArray(), structureFragments.ToArray(), fragmentType);
         }
 
         public bool CanParse(LpNode node)

@@ -2,11 +2,51 @@
 -- 01. Simple typing. Supported types are: string, bool, float, int, datetime.
 Person = Person:Doe/John
 {
+    string FirstName
+    string LastName
+    string NickName
+    datetime BirthDate
+    int NumberOfChildren
+    float Height
+    bool IsMale
+}
+
+-- ==================================================================================================================
+-- 02.a Simple typing - with conditions.
+Person = Person:Doe/John
+{
+    string! FirstName
+    string! LastName
+    string? NickName
+    datetime! BirthDate
+    int NumberOfChildren
+    float? Height
+    bool IsMale
+}
+
+
+-- ==================================================================================================================
+-- 02.b Simple typing - with conditions.
+Person = Person:Doe/John
+{
+    string !FirstName
+    string !LastName
+    string ?NickName
+    datetime !BirthDate
+    int NumberOfChildren
+    float ?Height
+    bool IsMale
+}
+
+-- ==================================================================================================================
+-- 03. Multiplicity
+Person = Person:Doe/John
+{
     string FirstName = @
     string LastName = \#FamilyName
     string NickName
     datetime BirthDate
-    int Children
+    int NumberOfChildren
     Friends[] = /Friends/
     {
         string FirstName = @

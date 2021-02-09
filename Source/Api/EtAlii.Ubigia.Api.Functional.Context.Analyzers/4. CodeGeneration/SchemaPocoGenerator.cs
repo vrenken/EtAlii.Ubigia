@@ -10,16 +10,14 @@
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
     using Serilog.Core;
+    using ValueType = EtAlii.Ubigia.Api.Functional.Context.ValueType;
 
     [Generator]
     public class SchemaPocoGenerator : ISourceGenerator
     {
-        private const string UbigiaPocoMustBePartialDiagnosticId = "UB1001";
-        private const string UbigiaInvalidGclSchemaDiagnosticId = "UB1002";
-
         private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new
         (
-            id: UbigiaPocoMustBePartialDiagnosticId,
+            id: "UB1001",
             title: "non-partial Ubigia poco class",
             messageFormat: "all Ubigia poco classes should be partial",
             category: "Code-Gen",
@@ -29,7 +27,7 @@
 
         private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new
         (
-            id: UbigiaInvalidGclSchemaDiagnosticId,
+            id: "UB1002",
             title: "GCL schema is invalid",
             messageFormat: "GCL schema is invalid: {0}",
             category: "Code-Gen",
@@ -96,12 +94,12 @@
 
                     foreach (var error in result.Errors)
                     {
-                        var linePositionStart = new LinePosition(error.Line, 0);
-                        var linePositionEnd = new LinePosition(error.Line, 0);
+                        var linePositionStart = new LinePosition(error.Line, error.Column);
+                        var linePositionEnd = new LinePosition(error.Line, error.Column);
                         var linePositionSpan = new LinePositionSpan(linePositionStart, linePositionEnd);
                         var textSpan = new TextSpan(error.Column, 0);
                         var location = Location.Create(file.Path, textSpan, linePositionSpan);
-                        var diagnostic = Diagnostic.Create(_ubigiaInvalidGclSchemaRule, location, DiagnosticSeverity.Error, DiagnosticSeverity.Error, error.Message, error.Exception);
+                        var diagnostic = Diagnostic.Create(_ubigiaInvalidGclSchemaRule, location, error.Message, error.Exception.StackTrace);
                         context.ReportDiagnostic(diagnostic);
                     }
                 }
@@ -190,12 +188,44 @@
         private void WriteProperty(IndentedTextWriter writer, ValueFragment valueFragment)
         {
             var propertyName = valueFragment.Name;
+
+            var prefix = valueFragment.Prefix;
+            var annotation = valueFragment.Annotation;
+
             _logger
                 .ForContext("ValueFragment", valueFragment, true)
-                .ForContext("Annotation", valueFragment.Annotation.ToString())
+                .ForContext("Annotation", annotation?.ToString())
+                .ForContext("Prefix", prefix.ToString())
                 .Information("Writing property: {Property}", propertyName);
 
-            writer.WriteLine($"public string {propertyName} {{get;}} = \"{valueFragment.Annotation.ToString().Replace("\\", "\\\\")}\";");
+            var requirementAsString = prefix.Requirement switch
+            {
+                Requirement.None => "",
+                Requirement.Mandatory => "!",
+                Requirement.Optional => "?",
+                _ => throw new NotSupportedException()
+            };
+            var typeAsString = prefix.ValueType switch
+            {
+                ValueType.Object => "object",
+                ValueType.String => "string",
+                ValueType.Bool => "bool",
+                ValueType.Float => "float",
+                ValueType.Int => "int",
+                ValueType.DateTime => "System.DateTime",
+                _ => throw new NotSupportedException()
+            };
+            var valueAsString = prefix.ValueType switch
+            {
+                ValueType.Object => "new object()",
+                ValueType.String => $"\"{annotation?.ToString()?.Replace("\\", "\\\\") ?? ""}\"",
+                ValueType.Bool => "true",
+                ValueType.Float => "42.42f",
+                ValueType.Int => "42",
+                ValueType.DateTime => "System.DateTime.Now",
+                _ => throw new NotSupportedException()
+            };
+            writer.WriteLine($"public {typeAsString} {propertyName} {{get;}} = {valueAsString};");
         }
     }
 }

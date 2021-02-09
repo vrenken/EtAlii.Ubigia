@@ -7,15 +7,18 @@
         public NodeAnnotation Annotation { get; }
         public ValueFragment[] Values { get; }
 
+        public Plurality Plurality { get; }
+
         internal StructureFragment(
             string name,
+            Plurality plurality,
             NodeAnnotation annotation,
-            Requirement requirement,
             ValueFragment[] values,
             StructureFragment[] children,
             FragmentType fragmentType)
-            : base(name, requirement, fragmentType)
+            : base(name, fragmentType)
         {
+            Plurality = plurality;
             Values = values;
             Children = children;
             Annotation = annotation;

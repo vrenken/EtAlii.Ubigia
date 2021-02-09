@@ -23,8 +23,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Bugs.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\Location.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\TypedPerson.Tests.cs" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Location.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Person.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TypedPerson.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values" />

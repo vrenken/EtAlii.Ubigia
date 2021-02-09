@@ -10,8 +10,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public override object VisitStructure_fragment(ContextSchemaParser.Structure_fragmentContext context)
         {
-            var requirement = (Requirement)VisitRequirement(context.requirement());
+            //var requirement = (Requirement)VisitRequirement(context.requirement());
             var name = (string)VisitSchema_key(context.schema_key());
+            var plurality = context.structure_plurality() != null ? Plurality.Multiple : Plurality.Single;
             var annotationContext = context.node_annotation();
             var annotation = annotationContext != null
                 ? VisitNode_annotation(annotationContext) as NodeAnnotation
@@ -38,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 fragmentType = FragmentType.Mutation;
             }
 
-            return new StructureFragment(name, annotation, requirement, valueFragments, structureFragments, fragmentType);
+            return new StructureFragment(name, plurality, annotation, valueFragments, structureFragments, fragmentType);
         }
 
         public override object VisitStructure_fragment_body_newline_separated(ContextSchemaParser.Structure_fragment_body_newline_separatedContext context)

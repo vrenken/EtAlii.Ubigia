@@ -1,0 +1,11 @@
+﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
+TypedPerson = @nodes(Person:Stark/Tony)
+{
+    string FirstName
+    string LastName
+    string NickName
+    datetime BirthDate
+    int NumberOfChildren
+    float Height
+    bool IsMale
+}
