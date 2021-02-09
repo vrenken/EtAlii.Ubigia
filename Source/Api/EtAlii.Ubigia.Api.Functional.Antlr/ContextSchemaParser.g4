@@ -29,9 +29,11 @@ structure_fragment_body_entry
     | comment WHITESPACE* NEWLINE+ (WHITESPACE | NEWLINE)*
     ;
 
-structure_fragment                                      : WHITESPACE* requirement? schema_key node_annotation? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body? (WHITESPACE | NEWLINE)* RBRACE;
-value_query_fragment                                    : WHITESPACE* requirement? schema_key value_annotation? WHITESPACE* ;
-value_mutation_fragment                                 : WHITESPACE* schema_key WHITESPACE* LCHEVR EQUALS WHITESPACE* primitive_value WHITESPACE* WHITESPACE* ;
+structure_traversal_mapping                             : EQUALS;
+
+structure_fragment                                      : WHITESPACE* requirement? schema_key WHITESPACE* (EQUALS WHITESPACE* node_annotation)? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body? (WHITESPACE | NEWLINE)* RBRACE;
+value_query_fragment                                    : WHITESPACE* requirement? schema_key WHITESPACE* (EQUALS WHITESPACE* value_annotation)? WHITESPACE* ;
+value_mutation_fragment                                 : WHITESPACE* schema_key WHITESPACE* EQUALS WHITESPACE* primitive_value WHITESPACE* ;
 
 structure_fragment_body_newline_separated               : (structure_fragment_body_entry WHITESPACE* NEWLINE+)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
 structure_fragment_body_comma_separated                 : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* NEWLINE?)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;

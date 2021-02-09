@@ -72,7 +72,7 @@ Person = Person:Doe/Johhn
          FirstName = @,
          LastName = \#FamilyName,
          NickName,
-         Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+         Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
          {
             FirstName = @,
             LastName = \#FamilyName,

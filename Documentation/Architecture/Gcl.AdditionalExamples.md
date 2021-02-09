@@ -6,7 +6,7 @@
 All properties that can be found will be returned.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
 }
 ```
@@ -16,7 +16,7 @@ Only the properties that can be found will be returned. No error is given if a p
 Properties can be separated by comma's or by newlines.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -29,7 +29,7 @@ Only the properties that can be found will be returned. No error is given if a p
 Properties can be separated by comma's or by newlines.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName
     LastName
@@ -40,7 +40,7 @@ Person @node(Person:Doe/John)
 ### Example 3: Property identifiers can be quoted for more accurate control.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     "FirstName",
     "LastName",
@@ -51,7 +51,7 @@ Person @node(Person:Doe/John)
 ### Example 4.a: Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -62,7 +62,7 @@ Person @node(Person:Doe/John)
 ### Example 4.b: Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     "FirstName",
     "LastName",
@@ -73,7 +73,7 @@ Person @node(Person:Doe/John)
 ### Example 4.c: Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -84,20 +84,20 @@ Person @node(Person:Doe/John)
 ### Example 4.d: Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 
 ```
-Person @node(Person:Doe/John) { FirstName, LastName, NickName }
+Person = @node(Person:Doe/John) { FirstName, LastName, NickName }
 ```
 
 ### Example 4.e: Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 
 ```
-Person @node(Person:Doe/John) { "FirstName", "LastName", "NickName" }
+Person = @node(Person:Doe/John) { "FirstName", "LastName", "NickName" }
 ```
 
 ### Example 5.a: Traverses to a node and returns it as a named element.
 An error is given when any of the the properties marked as mandatory cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !"FirstName",
     !"LastName",
@@ -109,7 +109,7 @@ Person @node(Person:Doe/John)
 An error is given when any of the the properties marked as mandatory cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !FirstName,
     !LastName,
@@ -121,7 +121,7 @@ Person @node(Person:Doe/John)
 An error is given when any of the the properties marked as mandatory cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !FirstName,
     !LastName,
@@ -133,7 +133,7 @@ Person @node(Person:Doe/John)
 An error is given when any of the the properties not marked as optional cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -146,15 +146,15 @@ The result will be enriched using the node, nodes and value annotations added to
 Only the properties that can be found will be returned. No error is given if a property cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
-    FirstName @node(),
-    LastName @node(\#FamilyName),
+    FirstName = @node(),
+    LastName = @node(\#FamilyName),
     NickName,
-    Friends @nodes(/Friends/)
+    Friends = @nodes(/Friends/)
     {
-        FirstName @node(),
-        LastName @node(\#FamilyName)
+        FirstName = @node(),
+        LastName = @node(\#FamilyName)
     }
 }
 ```
@@ -164,15 +164,15 @@ The result will be enriched using the node, nodes and value annotations added to
 An error is given when any of the the properties marked as mandatory cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
-    !FirstName @node(),
-    !LastName @node(\#FamilyName),
+    !FirstName = @node(),
+    !LastName = @node(\#FamilyName),
     NickName,
-    Friends @nodes(/Friends)
+    Friends = @nodes(/Friends)
     {
-        FirstName @node(),
-        LastName @node(\#FamilyName)
+        FirstName = @node(),
+        LastName = @node(\#FamilyName)
     }
 }
 ```
@@ -182,15 +182,15 @@ The result will be enriched using the node, nodes and value annotations added to
 An error is given when any of the the properties not marked as optional cannot be found.
 
 ```
-Person @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
-    FirstName @node(),
-    LastName @node(\#FamilyName),
+    FirstName = @node(),
+    LastName = @node(\#FamilyName),
     ?NickName,
-    ?Friends @nodes(/Friends)
+    ?Friends = @nodes(/Friends)
     {
-        FirstName @node(),
-        LastName @node(\#FamilyName)
+        FirstName = @node(),
+        LastName = @node(\#FamilyName)
     }
 }
 ```

@@ -11,7 +11,7 @@ To relate graph information to structures and fields [GTL traversal paths](/Path
 
 Example:
 ```
-Person <= Person:Start/Tony
+Person = Person:Start/Tony
 {
     FirstName,
     LastName
@@ -22,7 +22,7 @@ The name of the root structure can be ommited for brevety. This is especially ha
 
 Example:
 ```
-<= Person:Start/Tony
+= Person:Start/Tony
 {
     FirstName,
     LastName
@@ -33,11 +33,11 @@ When nested structures are used and a parent structure is already mapped using a
 
 Example:
 ```
-<= Person:Start/Tony
+= Person:Start/Tony
 {
     FirstName,
     LastName,
-    Friends[] <= /Friends/
+    Friends[] = /Friends/
     {
         FirstName,
         LastName
@@ -50,11 +50,11 @@ When nested structures are used and a parent structure is already mapped using a
 
 Example:
 ```
-<= Person:Start/Tony
+= Person:Start/Tony
 {
     FirstName,
     LastName,
-    Locations[] <= Location:Germany/NRW/#Cities
+    Locations[] = Location:Germany/NRW/#Cities
     {
         Name,
         Latitude,
@@ -68,22 +68,22 @@ If explicit path assignments are added to fields, and they are not classified as
 
 Example:
 ```
-<= Person:Start/Tony
+= Person:Start/Tony
 {
     FirstName,
-    LastName <= \#FamilyName,  -- Fetch a parent node with the tag lastname and assign ot to the property LastName
-    Birthday <= .Birthdate     -- Fetch the property birthdate and assign it to the Birthday value
+    LastName = \#FamilyName,  -- Fetch a parent node with the tag lastname and assign ot to the property LastName
+    Birthday = .Birthdate     -- Fetch the property birthdate and assign it to the Birthday value
 }
 ```
 
 The @ character can be used to assign the name of the current graph node to a value.
 Example:
 ```
-<= Person:Start/Tony
+= Person:Start/Tony
 {
     FirstName @,
-    LastName <= \#FamilyName,
-    Birthday <= .Birthdate
+    LastName = \#FamilyName,
+    Birthday = .Birthdate
 }
 ```
 

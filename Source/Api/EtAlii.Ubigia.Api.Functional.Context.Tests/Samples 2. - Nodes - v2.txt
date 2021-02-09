@@ -96,22 +96,6 @@ Data
         Longitude
     }
 }
--- ==================================================================================================================
--- 05. Merge two distinct sets of nodes traversed.
--- Data
--- {
---     Person
---     = person:Doe/John
---     [] = location:DE/Berlin//
---     [] = time:2009//
---     @union(/Locations/","/Visitors/", "/Events/)
---     {
---         FirstName = @,
---         LastName = \#FamilyName,
---         NickName
---     }
--- }
-
 
 -- ==================================================================================================================
 -- 06.a Nesting is always possible.

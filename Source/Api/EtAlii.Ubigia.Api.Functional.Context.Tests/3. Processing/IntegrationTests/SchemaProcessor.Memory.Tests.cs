@@ -72,15 +72,15 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var isolator = new Func<Task>(async () =>
             {
                 var mutationText =
-                    @"Person @node(Person:Doe/John)
+                    @"Person = @node(Person:Doe/John)
                     {
-                        Weight <= 160.1,
-                        NickName <= ""HeavyJohnny""
+                        Weight = 160.1,
+                        NickName = ""HeavyJohnny""
                     }";
                 var mutationSchema = _context.Parse(mutationText).Schema;
 
                 var queryText =
-                    @"Person @node(Person:Doe/John)
+                    @"Person = @node(Person:Doe/John)
                     {
                         Weight,
                         NickName

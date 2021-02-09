@@ -120,7 +120,7 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(Person:Doe/John)
+            Person = @node(Person:Doe/John)
             {
                 ""age"",
                 ""first"",
@@ -148,7 +148,7 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(Person:Doe/John)
+            Person = @node(Person:Doe/John)
             {
                 age,
                 first,
@@ -176,7 +176,7 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(Person:Doe/John)
+            Person = @node(Person:Doe/John)
             {
                 age, first, last, company, email, phone
             }";
@@ -200,13 +200,13 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(person:Doe/John)
+            Person = @node(person:Doe/John)
             {
                 ""age"",
-                ""name"" @node(\LastName)
+                ""name"" = @node(\LastName)
                 {
-                    ""first"" @node(/FirstName),
-                    ""last"" @node()
+                    ""first"" = @node(/FirstName),
+                    ""last"" = @node()
                 },
                 ""company"",
                 ""email"",
@@ -230,13 +230,13 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(person:Doe/John)
+            Person = @node(person:Doe/John)
             {
                 ""age"",
                 ""name""
                 {
-                    ""first"" @node(),
-                    ""last"" @node(\\LastName)
+                    ""first"" = @node(),
+                    ""last"" = @node(\\LastName)
                 },
                 ""company"",
                 ""email"",
@@ -265,13 +265,13 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(person:Doe/John)
+            Person = @node(person:Doe/John)
             {
                 age,
-                name @node(\LastName)
+                name = @node(\LastName)
                 {
-                    first @node(/FirstName),
-                    last @node()
+                    first = @node(/FirstName),
+                    last = @node()
                 },
                 company,
                 email,
@@ -300,7 +300,7 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
-            Person @node(person:Stephenson/Sabrina)
+            Person = @node(person:Stephenson/Sabrina)
             {
                 ""age"",
                 ""name""
@@ -339,7 +339,7 @@
             Person
             {
                 ""age"",
-                ""firstname"" @node(),
+                ""firstname"" = @node(),
                 ""company"",
                 ""email"",
                 ""phone""
@@ -370,7 +370,7 @@
                 ""age"",
                 ""name""
                 {
-                    ""first"" @node(),
+                    ""first"" = @node(),
                     ""last""
                 },
                 ""company"",
@@ -400,12 +400,12 @@
         {
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
-            var queryText = @"Person @nodes(Person:Stark/Tony)
+            var queryText = @"Person = @nodes(Person:Stark/Tony)
                                {
                                     Data
                                     {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                     }
                                }";
 
@@ -438,13 +438,13 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var queryText = @"
-            Person @node(person:Doe/John)
+            Person = @node(person:Doe/John)
             {
                 age,
-                name @node(\#FamilyName)
+                name = @node(\#FamilyName)
                 {
-                    first @node(/FirstName),
-                    last @node()
+                    first = @node(/FirstName),
+                    last = @node()
                 },
                 company,
                 email,

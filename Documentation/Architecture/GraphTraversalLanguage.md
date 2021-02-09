@@ -12,27 +12,27 @@ A few simple example can be seen below:
 
 ```
 // Find a person with the first name John and last name Doe.
-$person => person:Doe/John
+$person <= person:Doe/John
 
 // Find all persons with the last name Doe.
-$persons => person:Doe/*
+$persons <= person:Doe/*
 
 // Get the current time.
-$time => time:Now
+$time <= time:Now
 
 // Get the time defined in the specified graph segment.
-$time => time:2020/10/11/12/23
+$time <= time:2020/10/11/12/23
 // Parse the time specified.
-$time => time:2014-08-26T11:12:23
+$time <= time:2014-08-26T11:12:23
 
 // Get the location defined in the specified graph segment.
-$location => location:Netherlands/Overijssel/Enschede
-$location => location:Germany/Berlin/Center/"Zoologischen Garten"
-$location => location:DE/Berlin/Center/"Zoologischen Garten"
-$location => location:NL/Enschede
-$location => location:NL/Enschede/Lavenhorsthoek/23
+$location <= location:Netherlands/Overijssel/Enschede
+$location <= location:Germany/Berlin/Center/"Zoologischen Garten"
+$location <= location:DE/Berlin/Center/"Zoologischen Garten"
+$location <= location:NL/Enschede
+$location <= location:NL/Enschede/Lavenhorsthoek/23
 // Parse the given location.
-$location => location:52.2167/6.9000
+$location <= location:52.2167/6.9000
 ```
 
 These examples are fairly straightforward, but only cover a few of the most simple traversals possible.

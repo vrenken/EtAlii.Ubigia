@@ -12,7 +12,7 @@
 -- @node(person:Banner/Peter", mode: "Union")
 -- @node(person:Banner/Tanja)
 -- {
---     name @id
+--     name = @id
 -- }
 
 
@@ -24,14 +24,14 @@
 -- @nodes(time:2012//)
 -- @node(person:Banner/Peter)
 -- {
---     person @nodes(\\Contacts\\)
+--     person = @nodes(\\Contacts\\)
 --     {
---         firstname @id
---         lastname @id(\\)
+--         firstname = @id
+--         lastname = @id(\\)
 --     },
---     location @nodes(\\Location\\)
+--     location = @nodes(\\Location\\)
 --     {
---         name @id(\\),
+--         name = @id(\\),
 --     }
 -- }
 
@@ -39,12 +39,12 @@
 -- 06. Unnamed query.
 -- data
 -- {
---     #location @nodes(location:DE/Berlin//", mode: "Intersect")
---     #time @nodes(time:2012//)
---     person @nodes(person:Banner/Peter)
+--     #location = @nodes(location:DE/Berlin//", mode: "Intersect")
+--     #time = @nodes(time:2012//)
+--     person = @nodes(person:Banner/Peter)
 --     {
 --         firstname
---         lastname @id(\\#FamilyName)
+--         lastname = @id(\\#FamilyName)
 --     }
 -- }
 
@@ -52,12 +52,12 @@
 -- 07. Unnamed query.
 -- data
 -- {
---     #location @nodes(location:DE/Berlin/*", mode: "Intersect")
---     #time @nodes(time:2012/*)
---     person @nodes(person:Banner/*)
+--     #location = @nodes(location:DE/Berlin/*", mode: "Intersect")
+--     #time = @nodes(time:2012/*)
+--     person = @nodes(person:Banner/*)
 --     {
 --         firstname
---         lastname @id(\\)
+--         lastname = @id(\\)
 --     }
 -- }
 
@@ -65,10 +65,10 @@
 -- 08. Unnamed query.
 -- query data
 -- {
---     id @nodes(/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423)
+--     id = @nodes(/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423)
 --     {
---         firstname @id
---         lastname @id(\\)
+--         firstname = @id
+--         lastname = @id(\\)
 --     }
 -- }
 
@@ -77,10 +77,10 @@
 -- 09. Unnamed query.
 -- query data
 -- {
---     id @nodes(/$id)
+--     id = @nodes(/$id)
 --     {
---         firstname @id
---         lastname @id(\\)
+--         firstname = @id
+--         lastname = @id(\\)
 --     }
 -- }
 
@@ -94,8 +94,8 @@
 --     @nodes(time:2009//)
 --     @union(/Locations/","/Visitors/", "/Events/)
 --     {
---         FirstName @node(),
---         LastName @node(\#FamilyName),
+--         FirstName = @node(),
+--         LastName = @node(\#FamilyName),
 --         NickName
 --     }
 -- }
@@ -135,15 +135,15 @@
 
 -- ==================================================================================================================
 -- 02 Returns two different arrays in one single response. Limit the results to the union of the two.
--- Person @node(Person:Doe/John)
+-- Person = @node(Person:Doe/John)
 -- {
---     FirstName @node(),
---     LastName @node(\#FamilyName),
---     Track @nodes(/Track/)
+--     FirstName = @node(),
+--     LastName = @node(\#FamilyName),
+--     Track = @nodes(/Track/)
 --     {
---         Name @node(),
---         Time @where(Time:2000/**),
---         Location @where(Location:Europe/Germany/Berlin)
+--         Name = @node(),
+--         Time = @where(Time:2000/**),
+--         Location = @where(Location:Europe/Germany/Berlin)
 --     }
 -- }
 
@@ -160,4 +160,40 @@
 --         Time = @where(Time:2000/**),
 --         Location = @where(Location:Europe/Germany/Berlin)
 --     }
+-- }
+
+-- ==================================================================================================================
+-- 05. Merge two distinct sets of nodes traversed.
+-- Data
+-- {
+--     Person
+--     = person:Doe/John
+--     [] = location:DE/Berlin//
+--     [] = time:2009//
+--     @union(/Locations/","/Visitors/", "/Events/)
+--     {
+--         FirstName = @,
+--         LastName = \#FamilyName,
+--         NickName
+--     }
+-- }
+
+
+-- ==================================================================================================================
+-- 01 Returns a query for the given variables. The query won't execute if the variables aren't provided.
+-- Person = @nodes(Person:$LastName/$FirstName)
+-- {
+--     FirstName = @node(),
+--     LastName = @node(\#FamilyName),
+--     NickName,
+--     Friends = @nodes(/Friends/)
+-- }
+
+-- ==================================================================================================================
+-- 01 Add a schema.
+-- @schema-add("contact.names")
+-- {
+--     FirstName = @node(),
+--     LastName = @node(\#FamilyName),
+--     NickName,
 -- }

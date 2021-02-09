@@ -84,15 +84,15 @@
         public async Task SchemaProcessor_Query_Time_Now_By_Structure()
         {
             // Arrange.
-            var queryText = @"Time @node(time:now)
+            var queryText = @"Time = @node(time:now)
                                {
-                                    Millisecond @node()
-                                    Second @node(\)
-                                    Minute @node(\\)
-                                    Hour @node(\\\)
-                                    Day @node(\\\\)
-                                    Month @node(\\\\\)
-                                    Year @node(\\\\\\)
+                                    Millisecond = @node()
+                                    Second = @node(\)
+                                    Minute = @node(\\)
+                                    Hour = @node(\\\)
+                                    Day = @node(\\\\)
+                                    Month = @node(\\\\\)
+                                    Year = @node(\\\\\\)
                                }";
 
             var query = _context.Parse(queryText).Schema;
@@ -135,15 +135,15 @@
         public async Task SchemaProcessor_Query_Time_Now_By_Last_Output()
         {
             // Arrange.
-            var selectSchemaText = @"Time @node(time:now)
+            var selectSchemaText = @"Time = @node(time:now)
                                    {
-                                        Millisecond @node()
-                                        Second @node(\)
-                                        Minute @node(\\)
-                                        Hour @node(\\\)
-                                        Day @node(\\\\)
-                                        Month @node(\\\\\)
-                                        Year @node(\\\\\\)
+                                        Millisecond = @node()
+                                        Second = @node(\)
+                                        Minute = @node(\\)
+                                        Hour = @node(\\\)
+                                        Day = @node(\\\\)
+                                        Month = @node(\\\\\)
+                                        Year = @node(\\\\\\)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -172,10 +172,10 @@
         public async Task SchemaProcessor_Query_Person_By_Structure()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -203,10 +203,10 @@
         public async Task SchemaProcessor_Query_Persons_By_Structure_02()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:*/*)
+            var selectSchemaText = @"Person = @nodes(Person:*/*)
                                    {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -254,10 +254,10 @@
         public async Task SchemaProcessor_Query_Person_By_Last_Output()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -290,8 +290,8 @@
             // Arrange.
             var selectSchemaText = @"Data
                                    {
-                                        FirstName @node(Person:Stark/Tony)
-                                        LastName @node(Person:Stark/Tony\#FamilyName)
+                                        FirstName = @node(Person:Stark/Tony)
+                                        LastName = @node(Person:Stark/Tony\#FamilyName)
                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
@@ -325,12 +325,12 @@
         public async Task SchemaProcessor_Query_Person_Nested_By_Structure()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                     {
                                         Data
                                         {
-                                            FirstName @node()
-                                            LastName @node(\#FamilyName)
+                                            FirstName = @node()
+                                            LastName = @node(\#FamilyName)
                                         }
                                     }";
 
@@ -361,12 +361,12 @@
         public async Task SchemaProcessor_Query_Person_Nested_By_Last_Output()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
                                         Data
                                         {
-                                            FirstName @node()
-                                            LastName @node(\#FamilyName)
+                                            FirstName = @node()
+                                            LastName = @node(\#FamilyName)
                                         }
                                    }";
 
@@ -399,14 +399,14 @@
         public async Task SchemaProcessor_Query_Person_Nested_Double_By_Structure()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
                                         Data1
                                         {
                                             Data2
                                             {
-                                                FirstName @node()
-                                                LastName @node(\#FamilyName)
+                                                FirstName = @node()
+                                                LastName = @node(\#FamilyName)
                                             }
                                         }
                                    }";
@@ -441,14 +441,14 @@
         public async Task SchemaProcessor_Query_Person_Nested_Double_By_Last_Output()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
                                         Data1
                                         {
                                             Data2
                                             {
-                                                FirstName @node()
-                                                LastName @node(\#FamilyName)
+                                                FirstName = @node()
+                                                LastName = @node(\#FamilyName)
                                             }
                                         }
                                    }";
@@ -484,10 +484,10 @@
         public async Task SchemaProcessor_Query_Persons_By_Structure_01()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Doe/*)
+            var selectSchemaText = @"Person = @nodes(Person:Doe/*)
                                {
-                                    FirstName @node()
-                                    LastName @node(\#FamilyName)
+                                    FirstName = @node()
+                                    LastName = @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                }";
@@ -528,16 +528,16 @@
         public async Task SchemaProcessor_Query_Person_Friends()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Doe/John)
+            var selectSchemaText = @"Person = @nodes(Person:Doe/John)
                                {
-                                    FirstName @node()
-                                    LastName @node(\#FamilyName)
+                                    FirstName = @node()
+                                    LastName = @node(\#FamilyName)
                                     NickName
                                     Birthdate
-                                    Friends @nodes(/Friends/)
+                                    Friends = @nodes(/Friends/)
                                     {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                     }
                                }";
 
@@ -575,10 +575,10 @@
         public async Task SchemaProcessor_Query_Persons_By_Last_Output()
         {
             // Arrange.
-            var selectSchemaText = @"Person @nodes(Person:Doe/*)
+            var selectSchemaText = @"Person = @nodes(Person:Doe/*)
                                {
-                                    FirstName @node()
-                                    LastName @node(\#FamilyName)
+                                    FirstName = @node()
+                                    LastName = @node(\#FamilyName)
                                     NickName
                                     Birthdate
                                }";
