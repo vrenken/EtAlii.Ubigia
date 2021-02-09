@@ -32,7 +32,7 @@
             Assert.NotNull(location);
             Assert.Equal("@node()", name);
             Assert.Equal("@node(\\#Country)", country);
-            Assert.Equal("@node(/Position)", geoPosition);
+            Assert.Equal("Object { }", geoPosition);
         }
     }
 }

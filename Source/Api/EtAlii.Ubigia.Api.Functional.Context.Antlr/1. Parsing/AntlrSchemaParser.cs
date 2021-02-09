@@ -42,23 +42,19 @@
 
                 if (parser.NumberOfSyntaxErrors != 0)
                 {
-                    var error = errorListener.ToErrorString();
-                    throw new SchemaParserException(error);
+                    errors = errorListener.ToErrors();
+                    return new SchemaParseResult(string.Join(Environment.NewLine, text), null, errors);
                 }
                 if (context.exception != null)
                 {
-                    throw new SchemaParserException(context.exception.Message, context.exception);
+                    errors = new[] { new SchemaParserError(context.exception, context.exception.Message, 0, 0) };
+                    return new SchemaParseResult(string.Join(Environment.NewLine, text), null, errors);
                 }
 
                 var visitor = new ContextVisitor(_pathParser);
                 schema = visitor.Visit(context) as Schema;
 
                 _contextValidator.Validate(schema);
-            }
-            catch (SchemaParserException e)
-            {
-                errors = new[] { new SchemaParserError(e, e.Message, 0, 0) };
-                schema = null;
             }
             catch (Exception e)
             {

@@ -58,7 +58,8 @@
                 case KeyValuePairParser.Id:
                     var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
                     var kvp = _keyValuePairParser.Parse(kvpNode);
-                    return new ValueFragment(kvp.Key, null, Requirement.None, FragmentType.Mutation, kvp.Value);
+                    var prefix = new ValuePrefix(ValueType.Object, Requirement.None);
+                    return new ValueFragment(kvp.Key, prefix, null, FragmentType.Mutation, kvp.Value);
                 default:
                     throw new SchemaParserException($"Unable to find correctly formatted {nameof(ValueFragment)}.");
             }
@@ -84,7 +85,8 @@
             var fragmentType = annotation == null || annotation is SelectValueAnnotation
                 ? FragmentType.Query
                 : FragmentType.Mutation;
-            return new ValueFragment(name, annotation, requirement, fragmentType, null);
+            var prefix = new ValuePrefix(ValueType.Object, requirement);
+            return new ValueFragment(name, prefix, annotation, fragmentType, null);
         }
 
         public bool CanParse(LpNode node)

@@ -31,9 +31,31 @@ structure_fragment_body_entry
 
 structure_traversal_mapping                             : EQUALS;
 
-structure_fragment                                      : WHITESPACE* requirement? schema_key WHITESPACE* (EQUALS WHITESPACE* node_annotation)? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body? (WHITESPACE | NEWLINE)* RBRACE;
-value_query_fragment                                    : WHITESPACE* requirement? schema_key WHITESPACE* (EQUALS WHITESPACE* value_annotation)? WHITESPACE* ;
-value_mutation_fragment                                 : WHITESPACE* schema_key WHITESPACE* EQUALS WHITESPACE* primitive_value WHITESPACE* ;
+structure_plurality                                     : LBRACK RBRACK ;
+
+structure_fragment                                      : WHITESPACE* requirement? schema_key structure_plurality? WHITESPACE* (EQUALS WHITESPACE* node_annotation)? WHITESPACE* (WHITESPACE | NEWLINE)* LBRACE (WHITESPACE | NEWLINE)* structure_fragment_body? (WHITESPACE | NEWLINE)* RBRACE;
+value_query_fragment                                    : WHITESPACE* schema_key_prefix? schema_key WHITESPACE* (EQUALS WHITESPACE* value_annotation)? WHITESPACE* ;
+value_mutation_fragment                                 : WHITESPACE* schema_key_prefix? schema_key WHITESPACE* EQUALS WHITESPACE* primitive_value WHITESPACE* ;
+
+schema_key_prefix_type_and_requirement_1                : value_type WHITESPACE* requirement ;
+schema_key_prefix_type_and_requirement_2                : value_type requirement WHITESPACE* ;
+schema_key_prefix_type_only                             : value_type WHITESPACE* ;
+schema_key_prefix_requirement                           : requirement ;
+schema_key_prefix
+    : schema_key_prefix_type_and_requirement_1
+    | schema_key_prefix_type_and_requirement_2
+    | schema_key_prefix_type_only
+    | schema_key_prefix_requirement
+    ;
+
+value_type
+    : VALUE_TYPE_OBJECT
+    | VALUE_TYPE_STRING
+    | VALUE_TYPE_BOOL
+    | VALUE_TYPE_FLOAT
+    | VALUE_TYPE_INT
+    | VALUE_TYPE_DATETIME
+    ;
 
 structure_fragment_body_newline_separated               : (structure_fragment_body_entry WHITESPACE* NEWLINE+)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
 structure_fragment_body_comma_separated                 : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* NEWLINE?)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
@@ -95,6 +117,6 @@ node_annotation
     | node_annotation_unlink_and_select_single_node
     ;
 
-schema_key                                              : identifier | string_quoted_non_empty | reserved_schema_words;
+schema_key                                              : identifier | string_quoted_non_empty | reserved_words;
 schema_path                                             : rooted_path | non_rooted_path ;
 comment                                                 : WHITESPACE* COMMENT ;

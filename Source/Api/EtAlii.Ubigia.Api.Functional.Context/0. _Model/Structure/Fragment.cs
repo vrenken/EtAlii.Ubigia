@@ -1,22 +1,25 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    /// <summary>
+    /// An abstract class that all different fragments in a GCL schema inherit from.
+    /// </summary>
     public abstract class Fragment
     {
         /// <summary>
-        /// The Name of the Fragment.
+        /// The name of the Fragment.
         /// </summary>
         public string Name {get;}
-        public FragmentType Type { get; }
 
-        public Requirement Requirement { get; }
+        /// <summary>
+        /// The type of the fragment.
+        /// </summary>
+        public FragmentType Type { get; }
 
         protected Fragment(
             string name,
-            Requirement requirement,
             FragmentType fragmentType)
         {
             Name = name;
-            Requirement = requirement;
             Type = fragmentType;
         }
     }

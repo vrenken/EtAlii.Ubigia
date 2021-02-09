@@ -128,6 +128,14 @@ ANNOTATION_NODE_CLEAR                               : 'node-clear';
 HEADER_OPTION_NAMESPACE                             : ('namespace' | 'Namespace' | 'NAMESPACE');
 HEADER_OPTION_CONTEXT                               : ('context' | 'Context' | 'CONTEXT');
 
+VALUE_TYPE_OBJECT                                   : 'object';
+VALUE_TYPE_STRING                                   : 'string';
+VALUE_TYPE_BOOL                                     : 'bool';
+VALUE_TYPE_FLOAT                                    : 'float';
+VALUE_TYPE_INT                                      : 'int';
+VALUE_TYPE_DATETIME                                 : 'datetime';
+
+
 IDENTIFIER
 	: IDENTIFIER_START_CHARACTER IDENTIFIER_PART_CHARACTER*
 	;
