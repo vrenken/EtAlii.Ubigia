@@ -1,7 +1,7 @@
 ﻿[Namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
-Location @nodes(location:DE/Berlin)
+Location = @nodes(location:DE/Berlin)
 {
-    Name @node()
-    Country @node(\#Country)
-    GeoPosition @node(/Position)
+    Name = @node()
+    Country = @node(\#Country)
+    GeoPosition = @node(/Position)
 }

@@ -29,8 +29,8 @@
 
             // Assert.
             Assert.NotNull(person);
-            Assert.Null(firstName);
-            Assert.Null(lastName);
+            Assert.Equal("@node()", firstName);
+            Assert.Equal("@node(\\#FamilyName)", lastName);
         }
     }
 }

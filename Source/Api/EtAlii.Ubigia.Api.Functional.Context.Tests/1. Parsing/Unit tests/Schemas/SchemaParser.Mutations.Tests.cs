@@ -13,7 +13,7 @@
             var normalPersonText = @"-- This is a comment
             Data
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
             // Act.
@@ -33,9 +33,9 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"-- This is a comment
-            Data @node(Person:Doe/John)
+            Data = @node(Person:Doe/John)
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
             // Act.
@@ -57,7 +57,7 @@
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"Data
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
             // Act.
@@ -81,7 +81,7 @@
             var normalPersonText = @"
             Data
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
             // Act.
@@ -103,14 +103,14 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var schemaText = @"-- Comment goes here.
-            Person @node(/Person/Stark/Tony)
+            Person = @node(/Person/Stark/Tony)
             {
-                ""age"" <= ""22"",
-                ""first"" <= ""Sabrina"",
-                ""last"" <= ""Stephenson"",
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""age"" = ""22"",
+                ""first"" = ""Sabrina"",
+                ""last"" = ""Stephenson"",
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -143,17 +143,17 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
-            Person @node(person:Stephenson/Sabrina)
+            Person = @node(person:Stephenson/Sabrina)
             {
-                ""age"" <= 22,
+                ""age"" = 22,
                 ""name""
                 {
-                    ""first"" <= ""Sabrina"",
-                    ""last"" <= ""Stephenson""
+                    ""first"" = ""Sabrina"",
+                    ""last"" = ""Stephenson""
                 },
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -186,14 +186,14 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"-- Comment goes here.
-            Person @node(Person:Start/Tony)
+            Person = @node(Person:Start/Tony)
             {
-                age <= ""22"",
-                first <= ""Sabrina"",
-                last <= ""Stephenson"",
-                company <= ""ISOTRONIC"",
-                email <= ""sabrina.stephenson@isotronic.io"",
-                phone <= ""+31 (909) 477-2353""
+                age = ""22"",
+                first = ""Sabrina"",
+                last = ""Stephenson"",
+                company = ""ISOTRONIC"",
+                email = ""sabrina.stephenson@isotronic.io"",
+                phone = ""+31 (909) 477-2353""
             }";
 
 
@@ -226,12 +226,12 @@
             var normalPersonText = @"
             Person
             {
-                ""age"" <= ""22"",
-                ""first"" <= ""Sabrina"",
-                ""last"" <= ""Stephenson"",
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""age"" = ""22"",
+                ""first"" = ""Sabrina"",
+                ""last"" = ""Stephenson"",
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -263,14 +263,14 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
-            Person @node(Person:Doe/John)
+            Person = @node(Person:Doe/John)
             {
-                ""age"" <= ""22"",
-                ""first"" <= ""John"",
-                ""last"" <= ""Doe"",
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""age"" = ""22"",
+                ""first"" = ""John"",
+                ""last"" = ""Doe"",
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -306,15 +306,15 @@
             var normalPersonText = @"
             Person
             {
-                ""age"" <= 22,
+                ""age"" = 22,
                 ""name""
                 {
-                    ""first"" <= ""Sabrina"",
-                    ""last"" <= ""Stephenson""
+                    ""first"" = ""Sabrina"",
+                    ""last"" = ""Stephenson""
                 },
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
             // Act.
@@ -346,13 +346,13 @@
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
-            Person @node(person:Stark/Tony)
+            Person = @node(person:Stark/Tony)
             {
-                ""age"" <= 22,
-                ""firstname"" @node(),
-                ""lastname"" @node(\\),
-                ""email"" <= ""admin@starkindustries.com"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""age"" = 22,
+                ""firstname"" = @node(),
+                ""lastname"" = @node(\\),
+                ""email"" = ""admin@starkindustries.com"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -388,11 +388,11 @@
             var annotatedRootPersonText = @"
             Person
             {
-                ""age"" <= 22,
-                ""firstname"" @node(),
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""age"" = 22,
+                ""firstname"" = @node(),
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 
@@ -426,15 +426,15 @@
             var annotatedRootPersonText = @"
             Person
             {
-                ""age"" <= 22,
+                ""age"" = 22,
                 ""name""
                 {
-                    ""first"" @node(),
-                    ""last"" <= ""Stephenson""
+                    ""first"" = @node(),
+                    ""last"" = ""Stephenson""
                 },
-                ""company"" <= ""ISOTRONIC"",
-                ""email"" <= ""sabrina.stephenson@isotronic.io"",
-                ""phone"" <= ""+31 (909) 477-2353""
+                ""company"" = ""ISOTRONIC"",
+                ""email"" = ""sabrina.stephenson@isotronic.io"",
+                ""phone"" = ""+31 (909) 477-2353""
             }";
 
 

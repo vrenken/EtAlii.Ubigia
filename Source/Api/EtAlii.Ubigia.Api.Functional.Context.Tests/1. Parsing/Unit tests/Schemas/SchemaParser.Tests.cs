@@ -86,7 +86,7 @@
             -- And this is a comment on the second line.
             Person
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
 
@@ -108,7 +108,7 @@
             var text = @"[namespace=EtAlii.Namespace.Test]
             Person
             {
-                ""key"" <= ""value""
+                ""key"" = ""value""
             }";
 
 
@@ -127,16 +127,16 @@
         {
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
-            var text = @"Person @nodes(Person:Doe/John)
+            var text = @"Person = @nodes(Person:Doe/John)
                        {
-                            FirstName @node()
-                            LastName @node(\#FamilyName)
+                            FirstName = @node()
+                            LastName = @node(\#FamilyName)
                             NickName
                             Birthdate
-                            Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                            Friends = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                             {
-                                FirstName @node()
-                                LastName @node(\#FamilyName)
+                                FirstName = @node()
+                                LastName = @node(\#FamilyName)
                             }
                        }";
 

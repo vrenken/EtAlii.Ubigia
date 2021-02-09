@@ -36,16 +36,16 @@
             var planner = CreatePlanner();
 
             var queryText = @"
-            Person @node(person:Doe/John)
+            Person = @node(person:Doe/John)
             {
                 age,
                 company,
                 email,
                 phone,
-                name @node(\#FamilyName)
+                name = @node(\#FamilyName)
                 {
-                    first @node(/FirstName),
-                    last @node()
+                    first = @node(/FirstName),
+                    last = @node()
                 }
             }";
 

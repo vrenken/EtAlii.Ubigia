@@ -1,7 +1,7 @@
 ﻿-- ==================================================================================================================
 -- 01. Traverses to a node and returns this as a named element.
 -- All properties that can be found will be returned.
-<= Person:Doe/John
+= Person:Doe/John
 {
 }
 
@@ -9,7 +9,7 @@
 -- 02.a Traverses to a node and returns it as a named element.
 -- Only the properties that can be found will be returned. No error is given if a property cannot be found.
 -- Properties can be separated by comma's or by newlines.
-<= Person:Doe/John
+= Person:Doe/John
 {
     FirstName,
     LastName,
@@ -20,7 +20,7 @@
 -- 02.b Traverses to a node and returns it as a named element.
 -- Only the properties that can be found will be returned. No error is given if a property cannot be found.
 -- Properties can be separated by comma's or by newlines.
-<= Person:Doe/John
+= Person:Doe/John
 {
     FirstName
     LastName
@@ -29,7 +29,7 @@
 
 -- ==================================================================================================================
 -- 03. Property identifiers can be quoted for more accurate control.
-<= Person:Doe/John
+= Person:Doe/John
 {
     "FirstName",
     "LastName",
@@ -38,7 +38,7 @@
 
 -- ==================================================================================================================
 -- 04.a Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
-<= Person:Doe/John
+= Person:Doe/John
 {
     FirstName,
     LastName,
@@ -47,7 +47,7 @@
 
 -- ==================================================================================================================
 -- 04.b Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
-<= Person:Doe/John
+= Person:Doe/John
 {
     "FirstName",
     "LastName",
@@ -56,7 +56,7 @@
 
 -- ==================================================================================================================
 -- 04.c Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
-<= Person:Doe/John
+= Person:Doe/John
 {
     FirstName,
     LastName,
@@ -65,11 +65,11 @@
 
 -- ==================================================================================================================
 -- 04.d Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
-<= Person:Doe/John { FirstName, LastName, NickName }
+= Person:Doe/John { FirstName, LastName, NickName }
 
 -- ==================================================================================================================
 -- 04.e Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
-<= Person:Doe/John { "FirstName", "LastName", "NickName" }
+= Person:Doe/John { "FirstName", "LastName", "NickName" }
 
 
 -- ==================================================================================================================

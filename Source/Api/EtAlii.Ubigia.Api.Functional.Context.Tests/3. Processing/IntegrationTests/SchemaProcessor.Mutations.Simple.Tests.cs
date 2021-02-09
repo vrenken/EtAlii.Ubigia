@@ -60,14 +60,14 @@
         public async Task SchemaProcessor_Mutate_Person_01()
         {
             // Arrange.
-            var mutationText = @"Person @node(Person:Doe/John)
+            var mutationText = @"Person = @node(Person:Doe/John)
                                {
-                                    Weight <= 160.1,
-                                    NickName <= ""HeavyJohnny""
+                                    Weight = 160.1,
+                                    NickName = ""HeavyJohnny""
                                }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
-            var queryText = @"Person @node(Person:Doe/John)
+            var queryText = @"Person = @node(Person:Doe/John)
                               {
                                     Weight,
                                     NickName
@@ -104,14 +104,14 @@
         public async Task SchemaProcessor_Mutate_Person_02()
         {
             // Arrange.
-            var mutationText = @"Person @node-add(Person:Doe, Mary)
+            var mutationText = @"Person = @node-add(Person:Doe, Mary)
                                {
-                                    Weight <= 160.1,
-                                    NickName <= ""MinteyMary""
+                                    Weight = 160.1,
+                                    NickName = ""MinteyMary""
                                }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
-            var queryText = @"Person @node(Person:Doe/Mary)
+            var queryText = @"Person = @node(Person:Doe/Mary)
                               {
                                     Weight,
                                     NickName
@@ -148,29 +148,29 @@
         public async Task SchemaProcessor_Mutate_Person_03()
         {
             // Arrange.
-            var mutationText = @"Person @node(Person:Doe/John)
+            var mutationText = @"Person = @node(Person:Doe/John)
                                  {
-                                     FirstName @node(),
-                                     LastName @node(\#FamilyName),
+                                     FirstName = @node(),
+                                     LastName = @node(\#FamilyName),
                                      NickName,
-                                     Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                     Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                      {
-                                        FirstName @node(),
-                                        LastName @node(\#FamilyName),
+                                        FirstName = @node(),
+                                        LastName = @node(\#FamilyName),
                                         NickName
                                      }
                                  }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
-            var queryText = @"Person @node(Person:Doe/John)
+            var queryText = @"Person = @node(Person:Doe/John)
                               {
-                                    FirstName @node(),
-                                    LastName @node(\#FamilyName),
+                                    FirstName = @node(),
+                                    LastName = @node(\#FamilyName),
                                     NickName
-                                    Friend @nodes(/Friends/)
+                                    Friend = @nodes(/Friends/)
                                     {
-                                        FirstName @node(),
-                                        LastName @node(\#FamilyName),
+                                        FirstName = @node(),
+                                        LastName = @node(\#FamilyName),
                                         NickName
                                     }
                               }";
@@ -228,14 +228,14 @@
         public async Task SchemaProcessor_Mutate_Persons_01()
         {
             // Arrange.
-            var mutationText = @"Person @nodes-add(Person:Doe, Mary)
+            var mutationText = @"Person = @nodes-add(Person:Doe, Mary)
                                {
-                                    Weight <= 160.1,
-                                    NickName <= ""MinteyMary""
+                                    Weight = 160.1,
+                                    NickName = ""MinteyMary""
                                }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
-            var queryText = @"Person @nodes(Person:Doe/)
+            var queryText = @"Person = @nodes(Person:Doe/)
                               {
                                     Weight,
                                     NickName
@@ -278,16 +278,16 @@
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
             // Arrange.
-            var mutationText = @"Person @nodes(Person:Doe/John)
+            var mutationText = @"Person = @nodes(Person:Doe/John)
                                {
-                                    FirstName @node()
-                                    LastName @node(\#FamilyName)
+                                    FirstName = @node()
+                                    LastName = @node(\#FamilyName)
                                     NickName
                                     Birthdate
-                                    Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                    Friends = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                     {
-                                        FirstName @node()
-                                        LastName @node(\#FamilyName)
+                                        FirstName = @node()
+                                        LastName = @node(\#FamilyName)
                                     }
                                }";
 
@@ -330,15 +330,15 @@
             // Arrange.
             var mutationText = @"Data
                                  {
-                                     Person @node(Person:Doe/John)
+                                     Person = @node(Person:Doe/John)
                                      {
-                                         FirstName @node(),
-                                         LastName @node(\#FamilyName),
+                                         FirstName = @node(),
+                                         LastName = @node(\#FamilyName),
                                          NickName,
-                                         Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                         Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                          {
-                                            FirstName @node(),
-                                            LastName @node(\#FamilyName),
+                                            FirstName = @node(),
+                                            LastName = @node(\#FamilyName),
                                             NickName
                                          }
                                      }
@@ -348,27 +348,27 @@
 
             var queryText = @"Data
                               {
-                                    Person @node(Person:Doe/John)
+                                    Person = @node(Person:Doe/John)
                                     {
-                                        FirstName @node(),
-                                        LastName @node(\#FamilyName),
+                                        FirstName = @node(),
+                                        LastName = @node(\#FamilyName),
                                         NickName
-                                        Friend @nodes(/Friends/)
+                                        Friend = @nodes(/Friends/)
                                         {
-                                            FirstName @node(),
-                                            LastName @node(\#FamilyName),
+                                            FirstName = @node(),
+                                            LastName = @node(\#FamilyName),
                                             NickName
                                         }
                                     },
-                                    Person @node(Person:Banner/Peter)
+                                    Person = @node(Person:Banner/Peter)
                                     {
-                                        FirstName @node(),
-                                        LastName @node(\#FamilyName),
+                                        FirstName = @node(),
+                                        LastName = @node(\#FamilyName),
                                         NickName
-                                        Friend @nodes(/Friends/)
+                                        Friend = @nodes(/Friends/)
                                         {
-                                            FirstName @node(),
-                                            LastName @node(\#FamilyName),
+                                            FirstName = @node(),
+                                            LastName = @node(\#FamilyName),
                                             NickName
                                         }
                                     }

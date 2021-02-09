@@ -1,0 +1,21 @@
+-- ==================================================================================================================
+-- 01. Simple typing. Supported types are: string, bool, float, int, datetime.
+Person = Person:Doe/John
+{
+    string FirstName = @
+    string LastName = \#FamilyName
+    string NickName
+    datetime BirthDate
+    int Children
+    Friends[] = /Friends/
+    {
+        string FirstName = @
+        string LastName = \#FamilyName
+    }
+    Location = location:DE/Berlin//
+    {
+        string Name = @
+        string Country = \#Country
+        string GeoPosition = /Position
+    }
+}

@@ -28,9 +28,9 @@
         {
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
-            var text = @"Person @node(Person:Doe/John)
+            var text = @"Person = @node(Person:Doe/John)
             {
-                NickName @node-set(""Johnny"")
+                NickName = @node-set(""Johnny"")
             }";
 
 
@@ -57,9 +57,9 @@
         {
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
-            var text = @"Person @node(Person:Doe/John)
+            var text = @"Person = @node(Person:Doe/John)
             {
-                FirstName @node-clear()
+                FirstName = @node-clear()
             }";
 
             // Act.
