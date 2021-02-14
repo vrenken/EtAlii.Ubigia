@@ -26,25 +26,11 @@
             "Modules": [
               {
                 "Name": "Api",
-                "Services": [
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.AdminWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore"
-                  },
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.AdminSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore"
-                  }
-                ]
+                "Services": [ ]
               },
               {
                 "Name": "Portal",
-                "Services": [
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.AdminPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore"
-                  },
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.AdminPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore"
-                  }
-                ]
+                "Services": [ ]
               }
             ]
           },
@@ -67,14 +53,7 @@
               },
               {
                 "Name": "Portal",
-                "Services": [
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.UserPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore"
-                  },
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.UserPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore"
-                  }
-                ]
+                "Services": [ ]
               }
             ]
           }
