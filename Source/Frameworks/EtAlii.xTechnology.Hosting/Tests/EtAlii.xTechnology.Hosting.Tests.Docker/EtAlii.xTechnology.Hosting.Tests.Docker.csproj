@@ -36,11 +36,8 @@
     <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.Rest\EtAlii.xTechnology.Hosting.TestHost.Rest.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1C.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2B.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem2.NetCore\EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.csproj" />
   </ItemGroup>
   

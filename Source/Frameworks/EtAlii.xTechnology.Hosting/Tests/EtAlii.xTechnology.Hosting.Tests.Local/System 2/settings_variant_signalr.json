@@ -38,16 +38,7 @@
             "Modules": [
               {
                 "Name": "Api",
-                "Services": [
-                  {
-                    "IpAddress": "127.0.0.1",
-                    "Port": "{{PORT:SignalRAdminApi@5000}}",
-                    "Path": "{{PATH:SignalRAdminApi@/admin/api}}",
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore",
-                    "Factory": "AdminSignalRServiceFactory"
-                  }
-                ]
+                "Services": [ ]
               }
             ]
           },

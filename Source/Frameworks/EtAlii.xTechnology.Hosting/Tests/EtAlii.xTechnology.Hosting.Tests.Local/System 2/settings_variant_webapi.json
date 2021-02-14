@@ -40,30 +40,11 @@
             "Modules": [
               {
                 "Name": "Api",
-                "Services": [
-                  {
-                    "Path": "{{PATH:RestAdminApi@/admin/api}}",
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.NetCore",
-                    "Factory": "AdminWebApiServiceFactory"
-                  }
-                ]
+                "Services": [ ]
               },
               {
                 "Name": "Portal",
-                "Services": [
-                  {
-                    "Path": "{{PATH:RestAdminPortal@/admin}}",
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore",
-                    "Factory": "AdminPortalControllerServiceFactory"
-                  },
-                  {
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.NetCore",
-                    "Factory": "AdminPortalFileHostingServiceFactory"
-                  }
-                ]
+                "Services": [ ]
               }
             ]
           },
@@ -89,19 +70,7 @@
               },
               {
                 "Name": "Portal",
-                "Services": [
-                  {
-                    "Path": "{{PATH:RestUserPortal@/user}}",
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore",
-                    "Factory": "UserPortalControllerServiceFactory"
-                  },
-                  {
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.NetCore",
-                    "Factory": "UserPortalFileHostingServiceFactory"
-                  }
-                ]
+                "Services": [ ]
               }
             ]
           }
