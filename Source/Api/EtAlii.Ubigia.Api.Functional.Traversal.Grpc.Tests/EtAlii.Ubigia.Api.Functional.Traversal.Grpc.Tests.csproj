@@ -1,12 +1,8 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>9243c0eb-59bd-4dab-b631-cc8b14ba3585</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal.Tests</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="TestImage_01.jpg" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
   </ItemGroup>
