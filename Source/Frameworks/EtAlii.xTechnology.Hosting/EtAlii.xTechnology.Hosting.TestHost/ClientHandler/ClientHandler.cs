@@ -19,7 +19,7 @@
     /// </summary>
     public class ClientHandler : HttpMessageHandler
     {
-        private readonly IHttpApplication<Context> _application;
+        private readonly IHttpApplication<HostingContext> _application;
         private readonly PathString _pathBase;
 
         /// <summary>
@@ -27,7 +27,7 @@
         /// </summary>
         /// <param name="pathBase">The base path.</param>
         /// <param name="application">The <see cref="IHttpApplication{TContext}"/>.</param>
-        public ClientHandler(PathString pathBase, IHttpApplication<Context> application)
+        public ClientHandler(PathString pathBase, IHttpApplication<HostingContext> application)
         {
             _application = application ?? throw new ArgumentNullException(nameof(application));
 
@@ -67,12 +67,12 @@
             var contextBuilder = new HttpContextBuilder(_application);
 
             Stream responseBody = null;
-            var requestContent = requestMessage.Content ?? new StreamContent(Stream.Null);
-            var body = await requestContent.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+            var requestContent = requestMessage.Content;
+            var body = requestContent != null
+                ? await requestContent.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false)
+                : null;
             contextBuilder.Configure(context => responseBody = ProcessRequest(requestMessage, context, requestContent, body));
-
             var httpContext = await contextBuilder.SendAsync(cancellationToken).ConfigureAwait(false);
-
             return BuildResponse(requestMessage, httpContext, responseBody);
         }
 
@@ -114,7 +114,6 @@
 
             request.QueryString = QueryString.FromUriComponent(requestMessage.RequestUri);
 
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalse
             if (requestContent != null)
             {
                 foreach (var header in requestContent.Headers)
@@ -123,13 +122,16 @@
                 }
             }
 
-            if (body.CanSeek)
+            if (body != null)
             {
-                // This body may have been consumed before, rewind it.
-                body.Seek(0, SeekOrigin.Begin);
-            }
+                if (body.CanSeek)
+                {
+                    // This body may have been consumed before, rewind it.
+                    body.Seek(0, SeekOrigin.Begin);
+                }
 
-            request.Body = body;
+                request.Body = body;
+            }
 
             return context.Response.Body;
         }

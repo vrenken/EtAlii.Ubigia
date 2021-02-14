@@ -9,7 +9,7 @@
 
     internal class HttpContextBuilder
     {
-        private readonly IHttpApplication<Context> _application;
+        private readonly IHttpApplication<HostingContext> _application;
         private readonly HttpContext _httpContext;
 
         private readonly TaskCompletionSource<HttpContext> _responseTcs = new(TaskCreationOptions.RunContinuationsAsynchronously);
@@ -17,9 +17,9 @@
         private readonly ResponseFeature _responseFeature = new();
         private readonly CancellationTokenSource _requestAbortedSource = new();
         private bool _pipelineFinished;
-        private Context _testContext;
+        private HostingContext _hostingContext;
 
-        internal HttpContextBuilder(IHttpApplication<Context> application)
+        internal HttpContextBuilder(IHttpApplication<HostingContext> application)
         {
             _application = application ?? throw new ArgumentNullException(nameof(application));
             _httpContext = new DefaultHttpContext();
@@ -54,27 +54,27 @@
         {
             var registration = cancellationToken.Register(AbortRequest);
 
-            _testContext = _application.CreateContext(_httpContext.Features);
+            _hostingContext = _application.CreateContext(_httpContext.Features);
 
             // Async offload, don't let the test code block the caller.
             _ = Task.Factory.StartNew(async () =>
             {
                 try
                 {
-                    await _application.ProcessRequestAsync(_testContext).ConfigureAwait(false);
+                    await _application.ProcessRequestAsync(_hostingContext).ConfigureAwait(false);
                     await CompleteResponseAsync().ConfigureAwait(false);
-                    _application.DisposeContext(_testContext, exception: null!);
+                    _application.DisposeContext(_hostingContext, exception: null!);
                 }
                 catch (Exception ex)
                 {
                     Abort(ex);
-                    _application.DisposeContext(_testContext, ex);
+                    _application.DisposeContext(_hostingContext, ex);
                 }
                 finally
                 {
-                    registration.Dispose();
+                    await registration.DisposeAsync().ConfigureAwait(false);
                 }
-            });
+            }, cancellationToken);
 
             return _responseTcs.Task;
         }
@@ -116,9 +116,9 @@
 
                 // Copy the feature collection so we're not multi-threading on the same collection.
                 var newFeatures = new FeatureCollection();
-                foreach (var pair in _httpContext.Features)
+                foreach (var (key, value) in _httpContext.Features)
                 {
-                    newFeatures[pair.Key] = pair.Value;
+                    newFeatures[key] = value;
                 }
                 _responseTcs.TrySetResult(new DefaultHttpContext(newFeatures));
             }

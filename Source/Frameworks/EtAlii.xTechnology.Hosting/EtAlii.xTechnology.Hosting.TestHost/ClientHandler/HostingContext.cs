@@ -4,7 +4,7 @@
     using System.Diagnostics;
     using Microsoft.AspNetCore.Http;
 
-    public struct Context
+    public struct HostingContext
     {
         public HttpContext HttpContext { get; set; }
         public IDisposable Scope { get; set; }
