@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaPersistenceLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation needed to store data in NetCoreApp applications.</Description>
     <PackageReleaseNotes>Migrated to .NET Standard 2.1</PackageReleaseNotes>
     <PackageTags>Storage Ubigia NetCoreApp3.0</PackageTags>

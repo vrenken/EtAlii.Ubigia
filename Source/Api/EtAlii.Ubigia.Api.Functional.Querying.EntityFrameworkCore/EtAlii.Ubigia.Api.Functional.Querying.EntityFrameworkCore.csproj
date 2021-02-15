@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaEfCoreLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>{D2D0023C-7EDF-47F6-9542-76E1021FA2D5}</ProjectGuid>
     <Description>This library contains the core API needed to access Ubigia storage endpoints.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>

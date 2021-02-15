@@ -58,6 +58,15 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return new ValuePrefix(valueType, Requirement.None);
         }
 
-        public override object VisitValue_type(ContextSchemaParser.Value_typeContext context) => Enum.Parse<ValueType>(context.GetText(), true);
+        public override object VisitValue_type(ContextSchemaParser.Value_typeContext context)
+        {
+#if NETSTANDARD2_0
+            return (ValueType)Enum.Parse(typeof(ValueType), context.GetText(), true);
+#elif NETSTANDARD2_1
+            return Enum.Parse<ValueType>(context.GetText(), true);
+#else
+            This won't work
+#endif
+        }
     }
 }

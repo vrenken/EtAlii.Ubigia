@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaPersistenceLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the core diagnostic components needed to store Ubigia related information.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage abstraction Ubigia SDK debug debugging trace diagnostics</PackageTags>

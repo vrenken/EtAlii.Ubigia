@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaGraphQLLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>{60146C7A-1B67-4ED1-A5DB-5801AE0C5FED}</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying</RootNamespace>

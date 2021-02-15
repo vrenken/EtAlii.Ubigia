@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaGrpcLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>10e04580-52ab-44de-83d8-8272c8bf1923</ProjectGuid>
     <Description>This library provides a Grpc specific transport management layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>

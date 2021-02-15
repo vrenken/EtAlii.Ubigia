@@ -6,20 +6,26 @@ namespace EtAlii.Ubigia
 
     public static partial class Base36Convert
     {
-        private static readonly bool[]  _36AsBits = { true, false, false, true, false, false };  
+        private static readonly bool[]  _36AsBits = { true, false, false, true, false, false };
 
         //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
         //but uses all 26 English letters a-z instead of just a-f.
-        private static readonly char[] _alphabet = 
+        private static readonly char[] _alphabet =
         {
-            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 
-            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+            '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',
+            'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
             'w', 'x', 'y', 'z'
         };
 
         public static Span<byte> ToBytes(string base36String)
         {
+#if NETSTANDARD2_0
+            var span = base36String.ToLower().AsSpan();
+#elif NETSTANDARD2_1
             ReadOnlySpan<char> span = base36String.ToLower();
+#else
+            This won't work
+#endif
 
             Span<bool> bits = Array.Empty<bool>();
 
@@ -39,7 +45,7 @@ namespace EtAlii.Ubigia
 
             return ToBytes(bits);
         }
-        
+
         public static string ToString(byte[] bytes, bool leastSignificantByteFirst = true)
         {
             //most .NET-produced byte arrays are "little-endian" (LSB first),
@@ -47,7 +53,7 @@ namespace EtAlii.Ubigia
             //here, we can handle either way.
             if (leastSignificantByteFirst)
             {
-                bytes = bytes.Reverse().ToArray(); 
+                bytes = bytes.Reverse().ToArray();
             }
 
             var builder = new StringBuilder();
@@ -60,8 +66,8 @@ namespace EtAlii.Ubigia
             var result = builder
                 .ToString()
                 .TrimStart('0');
-            return string.IsNullOrEmpty(result) 
-                ? "0" 
+            return string.IsNullOrEmpty(result)
+                ? "0"
                 : result;
         }
 
@@ -84,7 +90,7 @@ namespace EtAlii.Ubigia
         {
             Span<byte> result = Array.Empty<byte>();
 
-            byte currentByte = 0;            
+            byte currentByte = 0;
             var bitsToIterate = bits.Length;
 
             byte bitCounter = 0;
