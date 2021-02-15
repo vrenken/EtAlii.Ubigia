@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaPersistenceLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation needed to store data on Azure.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Azure</PackageTags>

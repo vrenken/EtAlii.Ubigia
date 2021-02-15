@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaApplicationTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaPersistenceLibraryTargetFramework)</TargetFramework>
     <Description>Package that contains the implementation needed to store data on the NTFS filesystem.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackageTags>Storage Ubigia Ntfs</PackageTags>

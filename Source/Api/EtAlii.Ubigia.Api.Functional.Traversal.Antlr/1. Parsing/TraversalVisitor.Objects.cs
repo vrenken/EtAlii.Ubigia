@@ -14,15 +14,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var pairs = context.object_kv_pair_with_comma();
             foreach (var pair in pairs)
             {
-                var (key, value) = (KeyValuePair<string, object>)VisitObject_kv_pair_with_comma(pair);
-                properties.Add(key, value);
+                var kvp = (KeyValuePair<string, object>)VisitObject_kv_pair_with_comma(pair);
+                properties.Add(kvp.Key, kvp.Value);
             }
 
             var kvpContext = context.object_kv_pair_without_comma();
             if (kvpContext != null)
             {
-                var (lastKey, lastValue) = (KeyValuePair<string, object>)VisitObject_kv_pair_without_comma(kvpContext);
-                properties.Add(lastKey, lastValue);
+                var lastKvp = (KeyValuePair<string, object>)VisitObject_kv_pair_without_comma(kvpContext);
+                properties.Add(lastKvp.Key, lastKvp.Value);
             }
 
             return new ObjectConstantSubject(properties);

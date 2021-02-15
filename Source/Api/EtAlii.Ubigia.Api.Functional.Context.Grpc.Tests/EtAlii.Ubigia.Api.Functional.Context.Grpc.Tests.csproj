@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>6a427c5c-9f40-4642-a760-94f042da6fff</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Context.Tests</RootNamespace>

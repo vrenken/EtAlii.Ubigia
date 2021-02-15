@@ -8,7 +8,6 @@
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
   </ItemGroup>
 </Project>

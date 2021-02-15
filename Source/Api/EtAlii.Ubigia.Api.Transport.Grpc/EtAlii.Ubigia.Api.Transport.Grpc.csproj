@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <TargetFramework>$(UbigiaGrpcLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>20db2052-783f-40dd-ba23-0aca594da338</ProjectGuid>
     <Description>This library provides a Grpc specific transport layer for the higher level Api functionalities.</Description>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Protobuf Include="**\*.proto">
       <GrpcServices>Both</GrpcServices>
@@ -29,5 +29,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Google.Protobuf" Version="3.14.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" />
   </ItemGroup>
 </Project>
