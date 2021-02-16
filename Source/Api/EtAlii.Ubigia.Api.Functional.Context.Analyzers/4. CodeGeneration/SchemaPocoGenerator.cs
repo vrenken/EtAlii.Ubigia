@@ -4,30 +4,18 @@
     using System.CodeDom.Compiler;
     using System.IO;
     using System.Linq;
-    using System.Text;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
     using Serilog.Core;
-    using ValueType = EtAlii.Ubigia.Api.Functional.Context.ValueType;
 
     [Generator]
     public class SchemaPocoGenerator : ISourceGenerator
     {
-        private static readonly DiagnosticDescriptor _ubigiaPocoMustBePartialRule = new
-        (
-            id: "UB1001",
-            title: "non-partial Ubigia poco class",
-            messageFormat: "all Ubigia poco classes should be partial",
-            category: "Code-Gen",
-            defaultSeverity: DiagnosticSeverity.Error,
-            isEnabledByDefault: true
-        );
-
         private static readonly DiagnosticDescriptor _ubigiaInvalidGclSchemaRule = new
         (
-            id: "UB1002",
+            id: "UB1001",
             title: "GCL schema is invalid",
             messageFormat: "GCL schema is invalid: {0}",
             category: "Code-Gen",
@@ -35,10 +23,21 @@
             isEnabledByDefault: true
         );
 
-
         private ISchemaParser _schemaParser;
         private ILogger _logger;
         private Logger _rootLogger;
+
+        private readonly INamespaceWriter _namespaceWriter;
+        private readonly IHeaderWriter _headerWriter;
+
+        public SchemaPocoGenerator()
+        {
+            var propertyWriter = new ValuePropertyWriter();
+            var classWriter = new ClassWriter(propertyWriter);
+            var schemaProcessorExtensionWriter = new SchemaProcessorExtensionWriter();
+            _namespaceWriter = new NamespaceWriter(classWriter, schemaProcessorExtensionWriter);
+            _headerWriter = new HeaderWriter();
+        }
 
         public void Initialize(GeneratorInitializationContext context)
         {
@@ -47,8 +46,7 @@
         private void SetupLogging()
         {
             var loggerConfiguration = new LoggerConfiguration()
-                //.WriteTo.Seq("http://vrenken.duckdns.org:5341", period: TimeSpan.Zero);
-                .WriteTo.Seq("http://192.168.1.130:5341", period: TimeSpan.Zero);
+                .WriteTo.Seq("http://vrenken.duckdns.org:5341", period: TimeSpan.Zero);
 
             _rootLogger = loggerConfiguration
                 .CreateLogger();
@@ -138,7 +136,19 @@
                 if (TryParseSchema(context, file, out var schema))
                 {
                     var fileName = Path.GetFileNameWithoutExtension(file.Path);
-                    WriteNamespace(context, fileName, schema);
+
+                    using var sourceWriter = new StringWriter();
+                    using var writer = new IndentedTextWriter(sourceWriter, "\t") {Indent = 0};
+
+                    _headerWriter.Write(writer, fileName);
+                    _namespaceWriter.Write(_logger, writer, schema);
+
+                    var targetFileName = $"{fileName}.Gcl.Generated.cs";
+                    var sourceTextString = sourceWriter.ToString();
+                    _logger
+                        .ForContext("SourceText", sourceTextString)
+                        .Information("Writing source to file: {FileName}", targetFileName);
+                    context.AddSource(targetFileName, sourceTextString);
                 }
             }
 
@@ -147,85 +157,5 @@
             _logger = null;
         }
 
-        private void WriteNamespace(GeneratorExecutionContext context, string fileName, Schema schema)
-        {
-            using var sourceWriter = new StringWriter();
-            using var writer = new IndentedTextWriter(sourceWriter, "\t") {Indent = 0};
-
-            var @namespace = schema.Namespace ?? "EtAlii.Ubigia";
-
-            _logger.Information("Writing namespace: {Namespace}", @namespace);
-            writer.WriteLine($"namespace {@namespace}");
-            writer.WriteLine("{");
-            writer.Indent += 1;
-            WriteClass(writer, schema.Structure);
-            writer.Indent -= 1;
-            writer.WriteLine("}");
-
-            var sourceText = SourceText.From(sourceWriter.ToString(), Encoding.UTF8);
-            context.AddSource($"{fileName}.Gcl.cs", sourceText);
-        }
-
-        private void WriteClass(IndentedTextWriter writer, StructureFragment structureFragment)
-        {
-            var className = structureFragment.Name;
-            _logger
-                .ForContext("StructureFragment", structureFragment, true)
-                .Information("Writing class: {Class}", className);
-            writer.WriteLine($"public partial class {className}");
-            writer.WriteLine("{");
-            writer.Indent += 1;
-
-            foreach (var valueFragment in structureFragment.Values)
-            {
-                WriteProperty(writer, valueFragment);
-            }
-
-            writer.Indent -= 1;
-            writer.WriteLine("}");
-        }
-
-        private void WriteProperty(IndentedTextWriter writer, ValueFragment valueFragment)
-        {
-            var propertyName = valueFragment.Name;
-
-            var prefix = valueFragment.Prefix;
-            var annotation = valueFragment.Annotation;
-
-            _logger
-                .ForContext("ValueFragment", valueFragment, true)
-                .ForContext("Annotation", annotation?.ToString())
-                .ForContext("Prefix", prefix.ToString())
-                .Information("Writing property: {Property}", propertyName);
-
-            var requirementAsString = prefix.Requirement switch
-            {
-                Requirement.None => "",
-                Requirement.Mandatory => "!",
-                Requirement.Optional => "?",
-                _ => throw new NotSupportedException()
-            };
-            var typeAsString = prefix.ValueType switch
-            {
-                ValueType.Object => "object",
-                ValueType.String => "string",
-                ValueType.Bool => "bool",
-                ValueType.Float => "float",
-                ValueType.Int => "int",
-                ValueType.DateTime => "System.DateTime",
-                _ => throw new NotSupportedException()
-            };
-            var valueAsString = prefix.ValueType switch
-            {
-                ValueType.Object => "new object()",
-                ValueType.String => $"\"{annotation?.ToString()?.Replace("\\", "\\\\") ?? ""}\"",
-                ValueType.Bool => "true",
-                ValueType.Float => "42.42f",
-                ValueType.Int => "42",
-                ValueType.DateTime => "System.DateTime.Now",
-                _ => throw new NotSupportedException()
-            };
-            writer.WriteLine($"public {typeAsString} {propertyName} {{get;}} = {valueAsString};");
-        }
     }
 }
