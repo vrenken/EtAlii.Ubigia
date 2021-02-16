@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
+﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
     using System.Collections.ObjectModel;
@@ -22,7 +22,7 @@
         public IObservable<TResult> Output { get; private set; }
         public ReadOnlyObservableCollection<TResult> Structure {get; }
 
-        internal SchemaProcessingResult(Schema schema, int total, ReadOnlyObservableCollection<TResult> structure)
+        public SchemaProcessingResult(Schema schema, int total, ReadOnlyObservableCollection<TResult> structure)
         {
             Schema = schema;
             Total = total;

@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    internal interface ISchemaProcessor
+    public interface ISchemaProcessor
     {
         Task<SchemaProcessingResult> Process(Schema schema);
     }

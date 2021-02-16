@@ -7,6 +7,8 @@
     <PackageId>$(AssemblyName)</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <WarningsAsErrors>$(WarningsAsErrors);RS0016;RS0017;RS0022;RS0024;RS0025;RS0026;RS0027</WarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
@@ -15,9 +17,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0" PrivateAssets="all" />
-<!--    <PackageReference Include="StrongNamer" Version="0.2.5" />-->
+    <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
   </ItemGroup>
 
+<!--  <ItemGroup>-->
+<!--        <PackageReference Include="StrongNamer" Version="0.2.5" />-->
+<!--  </ItemGroup>-->
 <!--  <PropertyGroup>-->
 <!--    <SignAssembly>true</SignAssembly>-->
 <!--    <AssemblyOriginatorKeyFile>Certificate.snk</AssemblyOriginatorKeyFile>-->
@@ -38,8 +43,8 @@
       <PackagePath>build\</PackagePath>
     </Content>
 
-    <AdditionalFiles Update="AnalyzerReleases.Shipped.md" />
-    <AdditionalFiles Update="AnalyzerReleases.Unshipped.md" />
+    <AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+    <AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
   </ItemGroup>
 
   <ItemGroup>

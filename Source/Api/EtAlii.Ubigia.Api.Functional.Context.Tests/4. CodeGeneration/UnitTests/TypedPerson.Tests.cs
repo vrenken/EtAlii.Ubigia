@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
+    using System;
+    using System.Threading.Tasks;
     using Xunit;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
 
@@ -33,6 +35,26 @@
             Assert.Equal(42, person.NumberOfChildren);
             Assert.True(person.Height > 42.41f);
             Assert.True(person.IsMale);
+        }
+
+        [Fact]
+        public async Task TypedPerson_SchemaProcessor_Process()
+        {
+            // Arrange.
+            var processor = (ISchemaProcessor)null;
+
+            // Act.
+            var act = new Func<Task>(async () =>
+            {
+                SchemaProcessingResult<TypedPerson> result = await processor
+                    .ProcessTypedPerson()
+                    .ConfigureAwait(false);
+
+                Assert.NotNull(result);
+            });
+
+            // Assert.
+            await Assert.ThrowsAsync<NullReferenceException>(act).ConfigureAwait(false);
         }
     }
 }
