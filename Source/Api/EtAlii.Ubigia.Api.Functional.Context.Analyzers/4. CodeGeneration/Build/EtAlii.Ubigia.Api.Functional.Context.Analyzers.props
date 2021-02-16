@@ -1,5 +1,12 @@
 ﻿<Project>
 
+  <PropertyGroup>
+    <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <!-- ===================================================== -->
+
   <Target Name="_InjectAdditionalFiles" BeforeTargets="GenerateMSBuildEditorConfigFileShouldRun">
     <ItemGroup>
       <AdditionalFiles Include="@(GclFile)" SourceItemGroup="GclFile" />
@@ -20,7 +27,7 @@
 
   <ItemGroup>
     <None Remove="**/*.gcl"/>
-    <GclSchema Include="**/*.gcl"/>
+    <GclFile Include="**/*.gcl"/>
   </ItemGroup>
 
   <ItemGroup>
