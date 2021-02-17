@@ -8,25 +8,62 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     public class ClassWriter : IClassWriter
     {
         private readonly IPropertyWriter _propertyWriter;
+        private readonly IAnnotationCommentWriter _annotationCommentWriter;
 
-        public ClassWriter(IPropertyWriter propertyWriter)
+        public ClassWriter(IPropertyWriter propertyWriter, IAnnotationCommentWriter annotationCommentWriter)
         {
             _propertyWriter = propertyWriter;
+            _annotationCommentWriter = annotationCommentWriter;
         }
 
         public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
         {
-            var className = structureFragment.Name;
+            Write(logger, writer, structureFragment, true);
+        }
+
+        private void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, bool isRoot)
+        {
+            var className = isRoot
+                ? structureFragment.Name
+                : structureFragment.Name + "Type";
             logger
                 .ForContext("StructureFragment", structureFragment, true)
                 .Information("Writing class: {ClassName}", className);
+
+            _annotationCommentWriter.Write(logger, writer, structureFragment.Annotation);
+
             writer.WriteLine($"public partial class {className}");
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            foreach (var valueFragment in structureFragment.Values)
+            for (var i = 0; i < structureFragment.Values.Length; i++)
             {
+                var valueFragment = structureFragment.Values[i];
                 _propertyWriter.Write(logger, writer, valueFragment);
+                if (i < structureFragment.Values.Length - 1)
+                {
+                    writer.WriteLine();
+                }
+            }
+
+            for (var i = 0; i < structureFragment.Children.Length; i++)
+            {
+                var nestedStructureFragment = structureFragment.Children[i];
+                var nestedClassName = nestedStructureFragment.Name;
+
+                _annotationCommentWriter.Write(logger, writer, nestedStructureFragment.Annotation);
+
+                var plurality = nestedStructureFragment.Plurality == Plurality.Multiple ? "[]" : "";
+                writer.WriteLine($"public {nestedClassName}Type{plurality} {nestedClassName} {{ get; }}");
+
+                writer.WriteLine();
+
+                Write(logger, writer, nestedStructureFragment, false);
+
+                if (i < structureFragment.Children.Length - 1)
+                {
+                    writer.WriteLine();
+                }
             }
 
             writer.Indent -= 1;

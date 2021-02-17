@@ -46,11 +46,11 @@
             // Act.
             var act = new Func<Task>(async () =>
             {
-                SchemaProcessingResult<TypedPerson> result = await processor
+                var result = await processor
                     .ProcessTypedPerson()
                     .ConfigureAwait(false);
 
-                Assert.NotNull(result);
+                Assert.IsType<SchemaProcessingResult<TypedPerson>>(result);
             });
 
             // Assert.

@@ -29,8 +29,8 @@
 
             // Assert.
             Assert.NotNull(person);
-            Assert.Equal("Object { }", firstName);
-            Assert.Equal("Object { }", lastName);
+            Assert.IsType<object>(firstName);
+            Assert.IsType<object>(lastName);
         }
     }
 }

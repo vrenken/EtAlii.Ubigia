@@ -1,0 +1,11 @@
+﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
+TimeNow = @node(time:now)
+{
+    Millisecond = @node()
+    Second = @node(\)
+    Minute = @node(\\)
+    Hour = @node(\\\)
+    Day = @node(\\\\)
+    Month = @node(\\\\\)
+    Year = @node(\\\\\\)
+}

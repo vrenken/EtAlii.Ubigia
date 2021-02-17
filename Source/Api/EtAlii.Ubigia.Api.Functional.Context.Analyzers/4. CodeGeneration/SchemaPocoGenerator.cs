@@ -32,8 +32,9 @@
 
         public SchemaPocoGenerator()
         {
-            var propertyWriter = new ValuePropertyWriter();
-            var classWriter = new ClassWriter(propertyWriter);
+            var annotationCommentWriter = new AnnotationCommentWriter();
+            var propertyWriter = new ValuePropertyWriter(annotationCommentWriter);
+            var classWriter = new ClassWriter(propertyWriter, annotationCommentWriter);
             var schemaProcessorExtensionWriter = new SchemaProcessorExtensionWriter();
             _namespaceWriter = new NamespaceWriter(classWriter, schemaProcessorExtensionWriter);
             _headerWriter = new HeaderWriter();

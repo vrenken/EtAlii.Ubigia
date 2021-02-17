@@ -9,6 +9,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public class ValuePropertyWriter : IPropertyWriter
     {
+        private readonly IAnnotationCommentWriter _annotationCommentWriter;
+
+        public ValuePropertyWriter(IAnnotationCommentWriter annotationCommentWriter)
+        {
+            _annotationCommentWriter = annotationCommentWriter;
+        }
+
         public void Write(ILogger logger, IndentedTextWriter writer, ValueFragment valueFragment)
         {
             var propertyName = valueFragment.Name;
@@ -49,6 +56,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
                 ValueType.DateTime => "System.DateTime.Now",
                 _ => throw new NotSupportedException()
             };
+
+            _annotationCommentWriter.Write(logger, writer, annotation);
+
             writer.WriteLine($"public {typeAsString} {propertyName} {{get;}} = {valueAsString};");
         }
 

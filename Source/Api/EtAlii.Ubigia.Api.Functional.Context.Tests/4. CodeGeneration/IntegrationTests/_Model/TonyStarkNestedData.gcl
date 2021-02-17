@@ -1,0 +1,9 @@
+﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
+TonyStarkNestedData = @nodes(Person:Stark/Tony)
+{
+   Data
+   {
+       FirstName = @node()
+       LastName = @node(\#FamilyName)
+   }
+}
