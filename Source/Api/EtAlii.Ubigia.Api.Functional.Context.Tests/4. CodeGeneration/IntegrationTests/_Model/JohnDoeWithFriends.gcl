@@ -1,0 +1,13 @@
+﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
+JohnDoeWithFriends = @nodes(Person:Doe/John)
+{
+    FirstName = @node()
+    LastName = @node(\#FamilyName)
+    NickName
+    Birthdate
+    Friends[] = @nodes(/Friends/)
+    {
+        FirstName = @node()
+        LastName = @node(\#FamilyName)
+    }
+}

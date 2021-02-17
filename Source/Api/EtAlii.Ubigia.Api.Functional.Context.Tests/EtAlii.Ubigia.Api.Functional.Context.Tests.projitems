@@ -27,6 +27,15 @@
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Location.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Person.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TypedPerson.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkPerson.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\AllPersons.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TimeNow.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkData.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkNestedData.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkNestedTwiceData.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\JohnDoeWithFriends.gcl" />
+    
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\AllDoes.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values" />

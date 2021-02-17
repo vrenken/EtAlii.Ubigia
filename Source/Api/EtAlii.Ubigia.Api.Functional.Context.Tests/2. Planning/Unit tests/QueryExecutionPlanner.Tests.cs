@@ -61,10 +61,10 @@
             Assert.NotNull(fragmentMetadata);
             Assert.Equal("Person @node(person:Doe/John)", fragmentMetadata.ToString());
             Assert.Equal(5, fragmentMetadata.Children.Length);
-            Assert.Equal("age", fragmentMetadata.Children[0].ToString());
-            Assert.Equal("company", fragmentMetadata.Children[1].ToString());
-            Assert.Equal("email", fragmentMetadata.Children[2].ToString());
-            Assert.Equal("phone", fragmentMetadata.Children[3].ToString());
+            Assert.Equal("age", ((ValueFragment)fragmentMetadata.Children[0].Source).Name);
+            Assert.Equal("company", ((ValueFragment)fragmentMetadata.Children[1].Source).ToString());
+            Assert.Equal("email", ((ValueFragment)fragmentMetadata.Children[2].Source).ToString());
+            Assert.Equal("phone", ((ValueFragment)fragmentMetadata.Children[3].Source).ToString());
             Assert.Equal("name @node(\\#FamilyName)", fragmentMetadata.Children[4].ToString());
 
             Assert.NotNull(executionPlans);

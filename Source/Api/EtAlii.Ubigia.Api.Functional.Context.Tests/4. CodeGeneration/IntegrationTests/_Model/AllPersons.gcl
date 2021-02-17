@@ -1,0 +1,6 @@
+﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
+AllPersons = @nodes(Person:*/*)
+{
+     FirstName = @node()
+     LastName = @node(\#FamilyName)
+}

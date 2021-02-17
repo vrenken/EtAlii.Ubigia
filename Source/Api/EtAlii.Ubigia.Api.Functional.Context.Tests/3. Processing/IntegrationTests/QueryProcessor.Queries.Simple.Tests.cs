@@ -283,7 +283,6 @@
             Assert.Same(structure, lastStructure);
         }
 
-        //[Fact(Skip = "This would be cool but isn't working (yet)")]
         [Fact]
         public async Task SchemaProcessor_Query_Person_By_Values()
         {

@@ -7,9 +7,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public class NamespaceWriter : INamespaceWriter
     {
-        private IClassWriter _classWriter;
+        private readonly IClassWriter _classWriter;
         private readonly ISchemaProcessorExtensionWriter _schemaProcessorExtensionWriter;
-
 
         public NamespaceWriter(IClassWriter classWriter, ISchemaProcessorExtensionWriter schemaProcessorExtensionWriter)
         {
@@ -27,6 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
             writer.WriteLine($"using System.Threading.Tasks;");
             writer.WriteLine($"using {typeof(SchemaProcessingResult).Namespace};");
+            writer.WriteLine();
 
             _classWriter.Write(logger, writer, schema.Structure);
 
