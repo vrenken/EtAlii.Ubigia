@@ -129,7 +129,7 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastTime);
-            var time = result.Structure.SingleOrDefault();
+            var time = result.Item;
             Assert.NotNull(time);
             Assert.Same(time, lastTime);
         }
@@ -150,7 +150,7 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
 
             Assert.Equal("Tony", person.FirstName);
@@ -173,7 +173,7 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var persons = result.Structure.ToArray();
+            var persons = result.Items.ToArray();
             Assert.NotNull(persons);
 
 
@@ -219,7 +219,7 @@
             Assert.NotNull(result.Output);
             Assert.NotNull(lastPerson);
 
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
             Assert.Same(person, lastPerson);
         }
@@ -244,7 +244,7 @@
             Assert.NotNull(result.Output);
             Assert.NotNull(lastData);
 
-            var data = result.Structure.SingleOrDefault();
+            var data = result.Item;
             Assert.NotNull(data);
             Assert.Same(data, lastData);
 
@@ -271,7 +271,7 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
             var data = person.Data;
             Assert.NotNull(data);
@@ -302,7 +302,7 @@
             Assert.NotNull(result.Output);
             Assert.NotNull(lastPerson);
 
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
             Assert.Same(person.Data, lastPerson.Data);
 
@@ -326,7 +326,7 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
             Assert.NotNull(person.Data1);
             Assert.NotNull(person.Data1.Data2);
@@ -358,7 +358,7 @@
             Assert.NotNull(result.Output);
             Assert.NotNull(lastPerson);
 
-            var person = result.Structure.SingleOrDefault();
+            var person = result.Item;
             Assert.NotNull(person);
             Assert.NotNull(person.Data1);
             Assert.NotNull(person.Data1.Data2);
@@ -388,16 +388,16 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            Assert.Equal(2, result.Structure.Count);
+            Assert.Equal(2, result.Items.Count);
 
-            var firstPerson = result.Structure[0];
+            var firstPerson = result.Items[0];
             Assert.NotNull(firstPerson);
             Assert.Equal("John", firstPerson.FirstName);
             Assert.Equal("Doe", firstPerson.LastName);
             Assert.Equal(DateTime.Parse("1977-06-27"), firstPerson.Birthdate);
             Assert.Equal("Johnny", firstPerson.NickName);
 
-            var secondPerson = result.Structure[1];
+            var secondPerson = result.Items[1];
             Assert.NotNull(secondPerson);
             Assert.Equal("Jane", secondPerson.FirstName);
             Assert.Equal("Doe", secondPerson.LastName);
@@ -424,9 +424,9 @@
             await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            Assert.Single(result.Structure);
+            Assert.NotNull(result.Item);
 
-            var person = result.Structure[0];
+            var person = result.Item;
             Assert.NotNull(person);
             Assert.Equal("John", person.FirstName);
             Assert.Equal("Doe", person.LastName);

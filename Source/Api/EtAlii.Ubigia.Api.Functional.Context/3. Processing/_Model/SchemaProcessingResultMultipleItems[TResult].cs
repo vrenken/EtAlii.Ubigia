@@ -7,9 +7,12 @@
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
-    public class SchemaProcessingResult<TResult>  : INotifyPropertyChanged
+    public class SchemaProcessingResultMultipleItems<TResult>  : INotifyPropertyChanged
     {
         public Schema Schema { get; }
+
+        /// <inheritdoc />
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public FragmentExecutionPlan CurrentExecutionPlan { get => _currentExecutionPlan; set => SetProperty(ref _currentExecutionPlan, value); }
         private FragmentExecutionPlan _currentExecutionPlan;
@@ -20,13 +23,13 @@
         public int Total { get; }
 
         public IObservable<TResult> Output { get; private set; }
-        public ReadOnlyObservableCollection<TResult> Structure {get; }
+        public ReadOnlyObservableCollection<TResult> Items { get; }
 
-        public SchemaProcessingResult(Schema schema, int total, ReadOnlyObservableCollection<TResult> structure)
+        public SchemaProcessingResultMultipleItems(Schema schema, int total, ReadOnlyObservableCollection<TResult> items)
         {
             Schema = schema;
             Total = total;
-            Structure = structure;
+            Items = items;
         }
 
         internal void Update(IObservable<TResult> schemaOutput)
@@ -38,8 +41,6 @@
             CurrentExecutionPlan = currentExecutionPlan;
             Step = step;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private void SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
         {
