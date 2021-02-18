@@ -46,11 +46,12 @@
             // Act.
             var act = new Func<Task>(async () =>
             {
+                // ReSharper disable once ExpressionIsAlwaysNull
                 var result = await processor
                     .ProcessTypedPerson()
                     .ConfigureAwait(false);
 
-                Assert.IsType<SchemaProcessingResult<TypedPerson>>(result);
+                Assert.IsType<SchemaProcessingResultSingleItem<TypedPerson>>(result);
             });
 
             // Assert.

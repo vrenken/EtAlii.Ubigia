@@ -1,5 +1,5 @@
 ﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
-AllDoes = @nodes(Person:Doe/*)
+AllDoes[] = @nodes(Person:Doe/*)
 {
     FirstName = @node()
     LastName = @node(\#FamilyName)

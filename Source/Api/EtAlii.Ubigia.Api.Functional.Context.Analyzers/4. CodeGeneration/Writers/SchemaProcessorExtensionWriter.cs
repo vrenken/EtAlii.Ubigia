@@ -17,7 +17,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            writer.WriteLine($"public static Task<SchemaProcessingResult<{className}>> Process{className}(this ISchemaProcessor processor)");
+            var resultType = structureFragment.Plurality == Plurality.Multiple
+                ? typeof(SchemaProcessingResultMultipleItems<>).Name.Split('`')[0]
+                : typeof(SchemaProcessingResultSingleItem<>).Name.Split('`')[0];
+
+            writer.WriteLine($"public static Task<{resultType}<{className}>> Process{className}(this ISchemaProcessor processor)");
             writer.WriteLine("{");
             writer.Indent += 1;
 
