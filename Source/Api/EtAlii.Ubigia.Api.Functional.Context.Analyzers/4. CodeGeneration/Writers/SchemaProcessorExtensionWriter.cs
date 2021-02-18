@@ -7,6 +7,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public class SchemaProcessorExtensionWriter : ISchemaProcessorExtensionWriter
     {
+        private readonly IStructureInstanceWriter _structureInstanceWriter;
+
+        public SchemaProcessorExtensionWriter(IStructureInstanceWriter structureInstanceWriter)
+        {
+            _structureInstanceWriter = structureInstanceWriter;
+        }
+
         public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
         {
             var className = structureFragment.Name;
@@ -25,13 +32,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("{");
             writer.Indent += 1;
 
+            _structureInstanceWriter.Write(logger, writer, structureFragment);
+
             writer.WriteLine("return null;");
             writer.Indent -= 1;
             writer.WriteLine("}");
 
             writer.Indent -= 1;
             writer.WriteLine("}");
-
         }
     }
 }
