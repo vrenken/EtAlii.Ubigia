@@ -9,6 +9,8 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Context.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\MdFileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\TextFileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\CodeProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Queries.Tests.cs" />
@@ -34,7 +36,6 @@
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkNestedData.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkNestedTwiceData.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\JohnDoeWithFriends.gcl" />
-    
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\AllDoes.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestSchemaParserConfiguration.cs" />
@@ -46,7 +47,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphContextConfiguration.UseTestParserExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />

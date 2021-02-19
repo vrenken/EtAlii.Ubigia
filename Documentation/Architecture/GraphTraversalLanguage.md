@@ -10,7 +10,7 @@ For this Ubigia was first designed to facilitate a "Graph Traversal Language". T
 Surely good recipe's should be honoured, and for this reason the GTL definition closely relates to how URI (Unified Resource Identifiers) are built.
 A few simple example can be seen below:
 
-```
+```gtl
 // Find a person with the first name John and last name Doe.
 $person <= person:Doe/John
 
@@ -42,7 +42,7 @@ A GTL script is made up of sequences. Most often a sequence is placed on a singl
 Each sequence is build using _subjects_ and _operators_. Subjects are the content that the sequence works on according to the operators that separates them.
 
 For example:
-```
+```gtl
 $var1   <=       "Hello World"
 SUBJECT OPERATOR SUBJECT
 ```
