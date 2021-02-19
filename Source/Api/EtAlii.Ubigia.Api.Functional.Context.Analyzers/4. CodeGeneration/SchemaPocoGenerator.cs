@@ -48,7 +48,7 @@
         private void SetupLogging()
         {
             var loggerConfiguration = new LoggerConfiguration()
-                .WriteTo.Seq("http://vrenken.duckdns.org:5341", period: TimeSpan.Zero);
+                .WriteTo.Seq("http://vrenken.duckdns.org:5341", period: TimeSpan.FromMilliseconds(100));
 
             _rootLogger = loggerConfiguration
                 .CreateLogger();
