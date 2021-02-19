@@ -15,7 +15,6 @@
 --     name = @id
 -- }
 
-
 -- ==================================================================================================================
 -- 05. Query with multiple entity paths intersected together returning two sets of entries.
 -- The first for all persons and the second for all locations that match the intersection.
@@ -71,7 +70,6 @@
 --         lastname = @id(\\)
 --     }
 -- }
-
 
 -- ==================================================================================================================
 -- 09. Unnamed query.
@@ -132,7 +130,6 @@
 --     }
 -- }
 
-
 -- ==================================================================================================================
 -- 02 Returns two different arrays in one single response. Limit the results to the union of the two.
 -- Person = @node(Person:Doe/John)
@@ -146,7 +143,6 @@
 --         Location = @where(Location:Europe/Germany/Berlin)
 --     }
 -- }
-
 
 -- ==================================================================================================================
 -- 02 Returns two different arrays in one single response. Limit the results to the union of the two.
@@ -177,7 +173,6 @@
 --         NickName
 --     }
 -- }
-
 
 -- ==================================================================================================================
 -- 01 Returns a query for the given variables. The query won't execute if the variables aren't provided.
