@@ -230,7 +230,7 @@
                 act(character);
                 Assert.NotEqual(0, count);
             }
-            act('/'); // Let's also check the separator charachter.
+            act('/'); // Let's also check the separator character.
             Assert.NotEqual(0, count);
         }
 
