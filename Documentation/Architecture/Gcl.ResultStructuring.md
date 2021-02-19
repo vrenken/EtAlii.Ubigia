@@ -36,7 +36,7 @@ Let's begin with those. :-)
 Add comments to a context schema by prefixing them with --. Comments can be made everywhere, but always after any 'operational' text or characters.
 
 Example:
-```
+```gcl
 -- This is a comment.
 ```
 
@@ -48,14 +48,14 @@ The code generation subsystems uses GCL structure information to create correspo
 queries and composition hierarchies. At the root level of a GCL only one single structure fragment is allowed.
 
 Example of one level of data:
-```
+```gcl
 Person
 {
 }
 ```
 
 Example of two levels of data:
-```
+```gcl
 Person
 {
     Friends
@@ -76,7 +76,7 @@ Either case the GCL parsing demands the comma or newline separation to be honour
 Using a different separation pattern in child structures is allowed.
 
 Example using newline-separation of fragments:
-```
+```gcl
 Person
 {
     FirstName
@@ -85,7 +85,7 @@ Person
 ```
 
 Example using comma-separated fragments:
-```
+```gcl
 Person
 {
     FirstName,
@@ -93,12 +93,12 @@ Person
 }
 ```
 Example using comma-separated fragments on the same line:
-```
+```gcl
 Person  { FirstName, LastName }
 ```
 
 Example of a structure fragment that contains a mixture of both value and structure fragments:
-```
+```gcl
 Person
 {
     FirstName,
@@ -116,7 +116,7 @@ Both value and structure fragments can be labeled as optional using the question
 In this case missing data won't result in errors.
 
 Example:
-```
+```gcl
 Person
 {
     !FirstName,
@@ -131,7 +131,7 @@ Both value and structure fragments can be labeled as mandatory using the questio
 In this case missing data will result in errors.
 
 Example:
-```
+```gcl
 Person
 {
     FirstName,
@@ -147,7 +147,7 @@ revert back to process data as strings, however The type of data cam be specifie
 Currently the type prefixes defined in the GCL are: string, bool, DateTime, float, int.
 
 Example of value fragments with type modifier prefixes:
-```
+```gcl
 Person
 {
     string FirstName,
@@ -160,7 +160,7 @@ Person
 When type modifier prefixes are used both the optional and mandatory prefixes can be added to the type modifier.
 
 Example of value fragments with type modifier and optional prefixes:
-```
+```gcl
 Person
 {
     string! FirstName,
@@ -176,7 +176,7 @@ This will cause both the processing and code generation to adopt accordingly.
 Please take notice that value fragments cannot be marked as plural. For these only atomic values are possible.
 
 Example:
-```
+```gcl
 Person
 {
     FirstName,
