@@ -472,6 +472,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Philosophy", "Philosophy", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Context.Analyzers", "Api\EtAlii.Ubigia.Api.Functional.Context.Analyzers\EtAlii.Ubigia.Api.Functional.Context.Analyzers.csproj", "{991DFE15-55A3-4435-81FA-F56E996CD546}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gcl.Samples", "Gcl.Samples", "{A69811A1-E528-4FC0-B98D-377072C53D03}"
+ProjectSection(SolutionItems) = preProject
+	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - compact - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - elaborate - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction.md = ..\Documentation\Architecture\Gcl.Samples\Samples 0. - Introduction.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md = ..\Documentation\Architecture\Gcl.Samples\Samples 1. - Queries.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - compact - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - elaborate - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes.md = ..\Documentation\Architecture\Gcl.Samples\Samples 2. - Nodes.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - compact - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - elaborate - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Properties.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md = ..\Documentation\Architecture\Gcl.Samples\Samples 3. - Mutations - Values.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - Alternatives.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md = ..\Documentation\Architecture\Gcl.Samples\Samples 4. - Linking.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md = ..\Documentation\Architecture\Gcl.Samples\Samples 5. - Variables - v2.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md = ..\Documentation\Architecture\Gcl.Samples\Samples 7. - Scribbles.md
+	..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md = ..\Documentation\Architecture\Gcl.Samples\Samples 8. - Typed results.md
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2615,6 +2640,7 @@ Global
 		{6DD333C1-4642-480A-8A61-AE92F4237CB0} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 		{BD83EE17-7A41-40B9-9884-07BC2411A9BA} = {FB14842E-F9DF-467C-8633-CD726C71BEE5}
 		{991DFE15-55A3-4435-81FA-F56E996CD546} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
+		{A69811A1-E528-4FC0-B98D-377072C53D03} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
