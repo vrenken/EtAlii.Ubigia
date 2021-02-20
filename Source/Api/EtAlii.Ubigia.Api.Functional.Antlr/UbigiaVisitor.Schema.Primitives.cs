@@ -1,6 +1,6 @@
 // // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 //
-// namespace EtAlii.Ubigia.Api.Functional.Context
+// namespace EtAlii.Ubigia.Api.Functional.Antlr
 // {
 //     using System;
 //     using System.Globalization;
@@ -10,7 +10,7 @@
 //     // The method in this class should be kept in sync with the TraversalVisitor.Primitives.cs.
 //     // Just copy/paste them and rename their context instances accordingly.
 //     // There is no easy way to keep only one instance as polymorphism isn't supported in C# using classes.
-//     public partial class ContextVisitor
+//     public partial class UbigiaVisitor
 //     {
 //        public override object VisitString_quoted(ContextSchemaParser.String_quotedContext context)
 //         {

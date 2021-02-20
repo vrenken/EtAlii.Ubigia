@@ -15,7 +15,7 @@
 
         internal Script(Sequence sequences) => Sequences = new[] { sequences };
 
-        internal Script(IEnumerable<Sequence> sequences) => Sequences = sequences;
+        public Script(IEnumerable<Sequence> sequences) => Sequences = sequences;
 
         public override string ToString() => string.Join(Environment.NewLine, Sequences);
     }

@@ -3,7 +3,7 @@
     using System;
     using System.Linq;
 
-    internal class FunctionSubject : Subject
+    public class FunctionSubject : Subject
     {
         public string Name { get; }
 

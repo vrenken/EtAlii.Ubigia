@@ -3,7 +3,6 @@
     using System;
     using Antlr4.Runtime;
     using EtAlii.Ubigia.Api.Functional.Antlr;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
 
     /// <summary>
     /// The interface that abstracts away any GTL specific parser implementation.
@@ -27,7 +26,7 @@
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new TraversalScriptParser(commonTokenStream);
+                var parser = new UbigiaParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -43,7 +42,7 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalVisitor();
+                var visitor = new UbigiaVisitor();
                 pathSubject = visitor.VisitSubject_non_rooted_path(context) as Subject;
 
                 _traversalValidator.Validate(pathSubject);
@@ -64,7 +63,7 @@
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new TraversalScriptParser(commonTokenStream);
+                var parser = new UbigiaParser(commonTokenStream);
                 var errorListener = new ScriptErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -80,7 +79,7 @@
                     throw new ScriptParserException(context.exception.Message, context.exception);
                 }
 
-                var visitor = new TraversalVisitor();
+                var visitor = new UbigiaVisitor();
                 pathSubject = visitor.VisitSubject_rooted_path(context) as Subject;
 
                 _traversalValidator.Validate(pathSubject);

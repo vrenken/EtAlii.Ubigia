@@ -1,14 +1,14 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Context.Antlr;
+    using EtAlii.Ubigia.Api.Functional.Context;
 
-    public partial class ContextVisitor
+    public partial class UbigiaVisitor
     {
-        public override object VisitStructure_fragment(ContextSchemaParser.Structure_fragmentContext context)
+        public override object VisitStructure_fragment(UbigiaParser.Structure_fragmentContext context)
         {
             //var requirement = (Requirement)VisitRequirement(context.requirement());
             var name = (string)VisitSchema_key(context.schema_key());
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return new StructureFragment(name, plurality, annotation, valueFragments, structureFragments, fragmentType);
         }
 
-        public override object VisitStructure_fragment_body_newline_separated(ContextSchemaParser.Structure_fragment_body_newline_separatedContext context)
+        public override object VisitStructure_fragment_body_newline_separated(UbigiaParser.Structure_fragment_body_newline_separatedContext context)
         {
             return context
                 .structure_fragment_body_entry()
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 .ToArray();
         }
 
-        public override object VisitStructure_fragment_body_comma_separated(ContextSchemaParser.Structure_fragment_body_comma_separatedContext context)
+        public override object VisitStructure_fragment_body_comma_separated(UbigiaParser.Structure_fragment_body_comma_separatedContext context)
         {
             return context
                 .structure_fragment_body_entry()

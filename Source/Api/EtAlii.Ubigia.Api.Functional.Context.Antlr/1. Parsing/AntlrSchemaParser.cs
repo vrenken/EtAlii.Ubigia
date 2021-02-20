@@ -3,20 +3,14 @@
     using System;
     using Antlr4.Runtime;
     using EtAlii.Ubigia.Api.Functional.Antlr;
-    using EtAlii.Ubigia.Api.Functional.Context.Antlr;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class AntlrSchemaParser : ISchemaParser
     {
         private readonly IContextValidator _contextValidator;
-        private readonly IPathParser _pathParser;
 
-        public AntlrSchemaParser(
-            IContextValidator contextValidator,
-            IPathParser pathParser)
+        public AntlrSchemaParser(IContextValidator contextValidator)
         {
             _contextValidator = contextValidator;
-            _pathParser = pathParser;
         }
 
         public SchemaParseResult Parse(string text)
@@ -34,7 +28,7 @@
                 var inputStream = new AntlrInputStream(text);
                 var gtlLexer = new UbigiaLexer(inputStream);
                 var commonTokenStream = new CommonTokenStream(gtlLexer);
-                var parser = new ContextSchemaParser(commonTokenStream);
+                var parser = new UbigiaParser(commonTokenStream);
                 var errorListener = new SchemaErrorListener();
                 parser.RemoveErrorListeners();
                 parser.AddErrorListener(errorListener);
@@ -51,7 +45,7 @@
                     return new SchemaParseResult(string.Join(Environment.NewLine, text), null, errors);
                 }
 
-                var visitor = new ContextVisitor(_pathParser);
+                var visitor = new UbigiaVisitor();
                 schema = visitor.Visit(context) as Schema;
 
                 _contextValidator.Validate(schema);

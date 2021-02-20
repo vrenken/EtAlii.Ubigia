@@ -3,26 +3,13 @@
 // This file is shared by both the traversal and context projects.
 // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
 
-#if CONTEXT_ANTLER_PROJECT
-namespace EtAlii.Ubigia.Api.Functional.Context
-#else
-namespace EtAlii.Ubigia.Api.Functional.Traversal
-#endif
+namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using System;
     using System.Globalization;
-#if CONTEXT_ANTLER_PROJECT
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using UbigiaParser = EtAlii.Ubigia.Api.Functional.Context.Antlr.ContextSchemaParser;
-#else
-    using UbigiaParser = EtAlii.Ubigia.Api.Functional.Traversal.Antlr.TraversalScriptParser;
-#endif
 
-#if CONTEXT_ANTLER_PROJECT
-    public partial class ContextVisitor
-#else
-    public partial class TraversalVisitor
-#endif
+    public partial class UbigiaVisitor
     {
         public override object VisitString_quoted(UbigiaParser.String_quotedContext context)
         {
@@ -70,8 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var second = context.datetime_time_ss().GetText();
                 var milliSecond = context.datetime_ms().GetText();
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}",
-                    "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}", "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -90,8 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var minute = context.datetime_time_mm().GetText();
                 var second = context.datetime_time_ss().GetText();
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss",
-                    CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
@@ -166,8 +151,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var minute = context.datetime_time_mm().GetText();
                 var second = context.datetime_time_ss().GetText();
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss",
-                    CultureInfo.InvariantCulture);
+                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
             }
             catch (Exception e)
             {
