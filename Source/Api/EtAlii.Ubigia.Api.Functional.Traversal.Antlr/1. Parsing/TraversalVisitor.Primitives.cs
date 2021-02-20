@@ -1,43 +1,54 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
+// This file is shared by both the traversal and context projects.
+// We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
+
+#if CONTEXT_ANTLER_PROJECT
+namespace EtAlii.Ubigia.Api.Functional.Context
+#else
 namespace EtAlii.Ubigia.Api.Functional.Traversal
+#endif
 {
     using System;
     using System.Globalization;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
+#if CONTEXT_ANTLER_PROJECT
+    using EtAlii.Ubigia.Api.Functional.Traversal;
+    using UbigiaParser = EtAlii.Ubigia.Api.Functional.Context.Antlr.ContextSchemaParser;
+#else
+    using UbigiaParser = EtAlii.Ubigia.Api.Functional.Traversal.Antlr.TraversalScriptParser;
+#endif
 
-    // The method in this class should be kept in sync with the ContextVisitor.Primitives.cs.
-    // Just copy/paste them and rename their context instances accordingly.
-    // There is no easy way to keep only one instance as polymorphism isn't supported in C# using classes.
-
-    // We use CultureInfo.InvariantCulture to ensure the . is always used as separator.
+#if CONTEXT_ANTLER_PROJECT
+    public partial class ContextVisitor
+#else
     public partial class TraversalVisitor
+#endif
     {
-        public override object VisitString_quoted(TraversalScriptParser.String_quotedContext context)
+        public override object VisitString_quoted(UbigiaParser.String_quotedContext context)
         {
             var text = context?.STRING_QUOTED()?.GetText();
             return text?.Substring(1, text.Length - 2);
         }
 
-        public override object VisitString_quoted_non_empty(TraversalScriptParser.String_quoted_non_emptyContext context)
+        public override object VisitString_quoted_non_empty(UbigiaParser.String_quoted_non_emptyContext context)
         {
             var text = context?.STRING_QUOTED_NON_EMPTY()?.GetText();
             return text?.Substring(1, text.Length - 2);
         }
 
-        public override object VisitIdentifier(TraversalScriptParser.IdentifierContext context) => context?.GetText();
+        public override object VisitIdentifier(UbigiaParser.IdentifierContext context) => context?.GetText();
 
-        public override object VisitBoolean_literal(TraversalScriptParser.Boolean_literalContext context) => bool.Parse(context.GetText());
+        public override object VisitBoolean_literal(UbigiaParser.Boolean_literalContext context) => bool.Parse(context.GetText());
 
-        public override object VisitFloat_literal(TraversalScriptParser.Float_literalContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);
+        public override object VisitFloat_literal(UbigiaParser.Float_literalContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
-        public override object VisitFloat_literal_unsigned(TraversalScriptParser.Float_literal_unsignedContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);
+        public override object VisitFloat_literal_unsigned(UbigiaParser.Float_literal_unsignedContext context) => float.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
-        public override object VisitInteger_literal(TraversalScriptParser.Integer_literalContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
+        public override object VisitInteger_literal(UbigiaParser.Integer_literalContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
-        public override object VisitInteger_literal_unsigned(TraversalScriptParser.Integer_literal_unsignedContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
+        public override object VisitInteger_literal_unsigned(UbigiaParser.Integer_literal_unsignedContext context) => int.Parse(context.GetText(), CultureInfo.InvariantCulture);
 
-        public override object VisitTimespan(TraversalScriptParser.TimespanContext context)
+        public override object VisitTimespan(UbigiaParser.TimespanContext context)
         {
             var days = (int)VisitInteger_literal_unsigned(context.integer_literal_unsigned(0));
             var hours = (int)VisitInteger_literal_unsigned(context.integer_literal_unsigned(1));
@@ -47,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new TimeSpan(days, hours, minutes, seconds, milliseconds);
         }
 
-        public override object VisitDatetime_format_1(TraversalScriptParser.Datetime_format_1Context context)
+        public override object VisitDatetime_format_1(UbigiaParser.Datetime_format_1Context context)
         {
             try
             {
@@ -68,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_2(TraversalScriptParser.Datetime_format_2Context context)
+        public override object VisitDatetime_format_2(UbigiaParser.Datetime_format_2Context context)
         {
             try
             {
@@ -88,7 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_3(TraversalScriptParser.Datetime_format_3Context context)
+        public override object VisitDatetime_format_3(UbigiaParser.Datetime_format_3Context context)
         {
             try
             {
@@ -107,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_4(TraversalScriptParser.Datetime_format_4Context context)
+        public override object VisitDatetime_format_4(UbigiaParser.Datetime_format_4Context context)
         {
             try
             {
@@ -123,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_5(TraversalScriptParser.Datetime_format_5Context context)
+        public override object VisitDatetime_format_5(UbigiaParser.Datetime_format_5Context context)
         {
             try
             {
@@ -144,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_6(TraversalScriptParser.Datetime_format_6Context context)
+        public override object VisitDatetime_format_6(UbigiaParser.Datetime_format_6Context context)
         {
             try
             {
@@ -164,7 +175,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_7(TraversalScriptParser.Datetime_format_7Context context)
+        public override object VisitDatetime_format_7(UbigiaParser.Datetime_format_7Context context)
         {
             try
             {
@@ -183,7 +194,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public override object VisitDatetime_format_8(TraversalScriptParser.Datetime_format_8Context context)
+        public override object VisitDatetime_format_8(UbigiaParser.Datetime_format_8Context context)
         {
             try
             {
