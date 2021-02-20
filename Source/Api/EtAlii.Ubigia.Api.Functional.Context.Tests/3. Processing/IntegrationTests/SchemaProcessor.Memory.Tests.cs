@@ -1,5 +1,5 @@
 ﻿// We don't want these tests running on the build server.
-#if (UBIGIA_IS_RUNNING_ON_BUILD_AGENT == false)
+#if UBIGIA_IS_RUNNING_ON_BUILD_AGENT == false
 
 namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
