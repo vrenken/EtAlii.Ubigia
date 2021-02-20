@@ -3,50 +3,56 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>fbcb2a52-4408-449f-99b0-62a91aeec001</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Antlr</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Antlr4 Include="UbigiaLexer.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Antlr</Package>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="TraversalPathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="TraversalScriptParser.g4">
       <Listener>false</Listener>
-      <Visitor>true</Visitor>
-      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="TraversalPrimitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Traversal.Antlr</Package>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="ContextSchemaParser.g4">
       <Listener>false</Listener>
-      <Visitor>true</Visitor>
-      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Visitor>false</Visitor>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
     <Antlr4 Include="ContextPrimitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
-      <Package>$(RootNamespace).Context.Antlr</Package>
+      <Package>$(RootNamespace)</Package>
+      <Error>true</Error>
+    </Antlr4>
+    <Antlr4 Include="UbigiaParser.g4">
+      <Listener>false</Listener>
+      <Visitor>true</Visitor>
+      <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
   </ItemGroup>

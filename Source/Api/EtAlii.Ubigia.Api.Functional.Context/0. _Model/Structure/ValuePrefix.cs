@@ -7,7 +7,7 @@
         public ValueType ValueType { get; }
         public Requirement Requirement { get; }
 
-        internal ValuePrefix(ValueType valueType, Requirement requirement)
+        public ValuePrefix(ValueType valueType, Requirement requirement)
         {
             ValueType = valueType;
             Requirement = requirement;

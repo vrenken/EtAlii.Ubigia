@@ -6,7 +6,7 @@
     {
         public SequencePart[] Parts { get; }
 
-        internal Sequence(SequencePart[] parts)
+        public Sequence(SequencePart[] parts)
         {
             Parts = parts;
         }

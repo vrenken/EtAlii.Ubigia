@@ -9,7 +9,7 @@
 
         public Plurality Plurality { get; }
 
-        internal StructureFragment(
+        public StructureFragment(
             string name,
             Plurality plurality,
             NodeAnnotation annotation,

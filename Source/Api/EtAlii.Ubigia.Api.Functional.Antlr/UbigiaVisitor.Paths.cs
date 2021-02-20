@@ -1,19 +1,21 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+// This file is shared by both the traversal and context projects.
+
+namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public partial class TraversalVisitor
+    public partial class UbigiaVisitor
     {
-        public override object VisitRooted_path(TraversalScriptParser.Rooted_pathContext context)
+        public override object VisitRooted_path(UbigiaParser.Rooted_pathContext context)
         {
             var root = (string)VisitIdentifier(context.identifier());
             return BuildRootedPathSubject(root, context.path_part());
         }
 
-        private RootedPathSubject BuildRootedPathSubject(string root, TraversalScriptParser.Path_partContext[] partContexts)
+        private RootedPathSubject BuildRootedPathSubject(string root, UbigiaParser.Path_partContext[] partContexts)
         {
             var parts = partContexts
                 .Select(partContext => (PathSubjectPart)Visit(partContext))
@@ -23,13 +25,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         }
 
-        public override object VisitNon_rooted_path(TraversalScriptParser.Non_rooted_pathContext context)
+        public override object VisitNon_rooted_path(UbigiaParser.Non_rooted_pathContext context)
         {
             var result = BuildNonRootedPathSubject(context.path_part());
             return result;
         }
 
-        private Subject BuildNonRootedPathSubject(TraversalScriptParser.Path_partContext[] partContexts)
+        private Subject BuildNonRootedPathSubject(UbigiaParser.Path_partContext[] partContexts)
         {
             var parts = partContexts
                 .Select(partContext => (PathSubjectPart)Visit(partContext))
@@ -55,25 +57,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     : (NonRootedPathSubject)new RelativePathSubject(parts);
             }
 
-            return result;
-        }
-
-        public override object VisitSubject_variable(TraversalScriptParser.Subject_variableContext context)
-        {
-            var name = (string)VisitIdentifier(context.identifier());
-            return new VariableSubject(name);
-        }
-
-        public override object VisitSubject_constant_string(TraversalScriptParser.Subject_constant_stringContext context)
-        {
-            var text = (string)VisitString_quoted(context.string_quoted());
-            return new StringConstantSubject(text);
-        }
-
-        public override object VisitPath_part_matcher_regex(TraversalScriptParser.Path_part_matcher_regexContext context)
-        {
-            var text = (string)VisitString_quoted_non_empty(context.string_quoted_non_empty());
-            var result = new RegexPathSubjectPart(text);
             return result;
         }
     }

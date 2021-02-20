@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal class RootDefinitionSubject : Subject
+    public class RootDefinitionSubject : Subject
     {
         public readonly string Type;
         //public readonly PathSubject Schema

@@ -6,7 +6,7 @@
         public ValuePrefix Prefix { get; }
         public ValueAnnotation Annotation { get; }
 
-        internal ValueFragment(
+        public ValueFragment(
             string name,
             ValuePrefix valuePrefix,
             ValueAnnotation annotation,

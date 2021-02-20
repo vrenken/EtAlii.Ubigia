@@ -7,17 +7,11 @@
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
     <ContextAntlrProject>true</ContextAntlrProject>
-    <DefineConstants>$(DefineConstants);CONTEXT_ANTLER_PROJECT</DefineConstants>
 
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\1. Parsing\TraversalVisitor.Primitives.cs">
-      <Link>1. Parsing\%(Filename)%(Extension)</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="0. _Model" />

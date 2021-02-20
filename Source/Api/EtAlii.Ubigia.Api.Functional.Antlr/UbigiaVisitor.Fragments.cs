@@ -1,12 +1,12 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context
+namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
-    using EtAlii.Ubigia.Api.Functional.Context.Antlr;
+    using EtAlii.Ubigia.Api.Functional.Context;
 
-    public partial class ContextVisitor
+    public partial class UbigiaVisitor
     {
-        public override object VisitRequirement(ContextSchemaParser.RequirementContext context)
+        public override object VisitRequirement(UbigiaParser.RequirementContext context)
         {
             if (context != null)
             {

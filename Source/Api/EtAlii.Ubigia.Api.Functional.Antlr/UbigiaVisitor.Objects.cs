@@ -1,13 +1,13 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Antlr;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public partial class TraversalVisitor
+    public partial class UbigiaVisitor
     {
-        public override object VisitObject_value(TraversalScriptParser.Object_valueContext context)
+        public override object VisitObject_value(UbigiaParser.Object_valueContext context)
         {
             var properties = new PropertyDictionary();
 
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new ObjectConstantSubject(properties);
         }
 
-        public override object VisitObject_kv_pair_with_comma(TraversalScriptParser.Object_kv_pair_with_commaContext context)
+        public override object VisitObject_kv_pair_with_comma(UbigiaParser.Object_kv_pair_with_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
             object value = null;
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new KeyValuePair<string, object>(key, value);
         }
 
-        public override object VisitObject_kv_pair_without_comma(TraversalScriptParser.Object_kv_pair_without_commaContext context)
+        public override object VisitObject_kv_pair_without_comma(UbigiaParser.Object_kv_pair_without_commaContext context)
         {
             var key = (string)VisitObject_kv_key(context.object_kv_key());
             object value = null;
