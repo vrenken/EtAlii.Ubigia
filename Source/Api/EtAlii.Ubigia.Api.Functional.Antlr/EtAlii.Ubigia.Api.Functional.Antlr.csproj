@@ -19,31 +19,25 @@
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="TraversalPathParser.g4">
+    <Antlr4 Include="PathParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="TraversalScriptParser.g4">
+    <Antlr4 Include="ScriptParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="TraversalPrimitives.g4">
+    <Antlr4 Include="Primitives.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>
       <Error>true</Error>
     </Antlr4>
-    <Antlr4 Include="ContextSchemaParser.g4">
-      <Listener>false</Listener>
-      <Visitor>false</Visitor>
-      <Package>$(RootNamespace)</Package>
-      <Error>true</Error>
-    </Antlr4>
-    <Antlr4 Include="ContextPrimitives.g4">
+    <Antlr4 Include="SchemaParser.g4">
       <Listener>false</Listener>
       <Visitor>false</Visitor>
       <Package>$(RootNamespace)</Package>

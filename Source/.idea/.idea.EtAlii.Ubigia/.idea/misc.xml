@@ -4,49 +4,64 @@
     <option name="perGrammarGenerationSettings">
       <list>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/TraversalPrimitives.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/Primitives.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/ContextSchemaParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/SchemaParser.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/ContextPrimitives.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/ScriptParser.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/TraversalScriptParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/PathParser.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
-          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/TraversalPathParser.g4" />
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/UbigiaLexer.g4" />
           <option name="outputDir" value="" />
-          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.1" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/UbigiaParser.g4" />
+          <option name="outputDir" value="" />
+          <option name="libDir" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/obj/Debug/netstandard2.0" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="" />
+          <option name="generateListener" value="false" />
+          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
       </list>
     </option>
