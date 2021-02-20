@@ -1,4 +1,4 @@
-parser grammar TraversalPathParser;
+parser grammar PathParser;
 
 @header {
     #pragma warning disable CS0115 // CS0115: no suitable method found to override
@@ -12,7 +12,7 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import TraversalPrimitives ;
+import Primitives ;
 
 non_rooted_path                                     : path_part+ ;
 rooted_path                                         : identifier COLON path_part* ;

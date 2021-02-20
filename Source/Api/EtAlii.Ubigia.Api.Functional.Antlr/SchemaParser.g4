@@ -1,4 +1,4 @@
-parser grammar ContextSchemaParser;
+parser grammar SchemaParser;
 
 @header {
     #pragma warning disable CS0115 // CS0115: no suitable method found to override
@@ -12,7 +12,7 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import ContextPrimitives, TraversalPrimitives, TraversalPathParser;
+import Primitives, PathParser, ScriptParser;
 
 schema                                                  : (comment | WHITESPACE | NEWLINE)* header_option_namespace? structure_fragment? (comment | WHITESPACE | NEWLINE)* EOF ;
 
@@ -28,8 +28,6 @@ structure_fragment_body_entry
     | value_mutation_fragment
     | comment WHITESPACE* NEWLINE+ (WHITESPACE | NEWLINE)*
     ;
-
-structure_traversal_mapping                             : EQUALS;
 
 structure_plurality                                     : LBRACK RBRACK ;
 
@@ -96,14 +94,17 @@ node_annotation_link_and_select_single_node             : WHITESPACE+ ATSIGN ANN
 node_annotation_remove_and_select_multiple_nodes        : WHITESPACE+ ATSIGN ANNOTATION_NODES_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
                                                         // @node-remove(SOURCE, NAME)
 node_annotation_remove_and_select_single_node           : WHITESPACE+ ATSIGN ANNOTATION_NODE_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
-                                                        // @nodes(SOURCE)
-node_annotation_select_multiple_nodes                   : WHITESPACE+ ATSIGN ANNOTATION_NODES WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
-                                                        // @node(SOURCE)
-node_annotation_select_single_node                      : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
                                                         // @nodes-unlink(SOURCE, TARGET, TARGET_LINK)
 node_annotation_unlink_and_select_multiple_nodes        : WHITESPACE+ ATSIGN ANNOTATION_NODES_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @node-unlink(SOURCE, TARGET, TARGET_LINK)
 node_annotation_unlink_and_select_single_node           : WHITESPACE+ ATSIGN ANNOTATION_NODE_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
+
+node_annotation_map_sequence                            : WHITESPACE+ sequence ;
+
+                                                        // @nodes(SOURCE)
+node_annotation_select_multiple_nodes                   : WHITESPACE+ ATSIGN ANNOTATION_NODES WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
+                                                        // @node(SOURCE)
+node_annotation_select_single_node                      : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
 node_annotation
     : node_annotation_add_and_select_multiple_nodes
     | node_annotation_add_and_select_single_node
@@ -115,6 +116,7 @@ node_annotation
     | node_annotation_select_single_node
     | node_annotation_unlink_and_select_multiple_nodes
     | node_annotation_unlink_and_select_single_node
+    | node_annotation_map_sequence
     ;
 
 schema_key                                              : identifier | string_quoted_non_empty | reserved_words;

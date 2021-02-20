@@ -12,4 +12,4 @@ options {
      tokenVocab = UbigiaLexer;
 }
 
-import TraversalPrimitives, TraversalPathParser, TraversalScriptParser, ContextPrimitives, ContextSchemaParser;
+import Primitives, PathParser, ScriptParser, SchemaParser;
