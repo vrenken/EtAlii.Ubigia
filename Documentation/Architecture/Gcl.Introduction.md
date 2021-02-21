@@ -22,7 +22,7 @@ which makes the CRUD activities of the Ubigia system complete.
 3. Code generation
    - Implementation
 4. Usage
-5. Samples
+5. Additional examples
    - [0. Introduction](<Gcl.Samples/Samples 0. - Introduction.md>)
    - [0. Introduction - v2](<Gcl.Samples/Samples 0. - Introduction - v2.md>)
    - [0. Introduction - Compact - v2](<Gcl.Samples/Samples 0. - Introduction - compact - v2.md>)

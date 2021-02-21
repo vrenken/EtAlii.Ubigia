@@ -96,9 +96,10 @@ TypedPerson = @nodes(Person:Stark/Tony)
 
 06. Set this property to true to indicate that a dynamic result class type should be created.
 Options are:
-- [ResultType=static]
-- [ResultType=observable]
-- [ResultType=async_enumerable]
+- ``[ResultType=dynamic]``
+- ``[ResultType=static]``
+- ``[ResultType=observable]``
+- ``[ResultType=async_enumerable]``
 
 ```gcl
 [ResultType=dynamic]

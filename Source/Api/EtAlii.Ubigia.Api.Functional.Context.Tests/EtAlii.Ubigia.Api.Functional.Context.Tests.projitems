@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\MdFileBasedGraphContextData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\TextFileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\__TextFileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\CodeProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Queries.Tests.cs" />

@@ -43,6 +43,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\SequenceParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\MdFileBasedTraversalContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\UnitTests\ScriptParser.Bugs.Tests.cs" />
@@ -161,18 +162,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ScriptParserError.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFunctionHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Operators.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Variables.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Objects.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Functions.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 6. - Roots.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 7. - Roots.Definitions.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 8. - Technical.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 9. - Tags.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Content\UnitTests" />
