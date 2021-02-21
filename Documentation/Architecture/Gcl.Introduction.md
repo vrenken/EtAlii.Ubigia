@@ -42,7 +42,7 @@ which makes the CRUD activities of the Ubigia system complete.
    - [4. Linking - v2](<Gcl.Samples/Samples 4. - Linking - v2.md>)
    - [4. Linking - Alternatives](<Gcl.Samples/Samples 4. - Linking - Alternatives.md>)
    - [5. Variables](<Gcl.Samples/Samples 5. - Variables - v2.md>)
-   - [6. Scribbles](<Gcl.Samples/Samples 7. - Scribbles.md>)
+   - [6. Experimental scribbles](<Gcl.Samples/Samples 7. - Scribbles.md>)
    - [8. Typed results](<Gcl.Samples/Samples 8. - Typed results.md>)
 6. Tips 'n tricks
 
