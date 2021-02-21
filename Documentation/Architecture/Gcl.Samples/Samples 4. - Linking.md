@@ -1,5 +1,5 @@
-﻿-- ==================================================================================================================
--- 01.a Add an unnamed Track entry to a Person given a specific time and location.
+﻿01.a Add an unnamed Track entry to a Person given a specific time and location.
+```gcl
 Person = @nodes(Person:Doe/John)
 {
     Track = @node-add(/Track, UNNAMED)
@@ -14,9 +14,10 @@ Person = @nodes(Person:Doe/John)
         }
     }
 }
+```
 
--- ==================================================================================================================
--- 01.b Add an named Track entry to a Person given a specific time and location.
+01.b Add an named Track entry to a Person given a specific time and location.
+```gcl
 Person = @nodes(Person:Doe/John)
 {
     Track = @node-add(/Track, "Love Parade")
@@ -31,9 +32,10 @@ Person = @nodes(Person:Doe/John)
         }
     }
 }
+```
 
--- ==================================================================================================================
--- 01.b Add an named Track entry to a Person given a specific time and location.
+01.b Add an named Track entry to a Person given a specific time and location.
+```gcl
 Person = @nodes(Person:Doe/John)
 {
     Track = @node-add(/Track, "Love Parade")
@@ -48,9 +50,10 @@ Person = @nodes(Person:Doe/John)
         }
     }
 }
+```
 
--- ==================================================================================================================
--- 01.b Add an named Track entry to a Person given a specific time and location.
+01.b Add an named Track entry to a Person given a specific time and location.
+```gcl
 Person = @nodes(Person:Doe/John)
 {
     Track = @node-add(/Track, "Love Parade")
@@ -65,9 +68,10 @@ Person = @nodes(Person:Doe/John)
         }
     }
 }
+```
 
--- ==================================================================================================================
--- 01.c Add multiple named Track entry to a Person given specific times and locations.
+01.c Add multiple named Track entry to a Person given specific times and locations.
+```gcl
 Person = @nodes(Person:Doe/John)
 {
     Track = @node-add(/Track, "Love Parade 2006")
@@ -104,3 +108,4 @@ Person = @nodes(Person:Doe/John)
         }
     }
 }
+```

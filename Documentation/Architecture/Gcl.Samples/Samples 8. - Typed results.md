@@ -1,5 +1,5 @@
--- ==================================================================================================================
--- 01. Simple typing. Supported types are: string, bool, float, int, datetime.
+01. Simple typing. Supported types are: string, bool, float, int, datetime.
+```gcl
 Person = Person:Doe/John
 {
     string FirstName
@@ -10,9 +10,10 @@ Person = Person:Doe/John
     float Height
     bool IsMale
 }
+```
 
--- ==================================================================================================================
--- 02.a Simple typing - with conditions.
+02.a Simple typing - with conditions.
+```gcl
 Person = Person:Doe/John
 {
     string! FirstName
@@ -23,10 +24,10 @@ Person = Person:Doe/John
     float? Height
     bool IsMale
 }
+```
 
-
--- ==================================================================================================================
--- 02.b Simple typing - with conditions.
+02.b Simple typing - with conditions.
+```gcl
 Person = Person:Doe/John
 {
     string !FirstName
@@ -37,9 +38,10 @@ Person = Person:Doe/John
     float ?Height
     bool IsMale
 }
+```
 
--- ==================================================================================================================
--- 03. Multiplicity
+03. Multiplicity
+```gcl
 Person = Person:Doe/John
 {
     string FirstName = @
@@ -59,10 +61,10 @@ Person = Person:Doe/John
         string GeoPosition = /Position
     }
 }
+```
 
--- ==================================================================================================================
--- 04. Namespaces.
-
+04. Namespaces.
+```gcl
 [namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
 TypedPerson = @nodes(Person:Stark/Tony)
 {
@@ -74,11 +76,10 @@ TypedPerson = @nodes(Person:Stark/Tony)
     float Height
     bool IsMale
 }
+```
 
-
--- ==================================================================================================================
--- 05. Make sure the code generator also creates a process extension method.
-
+05. Make sure the code generator also creates a process extension method.
+```gcl
 [CreateProcessMethod=true]
 [namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
 TypedPerson = @nodes(Person:Stark/Tony)
@@ -91,14 +92,15 @@ TypedPerson = @nodes(Person:Stark/Tony)
     float Height
     bool IsMale
 }
+```
 
--- ==================================================================================================================
--- 06. Set this property to true to indicate that a dynamic result class type should be created.
--- Options are:
--- - [ResultType=static]
--- - [ResultType=observable]
--- - [ResultType=async_enumerable]
+06. Set this property to true to indicate that a dynamic result class type should be created.
+Options are:
+- [ResultType=static]
+- [ResultType=observable]
+- [ResultType=async_enumerable]
 
+```gcl
 [ResultType=dynamic]
 [namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
 TypedPerson = @nodes(Person:Stark/Tony)
@@ -111,3 +113,4 @@ TypedPerson = @nodes(Person:Stark/Tony)
     float Height
     bool IsMale
 }
+```
