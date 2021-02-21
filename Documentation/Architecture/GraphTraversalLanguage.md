@@ -10,28 +10,42 @@ For this Ubigia was first designed to facilitate a "Graph Traversal Language". T
 Surely good recipe's should be honoured, and for this reason the GTL definition closely relates to how URI (Unified Resource Identifiers) are built.
 A few simple example can be seen below:
 
+Find a person with the first name John and last name Doe.
 ```gtl
-// Find a person with the first name John and last name Doe.
 $person <= person:Doe/John
+```
 
-// Find all persons with the last name Doe.
+Find all persons with the last name Doe.
+```gtl
 $persons <= person:Doe/*
+```
 
-// Get the current time.
+Get the current time.
+```gtl
 $time <= time:Now
+```
 
-// Get the time defined in the specified graph segment.
+Get the time defined in the specified graph segment.
+```gtl
 $time <= time:2020/10/11/12/23
-// Parse the time specified.
-$time <= time:2014-08-26T11:12:23
+```
 
-// Get the location defined in the specified graph segment.
+Parse the time specified.
+```gtl
+$time <= time:2014-08-26T11:12:23
+```
+
+Get the location defined in the specified graph segment.
+```gtl
 $location <= location:Netherlands/Overijssel/Enschede
 $location <= location:Germany/Berlin/Center/"Zoologischen Garten"
 $location <= location:DE/Berlin/Center/"Zoologischen Garten"
 $location <= location:NL/Enschede
 $location <= location:NL/Enschede/Lavenhorsthoek/23
-// Parse the given location.
+```
+
+Parse the given location.
+```gtl
 $location <= location:52.2167/6.9000
 ```
 
@@ -42,9 +56,9 @@ A GTL script is made up of sequences. Most often a sequence is placed on a singl
 Each sequence is build using _subjects_ and _operators_. Subjects are the content that the sequence works on according to the operators that separates them.
 
 For example:
-```gtl
-$var1   <=       "Hello World"
-SUBJECT OPERATOR SUBJECT
+```
+$var1      <=         "Hello World"
+SUBJECT    OPERATOR   SUBJECT
 ```
 
 In the example above the <= indicates the assignment operator, "Hello World" a constant subject and $var1 a variable subject.

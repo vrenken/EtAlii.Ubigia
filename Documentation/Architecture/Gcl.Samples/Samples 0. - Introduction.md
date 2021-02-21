@@ -1,4 +1,6 @@
-﻿01. Traverses to a node and returns this as a named element.
+﻿# Introduction - Schema's
+
+01. Traverses to a node and returns this as a named element.
 All properties that can be found will be returned.
 ```gcl
 Person = @node(Person:Doe/John)
@@ -178,7 +180,6 @@ Person = @node(Person:Doe/John)
 12. Traverses to a node and returns it as a named element.
 The result will be enriched using the node, nodes and value annotations added to the property identifiers.
 An error is given when any of the the properties not marked as optional cannot be found.
-
 ```gcl
 Person = @node(Person:Doe/John)
 {

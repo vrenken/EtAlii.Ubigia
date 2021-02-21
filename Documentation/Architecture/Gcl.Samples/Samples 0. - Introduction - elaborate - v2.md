@@ -1,4 +1,6 @@
-﻿01. Traverses to a node and returns this as a named element.
+﻿# Introduction - Elaborate schema's
+
+01. Traverses to a node and returns this as a named element.
 All properties that can be found will be returned.
 ```gcl
 = @node(Person:Doe/John)

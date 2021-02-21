@@ -17,31 +17,6 @@
             //Assert.NotNull(jsonNode);
         }
 
-        [Theory, ClassData(typeof(TextFileBasedGraphContextData))]
-        public void SchemaParser_Parse_From_TextFiles(string fileName, string title, string queryText)
-        {
-            // Arrange.
-#pragma warning disable 1717
-            title = title;
-            fileName = fileName;
-#pragma warning restore 1717
-            var parser = new TestSchemaParserFactory().Create();
-
-            // Act.
-            var parseResult = parser.Parse(queryText);
-            var lines = queryText.Split('\n');
-            // Assert.
-            Assert.NotNull(parseResult);
-            Assert.Empty(parseResult.Errors);
-
-            // Let's not assert the query if we don't have one in the original script.
-            var noCode = lines.All(line => line.StartsWith("--") || string.IsNullOrWhiteSpace(line));
-            if (!noCode)
-            {
-                Assert.NotNull(parseResult.Schema);
-            }
-        }
-
         [Theory, ClassData(typeof(MdFileBasedGraphContextData))]
         public void SchemaParser_Parse_From_MdFiles(string fileName, string line, string queryText)
         {
