@@ -41,7 +41,7 @@
 
 
         [Theory, ClassData(typeof(MdFileBasedTraversalScriptData))]
-        public void SchemaParser_Parse_From_MdFiles(string fileName, string line, string queryText)
+        public void ScriptParser_Parse_From_MdFiles(string fileName, string line, string queryText)
         {
             // Arrange.
 #pragma warning disable 1717
