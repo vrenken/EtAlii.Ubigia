@@ -32,7 +32,7 @@ $time <= time:2020/10/11/12/23
 
 Parse the time specified.
 ```gtl
-$time <= time:2014-08-26T11:12:23
+$time <= time:"2014-08-26T11:12:23"
 ```
 
 Get the location defined in the specified graph segment.

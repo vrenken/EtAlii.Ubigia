@@ -1,6 +1,7 @@
 ﻿# GTL Roots
 
-Proposal for root registration (already implemented in unit tests).
+Proposal for root registrations & more.
+These are already partially implemented in unit tests but definitely deserves further refinement.
 
 Assign
 ```gtl
@@ -22,8 +23,10 @@ root:projects <=
 ```
 
 Proposal for root registration.
+
+``root:[ROOT] <= [ROOT_TYPE]``
+
 ```gtl
-root:[ROOT] <= [ROOT_TYPE]
 root:time <= EtAlii.Api.Roots.Time
 root:text <= EtAlii.Api.Roots.Text
 root:location <= EtAlii.Api.Roots.Location
@@ -37,30 +40,33 @@ root:time <=
 ```
 
 Proposal for root relation (indexing) registration.
-```gtl
---root:[ROOT] += /[PATH].[PROPERTY]
---root:text += /orders/Order.Id
---root:time += /orders/Order.Created
---root:time += /orders/Order.Added
---root:location += /orders/Order.Location
---root:time += /*.*
---root:time += /Orders/Order.*
---root:emailtext += /Documents/Email.Text
-root:projects3 += /[Words]/[Number]
-root:projects4 += /[Words]/[Number]
-root:time += /[yyyy]/[mm]/[dd]/[HH]/[MM]/[SS]
-root:time += [yyyy][mm][dd][HH][MM][SS]
-root:time += [yyyy][mm][dd][HH][MM]
-root:time += [yyyy][mm][dd][HH]
-root:time += ["HH:MM dd-mm-yyyy"]
+
+``root:[ROOT] += /[PATH].[PROPERTY]``
+
+```
+(NOT YET SUPPORTED)
+root:text += /orders/Order.Id
+root:time += /orders/Order.Created
+root:time += /orders/Order.Added
+root:location += /orders/Order.Location
+root:time += /*.*
+root:time += /Orders/Order.*
+root:emailtext += /Documents/Email.Text
+root:projects3 += /[WORD]/[NUMBER]
+root:projects4 += /[WORD]/[NUMBER]
+root:time += /[yyyy]/[MM]/[DD]/[HH]/[mm]/[ss]
+root:time += [yyyy][MM][DD][HH][mm][ss]
+root:time += [yyyy][MM][DD][HH][mm]
+root:time += [yyyy][MM][DD][HH]
+root:time += ["HH:mm DD-MM-yyyy"]
 root:time += "now"
 root:time += "NOW"
 root:time += now
 root:time += NOW
-root:person += ["FIRST LAST"]
-root:person += /[LAST]/[FIRST]  --Returns multiple records so translates to /LAST/FIRST/NUMBER.
-root:person += /[LAST]/[FIRST]
-root:person += /[LAST]/[FIRST]/
+root:person += ["FIRSTNAME LASTNAME"]
+root:person += /[LASTNAME]/[FIRSTNAME]  --Returns multiple records so translates to /LAST/FIRST/NUMBER.
+root:person += /[LASTNAME]/[FIRSTNAME]
+root:person += /[LASTNAME]/[FIRSTNAME]/
 ```
 
 Root usage
@@ -74,13 +80,15 @@ person:Banner/Peter/1
 person:Banner/Peter
 ```
 
-Proposal for root relation (indexing) registration removal--
-```gtl
---root:text-=/orders/Order.Id
+Proposal for root relation (indexing) registration removal
+```
+(NOT YET SUPPORTED)
+root:text-=/orders/Order.Id
 ```
 
 Find orders using a root as an index.
-```gtl
+```
+(NOT YET SUPPORTED)
 orders:*.Id=text:ABC164235
 orders:*.Id=text:ABV*
 orders:*.Id=orders:ABV*
@@ -100,8 +108,9 @@ orders:*.Added=2014-08-26|Removed>2014-08-26/Location
 orders:*.Location <= $location
 ```
 
-Find orders without using a root as an index. Remark: this method will be slow.
-```gtl
+Find orders __without__ using a root as an index. Remark: this method will be slow.
+```
+(NOT YET SUPPORTED)
 orders:*.Id=ABC164235
 orders:*.Id="ABC164235"
 orders:*.Id=ABC*
@@ -122,11 +131,11 @@ orders:*.Version=3/2/123/*
 use a root for discovery
 ```gtl
 time:2014/08/12/15/15
-time:2014-08-12T15:15
+time:"2014-08-12T15:15"
 time:2014/08/12/15/15/34
 time:201408121515
 time:20140812151534
-time:20140812/151534-
+time:20140812/151534
 time:2014/08/12
 time:20140812
 location:Netherlands/Overijssel/Enschede
@@ -139,8 +148,9 @@ orders:ABC164235
 ```
 
 Find orders based on the time root as an index.
-```gtl
---orders:*=time:2014-08-26T11:12:23
+```
+(NOT YET SUPPORTED)
+orders:*=time:2014-08-26T11:12:23
 ```
 
 Possible roots

@@ -8,9 +8,11 @@ TODO
 2. Traversal concepts
    - Sequences
    - Paths
-     - Querying
+     - Traversal
      - Roots
      - Tags
+     - Wildcards
+     - Typed
    - Operators
    - Functions
    - Variables
