@@ -49,15 +49,15 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
-                var second = context.datetime_time_ss().GetText();
-                var milliSecond = context.datetime_ms().GetText();
+                var year = int.Parse(context.datetime_d4().GetText());
+                var month = int.Parse(context.datetime_d2(0).GetText());
+                var day = int.Parse(context.datetime_d2(1).GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
+                var second = int.Parse(context.datetime_d2(4).GetText());
+                var milliSecond = int.Parse(context.datetime_d3().GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}", "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, second, milliSecond);
             }
             catch (Exception e)
             {
@@ -69,14 +69,14 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
-                var second = context.datetime_time_ss().GetText();
+                var year = int.Parse(context.datetime_d4().GetText());
+                var month = int.Parse(context.datetime_d2(0).GetText());
+                var day = int.Parse(context.datetime_d2(1).GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
+                var second = int.Parse(context.datetime_d2(4).GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, second);
             }
             catch (Exception e)
             {
@@ -88,14 +88,13 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
+                var year = int.Parse(context.datetime_d4().GetText());
+                var month = int.Parse(context.datetime_d2(0).GetText());
+                var day = int.Parse(context.datetime_d2(1).GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm",
-                    CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, 0);
             }
             catch (Exception e)
             {
@@ -107,11 +106,11 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
+                var year = int.Parse(context.datetime_d4().GetText());
+                var month = int.Parse(context.datetime_d2(0).GetText());
+                var day = int.Parse(context.datetime_d2(1).GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day);
             }
             catch (Exception e)
             {
@@ -123,16 +122,15 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
-                var second = context.datetime_time_ss().GetText();
-                var milliSecond = context.datetime_ms().GetText();
+                var day = int.Parse(context.datetime_d2(0).GetText());
+                var month = int.Parse(context.datetime_d2(1).GetText());
+                var year = int.Parse(context.datetime_d4().GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
+                var second = int.Parse(context.datetime_d2(4).GetText());
+                var milliSecond = int.Parse(context.datetime_d3().GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}.{milliSecond}",
-                    "yyyy-MM-ddTHH:mm:ss.fff", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, second, milliSecond);
             }
             catch (Exception e)
             {
@@ -144,14 +142,14 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
-                var second = context.datetime_time_ss().GetText();
+                var day = int.Parse(context.datetime_d2(0).GetText());
+                var month = int.Parse(context.datetime_d2(1).GetText());
+                var year = int.Parse(context.datetime_d4().GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
+                var second = int.Parse(context.datetime_d2(4).GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}:{second}", "yyyy-MM-ddTHH:mm:ss", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, second);
             }
             catch (Exception e)
             {
@@ -163,14 +161,13 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
-                var hour = context.datetime_time_hh().GetText();
-                var minute = context.datetime_time_mm().GetText();
+                var day = int.Parse(context.datetime_d2(0).GetText());
+                var month = int.Parse(context.datetime_d2(1).GetText());
+                var year = int.Parse(context.datetime_d4().GetText());
+                var hour = int.Parse(context.datetime_d2(2).GetText());
+                var minute = int.Parse(context.datetime_d2(3).GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}T{hour}:{minute}", "yyyy-MM-ddTHH:mm",
-                    CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day, hour, minute, 0);
             }
             catch (Exception e)
             {
@@ -182,11 +179,11 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             try
             {
-                var year = context.datetime_date_yyyy().GetText();
-                var month = context.datetime_date_mm().GetText();
-                var day = context.datetime_date_dd().GetText();
+                var day = int.Parse(context.datetime_d2(0).GetText());
+                var month = int.Parse(context.datetime_d2(1).GetText());
+                var year = int.Parse(context.datetime_d4().GetText());
 
-                return DateTime.ParseExact($"{year}-{month}-{day}", "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                return new DateTime(year, month, day);
             }
             catch (Exception e)
             {
