@@ -13,22 +13,18 @@ options {
 }
 
 // Datetimes.
-datetime_date_yyyy                                  : DIGIT DIGIT DIGIT DIGIT ;
-datetime_date_mm                                    : DIGIT? DIGIT ;
-datetime_date_dd                                    : DIGIT? DIGIT ;
-datetime_time_hh                                    : DIGIT? DIGIT ;
-datetime_time_mm                                    : DIGIT? DIGIT ;
-datetime_time_ss                                    : DIGIT? DIGIT ;
-datetime_ms                                         : DIGIT? DIGIT? DIGIT ;
+datetime_d4                                    : DIGIT DIGIT DIGIT DIGIT ;
+datetime_d2                                    : DIGIT? DIGIT ;
+datetime_d3                                    : DIGIT? DIGIT? DIGIT ;
 datetime
-    : datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss COLON datetime_ms     #datetime_format_1
-    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss                       #datetime_format_2
-    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd datetime_time_hh COLON datetime_time_mm                                              #datetime_format_3
-    | datetime_date_yyyy MINUS datetime_date_mm MINUS datetime_date_dd                                                                                      #datetime_format_4
-    | datetime_date_dd MINUS datetime_date_mm MINUS datetime_date_yyyy datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss COLON datetime_ms     #datetime_format_5
-    | datetime_date_dd MINUS datetime_date_mm MINUS datetime_date_yyyy datetime_time_hh COLON datetime_time_mm COLON datetime_time_ss                       #datetime_format_6
-    | datetime_date_dd MINUS datetime_date_mm MINUS datetime_date_yyyy datetime_time_hh COLON datetime_time_mm                                              #datetime_format_7
-    | datetime_date_dd MINUS datetime_date_mm MINUS datetime_date_yyyy                                                                                      #datetime_format_8
+    : datetime_d4 MINUS datetime_d2 MINUS datetime_d2 WHITESPACE datetime_d2 COLON datetime_d2 COLON datetime_d2 COLON datetime_d3     #datetime_format_1
+    | datetime_d4 MINUS datetime_d2 MINUS datetime_d2 WHITESPACE datetime_d2 COLON datetime_d2 COLON datetime_d2                       #datetime_format_2
+    | datetime_d4 MINUS datetime_d2 MINUS datetime_d2 WHITESPACE datetime_d2 COLON datetime_d2                                         #datetime_format_3
+    | datetime_d4 MINUS datetime_d2 MINUS datetime_d2                                                                                  #datetime_format_4
+    | datetime_d2 MINUS datetime_d2 MINUS datetime_d4 WHITESPACE datetime_d2 COLON datetime_d2 COLON datetime_d2 COLON datetime_d3     #datetime_format_5
+    | datetime_d2 MINUS datetime_d2 MINUS datetime_d4 WHITESPACE datetime_d2 COLON datetime_d2 COLON datetime_d2                       #datetime_format_6
+    | datetime_d2 MINUS datetime_d2 MINUS datetime_d4 WHITESPACE datetime_d2 COLON datetime_d2                                         #datetime_format_7
+    | datetime_d2 MINUS datetime_d2 MINUS datetime_d4                                                                                  #datetime_format_8
     ;
 
 timespan
