@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             _timePreparer = timePreparer;
 
-            Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"\d{4}-\d{2}-\d{2} \d{2}:\d{2}") };
+            Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"\d{4}-\d{2}-\d{2}[\sT]\d{2}:\d{2}") };
         }
 
         public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
