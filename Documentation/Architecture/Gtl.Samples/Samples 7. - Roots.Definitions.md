@@ -46,6 +46,6 @@ media:ID
 root:stream <= EtAlii.Ubigia.Roots.Stream
 
 stream:XXX/XXX/XXX/XXX
-stream:Home/First Floor/Temperature/001
+stream:Home/'First Floor'/Temperature/001
 stream:ID
 ```

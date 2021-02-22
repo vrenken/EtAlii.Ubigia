@@ -1,15 +1,20 @@
 ﻿# GTL variables
 
 Union of items
-```gtl
+```
+(NOT YET IMPLEMENTED)
 $i3 <= $i1 & $i2
+$emailsFromJohnDoe <= $i4 & $i5
+```
 
-$emailsFromPeter <= $i4 & $i5
-
--- Combination of items
+Combination of items
+```
+(NOT YET IMPLEMENTED)
 $e3 <= $e1 | $e2
+```
 
--- Output of variable.
+Output of variable.
+```gtl
 $e3
 ```
 
@@ -29,16 +34,16 @@ $i5 <= /Person/Banner/Peter/
 
 Identifier based variable assignment
 ```gtl
-$i7 <= /&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423
+$i7 <= /&38A52BE4-9352-453E-AF97-5C3B448652F0.3F2504E0-4F89-41D3-9A0C-0305E82C3301.21EC2020-3AEA-4069-A2DD-08002B30309D.20.30.40
 ```
 
 Identifier started path variable assignment
 ```gtl
-$i8 <= /&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423/Images
+$i8 <= /&38A52BE4-9352-453E-AF97-5C3B448652F0.3F2504E0-4F89-41D3-9A0C-0305E82C3301.21EC2020-3AEA-4069-A2DD-08002B30309D.20.30.40/Images
 ```
 
 Identifier variable path variable assignment
 ```gtl
-$i9 <= /&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423
+$i9 <= /&38A52BE4-9352-453E-AF97-5C3B448652F0.3F2504E0-4F89-41D3-9A0C-0305E82C3301.21EC2020-3AEA-4069-A2DD-08002B30309D.20.30.40
 $i10 <= /$i9/Images
 ```
