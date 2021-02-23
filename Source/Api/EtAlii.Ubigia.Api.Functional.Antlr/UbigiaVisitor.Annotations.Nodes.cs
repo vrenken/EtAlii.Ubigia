@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
@@ -77,6 +78,22 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             var sourcePath = (PathSubject)VisitSchema_path(context.schema_path());
             return new SelectSingleNodeAnnotation(sourcePath);
+        }
+
+        public override object VisitNode_annotation_select_current_node(UbigiaParser.Node_annotation_select_current_nodeContext context)
+        {
+            return new SelectCurrentNodeAnnotation();
+        }
+
+        public override object VisitNode_annotation_map_sequence(UbigiaParser.Node_annotation_map_sequenceContext context)
+        {
+            var sequence = (Sequence)Visit(context.sequence());
+
+            // TODO: This is fundamentally wrong, but should get us going.
+            var path = sequence.Parts
+                .OfType<PathSubject>()
+                .FirstOrDefault();
+            return new SelectSingleNodeAnnotation(path);
         }
     }
 }
