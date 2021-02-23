@@ -3,7 +3,7 @@
 01. Traverses to a node and returns this as a named element.
 All properties that can be found will be returned.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
 }
 ```
@@ -12,7 +12,7 @@ All properties that can be found will be returned.
 Only the properties that can be found will be returned. No error is given if a property cannot be found.
 Properties can be separated by comma's or by newlines.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -24,7 +24,7 @@ Properties can be separated by comma's or by newlines.
 Only the properties that can be found will be returned. No error is given if a property cannot be found.
 Properties can be separated by comma's or by newlines.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName
     LastName
@@ -34,7 +34,7 @@ Properties can be separated by comma's or by newlines.
 
 03. Property identifiers can be quoted for more accurate control.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     "FirstName",
     "LastName",
@@ -44,7 +44,7 @@ Properties can be separated by comma's or by newlines.
 
 04.a Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -54,7 +54,7 @@ Properties can be separated by comma's or by newlines.
 
 04.b Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     "FirstName",
     "LastName",
@@ -64,7 +64,7 @@ Properties can be separated by comma's or by newlines.
 
 04.c Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -74,18 +74,18 @@ Properties can be separated by comma's or by newlines.
 
 04.d Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 ```gcl
-= @node(Person:Doe/John) { FirstName, LastName, NickName }
+Person = @node(Person:Doe/John) { FirstName, LastName, NickName }
 ```
 
 04.e Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two.
 ```gcl
-= @node(Person:Doe/John) { "FirstName", "LastName", "NickName" }
+Person = @node(Person:Doe/John) { "FirstName", "LastName", "NickName" }
 ```
 
 05.a Traverses to a node and returns it as a named element.
 An error is given when any of the the properties marked as mandatory cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !"FirstName",
     !"LastName",
@@ -96,7 +96,7 @@ An error is given when any of the the properties marked as mandatory cannot be f
 06. Traverses to a node and returns it as a named element.
 An error is given when any of the the properties marked as mandatory cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !FirstName,
     !LastName,
@@ -107,7 +107,7 @@ An error is given when any of the the properties marked as mandatory cannot be f
 07. Traverses to a node and returns it as a named element.
 An error is given when any of the the properties marked as mandatory cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !FirstName,
     !LastName,
@@ -118,7 +118,7 @@ An error is given when any of the the properties marked as mandatory cannot be f
 08. Traverses to a node and returns it as a named element.
 An error is given when any of the the properties not marked as optional cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName,
     LastName,
@@ -130,7 +130,7 @@ An error is given when any of the the properties not marked as optional cannot b
 The result will be enriched using the node, nodes and value annotations added to the property identifiers.
 Only the properties that can be found will be returned. No error is given if a property cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     FirstName = @node(),
     LastName = @node(\#FamilyName),
@@ -147,7 +147,7 @@ Only the properties that can be found will be returned. No error is given if a p
 The result will be enriched using the node, nodes and value annotations added to the property identifiers.
 An error is given when any of the the properties marked as mandatory cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
     !FirstName = @node(),
     !LastName = @node(\#FamilyName),
@@ -164,9 +164,9 @@ An error is given when any of the the properties marked as mandatory cannot be f
 The result will be enriched using the node, nodes and value annotations added to the property identifiers.
 An error is given when any of the the properties not marked as optional cannot be found.
 ```gcl
-= @node(Person:Doe/John)
+Person = @node(Person:Doe/John)
 {
-    FirstName = @@node(),
+    FirstName = @node(),
     LastName = @node(\#FamilyName),
     ?NickName,
     ?Friends[] = @nodes(/Friends)
