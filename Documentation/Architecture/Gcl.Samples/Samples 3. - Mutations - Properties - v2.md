@@ -20,6 +20,6 @@ The type of the GCL property will be used to verify and process the variable.
 Person = Person:Doe/John
 {
     string NickName = $nickName
-    datetime Birthday = .BirtDate = @birthday
+    datetime Birthday = .BirthDate <= $birthday
 }
 ```

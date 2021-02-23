@@ -79,7 +79,8 @@ TypedPerson = @nodes(Person:Stark/Tony)
 ```
 
 05. Make sure the code generator also creates a process extension method.
-```gcl
+```
+(NOT YET SUPPORTED)
 [CreateProcessMethod=true]
 [namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
 TypedPerson = @nodes(Person:Stark/Tony)
@@ -101,7 +102,8 @@ Options are:
 - ``[ResultType=observable]``
 - ``[ResultType=async_enumerable]``
 
-```gcl
+```
+(NOT YET SUPPORTED)
 [ResultType=dynamic]
 [namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
 TypedPerson = @nodes(Person:Stark/Tony)
