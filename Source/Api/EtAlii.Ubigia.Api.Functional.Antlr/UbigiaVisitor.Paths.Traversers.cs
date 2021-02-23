@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         // Temporal
         public override object VisitPath_part_traverser_downdate(UbigiaParser.Path_part_traverser_downdateContext context) => new DowndatePathSubjectPart();
         public override object VisitPath_part_traverser_updates(UbigiaParser.Path_part_traverser_updatesContext context) => new UpdatesPathSubjectPart();
+
         // public override object VisitPath_part_traverser_downdates_oldest[TraversalScriptParser.Path_part_traverser_downdates_oldestContext context] => new OldestPathSubjectPart[]
         // public override object VisitPath_part_traverser_downdates_all[TraversalScriptParser.Path_part_traverser_downdates_allContext context] => new AllDowndatesPathSubjectPart[]
         public override object VisitPath_part_traverser_downdates_oldest(UbigiaParser.Path_part_traverser_downdates_oldestContext context) => new AllDowndatesPathSubjectPart();
