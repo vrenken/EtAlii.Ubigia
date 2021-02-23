@@ -21,7 +21,8 @@ Person = Person:Start/Tony
 The name of the root structure can be ommited for brevety. This is especially handy for code generation where then the .GCL filename will be used to define the root object name. For all child structures names are mandatory as there else is no way to identify and access them.
 
 Example:
-```gcl
+```
+(NOT YET SUPPORTED)
 = Person:Start/Tony
 {
     FirstName,
@@ -33,7 +34,7 @@ When nested structures are used and a parent structure is already mapped using a
 
 Example:
 ```gcl
-= Person:Start/Tony
+Person = Person:Start/Tony
 {
     FirstName,
     LastName,
@@ -50,7 +51,7 @@ When nested structures are used and a parent structure is already mapped using a
 
 Example:
 ```gcl
-= Person:Start/Tony
+Person = Person:Start/Tony
 {
     FirstName,
     LastName,
@@ -68,7 +69,7 @@ If explicit path assignments are added to fields, and they are not classified as
 
 Example:
 ```gcl
-= Person:Start/Tony
+Person = Person:Start/Tony
 {
     FirstName,
     LastName = \#FamilyName,  -- Fetch a parent node with the tag lastname and assign ot to the property LastName
@@ -79,9 +80,9 @@ Example:
 The @ character can be used to assign the name of the current graph node to a value.
 Example:
 ```gcl
-= Person:Start/Tony
+Person = Person:Start/Tony
 {
-    FirstName @,
+    FirstName = @,
     LastName = \#FamilyName,
     Birthday = .Birthdate
 }
