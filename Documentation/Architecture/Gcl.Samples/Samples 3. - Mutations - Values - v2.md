@@ -27,7 +27,7 @@ Person = Person:Doe/Johhn
 
 04. Add a new node and give it some properties.
 ```gcl
-Person @node-add(Person:Doe, Jane)
+Person = @node-add(Person:Doe, Jane)
 {
     NickName = . <= "Jahney"
 }
@@ -58,7 +58,7 @@ Data
         FirstName = @,
         LastName = \#FamilyName,
         NickName,
-        Friend @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+        Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
         {
             FirstName = @,
             LastName = \#FamilyName,
@@ -89,10 +89,10 @@ Data
         FirstName = @,
         LastName = \#FamilyName,
         NickName,
-        Friend[] = /Friends
+        Friends[] = /Friends
         {
             FirstName = @,
-            LastName = node(\#FamilyName,
+            LastName = node(\#FamilyName),
             NickName
         }
     }
