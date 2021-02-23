@@ -10,7 +10,7 @@
 
         public override string ToString()
         {
-            return $"@{AnnotationPrefix.Node}({Source?.ToString() ?? string.Empty})";
+            return $"@{AnnotationPrefix.Node}({Source})";
         }
     }
 }
