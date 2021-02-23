@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         private Subject BuildNonRootedPathSubject(UbigiaParser.Path_partContext[] partContexts)
         {
             var parts = partContexts
-                .Select(partContext => (PathSubjectPart)Visit(partContext))
+                .Select(partContext => (PathSubjectPart)VisitPath_part(partContext))
                 .ToArray();
 
             Subject result;
