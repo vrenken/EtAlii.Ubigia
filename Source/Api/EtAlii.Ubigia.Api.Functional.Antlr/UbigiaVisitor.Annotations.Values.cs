@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
@@ -47,6 +48,22 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
                 ? (PathSubject)VisitSchema_path(context.schema_path())
                 : null;
             return new SelectValueAnnotation(sourcePath);
+        }
+
+        public override object VisitValue_annotation_select_current_node(UbigiaParser.Value_annotation_select_current_nodeContext context)
+        {
+            return new SelectCurrentNodeValueAnnotation();
+        }
+
+        public override object VisitValue_annotation_map_sequence(UbigiaParser.Value_annotation_map_sequenceContext context)
+        {
+            var sequence = (Sequence)Visit(context.sequence());
+
+            // TODO: This is fundamentally wrong, but should get us going.
+            var path = sequence.Parts
+                .OfType<PathSubject>()
+                .FirstOrDefault();
+            return new SelectValueAnnotation(path);
         }
     }
 }
