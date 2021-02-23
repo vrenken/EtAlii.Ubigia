@@ -6,5 +6,7 @@ Person = Person:$LastName/$FirstName
     LastName = \#FamilyName,
     NickName,
     Friends[] = /Friends/
+    {
+    }
 }
 ```

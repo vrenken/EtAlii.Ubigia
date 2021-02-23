@@ -1,7 +1,7 @@
 ﻿01. Traverse to a single node and returns it as a named item.
 Throws an error if multiple nodes are found.
 ```gcl
-= Person:Doe/John
+Person = Person:Doe/John
 {
     FirstName,
     LastName,
@@ -12,7 +12,7 @@ Throws an error if multiple nodes are found.
 02. Traverse to multiple nodes and returns them as an array.
 Does not throw an error when no node or only one node is found.
 ```gcl
-= Person:Doe/
+Person = Person:Doe/
 {
     FirstName,
     LastName,
@@ -95,7 +95,7 @@ Data
     }
     Locations[] = location:DE/Berlin//
     {
-        Name[] = @,
+        Name = @,
         Latitude = \#FamilyName,
         Longitude
     }
