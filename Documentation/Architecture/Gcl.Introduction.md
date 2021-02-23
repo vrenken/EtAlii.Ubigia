@@ -23,13 +23,9 @@ which makes the CRUD activities of the Ubigia system complete.
    - Implementation
 4. Usage
 5. Additional examples
-   - [0. Introduction](<Gcl.Samples/Samples 0. - Introduction.md>)
-   - [0. Introduction - v2](<Gcl.Samples/Samples 0. - Introduction - v2.md>)
    - [0. Introduction - Compact - v2](<Gcl.Samples/Samples 0. - Introduction - compact - v2.md>)
    - [0. Introduction - Elaborate - v2](<Gcl.Samples/Samples 0. - Introduction - elaborate - v2.md>)
    - [1. Queries](<Gcl.Samples/Samples 1. - Queries.md>)
-   - [2. Nodes](<Gcl.Samples/Samples 2. - Nodes.md>)
-   - [2. Nodes - v2](<Gcl.Samples/Samples 2. - Nodes - v2.md>)
    - [2. Nodes - Compact - v2](<Gcl.Samples/Samples 2. - Nodes - compact - v2.md>)
    - [2. Nodes - Elaborate - v2](<Gcl.Samples/Samples 2. - Nodes - elaborate - v2.md>)
    - [3. Mutations - Properties](<Gcl.Samples/Samples 3. - Mutations - Properties.md>)
