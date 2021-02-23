@@ -95,7 +95,6 @@ EQUALS                                              : '=';
 AMPERSAND                                           : '&';
 ASTERIKS                                            : '*';
 DOLLAR                                              : '$';
-SPACE                                               : ' ';
 SINGLEQUOTE                                         : '\'';
 DOUBLEQUOTE                                         : '"' ;
 HASHTAG                                             : '#' ;
