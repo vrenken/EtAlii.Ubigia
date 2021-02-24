@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class FragmentExecutionPlan<TFragment> : FragmentExecutionPlan
         where TFragment: Fragment
@@ -24,22 +21,11 @@
         }
 
 
-        internal override Task<IObservable<Structure>> Execute(SchemaExecutionScope executionScope)
+        internal override async Task Execute(SchemaExecutionScope executionScope)
         {
-            var outputObservable = Observable.Create<Structure>(async outputObserver =>
-            {
-                await Execute(executionScope, outputObserver).ConfigureAwait(false);
-
-                outputObserver.OnCompleted();
-
-                return Disposable.Empty;
-            }).ToHotObservable();
-
-            return Task.FromResult(outputObservable);
-        }
-        protected Task Execute(SchemaExecutionScope executionScope, IObserver<Structure> schemaOutput)
-        {
-            return _processor.Process(Fragment, Metadata, executionScope, schemaOutput);
+            await _processor
+                .Process(Fragment, Metadata, executionScope)
+                .ConfigureAwait(false);
         }
 
         public override string ToString()

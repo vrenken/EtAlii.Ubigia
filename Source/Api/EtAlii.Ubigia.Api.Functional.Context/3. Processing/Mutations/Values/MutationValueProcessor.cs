@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
     using System.Threading.Tasks;
 
     internal class MutationValueProcessor : IMutationValueProcessor
@@ -15,8 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task Process(
             ValueFragment fragment,
             FragmentMetadata fragmentMetadata,
-            SchemaExecutionScope executionScope,
-            IObserver<Structure> schemaOutput)
+            SchemaExecutionScope executionScope)
         {
             foreach (var structure in fragmentMetadata.Parent.Items)
             {

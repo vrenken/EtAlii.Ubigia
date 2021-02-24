@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional.Context.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
@@ -105,11 +104,13 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(query).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(query)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
 
             void AssertTimeValue(string valueName)
@@ -127,45 +128,6 @@
             AssertTimeValue("Day");
             AssertTimeValue("Month");
             AssertTimeValue("Year");
-        }
-
-
-
-        [Fact]
-        public async Task SchemaProcessor_Query_Time_Now_By_Last_Output()
-        {
-            // Arrange.
-            var selectSchemaText = @"Time = @node(time:now)
-                                   {
-                                        Millisecond = @node()
-                                        Second = @node(\)
-                                        Minute = @node(\\)
-                                        Hour = @node(\\\)
-                                        Day = @node(\\\\)
-                                        Month = @node(\\\\\)
-                                        Year = @node(\\\\\\)
-                                   }";
-
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
-
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-            var structure = result.Structure.SingleOrDefault();
-            Assert.NotNull(structure);
-            Assert.Same(structure, lastStructure);
         }
 
         [Fact]
@@ -188,11 +150,13 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
 
             AssertValue("Tony", structure, "FirstName");
@@ -219,68 +183,36 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structures = result.Structure.ToArray();
-            Assert.NotNull(structures);
+            Assert.NotNull(results);
 
 
-            AssertValue("John", structures[0], "FirstName");
-            AssertValue("Doe", structures[0], "LastName");
+            AssertValue("John", results[0], "FirstName");
+            AssertValue("Doe", results[0], "LastName");
 
-            AssertValue("Jane", structures[1], "FirstName");
-            AssertValue("Doe", structures[1], "LastName");
+            AssertValue("Jane", results[1], "FirstName");
+            AssertValue("Doe", results[1], "LastName");
 
-            AssertValue("Tony", structures[2], "FirstName");
-            AssertValue("Stark", structures[2], "LastName");
+            AssertValue("Tony", results[2], "FirstName");
+            AssertValue("Stark", results[2], "LastName");
 
-            AssertValue("Peter", structures[3], "FirstName");
-            AssertValue("Banner", structures[3], "LastName");
+            AssertValue("Peter", results[3], "FirstName");
+            AssertValue("Banner", results[3], "LastName");
 
-            AssertValue("Tanja", structures[4], "FirstName");
-            AssertValue("Banner", structures[4], "LastName");
+            AssertValue("Tanja", results[4], "FirstName");
+            AssertValue("Banner", results[4], "LastName");
 
-            AssertValue("Arjan", structures[5], "FirstName");
-            AssertValue("Banner", structures[5], "LastName");
+            AssertValue("Arjan", results[5], "FirstName");
+            AssertValue("Banner", results[5], "LastName");
 
-            AssertValue("Ida", structures[6], "FirstName");
-            AssertValue("Banner", structures[6], "LastName");
+            AssertValue("Ida", results[6], "FirstName");
+            AssertValue("Banner", results[6], "LastName");
 
-        }
-
-        [Fact]
-        public async Task SchemaProcessor_Query_Person_By_Last_Output()
-        {
-            // Arrange.
-            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
-                                   {
-                                        FirstName = @node()
-                                        LastName = @node(\#FamilyName)
-                                   }";
-
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
-
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-
-            var structure = result.Structure.SingleOrDefault();
-            Assert.NotNull(structure);
-            Assert.Same(structure, lastStructure);
         }
 
         [Fact]
@@ -303,17 +235,14 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
-            Assert.Same(structure, lastStructure);
 
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
@@ -343,55 +272,19 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
 
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
-        }
-
-        [Fact]
-        public async Task SchemaProcessor_Query_Person_Nested_By_Last_Output()
-        {
-            // Arrange.
-            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
-                                   {
-                                        Data
-                                        {
-                                            FirstName = @node()
-                                            LastName = @node(\#FamilyName)
-                                        }
-                                   }";
-
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
-
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-
-            var structure = result.Structure.SingleOrDefault();
-            Assert.NotNull(structure);
-            structure = structure.Children.SingleOrDefault();
-            Assert.Same(structure, lastStructure);
-
         }
 
         [Fact]
@@ -420,11 +313,13 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
@@ -433,50 +328,6 @@
 
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
-        }
-
-
-        [Fact]
-        public async Task SchemaProcessor_Query_Person_Nested_Double_By_Last_Output()
-        {
-            // Arrange.
-            var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
-                                   {
-                                        Data1
-                                        {
-                                            Data2
-                                            {
-                                                FirstName = @node()
-                                                LastName = @node(\#FamilyName)
-                                            }
-                                        }
-                                   }";
-
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
-
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-
-            var structure = result.Structure.SingleOrDefault();
-            Assert.NotNull(structure);
-            structure = structure.Children.SingleOrDefault();
-            Assert.NotNull(structure);
-            structure = structure.Children.SingleOrDefault();
-            Assert.Same(structure, lastStructure);
-
         }
 
         [Fact]
@@ -501,20 +352,22 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.Equal(2, result.Structure.Count);
+            Assert.Equal(2, results.Length);
 
-            var firstPerson = result.Structure[0];
+            var firstPerson = results[0];
             Assert.NotNull(firstPerson);
             AssertValue("John", firstPerson, "FirstName");
             AssertValue("Doe", firstPerson, "LastName");
             AssertValue(DateTime.Parse("1977-06-27"), firstPerson, "Birthdate");
             AssertValue("Johnny", firstPerson, "NickName");
 
-            var secondPerson = result.Structure[1];
+            var secondPerson = results[1];
             Assert.NotNull(secondPerson);
             AssertValue("Jane", secondPerson, "FirstName");
             AssertValue("Doe", secondPerson, "LastName");
@@ -550,13 +403,15 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(selectSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.Single(result.Structure);
+            Assert.Single(results);
 
-            var person = result.Structure[0];
+            var person = results[0];
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
@@ -570,37 +425,6 @@
             AssertValue("Doe", person.Children[1], "LastName");
         }
 
-        [Fact]
-        public async Task SchemaProcessor_Query_Persons_By_Last_Output()
-        {
-            // Arrange.
-            var selectSchemaText = @"Person = @nodes(Person:Doe/*)
-                               {
-                                    FirstName = @node()
-                                    LastName = @node(\#FamilyName)
-                                    NickName
-                                    Birthdate
-                               }";
-
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
-
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.Process(selectSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastStructure = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastStructure);
-        }
-
         private void AssertValue(object expected, Structure structure, string valueName)
         {
             var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
@@ -608,6 +432,5 @@
             Assert.Equal(expected, value.Object);
 
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using Serilog;
@@ -16,17 +17,22 @@
             _processor = processor;
         }
 
-        public async Task<SchemaProcessingResult> Process(Schema schema)
+        public async IAsyncEnumerable<Structure> Process(Schema schema)
         {
             _logger.Information("Processing query");
             var start = Environment.TickCount;
 
-            var result = await _processor.Process(schema).ConfigureAwait(false);
+            var items = _processor
+                .Process(schema)
+                .ConfigureAwait(false);
+
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Processed query (Duration: {Duration}ms)", duration);
-
-            return result;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface ISchemaProcessor
     {
-        Task<SchemaProcessingResult> Process(Schema schema);
+        IAsyncEnumerable<Structure> Process(Schema schema);
     }
 }

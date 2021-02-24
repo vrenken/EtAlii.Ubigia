@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
     using System.Threading.Tasks;
 
     internal class QueryStructureProcessor : IQueryStructureProcessor
@@ -22,8 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task Process(
             StructureFragment fragment,
             FragmentMetadata fragmentMetadata,
-            SchemaExecutionScope executionScope,
-            IObserver<Structure> schemaOutput)
+            SchemaExecutionScope executionScope)
         {
             var annotation = fragment.Annotation;
 
@@ -32,13 +30,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, structure).ConfigureAwait(false);
+                    await Build(executionScope, fragmentMetadata, annotation, id, fragment.Name, structure).ConfigureAwait(false);
                 }
             }
             else
             {
                 var id = Identifier.Empty;
-                await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, null).ConfigureAwait(false);
+                await Build(executionScope, fragmentMetadata, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
 
@@ -46,7 +44,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         private async Task Build(
             SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> schemaOutput,
             NodeAnnotation annotation,
             Identifier id,
             string structureName,
@@ -54,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             var path = _pathDeterminer.Determine(fragmentMetadata, annotation, id);
 
-            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, schemaOutput, annotation, structureName, parent, path).ConfigureAwait(false);
+            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, annotation, structureName, parent, path).ConfigureAwait(false);
         }
     }
 }

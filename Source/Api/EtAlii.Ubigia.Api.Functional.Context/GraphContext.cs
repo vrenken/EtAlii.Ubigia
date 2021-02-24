@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
     internal class GraphContext : IGraphContext
@@ -32,7 +32,7 @@
             return parser.Parse(text);
         }
 
-        public Task<SchemaProcessingResult> Process(Schema schema, ISchemaScope scope)
+        public IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
         {
             var configuration = new SchemaProcessorConfiguration()
                 .Use(scope)
@@ -41,7 +41,7 @@
             return processor.Process(schema);
         }
 
-        public Task<SchemaProcessingResult> Process(string[] text, ISchemaScope scope)
+        public IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
         {
             var queryParseResult = Parse(string.Join(Environment.NewLine, text));
 
@@ -55,18 +55,18 @@
         }
 
 
-        public Task<SchemaProcessingResult> Process(string text, params object[] args)
+        public IAsyncEnumerable<Structure> Process(string text, params object[] args)
         {
             text = string.Format(text, args);
             return Process(text);
         }
 
-        public Task<SchemaProcessingResult> Process(string[] text)
+        public IAsyncEnumerable<Structure> Process(string[] text)
         {
             return Process(string.Join(Environment.NewLine, text));
         }
 
-        public Task<SchemaProcessingResult> Process(string text)
+        public IAsyncEnumerable<Structure> Process(string text)
         {
             var queryParseResult = Parse(text);
 
