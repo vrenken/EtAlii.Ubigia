@@ -21,7 +21,7 @@ namespace Moppet.Lapa.Parsers
     {
         /// <summary>
         /// Parser for web links like: http://hostname.dom:80/Dir/Dir/?a=1&amp;b=2#anhor.
-        /// 
+        ///
         /// The returned tree is marked with the following identifiers:
         /// Protocol - protocol;
         /// Host - hostname, for example localhost, yandex.ru, 127.0.0.1;
@@ -77,7 +77,7 @@ namespace Moppet.Lapa.Parsers
         /// <param name="maybeLeftQuote">Possible quote left. The default is double quote.</param>
         /// <param name="maybeRightQuote">Possible quote right. The default is double quote.</param>
         /// <returns>parser.</returns>
-        public static LpsParser NamedParams(char maybeLeftQuote = '"', char maybeRightQuote = '"')
+        private static LpsParser NamedParams(char maybeLeftQuote = '"', char maybeRightQuote = '"')
         {
             var name = Lp.Name
             (
@@ -91,8 +91,8 @@ namespace Moppet.Lapa.Parsers
                 c => c != ',' && c != '=' && c != maybeRightQuote
             ).
             Id("Value");
-            
-            
+
+
             var delim = Lp.Name
             (
                 c => c == ',',
@@ -128,7 +128,7 @@ namespace Moppet.Lapa.Parsers
         /// <param name="maybeRightQuote">Возможная кавычка справа. По умолчанию это двойная кавычка.</param>
         /// <param name="nameValueConverter">Конвертер результатов. Принимает имя и значение, возвращает то, что сами захотите.</param>
         /// <returns>parser.</returns>
-        public static Func<LpText, IEnumerable<TResult>> NamedParams<TResult>(char maybeLeftQuote, char maybeRightQuote, Func<string, string, TResult> nameValueConverter)
+        private static Func<LpText, IEnumerable<TResult>> NamedParams<TResult>(char maybeLeftQuote, char maybeRightQuote, Func<string, string, TResult> nameValueConverter)
         {
             var parser = NamedParams(maybeLeftQuote, maybeRightQuote);
             return text =>
