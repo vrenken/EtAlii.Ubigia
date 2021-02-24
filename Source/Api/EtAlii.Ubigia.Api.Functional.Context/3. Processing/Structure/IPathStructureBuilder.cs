@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
@@ -9,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         Task Build(
             SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> schemaOutput,
             NodeAnnotation annotation,
             string structureName,
             Structure parent,

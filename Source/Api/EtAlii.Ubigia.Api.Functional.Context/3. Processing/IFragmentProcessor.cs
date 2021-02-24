@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
     using System.Threading.Tasks;
 
     internal interface IFragmentProcessor<in TFragment>
@@ -9,8 +8,7 @@
         Task Process(
             TFragment fragment,
             FragmentMetadata fragmentMetadata,
-            SchemaExecutionScope executionScope,
-            IObserver<Structure> schemaOutput);
+            SchemaExecutionScope executionScope);
 
     }
 }

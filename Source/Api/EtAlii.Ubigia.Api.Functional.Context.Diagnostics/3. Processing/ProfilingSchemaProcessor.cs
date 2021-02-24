@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
 {
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
     internal class ProfilingSchemaProcessor : IProfilingSchemaProcessor
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);  // TODO: this should be Functional.QueryProcessor.
         }
 
-        public Task<SchemaProcessingResult> Process(Schema schema)
+        public IAsyncEnumerable<Structure> Process(Schema schema)
         {
             return _decoree.Process(schema);
         }

@@ -82,15 +82,19 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await mutationResult.Completed().ConfigureAwait(false);
-            var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-            await queryResult.Completed().ConfigureAwait(false);
+            var mutationResults = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var mutationStructure = mutationResult.Structure.Single();
+            var mutationStructure = mutationResults.Single();
             Assert.NotNull(mutationStructure);
-            var queryStructure = queryResult.Structure.Single();
+            var queryStructure = queryResults.Single();
             Assert.NotNull(queryStructure);
 
             AssertValue(160.1f, mutationStructure, "Weight");
@@ -126,15 +130,19 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await mutationResult.Completed().ConfigureAwait(false);
-            var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-            await queryResult.Completed().ConfigureAwait(false);
+            var mutationResults = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var mutationStructure = mutationResult.Structure.Single();
+            var mutationStructure = mutationResults.Single();
             Assert.NotNull(mutationStructure);
-            var queryStructure = queryResult.Structure.Single();
+            var queryStructure = queryResults.Single();
             Assert.NotNull(queryStructure);
 
             AssertValue(160.1f, mutationStructure, "Weight");
@@ -184,15 +192,19 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await mutationResult.Completed().ConfigureAwait(false);
-            var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-            await queryResult.Completed().ConfigureAwait(false);
+            var mutationResults = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var mutationStructure = mutationResult.Structure.Single();
+            var mutationStructure = mutationResults.Single();
             Assert.NotNull(mutationStructure);
-            var queryStructure = queryResult.Structure.Single();
+            var queryStructure = queryResults.Single();
             Assert.NotNull(queryStructure);
 
             AssertValue("John", mutationStructure, "FirstName");
@@ -250,15 +262,19 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await mutationResult.Completed().ConfigureAwait(false);
-            var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-            await queryResult.Completed().ConfigureAwait(false);
+            var mutationResults = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var mutationStructures = mutationResult.Structure.ToArray();
+            var mutationStructures = mutationResults;
             Assert.NotNull(mutationStructures);
-            var queryStructures = queryResult.Structure.ToArray();
+            var queryStructures = queryResults;
             Assert.NotNull(queryStructures);
             Assert.Single(mutationStructures);
             Assert.Equal(3, queryStructures.Length);
@@ -301,13 +317,15 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.Single(result.Structure);
+            Assert.Single(results);
 
-            var person = result.Structure[0];
+            var person = results[0];
             Assert.NotNull(person);
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
@@ -384,23 +402,27 @@
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-            await mutationResult.Completed().ConfigureAwait(false);
+            var mutationResults = await processor
+                .Process(mutationSchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
-            var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-            await queryResult.Completed().ConfigureAwait(false);
+            var queryResults = await processor
+                .Process(querySchema)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.Single(mutationResult.Structure);
-            var mutationPeople = mutationResult.Structure[0].Children;
+            Assert.Single(mutationResults);
+            var mutationPeople = mutationResults[0].Children;
             Assert.Equal(2, mutationPeople.Count);
             var mutationPerson1 = mutationPeople[0];
             Assert.NotNull(mutationPerson1);
             var mutationPerson2 = mutationPeople[1];
             Assert.NotNull(mutationPerson2);
 
-            Assert.Single(queryResult.Structure);
-            var queryPeople = queryResult.Structure[0].Children;
+            Assert.Single(queryResults);
+            var queryPeople = queryResults[0].Children;
             Assert.Equal(2, queryPeople.Count);
             var queryPerson1 = queryPeople[0];
             Assert.NotNull(queryPerson1);

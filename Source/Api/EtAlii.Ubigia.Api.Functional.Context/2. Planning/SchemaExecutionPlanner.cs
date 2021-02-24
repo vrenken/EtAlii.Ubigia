@@ -38,24 +38,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             switch (fragment)
             {
-                case ValueFragment valueQuery when valueQuery.Type == FragmentType.Query:
+                case ValueFragment {Type: FragmentType.Query} valueQuery:
                     executionPlan = new FragmentExecutionPlan<ValueFragment>(valueQuery, _queryValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
 
-                case StructureFragment structureQuery when structureQuery.Type == FragmentType.Query:
+                case StructureFragment {Type: FragmentType.Query} structureQuery:
                     executionPlan = new FragmentExecutionPlan<StructureFragment>(structureQuery, _queryStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Values);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Children);
                     break;
 
-                case ValueFragment valueMutation when valueMutation.Type == FragmentType.Mutation:
+                case ValueFragment {Type: FragmentType.Mutation} valueMutation:
                     executionPlan = new FragmentExecutionPlan<ValueFragment>(valueMutation, _mutationValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
 
-                case StructureFragment structureMutation when structureMutation.Type == FragmentType.Mutation:
+                case StructureFragment {Type: FragmentType.Mutation} structureMutation:
                     executionPlan = new FragmentExecutionPlan<StructureFragment>(structureMutation, _mutationStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureMutation.Values);

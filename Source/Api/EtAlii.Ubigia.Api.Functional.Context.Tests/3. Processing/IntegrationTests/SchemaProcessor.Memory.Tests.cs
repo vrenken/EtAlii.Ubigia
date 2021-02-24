@@ -4,6 +4,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Traversal;
@@ -95,11 +96,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 var processor = new LapaSchemaProcessorFactory().Create(configuration);
 
                 // Act.
-                var mutationResult = await processor.Process(mutationSchema).ConfigureAwait(false);
-                await mutationResult.Completed().ConfigureAwait(false);
-                var queryResult = await processor.Process(querySchema).ConfigureAwait(false);
-                await queryResult.Completed().ConfigureAwait(false);
-
+                var mutationResults = await processor
+                    .Process(mutationSchema)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+                Assert.NotEmpty(mutationResults);
+                var queryResults = await processor
+                    .Process(querySchema)
+                    .ToArrayAsync()
+                    .ConfigureAwait(false);
+                Assert.NotEmpty(queryResults);
             });
             await isolator().ConfigureAwait(false);
             GC.Collect(); // Run explicit GC

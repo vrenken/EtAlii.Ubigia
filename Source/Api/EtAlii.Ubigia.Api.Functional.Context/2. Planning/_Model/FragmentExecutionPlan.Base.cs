@@ -9,7 +9,7 @@
 
         internal FragmentMetadata Metadata { get; private set; }
 
-        internal abstract Task<IObservable<Structure>> Execute(SchemaExecutionScope executionScope);
+        internal abstract Task Execute(SchemaExecutionScope executionScope);
 
         internal void SetMetaData(FragmentMetadata metadata)
         {

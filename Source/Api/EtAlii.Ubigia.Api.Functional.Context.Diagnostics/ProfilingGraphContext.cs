@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
@@ -29,64 +30,84 @@
             return result;
         }
 
-        public Task<SchemaProcessingResult> Process(Schema schema, ISchemaScope scope)
+        public async IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = schema.ToString();
 
-            var result = _decoree.Process(schema, scope);
+            var items = _decoree
+                .Process(schema, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             Profiler.End(profile);
-
-            return result;
         }
 
-        public Task<SchemaProcessingResult> Process(string[] text, ISchemaScope scope)
+        public async IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
 
-            var result = _decoree.Process(text, scope);
+            var items = _decoree
+                .Process(text, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             Profiler.End(profile);
-
-            return result;
         }
 
-        public Task<SchemaProcessingResult> Process(string[] text)
+        public async IAsyncEnumerable<Structure> Process(string[] text)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
 
-            var result = _decoree.Process(text);
+            var items = _decoree
+                .Process(text)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             Profiler.End(profile);
-
-            return result;
         }
 
-        public Task<SchemaProcessingResult> Process(string text)
+        public async IAsyncEnumerable<Structure> Process(string text)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
-            var result = _decoree.Process(text);
+            var items = _decoree
+                .Process(text)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             Profiler.End(profile);
-
-            return result;
         }
 
-        public Task<SchemaProcessingResult> Process(string text, params object[] args)
+        public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
             profile.Arguments = string.Join(", ", args.Select(a => a.ToString()));
 
-            var result = _decoree.Process(text, args);
+            var items = _decoree
+                .Process(text, args)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
 
             Profiler.End(profile);
-
-            return result;
         }
     }
 }

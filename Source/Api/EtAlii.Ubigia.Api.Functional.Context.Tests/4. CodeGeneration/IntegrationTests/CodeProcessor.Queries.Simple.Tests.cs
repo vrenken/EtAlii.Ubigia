@@ -84,11 +84,13 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(query).ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var results = await processor
+                .Process(query)
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var structure = result.Structure.SingleOrDefault();
+            var structure = results.SingleOrDefault();
             Assert.NotNull(structure);
 
             void AssertTimeValue(string valueName)
