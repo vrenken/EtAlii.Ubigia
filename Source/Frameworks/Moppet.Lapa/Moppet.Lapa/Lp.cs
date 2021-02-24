@@ -470,7 +470,7 @@ namespace Moppet.Lapa
         /// </summary>
 		/// <param name="results">Correspondences. Match all must belong to one source.</param>
 		/// <returns>node or null.</returns>
-		public static LpNode Max(this IEnumerable<LpNode> results)
+        private static LpNode Max(this IEnumerable<LpNode> results)
 		{
 			var maxLen = -int.MaxValue;
 			LpNode maxResult = null;
@@ -784,15 +784,14 @@ namespace Moppet.Lapa
             return Mem(parser.ToParser(), storage);
         }
 
-		/// <summary>
+        /// <summary>
         /// Memorizatsiya. You rarely helps accelerate parsing simple designs innogda but it still, it accelerates significantly.
         /// A typical parser: (a | a + b | a + b + c | a + b + c + d), where a - portion which is three times again calculated and is therefore suitable for memorizatsii.
         /// </summary>
-		/// <param name="parser">parser.</param>
-		/// <param name="storage">Results Repository.</param>
-        /// <param name="sync">Synchronizing access to a dictionary. Synchronization objects - himself dictionary.</param>
-		/// <returns>parser.</returns>
-        public static LpsParser Mem(this LpsParser parser, IDictionary<LpText, LpMemNode> storage = null, bool sync = true)
+        /// <param name="parser">parser.</param>
+        /// <param name="storage">Results Repository.</param>
+        /// <returns>parser.</returns>
+        private static LpsParser Mem(this LpsParser parser, IDictionary<LpText, LpMemNode> storage = null)
 		{
 			return new(id: null, wrapNode: false, parser: Mem(parser.Do, storage));
 		}
@@ -805,7 +804,7 @@ namespace Moppet.Lapa
 		/// <param name="storage">Results Repository.</param>
         /// <param name="sync">Synchronizing access to a dictionary. Synchronization objects - himself dictionary.</param>
 		/// <returns>parser.</returns>
-		public static Func<LpText, LpNode> Mem(this Func<LpText, LpNode> parser, IDictionary<LpText, LpMemNode> storage, bool sync = true)
+        private static Func<LpText, LpNode> Mem(this Func<LpText, LpNode> parser, IDictionary<LpText, LpMemNode> storage, bool sync = true)
 		{
 			if (storage == null)
                 storage = new Dictionary<LpText, LpMemNode>(0x31);
@@ -1134,7 +1133,7 @@ namespace Moppet.Lapa
 		/// <param name="prevResults">Options analysis in the previous step.</param>
 		/// <param name="nextParser">Parsing options in the next step.</param>
 		/// <returns>concatenation results.</returns>
-		internal static IEnumerable<LpNode> NextSelf(this IEnumerable<LpNode> prevResults, LpmParser nextParser)
+        private static IEnumerable<LpNode> NextSelf(this IEnumerable<LpNode> prevResults, LpmParser nextParser)
 		{
 			foreach (var left in prevResults)
 			{
@@ -1227,7 +1226,7 @@ namespace Moppet.Lapa
 			}
 		}
 
-		internal static IEnumerable<LpNode> OneOrMore_(this LpmParser parser, LpText text)
+        private static IEnumerable<LpNode> OneOrMore_(this LpmParser parser, LpText text)
 		{
 			var results = parser.Do(text);
 			while (true)
@@ -1253,7 +1252,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="parser">parser.</param>
 		/// <returns>Multiparser.</returns>
-		public static LpmParser OneOrMore_(this LpsParser parser)
+        private static LpmParser OneOrMore_(this LpsParser parser)
 		{
 			return new(p => OneOrMore_(parser, p));
 		}
@@ -1286,7 +1285,7 @@ namespace Moppet.Lapa
 		/// <param name="parser">parser.</param>
 		/// <param name="text">text Block.</param>
 		/// <returns>Search results.</returns>
-		internal static IEnumerable<LpNode> Chain(this LpsParser parser, LpText text)
+        private static IEnumerable<LpNode> Chain(this LpsParser parser, LpText text)
 		{
 			var res = parser.Do(text);
 			while (res.Success)
@@ -1334,7 +1333,7 @@ namespace Moppet.Lapa
         /// </summary>
         /// <param name="parserInfo">parserInfo.</param>
 		/// <returns>parser.</returns>
-		public static LpsParser OneOrMore(this LpCover<LpsParser, LpNode> parserInfo)
+        private static LpsParser OneOrMore(this LpCover<LpsParser, LpNode> parserInfo)
 		{
             var parser = parserInfo.Parser;
             if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
@@ -1413,7 +1412,7 @@ namespace Moppet.Lapa
 		/// <param name="charPredicate">Parser odnogo Symbol - predicate.</param>
 		/// <param name="text">Text.</param>
 		/// <returns>All matching options.</returns>
-		internal static IEnumerable<LpNode> Maybe_(Func<char, bool> charPredicate, LpText text)
+        private static IEnumerable<LpNode> Maybe_(Func<char, bool> charPredicate, LpText text)
 		{
             yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
 			if (text.Length > 0 && charPredicate(text[0]))
@@ -1461,7 +1460,7 @@ namespace Moppet.Lapa
 		/// <param name="parser">parser.</param>
 		/// <param name="text">Text.</param>
 		/// <returns>All matching options.</returns>
-		public static IEnumerable<LpNode> Maybe(this LpmParser parser, LpText text)
+        private static IEnumerable<LpNode> Maybe(this LpmParser parser, LpText text)
 		{
             yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
 			foreach (var v in parser.Do(text))
@@ -1548,7 +1547,7 @@ namespace Moppet.Lapa
 		/// <param name="firstItem">Parser first element.</param>
 		/// <param name="maybeNextItems">Parser subsequent elements.</param>
 		/// <returns>parser.</returns>
-        public static LpsParser NextZeroOrMore(this LpsParser firstItem, LpUncover<LpsParser, LpNode> maybeNextItems)
+        private static LpsParser NextZeroOrMore(this LpsParser firstItem, LpUncover<LpsParser, LpNode> maybeNextItems)
         {
             return NextZeroOrMore((LpUncover<LpsParser, LpNode>)firstItem, maybeNextItems);
         }
@@ -1562,7 +1561,7 @@ namespace Moppet.Lapa
 		/// <param name="firstItem">Parser first element.</param>
 		/// <param name="maybeNextItems">Parser subsequent elements.</param>
 		/// <returns>parser.</returns>
-        public static LpsParser NextZeroOrMore(this LpUncover<LpsParser, LpNode> firstItem, LpUncover<LpsParser, LpNode> maybeNextItems)
+        private static LpsParser NextZeroOrMore(this LpUncover<LpsParser, LpNode> firstItem, LpUncover<LpsParser, LpNode> maybeNextItems)
 		{
 
             if (!maybeNextItems.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>
@@ -1764,7 +1763,7 @@ namespace Moppet.Lapa
         /// </summary>
         /// <param name="list">list.</param>
         /// <param name="node">node.</param>
-        public static void AddChildrenOrNodeOrNothing(this IList<LpNode> list, LpNode node)
+        private static void AddChildrenOrNodeOrNothing(this IList<LpNode> list, LpNode node)
         {
             if (node.Match.Length <= 0)
                 return;
@@ -1812,7 +1811,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="parser">parser.</param>
 		/// <returns>Multiparser that returns all matching options.</returns>
-		public static LpmParser ZeroOrMore_(this LpsParser parser)
+        private static LpmParser ZeroOrMore_(this LpsParser parser)
 		{
 			return new(p => ZeroOrMore(parser, p));
 		}
@@ -1834,7 +1833,7 @@ namespace Moppet.Lapa
 		/// <param name="parser">parser.</param>
 		/// <param name="text">Text.</param>
 		/// <returns>All matching options.</returns>
-		internal static IEnumerable<LpNode> ZeroOrMore_(LpmParser parser, LpText text)
+        private static IEnumerable<LpNode> ZeroOrMore_(LpmParser parser, LpText text)
 		{
 			// Zero
             yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
@@ -1928,7 +1927,7 @@ namespace Moppet.Lapa
         /// </summary>
         /// <param name="parserInfo">parserInfo.</param>
 		/// <returns>parser.</returns>
-		public static LpsParser ZeroOrMore(this LpCover<LpsParser, LpNode> parserInfo)
+        private static LpsParser ZeroOrMore(this LpCover<LpsParser, LpNode> parserInfo)
 		{
             var parser = parserInfo.Parser;
             if (!parserInfo.Uncover) return new LpsParser(id: null, wrapNode: true, parser: text =>

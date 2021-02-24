@@ -20,7 +20,7 @@ namespace Moppet.Lapa
     /// Base class. Here all that is common between LpsParser and LpmParser.
 	/// </summary>
 	/// <typeparam name="TDerived">Is derived from this class.</typeparam>
-	public class LpParserAttrs<TDerived> //: ICloneable 
+	public class LpParserAttrs<TDerived> //: ICloneable
 		where TDerived : LpParserAttrs<TDerived>, new()
 	{
 		/// <summary>
@@ -83,7 +83,7 @@ namespace Moppet.Lapa
 		/// <param name="newId">New identifier.</param>
         /// <param name="wrap">Truth is, if you want to wrap the node (the result returned by the parser), if it has a non-zero identifier.</param>
 		/// <returns>Clone with a new ID.</returns>
-		public TDerived Rename(string newId, bool wrap)
+        private TDerived Rename(string newId, bool wrap)
 		{
 			LpParserAttrs<TDerived> copy = Copy();
 			copy._identifier = newId;
@@ -100,7 +100,7 @@ namespace Moppet.Lapa
 		{
 			var c = new TDerived
 			{
-				_identifier = Identifier, 
+				_identifier = Identifier,
 				_wrapNode = WrapNode
 			};
 			return c;

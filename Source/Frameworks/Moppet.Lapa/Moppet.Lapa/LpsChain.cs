@@ -49,7 +49,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="left">Left chain.</param>
 		/// <param name="right">Right chain.</param>
-		public LpsChain(ICollection<LpsParser> left, ICollection<LpsParser> right)
+        private LpsChain(ICollection<LpsParser> left, ICollection<LpsParser> right)
 		{
 			_mParsers = new List<LpsParser>(left.Count + right.Count);
 			_mParsers.AddRange(left);
@@ -343,7 +343,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="parsersList">List of parsers.</param>
 		/// <returns>The resulting parser.</returns>
-		public static Func<LpText, LpNode> Concat(IEnumerable<LpsParser> parsersList)
+        private static Func<LpText, LpNode> Concat(IEnumerable<LpsParser> parsersList)
 		{
 			var parsers = parsersList.ToArray();
 			if (parsers.Length < 2)
@@ -379,7 +379,7 @@ namespace Moppet.Lapa
 		/// <param name="id">ID.</param>
 		/// <param name="wrapNode">wrapping result.</param>
 		/// <returns>The resulting parser.</returns>
-		public static LpsParser Concat(IEnumerable<LpsParser> parsersList, string id, bool wrapNode = false)
+        private static LpsParser Concat(IEnumerable<LpsParser> parsersList, string id, bool wrapNode = false)
 		{
 			var func = Concat(parsersList);
 			return new LpsParser(id: id, wrapNode: wrapNode, parser : func);

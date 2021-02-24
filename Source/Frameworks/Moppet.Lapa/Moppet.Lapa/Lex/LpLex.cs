@@ -217,7 +217,7 @@
 
 
         /// <summary>
-        /// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and 
+        /// Parser an identifier or name (term), which must start with a certain set of characters (eg only with the letters), and
         /// requirements followed by other characters. Also the name is always limited reach.
         /// </summary>
         /// <param name="firstChar">The first character.</param>
@@ -298,9 +298,9 @@
         }
 
         /// <summary>
-        /// Parser an identifier or a domain name, which must start with a certain set of characters (eg letters only) 
-        /// and requirements for subsequent characters other. In behalf of always limited reach. 
-        /// Here name can be written with a hyphen (dashChar), with a dash can not be repeated more than once in a row (-), to be at the beginning or end of the name. 
+        /// Parser an identifier or a domain name, which must start with a certain set of characters (eg letters only)
+        /// and requirements for subsequent characters other. In behalf of always limited reach.
+        /// Here name can be written with a hyphen (dashChar), with a dash can not be repeated more than once in a row (-), to be at the beginning or end of the name.
         /// After a dash or trailing characters allowed lastChars.
         /// </summary>
         /// <param name="firstChars">The first character or characters.</param>
@@ -585,7 +585,7 @@
             /// <param name="argsToSearch">Аргументы, которые нужно найти.</param>
             /// <param name="argsToReplace">Аргументы, которыми нужно заменить.</param>
             /// <returns>Копия.</returns>
-            public Expression<TDelegate> ReplaceArgs<TDelegate>(Expression<TDelegate> lambda, IEnumerable<ParameterExpression> argsToSearch, IEnumerable<ParameterExpression> argsToReplace)
+            private Expression<TDelegate> ReplaceArgs<TDelegate>(Expression<TDelegate> lambda, IEnumerable<ParameterExpression> argsToSearch, IEnumerable<ParameterExpression> argsToReplace)
             {
                 _lambdaArgsToSearch = argsToSearch;
                 _lambdaArgsToReplace = argsToReplace;

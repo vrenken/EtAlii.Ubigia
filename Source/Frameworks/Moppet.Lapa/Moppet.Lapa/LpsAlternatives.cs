@@ -42,7 +42,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		/// <param name="left">Left chain.</param>
 		/// <param name="right">Right chain.</param>
-		public LpsAlternatives(ICollection<LpsParser> left, ICollection<LpsParser> right)
+        private LpsAlternatives(ICollection<LpsParser> left, ICollection<LpsParser> right)
 		{
 			// ReSharper disable ParameterOnlyUsedForPreconditionCheck.Local
             if (left.Any(l => l == null))
@@ -120,7 +120,7 @@ namespace Moppet.Lapa
         /// Helper function to convert string parser select all alternatives.
 		/// </summary>
 		/// <returns>parser.</returns>
-		public LpmParser TakeAll()
+        private LpmParser TakeAll()
 		{
 			var copyParsers = _mParsers.ToArray();
 			return new LpmParser(Identifier, (text) => All(text, copyParsers).DistinctMatches()); // DistinctVoids
@@ -374,7 +374,7 @@ namespace Moppet.Lapa
         /// <param name="id">Result ID.</param>
         /// <param name="parsers">List parsers.</param>
 		/// <returns>The resulting parser.</returns>
-		public static LpsParser TakeFirst(string id, IEnumerable<LpsParser> parsers)
+        private static LpsParser TakeFirst(string id, IEnumerable<LpsParser> parsers)
 		{
 			var parsersArray = parsers.ToArray();
 			return new LpsParser(id, (text) =>
@@ -398,7 +398,7 @@ namespace Moppet.Lapa
         /// <param name="parsers">List parsers, which together represent parsing options.</param>
 		/// <param name="behind">Postcondition.</param>
 		/// <returns>The resulting parser.</returns>
-		public static LpsParser TakeFirst(string id, IEnumerable<LpsParser> parsers, LpsParser behind)
+        private static LpsParser TakeFirst(string id, IEnumerable<LpsParser> parsers, LpsParser behind)
 		{
 			var parsersArray = parsers.ToArray();
 			return new LpsParser(id, (text) =>
