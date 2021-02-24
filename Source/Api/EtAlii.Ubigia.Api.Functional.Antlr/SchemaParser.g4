@@ -24,8 +24,8 @@ requirement                                             : EXCLAMATION | QUESTION
 
 structure_fragment_body_entry
     : structure_fragment
-    | value_query_fragment
     | value_mutation_fragment
+    | value_query_fragment
     | comment WHITESPACE* NEWLINE+ (WHITESPACE | NEWLINE)*
     ;
 
@@ -55,8 +55,8 @@ value_type
     | VALUE_TYPE_DATETIME
     ;
 
-structure_fragment_body_newline_separated               : (structure_fragment_body_entry WHITESPACE* NEWLINE+)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
-structure_fragment_body_comma_separated                 : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* NEWLINE?)* structure_fragment_body_entry (WHITESPACE | NEWLINE)* ;
+structure_fragment_body_newline_separated               : (structure_fragment_body_entry WHITESPACE* comment? NEWLINE+)* structure_fragment_body_entry comment? (WHITESPACE | NEWLINE)* ;
+structure_fragment_body_comma_separated                 : (structure_fragment_body_entry WHITESPACE* COMMA WHITESPACE* comment? NEWLINE?)* structure_fragment_body_entry comment? (WHITESPACE | NEWLINE)* ;
 structure_fragment_body
     : structure_fragment_body_newline_separated
     | structure_fragment_body_comma_separated
@@ -73,6 +73,15 @@ value_annotation_clear_and_select_without_key           : WHITESPACE+ ATSIGN ANN
 value_annotation_clear_and_select                       : WHITESPACE+ ATSIGN ANNOTATION_NODE_CLEAR WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
                                                         // @value(SOURCE) or @value()
 value_annotation_select                                 : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
+
+value_annotation_select_current_node
+    : ATSIGN                                                       // @
+    | ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* RPAREN // @node()
+    ;
+
+// Structure.
+value_annotation_map_sequence                            : WHITESPACE+ sequence ;
+
 value_annotation
     : value_annotation_assign_and_select_with_key
     | value_annotation_assign_and_select_without_key
@@ -80,31 +89,37 @@ value_annotation
     | value_annotation_clear_and_select_without_key
     | value_annotation_clear_and_select
     | value_annotation_select
+    | value_annotation_select_current_node
+    | value_annotation_map_sequence
+    ;
+                                                        // @node-link(SOURCE, TARGET, TARGET_LINK)
+node_annotation_link_and_select_single_node             : ATSIGN ANNOTATION_NODE_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN;
+                                                        // @nodes-remove(SOURCE, NAME)
+node_annotation_remove_and_select_multiple_nodes        : ATSIGN ANNOTATION_NODES_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+                                                        // @node-remove(SOURCE, NAME)
+node_annotation_remove_and_select_single_node           : ATSIGN ANNOTATION_NODE_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+                                                        // @nodes-unlink(SOURCE, TARGET, TARGET_LINK)
+node_annotation_unlink_and_select_multiple_nodes        : ATSIGN ANNOTATION_NODES_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
+                                                        // @node-unlink(SOURCE, TARGET, TARGET_LINK)
+node_annotation_unlink_and_select_single_node           : ATSIGN ANNOTATION_NODE_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
+                                                        // @nodes-add(PATH, NAME)
+node_annotation_add_and_select_multiple_nodes           : ATSIGN ANNOTATION_NODES_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+                                                        // @node-add(PATH, NAME)
+node_annotation_add_and_select_single_node              : ATSIGN ANNOTATION_NODE_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
+                                                        // @nodes-link(SOURCE, TARGET, TARGET_LINK)
+node_annotation_link_and_select_multiple_nodes          : ATSIGN ANNOTATION_NODES_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
+                                                        // @nodes(SOURCE)
+node_annotation_select_multiple_nodes                   : ATSIGN ANNOTATION_NODES WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
+                                                        // @node(SOURCE)
+node_annotation_select_single_node                      : ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* RPAREN ;
+
+node_annotation_select_current_node
+    : ATSIGN                                                       // @
+    | ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* RPAREN // @node()
     ;
 
-                                                        // @nodes-add(PATH, NAME)
-node_annotation_add_and_select_multiple_nodes           : WHITESPACE+ ATSIGN ANNOTATION_NODES_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
-                                                        // @node-add(PATH, NAME)
-node_annotation_add_and_select_single_node              : WHITESPACE+ ATSIGN ANNOTATION_NODE_ADD WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
-                                                        // @nodes-link(SOURCE, TARGET, TARGET_LINK)
-node_annotation_link_and_select_multiple_nodes          : WHITESPACE+ ATSIGN ANNOTATION_NODES_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
-                                                        // @node-link(SOURCE, TARGET, TARGET_LINK)
-node_annotation_link_and_select_single_node             : WHITESPACE+ ATSIGN ANNOTATION_NODE_LINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN;
-                                                        // @nodes-remove(SOURCE, NAME)
-node_annotation_remove_and_select_multiple_nodes        : WHITESPACE+ ATSIGN ANNOTATION_NODES_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
-                                                        // @node-remove(SOURCE, NAME)
-node_annotation_remove_and_select_single_node           : WHITESPACE+ ATSIGN ANNOTATION_NODE_REMOVE WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_key WHITESPACE* RPAREN ;
-                                                        // @nodes-unlink(SOURCE, TARGET, TARGET_LINK)
-node_annotation_unlink_and_select_multiple_nodes        : WHITESPACE+ ATSIGN ANNOTATION_NODES_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
-                                                        // @node-unlink(SOURCE, TARGET, TARGET_LINK)
-node_annotation_unlink_and_select_single_node           : WHITESPACE+ ATSIGN ANNOTATION_NODE_UNLINK WHITESPACE* LPAREN WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* COMMA WHITESPACE* schema_path WHITESPACE* RPAREN ;
-
+// Structure.
 node_annotation_map_sequence                            : WHITESPACE+ sequence ;
-
-                                                        // @nodes(SOURCE)
-node_annotation_select_multiple_nodes                   : WHITESPACE+ ATSIGN ANNOTATION_NODES WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
-                                                        // @node(SOURCE)
-node_annotation_select_single_node                      : WHITESPACE+ ATSIGN ANNOTATION_NODE WHITESPACE* LPAREN WHITESPACE* schema_path? WHITESPACE* RPAREN ;
 node_annotation
     : node_annotation_add_and_select_multiple_nodes
     | node_annotation_add_and_select_single_node
@@ -113,6 +128,7 @@ node_annotation
     | node_annotation_remove_and_select_multiple_nodes
     | node_annotation_remove_and_select_single_node
     | node_annotation_select_multiple_nodes
+    | node_annotation_select_current_node
     | node_annotation_select_single_node
     | node_annotation_unlink_and_select_multiple_nodes
     | node_annotation_unlink_and_select_single_node

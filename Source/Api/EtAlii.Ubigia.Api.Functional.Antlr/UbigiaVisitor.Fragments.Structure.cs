@@ -30,7 +30,11 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
                 .OfType<StructureFragment>()
                 .ToArray();
 
-            var fragmentType = annotation == null || annotation is SelectSingleNodeAnnotation || annotation is SelectMultipleNodesAnnotation
+            var fragmentType =
+                annotation == null ||
+                annotation is SelectSingleNodeAnnotation ||
+                annotation is SelectMultipleNodesAnnotation ||
+                annotation is SelectCurrentNodeAnnotation
                 ? FragmentType.Query
                 : FragmentType.Mutation;
 
