@@ -144,7 +144,7 @@
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
-        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
+        [Fact(Skip = "Skipped - Should be made working though.")]
         public async Task SchemaProcessor_Mutate_Person_03()
         {
             // Arrange.
@@ -153,7 +153,7 @@
                                      FirstName = @node(),
                                      LastName = @node(\#FamilyName),
                                      NickName,
-                                     Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                     Friends[] = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                      {
                                         FirstName = @node(),
                                         LastName = @node(\#FamilyName),
@@ -167,7 +167,7 @@
                                     FirstName = @node(),
                                     LastName = @node(\#FamilyName),
                                     NickName
-                                    Friend = @nodes(/Friends/)
+                                    Friends[] = @nodes(/Friends/)
                                     {
                                         FirstName = @node(),
                                         LastName = @node(\#FamilyName),
@@ -218,13 +218,13 @@
                 AssertValue("Banner", friends[2], "LastName");
                 AssertValue("Pete", friends[2], "NickName");
             }
-            var mutationFriends = mutationStructure.Children.Where(c => c.Type == "Friend").ToArray();
+            var mutationFriends = mutationStructure.Children.Where(c => c.Type == "Friends").ToArray();
             AssertFriends(mutationFriends);
-            var queryFriends = queryStructure.Children.Where(c => c.Type == "Friend").ToArray();
+            var queryFriends = queryStructure.Children.Where(c => c.Type == "Friends").ToArray();
             AssertFriends(queryFriends);
         }
 
-        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
+        [Fact]
         public async Task SchemaProcessor_Mutate_Persons_01()
         {
             // Arrange.
@@ -235,7 +235,7 @@
                                }";
             var mutationSchema = _context.Parse(mutationText).Schema;
 
-            var queryText = @"Person = @nodes(Person:Doe/)
+            var queryText = @"Person[] = @nodes(Person:Doe/)
                               {
                                     Weight,
                                     NickName
@@ -260,7 +260,7 @@
             Assert.NotNull(mutationStructures);
             var queryStructures = queryResult.Structure.ToArray();
             Assert.NotNull(queryStructures);
-            Assert.Equal(3, mutationStructures.Length);
+            Assert.Single(mutationStructures);
             Assert.Equal(3, queryStructures.Length);
 
             var mutationStructure = mutationStructures.Single(s => s.Name == "Mary");
@@ -274,7 +274,7 @@
         }
 
 
-        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
+        [Fact(Skip = "Skipped - Should be made working though.")]
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
             // Arrange.
@@ -284,7 +284,7 @@
                                     LastName = @node(\#FamilyName)
                                     NickName
                                     Birthdate
-                                    Friends = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                    Friends[] = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                     {
                                         FirstName = @node()
                                         LastName = @node(\#FamilyName)
@@ -324,7 +324,7 @@
         }
 
 
-        [Fact(Skip = "Skipped - focus is on Nuget package creation first.")]
+        [Fact(Skip = "Skipped - Should be made working though.")]
         public async Task SchemaProcessor_Mutate_Person_Friends_Bidirectional_01()
         {
             // Arrange.
@@ -335,7 +335,7 @@
                                          FirstName = @node(),
                                          LastName = @node(\#FamilyName),
                                          NickName,
-                                         Friend = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
+                                         Friends[] = @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                                          {
                                             FirstName = @node(),
                                             LastName = @node(\#FamilyName),
@@ -348,24 +348,24 @@
 
             var queryText = @"Data
                               {
-                                    Person = @node(Person:Doe/John)
+                                    Person1 = @node(Person:Doe/John)
                                     {
                                         FirstName = @node(),
                                         LastName = @node(\#FamilyName),
                                         NickName
-                                        Friend = @nodes(/Friends/)
+                                        Friends[] = @nodes(/Friends/)
                                         {
                                             FirstName = @node(),
                                             LastName = @node(\#FamilyName),
                                             NickName
                                         }
                                     },
-                                    Person = @node(Person:Banner/Peter)
+                                    Person2 = @node(Person:Banner/Peter)
                                     {
                                         FirstName = @node(),
                                         LastName = @node(\#FamilyName),
                                         NickName
-                                        Friend = @nodes(/Friends/)
+                                        Friends[] = @nodes(/Friends/)
                                         {
                                             FirstName = @node(),
                                             LastName = @node(\#FamilyName),
@@ -451,25 +451,25 @@
             AssertValue("John", mutationPerson1, "FirstName");
             AssertValue("Doe", mutationPerson1, "LastName");
             AssertValue("Johnny", mutationPerson1, "NickName");
-            var mutationFriends1 = mutationPerson1.Children.Where(c => c.Type == "Friend").ToArray();
+            var mutationFriends1 = mutationPerson1.Children.Where(c => c.Type == "Friends").ToArray();
             AssertJohnDoeFriends(mutationFriends1);
 
             AssertValue("John", queryPerson1, "FirstName");
             AssertValue("Doe", queryPerson1, "LastName");
             AssertValue("Johnny", queryPerson1, "NickName");
-            var queryFriends1 = queryPerson1.Children.Where(c => c.Type == "Friend").ToArray();
+            var queryFriends1 = queryPerson1.Children.Where(c => c.Type == "Friends").ToArray();
             AssertJohnDoeFriends(queryFriends1);
 
             AssertValue("Peter", mutationPerson2, "FirstName");
             AssertValue("Banner", mutationPerson2, "LastName");
             AssertValue("Pete", mutationPerson2, "NickName");
-            var mutationFriends2 = mutationPerson2.Children.Where(c => c.Type == "Friend").ToArray();
+            var mutationFriends2 = mutationPerson2.Children.Where(c => c.Type == "Friends").ToArray();
             AssertPeterBannerFriends(mutationFriends2);
 
             AssertValue("Peter", queryPerson2, "FirstName");
             AssertValue("Banner", queryPerson2, "LastName");
             AssertValue("Pete", queryPerson2, "NickName");
-            var queryFriends2 = queryPerson2.Children.Where(c => c.Type == "Friend").ToArray();
+            var queryFriends2 = queryPerson2.Children.Where(c => c.Type == "Friends").ToArray();
             AssertPeterBannerFriends(queryFriends2);
         }
 

@@ -34,8 +34,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             var parts = BuildCorrectedPathParts(annotation, path);
 
+            if (parts.Last() is not ParentPathSubjectPart)
+            {
+                parts = parts
+                    .Concat(new [] { new ParentPathSubjectPart() })
+                    .ToArray();
+            }
+
             parts = parts
-                //.Concat(new [] { new ParentPathSubjectPart() })
                 .Concat(new [] { new ConstantPathSubjectPart(name) })
                 .ToArray();
 
