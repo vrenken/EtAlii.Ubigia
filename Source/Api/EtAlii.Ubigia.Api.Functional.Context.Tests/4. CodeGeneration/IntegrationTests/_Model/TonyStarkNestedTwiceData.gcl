@@ -1,5 +1,5 @@
 ﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
-TonyStarkNestedTwiceData = @nodes(Person:Stark/Tony)
+TonyStarkNestedTwiceData = @node(Person:Stark/Tony)
 {
     Data1
     {
