@@ -10,14 +10,14 @@
 
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
   <ItemGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" Label="Microsoft.NET.Test.Sdk (.targets)" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" Label="Microsoft.NET.Test.Sdk (.targets)" />
     <PackageReference Include="xunit" Version="2.4.1" Label="Xunit.Version (.targets)" />
     <PackageReference Include="xunit.assert" Version="2.4.1" Label="Xunit.Assert (.targets)" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" Label="Xunit.Runner.Visualstudio (.targets)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Coverlet.Collector" Version="3.0.2" Label="Coverlet.Collector (.targets)">
+    <PackageReference Include="Coverlet.Collector" Version="3.0.3" Label="Coverlet.Collector (.targets)">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
