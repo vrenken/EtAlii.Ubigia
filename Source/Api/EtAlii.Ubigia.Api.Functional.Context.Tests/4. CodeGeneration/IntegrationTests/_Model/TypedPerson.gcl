@@ -1,5 +1,5 @@
 ﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
-TypedPerson = @nodes(Person:Stark/Tony)
+TypedPerson = @node(Person:Stark/Tony)
 {
     string FirstName
     string LastName

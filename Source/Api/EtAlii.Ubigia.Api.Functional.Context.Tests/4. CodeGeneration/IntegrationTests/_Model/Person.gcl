@@ -1,5 +1,5 @@
 ﻿[namespace=EtAlii.Ubigia.Api.Functional.Context.Tests.Model]
-Person = @nodes(Person:Stark/Tony)
+Person = @node(Person:Stark/Tony)
 {
     FirstName = @node()
     LastName = @node(\#FamilyName)
