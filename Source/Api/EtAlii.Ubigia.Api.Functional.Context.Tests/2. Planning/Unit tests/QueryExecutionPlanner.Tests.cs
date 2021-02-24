@@ -61,22 +61,22 @@
             Assert.NotNull(fragmentMetadata);
             Assert.Equal("Person @node(person:Doe/John)", fragmentMetadata.ToString());
             Assert.Equal(5, fragmentMetadata.Children.Length);
-            Assert.Equal("age", ((ValueFragment)fragmentMetadata.Children[0].Source).Name);
-            Assert.Equal("company", ((ValueFragment)fragmentMetadata.Children[1].Source).ToString());
-            Assert.Equal("email", ((ValueFragment)fragmentMetadata.Children[2].Source).ToString());
-            Assert.Equal("phone", ((ValueFragment)fragmentMetadata.Children[3].Source).ToString());
+            Assert.Equal("object age", fragmentMetadata.Children[0].Source.ToString());
+            Assert.Equal("object company", fragmentMetadata.Children[1].Source.ToString());
+            Assert.Equal("object email", fragmentMetadata.Children[2].Source.ToString());
+            Assert.Equal("object phone", fragmentMetadata.Children[3].Source.ToString());
             Assert.Equal("name @node(\\#FamilyName)", fragmentMetadata.Children[4].ToString());
 
             Assert.NotNull(executionPlans);
             Assert.Equal(8, executionPlans.Length);
             Assert.Equal("Person @node(person:Doe/John)", executionPlans[0].ToString());
-            Assert.Equal("age", executionPlans[1].ToString());
-            Assert.Equal("company", executionPlans[2].ToString());
-            Assert.Equal("email", executionPlans[3].ToString());
-            Assert.Equal("phone", executionPlans[4].ToString());
+            Assert.Equal("object age", executionPlans[1].ToString());
+            Assert.Equal("object company", executionPlans[2].ToString());
+            Assert.Equal("object email", executionPlans[3].ToString());
+            Assert.Equal("object phone", executionPlans[4].ToString());
             Assert.Equal("name @node(\\#FamilyName)", executionPlans[5].ToString());
-            Assert.Equal("first @node(/FirstName)", executionPlans[6].ToString());
-            Assert.Equal("last @node()", executionPlans[7].ToString());
+            Assert.Equal("object first @node(/FirstName)", executionPlans[6].ToString());
+            Assert.Equal("object last @node()", executionPlans[7].ToString());
         }
     }
 }
