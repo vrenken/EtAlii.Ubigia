@@ -9,11 +9,4 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="3. Processing\Mutations\Structure\MutationStructureProcessor.cs">
-      <CodeLanguage>cs</CodeLanguage>
-      <DefaultPackFolder>content</DefaultPackFolder>
-      <BuildAction>Compile</BuildAction>
-    </Compile>
-  </ItemGroup>
 </Project>

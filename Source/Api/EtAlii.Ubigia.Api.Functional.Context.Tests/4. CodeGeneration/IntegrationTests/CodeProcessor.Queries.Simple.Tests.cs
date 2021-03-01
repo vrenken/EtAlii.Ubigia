@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional.Context.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
@@ -110,32 +109,6 @@
             AssertTimeValue("Year");
         }
 
-
-
-        [Fact]
-        public async Task SchemaCodeProcessor_Query_Time_Now_By_Last_Output()
-        {
-            // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.ProcessTimeNow().ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastTime = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastTime);
-            var time = result.Item;
-            Assert.NotNull(time);
-            Assert.Same(time, lastTime);
-        }
-
         [Fact]
         public async Task SchemaCodeProcessor_Query_Person_By_Structure()
         {
@@ -148,11 +121,11 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.ProcessTonyStarkPerson().ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var person = await processor
+                .ProcessTonyStarkPerson()
+                .ConfigureAwait(false);
 
             // Assert.
-            var person = result.Item;
             Assert.NotNull(person);
 
             Assert.Equal("Tony", person.FirstName);
@@ -171,11 +144,12 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.ProcessAllPersons().ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
+            var persons = await processor
+                .ProcessAllPersons()
+                .ToArrayAsync()
+                .ConfigureAwait(false);
 
             // Assert.
-            var persons = result.Items.ToArray();
             Assert.NotNull(persons);
 
 
@@ -202,31 +176,6 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_By_Last_Output()
-        {
-            // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.ProcessTonyStarkPerson().ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastPerson = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastPerson);
-
-            var person = result.Item;
-            Assert.NotNull(person);
-            Assert.Same(person, lastPerson);
-        }
-
-        [Fact]
         public async Task SchemaCodeProcessor_Query_Person_By_Values()
         {
             // Arrange.
@@ -238,17 +187,12 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.ProcessTonyStarkData().ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastData = await result.Output.LastOrDefaultAsync();
+            var data = await processor
+                .ProcessTonyStarkData()
+                .ConfigureAwait(false);
 
             // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastData);
-
-            var data = result.Item;
             Assert.NotNull(data);
-            Assert.Same(data, lastData);
 
             Assert.Equal("Tony", data.FirstName);
             Assert.Equal("Stark", data.LastName);
@@ -267,47 +211,17 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor
+            var person = await processor
                 .ProcessTonyStarkNestedData()
                 .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var person = result.Item;
             Assert.NotNull(person);
             var data = person.Data;
             Assert.NotNull(data);
 
             Assert.Equal("Tony", data.FirstName);
             Assert.Equal("Stark", data.LastName);
-        }
-
-        [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_Nested_By_Last_Output()
-        {
-            // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor
-                .ProcessTonyStarkNestedData()
-                .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastPerson = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastPerson);
-
-            var person = result.Item;
-            Assert.NotNull(person);
-            Assert.Same(person.Data, lastPerson.Data);
-
         }
 
         [Fact]
@@ -322,13 +236,11 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor
+            var person = await processor
                 .ProcessTonyStarkNestedTwiceData()
                 .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            var person = result.Item;
             Assert.NotNull(person);
             Assert.NotNull(person.Data1);
             Assert.NotNull(person.Data1.Data2);
@@ -337,40 +249,6 @@
             Assert.Equal("Stark", data2.LastName);
         }
 
-
-        [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_Nested_Double_By_Last_Output()
-        {
-            // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor.
-                ProcessTonyStarkNestedTwiceData()
-                .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastPerson = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastPerson);
-
-            var person = result.Item;
-            Assert.NotNull(person);
-            Assert.NotNull(person.Data1);
-            Assert.NotNull(person.Data1.Data2);
-
-            Assert.NotNull(lastPerson);
-            Assert.NotNull(lastPerson.Data1);
-            Assert.NotNull(lastPerson.Data1.Data2);
-
-            Assert.Same(person.Data1.Data2, lastPerson.Data1.Data2);
-        }
 
         [Fact]
         public async Task SchemaCodeProcessor_Query_Persons_By_Structure_01()
@@ -384,22 +262,22 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor
+            var items = await processor
                 .ProcessAllDoes()
+                .ToArrayAsync()
                 .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            Assert.Equal(2, result.Items.Count);
+            Assert.Equal(2, items.Length);
 
-            var firstPerson = result.Items[0];
+            var firstPerson = items[0];
             Assert.NotNull(firstPerson);
             Assert.Equal("John", firstPerson.FirstName);
             Assert.Equal("Doe", firstPerson.LastName);
             Assert.Equal(DateTime.Parse("1977-06-27"), firstPerson.Birthdate);
             Assert.Equal("Johnny", firstPerson.NickName);
 
-            var secondPerson = result.Items[1];
+            var secondPerson = items[1];
             Assert.NotNull(secondPerson);
             Assert.Equal("Jane", secondPerson.FirstName);
             Assert.Equal("Doe", secondPerson.LastName);
@@ -420,15 +298,13 @@
             var processor = new TestSchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor
+            var person = await processor
                 .ProcessJohnDoeWithFriends()
                 .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
 
             // Assert.
-            Assert.NotNull(result.Item);
+            Assert.NotNull(person);
 
-            var person = result.Item;
             Assert.NotNull(person);
             Assert.Equal("John", person.FirstName);
             Assert.Equal("Doe", person.LastName);
@@ -440,29 +316,6 @@
             Assert.Equal("Stark", person.Friends[0].LastName);
             Assert.Equal("Jane", person.Friends[1].FirstName);
             Assert.Equal("Doe", person.Friends[1].LastName);
-        }
-
-        [Fact]
-        public async Task SchemaCodeProcessor_Query_Persons_By_Last_Output()
-        {
-            // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
-
-            // Act.
-            var result = await processor
-                .ProcessAllDoes()
-                .ConfigureAwait(false);
-            await result.Completed().ConfigureAwait(false);
-            var lastPerson = await result.Output.LastOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(result.Output);
-            Assert.NotNull(lastPerson);
         }
     }
 }

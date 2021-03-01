@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public interface IStructureInstanceWriter
     {
-        void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment);
+        void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, string variableName);
     }
 }

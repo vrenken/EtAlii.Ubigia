@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public interface ISchemaProcessorExtensionWriter
     {
-        void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment);
+        void Write(ILogger logger, IndentedTextWriter writer, Schema schema);
     }
 }

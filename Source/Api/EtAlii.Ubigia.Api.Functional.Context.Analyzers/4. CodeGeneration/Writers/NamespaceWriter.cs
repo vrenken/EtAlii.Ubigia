@@ -25,14 +25,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.Indent += 1;
 
             writer.WriteLine($"using System.Threading.Tasks;");
-            writer.WriteLine($"using {typeof(SchemaProcessingResult).Namespace};");
+            if (schema.Structure.Plurality == Plurality.Multiple)
+            {
+                writer.WriteLine("using System.Collections.Generic;");
+            }
+            writer.WriteLine($"using {typeof(ISchemaProcessor).Namespace};");
             writer.WriteLine();
 
             _classWriter.Write(logger, writer, schema.Structure);
 
             writer.WriteLine();
 
-            _schemaProcessorExtensionWriter.Write(logger, writer, schema.Structure);
+            _schemaProcessorExtensionWriter.Write(logger, writer, schema);
 
             writer.Indent -= 1;
             writer.WriteLine("}");

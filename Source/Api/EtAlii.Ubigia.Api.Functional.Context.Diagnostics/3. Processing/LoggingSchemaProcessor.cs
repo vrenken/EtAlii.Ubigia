@@ -34,5 +34,38 @@
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Information("Processed query (Duration: {Duration}ms)", duration);
         }
+
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema)
+        {
+            _logger.Information("Processing query");
+            var start = Environment.TickCount;
+
+            var items = _processor
+                .ProcessMultiple<TResult>(schema)
+                .ConfigureAwait(false);
+
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
+
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            _logger.Information("Processed query (Duration: {Duration}ms)", duration);
+        }
+
+        public async Task<TResult> ProcessSingle<TResult>(Schema schema)
+        {
+            _logger.Information("Processing query");
+            var start = Environment.TickCount;
+
+            var item = await _processor
+                .ProcessSingle<TResult>(schema)
+                .ConfigureAwait(false);
+
+            var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
+            _logger.Information("Processed query (Duration: {Duration}ms)", duration);
+
+            return item;
+        }
     }
 }
