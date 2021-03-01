@@ -14,9 +14,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             _structureInstanceWriter = structureInstanceWriter;
         }
 
-        public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
+        public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
+            var structureFragment = schema.Structure;
+            var @namespace = schema.Namespace;
+            var contextName = schema.ContextName;
             var className = structureFragment.Name;
+
             logger
                 .ForContext("StructureFragment", structureFragment, true)
                 .Information("Writing schema processor extension for: {ClassName}", className);
@@ -24,17 +28,25 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            var resultType = structureFragment.Plurality == Plurality.Multiple
-                ? typeof(SchemaProcessingResultMultipleItems<>).Name.Split('`')[0]
-                : typeof(SchemaProcessingResultSingleItem<>).Name.Split('`')[0];
-
-            writer.WriteLine($"public static Task<{resultType}<{className}>> Process{className}(this ISchemaProcessor processor)");
+            writer.WriteLine(structureFragment.Plurality == Plurality.Single
+                ? $"public static Task<{className}> Process{className}(this ISchemaProcessor processor)"
+                : $"public static IAsyncEnumerable<{className}> Process{className}(this ISchemaProcessor processor)");
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            _structureInstanceWriter.Write(logger, writer, structureFragment);
+            _structureInstanceWriter.Write(logger, writer, structureFragment, "rootStructure");
 
-            writer.WriteLine("return null;");
+            writer.WriteLine($"var schema = new Schema(rootStructure, \"{@namespace}\", \"{contextName}\");");
+
+
+            if (structureFragment.Plurality == Plurality.Single)
+            {
+                writer.WriteLine($"return processor.ProcessSingle<{className}>(schema);");
+            }
+            else
+            {
+                writer.WriteLine($"return processor.ProcessMultiple<{className}>(schema);");
+            }
             writer.Indent -= 1;
             writer.WriteLine("}");
 

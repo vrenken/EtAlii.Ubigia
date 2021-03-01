@@ -3,17 +3,24 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
-    internal partial class SchemaProcessor : ISchemaProcessor
+    internal partial class SchemaProcessor
     {
-        private readonly ISchemaExecutionPlanner _schemaExecutionPlanner;
+        // protected SchemaProcessor(ISchemaExecutionPlanner schemaExecutionPlanner)
+        // {
+        //     _schemaExecutionPlanner = schemaExecutionPlanner;
+        // }
+        //
 
-        public SchemaProcessor(ISchemaExecutionPlanner schemaExecutionPlanner)
+        public async Task<TResult> ProcessSingle<TResult>(Schema schema)
         {
-            _schemaExecutionPlanner = schemaExecutionPlanner;
+            return await ProcessMultiple<TResult>(schema)
+                .SingleOrDefaultAsync()
+                .ConfigureAwait(false);
         }
 
-        public async IAsyncEnumerable<Structure> Process(Schema schema)
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema)
         {
             // We need to create execution plans for all of the sequences.
             var executionPlans = _schemaExecutionPlanner.Plan(schema);
@@ -47,7 +54,7 @@
 
             foreach (var item in rootMetadata.Items)
             {
-                yield return item;
+                yield return (TResult)(object)item;
             }
         }
     }

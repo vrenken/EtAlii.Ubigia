@@ -51,7 +51,7 @@
                     .ProcessTypedPerson()
                     .ConfigureAwait(false);
 
-                Assert.IsType<SchemaProcessingResultSingleItem<TypedPerson>>(result);
+                Assert.IsType<TypedPerson>(result);
             });
 
             // Assert.

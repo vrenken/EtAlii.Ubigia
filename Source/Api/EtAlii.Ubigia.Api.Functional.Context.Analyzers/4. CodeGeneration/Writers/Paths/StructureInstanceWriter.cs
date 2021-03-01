@@ -8,10 +8,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public class StructureInstanceWriter : IStructureInstanceWriter
     {
-        public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment fragment)
+        public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment fragment, string variableName)
         {
             var fragmentName = ToCamelCase(fragment.Name);
-            writer.WriteLine($"{nameof(StructureFragment)} Create{fragmentName}{nameof(StructureFragment)}()");
+            writer.WriteLine($"{nameof(StructureFragment)} Create{fragment.Name}{nameof(StructureFragment)}()");
             writer.WriteLine("{");
             writer.Indent += 1;
             writer.WriteLine($"var {fragmentName}Name = \"{fragment.Name}\";");
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine($"return new {nameof(StructureFragment)}({fragmentName}Name, {fragmentName}Plurality, {fragmentName}Annotation, {fragmentName}Values, {fragmentName}Children, {fragmentName}FragmentType);");
             writer.Indent -= 1;
             writer.WriteLine("}");
-            writer.WriteLine($"Create{fragmentName}{nameof(StructureFragment)}();");
+            writer.WriteLine($"var {variableName} = Create{fragment.Name}{nameof(StructureFragment)}();");
         }
 
         private string ToCamelCase(string s)
