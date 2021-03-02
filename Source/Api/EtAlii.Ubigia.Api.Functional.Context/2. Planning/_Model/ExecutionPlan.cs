@@ -7,13 +7,13 @@
     {
         public abstract Type OutputType { get; }
 
-        internal FragmentMetadata Metadata { get; private set; }
+        internal ExecutionPlanResultSink ResultSink { get; private set; }
 
         internal abstract Task Execute(SchemaExecutionScope executionScope);
 
-        internal void SetMetaData(FragmentMetadata metadata)
+        internal void SetResultSink(ExecutionPlanResultSink resultSink)
         {
-            Metadata = metadata;
+            ResultSink = resultSink;
         }
     }
 }

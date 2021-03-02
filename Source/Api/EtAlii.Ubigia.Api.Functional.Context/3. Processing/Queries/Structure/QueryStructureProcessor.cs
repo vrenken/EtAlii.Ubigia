@@ -20,38 +20,38 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async Task Process(
             StructureFragment fragment,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             SchemaExecutionScope executionScope)
         {
             var annotation = fragment.Annotation;
 
-            if (fragmentMetadata.Parent != null)
+            if (executionPlanResultSink.Parent != null)
             {
-                foreach (var structure in fragmentMetadata.Parent.Items)
+                foreach (var structure in executionPlanResultSink.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, fragmentMetadata, annotation, id, fragment.Name, structure).ConfigureAwait(false);
+                    await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, structure).ConfigureAwait(false);
                 }
             }
             else
             {
                 var id = Identifier.Empty;
-                await Build(executionScope, fragmentMetadata, annotation, id, fragment.Name, null).ConfigureAwait(false);
+                await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
 
 
         private async Task Build(
             SchemaExecutionScope executionScope,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             Identifier id,
             string structureName,
             Structure parent)
         {
-            var path = _pathDeterminer.Determine(fragmentMetadata, annotation, id);
+            var path = _pathDeterminer.Determine(executionPlanResultSink, annotation, id);
 
-            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, annotation, structureName, parent, path).ConfigureAwait(false);
+            await _pathStructureBuilder.Build(executionScope, executionPlanResultSink, annotation, structureName, parent, path).ConfigureAwait(false);
         }
     }
 }

@@ -56,16 +56,16 @@
             var executionPlans = planner.Plan(query);
 
             // Assert.
-            var fragmentMetadata = executionPlans.FirstOrDefault()?.Metadata;
+            var executionPlanResultSink = executionPlans.FirstOrDefault()?.ResultSink;
 
-            Assert.NotNull(fragmentMetadata);
-            Assert.Equal("Person @node(person:Doe/John)", fragmentMetadata.ToString());
-            Assert.Equal(5, fragmentMetadata.Children.Length);
-            Assert.Equal("object age", fragmentMetadata.Children[0].Source.ToString());
-            Assert.Equal("object company", fragmentMetadata.Children[1].Source.ToString());
-            Assert.Equal("object email", fragmentMetadata.Children[2].Source.ToString());
-            Assert.Equal("object phone", fragmentMetadata.Children[3].Source.ToString());
-            Assert.Equal("name @node(\\#FamilyName)", fragmentMetadata.Children[4].ToString());
+            Assert.NotNull(executionPlanResultSink);
+            Assert.Equal("Person @node(person:Doe/John)", executionPlanResultSink.ToString());
+            Assert.Equal(5, executionPlanResultSink.Children.Length);
+            Assert.Equal("object age", executionPlanResultSink.Children[0].Source.ToString());
+            Assert.Equal("object company", executionPlanResultSink.Children[1].Source.ToString());
+            Assert.Equal("object email", executionPlanResultSink.Children[2].Source.ToString());
+            Assert.Equal("object phone", executionPlanResultSink.Children[3].Source.ToString());
+            Assert.Equal("name @node(\\#FamilyName)", executionPlanResultSink.Children[4].ToString());
 
             Assert.NotNull(executionPlans);
             Assert.Equal(8, executionPlans.Length);

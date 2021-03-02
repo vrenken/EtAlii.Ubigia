@@ -13,10 +13,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async Task Process(
             ValueFragment fragment,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             SchemaExecutionScope executionScope)
         {
-            foreach (var structure in fragmentMetadata.Parent.Items)
+            foreach (var structure in executionPlanResultSink.Parent.Items)
             {
                 var value = await _valueGetter.Get(fragment.Name, fragment.Annotation, executionScope, structure).ConfigureAwait(false);
                 if(value != null)

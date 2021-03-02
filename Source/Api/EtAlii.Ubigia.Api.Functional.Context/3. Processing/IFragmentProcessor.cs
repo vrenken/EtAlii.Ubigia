@@ -7,7 +7,7 @@
     {
         Task Process(
             TFragment fragment,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             SchemaExecutionScope executionScope);
 
     }

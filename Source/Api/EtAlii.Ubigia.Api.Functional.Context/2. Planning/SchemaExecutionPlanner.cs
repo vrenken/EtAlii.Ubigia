@@ -30,9 +30,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return executionPlanQueue.ToArray();
         }
 
-        private FragmentMetadata GetPlansForFragment(Fragment fragment, List<ExecutionPlan> executionPlanQueue)
+        private ExecutionPlanResultSink GetPlansForFragment(Fragment fragment, List<ExecutionPlan> executionPlanQueue)
         {
-            var childMetaDatas = new List<FragmentMetadata>();
+            var childResultSinks = new List<ExecutionPlanResultSink>();
 
             ExecutionPlan executionPlan;
 
@@ -46,8 +46,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 case StructureFragment {Type: FragmentType.Query} structureQuery:
                     executionPlan = new FragmentExecutionPlan<StructureFragment>(structureQuery, _queryStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
-                    GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Values);
-                    GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Children);
+                    GetPlansForChildFragments(executionPlanQueue, childResultSinks, structureQuery.Values);
+                    GetPlansForChildFragments(executionPlanQueue, childResultSinks, structureQuery.Children);
                     break;
 
                 case ValueFragment {Type: FragmentType.Mutation} valueMutation:
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 case StructureFragment {Type: FragmentType.Mutation} structureMutation:
                     executionPlan = new FragmentExecutionPlan<StructureFragment>(structureMutation, _mutationStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
-                    GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureMutation.Values);
+                    GetPlansForChildFragments(executionPlanQueue, childResultSinks, structureMutation.Values);
                     break;
 
                 default:
@@ -66,23 +66,23 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     throw new SchemaProcessingException($"Unable to plan the specified fragment type: {typeAsString}");
             }
 
-            var metadata = new FragmentMetadata(fragment, childMetaDatas.ToArray());
-            executionPlan.SetMetaData(metadata);
+            var resultSink = new ExecutionPlanResultSink(fragment, childResultSinks.ToArray());
+            executionPlan.SetResultSink(resultSink);
 
-            return metadata;
+            return resultSink;
 
         }
 
         private void GetPlansForChildFragments<TFragment>(
             List<ExecutionPlan> executionPlanQueue,
-            List<FragmentMetadata> childMetaDatas,
+            List<ExecutionPlanResultSink> childResultSinks,
             TFragment[] fragments)
             where TFragment: Fragment
         {
             foreach (var fragment in fragments)
             {
-                var childMetadata = GetPlansForFragment(fragment, executionPlanQueue);
-                childMetaDatas.Add(childMetadata);
+                var childResultSink = GetPlansForFragment(fragment, executionPlanQueue);
+                childResultSinks.Add(childResultSink);
             }
         }
     }
