@@ -19,11 +19,10 @@
             _fragment = fragment;
         }
 
-
         internal override async Task Execute(SchemaExecutionScope executionScope)
         {
             await _processor
-                .Process(_fragment, Metadata, executionScope)
+                .Process(_fragment, ResultSink, executionScope)
                 .ConfigureAwait(false);
         }
 

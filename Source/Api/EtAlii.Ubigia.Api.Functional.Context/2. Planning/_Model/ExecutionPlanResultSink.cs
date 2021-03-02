@@ -2,22 +2,21 @@
 {
     using System.Collections.ObjectModel;
 
-    internal sealed class FragmentMetadata
+    internal sealed class ExecutionPlanResultSink
     {
         public ObservableCollection<Structure> Items { get; } = new();
 
-        public FragmentMetadata[] Children { get; }
+        public ExecutionPlanResultSink[] Children { get; }
 
-        public FragmentMetadata Parent { get; private set; }
+        public ExecutionPlanResultSink Parent { get; private set; }
 
         public Fragment Source { get; }
 
-        public FragmentMetadata(
+        public ExecutionPlanResultSink(
             Fragment source,
-            FragmentMetadata[] children)
+            ExecutionPlanResultSink[] children)
         {
             Source = source;
-
             Children = children;
             foreach (var child in children)
             {

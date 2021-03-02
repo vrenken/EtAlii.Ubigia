@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal class PathDeterminer : IPathDeterminer
     {
 
-        public PathSubject Determine(FragmentMetadata fragmentMetadata, NodeAnnotation annotation, in Identifier id)
+        public PathSubject Determine(ExecutionPlanResultSink executionPlanResultSink, NodeAnnotation annotation, in Identifier id)
         {
             var path = annotation?.Source;
 
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             else
             {
                 // No Id and no path.
-                //throw new SchemaProcessingException($"Unable to process fragment. No Id nor an annotation path found: {fragmentMetadata}")
+                //throw new SchemaProcessingException($"Unable to process fragment. No Id nor an annotation path found: {executionPlanResult}")
             }
 
             return path;

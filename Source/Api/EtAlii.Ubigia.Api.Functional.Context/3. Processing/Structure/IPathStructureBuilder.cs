@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         Task Build(
             SchemaExecutionScope executionScope,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             string structureName,
             Structure parent,

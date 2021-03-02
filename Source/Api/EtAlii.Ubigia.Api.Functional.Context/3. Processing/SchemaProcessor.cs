@@ -17,7 +17,7 @@
         {
             // We need to create execution plans for all of the sequences.
             var executionPlans = _schemaExecutionPlanner.Plan(schema);
-            var rootMetadata = executionPlans?.FirstOrDefault()?.Metadata ?? new FragmentMetadata(null, Array.Empty<FragmentMetadata>());
+            var rootResult = executionPlans?.FirstOrDefault()?.ResultSink ?? new ExecutionPlanResultSink(null, Array.Empty<ExecutionPlanResultSink>());
 
             try
             {
@@ -45,7 +45,7 @@
                 }
             }
 
-            foreach (var item in rootMetadata.Items)
+            foreach (var item in rootResult.Items)
             {
                 yield return item;
             }

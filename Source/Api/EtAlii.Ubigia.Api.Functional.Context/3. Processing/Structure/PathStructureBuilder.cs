@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async Task Build(
             SchemaExecutionScope executionScope,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             string structureName,
             Structure parent,
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 // We've got a placeholder root fragment. Let's add a single structure so that
                 // other structures can be put inside of it.
                 var item = new Structure(structureName, null, parent, null);
-                fragmentMetadata.Items.Add(item);
+                executionPlanResultSink.Items.Add(item);
             }
 
             if (path != null)
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 {
                     if (await scriptResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
                     {
-                        Build(lastOutput, structureName, fragmentMetadata, parent);
+                        Build(lastOutput, structureName, executionPlanResultSink, parent);
                     }
                 }
                 else
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                         .ConfigureAwait(false);
                     await foreach (var item in items)
                     {
-                        Build(item, structureName, fragmentMetadata, parent);
+                        Build(item, structureName, executionPlanResultSink, parent);
                     }
                 }
             }
@@ -66,11 +66,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         private void Build(
             IInternalNode node,
             string structureName,
-            FragmentMetadata fragmentMetadata,
+            ExecutionPlanResultSink executionPlanResultSink,
             Structure parent)
         {
             var item = new Structure(structureName, node.Type, parent, node);
-            fragmentMetadata.Items.Add(item);
+            executionPlanResultSink.Items.Add(item);
         }
     }
 }
