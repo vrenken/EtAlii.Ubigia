@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    public abstract class FragmentExecutionPlan
+    public abstract class ExecutionPlan
     {
         public abstract Type OutputType { get; }
 

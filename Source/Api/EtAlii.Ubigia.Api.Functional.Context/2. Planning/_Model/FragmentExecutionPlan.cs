@@ -3,12 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
-    internal class FragmentExecutionPlan<TFragment> : FragmentExecutionPlan
+    internal class FragmentExecutionPlan<TFragment> : ExecutionPlan
         where TFragment: Fragment
     {
         private readonly IFragmentProcessor<TFragment> _processor;
-
-        public TFragment Fragment { get; }
+        private readonly TFragment _fragment;
 
         public override Type OutputType { get; } = typeof(TFragment);
 
@@ -17,20 +16,20 @@
             IFragmentProcessor<TFragment> processor)
         {
             _processor = processor;
-            Fragment = fragment;
+            _fragment = fragment;
         }
 
 
         internal override async Task Execute(SchemaExecutionScope executionScope)
         {
             await _processor
-                .Process(Fragment, Metadata, executionScope)
+                .Process(_fragment, Metadata, executionScope)
                 .ConfigureAwait(false);
         }
 
         public override string ToString()
         {
-            return Fragment.ToString();
+            return _fragment.ToString();
         }
     }
 }

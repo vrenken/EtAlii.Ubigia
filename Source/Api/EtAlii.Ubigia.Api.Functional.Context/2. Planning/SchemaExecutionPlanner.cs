@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _mutationValueProcessor = mutationValueProcessor;
         }
 
-        public FragmentExecutionPlan[] Plan(Schema schema)
+        public ExecutionPlan[] Plan(Schema schema)
         {
-            var executionPlanQueue = new List<FragmentExecutionPlan>();
+            var executionPlanQueue = new List<ExecutionPlan>();
 
             var fragment = schema.Structure;
             GetPlansForFragment(fragment, executionPlanQueue);
@@ -30,11 +30,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return executionPlanQueue.ToArray();
         }
 
-        private FragmentMetadata GetPlansForFragment(Fragment fragment, List<FragmentExecutionPlan> executionPlanQueue)
+        private FragmentMetadata GetPlansForFragment(Fragment fragment, List<ExecutionPlan> executionPlanQueue)
         {
             var childMetaDatas = new List<FragmentMetadata>();
 
-            FragmentExecutionPlan executionPlan;
+            ExecutionPlan executionPlan;
 
             switch (fragment)
             {
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         private void GetPlansForChildFragments<TFragment>(
-            List<FragmentExecutionPlan> executionPlanQueue,
+            List<ExecutionPlan> executionPlanQueue,
             List<FragmentMetadata> childMetaDatas,
             TFragment[] fragments)
             where TFragment: Fragment
