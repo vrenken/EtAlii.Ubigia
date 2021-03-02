@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
     using System.Threading.Tasks;
 
     internal class FragmentExecutionPlan<TFragment> : ExecutionPlan
@@ -8,8 +7,6 @@
     {
         private readonly IFragmentProcessor<TFragment> _processor;
         private readonly TFragment _fragment;
-
-        public override Type OutputType { get; } = typeof(TFragment);
 
         public FragmentExecutionPlan(
             TFragment fragment,
