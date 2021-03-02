@@ -4,6 +4,6 @@
 
     internal interface IFragmentExecutionPlanner : IExecutionPlanner
     {
-        FragmentExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata);
+        ExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata);
     }
 }

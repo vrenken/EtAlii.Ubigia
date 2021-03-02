@@ -2,6 +2,6 @@
 {
     internal interface ISchemaExecutionPlanner
     {
-        FragmentExecutionPlan[] Plan(Schema schema);
+        ExecutionPlan[] Plan(Schema schema);
     }
 }
