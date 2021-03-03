@@ -7,24 +7,18 @@
 
     internal partial class SchemaProcessor
     {
-        // protected SchemaProcessor(ISchemaExecutionPlanner schemaExecutionPlanner)
-        // {
-        //     _schemaExecutionPlanner = schemaExecutionPlanner;
-        // }
-        //
-
-        public async Task<TResult> ProcessSingle<TResult>(Schema schema)
+        public async Task<TResult> ProcessSingle<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
-            return await ProcessMultiple<TResult>(schema)
+            return await ProcessMultiple(schema, resultMapper)
                 .SingleOrDefaultAsync()
                 .ConfigureAwait(false);
         }
 
-        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema)
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
             // We need to create execution plans for all of the sequences.
             var executionPlans = _schemaExecutionPlanner.Plan(schema);
-            var rootMetadata = executionPlans?.FirstOrDefault()?.Metadata ?? new FragmentMetadata(null, Array.Empty<FragmentMetadata>());
+            var rootMetadata = executionPlans?.FirstOrDefault()?.ResultSink ?? new ExecutionPlanResultSink(null, Array.Empty<ExecutionPlanResultSink>());
 
             try
             {
@@ -54,7 +48,7 @@
 
             foreach (var item in rootMetadata.Items)
             {
-                yield return (TResult)(object)item;
+                yield return resultMapper.MapRoot(item);
             }
         }
     }

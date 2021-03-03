@@ -7,7 +7,7 @@
     {
         IAsyncEnumerable<Structure> Process(Schema schema);
 
-        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema);
-        Task<TResult> ProcessSingle<TResult>(Schema schema);
+        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema, IResultMapper<TResult> resultMapper);
+        Task<TResult> ProcessSingle<TResult>(Schema schema, IResultMapper<TResult> resultMapper);
     }
 }

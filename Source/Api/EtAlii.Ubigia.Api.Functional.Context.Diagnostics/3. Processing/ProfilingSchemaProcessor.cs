@@ -23,14 +23,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
             return _decoree.Process(schema);
         }
 
-        public IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema)
+        public IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
-            return _decoree.ProcessMultiple<TResult>(schema);
+            return _decoree.ProcessMultiple(schema, resultMapper);
         }
 
-        public Task<TResult> ProcessSingle<TResult>(Schema schema)
+        public Task<TResult> ProcessSingle<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
-            return _decoree.ProcessSingle<TResult>(schema);
+            return _decoree.ProcessSingle(schema, resultMapper);
         }
     }
 }

@@ -39,13 +39,15 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine($"var schema = new Schema(rootStructure, \"{@namespace}\", \"{contextName}\");");
 
 
+            writer.WriteLine($"var resultMapper = new {className}.ResultMapper();");
+
             if (structureFragment.Plurality == Plurality.Single)
             {
-                writer.WriteLine($"return processor.ProcessSingle<{className}>(schema);");
+                writer.WriteLine($"return processor.ProcessSingle<{className}>(schema, resultMapper);");
             }
             else
             {
-                writer.WriteLine($"return processor.ProcessMultiple<{className}>(schema);");
+                writer.WriteLine($"return processor.ProcessMultiple<{className}>(schema, resultMapper);");
             }
             writer.Indent -= 1;
             writer.WriteLine("}");
