@@ -46,20 +46,21 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
                 ValueType.DateTime => "System.DateTime",
                 _ => throw new NotSupportedException()
             };
-            var valueAsString = prefix.ValueType switch
-            {
-                ValueType.Object => "new object()",
-                ValueType.String => $"\"{annotation?.ToString()?.Replace("\\", "\\\\") ?? ""}\"",
-                ValueType.Bool => "true",
-                ValueType.Float => "42.42f",
-                ValueType.Int => "42",
-                ValueType.DateTime => "System.DateTime.Now",
-                _ => throw new NotSupportedException()
-            };
+            // var valueAsString = prefix.ValueType switch
+            // {
+            //     ValueType.Object => "new object()",
+            //     ValueType.String => $"\"{annotation?.ToString()?.Replace("\\", "\\\\") ?? ""}\"",
+            //     ValueType.Bool => "true",
+            //     ValueType.Float => "42.42f",
+            //     ValueType.Int => "42",
+            //     ValueType.DateTime => "System.DateTime.Now",
+            //     _ => throw new NotSupportedException()
+            // };
 
             _annotationCommentWriter.Write(logger, writer, annotation);
 
-            writer.WriteLine($"public {typeAsString} {propertyName} {{get;}} = {valueAsString};");
+            //writer.WriteLine($"public {typeAsString} {propertyName} {{get; private set;}} = {valueAsString};");
+            writer.WriteLine($"public {typeAsString} {propertyName} {{get; private set;}}");
         }
 
     }

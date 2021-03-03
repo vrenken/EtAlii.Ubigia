@@ -35,13 +35,13 @@
             _logger.Information("Processed query (Duration: {Duration}ms)", duration);
         }
 
-        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema)
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
             _logger.Information("Processing query");
             var start = Environment.TickCount;
 
             var items = _processor
-                .ProcessMultiple<TResult>(schema)
+                .ProcessMultiple(schema, resultMapper)
                 .ConfigureAwait(false);
 
             await foreach (var item in items)
@@ -53,13 +53,13 @@
             _logger.Information("Processed query (Duration: {Duration}ms)", duration);
         }
 
-        public async Task<TResult> ProcessSingle<TResult>(Schema schema)
+        public async Task<TResult> ProcessSingle<TResult>(Schema schema, IResultMapper<TResult> resultMapper)
         {
             _logger.Information("Processing query");
             var start = Environment.TickCount;
 
             var item = await _processor
-                .ProcessSingle<TResult>(schema)
+                .ProcessSingle(schema, resultMapper)
                 .ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;

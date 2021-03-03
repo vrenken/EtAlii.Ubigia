@@ -10,7 +10,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
         private readonly IClassWriter _classWriter;
         private readonly ISchemaProcessorExtensionWriter _schemaProcessorExtensionWriter;
 
-        public NamespaceWriter(IClassWriter classWriter, ISchemaProcessorExtensionWriter schemaProcessorExtensionWriter)
+        public NamespaceWriter(
+            IClassWriter classWriter,
+            ISchemaProcessorExtensionWriter schemaProcessorExtensionWriter)
         {
             _classWriter = classWriter;
             _schemaProcessorExtensionWriter = schemaProcessorExtensionWriter;
@@ -24,6 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("{");
             writer.Indent += 1;
 
+            writer.WriteLine($"using System;");
             writer.WriteLine($"using System.Threading.Tasks;");
             if (schema.Structure.Plurality == Plurality.Multiple)
             {

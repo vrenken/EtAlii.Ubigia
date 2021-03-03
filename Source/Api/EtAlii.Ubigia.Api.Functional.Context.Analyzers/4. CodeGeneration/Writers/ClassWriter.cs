@@ -9,11 +9,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     {
         private readonly IPropertyWriter _propertyWriter;
         private readonly IAnnotationCommentWriter _annotationCommentWriter;
+        private readonly IResultMapperWriter _resultMapperWriter;
 
-        public ClassWriter(IPropertyWriter propertyWriter, IAnnotationCommentWriter annotationCommentWriter)
+        public ClassWriter(
+            IPropertyWriter propertyWriter,
+            IAnnotationCommentWriter annotationCommentWriter,
+            IResultMapperWriter resultMapperWriter)
         {
             _propertyWriter = propertyWriter;
             _annotationCommentWriter = annotationCommentWriter;
+            _resultMapperWriter = resultMapperWriter;
         }
 
         public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
@@ -54,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
                 _annotationCommentWriter.Write(logger, writer, nestedStructureFragment.Annotation);
 
                 var plurality = nestedStructureFragment.Plurality == Plurality.Multiple ? "[]" : "";
-                writer.WriteLine($"public {nestedClassName}Type{plurality} {nestedClassName} {{ get; }}");
+                writer.WriteLine($"public {nestedClassName}Type{plurality} {nestedClassName} {{ get; private set;}}");
 
                 writer.WriteLine();
 
@@ -65,6 +70,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
                     writer.WriteLine();
                 }
             }
+
+            writer.WriteLine();
+
+            _resultMapperWriter.Write(logger, writer, structureFragment, isRoot);
 
             writer.Indent -= 1;
             writer.WriteLine("}");
