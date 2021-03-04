@@ -276,9 +276,6 @@
             var parser = new TestSchemaParserFactory();
             var context = new GraphContext(processor, parser, _traversalContext);
 
-            // var gc = new GraphContext(new TestSchemaProcessorFactory(), new TestSchemaParserFactory(), _traversalContext);
-            // gc.Process()
-
             // Act.
             var person = await context
                 .ProcessJohnDoeWithFriends()

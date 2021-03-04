@@ -27,11 +27,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.Indent += 1;
 
             writer.WriteLine($"using System;");
+            writer.WriteLine($"using System.Collections.Generic;");
             writer.WriteLine($"using System.Threading.Tasks;");
-            if (schema.Structure.Plurality == Plurality.Multiple)
-            {
-                writer.WriteLine("using System.Collections.Generic;");
-            }
             writer.WriteLine($"using {typeof(ISchemaProcessor).Namespace};");
             writer.WriteLine();
 
