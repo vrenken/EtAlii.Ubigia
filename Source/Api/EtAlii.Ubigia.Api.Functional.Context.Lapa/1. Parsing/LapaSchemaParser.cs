@@ -51,7 +51,7 @@
                 {
                     var structureFragment = _structureFragmentParser.Parse(structureFragmentMatch);
                     // The Lapa parser is not yet able to parse namespace and context names (yet).
-                    schema = new Schema(structureFragment, null, null);
+                    schema = new Schema(structureFragment, null, null, text);
                 }
             }
             catch (Exception e)

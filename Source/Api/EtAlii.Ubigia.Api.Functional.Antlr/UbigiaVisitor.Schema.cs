@@ -8,6 +8,11 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
     {
         public override object VisitSchema(UbigiaParser.SchemaContext context)
         {
+            var text = context.GetText();
+            text = text
+                .Substring(0, text.Length - 5) // Remove the <EOF> at the end.
+                .Replace("\r\n","\n")
+                .TrimEnd('\n');
             var fragmentContext = context.structure_fragment();
 
             var namespaceContext = context.header_option_namespace();
@@ -16,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
                 ? (string)VisitHeader_option_namespace(namespaceContext)
                 : null;
             return fragmentContext != null
-                ? new Schema((StructureFragment)VisitStructure_fragment(fragmentContext), @namespace, null)
+                ? new Schema((StructureFragment)VisitStructure_fragment(fragmentContext), @namespace, null, text)
                 : null;
         }
 
