@@ -12,11 +12,14 @@
 
         public StructureFragment Structure { get; }
 
-        public Schema(StructureFragment structure, string @namespace, string contextName)
+        public string Text { get; }
+
+        public Schema(StructureFragment structure, string @namespace, string contextName, string text)
         {
             Structure = structure;
             Namespace = @namespace;
             ContextName = contextName;
+            Text = text;
         }
     }
 }
