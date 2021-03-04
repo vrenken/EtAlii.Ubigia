@@ -7,17 +7,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
     public class GraphContextExtensionWriter : IGraphContextExtensionWriter
     {
-        private readonly IStructureInstanceWriter _structureInstanceWriter;
-
-        public GraphContextExtensionWriter(IStructureInstanceWriter structureInstanceWriter)
-        {
-            _structureInstanceWriter = structureInstanceWriter;
-        }
-
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var structureFragment = schema.Structure;
-            var schemaText = schema.Text;
+            var schemaTextLines = schema.Text
+                .Split('\n');
+            var schemaLineCount = schemaTextLines.Length;
+
             var className = structureFragment.Name;
 
             logger
@@ -27,23 +23,25 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("{");
             writer.Indent += 1;
 
+            writer.WriteLine("///<summary>");
+            for (var i = 0; i < schemaLineCount; i++)
+            {
+                writer.WriteLine($"///{schemaTextLines[i]}");
+            }
+
+            writer.WriteLine("///</summary>");
             writer.WriteLine(structureFragment.Plurality == Plurality.Single
                 ? $"public static Task<{className}> Process{className}(this IGraphContext context)"
                 : $"public static IAsyncEnumerable<{className}> Process{className}(this IGraphContext context)");
             writer.WriteLine("{");
             writer.Indent += 1;
 
-            _structureInstanceWriter.Write(logger, writer, structureFragment, "rootStructure");
-
-            var schemaTextLines = schemaText
-                .Split('\n');
             writer.WriteLine($"const string schemaText = @\"");
             writer.Indent += 1;
 
-            var length = schemaTextLines.Length;
-            for (var i = 0; i < length; i++)
+            for (var i = 0; i < schemaLineCount; i++)
             {
-                var postfix = i == length - 1 ? "\";" : "";
+                var postfix = i == schemaLineCount - 1 ? "\";" : "";
                 writer.WriteLine($"{schemaTextLines[i]}{postfix}");
             }
             writer.Indent -= 1;

@@ -2,6 +2,6 @@
 {
     public interface IResultMapper<out TResult>
     {
-        TResult MapRoot(Structure structure);
+        TResult Map(Structure structure);
     }
 }

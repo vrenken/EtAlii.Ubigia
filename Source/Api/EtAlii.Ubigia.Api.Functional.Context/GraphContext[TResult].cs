@@ -19,7 +19,7 @@
 
             await foreach (var item in items)
             {
-                yield return resultMapper.MapRoot(item);
+                yield return resultMapper.Map(item);
             }
         }
     }
