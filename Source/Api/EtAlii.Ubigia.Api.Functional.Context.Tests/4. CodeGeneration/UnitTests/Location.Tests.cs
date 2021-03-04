@@ -30,9 +30,9 @@
 
             // Assert.
             Assert.NotNull(location);
-            Assert.Equal("@node()", name);
-            Assert.Equal("@node(\\#Country)", country);
-            Assert.IsType<object>(geoPosition);
+            Assert.Null(name);
+            Assert.Null(country);
+            Assert.Null(geoPosition);
         }
     }
 }

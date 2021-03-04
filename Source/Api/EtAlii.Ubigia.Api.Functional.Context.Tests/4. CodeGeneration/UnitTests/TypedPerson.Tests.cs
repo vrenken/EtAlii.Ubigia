@@ -29,12 +29,12 @@
 
             // Assert.
             Assert.NotNull(person);
-            Assert.Equal(string.Empty, person.FirstName);
-            Assert.Equal(string.Empty, person.LastName);
-            Assert.True(person.BirthDate.Year > 2020);
-            Assert.Equal(42, person.NumberOfChildren);
-            Assert.True(person.Height > 42.41f);
-            Assert.True(person.IsMale);
+            Assert.Null(person.FirstName);
+            Assert.Null(person.LastName);
+            Assert.Equal(DateTime.MinValue, person.BirthDate);
+            Assert.Equal(0, person.NumberOfChildren);
+            Assert.Equal(0f, person.Height);
+            Assert.False(person.IsMale);
         }
 
         [Fact]
