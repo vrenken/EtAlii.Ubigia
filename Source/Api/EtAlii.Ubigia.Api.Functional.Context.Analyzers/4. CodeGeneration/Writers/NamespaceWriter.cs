@@ -8,14 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     public class NamespaceWriter : INamespaceWriter
     {
         private readonly IClassWriter _classWriter;
-        private readonly ISchemaProcessorExtensionWriter _schemaProcessorExtensionWriter;
+        private readonly IGraphContextExtensionWriter _graphContextExtensionWriter;
 
         public NamespaceWriter(
             IClassWriter classWriter,
-            ISchemaProcessorExtensionWriter schemaProcessorExtensionWriter)
+            IGraphContextExtensionWriter graphContextExtensionWriter)
         {
             _classWriter = classWriter;
-            _schemaProcessorExtensionWriter = schemaProcessorExtensionWriter;
+            _graphContextExtensionWriter = graphContextExtensionWriter;
         }
 
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
             writer.WriteLine();
 
-            _schemaProcessorExtensionWriter.Write(logger, writer, schema);
+            _graphContextExtensionWriter.Write(logger, writer, schema);
 
             writer.Indent -= 1;
             writer.WriteLine("}");

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal partial class SchemaProcessor : ISchemaProcessor
+    internal class SchemaProcessor : ISchemaProcessor
     {
         private readonly ISchemaExecutionPlanner _schemaExecutionPlanner;
 

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     using System.CodeDom.Compiler;
     using Serilog;
 
-    public interface ISchemaProcessorExtensionWriter
+    public interface IGraphContextExtensionWriter
     {
         void Write(ILogger logger, IndentedTextWriter writer, Schema schema);
     }

@@ -5,7 +5,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class GraphContext : IGraphContext
+    internal partial class GraphContext : IGraphContext
     {
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
