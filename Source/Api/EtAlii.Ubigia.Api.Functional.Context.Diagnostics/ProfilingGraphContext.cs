@@ -93,6 +93,34 @@
             Profiler.End(profile);
         }
 
+        public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper)
+        {
+            dynamic profile = Profiler.Begin("Processing");
+            profile.Query = text;
+            var item = await _decoree
+                .ProcessSingle(text, resultMapper)
+                .ConfigureAwait(false);
+
+            Profiler.End(profile);
+
+            return item;
+        }
+
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper)
+        {
+            dynamic profile = Profiler.Begin("Processing");
+            profile.Query = text;
+            var items = _decoree
+                .ProcessMultiple(text, resultMapper)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
+
+            Profiler.End(profile);
+        }
+
         public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
         {
             dynamic profile = Profiler.Begin("Processing");

@@ -11,7 +11,7 @@
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
 
-    public class CodeSchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphContextCodeQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ITraversalContext _traversalContext;
         private IGraphContext _context;
@@ -20,7 +20,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private GraphContextConfiguration _configuration;
 
-        public CodeSchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
+        public GraphContextCodeQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;
@@ -59,7 +59,7 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Time_Now_By_Structure()
+        public async Task GraphContextCode_Query_Time_Now_By_Structure()
         {
             // Arrange.
             var queryText = @"Time = @node(time:now)
@@ -110,18 +110,15 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_By_Structure()
+        public async Task GraphContextCode_Query_Person_By_Structure()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var person = await processor
+            var person = await context
                 .ProcessTonyStarkPerson()
                 .ConfigureAwait(false);
 
@@ -133,18 +130,15 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Persons_By_Structure_02()
+        public async Task GraphContextCode_Query_Persons_By_Structure_02()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var persons = await processor
+            var persons = await context
                 .ProcessAllPersons()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -176,18 +170,15 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_By_Values()
+        public async Task GraphContextCode_Query_Person_By_Values()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var data = await processor
+            var data = await context
                 .ProcessTonyStarkData()
                 .ConfigureAwait(false);
 
@@ -200,18 +191,15 @@
 
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_Nested_By_Structure()
+        public async Task GraphContextCode_Query_Person_Nested_By_Structure()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var person = await processor
+            var person = await context
                 .ProcessTonyStarkNestedData()
                 .ConfigureAwait(false);
 
@@ -225,18 +213,15 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_Nested_Double_By_Structure()
+        public async Task GraphContextCode_Query_Person_Nested_Double_By_Structure()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var person = await processor
+            var person = await context
                 .ProcessTonyStarkNestedTwiceData()
                 .ConfigureAwait(false);
 
@@ -251,18 +236,15 @@
 
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Persons_By_Structure_01()
+        public async Task GraphContextCode_Query_Persons_By_Structure_01()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
 
             // Act.
-            var items = await processor
+            var items = await context
                 .ProcessAllDoes()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -287,18 +269,18 @@
         }
 
         [Fact]
-        public async Task SchemaCodeProcessor_Query_Person_Friends()
+        public async Task GraphContextCode_Query_Person_Friends()
         {
             // Arrange.
-            var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(scope)
-                .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory();
+            var parser = new TestSchemaParserFactory();
+            var context = new GraphContext(processor, parser, _traversalContext);
+
+            // var gc = new GraphContext(new TestSchemaProcessorFactory(), new TestSchemaParserFactory(), _traversalContext);
+            // gc.Process()
 
             // Act.
-            var person = await processor
+            var person = await context
                 .ProcessJohnDoeWithFriends()
                 .ConfigureAwait(false);
 

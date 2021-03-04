@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A <see cref="GraphContext"/> can be used to execute GCL queries on a Ubigia space.
@@ -32,5 +33,7 @@
         IAsyncEnumerable<Structure> Process(string text);
         //Task<IEnumerable<object>> Process(string text, IProgress<QueryProcessingProgress> progress, params object[] args)
 
+        Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper);
+        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper);
     }
 }

@@ -37,8 +37,8 @@
             var propertyWriter = new ValuePropertyWriter(annotationCommentWriter);
             var classWriter = new ClassWriter(propertyWriter, annotationCommentWriter, resultMapperWriter);
             var structureInstanceWriter = new StructureInstanceWriter();
-            var schemaProcessorExtensionWriter = new SchemaProcessorExtensionWriter(structureInstanceWriter);
-            _namespaceWriter = new NamespaceWriter(classWriter, schemaProcessorExtensionWriter);
+            var graphContextExtensionWriter = new GraphContextExtensionWriter(structureInstanceWriter);
+            _namespaceWriter = new NamespaceWriter(classWriter, graphContextExtensionWriter);
             _headerWriter = new HeaderWriter();
         }
 

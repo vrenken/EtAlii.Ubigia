@@ -38,16 +38,16 @@
         }
 
         [Fact]
-        public async Task TypedPerson_SchemaProcessor_Process()
+        public async Task TypedPerson_GraphContext_Process()
         {
             // Arrange.
-            var processor = (ISchemaProcessor)null;
+            var context = (IGraphContext)null;
 
             // Act.
             var act = new Func<Task>(async () =>
             {
                 // ReSharper disable once ExpressionIsAlwaysNull
-                var result = await processor
+                var result = await context
                     .ProcessTypedPerson()
                     .ConfigureAwait(false);
 

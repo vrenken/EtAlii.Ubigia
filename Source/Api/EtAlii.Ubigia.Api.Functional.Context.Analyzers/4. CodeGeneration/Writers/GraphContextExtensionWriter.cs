@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     using System.CodeDom.Compiler;
     using Serilog;
 
-    public class SchemaProcessorExtensionWriter : ISchemaProcessorExtensionWriter
+    public class GraphContextExtensionWriter : IGraphContextExtensionWriter
     {
         private readonly IStructureInstanceWriter _structureInstanceWriter;
 
-        public SchemaProcessorExtensionWriter(IStructureInstanceWriter structureInstanceWriter)
+        public GraphContextExtensionWriter(IStructureInstanceWriter structureInstanceWriter)
         {
             _structureInstanceWriter = structureInstanceWriter;
         }
@@ -17,37 +17,46 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var structureFragment = schema.Structure;
-            var @namespace = schema.Namespace;
-            var contextName = schema.ContextName;
+            var schemaText = schema.Text;
             var className = structureFragment.Name;
 
             logger
                 .ForContext("StructureFragment", structureFragment, true)
                 .Information("Writing schema processor extension for: {ClassName}", className);
-            writer.WriteLine($"public static class SchemaProcessor{className}Extension");
+            writer.WriteLine($"public static class GraphContext{className}Extension");
             writer.WriteLine("{");
             writer.Indent += 1;
 
             writer.WriteLine(structureFragment.Plurality == Plurality.Single
-                ? $"public static Task<{className}> Process{className}(this ISchemaProcessor processor)"
-                : $"public static IAsyncEnumerable<{className}> Process{className}(this ISchemaProcessor processor)");
+                ? $"public static Task<{className}> Process{className}(this IGraphContext context)"
+                : $"public static IAsyncEnumerable<{className}> Process{className}(this IGraphContext context)");
             writer.WriteLine("{");
             writer.Indent += 1;
 
             _structureInstanceWriter.Write(logger, writer, structureFragment, "rootStructure");
 
-            writer.WriteLine($"var schema = new Schema(rootStructure, \"{@namespace}\", \"{contextName}\");");
+            var schemaTextLines = schemaText
+                .Split('\n');
+            writer.WriteLine($"const string schemaText = @\"");
+            writer.Indent += 1;
 
+            var length = schemaTextLines.Length;
+            for (var i = 0; i < length; i++)
+            {
+                var postfix = i == length - 1 ? "\";" : "";
+                writer.WriteLine($"{schemaTextLines[i]}{postfix}");
+            }
+            writer.Indent -= 1;
 
             writer.WriteLine($"var resultMapper = new {className}.ResultMapper();");
 
             if (structureFragment.Plurality == Plurality.Single)
             {
-                writer.WriteLine($"return processor.ProcessSingle<{className}>(schema, resultMapper);");
+                writer.WriteLine($"return context.ProcessSingle<{className}>(schemaText, resultMapper);");
             }
             else
             {
-                writer.WriteLine($"return processor.ProcessMultiple<{className}>(schema, resultMapper);");
+                writer.WriteLine($"return context.ProcessMultiple<{className}>(schemaText, resultMapper);");
             }
             writer.Indent -= 1;
             writer.WriteLine("}");
