@@ -41,11 +41,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 
             writer.WriteLine();
 
-            WriteChildMappings(logger, writer, structureFragment);
+            WriteChildMappings(writer, structureFragment);
 
             writer.WriteLine();
 
-            WriteValueMappings(logger, writer, structureFragment);
+            WriteValueMappings(writer, structureFragment);
 
             writer.WriteLine("return instance;");
 
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             // s.Values[].Object
         }
 
-        private void WriteChildMappings(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
+        private void WriteChildMappings(IndentedTextWriter writer, StructureFragment structureFragment)
         {
             var pluralChildren = new List<StructureFragment>();
             foreach (var childFragment in structureFragment.Children)
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             }
         }
 
-        private void WriteValueMappings(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment)
+        private void WriteValueMappings(IndentedTextWriter writer, StructureFragment structureFragment)
         {
             writer.WriteLine("foreach(var value in structure.Values)");
             writer.WriteLine("{");

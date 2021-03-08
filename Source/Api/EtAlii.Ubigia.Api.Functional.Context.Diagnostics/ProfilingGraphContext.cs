@@ -93,12 +93,12 @@
             Profiler.End(profile);
         }
 
-        public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper)
+        public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
             var item = await _decoree
-                .ProcessSingle(text, resultMapper)
+                .ProcessSingle(text, resultMapper, scope)
                 .ConfigureAwait(false);
 
             Profiler.End(profile);
@@ -106,12 +106,12 @@
             return item;
         }
 
-        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper)
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
             var items = _decoree
-                .ProcessMultiple(text, resultMapper)
+                .ProcessMultiple(text, resultMapper, scope)
                 .ConfigureAwait(false);
             await foreach (var item in items)
             {

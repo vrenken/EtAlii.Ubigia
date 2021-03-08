@@ -23,11 +23,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\SetAndSelectValueAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. _Lapa\1. Parsing\UnitTests\Values\ValueAnnotationsParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Bugs.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\GraphContextCode.Queries.Variable.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\Location.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\UnitTests\TypedPerson.Tests.cs" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Location.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\Person.gcl" />
+    <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\PersonByFirstNameLastName.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TypedPerson.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\TonyStarkPerson.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)4. CodeGeneration\IntegrationTests\_Model\AllPersons.gcl" />

@@ -3,10 +3,18 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 {
     using System.CodeDom.Compiler;
+    using System.Linq;
     using Serilog;
 
     public class GraphContextExtensionWriter : IGraphContextExtensionWriter
     {
+        private readonly IVariableFinder _variableFinder;
+
+        public GraphContextExtensionWriter(IVariableFinder variableFinder)
+        {
+            _variableFinder = variableFinder;
+        }
+
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var structureFragment = schema.Structure;
@@ -24,15 +32,29 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.Indent += 1;
 
             writer.WriteLine("///<summary>");
+            writer.WriteLine("///Query:");
             for (var i = 0; i < schemaLineCount; i++)
             {
                 writer.WriteLine($"///{schemaTextLines[i]}");
             }
 
             writer.WriteLine("///</summary>");
-            writer.WriteLine(structureFragment.Plurality == Plurality.Single
-                ? $"public static Task<{className}> Process{className}(this IGraphContext context)"
-                : $"public static IAsyncEnumerable<{className}> Process{className}(this IGraphContext context)");
+
+            var variables = _variableFinder.FindVariables(schema);
+            foreach (var variable in variables)
+            {
+                writer.WriteLine($"/// <param name=\"{variable}\" />");
+            }
+
+            var returnType = structureFragment.Plurality == Plurality.Single
+                ? $"Task<{className}>"
+                : $"IAsyncEnumerable<{className}>";
+
+            var variablesAsString = string.Join(", ",variables.Select(v => $"string {v}"));
+            var parameters = variables.Any()
+                ? $"this IGraphContext context, {variablesAsString}"
+                : $"this IGraphContext context";
+            writer.WriteLine($"public static {returnType} Process{className}({parameters})");
             writer.WriteLine("{");
             writer.Indent += 1;
 
@@ -47,14 +69,21 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.Indent -= 1;
 
             writer.WriteLine($"var resultMapper = new {className}.ResultMapper();");
+            writer.WriteLine("var scope = new SchemaScope();");
+            foreach (var variable in variables)
+            {
+                writer.WriteLine($"scope.Variables.Add(\"{variable}\", new SchemaScopeVariable(\"{variable}\", {variable}));");
+            }
+
+            writer.WriteLine();
 
             if (structureFragment.Plurality == Plurality.Single)
             {
-                writer.WriteLine($"return context.ProcessSingle<{className}>(schemaText, resultMapper);");
+                writer.WriteLine($"return context.ProcessSingle<{className}>(schemaText, resultMapper, scope);");
             }
             else
             {
-                writer.WriteLine($"return context.ProcessMultiple<{className}>(schemaText, resultMapper);");
+                writer.WriteLine($"return context.ProcessMultiple<{className}>(schemaText, resultMapper, scope);");
             }
             writer.Indent -= 1;
             writer.WriteLine("}");
