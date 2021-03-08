@@ -33,7 +33,7 @@
         IAsyncEnumerable<Structure> Process(string text);
         //Task<IEnumerable<object>> Process(string text, IProgress<QueryProcessingProgress> progress, params object[] args)
 
-        Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper);
-        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper);
+        Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
+        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
     }
 }
