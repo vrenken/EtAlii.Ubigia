@@ -27,6 +27,7 @@
         //Task Process(Query query, IQueryScope scope, IProgress<QueryProcessingProgress> progress)
         //Task<IEnumerable<object>> Process(string text, IProgress<QueryProcessingProgress> progress)
         IAsyncEnumerable<Structure> Process(string text, params object[] args);
+        IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope);
         IAsyncEnumerable<Structure> Process(string[] text);
         IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope);
 

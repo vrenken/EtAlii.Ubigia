@@ -21,5 +21,13 @@
         {
             Variables = new Dictionary<string, ScopeVariable>();
         }
+
+        /// <summary>
+        /// Create a new ScriptScope instance using the variables provided by the dictionary.
+        /// </summary>
+        public ScriptScope(Dictionary<string, ScopeVariable> variables)
+        {
+            Variables = variables;
+        }
     }
 }

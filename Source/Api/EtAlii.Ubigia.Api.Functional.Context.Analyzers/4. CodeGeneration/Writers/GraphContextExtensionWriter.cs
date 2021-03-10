@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
     using System.Linq;
     using Serilog;
 
+    /// <inheritdoc />
     public class GraphContextExtensionWriter : IGraphContextExtensionWriter
     {
         private readonly IVariableFinder _variableFinder;
@@ -15,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             _variableFinder = variableFinder;
         }
 
+        /// <inheritdoc />
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var structureFragment = schema.Structure;
@@ -72,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine("var scope = new SchemaScope();");
             foreach (var variable in variables)
             {
-                writer.WriteLine($"scope.Variables.Add(\"{variable}\", new SchemaScopeVariable(\"{variable}\", {variable}));");
+                writer.WriteLine($"scope.Variables.Add(\"{variable}\", new ScopeVariable({variable}, \"{variable}\"));");
             }
 
             writer.WriteLine();

@@ -1,19 +1,20 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using System.Collections.Generic;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    internal class SchemaExecutionScope
+    public class SchemaExecutionScope
     {
-        //public ITraversalContext TraversalContext [ get ]
-
         public IScriptScope ScriptScope { get; }
 
         public SchemaExecutionScope()
         {
             ScriptScope = new ScriptScope();
+        }
 
-            //ScriptContext = scriptContext
+        public SchemaExecutionScope(Dictionary<string, ScopeVariable> variables)
+        {
+            ScriptScope = new ScriptScope(variables);
         }
     }
-
 }

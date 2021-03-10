@@ -6,6 +6,7 @@
 
     internal partial class GraphContext
     {
+        /// <inheritdoc />
         public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             return await ProcessMultiple(text, resultMapper, scope)
@@ -13,9 +14,10 @@
                 .ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
-            var items = Process(text).ConfigureAwait(false);
+            var items = Process(text, scope).ConfigureAwait(false);
 
             await foreach (var item in items)
             {

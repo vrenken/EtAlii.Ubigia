@@ -3,8 +3,10 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
 {
     using System.CodeDom.Compiler;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Serilog;
 
+    /// <inheritdoc />
     public class NamespaceWriter : INamespaceWriter
     {
         private readonly IClassWriter _classWriter;
@@ -18,6 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             _graphContextExtensionWriter = graphContextExtensionWriter;
         }
 
+        /// <inheritdoc />
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var @namespace = schema.Namespace ?? "EtAlii.Ubigia";
@@ -30,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             writer.WriteLine($"using System.Collections.Generic;");
             writer.WriteLine($"using System.Threading.Tasks;");
             writer.WriteLine($"using {typeof(ISchemaProcessor).Namespace};");
+            writer.WriteLine($"using {typeof(ScopeVariable).Namespace};");
             writer.WriteLine();
 
             _classWriter.Write(logger, writer, schema.Structure);

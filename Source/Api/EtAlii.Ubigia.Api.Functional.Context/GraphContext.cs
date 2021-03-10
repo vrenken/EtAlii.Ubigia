@@ -5,6 +5,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
+    /// <inheritdoc />
     internal partial class GraphContext : IGraphContext
     {
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
@@ -21,6 +22,7 @@
             _traversalContext = traversalContext;
         }
 
+        /// <inheritdoc />
         public SchemaParseResult Parse(string text)
         {
             var parserConfiguration = _traversalContext.ParserConfigurationProvider();
@@ -32,6 +34,7 @@
             return parser.Parse(text);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
         {
             var configuration = new SchemaProcessorConfiguration()
@@ -41,6 +44,7 @@
             return processor.Process(schema);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
         {
             var queryParseResult = Parse(string.Join(Environment.NewLine, text));
@@ -54,19 +58,28 @@
             return Process(queryParseResult.Schema, scope);
         }
 
-
+        /// <inheritdoc />
         public IAsyncEnumerable<Structure> Process(string text, params object[] args)
         {
             text = string.Format(text, args);
             return Process(text);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Structure> Process(string[] text)
         {
             return Process(string.Join(Environment.NewLine, text));
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Structure> Process(string text)
+        {
+            var scope = new SchemaScope();
+            return Process(text, scope);
+        }
+
+        /// <inheritdoc />
+        public IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope)
         {
             var queryParseResult = Parse(text);
 
@@ -75,8 +88,6 @@
                 var firstError = queryParseResult.Errors.First();
                 throw new SchemaParserException(firstError.Message, firstError.Exception);
             }
-
-            var scope = new SchemaScope();
 
             return Process(queryParseResult.Schema, scope);
         }

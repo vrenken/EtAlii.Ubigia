@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
 
+    /// <inheritdoc />
     public class ProfilingGraphContext : IProfilingGraphContext
     {
         private readonly IGraphContext _decoree;
@@ -19,6 +20,7 @@
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptSet);  // TODO: this should be Functional.QuerySet.
         }
 
+        /// <inheritdoc />
         public SchemaParseResult Parse(string text)
         {
             var profile = Profiler.Begin("Parsing");
@@ -30,6 +32,7 @@
             return result;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
@@ -46,6 +49,7 @@
             Profiler.End(profile);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
@@ -62,6 +66,7 @@
             Profiler.End(profile);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Structure> Process(string[] text)
         {
             dynamic profile = Profiler.Begin("Process");
@@ -78,6 +83,7 @@
             Profiler.End(profile);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Structure> Process(string text)
         {
             dynamic profile = Profiler.Begin("Processing");
@@ -93,6 +99,23 @@
             Profiler.End(profile);
         }
 
+        /// <inheritdoc />
+        public async IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope)
+        {
+            dynamic profile = Profiler.Begin("Processing");
+            profile.Query = text;
+            var items = _decoree
+                .Process(text, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
+
+            Profiler.End(profile);
+        }
+
+        /// <inheritdoc />
         public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
@@ -106,6 +129,7 @@
             return item;
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
@@ -121,6 +145,7 @@
             Profiler.End(profile);
         }
 
+        /// <inheritdoc />
         public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
         {
             dynamic profile = Profiler.Begin("Processing");
