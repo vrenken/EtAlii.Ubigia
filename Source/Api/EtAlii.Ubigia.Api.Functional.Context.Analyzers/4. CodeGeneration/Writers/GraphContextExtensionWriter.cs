@@ -16,7 +16,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
             _variableFinder = variableFinder;
         }
 
-        /// <inheritdoc />
         public void Write(ILogger logger, IndentedTextWriter writer, Schema schema)
         {
             var structureFragment = schema.Structure;
