@@ -128,6 +128,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.DoubleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.NoQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Time.Regex.Separated.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Variables.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Locations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Time.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic2.Tests.cs" />
