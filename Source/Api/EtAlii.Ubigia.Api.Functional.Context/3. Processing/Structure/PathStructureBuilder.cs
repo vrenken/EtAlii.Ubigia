@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
+    /// <inheritdoc />
     internal class PathStructureBuilder : IPathStructureBuilder
     {
         private readonly ITraversalContext _traversalContext;
@@ -15,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _traversalContext = traversalContext;
         }
 
+        /// <inheritdoc />
         public async Task Build(
             SchemaExecutionScope executionScope,
             ExecutionPlanResultSink executionPlanResultSink,

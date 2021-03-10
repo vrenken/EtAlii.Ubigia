@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.Threading.Tasks;
 
+    /// <inheritdoc />
     internal class QueryStructureProcessor : IQueryStructureProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
@@ -18,6 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _pathDeterminer = pathDeterminer;
         }
 
+        /// <inheritdoc />
         public async Task Process(
             StructureFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,

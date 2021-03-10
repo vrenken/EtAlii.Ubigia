@@ -5,16 +5,20 @@
 
     public class SchemaProcessorConfiguration : ConfigurationBase, ISchemaProcessorConfiguration
     {
+        /// <inheritdoc />
         public ISchemaScope SchemaScope { get; private set; }
 
+        /// <inheritdoc />
         public ITraversalContext TraversalContext { get; private set; }
 
+        /// <inheritdoc />
         public SchemaProcessorConfiguration Use(ISchemaScope scope)
         {
             SchemaScope = scope ?? throw new ArgumentException("No scope specified", nameof(scope));
             return this;
         }
 
+        /// <inheritdoc />
         public SchemaProcessorConfiguration Use(ITraversalContext traversalContext)
         {
             TraversalContext = traversalContext ?? throw new ArgumentException("No traversal context specified", nameof(traversalContext));

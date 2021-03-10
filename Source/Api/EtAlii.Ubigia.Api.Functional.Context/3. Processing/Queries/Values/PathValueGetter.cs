@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
 
+    /// <inheritdoc />
     internal class PathValueGetter : IPathValueGetter
     {
         private readonly ITraversalContext _traversalContext;
@@ -19,6 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _relatedIdentityFinder = relatedIdentityFinder;
         }
 
+        /// <inheritdoc />
         public async Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope)
         {
             if (path is RelativePathSubject)

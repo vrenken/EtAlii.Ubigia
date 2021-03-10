@@ -3,9 +3,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
+    /// <inheritdoc />
     internal class PathDeterminer : IPathDeterminer
     {
-
+        /// <inheritdoc />
         public PathSubject Determine(ExecutionPlanResultSink executionPlanResultSink, NodeAnnotation annotation, in Identifier id)
         {
             var path = annotation?.Source;
@@ -40,6 +41,5 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             return path;
         }
-
     }
 }

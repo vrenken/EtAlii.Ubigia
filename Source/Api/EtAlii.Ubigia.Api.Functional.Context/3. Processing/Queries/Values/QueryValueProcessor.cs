@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.Threading.Tasks;
 
+    /// <inheritdoc />
     internal class QueryValueProcessor : IQueryValueProcessor
     {
         private readonly IValueGetter _valueGetter;
@@ -11,6 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _valueGetter = valueGetter;
         }
 
+        /// <inheritdoc />
         public async Task Process(
             ValueFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,

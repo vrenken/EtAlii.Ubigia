@@ -1,7 +1,9 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    /// <inheritdoc />
     internal class RelatedIdentityFinder : IRelatedIdentityFinder
     {
+        /// <inheritdoc />
         public Identifier Find(Structure structure)
         {
             var node = structure.Node;
@@ -14,6 +16,5 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 ? Find(parent)
                 : Identifier.Empty;
         }
-
     }
 }

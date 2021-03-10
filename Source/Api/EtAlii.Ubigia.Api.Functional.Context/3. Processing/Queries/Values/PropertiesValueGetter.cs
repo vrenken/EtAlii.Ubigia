@@ -1,7 +1,9 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    /// <inheritdoc />
     internal class PropertiesValueGetter : IPropertiesValueGetter
     {
+        /// <inheritdoc />
         public Value Get(string valueName, Structure structure)
         {
             var properties = structure.Node.GetProperties();
@@ -9,6 +11,5 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 ? new Value(valueName, value)
                 : null;
         }
-
     }
 }

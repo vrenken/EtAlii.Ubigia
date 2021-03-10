@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.Threading.Tasks;
 
+    /// <inheritdoc />
     internal class ValueGetter : IValueGetter
     {
         private readonly IPropertiesValueGetter _propertiesValueGetter;
@@ -15,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _pathValueGetter = pathValueGetter;
         }
 
+        /// <inheritdoc />
         public async Task<Value> Get(
             string valueName,
             ValueAnnotation annotation,
