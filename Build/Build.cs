@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Pipelines
 
     // We need to give Nuke a bit more time to do it's magic.
     // More info: https://github.com/nuke-build/nuke/issues/260
-    [CheckBuildProjectConfigurations(TimeoutInMilliseconds = 2000)] 
+    [CheckBuildProjectConfigurations(TimeoutInMilliseconds = 2000)]
     [ShutdownDotNetAfterServerBuild]
-    [CustomAzurePipelines( 
-        AzurePipelinesImage.WindowsLatest, 
+    [CustomAzurePipelines(
+        AzurePipelinesImage.WindowsLatest,
         InvokedTargets = new[]
         {
             nameof(CompileTestAnalyseAndPublish)
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Pipelines
         NonEntryTargets = new []
         {
             // Unlisted targets.
-            nameof(Clean), 
+            nameof(Clean),
             nameof(Restore),
             nameof(PrepareSonarQubeAnalysis),
             nameof(Compile),
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Pipelines
             nameof(PublishResultsToAzure),
             nameof(PublishPackages),
             nameof(PublishArtefactsToAzure),
-            
+
             // For testing purposes.
             nameof(RunRestore),
             nameof(RunCompile),
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Pipelines
         /// To run nuke locally install it as a global tool:
         /// "dotnet tool install Nuke.GlobalTool --global"
         /// Or "dotnet tool update Nuke.GlobalTool --global" to update.
-        /// 
+        ///
         /// Support plugins are available for:
         ///   - JetBrains ReSharper        https://nuke.build/resharper
         ///   - JetBrains Rider            https://nuke.build/rider
@@ -71,16 +71,16 @@ namespace EtAlii.Ubigia.Pipelines
             return Execute<Build>(build => build.CompileTestAnalyseAndPublish);
         }
         //public static int Main() => Execute<Build>(build => build.RunCompileAndPublishToSonarQube);
-        
+
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
         private readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
-        
+
         [Solution] private readonly Solution Solution;
         [GitRepository] private readonly GitRepository GitRepository;
 
         [CI] private readonly AzurePipelines AzurePipelines;
-        
+
         private Target CompileTestAnalyseAndPublish => _ => _
             .Description("Compile, test, analyse and publish")
             .DependsOn(PublishArtefactsToAzure)

@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Pipelines
         [Parameter("SonarQube server token")] private readonly string SonarQubeServerToken;
 
         private const string _localSonarQubeServerUrl = "http://192.168.1.130:9000/";
-        
+
         private Target PrepareSonarQubeAnalysis => _ => _
             .Description("Prepare SonarQube analysis")
             .DependsOn(Restore)
@@ -27,20 +27,20 @@ namespace EtAlii.Ubigia.Pipelines
             SonarScannerBegin(c => c
                 .SetFramework("net5.0")
                 .SetWebServiceTimeout(120) // Somehow our service is currently flaky.
-                
+
                 // Unit tests should not be taken into consideration with regards of testing.
-                .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")                             
+                .AddCoverageExclusions(SourceDirectory / "**" / "*.Tests.cs")
                 .AddTestFileExclusions(SourceDirectory / "**" / "*.Tests.cs")
-                
+
                 // We don't want the 'old' HashLib to cloud up the SonarQube results.
-                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     
-                .AddCoverageExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*") 
-                .AddTestFileExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "HashesTests.cs") 
-            
+                .AddSourceExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")
+                .AddCoverageExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")
+                .AddTestFileExclusions((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "HashesTests.cs")
+
                 // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
-                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  
-                .AddCoverageExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*") 
-                
+                .AddSourceExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")
+                .AddCoverageExclusions((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")
+
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
                 .SetVSTestReports(TestResultsDirectory / "*.trx")
                 .SetProjectKey(SonarQubeProjectKey)
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetName(SonarQubeProjectKey)
                 .SetLogin(SonarQubeServerToken));
         }
-        
+
         private Target PublishResultsToSonarQube => _ => _
             .Description("Publish test results to SonarQube")
             .Unlisted()
@@ -63,8 +63,8 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetLogin(SonarQubeServerToken));
         }
 
-// ============= Test Targets 
-        
+// ============= Test Targets
+
         private Target RunCompileTestAndPublishToSonarQube => _ => _
             .Executes(() =>
             {
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Pipelines
                 CreateTestReportsInternal();
                 PublishResultsToSonarQubeInternal();
             });
-        
+
         private Target RunPublishToSonarQube => _ => _
             .Executes(() =>
             {

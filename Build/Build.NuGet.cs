@@ -15,10 +15,10 @@ namespace EtAlii.Ubigia.Pipelines
         //[GitVersion] GitVersion GitVersion;
 
         private IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
-        
+
         [Parameter("NuGet publish feed source")] private readonly string NuGetFeedSource;
         [Parameter("NuGet publish feed token")] private readonly string NuGetFeedToken;
-        
+
         private Target Restore => _ => _
             .Description("Run dotnet restore")
             .Unlisted()
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetProjectFile(Solution)
                 .SetConfigFile(RootDirectory / "Nuget.config"));
         }
-        
+
         private Target CreatePackages => _ => _
             .Description("Run dotnet pack")
             .DependsOn(Test)
@@ -44,11 +44,11 @@ namespace EtAlii.Ubigia.Pipelines
 
             DotNetPack(_ => _
                 .SetProject(Solution)
-                .SetNoRestore(true)
+                .EnableNoRestore()
                 .SetOutputDirectory(ArtifactsDirectory)
                 .SetVersion("0.1.0"));
         }
-        
+
         private Target PublishPackages => _ => _
             .Description("Run dotnet nuget push")
             .DependsOn(CreatePackages)
@@ -62,20 +62,20 @@ namespace EtAlii.Ubigia.Pipelines
             DotNetNuGetPush(_ => _
                 .SetSource(NuGetFeedSource)
                 .SetApiKey(NuGetFeedToken)
-                .SetSkipDuplicate(true)
+                .EnableSkipDuplicate()
                 .CombineWith(Packages, (_, v) => _
                     .SetTargetPath(v)));
         }
 
-// ============= Test Targets 
+// ============= Test Targets
 
         private Target RunRestore => _ => _
             .Executes(RestoreInternal);
-        
+
         private Target RunCreateAndPublishPackages => _ => _
             .Executes(CreatePackagesInternal)
             .Executes(PublishPackagesInternal);
-        
+
         private Target RunCreatePackages => _ => _
             .Executes(CreatePackagesInternal);
     }

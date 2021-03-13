@@ -16,27 +16,27 @@ namespace EtAlii.Ubigia.Pipelines
     {
         private IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
-            
+
             // The WebApi tests won't run nicely on the build agent. No idea why.
-            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests")) 
-            
+            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests"))
+
             // The SpaceBrowser tests won't run nicely on a headless build agent.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
-            
+
             // For whatever weird reason the tests below ned to be disabled on the build server.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".WebApi.Tests"))
-        
-            
+
+
             // We are not interested in .shproj files. These will mess up dotnet test.
-            .Where(tp => !tp.Path.ToString().EndsWith(".shproj")); 
+            .Where(tp => !tp.Path.ToString().EndsWith(".shproj"));
 
         private AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
         private AbsolutePath TestReportsDirectory => ArtifactsDirectory / "test_reports";
         private RelativePath FrameworkMoppetLapaDirectory => (RelativePath)"Frameworks" / "Moppet.Lapa";
         private RelativePath FrameworkHashLibDirectory => (RelativePath)"Frameworks" / "HashLib";
-        
+
         private const int _degreeOfParallelismOnServerTests = 5;
         private const int _degreeOfParallelismOnLocalTests = 16;
 
@@ -44,19 +44,19 @@ namespace EtAlii.Ubigia.Pipelines
             .Description("Run dotnet test")
             .ProceedAfterFailure()
             .Unlisted()
-            .DependsOn(Compile)
+            .DependsOn(CompileForSonarQubeAnalysis)
             .Executes(TestInternal);
-        
+
         private void TestInternal()
         {
-                // Let's go full steam ahead when it is a local build. 
-                var degreeOfParallelismWhileTesting = IsLocalBuild 
-                    ? _degreeOfParallelismOnLocalTests 
+                // Let's go full steam ahead when it is a local build.
+                var degreeOfParallelismWhileTesting = IsLocalBuild
+                    ? _degreeOfParallelismOnLocalTests
                     : _degreeOfParallelismOnServerTests;
 
                 DotNetTest(_ => _
-                        .SetNoBuild(true)
-                        .SetNoRestore(true)
+                        .EnableNoBuild()
+                        .EnableNoRestore()
                         .SetResultsDirectory(TestResultsDirectory)
                         .SetConfiguration(Configuration)
                         .EnableCollectCoverage()
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Pipelines
                             .SetLogger($"trx;LogFileName={testProject.Name}.trx")),
                     degreeOfParallelismWhileTesting, Continue);
         }
-        
+
         private Target CreateTestReports => _ => _
             .DependsOn(Test)
             .Unlisted()
@@ -82,20 +82,20 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetReports(TestResultsDirectory / "*/coverage.opencover.xml")
                 .SetTargetDirectory(TestReportsDirectory)
                 .SetReportTypes(ReportTypes.Cobertura, ReportTypes.HtmlInline_AzurePipelines_Dark)
-                
+
                 // Unit tests should not be taken into consideration with regards of testing.
-                .AddFileFilters(SourceDirectory / "**" / "*.Tests.cs")                               
-                
+                .AddFileFilters(SourceDirectory / "**" / "*.Tests.cs")
+
                 // We don't want the 'old' HashLib to cloud up the SonarQube results.
-                .AddFileFilters((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")     
-                
+                .AddFileFilters((RelativePath)"**" / FrameworkHashLibDirectory / "**" / "*.*")
+
                 // We don't want the external Moppet.Lapa library to cloud upt the SonarQube results.
-                .AddFileFilters((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")  
+                .AddFileFilters((RelativePath)"**" / FrameworkMoppetLapaDirectory / "**" / "*.*")
 
             );
         }
 
-// ============= Test Targets 
+// ============= Test Targets
 
         private Target RunTestsAndCreateTestReports => _ => _
             .Executes(TestInternal)
