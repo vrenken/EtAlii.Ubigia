@@ -17,19 +17,17 @@ namespace EtAlii.Ubigia.Pipelines
         private IEnumerable<Project> TestProjects => Solution
             .GetProjects("*.Tests*")
 
-            // The WebApi tests won't run nicely on the build agent. No idea why.
-            //.Where(tp => !tp.Name.EndsWith(".WebApi.Tests"))
-
             // The SpaceBrowser tests won't run nicely on a headless build agent.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
 
-            // For whatever weird reason the tests below ned to be disabled on the build server.
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.Grpc.Tests"))
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".Api.Functional.Querying.GraphQL.SignalR.Tests"))
-            .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".WebApi.Tests"))
+            // Let's completely ignore any external tests.
+            .Where(tp => !tp.Name.StartsWith("EtAlii.Ubigia.Api.Functional.Querying"))
 
+            // And all WebApi/SignalR tests.
+            .Where(tp => !tp.Name.EndsWith(".WebApi.Tests"))
+            .Where(tp => !tp.Name.EndsWith(".SignalR.Tests"))
 
-            // We are not interested in .shproj files. These will mess up dotnet test.
+            // We are also not interested in .shproj files. These will mess up dotnet test.
             .Where(tp => !tp.Path.ToString().EndsWith(".shproj"));
 
         private AbsolutePath TestResultsDirectory => ArtifactsDirectory / "test_results";
@@ -44,7 +42,7 @@ namespace EtAlii.Ubigia.Pipelines
             .Description("Run dotnet test")
             .ProceedAfterFailure()
             .Unlisted()
-            .DependsOn(CompileForSonarQubeAnalysis)
+            .DependsOn(RestoreSonarQube)
             .Executes(TestInternal);
 
         private void TestInternal()

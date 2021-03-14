@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageDownload Include="dotnet-sonarscanner" Version="[5.0.4]" />
-    <PackageDownload Include="ReportGenerator" Version="[4.8.1]" />
+    <PackageDownload Include="dotnet-sonarscanner" Version="[5.1.0]" />
+    <PackageDownload Include="ReportGenerator" Version="[4.8.7]" />
   </ItemGroup>
 </Project>

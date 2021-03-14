@@ -28,7 +28,7 @@ stages:
         steps:
           - task: CmdLine@2
             inputs:
-              script: './build.cmd Clean Restore PrepareSonarQubeAnalysis Compile Test CreateTestReports CreatePackages PublishResultsToAzure PublishResultsToSonarQube PublishPackages PublishArtefactsToAzure CompileTestAnalyseAndPublish --skip'
+              script: './build.cmd Clean Restore PrepareSonarQubeAnalysis CompileForSonarQube FreezeSonarQube Compile RestoreSonarQube Test CreateTestReports CreatePackages PublishResultsToAzure PublishResultsToSonarQube PublishPackages PublishArtefactsToAzure CompileTestAnalyseAndPublish --skip'
             env:
               SonarQubeProjectKey: $(SonarQubeProjectKey)
               SonarQubeServerUrl: $(SonarQubeServerUrl)
