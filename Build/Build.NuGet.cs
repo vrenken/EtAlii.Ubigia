@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Pipelines
         // TODO: Implement.
         // See link below for more information:
         // https://youtu.be/yojQXa1x2nc?t=1551
-        //[GitVersion] GitVersion GitVersion;
+        //[GitVersion] GitVersion GitVersion
 
         private IEnumerable<AbsolutePath> Packages => ArtifactsDirectory.GlobFiles("*.nupkg");
 

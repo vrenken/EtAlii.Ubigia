@@ -11,8 +11,6 @@ namespace EtAlii.Ubigia.Pipelines
         [Parameter("SonarQube server url")] private readonly string SonarQubeServerUrl;
         [Parameter("SonarQube server token")] private readonly string SonarQubeServerToken;
 
-        private const string _localSonarQubeServerUrl = "http://192.168.1.130:9000/";
-
         // This property is used in the patch to get the SonarQube analysis operational with .NET 5.0 and Roslyn code generation.
         private AbsolutePath SonarQubeAnalysisTriggerConfigurationFile => RootDirectory / ".sonarqube"  / "conf"  / "SonarQubeAnalysisConfig.xml";
 
@@ -47,7 +45,7 @@ namespace EtAlii.Ubigia.Pipelines
                 .SetOpenCoverPaths(TestResultsDirectory / "*" / "coverage.opencover.xml")
                 .SetVSTestReports(TestResultsDirectory / "*.trx")
                 .SetProjectKey(SonarQubeProjectKey)
-                .SetServer(IsLocalBuild ? _localSonarQubeServerUrl : SonarQubeServerUrl)
+                .SetServer(SonarQubeServerUrl)
                 .SetName(SonarQubeProjectKey)
                 .SetLogin(SonarQubeServerToken));
         }

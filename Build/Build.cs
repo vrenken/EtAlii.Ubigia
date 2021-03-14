@@ -73,7 +73,6 @@ namespace EtAlii.Ubigia.Pipelines
         {
             return Execute<Build>(build => build.CompileTestAnalyseAndPublish);
         }
-        //public static int Main() => Execute<Build>(build => build.RunCompileAndPublishToSonarQube);
 
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
