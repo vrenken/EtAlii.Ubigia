@@ -20,6 +20,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore .\Source\EtAlii.Ubigia.sln
     - name: Build
-      run: dotnet build --no-restore .\Source\EtAlii.Ubigia.sln
+      run: dotnet build --no-restore .\Source\EtAlii.Ubigia.sln /p:UbigiaIsRunningOnBuildAgent=true
     - name: Test
       run: dotnet test --no-build --verbosity normal .\Source\EtAlii.Ubigia.sln
