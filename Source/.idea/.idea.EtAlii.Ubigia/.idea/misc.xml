@@ -11,7 +11,6 @@
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/SchemaParser.g4" />
@@ -21,7 +20,6 @@
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/ScriptParser.g4" />
@@ -31,7 +29,6 @@
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/PathParser.g4" />
@@ -41,7 +38,6 @@
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/UbigiaLexer.g4" />
@@ -51,7 +47,6 @@
           <option name="pkg" value="" />
           <option name="language" value="" />
           <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/Api/EtAlii.Ubigia.Api.Functional.Antlr/UbigiaParser.g4" />
@@ -60,8 +55,6 @@
           <option name="encoding" value="" />
           <option name="pkg" value="" />
           <option name="language" value="" />
-          <option name="generateListener" value="false" />
-          <option name="generateVisitor" value="false" />
         </PerGrammarGenerationSettings>
       </list>
     </option>
