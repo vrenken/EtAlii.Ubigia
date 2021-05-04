@@ -230,7 +230,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Storage.Inte
                 baseTable = table;
             }
 
-            return _tables[_useNameMatching ? (object)entityType.FullName() : entityType];
+            return _tables[_useNameMatching ? entityType.FullName() : entityType];
         }
     }
 }

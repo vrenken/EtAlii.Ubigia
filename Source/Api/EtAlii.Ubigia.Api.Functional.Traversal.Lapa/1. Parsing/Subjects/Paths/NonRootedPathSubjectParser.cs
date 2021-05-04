@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 result = parts[0] is ParentPathSubjectPart
                     ? new AbsolutePathSubject(parts)
-                    : (NonRootedPathSubject)new RelativePathSubject(parts);
+                    : new RelativePathSubject(parts);
             }
             return result;
         }

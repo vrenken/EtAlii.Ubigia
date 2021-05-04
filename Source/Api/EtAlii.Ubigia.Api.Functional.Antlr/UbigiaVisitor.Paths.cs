@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
             {
                 result = firstPart is ParentPathSubjectPart
                     ? new AbsolutePathSubject(parts)
-                    : (NonRootedPathSubject)new RelativePathSubject(parts);
+                    : new RelativePathSubject(parts);
             }
 
             return result;

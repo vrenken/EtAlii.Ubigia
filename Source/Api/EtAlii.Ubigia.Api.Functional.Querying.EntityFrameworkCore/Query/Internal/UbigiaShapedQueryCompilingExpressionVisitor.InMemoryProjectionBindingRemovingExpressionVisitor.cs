@@ -126,9 +126,9 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             {
                 return projectionBindingExpression.ProjectionMember != null
                     ? ((ConstantExpression)queryExpression.GetMappedProjection(projectionBindingExpression.ProjectionMember)).Value
-                    : (projectionBindingExpression.Index != null
-                        ? (object)projectionBindingExpression.Index
-                        : projectionBindingExpression.IndexMap);
+                    : projectionBindingExpression.Index != null
+                        ? projectionBindingExpression.Index
+                        : projectionBindingExpression.IndexMap;
             }
         }
     }

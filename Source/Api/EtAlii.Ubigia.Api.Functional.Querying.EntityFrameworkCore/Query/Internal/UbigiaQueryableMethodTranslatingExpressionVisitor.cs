@@ -1259,7 +1259,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             {
                 translation = expression.Type == typeof(bool)
                     ? Expression.Equal(translation, Expression.Constant(true, translation.Type))
-                    : (Expression)Expression.Convert(translation, expression.Type);
+                    : Expression.Convert(translation, expression.Type);
             }
 
             return translation;
