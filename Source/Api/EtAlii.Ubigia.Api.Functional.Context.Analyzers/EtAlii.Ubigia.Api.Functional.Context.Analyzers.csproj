@@ -49,7 +49,7 @@
 
   <ItemGroup>
     <!-- Generator dependencies -->
-    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.1" PrivateAssets="all">
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.2" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
     <PackageReference Include="Serilog" Version="2.10.0" PrivateAssets="all">
