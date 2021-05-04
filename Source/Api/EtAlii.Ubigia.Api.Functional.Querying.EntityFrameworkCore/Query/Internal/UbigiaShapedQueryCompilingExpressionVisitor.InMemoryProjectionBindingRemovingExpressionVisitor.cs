@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                     && memberExpression.Member is FieldInfo fieldInfo
                     && fieldInfo.IsInitOnly)
                 {
-                    return memberExpression.Assign(Visit(node.Right));
+                    return memberExpression.Assign(Visit(node.Right)!);
                 }
 
                 return base.VisitBinary(node);
@@ -65,13 +65,11 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
             {
                 Check.NotNull(node, nameof(node));
 
-                if (node.Method.IsGenericMethod
-                    && node.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
+                if (node.Method.IsGenericMethod && node.Method.GetGenericMethodDefinition() == ExpressionExtensions.ValueBufferTryReadValueMethod)
                 {
                     var property = (IProperty)((ConstantExpression)node.Arguments[2]).Value;
-                    var (indexMap, valueBuffer) =
-                        _materializationContextBindings[
-                            (ParameterExpression)((MethodCallExpression)node.Arguments[0]).Object];
+                    var binding = (ParameterExpression)((MethodCallExpression)node.Arguments[0]).Object;
+                    var (indexMap, valueBuffer) = _materializationContextBindings[binding!];
 
                     Check.DebugAssert(
                         property != null || node.Type.IsNullableType(), "Must read nullable value without property");
@@ -79,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.EntityFrameworkCore.Query.Intern
                     return Expression.Call(
                         node.Method,
                         valueBuffer,
-                        Expression.Constant(indexMap[property]),
+                        Expression.Constant(indexMap[property!]),
                         node.Arguments[2]);
                 }
 
