@@ -475,6 +475,11 @@ ProjectSection(SolutionItems) = preProject
 	..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md = ..\Documentation\Architecture\Gtl.Samples\Samples 9. - Tags.md
 EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{186D063F-AADD-4F45-B394-935239120191}"
+ProjectSection(SolutionItems) = preProject
+	..\.github\workflows\build.yml = ..\.github\workflows\build.yml
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2452,6 +2457,7 @@ Global
 		{991DFE15-55A3-4435-81FA-F56E996CD546} = {DFC0B826-71B4-49A2-84BE-81B3C443D665}
 		{A69811A1-E528-4FC0-B98D-377072C53D03} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
 		{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
+		{186D063F-AADD-4F45-B394-935239120191} = {C9537D00-7881-4ACB-9111-9439363F658D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
