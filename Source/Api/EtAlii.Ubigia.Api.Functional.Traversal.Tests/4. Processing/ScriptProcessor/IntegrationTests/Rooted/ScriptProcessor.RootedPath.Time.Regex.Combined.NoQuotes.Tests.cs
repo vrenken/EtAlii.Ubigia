@@ -189,12 +189,12 @@
 
             var addQueries = new[]
             {
-                "time:201609012205",
+                "time:202209012205",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
-            var selectQuery2 = "time:201609012205";
+            var selectQuery1 = "/Time/2022/09/01/22/05/00/000";
+            var selectQuery2 = "time:202209012205";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;

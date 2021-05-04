@@ -57,12 +57,12 @@
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
-                "Time:2016/09/01/22/05",
+                "Time:2017/09/01/22/05",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
-            var selectQuery2 = "Time:2016/09/01/22/05";
+            var selectQuery1 = "/Time/2017/09/01/22/05/00/000";
+            var selectQuery2 = "Time:2017/09/01/22/05";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -93,12 +93,12 @@
             var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
-                "Time:2016/09/01/22/05",
+                "Time:2018/09/01/22/05",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
-            var selectQuery2 = "Time:2016/09/01/22/05";
+            var selectQuery1 = "/Time/2018/09/01/22/05/00/000";
+            var selectQuery2 = "Time:2018/09/01/22/05";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
