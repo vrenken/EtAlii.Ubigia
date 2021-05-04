@@ -5,10 +5,6 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Diagnostics")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Tests")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
-
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.Grpc.Tests")]
 

@@ -20,9 +20,6 @@ namespace EtAlii.Ubigia.Pipelines
             // The SpaceBrowser tests won't run nicely on a headless build agent.
             .Where(tp => IsLocalBuild || !tp.Name.EndsWith(".SpaceBrowser.Tests"))
 
-            // Let's completely ignore any external tests.
-            .Where(tp => !tp.Name.StartsWith("EtAlii.Ubigia.Api.Functional.Querying"))
-
             // And all WebApi/SignalR tests.
             .Where(tp => !tp.Name.EndsWith(".WebApi.Tests"))
             .Where(tp => !tp.Name.EndsWith(".SignalR.Tests"))

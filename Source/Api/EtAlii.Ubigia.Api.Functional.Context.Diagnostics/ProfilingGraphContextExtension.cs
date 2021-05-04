@@ -3,8 +3,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Diagnostics
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    //using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying
-
     public class ProfilingGraphContextExtension : IGraphContextExtension
     {
         public void Initialize(Container container)
