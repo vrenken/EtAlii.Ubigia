@@ -75,12 +75,12 @@
 
             var addQueries = new[]
             {
-                "time:201609",
+                "time:201009",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
-            var selectQuery2 = "time:201609";
+            var selectQuery1 = "/Time/2010/09/01/00/00/00/000";
+            var selectQuery2 = "time:201009";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -113,12 +113,12 @@
 
             var addQueries = new[]
             {
-                "time:20160901",
+                "time:20090901",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
-            var selectQuery2 = "time:20160901";
+            var selectQuery1 = "/Time/2009/09/01/00/00/00/000";
+            var selectQuery2 = "time:20090901";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -151,12 +151,12 @@
 
             var addQueries = new[]
             {
-                "time:2016090122",
+                "time:2008090122",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/00/00/000";
-            var selectQuery2 = "time:2016090122";
+            var selectQuery1 = "/Time/2008/09/01/22/00/00/000";
+            var selectQuery2 = "time:2008090122";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -227,12 +227,12 @@
 
             var addQueries = new[]
             {
-                "time:20160901220523",
+                "time:20070901220523",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23/000";
-            var selectQuery2 = "time:20160901220523";
+            var selectQuery1 = "/Time/2007/09/01/22/05/23/000";
+            var selectQuery2 = "time:20070901220523";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -265,12 +265,12 @@
 
             var addQueries = new[]
             {
-                "time:20160901220523123",
+                "time:20060901220523123",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23/123";
-            var selectQuery2 = "time:20160901220523123";
+            var selectQuery1 = "/Time/2006/09/01/22/05/23/123";
+            var selectQuery2 = "time:20060901220523123";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
