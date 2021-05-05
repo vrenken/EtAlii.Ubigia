@@ -13,4 +13,9 @@
     <ProjectReference Include="..\..\Frameworks\Moppet.Lapa\Moppet.Lapa\Moppet.Lapa.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context\0. _Model" />
+    <Folder Include="Context\2. Planning" />
+  </ItemGroup>
 </Project>

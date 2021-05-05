@@ -9,10 +9,6 @@
     </PropertyGroup>
     <ItemGroup>
       <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
-      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Lapa\EtAlii.Ubigia.Api.Functional.Traversal.Lapa.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="0. _Model" />
-      <Folder Include="2. Planning" />
+      <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Lapa\EtAlii.Ubigia.Api.Functional.Lapa.csproj" />
     </ItemGroup>
 </Project>

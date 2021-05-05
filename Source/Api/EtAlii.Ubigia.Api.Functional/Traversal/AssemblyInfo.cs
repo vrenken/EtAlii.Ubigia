@@ -13,4 +13,4 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Diagnostics")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Antlr")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Lapa")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Lapa")]
