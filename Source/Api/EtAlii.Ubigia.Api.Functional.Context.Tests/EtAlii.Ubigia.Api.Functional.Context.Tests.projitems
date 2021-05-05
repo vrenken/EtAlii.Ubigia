@@ -73,16 +73,16 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\EtAlii.Ubigia.Api.Functional.Context.Analyzers.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj">
       <PrivateAssets>all</PrivateAssets>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Analyzer</OutputItemType>
     </ProjectReference>
-    <!--<Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\$(OutDir)*.dll" OutputItemType="Analyzer" />-->
-    <!-- <Content Include="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*">
+    <!--<Content Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\$(OutDir)*.dll" OutputItemType="Analyzer" />-->
+    <!-- <Content Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\4. CodeGeneration\Build\*">
       <Link>\%(Filename)%(Extension)</Link>
     </Content>-->
   </ItemGroup>
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*.props" />
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Analyzers\4. CodeGeneration\Build\*.targets" />
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.props" />
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.targets" />
 </Project>

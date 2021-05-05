@@ -3,6 +3,7 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>991dfe15-55a3-4435-81fa-f56e996cd546</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -34,6 +35,10 @@
 
   <ItemGroup>
     <!-- Package the generator in the analyzer directory of the nuget package -->
+    <Content Include="Context\4. CodeGeneration\Build\CodeGeneration.ContentType.xaml" />
+    <Content Include="Context\4. CodeGeneration\Build\CodeGeneration.Rules.xaml" />
+    <Content Include="Context\4. CodeGeneration\Build\EtAlii.Ubigia.Api.Functional.Context.Analyzers.props" />
+    <Content Include="Context\4. CodeGeneration\Build\EtAlii.Ubigia.Api.Functional.Context.Analyzers.targets" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Visible="false">
       <Pack>true</Pack>
       <PackagePath>analyzers/dotnet/cs/</PackagePath>
@@ -71,6 +76,10 @@
 
   <ItemGroup>
     <Compile Remove="4. CodeGeneration\SchemaPocoGenerator.Diagnostics.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context" />
   </ItemGroup>
 
   <Target Name="GetUbigiaDependencyTargetPaths">

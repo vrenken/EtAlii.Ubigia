@@ -1,11 +1,10 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
+namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
     using System.CodeDom.Compiler;
     using Serilog;
-    using ValueType = EtAlii.Ubigia.Api.Functional.Context.ValueType;
 
     public class ValuePropertyWriter : IPropertyWriter
     {

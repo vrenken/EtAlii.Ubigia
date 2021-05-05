@@ -1,6 +1,6 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
+namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.CodeDom.Compiler;
     using Serilog;
@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
         {
             if (annotation != null)
             {
-                writer.WriteLine($"///<summary>"); 
+                writer.WriteLine($"///<summary>");
                 writer.WriteLine($"/// Graph traversal: {annotation}");
-                writer.WriteLine($"///</summary>"); 
+                writer.WriteLine($"///</summary>");
             }
         }
     }

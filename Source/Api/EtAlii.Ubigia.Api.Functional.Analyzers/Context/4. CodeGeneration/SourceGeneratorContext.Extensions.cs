@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Context.Analyzers
+﻿namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.Linq;
     using Microsoft.CodeAnalysis;
