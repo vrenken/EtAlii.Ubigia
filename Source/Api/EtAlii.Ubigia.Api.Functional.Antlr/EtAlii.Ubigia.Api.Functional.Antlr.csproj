@@ -56,4 +56,8 @@
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.9.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\0. _Model" />
+    <Folder Include="Context\2. Planning" />
+  </ItemGroup>
 </Project>

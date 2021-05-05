@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+
     internal static class TraversalProcessorConfigurationUseTestProcessorExtension
     {
         public static TraversalProcessorConfiguration UseTestProcessor(this TraversalProcessorConfiguration configuration)

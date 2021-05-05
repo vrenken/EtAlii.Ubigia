@@ -2,6 +2,8 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+
     /// <summary>
     /// Add the configured test GTL parsing to the configuration.
     /// </summary>

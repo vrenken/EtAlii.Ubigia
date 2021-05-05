@@ -13,8 +13,4 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Context\EtAlii.Ubigia.Api.Functional.Context.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="0. _Model" />
-    <Folder Include="2. Planning" />
-  </ItemGroup>
 </Project>

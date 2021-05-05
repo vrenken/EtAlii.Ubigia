@@ -2,6 +2,8 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+
 #if USE_LAPA_PARSER_IN_TESTS
     internal class TestSchemaParserFactory : LapaSchemaParserFactory
 #else

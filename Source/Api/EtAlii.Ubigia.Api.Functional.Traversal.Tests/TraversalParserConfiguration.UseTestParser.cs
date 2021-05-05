@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+
     internal static class TraversalParserConfigurationUseTestParserExtension
     {
         public static TraversalParserConfiguration UseTestParser(this TraversalParserConfiguration configuration)

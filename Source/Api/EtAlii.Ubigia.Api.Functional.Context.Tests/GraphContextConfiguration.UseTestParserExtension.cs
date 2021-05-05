@@ -2,6 +2,8 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+
     public static class GraphContextConfigurationUseTestParserExtension
     {
         /// <summary>

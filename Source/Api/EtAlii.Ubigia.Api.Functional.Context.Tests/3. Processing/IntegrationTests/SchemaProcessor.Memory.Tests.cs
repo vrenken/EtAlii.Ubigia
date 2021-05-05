@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Context.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.Diagnostics;
     using JetBrains.dotMemoryUnit;

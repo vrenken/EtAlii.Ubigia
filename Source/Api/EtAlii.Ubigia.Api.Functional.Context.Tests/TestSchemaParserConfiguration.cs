@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
     public class TestSchemaParserConfiguration : SchemaParserConfiguration
