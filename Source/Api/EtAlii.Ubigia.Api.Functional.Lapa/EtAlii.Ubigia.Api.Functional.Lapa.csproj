@@ -3,7 +3,7 @@
     <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
     <ProjectGuid>c8e649e5-6d13-498d-9ce1-f83baaaf9945</ProjectGuid>
     <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
   </PropertyGroup>
