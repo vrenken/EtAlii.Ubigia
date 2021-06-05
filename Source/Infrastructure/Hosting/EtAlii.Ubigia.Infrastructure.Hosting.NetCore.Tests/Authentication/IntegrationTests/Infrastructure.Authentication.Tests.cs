@@ -4,7 +4,7 @@
 	using System.Net;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
-	using EtAlii.Ubigia.Api.Transport.WebApi;
+	using EtAlii.Ubigia.Api.Transport.Rest;
 	using Xunit;
 
 	[Trait("Technology", "NetCore")]

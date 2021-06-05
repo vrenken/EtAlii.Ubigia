@@ -7,7 +7,7 @@
     <PackageReference Include="System.Memory" Version="4.5.4" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore.csproj" />
+    <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\UnitTestSettings.cs">

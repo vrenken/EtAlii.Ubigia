@@ -2,7 +2,7 @@
 {
 	using System;
 	using System.Linq;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using Microsoft.AspNetCore.Mvc;
@@ -16,8 +16,8 @@
 	    private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
 		public SpaceController(
-			ISpaceRepository items, 
-			IAccountRepository accountItems, 
+			ISpaceRepository items,
+			IAccountRepository accountItems,
 			IAuthenticationTokenConverter authenticationTokenConverter)
 		{
 			_items = items;

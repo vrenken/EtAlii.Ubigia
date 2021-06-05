@@ -1,0 +1,99 @@
+﻿{
+  "Host": 
+  {
+    "Systems": [
+      {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
+        "Services": [
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory",
+            "Name": "Debug storage",
+            "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
+          },
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+            "Name": "Debug storage",
+            "Address": "http://{{HOST:StorageHost@127.0.0.1}}"
+          }
+        ],
+        "Modules": [
+          {
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
+            "Name": "Admin",
+            "####Comment": "// Admin should be accessible over localhost only",
+            "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
+            "Port": "{{PORT:AdminPort@64001}}",
+            
+            "Modules": [
+              {
+                "Name": "Api",
+                "Path": "{{PATH:AdminApi@/admin}}",
+
+                "Services": [
+                  {
+                    "Path": "{{PATH:AdminApiRest@/api/rest}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest"
+                  },
+                  {
+                    "Path": "{{PATH:AdminApiSignalR@/api/stream}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"                    
+                  }
+                ]                
+              }
+            ]
+          },
+          {
+            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
+            "Name": "User",
+            "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
+            "Port": "{{PORT:UserPort@64000}}",
+            "Modules": [
+              {
+                "Name": "Api",
+                "Path": "{{PATH:UserApi@/user}}",
+                "Services": [
+                  {
+                    "Path": "{{PATH:UserApiRest@/api/rest}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest"
+                  },
+                  {
+                    "Path": "{{PATH:UserApiSignalR@/api/stream}}",
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    }
+  }
+

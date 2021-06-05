@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             if (configurationDetails.Paths.ContainsKey("UserApiRest"))
             {
-                var restServiceDetails = BuildWebApiServiceDetails(configurationDetails);
+                var restServiceDetails = BuildRestServiceDetails(configurationDetails);
                 serviceDetails.Add(restServiceDetails);
             }
             if (configurationDetails.Paths.ContainsKey("UserApiSignalR"))
@@ -31,10 +31,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             // Again ugly, but for now we need to make this builder compatible with both the REST/SignalR AND Grpc services.
             // For this we need to be somewhat sneaky on how to build our details.
-            // In a future refactoring all configurations will be merged into one single big one. 
+            // In a future refactoring all configurations will be merged into one single big one.
             if (!configurationDetails.Paths.ContainsKey("SignalRApiRest") && !configurationDetails.Paths.ContainsKey("UserApiRest"))
             {
-                // If we don't have any SignalR nor any REST details we should build and add Grpc service details.   
+                // If we don't have any SignalR nor any REST details we should build and add Grpc service details.
                 var grpcServiceDetails = BuildGrpcServiceDetails(configurationDetails);
                 serviceDetails.Add(grpcServiceDetails);
             }
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             {
                 throw new NotSupportedException("Unable to classify one single service as the system service");
             }
-            
+
             return serviceDetails.ToArray();
         }
 
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             return new ServiceDetails("SignalR", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), false);
         }
-        private ServiceDetails BuildWebApiServiceDetails(IConfigurationDetails configurationDetails)
+        private ServiceDetails BuildRestServiceDetails(IConfigurationDetails configurationDetails)
         {
             var userHost = configurationDetails.Hosts["UserHost"];
             userHost = ConvertToDedicatedNetworkAddress(userHost);
@@ -112,23 +112,23 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             if (dataAddress == null)
             {
-                throw new InvalidOperationException($"Unable to start WebApi service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
+                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: {nameof(dataAddress)} cannot be build from configuration.");
             }
             if (!Uri.IsWellFormedUriString(dataAddress, UriKind.Absolute))
             {
-                throw new InvalidOperationException($"Unable to start WebApi service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
+                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: no valid {nameof(dataAddress)} can be build from configuration.");
             }
 
             if (managementAddress == null)
             {
-                throw new InvalidOperationException($"Unable to start WebApi service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
+                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: {nameof(managementAddress)} cannot be build from configuration.");
             }
             if (!Uri.IsWellFormedUriString(managementAddress, UriKind.Absolute))
             {
-                throw new InvalidOperationException($"Unable to start WebApi service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
+                throw new InvalidOperationException($"Unable to start Rest service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
             }
 
-            return new ServiceDetails("WebApi", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
+            return new ServiceDetails("Rest", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
         }
         private ServiceDetails BuildGrpcServiceDetails(IConfigurationDetails configurationDetails)
         {
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             {
                 throw new InvalidOperationException($"Unable to start Grpc service {nameof(InfrastructureService)}: no valid {nameof(managementAddress)} can be build from configuration.");
             }
-            
+
             return new ServiceDetails("Grpc", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
         }
 

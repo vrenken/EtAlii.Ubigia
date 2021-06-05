@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
     using Microsoft.AspNetCore.Mvc;

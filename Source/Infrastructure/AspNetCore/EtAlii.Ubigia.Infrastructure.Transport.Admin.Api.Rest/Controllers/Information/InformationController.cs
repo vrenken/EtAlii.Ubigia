@@ -2,7 +2,7 @@
 {
 	using System;
 	using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Mvc;
@@ -17,7 +17,7 @@
 	    {
 		    _configurationDetails = configurationDetails;
 	    }
-	    
+
 	    [HttpGet]
 	    public IActionResult GetLocalConnectivityDetails([RequiredFromQuery]string connectivity)
 	    {

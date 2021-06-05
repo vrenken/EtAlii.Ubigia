@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>30BE97EC-145E-45B6-DDCC-2C0C5AFB1AAC</ProjectGuid>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <Content Include="System 1\settings_variant_1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -13,7 +13,7 @@
     <Content Include="System 2\settings_variant_grpc.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="System 2\settings_variant_webapi.json">
+    <Content Include="System 2\settings_variant_rest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="System 2\settings_variant_signalr.json">
@@ -59,7 +59,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Compile Include="..\..\..\..\UnitTestSettings.cs">
       <Link>UnitTestSettings.cs</Link>

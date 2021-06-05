@@ -44,7 +44,7 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserRestServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
                   },
                   {
                     "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
