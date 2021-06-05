@@ -1,5 +1,5 @@
 ﻿{
-  "Host": 
+  "Host":
   {
     "Systems": [
       {
@@ -23,7 +23,7 @@
             "####Comment": "// Admin should be accessible over localhost only",
             "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
             "Port": "{{PORT:AdminPort@64001}}",
-            
+
             "Modules": [
               {
                 "Name": "Api",
@@ -33,10 +33,6 @@
                   {
                     "Path": "{{PATH:AdminApiRest@/api/rest}}",
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest"
-                  },
-                  {
-                    "Path": "{{PATH:AdminApiSignalR@/api/stream}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR"
                   }
                 ]
               },
@@ -47,9 +43,9 @@
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"                    
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor"
                   }
-                ]                
+                ]
               }
             ]
           },
@@ -66,10 +62,6 @@
                   {
                     "Path": "{{PATH:UserApiRest@/api/rest}}",
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest"
-                  },
-                  {
-                    "Path": "{{PATH:UserApiSignalR@/api/stream}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR"
                   }
                 ]
               },
