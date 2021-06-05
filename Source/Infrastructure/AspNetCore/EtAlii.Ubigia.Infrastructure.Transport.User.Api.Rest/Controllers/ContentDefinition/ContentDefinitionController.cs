@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
     using Microsoft.AspNetCore.Mvc;
@@ -60,10 +60,10 @@
         [HttpPut]
         public async Task<IActionResult> Put([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] ulong contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         {
-            // Remark. We cannot have two post methods at the same time. The hosting 
+            // Remark. We cannot have two post methods at the same time. The hosting
             // framework gets confused and does not out of the box know what method to choose.
             // Even if both have different parameters.
-            // It might not be the best fit to alter this in PUT, but as the WebApi interface
+            // It might not be the best fit to alter this in PUT, but as the Rest interface
             // is the least important one this will do for now.
             // We've got bigger fish to fry.
             IActionResult response;

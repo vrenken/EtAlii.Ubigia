@@ -10,5 +10,5 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Context.Grpc.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Rest.Tests")]
 

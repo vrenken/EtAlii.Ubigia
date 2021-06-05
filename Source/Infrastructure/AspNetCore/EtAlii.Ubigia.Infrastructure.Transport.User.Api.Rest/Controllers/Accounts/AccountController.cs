@@ -2,7 +2,7 @@
 {
 	using System;
 	using System.Linq;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using Microsoft.AspNetCore.Mvc;
@@ -15,7 +15,7 @@
 	    private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
 		public AccountController(
-			IAccountRepository items, 
+			IAccountRepository items,
 			IAuthenticationTokenConverter authenticationTokenConverter)
 		{
 			_items = items;
@@ -42,5 +42,5 @@
             }
             return response;
         }
-    }    
+    }
 }

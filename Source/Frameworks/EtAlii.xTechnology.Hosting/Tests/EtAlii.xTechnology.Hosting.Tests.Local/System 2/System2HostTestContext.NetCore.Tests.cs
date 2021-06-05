@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextNetCore_User_Api_Get_1()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
+            var context = new HostTestContext(ConfigurationFiles.Systems2VariantRest);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestUserApi];
@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextNetCore_User_Api_Get_2()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantWebApi);
+            var context = new HostTestContext(ConfigurationFiles.Systems2VariantRest);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.RestUserApi];
             var path = context.Paths[TestPath.RestUserApi];

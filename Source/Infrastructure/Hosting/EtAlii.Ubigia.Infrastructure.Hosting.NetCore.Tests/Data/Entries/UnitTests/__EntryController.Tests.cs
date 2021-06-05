@@ -1,10 +1,10 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 //[
-//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User
+//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.Rest.Api.User
 //    using Xunit
 
-    
-//    public class EntryController_Tests 
+
+//    public class EntryController_Tests
 //    [
 //        [Fact]
 //        public void EntryController_Create()

@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Rest;
     using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using Microsoft.AspNetCore.Authorization;
 	using Microsoft.AspNetCore.Mvc;
@@ -14,8 +14,8 @@
 		private readonly IHttpContextAuthenticationTokenVerifier _authenticationTokenVerifier;
 
 		public AuthenticateController(
-			IHttpContextAuthenticationVerifier authenticationVerifier, 
-			IHttpContextResponseBuilder responseBuilder, 
+			IHttpContextAuthenticationVerifier authenticationVerifier,
+			IHttpContextResponseBuilder responseBuilder,
 			IHttpContextAuthenticationTokenVerifier authenticationTokenVerifier)
 		{
 			_authenticationVerifier = authenticationVerifier;

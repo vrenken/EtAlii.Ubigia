@@ -8,11 +8,11 @@
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Grpc.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Rest.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Grpc.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Rest.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser")]
 [assembly: InternalsVisibleTo("SpaceBrowser")]

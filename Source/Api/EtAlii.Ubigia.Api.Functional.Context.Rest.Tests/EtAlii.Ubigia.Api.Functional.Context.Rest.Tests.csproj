@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>83cdcc84-3c6e-4afb-b4bf-74b6655a51e9</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Context.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Traversal.Rest.Tests\EtAlii.Ubigia.Api.Functional.Traversal.Rest.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Rest.Tests\EtAlii.Ubigia.Api.Logical.Rest.Tests.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Context.Tests\EtAlii.Ubigia.Api.Functional.Context.Tests.projitems" Label="Shared" />
+</Project>

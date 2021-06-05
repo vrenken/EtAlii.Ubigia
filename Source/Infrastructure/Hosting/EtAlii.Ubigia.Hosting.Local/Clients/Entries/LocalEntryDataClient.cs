@@ -4,7 +4,7 @@
     using EtAlii.xTechnology.MicroContainer;
     using System.Collections.Generic;
 
-    public class LocalEntryDataClient : WebApiDataClientBase<IDataConnection>, IEntryDataClient 
+    public class LocalEntryDataClient : RestDataClientBase<IDataConnection>, IEntryDataClient
     {
         public LocalEntryDataClient(Container container, IAddressFactory addressFactory, IInfrastructureClient client)
             : base(container, addressFactory, client)

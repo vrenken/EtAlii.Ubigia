@@ -6,7 +6,7 @@
     <Summary>Package that contains an abstraction layer on top of the .NET Core 3.1 hosting facilities.</Summary>
     <Description>It's aim is to facilitate:
 - Out-of-the-box code isolation for different parts on an application (i.e. admin vs. user api).
-- Flexibility in transport technologies (i.e. SignalR, Grpc and WebApi).
+- Flexibility in transport technologies (i.e. SignalR, Grpc and Rest).
 - Flexibility in hosting: Console, In-process, windows service, trayicon, Docker etc.
 - An as easy as possible way to incorporate unit/integration tests for server/client/distributed applications.</Description>
     <PackageTags>hosting abstraction Docker Grpc SignalR Rest WebApi Unit-Tests In-Memory In-Process Website Console TrayIcon host</PackageTags>

@@ -22,8 +22,8 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
                 new InfrastructureLoggingScaffolding(_diagnostics),
                 new InfrastructureProfilingScaffolding(_diagnostics),
 
-                //new WebApiProfilingScaffolding(diagnostics),
-                //new WebApiLoggingScaffolding(diagnostics),
+                //new RestProfilingScaffolding(diagnostics),
+                //new RestLoggingScaffolding(diagnostics),
             };
 
             foreach (var scaffolding in scaffoldings)

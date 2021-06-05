@@ -15,24 +15,24 @@
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Rest.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Traversal.Rest.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Rest.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Rest.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Rest.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Management.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.Management.Rest.Tests")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Provisioning.Tests")]
 

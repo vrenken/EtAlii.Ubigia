@@ -1,10 +1,10 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 //[
-//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin
+//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.Rest.Api.Admin
 //    using Xunit
 
-    
-//    public sealed class AccountController_Tests 
+
+//    public sealed class AccountController_Tests
 //    [
 //        [Fact]
 //        public void AccountController_Create()

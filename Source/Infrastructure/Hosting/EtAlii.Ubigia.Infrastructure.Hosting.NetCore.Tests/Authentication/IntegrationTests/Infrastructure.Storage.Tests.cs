@@ -6,14 +6,14 @@
 	using System.Threading;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
-	using EtAlii.Ubigia.Api.Transport.WebApi;
+	using EtAlii.Ubigia.Api.Transport.Rest;
     using Xunit;
 
     [Trait("Technology", "NetCore")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
-        
+
         public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
         {
 	        _testContext = testContext;
