@@ -6,4 +6,4 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Transport.Rest.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests")]

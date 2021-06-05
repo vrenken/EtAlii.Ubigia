@@ -119,7 +119,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{47D6FB52-B2D1-43CA-A6D4-4AC086DDC8A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj", "{71FE90E4-5080-4181-AFDD-6A31BEBC2A65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Rest.Tests.csproj", "{71FE90E4-5080-4181-AFDD-6A31BEBC2A65}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Ntfs", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Ntfs\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.csproj", "{DEC3AF7A-4DED-4985-A3B9-FEC93F30263D}"
 EndProject
@@ -467,6 +467,8 @@ ProjectSection(SolutionItems) = preProject
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests\EtAlii.Ubigia.Infrastructure.Hosting.SignalR.Tests.csproj", "{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -2173,6 +2175,18 @@ Global
 		{B433801E-0F22-4867-9574-8A90109A559B}.Release|x64.Build.0 = Release|Any CPU
 		{B433801E-0F22-4867-9574-8A90109A559B}.Release|x86.ActiveCfg = Release|Any CPU
 		{B433801E-0F22-4867-9574-8A90109A559B}.Release|x86.Build.0 = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|x64.Build.0 = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|x86.ActiveCfg = Release|Any CPU
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2368,6 +2382,7 @@ Global
 		{9E5C6815-9E90-4B5C-84DC-9FF453AACBA4} = {6DD333C1-4642-480A-8A61-AE92F4237CB0}
 		{186D063F-AADD-4F45-B394-935239120191} = {C9537D00-7881-4ACB-9111-9439363F658D}
 		{B433801E-0F22-4867-9574-8A90109A559B} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
+		{1C13741B-F7EB-4E8D-B818-D6D0FF9E65CA} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

@@ -10,10 +10,10 @@
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        private const string _getErrorMessage = "Unable to GET data from the client";
-        private const string _postErrorMessage = "Unable to POST data to the client";
-        private const string _putErrorMessage = "Unable to PUT data on the client";
-        private const string _deleteErrorMessage = "Unable to DELETE data on the client";
+        private const string GetErrorMessage = "Unable to GET data from the client";
+        private const string PostErrorMessage = "Unable to POST data to the client";
+        private const string PutErrorMessage = "Unable to PUT data on the client";
+        private const string DeleteErrorMessage = "Unable to DELETE data on the client";
 
         public string AuthenticationToken { get; set; }
 
@@ -51,11 +51,11 @@
             }
             catch (AggregateException e)
             {
-                throw new InfrastructureConnectionException(_getErrorMessage, e.InnerException);
+                throw new InfrastructureConnectionException(GetErrorMessage, e.InnerException);
             }
             catch (Exception e)
             {
-                throw new InfrastructureConnectionException(_getErrorMessage, e);
+                throw new InfrastructureConnectionException(GetErrorMessage, e);
             }
         }
 
@@ -88,11 +88,11 @@
             }
             catch (AggregateException e)
             {
-                throw new InfrastructureConnectionException(_postErrorMessage, e.InnerException);
+                throw new InfrastructureConnectionException(PostErrorMessage, e.InnerException);
             }
             catch (Exception e)
             {
-                throw new InfrastructureConnectionException(_postErrorMessage, e);
+                throw new InfrastructureConnectionException(PostErrorMessage, e);
             }
         }
 
@@ -115,11 +115,11 @@
             }
             catch (AggregateException e)
             {
-                throw new InfrastructureConnectionException(_deleteErrorMessage, e.InnerException);
+                throw new InfrastructureConnectionException(DeleteErrorMessage, e.InnerException);
             }
             catch (Exception e)
             {
-                throw new InfrastructureConnectionException(_deleteErrorMessage, e);
+                throw new InfrastructureConnectionException(DeleteErrorMessage, e);
             }
         }
 
@@ -143,11 +143,11 @@
             }
             catch (AggregateException e)
             {
-                throw new InfrastructureConnectionException(_putErrorMessage, e.InnerException);
+                throw new InfrastructureConnectionException(PutErrorMessage, e.InnerException);
             }
             catch (Exception e)
             {
-                throw new InfrastructureConnectionException(_putErrorMessage, e);
+                throw new InfrastructureConnectionException(PutErrorMessage, e);
             }
         }
 

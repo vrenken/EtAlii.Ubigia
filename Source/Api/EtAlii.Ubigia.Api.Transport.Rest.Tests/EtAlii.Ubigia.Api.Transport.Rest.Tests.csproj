@@ -4,7 +4,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Rest\EtAlii.Ubigia.Api.Transport.Management.Rest.csproj" />
   </ItemGroup>
   <ItemGroup>
