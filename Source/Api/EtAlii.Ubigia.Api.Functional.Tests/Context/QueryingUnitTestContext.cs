@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
     public class QueryingUnitTestContext : IAsyncLifetime

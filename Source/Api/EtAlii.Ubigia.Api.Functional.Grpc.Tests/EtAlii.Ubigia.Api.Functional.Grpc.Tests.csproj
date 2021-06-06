@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>9243c0eb-59bd-4dab-b631-cc8b14ba3585</ProjectGuid>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.Traversal.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
@@ -11,5 +11,5 @@
       <Link>UnitTestSettings.cs</Link>
     </Compile>
   </ItemGroup>
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Traversal.Tests\EtAlii.Ubigia.Api.Functional.Traversal.Tests.projitems" Label="Shared" />
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems" Label="Shared" />
 </Project>
