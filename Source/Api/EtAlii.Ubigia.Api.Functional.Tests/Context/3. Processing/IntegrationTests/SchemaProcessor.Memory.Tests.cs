@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private IDiagnosticsConfiguration _diagnostics;
-        private GraphContextConfiguration _configuration;
+        private FunctionalContextConfiguration _configuration;
 
         public SchemaProcessorMemoryTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var start = Environment.TickCount;
 
             _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
-            _configuration = new GraphContextConfiguration()
+            _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);

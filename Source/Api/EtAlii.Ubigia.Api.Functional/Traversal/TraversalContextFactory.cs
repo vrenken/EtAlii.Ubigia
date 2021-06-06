@@ -3,9 +3,9 @@
     using EtAlii.xTechnology.MicroContainer;
     using System;
 
-    public class TraversalContextFactory : Factory<ITraversalContext, TraversalContextConfiguration, ITraversalContextExtension>
+    public class TraversalContextFactory : Factory<ITraversalContext, FunctionalContextConfiguration, ITraversalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(TraversalContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalContextConfiguration configuration)
         {
             // Let's ensure that the function handler configuration is in fact valid.
             var functionHandlersProvider = configuration.FunctionHandlersProvider;

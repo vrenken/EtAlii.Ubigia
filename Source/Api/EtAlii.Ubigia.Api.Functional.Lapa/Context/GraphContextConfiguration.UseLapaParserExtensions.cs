@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <typeparam name="TGraphContextConfiguration"></typeparam>
         /// <returns></returns>
         public static TGraphContextConfiguration UseLapaContextParser<TGraphContextConfiguration>(this TGraphContextConfiguration configuration)
-            where TGraphContextConfiguration : GraphContextConfiguration
+            where TGraphContextConfiguration : FunctionalContextConfiguration
         {
             configuration.Use(new IGraphContextExtension[]
             {

@@ -34,6 +34,5 @@
 
         IObservable<SequenceProcessingResult> Process(string text);
         //Task<IEnumerable<object>> Process(string text, IProgress<ScriptProcessingProgress> progress, params object[] args)
-
     }
 }

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
         /// <typeparam name="TGraphContextConfiguration"></typeparam>
         /// <returns></returns>
         public static TGraphContextConfiguration UseAntlrContextParser<TGraphContextConfiguration>(this TGraphContextConfiguration configuration)
-            where TGraphContextConfiguration : GraphContextConfiguration
+            where TGraphContextConfiguration : FunctionalContextConfiguration
         {
             configuration.Use(new IGraphContextExtension[]
             {

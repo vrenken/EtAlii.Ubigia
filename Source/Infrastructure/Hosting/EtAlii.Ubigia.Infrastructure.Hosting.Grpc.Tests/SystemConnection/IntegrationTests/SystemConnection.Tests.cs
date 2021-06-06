@@ -5,6 +5,7 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
@@ -90,7 +91,7 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 
@@ -135,7 +136,7 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 

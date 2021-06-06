@@ -18,7 +18,7 @@
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -33,7 +33,7 @@
         public async Task TraversalContextFactory_Create_With_RootHandler_None()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -51,7 +51,7 @@
             var rootHandlerMappers = new IRootHandlerMapper[] { new TestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(rootHandlerMappersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -70,7 +70,7 @@
             var rootHandlerMappers = new IRootHandlerMapper[] { new InvalidTestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(rootHandlerMappersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -96,7 +96,7 @@
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(rootHandlerMappersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -119,7 +119,7 @@
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(rootHandlerMappersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);

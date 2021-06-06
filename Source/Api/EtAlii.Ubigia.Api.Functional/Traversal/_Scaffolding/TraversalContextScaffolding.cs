@@ -10,10 +10,10 @@
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
         private readonly Func<TraversalParserConfiguration> _parserConfigurationProvider;
         private readonly Func<TraversalProcessorConfiguration> _processorConfigurationProvider;
-        private readonly TraversalContextConfiguration _configuration;
+        private readonly FunctionalContextConfiguration _configuration;
 
         public TraversalContextScaffolding(
-            TraversalContextConfiguration configuration,
+            FunctionalContextConfiguration configuration,
             Func<TraversalParserConfiguration> parserConfigurationProvider,
             Func<TraversalProcessorConfiguration> processorConfigurationProvider,
             IFunctionHandlersProvider functionHandlersProvider,

@@ -13,7 +13,7 @@
         private ITraversalContext _traversalContext;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private GraphContextConfiguration _configuration;
+        private FunctionalContextConfiguration _configuration;
 
         public GraphContextCodeQueriesVariableTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -25,7 +25,7 @@
         {
             var start = Environment.TickCount;
 
-            _configuration = new GraphContextConfiguration()
+            _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);

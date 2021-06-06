@@ -9,9 +9,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <typeparam name="TTraversalContextConfiguration"></typeparam>
         /// <returns></returns>
         public static TTraversalContextConfiguration UseLapaTraversalParser<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration)
-            where TTraversalContextConfiguration : TraversalContextConfiguration
+            where TTraversalContextConfiguration : FunctionalContextConfiguration
         {
-            var editableConfiguration = (IEditableTraversalContextConfiguration) configuration;
+            var editableConfiguration = (IEditableFunctionalContextConfiguration) configuration;
             editableConfiguration.ParserConfigurationProvider = () => new TraversalParserConfiguration().UseLapa();
             editableConfiguration.ProcessorConfigurationProvider = () => new TraversalProcessorConfiguration().UseLapa();
 

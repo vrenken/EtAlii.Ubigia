@@ -240,6 +240,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
     <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
   </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
+    </ItemGroup>
   <ItemGroup>
     <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj">
@@ -251,9 +254,6 @@
     <!-- <Content Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\4. CodeGeneration\Build\*">
         <Link>\%(Filename)%(Extension)</Link>
       </Content>-->
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.props" />
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Analyzers\Context\4. CodeGeneration\Build\*.targets" />

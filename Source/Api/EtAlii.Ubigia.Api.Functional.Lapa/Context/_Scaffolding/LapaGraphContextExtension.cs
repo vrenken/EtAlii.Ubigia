@@ -6,9 +6,9 @@
 
     internal class LapaGraphContextExtension : IGraphContextExtension
     {
-        private readonly GraphContextConfiguration _configuration;
+        private readonly FunctionalContextConfiguration _configuration;
 
-        public LapaGraphContextExtension(GraphContextConfiguration configuration)
+        public LapaGraphContextExtension(FunctionalContextConfiguration configuration)
         {
             _configuration = configuration;
         }
@@ -16,7 +16,7 @@
         public void Initialize(Container container)
         {
             container.Register<IGraphContext, GraphContext>();
-            container.Register<IGraphContextConfiguration>(() => _configuration);
+            container.Register<IFunctionalContextConfiguration>(() => _configuration);
 
             container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, LapaSchemaParserFactory>();

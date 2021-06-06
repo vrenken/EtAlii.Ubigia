@@ -18,7 +18,7 @@
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                     .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -33,7 +33,7 @@
         public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -51,7 +51,7 @@
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -70,7 +70,7 @@
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -96,7 +96,7 @@
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -119,7 +119,7 @@
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);

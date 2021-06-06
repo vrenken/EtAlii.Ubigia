@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     public static class GraphContextConfigurationDiagnosticsExtension
     {
         public static TGraphContextConfiguration UseFunctionalGraphContextDiagnostics<TGraphContextConfiguration>(this TGraphContextConfiguration configuration, IDiagnosticsConfiguration diagnostics, bool alsoUseForDeeperDiagnostics = true)
-            where TGraphContextConfiguration : GraphContextConfiguration
+            where TGraphContextConfiguration : FunctionalContextConfiguration
         {
             var extensions = new IGraphContextExtension[]
             {

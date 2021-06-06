@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
         /// <typeparam name="TTraversalContextConfiguration"></typeparam>
         /// <returns></returns>
         public static TTraversalContextConfiguration UseAntlrTraversalParser<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration)
-            where TTraversalContextConfiguration : TraversalContextConfiguration
+            where TTraversalContextConfiguration : FunctionalContextConfiguration
         {
-            var editableConfiguration = (IEditableTraversalContextConfiguration) configuration;
+            var editableConfiguration = (IEditableFunctionalContextConfiguration) configuration;
             editableConfiguration.ParserConfigurationProvider = () => new TraversalParserConfiguration().UseAntlr();
             editableConfiguration.ProcessorConfigurationProvider = () => new TraversalProcessorConfiguration().UseAntlr();
 

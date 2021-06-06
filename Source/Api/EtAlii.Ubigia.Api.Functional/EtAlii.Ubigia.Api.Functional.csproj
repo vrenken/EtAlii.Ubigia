@@ -9,4 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Model" />
+  </ItemGroup>
 </Project>

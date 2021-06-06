@@ -34,7 +34,7 @@
         public async Task ProfilingTraversalContext_Create_01()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
@@ -50,7 +50,7 @@
         public async Task ProfilingTraversalContext_Create_02()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();
@@ -67,7 +67,7 @@
         public async Task ProfilingTraversalContext_Create_03()
         {
             // Arrange.
-            var configuration = new TraversalContextConfiguration()
+            var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseFunctionalTraversalDiagnostics(_diagnostics)
                 .UseTraversalProfiling();

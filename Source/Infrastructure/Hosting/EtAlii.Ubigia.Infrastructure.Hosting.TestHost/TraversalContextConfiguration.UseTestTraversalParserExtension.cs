@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <typeparam name="TTraversalContextConfiguration"></typeparam>
         /// <returns></returns>
         public static TTraversalContextConfiguration UseTestTraversalParser<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration)
-            where TTraversalContextConfiguration : TraversalContextConfiguration
+            where TTraversalContextConfiguration : FunctionalContextConfiguration
         {
 #if USE_LAPA_PARSER_IN_TESTS
             return configuration.UseLapaTraversalParser();
