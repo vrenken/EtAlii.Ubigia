@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting
     public sealed class SystemSafeExecutionScope : IDisposable
     {
         private readonly Guid _uniqueId;
-        public static TimeSpan DefaultTimeout { get; set; } = TimeSpan.FromMinutes(10);
+        private static TimeSpan DefaultTimeout { get; set; } = TimeSpan.FromMinutes(10);
 
         //edit by user "jitbit" - renamed private fields to "_"
         private readonly bool _hasHandle;
@@ -26,7 +26,7 @@ namespace EtAlii.xTechnology.Hosting
         {
         }
 
-        public SystemSafeExecutionScope(Guid uniqueId, TimeSpan timeOut)
+        private SystemSafeExecutionScope(Guid uniqueId, TimeSpan timeOut)
         {
             _uniqueId = uniqueId;
             _mutex = CreateMutex();
@@ -53,7 +53,7 @@ namespace EtAlii.xTechnology.Hosting
                 mutex.SetAccessControl(securitySettings);
             }
 
-            AppDomain.CurrentDomain.ProcessExit += (_, _) => mutex.Close();
+            AppDomain.CurrentDomain.ProcessExit += (_, _) => Dispose();
             return mutex;
         }
 
@@ -66,7 +66,9 @@ namespace EtAlii.xTechnology.Hosting
                 // mutex.WaitOne(Timeout.Infinite, false)
                 hasHandle = _mutex.WaitOne(timeout, false);
                 if (!hasHandle)
+                {
                     throw new TimeoutException("Timeout waiting for exclusive access");
+                }
             }
             catch (AbandonedMutexException)
             {
