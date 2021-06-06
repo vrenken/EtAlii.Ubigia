@@ -36,7 +36,7 @@
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetAssembly(typeof(Win32TestHelper));
             // Get the stream (embedded resource) - be sure to wrap in a using block
-            using var stream = assembly!.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Traversal.Tests.TestImage_01.jpg");
+            using var stream = assembly!.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Tests.TestImage_01.jpg");
             var bytes = new byte[stream!.Length];
             stream.Read(bytes, 0, (int)stream.Length);
             File.WriteAllBytes(fileName, bytes);
