@@ -7,8 +7,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Lapa\EtAlii.Ubigia.Api.Functional.Lapa.csproj" />
-    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Traversal.Antlr\EtAlii.Ubigia.Api.Functional.Traversal.Antlr.csproj" />
-    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Traversal\EtAlii.Ubigia.Api.Functional.Traversal.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
     <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj" />
