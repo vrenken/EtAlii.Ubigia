@@ -17,13 +17,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public ISequenceExecutionPlan[] Plan(Script script)
         {
-            _logger.Information("Planning script", script);
+            _logger
+                .ForContext("Script", script, true)
+                .Information("Planning script");
             var start = Environment.TickCount;
 
             var result = _decoree.Plan(script);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Planned script (Duration: {Duration}ms)", duration, result);
+            _logger
+                .ForContext("ScriptPlanResult", result, true)
+                .Information("Planned script (Duration: {Duration}ms)", duration);
 
             return result;
         }

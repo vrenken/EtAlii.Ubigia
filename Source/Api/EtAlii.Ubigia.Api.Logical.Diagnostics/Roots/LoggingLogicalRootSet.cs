@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             var result = await _decoree.Add(name).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Added root (Duration: {Duration}ms)", duration, result);
+            _logger.Information("Added root {RootName} (Duration: {Duration}ms)", result, duration);
 
             return result;
         }
