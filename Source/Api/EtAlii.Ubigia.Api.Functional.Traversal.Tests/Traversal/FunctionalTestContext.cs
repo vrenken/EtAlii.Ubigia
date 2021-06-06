@@ -10,15 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public class FunctionalTestContext : IFunctionalTestContext
     {
         private readonly ILogicalTestContext _logical;
-        public IDiagnosticsConfiguration Diagnostics => _diagnostics;
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        public IDiagnosticsConfiguration Diagnostics { get; }
 
         public FunctionalTestContext(
             ILogicalTestContext logical,
             IDiagnosticsConfiguration diagnostics)
         {
             _logical = logical;
-            _diagnostics = diagnostics;
+            Diagnostics = diagnostics;
         }
 
 //        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)

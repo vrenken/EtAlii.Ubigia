@@ -12,5 +12,4 @@
     </Compile>
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Traversal.Tests\EtAlii.Ubigia.Api.Functional.Traversal.Tests.projitems" Label="Shared" />
-
 </Project>
