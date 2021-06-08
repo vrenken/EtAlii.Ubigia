@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
+    using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class Win32ContentManagerTests : IClassFixture<Win32FunctionalUnitTestContext>, IAsyncLifetime
     {

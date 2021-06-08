@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
     public static class UnitTestSettings
     {
-        public static PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 14400, UnitTestConstants.NetworkPortRangeStart + 14599);
+        public static readonly PortRange NetworkPortRange = new(UnitTestConstants.NetworkPortRangeStart + 14400, UnitTestConstants.NetworkPortRangeStart + 14599);
     }
 }

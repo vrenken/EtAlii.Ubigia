@@ -5,6 +5,7 @@
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
+    using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
