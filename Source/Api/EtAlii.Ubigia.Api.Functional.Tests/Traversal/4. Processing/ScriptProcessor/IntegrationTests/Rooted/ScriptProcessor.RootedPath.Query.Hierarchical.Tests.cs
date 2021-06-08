@@ -3,35 +3,20 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly TraversalUnitTestContext _testContext;
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
 
         public ScriptProcessorRootedPathQueryHierarchicalIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public async Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -51,7 +36,8 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -84,7 +70,8 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -116,7 +103,8 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -149,7 +137,8 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

@@ -4,38 +4,27 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathAdvancedTests : IAsyncLifetime
+    public class ScriptProcessorRootedPathAdvancedTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalTestContext _testContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public async Task InitializeAsync()
+        public ScriptProcessorRootedPathAdvancedTests(TraversalUnitTestContext testContext)
         {
-            _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
-
+            _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-        }
-
-        public async Task DisposeAsync()
-        {
-            _parser = null;
-
-            await _testContext.Stop().ConfigureAwait(false);
-            _testContext = null;
         }
 
         [Fact]
         public async Task ScriptProcessor_RootedPath_Advanced_Create()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -54,7 +43,7 @@
         public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_Root()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Time:2017/09/01/22/05",
@@ -90,7 +79,7 @@
         public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_AbsolutePath()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Time:2018/09/01/22/05",
@@ -126,7 +115,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_Should_Not_Clear_Children()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -166,7 +155,7 @@
         public async Task ScriptProcessor_RootedPath_Parent_Should_Return_Same_Node()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -198,7 +187,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -234,7 +223,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -275,7 +264,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -316,7 +305,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_04()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -357,7 +346,7 @@
         public async Task ScriptProcessor_RootedPath_Assign_Special_Characters()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/\"Jöhn\"",
@@ -395,7 +384,7 @@
         public async Task ScriptProcessor_RootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery1 = "Person: += Doe";
             var addQueries2 = new[]
             {
@@ -441,7 +430,7 @@
         public async Task ScriptProcessor_RootedPath_Move_Child()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries1 = new []
             {
               "Person: += Doe",
@@ -512,7 +501,7 @@
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
                 "Person:+=Doe/John",
@@ -633,7 +622,7 @@
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
                 "Person:+=Doe/John",

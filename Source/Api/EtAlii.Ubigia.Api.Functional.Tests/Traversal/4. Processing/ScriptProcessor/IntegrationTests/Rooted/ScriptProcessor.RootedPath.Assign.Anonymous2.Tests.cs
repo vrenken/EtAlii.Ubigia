@@ -6,31 +6,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathAssignAnonymous2IntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathAssignAnonymous2IntegrationTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathAssignAnonymous2IntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public async Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -14,4 +14,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return configuration.UseAntlr();
 #endif
         }
-    }}
+    }
+}

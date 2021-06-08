@@ -3,38 +3,27 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathFunctionCountTests : IAsyncLifetime
+    public class ScriptProcessorRootedPathFunctionCountTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalTestContext _testContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public async Task InitializeAsync()
+        public ScriptProcessorRootedPathFunctionCountTests(TraversalUnitTestContext testContext)
         {
-            _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
-
+            _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-        }
-
-        public async Task DisposeAsync()
-        {
-            _parser = null;
-
-            await _testContext.Stop().ConfigureAwait(false);
-            _testContext = null;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Function_Count_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -66,7 +55,7 @@
         public async Task ScriptProcessor_RootedPath_Function_Count_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -97,7 +86,7 @@
         public async Task ScriptProcessor_RootedPath_Function_Count_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",

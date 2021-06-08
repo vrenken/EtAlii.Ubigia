@@ -33,7 +33,7 @@
         public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person: += Doe",

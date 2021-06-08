@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>0FF6B100-C0C1-4BD6-9640-9F2EEDFF8BCB</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Parsing.Tests</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+  </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.projitems" Label="Shared" />
+</Project>

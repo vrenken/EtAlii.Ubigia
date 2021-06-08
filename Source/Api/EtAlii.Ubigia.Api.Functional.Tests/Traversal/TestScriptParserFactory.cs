@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.xTechnology.Diagnostics;
 
     internal class TestScriptParserFactory : ScriptParserFactory
-
     {
         public IScriptParser Create()
         {

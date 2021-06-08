@@ -9,6 +9,7 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Scripting.Traversal.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32ContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32HierarchicalContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32LogicalUnitTestContext.cs" />
@@ -37,60 +38,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Subjects\UnitTests\FunctionSubject.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Antlr\1. Parsing\UnitTests\AntlrParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\NewLineParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\RegexPathSubjectPartParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Conditional.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Hierarchical.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Temporal.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.TraversingWildcard.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Paths.Wildcard.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\SequenceParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\TypedPathSubjectPartParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\MdFileBasedTraversalContextData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Bugs.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Id.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Include.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.New.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Rename.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.ItemsOutput.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.AddItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.IdentifierOutput.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.ItemOutput.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Paths.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tags.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.TraverseAll.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RemoveItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.DoubleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.SingleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.Path.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.DoubleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.NoQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.SingleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Assign.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Unassign.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Use.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.AddItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.ItemOutput.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Parse.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Paths.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Tags.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Tests2.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.UpdateItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableAddItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableIdentifierAssignment.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableItemAssignment.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableItemsAssignment.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableOutput.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableStringAssignment.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableUpdateItem.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\2. Planning\UnitTests\SequencePartExecutionPlannerSelector.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Advanced.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Anonymous2.Tests.cs" />
@@ -136,7 +83,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Locations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Time.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic2.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.String.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Function.Id.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Remove.Tests.cs" />
@@ -152,29 +98,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\_Model\TestRootHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\MdFileBasedGraphContextData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\__TextFileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\GraphContextCode.Queries.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Fragments\StructureFragmentParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Fragments\ValueFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Fragments\ValueFragmentParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Nodes\NodeAnnotationsParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Schemas\LapaSchemaParserTestContainerFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Values\SelectValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Values\SetAndSelectValueAnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\UnitTests\Values\ValueAnnotationsParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Schemas\SchemaParser.Bugs.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\GraphContextCode.Queries.Variable.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\UnitTests\Location.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\UnitTests\TypedPerson.Tests.cs" />
     <Folder Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\UnitTests" />
-    <Folder Include="$(MSBuildThisFileDirectory)Traversal\0. _Antlr\0. Base\UnitTests" />
-    <Folder Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\0. Base\UnitTests" />
-    <Folder Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\Helpers" />
-    <Folder Include="$(MSBuildThisFileDirectory)Traversal\0. _Lapa\1. Parsing\UnitTests\Subjects" />
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\Location.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\Person.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\PersonByFirstNameLastName.gcl" />
@@ -189,10 +118,6 @@
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\AllDoes.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\UnitTests\Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\TestSchemaParserConfiguration.cs" />
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Annotations\Values" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
@@ -205,11 +130,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)\Context\__TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\0. _Model\Unit tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\0. Antlr\1. Parsing" />
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\0. _Lapa\1. Parsing\Integration tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Integration tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)\Context\1. Parsing\Unit tests\Annotations\Nodes" />
     <Folder Include="$(MSBuildThisFileDirectory)\Context\2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)\Context\3. Processing\UnitTests" />
   </ItemGroup>
@@ -221,8 +141,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\ObservableExceptionAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\RootHandlerFactory.Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\ScriptParserError.Extensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptProcessorFactory.cs" />
@@ -240,9 +158,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
     <PackageReference Include="JetBrains.DotMemoryUnit" Version="3.1.20200127.214830" />
   </ItemGroup>
-    <ItemGroup>
-      <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
-    </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <!-- Below is not a normal project reference. It introduces the GCL code-generator. -->
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj">

@@ -8,31 +8,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorScriptedAddTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorScriptedAddTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly TraversalUnitTestContext _testContext;
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
 
         public ScriptProcessorScriptedAddTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public async Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -41,6 +27,7 @@
             var continent = "Europe";
 
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 $"/Location+={continent}",
@@ -52,7 +39,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -71,6 +58,7 @@
         public async Task ScriptProcessor_Scripted_Add_1()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -91,7 +79,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -109,6 +97,7 @@
         public async Task ScriptProcessor_Scripted_Add_2()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -125,7 +114,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -143,6 +132,7 @@
         public async Task ScriptProcessor_Scripted_Add_3()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -159,7 +149,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -177,6 +167,7 @@
         public async Task ScriptProcessor_Scripted_Add_4()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -193,7 +184,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -212,6 +203,7 @@
         public async Task ScriptProcessor_Scripted_Add_At_Once_1()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -228,7 +220,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -246,6 +238,7 @@
         public async Task ScriptProcessor_Scripted_Add_At_Once_2()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -258,7 +251,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -276,6 +269,7 @@
         public async Task ScriptProcessor_Scripted_Add_At_Once_3()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -288,7 +282,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -306,6 +300,7 @@
         public async Task ScriptProcessor_Scripted_Add_At_Once_4()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
             {
@@ -318,7 +313,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -336,6 +331,7 @@
         public async Task ScriptProcessor_Scripted_Add_Spaced_1()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -356,7 +352,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -374,6 +370,7 @@
         public async Task ScriptProcessor_Scripted_Add_Spaced_2()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
             var region = "Overijssel";
@@ -394,7 +391,7 @@
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -412,12 +409,13 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "<= /Person+=Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -436,12 +434,13 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_NonSpaced_01()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+=Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -459,12 +458,13 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Spaced_02()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+= Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -482,10 +482,11 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Wrong_Root()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+=Person_Bad/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var act = processor.Process(addScript);
@@ -498,12 +499,13 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_Spaced()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "<= /Person += Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

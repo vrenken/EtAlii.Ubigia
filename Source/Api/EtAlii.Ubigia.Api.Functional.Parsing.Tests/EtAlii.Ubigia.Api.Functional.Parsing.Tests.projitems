@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>F5DCA7FA-299B-4A72-909F-F5122B58B559</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Parsing.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Integration tests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\MdFileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\__TextFileBasedGraphContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\MdFileBasedTraversalContextData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Bugs.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Id.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Include.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.New.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Rename.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Function.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.ItemsOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.AddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.IdentifierOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.ItemOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Paths.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tags.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.NonRootedPath.TraverseAll.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RemoveItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.Path.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.DoubleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.NoQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.SingleQuotes.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Assign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Unassign.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Root.Use.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.AddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.ItemOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Parse.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Paths.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Tags.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.RootedPath.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Tests2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.UpdateItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableAddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableIdentifierAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableItemAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableItemsAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableOutput.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableStringAssignment.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableUpdateItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
+  </ItemGroup>
+</Project>

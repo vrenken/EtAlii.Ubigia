@@ -6,36 +6,24 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathAssignObjectIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathAssignObjectIntegrationTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathAssignObjectIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-        public async Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_String()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -52,7 +40,7 @@
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -75,6 +63,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Int()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -91,7 +80,7 @@
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -113,6 +102,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_True()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -130,7 +120,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -152,6 +142,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -169,7 +160,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -191,6 +182,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Capitals()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -208,7 +200,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -231,6 +223,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Camel()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -248,7 +241,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -270,6 +263,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Empty()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -287,7 +281,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -307,6 +301,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Spaced()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -324,7 +319,7 @@
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -346,6 +341,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_01()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -365,7 +361,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -395,6 +391,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_02()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -414,7 +411,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -447,6 +444,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_03()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -466,7 +464,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -499,6 +497,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -518,7 +517,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -549,6 +548,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear_Incorrect()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -568,7 +568,7 @@
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

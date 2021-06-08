@@ -5,3 +5,5 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Grpc.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Rest.Tests")]
 
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Parsing.Lapa.Tests")]
+

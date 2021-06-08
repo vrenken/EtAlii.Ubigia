@@ -7,44 +7,31 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorLogicalRemoveTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorLogicalRemoveTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
         private readonly TraversalUnitTestContext _testContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
 
         public ScriptProcessorLogicalRemoveTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public async Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Logical_Remove_1()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var removeScript = _parser.Parse("/Person/LastName -= SurName").Script;
@@ -65,13 +52,14 @@
         public async Task ScriptProcessor_Logical_Remove_2()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -92,14 +80,15 @@
         public async Task ScriptProcessor_Logical_Remove_With_Variable_1()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -121,14 +110,15 @@
         public async Task ScriptProcessor_Logical_Remove_With_Variable_2()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -150,14 +140,15 @@
         public async Task ScriptProcessor_Logical_Remove_With_Variable_3()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await _logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await _logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
+            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
+            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 

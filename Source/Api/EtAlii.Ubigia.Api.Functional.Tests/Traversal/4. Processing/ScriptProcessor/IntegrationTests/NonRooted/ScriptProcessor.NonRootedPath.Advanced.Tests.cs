@@ -35,7 +35,7 @@
         public async Task ScriptProcessor_NonRootedPath_Advanced_Create()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
@@ -56,7 +56,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Clear_Children()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -95,7 +95,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_01()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -130,7 +130,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_02()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -170,7 +170,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_03()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -210,7 +210,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_04()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -250,7 +250,7 @@
         public async Task ScriptProcessor_NonRootedPath_Assign_Special_Characters()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/\"Jöhn\"",
@@ -287,7 +287,7 @@
         public async Task ScriptProcessor_NonRootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery1 = "/Person += Doe";
             var addQueries2 = new[]
             {
@@ -332,7 +332,7 @@
         public async Task ScriptProcessor_NonRootedPath_Move_Child()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries1 = new []
             {
               "/Person += Doe",
@@ -401,7 +401,7 @@
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
                 "/Person+=Doe/John",
@@ -518,7 +518,7 @@
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
                 "/Person+=Doe/John",

@@ -3,38 +3,27 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathTimeRegexCombinedNoQuotesTests : IAsyncLifetime
+    public class ScriptProcessorRootedPathTimeRegexCombinedNoQuotesTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalTestContext _testContext;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public async Task InitializeAsync()
+        public ScriptProcessorRootedPathTimeRegexCombinedNoQuotesTests(TraversalUnitTestContext testContext)
         {
-            _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
-
+            _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-        }
-
-        public async Task DisposeAsync()
-        {
-            _parser = null;
-
-            await _testContext.Stop().ConfigureAwait(false);
-            _testContext = null;
         }
 
         [Fact]
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYY_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "time:2016",
@@ -71,7 +60,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMM_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -109,7 +98,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDD_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -147,7 +136,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHH_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -185,7 +174,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMM_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -223,7 +212,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSS_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {
@@ -261,7 +250,7 @@
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSSMMM_Regex_Combined_NoQuotes()
         {
             // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
             {

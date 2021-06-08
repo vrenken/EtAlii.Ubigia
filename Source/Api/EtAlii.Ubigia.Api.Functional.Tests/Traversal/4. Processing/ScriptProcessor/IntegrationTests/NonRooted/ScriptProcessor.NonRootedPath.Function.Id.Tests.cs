@@ -8,28 +8,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathFunctionId(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            return Task.CompletedTask;
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

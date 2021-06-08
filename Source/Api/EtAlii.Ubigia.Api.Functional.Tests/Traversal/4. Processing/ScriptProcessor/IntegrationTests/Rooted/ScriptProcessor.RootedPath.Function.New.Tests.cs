@@ -1,14 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorRootedPathFunctionNewTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathFunctionNewTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
+        private readonly IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
@@ -17,11 +16,6 @@
             _testContext = testContext;
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-        }
-        public void Dispose()
-        {
-            _parser = null;
-            GC.SuppressFinalize(this);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

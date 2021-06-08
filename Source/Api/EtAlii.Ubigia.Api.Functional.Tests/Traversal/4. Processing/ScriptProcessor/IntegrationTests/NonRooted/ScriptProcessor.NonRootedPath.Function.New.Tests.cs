@@ -5,28 +5,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ScriptProcessorNonRootedPathFunctionNewTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorNonRootedPathFunctionNewTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IScriptParser _parser;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathFunctionNewTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public Task InitializeAsync()
-        {
             _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
-            return Task.CompletedTask;
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -46,7 +35,7 @@
             Assert.NotNull(result);
             Assert.Single(result);
             Assert.NotNull(result[0]);
-            Assert.StartsWith("Undefined_", result[0].ToString());
+            Assert.StartsWith("Undefined_", result[0].ToString()!);
 
         }
 

@@ -3,38 +3,24 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<TraversalUnitTestContext>
     {
-        private IScriptParser _parser;
-        private ILogicalContext _logicalContext;
+        private readonly IScriptParser _parser;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathQueryWildcardIntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public async Task InitializeAsync()
-        {
             _parser = new TestScriptParserFactory().Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-        }
-
-        public Task DisposeAsync()
-        {
-            _parser = null;
-            _logicalContext.Dispose();
-            _logicalContext = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Wildcard_01()
         {
             // Arrange.
+            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -49,7 +35,7 @@
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(_logicalContext, _testContext.Diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, _testContext.Diagnostics);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
