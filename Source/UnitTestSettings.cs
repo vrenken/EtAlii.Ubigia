@@ -4,7 +4,7 @@
 #if UBIGIA_IS_RUNNING_ON_BUILD_AGENT
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)]
 #else
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = true)] // CollectionPerClass
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerClass
 #endif
 
 internal static class UnitTestConstants
