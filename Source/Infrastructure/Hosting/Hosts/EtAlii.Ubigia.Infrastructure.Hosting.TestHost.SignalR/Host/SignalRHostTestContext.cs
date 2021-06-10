@@ -2,20 +2,20 @@
 {
 	using System;
 	using System.Linq;
-	using System.Reflection;
+    using System.Reflection;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.xTechnology.Hosting;
 
-	public class HostTestContext : HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
+	public class SignalRHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
-	    protected HostTestContext()
+	    protected SignalRHostTestContext()
 		    : base("Host/settings.json")
 	    {
 	    }
 
-	    public override async Task Start(PortRange portRange)
+        public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
 

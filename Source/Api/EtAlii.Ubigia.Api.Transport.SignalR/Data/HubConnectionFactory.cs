@@ -5,7 +5,6 @@
 	using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using EtAlii.Ubigia.Serialization;
-    using Microsoft.AspNetCore.Http.Connections;
 	using Microsoft.AspNetCore.SignalR.Client;
 	using Microsoft.Extensions.DependencyInjection;
 	using Microsoft.Extensions.Logging;
@@ -29,10 +28,9 @@
 			    })
 				.WithUrl(address, options =>
 			    {
-				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
-				    options.Transports = HttpTransportType.LongPolling;
+				    options.HttpMessageHandlerFactory = handler => transport.HttpMessageHandlerFactory() ?? handler;
 					options.Headers = new Dictionary<string, string> {{"Host-Identifier", hostIdentifier}};
-				});		    
+				});
 			return builder.Build();
 		}
 
@@ -62,8 +60,7 @@
 			    })
 			    .WithUrl(address, options =>
 			    {
-				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
-				    options.Transports = HttpTransportType.LongPolling;
+				    options.HttpMessageHandlerFactory = handler => transport.HttpMessageHandlerFactory() ?? handler;
 					options.Headers = new Dictionary<string, string> {{"Authentication-Token", authenticationToken}};
 				});
 			return builder.Build();

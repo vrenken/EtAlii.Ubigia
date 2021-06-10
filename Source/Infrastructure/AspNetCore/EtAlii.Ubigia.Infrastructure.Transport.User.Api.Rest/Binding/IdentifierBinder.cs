@@ -6,9 +6,9 @@
 
     public class IdentifierBinder : IModelBinder
     {
-        private readonly string[] _locationSplitCharacters = new[] { IdentifierSplitter.Location };
-        private readonly string[] _timeSplitCharacters = new[] { IdentifierSplitter.Time };
-        private readonly string[] _partSplitCharacters = new[] { IdentifierSplitter.Part };
+        private readonly string[] _locationSplitCharacters = { IdentifierSplitter.Location };
+        private readonly string[] _timeSplitCharacters = { IdentifierSplitter.Time };
+        private readonly string[] _partSplitCharacters = { IdentifierSplitter.Part };
 
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
@@ -43,7 +43,7 @@
                 ulong.Parse(times[1]),
                 ulong.Parse(times[2])
             );
-            
+
             bindingContext.Result = ModelBindingResult.Success(model);
             return Task.CompletedTask;
         }

@@ -6,7 +6,7 @@
     {
         public byte[] Data { get; init; }
 
-        public static readonly ContentPart Empty = new() 
+        public static readonly ContentPart Empty = new()
         {
             Data = Array.Empty<byte>(),
         };

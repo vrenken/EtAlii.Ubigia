@@ -96,7 +96,7 @@
             // Act.
             hierarchicalContentManager.Download(retrievedFolderPath, entry.Id);
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFolderPath));
             _testContext.FileComparer.AreEqual(_testFolderSimple, retrievedFolderPath);
 

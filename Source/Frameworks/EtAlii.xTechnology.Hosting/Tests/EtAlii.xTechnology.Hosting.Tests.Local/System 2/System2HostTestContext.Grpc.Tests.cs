@@ -20,12 +20,12 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Act.
             var client = context.CreateClient($"http://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
             var result = await client.GetSimpleAsync(new SimpleUserGetRequest());
-            
+
             // Assert.
             Assert.NotNull(result);
             Assert.Equal("UserGrpcService", result.Result);
         }
-        
+
         [Fact]
         public async Task System2HostTestContextGrpc_Admin_Api_GetSimple()
         {
@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Act.
             var client = context.CreateClient($"http://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
             var result = await client.GetSimpleAsync(new SimpleAdminGetRequest());
-            
+
             // Assert.
             Assert.NotNull(result);
             Assert.Equal("AdminGrpcService", result.Result);
@@ -57,7 +57,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Act.
             var client = context.CreateClient($"http://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
             var result = await client.GetComplexAsync(new ComplexUserGetRequest { Postfix = tick.ToString()});
-            
+
             // Assert.
             Assert.NotNull(result);
             Assert.Equal($"UserGrpcService_{tick}", result.Result);
@@ -76,7 +76,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Act.
             var client = context.CreateClient($"http://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
             var result = await client.GetComplexAsync(new ComplexAdminGetRequest { Postfix = tick.ToString()});
-            
+
             // Assert.
             Assert.NotNull(result);
             Assert.Equal($"AdminGrpcService_{tick}", result.Result);

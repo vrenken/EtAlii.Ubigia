@@ -1,6 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
+﻿// ReSharper disable once CheckNamespace
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 {
-    public class NetworkedInfrastructureHostTestContext : HostTestContext
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR;
+
+    public class NetworkedInfrastructureHostTestContext : SignalRHostTestContext
     {
     }
 }

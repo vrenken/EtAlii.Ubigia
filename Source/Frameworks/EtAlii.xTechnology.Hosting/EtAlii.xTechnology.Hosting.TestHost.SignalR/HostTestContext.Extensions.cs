@@ -14,7 +14,12 @@ namespace EtAlii.xTechnology.Hosting
 	    public static async Task<HubConnection> CreateSignalRConnection(this IHostTestContext context, string address)
 	    {
 		    var connection = new HubConnectionBuilder()
-			    .WithUrl(address)//, HttpTransportType.WebSockets, options => options.SkipNegotiation = true)
+			    .WithUrl(address, options =>
+                {
+#pragma warning disable CA1416
+                    options.HttpMessageHandlerFactory = _ => context.CreateHandler();
+#pragma warning restore CA1416
+                })
 			    .AddJsonProtocol()
 			    .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.FromSeconds(10) })
 			    .ConfigureLogging(logging =>

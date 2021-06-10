@@ -34,7 +34,7 @@
                 .WriteTo.Async(writeTo =>
                 {
                     //writeTo.Seq("http://vrenken.duckdns.org:5341");
-                    writeTo.Seq("http://192.168.1.130:5341");
+                    writeTo.Seq("http://seq.avalon:5341");
                     writeTo.Debug(LogEventLevel.Error);
                 });
         }

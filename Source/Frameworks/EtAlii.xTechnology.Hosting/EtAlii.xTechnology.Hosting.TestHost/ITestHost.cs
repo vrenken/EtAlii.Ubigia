@@ -1,14 +1,11 @@
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
 namespace EtAlii.xTechnology.Hosting
 {
     using System.Net.Http;
-    using System.Threading.Tasks;
 
-    public interface IHostTestContext
+    public interface ITestHost : IHost
     {
-        Task Start(PortRange portRange);
-
-        Task Stop();
-
         HttpMessageHandler CreateHandler();
         HttpClient CreateClient();
     }

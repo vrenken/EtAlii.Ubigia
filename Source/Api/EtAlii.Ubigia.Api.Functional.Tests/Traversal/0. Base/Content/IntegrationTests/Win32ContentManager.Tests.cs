@@ -174,7 +174,7 @@
             // Act.
             await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFilePath));
             _testContext.FileComparer.AreEqual(_testContext.TestFile2MImage, retrievedFilePath);
 
@@ -200,7 +200,7 @@
             // Act.
             await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFilePath));
             _testContext.FileComparer.AreEqual(_testContext.TestFile10MRaw, retrievedFilePath);
 
@@ -228,7 +228,7 @@
             await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFilePath));
             var duration = TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds;
             Assert.True(duration < 500, $"2M download took: {duration}ms");
@@ -257,7 +257,7 @@
             await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFilePath));
             var duration = TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds;
             Assert.True(duration < 1000, $"10M download took: {duration}ms");
@@ -286,7 +286,7 @@
             await contentManager.Download(retrievedFilePath, entry.Id).ConfigureAwait(false);
             var endTicks = Environment.TickCount;
 
-            //// Assert.
+            // Assert.
             Assert.True(File.Exists(retrievedFilePath));
             var duration = TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds;
             Assert.True(duration < 2000, $"100M download took: {duration}ms");

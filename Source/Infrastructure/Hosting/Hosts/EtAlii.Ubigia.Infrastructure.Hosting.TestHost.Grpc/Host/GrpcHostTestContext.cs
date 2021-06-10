@@ -6,9 +6,9 @@
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.xTechnology.Hosting;
 
-	public class HostTestContext : HostTestContextBase<InfrastructureTestHost>
+	public class GrpcHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>
     {
-	    protected HostTestContext()
+	    protected GrpcHostTestContext()
 		    : base("Host/settings.json")
 	    {
 	    }

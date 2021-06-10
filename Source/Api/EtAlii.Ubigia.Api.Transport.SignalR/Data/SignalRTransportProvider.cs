@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         private string _authenticationToken;
 	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
 
-	    public SignalRTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
+        private SignalRTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
 	    {
 		    _httpMessageHandlerFactory = httpMessageHandlerFactory;
 	    }
