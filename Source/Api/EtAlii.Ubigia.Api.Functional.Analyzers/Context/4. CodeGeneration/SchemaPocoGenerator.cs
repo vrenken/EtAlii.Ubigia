@@ -4,6 +4,7 @@
     using System.CodeDom.Compiler;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
     using EtAlii.Ubigia.Api.Functional.Traversal;
@@ -50,8 +51,20 @@
 
         private void SetupLogging()
         {
-            var loggerConfiguration = new LoggerConfiguration()
-                .WriteTo.Seq("http://vrenken.duckdns.org:5341", period: TimeSpan.FromMilliseconds(100));
+            var loggerConfiguration = new LoggerConfiguration();
+
+            var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
+
+            loggerConfiguration.MinimumLevel.Verbose()
+                .Enrich.FromLogContext()
+                // These ones do not give elegant results during unit tests.
+                // .Enrich.WithAssemblyName()
+                // .Enrich.WithAssemblyVersion()
+                // Let's do it ourselves.
+                .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
+                .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
+                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
+                .WriteTo.Seq("http://seq.avalon:5341");
 
             _rootLogger = loggerConfiguration
                 .CreateLogger();
