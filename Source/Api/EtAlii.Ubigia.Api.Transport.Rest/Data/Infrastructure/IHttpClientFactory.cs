@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Rest
 {
+    using System;
     using System.Net;
     using System.Net.Http;
 
@@ -12,7 +13,8 @@
         /// <param name="credentials"></param>
         /// <param name="hostIdentifier"></param>
         /// <param name="authenticationToken"></param>
+        /// <param name="address"></param>
         /// <returns></returns>
-        HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken);
+        HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken, Uri address);
     }
 }

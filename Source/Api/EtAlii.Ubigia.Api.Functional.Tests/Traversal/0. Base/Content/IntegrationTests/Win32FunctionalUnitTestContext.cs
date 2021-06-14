@@ -5,6 +5,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
+    using Serilog;
 
     public class Win32FunctionalUnitTestContext : IDisposable
     {
@@ -17,8 +18,12 @@
         public FolderComparer FolderComparer { get; }
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
+        private readonly ILogger _log;
         public Win32FunctionalUnitTestContext()
         {
+            _log = Log.ForContext<Win32FunctionalUnitTestContext>();
+            _log.Information("Created {InstanceName}", nameof(Win32FunctionalUnitTestContext));
+
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);
 
@@ -43,6 +48,8 @@
 
         private void RemoveTestFiles()
         {
+            _log.Information("Removing test files.");
+
             if (File.Exists(TestFile2MImage))
             {
                 File.Delete(TestFile2MImage);
@@ -62,7 +69,6 @@
         {
             RemoveTestFiles();
             AppDomain.CurrentDomain.ProcessExit -= OnProcessExit;
-
 
             LogicalTestContext = null;
             GC.SuppressFinalize(this);

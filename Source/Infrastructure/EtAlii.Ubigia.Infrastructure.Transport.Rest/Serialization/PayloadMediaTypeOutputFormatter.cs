@@ -28,7 +28,7 @@
 			return true;
 		}
 
-		public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
+		public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
 		{
 			// Fix for: https://github.com/aspnet/AspNetCore/issues/7644
 			var bodyControlFeature = context.HttpContext.Features.Get<IHttpBodyControlFeature>();
@@ -36,13 +36,12 @@
 			{
 				bodyControlFeature.AllowSynchronousIO = true;
 			}
-			
+
 			var response = context.HttpContext.Response;
-			WriteToStream(context.ObjectType, context.Object, response.Body);
-			return Task.CompletedTask;
+			await WriteToStream(context.ObjectType, context.Object, response.Body).ConfigureAwait(false);
 		}
 
-		public void WriteToStream(Type type, object value, Stream writeStream)
+        private async Task WriteToStream(Type type, object value, Stream writeStream)
         {
             if (writeStream == null)
             {
@@ -61,7 +60,7 @@
             // See comments in ReadFromStream() above about this special case and the need to include byte[] in it.
             // Using runtime type here because Json.Net will throw during serialization whenever it cannot handle the
             // runtime type at the top level. For e.g. passed type may be typeof(object) and value may be a string.
-            var runtimeType = value.GetType();
+            var runtimeType = type;
             if (IsSimpleType(runtimeType) || runtimeType == typeof(byte[]))
             {
                 // Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  Is
@@ -70,7 +69,7 @@
                 {
                     { "Value", value },
                 };
-	            WriteToStreamInternal(temporaryDictionary, writeStream);
+                await WriteToStreamInternal(temporaryDictionary, writeStream).ConfigureAwait(false);
 			}
 			else
             {
@@ -78,11 +77,11 @@
                 {
                     throw new ArgumentNullException(nameof(type));
                 }
-				WriteToStreamInternal(value, writeStream);
+				await WriteToStreamInternal(value, writeStream).ConfigureAwait(false);
             }
         }
 
-	    private void WriteToStreamInternal(object value, Stream writeStream)
+        private async Task WriteToStreamInternal(object value, Stream writeStream)
 	    {
             if (writeStream == null)
             {
@@ -92,7 +91,7 @@
             using var writer = new BsonDataWriter(writeStream) { CloseOutput = false };
 
             _serializer.Serialize(writer, value);
-			writer.Flush();
+			await writer.FlushAsync().ConfigureAwait(false);
 		}
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor

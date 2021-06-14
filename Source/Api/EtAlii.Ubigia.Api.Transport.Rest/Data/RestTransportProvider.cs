@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
     public class RestTransportProvider : ITransportProvider
     {
-        private readonly IInfrastructureClient _infrastructureClient;
+        private readonly IRestInfrastructureClient _infrastructureClient;
 
-        private RestTransportProvider(IInfrastructureClient infrastructureClient)
+        private RestTransportProvider(IRestInfrastructureClient infrastructureClient)
         {
             _infrastructureClient = infrastructureClient;
         }
@@ -15,11 +15,11 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
         public static RestTransportProvider Create(IContextCorrelator contextCorrelator)
         {
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            var infrastructureClient = new RestInfrastructureClient(httpClientFactory);
             return new RestTransportProvider(infrastructureClient);
         }
 
-        public static RestTransportProvider Create(IInfrastructureClient infrastructureClient)
+        public static RestTransportProvider Create(IRestInfrastructureClient infrastructureClient)
         {
 	        return new(infrastructureClient);
         }

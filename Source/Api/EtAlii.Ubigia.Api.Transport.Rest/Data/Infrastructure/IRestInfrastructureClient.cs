@@ -4,8 +4,7 @@
     using System.Net;
     using System.Threading.Tasks;
 
-    // TODO: The IInfrastructureClient should be made internal and only used Web Api related code.
-    public interface IInfrastructureClient
+    public interface IRestInfrastructureClient
     {
         string AuthenticationToken { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
 {
 	using System.Linq;
-	using System.Text;
+    using System.Text;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Transport.Rest;
 	using EtAlii.xTechnology.Hosting;

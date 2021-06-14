@@ -2,14 +2,14 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 {
     internal class RestSpaceConnection : SpaceConnection<RestSpaceTransport>, IRestSpaceConnection
     {
-        public IInfrastructureClient Client { get; }
+        public IRestInfrastructureClient Client { get; }
 
         public IAddressFactory AddressFactory { get; }
 
         public RestSpaceConnection(
             ISpaceTransport transport,
             IAddressFactory addressFactory,
-            IInfrastructureClient client,
+            IRestInfrastructureClient client,
             ISpaceConnectionConfiguration configuration,
             IRootContext roots,
             IEntryContext entries,

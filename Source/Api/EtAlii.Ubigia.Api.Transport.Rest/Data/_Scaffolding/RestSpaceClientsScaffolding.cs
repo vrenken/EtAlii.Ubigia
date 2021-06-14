@@ -5,9 +5,9 @@
 
     internal class RestSpaceClientsScaffolding : IScaffolding
     {
-        private readonly IInfrastructureClient _infrastructureClient;
+        private readonly IRestInfrastructureClient _infrastructureClient;
 
-        public RestSpaceClientsScaffolding(IInfrastructureClient infrastructureClient)
+        public RestSpaceClientsScaffolding(IRestInfrastructureClient infrastructureClient)
         {
             _infrastructureClient = infrastructureClient;
         }
@@ -36,7 +36,7 @@
             }
             else
             {
-                container.Register<IInfrastructureClient, DefaultInfrastructureClient>();
+                container.Register<IRestInfrastructureClient, RestInfrastructureClient>();
                 container.Register(() => new SerializerFactory().Create());
                 container.Register<IHttpClientFactory, DefaultHttpClientFactory>();
             }

@@ -16,7 +16,7 @@
                 {
                     var originalControllerFeatureProvider = manager.FeatureProviders
                         .OfType<ControllerFeatureProvider>()
-                        .SingleOrDefault(c => !(c is ITypedControllerFeatureProvider));
+                        .SingleOrDefault(c => c is not ITypedControllerFeatureProvider);
                     if (originalControllerFeatureProvider != null)
                     {
                         manager.FeatureProviders.Remove(originalControllerFeatureProvider);

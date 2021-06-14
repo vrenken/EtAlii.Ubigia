@@ -127,7 +127,6 @@
                         await Task.Delay(100).ConfigureAwait(false);
                         await Stop().ConfigureAwait(false);
                     }
-
                 )
                 .ExecuteAsync(async () =>
                 {

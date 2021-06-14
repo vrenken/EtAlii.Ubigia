@@ -11,12 +11,12 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
     {
         public InfrastructureClientUnitTests()
         {
-            new DefaultInfrastructureClient(null).AuthenticationToken = null;
+            new RestInfrastructureClient(null).AuthenticationToken = null;
         }
 
         public void Dispose()
         {
-            new DefaultInfrastructureClient(null).AuthenticationToken = null;
+            new RestInfrastructureClient(null).AuthenticationToken = null;
             GC.SuppressFinalize(this);
         }
 
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
 
             // Act.
-            var client = new DefaultInfrastructureClient(httpClientFactory);
+            var client = new RestInfrastructureClient(httpClientFactory);
 
             // Assert.
             Assert.NotNull(client);
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             // Arrange.
             var contextCorrelator = new ContextCorrelator();
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-            var client = new DefaultInfrastructureClient(httpClientFactory);
+            var client = new RestInfrastructureClient(httpClientFactory);
 
             // Act.
 

@@ -5,14 +5,19 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest;
     using EtAlii.xTechnology.Threading;
 
-    public class InProcessInfrastructureHostTestContext : HostTestContext
+    public class InProcessInfrastructureHostTestContext : RestHostTestContext
     {
         private readonly IContextCorrelator _contextCorrelator = new ContextCorrelator();
 
-        public IInfrastructureClient CreateRestInfrastructureClient()
+        public InProcessInfrastructureHostTestContext()
+        {
+            UseInProcessConnection = true;
+        }
+
+        public IRestInfrastructureClient CreateRestInfrastructureClient()
         {
             var httpClientFactory = new TestHttpClientFactory(this, _contextCorrelator);
-            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            var infrastructureClient = new RestInfrastructureClient(httpClientFactory);
             return infrastructureClient;
         }
     }

@@ -11,10 +11,10 @@
     {
         private static readonly LoggerConfiguration _loggerConfiguration = new();
 
-        public static void Configure(LoggerConfiguration loggerConfiguration)
+        private static bool _isInitialized;
+        public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly)
         {
-            var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
-
+            var executingAssemblyName = executingAssembly.GetName();
             loggerConfiguration.MinimumLevel.Verbose()
                 .Enrich.FromLogContext()
                 .Enrich.WithThreadName()
@@ -38,12 +38,16 @@
                     writeTo.Debug(LogEventLevel.Error);
                 });
         }
-        static DiagnosticsConfiguration()
+
+        public static void Initialize(Assembly rootAssembly)
         {
-            Configure(_loggerConfiguration);
+            if (_isInitialized) return;
+
+            _isInitialized = true;
+
+            Configure(_loggerConfiguration, rootAssembly);
             //_loggerConfiguration = loggerConfiguration[_loggerConfiguration]
             Log.Logger = _loggerConfiguration.CreateLogger();
-
 
             // Let's flush the log when the process exits.
             AppDomain.CurrentDomain.ProcessExit += (_, _) => Log.CloseAndFlush();

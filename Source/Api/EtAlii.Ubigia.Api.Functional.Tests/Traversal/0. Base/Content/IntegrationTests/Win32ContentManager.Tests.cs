@@ -10,7 +10,6 @@
 
     public class Win32ContentManagerTests : IClassFixture<Win32FunctionalUnitTestContext>, IAsyncLifetime
     {
-
         private readonly Win32FunctionalUnitTestContext _testContext;
 
         /// <summary>

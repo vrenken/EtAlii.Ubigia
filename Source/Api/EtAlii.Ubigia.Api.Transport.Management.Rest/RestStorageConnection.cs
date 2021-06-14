@@ -4,14 +4,14 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
 
     internal class RestStorageConnection : StorageConnection<RestStorageTransport>, IRestStorageConnection
     {
-        public IInfrastructureClient Client { get; }
+        public IRestInfrastructureClient Client { get; }
 
         public IAddressFactory AddressFactory { get; }
 
         public RestStorageConnection(
             IStorageTransport transport,
             IAddressFactory addressFactory,
-            IInfrastructureClient client,
+            IRestInfrastructureClient client,
             IStorageConnectionConfiguration configuration,
             IStorageContext storages,
             ISpaceContext spaces,

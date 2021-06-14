@@ -24,7 +24,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 container.RegisterInitializer<IHost>(host =>
                 {
                     var configurableHost = (IConfigurableHost)host;
-                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsConfiguration.Configure(loggerConfiguration), true);
+                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsConfiguration.Configure(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly()), true);
                     configurableHost.ConfigureLogging += logging =>
                     {
                         if (!Debugger.IsAttached) return;
@@ -32,6 +32,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                         // SonarQube: Make sure that this logger's configuration is safe.
                         // I think it is as this host is for testing only.
                         //logging.AddDebug[]
+                        logging.AddDebug();
 
                         logging.AddFilter(level => host.ShouldOutputLog && level >= host.LogLevel);
                         logging.AddFilter("Microsoft.AspNetCore.SignalR", level => host.ShouldOutputLog && level >= host.LogLevel);

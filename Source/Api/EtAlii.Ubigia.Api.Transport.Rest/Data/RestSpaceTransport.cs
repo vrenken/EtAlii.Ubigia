@@ -5,9 +5,9 @@
 
     public class RestSpaceTransport : SpaceTransportBase, IRestSpaceTransport
     {
-        private readonly IInfrastructureClient _infrastructureClient;
+        private readonly IRestInfrastructureClient _infrastructureClient;
 
-        public RestSpaceTransport(Uri address, IInfrastructureClient infrastructureClient)
+        public RestSpaceTransport(Uri address, IRestInfrastructureClient infrastructureClient)
             : base(address)
         {
             _infrastructureClient = infrastructureClient;

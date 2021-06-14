@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 
             var contextCorrelator = new ContextCorrelator();
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-            var client = new DefaultInfrastructureClient(httpClientFactory);
+            var client = new RestInfrastructureClient(httpClientFactory);
 
             // Act.
             await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
                 // Arrange.
                 var contextCorrelator = new ContextCorrelator();
                 var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-                var client = new DefaultInfrastructureClient(httpClientFactory);
+                var client = new RestInfrastructureClient(httpClientFactory);
 
                 // Act.
                 var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute)).ConfigureAwait(false);
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 
             var contextCorrelator = new ContextCorrelator();
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-            var client = new DefaultInfrastructureClient(httpClientFactory);
+            var client = new RestInfrastructureClient(httpClientFactory);
 
             // Act.
             await client.Post(new Uri(_url + identifier), testMessage).ConfigureAwait(false);
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             // Arrange.
             var contextCorrelator = new ContextCorrelator();
             var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
-            var client = new DefaultInfrastructureClient(httpClientFactory);
+            var client = new RestInfrastructureClient(httpClientFactory);
 
             // Act.
             var act = new Func<Task>(async () => await client.Get<TestStatus>(null).ConfigureAwait(false));

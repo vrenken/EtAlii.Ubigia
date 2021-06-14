@@ -53,7 +53,7 @@
         }
 
         [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
-        private static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, Uri address)
+        private static async Task<string> GetAuthenticationToken(IRestInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, Uri address)
         {
             string authenticationToken;
             if (password == null && client.AuthenticationToken != null)

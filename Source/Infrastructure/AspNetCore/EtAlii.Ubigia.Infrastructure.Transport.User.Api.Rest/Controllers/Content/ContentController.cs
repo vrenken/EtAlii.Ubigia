@@ -55,7 +55,7 @@
         }
 
         /// <summary>
-        /// Post a new contentdefinition for the specified content.
+        /// Post a new <see cref="ContentDefinition"/> for the specified content.
         /// </summary>
         /// <param name="entryId"></param>
         /// <param name="content"></param>
@@ -82,7 +82,7 @@
         }
 
         /// <summary>
-        /// Post a new contentPart for the specified content.
+        /// Post a new <see cref="ContentPart"/> for the specified content.
         /// </summary>
         /// <param name="entryId"></param>
         /// <param name="contentPartId"></param>

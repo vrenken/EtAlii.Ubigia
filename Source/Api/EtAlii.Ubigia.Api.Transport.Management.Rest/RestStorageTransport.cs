@@ -6,9 +6,9 @@
 
     public class RestStorageTransport : StorageTransportBase, IRestStorageTransport
     {
-        private readonly IInfrastructureClient _infrastructureClient;
+        private readonly IRestInfrastructureClient _infrastructureClient;
 
-        public RestStorageTransport(Uri address, IInfrastructureClient infrastructureClient)
+        public RestStorageTransport(Uri address, IRestInfrastructureClient infrastructureClient)
             : base(address)
         {
             _infrastructureClient = infrastructureClient;
