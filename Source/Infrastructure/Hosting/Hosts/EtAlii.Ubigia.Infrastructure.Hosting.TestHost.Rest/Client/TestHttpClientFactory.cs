@@ -1,34 +1,43 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 {
-	using System.Net;
+    using System;
+    using System.Net;
 	using System.Net.Http;
-	using EtAlii.Ubigia.Api.Transport.Rest;
-	using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.Rest.IHttpClientFactory;
+    using System.Text;
+    using EtAlii.Ubigia.Api.Transport.Rest;
+    using IHttpClientFactory = EtAlii.Ubigia.Api.Transport.Rest.IHttpClientFactory;
     using EtAlii.xTechnology.Threading;
 
 	internal class TestHttpClientFactory : IHttpClientFactory
 	{
-		private readonly xTechnology.Hosting.IHostTestContext _testContext;
+		private readonly RestHostTestContext _testContext;
         private readonly IContextCorrelator _contextCorrelator;
 
         public TestHttpClientFactory(
-            IHostTestContext testContext,
+            RestHostTestContext testContext,
             IContextCorrelator contextCorrelator)
         {
             _testContext = testContext;
             _contextCorrelator = contextCorrelator;
         }
 
-        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
+        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken, Uri address)
         {
-	        var handler = _testContext.CreateHandler();
-#pragma warning disable CA2000 // The HttpClient is instructed to dispose the handler.
-			var client = new HttpClient(new TestHttpClientMessageHandler(handler, credentials, hostIdentifier, authenticationToken), true);
-#pragma warning restore CA2000
+            var client  = _testContext.CreateClient();
+
+            if (credentials != null)
+            {
+                var crdntls = credentials.GetCredential(address, "Basic-Authentication");
+                var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(crdntls!.UserName + ":" + crdntls.Password));
+                client.DefaultRequestHeaders.Add("Authorization", "Basic " + encoded);
+            }
+
+            client.DefaultRequestHeaders.Add("Host-Identifier", hostIdentifier);
+            client.DefaultRequestHeaders.Add("Authentication-Token", authenticationToken);
 
 	        // Set the Accept header for BSON.
 	        client.DefaultRequestHeaders.Accept.Clear();
-			client.DefaultRequestHeaders.Accept.Add(PayloadMediaTypeFormatter.MediaType);
+			client.DefaultRequestHeaders.Accept.Add(MediaType.Bson);
 
             // Apply all correlation ID's as http headers for the current request.
             foreach (var correlationId in Correlation.AllIds)

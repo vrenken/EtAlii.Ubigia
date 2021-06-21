@@ -3,10 +3,12 @@
     using System;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Security.Cryptography;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Serialization;
 
-    public sealed class DefaultInfrastructureClient : IInfrastructureClient
+    public sealed class RestInfrastructureClient : IRestInfrastructureClient
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
@@ -18,13 +20,13 @@
         public string AuthenticationToken { get; set; }
 
         private readonly string _hostIdentifier;
-        private readonly PayloadMediaTypeFormatter _formatter;
+        private readonly BsonMediaTypeFormatter _formatter;
 
-        public DefaultInfrastructureClient(IHttpClientFactory httpClientFactory)
+        public RestInfrastructureClient(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
 
-            _formatter = new PayloadMediaTypeFormatter();
+            _formatter = new BsonMediaTypeFormatter { SerializerSettings = SerializerFactory.CreateSerializerSettings() };
             var bytes = new byte[64];
             using var rnd = RandomNumberGenerator.Create();
             rnd.GetNonZeroBytes(bytes);
@@ -33,7 +35,7 @@
 
         public async Task<TResult> Get<TResult>(Uri address, ICredentials credentials = null)
         {
-            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken, address);
 
             try
             {
@@ -70,7 +72,7 @@
             where TValue : class
             where TResult : class
         {
-            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken, address);
 
             try
             {
@@ -98,7 +100,7 @@
 
 	    public async Task Delete(Uri address, ICredentials credentials = null)
         {
-            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken, address);
 
             try
             {
@@ -125,7 +127,7 @@
 
         public async Task<TValue> Put<TValue>(Uri address, TValue value, ICredentials credentials = null)
         {
-            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken);
+            using var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken, address);
 
             try
             {

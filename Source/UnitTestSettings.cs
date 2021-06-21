@@ -6,7 +6,7 @@ using EtAlii.xTechnology.Diagnostics;
 #if UBIGIA_IS_RUNNING_ON_BUILD_AGENT
 [assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)]
 #else
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)] // CollectionPerAssembly
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
 #endif
 
 internal static class UnitTestConstants
