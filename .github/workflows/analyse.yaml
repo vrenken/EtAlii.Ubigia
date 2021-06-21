@@ -3,7 +3,7 @@ name: Analyse
 on:
   push:
     branches:
-      - main
+      - master
       - 'feature/**'
   pull_request:
     types: [opened, synchronize, reopened]
