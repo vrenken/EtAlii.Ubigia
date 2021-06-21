@@ -3,27 +3,19 @@ namespace EtAlii.xTechnology.Hosting
 	using System;
 	using System.Collections.Generic;
 	using System.Collections.ObjectModel;
-	using System.Net.Http;
-	using System.Threading.Tasks;
+    using System.Net.Http;
+    using System.Threading.Tasks;
 	using EtAlii.xTechnology.Diagnostics;
 	using EtAlii.xTechnology.Hosting.Diagnostics;
-	using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.Configuration;
 
-	public class HostTestContext : HostTestContext<TestHost>
-	{
-		public HostTestContext(string configurationFile)
-			: base(configurationFile)
-		{
-		}
-	}
-	
-	public class HostTestContext<THost> : IHostTestContext
-		where THost: class, IHost
+    public abstract class HostTestContextBase<THost> : IHostTestContext
+		where THost: class, ITestHost
     {
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
 
 	    public THost Host { get; private set; }
-	    public bool UseInProcessConnection { get; set; } = false;
+        protected bool UseInProcessConnection { get; init; } = false;
 
 	    private readonly string _configurationFile;
 
@@ -32,10 +24,10 @@ namespace EtAlii.xTechnology.Hosting
 	    public ReadOnlyDictionary<string, int> Ports { get; private set; }
 	    public ReadOnlyDictionary<string, string> Paths { get; private set; }
 
-	    protected HostTestContext(string configurationFile)
+	    protected HostTestContextBase(string configurationFile)
 	    {
 		    _configurationFile = configurationFile;
-		    
+
 		    Folders = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 		    Hosts = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 		    Ports = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>());
@@ -51,19 +43,31 @@ namespace EtAlii.xTechnology.Hosting
 	    private void StartExclusive(PortRange portRange)
 	    {
 		    // We want to start only one test hosting at the same time.
-		    using (var _ = new SystemSafeExecutionScope(_uniqueId))
-		    {
-			    try
-			    {
-				    var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default).ConfigureAwait(false));
-				    task.GetAwaiter().GetResult();
-			    }
-			    catch (Exception e)
-			    {
-				    throw new InvalidOperationException($"Unable to start {nameof(HostTestContext<THost>)} on port range {portRange}", e);
-			    }
-		    }
+            if (UseInProcessConnection)
+            {
+                StartExclusiveInternal(portRange);
+            }
+            else
+            {
+                using (var _ = new SystemSafeExecutionScope(_uniqueId))
+                {
+                    StartExclusiveInternal(portRange);
+                }
+            }
 	    }
+
+        private void StartExclusiveInternal(PortRange portRange)
+        {
+            try
+            {
+                var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default).ConfigureAwait(false));
+                task.GetAwaiter().GetResult();
+            }
+            catch (Exception e)
+            {
+                throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
+            }
+        }
 
 	    /// <summary>
 	    /// Override this method to implement a custom parsing from the configuration file into a ConfigurationDetails instance.
@@ -73,7 +77,7 @@ namespace EtAlii.xTechnology.Hosting
 	    {
 		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 	    }
-	    
+
 	    private async Task StartInternal(PortRange portRange, IDiagnosticsConfiguration diagnosticsConfiguration)
 	    {
 		    var details = await ParseForTesting(_configurationFile, portRange).ConfigureAwait(false);
@@ -81,7 +85,7 @@ namespace EtAlii.xTechnology.Hosting
 		    Hosts = details.Hosts;
 		    Ports = details.Ports;
 		    Paths = details.Paths;
-		    
+
 		    var applicationConfiguration = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
 			    .Build();
@@ -94,14 +98,20 @@ namespace EtAlii.xTechnology.Hosting
 
 		    Host = host;
 		    await host.Start().ConfigureAwait(false);
-	    }
-	    
+        }
+
 	    public virtual async Task Stop()
 	    {
 		    await Host.Stop().ConfigureAwait(false);
 		    Host = null;
 	    }
 
-	    public HttpMessageHandler CreateHandler() => new HttpClientHandler();
+        public HttpMessageHandler CreateHandler() => UseInProcessConnection
+            ? Host.CreateHandler()
+            : new HttpClientHandler();
+
+        public HttpClient CreateClient() => UseInProcessConnection
+            ? Host.CreateClient()
+            : new HttpClient();
     }
 }

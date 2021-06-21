@@ -1,4 +1,5 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
+﻿#if !UBIGIA_IS_REST_TESTPROJECT
+namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
     using System.IO;
@@ -298,3 +299,4 @@
         }
     }
 }
+#endif

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Rest
 {
-	using System.Net;
+    using System;
+    using System.Net;
 	using System.Net.Http;
     using EtAlii.xTechnology.Threading;
 
@@ -13,7 +14,7 @@
             _contextCorrelator = contextCorrelator;
         }
 
-        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
+        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken, Uri address)
         {
 #pragma warning disable CA2000 // The HttpClient is instructed to dispose the handler.
             var client = new HttpClient(new ClientHttpMessageHandler(credentials, hostIdentifier, authenticationToken), true);
@@ -21,7 +22,7 @@
 
 			// Set the Accept header for BSON.
 			client.DefaultRequestHeaders.Accept.Clear();
-			client.DefaultRequestHeaders.Accept.Add(PayloadMediaTypeFormatter.MediaType);
+			client.DefaultRequestHeaders.Accept.Add(MediaType.Bson);
 
             // Apply all correlation ID's as http headers for the current request.
             foreach (var correlationId in Correlation.AllIds)
