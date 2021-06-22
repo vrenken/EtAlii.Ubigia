@@ -6,10 +6,10 @@ namespace HashLib
 {
     public static class CRC32Polynomials
     {
-        public static uint IEEE_802_3 = 0xEDB88320;
-        public static uint Castagnoli = 0x82F63B78;
-        public static uint Koopman = 0xEB31D82E;
-        public static uint CRC_32Q = 0xD5828281;
+        internal static uint IEEE_802_3 = 0xEDB88320;
+        internal static uint Castagnoli = 0x82F63B78;
+        internal static uint Koopman = 0xEB31D82E;
+        internal static uint CRC_32Q = 0xD5828281;
     }
 
     internal class CRC32_IEEE : CRC32

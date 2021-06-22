@@ -116,6 +116,24 @@
         }
 
         /// <inheritdoc />
+        public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
+        {
+            dynamic profile = Profiler.Begin("Processing");
+            profile.Query = text;
+            profile.Arguments = string.Join(", ", args.Select(a => a.ToString()));
+
+            var items = _decoree
+                .Process(text, args)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
+            {
+                yield return item;
+            }
+
+            Profiler.End(profile);
+        }
+
+        /// <inheritdoc />
         public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
@@ -136,24 +154,6 @@
             profile.Query = text;
             var items = _decoree
                 .ProcessMultiple(text, resultMapper, scope)
-                .ConfigureAwait(false);
-            await foreach (var item in items)
-            {
-                yield return item;
-            }
-
-            Profiler.End(profile);
-        }
-
-        /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
-        {
-            dynamic profile = Profiler.Begin("Processing");
-            profile.Query = text;
-            profile.Arguments = string.Join(", ", args.Select(a => a.ToString()));
-
-            var items = _decoree
-                .Process(text, args)
                 .ConfigureAwait(false);
             await foreach (var item in items)
             {

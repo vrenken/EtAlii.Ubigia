@@ -99,11 +99,10 @@ namespace TomanuExtensions
 
             using var innerWriter = XmlWriter.Create(a_stream, settings);
             using XmlWriter writer = new NoNamespacesXmlWriter(innerWriter);
-            {
-                writer.WriteStartDocument();
-                a_write_func(writer);
-                writer.WriteEndDocument();
-            }
+
+            writer.WriteStartDocument();
+            a_write_func(writer);
+            writer.WriteEndDocument();
         }
 
         /// <summary>

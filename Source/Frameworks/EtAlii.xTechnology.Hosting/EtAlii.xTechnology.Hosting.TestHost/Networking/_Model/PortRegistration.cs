@@ -4,7 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public struct PortRegistration
     {
-        public ushort Port;
-        public DateTime RegisteredAt;
+        public ushort Port { get; init; }
+        public DateTime RegisteredAt { get; init; }
     }
 }

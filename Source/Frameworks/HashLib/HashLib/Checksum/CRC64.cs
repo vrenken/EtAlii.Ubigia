@@ -6,8 +6,8 @@ namespace HashLib
 {
     public static class CRC64Polynomials
     {
-        public static ulong ISO = 0xD800000000000000;
-        public static ulong ECMA_182 = 0xC96C5795D7870F42;
+        internal static ulong ISO = 0xD800000000000000;
+        internal static ulong ECMA_182 = 0xC96C5795D7870F42;
     }
 
     internal class CRC64_ISO : CRC64
