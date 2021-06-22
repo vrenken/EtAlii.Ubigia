@@ -23,7 +23,8 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+#    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       actions: read
       contents: read
@@ -64,7 +65,7 @@ jobs:
     #    uses a compiled language
 
     - run: |
-        dotnet build ./Source/EtAlii.Ubigia.sln
+        dotnet build .\Source\EtAlii.Ubigia.sln
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
