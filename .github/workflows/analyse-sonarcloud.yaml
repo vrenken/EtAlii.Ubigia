@@ -1,4 +1,4 @@
-name: Analyse using SonarCloud
+name: SonarCloud Analysis
 
 on:
   push:
