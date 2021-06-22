@@ -36,12 +36,6 @@ namespace Moppet.Lapa
 		/// <summary>
         /// Auxiliary constructor.
 		/// </summary>
-        /// <param name="id">Identifier.</param>
-		public LpsParser(string id) : this() { Identifier = id; }
-
-		/// <summary>
-        /// Auxiliary constructor.
-		/// </summary>
 		/// <param name="parser">parser.</param>
 		public LpsParser(Func<LpText, LpNode> parser) : this() { Parser = parser; }
 
