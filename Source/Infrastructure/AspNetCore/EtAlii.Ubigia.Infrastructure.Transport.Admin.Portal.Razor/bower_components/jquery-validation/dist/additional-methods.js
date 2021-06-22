@@ -750,7 +750,7 @@ $.validator.addMethod( "postalCodeCA", function( value, element ) {
 /*
 * Valida CEPs do brasileiros:
 *
-* Formsteamworks aceitos:
+* Formatos aceitos:
 * 99999-999
 * 99.999-999
 * 99999999

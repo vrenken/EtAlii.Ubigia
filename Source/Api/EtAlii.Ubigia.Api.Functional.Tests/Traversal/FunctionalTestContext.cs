@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var addQueries = new[]
             {
-                "Location:+=Europe/NL/Overijssel/Enschede/Drienerlolaan/55",
+                "Location:+=Europe/NL/Overijssel/Enschede/Ravenhorsthoek/55",
                 "Location:+=Europe/NL/Overijssel/Enschede/Beltstraat/80",
                 "Location:+=Europe/NL/Overijssel/Enschede/\"van Loenshof\"/32",
                 "Location:+=Europe/DE/\"Nordrhein-Westfalen\"/Ahlen/\"Luise-Hensel-Strasse\"/12",

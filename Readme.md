@@ -3,7 +3,8 @@ Ubigia is a philosophy and corresponding family of technologies and applications
 It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Status
-[![Build+Tests](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/dotnet.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/dotnet.yml)
+[![Build+Test](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml)
+[![Analyse](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse.yaml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse.yaml)
 
 ## Getting Started
 
