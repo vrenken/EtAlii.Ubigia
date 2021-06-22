@@ -142,7 +142,7 @@ location:Netherlands/Overijssel/Enschede
 location:Germany/Berlin/Center/"Zoologischen Garten"
 location:DE/Berlin/Center/"Zoologischen Garten"
 location:NL/Enschede
-location:NL/Enschede/Drienerlolaan/55
+location:NL/Enschede/Ravenhorsthoek/55
 location:52.2167/6.9000
 orders:ABC164235
 ```
