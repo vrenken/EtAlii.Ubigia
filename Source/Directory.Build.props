@@ -15,7 +15,7 @@
 
     <!-- We need to maintain netstandard2.0 as netstandard2.1 is not compatbile with roslyn analyzers. -->
     <!-- https://github.com/dotnet/roslyn/issues/47087 -->
-    <UbigiaLibraryTargetFramework>netstandard2.0</UbigiaLibraryTargetFramework>
+    <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
     <UbigiaGrpcLibraryTargetFramework>netstandard2.1</UbigiaGrpcLibraryTargetFramework>
     <UbigiaEfCoreLibraryTargetFramework>netstandard2.1</UbigiaEfCoreLibraryTargetFramework>
     <UbigiaPersistenceLibraryTargetFramework>netstandard2.1</UbigiaPersistenceLibraryTargetFramework>

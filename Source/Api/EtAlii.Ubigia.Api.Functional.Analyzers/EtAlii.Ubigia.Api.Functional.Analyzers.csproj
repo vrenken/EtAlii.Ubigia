@@ -89,12 +89,12 @@
 
   <Target Name="GetPackageDependencyTargetPaths">
     <ItemGroup>
-      <TargetPathWithTargetPlatformMoniker Include="$(PkgAntlr4_Runtime_Standard)\lib\$(UbigiaLibraryTargetFramework)\*.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog)\lib\netstandard2.0\Serilog.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgAntlr4_Runtime_Standard)\lib\netstandard2.0\*.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog)\lib\netstandard2.1\Serilog.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_Seq)\lib\netstandard2.0\Serilog.Sinks.Seq.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_File)\lib\netstandard1.3\Serilog.Sinks.File.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_File)\lib\netstandard2.0\Serilog.Sinks.File.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Sinks_PeriodicBatching)\lib\netstandard2.0\Serilog.Sinks.PeriodicBatching.dll" IncludeRuntimeDependency="false" />
-      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Formatting_Compact)\lib\netstandard1.1\Serilog.Formatting.Compact.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgSerilog_Formatting_Compact)\lib\netstandard2.0\Serilog.Formatting.Compact.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
   </Target>
 </Project>
