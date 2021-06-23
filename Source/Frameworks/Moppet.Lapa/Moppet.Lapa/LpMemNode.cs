@@ -15,7 +15,7 @@ namespace Moppet.Lapa
         /// <summary>
         /// How many times was returned from the dictionary on request.
         /// </summary>
-        public int Count { get; init; }
+        public int Count { get; set; }
 
         /// <summary>
         /// The main constructor.

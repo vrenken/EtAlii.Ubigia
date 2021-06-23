@@ -8,14 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class StructureInstanceWriter : IStructureInstanceWriter
     {
-        public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment fragment, string variableName)
+        public void Write(ILogger logger, IndentedTextWriter writer, StructureFragment structureFragment, string variableName)
         {
-            var fragmentName = ToCamelCase(fragment.Name);
-            writer.WriteLine($"{nameof(StructureFragment)} Create{fragment.Name}{nameof(StructureFragment)}()");
+            var fragmentName = ToCamelCase(structureFragment.Name);
+            writer.WriteLine($"{nameof(StructureFragment)} Create{structureFragment.Name}{nameof(StructureFragment)}()");
             writer.WriteLine("{");
             writer.Indent += 1;
-            writer.WriteLine($"var {fragmentName}Name = \"{fragment.Name}\";");
-            writer.WriteLine($"var {fragmentName}Plurality = Plurality.{fragment.Plurality};");
+            writer.WriteLine($"var {fragmentName}Name = \"{structureFragment.Name}\";");
+            writer.WriteLine($"var {fragmentName}Plurality = Plurality.{structureFragment.Plurality};");
             writer.WriteLine($"NodeAnnotation {fragmentName}Annotation = null;");
             writer.WriteLine($"var {fragmentName}Values = new ValueFragment[] {{}};");
             writer.WriteLine($"var {fragmentName}Children = new StructureFragment[] {{}};");
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             writer.WriteLine($"return new {nameof(StructureFragment)}({fragmentName}Name, {fragmentName}Plurality, {fragmentName}Annotation, {fragmentName}Values, {fragmentName}Children, {fragmentName}FragmentType);");
             writer.Indent -= 1;
             writer.WriteLine("}");
-            writer.WriteLine($"var {variableName} = Create{fragment.Name}{nameof(StructureFragment)}();");
+            writer.WriteLine($"var {variableName} = Create{structureFragment.Name}{nameof(StructureFragment)}();");
         }
 
         private string ToCamelCase(string s)
