@@ -15,4 +15,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.2.0" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bower_components\bootstrap\dist\css" />
+  </ItemGroup>
 </Project>

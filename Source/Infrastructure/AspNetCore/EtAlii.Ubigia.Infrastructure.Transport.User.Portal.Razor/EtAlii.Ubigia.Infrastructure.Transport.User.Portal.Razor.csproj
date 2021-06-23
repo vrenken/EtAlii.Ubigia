@@ -10,4 +10,7 @@
     <ProjectReference Include="..\..\..\Api\EtAlii.Ubigia.Api.Transport.Rest\EtAlii.Ubigia.Api.Transport.Rest.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Rest\EtAlii.Ubigia.Infrastructure.Transport.Rest.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bower_components\bootstrap\dist\css" />
+  </ItemGroup>
 </Project>
