@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Fabric
 {
     internal class PropertyCacheHelper : IPropertyCacheHelper
     {
@@ -19,15 +21,5 @@
         {
             _cacheProvider.Cache[identifier] = properties;
         }
-//
-//        private void Invalidate(Identifier identifier)
-//        [
-//            PropertyDictionary properties
-//            if [_cacheProvider.Cache.TryGetValue[identifier, out properties]]
-//            [
-//                // Yup, we got a cache hit.
-//                _cacheProvider.Cache.Remove(identifier)
-//            ]
-//        ]
     }
 }

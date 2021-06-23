@@ -1,6 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport
 {
-    public static class InvalidInfrastructureOperation 
+    public static class InvalidInfrastructureOperation
     {
         public const string NoConnection = "No connection";
         public const string ConnectionAlreadyClosed = "The connection is already closed";
@@ -13,7 +15,7 @@
         public const string UnableToConnectToStorage = "Unable to connect to the specified storage";
         public const string AlreadySubscribedToNotifications = "Already connected to the notifications system";
         public const string NotSubscribedToNotifications = "Not subscribed to the notifications system";
-        public const string UnableToAthorize = "Authentication failed";
+        public const string UnableToAuthorize = "Authentication failed";
         public const string NoWayToAuthenticate = "No way to authenticate";
 
         public const string AlreadySubscribedToTransport = "Already connected to transport";

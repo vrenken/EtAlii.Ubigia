@@ -1,13 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Fabric
 {
     using System.Collections.Generic;
 
     internal class ContentCacheEntry
     {
         public ContentDefinition ContentDefinition { get; set; }
-
-        //public Dictionary<UInt64, ContentDefinitionPart> ContentDefinitionParts [ get [ return _contentDefinitionParts ] ]
-        //private readonly Dictionary<UInt64, ContentDefinitionPart> _contentDefinitionParts
 
         public Content Content { get; set; }
 

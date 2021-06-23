@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Serialization
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Serialization
 {
     using System;
     using Newtonsoft.Json;
@@ -9,8 +11,7 @@
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             object result = null;
-            if (reader.TokenType == JsonToken.Bytes ||
-                reader.TokenType == JsonToken.String)
+            if (reader.TokenType == JsonToken.Bytes || reader.TokenType == JsonToken.String)
             {
                 var bytes = serializer.Deserialize<byte[]>(reader);
                 var dateTimeAsLong = BitConverter.ToInt64(bytes, 0);

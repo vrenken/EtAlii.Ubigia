@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Serialization
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Serialization
 {
 	using System.Collections.Generic;
 	using Newtonsoft.Json;
@@ -13,8 +15,6 @@
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
                 DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
                 TypeNameHandling = TypeNameHandling.None,
-                //DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                //DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
             };
 
             AddDefaultConverters(serializer.Converters);
@@ -28,8 +28,6 @@
 		    settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
 		    settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
 		    settings.TypeNameHandling = TypeNameHandling.None;
-		    //settings.DateFormatHandling = DateFormatHandling.IsoDateFormat,
-		    //settings.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
 		    AddDefaultConverters(settings.Converters);
 	    }
 
@@ -42,7 +40,7 @@
 
 	    private static void AddDefaultConverters(ICollection<JsonConverter> converters)
         {
-            // We want custom tailored unsigned long conversion. 
+            // We want custom tailored unsigned long conversion.
             // Reason for this is that we cannot trust the available ulong serialization because it is not supported by the JSON standard.
             converters.Add(new UnsignedLongJSonConverter());
 

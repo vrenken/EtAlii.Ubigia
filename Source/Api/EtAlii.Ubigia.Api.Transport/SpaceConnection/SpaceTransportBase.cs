@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
     using System.Threading.Tasks;
@@ -8,13 +10,13 @@
     {
         public bool IsConnected { get; private set; }
 
-        public Uri Address { get; private set; }
+        public Uri Address { get; }
 
         protected SpaceTransportBase(Uri address)
         {
             Address = address;
         }
-        
+
         public virtual Task Start()
         {
             IsConnected = true;

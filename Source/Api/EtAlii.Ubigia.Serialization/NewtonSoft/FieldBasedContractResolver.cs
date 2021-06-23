@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Serialization
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Serialization
 {
     using System;
     using System.Collections.Generic;
@@ -26,17 +28,7 @@
                 field.Writable = true;
                 field.Readable = true;
             }
-            //fields.ForEach(field => [ field.Writable = true; p.Readable = true; ])
             return fields;
-
-            //var props = type
-            //    .GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-            //    .Select(p => base.CreateProperty(p, memberSerialization))
-            //    .Union(type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-            //        .Select(f => base.CreateProperty(f, memberSerialization)))
-            //    .ToList()
-            //props.ForEach(p => [ p.Writable = true; p.Readable = true; ])
-            //return props
         }
     }
 }

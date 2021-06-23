@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -7,6 +9,7 @@
     {
         /// <inheritdoc />
         public Uri ManagementAddress { get; private set; }
+
         /// <inheritdoc />
         public Uri DataAddress { get; private set; }
 
@@ -15,7 +18,6 @@
             Update(storage,new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute));
         }
 
-        
         [SuppressMessage("Sonar Code Smell", "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive", Justification = "Safe to do so here.")]
         private void Update(Storage storage, Uri managementAddress, Uri dataAddress)
         {

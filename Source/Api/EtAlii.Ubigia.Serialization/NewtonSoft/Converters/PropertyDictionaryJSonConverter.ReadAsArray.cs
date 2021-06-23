@@ -1,10 +1,12 @@
-﻿namespace EtAlii.Ubigia.Serialization
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Serialization
 {
     using Newtonsoft.Json;
 
     public partial class PropertyDictionaryJSonConverter
     {
-        private void ReadAsArray(JsonReader reader, PropertyDictionary properties, JsonSerializer serializer) // , Type objectType
+        private void ReadAsArray(JsonReader reader, PropertyDictionary properties, JsonSerializer serializer)
         {
             CheckedRead(reader);
 

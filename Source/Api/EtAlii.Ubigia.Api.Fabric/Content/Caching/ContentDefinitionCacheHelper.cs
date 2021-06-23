@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Fabric
 {
     internal class ContentDefinitionCacheHelper : IContentDefinitionCacheHelper
     {
@@ -12,7 +14,7 @@
         public ContentDefinition Get(in Identifier identifier)
         {
             _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
-            return cacheEntry != null ? cacheEntry.ContentDefinition : null;
+            return cacheEntry?.ContentDefinition;
         }
 
         public void Store(in Identifier identifier, ContentDefinition definition)

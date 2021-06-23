@@ -1,3 +1,5 @@
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
 namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
     public partial class ProfilingAspects
@@ -18,7 +20,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         public ProfilingAspect ScriptSequenceProcessor { get; } = new(ProfilingLayer.Functional, "Sequence processor");
 
-        public ProfilingAspect ScriptProcessorSubject { get; } = new(ProfilingLayer.Functional, "Subject procesor");
+        public ProfilingAspect ScriptProcessorSubject { get; } = new(ProfilingLayer.Functional, "Subject processor");
 
         public ProfilingAspect ScriptProcessorPathSubject { get; } = new(ProfilingLayer.Functional, "Path subject processor");
 

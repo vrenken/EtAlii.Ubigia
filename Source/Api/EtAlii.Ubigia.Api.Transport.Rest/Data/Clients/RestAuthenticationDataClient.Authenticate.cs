@@ -72,7 +72,7 @@
 
             if (string.IsNullOrWhiteSpace(authenticationToken))
             {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
+                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAuthorize);
             }
             return authenticationToken;
         }
