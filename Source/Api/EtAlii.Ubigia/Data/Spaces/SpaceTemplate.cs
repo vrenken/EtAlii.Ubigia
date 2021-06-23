@@ -1,11 +1,13 @@
-﻿namespace EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia
 {
     public class SpaceTemplate
     {
         public static SpaceTemplate[] All { get; }
         public static SpaceTemplate Data { get; }
-        public static SpaceTemplate System { get; } 
-        public static SpaceTemplate Configuration { get; } 
+        public static SpaceTemplate System { get; }
+        public static SpaceTemplate Configuration { get; }
         public static SpaceTemplate Metrics { get; }
 
         public string Name { get; }
@@ -22,7 +24,7 @@
             (
                 name: SpaceName.Data,
                 requiredRoles: new [] { Role.User },
-                rootsToCreate: new[] 
+                rootsToCreate: new[]
                 {
                     "Tail",
                     "Hierarchy",
@@ -81,7 +83,7 @@
                 },
                 setupScript: new[] { "" }
             );
-            All = new[] 
+            All = new[]
             {
                 Data,
                 System,
@@ -92,8 +94,8 @@
 
         private SpaceTemplate(
             string name,
-            string[] requiredRoles, 
-            string[] rootsToCreate, 
+            string[] requiredRoles,
+            string[] rootsToCreate,
             string[] setupScript)
         {
             Name = name;

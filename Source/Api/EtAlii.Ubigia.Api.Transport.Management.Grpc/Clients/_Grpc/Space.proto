@@ -1,5 +1,5 @@
 ﻿//
-// Copyright 2018 Peter Vrenken.
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 syntax = "proto3";
 import "Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;

@@ -1,7 +1,8 @@
-﻿using System.Runtime.CompilerServices;
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional")]
-//[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Win32")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport")]
@@ -15,7 +16,6 @@
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Diagnostics.Tests")]
-//[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Win32.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.InMemory.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Persistence.Azure.Tests")]

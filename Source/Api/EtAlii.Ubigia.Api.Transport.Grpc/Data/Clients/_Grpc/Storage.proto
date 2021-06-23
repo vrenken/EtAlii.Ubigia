@@ -1,22 +1,22 @@
 ﻿//
-// Copyright 2018 Peter Vrenken.
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 syntax = "proto3";
 import "Data/Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
 // The Storage Grpc service definition.
-service StorageGrpcService  
+service StorageGrpcService
 {
 	rpc GetLocal (StorageSingleRequest) returns (StorageSingleResponse) {}
 }
 
 message StorageSingleRequest
 {
-    oneof Selection 
+    oneof Selection
     {
         Guid Id = 1;
         string Name = 2;
-        Storage Storage = 3;        
+        Storage Storage = 3;
     }
 }
 

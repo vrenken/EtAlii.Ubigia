@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia
 {
     /// <summary>
     /// This class provides a consistent list of all correlation ID's used all over the Ubigia code base.

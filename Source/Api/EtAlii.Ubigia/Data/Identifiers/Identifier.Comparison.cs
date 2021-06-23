@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia
 {
     using System;
 
@@ -11,20 +13,20 @@
         /// <returns></returns>
         public override bool Equals(object obj)
         {
-            // If parameter is null, return false. 
+            // If parameter is null, return false.
             if (ReferenceEquals(obj, null))
             {
                 return false;
             }
 
             // Cannot happen.
-            // Optimization for a common success case. 
+            // Optimization for a common success case.
             //if (Object.ReferenceEquals(this, obj))
             //[
             //    return true
             //]
 
-            // If run-time types are not exactly the same, return false. 
+            // If run-time types are not exactly the same, return false.
             if (GetType() != obj.GetType())
             {
                 return false;
@@ -40,30 +42,30 @@
         /// <returns></returns>
         public bool Equals(Identifier other)
         {
-            // Cannot happen. 
-            // If parameter is null, return false. 
+            // Cannot happen.
+            // If parameter is null, return false.
             //if (Object.ReferenceEquals(id, null))
             //[
             //    return false
             //]
 
             // Cannot happen.
-            // Optimization for a common success case. 
+            // Optimization for a common success case.
             //if (Object.ReferenceEquals(this, id))
             //[
             //    return true
             //]
 
             // Can happen, but is not problematic.
-            // If run-time types are not exactly the same, return false. 
+            // If run-time types are not exactly the same, return false.
             //if (this.GetType() ne id.GetType())
             //[
             //    return false
             //]
 
-            // Return true if the fields match. 
-            // Note that the base class is not invoked because it is 
-            // System.Object, which defines Equals as reference equality. 
+            // Return true if the fields match.
+            // Note that the base class is not invoked because it is
+            // System.Object, which defines Equals as reference equality.
             if (other.Moment != Moment)
             {
                 return false;
@@ -93,7 +95,7 @@
             {
                 return false;
             }
-            
+
             return true;
         }
 
@@ -127,6 +129,6 @@
             return !equals;
         }
 
-        public override int GetHashCode() => HashCode.Combine(Storage, Account, Space, Era, Period, Moment); 
+        public override int GetHashCode() => HashCode.Combine(Storage, Account, Space, Era, Period, Moment);
     }
 }

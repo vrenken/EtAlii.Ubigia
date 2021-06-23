@@ -1,11 +1,11 @@
 ﻿//
-// Copyright 2018 Peter Vrenken.
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 syntax = "proto3";
 import "Data/Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
 // The Authentication Grpc service definition.
-service AuthenticationGrpcService 
+service AuthenticationGrpcService
 {
 	// Try to authenticate.
 	rpc Authenticate (AuthenticationRequest) returns (AuthenticationResponse) {}
@@ -15,7 +15,7 @@ service AuthenticationGrpcService
 //	rpc GetAccountForAuthenticationToken(AuthenticationTokenRequest) returns (AuthenticationTokenResponse) {}
 
 //	rpc GetLocalStorage(LocalStorageRequest) returns (LocalStorageResponse) {}
-	
+
 }
 
 message AuthenticationRequest

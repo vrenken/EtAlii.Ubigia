@@ -1,11 +1,11 @@
 ﻿//
-// Copyright 2018 Peter Vrenken.
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 syntax = "proto3";
 import "Data/Clients/_Grpc/_Model.proto";
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
 // The ContentDefinition Grpc service definition.
-service ContentDefinitionGrpcService 
+service ContentDefinitionGrpcService
 {
 	rpc Get (ContentDefinitionGetRequest) returns (ContentDefinitionGetResponse) {}
 	rpc Post (ContentDefinitionPostRequest) returns (ContentDefinitionPostResponse) {}

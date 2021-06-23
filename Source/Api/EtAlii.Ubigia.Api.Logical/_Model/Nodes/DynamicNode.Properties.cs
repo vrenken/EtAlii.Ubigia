@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Logical
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.ComponentModel;
@@ -13,14 +15,6 @@
             return _properties;
         }
 
-        //void IInternalNode.SetProperties(IPropertiesDictionary properties)
-        //[
-        //    if [properties = = null]
-        //    [
-        //        throw new ArgumentNullException("properties")
-        //    ]
-        //    _properties = properties
-        //]
         public bool TryGetValue(string key, out object value)
         {
             return _properties.TryGetValue(key, out value);
@@ -54,28 +48,21 @@
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-//        private void MarkAsModified()
-//        [
-//            //var wasModified = _isModified
-//            _isModified = true
-//            NotifyPropertyChanged(nameof(INode.IsModified)) // this, _isModified, _isModified,
-//        ]
-
         #region Not supported actions.
 
         public override bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
         {
-            throw new NotSupportedException(_notSupportedErrorMessage);
+            throw new NotSupportedException(NotSupportedErrorMessage);
         }
 
         public override bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
         {
-            throw new NotSupportedException(_notSupportedErrorMessage);
+            throw new NotSupportedException(NotSupportedErrorMessage);
         }
 
         public override bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
         {
-            throw new NotSupportedException(_notSupportedErrorMessage);
+            throw new NotSupportedException(NotSupportedErrorMessage);
         }
 
         #endregion Not supported actions.

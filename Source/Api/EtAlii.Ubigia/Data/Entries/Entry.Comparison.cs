@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia
 {
     public sealed partial class Entry
     {
@@ -31,27 +33,27 @@
 
         public bool Equals(Entry other)
         {
-            // If parameter is null, return false. 
+            // If parameter is null, return false.
             if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            // Optimization for a common success case. 
+            // Optimization for a common success case.
             if (ReferenceEquals(this, other))
             {
                 return true;
             }
 
-            // If run-time types are not exactly the same, return false. 
+            // If run-time types are not exactly the same, return false.
             //if (this.GetType() ne entry.GetType())
             //[
             //    return false
             //]
 
-            // Return true if the fields match. 
-            // Note that the base class is not invoked because it is 
-            // System.Object, which defines Equals as reference equality. 
+            // Return true if the fields match.
+            // Note that the base class is not invoked because it is
+            // System.Object, which defines Equals as reference equality.
             return Id == other.Id;
         }
 

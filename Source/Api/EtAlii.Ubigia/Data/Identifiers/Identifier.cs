@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia
 {
     using System;
 
@@ -9,7 +11,7 @@
     /// The reasoning is that we want to be able to uniquely identifier each individual change a person or system
     /// will ever needs.
     /// Each identifier is composed from both a spatial (Storage, Account, Space) and
-    /// temporal component (Era, Period, Moment). 
+    /// temporal component (Era, Period, Moment).
     /// </summary>
     public readonly partial struct Identifier
     {
@@ -30,7 +32,7 @@
         public Guid Space { get; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ulong Era { get; }
 
@@ -50,8 +52,8 @@
 
         public override string ToString()
         {
-            return this == Empty 
-                ? $"{GetType().Name}.Empty" 
+            return this == Empty
+                ? $"{GetType().Name}.Empty"
                 : string.Format($"{ToLocationString()}{IdentifierSplitter.Part}{ToTimeString()}");
         }
 

@@ -1,16 +1,16 @@
 ﻿//
-// Copyright 2018 Peter Vrenken.
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 syntax = "proto3";
 import "Google/Protobuf/Timestamp.proto";
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
-   
+
 message Guid
 {
 	fixed64 Data1 = 1;
 	fixed64 Data2 = 2;
 	fixed64 Data3 = 3;
 	fixed64 Data4 = 4;
-}  
+}
 message IpAddress
 {
 	fixed64 Data = 1;
@@ -23,7 +23,7 @@ message Storage
 	string Address = 3;
 }
 
-message Space 
+message Space
 {
 	Guid Id = 1;
 	string Name = 2;
@@ -123,7 +123,7 @@ message RelationComponent
     //string Name = 2
 
 	// Noncomposite.
-	
+
 	// Specific.
 	Relation Relation = 2;
 }
