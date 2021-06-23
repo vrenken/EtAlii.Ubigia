@@ -95,7 +95,6 @@
                 .UseCors(builder =>
                 {
                     builder
-                        .AllowAnyOrigin()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .WithOrigins($"http://{HostString}");

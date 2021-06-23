@@ -16,11 +16,12 @@
 		{
 			applicationBuilder
 				.UseRouting()
-				.UseCors(configuration =>
+				.UseCors(builder =>
 				{
-					configuration.AllowAnyMethod();
-					configuration.AllowAnyHeader();
-					configuration.AllowAnyOrigin();
+                    builder
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins($"http://{HostString}");
 				})
 				.UseEndpoints(endpoints => endpoints.MapHub<AdminHub>(SignalRHub.Admin));
 		}

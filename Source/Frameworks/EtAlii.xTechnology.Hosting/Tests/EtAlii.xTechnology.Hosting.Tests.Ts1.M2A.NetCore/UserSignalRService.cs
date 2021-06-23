@@ -7,18 +7,17 @@
 
     public class UserSignalRService : ServiceBase
     {
-        public UserSignalRService(IConfigurationSection configuration) 
+        public UserSignalRService(IConfigurationSection configuration)
             : base(configuration)
         {
         }
-        
+
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
         {
             applicationBuilder
                 .UseCors(builder =>
                 {
                     builder
-                        .AllowAnyOrigin() 
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .WithOrigins($"http://{HostString}");

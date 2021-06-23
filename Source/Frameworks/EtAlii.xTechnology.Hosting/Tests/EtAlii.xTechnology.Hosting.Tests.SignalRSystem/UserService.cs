@@ -15,11 +15,12 @@
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
         {
             applicationBuilder
-                .UseCors(configuration =>
+                .UseCors(builder =>
                 {
-                    configuration.AllowAnyMethod();
-                    configuration.AllowAnyHeader();
-                    configuration.AllowAnyOrigin();
+                    builder
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .WithOrigins($"http://{HostString}");
                 })
                 .UseRouting()
                 .UseEndpoints(endpoints =>
