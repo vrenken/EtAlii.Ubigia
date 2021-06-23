@@ -41,7 +41,7 @@ namespace HashLibTest
             //if (!Directory.Exists(dir))
             //{
             //    dir = new DirectoryInfo(
-            //        System.Reflection.Assembly.GetAssembly(typeof(IHash)).Location).Parent.Parent.Parent.Parent.Parent.FullName + 
+            //        System.Reflection.Assembly.GetAssembly(typeof(IHash)).Location).Parent.Parent.Parent.Parent.Parent.FullName +
             //    Path.DirectorySeparatorChar + "HashLibTest" + Path.DirectorySeparatorChar + "TestData";
             //}
 
@@ -113,7 +113,7 @@ namespace HashLibTest
             if (m_hash is IWithKey)
                 Debug.Assert(m_keys.Count >= 2);
 
-            var temp_file = Path.GetTempFileName();
+            var temp_file = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var fs = new FileStream(temp_file, FileMode.Create);
 
             using (var sw = new StreamWriter(fs))

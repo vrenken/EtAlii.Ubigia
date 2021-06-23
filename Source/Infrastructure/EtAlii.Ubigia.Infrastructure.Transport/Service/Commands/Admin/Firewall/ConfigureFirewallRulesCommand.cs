@@ -32,7 +32,7 @@
 
             Task.Run(() =>
             {
-                var scriptFullPath = Path.GetTempFileName();
+                var scriptFullPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 scriptFullPath = Path.ChangeExtension(scriptFullPath, "ps1");
                 var type = GetType();
                 var assembly = type.Assembly;
@@ -44,10 +44,10 @@
                     const string resourceName = "Commands.Admin.Firewall.ConfigureFirewall.ps1";
                     resourceStream = assembly.GetManifestResourceStream(type, resourceName);
                     fileStream = File.Create(scriptFullPath);
-                    using var reader = new StreamReader(resourceStream ?? 
+                    using var reader = new StreamReader(resourceStream ??
                                                         throw new InvalidOperationException($"No manifest resource stream found: {resourceName}"));
                     using var writer = new StreamWriter(fileStream);
-                    
+
                     resourceStream = null;
                     fileStream = null;
                     var content = reader.ReadToEnd();
@@ -58,8 +58,8 @@
                     fileStream?.Dispose();
                     resourceStream?.Dispose();
                 }
-                
-                var logFile = Path.GetTempFileName();
+
+                var logFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 var scriptArgs = new[]
                 {
                     //"-ServicePort", _infrastructure.Configuration.Address.Split(':').Last(),

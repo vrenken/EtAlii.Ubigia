@@ -10,7 +10,7 @@
         public abstract string Name { get; }
 
         public abstract string ScriptResourceName { get; }
-        
+
         protected ConfigureFirewallRulesCommandBase(ISystem system)
             : base(system)
         {
@@ -32,7 +32,7 @@
 
             Task.Run(() =>
             {
-                var scriptFullPath = Path.GetTempFileName();
+                var scriptFullPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 scriptFullPath = Path.ChangeExtension(scriptFullPath, "ps1");
                 var type = GetType();
                 var assembly = type.Assembly;
@@ -47,7 +47,7 @@
                 var content = reader.ReadToEnd();
                 writer.Write(content);
 
-                var logFile = Path.GetTempFileName();
+                var logFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
                 var scriptArgs = new[]
                 {
                     "-ServicePort", "UNKNOWN",

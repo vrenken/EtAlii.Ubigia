@@ -9,7 +9,7 @@
     {
         public static string CreateTemporaryFileName()
         {
-            var fileName = Path.GetTempFileName();
+            var fileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
             if (File.Exists(fileName))
             {
@@ -21,7 +21,7 @@
 
         public static string CreateTemporaryFolderName()
         {
-            var folderName = Path.GetTempFileName();
+            var folderName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 
             if (File.Exists(folderName))
             {
