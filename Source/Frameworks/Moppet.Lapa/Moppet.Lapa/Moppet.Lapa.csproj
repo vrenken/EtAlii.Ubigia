@@ -15,4 +15,12 @@
     <Product>Moppet.Lapa</Product>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Update="IsExternalInit.cs">
+      <CodeLanguage>cs</CodeLanguage>
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <BuildAction>Compile</BuildAction>
+    </Compile>
+  </ItemGroup>
+
 </Project>

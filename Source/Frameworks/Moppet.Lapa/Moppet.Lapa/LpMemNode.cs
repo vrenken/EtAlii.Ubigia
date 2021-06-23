@@ -10,12 +10,12 @@ namespace Moppet.Lapa
         /// <summary>
         /// Нода.
         /// </summary>
-        public LpNode Node;
+        public LpNode Node { get; init; }
 
         /// <summary>
         /// How many times was returned from the dictionary on request.
         /// </summary>
-        public int Count;
+        public int Count { get; init; }
 
         /// <summary>
         /// The main constructor.

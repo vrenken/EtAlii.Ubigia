@@ -17,7 +17,7 @@ namespace Moppet.Lapa.Parsers
 
     /// <summary>
     /// Парсер для полноценного разбора пути к файлу или папке в локальной сети или на компьютере.
-    /// 
+    ///
     /// На конструирование парсера уходит время, поэтому не делайте так в цикле: LpFilePath.Abs().Do(...).
     /// </summary>
     public static class LpFilePath
@@ -25,23 +25,23 @@ namespace Moppet.Lapa.Parsers
         /// <summary>
         /// Разделитель пути.
         /// </summary>
-        public static Func<char, bool> PathSep = (c) => c == '\\' || c == '/';
+        public static readonly Func<char, bool> PathSep = (c) => c == '\\' || c == '/';
 
         /// <summary>
         /// Допустимый символ для имени файла, исключая точку и пробел.
         /// </summary>
-        public static Func<char, bool> NameChar = (c) => char.IsLetterOrDigit(c) || (" .\\*:?/%|\"<>".IndexOf(c) == -1);
+        public static readonly Func<char, bool> NameChar = (c) => char.IsLetterOrDigit(c) || (" .\\*:?/%|\"<>".IndexOf(c) == -1);
 
         /// <summary>
         /// Корень пути.
         /// Локальный корень (LocalRoot): [Prefix]&lt;Drive&gt;[Sep].
         /// Сетевой корень (NetRoot): [Prefix]&lt;Host&gt;[Sep].
         /// Пустой корень (EmptyRoot) - это &lt;Sep&gt;
-        /// 
+        ///
         /// Prefix - это либо "\\?\" либо "\\";
         /// Host - это имя сервера;
         /// Sep - символ-разделитель имён папок в пути;
-        /// 
+        ///
         /// http://en.wikipedia.org/wiki/Filename
         /// </summary>
         /// <returns>parser.</returns>
@@ -70,14 +70,14 @@ namespace Moppet.Lapa.Parsers
         /// Помеченые узлы:
         /// "Name" , "Ext" - имя с расширением (включает два дочерних узла "Name" и "Ext");
         /// "Name" - имя без расширения;
-        /// 
+        ///
         /// http://en.wikipedia.org/wiki/Filename,
         /// http://msdn.microsoft.com/ru-ru/library/aa365247(VS.85).aspx (Naming Files, Paths, and Namespaces)
         /// </summary>
         public static LpsParser FileOrDirName()
         {
             // Правила:
-            // 1) Имя может начинаться с точки. 
+            // 1) Имя может начинаться с точки.
             // 2) По краям запрещены пробелы. Точка в конце также не допускается.
             // 3) Если имя начинается с точки, то оно должно быть больше одного символа.
             // 4) Расширение без имени файла существовать не может. Но имя файла может быть точкой, если далее есть расширение.
@@ -87,7 +87,7 @@ namespace Moppet.Lapa.Parsers
             const int NeedNextChar = 1;
             const int NeedExt = 2;
             const int MaybeNextChar = 3;
-            
+
             // Несмотря на то что конечные автоматы не приветствуются, здесь ему самое место, ибо он существенно сократил код и его понимание.
             var name_ = new LpsParser((t) =>
             {
@@ -95,7 +95,7 @@ namespace Moppet.Lapa.Parsers
                 var iPoint = -1;
                 var i = -1;
                 var len = t.Length;
-                
+
                 while(++i < len)
                 {
                     var c = t[i];
@@ -165,7 +165,7 @@ namespace Moppet.Lapa.Parsers
             return path;
         }
 
-        
+
         /// <summary>
         /// Парсер абсолютного пути.
         /// Помечается идентификатором Abs.

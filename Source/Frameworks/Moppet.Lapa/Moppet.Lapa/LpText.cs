@@ -19,7 +19,7 @@ namespace Moppet.Lapa
     using System;
 
     /*
-     * Note that the structure does not use properties. 
+     * Note that the structure does not use properties.
      * They really do not need, because especially on anything not save, and the brakes were added weight.
      */
 
@@ -33,17 +33,17 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// The source of the text.
 		/// </summary>
-		public string Source;
+		public string Source { get; init; }
 
 		/// <summary>
         /// The index of the first character of the block
 		/// </summary>
-		public int Index;
+		public int Index { get; init; }
 
 		/// <summary>
         /// block Size
 		/// </summary>
-		public int Length;
+		public int Length { get; init; }
 
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Moppet.Lapa
 		{
 			Source = source; Index = index; Length = length;
 		}
-		
+
 		/// <summary>
 		/// Auxiliary constructor.
 		/// </summary>
@@ -75,7 +75,7 @@ namespace Moppet.Lapa
 		{
 			Source = source; Index = 0; Length = source.Length;
 		}
-		
+
 		/// <summary>
         /// Returns the character in the relative index [0; Length).
 		/// </summary>

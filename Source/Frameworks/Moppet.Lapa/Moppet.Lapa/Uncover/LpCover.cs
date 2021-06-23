@@ -32,12 +32,12 @@ namespace Moppet.Lapa
         /// <summary>
         /// Parser.
         /// </summary>
-        public TParser Parser;
+        public TParser Parser { get; init; }
 
         /// <summary>
         /// Истина, если результат парсера нужно раскрыть.
         /// </summary>
-        public bool Uncover;
+        public bool Uncover { get; init; }
 
         /// <summary>
         /// Неявное преобразование LpUncover в LpCover.

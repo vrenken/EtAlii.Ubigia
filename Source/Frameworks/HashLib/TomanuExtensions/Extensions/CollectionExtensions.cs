@@ -24,7 +24,7 @@ namespace TomanuExtensions
 
         public static bool AddUnique<T>(this ICollection<T> a_collection, T a_value)
         {
-            if (a_collection.Contains(a_value) == false)
+            if (!a_collection.Contains(a_value))
             {
                 a_collection.Add(a_value);
                 return true;

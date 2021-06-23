@@ -23,25 +23,25 @@ namespace Moppet.Lapa
     public class LpNode // Do not make this node structure, and the rate of fall.
 	{
 		/// <summary>
-        /// Match. This is what the parser found. 
+        /// Match. This is what the parser found.
         /// Block of text that has been analyzed (dismantled).
         /// </summary>
-		public LpText Match;
+		public LpText Match { get; init; }
 
 		/// <summary>
         /// Remainder of the text. This is something that remains to examine (analyze further).
 		/// </summary>
-		public LpText Rest;
+		public LpText Rest { get; init; }
 
 		/// <summary>
         /// Child blocks of text consisting Match.
 		/// </summary>
-		public IEnumerable<LpNode> Children;
+		public IEnumerable<LpNode> Children { get; init; }
 
 		/// <summary>
         /// Node ID.
 		/// </summary>
-		public string Id;
+		public string Id { get; set; }
 
 
 		/// <summary>
@@ -57,7 +57,7 @@ namespace Moppet.Lapa
 		}
 
         /// <summary>
-        /// Constructs a node that represents a bad match. 
+        /// Constructs a node that represents a bad match.
         /// Ie unsuccessful attempt to parse.
         /// </summary>
         /// <param name="id">node identifier.</param>
@@ -158,7 +158,7 @@ namespace Moppet.Lapa
 		{
 			Id = id; Match = match; Rest = rest; Children = children;
 		}
-		
+
 		/// <summary>
 		/// The main constructor.
 		/// </summary>
@@ -177,14 +177,14 @@ namespace Moppet.Lapa
 		public bool Success => Match.Length >= 0;
 
 	    /// <summary>
-        /// Returns a block of text that represents the node. 
+        /// Returns a block of text that represents the node.
         /// If non-empty block of text, then the text is considered to be parsed (analyzed).
         /// </summary>
 		/// <returns>The string is not always null.</returns>
 		public override string ToString() { return Match.ToString(); }
 
 		/// <summary>
-        /// Wraps node to another node, then the node is a new node array Children. 
+        /// Wraps node to another node, then the node is a new node array Children.
         /// Wrapping is usually necessary to keep the node identification node.
         /// </summary>
         /// <param name="node">some result.</param>
@@ -220,7 +220,7 @@ namespace Moppet.Lapa
 		#region Node helpers
 
 		/// <summary>
-        /// Selects all nodes with the specified identifier. 
+        /// Selects all nodes with the specified identifier.
         /// Nodes are selected not only from a list of nodes, but for all children.
         /// </summary>
         /// <param name="nodes">nodes.</param>
@@ -256,7 +256,7 @@ namespace Moppet.Lapa
 
 
 		/// <summary>
-        /// Selects all nodes satisfying predicate. 
+        /// Selects all nodes satisfying predicate.
         /// Dfs underway.
         /// </summary>
 		/// <param name="predicate">F-I search for an ID.</param>

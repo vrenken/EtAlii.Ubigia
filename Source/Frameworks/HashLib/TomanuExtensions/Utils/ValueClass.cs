@@ -7,7 +7,7 @@ namespace TomanuExtensions.Utils
     [DebuggerDisplay("Value: {Value}")]
     public class ValueClass<T> where T : struct
     {
-        public T Value;
+        public T Value { get; }
 
         public ValueClass(T a_value)
         {
