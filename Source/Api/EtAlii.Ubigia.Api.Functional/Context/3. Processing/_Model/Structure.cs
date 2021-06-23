@@ -7,7 +7,6 @@
     public sealed class Structure
 #pragma warning restore CA1724
     {
-        //public Identifier Id [ get ]
         public string Type { get; }
         public string Name { get; }
 

@@ -47,12 +47,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             WriteValueMappings(writer, structureFragment);
 
             writer.WriteLine("return instance;");
-
-            // Structure s;
-            // s.Children.
-            // s.Children;
-            // s.Name;
-            // s.Values[].Object
         }
 
         private void WriteChildMappings(IndentedTextWriter writer, StructureFragment structureFragment)

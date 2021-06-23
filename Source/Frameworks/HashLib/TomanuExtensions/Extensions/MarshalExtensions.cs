@@ -26,7 +26,7 @@ namespace TomanuExtensions
             var ptr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(a_struct, ptr, true);
             Marshal.Copy(a_bytes, 0, ptr, size);
-            var _ = Marshal.PtrToStructure(ptr, typeof(T));
+            Marshal.PtrToStructure(ptr, typeof(T));
             Marshal.FreeHGlobal(ptr);
         }
 
