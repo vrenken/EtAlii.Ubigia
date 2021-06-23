@@ -6,6 +6,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 [![Build+Test](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml)
 [![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yaml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yaml)
 [![CodeQL Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia)
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=bugs)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=code_smells)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
