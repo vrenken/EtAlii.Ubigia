@@ -4,14 +4,14 @@
 
     internal class UpdatesPathSubjectPartParser : IUpdatesPathSubjectPartParser
     {
-        public string Id { get; } = nameof(UpdatesPathSubjectPart);
+        public string Id => nameof(UpdatesPathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string _relationId = @"}";
-        private const string _relationDescription = @"UPDATES_OF";
+        private const string RelationId = @"}";
+        private const string RelationDescription = @"UPDATES_OF";
 
         public UpdatesPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -19,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
 
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
             Parser = new LpsParser(Id, true, relationParser);
         }
 

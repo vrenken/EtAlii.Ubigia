@@ -8,19 +8,19 @@
 
     public sealed class EntryGetterTests
     {
-        private const string _testStorageName = "InMemory Test storage";
-        
+        private const string TestStorageName = "InMemory Test storage";
+
         private IStorage CreateTestStorage()
         {
             var storageConfiguration = new StorageConfiguration()
-                .Use(_testStorageName)
+                .Use(TestStorageName)
                 .UseInMemoryStorage();
             var storage = new StorageFactory().Create(storageConfiguration);
             return storage;
         }
-        
+
         [Fact]
-        public async Task EntryGetter_Get_All() 
+        public async Task EntryGetter_Get_All()
         {
             // Arrange.
             var storage = CreateTestStorage();

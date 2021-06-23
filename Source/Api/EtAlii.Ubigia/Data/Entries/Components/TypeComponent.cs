@@ -10,8 +10,7 @@ namespace EtAlii.Ubigia
 
         public string Type { get; internal set; }
 
-        protected internal override string Name => _name;
-        private const string _name = "Type";
+        protected internal override string Name => "Type";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

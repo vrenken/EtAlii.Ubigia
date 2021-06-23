@@ -4,14 +4,14 @@
 
     internal class NextPathSubjectPartParser : INextPathSubjectPartParser
     {
-        public string Id { get; } = nameof(NextPathSubjectPart);
+        public string Id => nameof(NextPathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string _relationId = @">";
-        private const string _relationDescription = @"NEXT_OF";
+        private const string RelationId = @">";
+        private const string RelationDescription = @"NEXT_OF";
 
         public NextPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -19,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
 
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
             Parser = new LpsParser(Id, true, relationParser);
         }
 

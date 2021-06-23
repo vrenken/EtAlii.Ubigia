@@ -7,10 +7,10 @@
 
     internal class SelectValueAnnotationParser : ISelectValueAnnotationParser
     {
-        public string Id { get; } = nameof(SelectValueAnnotation);
+        public string Id => nameof(SelectValueAnnotation);
         public LpsParser Parser { get; }
 
-        private const string _sourceId = "Source";
+        private const string SourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -31,7 +31,7 @@
 
             // @value(SOURCE)
             // @value()
-            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Value + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
@@ -41,7 +41,7 @@
             _nodeValidator.EnsureSuccess(node, Id);
 
             PathSubject sourcePath = null;
-            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
             if(sourceNode != null)
             {
                 var sourceChildNode = sourceNode.Children.Single();

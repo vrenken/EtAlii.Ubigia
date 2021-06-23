@@ -4,8 +4,7 @@ namespace EtAlii.Ubigia
 {
     public class IndexedComponent : RelationComponent
     {
-        protected internal override string Name => _name;
-        private const string _name = "Indexed";
+        protected internal override string Name => "Indexed";
 
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {

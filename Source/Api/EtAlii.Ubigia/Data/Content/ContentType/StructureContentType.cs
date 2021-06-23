@@ -4,12 +4,12 @@ namespace EtAlii.Ubigia
 {
     public class StructureContentType : ContentType
     {
-        private const string _structureContentTypeId = "Structure";
+        private const string StructureContentTypeId = "Structure";
 
-        public ContentType Hierarchy { get; } = new(_structureContentTypeId, "Hierarchy");
+        public ContentType Hierarchy { get; } = new(StructureContentTypeId, "Hierarchy");
 
         internal StructureContentType()
-            : base(_structureContentTypeId)
+            : base(StructureContentTypeId)
         {
         }
     }

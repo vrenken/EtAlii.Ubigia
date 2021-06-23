@@ -6,9 +6,7 @@
 
     internal class LapaScriptParser : IScriptParser
     {
-        private const string _id = "Script";
-
-//        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
+        private const string Id = "Script";
 
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;
@@ -31,7 +29,7 @@
             var firstParser = newLineParser.Optional + sequenceParser.Parser;
             var nextParser = newLineParser.Required + sequenceParser.Parser;
 
-            _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional);
+            _parser = new LpsParser(Id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional);
         }
 
         public ScriptParseResult Parse(string text)
@@ -49,10 +47,8 @@
             {
                 var node = _parser.Do(text);
 
-                _nodeValidator.EnsureSuccess(node, _id, false);
+                _nodeValidator.EnsureSuccess(node, Id, false);
 
-                //var sequences = node.Children
-                //    .Where(n => n.Id == SequenceParser.Id)
                 var sequences = _nodeFinder.FindAll(node, _sequenceParser.Id)
                     .Select(n => n.Match.ToString())
                     .Select(t => _sequenceParser.Parse(t))

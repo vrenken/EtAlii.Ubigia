@@ -9,9 +9,9 @@
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "QuotedText";
+        public string Id => "QuotedText";
 
-        private const string _textId = "Text";
+        private const string TextId = "Text";
 
         public QuotedTextParser(
             INodeValidator nodeValidator,
@@ -21,8 +21,8 @@
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             Parser = new LpsParser(Id, true,
-                (Lp.One(c => c == '\"') + Lp.ZeroOrMore(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).Id(_textId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.ZeroOrMore(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).Id(_textId) + Lp.One(c => c == '\''))
+                (Lp.One(c => c == '\"') + Lp.ZeroOrMore(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).Id(TextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.ZeroOrMore(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).Id(TextId) + Lp.One(c => c == '\''))
             );
         }
 
@@ -30,7 +30,7 @@
         public string Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
             return text;
         }
 

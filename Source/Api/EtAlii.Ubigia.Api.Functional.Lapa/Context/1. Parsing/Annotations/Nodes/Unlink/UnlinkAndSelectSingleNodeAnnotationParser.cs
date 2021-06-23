@@ -7,12 +7,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class UnlinkAndSelectSingleNodeAnnotationParser : IUnlinkAndSelectSingleNodeAnnotationParser
     {
-        public string Id { get; } = nameof(UnlinkAndSelectSingleNodeAnnotation);
+        public string Id => nameof(UnlinkAndSelectSingleNodeAnnotation);
         public LpsParser Parser { get; }
 
-        private const string _sourceId = "Source";
-        private const string _targetId = "Target";
-        private const string _targetLinkId = "TargetLink";
+        private const string SourceId = "Source";
+        private const string TargetId = "Target";
+        private const string TargetLinkId = "TargetLink";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -33,9 +33,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
 
             // @node-unlink(SOURCE, TARGET, TARGET_LINK)
-            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            var targetParser = new LpsParser(_targetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            var targetLinkParser = new LpsParser(_targetLinkId, true, nonRootedPathSubjectParser.Parser);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var targetParser = new LpsParser(TargetId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var targetLinkParser = new LpsParser(TargetLinkId, true, nonRootedPathSubjectParser.Parser);
 
             Parser = new LpsParser(Id, true,
                 "@" + AnnotationPrefix.NodeUnlink + "(" +
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
             var sourceChildNode = sourceNode.Children.Single();
             var sourcePath = sourceChildNode.Id switch
             {
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
 
-            var targetNode = _nodeFinder.FindFirst(node, _targetId);
+            var targetNode = _nodeFinder.FindFirst(node, TargetId);
             var targetChildNode = targetNode.Children.Single();
             var targetPath = targetChildNode.Id switch
             {
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
 
-            var targetLinkNode = _nodeFinder.FindFirst(node, _targetLinkId);
+            var targetLinkNode = _nodeFinder.FindFirst(node, TargetLinkId);
             var targetLinkChildNode = targetLinkNode.Children.Single();
             NonRootedPathSubject targetLinkPath;
             if (targetLinkChildNode.Id == _nonRootedPathSubjectParser.Id)

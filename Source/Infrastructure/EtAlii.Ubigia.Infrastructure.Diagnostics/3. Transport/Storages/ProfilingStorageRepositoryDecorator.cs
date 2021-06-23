@@ -11,36 +11,36 @@
         private readonly IStorageRepository _repository;
         private readonly IProfiler _profiler;
 
-        private const string _getAllCounter = "StorageRepository.Get.All";
-        private const string _getLocalCounter = "StorageRepository.Get.Local";
-        private const string _getByNameCounter = "StorageRepository.Get.ByName";
-        private const string _getByIdCounter = "StorageRepository.Get.ById";
-        private const string _addCounter = "StorageRepository.Add";
-        private const string _removeByIdCounter = "StorageRepository.Remove.ById";
-        private const string _removeByInstanceCounter = "StorageRepository.Remove.ByInstance";
-        private const string _updateCounter = "StorageRepository.Update";
+        private const string GetAllCounter = "StorageRepository.Get.All";
+        private const string GetLocalCounter = "StorageRepository.Get.Local";
+        private const string GetByNameCounter = "StorageRepository.Get.ByName";
+        private const string GetByIdCounter = "StorageRepository.Get.ById";
+        private const string AddCounter = "StorageRepository.Add";
+        private const string RemoveByIdCounter = "StorageRepository.Remove.ById";
+        private const string RemoveByInstanceCounter = "StorageRepository.Remove.ByInstance";
+        private const string UpdateCounter = "StorageRepository.Update";
 
         public ProfilingStorageRepositoryDecorator(IStorageRepository storageRepository, IProfiler profiler)
         {
             _repository = storageRepository;
             _profiler = profiler;
 
-            profiler.Register(_getAllCounter, SamplingType.RawCount, "Milliseconds", "Get all storages", "The time it takes for the GetAll method to execute");
-            profiler.Register(_getLocalCounter, SamplingType.RawCount, "Milliseconds", "Get local storage", "The time it takes for the GetLocal method to execute");
-            profiler.Register(_getByNameCounter, SamplingType.RawCount, "Milliseconds", "Get storage by name", "The time it takes for the Get (by name) method to execute");
-            profiler.Register(_getByIdCounter, SamplingType.RawCount, "Milliseconds", "Get storage by id", "The time it takes for the Get (by id) method to execute");
+            profiler.Register(GetAllCounter, SamplingType.RawCount, "Milliseconds", "Get all storages", "The time it takes for the GetAll method to execute");
+            profiler.Register(GetLocalCounter, SamplingType.RawCount, "Milliseconds", "Get local storage", "The time it takes for the GetLocal method to execute");
+            profiler.Register(GetByNameCounter, SamplingType.RawCount, "Milliseconds", "Get storage by name", "The time it takes for the Get (by name) method to execute");
+            profiler.Register(GetByIdCounter, SamplingType.RawCount, "Milliseconds", "Get storage by id", "The time it takes for the Get (by id) method to execute");
 
-            profiler.Register(_addCounter, SamplingType.RawCount, "Milliseconds", "Add storage", "The time it takes for the Add method to execute");
-            profiler.Register(_removeByInstanceCounter, SamplingType.RawCount, "Milliseconds", "Remove storage by instance", "The time it takes for the Remove (by instance) method to execute");
-            profiler.Register(_removeByIdCounter, SamplingType.RawCount, "Milliseconds", "Remove storage by id", "The time it takes for the Remove (by id) method to execute");
-            profiler.Register(_updateCounter, SamplingType.RawCount, "Milliseconds", "Update storage", "The time it takes for the Update method to execute");
+            profiler.Register(AddCounter, SamplingType.RawCount, "Milliseconds", "Add storage", "The time it takes for the Add method to execute");
+            profiler.Register(RemoveByInstanceCounter, SamplingType.RawCount, "Milliseconds", "Remove storage by instance", "The time it takes for the Remove (by instance) method to execute");
+            profiler.Register(RemoveByIdCounter, SamplingType.RawCount, "Milliseconds", "Remove storage by id", "The time it takes for the Remove (by id) method to execute");
+            profiler.Register(UpdateCounter, SamplingType.RawCount, "Milliseconds", "Update storage", "The time it takes for the Update method to execute");
         }
 
         public Storage GetLocal()
         {
             var start = Environment.TickCount;
             var storage = _repository.GetLocal();
-            _profiler.WriteSample(_getLocalCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetLocalCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
 
@@ -52,14 +52,14 @@
             {
                 yield return item;
             }
-            _profiler.WriteSample(_getAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public Storage Get(string name)
         {
             var start = Environment.TickCount;
             var storage = _repository.Get(name);
-            _profiler.WriteSample(_getByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
 
@@ -67,7 +67,7 @@
         {
             var start = Environment.TickCount;
             var storage = _repository.Get(itemId);
-            _profiler.WriteSample(_getByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storage;
         }
 
@@ -75,7 +75,7 @@
         {
             var start = Environment.TickCount;
             item = await _repository.Add(item).ConfigureAwait(false);
-            _profiler.WriteSample(_addCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }
 
@@ -83,21 +83,21 @@
         {
             var start = Environment.TickCount;
             _repository.Remove(itemId);
-            _profiler.WriteSample(_removeByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public void Remove(Storage item)
         {
             var start = Environment.TickCount;
             _repository.Remove(item);
-            _profiler.WriteSample(_removeByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public Storage Update(Guid itemId, Storage item)
         {
             var start = Environment.TickCount;
             item = _repository.Update(itemId, item);
-            _profiler.WriteSample(_updateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }
     }

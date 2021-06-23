@@ -1,17 +1,17 @@
-﻿namespace EtAlii.Ubigia.Persistence 
+﻿namespace EtAlii.Ubigia.Persistence
 {
     using System;
 
     public class DefaultContainerProvider : IContainerProvider
     {
-        private const string _entriesFolderName = "Entries";
+        private const string EntriesFolderName = "Entries";
 
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId.ToString(),
                 accountId.ToString(),
                 spaceId.ToString()
@@ -21,9 +21,9 @@
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId.ToString(),
                 accountId.ToString(),
                 spaceId.ToString(),
@@ -36,9 +36,9 @@
 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -48,12 +48,12 @@
             };
             return ContainerIdentifier.FromPaths(paths);
         }
- 
+
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, string era, string period, string moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -66,7 +66,7 @@
 
         public ContainerIdentifier ForRoots(Guid spaceId)
         {
-            var paths = new[] 
+            var paths = new[]
             {
                 "Roots",
                 spaceId.ToString()
@@ -77,7 +77,7 @@
 
         public ContainerIdentifier ForItems(string folder)
         {
-            var paths = new[] 
+            var paths = new[]
             {
                 folder
             };
@@ -89,9 +89,9 @@
             string[] paths;
             if (trimTime)
             {
-                paths = new[] 
+                paths = new[]
                 {
-                    _entriesFolderName,
+                    EntriesFolderName,
                     id.Storage.ToString(),
                     id.Account.ToString(),
                     id.Space.ToString(),
@@ -99,9 +99,9 @@
             }
             else
             {
-                paths = new[] 
+                paths = new[]
                 {
-                    _entriesFolderName,
+                    EntriesFolderName,
                     id.Storage.ToString(),
                     id.Account.ToString(),
                     id.Space.ToString(),

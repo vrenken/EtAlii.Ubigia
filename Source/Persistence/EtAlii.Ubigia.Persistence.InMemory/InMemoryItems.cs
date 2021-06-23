@@ -8,8 +8,8 @@
     {
         private readonly Folder _items;
 
-        private const char _separatorChar = '\\';
-        private const string _separatorString = @"\";
+        private const char SeparatorChar = '\\';
+        private const string SeparatorString = @"\";
 
         public InMemoryItems()
         {
@@ -25,7 +25,7 @@
         {
             var result = default(Item);
 
-            path = path.Trim(_separatorChar);
+            path = path.Trim(SeparatorChar);
 
             if (string.IsNullOrEmpty(path))
             {
@@ -33,13 +33,13 @@
             }
             else
             {
-                var items = path.Split(_separatorChar);
+                var items = path.Split(SeparatorChar);
                 var subItemName = items.First();
                 if (items.Length > 1)
                 {
                     if (folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
                     {
-                        var subPath = string.Join(_separatorString, items.Skip(1));
+                        var subPath = string.Join(SeparatorString, items.Skip(1));
                         result = Find(subPath, subFolder);
                     }
                 }

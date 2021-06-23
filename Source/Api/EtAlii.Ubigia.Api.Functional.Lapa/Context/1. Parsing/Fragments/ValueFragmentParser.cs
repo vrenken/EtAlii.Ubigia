@@ -15,11 +15,11 @@
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "ValueQuery";
+        public string Id => "ValueQuery";
 
-        private const string _keyId = "Key";
-        private const string _annotationId = "Annotation";
-        private const string _queryValueId = "QueryValue";
+        private const string KeyId = "Key";
+        private const string AnnotationId = "Annotation";
+        private const string QueryValueId = "QueryValue";
 
         public ValueFragmentParser(
             INodeValidator nodeValidator,
@@ -37,7 +37,7 @@
             _keyValuePairParser = keyValuePairParser;
             _requirementParser = requirementParser;
 
-            var queryParser = new LpsParser(_queryValueId, true, _requirementParser.Parser + (Lp.Name().Id(_keyId) | _quotedTextParser.Parser.Wrap(_keyId)) + new LpsParser(_annotationId, true, whitespaceParser.Required + annotationParser.Parser).Maybe());
+            var queryParser = new LpsParser(QueryValueId, true, _requirementParser.Parser + (Lp.Name().Id(KeyId) | _quotedTextParser.Parser.Wrap(KeyId)) + new LpsParser(AnnotationId, true, whitespaceParser.Required + annotationParser.Parser).Maybe());
 
             var mutationKeyValueParser = _keyValuePairParser.Parser;
 
@@ -53,7 +53,7 @@
 
             switch (child.Id)
             {
-                case _queryValueId:
+                case QueryValueId:
                     return ParseQueryValue(child);
                 case KeyValuePairParser.Id:
                     var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
@@ -70,11 +70,11 @@
             var requirementNode = _nodeFinder.FindFirst(node, _requirementParser.Id);
             var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
 
-            var nameNode = _nodeFinder.FindFirst(node, _keyId);
+            var nameNode = _nodeFinder.FindFirst(node, KeyId);
             var constantNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = constantNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(constantNode);
 
-            var annotationNode = _nodeFinder.FindFirst(node, _annotationId);
+            var annotationNode = _nodeFinder.FindFirst(node, AnnotationId);
             ValueAnnotation annotation = null;
             if (annotationNode != null)
             {

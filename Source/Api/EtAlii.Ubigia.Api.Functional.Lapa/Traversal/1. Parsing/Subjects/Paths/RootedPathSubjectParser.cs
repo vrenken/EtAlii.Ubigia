@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class RootedPathSubjectParser : IRootedPathSubjectParser
     {
-        public string Id { get; } = nameof(RootedPathSubject);
+        public string Id => nameof(RootedPathSubject);
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;

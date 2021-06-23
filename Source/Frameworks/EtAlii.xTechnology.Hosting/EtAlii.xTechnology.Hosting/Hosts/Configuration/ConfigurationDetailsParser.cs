@@ -7,19 +7,19 @@ namespace EtAlii.xTechnology.Hosting
 
 	public class ConfigurationDetailsParser
 	{
-		private const string _folderPattern = @"(?<={{FOLDER:)(\w+?)@([0-9A-Za-z \\%]+?)(?=}})";
-		private const string _portPattern = @"(?<={{PORT:)(\w+?)@(\d+?)(?=}})";
-		private const string _pathPattern = @"(?<={{PATH:)(\w+?)@([0-9A-Za-z\/]*?)(?=}})";
-		private const string _hostPattern = @"(?<={{HOST:)(\w+?)@([0-9A-Za-z.]+?)(?=}})";
-		
+		private const string FolderPattern = @"(?<={{FOLDER:)(\w+?)@([0-9A-Za-z \\%]+?)(?=}})";
+		private const string PortPattern = @"(?<={{PORT:)(\w+?)@(\d+?)(?=}})";
+		private const string PathPattern = @"(?<={{PATH:)(\w+?)@([0-9A-Za-z\/]*?)(?=}})";
+		private const string HostPattern = @"(?<={{HOST:)(\w+?)@([0-9A-Za-z.]+?)(?=}})";
+
 	    public async Task<ConfigurationDetails> Parse(string configurationFile, bool replace = true)
 	    {
 		    var configuration = await File.ReadAllTextAsync(configurationFile).ConfigureAwait(false);
 
 		    // Folder matching.
-		    var folderMatches = Regex.Matches(configuration, _folderPattern);
+		    var folderMatches = Regex.Matches(configuration, FolderPattern);
 		    var folders = new Dictionary<string, string>();
-		    
+
 		    foreach (Match match in folderMatches)
 		    {
 			    var name = match.Groups[1].Value;
@@ -33,9 +33,9 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Host matching.
-		    var hostMatches = Regex.Matches(configuration, _hostPattern);
+		    var hostMatches = Regex.Matches(configuration, HostPattern);
 		    var hosts = new Dictionary<string, string>();
-		    
+
 		    foreach (Match match in hostMatches)
 		    {
 			    var name = match.Groups[1].Value;
@@ -49,9 +49,9 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Port matching.
-		    var portMatches = Regex.Matches(configuration, _portPattern);
+		    var portMatches = Regex.Matches(configuration, PortPattern);
 		    var ports = new Dictionary<string, int>();
-		    
+
 		    foreach (Match match in portMatches)
 		    {
 			    var name = match.Groups[1].Value;
@@ -66,9 +66,9 @@ namespace EtAlii.xTechnology.Hosting
 		    }
 
 		    // Path matching.
-		    var pathMatches = Regex.Matches(configuration, _pathPattern);
+		    var pathMatches = Regex.Matches(configuration, PathPattern);
 		    var paths = new Dictionary<string, string>();
-		    
+
 		    foreach (Match match in pathMatches)
 		    {
 			    var name = match.Groups[1].Value;

@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia
 {
     public class ImageContentType : ContentType
     {
-        private const string _imageContentTypeId = "Image";
+        private const string ImageContentTypeId = "Image";
 
-        public ContentType PortableNetworkGraphics { get; } = new(_imageContentTypeId, "Png");
+        public ContentType PortableNetworkGraphics { get; } = new(ImageContentTypeId, "Png");
 
-        public ContentType Gif { get; } = new(_imageContentTypeId, "Gif");
+        public ContentType Gif { get; } = new(ImageContentTypeId, "Gif");
 
-        public ContentType Jpeg { get; } = new(_imageContentTypeId, "Jpeg");
+        public ContentType Jpeg { get; } = new(ImageContentTypeId, "Jpeg");
 
         internal ImageContentType()
-            : base(_imageContentTypeId)
+            : base(ImageContentTypeId)
         {
         }
     }

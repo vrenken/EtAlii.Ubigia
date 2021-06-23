@@ -4,14 +4,14 @@
 
     internal class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
     {
-        public string Id { get; } = nameof(WildcardPathSubjectPart);
+        public string Id => nameof(WildcardPathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const string _beforeTextId = "BeforeText";
-        private const string _afterTextId = "AfterText";
+        private const string BeforeTextId = "BeforeText";
+        private const string AfterTextId = "AfterText";
 
         public WildcardPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -22,15 +22,15 @@
             _nodeFinder = nodeFinder;
 
             var beforeTextParser = new LpsParser("Before", true,
-                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(_beforeTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\''))
+                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(BeforeTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(BeforeTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             var afterTextParser = new LpsParser("After", true,
-                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(_afterTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\''))
+                (Lp.One(constantHelper.IsValidConstantCharacter).OneOrMore().Id(AfterTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(AfterTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             Parser = new LpsParser(Id, true,
@@ -48,8 +48,8 @@
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var beforeText = GetMatch(node, _beforeTextId);
-            var afterText = GetMatch(node, _afterTextId);
+            var beforeText = GetMatch(node, BeforeTextId);
+            var afterText = GetMatch(node, AfterTextId);
             var pattern = $"{beforeText}*{afterText}";
             return new WildcardPathSubjectPart(pattern);
         }

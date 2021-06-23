@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class RemoveAndSelectSingleNodeAnnotationParser : IRemoveAndSelectSingleNodeAnnotationParser
     {
-        public string Id { get; } = nameof(RemoveAndSelectSingleNodeAnnotation);
+        public string Id => nameof(RemoveAndSelectSingleNodeAnnotation);
         public LpsParser Parser { get; }
 
-        private const string _sourceId = "Source";
-        private const string _nameId = "Name";
+        private const string SourceId = "Source";
+        private const string NameId = "Name";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -35,8 +35,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _quotedTextParser = quotedTextParser;
 
             // @node-remove(SOURCE, NAME)
-            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            var nameParser = new LpsParser(_nameId, true, Lp.Name().Wrap(_nameId) | _quotedTextParser.Parser);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var nameParser = new LpsParser(NameId, true, Lp.Name().Wrap(NameId) | _quotedTextParser.Parser);
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.NodeRemove + "(" + sourceParser + whitespaceParser.Optional + "," + whitespaceParser.Optional + nameParser + ")");
         }
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
             var sourceChildNode = sourceNode.Children.Single();
             var sourcePath = sourceChildNode.Id switch
             {
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 _ => throw new NotSupportedException($"Cannot find path subject in: {node.Match}")
             };
 
-            var nameNode = _nodeFinder.FindFirst(node, _nameId);
+            var nameNode = _nodeFinder.FindFirst(node, NameId);
             var nameChildNode = nameNode.Children.Single();
             var name = nameChildNode.Id switch
             {

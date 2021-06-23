@@ -5,7 +5,7 @@
 
     internal class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
     {
-        public string Id { get; } = nameof(ConditionalPathSubjectPart);
+        public string Id => nameof(ConditionalPathSubjectPart);
 
         public LpsParser Parser { get; }
 

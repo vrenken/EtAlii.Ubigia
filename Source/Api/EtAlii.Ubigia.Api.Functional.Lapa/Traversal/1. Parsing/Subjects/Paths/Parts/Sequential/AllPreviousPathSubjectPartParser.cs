@@ -4,14 +4,14 @@
 
     internal class AllPreviousPathSubjectPartParser : IAllPreviousPathSubjectPartParser
     {
-        public string Id { get; } = nameof(AllPreviousPathSubjectPartParser);
+        public string Id => nameof(AllPreviousPathSubjectPartParser);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string _relationId = @"<<";
-        private const string _relationDescription = @"ALL_PREVIOUS_OF";
+        private const string RelationId = @"<<";
+        private const string RelationDescription = @"ALL_PREVIOUS_OF";
 
         public AllPreviousPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -22,12 +22,9 @@
             Parser = new LpsParser
             (
                 Id, true,
-                pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId) +
+                pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId) +
                 Lp.Lookahead(Lp.Not(Lp.ZeroOrMore(' ') + Lp.Char('=')))
             );
-
-//            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId)
-//            Parser = new LpsParser(Id, true, relationParser)
         }
 
         public PathSubjectPart Parse(LpNode node)

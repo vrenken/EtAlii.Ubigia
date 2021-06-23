@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class ValueAnnotationsParser : IValueAnnotationsParser
     {
-        public string Id { get; } = nameof(ValueAnnotation);
+        public string Id => nameof(ValueAnnotation);
 
         public LpsParser Parser { get; }
 
@@ -47,18 +47,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public void Validate(StructureFragment parent, StructureFragment self, ValueAnnotation annotation, int depth)
         {
-            //var subject = (NodeAnnotation)self
             var parser = _parsers.Single(p => p.CanValidate(annotation));
             parser.Validate(parent, self, annotation, depth);
-
-//            if [before is Subject || after is Subject]
-//            [
-//                throw new ScriptParserException["Two subjects cannot be combined."]
-//            ]
-//            if (before is Comment)
-//            [
-//                throw new ScriptParserException["A subject cannot used in combination with comments."]
-//            ]
         }
 
         public bool CanValidate(Annotation annotation)

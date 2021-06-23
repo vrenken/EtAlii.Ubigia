@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia
             for(var i = charactersToIterate - 1; i>=0; i--)
             {
                 var character = span[i];
-                var characterValue = (byte)_characters.IndexOf(character);
+                var characterValue = (byte)Characters.IndexOf(character);
                 var characterBits = ToBits(characterValue);
                 for (var m = 0; m < charactersToIterate - i - 1; m++)
                 {

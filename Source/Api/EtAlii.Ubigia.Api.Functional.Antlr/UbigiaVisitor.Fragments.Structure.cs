@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
     {
         public override object VisitStructure_fragment(UbigiaParser.Structure_fragmentContext context)
         {
-            //var requirement = (Requirement)VisitRequirement(context.requirement());
             var name = (string)VisitSchema_key(context.schema_key());
             var plurality = context.structure_plurality() != null ? Plurality.Multiple : Plurality.Single;
             var annotationContext = context.node_annotation();

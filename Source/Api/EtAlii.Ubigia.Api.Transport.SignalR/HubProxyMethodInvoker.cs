@@ -7,7 +7,7 @@
 
     public class HubProxyMethodInvoker : IHubProxyMethodInvoker
     {
-        private const string _errorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'";
+        private const string ErrorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'";
 
         public async IAsyncEnumerable<T> Stream<T>(HubConnection connection, string proxyName, string methodName, params object[] parameters)
             where T: class
@@ -15,7 +15,7 @@
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = connection
                 .StreamAsyncCore<T>(methodName, parameters)
                 .GetAsyncEnumerator();
@@ -31,7 +31,7 @@
                     item = hasResult ? enumerator.Current : null;
                 }
                 catch (Exception e) when (
-                    e.Message == "Invalid account" || 
+                    e.Message == "Invalid account" ||
                     e.Message == "Unauthorized" ||
                     e.Message == "Invalid identifier" ||
                     e.Message == "Missing Authentication-Token" ||
@@ -44,12 +44,12 @@
                 }
                 catch (AggregateException e)
                 {
-                    var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                    var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                     throw new InvalidInfrastructureOperationException(message, e.InnerException);
                 }
                 catch (Exception e)
                 {
-                    var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                    var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                     throw new InvalidInfrastructureOperationException(message, e);
                 }
                 if (item != null)
@@ -66,7 +66,7 @@
                 return await connection.InvokeCoreAsync<T>(methodName, parameters).ConfigureAwait(false);
             }
             catch (Exception e) when (
-                e.Message == "Invalid account" || 
+                e.Message == "Invalid account" ||
                 e.Message == "Unauthorized" ||
                 e.Message == "Invalid identifier" ||
                 e.Message == "Missing Authentication-Token" ||
@@ -79,12 +79,12 @@
             }
             catch (AggregateException e)
             {
-                var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }
@@ -109,12 +109,12 @@
             }
             catch (AggregateException e)
             {
-                var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = string.Format(_errorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }

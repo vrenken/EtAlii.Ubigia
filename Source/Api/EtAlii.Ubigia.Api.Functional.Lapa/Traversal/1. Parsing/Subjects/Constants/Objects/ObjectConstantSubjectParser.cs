@@ -5,14 +5,13 @@
 
     internal class ObjectConstantSubjectParser : IObjectConstantSubjectParser
     {
-        public string Id { get; } = nameof(ObjectConstantSubject);
+        public string Id => nameof(ObjectConstantSubject);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IKeyValuePairParser _keyValuePairParser;
-//        private const string _textId = "Text"
 
         public ObjectConstantSubjectParser(
             INodeValidator nodeValidator,

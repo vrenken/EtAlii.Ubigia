@@ -10,18 +10,18 @@
         private readonly IIdentifierRepository _repository;
         private readonly IProfiler _profiler;
 
-        private const string _getTailCounter = "IdentifierRepository.GetTail";
-        private const string _getCurrentHeadCounter = "IdentifierRepository.GetCurrentHead";
-        private const string _getGetNextHeadCounter = "IdentifierRepository.GetNextHead";
+        private const string GetTailCounter = "IdentifierRepository.GetTail";
+        private const string GetCurrentHeadCounter = "IdentifierRepository.GetCurrentHead";
+        private const string GetGetNextHeadCounter = "IdentifierRepository.GetNextHead";
 
         public ProfilingIdentifierRepositoryDecorator(IIdentifierRepository identifierRepository, IProfiler profiler)
         {
             _repository = identifierRepository;
             _profiler = profiler;
 
-            profiler.Register(_getTailCounter, SamplingType.RawCount, "Milliseconds", "Get tail identifier", "The time it takes for the GetTail method to execute");
-            profiler.Register(_getCurrentHeadCounter, SamplingType.RawCount, "Milliseconds", "Get current head identifier", "The time it takes for the GetCurrentHead method to execute");
-            profiler.Register(_getGetNextHeadCounter, SamplingType.RawCount, "Milliseconds", "Get next head identifier", "The time it takes for the GetNextHead method to execute"); 
+            profiler.Register(GetTailCounter, SamplingType.RawCount, "Milliseconds", "Get tail identifier", "The time it takes for the GetTail method to execute");
+            profiler.Register(GetCurrentHeadCounter, SamplingType.RawCount, "Milliseconds", "Get current head identifier", "The time it takes for the GetCurrentHead method to execute");
+            profiler.Register(GetGetNextHeadCounter, SamplingType.RawCount, "Milliseconds", "Get next head identifier", "The time it takes for the GetNextHead method to execute");
         }
 
 
@@ -29,7 +29,7 @@
         {
             var start = Environment.TickCount;
             var result = await _repository.GetTail(spaceId).ConfigureAwait(false);
-            _profiler.WriteSample(_getTailCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetTailCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return result;
         }
 
@@ -37,7 +37,7 @@
         {
             var start = Environment.TickCount;
             var result = await _repository.GetCurrentHead(spaceId).ConfigureAwait(false);
-            _profiler.WriteSample(_getCurrentHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetCurrentHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return result;
         }
 
@@ -45,7 +45,7 @@
         {
             var start = Environment.TickCount;
             var head = await _repository.GetNextHead(spaceId).ConfigureAwait(false);
-            _profiler.WriteSample(_getGetNextHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetGetNextHeadCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return head;
         }
     }

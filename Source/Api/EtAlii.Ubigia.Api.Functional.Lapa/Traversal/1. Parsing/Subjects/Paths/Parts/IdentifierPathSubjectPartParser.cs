@@ -6,14 +6,14 @@
 
     internal class IdentifierPathSubjectPartParser : IIdentifierPathSubjectPartParser
     {
-        public string Id { get; } = nameof(IdentifierPathSubjectPart);
+        public string Id => nameof(IdentifierPathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const char _identifierSeparatorCharacter = '.';
-        private const string _identifierId = "Identifier";
+        private const char IdentifierSeparatorCharacter = '.';
+        private const string IdentifierId = "Identifier";
 
         public IdentifierPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -23,7 +23,7 @@
             _nodeFinder = nodeFinder;
 
             var identifierParser = CreateIdentifierParser();
-            Parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(_identifierId));
+            Parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(IdentifierId));
         }
 
         private LpsParser CreateIdentifierParser()
@@ -31,7 +31,7 @@
             var hexDigits = new[] { 'a', 'b', 'c', 'd', 'e', 'f' };
             var hexChar = Lp.One(c => char.IsDigit(c) || hexDigits.Contains(char.ToLower(c)));
             var hexSeparator = Lp.Char('-');
-            var identifierSeparator = Lp.Char(_identifierSeparatorCharacter);
+            var identifierSeparator = Lp.Char(IdentifierSeparatorCharacter);
             var guid = (hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexSeparator +
                         hexChar + hexChar + hexChar + hexChar + hexSeparator +
                         hexChar + hexChar + hexChar + hexChar + hexSeparator +
@@ -66,8 +66,8 @@
 
         private Identifier GetIdentifier(LpNode node)
         {
-            var identifierNode = _nodeFinder.FindFirst(node, _identifierId);
-            var pieces = identifierNode.Match.ToString().Split(_identifierSeparatorCharacter);
+            var identifierNode = _nodeFinder.FindFirst(node, IdentifierId);
+            var pieces = identifierNode.Match.ToString().Split(IdentifierSeparatorCharacter);
             var storage = Guid.Parse(pieces[0]);
             var account = Guid.Parse(pieces[1]);
             var space = Guid.Parse(pieces[2]);

@@ -6,7 +6,7 @@
 
     internal class FunctionSubjectParser : IFunctionSubjectParser
     {
-        public string Id { get; } = nameof(FunctionSubject);
+        public string Id => nameof(FunctionSubject);
 
         public LpsParser Parser { get; }
 
@@ -14,8 +14,8 @@
         private readonly IFunctionSubjectArgumentsParser _functionSubjectArgumentsParser;
         private readonly INodeFinder _nodeFinder;
 
-        private const string _nameId = "Name";
-        private const string _parametersId = "Arguments";
+        private const string NameId = "Name";
+        private const string ParametersId = "Arguments";
 
         public FunctionSubjectParser(
             INodeValidator nodeValidator,
@@ -31,12 +31,12 @@
             var nextParser = Lp.Char(',') + Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
 
             Parser = new LpsParser(Id, true,
-                Lp.LetterOrDigit().OneOrMore().Id(_nameId) +
+                Lp.LetterOrDigit().OneOrMore().Id(NameId) +
                 Lp.ZeroOrMore(' ') +
                 (
                     (
                         Lp.Char('(') +
-                        firstParser.NextZeroOrMore(nextParser).Id(_parametersId) +
+                        firstParser.NextZeroOrMore(nextParser).Id(ParametersId) +
                         Lp.Char(')')
                     ) |
                     (
@@ -50,9 +50,9 @@
         public Subject Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, _nameId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, NameId).Match.ToString();
 
-            var parameterNodes = _nodeFinder.FindFirst(node, _parametersId);
+            var parameterNodes = _nodeFinder.FindFirst(node, ParametersId);
 
             var childNodes = parameterNodes == null
                 ? Array.Empty<LpNode>()

@@ -12,9 +12,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly ILocalStorageGetter _localStorageGetter;
         private readonly ILogicalContextConfiguration _configuration;
-//        private readonly object _lockObject = new object()
 
-        private const string _folder = "Storages";
+        private const string Folder = "Storages";
 
         private ObservableCollection<Storage> Items { get; set; }
 
@@ -22,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 	    public Func<Storage, Task> Added { get; set; }
 
         public LogicalStorageSet(
-            ILocalStorageGetter localStorageGetter, 
+            ILocalStorageGetter localStorageGetter,
             ILogicalContextConfiguration configuration,
             IFabricContext fabric)
         {
@@ -30,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _localStorageGetter = localStorageGetter;
             _configuration = configuration;
         }
-        
+
         public Storage GetLocal()
         {
             return _localStorageGetter.GetLocal(Items);
@@ -64,9 +63,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task Start()
         {
-            var items = await _fabric.Items.GetItems<Storage>(_folder).ConfigureAwait(false);
+            var items = await _fabric.Items.GetItems<Storage>(Folder).ConfigureAwait(false);
 
-            // TODO: This test to see if the local storage has already been added is not very stable. 
+            // TODO: This test to see if the local storage has already been added is not very stable.
             // Please find another way to determine that the local storage needs initialization.
             var isAlreadyRegistered = items.Any(s => s.Name == _configuration.Name);
             if (!isAlreadyRegistered)
@@ -127,7 +126,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Storage Update(Guid itemId, Storage updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }
     }
 }

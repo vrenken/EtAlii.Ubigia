@@ -4,14 +4,14 @@
 
     internal class DowndatePathSubjectPartParser : IDowndatePathSubjectPartParser
     {
-        public string Id { get; } = nameof(DowndatePathSubjectPart);
+        public string Id => nameof(DowndatePathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string _relationId = @"{";
-        private const string _relationDescription = @"DOWNDATE_OF";
+        private const string RelationId = @"{";
+        private const string RelationDescription = @"DOWNDATE_OF";
 
         public DowndatePathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -19,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
 
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
             Parser = new LpsParser(Id, true, relationParser);
         }
 

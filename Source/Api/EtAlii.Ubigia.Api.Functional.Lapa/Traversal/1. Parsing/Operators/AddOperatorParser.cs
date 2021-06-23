@@ -4,7 +4,7 @@
 
     internal class AddOperatorParser : IAddOperatorParser
     {
-        public string Id { get; } = nameof(AddOperator);
+        public string Id => nameof(AddOperator);
 
         public LpsParser Parser { get; }
 

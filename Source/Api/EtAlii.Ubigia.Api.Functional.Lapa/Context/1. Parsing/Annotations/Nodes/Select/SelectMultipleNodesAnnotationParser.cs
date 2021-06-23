@@ -7,10 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class SelectMultipleNodesAnnotationParser : ISelectMultipleNodesAnnotationParser
     {
-        public string Id { get; } = nameof(SelectMultipleNodesAnnotation);
+        public string Id => nameof(SelectMultipleNodesAnnotation);
         public LpsParser Parser { get; }
 
-        private const string _sourceId = "Source";
+        private const string SourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _rootedPathSubjectParser = rootedPathSubjectParser;
 
             // @nodes(SOURCE)
-            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Nodes + "(" + whitespaceParser.Optional + sourceParser + whitespaceParser.Optional + ")");
         }
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
             var sourceChildNode = sourceNode.Children.Single();
             var sourcePath = sourceChildNode.Id switch
             {

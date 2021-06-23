@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public LpsParser Parser { get; }
 
-        public string Id { get; } = nameof(Requirement);
+        public string Id => nameof(Requirement);
 
         private readonly INodeValidator _nodeValidator;
 
@@ -23,13 +23,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             var requirement = Requirement.None;
             var match = node.ToString();
-            switch (match)
+            return match switch
             {
-                case "?": requirement = Requirement.Optional; break;
-                case "!": requirement = Requirement.Mandatory; break;
-            }
-
-            return requirement;
+                "?" => Requirement.Optional,
+                "!" => Requirement.Mandatory,
+                _ => requirement
+            };
         }
     }
 }

@@ -4,13 +4,13 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
     public class PortableContainerProvider : IContainerProvider
     {
-        private const string _entriesFolderName = "Entries";
+        private const string EntriesFolderName = "Entries";
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 Base36Convert.ToString(storageId),
                 Base36Convert.ToString(accountId),
                 Base36Convert.ToString(spaceId)
@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 Base36Convert.ToString(storageId),
                 Base36Convert.ToString(accountId),
                 Base36Convert.ToString(spaceId),
@@ -35,9 +35,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -50,9 +50,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, string era, string period, string moment)
         {
-            var paths = new[] 
+            var paths = new[]
             {
-                _entriesFolderName,
+                EntriesFolderName,
                 storageId,
                 accountId,
                 spaceId,
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         public ContainerIdentifier ForRoots(Guid spaceId)
         {
-            var paths = new[] 
+            var paths = new[]
             {
                 "Roots",
                 Base36Convert.ToString(spaceId)
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         public ContainerIdentifier ForItems(string folder)
         {
-            var paths = new[] 
+            var paths = new[]
             {
                 folder
             };
@@ -89,9 +89,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
             string[] paths;
             if (trimTime)
             {
-                paths = new[] 
+                paths = new[]
                 {
-                    _entriesFolderName,
+                    EntriesFolderName,
                     Base36Convert.ToString(id.Storage),
                     Base36Convert.ToString(id.Account),
                     Base36Convert.ToString(id.Space),
@@ -99,9 +99,9 @@ namespace EtAlii.Ubigia.Persistence.Portable
             }
             else
             {
-                paths = new[] 
+                paths = new[]
                 {
-                    _entriesFolderName,
+                    EntriesFolderName,
                     Base36Convert.ToString(id.Storage),
                     Base36Convert.ToString(id.Account),
                     Base36Convert.ToString(id.Space),

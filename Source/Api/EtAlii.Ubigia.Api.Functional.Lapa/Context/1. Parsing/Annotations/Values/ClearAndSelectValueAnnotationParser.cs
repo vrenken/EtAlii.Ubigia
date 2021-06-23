@@ -7,10 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class ClearAndSelectValueAnnotationParser : IClearAndSelectValueAnnotationParser
     {
-        public string Id { get; } = nameof(ClearAndSelectValueAnnotation);
+        public string Id => nameof(ClearAndSelectValueAnnotation);
         public LpsParser Parser { get; }
 
-        private const string _sourceId = "Source";
+        private const string SourceId = "Source";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _rootedPathSubjectParser = rootedPathSubjectParser;
 
             // @value-clear(SOURCE)
-            var sourceParser = new LpsParser(_sourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
+            var sourceParser = new LpsParser(SourceId, true, rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
 
             Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.ValueClear + "(" + whitespaceParser.Optional + sourceParser.Maybe() + whitespaceParser.Optional + ")");
         }
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _nodeValidator.EnsureSuccess(node, Id);
 
             Subject path = null;
-            var sourceNode = _nodeFinder.FindFirst(node, _sourceId);
+            var sourceNode = _nodeFinder.FindFirst(node, SourceId);
             if (sourceNode != null)
             {
                 var sourceChildNode = sourceNode.Children.Single();

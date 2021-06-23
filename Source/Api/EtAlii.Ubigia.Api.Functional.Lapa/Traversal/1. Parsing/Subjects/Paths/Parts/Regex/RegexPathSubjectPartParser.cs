@@ -6,13 +6,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class RegexPathSubjectPartParser : IRegexPathSubjectPartParser
     {
-        public string Id { get; } = nameof(RegexPathSubjectPart);
+        public string Id => nameof(RegexPathSubjectPart);
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const string _textId = "Text";
+        private const string TextId = "Text";
 
         public RegexPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -29,9 +29,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             Parser = new LpsParser
                 (Id, true,
-                Lp.InBrackets(startDoubleQuote, Lp.OneOrMore(c => c != '\"').Id(_textId, true), endDoubleQuote)
+                Lp.InBrackets(startDoubleQuote, Lp.OneOrMore(c => c != '\"').Id(TextId, true), endDoubleQuote)
                     |
-                Lp.InBrackets(startSingleQuote, Lp.OneOrMore(c => c != '\'').Id(_textId, true), endSingleQuote)
+                Lp.InBrackets(startSingleQuote, Lp.OneOrMore(c => c != '\'').Id(TextId, true), endSingleQuote)
                 );
         }
 
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
             return new RegexPathSubjectPart(text);
         }
     }

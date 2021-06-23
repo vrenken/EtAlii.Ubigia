@@ -4,15 +4,10 @@
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-//    using System.Linq
-//    using Moppet.Lapa
-
     internal class LapaSchemaParser : ISchemaParser
     {
         private readonly IStructureFragmentParser _structureFragmentParser;
-        private const string _id = "Query";
-
-//        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
+        private const string Id = "Query";
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -31,7 +26,7 @@
 
             var headerParsers = (newLineParser.OptionalMultiple + commentParser.Parser).ZeroOrMore();
 
-            _parser = new LpsParser(_id, true, headerParsers + newLineParser.OptionalMultiple + _structureFragmentParser.Parser.Maybe() + newLineParser.OptionalMultiple);
+            _parser = new LpsParser(Id, true, headerParsers + newLineParser.OptionalMultiple + _structureFragmentParser.Parser.Maybe() + newLineParser.OptionalMultiple);
         }
 
         public SchemaParseResult Parse(string text)
@@ -45,7 +40,7 @@
             {
                 var node = _parser.Do(text);
 
-                _nodeValidator.EnsureSuccess(node, _id, false);
+                _nodeValidator.EnsureSuccess(node, Id, false);
 
                 if (_nodeFinder.FindFirst(node, _structureFragmentParser.Id) is { } structureFragmentMatch)
                 {
