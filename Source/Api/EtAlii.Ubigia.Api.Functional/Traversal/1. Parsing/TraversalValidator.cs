@@ -105,48 +105,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             switch (subject)
             {
                 case ObjectConstantSubject:
-                    if (subjectPosition == 0)
-                    {
-                        throw new ScriptParserException("An object constant cannot be used as first subject.");
-                    }
+                    ValidateObjectConstantSubject(subjectPosition);
                     break;
                 case StringConstantSubject:
-                    if (subjectPosition == 0)
-                    {
-                        throw new ScriptParserException("A string constant cannot be used as first subject.");
-                    }
+                    ValidateStringConstantSubject(subjectPosition);
                     break;
                 case FunctionSubject functionSubject:
-                    var arguments = functionSubject.Arguments;
-                    foreach (var argument in arguments)
-                    {
-                        ValidateFunctionSubjectArgument(argument);
-                    }
-                    functionSubject.ShouldAcceptInput = after != null;
+                    ValidateFunctionSubject(after, functionSubject);
                     break;
                 case RootSubject:
-                    if (subjectPosition != 0 || before != null)
-                    {
-                        throw new ScriptParserException("A root subject can only be used as first subject.");
-                    }
-                    if (!(after is AssignOperator))
-                    {
-                        throw new ScriptParserException("Root subjects can only be modified using the assignment operator.");
-                    }
+                    ValidateRootSubject(before, subjectPosition, after);
                     break;
                 case RootDefinitionSubject:
-                    if (subjectPosition == 0 || before == null)
-                    {
-                        throw new ScriptParserException("A root definition subject can not be used as first subject.");
-                    }
-                    if (!(before is AssignOperator))
-                    {
-                        throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
-                    }
-                    if (after is not null && after is not Comment)
-                    {
-                        throw new ScriptParserException("Root definition subjects can only be used as the last subject in a sequence.");
-                    }
+                    ValidateRootDefinitionSubject(before, subjectPosition, after);
                     break;
                 case RootedPathSubject rootedPathSubject:
                     ValidateRootedPathSubject(rootedPathSubject);
@@ -157,6 +128,64 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 case VariableSubject:
                     // Validate the Subject in combination with the before/after SequencePart combination.
                     break;
+            }
+        }
+
+        private void ValidateFunctionSubject(SequencePart after, FunctionSubject functionSubject)
+        {
+            var arguments = functionSubject.Arguments;
+            foreach (var argument in arguments)
+            {
+                ValidateFunctionSubjectArgument(argument);
+            }
+
+            functionSubject.ShouldAcceptInput = after != null;
+        }
+
+        private void ValidateStringConstantSubject(int subjectPosition)
+        {
+            if (subjectPosition == 0)
+            {
+                throw new ScriptParserException("A string constant cannot be used as first subject.");
+            }
+        }
+
+        private void ValidateObjectConstantSubject(int subjectPosition)
+        {
+            if (subjectPosition == 0)
+            {
+                throw new ScriptParserException("An object constant cannot be used as first subject.");
+            }
+        }
+
+        private void ValidateRootSubject(SequencePart before, int subjectPosition, SequencePart after)
+        {
+            if (subjectPosition != 0 || before != null)
+            {
+                throw new ScriptParserException("A root subject can only be used as first subject.");
+            }
+
+            if (!(after is AssignOperator))
+            {
+                throw new ScriptParserException("Root subjects can only be modified using the assignment operator.");
+            }
+        }
+
+        private void ValidateRootDefinitionSubject(SequencePart before, int subjectPosition, SequencePart after)
+        {
+            if (subjectPosition == 0 || before == null)
+            {
+                throw new ScriptParserException("A root definition subject can not be used as first subject.");
+            }
+
+            if (!(before is AssignOperator))
+            {
+                throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
+            }
+
+            if (after is not null && after is not Comment)
+            {
+                throw new ScriptParserException("Root definition subjects can only be used as the last subject in a sequence.");
             }
         }
 
@@ -196,109 +225,31 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             switch (pathPart)
             {
                 case TraversingWildcardPathSubjectPart:
-                    if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
-                        beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
-                        beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
-                        beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
-                    {
-                        throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-                    }
-                    //else if [partIndex = = 0 | | partIndex = = 1 & & [before is VariablePathSubjectPart] = = false]
-                    //[
-                    //    throw new ScriptParserException["A traversing wildcard path part cannot be used at the beginning of a graph path."]
-                    //    Not true with rooted paths.
-                    //]
+                    ValidateTraversingWildcardPathSubjectPart(beforePathPart, afterPathPart);
                     break;
                 case WildcardPathSubjectPart:
-                    if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
-                        beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
-                        beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
-                        beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
-                    {
-                        throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-                    }
-                    else if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
-                             pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && !(beforePathPart is VariablePathSubjectPart))
-                    {
-                        throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
-                    }
+                    ValidateWildcardPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart, subject);
                     break;
                 case TaggedPathSubjectPart:
-                    if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
-                        beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
-                        beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
-                        beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
-                    {
-                        throw new ScriptParserException("A tagged path part cannot be combined with other constant, tagged, wildcard or string path parts.");
-                    }
-                    else if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
-                             pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && !(beforePathPart is VariablePathSubjectPart))
-                    {
-                        throw new ScriptParserException("A tagged path part cannot be used at the beginning of a graph path.");
-                    }
-
+                    ValidateTaggedPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart, subject);
                     break;
                 case ConditionalPathSubjectPart:
-                    if (pathPartPosition == 0 || pathPartPosition == 1 && !(beforePathPart is VariablePathSubjectPart))
-                    {
-                        throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
-                    }
+                    ValidateConditionalPathSubjectPart(beforePathPart, pathPartPosition);
                     break;
                 case ConstantPathSubjectPart constantPathSubjectPart:
-                    if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart)
-                    {
-                        throw new ScriptParserException("Two constant path parts cannot be combined.");
-                    }
-                    if ((pathPartPosition != 0 || afterPathPart == null) && constantPathSubjectPart.Name == string.Empty)
-                    {
-                        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                    }
-                    if ((pathPartPosition == 0 && afterPathPart != null) && constantPathSubjectPart.Name == string.Empty)
-                    {
-                        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-                    }
+                    ValidateConstantPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart, constantPathSubjectPart);
                     break;
                 case VariablePathSubjectPart:
-                    if (beforePathPart is VariablePathSubjectPart || afterPathPart is VariablePathSubjectPart)
-                    {
-                        throw new ScriptParserException("A variable path part cannot be combined with other variable path parts.");
-                    }
+                    ValidateVariablePathSubjectPart(beforePathPart, afterPathPart);
                     break;
                 case IdentifierPathSubjectPart:
-                    if ((beforePathPart == null || beforePathPart is ParentPathSubjectPart) && pathPartPosition <= 1)
-                    {
-                        // All is ok.
-                    }
-                    else
-                    {
-                        throw new ScriptParserException("A identifier path part can only be used at the start of a path");
-                    }
+                    ValidateIdentifierPathSubjectPart(beforePathPart, pathPartPosition);
                     break;
-
                 case AllParentsPathSubjectPart:
-                    if (beforePathPart is ParentPathSubjectPart || afterPathPart is ParentPathSubjectPart ||
-                        beforePathPart is AllParentsPathSubjectPart || afterPathPart is AllParentsPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all parents path separator cannot be combined.");
-                    }
-                    if (afterPathPart is ChildrenPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all parents path separator cannot be followed by a child path separator.");
-                    }
-                    if (afterPathPart is AllChildrenPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all parents path separator cannot be followed by an all child path separator.");
-                    }
+                    ValidateAllParentsPathSubjectPart(beforePathPart, afterPathPart);
                     break;
                 case ParentPathSubjectPart:
-                    if (beforePathPart is ParentPathSubjectPart || afterPathPart is ParentPathSubjectPart)
-                    {
-                        throw new ScriptParserException("Two parent path separators cannot be combined.");
-                    }
-                    if (afterPathPart is ChildrenPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
-                    }
+                    ValidateParentPathSubjectPart(beforePathPart, afterPathPart);
                     break;
                 // TODO: This probably should be activated, removed, and maybe also
                 // should make us reflect on the other parent/child traversers.
@@ -318,118 +269,32 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 //     ]
                 //     break
                 case ChildrenPathSubjectPart:
-                    if (beforePathPart is ChildrenPathSubjectPart || afterPathPart is ChildrenPathSubjectPart)
-                    {
-                        throw new ScriptParserException("Two child path separators cannot be combined.");
-                    }
-                    if (afterPathPart is ParentPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
-                    }
+                    ValidateChildrenPathSubjectPart(beforePathPart, afterPathPart);
                     break;
-
                 case AllDowndatesPathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The all downdates path separator cannot be used to start a path.");
-                    }
-                    if (beforePathPart is DowndatePathSubjectPart || afterPathPart is DowndatePathSubjectPart ||
-                        beforePathPart is AllDowndatesPathSubjectPart || afterPathPart is AllDowndatesPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all downdates path separator cannot be combined.");
-                    }
-                    if (afterPathPart is UpdatesPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all downdates path separator cannot be followed by a update path separator.");
-                    }
-                    if (afterPathPart is AllUpdatesPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all downdates path separator cannot be followed by an all update path separator.");
-                    }
+                    ValidateAllDowndatesPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart);
                     break;
                 case DowndatePathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The downdate path separator cannot be used to start a path.");
-                    }
+                    ValidateDowndatePathSubjectPart(pathPartPosition);
                     break;
                 case AllUpdatesPathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The all updates path separator cannot be used to start a path.");
-                    }
-                    if (beforePathPart is UpdatesPathSubjectPart || afterPathPart is UpdatesPathSubjectPart ||
-                        beforePathPart is AllUpdatesPathSubjectPart || afterPathPart is AllUpdatesPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all updates path separator cannot be combined.");
-                    }
-                    if (afterPathPart is DowndatePathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all updates path separator cannot be followed by a downdate path separator.");
-                    }
-                    if (afterPathPart is AllDowndatesPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all updates path separator cannot be followed by an all downdates path separator.");
-                    }
+                    ValidateAllUpdatesPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart);
                     break;
                 case UpdatesPathSubjectPart:
-                    if (pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The updates path separator cannot be used to start a path.");
-                    }
+                    ValidateUpdatesPathSubjectPart(pathPartPosition);
                     break;
-
                 case AllPreviousPathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The all previous path separator cannot be used to start a path.");
-                    }
-                    if (beforePathPart is PreviousPathSubjectPart || afterPathPart is PreviousPathSubjectPart ||
-                        beforePathPart is AllPreviousPathSubjectPart || afterPathPart is AllPreviousPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all previous path separator cannot be combined.");
-                    }
-                    if (afterPathPart is NextPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all previous path separator cannot be followed by a next path separator.");
-                    }
-                    if (afterPathPart is AllNextPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all previous path separator cannot be followed by an all next path separator.");
-                    }
+                    ValidateAllPreviousPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart);
                     break;
                 case PreviousPathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The previous path separator cannot be used to start a path.");
-                    }
+                    ValidatePreviousPathSubjectPart(pathPartPosition);
                     break;
                 case AllNextPathSubjectPart:
-                    if(pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The all next path separator cannot be used to start a path.");
-                    }
-                    if (beforePathPart is NextPathSubjectPart || afterPathPart is NextPathSubjectPart ||
-                        beforePathPart is AllNextPathSubjectPart || afterPathPart is AllNextPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all next path separator cannot be combined.");
-                    }
-                    if (afterPathPart is PreviousPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all next path separator cannot be followed by a previous path separator.");
-                    }
-                    if (afterPathPart is AllPreviousPathSubjectPart)
-                    {
-                        throw new ScriptParserException("The all next path separator cannot be followed by an all previous path separator.");
-                    }
+                    ValidateAllNextPathSubjectPart(beforePathPart, pathPartPosition, afterPathPart);
                     break;
                 case NextPathSubjectPart:
-                    if (pathPartPosition == 0)
-                    {
-                        throw new ScriptParserException("The next path separator cannot be used to start a path.");
-                    }
+                    ValidateNextPathSubjectPart(pathPartPosition);
                     break;
-
                 case TypedPathSubjectPart:
                     // Validate.
                     break;
@@ -437,6 +302,275 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     // Validate.
                     break;
             }
+        }
+
+        private void ValidateNextPathSubjectPart(int pathPartPosition)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The next path separator cannot be used to start a path.");
+            }
+        }
+
+        private void ValidatePreviousPathSubjectPart(int pathPartPosition)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The previous path separator cannot be used to start a path.");
+            }
+        }
+
+        private void ValidateUpdatesPathSubjectPart(int pathPartPosition)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The updates path separator cannot be used to start a path.");
+            }
+        }
+
+        private void ValidateDowndatePathSubjectPart(int pathPartPosition)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The downdate path separator cannot be used to start a path.");
+            }
+        }
+
+        private void ValidateChildrenPathSubjectPart(PathSubjectPart beforePathPart, PathSubjectPart afterPathPart)
+        {
+            if (beforePathPart is ChildrenPathSubjectPart || afterPathPart is ChildrenPathSubjectPart)
+            {
+                throw new ScriptParserException("Two child path separators cannot be combined.");
+            }
+
+            if (afterPathPart is ParentPathSubjectPart)
+            {
+                throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
+            }
+        }
+
+        private void ValidateVariablePathSubjectPart(PathSubjectPart beforePathPart, PathSubjectPart afterPathPart)
+        {
+            if (beforePathPart is VariablePathSubjectPart || afterPathPart is VariablePathSubjectPart)
+            {
+                throw new ScriptParserException("A variable path part cannot be combined with other variable path parts.");
+            }
+        }
+
+        private void ValidateConditionalPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition)
+        {
+            if (pathPartPosition == 0 || pathPartPosition == 1 && !(beforePathPart is VariablePathSubjectPart))
+            {
+                throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
+            }
+        }
+
+        private void ValidateConstantPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart, ConstantPathSubjectPart constantPathSubjectPart)
+        {
+            if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart)
+            {
+                throw new ScriptParserException("Two constant path parts cannot be combined.");
+            }
+
+            if ((pathPartPosition != 0 || afterPathPart == null) && constantPathSubjectPart.Name == string.Empty)
+            {
+                throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
+            }
+
+            if ((pathPartPosition == 0 && afterPathPart != null) && constantPathSubjectPart.Name == string.Empty)
+            {
+                throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
+            }
+        }
+
+        private void ValidateIdentifierPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition)
+        {
+            if ((beforePathPart == null || beforePathPart is ParentPathSubjectPart) && pathPartPosition <= 1)
+            {
+                // All is ok.
+            }
+            else
+            {
+                throw new ScriptParserException("A identifier path part can only be used at the start of a path");
+            }
+        }
+
+        private void ValidateAllParentsPathSubjectPart(PathSubjectPart beforePathPart, PathSubjectPart afterPathPart)
+        {
+            if (beforePathPart is ParentPathSubjectPart || afterPathPart is ParentPathSubjectPart ||
+                beforePathPart is AllParentsPathSubjectPart || afterPathPart is AllParentsPathSubjectPart)
+            {
+                throw new ScriptParserException("The all parents path separator cannot be combined.");
+            }
+
+            if (afterPathPart is ChildrenPathSubjectPart)
+            {
+                throw new ScriptParserException("The all parents path separator cannot be followed by a child path separator.");
+            }
+
+            if (afterPathPart is AllChildrenPathSubjectPart)
+            {
+                throw new ScriptParserException("The all parents path separator cannot be followed by an all child path separator.");
+            }
+        }
+
+        private void ValidateParentPathSubjectPart(PathSubjectPart beforePathPart, PathSubjectPart afterPathPart)
+        {
+            if (beforePathPart is ParentPathSubjectPart || afterPathPart is ParentPathSubjectPart)
+            {
+                throw new ScriptParserException("Two parent path separators cannot be combined.");
+            }
+
+            if (afterPathPart is ChildrenPathSubjectPart)
+            {
+                throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
+            }
+        }
+
+        private void ValidateAllDowndatesPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The all downdates path separator cannot be used to start a path.");
+            }
+
+            if (beforePathPart is DowndatePathSubjectPart || afterPathPart is DowndatePathSubjectPart ||
+                beforePathPart is AllDowndatesPathSubjectPart || afterPathPart is AllDowndatesPathSubjectPart)
+            {
+                throw new ScriptParserException("The all downdates path separator cannot be combined.");
+            }
+
+            if (afterPathPart is UpdatesPathSubjectPart)
+            {
+                throw new ScriptParserException("The all downdates path separator cannot be followed by a update path separator.");
+            }
+
+            if (afterPathPart is AllUpdatesPathSubjectPart)
+            {
+                throw new ScriptParserException("The all downdates path separator cannot be followed by an all update path separator.");
+            }
+        }
+
+        private void ValidateAllUpdatesPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The all updates path separator cannot be used to start a path.");
+            }
+
+            if (beforePathPart is UpdatesPathSubjectPart || afterPathPart is UpdatesPathSubjectPart ||
+                beforePathPart is AllUpdatesPathSubjectPart || afterPathPart is AllUpdatesPathSubjectPart)
+            {
+                throw new ScriptParserException("The all updates path separator cannot be combined.");
+            }
+
+            if (afterPathPart is DowndatePathSubjectPart)
+            {
+                throw new ScriptParserException("The all updates path separator cannot be followed by a downdate path separator.");
+            }
+
+            if (afterPathPart is AllDowndatesPathSubjectPart)
+            {
+                throw new ScriptParserException("The all updates path separator cannot be followed by an all downdates path separator.");
+            }
+        }
+
+        private void ValidateAllPreviousPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The all previous path separator cannot be used to start a path.");
+            }
+
+            if (beforePathPart is PreviousPathSubjectPart || afterPathPart is PreviousPathSubjectPart ||
+                beforePathPart is AllPreviousPathSubjectPart || afterPathPart is AllPreviousPathSubjectPart)
+            {
+                throw new ScriptParserException("The all previous path separator cannot be combined.");
+            }
+
+            if (afterPathPart is NextPathSubjectPart)
+            {
+                throw new ScriptParserException("The all previous path separator cannot be followed by a next path separator.");
+            }
+
+            if (afterPathPart is AllNextPathSubjectPart)
+            {
+                throw new ScriptParserException("The all previous path separator cannot be followed by an all next path separator.");
+            }
+        }
+
+        private void ValidateAllNextPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart)
+        {
+            if (pathPartPosition == 0)
+            {
+                throw new ScriptParserException("The all next path separator cannot be used to start a path.");
+            }
+
+            if (beforePathPart is NextPathSubjectPart || afterPathPart is NextPathSubjectPart ||
+                beforePathPart is AllNextPathSubjectPart || afterPathPart is AllNextPathSubjectPart)
+            {
+                throw new ScriptParserException("The all next path separator cannot be combined.");
+            }
+
+            if (afterPathPart is PreviousPathSubjectPart)
+            {
+                throw new ScriptParserException("The all next path separator cannot be followed by a previous path separator.");
+            }
+
+            if (afterPathPart is AllPreviousPathSubjectPart)
+            {
+                throw new ScriptParserException("The all next path separator cannot be followed by an all previous path separator.");
+            }
+        }
+
+        private void ValidateTaggedPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart, Subject subject)
+        {
+            if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
+                beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
+                beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
+                beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
+            {
+                throw new ScriptParserException("A tagged path part cannot be combined with other constant, tagged, wildcard or string path parts.");
+            }
+
+            if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
+                pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && beforePathPart is not VariablePathSubjectPart)
+            {
+                throw new ScriptParserException("A tagged path part cannot be used at the beginning of a graph path.");
+            }
+        }
+
+        private void ValidateWildcardPathSubjectPart(PathSubjectPart beforePathPart, int pathPartPosition, PathSubjectPart afterPathPart, Subject subject)
+        {
+            if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
+                beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
+                beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
+                beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
+            {
+                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
+            }
+
+            if (pathPartPosition == 0 && subject is NonRootedPathSubject ||
+                pathPartPosition == 1 && beforePathPart is ParentPathSubjectPart && beforePathPart is not VariablePathSubjectPart)
+            {
+                throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
+            }
+        }
+
+        private void ValidateTraversingWildcardPathSubjectPart(PathSubjectPart beforePathPart, PathSubjectPart afterPathPart)
+        {
+            if (beforePathPart is ConstantPathSubjectPart || afterPathPart is ConstantPathSubjectPart ||
+                beforePathPart is WildcardPathSubjectPart || afterPathPart is WildcardPathSubjectPart ||
+                beforePathPart is TaggedPathSubjectPart || afterPathPart is TaggedPathSubjectPart ||
+                beforePathPart is TraversingWildcardPathSubjectPart || afterPathPart is TraversingWildcardPathSubjectPart)
+            {
+                throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
+            }
+            //else if [partIndex = = 0 | | partIndex = = 1 & & [before is VariablePathSubjectPart] = = false]
+            //[
+            //    throw new ScriptParserException["A traversing wildcard path part cannot be used at the beginning of a graph path."]
+            //    Not true with rooted paths.
+            //]
         }
 
         private void ValidateFunctionSubjectArgument(FunctionSubjectArgument argument)
