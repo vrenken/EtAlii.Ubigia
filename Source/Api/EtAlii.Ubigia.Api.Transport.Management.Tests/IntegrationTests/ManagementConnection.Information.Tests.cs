@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System.Threading.Tasks;
     using Xunit;
@@ -29,7 +31,7 @@
 
             // Act.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(connection.Details.ManagementAddress);
             Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.Scheme, connection.Details.ManagementAddress.Scheme);

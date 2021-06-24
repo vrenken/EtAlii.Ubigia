@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -55,7 +57,7 @@
 
                 // Act.
                 var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
-            
+
                 // Assert.
                 Assert.NotNull(storage);
                 Assert.Equal(name, storage.Name);
@@ -165,7 +167,7 @@
                 .GetAll()
                 .SingleOrDefaultAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(retrievedStorage);
             Assert.Equal(expectedStorageAddress, retrievedStorage.Address);
@@ -178,7 +180,7 @@
             // Arrange.
             var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 
-            var storages = new List<Storage>(); 
+            var storages = new List<Storage>();
             for (var i = 0; i < 10; i++)
             {
                 var name = Guid.NewGuid().ToString();
@@ -190,7 +192,7 @@
                 Assert.Equal(address, storage.Address);
                 storages.Add(storage);
             }
-            
+
             // Act.
             var retrievedStorages = await connection.Storages
                 .GetAll()
@@ -208,7 +210,7 @@
                 Assert.Equal(storage.Address, matchingStorage.Address);
             }
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Change()
         {
@@ -233,7 +235,7 @@
 
             // Act.
             storage = await connection.Storages.Change(storage.Id, name, address).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
@@ -281,7 +283,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -297,7 +299,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

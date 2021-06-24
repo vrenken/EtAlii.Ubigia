@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System;
     using System.Threading.Tasks;
@@ -76,7 +78,7 @@
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task DataConnection_Open_Twice_New()
         {

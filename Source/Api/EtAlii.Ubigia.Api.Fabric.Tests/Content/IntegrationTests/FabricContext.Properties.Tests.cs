@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
@@ -44,7 +46,7 @@
             await _fabric.Properties.Store(entry.Id, properties, scope).ConfigureAwait(false);
 
             // Assert.
-            Assert.True(properties.Stored); 
+            Assert.True(properties.Stored);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

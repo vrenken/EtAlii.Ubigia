@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Rest
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Rest
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Rest;
 
     public partial class RestAuthenticationManagementDataClient : IAuthenticationManagementDataClient
     {
-        //private IRestStorageConnection _connection
-
         public Task Connect(IStorageConnection storageConnection)
         {
             return Connect((IRestStorageConnection) storageConnection);
@@ -22,13 +22,11 @@
         private Task Connect(IRestStorageConnection connection)
 #pragma warning restore S1172
         {
-            //_connection = connection
             return Task.CompletedTask;
         }
 
         private Task Disconnect()
         {
-            //_connection = null
             return Task.CompletedTask;
         }
     }

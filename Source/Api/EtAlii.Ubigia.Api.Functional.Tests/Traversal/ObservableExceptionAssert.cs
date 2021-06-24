@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Tests
 {
     using System;
     using System.Reactive.Linq;

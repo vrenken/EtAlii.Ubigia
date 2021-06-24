@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     /// <summary>
     /// The interface that abstracts away any GTL specific parser implementation.

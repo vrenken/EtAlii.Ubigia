@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
     using Xunit;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;

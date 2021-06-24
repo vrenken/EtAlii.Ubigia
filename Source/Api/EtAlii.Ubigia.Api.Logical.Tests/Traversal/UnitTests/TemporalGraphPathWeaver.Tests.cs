@@ -1,10 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    
+
     public class TemporalGraphPathWeaverTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
@@ -90,7 +92,7 @@
             Assert.Equal(path[3], result[6]);
             Assert.Equal(path[4], result[8]);
             Assert.Equal(path[5], result[9]);
-            
+
             Assert.Equal(path[6], result[10]);
             Assert.Equal(path[7], result[11]);
 

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System;
     using System.Linq;
@@ -11,10 +13,10 @@
         public void RootDataClientStub_Create()
         {
             // Arrange.
-            
+
             // Act.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Assert.
             Assert.NotNull(rootDataClientStub);
         }
@@ -24,10 +26,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             await rootDataClientStub.Add(Guid.NewGuid().ToString()).ConfigureAwait(false);
-            
+
             // Assert.
         }
 
@@ -36,10 +38,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             await rootDataClientStub.Change(Guid.NewGuid(), Guid.NewGuid().ToString()).ConfigureAwait(false);
-            
+
             // Assert.
         }
 
@@ -48,10 +50,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             await rootDataClientStub.Connect(null).ConfigureAwait(false);
-            
+
             // Assert.
         }
 
@@ -60,10 +62,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             await rootDataClientStub.Disconnect().ConfigureAwait(false);
-            
+
             // Assert.
         }
 
@@ -72,10 +74,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             var result = await rootDataClientStub.Get(Guid.NewGuid().ToString()).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result);
         }
@@ -85,10 +87,10 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             var result = await rootDataClientStub.Get(Guid.NewGuid()).ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Null(result);
         }
@@ -98,13 +100,13 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             var result = await rootDataClientStub
                 .GetAll()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.Empty(result);
         }
@@ -114,7 +116,7 @@
         {
             // Arrange.
             var rootDataClientStub = new RootDataClientStub();
-            
+
             // Act.
             await rootDataClientStub.Remove(Guid.NewGuid()).ConfigureAwait(false);
 

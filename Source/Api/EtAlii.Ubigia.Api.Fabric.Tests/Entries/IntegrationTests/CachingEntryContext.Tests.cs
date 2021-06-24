@@ -1,10 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using DataConnectionStub = EtAlii.Ubigia.Api.Transport.DataConnectionStub;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    
+
     public class CachingEntryContextTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

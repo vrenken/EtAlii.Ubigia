@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using Xunit;
 
@@ -8,10 +10,10 @@
         public void RootNotificationClientStub_Create()
         {
             // Arrange.
-            
+
             // Act.
             var rootNotificationClientStub = new RootNotificationClientStub();
-            
+
             // Assert.
             Assert.NotNull(rootNotificationClientStub);
         }
@@ -24,7 +26,7 @@
 
             // Act.
             rootNotificationClientStub.Connect(null);
-            
+
             // Assert.
         }
 
@@ -36,7 +38,7 @@
 
             // Act.
             rootNotificationClientStub.Disconnect();
-            
+
             // Assert.
         }
     }

@@ -1,3 +1,5 @@
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Reactive.Disposables;
@@ -9,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public static async Task<IReadOnlyEntry> Select(this ILogicalNodeSet nodeSet, GraphPath path, ExecutionScope scope)
         {
             var logicalNodeSet = (LogicalNodeSet) nodeSet;
-            
+
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(logicalNodeSet.Fabric);
             var traverser = logicalNodeSet.GraphPathTraverserFactory.Create(configuration);

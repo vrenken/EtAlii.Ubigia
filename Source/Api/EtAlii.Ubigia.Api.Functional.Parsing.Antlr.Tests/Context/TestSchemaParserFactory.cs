@@ -1,4 +1,4 @@
-﻿// This file seems not in the right place. Should be moved to somewhere better.
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
 
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context

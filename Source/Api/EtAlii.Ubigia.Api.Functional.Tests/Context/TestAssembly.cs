@@ -1,4 +1,6 @@
-﻿[assembly: JetBrains.dotMemoryUnit.SuppressXUnitOutputException]
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+[assembly: JetBrains.dotMemoryUnit.SuppressXUnitOutputException]
 [assembly: JetBrains.dotMemoryUnit.DotMemoryUnit(FailIfRunWithoutSupport = false)]
 
 namespace EtAlii.Ubigia.Api.Functional.Context.Tests

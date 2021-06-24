@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -251,10 +253,10 @@
                 .GetAll()
                 .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(retrievedAccounts);
-            // We have the system and administrator accounts, 
+            // We have the system and administrator accounts,
             // so 2 accounts need to be used in the equation.
             Assert.Equal(2, retrievedAccounts.Count());
 
@@ -287,7 +289,7 @@
 
             var retrievedAccounts = await connection.Accounts.GetAll().ToArrayAsync().ConfigureAwait(false);
 
-            // We have the system and administrator accounts, 
+            // We have the system and administrator accounts,
             // so 2 additional accounts need to be used in the equation.
             Assert.Equal(accounts.Count + 2, retrievedAccounts.Length);
 
@@ -530,7 +532,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 
             // Assure.
             await connection.Close().ConfigureAwait(false);
@@ -549,7 +551,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 
             // Assure.
             await connection.Close().ConfigureAwait(false);
@@ -569,7 +571,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
 
             // Assure.
             await connection.Close().ConfigureAwait(false);

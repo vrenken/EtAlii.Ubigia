@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -131,7 +133,7 @@
                 .GetAll(account.Id)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(retrievedSpaces);
             // Each user is initialized with at least a configuration and a data space. so we need to expect two spaces .
@@ -242,7 +244,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Remove(id).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
 
@@ -259,7 +261,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Change(id, name).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -276,7 +278,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration).ConfigureAwait(false));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false); 
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act).ConfigureAwait(false);
         }
     }
 }

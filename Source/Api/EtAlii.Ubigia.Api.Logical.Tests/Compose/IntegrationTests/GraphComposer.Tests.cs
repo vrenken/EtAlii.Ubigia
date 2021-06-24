@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using Xunit;
@@ -20,7 +22,7 @@
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
-            
+
             // Act.
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 

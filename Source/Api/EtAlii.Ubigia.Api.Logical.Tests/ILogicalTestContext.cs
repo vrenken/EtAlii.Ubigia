@@ -1,3 +1,5 @@
+// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
@@ -7,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     {
 
         Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation);
-        
+
         Task<ILogicalContext> CreateLogicalContext(bool openOnCreation);
         Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, params string[] hierarchy);
 

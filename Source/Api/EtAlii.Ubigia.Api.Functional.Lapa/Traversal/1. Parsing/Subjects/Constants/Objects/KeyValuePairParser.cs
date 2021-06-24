@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Traversal
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using System.Collections.Generic;
@@ -76,7 +78,7 @@
         public void Initialize(LpsParser separator = null)
         {
             var defaultSeparator = _whitespaceParser.Optional + Lp.Char(':') + _whitespaceParser.Optional;
-            separator = separator ?? defaultSeparator;
+            separator ??= defaultSeparator;
 
             Parser = new LpsParser(Id, true,
                 (

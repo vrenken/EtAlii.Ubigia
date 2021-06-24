@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
 {
     using System;
     using Antlr4.Runtime;

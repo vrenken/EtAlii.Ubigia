@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Linq;
     using EtAlii.Ubigia.Tests;
@@ -109,7 +111,7 @@
             }
             var second = Entry.NewEntry(entryId, previousEntryRelation);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
-            
+
             // Act.
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second, idToExclude);
 

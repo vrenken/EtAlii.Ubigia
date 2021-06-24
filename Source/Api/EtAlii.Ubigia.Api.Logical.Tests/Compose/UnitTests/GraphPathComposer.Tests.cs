@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
@@ -15,7 +17,7 @@
             var configuration = new GraphPathTraverserConfiguration();
             var traverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = traverserFactory.Create(configuration);
-            
+
             var graphChildAdder = new GraphChildAdder(graphPathTraverser, fabric);
             var graphLinkAdder = new GraphLinkAdder(graphChildAdder, graphPathTraverser, fabric);
             var graphUpdater = new GraphUpdater(fabric);
@@ -26,7 +28,7 @@
             var graphRenamer = new GraphRenamer(graphUpdater, graphPathTraverser);
 
             // Act.
-            var composer = new GraphComposer(graphAdder, graphRemover, graphLinker, graphUnlinker, graphRenamer); 
+            var composer = new GraphComposer(graphAdder, graphRemover, graphLinker, graphUnlinker, graphRenamer);
 
             // Assert.
             Assert.NotNull(composer);

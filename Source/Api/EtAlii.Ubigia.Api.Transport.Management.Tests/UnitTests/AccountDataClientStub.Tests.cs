@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using System.Linq;
@@ -11,10 +13,10 @@
         public void AccountDataClientStub_Create()
         {
             // Arrange.
-            
+
             // Act.
             var accountDataClientStub = new AccountDataClientStub();
-            
+
             // Assert.
             Assert.NotNull(accountDataClientStub);
         }
