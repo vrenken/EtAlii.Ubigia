@@ -427,14 +427,16 @@ namespace HashLib
 
                 var ar = BitConverter.ToString(a_in).ToUpper().Split(new[] { '-' });
 
-                hex = "";
+
+                var sb = new StringBuilder();
 
                 for (var i = 0; i < ar.Length / 4; i++)
                 {
                     if (i != 0)
-                        hex += "-";
-                    hex += ar[i * 4] + ar[i * 4 + 1] + ar[i * 4 + 2] + ar[i * 4 + 3];
+                        sb.Append('-');
+                    sb.Append(ar[i * 4] + ar[i * 4 + 1] + ar[i * 4 + 2] + ar[i * 4 + 3]);
                 }
+                hex = sb.ToString();
             }
             else
                 hex = hex.Replace("-", "");
@@ -469,7 +471,7 @@ namespace HashLib
         }
 
         [Conditional("DEBUG")]
-        private static void Check<I, O>(I[] a_in, int a_in_size, O[] a_result, int a_out_size, int a_index_in, int a_length, 
+        private static void Check<I, O>(I[] a_in, int a_in_size, O[] a_result, int a_out_size, int a_index_in, int a_length,
             int a_index_out)
         {
             Debug.Assert((a_length * a_in_size % a_out_size) == 0);

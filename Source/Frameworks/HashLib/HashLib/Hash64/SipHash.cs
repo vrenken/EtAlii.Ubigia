@@ -94,7 +94,7 @@ namespace HashLib.Hash64
 
         protected override void Finish()
         {
-            var left = m_processed_bytes % (ulong)BlockSize;
+            //var left = m_processed_bytes % [ulong]BlockSize
             var b = m_processed_bytes << 56;
 
             var buffer = m_buffer.GetBytesZeroPadded();

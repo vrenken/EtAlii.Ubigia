@@ -15,7 +15,7 @@ using System.Linq;
 namespace Moppet.Lapa.Parsers
 {
     /// <summary>
-    /// Всяческие полезные парсеры общего назначения.
+    /// All sorts of useful general purpose parsers.
     /// </summary>
     public class LpUtils
     {
@@ -25,13 +25,13 @@ namespace Moppet.Lapa.Parsers
         /// The returned tree is marked with the following identifiers:
         /// Protocol - protocol;
         /// Host - hostname, for example localhost, yandex.ru, 127.0.0.1;
-        /// Port - номер порта;
-        /// Path - относительный путь к папке или файлу;
-        /// Query - GET-запрос или список параметров (a=1&amp;b=2), где имя и значение пемечаются как Name и Value;
-        /// Anchor - якорь, например #name;
-        /// Root - корневой адрес, например: http://hostname.dom:80.
+        /// Port - port number;
+        /// Path - relative path to folder or file;
+        /// Query - GET-query or parameter list (a=1&amp;b=2), where name and value are tagged as Name and Value;
+        /// Anchor - anchor like #name;
+        /// Root - root address, for example: http://hostname.dom:80.
         /// </summary>
-        /// <param name="protocols">Список допустимых протоколов. По умолчанию анализируется только http и https.</param>
+        /// <param name="protocols">List of valid protocols. By default, only http and https are parsed.</param>
         /// <remarks>См. также: http://tools.ietf.org/html/rfc3986 </remarks>
         /// <returns>parser.</returns>
         public static LpsParser WebUrl(params string[] protocols)
@@ -50,8 +50,9 @@ namespace Moppet.Lapa.Parsers
             var hostName = Lp.List(hostPart, '.').Id("Host");
             var port     = Lp.Digits(2, 4).Id("Port");
             var pathPart = Lp.OneOrMore(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || char.IsLetterOrDigit(c) || c == '.' || c == '-');
+#pragma warning disable S1075 - URIs should not be hardcoded
             var path     = ('/' + Lp.List(pathPart, '/').Id("Path")).ToParser();
-
+#pragma warning restore S1075
             var paramName  = Lp.OneOrMore(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c != '=' && c != '&' && c != '#' && c != '/' && c != '?' && c != '<' && c != '>' && c != '\\' && c != '\"' && c != '\'')).Id("Name");
             var paramValue = Lp.OneOrMore(c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c != '&' && c != '#' && c != '\r' && c != '\n' && c != '<' && c != '>' && c != '\\' && c != '\"' && c != '\'' && c != '(' && c != ')')).Id("Value");
 
