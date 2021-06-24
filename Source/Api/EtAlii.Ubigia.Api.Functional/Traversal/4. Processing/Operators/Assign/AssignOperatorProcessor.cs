@@ -4,14 +4,42 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Structure;
 
     internal class AssignOperatorProcessor : IAssignOperatorProcessor
     {
-        private readonly ISelector<Subject, Subject, IAssignOperatorSubProcessor> _selector;
+        private readonly IAssignPathToVariableOperatorSubProcessor _assignPathToVariableOperatorSubProcessor;
+        private readonly IAssignFunctionToVariableOperatorSubProcessor _assignFunctionToVariableOperatorSubProcessor;
+        private readonly IAssignConstantToVariableOperatorSubProcessor _assignConstantToVariableOperatorSubProcessor;
+        private readonly IAssignVariableToVariableOperatorSubProcessor _assignVariableToVariableOperatorSubProcessor;
+        private readonly IAssignCombinedToVariableOperatorSubProcessor _assignCombinedToVariableOperatorSubProcessor;
+        private readonly IAssignTagToVariableOperatorSubProcessor _assignTagToVariableOperatorSubProcessor;
+        private readonly IAssignEmptyToVariableOperatorSubProcessor _assignEmptyToVariableOperatorSubProcessor;
+        private readonly IAssignVariableToPathOperatorSubProcessor _assignVariableToPathOperatorSubProcessor;
+        private readonly IAssignPathToPathOperatorSubProcessor _assignPathToPathOperatorSubProcessor;
+        private readonly IAssignFunctionToPathOperatorSubProcessor _assignFunctionToPathOperatorSubProcessor;
+        private readonly IAssignConstantToPathOperatorSubProcessor _assignConstantToPathOperatorSubProcessor;
+        private readonly IAssignCombinedToPathOperatorSubProcessor _assignCombinedToPathOperatorSubProcessor;
+        private readonly IAssignEmptyToPathOperatorSubProcessor _assignEmptyToPathOperatorSubProcessor;
+        private readonly IAssignPathToFunctionOperatorSubProcessor _assignPathToFunctionOperatorSubProcessor;
+        private readonly IAssignFunctionToFunctionOperatorSubProcessor _assignFunctionToFunctionOperatorSubProcessor;
+        private readonly IAssignConstantToFunctionOperatorSubProcessor _assignConstantToFunctionOperatorSubProcessor;
+        private readonly IAssignVariableToFunctionOperatorSubProcessor _assignVariableToFunctionOperatorSubProcessor;
+        private readonly IAssignCombinedToFunctionOperatorSubProcessor _assignCombinedToFunctionOperatorSubProcessor;
+        private readonly IAssignTagToFunctionOperatorSubProcessor _assignTagToFunctionOperatorSubProcessor;
+        private readonly IAssignEmptyToFunctionOperatorSubProcessor _assignEmptyToFunctionOperatorSubProcessor;
+        private readonly IAssignPathToOutputOperatorSubProcessor _assignPathToOutputOperatorSubProcessor;
+        private readonly IAssignFunctionToOutputOperatorSubProcessor _assignFunctionToOutputOperatorSubProcessor;
+        private readonly IAssignConstantToOutputOperatorSubProcessor _assignConstantToOutputOperatorSubProcessor;
+        private readonly IAssignVariableToOutputOperatorSubProcessor _assignVariableToOutputOperatorSubProcessor;
+        private readonly IAssignCombinedToOutputOperatorSubProcessor _assignCombinedToOutputOperatorSubProcessor;
+        private readonly IAssignRootToOutputOperatorSubProcessor _assignRootToOutputOperatorSubProcessor;
+        private readonly IAssignTagToOutputOperatorSubProcessor _assignTagToOutputOperatorSubProcessor;
+        private readonly IAssignEmptyToOutputOperatorSubProcessor _assignEmptyToOutputOperatorSubProcessor;
+        private readonly IAssignRootDefinitionToRootOperatorSubProcessor _assignRootDefinitionToRootOperatorSubProcessor;
+        private readonly IAssignStringConstantToRootOperatorSubProcessor _assignStringConstantToRootOperatorSubProcessor;
+        private readonly IAssignEmptyToRootOperatorSubProcessor _assignEmptyToRootOperatorSubProcessor;
 
         public AssignOperatorProcessor(
-            //IProcessingContext processingContext,
             IAssignPathToVariableOperatorSubProcessor assignPathToVariableOperatorSubProcessor,
             IAssignFunctionToVariableOperatorSubProcessor assignFunctionToVariableOperatorSubProcessor,
             IAssignConstantToVariableOperatorSubProcessor assignConstantToVariableOperatorSubProcessor,
@@ -48,61 +76,94 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IAssignStringConstantToRootOperatorSubProcessor assignStringConstantToRootOperatorSubProcessor,
             IAssignEmptyToRootOperatorSubProcessor assignEmptyToRootOperatorSubProcessor)
         {
-            _selector = new Selector2<Subject, Subject, IAssignOperatorSubProcessor>()
-
-            //RegisterOutputSubProcessors
-                .Register((l, r) => l is EmptySubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is PathSubject, assignPathToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is FunctionSubject, assignFunctionToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is ConstantSubject, assignConstantToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is VariableSubject, assignVariableToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is CombinedSubject, assignCombinedToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is CombinedSubject, assignRootToOutputOperatorSubProcessor)
-                .Register((l, r) => l is EmptySubject && r is EmptySubject, assignEmptyToOutputOperatorSubProcessor)
-
-            //RegisterVariableSubProcessors
-                .Register((l, r) => l is VariableSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is PathSubject, assignPathToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is FunctionSubject, assignFunctionToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is ConstantSubject, assignConstantToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is VariableSubject, assignVariableToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is CombinedSubject, assignCombinedToVariableOperatorSubProcessor)
-                .Register((l, r) => l is VariableSubject && r is EmptySubject, assignEmptyToVariableOperatorSubProcessor)
-
-            //RegisterPathSubProcessors
-                .Register((l, r) => l is PathSubject && r is PathSubject, assignPathToPathOperatorSubProcessor)
-                .Register((l, r) => l is PathSubject && r is FunctionSubject, assignFunctionToPathOperatorSubProcessor)
-                .Register((l, r) => l is PathSubject && r is ConstantSubject, assignConstantToPathOperatorSubProcessor)
-                .Register((l, r) => l is PathSubject && r is VariableSubject, assignVariableToPathOperatorSubProcessor)
-                .Register((l, r) => l is PathSubject && r is CombinedSubject, assignCombinedToPathOperatorSubProcessor)
-                .Register((l, r) => l is PathSubject && r is EmptySubject, assignEmptyToPathOperatorSubProcessor)
-
-            //RegisterFunctionSubProcessors
-                .Register((l, r) => l is FunctionSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is PathSubject, assignPathToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is FunctionSubject, assignFunctionToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is ConstantSubject, assignConstantToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is VariableSubject, assignVariableToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is CombinedSubject, assignCombinedToFunctionOperatorSubProcessor)
-                .Register((l, r) => l is FunctionSubject && r is EmptySubject, assignEmptyToFunctionOperatorSubProcessor)
-
-            //RegisterRootSubProcessors
-                .Register((l, r) => l is RootSubject && r is RootDefinitionSubject, assignRootDefinitionToRootOperatorSubProcessor)
-                .Register((l, r) => l is RootSubject && r is StringConstantSubject, assignStringConstantToRootOperatorSubProcessor)
-                .Register((l, r) => l is RootSubject && r is EmptySubject, assignEmptyToRootOperatorSubProcessor);
+            _assignPathToVariableOperatorSubProcessor = assignPathToVariableOperatorSubProcessor;
+            _assignFunctionToVariableOperatorSubProcessor = assignFunctionToVariableOperatorSubProcessor;
+            _assignConstantToVariableOperatorSubProcessor = assignConstantToVariableOperatorSubProcessor;
+            _assignVariableToVariableOperatorSubProcessor = assignVariableToVariableOperatorSubProcessor;
+            _assignCombinedToVariableOperatorSubProcessor = assignCombinedToVariableOperatorSubProcessor;
+            _assignTagToVariableOperatorSubProcessor = assignTagToVariableOperatorSubProcessor;
+            _assignEmptyToVariableOperatorSubProcessor = assignEmptyToVariableOperatorSubProcessor;
+            _assignVariableToPathOperatorSubProcessor = assignVariableToPathOperatorSubProcessor;
+            _assignPathToPathOperatorSubProcessor = assignPathToPathOperatorSubProcessor;
+            _assignFunctionToPathOperatorSubProcessor = assignFunctionToPathOperatorSubProcessor;
+            _assignConstantToPathOperatorSubProcessor = assignConstantToPathOperatorSubProcessor;
+            _assignCombinedToPathOperatorSubProcessor = assignCombinedToPathOperatorSubProcessor;
+            _assignEmptyToPathOperatorSubProcessor = assignEmptyToPathOperatorSubProcessor;
+            _assignPathToFunctionOperatorSubProcessor = assignPathToFunctionOperatorSubProcessor;
+            _assignFunctionToFunctionOperatorSubProcessor = assignFunctionToFunctionOperatorSubProcessor;
+            _assignConstantToFunctionOperatorSubProcessor = assignConstantToFunctionOperatorSubProcessor;
+            _assignVariableToFunctionOperatorSubProcessor = assignVariableToFunctionOperatorSubProcessor;
+            _assignCombinedToFunctionOperatorSubProcessor = assignCombinedToFunctionOperatorSubProcessor;
+            _assignTagToFunctionOperatorSubProcessor = assignTagToFunctionOperatorSubProcessor;
+            _assignEmptyToFunctionOperatorSubProcessor = assignEmptyToFunctionOperatorSubProcessor;
+            _assignPathToOutputOperatorSubProcessor = assignPathToOutputOperatorSubProcessor;
+            _assignFunctionToOutputOperatorSubProcessor = assignFunctionToOutputOperatorSubProcessor;
+            _assignConstantToOutputOperatorSubProcessor = assignConstantToOutputOperatorSubProcessor;
+            _assignVariableToOutputOperatorSubProcessor = assignVariableToOutputOperatorSubProcessor;
+            _assignCombinedToOutputOperatorSubProcessor = assignCombinedToOutputOperatorSubProcessor;
+            _assignRootToOutputOperatorSubProcessor = assignRootToOutputOperatorSubProcessor;
+            _assignTagToOutputOperatorSubProcessor = assignTagToOutputOperatorSubProcessor;
+            _assignEmptyToOutputOperatorSubProcessor = assignEmptyToOutputOperatorSubProcessor;
+            _assignRootDefinitionToRootOperatorSubProcessor = assignRootDefinitionToRootOperatorSubProcessor;
+            _assignStringConstantToRootOperatorSubProcessor = assignStringConstantToRootOperatorSubProcessor;
+            _assignEmptyToRootOperatorSubProcessor = assignEmptyToRootOperatorSubProcessor;
         }
 
         public async Task Process(OperatorParameters parameters)
         {
-            var assigner = _selector.TrySelect(parameters.LeftSubject, parameters.RightSubject);
-            if (assigner == null)
+            var lastRightPartHasTag = false;
+            if (parameters.RightSubject is PathSubject rightSubjectAsPathSubject)
             {
-                var left = parameters.LeftSubject == null ? "NULL" : parameters.LeftSubject.ToString();
-                var right = parameters.RightSubject == null ? "NULL" : parameters.RightSubject.ToString();
-                var message =
-                    $"No supported mapping found for the AssignOperatorProcessor to work with (left: {left}, right: {right})";
-                throw new ScriptProcessingException(message);
+                if (rightSubjectAsPathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart)
+                {
+                    lastRightPartHasTag = !string.IsNullOrEmpty(taggedPathSubjectPart.Tag);
+                }
             }
+            IAssignOperatorSubProcessor assigner = (parameters.LeftSubject, parameters.RightSubject, lastRightPartHasTag) switch
+            {
+                //RegisterOutputSubProcessors
+                (EmptySubject, PathSubject, false) => _assignTagToOutputOperatorSubProcessor,
+                (EmptySubject, PathSubject, _) => _assignPathToOutputOperatorSubProcessor,
+                (EmptySubject, FunctionSubject, _) => _assignFunctionToOutputOperatorSubProcessor,
+                (EmptySubject, ConstantSubject, _) => _assignConstantToOutputOperatorSubProcessor,
+                (EmptySubject, VariableSubject, _) => _assignVariableToOutputOperatorSubProcessor,
+                (EmptySubject, CombinedSubject, _) => _assignCombinedToOutputOperatorSubProcessor,
+                (EmptySubject, RootSubject, _) => _assignRootToOutputOperatorSubProcessor,
+                (EmptySubject, EmptySubject, _) => _assignEmptyToOutputOperatorSubProcessor,
+
+                //RegisterVariableSubProcessors
+                (VariableSubject, PathSubject, false) => _assignTagToVariableOperatorSubProcessor,
+                (VariableSubject, PathSubject, _) => _assignPathToVariableOperatorSubProcessor,
+                (VariableSubject, FunctionSubject, _) => _assignFunctionToVariableOperatorSubProcessor,
+                (VariableSubject, ConstantSubject, _) => _assignConstantToVariableOperatorSubProcessor,
+                (VariableSubject, VariableSubject, _) => _assignVariableToVariableOperatorSubProcessor,
+                (VariableSubject, CombinedSubject, _) => _assignCombinedToVariableOperatorSubProcessor,
+                (VariableSubject, EmptySubject, _) => _assignEmptyToVariableOperatorSubProcessor,
+
+                //RegisterPathSubProcessors
+                (PathSubject, PathSubject, _) => _assignPathToPathOperatorSubProcessor,
+                (PathSubject, FunctionSubject, _) => _assignFunctionToPathOperatorSubProcessor,
+                (PathSubject, ConstantSubject, _) => _assignConstantToPathOperatorSubProcessor,
+                (PathSubject, VariableSubject, _) => _assignVariableToPathOperatorSubProcessor,
+                (PathSubject, CombinedSubject, _) => _assignCombinedToPathOperatorSubProcessor,
+                (PathSubject, EmptySubject, _) => _assignEmptyToPathOperatorSubProcessor,
+
+                //RegisterFunctionSubProcessors
+                (FunctionSubject, PathSubject, false) => _assignTagToFunctionOperatorSubProcessor,
+                (FunctionSubject, PathSubject, _) => _assignPathToFunctionOperatorSubProcessor,
+                (FunctionSubject, FunctionSubject, _) => _assignFunctionToFunctionOperatorSubProcessor,
+                (FunctionSubject, ConstantSubject, _) => _assignConstantToFunctionOperatorSubProcessor,
+                (FunctionSubject, VariableSubject, _) => _assignVariableToFunctionOperatorSubProcessor,
+                (FunctionSubject, CombinedSubject, _) => _assignCombinedToFunctionOperatorSubProcessor,
+                (FunctionSubject, EmptySubject, _) => _assignEmptyToFunctionOperatorSubProcessor,
+
+                //RegisterRootSubProcessors
+                (RootSubject, RootDefinitionSubject, _) => _assignRootDefinitionToRootOperatorSubProcessor,
+                (RootSubject, StringConstantSubject, _) => _assignStringConstantToRootOperatorSubProcessor,
+                (RootSubject, EmptySubject, _) => _assignEmptyToRootOperatorSubProcessor,
+                _ => throw new ScriptProcessingException($"No supported mapping found for the AssignOperatorProcessor to work with (left: {(parameters.LeftSubject == null ? "NULL" : parameters.LeftSubject.ToString())}, right: {(parameters.RightSubject == null ? "NULL" : parameters.RightSubject.ToString())})")
+            };
+
             await assigner.Assign(parameters).ConfigureAwait(false);
         }
     }
