@@ -1,5 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 {
     using System.Linq;
     using Microsoft.AspNetCore.Mvc;

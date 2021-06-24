@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Diagnostics;

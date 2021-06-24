@@ -1,4 +1,6 @@
-﻿// ReSharper disable once CheckNamespace
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+// ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     using System.Collections.Generic;
