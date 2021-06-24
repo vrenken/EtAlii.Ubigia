@@ -49,6 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public void Initialize(GeneratorInitializationContext context)
         {
+            // For this specific generator we don't have to do any further initialization.
         }
 
         private void SetupLogging()
