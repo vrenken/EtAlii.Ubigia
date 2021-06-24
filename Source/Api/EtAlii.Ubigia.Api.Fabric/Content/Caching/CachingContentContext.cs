@@ -51,9 +51,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public async Task<Content> Retrieve(Identifier identifier)
         {
-            // TODO: IMPORTANT ISSUE WITH CACHING.
             return await _retrieveHandler.Handle(identifier).ConfigureAwait(false);
-            //return await _contextProvider.Context.Retrieve(identifier)
         }
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)

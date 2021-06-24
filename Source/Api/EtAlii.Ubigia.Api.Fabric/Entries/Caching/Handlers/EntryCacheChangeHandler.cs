@@ -25,12 +25,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             {
                 _cacheHelper.Store(changedEntry);
             }
-            // TODO: Always clear related items from the cache.
             _cacheHelper.InvalidateRelated(changedEntry);
-
-            // TODO: CACHING - Most probably the invalidateEntry should better be called on the entries as well.
-            //scope.Cache.InvalidateEntry(changedEntry.Id)
-            //scope.Cache.InvalidateEntry(entry.Id)
 
             return changedEntry;
         }
