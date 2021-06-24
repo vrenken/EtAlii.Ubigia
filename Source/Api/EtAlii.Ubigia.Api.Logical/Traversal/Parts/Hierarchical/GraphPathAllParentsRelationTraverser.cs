@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 entry = path[i - 1];
 
                 var children = context.Entries.GetRelated(entry.Id, EntryRelation.Parent, scope);
-                await foreach (var child in children.ConfigureAwait(false)) // We cannot yield here somehow as the update method both adds and removes items. 
+                await foreach (var child in children.ConfigureAwait(false)) // We cannot yield here somehow as the update method both adds and removes items.
                 {
                     await Update(result, child, context, scope).ConfigureAwait(false);
                 }

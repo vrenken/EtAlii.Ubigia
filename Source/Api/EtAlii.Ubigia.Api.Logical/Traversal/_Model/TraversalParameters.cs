@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public TraversalParameters(
             GraphPathPart part,
-            IPathTraversalContext context, 
-            ExecutionScope scope, 
-            IObserver<Identifier> output, 
+            IPathTraversalContext context,
+            ExecutionScope scope,
+            IObserver<Identifier> output,
             IObservable<Identifier> input)
         {
             Part = part;

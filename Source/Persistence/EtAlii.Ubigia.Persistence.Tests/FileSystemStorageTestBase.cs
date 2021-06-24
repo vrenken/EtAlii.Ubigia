@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
     using System.IO;
@@ -15,7 +17,7 @@
             Directory.CreateDirectory(RootFolder);
             AppDomain.CurrentDomain.ProcessExit += (_,_) => DeleteTestData();
         }
-        
+
         public void Dispose()
         {
             Dispose(true);
@@ -29,7 +31,7 @@
             {
                 Storage = null;
             }
-            
+
             DeleteTestData();
         }
 

@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
@@ -10,9 +10,9 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             var extensions = new IDataConnectionExtension[]
             {
-                new DiagnosticsDataConnectionExtension(diagnostics), 
+                new DiagnosticsDataConnectionExtension(diagnostics),
             };
-            
+
             return configuration.Use(extensions);
         }
     }

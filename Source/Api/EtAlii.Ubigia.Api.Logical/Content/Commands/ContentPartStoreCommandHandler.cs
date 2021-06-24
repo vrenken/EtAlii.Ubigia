@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         private async Task StoreContentPart(
-            Identifier identifier, 
+            Identifier identifier,
             Content content,
             byte[] bytesToWrite,
             ulong part)
@@ -64,16 +64,16 @@ namespace EtAlii.Ubigia.Api.Logical
             stream.Seek((long)offset, SeekOrigin.Begin);
 #pragma warning disable CA1835 // No way to elegantly use Memory instances here without breaking apart the complete HasLib implementation.
             var bytesRead = await stream.ReadAsync(dataBuffer, 0, (int)partSize).ConfigureAwait(false);
-#pragma warning restore CA1835            
+#pragma warning restore CA1835
             var bytesToWrite = new byte[bytesRead];
             Array.Copy(dataBuffer, bytesToWrite, bytesRead);
             return bytesToWrite;
         }
 
         private async Task StoreContentDefinitionPart(
-            ulong partSize, 
-            Identifier identifier, 
-            ContentDefinition contentDefinition, 
+            ulong partSize,
+            Identifier identifier,
+            ContentDefinition contentDefinition,
             ulong part,
             ulong checksum)
         {

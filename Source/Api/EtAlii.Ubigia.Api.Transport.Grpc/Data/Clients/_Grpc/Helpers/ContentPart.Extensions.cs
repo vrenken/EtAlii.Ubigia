@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
@@ -10,20 +10,20 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     {
         public static WireProtocol.ContentPart ToWire(this ContentPart contentPart)
         {
-            return new() 
+            return new()
             {
                 Id = contentPart.Id,
                 Data = ByteString.CopyFrom(contentPart.Data),
                 Stored = contentPart.Stored,
             };
-            
+
         }
 
         public static IEnumerable<WireProtocol.ContentPart> ToWire(this IEnumerable<ContentPart> contentParts)
         {
             return contentParts.Select(s => s.ToWire());
         }
-        
+
         public static ContentPart ToLocal(this WireProtocol.ContentPart contentPart)
         {
             var result = new ContentPart { Data = contentPart.Data.ToByteArray(), Id = contentPart.Id};

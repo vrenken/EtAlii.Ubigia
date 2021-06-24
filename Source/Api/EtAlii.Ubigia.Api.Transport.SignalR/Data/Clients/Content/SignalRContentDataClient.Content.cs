@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         {
             await _invoker.Invoke(_contentConnection, SignalRHub.Content, "Post", identifier, content).ConfigureAwait(false);
 
-            // TODO: Should this call be replaced by get instead? 
+            // TODO: Should this call be replaced by get instead?
             Blob.SetStored(content, true);
         }
 

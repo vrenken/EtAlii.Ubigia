@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -44,10 +46,10 @@
                     }
                 }
 
-                summary = new BlobSummary 
+                summary = new BlobSummary
                 {
-                    IsComplete = totalAvailableParts == blob.TotalParts, 
-                    TotalParts = blob.TotalParts, 
+                    IsComplete = totalAvailableParts == blob.TotalParts,
+                    TotalParts = blob.TotalParts,
                     AvailableParts = availableParts.ToArray()
                 };
             }

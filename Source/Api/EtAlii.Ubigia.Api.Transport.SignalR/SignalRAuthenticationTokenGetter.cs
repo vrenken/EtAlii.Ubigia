@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             }
             return authenticationToken;
         }
-       
+
         [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         public async Task<string> GetAuthenticationToken(ISignalRStorageTransport transport, string accountName, string password, string authenticationToken)
         {
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             }
             return authenticationToken;
         }
-        
+
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];

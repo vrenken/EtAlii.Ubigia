@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -18,10 +18,10 @@ namespace EtAlii.Ubigia
         private static readonly IEqualityComparer<object> _valueComparer = EqualityComparer<object>.Default;
 
         private PropertyDictionary(SerializationInfo info, StreamingContext context)
-            : base(info, context) 
+            : base(info, context)
         {
         }
-        
+
         public PropertyDictionary()
         {
         }
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia
         public int CompareTo(IPropertyDictionary other)
         {
 
-            // TODO: This compareto method has errors. 
+            // TODO: This compareto method has errors.
             var result = 1;
 
             if (other != null)
@@ -110,9 +110,9 @@ namespace EtAlii.Ubigia
                 return firstValue.CompareTo(secondValue);
             }
 
-            // I know, hash codes are not meant for comparison, 
+            // I know, hash codes are not meant for comparison,
             // however there is no other way to get a usable int value from different typed objects.
-            // Or is there? 
+            // Or is there?
             var firstHashCode = DetermineHashForObject(firstValue);
             var secondHashCode = DetermineHashForObject(secondValue);
             return firstHashCode < secondHashCode ? -1 : 1;

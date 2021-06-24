@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System;
     using System.Linq;
@@ -31,7 +33,7 @@
 
             var alreadyRegistered = Extensions.FirstOrDefault(e => extensions.Any(e2 => e2.GetType() == e.GetType()));
             if(alreadyRegistered != null)
-            { 
+            {
                 throw new InvalidOperationException("Extension already registered: " + alreadyRegistered.GetType().Name);
             }
 

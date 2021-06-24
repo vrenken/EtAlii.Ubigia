@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Diagnostics.Tests
 {
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
 
             // Act.
             scaffolding.Register(container);
-            
+
             // Assert.
             Assert.NotNull(scaffolding);
         }

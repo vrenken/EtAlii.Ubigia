@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System;
 
@@ -7,13 +9,13 @@
         private readonly IPathBuilder _pathBuilder;
         private readonly IImmutableFolderManager _folderManager;
 
-        public BlobStorer(IImmutableFolderManager folderManager, 
+        public BlobStorer(IImmutableFolderManager folderManager,
                           IPathBuilder pathBuilder)
         {
             _folderManager = folderManager;
             _pathBuilder = pathBuilder;
         }
-        
+
         public void Store(ContainerIdentifier container, Blob blob)
         {
             var blobName = Blob.GetName(blob);
@@ -26,11 +28,11 @@
             Blob.SetSummary(blob, null);
             _folderManager.SaveToFolder(blob, "Blob", folder);
             Blob.SetStored(blob, true);
-            
-            var summary = new BlobSummary 
+
+            var summary = new BlobSummary
             {
-                IsComplete = false, 
-                TotalParts = blob.TotalParts, 
+                IsComplete = false,
+                TotalParts = blob.TotalParts,
                 AvailableParts = Array.Empty<ulong>()
             };
 

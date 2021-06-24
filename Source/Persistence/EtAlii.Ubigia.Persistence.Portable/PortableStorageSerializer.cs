@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Portable
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -14,7 +16,7 @@
         public string FileNameFormat { get; } = "{0}.bson";
 
         public PortableStorageSerializer(
-            IItemSerializer itemSerializer, 
+            IItemSerializer itemSerializer,
             IPropertiesSerializer propertiesSerializer,
             IFolder storage)
         {
@@ -42,7 +44,7 @@
             openFileTask.Wait();
 
             using var stream = openFileTask.Result;
-            
+
             _itemSerializer.Serialize(stream, item);
         }
 
@@ -64,7 +66,7 @@
             openFileTask.Wait();
 
             using var stream = openFileTask.Result;
-            
+
             _propertiesSerializer.Serialize(stream, item);
         }
 
@@ -101,7 +103,7 @@
             openFileTask.Wait();
 
             using var stream = openFileTask.Result;
-            
+
             return _propertiesSerializer.Deserialize(stream);
         }
 

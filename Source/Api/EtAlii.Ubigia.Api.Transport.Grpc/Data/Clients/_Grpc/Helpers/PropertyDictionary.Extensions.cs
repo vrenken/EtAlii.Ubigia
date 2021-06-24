@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             using (var textWriter = new StringWriter(stringBuilder))
             {
                 serializer.Serialize(textWriter, propertyDictionary);
-            }        
-            
+            }
+
             return new WireProtocol.PropertyDictionary
             {
                 Data = stringBuilder.ToString()

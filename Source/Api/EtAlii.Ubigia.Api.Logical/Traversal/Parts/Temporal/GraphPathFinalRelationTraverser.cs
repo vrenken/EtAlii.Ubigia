@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -63,10 +63,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 result = nextResult.ToArray();
             }
             while (result.Any());
-            
+
             // TODO: This feels fishy. Why would we not use the results and only the previous result?
             // This previous result is only being added once.
-            foreach (var item in previousResult) 
+            foreach (var item in previousResult)
             {
                 yield return item;
             }

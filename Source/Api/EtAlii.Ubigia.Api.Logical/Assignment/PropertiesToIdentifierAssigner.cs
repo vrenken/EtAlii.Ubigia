@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -13,8 +13,8 @@ namespace EtAlii.Ubigia.Api.Logical
         private readonly IGraphPathTraverser _graphPathTraverser;
 
         public PropertiesToIdentifierAssigner(
-            IUpdateEntryFactory updateEntryFactory, 
-            IFabricContext fabric, 
+            IUpdateEntryFactory updateEntryFactory,
+            IFabricContext fabric,
             IGraphPathTraverser graphPathTraverser)
         {
             _updateEntryFactory = updateEntryFactory;

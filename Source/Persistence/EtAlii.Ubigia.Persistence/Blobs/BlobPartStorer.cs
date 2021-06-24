@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     internal class BlobPartStorer : IBlobPartStorer
     {
@@ -7,7 +9,7 @@
         private readonly IPathBuilder _pathBuilder;
         private readonly IImmutableFolderManager _folderManager;
 
-        public BlobPartStorer(IImmutableFolderManager folderManager, 
+        public BlobPartStorer(IImmutableFolderManager folderManager,
                               IPathBuilder pathBuilder)
         {
             _folderManager = folderManager;

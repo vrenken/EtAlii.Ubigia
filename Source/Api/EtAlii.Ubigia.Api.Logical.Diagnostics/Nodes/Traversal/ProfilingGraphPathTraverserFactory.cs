@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         private readonly IProfiler _profiler;
 
         public ProfilingGraphPathTraverserFactory(
-            IGraphPathTraverserFactory decoree, 
+            IGraphPathTraverserFactory decoree,
             IProfiler profiler)
         {
             _decoree = decoree;
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         {
             configuration.Use(new IGraphPathTraverserExtension[]
             {
-                new ProfilingGraphPathTraverserExtension(_profiler), 
+                new ProfilingGraphPathTraverserExtension(_profiler),
             });
             return _decoree.Create(configuration);
         }

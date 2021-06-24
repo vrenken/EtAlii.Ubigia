@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -11,15 +11,15 @@ namespace EtAlii.Ubigia.Api.Transport
     public interface IDataConnection
     {
         /// <summary>
-        /// The storage which the connection talks to. 
+        /// The storage which the connection talks to.
         /// </summary>
         Storage Storage { get; }
-        
+
         /// <summary>
         /// The account used to connect to the storage.
         /// </summary>
         Account Account { get; }
-        
+
         /// <summary>
         /// The space on the storage which the connection talks to.
         /// </summary>
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// Returns true when a connection has been established.
         /// </summary>
         bool IsConnected { get; }
-        
+
         /// <summary>
         /// The Configuration used to instantiate this DataConnection.
         /// </summary>

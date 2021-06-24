@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using System;
     using System.Threading.Tasks;
@@ -20,7 +22,7 @@
 
             // Assert.
         }
-        
+
         [Fact]
         public void NetCoreAppItemStorage_Store_SimpleTestItem_Has()
         {

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.NetCoreApp
 {
     using System.IO;
     using System.Threading.Tasks;
@@ -10,8 +12,8 @@
         private readonly IPathBuilder _pathBuilder;
 
         public NetCoreAppFileManager(
-            IStorageSerializer serializer, 
-            IFolderManager folderManager, 
+            IStorageSerializer serializer,
+            IFolderManager folderManager,
             IPathBuilder pathBuilder)
         {
             _folderManager = folderManager;
@@ -66,7 +68,7 @@
         {
             return File.Exists(path);
         }
-    
+
         public void Delete(string path)
         {
 	        File.Delete(path);

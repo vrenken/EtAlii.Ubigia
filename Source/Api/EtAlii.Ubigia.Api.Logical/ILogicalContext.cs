@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
         /// The Nodes property provides logical access to graph nodes.
         /// </summary>
         ILogicalNodeSet Nodes { get; }
-        
+
         /// <summary>
         /// The Roots property provides logical access to the roots of the graph.
         /// Use it to start a traversal.
@@ -24,10 +24,10 @@ namespace EtAlii.Ubigia.Api.Logical
 
         /// <summary>
         /// The Content property provides access non-value content stored in graph nodes.
-        /// For example media or other more-binary oriented materials. 
+        /// For example media or other more-binary oriented materials.
         /// </summary>
         IContentManager Content { get; }
-        
+
         /// <summary>
         /// The Properties property provides access to properties stored in graph nodes.
         /// </summary>

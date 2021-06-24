@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -36,11 +36,11 @@ namespace EtAlii.Ubigia.Api.Transport
 
         protected SpaceConnection(
             ISpaceTransport transport,
-            ISpaceConnectionConfiguration configuration, 
-            IRootContext roots, 
-            IEntryContext entries, 
-            IContentContext content, 
-            IPropertiesContext properties, 
+            ISpaceConnectionConfiguration configuration,
+            IRootContext roots,
+            IEntryContext entries,
+            IContentContext content,
+            IPropertiesContext properties,
             IAuthenticationContext authentication)
         {
             Transport = (TTransport)transport;
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Transport
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed) return;
-            
+
             #pragma warning disable S1066
             if (disposing)
             {
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Transport
                 if (IsConnected)
                 {
                     var task = Close();
-                    task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                    task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
                     Storage = null;
                 }
             }

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System;
     using System.Linq;
@@ -67,7 +69,7 @@
             }
         }
 
-        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container) 
+        public async Task<T> Retrieve<T>(Guid id, ContainerIdentifier container)
             where T : class
         {
             try

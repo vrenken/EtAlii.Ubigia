@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -12,13 +12,13 @@ namespace EtAlii.Ubigia.Api.Logical
             : base(info, context)
         {
         }
-        
-        public GraphTraversalException(string message) 
+
+        public GraphTraversalException(string message)
             : base(message)
         {
         }
-        
-        public GraphTraversalException(string message, Exception exception) 
+
+        public GraphTraversalException(string message, Exception exception)
             : base(message, exception)
         {
         }

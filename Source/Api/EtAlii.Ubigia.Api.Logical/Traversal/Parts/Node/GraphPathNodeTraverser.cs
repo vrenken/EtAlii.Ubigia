@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -39,14 +39,14 @@ namespace EtAlii.Ubigia.Api.Logical
             if (start == Identifier.Empty)
             {
                 var root = await context.Roots.Get(name).ConfigureAwait(false);
-                yield return root.Identifier; 
+                yield return root.Identifier;
             }
             else
             {
                 var entry = await context.Entries.Get(start, scope).ConfigureAwait(false);
                 if (entry.Type == name)
                 {
-                    yield return entry.Id; 
+                    yield return entry.Id;
                 }
             }
         }

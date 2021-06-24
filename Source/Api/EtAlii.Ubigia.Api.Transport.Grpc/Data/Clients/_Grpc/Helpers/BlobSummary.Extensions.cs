@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
@@ -11,10 +11,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             var availableParts = blobSummary.AvailableParts
                 .ToArray();
-            return new BlobSummary 
+            return new BlobSummary
             {
-                IsComplete = blobSummary.IsComplete, 
-                TotalParts = blobSummary.TotalParts, 
+                IsComplete = blobSummary.IsComplete,
+                TotalParts = blobSummary.TotalParts,
                 AvailableParts = availableParts
             };
         }

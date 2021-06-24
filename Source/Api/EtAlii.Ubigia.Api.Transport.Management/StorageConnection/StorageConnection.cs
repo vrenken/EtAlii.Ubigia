@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public Storage Storage { get; private set; }
 
         IStorageTransport IStorageConnection.Transport => Transport;
-        
+
         /// <inheritdoc />
         public TTransport Transport { get; }
 
@@ -39,8 +39,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
         protected StorageConnection(
             IStorageTransport transport,
-            IStorageConnectionConfiguration configuration, 
-            IStorageContext storages, 
+            IStorageConnectionConfiguration configuration,
+            IStorageContext storages,
             ISpaceContext spaces,
             IAccountContext accounts,
             IAuthenticationManagementContext authentication,
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             Accounts = accounts;
             _authentication = authentication;
             _information = information;
-            
+
             _details = new StorageConnectionDetails();
         }
 
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             await Storages.Close(this).ConfigureAwait(false);
             await Spaces.Close(this).ConfigureAwait(false);
             await _information.Close(this).ConfigureAwait(false);
-            
+
             await Transport.Stop().ConfigureAwait(false);
             Storage = null;
         }
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             Storage = await _information.Data.GetConnectedStorage(this).ConfigureAwait(false);
             var details = await _information.Data.GetConnectivityDetails(this).ConfigureAwait(false);
             _details.Update(Storage, details.ManagementAddress, details.DataAddress);
-                
+
             await _information.Open(this).ConfigureAwait(false);
             await Accounts.Open(this).ConfigureAwait(false);
             await Storages.Open(this).ConfigureAwait(false);
@@ -109,11 +109,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed) return;
-            
+
             if (disposing && IsConnected)
             {
                 var task = Close();
-                task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
                 Storage = null;
             }
             // Free your own state (unmanaged objects).

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
     using System.IO;
@@ -163,7 +165,7 @@
 
             using var actualFileStream = actual.OpenRead();
             using var expectedFileStream = expected.OpenRead();
-            
+
             var one = new byte[bytesToRead];
             var two = new byte[bytesToRead];
 

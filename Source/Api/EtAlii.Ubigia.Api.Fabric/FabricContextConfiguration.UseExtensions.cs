@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     /// <summary>
     /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.
-    /// This comes in very handy during the fluent method chaining involved. 
+    /// This comes in very handy during the fluent method chaining involved.
     /// </summary>
     public static class FabricContextConfigurationUseExtensions
     {
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             ((IEditableFabricContextConfiguration)configuration).Connection = connection;
             return configuration;
         }
-        
+
         public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, FabricContextConfiguration otherConfiguration)
             where TFabricContextConfiguration: FabricContextConfiguration
         {
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
             return configuration;
         }
-        
+
         /// <summary>
         /// When cachingEnabled is set to true the instantiated FabricContext is configured to use traversal caching.
         /// </summary>

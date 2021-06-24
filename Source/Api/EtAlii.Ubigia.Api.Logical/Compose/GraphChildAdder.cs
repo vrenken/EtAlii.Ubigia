@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var entry = await _fabric.Entries
                 .GetRelated(location, EntryRelation.Child, scope)
                 .SingleOrDefaultAsync()  // We do not support multiple empty childs yet.
-                .ConfigureAwait(false); 
+                .ConfigureAwait(false);
 
             if (entry != null)
             {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope)
         {
             if (childId == Identifier.Empty) throw new ArgumentException("No empty identifiers are allowed whilst adding to the graph", nameof(childId));
-            
+
             return AddChildInternal(location, childId, scope);
         }
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 .GetRelated(location, EntryRelation.Child, scope)
                 .SingleOrDefaultAsync(e => e.Id == childId)
                 .ConfigureAwait(false);
-            
+
             if (child != null)
             {
                 var message = $"Unable to add child '{childId}' to entry: {location}";

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Serialization.Tests
 {
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         private string WriteString<T>(T value, ISerializer serializer)
         {
             using var writer = new StringWriter();
-            
+
             var package = new TestPackage<T> { Value = value };
             serializer.Serialize(writer, package);
             return writer.ToString();
@@ -148,7 +148,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         {
             using var reader = new StringReader(jsonAsString);
             using var jsonReader = new Newtonsoft.Json.JsonTextReader(reader);
-            
+
             var package = serializer.Deserialize<TestPackage<T>>(jsonReader);
             return package.Value;
         }
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         {
             using var stream = new MemoryStream();
             using var writer = new BsonDataWriter(stream);
-            
+
             var package = new TestPackage<T> { Value = value };
             serializer.Serialize(writer, package);
             return stream.ToArray();
@@ -167,7 +167,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
         {
             using var reader = new MemoryStream(jsonAsBytes);
             using var jsonReader = new BsonDataReader(reader);
-            
+
             var package = serializer.Deserialize<TestPackage<T>>(jsonReader);
             return package.Value;
         }

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia
 
     public static class ComponentHelper
     {
-        private static readonly Dictionary<Type, string> _componentNames = new(); 
+        private static readonly Dictionary<Type, string> _componentNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         /// <summary>

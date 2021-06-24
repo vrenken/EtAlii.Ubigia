@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             container.RegisterDecorator(typeof(IContentManager), typeof(ProfilingContentManager));
 
             container.RegisterDecorator(typeof(IGraphPathTraverserFactory), typeof(ProfilingGraphPathTraverserFactory));
-            
+
             container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Logical.Context));
         }
     }

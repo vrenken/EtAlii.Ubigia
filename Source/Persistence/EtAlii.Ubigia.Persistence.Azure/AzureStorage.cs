@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Azure
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Azure
 {
     public class AzureStorage : IStorage
     {
@@ -23,15 +25,15 @@
         public IContainerProvider ContainerProvider { get; }
 
         public AzureStorage(
-            IStorageConfiguration configuration, 
-            IPathBuilder pathBuilder, 
-            IImmutableFileManager fileManager, 
-            IImmutableFolderManager folderManager, 
-            IStorageSerializer storageSerializer, 
-            IItemStorage items, 
-            IComponentStorage components, 
-            IBlobStorage blobs, 
-            IContainerProvider containerProvider, 
+            IStorageConfiguration configuration,
+            IPathBuilder pathBuilder,
+            IImmutableFileManager fileManager,
+            IImmutableFolderManager folderManager,
+            IStorageSerializer storageSerializer,
+            IItemStorage items,
+            IComponentStorage components,
+            IBlobStorage blobs,
+            IContainerProvider containerProvider,
             IPropertiesStorage properties)
         {
             Configuration = configuration;

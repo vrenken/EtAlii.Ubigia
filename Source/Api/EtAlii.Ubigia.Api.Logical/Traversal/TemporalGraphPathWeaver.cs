@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     result.AddRange(path.Skip(i + 1));
                     break;
                 }
-                
+
             }
 
             return new GraphPath(result.ToArray());

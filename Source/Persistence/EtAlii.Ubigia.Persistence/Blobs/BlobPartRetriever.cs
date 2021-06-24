@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System.Threading.Tasks;
 
@@ -13,7 +15,7 @@
             _pathBuilder = pathBuilder;
         }
 
-        public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position) 
+        public async Task<T> Retrieve<T>(ContainerIdentifier container, ulong position)
             where T : BlobPart
         {
             var blobName = BlobPart.GetName<T>();
@@ -22,7 +24,7 @@
             T blobPart = null;
 
             var fileName = string.Format(BlobPartStorer.FileNameFormat, position);
-            
+
             var path = _pathBuilder.GetFileName(fileName, container);
             if (_fileManager.Exists(path))
             {

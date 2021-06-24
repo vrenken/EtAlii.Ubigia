@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -27,12 +27,12 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             return _connection.Content.Data.Retrieve(identifier, contentPartId);
         }
-        
+
         public Task<Content> Retrieve(Identifier identifier)
         {
             return _connection.Content.Data.Retrieve(identifier);
         }
-        
+
         public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             if (contentDefinition == null)

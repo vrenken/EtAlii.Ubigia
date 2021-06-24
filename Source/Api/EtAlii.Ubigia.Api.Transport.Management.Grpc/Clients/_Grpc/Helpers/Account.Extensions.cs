@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
                 Roles = account.Roles.ToArray()
             };
         }
-        
+
         public static IEnumerable<Account> ToLocal(this IEnumerable<WireProtocol.Account> accounts)
         {
             return accounts.Select(s => s.ToLocal());
         }
-        
+
         public static WireProtocol.Account ToWire(this Account account)
         {
             // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.

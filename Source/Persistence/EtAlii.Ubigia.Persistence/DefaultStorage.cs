@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     public class DefaultStorage : IStorage
     {
@@ -30,8 +32,8 @@
             IStorageSerializer storageSerializer,
             IItemStorage items,
             IComponentStorage components,
-            IBlobStorage blobs, 
-            IContainerProvider containerProvider, 
+            IBlobStorage blobs,
+            IContainerProvider containerProvider,
             IPropertiesStorage properties)
         {
             Configuration = configuration;

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -10,10 +10,10 @@ namespace EtAlii.Ubigia
     public partial class Blob
     {
         private static readonly Dictionary<Type, string> _blobNames = new();
-        private static readonly object[] _emptyConstructorParameters = Array.Empty<object>(); 
+        private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         private static readonly object _lockObject = new();
-        
+
         public static string GetName<T>()
             where T : Blob
         {
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia
         {
             blob.Summary = summary;
         }
-        
+
         public static void SetTotalParts(Blob blob, ulong totalParts)
         {
             blob.TotalParts = totalParts;

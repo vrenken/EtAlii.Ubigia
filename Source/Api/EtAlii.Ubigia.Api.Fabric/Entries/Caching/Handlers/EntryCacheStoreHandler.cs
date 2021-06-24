@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         private readonly IEntryCacheProvider _cacheProvider;
 
         public EntryCacheStoreHandler(
-            IEntryCacheHelper cacheHelper, 
+            IEntryCacheHelper cacheHelper,
             IEntryCacheProvider cacheProvider)
         {
             _cacheHelper = cacheHelper;

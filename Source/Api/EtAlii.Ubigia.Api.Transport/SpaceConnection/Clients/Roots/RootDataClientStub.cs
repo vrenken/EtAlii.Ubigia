@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A stubbed data client that can be used to manage roots.
     /// </summary>
-    public class RootDataClientStub : IRootDataClient 
+    public class RootDataClientStub : IRootDataClient
     {
         /// <inheritdoc />
         public Task<Root> Add(string name)

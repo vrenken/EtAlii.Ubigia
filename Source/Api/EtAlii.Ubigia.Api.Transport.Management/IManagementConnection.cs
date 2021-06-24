@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
@@ -17,22 +17,22 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// Additional details about the storage connection.
         /// </summary>
         IStorageConnectionDetails Details { get; }
-        
+
         /// <summary>
-        /// The storage to which the connection talks. 
+        /// The storage to which the connection talks.
         /// </summary>
         Storage Storage { get; }
-        
+
         /// <summary>
-        /// A context through which to call storage related RPC's. 
+        /// A context through which to call storage related RPC's.
         /// </summary>
         IStorageContext Storages { get; }
         /// <summary>
-        /// A context through which to call account related RPC's. 
+        /// A context through which to call account related RPC's.
         /// </summary>
         IAccountContext Accounts { get; }
         /// <summary>
-        /// A context through which to call space related RPC's. 
+        /// A context through which to call space related RPC's.
         /// </summary>
         ISpaceContext Spaces { get; }
 

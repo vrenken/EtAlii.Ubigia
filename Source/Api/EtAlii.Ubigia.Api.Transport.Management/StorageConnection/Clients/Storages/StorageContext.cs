@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
@@ -9,8 +9,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     public sealed class StorageContext : StorageClientContextBase<IStorageDataClient, IStorageNotificationClient>, IStorageContext
     {
         public StorageContext(
-            IStorageNotificationClient notifications, 
-            IStorageDataClient data) 
+            IStorageNotificationClient notifications,
+            IStorageDataClient data)
             : base(notifications, data)
         {
         }

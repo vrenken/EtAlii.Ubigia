@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System.Threading.Tasks;
 
@@ -8,7 +10,7 @@
         private readonly IImmutableFolderManager _folderManager;
         private readonly IBlobSummaryCalculator _blobSummaryCalculator;
 
-        public BlobRetriever(IImmutableFolderManager folderManager, 
+        public BlobRetriever(IImmutableFolderManager folderManager,
                              IPathBuilder pathBuilder,
                              IBlobSummaryCalculator blobSummaryCalculator)
         {
@@ -18,7 +20,7 @@
             _blobSummaryCalculator = blobSummaryCalculator;
         }
 
-        public async Task<T> Retrieve<T>(ContainerIdentifier container) 
+        public async Task<T> Retrieve<T>(ContainerIdentifier container)
             where T : Blob
         {
             var blobName = Blob.GetName<T>();

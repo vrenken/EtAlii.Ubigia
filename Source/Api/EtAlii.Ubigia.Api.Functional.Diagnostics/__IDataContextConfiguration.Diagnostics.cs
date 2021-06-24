@@ -1,10 +1,10 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 //namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 //[
 //    using EtAlii.xTechnology.Diagnostics
 //
-//    public static class DataContextConfigurationDiagnosticsExtension 
+//    public static class DataContextConfigurationDiagnosticsExtension
 //    [
 //        public static DataContextConfiguration UseFunctionalDiagnostics(this DataContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
 //        [

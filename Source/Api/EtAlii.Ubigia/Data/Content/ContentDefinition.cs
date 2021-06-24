@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia
 
         public ContentDefinition ExceptParts()
         {
-            return new() 
+            return new()
             {
                 // Blob
                 Stored = Stored,
@@ -32,10 +32,10 @@ namespace EtAlii.Ubigia
                 Checksum = Checksum,
             };
         }
-        
+
         public ContentDefinition WithPart(IEnumerable<ContentDefinitionPart> contentDefinitionParts)
         {
-            return new() 
+            return new()
             {
                 // Blob
                 Stored = Stored,

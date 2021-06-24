@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using System;
     using System.Linq;
@@ -245,7 +247,7 @@
             var secondPrevious = StorageTestHelper.CreatePreviousComponent(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             Storage.Components.Store(containerId, firstPrevious);
-            
+
             // Act.
             var act = new Action(() =>
             {

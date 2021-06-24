@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             return Task.CompletedTask;
         }
 
-        public virtual Task Disconnect() 
+        public virtual Task Disconnect()
         {
             Connection = null;
             return Task.CompletedTask;

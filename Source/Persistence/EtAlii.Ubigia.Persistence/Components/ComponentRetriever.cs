@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -9,8 +11,8 @@
         private readonly IImmutableFolderManager _folderManager;
         private readonly IImmutableFileManager _fileManager;
 
-        public ComponentRetriever(IPathBuilder pathBuilder, 
-                                  IImmutableFolderManager folderManager, 
+        public ComponentRetriever(IPathBuilder pathBuilder,
+                                  IImmutableFolderManager folderManager,
                                   IImmutableFileManager fileManager)
         {
             _pathBuilder = pathBuilder;

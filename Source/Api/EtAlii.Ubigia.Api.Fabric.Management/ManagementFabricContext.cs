@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric.Management
 {
@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Management
         public ISpaceContext Spaces { get; }
 
         public ManagementFabricContext(
-            Storage storage, 
-            IStorageContext storages, 
-            IAccountContext accounts, 
+            Storage storage,
+            IStorageContext storages,
+            IAccountContext accounts,
             ISpaceContext spaces)
         {
             Storage = storage;

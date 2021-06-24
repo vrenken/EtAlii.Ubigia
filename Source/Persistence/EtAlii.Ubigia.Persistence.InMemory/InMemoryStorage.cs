@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory
 {
     public class InMemoryStorage : IStorage
     {
@@ -35,9 +37,9 @@
             IItemStorage items,
             IComponentStorage components,
             IBlobStorage blobs,
-            IInMemoryItems inMemoryItems, 
+            IInMemoryItems inMemoryItems,
             IInMemoryItemsHelper inMemoryItemsHelper,
-            IContainerProvider containerProvider, 
+            IContainerProvider containerProvider,
             IPropertiesStorage properties)
         {
             Configuration = configuration;

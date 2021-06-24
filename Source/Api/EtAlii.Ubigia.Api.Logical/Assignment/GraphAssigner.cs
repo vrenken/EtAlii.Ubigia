@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -12,9 +12,9 @@ namespace EtAlii.Ubigia.Api.Logical
         private readonly IConstantToIdentifierTagAssigner _constantToIdentifierTagAssigner;
 
         public GraphAssigner(
-            IPropertiesToIdentifierAssigner propertiesToIdentifierAssigner, 
-            IDynamicObjectToIdentifierAssigner dynamicObjectToIdentifierAssigner, 
-            INodeToIdentifierAssigner nodeToIdentifierAssigner, 
+            IPropertiesToIdentifierAssigner propertiesToIdentifierAssigner,
+            IDynamicObjectToIdentifierAssigner dynamicObjectToIdentifierAssigner,
+            INodeToIdentifierAssigner nodeToIdentifierAssigner,
             IConstantToIdentifierTagAssigner constantToIdentifierTagAssigner)
         {
             _propertiesToIdentifierAssigner = propertiesToIdentifierAssigner;

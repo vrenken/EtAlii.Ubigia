@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         {
             Address = address;
         }
-        
+
         public virtual Task Start()
         {
             IsConnected = true;
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
         public virtual Task Stop()
         {
-            IsConnected = false; 
+            IsConnected = false;
             return Task.CompletedTask;
         }
 

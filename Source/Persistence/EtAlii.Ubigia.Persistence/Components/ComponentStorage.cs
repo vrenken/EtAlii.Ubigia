@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System;
     using System.Collections.Generic;
@@ -13,10 +15,10 @@
         private readonly IContainerCreator _containerCreator;
 
         public ComponentStorage(
-            IComponentStorer componentStorer, 
+            IComponentStorer componentStorer,
             ICompositeComponentStorer compositeComponentStorer,
-            IComponentRetriever componentRetriever, 
-            INextContainerIdentifierAlgorithm nextContainerIdentifierAlgorithm, 
+            IComponentRetriever componentRetriever,
+            INextContainerIdentifierAlgorithm nextContainerIdentifierAlgorithm,
             IContainerCreator containerCreator)
         {
             _componentStorer = componentStorer;
@@ -56,7 +58,7 @@
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
             // enumerating an IAsyncEnumerable.
-            // The only way to solve this is using the enumerator. 
+            // The only way to solve this is using the enumerator.
             var enumerator = _componentRetriever
                 .RetrieveAll<T>(container)
                 .GetAsyncEnumerator();

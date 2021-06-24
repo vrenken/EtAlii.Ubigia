@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
     {
         IAsyncEnumerable<T> Stream<T>(HubConnection connection, string proxyName, string methodName, params object[] parameters)
             where T: class;
-        
+
         Task<T> Invoke<T>(HubConnection connection, string proxyName, string methodName, params object[] parameters);
         Task Invoke(HubConnection connection, string proxyName, string methodName, params object[] parameters);
     }

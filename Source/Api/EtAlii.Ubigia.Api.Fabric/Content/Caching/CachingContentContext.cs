@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         public async Task<Content> Retrieve(Identifier identifier)
         {
             // TODO: IMPORTANT ISSUE WITH CACHING.
-            return await _retrieveHandler.Handle(identifier).ConfigureAwait(false); 
+            return await _retrieveHandler.Handle(identifier).ConfigureAwait(false);
             //return await _contextProvider.Context.Retrieve(identifier)
         }
 

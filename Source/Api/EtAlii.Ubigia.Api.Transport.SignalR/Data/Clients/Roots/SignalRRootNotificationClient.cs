@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         private void OnAdded(Guid id)
         {
-            Added(id); 
+            Added(id);
         }
 
         private void OnChanged(Guid id)
@@ -52,9 +52,9 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 			};
         }
 
-        public override async Task Disconnect() 
+        public override async Task Disconnect()
         {
-            await base.Disconnect().ConfigureAwait(false); 
+            await base.Disconnect().ConfigureAwait(false);
 
             await _connection.DisposeAsync().ConfigureAwait(false);
             _connection = null;

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
         {
             _invoker = invoker;
         }
-        
+
         public async Task Connect(IStorageConnection storageConnection)
         {
             await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection).ConfigureAwait(false);
@@ -55,8 +55,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToStorage);
             }
 
-            //// We do not want the address pushed to us from the server. 
-            //// If we get here then we already know how to contact the server. 
+            //// We do not want the address pushed to us from the server.
+            //// If we get here then we already know how to contact the server.
             //storage.Address = storageConnection.Transport.Address.ToString[]
 
             return storage;

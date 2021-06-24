@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Portable
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System;
     using System.Collections.Generic;
@@ -12,7 +14,7 @@
         private readonly IFolder _storage;
 
         public PortableFolderManager(
-            IStorageSerializer serializer, 
+            IStorageSerializer serializer,
             IFolder storage)
         {
             _serializer = serializer;

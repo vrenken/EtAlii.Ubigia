@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 {
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
             container.Register(() => diagnostics.CreateProfilerFactory());
             container.Register(() => diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-            
+
             if (diagnostics.EnableProfiling) // profiling is enabled
             {
                 container.RegisterDecorator(typeof(IManagementConnection), typeof(ProfilingManagementConnection));

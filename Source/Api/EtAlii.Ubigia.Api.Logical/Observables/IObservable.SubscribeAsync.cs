@@ -1,16 +1,16 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Threading.Tasks;
 
-    public static class ObservableSubscribeAsyncExtension 
+    public static class ObservableSubscribeAsyncExtension
     {
         public static IDisposable SubscribeAsync<T>(
-            this IObservable<T> source, 
-            Func<T,Task> onNext, 
-            Action<Exception> onError = null, 
+            this IObservable<T> source,
+            Func<T,Task> onNext,
+            Action<Exception> onError = null,
             Action onCompleted = null)
         {
             void OnNext(T o)
@@ -25,11 +25,11 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             if (onCompleted != null)
             {
-                return source.Subscribe(OnNext, onCompleted);                
+                return source.Subscribe(OnNext, onCompleted);
             }
-            return onError != null 
-                ? source.Subscribe(OnNext, onError) 
-                : source.Subscribe(OnNext); 
+            return onError != null
+                ? source.Subscribe(OnNext, onError)
+                : source.Subscribe(OnNext);
         }
     }
 }

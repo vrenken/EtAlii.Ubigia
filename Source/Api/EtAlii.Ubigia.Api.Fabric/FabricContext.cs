@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -29,8 +29,8 @@ namespace EtAlii.Ubigia.Api.Fabric
             IFabricContextConfiguration configuration,
             IEntryContext entries,
             IRootContext roots,
-            IContentContext content, 
-            IDataConnection connection, 
+            IContentContext content,
+            IDataConnection connection,
             IPropertiesContext properties)
         {
             Configuration = configuration;
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed) return;
-            
+
             if (disposing)
             {
                 try
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                     if (Connection.IsConnected)
                     {
                         var task = Connection.Close();
-                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
                     }
                 }
                 catch //(Exception e)

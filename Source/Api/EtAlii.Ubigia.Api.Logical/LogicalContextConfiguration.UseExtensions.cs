@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     /// <summary>
     /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.
-    /// This comes in very handy during the fluent method chaining involved. 
+    /// This comes in very handy during the fluent method chaining involved.
     /// </summary>
     public static class LogicalContextConfigurationUseExtensions
     {
@@ -17,8 +17,8 @@ namespace EtAlii.Ubigia.Api.Logical
             ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = cachingEnabled;
             return configuration;
         }
-        
-        
+
+
         public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, LogicalContextConfiguration otherConfiguration)
             where TLogicalContextConfiguration: LogicalContextConfiguration
         {

@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         private readonly IProfiler _profiler;
 
         public ProfilingGraphPathRootStartNodeTraverser(
-            IGraphPathRootStartNodeTraverser decoree, 
+            IGraphPathRootStartNodeTraverser decoree,
             IProfiler profiler)
         {
             _decoree = decoree;

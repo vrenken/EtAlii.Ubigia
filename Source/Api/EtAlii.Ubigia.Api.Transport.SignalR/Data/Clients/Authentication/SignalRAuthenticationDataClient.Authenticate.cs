@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             var authenticationToken = await _signalRAuthenticationTokenGetter
                 .GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken)
                 .ConfigureAwait(false);
-            
+
             if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
                 signalRConnection.Transport.AuthenticationToken = authenticationToken;

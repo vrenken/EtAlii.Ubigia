@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Ntfs
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System.IO;
     using System.Threading.Tasks;
@@ -13,7 +15,7 @@
         public string FileNameFormat { get; } = "{0}.bson";
 
         public NtfsStorageSerializer(
-            IItemSerializer itemSerializer, 
+            IItemSerializer itemSerializer,
             IPropertiesSerializer propertiesSerializer)
         {
             _itemSerializer = itemSerializer;
@@ -24,14 +26,14 @@
             where T: class
         {
             using var stream = LongPathFile.Open(fileName, FileMode.CreateNew, FileAccess.Write);
-            
+
             _itemSerializer.Serialize(stream, item);
         }
 
         public void Serialize(string fileName, PropertyDictionary item)
         {
             using var stream = LongPathFile.Open(fileName, FileMode.CreateNew, FileAccess.Write);
-            
+
             _propertiesSerializer.Serialize(stream, item);
         }
 
@@ -39,14 +41,14 @@
             where T : class
         {
             using var stream = LongPathFile.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-            
+
             return _itemSerializer.Deserialize<T>(stream);
         }
-        
+
         public PropertyDictionary Deserialize(string fileName)
         {
             using var stream = LongPathFile.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-            
+
             return _propertiesSerializer.Deserialize(stream);
         }
 

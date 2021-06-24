@@ -1,11 +1,13 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     internal class ComponentStorer : IComponentStorer
     {
         private readonly IPathBuilder _pathBuilder;
         private readonly IImmutableFolderManager _folderManager;
 
-        public ComponentStorer(IImmutableFolderManager folderManager, 
+        public ComponentStorer(IImmutableFolderManager folderManager,
                                IPathBuilder pathBuilder)
         {
             _folderManager = folderManager;

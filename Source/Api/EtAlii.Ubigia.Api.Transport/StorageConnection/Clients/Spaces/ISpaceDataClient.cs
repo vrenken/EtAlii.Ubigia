@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -12,29 +12,29 @@ namespace EtAlii.Ubigia.Api.Transport
     public interface ISpaceDataClient : IStorageTransportClient
     {
         /// <summary>
-        /// Add a <see cref="Account"/> using the specified id, name and <see cref="SpaceTemplate"/>. 
+        /// Add a <see cref="Account"/> using the specified id, name and <see cref="SpaceTemplate"/>.
         /// </summary>
         /// <param name="accountId"></param>
         /// <param name="spaceName"></param>
         /// <param name="template"></param>
         /// <returns></returns>
         Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template);
-        
+
         /// <summary>
         /// Remove a <see cref="Account"/> using its Id.
         /// </summary>
         /// <param name="spaceId"></param>
         /// <returns></returns>
         Task Remove(Guid spaceId);
-        
+
         /// <summary>
-        /// Change the name of the <see cref="Account"/> specified by the given Id. 
+        /// Change the name of the <see cref="Account"/> specified by the given Id.
         /// </summary>
         /// <param name="spaceId"></param>
         /// <param name="spaceName"></param>
         /// <returns></returns>
         Task<Space> Change(Guid spaceId, string spaceName);
-        
+
         /// <summary>
         /// Return the <see cref="Account"/> identified by the provided name.
         /// </summary>
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <param name="spaceName"></param>
         /// <returns></returns>
         Task<Space> Get(Guid accountId, string spaceName);
-        
+
         /// <summary>
         /// Return the <see cref="Account"/> identified by the provided Id.
         /// </summary>

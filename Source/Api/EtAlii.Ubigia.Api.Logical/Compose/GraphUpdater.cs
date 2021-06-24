@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             _fabric = fabric;
         }
-         
+
         public async Task<IEditableEntry> Update(IReadOnlyEntry entry, string newType, ExecutionScope scope)
         {
             var updateEntry = await _fabric.Entries.Prepare().ConfigureAwait(false);

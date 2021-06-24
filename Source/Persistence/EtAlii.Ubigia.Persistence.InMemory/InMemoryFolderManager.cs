@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System;
     using System.Collections.Generic;
@@ -12,8 +14,8 @@
         private readonly IInMemoryItemsHelper _inMemoryItemsHelper;
 
         public InMemoryFolderManager(
-            IStorageSerializer serializer, 
-            IInMemoryItems inMemoryItems, 
+            IStorageSerializer serializer,
+            IInMemoryItems inMemoryItems,
             IInMemoryItemsHelper inMemoryItemsHelper)
         {
             _serializer = serializer;

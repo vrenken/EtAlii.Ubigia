@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Logical
         public LogicalContext(
             ILogicalContextConfiguration configuration,
             ILogicalNodeSet nodes,
-            ILogicalRootSet roots, 
-            IContentManager content, 
+            ILogicalRootSet roots,
+            IContentManager content,
             IPropertiesManager properties)
         {
             Configuration = configuration;
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Logical
             Content = content;
             Properties = properties;
         }
-        
+
         public void Dispose()
         {
             Dispose(true);

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
             Connection = storageConnection;
             return Task.CompletedTask;
         }
-        
+
         public async Task Disconnect(IStorageConnection storageConnection)
         {
             await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection).ConfigureAwait(false);

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     public class PropertiesStorer : IPropertiesStorer
     {
@@ -6,7 +8,7 @@
         private readonly IFileManager _fileManager;
 
         public PropertiesStorer(
-            IPathBuilder pathBuilder, 
+            IPathBuilder pathBuilder,
             IFileManager fileManager)
         {
             _pathBuilder = pathBuilder;

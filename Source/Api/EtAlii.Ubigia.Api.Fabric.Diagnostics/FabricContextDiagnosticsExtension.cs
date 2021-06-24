@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         public void Initialize(Container container)
         {
             container.Register(() => _diagnostics);
-            
+
             if (_diagnostics.EnableLogging)
             {
                 container.RegisterDecorator(typeof(IEntryContext), typeof(LoggingEntryContext));

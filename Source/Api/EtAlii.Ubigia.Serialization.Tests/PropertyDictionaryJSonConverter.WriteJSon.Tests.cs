@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Serialization.Tests
 {
@@ -456,7 +456,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
             // Assert.
             Assert.Equal("[{\"k\":\"Hello\",\"t\":3,\"v\":true}]", result);
         }
-        
+
         [Fact]
         public void PropertyDictionaryJSonConverter_WriteJson_Boolean_False()
         {
@@ -715,7 +715,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
 
         // TODO: Verify this and the corresponding readJson variant. They should work but don't give
         // consistent results on all machines.
-        [Fact(Skip = "Not working as expected.")] 
+        [Fact(Skip = "Not working as expected.")]
         public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
         {
             // Arrange.

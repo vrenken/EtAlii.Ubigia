@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
     using System.Linq;
@@ -50,7 +52,7 @@
             // Assert.
             Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
         }
-         
+
         [Fact]
         public async Task ContentDefinition_Store_And_Retrieve_Check_Parts()
         {

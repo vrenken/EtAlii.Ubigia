@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System.IO;
     using System.Threading.Tasks;
@@ -12,8 +14,8 @@
         private readonly IPathBuilder _pathBuilder;
 
         public InMemoryFileManager(
-            IStorageSerializer serializer, 
-            IFolderManager folderManager, 
+            IStorageSerializer serializer,
+            IFolderManager folderManager,
             IPathBuilder pathBuilder,
             IInMemoryItems inMemoryItems,
             IInMemoryItemsHelper inMemoryItemsHelper)
@@ -73,7 +75,7 @@
         {
             return _inMemoryItems.Exists(path);
         }
-    
+
         public void Delete(string path)
         {
             _inMemoryItems.Delete(path);

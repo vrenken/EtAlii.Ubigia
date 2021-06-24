@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     /// <summary>
     /// A stub for the <see cref="IInformationDataClient"/>.
     /// </summary>
-    public sealed class InformationDataClientStub : IInformationDataClient 
+    public sealed class InformationDataClientStub : IInformationDataClient
     {
         /// <inheritdoc />
         public Task Connect(IStorageConnection storageConnection)

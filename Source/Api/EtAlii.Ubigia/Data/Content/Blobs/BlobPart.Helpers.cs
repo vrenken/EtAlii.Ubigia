@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia
 
     public partial class BlobPart
     {
-        private static readonly Dictionary<Type, string> _blobPartNames = new(); 
+        private static readonly Dictionary<Type, string> _blobPartNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
         private static readonly object _lockObject = new();
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia
         {
             return blobPart.Name;
         }
-        
+
         public static void SetStored(BlobPart blobPart, bool stored)
         {
             blobPart.Stored = stored;

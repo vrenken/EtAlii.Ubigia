@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 //namespace EtAlii.Ubigia.Diagnostics.Profiling
 //[
@@ -12,14 +12,14 @@
 //        private readonly IProfiler _profiler
 
 //        public ProfilingSubjectsProcessor(
-//            ISubjectsProcessor decoree, 
+//            ISubjectsProcessor decoree,
 //            IProfiler profiler)
 //        [
 //            _decoree = decoree
 //            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorSubject)
 //        ]
 //        public async Task<object> Process(
-//            ProcessParameters<SequencePart, SequencePart> parameters, 
+//            ProcessParameters<SequencePart, SequencePart> parameters,
 //            ExecutionScope scope,
 //            IObserver<object> output)
 //        [

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia
     public interface IConfiguration
     {
         /// <summary>
-        /// Returns the Configuration extensions of the type specified by TExtension. 
+        /// Returns the Configuration extensions of the type specified by TExtension.
         /// </summary>
         /// <typeparam name="TExtension"></typeparam>
         /// <returns></returns>

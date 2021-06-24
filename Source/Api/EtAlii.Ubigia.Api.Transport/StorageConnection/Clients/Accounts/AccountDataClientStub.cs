@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Linq;
     using System.Threading.Tasks;
 
-    public sealed class AccountDataClientStub : IAccountDataClient 
+    public sealed class AccountDataClientStub : IAccountDataClient
     {
         public Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {

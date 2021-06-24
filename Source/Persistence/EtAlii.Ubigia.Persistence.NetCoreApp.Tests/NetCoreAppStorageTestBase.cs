@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
@@ -9,7 +11,7 @@
         protected TestContentFactory TestContentFactory { get; }
         protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         protected TestPropertiesFactory TestPropertiesFactory { get; }
-        
+
         protected NetCoreAppStorageTestBase()
         {
             TestContentFactory = new TestContentFactory();

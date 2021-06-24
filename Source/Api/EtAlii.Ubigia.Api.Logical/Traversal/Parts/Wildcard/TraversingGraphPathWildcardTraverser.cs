@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
         private readonly IGraphPathFinalRelationTraverser _graphPathFinalRelationTraverser;
 
         public TraversingGraphPathWildcardTraverser(
-            IGraphPathChildrenRelationTraverser graphPathChildrenRelationTraverser, 
+            IGraphPathChildrenRelationTraverser graphPathChildrenRelationTraverser,
             IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser)
         {
             _graphPathChildrenRelationTraverser = graphPathChildrenRelationTraverser;
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
                         else
                         {
-                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, limit).ConfigureAwait(false); // EntryRelation.Child, 
+                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, limit).ConfigureAwait(false); // EntryRelation.Child,
                         }
                         foreach (var result in results.Distinct())
                         {
@@ -66,9 +66,9 @@ namespace EtAlii.Ubigia.Api.Logical
             }
 
             var result = new List<Identifier>();
-            await TraverseChildren(result, start, context, scope, limit).ConfigureAwait(false); // EntryRelation.Child, 
+            await TraverseChildren(result, start, context, scope, limit).ConfigureAwait(false); // EntryRelation.Child,
             var results = result.Distinct();
-            
+
             foreach (var item in results)
             {
                 yield return item;
@@ -76,11 +76,11 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         private async Task TraverseChildren(
-            ICollection<Identifier> result, 
-            Identifier start, 
+            ICollection<Identifier> result,
+            Identifier start,
             IPathTraversalContext context,
-            ExecutionScope scope, 
-            //EntryRelation entryRelation, 
+            ExecutionScope scope,
+            //EntryRelation entryRelation,
             int limit)
         {
             start = await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope).SingleOrDefaultAsync().ConfigureAwait(false);

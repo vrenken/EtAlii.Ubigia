@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence
 {
     using System;
     using System.Threading.Tasks;
@@ -11,7 +13,7 @@
         private readonly IBlobPartStorer _blobPartStorer;
         private readonly IBlobPartRetriever _blobPartRetriever;
 
-        public BlobStorage(IBlobStorer blobStorer, 
+        public BlobStorage(IBlobStorer blobStorer,
                            IBlobRetriever blobRetriever,
                            IBlobPartStorer blobPartStorer,
                            IBlobPartRetriever blobPartRetriever)

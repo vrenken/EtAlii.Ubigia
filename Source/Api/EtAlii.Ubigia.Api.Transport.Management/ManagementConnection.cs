@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
@@ -49,11 +49,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             var account = await Accounts.Get(space.AccountId).ConfigureAwait(false);
             return await OpenSpace(account.Name, space.Name).ConfigureAwait(false);
         }
- 
+
         /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            // // TODO: Temporary patch to make downscaling from a management to a data connection possible. 
+            // // TODO: Temporary patch to make downscaling from a management to a data connection possible.
             // var uriBuilder = new UriBuilder(Configuration.Address)
             // uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User")
             //
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             // uriBuilder.Port = uriBuilder.Port - 1
             //
             // var address = uriBuilder.Uri
-            
+
             var address = _connection.Details.DataAddress;
 
 			var connectionConfiguration = new DataConnectionConfiguration()
@@ -113,11 +113,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed) return;
-            
+
             if (disposing && IsConnected)
             {
                 var task = Close();
-                task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
             }
             // Free your own state (unmanaged objects).
             // Set large fields to null.

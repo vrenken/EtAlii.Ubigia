@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia
         private readonly IDictionary<Identifier, PropertyDictionary> _properties;
 
         /// <summary>
-        /// Create a new Cache instance. Set the cacheEnabled to false if the cache should be disabled. 
+        /// Create a new Cache instance. Set the cacheEnabled to false if the cache should be disabled.
         /// </summary>
         /// <param name="cacheEnabled">False when caching should be disabled.</param>
         public Cache(bool cacheEnabled = true)
@@ -52,17 +52,17 @@ namespace EtAlii.Ubigia
             if (_cacheEnabled)
             {
                 await _propertiesSemaphore.WaitAsync().ConfigureAwait(false);
-                
+
                 var hasValue = _properties.TryGetValue(identifier, out result);
-                
+
                 _propertiesSemaphore.Release();
-                
+
                 if(!hasValue)
                 {
                     await _propertiesSemaphore.WaitAsync().ConfigureAwait(false);
 
                     _properties[identifier] = result = await getter().ConfigureAwait(false);
-                    
+
                     _propertiesSemaphore.Release();
                 }
             }
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia
                 var hasValue = _entries.TryGetValue(identifier, out result);
 
                 _entriesSemaphore.Release();
-                
+
                 if(!hasValue)
                 {
                     await _entriesSemaphore.WaitAsync().ConfigureAwait(false);
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia
                 var cacheId = new Tuple<Identifier, EntryRelation>(identifier, relation);
 
                 await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
-                
+
                 // TODO: This cache is not clever enough yet.
                 var hasValue = _relatedEntries.TryGetValue(cacheId, out var cachedResult);
 
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia
                         yield return item;
                     }
 
-                    _relatedEntries[cacheId] = list; 
+                    _relatedEntries[cacheId] = list;
 
                     _relatedEntriesSemaphore.Release();
                 }
@@ -175,7 +175,7 @@ namespace EtAlii.Ubigia
             _relatedEntriesSemaphore.Wait();
 
             _entries.Remove(identifier);
-            
+
             var itemsToRemove = new List<Tuple<Identifier, EntryRelation>>();
 
             var items = _relatedEntries
@@ -194,7 +194,7 @@ namespace EtAlii.Ubigia
             {
                 _relatedEntries.Remove(itemToRemove);
             }
-            
+
             _entriesSemaphore.Release();
             _relatedEntriesSemaphore.Release();
         }

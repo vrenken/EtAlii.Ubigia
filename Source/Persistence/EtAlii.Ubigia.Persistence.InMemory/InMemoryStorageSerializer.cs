@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
@@ -13,7 +15,7 @@
         public string FileNameFormat { get; } = "{0}.bson";
 
         public InMemoryStorageSerializer(
-            IItemSerializer itemSerializer, 
+            IItemSerializer itemSerializer,
             IPropertiesSerializer propertiesSerializer,
             IInMemoryItemsHelper inMemoryItemsHelper)
         {
@@ -26,7 +28,7 @@
             where T : class
         {
             using var stream = _inMemoryItemsHelper.CreateFile(fileName, out var file);
-            
+
             _itemSerializer.Serialize(stream, item);
             file.Content = stream.ToArray();
         }
@@ -49,7 +51,7 @@
         public PropertyDictionary Deserialize(string fileName)
         {
             using var stream = _inMemoryItemsHelper.OpenFile(fileName);
-            
+
             return _propertiesSerializer.Deserialize(stream);
         }
     }

@@ -1,10 +1,10 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
 
-    public interface IEditableFabricContextConfiguration 
+    public interface IEditableFabricContextConfiguration
     {
         /// <summary>
         /// Gets or sets the Connection that should be used to communicate with the backend.

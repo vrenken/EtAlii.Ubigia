@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         private readonly IFabricContext _context;
 
-        private readonly IDictionary<Identifier, PropertyDictionary> _cache; 
+        private readonly IDictionary<Identifier, PropertyDictionary> _cache;
 
         public TraversalContextPropertySet(IFabricContext context)
         {

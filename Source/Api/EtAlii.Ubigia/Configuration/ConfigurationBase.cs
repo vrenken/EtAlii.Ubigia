@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia
 {
@@ -15,12 +15,12 @@ namespace EtAlii.Ubigia
         /// The extensions added to this configuration.
         /// </summary>
         protected IExtension[] Extensions { get; private set; }
-        
-        /// <inheritdoc/>        
-        IExtension[] IEditableConfiguration.Extensions { get => Extensions; set => Extensions = value; } 
+
+        /// <inheritdoc/>
+        IExtension[] IEditableConfiguration.Extensions { get => Extensions; set => Extensions = value; }
 
         /// <summary>
-        /// Creates a new Configuration instance. 
+        /// Creates a new Configuration instance.
         /// </summary>
         protected ConfigurationBase()
         {

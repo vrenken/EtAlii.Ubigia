@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
@@ -9,20 +9,20 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         public override bool Equals(object obj)
         {
-            // If parameter is null, return false. 
+            // If parameter is null, return false.
             if (ReferenceEquals(obj, null))
             {
                 return false;
             }
 
             // Cannot happen.
-            // Optimization for a common success case. 
+            // Optimization for a common success case.
             //if (Object.ReferenceEquals(this, obj))
             //[
             //    return true
             //]
 
-            // If run-time types are not exactly the same, return false. 
+            // If run-time types are not exactly the same, return false.
             if (GetType() != obj.GetType())
             {
                 return false;
@@ -33,30 +33,30 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         public bool Equals(ProfilingAspect other)
         {
-            // Cannot happen. 
-            // If parameter is null, return false. 
+            // Cannot happen.
+            // If parameter is null, return false.
             if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
             // Cannot happen.
-            // Optimization for a common success case. 
+            // Optimization for a common success case.
             if (ReferenceEquals(this, other))
             {
                 return true;
             }
 
             // Can happen, but is not problematic.
-            // If run-time types are not exactly the same, return false. 
+            // If run-time types are not exactly the same, return false.
             if (GetType() != other.GetType())
             {
                 return false;
             }
 
-            // Return true if the fields match. 
-            // Note that the base class is not invoked because it is 
-            // System.Object, which defines Equals as reference equality. 
+            // Return true if the fields match.
+            // Note that the base class is not invoked because it is
+            // System.Object, which defines Equals as reference equality.
             if (other.Layer != Layer)
             {
                 return false;

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.InMemory.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System.IO;
     using EtAlii.Ubigia.Persistence.Tests;
@@ -12,7 +14,7 @@
             // Arrange.
             var fileName = "File";
             var fullFileName = $"{fileName}.Extension";
-            
+
             // Act.
             var fileNameWithoutExtension = Storage.PathBuilder.GetFileNameWithoutExtension(fullFileName);
 

@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {
             var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
-            
+
             if (editableConfiguration.TransportProvider != null)
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this DataConnectionConfiguration",
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Transport
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {
             var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
-			
+
             if (editableConfiguration.Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this DataConnectionConfiguration");
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Transport
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {
             var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
-            
+
             if (string.IsNullOrWhiteSpace(accountName))
             {
                 throw new ArgumentException("No account name specified: A data connection cannot be made without account identification", nameof(accountName));
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Transport
             editableConfiguration.Space = space;
             return configuration;
         }
-        
+
         public static TDataConnectionConfiguration Use<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, DataConnectionConfiguration otherConfiguration)
             where TDataConnectionConfiguration : DataConnectionConfiguration
         {

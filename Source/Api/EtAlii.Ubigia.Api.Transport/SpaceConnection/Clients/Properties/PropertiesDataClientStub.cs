@@ -1,10 +1,10 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    public class PropertiesDataClientStub : IPropertiesDataClient 
+    public class PropertiesDataClientStub : IPropertiesDataClient
     {
         public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {

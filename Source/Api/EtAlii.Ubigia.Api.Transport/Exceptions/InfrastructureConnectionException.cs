@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System.Runtime.Serialization;
 
     /// <summary>
-    /// An exception that indicates that an exception has happened on the infrastructure. 
+    /// An exception that indicates that an exception has happened on the infrastructure.
     /// </summary>
     [Serializable]
     public class InfrastructureConnectionException : Exception
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport
             : base(info, context)
         {
         }
-        
+
         /// <summary>
         /// Create a new <see cref="InfrastructureConnectionException"/> instance with the provided message and exception.
         /// </summary>

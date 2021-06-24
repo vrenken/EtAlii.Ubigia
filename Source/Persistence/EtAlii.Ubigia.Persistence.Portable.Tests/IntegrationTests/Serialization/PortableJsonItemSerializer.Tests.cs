@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Portable.Tests
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using System;
     using System.IO;

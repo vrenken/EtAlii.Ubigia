@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Diagnostics.Profiling
 {
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
             Logical = new LogicalProfilers();
             Fabric = new FabricProfilers();
             Transport = new TransportProfilers();
-            
+
             All = Functional.All
                 .Concat(Logical.All)
                 .Concat(Fabric.All)

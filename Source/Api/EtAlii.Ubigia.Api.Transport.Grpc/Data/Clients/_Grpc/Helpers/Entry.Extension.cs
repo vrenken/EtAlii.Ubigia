@@ -1,11 +1,11 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    public static class EntryExtension 
+    public static class EntryExtension
     {
         public static Entry ToLocal(this WireProtocol.Entry entry)
         {
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             {
                 result.ChildrenComponent.Add(child.Relations.ToLocal(), child.Stored);
             }
-            
+
             result.Parent2Component = entry.Parent2.ToLocal<Parent2Component>();
             foreach (var child in entry.Children2)
             {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
             return (Entry)result;
         }
-    
+
         public static IEnumerable<Entry> ToLocal(this IEnumerable<WireProtocol.Entry> entries)
         {
             return entries.Select(id => id.ToLocal());
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
             result.Parent = entry.ParentComponent.ToWire();
             result.Children.AddRange(entry.ChildrenComponent.ToWire());
-            
+
             result.Parent2 = entry.Parent2Component.ToWire();
             result.Children2.AddRange(entry.Children2Component.ToWire());
 
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
             return result;
         }
-        
+
         public static IEnumerable<WireProtocol.Entry> ToWire(this IEnumerable<Entry> entries)
         {
             return entries.Select(id => id.ToWire());

@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Ntfs
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System;
     using System.IO;
@@ -13,7 +15,7 @@
         private readonly string _separatorString;
 
         public NtfsPathBuilder(
-            IStorageConfiguration configuration, 
+            IStorageConfiguration configuration,
             IStorageSerializer serializer)
         {
             _separatorChar = Path.DirectorySeparatorChar;

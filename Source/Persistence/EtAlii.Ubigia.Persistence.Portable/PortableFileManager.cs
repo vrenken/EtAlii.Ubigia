@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Persistence.Portable
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Persistence.Portable
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -12,7 +14,7 @@
         private readonly IFolder _storage;
 
         public PortableFileManager(
-            IStorageSerializer serializer, 
+            IStorageSerializer serializer,
             IFolderManager folderManager,
             IPathBuilder pathBuilder,
             IFolder storage)
@@ -119,7 +121,7 @@
 
             using var source = openSourceFileTask.Result;
             using var target = openTargetFileTask.Result;
-            
+
             int bytesRead;
             do
             {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Disconnect().ConfigureAwait(false); 
+            await Disconnect().ConfigureAwait(false);
         }
 
         public virtual Task Disconnect()
         {
-            Connection = null;            
+            Connection = null;
             return Task.CompletedTask;
         }
     }

@@ -1,11 +1,11 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
     /// <summary>
-    /// A connection type used to connect one single storage. 
+    /// A connection type used to connect one single storage.
     /// </summary>
     public interface IStorageConnection : IConnection, IDisposable
     {
@@ -13,27 +13,27 @@ namespace EtAlii.Ubigia.Api.Transport
         /// The transport with which the connection is made.
         /// </summary>
         IStorageTransport Transport { get; }
-        
+
         /// <summary>
-        /// A context through which to call storage related RPC's. 
+        /// A context through which to call storage related RPC's.
         /// </summary>
         IStorageContext Storages { get; }
 
         /// <summary>
-        /// A context through which to call account related RPC's. 
+        /// A context through which to call account related RPC's.
         /// </summary>
         IAccountContext Accounts { get; }
-        
+
         /// <summary>
-        /// A context through which to call space related RPC's. 
+        /// A context through which to call space related RPC's.
         /// </summary>
         ISpaceContext Spaces { get; }
-        
+
         /// <summary>
         /// Additional details regarding the StorageConnection.
         /// </summary>
         IStorageConnectionDetails Details { get; }
-        
+
         /// <summary>
         /// The Configuration used to instantiate this StorageConnection.
         /// </summary>
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport
     }
 
     /// <summary>
-    /// A connection type used to connect one single storage. 
+    /// A connection type used to connect one single storage.
     /// </summary>
     public interface IStorageConnection<out TTransport> : IStorageConnection
         where TTransport: IStorageTransport

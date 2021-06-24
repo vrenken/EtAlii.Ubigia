@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
-            
+
             var factory = new HubConnectionFactory();
 
 	        _contentConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Transport.Address + UriHelper.Delimiter + SignalRHub.Content, UriKind.Absolute));

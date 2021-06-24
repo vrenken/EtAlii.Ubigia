@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         public static WireProtocol.Space ToWire(this Space space)
         {
-            return space == null ? null : new WireProtocol.Space 
+            return space == null ? null : new WireProtocol.Space
             {
                 Id = space.Id.ToWire(),
                 AccountId = space.AccountId.ToWire(),

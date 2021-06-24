@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             _connection.Roots.Notifications.Removed += OnRemoved;
         }
 
-        public async Task<Root> Add(string name) 
+        public async Task<Root> Add(string name)
         {
             return await _connection.Roots.Data.Add(name).ConfigureAwait(false);
         }

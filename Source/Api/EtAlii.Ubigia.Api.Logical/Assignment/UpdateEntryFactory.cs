@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Logical
 {
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         public async Task<IEditableEntry> Create(
-            IReadOnlyEntry entry, 
+            IReadOnlyEntry entry,
             string tag,
             ExecutionScope scope)
         {

@@ -1,4 +1,4 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 {
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
         public IAccountContext Accounts => _decoree.Accounts;
         public ISpaceContext Spaces => _decoree.Spaces;
         public bool IsConnected => _decoree.IsConnected;
-        
+
         public IStorageConnectionDetails Details => _decoree.Details;
         public IManagementConnectionConfiguration Configuration => _decoree.Configuration;
 

@@ -1,4 +1,4 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license in https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
@@ -31,11 +31,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _profiler.End(profile);
         }
 
-        public async Task Disconnect() 
+        public async Task Disconnect()
         {
             dynamic profile = _profiler.Begin("Disconnect");
 
-            await _decoree.Disconnect().ConfigureAwait(false); 
+            await _decoree.Disconnect().ConfigureAwait(false);
 
             _profiler.End(profile);
         }
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             var result = _decoree.Get(entryIdentifiers, scope, entryRelations);
             await foreach (var item in result.ConfigureAwait(false))
             {
-                yield return item; 
+                yield return item;
             }
 
             profile.Result = result;
@@ -113,8 +113,8 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(
-            Identifier entryIdentifier, 
-            EntryRelation entriesWithRelation, 
+            Identifier entryIdentifier,
+            EntryRelation entriesWithRelation,
             ExecutionScope scope,
             EntryRelation entryRelations = EntryRelation.None)
         {
@@ -129,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             var result = _decoree.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
             await foreach (var item in result.ConfigureAwait(false))
             {
-                yield return item; 
+                yield return item;
             }
 
             profile.Result = result;
