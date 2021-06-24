@@ -1,4 +1,6 @@
-﻿namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
 {
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;

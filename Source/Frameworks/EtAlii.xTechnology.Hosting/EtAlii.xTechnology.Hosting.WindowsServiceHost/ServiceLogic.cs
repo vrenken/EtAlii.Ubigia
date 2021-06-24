@@ -1,4 +1,6 @@
-﻿// ReSharper disable UnassignedGetOnlyAutoProperty
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+// ReSharper disable UnassignedGetOnlyAutoProperty
 namespace EtAlii.xTechnology.Hosting
 {
     using System.Collections.Generic;

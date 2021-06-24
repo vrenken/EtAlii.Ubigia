@@ -1,4 +1,6 @@
-﻿#pragma warning disable // This is an external file. 
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+#pragma warning disable // This is an external file. 
 
 namespace EtAlii.xTechnology.Hosting
 {

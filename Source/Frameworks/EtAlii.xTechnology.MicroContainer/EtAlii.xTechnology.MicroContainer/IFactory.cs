@@ -1,4 +1,6 @@
-﻿namespace EtAlii.xTechnology.MicroContainer
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.xTechnology.MicroContainer
 {
     /// <summary>
     /// A generic factory definition useful when building complex DI structures. 
