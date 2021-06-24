@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _propertiesToIdentifierAssigner = propertiesToIdentifierAssigner;
         }
 
-        public Task<INode> Assign(object dynamicObject, Identifier id, ExecutionScope scope)
+        public Task<IReadOnlyEntry> Assign(object dynamicObject, Identifier id, ExecutionScope scope)
         {
             var properties = ToDictionary(dynamicObject);
             return _propertiesToIdentifierAssigner.Assign(properties, id, scope);

@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface IPropertiesToIdentifierAssigner
     {
-        Task<INode> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope);
+        Task<IReadOnlyEntry> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope);
     }
 }

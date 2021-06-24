@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _graphPathTraverser = graphPathTraverser;
         }
 
-        public async Task<INode> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> Assign(IPropertyDictionary properties, Identifier id, ExecutionScope scope)
         {
             var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
             id = latestEntry.Id;
@@ -33,8 +33,8 @@ namespace EtAlii.Ubigia.Api.Logical
             var nodeShouldBeUpdated = ShouldUpdateNode(oldProperties, properties);
             if (!nodeShouldBeUpdated)
             {
-                // The two PropertyDictionaries are the same. Let's return the old node.
-                return new DynamicNode(entry, oldProperties);
+                // The two PropertyDictionaries are the same. Let's return the old entry.
+                return entry;
             }
             else
             {
@@ -63,12 +63,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
                     await _fabric.Properties.Store(newEntry.Id, newProperties , scope).ConfigureAwait(false);
 
-                    var newNode = (IInternalNode) new DynamicNode((IReadOnlyEntry) newEntry, newProperties );
-                    return newNode;
+                    return (IReadOnlyEntry)newEntry;
                 }
                 else
                 {
-                    return new DynamicNode(entry, newProperties );
+                    return entry;
                 }
             }
         }

@@ -15,17 +15,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly IScriptProcessingContext _context;
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
+        private readonly IEntriesToDynamicNodesConverter _entriesToDynamicNodesConverter;
 
         private readonly TypeInfo _dynamicObjectTypeInfo = typeof(DynamicObject).GetTypeInfo();
 
         protected AssignToPathOperatorSubProcessorBase(
             IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
+            IEntriesToDynamicNodesConverter entriesToDynamicNodesConverter,
             IScriptProcessingContext context)
         {
             _itemToIdentifierConverter = itemToIdentifierConverter;
             _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
             _context = context;
+            _entriesToDynamicNodesConverter = entriesToDynamicNodesConverter;
         }
 
         public async Task Assign(OperatorParameters parameters)
@@ -34,20 +37,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             parameters.LeftInput
                 .SubscribeAsync(
-                    onError: (e) => parameters.Output.OnError(e),
+                    onError: e => parameters.Output.OnError(e),
                     onCompleted: () => parameters.Output.OnCompleted(),
-                    onNext: async (o) =>
+                    onNext: async o =>
                     {
                         var identifier = _itemToIdentifierConverter.Convert(o);
                         var leftPathSubject = (PathSubject)parameters.LeftSubject;
                         var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope).ConfigureAwait(false);
-                        var result = await Assign(graphPath, identifier, value, parameters.Scope).ConfigureAwait(false);
-                        //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope)
+                        var entry = await Assign(graphPath, identifier, value, parameters.Scope).ConfigureAwait(false);
+                        var result = await _entriesToDynamicNodesConverter.Convert(entry, parameters.Scope).ConfigureAwait(false);
                         parameters.Output.OnNext(result);
                     });
         }
 
-        private async Task<INode> Assign(GraphPath path, Identifier location, object o, ExecutionScope scope)
+        private async Task<IReadOnlyEntry> Assign(GraphPath path, Identifier location, object o, ExecutionScope scope)
         {
             if(path.Last() is GraphTaggedNode && o is string tag)
             {
@@ -87,11 +90,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return
                 //typeInfo.IsGenericType
                 //[typeInfo.Attributes & TypeAttributes.NotPublic] = = TypeAttributes.NotPublic & &
-                (typeInfo.Attributes.HasFlag(TypeAttributes.NotPublic)) &&
-                (typeInfo.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase)
-                    || typeInfo.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase))
-                && typeInfo.Name.Contains("AnonymousType")
-                && typeInfo.CustomAttributes.Any(a => a.AttributeType.Name == "CompilerGeneratedAttribute");
+                typeInfo.Attributes.HasFlag(TypeAttributes.NotPublic) &&
+                (typeInfo.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase) || typeInfo.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase)) &&
+                typeInfo.Name.Contains("AnonymousType") &&
+                typeInfo.CustomAttributes.Any(a => a.AttributeType.Name == "CompilerGeneratedAttribute");
         }
     }
 }

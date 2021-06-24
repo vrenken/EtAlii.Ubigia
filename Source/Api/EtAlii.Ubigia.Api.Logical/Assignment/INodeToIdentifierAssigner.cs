@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface INodeToIdentifierAssigner
     {
-        Task<INode> Assign(INode node, Identifier id, ExecutionScope scope);
+        Task<IReadOnlyEntry> Assign(INode node, Identifier id, ExecutionScope scope);
     }
 }

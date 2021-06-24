@@ -54,28 +54,25 @@ namespace EtAlii.Ubigia.Api.Logical
             traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
         }
 
-        public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
             return await assigner.AssignProperties(location, properties, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
             return await assigner.AssignTag(location, tag, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
             return await assigner.AssignNode(location, node, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
             return await assigner.AssignDynamic(location, o, scope).ConfigureAwait(false);

@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         }
 
 
-        public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Assign properties");
             profile.Properties = properties.ToString();
@@ -41,8 +41,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             return result;
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Assign tag");
             profile.Tag = tag;
@@ -55,8 +54,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             return result;
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Assign node");
             profile.Node = node;
@@ -69,8 +67,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             return result;
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Assign dynamic");
             profile.Object = o.ToString();

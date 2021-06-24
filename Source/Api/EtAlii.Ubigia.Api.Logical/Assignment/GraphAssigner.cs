@@ -24,25 +24,22 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
 
-        public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
             return await _propertiesToIdentifierAssigner.Assign(properties, location, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope)
         {
             return await _constantToIdentifierTagAssigner.Assign(tag, location, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
         {
             return await _nodeToIdentifierAssigner.Assign(node, location, scope).ConfigureAwait(false);
         }
 
-        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
-        public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope)
         {
             return await _dynamicObjectToIdentifierAssigner.Assign(o, location, scope).ConfigureAwait(false);
         }

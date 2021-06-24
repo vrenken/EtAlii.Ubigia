@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface IDynamicObjectToIdentifierAssigner
     {
-        Task<INode> Assign(object dynamicObject, Identifier id, ExecutionScope scope);
+        Task<IReadOnlyEntry> Assign(object dynamicObject, Identifier id, ExecutionScope scope);
     }
 }

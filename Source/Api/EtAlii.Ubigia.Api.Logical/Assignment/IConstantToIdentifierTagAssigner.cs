@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface IConstantToIdentifierTagAssigner
     {
-        Task<INode> Assign(string constant, Identifier id, ExecutionScope scope);
+        Task<IReadOnlyEntry> Assign(string constant, Identifier id, ExecutionScope scope);
     }
 }

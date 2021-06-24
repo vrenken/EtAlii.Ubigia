@@ -7,8 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public AssignCombinedToPathOperatorSubProcessor(
             IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
+            IEntriesToDynamicNodesConverter entriesToDynamicNodesConverter,
             IScriptProcessingContext context)
-            : base(itemToIdentifierConverter, pathSubjectToGraphPathConverter, context)
+            : base(itemToIdentifierConverter, pathSubjectToGraphPathConverter, entriesToDynamicNodesConverter, context)
         {
         }
     }
