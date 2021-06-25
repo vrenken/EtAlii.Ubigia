@@ -9,7 +9,7 @@ using System.Linq;
 namespace HashLib
 {
     [DebuggerDisplay("HashResult, Size: {m_hash.Length}, Hash: {ToString()}")]
-    public class HashResult
+    public sealed class HashResult : IEquatable<HashResult>
     {
         private readonly byte[] m_hash;
 
