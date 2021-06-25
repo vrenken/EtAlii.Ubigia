@@ -17,8 +17,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
 
         public override object VisitPath_part_traverser_children_all(UbigiaParser.Path_part_traverser_children_allContext context) => new AllChildrenPathSubjectPart();
 
-        // TODO: The commented lines are fishy, we mix and mingle all and oldest.
-
         // Temporal
         public override object VisitPath_part_traverser_downdate(UbigiaParser.Path_part_traverser_downdateContext context) => new DowndatePathSubjectPart();
         public override object VisitPath_part_traverser_updates(UbigiaParser.Path_part_traverser_updatesContext context) => new UpdatesPathSubjectPart();
