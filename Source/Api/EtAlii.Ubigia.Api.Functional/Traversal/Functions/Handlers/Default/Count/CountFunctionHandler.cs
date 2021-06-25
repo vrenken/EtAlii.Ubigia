@@ -9,15 +9,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Structure;
 
     internal class CountFunctionHandler : IFunctionHandler
     {
         public ParameterSet[] ParameterSets { get; }
 
         public string Name { get; }
-
-        private readonly ISelector<object, Func<IFunctionContext, ExecutionScope, object, Task<int>>> _converterSelector;
 
         public CountFunctionHandler()
         {
@@ -30,16 +27,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new ParameterSet(false, new Parameter("var", typeof(IObservable<object>))),
             };
             Name = "Count";
-
-            _converterSelector = new Selector<object, Func<IFunctionContext, ExecutionScope, object, Task<int>>>()
-                .Register(o => o is PathSubject, (context, scope, o) => CountPath(context, (PathSubject)o, scope))
-                .Register(o => o is Identifier, (_, _, _) => Task.FromResult(1))
-                .Register(o => o is IInternalNode, (_, _, _) => Task.FromResult(1))
-                .Register(o => o is IObservable<object>, (_, _, o) => CountObservable((IObservable<object>)o))
-                .Register(o => o is IEnumerable<Identifier>, (_, _, o) => Task.FromResult(((IEnumerable<Identifier>)o).Count()))
-                .Register(o => o is IEnumerable<IInternalNode>, (_, _, o) => Task.FromResult(((IEnumerable<IInternalNode>)o).Count()))
-                .Register(o => o == null, (_, _, _) => Task.FromException<int>(new ScriptProcessingException("No empty argument is allowed for Count function processing")))
-                .Register(_ => true, (_, _, _) => Task.FromException<int>(new ScriptProcessingException("Unable to convert arguments for Count function processing")));
         }
 
         public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
@@ -81,10 +68,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     output.OnNext(result);
                     output.OnCompleted();
                 },
-                onNext: async (o) =>
+                onNext: async o =>
                 {
-                    var converter = _converterSelector.Select(o);
-                    result += await converter(context, scope, o).ConfigureAwait(false);
+                    result += o switch
+                    {
+                        PathSubject pathSubject => await CountPath(context, pathSubject, scope).ConfigureAwait(false),
+                        Identifier => 1,
+                        IInternalNode => 1,
+                        IObservable<object> observable => await CountObservable(observable).ConfigureAwait(false),
+                        IEnumerable<Identifier> identifiers => identifiers.Count(),
+                        IEnumerable<IInternalNode> nodes => nodes.Count(),
+                        null => throw new ScriptProcessingException("No empty argument is allowed for Count function processing"),
+                        _ => throw new ScriptProcessingException("Unable to convert arguments for Count function processing")
+                    };
                 });
         }
 
