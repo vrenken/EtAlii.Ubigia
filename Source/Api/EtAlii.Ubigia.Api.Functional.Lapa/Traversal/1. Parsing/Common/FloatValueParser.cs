@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             _nodeValidator.EnsureSuccess(node, Id);
             var text = node.Match.ToString();
-            return float.Parse(text, CultureInfo.InvariantCulture); //TODO: we need to ensure the . is always used as separator.
+            return float.Parse(text, CultureInfo.InvariantCulture); // The Invariant culture ensures the . is always used as the decimal separator.
         }
 
         public bool CanParse(LpNode node)

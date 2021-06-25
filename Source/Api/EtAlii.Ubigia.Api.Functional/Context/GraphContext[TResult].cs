@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
         {
-            var items = Process(text, scope).ConfigureAwait(false);
+            var items = ((IGraphContext)this).Process(text, scope).ConfigureAwait(false);
 
             await foreach (var item in items)
             {

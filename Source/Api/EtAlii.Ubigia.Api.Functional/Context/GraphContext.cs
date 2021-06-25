@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public SchemaParseResult Parse(string text)
+        SchemaParseResult IGraphContext.Parse(string text)
         {
             var parserConfiguration = _traversalContext.ParserConfigurationProvider();
             var queryParserConfiguration = new SchemaParserConfiguration()
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
         {
             var configuration = new SchemaProcessorConfiguration()
                 .Use(scope)
@@ -47,9 +47,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string[] text, ISchemaScope scope)
         {
-            var queryParseResult = Parse(string.Join(Environment.NewLine, text));
+            var queryParseResult = ((IGraphContext)this).Parse(string.Join(Environment.NewLine, text));
 
             if (queryParseResult.Errors.Any())
             {
@@ -57,33 +57,33 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 throw new SchemaParserException(firstError.Message, firstError.Exception);
             }
 
-            return Process(queryParseResult.Schema, scope);
+            return ((IGraphContext)this).Process(queryParseResult.Schema, scope);
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(string text, params object[] args)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string text, params object[] args)
         {
             text = string.Format(text, args);
-            return Process(text);
+            return ((IGraphContext)this).Process(text);
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(string[] text)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string[] text)
         {
-            return Process(string.Join(Environment.NewLine, text));
+            return ((IGraphContext)this).Process(string.Join(Environment.NewLine, text));
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(string text)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string text)
         {
             var scope = new SchemaScope();
-            return Process(text, scope);
+            return ((IGraphContext)this).Process(text, scope);
         }
 
         /// <inheritdoc />
-        public IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string text, ISchemaScope scope)
         {
-            var queryParseResult = Parse(text);
+            var queryParseResult = ((IGraphContext)this).Parse(text);
 
             if (queryParseResult.Errors.Any())
             {
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 throw new SchemaParserException(firstError.Message, firstError.Exception);
             }
 
-            return Process(queryParseResult.Schema, scope);
+            return ((IGraphContext)this).Process(queryParseResult.Schema, scope);
         }
     }
 }

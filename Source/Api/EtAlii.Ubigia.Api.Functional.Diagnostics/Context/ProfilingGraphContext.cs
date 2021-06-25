@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public SchemaParseResult Parse(string text)
+        SchemaParseResult IGraphContext.Parse(string text)
         {
             var profile = Profiler.Begin("Parsing");
 
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = schema.ToString();
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(string[] text, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string[] text)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(string[] text)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string text)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(string text)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
@@ -102,7 +102,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(string text, ISchemaScope scope)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(string text, params object[] args)
+        async IAsyncEnumerable<Structure> IGraphContext.Process(string text, params object[] args)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
