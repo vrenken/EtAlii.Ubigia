@@ -32,7 +32,7 @@ namespace Moppet.Lapa.Parsers
         /// Root - root address, for example: http://hostname.dom:80.
         /// </summary>
         /// <param name="protocols">List of valid protocols. By default, only http and https are parsed.</param>
-        /// <remarks>См. также: http://tools.ietf.org/html/rfc3986 </remarks>
+        /// <remarks>see also: http://tools.ietf.org/html/rfc3986 </remarks>
         /// <returns>parser.</returns>
         public static LpsParser WebUrl(params string[] protocols)
         {
@@ -50,7 +50,7 @@ namespace Moppet.Lapa.Parsers
             var hostName = Lp.List(hostPart, '.').Id("Host");
             var port     = Lp.Digits(2, 4).Id("Port");
             var pathPart = Lp.OneOrMore(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || char.IsLetterOrDigit(c) || c == '.' || c == '-');
-#pragma warning disable S1075 - URIs should not be hardcoded
+#pragma warning disable S1075 // S1075: URIs should not be hardcoded
             var path     = ('/' + Lp.List(pathPart, '/').Id("Path")).ToParser();
 #pragma warning restore S1075
             var paramName  = Lp.OneOrMore(c => (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || (c != '=' && c != '&' && c != '#' && c != '/' && c != '?' && c != '<' && c != '>' && c != '\\' && c != '\"' && c != '\'')).Id("Name");
@@ -121,13 +121,13 @@ namespace Moppet.Lapa.Parsers
         }
 
         /// <summary>
-        /// Генерирует парсер, который разбирает именованные параметры вида: "param1=value1, param2 =value2".
-        /// Список параметров может быть в кавычках или без.
-        /// Пометки узлов: Param - параметр, состоящий из имени и значения; Name - имя параметра; Value - значение параметра.
+        /// Generates a parser that parses named parameters of the form: "param1 = value1, param2 = value2".
+        /// The parameter list can be quoted or not.
+        /// Node labels: Param - a parameter consisting of a name and a value; Name - parameter name; Value - parameter value.
         /// </summary>
-        /// <param name="maybeLeftQuote">Возможная кавычка слева. По умолчанию это двойная кавычка.</param>
-        /// <param name="maybeRightQuote">Возможная кавычка справа. По умолчанию это двойная кавычка.</param>
-        /// <param name="nameValueConverter">Конвертер результатов. Принимает имя и значение, возвращает то, что сами захотите.</param>
+        /// <param name="maybeLeftQuote">Possible quotation mark on the left. By default, this is a double quote.</param>
+        /// <param name="maybeRightQuote">Possible quotation mark on the right. By default, this is a double quote.</param>
+        /// <param name="nameValueConverter">Results converter. It takes a name and a value, returns whatever you want.</param>
         /// <returns>parser.</returns>
         private static Func<LpText, IEnumerable<TResult>> NamedParams<TResult>(char maybeLeftQuote, char maybeRightQuote, Func<string, string, TResult> nameValueConverter)
         {
