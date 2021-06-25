@@ -2,20 +2,19 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     internal class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
     {
+        // TODO: Should this class really return null values if no decent string content can be acquired?
         public Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope)
         {
             return part switch
             {
                 ConstantPathSubjectPart constantPathSubjectPart => GetConstantPathSubjectPartContent(constantPathSubjectPart),
                 VariablePathSubjectPart variablePathSubjectPart => GetVariablePathSubjectPartContent(variablePathSubjectPart, scope),
-                {} when true => Task.FromResult((string)null),
-                _ => throw new NotSupportedException($"Cannot find path content in: {part}")
+                _ => Task.FromResult((string)null),
             };
         }
 
