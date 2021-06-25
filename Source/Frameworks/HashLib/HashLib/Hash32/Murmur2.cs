@@ -238,7 +238,7 @@ namespace HashLib.Hash32
 
             while (length >= 4)
             {
-                var k = (uint)a_data[current_index++] | 
+                var k = (uint)a_data[current_index++] |
                         ((uint)a_data[current_index++] << 16);
 
                 TransformUIntFast(k);

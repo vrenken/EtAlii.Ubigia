@@ -8,8 +8,6 @@ namespace HashLib.Hash32
     internal class Murmur3 : BlockHash, IHash32, IFastHash32, IHashWithKey
     {
         private const uint KEY = 0xC58F1A7B;
-        private const uint M = 0x5BD1E995;
-        private const int R = 24;
 
         private const uint C1 = 0xCC9E2D51;
         private const uint C2 = 0x1B873593;

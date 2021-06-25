@@ -35,7 +35,6 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
                 .WriteTo.Async(writeTo =>
                 {
-                    //writeTo.Seq("http://vrenken.duckdns.org:5341");
                     writeTo.Seq("http://seq.avalon:5341");
                     writeTo.Debug(LogEventLevel.Error);
                 });

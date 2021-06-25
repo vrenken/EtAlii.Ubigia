@@ -17,7 +17,7 @@ namespace Moppet.Lapa.Parsers
     /// <summary>
     /// All sorts of useful general purpose parsers.
     /// </summary>
-    public class LpUtils
+    public static class LpUtils
     {
         /// <summary>
         /// Parser for web links like: http://hostname.dom:80/Dir/Dir/?a=1&amp;b=2#anhor.
