@@ -11,7 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public LpsParser Parser { get; }
 
-        public string Id => "BooleanValue";
+        string IBooleanValueParser.Id => Id;
+        public const string Id = "BooleanValue";
 
         private const string ValueId = "Value";
 

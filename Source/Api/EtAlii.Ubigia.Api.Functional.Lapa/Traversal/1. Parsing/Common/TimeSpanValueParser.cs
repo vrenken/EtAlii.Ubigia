@@ -13,7 +13,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "TimeSpanValue";
+        string ITimeSpanValueParser.Id => Id;
+        public const string Id = "TimeSpanValue";
 
         public TimeSpanValueParser(
             INodeValidator nodeValidator,

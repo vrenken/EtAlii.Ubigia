@@ -13,7 +13,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "DateTimeValue";
+        string IDateTimeValueParser.Id => Id;
+        public const string Id = "DateTimeValue";
 
         public DateTimeValueParser(INodeValidator nodeValidator)
         {

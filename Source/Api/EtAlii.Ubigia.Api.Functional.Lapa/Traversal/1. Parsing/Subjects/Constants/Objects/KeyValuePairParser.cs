@@ -4,13 +4,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.xTechnology.Structure;
     using Moppet.Lapa;
 
     internal class KeyValuePairParser : IKeyValuePairParser
     {
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
+        private readonly IDateTimeValueParser _dateTimeValueParser;
+        private readonly ITimeSpanValueParser _timeSpanValueParser;
+        private readonly IBooleanValueParser _booleanValueParser;
+        private readonly IIntegerValueParser _integerValueParser;
+        private readonly IFloatValueParser _floatValueParser;
         private readonly IWhitespaceParser _whitespaceParser;
 
         private readonly INodeFinder _nodeFinder;
@@ -24,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private const string ValueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
-        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
+        // private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
         private readonly LpsAlternatives _typeParsers;
 
         public KeyValuePairParser(
@@ -40,6 +44,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
+            _dateTimeValueParser = dateTimeValueParser;
+            _timeSpanValueParser = timeSpanValueParser;
+            _booleanValueParser = booleanValueParser;
+            _integerValueParser = integerValueParser;
+            _floatValueParser = floatValueParser;
             _whitespaceParser = whitespaceParser;
             _nodeFinder = nodeFinder;
 
@@ -65,14 +74,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 node => _nodeFinder.FindFirst(node, floatValueParser.Id),
 
             };
-
-            _valueParserSelector = new Selector<LpNode, Func<LpNode, object>>()
-                .Register(node => node.Id == _quotedTextParser.Id, node => _quotedTextParser.Parse(node))
-                .Register(node => node.Id == dateTimeValueParser.Id, node => dateTimeValueParser.Parse(node))
-                .Register(node => node.Id == timeSpanValueParser.Id, node => timeSpanValueParser.Parse(node))
-                .Register(node => node.Id == booleanValueParser.Id, node => booleanValueParser.Parse(node))
-                .Register(node => node.Id == integerValueParser.Id, node => integerValueParser.Parse(node))
-                .Register(node => node.Id == floatValueParser.Id, node => floatValueParser.Parse(node));
         }
 
         public void Initialize(LpsParser separator = null)
@@ -118,8 +119,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var innerValueNode = innerValueFinder(valueNode);
                 if (innerValueNode != null)
                 {
-                    var parser = _valueParserSelector.Select(innerValueNode);
-                    value = parser(innerValueNode);
+                    value = innerValueNode.Id switch
+                    {
+                        QuotedTextParser.Id => _quotedTextParser.Parse(innerValueNode),
+                        DateTimeValueParser.Id => _dateTimeValueParser.Parse(innerValueNode),
+                        TimeSpanValueParser.Id => _timeSpanValueParser.Parse(innerValueNode),
+                        BooleanValueParser.Id => _booleanValueParser.Parse(innerValueNode),
+                        IntegerValueParser.Id => _integerValueParser.Parse(innerValueNode),
+                        FloatValueParser.Id => _floatValueParser.Parse(innerValueNode),
+                        _ => throw new InvalidOperationException($"Unable to find parser for KeyValuePair: {innerValueNode.Id}")
+                    };
                     break;
                 }
             }

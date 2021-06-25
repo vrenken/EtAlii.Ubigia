@@ -11,7 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "FloatValue";
+        string IFloatValueParser.Id => Id;
+        public const string Id = "FloatValue";
 
         public FloatValueParser(INodeValidator nodeValidator)
         {
