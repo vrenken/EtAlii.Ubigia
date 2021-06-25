@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
 			await WriteToStream(context.ObjectType, context.Object, response.Body).ConfigureAwait(false);
 		}
 
-        private async Task WriteToStream(Type type, object value, Stream writeStream)
+        private Task WriteToStream(Type type, object value, Stream writeStream)
         {
             if (writeStream == null)
             {
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 // writing Null value. BSON must start with an Object or Array. Path ''.  Fortunately
                 // BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger) treats zero-
                 // length content as null or the default value of a struct.
-                return;
+                return Task.CompletedTask;
             }
 
             // See comments in ReadFromStream() above about this special case and the need to include byte[] in it.
@@ -71,25 +71,29 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 {
                     { "Value", value },
                 };
-                await WriteToStreamInternal(temporaryDictionary, writeStream).ConfigureAwait(false);
-			}
-			else
-            {
-                if (type == null)
-                {
-                    throw new ArgumentNullException(nameof(type));
-                }
-				await WriteToStreamInternal(value, writeStream).ConfigureAwait(false);
-            }
-        }
 
-        private async Task WriteToStreamInternal(object value, Stream writeStream)
-	    {
+                if (writeStream == null)
+                {
+                    throw new ArgumentNullException(nameof(writeStream));
+                }
+
+                return WriteToStreamInternal(temporaryDictionary, writeStream);
+            }
+
+            if (type == null)
+            {
+                throw new ArgumentNullException(nameof(type));
+            }
             if (writeStream == null)
             {
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
+            return WriteToStreamInternal(value, writeStream);
+        }
+
+        private async Task WriteToStreamInternal(object value, Stream writeStream)
+	    {
             using var writer = new BsonDataWriter(writeStream) { CloseOutput = false };
 
             _serializer.Serialize(writer, value);
