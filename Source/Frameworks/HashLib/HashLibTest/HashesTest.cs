@@ -91,132 +91,6 @@
         }
 
         [Fact]
-        public void HashLib_Crypto_SHA3_JH()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateJH224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateJH256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateJH384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateJH512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Echo()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateEcho224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateEcho256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateEcho384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateEcho512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Fugue()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateFugue224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateFugue256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateFugue384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateFugue512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Groestl()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateGroestl224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateGroestl256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateGroestl384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateGroestl512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Hamsi()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateHamsi224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateHamsi256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateHamsi384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateHamsi512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Keccak()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateKeccak224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateKeccak256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateKeccak384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateKeccak512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Luffa()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateLuffa224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateLuffa256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateLuffa384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateLuffa512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Shabal()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateShabal224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateShabal256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateShabal384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateShabal512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_SHAvite3()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSHAvite3_224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSHAvite3_256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSHAvite3_384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSHAvite3_512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_SIMD()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSIMD224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSIMD256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSIMD384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSIMD512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Skein()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSkein224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSkein256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSkein384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateSkein512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_CubeHash()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateCubeHash224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateCubeHash256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateCubeHash384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateCubeHash512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_Blake()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlake224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlake256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlake384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlake512());
-        }
-
-        [Fact]
-        public void HashLib_Crypto_SHA3_BlueMidnightWish()
-        {
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlueMidnightWish224());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlueMidnightWish256());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlueMidnightWish384());
-            _testContext.Test(HashFactory.Crypto.SHA3.CreateBlueMidnightWish512());
-        }
-
-        [Fact]
         public void HashLib_Crypto_RIPEMD256()
         {
             _testContext.Test(HashFactory.Crypto.CreateRIPEMD256());
@@ -497,7 +371,7 @@
             {
                 var chars = new[] { '\x1234', '\xABCD' };
                 var bytes = Converters.ConvertCharsToBytes(chars);
-                Assert.Equal(bytes.ToList(), 
+                Assert.Equal(bytes.ToList(),
                     Converters.ConvertHexStringToBytes("3412CDAB").ToList());
             }
 
@@ -532,7 +406,7 @@
             {
                 var ints = new[] { 0x12345678, 0x7BCDEF45 };
                 var bytes = Converters.ConvertIntsToBytes(ints);
-                Assert.Equal(bytes.ToList(), 
+                Assert.Equal(bytes.ToList(),
                     Converters.ConvertHexStringToBytes("7856341245EFCD7B").ToList());
             }
 
