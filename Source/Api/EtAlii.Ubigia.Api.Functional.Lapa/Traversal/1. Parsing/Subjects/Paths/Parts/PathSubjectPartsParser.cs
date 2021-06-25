@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class PathSubjectPartsParser : IPathSubjectPartsParser
     {
-        public string Id { get; } = "PathSubjectsPart";
+        public string Id => "PathSubjectsPart";
 
         public LpsParser Parser { get; }
 

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class StructureFragmentParser : IStructureFragmentParser
     {
-        public string Id { get; } = "StructureQuery";
+        public string Id => "StructureQuery";
 
         public LpsParser Parser { get; }
 

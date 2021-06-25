@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class SubjectsParser : ISubjectsParser
     {
-        public string Id { get; } = "Subjects";
+        public string Id => "Subjects";
 
         public LpsParser Parser { get; }
 

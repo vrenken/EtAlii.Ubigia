@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class OperatorsParser : IOperatorsParser
     {
-        public string Id { get; } = "Operators";
+        public string Id => "Operators";
 
         public LpsParser Parser { get; }
 

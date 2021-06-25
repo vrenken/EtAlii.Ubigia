@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class SequencePartsParser : ISequencePartsParser
     {
-        public string Id { get; } = "SequenceParts";
+        public string Id => "SequenceParts";
 
         public LpsParser Parser { get; }
 

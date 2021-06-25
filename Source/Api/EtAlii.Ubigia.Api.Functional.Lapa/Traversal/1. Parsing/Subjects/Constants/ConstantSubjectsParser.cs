@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ConstantSubjectsParser : IConstantSubjectsParser
     {
-        public string Id { get; } = "ConstantSubjects";
+        public string Id => "ConstantSubjects";
 
         public LpsParser Parser { get; }
 

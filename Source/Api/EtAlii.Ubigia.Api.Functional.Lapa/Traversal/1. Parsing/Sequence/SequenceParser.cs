@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class SequenceParser : ISequenceParser
     {
-        public string Id { get; } = "Sequence";
+        public string Id => "Sequence";
 
         private readonly ISequencePartsParser _sequencePartsParser;
 
