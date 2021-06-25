@@ -128,12 +128,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 {
                     value = innerValueNode.Id switch
                     {
-                        { } id when id == _quotedTextParser.Id => _quotedTextParser.Parse(innerValueNode),
-                        { } id when id == _dateTimeValueParser.Id => _dateTimeValueParser.Parse(innerValueNode),
-                        { } id when id == _timeSpanValueParser.Id => _timeSpanValueParser.Parse(innerValueNode),
-                        { } id when id == _booleanValueParser.Id => _booleanValueParser.Parse(innerValueNode),
-                        { } id when id == _integerValueParser.Id => _integerValueParser.Parse(innerValueNode),
-                        { } id when id == _floatValueParser.Id => _floatValueParser.Parse(innerValueNode),
+                        QuotedTextParser.Id => _quotedTextParser.Parse(innerValueNode),
+                        DateTimeValueParser.Id => _dateTimeValueParser.Parse(innerValueNode),
+                        TimeSpanValueParser.Id => _timeSpanValueParser.Parse(innerValueNode),
+                        BooleanValueParser.Id => _booleanValueParser.Parse(innerValueNode),
+                        IntegerValueParser.Id => _integerValueParser.Parse(innerValueNode),
+                        FloatValueParser.Id => _floatValueParser.Parse(innerValueNode),
                         _ => throw new NotSupportedException($"Cannot find value in: {innerValueNode.Match}")
                     };
                     break;
