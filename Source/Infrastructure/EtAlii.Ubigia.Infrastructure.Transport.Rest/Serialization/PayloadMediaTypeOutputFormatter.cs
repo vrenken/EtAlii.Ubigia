@@ -71,12 +71,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
                 {
                     { "Value", value },
                 };
-
-                if (writeStream == null)
-                {
-                    throw new ArgumentNullException(nameof(writeStream));
-                }
-
                 return WriteToStreamInternal(temporaryDictionary, writeStream);
             }
 
@@ -84,11 +78,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Rest
             {
                 throw new ArgumentNullException(nameof(type));
             }
-            if (writeStream == null)
-            {
-                throw new ArgumentNullException(nameof(writeStream));
-            }
-
             return WriteToStreamInternal(value, writeStream);
         }
 
