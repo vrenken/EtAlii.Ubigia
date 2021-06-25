@@ -100,9 +100,9 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelation)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelationToMatch)
         {
-            if (entryRelations.HasFlag(entryRelation))
+            if (entryRelations.HasFlag(entryRelationToMatch))
             {
                 foreach (var relation in relations)
                 {
@@ -124,15 +124,12 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelation)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelationToMatch)
         {
-            if (entryRelations.HasFlag(entryRelation))
+            if (entryRelations.HasFlag(entryRelationToMatch) && relation.Id != Identifier.Empty)
             {
-                if (relation.Id != Identifier.Empty)
-                {
-                    var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
-                    yield return entry;
-                }
+                var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
+                yield return entry;
             }
         }
     }

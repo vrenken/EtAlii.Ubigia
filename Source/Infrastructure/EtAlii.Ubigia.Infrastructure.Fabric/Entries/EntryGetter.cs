@@ -224,10 +224,10 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelation)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelationToMatch)
             where T : CompositeComponent
         {
-            if (entryRelations.HasFlag(entryRelation))
+            if (entryRelations.HasFlag(entryRelationToMatch))
             {
                 var components = _storage.Components.RetrieveAll<T>(containerId);
                 await foreach (var component in components.ConfigureAwait(false))
@@ -247,10 +247,10 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelation)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelationToMatch)
             where T : NonCompositeComponent
         {
-            if (entryRelations.HasFlag(entryRelation))
+            if (entryRelations.HasFlag(entryRelationToMatch))
             {
                 var component = await _storage.Components.Retrieve<T>(containerId).ConfigureAwait(false);
                 if (component != null)
