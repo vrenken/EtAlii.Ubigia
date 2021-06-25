@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _repository = entryRepository;
         }
 
-        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
             var items = _repository.Get(identifiers, entryRelations);
             await foreach (var item in items.ConfigureAwait(false))
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             }
         }
 
-        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> Get(Identifier identifier, EntryRelations entryRelations = EntryRelations.None)
         {
             var entry = await _repository.Get(identifier, entryRelations).ConfigureAwait(false);
 
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             return entry;
         }
 
-        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
             await foreach(var item in items)

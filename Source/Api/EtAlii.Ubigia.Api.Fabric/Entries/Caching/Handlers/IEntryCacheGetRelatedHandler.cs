@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     internal interface IEntryCacheGetRelatedHandler
     {
-        IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelation relations, ExecutionScope scope);
+        IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelations relations, ExecutionScope scope);
     }
 }

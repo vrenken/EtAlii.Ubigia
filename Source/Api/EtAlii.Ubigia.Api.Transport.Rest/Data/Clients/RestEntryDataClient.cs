@@ -24,12 +24,12 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return await Get(root.Identifier, scope, entryRelations).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             }).ConfigureAwait(false);
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             // TODO: this can be improved by using one single Web API call.
             foreach (var entryIdentifier in entryIdentifiers)
@@ -53,13 +53,13 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
             }
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation,
-            ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation,
+            ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, () => GetRelated(entryIdentifier, entriesWithRelation, entryRelations));
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier,EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.RelatedEntries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation, entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
             var result = await Connection.Client.Get<IEnumerable<Entry>>(address).ConfigureAwait(false);

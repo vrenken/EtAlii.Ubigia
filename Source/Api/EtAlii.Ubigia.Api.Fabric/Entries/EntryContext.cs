@@ -31,22 +31,22 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Get(root, scope, EntryRelation.All).ConfigureAwait(false);
+            return await _connection.Entries.Data.Get(root, scope, EntryRelations.All).ConfigureAwait(false);
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier identifier, ExecutionScope scope)
         {
-            return await _connection.Entries.Data.Get(identifier, scope, EntryRelation.All).ConfigureAwait(false);
+            return await _connection.Entries.Data.Get(identifier, scope, EntryRelations.All).ConfigureAwait(false);
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
-            return _connection.Entries.Data.Get(identifiers, scope, EntryRelation.All);
+            return _connection.Entries.Data.Get(identifiers, scope, EntryRelations.All);
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
-            return _connection.Entries.Data.GetRelated(identifier, relations, scope, EntryRelation.All);
+            return _connection.Entries.Data.GetRelated(identifier, relations, scope, EntryRelations.All);
         }
 
 

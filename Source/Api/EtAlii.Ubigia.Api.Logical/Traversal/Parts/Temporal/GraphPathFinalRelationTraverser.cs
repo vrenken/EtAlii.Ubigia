@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
                             foreach (var result in results)
                             {
                                 var newResults = await parameters.Context.Entries
-                                    .GetRelated(result, EntryRelation.Update, parameters.Scope)
+                                    .GetRelated(result, EntryRelations.Update, parameters.Scope)
                                     .Select(e => e.Id)
                                     .ToArrayAsync()
                                     .ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 foreach (var r in result)
                 {
                     var newResults = await context.Entries
-                        .GetRelated(r, EntryRelation.Update, scope)
+                        .GetRelated(r, EntryRelations.Update, scope)
                         .Select(e => e.Id)
                         .ToArrayAsync()
                         .ConfigureAwait(false);

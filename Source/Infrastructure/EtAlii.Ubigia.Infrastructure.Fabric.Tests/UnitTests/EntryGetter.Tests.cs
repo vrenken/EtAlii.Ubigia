@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var testIdentifier = new TestIdentifierFactory().Create();
 
             // Act.
-            var item = await entryGetter.Get(testIdentifier, EntryRelation.All).ConfigureAwait(false);
+            var item = await entryGetter.Get(testIdentifier, EntryRelations.All).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(Identifier.Empty,item.Id);

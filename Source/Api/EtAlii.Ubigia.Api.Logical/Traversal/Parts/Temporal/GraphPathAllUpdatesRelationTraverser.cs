@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical
         protected override IAsyncEnumerable<Identifier> GetNextRecursion(Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             return context.Entries
-                .GetRelated(start, EntryRelation.Update, scope)
+                .GetRelated(start, EntryRelations.Update, scope)
                 .Select(e => e.Id);
         }
     }

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     onNext: async start =>
                     {
                         var results = parameters.Context.Entries
-                            .GetRelated(start, EntryRelation.Downdate, parameters.Scope)
+                            .GetRelated(start, EntryRelations.Downdate, parameters.Scope)
                             .Select(e => e.Id);
                         await foreach (var result in results.ConfigureAwait(false))
                         {
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public IAsyncEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, IPathTraversalContext context, ExecutionScope scope)
         {
             return context.Entries
-                .GetRelated(start, EntryRelation.Downdate, scope)
+                .GetRelated(start, EntryRelations.Downdate, scope)
                 .Select(e => e.Id);
         }
     }

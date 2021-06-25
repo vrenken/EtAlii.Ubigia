@@ -7,17 +7,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
     public static class EntryRelationExtension
     {
-        public static EntryRelation ToLocal(this WireProtocol.EntryRelation entryRelation)
+        public static EntryRelations ToLocal(this WireProtocol.EntryRelation entryRelation)
         {
-            return (EntryRelation)entryRelation;
+            return (EntryRelations)entryRelation;
         }
 
-        public static WireProtocol.EntryRelation ToWire(this EntryRelation entryRelation)
+        public static WireProtocol.EntryRelation ToWire(this EntryRelations entryRelation)
         {
             return (WireProtocol.EntryRelation) entryRelation;
         }
 
-        public static IEnumerable<WireProtocol.EntryRelation> ToWire(this IEnumerable<EntryRelation> entryRelations)
+        public static IEnumerable<WireProtocol.EntryRelation> ToWire(this IEnumerable<EntryRelations> entryRelations)
         {
             return entryRelations.Select(s => s.ToWire());
         }

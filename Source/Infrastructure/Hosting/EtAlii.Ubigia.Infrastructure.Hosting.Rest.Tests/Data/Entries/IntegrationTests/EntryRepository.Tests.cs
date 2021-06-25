@@ -161,7 +161,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 0; i < _count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 0; i < _count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -206,7 +206,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 0; i < _count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -229,7 +229,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 1; i < _count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -250,7 +250,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 1; i < _count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -271,7 +271,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             for (var i = 1; i < _count; i++)
             {
                 // Act.
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -296,7 +296,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             childEntry = context.Host.Infrastructure.Entries.Store(childEntry);
 
             // Assert.
-            parentEntry = await context.Host.Infrastructure.Entries.Get(parentEntry.Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+            parentEntry = await context.Host.Infrastructure.Entries.Get(parentEntry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             Assert.True(parentEntry.Children.Count == 1);
             var childId = parentEntry.Children.First().Relations.First().Id;
             Assert.Equal(childEntry.Id, childId);
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             child2Entry = context.Host.Infrastructure.Entries.Store(child2Entry);
 
             // Assert.
-            parent2Entry = await context.Host.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+            parent2Entry = await context.Host.Infrastructure.Entries.Get(parent2Entry.Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             Assert.True(parent2Entry.Children2.Count == 1);
             var child2Id = parent2Entry.Children2.First().Relations.First().Id;
             Assert.Equal(child2Entry.Id, child2Id);
@@ -338,7 +338,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             entry = context.Host.Infrastructure.Entries.Store(entry);
 
             // Assert.
-            index = await context.Host.Infrastructure.Entries.Get(index.Id, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
+            index = await context.Host.Infrastructure.Entries.Get(index.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
             Assert.NotEqual(Relation.None, index.Indexed);
             Assert.Equal(index.Indexed.Id, entry.Id);
         }
@@ -359,7 +359,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             index = context.Host.Infrastructure.Entries.Store(index);
 
             // Assert.
-            entry = await context.Host.Infrastructure.Entries.Get(entry.Id, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
+            entry = await context.Host.Infrastructure.Entries.Get(entry.Id, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
             Assert.True(entry.Indexes.Contains(index.Id));
         }
 
@@ -374,7 +374,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -398,7 +398,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -422,7 +422,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -446,7 +446,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
@@ -471,7 +471,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
@@ -499,7 +499,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Act.
             for (var i = 0; i < _count; i++)
             {
-                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.

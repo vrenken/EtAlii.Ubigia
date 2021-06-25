@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return Task.FromResult<IReadOnlyEntry>(result);
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             var result = await _infrastructure.Entries
                 .Get(root.Identifier)
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             var result = await _infrastructure.Entries
                 .Get(entryIdentifier, entryRelations)
@@ -46,12 +46,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return result;
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return _infrastructure.Entries.Get(entryIdentifiers, entryRelations);
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return _infrastructure.Entries.GetRelated(entryIdentifier, entriesWithRelation, entryRelations);
         }

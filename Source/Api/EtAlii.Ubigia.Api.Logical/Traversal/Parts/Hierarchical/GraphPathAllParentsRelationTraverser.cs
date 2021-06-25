@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         {
                             path.Add(entry);
                             var entries = await parameters.Context.Entries
-                                .GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope)
+                                .GetRelated(entry.Id, EntryRelations.Downdate, parameters.Scope)
                                 .ToArrayAsync()
                                 .ConfigureAwait(false);
                             if (entries.Multiple())
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         {
                             entry = path[i - 1];
 
-                            var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Parent, parameters.Scope);
+                            var children = parameters.Context.Entries.GetRelated(entry.Id, EntryRelations.Parent, parameters.Scope);
                             await foreach (var child in children.ConfigureAwait(false))
                             {
                                 await Update(results, child, parameters.Context, parameters.Scope).ConfigureAwait(false);
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 path.Add(entry);
                 var entries = await context.Entries
-                    .GetRelated(entry.Id, EntryRelation.Downdate, scope)
+                    .GetRelated(entry.Id, EntryRelations.Downdate, scope)
                     .ToArrayAsync()
                     .ConfigureAwait(false);
                 if (entries.Multiple())
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 entry = path[i - 1];
 
-                var children = context.Entries.GetRelated(entry.Id, EntryRelation.Parent, scope);
+                var children = context.Entries.GetRelated(entry.Id, EntryRelations.Parent, scope);
                 await foreach (var child in children.ConfigureAwait(false)) // We cannot yield here somehow as the update method both adds and removes items.
                 {
                     await Update(result, child, context, scope).ConfigureAwait(false);

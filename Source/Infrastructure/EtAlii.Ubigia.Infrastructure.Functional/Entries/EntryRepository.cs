@@ -16,12 +16,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
-        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations = EntryRelations.None)
         {
             return _logicalContext.Entries.Get(identifier, entryRelations);
         }
 
-        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
             foreach (var identifier in identifiers)
             {
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             }
         }
 
-        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             return _logicalContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }

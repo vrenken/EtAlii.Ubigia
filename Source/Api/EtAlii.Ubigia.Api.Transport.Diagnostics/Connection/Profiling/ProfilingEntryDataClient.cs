@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             dynamic profile = _profiler.Begin("Get by root: " + root.Name);
 
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             dynamic profile = _profiler.Begin("Get by id: " + entryIdentifier.ToTimeString());
             profile.EntryIdentifier = entryIdentifier;
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             dynamic profile = _profiler.Begin("Get multiple by ids: " + string.Join(", ", entryIdentifiers.Select(e => e.ToTimeString())));
             profile.EntryIdentifiers = entryIdentifiers;
@@ -103,8 +103,8 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _profiler.End(profile);
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope,
-            EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope,
+            EntryRelations entryRelations = EntryRelations.None)
         {
             dynamic profile = _profiler.Begin("Get related: " + entryIdentifier + " (relation: " + entriesWithRelation + ")");
             profile.EntryIdentifier = entryIdentifier;

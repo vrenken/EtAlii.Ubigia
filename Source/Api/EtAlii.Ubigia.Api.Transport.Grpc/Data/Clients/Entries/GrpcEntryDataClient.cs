@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using global::Grpc.Core;
-    using EntryRelation = EtAlii.Ubigia.EntryRelation;
     using Identifier = EtAlii.Ubigia.Identifier;
     using Root = EtAlii.Ubigia.Root;
 
@@ -49,12 +48,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             return await Get(root.Identifier, scope, entryRelations).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             try
             {
@@ -72,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             // TODO: this can be improved by using one single Web API call.
 
@@ -118,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             try
             {
@@ -130,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             var metadata = new Metadata { _transport.AuthenticationHeader };
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };

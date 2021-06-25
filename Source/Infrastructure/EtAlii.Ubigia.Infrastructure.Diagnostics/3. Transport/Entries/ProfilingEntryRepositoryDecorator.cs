@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             profiler.Register(StoreCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute");
         }
 
-        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             var start = Environment.TickCount;
             var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _profiler.WriteSample(GetRelatedCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
             var start = Environment.TickCount;
             var items = _repository.Get(identifiers, entryRelations);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> Get(Identifier identifier, EntryRelations entryRelations = EntryRelations.None)
         {
             var start = Environment.TickCount;
             var entry = await _repository.Get(identifier, entryRelations).ConfigureAwait(false);

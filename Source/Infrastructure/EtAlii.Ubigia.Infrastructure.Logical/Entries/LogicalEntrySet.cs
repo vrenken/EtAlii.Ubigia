@@ -30,17 +30,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return _entryPreparer.Prepare(spaceId, id);
         }
 
-        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.Get(identifier, entryRelations);
         }
 
-        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.Get(identifiers, entryRelations);
         }
 
-        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             return _fabricContext.Entries.GetRelated(identifier, entriesWithRelation, entryRelations);
         }

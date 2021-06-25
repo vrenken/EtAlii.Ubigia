@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     if (result == null)
                     {
                         var entries = await _fabric.Entries
-                            .GetRelated(identifier, EntryRelation.Downdate, scope)
+                            .GetRelated(identifier, EntryRelations.Downdate, scope)
                             .ToArrayAsync()
                             .ConfigureAwait(false);
                         if (entries.Multiple())

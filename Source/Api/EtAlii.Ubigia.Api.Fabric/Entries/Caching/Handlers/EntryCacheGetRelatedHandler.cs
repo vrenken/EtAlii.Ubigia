@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             _contextProvider = contextProvider;
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
             var entry = _cacheHelper.Get(identifier);
             if (entry == null)
@@ -34,73 +34,73 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
 
             // Child
-            var result = Add(entry.Children, scope, relations, EntryRelation.Child);
+            var result = Add(entry.Children, scope, relations, EntryRelations.Child);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
-            result = Add(entry.Children2, scope, relations, EntryRelation.Child);
+            result = Add(entry.Children2, scope, relations, EntryRelations.Child);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Downdate
-            result = Add(entry.Downdate, scope, relations, EntryRelation.Downdate);
+            result = Add(entry.Downdate, scope, relations, EntryRelations.Downdate);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Index
-            result = Add(entry.Indexes, scope, relations, EntryRelation.Index);
+            result = Add(entry.Indexes, scope, relations, EntryRelations.Index);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Indexed
-            result = Add(entry.Indexed, scope, relations, EntryRelation.Indexed);
+            result = Add(entry.Indexed, scope, relations, EntryRelations.Indexed);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Next
-            result = Add(entry.Next, scope, relations, EntryRelation.Next);
+            result = Add(entry.Next, scope, relations, EntryRelations.Next);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Parent
-            result = Add(entry.Parent, scope, relations, EntryRelation.Parent);
+            result = Add(entry.Parent, scope, relations, EntryRelations.Parent);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
-            result = Add(entry.Parent2, scope, relations, EntryRelation.Parent);
+            result = Add(entry.Parent2, scope, relations, EntryRelations.Parent);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Previous
-            result = Add(entry.Previous, scope, relations, EntryRelation.Previous);
+            result = Add(entry.Previous, scope, relations, EntryRelations.Previous);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
 
             // Update
-            result = Add(entry.Updates, scope, relations, EntryRelation.Update);
+            result = Add(entry.Updates, scope, relations, EntryRelations.Update);
             await foreach (var item in result.ConfigureAwait(false))
             {
                 yield return item;
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope, EntryRelation entryRelations, EntryRelation entryRelation)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelation)
         {
             if (entryRelations.HasFlag(entryRelation))
             {
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope, EntryRelation entryRelations, EntryRelation entryRelation)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope, EntryRelations entryRelations, EntryRelations entryRelation)
         {
             if (entryRelations.HasFlag(entryRelation))
             {

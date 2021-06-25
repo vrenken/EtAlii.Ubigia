@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             IReadOnlyEntry result = null;
             var linkEntry = await _fabric.Entries
-                .GetRelated(entry.Id, EntryRelation.Child, scope)
+                .GetRelated(entry.Id, EntryRelations.Child, scope)
                 .SingleOrDefaultAsync()
                 .ConfigureAwait(false);
             if (linkEntry != null)
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             IReadOnlyEntry result = null;
             var linkEntry = await _fabric.Entries
-                .GetRelated(entry.Id, EntryRelation.Child, scope)
+                .GetRelated(entry.Id, EntryRelations.Child, scope)
                 .SingleOrDefaultAsync()
                 .ConfigureAwait(false);
             if (linkEntry != null)

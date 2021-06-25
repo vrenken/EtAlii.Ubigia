@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 
     public partial class EntryHub
     {
-        public async Task<Entry> GetSingle(Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<Entry> GetSingle(Identifier entryId, EntryRelations entryRelations = EntryRelations.None)
         {
             Entry response;
             try
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
             return response;
         }
 
-        public async IAsyncEnumerable<Entry> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetMultiple(IEnumerable<Identifier> entryIds, EntryRelations entryRelations = EntryRelations.None)
         {
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
             }
         }
 
-        public async IAsyncEnumerable<Entry> GetRelated(Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier entryId, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed

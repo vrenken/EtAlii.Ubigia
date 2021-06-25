@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         Task<Entry> Prepare(Guid spaceId);
         Task<Entry> Prepare(Guid spaceId, Identifier id);
 
-        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
-        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
-        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
+        Task<Entry> Get(Identifier identifier, EntryRelations entryRelations);
+        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations);
 
         Entry Store(IEditableEntry entry);
         Entry Store(Entry entry);

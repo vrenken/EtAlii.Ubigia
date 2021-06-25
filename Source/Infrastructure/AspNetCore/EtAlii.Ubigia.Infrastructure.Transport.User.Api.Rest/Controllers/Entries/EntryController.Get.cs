@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
     public partial class EntryController
     {
         [HttpGet]
-        public async Task<IActionResult> GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelations entryRelations = EntryRelations.None)
         {
             IActionResult response;
             try
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMultiple([RequiredFromQuery, ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetMultiple([RequiredFromQuery, ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelations entryRelations = EntryRelations.None)
         {
             IActionResult response;
             try
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetRelated([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IActionResult> GetRelated([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             IActionResult response;
             try

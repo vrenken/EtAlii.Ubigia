@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
         private readonly IFabricContext _context;
 
         private readonly IDictionary<Identifier, IReadOnlyEntry> _cache;
-        private readonly IDictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>> _cacheRelated;
+        private readonly IDictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>> _cacheRelated;
 
         private readonly bool _cachingEnabled;
 
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 _cachingEnabled = true;
                 _cache = new Dictionary<Identifier, IReadOnlyEntry>();
-                _cacheRelated = new Dictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>>();
+                _cacheRelated = new Dictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>>();
             }
         }
 
@@ -69,9 +69,9 @@ namespace EtAlii.Ubigia.Api.Logical
             }
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relation, ExecutionScope scope)
         {
-            var key = new Tuple<Identifier, EntryRelation>(identifier, relation);
+            var key = new Tuple<Identifier, EntryRelations>(identifier, relation);
 
             if (_cachingEnabled)
             {

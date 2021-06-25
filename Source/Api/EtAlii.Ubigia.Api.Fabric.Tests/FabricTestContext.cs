@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             foreach (var child in hierarchy)
             {
                 var previousLink = await fabric.Entries
-                    .GetRelated(parent.Id, EntryRelation.Child, scope)
+                    .GetRelated(parent.Id, EntryRelations.Child, scope)
                     .SingleOrDefaultAsync(e => e.Type == EntryType.Add)
                     .ConfigureAwait(false);
 

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _storage = storage;
         }
 
-        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             foreach (var identifier in identifiers)
             {
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        public async Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        public async Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             var containerId = _storage.ContainerProvider.FromIdentifier(identifier);
 
@@ -46,66 +46,66 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
 
             // Previous
-            components = RetrieveAndAdd<PreviousComponent>(containerId, entryRelations, EntryRelation.Previous);
+            components = RetrieveAndAdd<PreviousComponent>(containerId, entryRelations, EntryRelations.Previous);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Next
-            components = RetrieveAndAdd<NextComponent>(containerId, entryRelations, EntryRelation.Next);
+            components = RetrieveAndAdd<NextComponent>(containerId, entryRelations, EntryRelations.Next);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Update
-            components = RetrieveAndAddAll<UpdatesComponent>(containerId, entryRelations, EntryRelation.Update);
+            components = RetrieveAndAddAll<UpdatesComponent>(containerId, entryRelations, EntryRelations.Update);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Downdate
-            components = RetrieveAndAdd<DowndateComponent>(containerId, entryRelations, EntryRelation.Downdate);
+            components = RetrieveAndAdd<DowndateComponent>(containerId, entryRelations, EntryRelations.Downdate);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Parent
-            components = RetrieveAndAdd<ParentComponent>(containerId, entryRelations, EntryRelation.Parent);
+            components = RetrieveAndAdd<ParentComponent>(containerId, entryRelations, EntryRelations.Parent);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAdd<Parent2Component>(containerId, entryRelations, EntryRelation.Parent);
+            components = RetrieveAndAdd<Parent2Component>(containerId, entryRelations, EntryRelations.Parent);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Child
-            components = RetrieveAndAddAll<ChildrenComponent>(containerId, entryRelations, EntryRelation.Child);
+            components = RetrieveAndAddAll<ChildrenComponent>(containerId, entryRelations, EntryRelations.Child);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAddAll<Children2Component>(containerId, entryRelations, EntryRelation.Child);
+            components = RetrieveAndAddAll<Children2Component>(containerId, entryRelations, EntryRelations.Child);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Index
-            components = RetrieveAndAddAll<IndexesComponent>(containerId, entryRelations, EntryRelation.Index);
+            components = RetrieveAndAddAll<IndexesComponent>(containerId, entryRelations, EntryRelations.Index);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
             }
 
             // Indexed
-            components = RetrieveAndAdd<IndexedComponent>(containerId, entryRelations, EntryRelation.Indexed);
+            components = RetrieveAndAdd<IndexedComponent>(containerId, entryRelations, EntryRelations.Indexed);
             await foreach(var component in components.ConfigureAwait(false))
             {
                 selectedComponents.Add(component);
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             return entry;
         }
 
-        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             var entry = await Get(identifier, entriesWithRelation).ConfigureAwait(false);
 
@@ -145,16 +145,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddTemporalEntries(
-            EntryRelation entriesWithRelation,
-            EntryRelation entryRelations,
+            EntryRelations entriesWithRelation,
+            EntryRelations entryRelations,
             IReadOnlyEntry entry)
         {
-            if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
+            if (entriesWithRelation.HasFlag(EntryRelations.Downdate) && entry.Downdate != Relation.None)
             {
                 yield return await Get(entry.Downdate.Id, entryRelations).ConfigureAwait(false);
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Update))
+            if (entriesWithRelation.HasFlag(EntryRelations.Update))
             {
                 foreach (var update in entry.Updates)
                 {
@@ -164,25 +164,25 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddSequentialEntries(
-            EntryRelation entriesWithRelation,
-            EntryRelation entryRelations,
+            EntryRelations entriesWithRelation,
+            EntryRelations entryRelations,
             IReadOnlyEntry entry)
         {
-            if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
+            if (entriesWithRelation.HasFlag(EntryRelations.Previous) && entry.Previous != Relation.None)
             {
                 yield return await Get(entry.Previous.Id, entryRelations).ConfigureAwait(false);
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Next) || entry.Next == Relation.None) yield break;
+            if (!entriesWithRelation.HasFlag(EntryRelations.Next) || entry.Next == Relation.None) yield break;
             yield return await Get(entry.Next.Id, entryRelations).ConfigureAwait(false);
         }
 
         private async IAsyncEnumerable<Entry> AddIndexEntries(
-            EntryRelation entriesWithRelation,
-            EntryRelation entryRelations,
+            EntryRelations entriesWithRelation,
+            EntryRelations entryRelations,
             IReadOnlyEntry entry)
         {
-            if (entriesWithRelation.HasFlag(EntryRelation.Index))
+            if (entriesWithRelation.HasFlag(EntryRelations.Index))
             {
                 foreach (var index in entry.Indexes)
                 {
@@ -190,16 +190,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 }
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Indexed) || entry.Indexed == Relation.None) yield break;
+            if (!entriesWithRelation.HasFlag(EntryRelations.Indexed) || entry.Indexed == Relation.None) yield break;
             yield return await Get(entry.Parent.Id, entryRelations).ConfigureAwait(false);
         }
 
         private async IAsyncEnumerable<Entry> AddHierarchicalEntries(
-            EntryRelation entriesWithRelation,
-            EntryRelation entryRelations,
+            EntryRelations entriesWithRelation,
+            EntryRelations entryRelations,
             IReadOnlyEntry entry)
         {
-            if (entriesWithRelation.HasFlag(EntryRelation.Parent))
+            if (entriesWithRelation.HasFlag(EntryRelations.Parent))
             {
                 if (entry.Parent != Relation.None)
                 {
@@ -212,7 +212,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 }
             }
 
-            if (!entriesWithRelation.HasFlag(EntryRelation.Child)) yield break;
+            if (!entriesWithRelation.HasFlag(EntryRelations.Child)) yield break;
             foreach (var child in entry.Children)
             {
                 yield return await Get(child.Id, entryRelations).ConfigureAwait(false);
@@ -224,7 +224,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId, EntryRelation entryRelations, EntryRelation entryRelation)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelation)
             where T : CompositeComponent
         {
             if (entryRelations.HasFlag(entryRelation))
@@ -247,7 +247,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId, EntryRelation entryRelations, EntryRelation entryRelation)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId, EntryRelations entryRelations, EntryRelations entryRelation)
             where T : NonCompositeComponent
         {
             if (entryRelations.HasFlag(entryRelation))

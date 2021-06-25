@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical
         public async Task<IReadOnlyEntry> TryAddChild(Identifier location, ExecutionScope scope)
         {
             var entry = await _fabric.Entries
-                .GetRelated(location, EntryRelation.Child, scope)
+                .GetRelated(location, EntryRelations.Child, scope)
                 .SingleOrDefaultAsync()  // We do not support multiple empty childs yet.
                 .ConfigureAwait(false);
 
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Logical
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, Identifier childId, ExecutionScope scope)
         {
             var child = await _fabric.Entries
-                .GetRelated(location, EntryRelation.Child, scope)
+                .GetRelated(location, EntryRelations.Child, scope)
                 .SingleOrDefaultAsync(e => e.Id == childId)
                 .ConfigureAwait(false);
 
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Logical
         private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, string name, ExecutionScope scope)
         {
             var entry = await _fabric.Entries
-                .GetRelated(location, EntryRelation.Child, scope)
+                .GetRelated(location, EntryRelations.Child, scope)
                 .SingleOrDefaultAsync(e => e.Type == name)
                 .ConfigureAwait(false);
             if (entry != null)

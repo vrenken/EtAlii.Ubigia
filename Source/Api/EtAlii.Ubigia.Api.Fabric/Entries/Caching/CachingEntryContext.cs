@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             return _getHandler.Handle(identifiers, scope);
         }
 
-        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
             return _getRelatedHandler.Handle(identifier, relations, scope);
         }

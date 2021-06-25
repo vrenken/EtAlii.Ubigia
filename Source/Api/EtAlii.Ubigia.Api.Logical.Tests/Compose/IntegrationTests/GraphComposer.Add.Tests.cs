@@ -35,13 +35,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var updatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var updatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelations.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(updatedEntry);
             Assert.False(string.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
-            var linkedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var linkedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
-            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(finalEntry);
             Assert.Equal(itemToAdd, finalEntry.Type);
             Assert.Equal(addedEntry.Id, finalEntry.Id);
@@ -78,16 +78,16 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var updatedFirstEntry = await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var updatedFirstEntry = await fabric.Entries.GetRelated(firstEntry.Id, EntryRelations.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(updatedFirstEntry);
             Assert.False(string.IsNullOrEmpty(updatedFirstEntry.Type)); // TODO: We somehow should be able to make this value empty.
-            var linkedEntry = await fabric.Entries.GetRelated(updatedFirstEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var linkedEntry = await fabric.Entries.GetRelated(updatedFirstEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
-            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var finalEntry = await fabric.Entries.GetRelated(linkedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(finalEntry);
             Assert.Equal(addedEntry.Id, finalEntry.Id);
-            var updatedSecondEntry = await fabric.Entries.GetRelated(secondEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var updatedSecondEntry = await fabric.Entries.GetRelated(secondEntry.Id, EntryRelations.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(updatedSecondEntry);
         }
     }

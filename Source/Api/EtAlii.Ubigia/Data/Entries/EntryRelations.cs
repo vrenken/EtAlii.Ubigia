@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia
     using System;
 
     [Flags]
-    public enum EntryRelation : byte
+    public enum EntryRelations : byte
     {
         None = 0,
         Parent = 1,

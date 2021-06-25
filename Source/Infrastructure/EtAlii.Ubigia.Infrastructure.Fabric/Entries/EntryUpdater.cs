@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 var previousId = previousComponent.Relation.Id;
                 if (previousId != Identifier.Empty)
                 {
-                    var previous = (IEditableEntry) await _entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next).ConfigureAwait(false);
+                    var previous = (IEditableEntry) await _entryGetter.Get(previousId, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
                     if (previous.Next == Relation.None)
                     {
                         //_logger.Verbose("Updating entry - Adding relation from previous to next: [0] => [1]", previousId.ToTimeString(), entry.Id.ToTimeString())
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 var downdateId = downdateComponent.Relation.Id;
                 if (downdateId != Identifier.Empty)
                 {
-                    var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update).ConfigureAwait(false);
+                    var downdate = (IEditableEntry)await _entryGetter.Get(downdateId, EntryRelations.Downdate | EntryRelations.Update).ConfigureAwait(false);
                     if (!downdate.Updates.Contains(entry.Id)) 
                     {
                         //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 var parentId = parentComponent.Relation.Id;
                 if (parentId != Identifier.Empty)
                 {
-                    var parent = (IEditableEntry)await _entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                    var parent = (IEditableEntry)await _entryGetter.Get(parentId, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
                     if (!parent.Children.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
@@ -132,7 +132,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 var parent2Id = parent2Component.Relation.Id;
                 if (parent2Id != Identifier.Empty)
                 {
-                    var parent2 = (IEditableEntry)await _entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child).ConfigureAwait(false);
+                    var parent2 = (IEditableEntry)await _entryGetter.Get(parent2Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
                     if (!parent2.Children2.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
@@ -167,7 +167,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                     var indexId = indexesRelation.Id;
                     if (indexId != Identifier.Empty)
                     {
-                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
+                        var index = (IEditableEntry)await _entryGetter.Get(indexId, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
                         if (index.Indexed == Relation.None)
                         {
                             //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
@@ -197,7 +197,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 var indexedId = indexedComponent.Relation.Id;
                 if (indexedId != Identifier.Empty)
                 {
-                    var indexed = (IEditableEntry)await _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed).ConfigureAwait(false);
+                    var indexed = (IEditableEntry)await _entryGetter.Get(indexedId, EntryRelations.Index | EntryRelations.Indexed).ConfigureAwait(false);
                     if (!indexed.Indexes.Contains(entry.Id))
                     {
                         //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())

@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information("Entries retrieved for identifiers (Duration: {Duration}ms)", duration);
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relations, ExecutionScope scope)
         {
             var identifierTime = identifier.ToTimeString();
 

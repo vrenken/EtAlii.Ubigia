@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia
         private readonly bool _cacheEnabled;
         private readonly IDictionary<Identifier, IReadOnlyEntry> _entries;
 
-        private readonly IDictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>> _relatedEntries;
+        private readonly IDictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>> _relatedEntries;
 
         //private readonly IDictionary<string, Root> _roots
 
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia
         {
             _cacheEnabled = cacheEnabled;
             _entries = new Dictionary<Identifier, IReadOnlyEntry>();
-            _relatedEntries = new Dictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>>();
+            _relatedEntries = new Dictionary<Tuple<Identifier, EntryRelations>, IEnumerable<IReadOnlyEntry>>();
             //_roots = new Dictionary<string, Root>()
             _properties = new Dictionary<Identifier, PropertyDictionary>();
         }
@@ -117,11 +117,11 @@ namespace EtAlii.Ubigia
         /// <param name="getter"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async IAsyncEnumerable<IReadOnlyEntry> GetRelatedEntries(Identifier identifier, EntryRelation relation, Func<IAsyncEnumerable<IReadOnlyEntry>> getter)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelatedEntries(Identifier identifier, EntryRelations relation, Func<IAsyncEnumerable<IReadOnlyEntry>> getter)
         {
             if (_cacheEnabled)
             {
-                var cacheId = new Tuple<Identifier, EntryRelation>(identifier, relation);
+                var cacheId = new Tuple<Identifier, EntryRelations>(identifier, relation);
 
                 await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
 
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia
 
             _entries.Remove(identifier);
 
-            var itemsToRemove = new List<Tuple<Identifier, EntryRelation>>();
+            var itemsToRemove = new List<Tuple<Identifier, EntryRelations>>();
 
             var items = _relatedEntries
                 .Where(r => r.Key.Item1 == identifier)

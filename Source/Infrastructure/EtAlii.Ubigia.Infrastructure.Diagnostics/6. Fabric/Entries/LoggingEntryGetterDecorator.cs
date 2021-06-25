@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
             _decoree = decoree;
         }
 
-        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations)
         {
             return _decoree.Get(identifiers, entryRelations);
         }
 
-        public Task<Entry> Get(Identifier identifier, EntryRelation entryRelations)
+        public Task<Entry> Get(Identifier identifier, EntryRelations entryRelations)
         {
             _logger.Verbose("Getting entry: {Identifier}", identifier.ToTimeString());
 
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
         }
 
 
-        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations)
+        public IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
             _logger.Verbose("Getting entries for: {Identifier}", identifier.ToTimeString());
 

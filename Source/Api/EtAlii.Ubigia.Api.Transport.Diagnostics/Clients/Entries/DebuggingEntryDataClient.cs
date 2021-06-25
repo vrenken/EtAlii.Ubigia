@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _usage.TryGetValue(root.Identifier, out var usage);
             _usage[root.Identifier] = usage += 1;
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _usage.TryGetValue(entryIdentifier, out var usage);
             _usage[entryIdentifier] = usage += 1;
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return result;
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             dynamic profile = _profiler.Begin("Get multiple by ids: " + string.Join(", ", entryIdentifiers.Select(e => e.ToTimeString())));
             profile.EntryIdentifiers = entryIdentifiers;
@@ -114,9 +114,9 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(
             Identifier entryIdentifier,
-            EntryRelation entriesWithRelation,
+            EntryRelations entriesWithRelation,
             ExecutionScope scope,
-            EntryRelation entryRelations = EntryRelation.None)
+            EntryRelations entryRelations = EntryRelations.None)
         {
             _usage.TryGetValue(entryIdentifier, out var usage);
             _usage[entryIdentifier] = usage += 1;

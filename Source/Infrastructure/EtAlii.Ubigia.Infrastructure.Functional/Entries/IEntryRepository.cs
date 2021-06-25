@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public interface IEntryRepository
     {
-        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations = EntryRelation.None);
-        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None);
-        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None);
+        Task<Entry> Get(Identifier identifier, EntryRelations entryRelations = EntryRelations.None);
+        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None);
 
         Task<Entry> Prepare(Guid spaceId);
         Task<Entry> Prepare(Guid spaceId, Identifier identifier);

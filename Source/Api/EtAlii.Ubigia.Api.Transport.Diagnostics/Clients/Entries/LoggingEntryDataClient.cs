@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return changedEntry;
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _logger.Information("Getting entry (Root: {RootName})", root.Name);
             var start = Environment.TickCount;
@@ -67,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return entry;
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _logger.Information("Getting entry (Id: {EntryId})", entryIdentifier.ToTimeString());
             var start = Environment.TickCount;
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             return entry;
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _logger.Information("Getting multiple entries");
             var start = Environment.TickCount;
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Information("Got multiple entries (Duration: {Duration}ms)", duration);
         }
 
-        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
             _logger.Information("Getting related entries");
             var start = Environment.TickCount;

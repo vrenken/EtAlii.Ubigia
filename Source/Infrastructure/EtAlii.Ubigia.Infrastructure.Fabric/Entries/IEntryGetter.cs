@@ -7,8 +7,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
     public interface IEntryGetter
     {
-        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations);
-        Task<Entry> Get(Identifier identifier, EntryRelation entryRelations);
-        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations);
+        IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations);
+        Task<Entry> Get(Identifier identifier, EntryRelations entryRelations);
+        IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations);
     }
 }

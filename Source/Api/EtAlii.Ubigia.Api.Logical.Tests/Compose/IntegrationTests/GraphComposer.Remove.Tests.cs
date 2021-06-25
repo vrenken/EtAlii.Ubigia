@@ -50,24 +50,24 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             // Assert.
             Assert.NotNull(addedEntry);
-            var addUpdatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var addUpdatedEntry = await fabric.Entries.GetRelated(entry.Id, EntryRelations.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addUpdatedEntry);
             Assert.Equal(hierarchy.Last(), addUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var addLinkedEntry = await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var addLinkedEntry = await fabric.Entries.GetRelated(addUpdatedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addLinkedEntry);
             Assert.Equal(EntryType.Add, addLinkedEntry.Type);
-            var addFinalEntry = await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var addFinalEntry = await fabric.Entries.GetRelated(addLinkedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(addFinalEntry);
             Assert.Equal(item, addFinalEntry.Type);
             Assert.Equal(addedEntry.Id, addFinalEntry.Id);
 
-            var removeUpdatedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var removeUpdatedEntry = await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelations.Update, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeUpdatedEntry);
             Assert.Equal(hierarchy.Last(), removeUpdatedEntry.Type); // TODO: We somehow should be able to make this value empty.
-            var removeLinkedEntry = await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var removeLinkedEntry = await fabric.Entries.GetRelated(removeUpdatedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeLinkedEntry);
             Assert.Equal(EntryType.Remove, removeLinkedEntry.Type);
-            var removeFinalEntry = await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelation.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
+            var removeFinalEntry = await fabric.Entries.GetRelated(removeLinkedEntry.Id, EntryRelations.Child, scope).SingleOrDefaultAsync().ConfigureAwait(false);
             Assert.NotNull(removeFinalEntry);
             Assert.Equal(item, removeFinalEntry.Type);
             Assert.Equal(removedEntry.Id, removeFinalEntry.Id);

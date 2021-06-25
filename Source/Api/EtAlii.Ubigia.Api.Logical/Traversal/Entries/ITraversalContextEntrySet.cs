@@ -9,6 +9,6 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope);
         IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope);
-        IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope);
+        IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier identifier, EntryRelations relation, ExecutionScope scope);
     }
 }
