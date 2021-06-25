@@ -61,7 +61,7 @@
     <PackageReference Include="Serilog.Sinks.PeriodicBatching" Version="2.3.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
-    <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" PrivateAssets="all">
+    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
   </ItemGroup>
