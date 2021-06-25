@@ -111,18 +111,22 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task Process(OperatorParameters parameters)
         {
-            var lastRightPartHasTag = false;
+            var lastRightPathSubjectPartHasNoTag = true;
             if (parameters.RightSubject is PathSubject rightSubjectAsPathSubject)
             {
                 if (rightSubjectAsPathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart)
                 {
-                    lastRightPartHasTag = !string.IsNullOrEmpty(taggedPathSubjectPart.Tag);
+                    lastRightPathSubjectPartHasNoTag = string.IsNullOrEmpty(taggedPathSubjectPart.Tag);
+                }
+                else
+                {
+                    lastRightPathSubjectPartHasNoTag = false;
                 }
             }
-            IAssignOperatorSubProcessor assigner = (parameters.LeftSubject, parameters.RightSubject, lastRightPartHasTag) switch
+            IAssignOperatorSubProcessor assigner = (parameters.LeftSubject, parameters.RightSubject, lastRightPathSubjectPartHasNoTag) switch
             {
                 //RegisterOutputSubProcessors
-                (EmptySubject, PathSubject, false) => _assignTagToOutputOperatorSubProcessor,
+                (EmptySubject, PathSubject, true) => _assignTagToOutputOperatorSubProcessor,
                 (EmptySubject, PathSubject, _) => _assignPathToOutputOperatorSubProcessor,
                 (EmptySubject, FunctionSubject, _) => _assignFunctionToOutputOperatorSubProcessor,
                 (EmptySubject, ConstantSubject, _) => _assignConstantToOutputOperatorSubProcessor,
@@ -132,7 +136,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 (EmptySubject, EmptySubject, _) => _assignEmptyToOutputOperatorSubProcessor,
 
                 //RegisterVariableSubProcessors
-                (VariableSubject, PathSubject, false) => _assignTagToVariableOperatorSubProcessor,
+                (VariableSubject, PathSubject, true) => _assignTagToVariableOperatorSubProcessor,
                 (VariableSubject, PathSubject, _) => _assignPathToVariableOperatorSubProcessor,
                 (VariableSubject, FunctionSubject, _) => _assignFunctionToVariableOperatorSubProcessor,
                 (VariableSubject, ConstantSubject, _) => _assignConstantToVariableOperatorSubProcessor,
@@ -149,7 +153,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 (PathSubject, EmptySubject, _) => _assignEmptyToPathOperatorSubProcessor,
 
                 //RegisterFunctionSubProcessors
-                (FunctionSubject, PathSubject, false) => _assignTagToFunctionOperatorSubProcessor,
+                (FunctionSubject, PathSubject, true) => _assignTagToFunctionOperatorSubProcessor,
                 (FunctionSubject, PathSubject, _) => _assignPathToFunctionOperatorSubProcessor,
                 (FunctionSubject, FunctionSubject, _) => _assignFunctionToFunctionOperatorSubProcessor,
                 (FunctionSubject, ConstantSubject, _) => _assignConstantToFunctionOperatorSubProcessor,
