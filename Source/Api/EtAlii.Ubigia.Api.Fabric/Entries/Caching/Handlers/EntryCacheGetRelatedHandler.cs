@@ -23,9 +23,6 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public async IAsyncEnumerable<IReadOnlyEntry> Handle(Identifier identifier, EntryRelation relations, ExecutionScope scope)
         {
-
-            IAsyncEnumerable<IReadOnlyEntry> result;
-
             var entry = _cacheHelper.Get(identifier);
             if (entry == null)
             {
@@ -36,91 +33,84 @@ namespace EtAlii.Ubigia.Api.Fabric
                 }
             }
 
-            if (relations.HasFlag(EntryRelation.Child))
+            // Child
+            var result = Add(entry.Children, scope, relations, EntryRelation.Child);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Children, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
-                result = Add(entry.Children2, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
+            }
+            result = Add(entry.Children2, scope, relations, EntryRelation.Child);
+            await foreach (var item in result.ConfigureAwait(false))
+            {
+                yield return item;
+            }
 
-            }
-            if (relations.HasFlag(EntryRelation.Downdate))
+            // Downdate
+            result = Add(entry.Downdate, scope, relations, EntryRelation.Downdate);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Downdate, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Index))
+
+            // Index
+            result = Add(entry.Indexes, scope, relations, EntryRelation.Index);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Indexes, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Indexed))
+
+            // Indexed
+            result = Add(entry.Indexed, scope, relations, EntryRelation.Indexed);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Indexed, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Next))
+
+            // Next
+            result = Add(entry.Next, scope, relations, EntryRelation.Next);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Next, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Parent))
+
+            // Parent
+            result = Add(entry.Parent, scope, relations, EntryRelation.Parent);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Parent, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
-                result = Add(entry.Parent2, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Previous))
+            result = Add(entry.Parent2, scope, relations, EntryRelation.Parent);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Previous, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
             }
-            if (relations.HasFlag(EntryRelation.Update))
+
+            // Previous
+            result = Add(entry.Previous, scope, relations, EntryRelation.Previous);
+            await foreach (var item in result.ConfigureAwait(false))
             {
-                result = Add(entry.Updates, scope);
-                await foreach (var item in result.ConfigureAwait(false))
-                {
-                    yield return item;
-                }
+                yield return item;
+            }
+
+            // Update
+            result = Add(entry.Updates, scope, relations, EntryRelation.Update);
+            await foreach (var item in result.ConfigureAwait(false))
+            {
+                yield return item;
             }
         }
 
-        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope)
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(IEnumerable<Relation> relations, ExecutionScope scope, EntryRelation entryRelations, EntryRelation entryRelation)
         {
-            foreach(var relation in relations)
+            if (entryRelations.HasFlag(entryRelation))
             {
-                var result = Add(relation, scope);
-                await foreach (var item in result.ConfigureAwait(false))
+                foreach (var relation in relations)
                 {
-                    yield return item;
+                    var result = Add(relation, scope);
+                    await foreach (var item in result.ConfigureAwait(false))
+                    {
+                        yield return item;
+                    }
                 }
             }
         }
@@ -131,6 +121,18 @@ namespace EtAlii.Ubigia.Api.Fabric
             {
                 var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
                 yield return entry;
+            }
+        }
+
+        private async IAsyncEnumerable<IReadOnlyEntry> Add(Relation relation, ExecutionScope scope, EntryRelation entryRelations, EntryRelation entryRelation)
+        {
+            if (entryRelations.HasFlag(entryRelation))
+            {
+                if (relation.Id != Identifier.Empty)
+                {
+                    var entry = await _entryGetHandler.Handle(relation.Id, scope).ConfigureAwait(false);
+                    yield return entry;
+                }
             }
         }
     }

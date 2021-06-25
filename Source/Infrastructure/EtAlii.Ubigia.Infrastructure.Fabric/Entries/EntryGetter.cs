@@ -45,79 +45,70 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
                 selectedComponents.Add(component);
             }
 
-            if (entryRelations.HasFlag(EntryRelation.Previous))
+            // Previous
+            components = RetrieveAndAdd<PreviousComponent>(containerId, entryRelations, EntryRelation.Previous);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAdd<PreviousComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Next))
+
+            // Next
+            components = RetrieveAndAdd<NextComponent>(containerId, entryRelations, EntryRelation.Next);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAdd<NextComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Update))
+
+            // Update
+            components = RetrieveAndAddAll<UpdatesComponent>(containerId, entryRelations, EntryRelation.Update);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAddAll<UpdatesComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Downdate))
+
+            // Downdate
+            components = RetrieveAndAdd<DowndateComponent>(containerId, entryRelations, EntryRelation.Downdate);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAdd<DowndateComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Parent))
+
+            // Parent
+            components = RetrieveAndAdd<ParentComponent>(containerId, entryRelations, EntryRelation.Parent);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAdd<ParentComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-                components = RetrieveAndAdd<Parent2Component>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Child))
+            components = RetrieveAndAdd<Parent2Component>(containerId, entryRelations, EntryRelation.Parent);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAddAll<ChildrenComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
-                components = RetrieveAndAddAll<Children2Component>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Index))
+
+            // Child
+            components = RetrieveAndAddAll<ChildrenComponent>(containerId, entryRelations, EntryRelation.Child);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAddAll<IndexesComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
             }
-            if (entryRelations.HasFlag(EntryRelation.Indexed))
+            components = RetrieveAndAddAll<Children2Component>(containerId, entryRelations, EntryRelation.Child);
+            await foreach(var component in components.ConfigureAwait(false))
             {
-                components = RetrieveAndAdd<IndexedComponent>(containerId);
-                await foreach(var component in components.ConfigureAwait(false))
-                {
-                    selectedComponents.Add(component);
-                }
+                selectedComponents.Add(component);
+            }
+
+            // Index
+            components = RetrieveAndAddAll<IndexesComponent>(containerId, entryRelations, EntryRelation.Index);
+            await foreach(var component in components.ConfigureAwait(false))
+            {
+                selectedComponents.Add(component);
+            }
+
+            // Indexed
+            components = RetrieveAndAdd<IndexedComponent>(containerId, entryRelations, EntryRelation.Indexed);
+            await foreach(var component in components.ConfigureAwait(false))
+            {
+                selectedComponents.Add(component);
             }
 
             var entry = EntryHelper.Compose(selectedComponents, true);
@@ -154,8 +145,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddTemporalEntries(
-            EntryRelation entriesWithRelation, 
-            EntryRelation entryRelations, 
+            EntryRelation entriesWithRelation,
+            EntryRelation entryRelations,
             IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
@@ -173,8 +164,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddSequentialEntries(
-            EntryRelation entriesWithRelation, 
-            EntryRelation entryRelations, 
+            EntryRelation entriesWithRelation,
+            EntryRelation entryRelations,
             IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
@@ -187,7 +178,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddIndexEntries(
-            EntryRelation entriesWithRelation, 
+            EntryRelation entriesWithRelation,
             EntryRelation entryRelations,
             IReadOnlyEntry entry)
         {
@@ -204,8 +195,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         }
 
         private async IAsyncEnumerable<Entry> AddHierarchicalEntries(
-            EntryRelation entriesWithRelation, 
-            EntryRelation entryRelations, 
+            EntryRelation entriesWithRelation,
+            EntryRelation entryRelations,
             IReadOnlyEntry entry)
         {
             if (entriesWithRelation.HasFlag(EntryRelation.Parent))
@@ -233,13 +224,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             }
         }
 
-        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId)
+        private async IAsyncEnumerable<IComponent> RetrieveAndAddAll<T>(ContainerIdentifier containerId, EntryRelation entryRelations, EntryRelation entryRelation)
             where T : CompositeComponent
         {
-            var components = _storage.Components.RetrieveAll<T>(containerId);
-            await foreach (var component in components.ConfigureAwait(false))
+            if (entryRelations.HasFlag(entryRelation))
             {
-                yield return component;
+                var components = _storage.Components.RetrieveAll<T>(containerId);
+                await foreach (var component in components.ConfigureAwait(false))
+                {
+                    yield return component;
+                }
             }
         }
 
@@ -250,6 +244,19 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             if (component != null)
             {
                 yield return component;
+            }
+        }
+
+        private async IAsyncEnumerable<IComponent> RetrieveAndAdd<T>(ContainerIdentifier containerId, EntryRelation entryRelations, EntryRelation entryRelation)
+            where T : NonCompositeComponent
+        {
+            if (entryRelations.HasFlag(entryRelation))
+            {
+                var component = await _storage.Components.Retrieve<T>(containerId).ConfigureAwait(false);
+                if (component != null)
+                {
+                    yield return component;
+                }
             }
         }
     }

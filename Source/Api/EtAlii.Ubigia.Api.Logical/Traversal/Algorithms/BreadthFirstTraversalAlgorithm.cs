@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
         }
         public async Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
-            IEnumerable<Identifier> previousResult = new[] { current };
+            IEnumerable<Identifier> currentResult = new[] { current };
 
             for (var i = 0; i < graphPath.Length; i++)
             {
@@ -27,31 +27,43 @@ namespace EtAlii.Ubigia.Api.Logical
                 var iterationResult = new List<Identifier>();
 
                 var isLast = i == graphPath.Length - 1;
-                foreach (var identifier in previousResult)
+                foreach (var identifier in currentResult)
                 {
-                    var relatedNodes = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
-
-                    if (isLast)
-                    {
-                        await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
-                        {
-                            finalOutput.OnNext(relatedNode);
-                        }
-                    }
-                    else
-                    {
-                        await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
-                        {
-                            iterationResult.Add(relatedNode);
-                        }
-                    }
+                    await HandleCurrentResult(context, scope, finalOutput, traverser, currentGraphPathPart, identifier, isLast, iterationResult).ConfigureAwait(false);
                 }
                 if (!isLast)
                 {
-                    previousResult = iterationResult;
+                    currentResult = iterationResult;
                 }
             }
         }
 
+        private async Task HandleCurrentResult(
+            IPathTraversalContext context,
+            ExecutionScope scope,
+            IObserver<Identifier> finalOutput,
+            IGraphPathPartTraverser traverser,
+            GraphPathPart currentGraphPathPart,
+            Identifier identifier,
+            bool isLast,
+            List<Identifier> iterationResult)
+        {
+            var relatedNodes = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
+
+            if (isLast)
+            {
+                await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                {
+                    finalOutput.OnNext(relatedNode);
+                }
+            }
+            else
+            {
+                await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                {
+                    iterationResult.Add(relatedNode);
+                }
+            }
+        }
     }
 }

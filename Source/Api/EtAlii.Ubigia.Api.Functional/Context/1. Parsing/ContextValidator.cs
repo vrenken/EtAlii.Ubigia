@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public void Validate(Schema schema)
         {
+            // The idea is that this method will validate the correctness of the provided schema.
         }
     }
 }
