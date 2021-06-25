@@ -57,7 +57,7 @@ namespace HashLib
         }
     }
 
-    public interface IHashWithKey : IHash, IWithKey
+    public interface IHashWithKey : IWithKey
     {
     }
 

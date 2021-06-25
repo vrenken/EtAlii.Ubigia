@@ -429,41 +429,6 @@
             //});
         }
 
-
-        /// <summary>
-        /// Parser search a single character.
-        /// The expression builder to parse the ones char.
-        /// </summary>
-        /// <param name="predicate">The predicate to select char.</param>
-        /// <returns>The lambda expression.</returns>
-        [Obsolete("Not tested.")]
-        public static Expression<Func<LpText, LpNode>> One(Expression<Func<char, bool>> predicate)
-        {
-            var text = Param<LpText>("text");      // Input parameter.
-            var ch = Var<char>("ch");              // Argument for predicate
-            var pred = ExtractBody(predicate, ch); // A copy of the body of the lambda expression.
-            var returnTarget = Expression.Label(typeof(LpNode));
-
-            var block = Expression.Block
-            (
-                new[] { ch },
-                Expression.IfThen
-                (
-                    Expression.GreaterThan(Expression.PropertyOrField(text, "Length"), Expression.Constant(0)),
-                    Expression.Block
-                    (
-                        Expression.Assign(ch, Expression.Call(LpText_Source(text), _stringGetCharsMethodInfo, LpText_Index(text))), // ch = text.Source[text.Index]
-                        Expression.IfThen(pred, Expression.Return(returnTarget, LpNode_Take(text, Expression.Constant(1))))
-                    )
-                ),
-                Expression.Label(returnTarget, LpNode_Fail(text))
-            );
-            var one = Expression.Lambda<Func<LpText, LpNode>>(block, text);
-            return one;
-        }
-
-
-
         #region Helpers
 
         /// <summary>
