@@ -33,7 +33,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public Subject ParsePath(string text)
         {
-            // TODO: This class should also be able to cope with rooted paths.
+            // This class might not be able to cope with rooted paths.
+            // As the primary development switched to the Antlr parsers we need to consider when to update this one.
             var node = _nonRootedParser.Do(text);
             _nodeValidator.EnsureSuccess(node, Id, false);
             var childNode = node.Children.Single();
