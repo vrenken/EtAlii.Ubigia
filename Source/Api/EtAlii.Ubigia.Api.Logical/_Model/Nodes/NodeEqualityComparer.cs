@@ -34,19 +34,12 @@ namespace EtAlii.Ubigia.Api.Logical
             return ((IInternalNode)x).Entry.Id == ((IInternalNode)y).Entry.Id;
         }
 
-        #pragma warning disable S2328
-        // TODO: Investigate Node.GetHashCode behavior.
-        // Ok, calculating the hash from a non-readonly member is a bad thing, however in the case of a Node we use
-        // a pattern of lazy-loading/updating for which it feels it is allowed to calculate the hash from the most
-        // recent Identifier. However, we must investigate this further to see if it really is not a problem.
-        // Thinking about it further it really might be a bad thing. However it is outside of the current scope
-        // of activities (providing proof for Ubiquitous Information Systems). Therefore we convert the
-        // SonarCube bug warning into a to-do. Below some more information:
-        // http://sonarqube/coding_rules?open=csharpsquid%3AS2328&rule_key=csharpsquid%3AS2328
+        // Is this GetHashCode behavior correct?
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/75
         public int GetHashCode(Node obj)
         {
             return ((IInternalNode)obj).Entry.Id.GetHashCode();
         }
-        #pragma warning restore S2328
     }
 }
