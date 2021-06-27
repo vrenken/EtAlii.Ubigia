@@ -40,7 +40,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 throw new ScriptProcessingException($"Variable {variableName} not assigned");
             }
 
-            // TODO: At this moment we only allow single items to be used as path variables.
+            // At this moment we only allow single items to be used as path variables.
+            // Would this make sense to improve?
+            // More info can be found in the GitHub item linked below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/67
+
             var variableValue = await variable.Value.SingleAsync();
 
             var subject = variableValue switch

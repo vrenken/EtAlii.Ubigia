@@ -19,7 +19,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task<PathSubjectPart[]> Convert(ScopeVariable variable)
         {
-            // TODO: At this moment we only allow single items to be used as path variables.
+            // At this moment we only allow single items to be used as path variables.
+            // Would this make sense to improve?
+            // More info can be found in the GitHub item linked below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/67
+
             var value = await variable.Value.SingleAsync();
 
             return value switch
