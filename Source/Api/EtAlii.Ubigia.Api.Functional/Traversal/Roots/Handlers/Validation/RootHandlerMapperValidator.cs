@@ -82,7 +82,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var firstAsString = string.Concat(first.Select(part => part.ToString()));
                 var secondAsString = string.Concat(second.Select(part => part.ToString()));
 
-                result = firstAsString == secondAsString; // TODO: Is this enough to compare root subject paths?!
+                // Is this comparison enough to compare root subject paths?!
+                // More details can be found in the Github issue below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/70
+                result = firstAsString == secondAsString;
             }
             return result;
         }
