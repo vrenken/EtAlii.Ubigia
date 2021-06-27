@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void ProfilerIdentifier_AreEqual_02()
         {
             // Arrange.
-            var first = new ProfilingAspect(ProfilingLayer.Functional, "Context");
+            var first = new ProfilingAspect(ProfilingLayer.Functional, "Traversal context");
             var second = ProfilingAspects.Functional.TraversalContext;
 
 
