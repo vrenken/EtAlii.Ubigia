@@ -454,6 +454,7 @@ ProjectSection(SolutionItems) = preProject
 	..\.github\workflows\build+test.yml = ..\.github\workflows\build+test.yml
 	..\.github\workflows\analyse-codeql.yml = ..\.github\workflows\analyse-codeql.yml
 	..\.github\workflows\analyse-sonarcloud.yaml = ..\.github\workflows\analyse-sonarcloud.yaml
+	..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR.csproj", "{B433801E-0F22-4867-9574-8A90109A559B}"

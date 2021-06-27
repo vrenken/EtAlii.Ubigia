@@ -21,5 +21,7 @@ jobs:
         run: dotnet build --no-restore .\Source\EtAlii.Ubigia.sln
       - name: Test
         run: dotnet test --no-build --verbosity normal .\Source\EtAlii.Ubigia.sln
-      - name: Publish
-        run: dotnet nuget push .\Source\**\*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_TOKEN }} --source https://api.nuget.org/v3/index.json
+      - name: Publish EtAlii.xTechnology
+        run: dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json
+      - name: Publish EtAlii.Ubigia
+        run: dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }} --source https://api.nuget.org/v3/index.json
