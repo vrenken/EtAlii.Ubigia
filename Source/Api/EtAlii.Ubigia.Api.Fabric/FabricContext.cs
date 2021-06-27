@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                     if (Connection.IsConnected)
                     {
                         var task = Connection.Close();
-                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
+                        task.Wait();
                     }
                 }
                 catch //(Exception e)
