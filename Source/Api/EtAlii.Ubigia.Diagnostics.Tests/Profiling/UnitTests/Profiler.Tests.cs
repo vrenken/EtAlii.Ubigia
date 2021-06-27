@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
             // Arrange.
 
             // Act.
-            var profiler = new Profiler(ProfilingAspects.Functional.Context);
+            var profiler = new Profiler(ProfilingAspects.Functional.TraversalContext);
 
             // Assert.
             Assert.NotNull(profiler);
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Create_Child()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context);
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext);
 
             // Act.
             var profiler = new Profiler(root, ProfilingAspects.Functional.ScriptProcessor);
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Create_Child_And_Profile_01()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context) {Aspects = ProfilingAspects.Functional.All};
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext) {Aspects = ProfilingAspects.Functional.All};
             var profiler = root.Create(ProfilingAspects.Functional.ScriptProcessor);
 
             ProfilingResult result = null;
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Create_Child_And_Profile_02()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context) {Aspects = ProfilingAspects.Functional.All};
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext) {Aspects = ProfilingAspects.Functional.All};
 
             var results = new List<ProfilingResult>();
             root.ProfilingStarted += r => results.Add(r);
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Create_Child_And_Profile_03()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context) {Aspects = ProfilingAspects.Functional.All};
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext) {Aspects = ProfilingAspects.Functional.All};
 
             var results = new List<ProfilingResult>();
             root.ProfilingStarted += r => results.Add(r);
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Create_Child_And_Profile_04()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context) {Aspects = ProfilingAspects.Functional.All};
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext) {Aspects = ProfilingAspects.Functional.All};
 
             var results = new List<ProfilingResult>();
             root.ProfilingStarted += r => results.Add(r);
@@ -122,7 +122,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Start()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context);
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext);
             var profiler = new Profiler(root, ProfilingAspects.Functional.ScriptProcessor)
             {
                 Aspects = ProfilingAspects.Functional.All
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         public void Profiler_Start_Stop()
         {
             // Arrange.
-            var root = new Profiler(ProfilingAspects.Functional.Context);
+            var root = new Profiler(ProfilingAspects.Functional.TraversalContext);
             var profiler = new Profiler(root, ProfilingAspects.Functional.ScriptProcessor)
             {
                 Aspects = ProfilingAspects.Functional.All

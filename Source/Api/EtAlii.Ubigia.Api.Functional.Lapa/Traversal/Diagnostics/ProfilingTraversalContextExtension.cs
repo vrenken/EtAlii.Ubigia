@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.RegisterDecorator(typeof(IScriptParserFactory), typeof(ProfilingScriptParserFactory));
             container.RegisterDecorator(typeof(IPathParserFactory), typeof(ProfilingPathParserFactory));
 
-            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.Context));
+            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.TraversalContext));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             IProfiler profiler)
         {
             _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptSet);  // TODO: this should be Functional.QuerySet.
+            Profiler = profiler.Create(ProfilingAspects.Functional.GraphContext);
         }
 
         /// <inheritdoc />

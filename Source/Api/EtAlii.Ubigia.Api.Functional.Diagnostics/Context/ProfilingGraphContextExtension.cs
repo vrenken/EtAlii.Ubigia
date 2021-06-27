@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             //container.RegisterDecorator(typeof(IQueryProcessorFactory), typeof(ProfilingQueryProcessorFactory))
             //container.RegisterDecorator(typeof(IQueryParserFactory), typeof(ProfilingQueryParserFactory))
 
-            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.Context));
+            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.GraphContext));
         }
     }
 }

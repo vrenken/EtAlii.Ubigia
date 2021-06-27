@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
         {
             // Arrange.
             var first = new ProfilingAspect(ProfilingLayer.Functional, "Context");
-            var second = ProfilingAspects.Functional.Context;
+            var second = ProfilingAspects.Functional.TraversalContext;
 
 
             // Act.
