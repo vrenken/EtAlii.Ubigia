@@ -17,7 +17,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
         internal IFabricContext Fabric { get; }
 
-        // TODO: Shouldn't these factories just be their instances? e.g. GraphPathTraverser?
+        // Shouldn't these factories just be their instances? e.g. GraphPathTraverser?
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/71
         internal IGraphPathTraverserFactory GraphPathTraverserFactory { get; }
 
         public LogicalNodeSet(
