@@ -12,11 +12,9 @@ namespace EtAlii.Ubigia
         private static readonly Dictionary<Type, string> _componentNames = new();
         private static readonly object[] _emptyConstructorParameters = Array.Empty<object>();
 
-        /// <summary>
-        /// TODO: this method could be completely replaced by the Generic GetName method.
-        /// </summary>
-        /// <param name="containerComponent"></param>
-        /// <returns></returns>
+        // Can ComponentHelper.GetName be completely replaced by the Generic GetName method?
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/77
         public static string GetName(IComponent containerComponent)
         {
             return ((ComponentBase)containerComponent).Name;
