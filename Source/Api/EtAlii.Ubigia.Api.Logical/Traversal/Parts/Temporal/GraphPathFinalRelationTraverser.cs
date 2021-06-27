@@ -64,8 +64,10 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             while (result.Any());
 
-            // TODO: This feels fishy. Why would we not use the results and only the previous result?
+            // This feels fishy. Why would we not use the results and only the previous result?
             // This previous result is only being added once.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/72
             foreach (var item in previousResult)
             {
                 yield return item;
