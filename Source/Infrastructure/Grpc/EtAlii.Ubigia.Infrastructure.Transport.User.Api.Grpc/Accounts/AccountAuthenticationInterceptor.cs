@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
     using global::Grpc.Core;
     using global::Grpc.Core.Interceptors;
 
-    public class AccountAuthenticationInterceptor : Interceptor, IAccountAuthenticationInterceptor 
+    public class AccountAuthenticationInterceptor : Interceptor, IAccountAuthenticationInterceptor
     {
        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
@@ -23,19 +23,21 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             var authenticationTokenHeader = headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
             if (authenticationTokenHeader == null)
             {
-                throw new InvalidOperationException("Unable to authenticate: no authentication token header.");                
+                throw new InvalidOperationException("Unable to authenticate: no authentication token header.");
             }
 //            if [![headers.SingleOrDefault[h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is [ ] authenticationTokenHeader]]
 //            [
-//                throw new InvalidOperationException("Unable to authenticate: no authentication token header.")                
+//                throw new InvalidOperationException("Unable to authenticate: no authentication token header.")
 //            ]
-            
+
             var authenticationToken = authenticationTokenHeader.Value;
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
-            
-            // TODO: Check space ID.
+
+            // The EnsureUserIsAuthenticated method should also check the space ID.
+            // More information can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/78
         }
-        
+
         public override Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context,
             UnaryServerMethod<TRequest, TResponse> continuation)
         {
@@ -75,7 +77,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
         public override AsyncServerStreamingCall<TResponse> AsyncServerStreamingCall<TRequest, TResponse>(
             TRequest request,
-            ClientInterceptorContext<TRequest, TResponse> context, 
+            ClientInterceptorContext<TRequest, TResponse> context,
             AsyncServerStreamingCallContinuation<TRequest, TResponse> continuation)
         {
             EnsureUserIsAuthenticated(context.Options.Headers);
@@ -83,7 +85,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
         }
 
         public override Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(
-            IAsyncStreamReader<TRequest> requestStream, 
+            IAsyncStreamReader<TRequest> requestStream,
             ServerCallContext context,
             ClientStreamingServerMethod<TRequest, TResponse> continuation)
         {
@@ -93,8 +95,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 
         public override Task DuplexStreamingServerHandler<TRequest, TResponse>(
             IAsyncStreamReader<TRequest> requestStream,
-            IServerStreamWriter<TResponse> responseStream, 
-            ServerCallContext context, 
+            IServerStreamWriter<TResponse> responseStream,
+            ServerCallContext context,
             DuplexStreamingServerMethod<TRequest, TResponse> continuation)
         {
             EnsureUserIsAuthenticated(context.RequestHeaders);
@@ -102,14 +104,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
         }
 
         public override Task ServerStreamingServerHandler<TRequest, TResponse>(
-            TRequest request, 
+            TRequest request,
             IServerStreamWriter<TResponse> responseStream,
-            ServerCallContext context, 
+            ServerCallContext context,
             ServerStreamingServerMethod<TRequest, TResponse> continuation)
         {
             EnsureUserIsAuthenticated(context.RequestHeaders);
             return base.ServerStreamingServerHandler(request, responseStream, context, continuation);
         }
-        
+
     }
 }
