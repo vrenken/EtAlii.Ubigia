@@ -24,7 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var pathPattern = (next as WildcardPathSubjectPart)?.Pattern;
                 //var templatePattern = ((WildcardPathSubjectPart) parameters.CurrentTemplatePart).Pattern
 
-                //TODO: Currently a wildcard path always matches. We might want to change this in the future.
+                // Currently a wildcard path always matches. We might want to change this in the future.
+                // More details can be found in the GitHub item below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/68
                 canMatch = pathPattern != null;
             }
             return Task.FromResult(canMatch);
