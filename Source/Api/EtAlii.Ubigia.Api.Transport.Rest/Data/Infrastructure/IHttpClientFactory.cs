@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
     public interface IHttpClientFactory
     {
-        // TODO: Usage of these client probably can be cached. However, if we do so the corresponding correlation headers should be applied differently as well.
         /// <summary>
         /// Create a new HttpClient, configured to access the Ubigia storage specified.
         /// </summary>
