@@ -22,6 +22,13 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal .\Source\EtAlii.Ubigia.sln
       - name: Publish EtAlii.xTechnology
-        run: dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json
+#        run: dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: |
+          $packages = Get-ChildItem -Include EtAlii.xTechnology.*.nupkg -Recurse
+          $packages | foreach { dotnet nuget push $_.FullName --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json }
       - name: Publish EtAlii.Ubigia
-        run: dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }} --source https://api.nuget.org/v3/index.json
+#        run: dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: |
+          $packages = Get-ChildItem -Include EtAlii.Ubigia.*.nupkg -Recurse
+          $packages | foreach { dotnet nuget push $_.FullName --skip-duplicate --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }} --source https://api.nuget.org/v3/index.json }
+
