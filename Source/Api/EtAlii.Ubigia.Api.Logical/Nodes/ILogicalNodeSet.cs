@@ -12,16 +12,12 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output);
 
-        // TODO: Refactor to IObserver<object> output pattern and get rid of the async await constructions.
+        // Can these 4 Assign method in ILogicalNodeSet be refactored to adhere to the IObserver<object> pattern?
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/74
         Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope);
-
-        // TODO: Refactor to IObserver<object> output pattern and get rid of the async await constructions.
         Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope);
-
-        // TODO: Refactor to IObserver<object> output pattern and get rid of the async await constructions.
         Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope);
-
-        // TODO: Refactor to IObserver<object> output pattern and get rid of the async await constructions.
         Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope);
 
         Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope);
