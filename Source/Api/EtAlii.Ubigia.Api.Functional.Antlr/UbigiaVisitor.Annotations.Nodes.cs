@@ -89,7 +89,8 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             var sequence = (Sequence)Visit(context.sequence());
 
-            // TODO: This is fundamentally wrong, but should get us going.
+            // This is fundamentally wrong, but should get us going.
+            // See https://github.com/vrenken/EtAlii.Ubigia/issues/66 for more info.
             var path = sequence.Parts
                 .OfType<PathSubject>()
                 .FirstOrDefault();
