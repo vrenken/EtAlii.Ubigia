@@ -18,6 +18,8 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
 
         public ProfilingAspect ScriptProcessor { get; } = new(ProfilingLayer.Functional, "Script processor");
 
+        public ProfilingAspect SchemaProcessor { get; } = new(ProfilingLayer.Functional, "Schema processor");
+
         public ProfilingAspect ScriptSequenceProcessor { get; } = new(ProfilingLayer.Functional, "Sequence processor");
 
         public ProfilingAspect ScriptProcessorSubject { get; } = new(ProfilingLayer.Functional, "Subject processor");
@@ -40,6 +42,7 @@ namespace EtAlii.Ubigia.Diagnostics.Profiling
             All = new[]
             {
                 Context,
+                SchemaProcessor,
                 ScriptSet,
                 ScriptProcessor,
                 ScriptSequenceProcessor,

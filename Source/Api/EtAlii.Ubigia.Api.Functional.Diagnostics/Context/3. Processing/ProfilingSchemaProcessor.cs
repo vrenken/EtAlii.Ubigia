@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             IProfiler profiler)
         {
             _decoree = decoree;
-            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);  // TODO: this should be Functional.QueryProcessor.
+            Profiler = profiler.Create(ProfilingAspects.Functional.SchemaProcessor);
         }
 
         public IAsyncEnumerable<Structure> Process(Schema schema)
