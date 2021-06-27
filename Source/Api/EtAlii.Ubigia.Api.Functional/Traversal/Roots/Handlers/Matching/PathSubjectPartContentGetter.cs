@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
     {
-        // TODO: Should this class really return null values if no decent string content can be acquired?
+        // Should this class really return null values if no decent string content can be acquired?
+        // More info can be found in the Github item below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/69
         public Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope)
         {
             return part switch
@@ -32,6 +34,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return Task.FromResult(part.Name);
         }
-
     }
 }
