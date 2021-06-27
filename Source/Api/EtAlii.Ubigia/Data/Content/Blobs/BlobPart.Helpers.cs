@@ -7,8 +7,8 @@ namespace EtAlii.Ubigia
     using System.Linq;
     using System.Reflection;
 
-    // TODO: Should be in the fabric namespace.
-
+    // Should the EtAlii.Ubigia.BlobPart (or helpers in it) be in the fabric namespace?
+    // https://github.com/vrenken/EtAlii.Ubigia/issues/76
     public partial class BlobPart
     {
         private static readonly Dictionary<Type, string> _blobPartNames = new();

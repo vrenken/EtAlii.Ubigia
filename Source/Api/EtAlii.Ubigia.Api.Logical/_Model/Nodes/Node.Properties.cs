@@ -14,14 +14,6 @@ namespace EtAlii.Ubigia.Api.Logical
             return _properties;
         }
 
-        //void IInternalNode.SetProperties(IPropertiesDictionary properties)
-        //[
-        //    if [properties = = null]
-        //    [
-        //        throw new ArgumentNullException("properties")
-        //    ]
-        //    _properties = properties
-        //]
         /// <summary>
         /// Multicast event for property change notifications.
         /// </summary>
@@ -30,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical
         protected T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
             var oldValue = default(T);
-            if (_properties.TryGetValue(propertyName, out var value))
+            if (_properties.TryGetValue(propertyName!, out var value))
             {
                 oldValue = (T)value;
             }
@@ -54,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (Equals(oldValue, newValue)) return false;
 
-            _properties[propertyName] = newValue;
+            _properties[propertyName!] = newValue;
             NotifyPropertyChanged(this, oldValue, newValue, propertyName);
 
             MarkAsModified();
