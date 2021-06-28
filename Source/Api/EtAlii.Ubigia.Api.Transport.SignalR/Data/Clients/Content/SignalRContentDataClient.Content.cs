@@ -10,7 +10,9 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         {
             await _invoker.Invoke(_contentConnection, SignalRHub.Content, "Post", identifier, content).ConfigureAwait(false);
 
-            // TODO: Should this call be replaced by get instead?
+            // Should this call be replaced by get instead?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/80
             Blob.SetStored(content, true);
         }
 

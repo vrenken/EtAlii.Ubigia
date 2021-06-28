@@ -11,13 +11,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             await _infrastructure.Content
                 .Store(identifier, content)
                 .ConfigureAwait(false);
+
+            // Should this call be replaced by get instead?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/80
             Blob.SetStored(content, true);
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
-            //await _client.Post(address, content)
-
-            //// TODO: Should this call be replaced by get instead? 
-            //BlobHelper.SetStored(content, true)
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
@@ -26,11 +24,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .Store(identifier, contentPart)
                 .ConfigureAwait(false);
             BlobPart.SetStored(contentPart, true);
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPart.Id.ToString())
-            //await _client.Post(address, contentPart)
-
-            //BlobPartHelper.SetStored(contentPart, true)
         }
 
         public async Task<Content> Retrieve(Identifier identifier)
@@ -39,10 +32,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .Get(identifier)
                 .ConfigureAwait(false);
             return result;
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString())
-            //var content = await _client.Get<Content>(address)
-            //return content
         }
 
         public async Task<ContentPart> Retrieve(Identifier identifier, ulong contentPartId)
@@ -51,10 +40,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .Get(identifier, contentPartId)
                 .ConfigureAwait(false);
             return result;
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPartId.ToString())
-            //var contentPart = await _client.Get<ContentPart>(address)
-            //return contentPart
         }
     }
 }

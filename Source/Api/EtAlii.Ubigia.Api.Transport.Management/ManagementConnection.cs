@@ -53,15 +53,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            // // TODO: Temporary patch to make downscaling from a management to a data connection possible.
-            // var uriBuilder = new UriBuilder(Configuration.Address)
-            // uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User")
-            //
-            // // TODO: Temporary patch to make downscaling from a management to a data connection possible.
-            // uriBuilder.Port = uriBuilder.Port - 1
-            //
-            // var address = uriBuilder.Uri
-
             var address = _connection.Details.DataAddress;
 
 			var connectionConfiguration = new DataConnectionConfiguration()

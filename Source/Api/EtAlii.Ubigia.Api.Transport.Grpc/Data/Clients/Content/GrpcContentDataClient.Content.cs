@@ -18,14 +18,16 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new ContentPostRequest {EntryId = identifier.ToWire(), Content = content.ToWire()};
                 await _contentClient.PostAsync(request, metadata);
-                // TODO: Should this call be replaced by get instead?
+
+                // Should this call be replaced by get instead?
+                // More details can be found in the Github issue below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/80
                 Blob.SetStored(content, true);
             }
             catch (RpcException e)
             {
                 throw new InvalidInfrastructureOperationException($"{nameof(GrpcContentDataClient)}.StoreDefinition()", e);
             }
-
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
