@@ -1,7 +1,7 @@
 ﻿<!-- Stuff that needs to happen at the start of the MSBuild process should go in the .props file. -->
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.0.0.9</VersionPrefix>
+    <VersionPrefix>1.0.0.10</VersionPrefix>
     <PackageVersion Condition="'$(VersionSuffix)' == ''">$(VersionPrefix)</PackageVersion>
     <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
     <Version>$(PackageVersion)</Version>
@@ -19,7 +19,6 @@
     <UbigiaGrpcLibraryTargetFramework>netstandard2.1</UbigiaGrpcLibraryTargetFramework>
     <UbigiaEfCoreLibraryTargetFramework>netstandard2.1</UbigiaEfCoreLibraryTargetFramework>
     <UbigiaPersistenceLibraryTargetFramework>netstandard2.1</UbigiaPersistenceLibraryTargetFramework>
-    <UbigiaGraphQLLibraryTargetFramework>netstandard2.1</UbigiaGraphQLLibraryTargetFramework>
     <UbigiaInfrastructureLibraryTargetFramework>netstandard2.1</UbigiaInfrastructureLibraryTargetFramework>
     <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
     <UbigiaGuiApplicationTargetFramework>$(UbigiaApplicationTargetFramework)-windows</UbigiaGuiApplicationTargetFramework>

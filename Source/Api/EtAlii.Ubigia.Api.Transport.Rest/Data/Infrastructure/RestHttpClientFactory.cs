@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 	using System.Net.Http;
     using EtAlii.xTechnology.Threading;
 
-    internal class DefaultHttpClientFactory : IHttpClientFactory
+    public class RestHttpClientFactory : IHttpClientFactory
     {
         private readonly IContextCorrelator _contextCorrelator;
 
-        public DefaultHttpClientFactory(IContextCorrelator contextCorrelator)
+        public RestHttpClientFactory(IContextCorrelator contextCorrelator)
         {
             _contextCorrelator = contextCorrelator;
         }

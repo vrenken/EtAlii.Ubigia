@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
 
         public static RestStorageTransportProvider Create(IContextCorrelator contextCorrelator)
         {
-            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
+            var httpClientFactory = new RestHttpClientFactory(contextCorrelator);
             var infrastructureClient = new RestInfrastructureClient(httpClientFactory);
             return new RestStorageTransportProvider(infrastructureClient);
         }

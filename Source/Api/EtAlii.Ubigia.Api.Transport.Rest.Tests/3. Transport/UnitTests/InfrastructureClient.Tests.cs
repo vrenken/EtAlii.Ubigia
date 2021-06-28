@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
         {
             // Arrange.
             var contextCorrelator = new ContextCorrelator();
-            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
+            var httpClientFactory = new RestHttpClientFactory(contextCorrelator);
 
             // Act.
             var client = new RestInfrastructureClient(httpClientFactory);
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
         {
             // Arrange.
             var contextCorrelator = new ContextCorrelator();
-            var httpClientFactory = new DefaultHttpClientFactory(contextCorrelator);
+            var httpClientFactory = new RestHttpClientFactory(contextCorrelator);
             var client = new RestInfrastructureClient(httpClientFactory);
 
             // Act.

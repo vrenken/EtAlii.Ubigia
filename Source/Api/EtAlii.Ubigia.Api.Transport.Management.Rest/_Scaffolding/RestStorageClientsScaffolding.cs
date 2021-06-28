@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
             {
                 container.Register<IRestInfrastructureClient, RestInfrastructureClient>();
                 container.Register(() => new SerializerFactory().Create());
-                container.Register<IHttpClientFactory, DefaultHttpClientFactory>();
+                container.Register<IHttpClientFactory, RestHttpClientFactory>();
             }
 
         }
