@@ -35,8 +35,11 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
                 else
                 {
-                    // TODO: BIG One: Improve the Temporal Weaver so that it weaves in temporal 'last' relations
+
+                    // BIG One: Improve the Temporal Weaver so that it weaves in temporal 'last' relations
                     // until the first temporal directive is spotted.
+                    // More details can be found in the Github issue below:
+                    // https://github.com/vrenken/EtAlii.Ubigia/issues/79
                     result.AddRange(path.Skip(i + 1));
                     break;
                 }
