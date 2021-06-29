@@ -1,7 +1,7 @@
 ﻿<!-- Stuff that needs to happen at the start of the MSBuild process should go in the .props file. -->
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.0.0.10</VersionPrefix>
+    <VersionPrefix>1.0.0.11</VersionPrefix>
     <PackageVersion Condition="'$(VersionSuffix)' == ''">$(VersionPrefix)</PackageVersion>
     <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
     <Version>$(PackageVersion)</Version>

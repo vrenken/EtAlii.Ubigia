@@ -15,14 +15,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        internal SchemaParseResult Parse(string text);
+        SchemaParseResult Parse(string text);
 
-        internal IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope);
-        internal IAsyncEnumerable<Structure> Process(string text, params object[] args);
-        internal IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope);
-        internal IAsyncEnumerable<Structure> Process(string[] text);
-        internal IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope);
-        internal IAsyncEnumerable<Structure> Process(string text);
+        IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope);
+        IAsyncEnumerable<Structure> Process(string text, params object[] args);
+        IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope);
+        IAsyncEnumerable<Structure> Process(string[] text);
+        IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope);
+        IAsyncEnumerable<Structure> Process(string text);
 
         Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
         IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
