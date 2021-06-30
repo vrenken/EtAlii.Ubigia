@@ -79,8 +79,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information("Retrieving entries for identifiers");
             var start = Environment.TickCount;
 
-            var result = _decoree.Get(identifiers, scope);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .Get(identifiers, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -96,8 +98,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
             _logger.Information("Retrieving related entries for identifier {Identifier} (Relation: {Relations})", identifierTime, relations);
             var start = Environment.TickCount;
 
-            var result = _decoree.GetRelated(identifier, relations, scope);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .GetRelated(identifier, relations, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

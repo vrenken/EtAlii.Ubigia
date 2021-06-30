@@ -19,8 +19,10 @@ namespace EtAlii.Ubigia.Api.Logical
                             throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
                         }
 
-                        var results = TraverseRecursive(start, parameters.Context, parameters.Scope).Distinct();
-                        await foreach (var result in results.ConfigureAwait(false))
+                        var results = TraverseRecursive(start, parameters.Context, parameters.Scope)
+                            .Distinct()
+                            .ConfigureAwait(false);
+                        await foreach (var result in results)
                         {
                             parameters.Output.OnNext(result);
                         }
@@ -35,8 +37,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
             }
 
-            var result = TraverseRecursive(start, context, scope).Distinct();
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = TraverseRecursive(start, context, scope)
+                .Distinct()
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -54,12 +58,14 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             yield return start;
 
-            var subItems = GetNextRecursion(start, context, scope);
+            var subItems = GetNextRecursion(start, context, scope)
+                .ConfigureAwait(false);
 
-            await foreach (var subItem in subItems.ConfigureAwait(false))
+            await foreach (var subItem in subItems)
             {
-                var subResults = TraverseRecursive(subItem, context, scope);
-                await foreach (var subResult in subResults.ConfigureAwait(false))
+                var subResults = TraverseRecursive(subItem, context, scope)
+                    .ConfigureAwait(false);
+                await foreach (var subResult in subResults)
                 {
                     yield return subResult;
                 }

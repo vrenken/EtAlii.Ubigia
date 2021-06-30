@@ -85,8 +85,10 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Information("Getting multiple entries");
             var start = Environment.TickCount;
 
-            var result = _client.Get(entryIdentifiers, scope, entryRelations);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _client
+                .Get(entryIdentifiers, scope, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -100,8 +102,10 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Information("Getting related entries");
             var start = Environment.TickCount;
 
-            var result = _client.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _client
+                .GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

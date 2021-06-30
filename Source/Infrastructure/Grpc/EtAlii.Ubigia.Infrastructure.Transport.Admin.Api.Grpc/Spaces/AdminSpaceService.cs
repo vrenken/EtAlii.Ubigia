@@ -51,8 +51,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         {
             var accountId = request.AccountId.ToLocal();
 
-            var items = _items.GetAll(accountId);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _items
+                .GetAll(accountId)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 var response = new SpaceMultipleResponse
                 {

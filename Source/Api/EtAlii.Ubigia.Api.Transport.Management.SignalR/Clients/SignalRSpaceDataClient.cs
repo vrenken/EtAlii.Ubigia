@@ -55,8 +55,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 
         public async IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
-            var items = _invoker.Stream<Space>(_connection, SignalRHub.Space, "GetAllForAccount", accountId);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _invoker
+                .Stream<Space>(_connection, SignalRHub.Space, "GetAllForAccount", accountId)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

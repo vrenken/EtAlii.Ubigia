@@ -134,7 +134,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             var metadata = new Metadata { _transport.AuthenticationHeader };
             var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
             var call = _client.GetRelated(request, metadata);
-            await foreach (var response in call.ResponseStream.ReadAllAsync().ConfigureAwait(false))
+            var responses = call.ResponseStream
+                .ReadAllAsync()
+                .ConfigureAwait(false);
+            await foreach (var response in responses)
             {
                 yield return response.Entry.ToLocal();
             }

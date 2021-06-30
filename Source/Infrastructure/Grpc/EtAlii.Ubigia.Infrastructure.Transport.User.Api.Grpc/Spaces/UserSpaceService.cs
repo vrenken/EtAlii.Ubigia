@@ -61,8 +61,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             _authenticationTokenVerifier.Verify(authenticationToken, out var account, Role.User, Role.System);
             var accountId = account.Id;
 
-            var items = _items.GetAll(accountId);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _items
+                .GetAll(accountId)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 var response = new SpaceMultipleResponse
                 {

@@ -57,8 +57,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 
         public async IAsyncEnumerable<Storage> GetAll()
         {
-            var items = _invoker.Stream<Storage>(_connection, SignalRHub.Storage, "GetAll");
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _invoker
+                .Stream<Storage>(_connection, SignalRHub.Storage, "GetAll")
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

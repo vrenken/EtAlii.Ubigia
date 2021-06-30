@@ -21,11 +21,13 @@ namespace EtAlii.Ubigia.Api.Logical
                 var currentGraphPathPart = graphPath.First();
                 var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart);
 
-                var relatedNodes = traverser.Traverse(currentGraphPathPart, current, context, scope);
+                var relatedNodes = traverser
+                    .Traverse(currentGraphPathPart, current, context, scope)
+                    .ConfigureAwait(false);
                 var subPathParts = graphPath.Skip(1).ToArray();
                 if (subPathParts.Any())
                 {
-                    await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                    await foreach (var relatedNode in relatedNodes)
                     {
                         var subGraphPath = new GraphPath(subPathParts);
                         await Traverse(subGraphPath, relatedNode, context, scope, finalOutput).ConfigureAwait(false);
@@ -33,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
                 else
                 {
-                    await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                    await foreach (var relatedNode in relatedNodes)
                     {
                         finalOutput.OnNext(relatedNode);
                     }

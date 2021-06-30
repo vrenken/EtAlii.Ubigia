@@ -93,8 +93,10 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntryIdentifiers = entryIdentifiers;
             profile.EntryRelations = entryRelations;
 
-            var result = _decoree.Get(entryIdentifiers, scope, entryRelations);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .Get(entryIdentifiers, scope, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -111,8 +113,10 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             profile.EntriesWithRelation = entriesWithRelation;
             profile.EntryRelations = entryRelations;
 
-            var result = _decoree.GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .GetRelated(entryIdentifier, entriesWithRelation, scope, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

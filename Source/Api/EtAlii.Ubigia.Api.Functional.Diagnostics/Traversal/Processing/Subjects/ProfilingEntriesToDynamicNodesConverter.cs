@@ -25,8 +25,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             dynamic profile = _profiler.Begin("Converting entries to nodes");
             profile.Entries = entries;
 
-            var result = _decoree.Convert(entries, scope);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .Convert(entries, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

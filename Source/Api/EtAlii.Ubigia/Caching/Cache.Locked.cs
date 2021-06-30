@@ -142,9 +142,10 @@ namespace EtAlii.Ubigia
                     await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
 
                     var list = new List<IReadOnlyEntry>();
-                    var result = getter();
+                    var result = getter()
+                        .ConfigureAwait(false);
 
-                    await foreach (var item in result.ConfigureAwait(false))
+                    await foreach (var item in result)
                     {
                         list.Add(item);
                         yield return item;
@@ -157,8 +158,8 @@ namespace EtAlii.Ubigia
             }
             else
             {
-                var result = getter();
-                await foreach (var item in result.ConfigureAwait(false))
+                var result = getter().ConfigureAwait(false);
+                await foreach (var item in result)
                 {
                     yield return item;
                 }

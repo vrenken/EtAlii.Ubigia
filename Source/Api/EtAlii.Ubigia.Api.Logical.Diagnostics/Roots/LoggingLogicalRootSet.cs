@@ -92,8 +92,10 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _logger.Information("Getting all roots");
             var start = Environment.TickCount;
 
-            var items = _decoree.GetAll();
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _decoree
+                .GetAll()
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

@@ -50,8 +50,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
         // Get all Items
         public override async Task GetMultiple(AccountMultipleRequest request, IServerStreamWriter<AccountMultipleResponse> responseStream, ServerCallContext context)
         {
-            var items = _items.GetAll();
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _items
+                .GetAll()
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 var response = new AccountMultipleResponse
                 {

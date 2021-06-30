@@ -29,84 +29,97 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
             var selectedComponents = new List<IComponent>();
 
-            var components = RetrieveAndAdd<IdentifierComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
+            var components = RetrieveAndAdd<IdentifierComponent>(containerId)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAdd<TypeComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<TypeComponent>(containerId)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAdd<TagComponent>(containerId);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<TagComponent>(containerId)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Previous
-            components = RetrieveAndAdd<PreviousComponent>(containerId, entryRelations, EntryRelations.Previous);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<PreviousComponent>(containerId, entryRelations, EntryRelations.Previous)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Next
-            components = RetrieveAndAdd<NextComponent>(containerId, entryRelations, EntryRelations.Next);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<NextComponent>(containerId, entryRelations, EntryRelations.Next)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Update
-            components = RetrieveAndAddAll<UpdatesComponent>(containerId, entryRelations, EntryRelations.Update);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAddAll<UpdatesComponent>(containerId, entryRelations, EntryRelations.Update)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Downdate
-            components = RetrieveAndAdd<DowndateComponent>(containerId, entryRelations, EntryRelations.Downdate);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<DowndateComponent>(containerId, entryRelations, EntryRelations.Downdate)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Parent
-            components = RetrieveAndAdd<ParentComponent>(containerId, entryRelations, EntryRelations.Parent);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<ParentComponent>(containerId, entryRelations, EntryRelations.Parent)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAdd<Parent2Component>(containerId, entryRelations, EntryRelations.Parent);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<Parent2Component>(containerId, entryRelations, EntryRelations.Parent)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Child
-            components = RetrieveAndAddAll<ChildrenComponent>(containerId, entryRelations, EntryRelations.Child);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAddAll<ChildrenComponent>(containerId, entryRelations, EntryRelations.Child)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
-            components = RetrieveAndAddAll<Children2Component>(containerId, entryRelations, EntryRelations.Child);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAddAll<Children2Component>(containerId, entryRelations, EntryRelations.Child)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Index
-            components = RetrieveAndAddAll<IndexesComponent>(containerId, entryRelations, EntryRelations.Index);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAddAll<IndexesComponent>(containerId, entryRelations, EntryRelations.Index)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
 
             // Indexed
-            components = RetrieveAndAdd<IndexedComponent>(containerId, entryRelations, EntryRelations.Indexed);
-            await foreach(var component in components.ConfigureAwait(false))
+            components = RetrieveAndAdd<IndexedComponent>(containerId, entryRelations, EntryRelations.Indexed)
+                .ConfigureAwait(false);
+            await foreach(var component in components)
             {
                 selectedComponents.Add(component);
             }
@@ -119,26 +132,30 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         {
             var entry = await Get(identifier, entriesWithRelation).ConfigureAwait(false);
 
-            var entries = AddHierarchicalEntries(entriesWithRelation, entryRelations, entry);
-            await foreach (var e in entries.ConfigureAwait(false))
+            var entries = AddHierarchicalEntries(entriesWithRelation, entryRelations, entry)
+                .ConfigureAwait(false);
+            await foreach (var e in entries)
             {
                 yield return e;
             }
 
-            entries = AddIndexEntries(entriesWithRelation, entryRelations, entry);
-            await foreach (var e in entries.ConfigureAwait(false))
+            entries = AddIndexEntries(entriesWithRelation, entryRelations, entry)
+                .ConfigureAwait(false);
+            await foreach (var e in entries)
             {
                 yield return e;
             }
 
-            entries = AddSequentialEntries(entriesWithRelation, entryRelations, entry);
-            await foreach (var e in entries.ConfigureAwait(false))
+            entries = AddSequentialEntries(entriesWithRelation, entryRelations, entry)
+                .ConfigureAwait(false);
+            await foreach (var e in entries)
             {
                 yield return e;
             }
 
-            entries = AddTemporalEntries(entriesWithRelation, entryRelations, entry);
-            await foreach (var e in entries.ConfigureAwait(false))
+            entries = AddTemporalEntries(entriesWithRelation, entryRelations, entry)
+                .ConfigureAwait(false);
+            await foreach (var e in entries)
             {
                 yield return e;
             }
@@ -229,8 +246,10 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         {
             if (entryRelations.HasFlag(entryRelationToMatch))
             {
-                var components = _storage.Components.RetrieveAll<T>(containerId);
-                await foreach (var component in components.ConfigureAwait(false))
+                var components = _storage.Components
+                    .RetrieveAll<T>(containerId)
+                    .ConfigureAwait(false);
+                await foreach (var component in components)
                 {
                     yield return component;
                 }

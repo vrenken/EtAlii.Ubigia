@@ -55,8 +55,10 @@ namespace EtAlii.Ubigia.Persistence
             where T : CompositeComponent
         {
             var startTicks = Environment.TickCount;
-            var items = _storage.RetrieveAll<T>(container);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _storage
+                .RetrieveAll<T>(container)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

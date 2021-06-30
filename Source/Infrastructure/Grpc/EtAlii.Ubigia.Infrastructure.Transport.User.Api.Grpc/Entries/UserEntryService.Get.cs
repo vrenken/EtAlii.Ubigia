@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
                 .Get(entryIds, entryRelations)
                 .ConfigureAwait(false);
 
-            await foreach (var entry in entries.ConfigureAwait(false))
+            await foreach (var entry in entries)
             {
                 var response = new EntryMultipleResponse
                 {
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
                 .GetRelated(entryId, entriesWithRelation, entryRelations)
                 .ConfigureAwait(false);
 
-            await foreach (var entry in entries.ConfigureAwait(false))
+            await foreach (var entry in entries)
             {
                 var response = new EntryMultipleResponse
                 {

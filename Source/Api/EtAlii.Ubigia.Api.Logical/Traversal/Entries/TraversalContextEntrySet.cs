@@ -91,8 +91,10 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                var result = _context.Entries.GetRelated(identifier, relation, scope);
-                await foreach (var entry in result.ConfigureAwait(false))
+                var result = _context.Entries
+                    .GetRelated(identifier, relation, scope)
+                    .ConfigureAwait(false);
+                await foreach (var entry in result)
                 {
                     yield return entry;
                 }

@@ -41,8 +41,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     var list = new List<Identifier>();
 
-                    var results = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
-                    await foreach (var result in results.ConfigureAwait(false))
+                    var results = traverser
+                        .Traverse(currentGraphPathPart, identifier, context, scope)
+                        .ConfigureAwait(false);
+                    await foreach (var result in results)
                     {
                         list.Add(result);
                     }

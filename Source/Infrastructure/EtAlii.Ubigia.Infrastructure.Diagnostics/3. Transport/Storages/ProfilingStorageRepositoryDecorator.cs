@@ -49,8 +49,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public async IAsyncEnumerable<Storage> GetAll()
         {
             var start = Environment.TickCount;
-            var items = _repository.GetAll();
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .GetAll()
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

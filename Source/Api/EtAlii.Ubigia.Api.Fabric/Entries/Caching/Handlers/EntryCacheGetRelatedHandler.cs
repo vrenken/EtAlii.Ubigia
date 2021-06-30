@@ -34,67 +34,77 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
 
             // Child
-            var result = Add(entry.Children, scope, relations, EntryRelations.Child);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = Add(entry.Children, scope, relations, EntryRelations.Child)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
-            result = Add(entry.Children2, scope, relations, EntryRelations.Child);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Children2, scope, relations, EntryRelations.Child)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Downdate
-            result = Add(entry.Downdate, scope, relations, EntryRelations.Downdate);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Downdate, scope, relations, EntryRelations.Downdate)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Index
-            result = Add(entry.Indexes, scope, relations, EntryRelations.Index);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Indexes, scope, relations, EntryRelations.Index)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Indexed
-            result = Add(entry.Indexed, scope, relations, EntryRelations.Indexed);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Indexed, scope, relations, EntryRelations.Indexed)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Next
-            result = Add(entry.Next, scope, relations, EntryRelations.Next);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Next, scope, relations, EntryRelations.Next)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Parent
-            result = Add(entry.Parent, scope, relations, EntryRelations.Parent);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Parent, scope, relations, EntryRelations.Parent)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
-            result = Add(entry.Parent2, scope, relations, EntryRelations.Parent);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Parent2, scope, relations, EntryRelations.Parent)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Previous
-            result = Add(entry.Previous, scope, relations, EntryRelations.Previous);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Previous, scope, relations, EntryRelations.Previous)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
 
             // Update
-            result = Add(entry.Updates, scope, relations, EntryRelations.Update);
-            await foreach (var item in result.ConfigureAwait(false))
+            result = Add(entry.Updates, scope, relations, EntryRelations.Update)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }
@@ -106,8 +116,9 @@ namespace EtAlii.Ubigia.Api.Fabric
             {
                 foreach (var relation in relations)
                 {
-                    var result = Add(relation, scope);
-                    await foreach (var item in result.ConfigureAwait(false))
+                    var result = Add(relation, scope)
+                        .ConfigureAwait(false);
+                    await foreach (var item in result)
                     {
                         yield return item;
                     }

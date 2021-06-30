@@ -41,8 +41,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public async IAsyncEnumerable<Space> GetAll(Guid accountId)
         {
             var start = Environment.TickCount;
-            var items = _repository.GetAll(accountId);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .GetAll(accountId)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }
@@ -52,8 +54,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public async IAsyncEnumerable<Space> GetAll()
         {
             var start = Environment.TickCount;
-            var items = _repository.GetAll();
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .GetAll()
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

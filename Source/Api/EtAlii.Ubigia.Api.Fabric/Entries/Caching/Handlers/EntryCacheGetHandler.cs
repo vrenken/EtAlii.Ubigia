@@ -50,8 +50,10 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
             if (missingIdentifiers.Count > 0)
             {
-                var missingEntries = _contextProvider.Context.Get(missingIdentifiers, scope);
-                await foreach (var missingEntry in missingEntries.ConfigureAwait(false))
+                var missingEntries = _contextProvider.Context
+                    .Get(missingIdentifiers, scope)
+                    .ConfigureAwait(false);
+                await foreach (var missingEntry in missingEntries)
                 {
                     if (_cacheHelper.ShouldStore(missingEntry))
                     {

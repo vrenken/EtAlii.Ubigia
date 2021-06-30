@@ -48,18 +48,20 @@ namespace EtAlii.Ubigia.Api.Logical
             bool isLast,
             List<Identifier> iterationResult)
         {
-            var relatedNodes = traverser.Traverse(currentGraphPathPart, identifier, context, scope);
+            var relatedNodes = traverser
+                .Traverse(currentGraphPathPart, identifier, context, scope)
+                .ConfigureAwait(false);
 
             if (isLast)
             {
-                await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                await foreach (var relatedNode in relatedNodes)
                 {
                     finalOutput.OnNext(relatedNode);
                 }
             }
             else
             {
-                await foreach (var relatedNode in relatedNodes.ConfigureAwait(false))
+                await foreach (var relatedNode in relatedNodes)
                 {
                     iterationResult.Add(relatedNode);
                 }

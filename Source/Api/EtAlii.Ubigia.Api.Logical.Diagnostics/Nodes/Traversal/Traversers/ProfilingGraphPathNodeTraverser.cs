@@ -37,8 +37,10 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             profile.Part = part;
             profile.Start = start;
 
-            var result = _decoree.Traverse(part, start, context, scope);
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _decoree
+                .Traverse(part, start, context, scope)
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

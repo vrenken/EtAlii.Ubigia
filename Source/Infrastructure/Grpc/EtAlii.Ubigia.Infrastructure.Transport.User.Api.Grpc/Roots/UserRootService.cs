@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
             var roots = _items
                 .GetAll(spaceId)
                 .ConfigureAwait(false);
-            await foreach (var root in roots.ConfigureAwait(false))
+            await foreach (var root in roots)
             {
                 var response = new RootMultipleResponse
                 {

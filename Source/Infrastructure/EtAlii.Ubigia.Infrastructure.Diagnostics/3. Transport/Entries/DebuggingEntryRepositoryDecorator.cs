@@ -21,8 +21,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
-            var items = _repository.Get(identifiers, entryRelations);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .Get(identifiers, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 EnsureUniqueComponents(item);
                 yield return item;

@@ -88,9 +88,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (limit > 1)
             {
-                var subItems = _graphPathChildrenRelationTraverser.Traverse(null, start, context, scope);
+                var subItems = _graphPathChildrenRelationTraverser
+                    .Traverse(null, start, context, scope)
+                    .ConfigureAwait(false);
 
-                await foreach (var subItem in subItems.ConfigureAwait(false))
+                await foreach (var subItem in subItems)
                 {
                     await TraverseChildren(result, subItem, context, scope, limit - 1).ConfigureAwait(false); // , entryRelation
                 }

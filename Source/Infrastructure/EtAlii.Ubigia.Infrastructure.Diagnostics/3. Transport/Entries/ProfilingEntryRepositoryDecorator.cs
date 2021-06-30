@@ -34,8 +34,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public async IAsyncEnumerable<Entry> GetRelated(Identifier identifier, EntryRelations entriesWithRelation, EntryRelations entryRelations = EntryRelations.None)
         {
             var start = Environment.TickCount;
-            var items = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .GetRelated(identifier, entriesWithRelation, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }
@@ -45,8 +47,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public async IAsyncEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelations entryRelations = EntryRelations.None)
         {
             var start = Environment.TickCount;
-            var items = _repository.Get(identifiers, entryRelations);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _repository
+                .Get(identifiers, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }

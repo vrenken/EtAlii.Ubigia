@@ -95,8 +95,10 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Information("Getting all roots");
             var start = Environment.TickCount;
 
-            var result = _client.GetAll();
-            await foreach (var item in result.ConfigureAwait(false))
+            var result = _client
+                .GetAll()
+                .ConfigureAwait(false);
+            await foreach (var item in result)
             {
                 yield return item;
             }

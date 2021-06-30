@@ -16,8 +16,9 @@ namespace EtAlii.Ubigia.Api.Logical
                     {
                         var results = parameters.Context.Entries
                             .GetRelated(start, EntryRelations.Previous, parameters.Scope)
-                            .Select(e => e.Id);
-                        await foreach (var result in results.ConfigureAwait(false))
+                            .Select(e => e.Id)
+                            .ConfigureAwait(false);
+                        await foreach (var result in results)
                         {
                             parameters.Output.OnNext(result);
                         }

@@ -58,8 +58,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         private async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, EntryRelations entryRelations)
         {
-            var items = _invoker.Stream<Entry>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
-            await foreach (var item in items.ConfigureAwait(false))
+            var items = _invoker
+                .Stream<Entry>(_connection, SignalRHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations)
+                .ConfigureAwait(false);
+            await foreach (var item in items)
             {
                 yield return item;
             }
