@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
 
-    // TODO: Move to Traversal project in main repository.
     /// <summary>
     /// The ExecutionScope contains all details needed to execute GCL/GTL/Linq queries and mutations.
     /// </summary>
