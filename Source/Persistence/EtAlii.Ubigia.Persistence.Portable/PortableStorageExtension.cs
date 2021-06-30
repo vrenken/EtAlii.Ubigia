@@ -19,7 +19,6 @@ namespace EtAlii.Ubigia.Persistence.Portable
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<PortableStorageSerializer, PortableFolderManager, PortableFileManager, PortablePathBuilder, PortableContainerProvider>(),
                 new PortableFactoryScaffolding(_localStorage),
             };
 

@@ -1,19 +1,19 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Azure
+namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class AzureFactoryScaffolding : IScaffolding
+    public class NtfsFactoryScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<IStorageSerializer, AzureStorageSerializer>();
+            container.Register<IStorageSerializer, NtfsStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.
-            container.Register<IFolderManager, AzureFolderManager>();
-            container.Register<IFileManager, AzureFileManager>();
-            container.Register<IPathBuilder, AzurePathBuilder>();
+            container.Register<IFolderManager, NtfsFolderManager>();
+            container.Register<IFileManager, NtfsFileManager>();
+            container.Register<IPathBuilder, NtfsPathBuilder>();
             container.Register<IContainerProvider, DefaultContainerProvider>();
 
             container.Register<IItemSerializer, BsonItemSerializer>();

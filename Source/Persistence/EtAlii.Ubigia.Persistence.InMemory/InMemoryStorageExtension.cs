@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<InMemoryStorageSerializer, InMemoryFolderManager, InMemoryFileManager, InMemoryPathBuilder, DefaultContainerProvider>(),
                 new InMemoryFactoryScaffolding(),
             };
 

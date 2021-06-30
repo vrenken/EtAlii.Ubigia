@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<NetCoreAppStorageSerializer, NetCoreAppFolderManager, NetCoreAppFileManager, NetCoreAppPathBuilder, DefaultContainerProvider>(),
+                new NetCoreAppFactoryScaffolding()
             };
 
             foreach (var scaffolding in scaffoldings)

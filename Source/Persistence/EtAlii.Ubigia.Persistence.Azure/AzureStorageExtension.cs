@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Persistence.Azure
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<AzureStorageSerializer, AzureFolderManager, AzureFileManager, AzurePathBuilder, DefaultContainerProvider>(),
                 new AzureFactoryScaffolding(),
             };
 

@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         {
             var scaffoldings = new IScaffolding[]
             {
-                new SharedFactoryScaffolding<NtfsStorageSerializer, NtfsFolderManager, NtfsFileManager, NtfsPathBuilder, DefaultContainerProvider>(),
+                new NtfsFactoryScaffolding()
             };
 
             foreach (var scaffolding in scaffoldings)
