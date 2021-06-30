@@ -28,7 +28,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private const string ValueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
-        // private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
         private readonly LpsAlternatives _typeParsers;
 
         public KeyValuePairParser(
