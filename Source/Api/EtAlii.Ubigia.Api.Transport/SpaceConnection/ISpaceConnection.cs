@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         ISpaceConnectionConfiguration Configuration { get; }
         Space Space { get; }
-        Account Account { get; } // TODO: Move to IConnection.
 
         IAuthenticationContext Authentication { get; }
         IEntryContext Entries { get; }

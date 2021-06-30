@@ -14,8 +14,10 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         Storage Storage { get; }
 
-        // TODO: is a must.
-        //Account Account [ get ]
+        /// <summary>
+        /// The account with which the connection is setup.
+        /// </summary>
+        Account Account { get; }
 
         /// <summary>
         /// Returns true when a connection with the server has been made.

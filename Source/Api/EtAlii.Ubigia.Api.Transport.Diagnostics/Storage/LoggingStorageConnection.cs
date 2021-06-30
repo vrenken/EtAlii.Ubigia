@@ -15,8 +15,13 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
+        public Account Account => _decoree.Account;
+
         /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
+
         /// <inheritdoc />
         public IStorageTransport Transport => ((dynamic)_decoree).Transport;
         /// <inheritdoc />

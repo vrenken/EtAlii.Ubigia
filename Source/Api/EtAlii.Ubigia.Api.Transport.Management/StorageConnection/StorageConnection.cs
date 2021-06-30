@@ -11,6 +11,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <inheritdoc />
         public Storage Storage { get; private set; }
 
+        /// <inheritdoc />
+        public Account Account => throw new NotImplementedException();
+
         IStorageTransport IStorageConnection.Transport => Transport;
 
         /// <inheritdoc />
