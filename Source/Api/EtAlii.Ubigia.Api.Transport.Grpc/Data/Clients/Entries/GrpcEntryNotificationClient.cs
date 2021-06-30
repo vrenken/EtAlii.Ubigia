@@ -33,7 +33,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             await base.Connect(spaceConnection).ConfigureAwait(false);
 
-            // TODO: GRPC
+            // Make sure client notifications over Grpc works again.
+            // More details can be found in the GitHub item below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/82
+
             //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler)
 	        //await _connection.StartAsync()
 
@@ -48,7 +51,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         {
             await base.Disconnect().ConfigureAwait(false);
 
-            // TODO: GRPC
+            // Make sure client notifications over Grpc works again.
+            // More details can be found in the GitHub item below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/82
+
             //return await Task .FromResult<IEnumerable<IReadOnlyEntry>>(null)
             //await _connection.DisposeAsync()
             //_connection = null
