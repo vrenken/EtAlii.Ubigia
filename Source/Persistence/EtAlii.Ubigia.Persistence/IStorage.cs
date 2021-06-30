@@ -8,7 +8,10 @@ namespace EtAlii.Ubigia.Persistence
         IPathBuilder PathBuilder { get; }
         IImmutableFileManager FileManager { get; }
         IImmutableFolderManager FolderManager { get; }
-        IStorageSerializer StorageSerializer { get; } // TODO: Should be made internal
+        // Make the IStorage.StorageSerializer internal somehow
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/83
+        IStorageSerializer StorageSerializer { get; }
 
         IPropertiesStorage Properties { get; }
 
