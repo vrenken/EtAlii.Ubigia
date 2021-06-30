@@ -10,7 +10,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
     {
         public static Account ToLocal(this WireProtocol.Account account)
         {
-            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            // We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/81
             return account == null ? null : new Account
             {
                 Id = account.Id.ToLocal(),
@@ -29,7 +31,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 
         public static WireProtocol.Account ToWire(this Account account)
         {
-            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            // We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/81
             if (account == null)
             {
                 return null;
