@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         string Id { get; }
 
         LpsParser Parser { get; }
-        StructureFragment Parse(LpNode node);
+        StructureFragment Parse(LpNode node, INodeValidator nodeValidator);
         bool CanParse(LpNode node);
 
         void Validate(SequencePart before, ConstantSubject item, int itemIndex, SequencePart after);

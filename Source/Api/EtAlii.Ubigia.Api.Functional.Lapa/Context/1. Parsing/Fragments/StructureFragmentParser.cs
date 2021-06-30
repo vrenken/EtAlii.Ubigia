@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public LpsParser Parser { get; }
 
-        private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IValueFragmentParser _valueFragmentParser;
@@ -25,7 +24,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         private const string ChildStructureQueryHeaderId = "ChildStructureQueryHeader";
 
         public StructureFragmentParser(
-            INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
             IQuotedTextParser quotedTextParser,
@@ -34,7 +32,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
-            _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _quotedTextParser = quotedTextParser;
             _valueFragmentParser = valueFragmentParser;
@@ -73,14 +70,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             structureQueryParser.Parser = parserBody;
         }
 
-        public StructureFragment Parse(LpNode node)
+        public StructureFragment Parse(LpNode node, INodeValidator nodeValidator)
         {
-            return Parse(node, Id, false);
+            return Parse(node, Id, false, nodeValidator);
         }
 
-        private StructureFragment Parse(LpNode node, string requiredId, bool restIsAllowed)
+        private StructureFragment Parse(LpNode node, string requiredId, bool restIsAllowed, INodeValidator nodeValidator)
         {
-            _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
+            nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
             var headerNode = _nodeFinder.FindFirst(node, ChildStructureQueryHeaderId);
 
@@ -106,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 }
                 else if (child.Id == ChildStructureQueryId)
                 {
-                    var childStructureQuery = Parse(child, ChildStructureQueryId, true);
+                    var childStructureQuery = Parse(child, ChildStructureQueryId, true, nodeValidator);
                     structureFragments.Add(childStructureQuery);
                 }
             }

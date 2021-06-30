@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var childNode = node.Children.Single();
 
             var parser = _parsers.Single(p => p.CanParse(childNode));
-            var result = parser.Parse(childNode);
+            var result = parser.Parse(childNode, _nodeValidator);
 
             return result;
         }

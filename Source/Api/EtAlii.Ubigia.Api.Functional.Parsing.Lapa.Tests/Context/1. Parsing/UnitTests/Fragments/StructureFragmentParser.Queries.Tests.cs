@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
 
     public class StructureQueryParserTests
@@ -21,8 +22,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
         private IStructureFragmentParser CreateStructureFragmentParser()
         {
+            return CreateStructureFragmentParser(out _);
+        }
+
+        private IStructureFragmentParser CreateStructureFragmentParser(out INodeValidator nodeValidator)
+        {
             var container = new LapaSchemaParserTestContainerFactory().Create();
 
+            nodeValidator = container.GetInstance<INodeValidator>();
             return container.GetInstance<IStructureFragmentParser>();
         }
 
@@ -30,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1,
@@ -40,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureFragment = parser.Parse(node);
+            var structureFragment = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -56,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_02()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 ""key1"",
@@ -66,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureFragment = parser.Parse(node);
+            var structureFragment = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -82,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_Query_With_Two_Distinct_Results()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Data
             {
                 Person @nodes(Person:Doe/*)
@@ -112,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureFragment = parser.Parse(node);
+            var structureFragment = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);

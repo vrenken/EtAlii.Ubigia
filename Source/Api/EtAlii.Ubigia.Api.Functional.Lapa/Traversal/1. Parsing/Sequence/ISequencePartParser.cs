@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     internal interface ISequencePartParser
     {
         LpsParser Parser { get; }
-        SequencePart Parse(LpNode node);
+        SequencePart Parse(LpNode node, INodeValidator nodeValidator);
         bool CanParse(LpNode node);
     }
 }

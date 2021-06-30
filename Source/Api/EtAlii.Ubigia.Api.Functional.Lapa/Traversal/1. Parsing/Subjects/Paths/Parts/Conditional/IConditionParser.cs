@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         LpsParser Parser { get; }
         string Id { get; }
 
-        Condition Parse(LpNode node);
+        Condition Parse(LpNode node, INodeValidator nodeValidator);
         bool CanParse(LpNode node);
     }
 }

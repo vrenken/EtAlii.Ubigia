@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var conditions = _nodeFinder
                 .FindAll(node, _conditionParser.Id)
-                .Select(n => _conditionParser.Parse(n))
+                .Select(n => _conditionParser.Parse(n, _nodeValidator))
                 .ToArray();
 
             return new ConditionalPathSubjectPart(conditions);

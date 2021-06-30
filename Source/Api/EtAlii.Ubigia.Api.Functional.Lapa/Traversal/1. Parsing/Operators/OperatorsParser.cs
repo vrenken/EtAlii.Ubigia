@@ -11,14 +11,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public LpsParser Parser { get; }
 
-        private readonly INodeValidator _nodeValidator;
         private readonly IOperatorParser[] _parsers;
 
         public OperatorsParser(
             IAssignOperatorParser assignOperatorParser,
             IAddOperatorParser addOperatorParser,
-            IRemoveOperatorParser removeOperatorParser,
-            INodeValidator nodeValidator)
+            IRemoveOperatorParser removeOperatorParser)
         {
             _parsers = new IOperatorParser[]
             {
@@ -26,7 +24,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 addOperatorParser,
                 removeOperatorParser
             };
-            _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
             Parser = new LpsParser(Id, true, lpsParsers);//.Debug("OperatorsParser")
         }
@@ -36,9 +33,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return node.Id == Id;
         }
 
-        public SequencePart Parse(LpNode node)
+        public SequencePart Parse(LpNode node, INodeValidator nodeValidator)
         {
-            _nodeValidator.EnsureSuccess(node, Id);
+            nodeValidator.EnsureSuccess(node, Id);
             var childNode = node.Children.Single();
             var parser = _parsers.Single(p => p.CanParse(childNode));
             var result = parser.Parse(childNode);

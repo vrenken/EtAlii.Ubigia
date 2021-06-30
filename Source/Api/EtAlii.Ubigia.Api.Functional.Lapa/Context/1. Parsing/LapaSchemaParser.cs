@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
                 if (_nodeFinder.FindFirst(node, _structureFragmentParser.Id) is { } structureFragmentMatch)
                 {
-                    var structureFragment = _structureFragmentParser.Parse(structureFragmentMatch);
+                    var structureFragment = _structureFragmentParser.Parse(structureFragmentMatch, _nodeValidator);
                     // The Lapa parser is not yet able to parse namespace and context names (yet).
                     schema = new Schema(structureFragment, null, null, text);
                 }

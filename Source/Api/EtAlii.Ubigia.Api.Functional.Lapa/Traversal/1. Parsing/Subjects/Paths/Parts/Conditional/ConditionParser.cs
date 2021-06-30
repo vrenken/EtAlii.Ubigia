@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ConditionParser : IConditionParser
     {
-        private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IDateTimeValueParser _dateTimeValueParser;
         private readonly ITimeSpanValueParser _timeSpanValueParser;
@@ -28,7 +27,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
 
         public ConditionParser(
-            INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
             IDateTimeValueParser dateTimeValueParser,
             ITimeSpanValueParser timeSpanValueParser,
@@ -37,7 +35,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IFloatValueParser floatValueParser,
             INodeFinder nodeFinder)
         {
-            _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
             _dateTimeValueParser = dateTimeValueParser;
             _timeSpanValueParser = timeSpanValueParser;
@@ -86,9 +83,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             };
         }
 
-        public Condition Parse(LpNode node)
+        public Condition Parse(LpNode node, INodeValidator nodeValidator)
         {
-            _nodeValidator.EnsureSuccess(node, Id);
+            nodeValidator.EnsureSuccess(node, Id);
 
             var propertyNode = _nodeFinder.FindFirst(node, PropertyId);
             var property = propertyNode.Match.ToString();

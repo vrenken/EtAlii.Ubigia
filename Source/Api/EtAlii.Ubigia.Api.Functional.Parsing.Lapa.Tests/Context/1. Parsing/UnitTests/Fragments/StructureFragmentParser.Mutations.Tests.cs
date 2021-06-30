@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
 
     public class StructureFragmentParserMutationsTests
@@ -22,9 +23,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
         private IStructureFragmentParser CreateStructureFragmentParser()
         {
+            return CreateStructureFragmentParser(out _);
+        }
 
+        private IStructureFragmentParser CreateStructureFragmentParser(out INodeValidator nodeValidator)
+        {
             var container = new LapaSchemaParserTestContainerFactory().Create();
 
+            nodeValidator = container.GetInstance<INodeValidator>();
             return container.GetInstance<IStructureFragmentParser>();
         }
 
@@ -32,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_Key_Value_Single()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key <= ""value""
@@ -41,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var query = parser.Parse(node);
+            var query = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -55,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_Node_Clear()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Doe/John)
             {
                FirstName @node-clear()
@@ -64,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var query = parser.Parse(node);
+            var query = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -78,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1 <= ""value1"",
@@ -88,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var query = parser.Parse(node);
+            var query = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -102,7 +108,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 age <= ""22"",
@@ -115,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var @object = parser.Parse(node);
+            var @object = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -126,7 +132,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_00()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
@@ -138,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureMutation = parser.Parse(node);
+            var structureMutation = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -161,7 +167,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Person @node(person:Stark/Tony)
             {
                 age <= 22,
@@ -173,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureMutation = parser.Parse(node);
+            var structureMutation = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
@@ -184,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void StructureFragmentParser_Parse_StructureMutation_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser();
+            var parser = CreateStructureFragmentParser(out var nodeValidator);
             var text = @"Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                         {
                             FirstName @node()
@@ -193,7 +199,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var node = parser.Parser.Do(text);
-            var structureMutation = parser.Parse(node);
+            var structureMutation = parser.Parse(node, nodeValidator);
 
             // Assert.
             Assert.NotNull(node);
