@@ -43,7 +43,10 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            // TODO: this can be improved by using one single Web API call.
+            // Is it possible to improved this by using one single Web API call?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/85
+
             foreach (var entryIdentifier in entryIdentifiers)
             {
                 var address = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Entry, UriParameter.EntryId,

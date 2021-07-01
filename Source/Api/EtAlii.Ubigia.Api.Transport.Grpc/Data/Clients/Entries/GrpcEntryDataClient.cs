@@ -73,7 +73,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            // TODO: this can be improved by using one single Web API call.
+            // Is it possible to improved this by using one single Web API call?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/85
 
             // The structure below might seem weird.
             // But it is not possible to combine a try-catch with the yield needed

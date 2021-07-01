@@ -44,7 +44,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            // TODO: this can be improved by using one single Web API call.
+            // Is it possible to improved this by using one single Web API call?
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/85
+
             foreach (var entryIdentifier in entryIdentifiers)
             {
                 yield return await scope.Cache.GetEntry(entryIdentifier, async () => await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "GetSingle", entryIdentifier, entryRelations).ConfigureAwait(false)).ConfigureAwait(false);
