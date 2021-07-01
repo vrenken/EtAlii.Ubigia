@@ -349,7 +349,7 @@ namespace Moppet.Lapa
 			if (parsers.Length < 2)
 				throw new ArgumentOutOfRangeException(nameof(parsersList));
 
-			return (text) =>
+			return text =>
 			{
                 var children = new List<LpNode>(0x10);
                 var next = new LpNode(new LpText(text.Source, text.Index, 0), text);
@@ -367,7 +367,7 @@ namespace Moppet.Lapa
 		                children.Add(next);
                 }
                 if (children.Count == 0)
-                    return new LpNode(text, next.Rest.Index - text.Index, null, null);
+                    return new LpNode(text, next.Rest.Index - text.Index);
                 return new LpNode(text, next.Rest.Index - text.Index, null, children);
 			};
 		}
