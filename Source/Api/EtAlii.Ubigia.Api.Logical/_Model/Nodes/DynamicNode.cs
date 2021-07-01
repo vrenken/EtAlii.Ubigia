@@ -9,7 +9,9 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         private const string NotSupportedErrorMessage = "This action is not supported on DynamicNode instances";
 
-        // TODO: There should be no properties on the Node base class.
+        // Improve the way how Node and DynamicNode are used.
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/84
 
         Identifier INode.Id => _entry.Id;
         string INode.Type => _entry.Type;

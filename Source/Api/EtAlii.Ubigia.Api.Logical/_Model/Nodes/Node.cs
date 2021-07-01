@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public partial class Node : IInternalNode
     {
-        // TODO: There should be no properties on the Node base class.
+        // Improve the way how Node and DynamicNode are used.
+        // More details can be found in the Github issue below:
+        // https://github.com/vrenken/EtAlii.Ubigia/issues/84
 
         Identifier INode.Id => _entry.Id;
 
