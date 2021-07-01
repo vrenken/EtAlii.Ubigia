@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
 
     public class BreadthFirstTraversalAlgorithm : IBreadthFirstTraversalAlgorithm
@@ -29,7 +30,12 @@ namespace EtAlii.Ubigia.Api.Logical
                 var isLast = i == graphPath.Length - 1;
                 foreach (var identifier in currentResult)
                 {
-                    await HandleCurrentResult(context, scope, finalOutput, traverser, currentGraphPathPart, identifier, isLast, iterationResult).ConfigureAwait(false);
+                    var relatedNodes = traverser
+                        .Traverse(currentGraphPathPart, identifier, context, scope)
+                        .ConfigureAwait(false);
+
+                    await HandleCurrentResult(relatedNodes, finalOutput, isLast, iterationResult)
+                        .ConfigureAwait(false);
                 }
                 if (!isLast)
                 {
@@ -39,18 +45,11 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         private async Task HandleCurrentResult(
-            IPathTraversalContext context,
-            ExecutionScope scope,
+            ConfiguredCancelableAsyncEnumerable<Identifier> relatedNodes,
             IObserver<Identifier> finalOutput,
-            IGraphPathPartTraverser traverser,
-            GraphPathPart currentGraphPathPart,
-            Identifier identifier,
             bool isLast,
             List<Identifier> iterationResult)
         {
-            var relatedNodes = traverser
-                .Traverse(currentGraphPathPart, identifier, context, scope)
-                .ConfigureAwait(false);
 
             if (isLast)
             {
