@@ -36,8 +36,6 @@ namespace EtAlii.Ubigia.Serialization
                     : (PropertyDictionary)Activator.CreateInstance(objectType);
             }
 
-            // TODO: This if and check statements might not be needed anymore.
-            // Needs to be investigated.
             if (reader.TokenType != JsonToken.StartArray)
             {
                 CheckedRead(reader);
