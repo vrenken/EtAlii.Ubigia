@@ -34,7 +34,9 @@ namespace EtAlii.Ubigia
         public int CompareTo(IPropertyDictionary other)
         {
 
-            // TODO: This compareto method has errors.
+            // Can this PropertyDictionary.CompareTo be improved? It feels flaky.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/86
             var result = 1;
 
             if (other != null)
@@ -83,10 +85,6 @@ namespace EtAlii.Ubigia
                 else if (secondValue is IComparable comparableSecondValue)
                 {
                     result -= Compare(comparableSecondValue, firstValue);
-                }
-                else
-                {
-                    result += 0;
                 }
             }
 
