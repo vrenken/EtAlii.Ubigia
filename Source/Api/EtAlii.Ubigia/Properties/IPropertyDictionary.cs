@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia
     using System;
     using System.Collections.Generic;
 
-    public interface IPropertyDictionary : IDictionary<string, object>, IEquatable<IPropertyDictionary>, IComparable<IPropertyDictionary>
+    public interface IPropertyDictionary : IDictionary<string, object>, IEquatable<IPropertyDictionary>
     {
         bool Stored { get; }
     }

@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
             var oldProperties = await _fabric.Properties.Retrieve(id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
 
-            if (oldProperties.CompareTo(newProperties) == 0)
+            if (oldProperties.Equals(newProperties))
             {
                 // The two PropertyDictionaries are the same. Let's return the old entry.
                 return entry;
