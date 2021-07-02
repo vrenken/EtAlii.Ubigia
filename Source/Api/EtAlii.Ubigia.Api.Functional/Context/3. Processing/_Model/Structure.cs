@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api.Logical;
 
-#pragma warning disable CA1724// This class really has a purpose.
+#pragma warning disable CA1724 // This class really has a purpose.
     public sealed class Structure
 #pragma warning restore CA1724
     {
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public string Name { get; }
 
         public ReadOnlyObservableCollection<Structure> Children { get; }
-        private readonly ObservableCollection<Structure> _editableChildren;
+        private readonly ObservableCollection<Structure> _children;
 
         public ReadOnlyObservableCollection<Value> Values { get; }
         internal ObservableCollection<Value> EditableValues { get; }
@@ -26,22 +26,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             Type = type;
             Name = name;
 
-            _editableChildren = new ObservableCollection<Structure>();
-            Children = new ReadOnlyObservableCollection<Structure>(_editableChildren);
+            _children = new ObservableCollection<Structure>();
+            Children = new ReadOnlyObservableCollection<Structure>(_children);
             EditableValues = new ObservableCollection<Value>();
             Values  = new ReadOnlyObservableCollection<Value>(EditableValues);
 
-            if (parent != null)
-            {
-                Parent = parent;
-                parent._editableChildren.Add(this);
-            }
+            Parent = parent;
+            Parent?.AddChild(this);
         }
 
         internal Structure(string type, string name, Structure parent, IInternalNode node)
             : this(type, name, parent)
         {
             Node = node;
+        }
+
+        private void AddChild(Structure child)
+        {
+            _children.Add(child);
         }
 
         public override string ToString()
