@@ -8,13 +8,6 @@ namespace EtAlii.xTechnology.Hosting
 
 	public static class HostTestContextExtensions
     {
-	    static HostTestContextExtensions()
-	    {
-		    //These switches must be set before creating the GrpcChannel/HttpClient.
-		    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2Support", true);
-		    // https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.0#call-insecure-grpc-services-with-net-core-client
-		    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
-	    }
 	    public static TGrpcClient CreateClient<TGrpcClient>(this IHostTestContext context, string address, Func<GrpcChannel, TGrpcClient> construct)
 		    where TGrpcClient: ClientBase
 	    {
