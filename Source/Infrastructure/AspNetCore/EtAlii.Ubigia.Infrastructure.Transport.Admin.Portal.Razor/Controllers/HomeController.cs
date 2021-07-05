@@ -13,13 +13,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor
         //[
         //    _adminService = adminService
         //]
+#pragma warning disable S3400
         [HttpGet]
         public string Get()
         {
-#pragma warning disable S3400
             // This method+string cannot be converted into a constant as it controller method.
             return "This is my default action...";
-#pragma warning restore S3400
         }
+#pragma warning restore S3400
     }
 }
