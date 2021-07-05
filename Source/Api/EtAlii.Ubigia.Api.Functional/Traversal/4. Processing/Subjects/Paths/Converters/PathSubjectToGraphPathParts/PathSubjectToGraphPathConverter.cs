@@ -24,6 +24,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly ITraversingWildcardPathSubjectPartToGraphPathPartsConverter _traversingWildcardPathSubjectPartToGraphPathPartsConverter;
         private readonly IConditionalPathSubjectPartToGraphPathPartsConverter _conditionalPathSubjectPartToGraphPathPartsConverter;
 
+        // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
+        // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
+        // specified by SonarQube. The current setup here is already some kind of facade that hides away many conversion specific variations. Therefore refactoring to facades won't work.
+        // Therefore this pragma warning disable of S107.
+#pragma warning disable S107
         public PathSubjectToGraphPathConverter(
             IConstantPathSubjectPartToGraphPathPartsConverter constantPathSubjectPartToGraphPathPartsConverter,
             IIdentifierPathSubjectPartToGraphPathPartsConverter identifierPathSubjectPartToGraphPathPartsConverter,
@@ -40,6 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             ITaggedPathSubjectPartToGraphPathPartsConverter taggedPathSubjectPartToGraphPathPartsConverter,
             ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
             IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
+#pragma warning restore S107
         {
             _constantPathSubjectPartToGraphPathPartsConverter = constantPathSubjectPartToGraphPathPartsConverter;
             _identifierPathSubjectPartToGraphPathPartsConverter = identifierPathSubjectPartToGraphPathPartsConverter;

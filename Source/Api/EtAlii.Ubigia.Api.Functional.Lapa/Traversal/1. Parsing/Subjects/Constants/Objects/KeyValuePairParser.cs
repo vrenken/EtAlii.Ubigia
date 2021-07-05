@@ -30,6 +30,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
         private readonly LpsAlternatives _typeParsers;
 
+        // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
+        // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
+        // specified by SonarQube. The current setup here is already some kind of facade that hides away many of the type specific parsing. Therefore refactoring to facades won't work.
+        // Therefore this pragma warning disable of S107.
+#pragma warning disable S107
         public KeyValuePairParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
@@ -40,6 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IFloatValueParser floatValueParser,
             IWhitespaceParser whitespaceParser,
             INodeFinder nodeFinder)
+#pragma warning restore S107
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;

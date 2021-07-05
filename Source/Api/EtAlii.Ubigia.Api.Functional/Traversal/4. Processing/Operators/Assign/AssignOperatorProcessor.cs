@@ -39,6 +39,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly IAssignStringConstantToRootOperatorSubProcessor _assignStringConstantToRootOperatorSubProcessor;
         private readonly IAssignEmptyToRootOperatorSubProcessor _assignEmptyToRootOperatorSubProcessor;
 
+        // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
+        // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
+        // specified by SonarQube. The current setup here is already some kind of facade that hides away many specific processing variations. Therefore refactoring to facades won't work.
+        // Therefore this pragma warning disable of S107.
+#pragma warning disable S107
         public AssignOperatorProcessor(
             IAssignPathToVariableOperatorSubProcessor assignPathToVariableOperatorSubProcessor,
             IAssignFunctionToVariableOperatorSubProcessor assignFunctionToVariableOperatorSubProcessor,
@@ -75,6 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IAssignRootDefinitionToRootOperatorSubProcessor assignRootDefinitionToRootOperatorSubProcessor,
             IAssignStringConstantToRootOperatorSubProcessor assignStringConstantToRootOperatorSubProcessor,
             IAssignEmptyToRootOperatorSubProcessor assignEmptyToRootOperatorSubProcessor)
+#pragma warning restore S107
         {
             _assignPathToVariableOperatorSubProcessor = assignPathToVariableOperatorSubProcessor;
             _assignFunctionToVariableOperatorSubProcessor = assignFunctionToVariableOperatorSubProcessor;
