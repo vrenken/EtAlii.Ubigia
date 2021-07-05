@@ -45,6 +45,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         private readonly ILogicalContext _logicalContext;
 
+        // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
+        // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
+        // specified by SonarQube. The current setup here is already some kind of facade that hides away many infrastructure specific variations. Therefore refactoring to facades won't work.
+        // Therefore this pragma warning disable of S107.
+#pragma warning disable S107
         protected InfrastructureBase(
             IInfrastructureConfiguration configuration,
             IInformationRepository information,
@@ -59,6 +64,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             IStorageRepository storages,
             ILogicalContext logicalContext,
             IContextCorrelator contextCorrelator)
+#pragma warning restore S107
         {
             ContextCorrelator = contextCorrelator;
             Configuration = configuration;
