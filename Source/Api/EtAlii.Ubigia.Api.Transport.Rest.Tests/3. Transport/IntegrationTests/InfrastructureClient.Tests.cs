@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
                 var client = new RestInfrastructureClient(httpClientFactory);
 
                 // Act.
-                var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute)).ConfigureAwait(false);
+                var result = await client.Get<TestPackage>(new Uri("https://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute)).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(result);

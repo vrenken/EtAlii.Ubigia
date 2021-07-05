@@ -30,7 +30,7 @@
 //        [
 //            var attribute = new HttpsAttribute()
 
-//            var actionContext = CreateContext("http://test")
+//            var actionContext = CreateContext("https://test")
 //            attribute.OnActionExecuting(actionContext)
 
 //            Assert.NotNull(actionContext.Response)

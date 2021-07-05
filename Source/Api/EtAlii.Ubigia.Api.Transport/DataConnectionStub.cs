@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Transport
         {
             Configuration = new DataConnectionConfiguration();
 
-            Storage = new Storage {Id = Guid.NewGuid(), Address = "http://localhost", Name = "Data connection stub storage"};
+            Storage = new Storage {Id = Guid.NewGuid(), Address = "https://localhost", Name = "Data connection stub storage"};
             Account = new Account { Id = Guid.NewGuid(), Name = "test", Password = "123" };
             Space = new Space { Id = Guid.NewGuid(), AccountId = Account.Id, Name = "Data connection stub test space"};
 

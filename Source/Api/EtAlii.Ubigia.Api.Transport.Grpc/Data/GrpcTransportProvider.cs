@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
-	using global::Grpc.Core;
 	using global::Grpc.Net.Client;
     using EtAlii.xTechnology.Threading;
 
@@ -34,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 	    {
 		    var channelFactory = new Func<Uri, GrpcChannel>(channelAddress =>
 		    {
-			    var options = new GrpcChannelOptions { Credentials = ChannelCredentials.Insecure };
+			    var options = new GrpcChannelOptions();
 			    return GrpcChannel.ForAddress(channelAddress, options);
             });
 		    return new GrpcTransportProvider(channelFactory, contextCorrelator);

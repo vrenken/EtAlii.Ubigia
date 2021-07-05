@@ -13,7 +13,7 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
-            "Address": "http://{{HOST:StorageHost@127.0.0.1}}"
+            "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
           }
         ],
         "Modules": [

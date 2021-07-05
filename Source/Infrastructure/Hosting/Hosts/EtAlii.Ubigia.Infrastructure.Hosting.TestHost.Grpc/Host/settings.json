@@ -1,5 +1,5 @@
 ﻿{
-  "Host": 
+  "Host":
   {
     "Systems": [
       {
@@ -13,7 +13,7 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
-            "Address": "http://{{HOST:StorageHost@127.0.0.1}}"
+            "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
           }
         ],
         "Modules": [
@@ -23,7 +23,7 @@
             "####Comment": "// Admin should be accessible over localhost only",
             "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
             "Port": "{{PORT:AdminPort@64001}}",
-            
+
             "Modules": [
               {
                 "Name": "Api",

@@ -28,8 +28,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest
 		    {
 			    var details = new ConnectivityDetails
 			    {
-				    ManagementAddress = $"http://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiRest"]}",
-				    DataAddress = $"http://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiRest"]}",
+				    ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiRest"]}",
+				    DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiRest"]}",
 			    };
 
 			    response = Ok(details);

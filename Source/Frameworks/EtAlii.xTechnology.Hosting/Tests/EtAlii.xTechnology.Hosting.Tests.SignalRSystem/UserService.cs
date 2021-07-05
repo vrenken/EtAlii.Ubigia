@@ -22,7 +22,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.SignalRSystem
                     builder
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithOrigins($"http://{HostString}");
+                        .WithOrigins($"https://{HostString}");
                 })
                 .UseRouting()
                 .UseEndpoints(endpoints =>

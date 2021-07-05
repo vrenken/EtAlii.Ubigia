@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 			        builder
 				        .AllowAnyHeader()
 				        .AllowAnyMethod()
-				        .WithOrigins($"http://{HostString}");
+				        .WithOrigins($"https://{HostString}");
 		        })
 		        .UseRouting()
 		        .UseEndpoints(endPoints =>

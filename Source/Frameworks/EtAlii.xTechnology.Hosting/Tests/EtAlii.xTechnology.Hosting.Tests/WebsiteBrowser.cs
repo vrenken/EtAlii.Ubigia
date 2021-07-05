@@ -8,7 +8,7 @@ namespace EtAlii.xTechnology.Hosting.Tests
     {
         public void BrowseTo(string relativeAddress)
         {
-            var hostAddress = "http://localhost";
+            var hostAddress = "https://localhost";
             Process.Start(new ProcessStartInfo(hostAddress + relativeAddress.TrimStart('/')) { UseShellExecute = true });
         }
 

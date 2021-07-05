@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
 	        var index = 10;
             var name = Guid.NewGuid().ToString();
-            var address = $"http://www.host{++index}.com";
+            var address = $"https://www.host{++index}.com";
 
 			var storage = await connection.Storages.Add(name, address).ConfigureAwait(false);
             Assert.NotNull(storage);
@@ -231,7 +231,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             Assert.Equal(address, storage.Address);
 
             name = Guid.NewGuid().ToString();
-	        address = $"http://www.host{++index}.com";
+	        address = $"https://www.host{++index}.com";
 
             // Act.
             storage = await connection.Storages.Change(storage.Id, name, address).ConfigureAwait(false);

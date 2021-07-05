@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 
     public class AddressFactoryTests : IDisposable
     {
-        private const string BaseAddress = "http://localtesthost:1234";
+        private const string BaseAddress = "https://localtesthost:1234";
         private IAddressFactory _factory;
         private Storage _storage;
 

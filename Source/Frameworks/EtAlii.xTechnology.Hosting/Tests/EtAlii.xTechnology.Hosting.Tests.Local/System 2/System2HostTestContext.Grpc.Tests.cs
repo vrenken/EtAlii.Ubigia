@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.GrpcUserApi];
 
             // Act.
-            var client = context.CreateClient($"http://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
+            var client = context.CreateClient($"https://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
             var result = await client.GetSimpleAsync(new SimpleUserGetRequest());
 
             // Assert.
@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.GrpcAdminApi];
 
             // Act.
-            var client = context.CreateClient($"http://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
+            var client = context.CreateClient($"https://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
             var result = await client.GetSimpleAsync(new SimpleAdminGetRequest());
 
             // Assert.
@@ -57,7 +57,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var tick = Environment.TickCount;
 
             // Act.
-            var client = context.CreateClient($"http://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
+            var client = context.CreateClient($"https://localhost:{port}{path}", channel => new UserGrpcService.UserGrpcServiceClient(channel));
             var result = await client.GetComplexAsync(new ComplexUserGetRequest { Postfix = tick.ToString()});
 
             // Assert.
@@ -76,7 +76,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var tick = Environment.TickCount;
 
             // Act.
-            var client = context.CreateClient($"http://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
+            var client = context.CreateClient($"https://localhost:{port}{path}", channel => new AdminGrpcService.AdminGrpcServiceClient(channel));
             var result = await client.GetComplexAsync(new ComplexAdminGetRequest { Postfix = tick.ToString()});
 
             // Assert.

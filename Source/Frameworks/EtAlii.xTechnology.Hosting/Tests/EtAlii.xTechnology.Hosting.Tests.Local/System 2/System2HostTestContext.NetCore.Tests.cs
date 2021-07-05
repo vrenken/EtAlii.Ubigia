@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             // Act.
             using var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data").ConfigureAwait(false);
+            var result = await client.GetAsync($"https://localhost:{port}{path}/data").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(result);
@@ -41,7 +41,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             // Act.
             using var client = context.CreateClient();
-            var result = await client.GetAsync($"http://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
+            var result = await client.GetAsync($"https://localhost:{port}{path}/data/GetComplex?postfix={tick}").ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(result);

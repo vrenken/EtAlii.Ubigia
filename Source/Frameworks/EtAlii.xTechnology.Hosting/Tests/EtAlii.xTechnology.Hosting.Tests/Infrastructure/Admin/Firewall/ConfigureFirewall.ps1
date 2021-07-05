@@ -16,16 +16,16 @@ function Check-ExitCode() {
 }
 
 # Match function for _our_ firewall rules
-function Match-NetFirewallRule($rule) 
+function Match-NetFirewallRule($rule)
 {
 	# Rules from this (or a previous) script
-	if ($rule.DisplayName.StartsWith($RuleDisplayName)) 
+	if ($rule.DisplayName.StartsWith($RuleDisplayName))
 	{
 		return $true
 	}
 
 	# Generated rules by Windows Firewall prompt
-	elseif ($ServiceAssemblyName) 
+	elseif ($ServiceAssemblyName)
 	{
 		$ignoreCase = $true
 		return [string]::Compare($ServiceAssemblyName, $rule.DisplayName, $ignoreCase) -eq 0
@@ -35,7 +35,7 @@ function Match-NetFirewallRule($rule)
 }
 
 # Logging
-if ($LogFile) 
+if ($LogFile)
 {
 	Start-Transcript -Path $LogFile -Force >$null
 }
@@ -52,10 +52,10 @@ echo "--------------------------------------------------------------------------
 New-NetFirewallRule -DisplayName "$RuleDisplayName" -Direction Inbound -Action Allow -Protocol "TCP" -LocalPort $ServicePort
 
 #====================================================================================
-# HTTP URL ACL configuration.
-$url = "http://+:$ServicePort/" # for netsh http [...] urlacl
+# HTTPS URL ACL configuration.
+$url = "https://+:$ServicePort/" # for netsh http [...] urlacl
 
-echo "Adding HTTP URL ACL $url for user $user"
+echo "Adding HTTPS URL ACL $url for user $user"
 echo "----------------------------------------------------------------------------------"
 
 # Suppress output since there will be an error if the ACL does not exist, which is okay

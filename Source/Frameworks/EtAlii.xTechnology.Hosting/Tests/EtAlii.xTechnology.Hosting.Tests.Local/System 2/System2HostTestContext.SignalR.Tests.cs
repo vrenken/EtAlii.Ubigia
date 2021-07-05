@@ -19,7 +19,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.SignalRUserApi];
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub").ConfigureAwait(false);
+            var connection = await context.CreateSignalRConnection($"https://localhost:{port}{path}/UserHub").ConfigureAwait(false);
             var result = await connection.InvokeCoreAsync("GetSimple", typeof(string), Array.Empty<object>()).ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.SignalRUserApi];
 
             // Act.
-            var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/AdminHub");
+            var act = context.CreateSignalRConnection($"https://localhost:{port}{path}/AdminHub");
 
             // Assert.
             await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
@@ -53,7 +53,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var path = context.Paths[TestPath.SignalRUserApi];
 
             // Act.
-            var act = context.CreateSignalRConnection($"http://localhost:{port}{path}/admin/api/UserHub");
+            var act = context.CreateSignalRConnection($"https://localhost:{port}{path}/admin/api/UserHub");
 
             // Assert.
             await Assert.ThrowsAsync<HttpRequestException>(async () => await act.ConfigureAwait(false)).ConfigureAwait(false);
@@ -70,7 +70,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var tick = Environment.TickCount;
 
             // Act.
-            var connection = await context.CreateSignalRConnection($"http://localhost:{port}{path}/UserHub").ConfigureAwait(false);
+            var connection = await context.CreateSignalRConnection($"https://localhost:{port}{path}/UserHub").ConfigureAwait(false);
             var result = await connection.InvokeCoreAsync("GetComplex", typeof(string), new object[]{ tick.ToString() } ).ConfigureAwait(false);
 
             // Assert.

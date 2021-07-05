@@ -22,7 +22,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore
                     builder
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .WithOrigins($"http://{HostString}");
+                        .WithOrigins($"https://{HostString}");
                 })
                 .UseRouting()
                 .UseEndpoints(endpoints => endpoints.MapHub<UserHub>($"{nameof(UserHub)}"));

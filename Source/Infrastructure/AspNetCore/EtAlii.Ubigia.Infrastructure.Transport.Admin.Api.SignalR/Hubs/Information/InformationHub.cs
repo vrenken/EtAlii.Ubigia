@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 			_storageRepository = storageRepository;
 			_configurationDetails = configurationDetails;
 		}
-		
+
 		public Storage GetLocalStorage()
 		{
 			var httpContext = Context.GetHttpContext();
@@ -34,13 +34,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR
 
 			return _storageRepository.GetLocal();
 		}
-		
+
 		public ConnectivityDetails GetLocalConnectivityDetails()
 		{
 			var result = new ConnectivityDetails
 			{
-				ManagementAddress = $"http://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiSignalR"]}",
-				DataAddress = $"http://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiSignalR"]}",
+				ManagementAddress = $"https://{_configurationDetails.Hosts["AdminHost"]}:{_configurationDetails.Ports["AdminPort"]}{_configurationDetails.Paths["AdminApi"]}{_configurationDetails.Paths["AdminApiSignalR"]}",
+				DataAddress = $"https://{_configurationDetails.Hosts["UserHost"]}:{_configurationDetails.Ports["UserPort"]}{_configurationDetails.Paths["UserApi"]}{_configurationDetails.Paths["UserApiSignalR"]}",
 			};
 			return result;
 		}

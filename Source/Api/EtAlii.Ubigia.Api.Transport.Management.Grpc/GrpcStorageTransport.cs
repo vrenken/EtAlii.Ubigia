@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 		    var hasAddress = !string.IsNullOrWhiteSpace(uriAsString);
 		    if (hasAddress)
 		    {
-			    var channelAddress = new Uri($"http://{uriAsString}");
+			    var channelAddress = new Uri($"https://{uriAsString}");
 
 			    var hasSameHost = string.Equals(Address.DnsSafeHost, channelAddress.DnsSafeHost, StringComparison.InvariantCultureIgnoreCase);
 			    var hasSamePort = Address.Port == channelAddress.Port;
