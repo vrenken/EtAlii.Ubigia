@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async Task<Value> Set(string valueName, Structure structure, object value, SchemaExecutionScope executionScope)
         {
-            var properties = structure.Node.GetProperties();
+            var properties = structure.Node.Properties;
             var id = structure.Node.Id;
 
             properties[valueName] = value;
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var result = await processResult.Output.SingleOrDefaultAsync();
             if (result is IInternalNode valueNode)
             {
-                properties = valueNode.GetProperties();
+                properties = valueNode.Properties;
                 return properties.TryGetValue(valueName, out var newValue)
                     ? new Value(valueName, newValue)
                     : null;

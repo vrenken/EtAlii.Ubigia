@@ -437,7 +437,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).GetProperties().ContainsKey("BoolValue"));
+            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
             Assert.Equal("Test2", selectResult2.StringValue);
             Assert.Equal("13", selectResult2.IntValue);
@@ -489,10 +489,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).GetProperties().ContainsKey("BoolValue"));
+            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
             Assert.Equal("Test2", selectResult2.StringValue);
-            Assert.False(((IInternalNode)selectResult2).GetProperties().ContainsKey("IntValue"));
+            Assert.False(((IInternalNode)selectResult2).Properties.ContainsKey("IntValue"));
             Assert.Equal(true, selectResult2.BoolValue);
         }
 
@@ -542,9 +542,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).GetProperties().ContainsKey("BoolValue"));
+            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
-            Assert.Empty(((IInternalNode)selectResult2).GetProperties());
+            Assert.Empty(((IInternalNode)selectResult2).Properties);
         }
 
 
@@ -593,9 +593,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).GetProperties().ContainsKey("BoolValue"));
+            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
-            Assert.Equal(2, ((IInternalNode)selectResult2).GetProperties().Count);
+            Assert.Equal(2, ((IInternalNode)selectResult2).Properties.Count);
             Assert.Equal("Test1", selectResult2.StringValue);
             Assert.Equal("12", selectResult2.IntValue);
         }

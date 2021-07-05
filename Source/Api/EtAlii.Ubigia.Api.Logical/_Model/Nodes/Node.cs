@@ -8,13 +8,13 @@ namespace EtAlii.Ubigia.Api.Logical
         // More details can be found in the Github issue below:
         // https://github.com/vrenken/EtAlii.Ubigia/issues/84
 
+        /// <inheritdoc />
         Identifier INode.Id => _entry.Id;
 
+        /// <inheritdoc />
         public string Type => _entry.Type;
 
-        bool INode.IsModified => _isModified;
-        private bool _isModified;
-
+        /// <inheritdoc />
         IReadOnlyEntry IInternalNode.Entry => _entry;
         private readonly IReadOnlyEntry _entry;
 

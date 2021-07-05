@@ -4,7 +4,14 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     internal interface IInternalNode : INode
     {
-        PropertyDictionary GetProperties();
+        /// <summary>
+        /// The properties that make up the node.
+        /// </summary>
+        PropertyDictionary Properties { get; }
+
+        /// <summary>
+        /// The graph entry that the node is wrapping.
+        /// </summary>
         IReadOnlyEntry Entry { get; }
     }
 }

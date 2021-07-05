@@ -8,6 +8,5 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         Identifier Id { get; }
         string Type { get; }
-        bool IsModified { get; }
     }
 }

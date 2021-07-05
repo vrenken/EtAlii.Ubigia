@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         public Value Get(string valueName, Structure structure)
         {
-            var properties = structure.Node.GetProperties();
+            var properties = structure.Node.Properties;
             return properties.TryGetValue(valueName, out var value)
                 ? new Value(valueName, value)
                 : null;

@@ -8,12 +8,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public partial class DynamicNode
     {
+        /// <inheritdoc />
+        PropertyDictionary IInternalNode.Properties => _properties;
         private readonly PropertyDictionary _properties;
-
-        PropertyDictionary IInternalNode.GetProperties()
-        {
-            return _properties;
-        }
 
         public bool TryGetValue(string key, out object value)
         {
@@ -30,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Logical
             if (_properties.TryGetValue(binder.Name, out var existingValue))
             {
                 _properties[binder.Name] = value;
-                if (value == existingValue)
+                if (value != existingValue)
                 {
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(binder.Name));
                 }

@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Logical
             id = latestEntry.Id;
 
             var sourceNode = (IInternalNode)node;
-            var newProperties = sourceNode.GetProperties();
+            var newProperties = sourceNode.Properties;
 
             var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
             var oldProperties = await _fabric.Properties.Retrieve(id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
