@@ -61,13 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
 
         public override object VisitValue_type(UbigiaParser.Value_typeContext context)
         {
-#if NETSTANDARD2_0
-            return (ValueType)Enum.Parse(typeof(ValueType), context.GetText(), true);
-#elif NETSTANDARD2_1
             return Enum.Parse<ValueType>(context.GetText(), true);
-#else
-            This won't work
-#endif
         }
     }
 }

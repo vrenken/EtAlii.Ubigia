@@ -21,13 +21,7 @@ namespace EtAlii.Ubigia
 
         public static Span<byte> ToBytes(string base36String)
         {
-#if NETSTANDARD2_0
-            var span = base36String.ToLower().AsSpan();
-#elif NETSTANDARD2_1
             ReadOnlySpan<char> span = base36String.ToLower();
-#else
-            This won't work
-#endif
 
             Span<bool> bits = Array.Empty<bool>();
 
