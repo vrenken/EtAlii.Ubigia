@@ -2,8 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-
     public partial class Node : IInternalNode
     {
         // Improve the way how Node and DynamicNode are used.
@@ -18,18 +16,18 @@ namespace EtAlii.Ubigia.Api.Logical
         private bool _isModified;
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
-        private IReadOnlyEntry _entry;
+        private readonly IReadOnlyEntry _entry;
 
         public Node(IReadOnlyEntry entry)
         {
             _entry = entry;
+            _properties = new();
         }
 
-        void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)
+        public Node(IReadOnlyEntry entry, PropertyDictionary property)
         {
-            _entry = entry ?? throw new ArgumentNullException(nameof(entry));
-            _properties = properties ?? throw new ArgumentNullException(nameof(properties));
-            _isModified = false;
+            _entry = entry;
+            _properties = property;
         }
 
         public override string ToString()

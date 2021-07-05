@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public partial class DynamicNode
     {
-        private PropertyDictionary _properties = new();
+        private readonly PropertyDictionary _properties;
 
         PropertyDictionary IInternalNode.GetProperties()
         {

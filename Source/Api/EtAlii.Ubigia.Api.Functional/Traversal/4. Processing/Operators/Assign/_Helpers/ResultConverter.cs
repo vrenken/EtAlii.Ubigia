@@ -40,9 +40,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             foreach (var node in nodes)
             {
                 var properties = await _context.Logical.Properties.Get(node.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
-                node.Update(properties, node.Entry);
 
-                output.OnNext(node);
+                IInternalNode result = node switch
+                {
+                    DynamicNode => new DynamicNode(node.Entry, properties),
+                    Node => new Node(node.Entry, properties),
+                    _ => throw new InvalidOperationException("Unable to convert node")
+                };
+
+                output.OnNext(result);
             }
         }
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public partial class Node
     {
-        private PropertyDictionary _properties = new();
+        private readonly PropertyDictionary _properties;
 
         PropertyDictionary IInternalNode.GetProperties()
         {
