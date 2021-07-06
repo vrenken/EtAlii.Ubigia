@@ -12,6 +12,8 @@ namespace EtAlii.xTechnology.Hosting
         public ReadOnlyDictionary<string, int> Ports { get; }
         public ReadOnlyDictionary<string, string> Paths { get; }
 
+        public string Configuration { get; }
+
         public ConfigurationDetails(IDictionary<string, string> folders, IDictionary<string, string> hosts, IDictionary<string, int> ports, IDictionary<string, string> paths, string configuration)
         {
             Configuration = configuration;
@@ -20,7 +22,5 @@ namespace EtAlii.xTechnology.Hosting
             Ports = new ReadOnlyDictionary<string, int>(ports);
             Paths = new ReadOnlyDictionary<string, string>(paths);
         }
-
-        public string Configuration { get; }
     }
 }

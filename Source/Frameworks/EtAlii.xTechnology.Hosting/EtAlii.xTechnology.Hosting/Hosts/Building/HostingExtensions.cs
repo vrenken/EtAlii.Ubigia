@@ -1,6 +1,6 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-#pragma warning disable // This is an external file. 
+#pragma warning disable // This is an external file.
 
 namespace EtAlii.xTechnology.Hosting
 {
@@ -21,131 +21,6 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public static class HostingExtensions
     {
-        /// <summary>
-        /// If the request path starts with the given <paramref name="path"/>, execute the app configured via
-        /// the configuration method of the <typeparamref name="TStartup"/> class instead of continuing to the next component
-        /// in the pipeline. The new app will get an own newly created <see cref="ServiceCollection"/> and will not share
-        /// the <see cref="ServiceCollection"/> of the originating app.
-        /// </summary>
-        /// <typeparam name="TStartup">The startup class used to configure the new app and the service collection.</typeparam>
-        /// <param name="app">The application builder to register the isolated map with.</param>
-        /// <param name="path">The path to match. Must not end with a '/'.</param>
-        /// <returns>The new pipeline with the isolated middleware configured.</returns>
-        public static IApplicationBuilder IsolatedMap<TStartup>(this IApplicationBuilder app, PathString path)
-            where TStartup : class
-        {
-            var environment = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
-            var methods = StartupLoader.LoadMethods(app.ApplicationServices, typeof(TStartup), environment.EnvironmentName);
-
-            return app.IsolatedMap(path, methods.ConfigureDelegate, methods.ConfigureServicesDelegate);
-        }
-
-        /// <summary>
-        /// If the request path starts with the given <paramref name="path"/>, execute the app configured via
-        /// the configuration method of the <typeparamref name="TStartup"/> class instead of continuing to the next component
-        /// in the pipeline. The new app will get an own newly created <see cref="ServiceCollection"/> and will not share
-        /// the <see cref="ServiceCollection"/> of the originating app.
-        /// </summary>
-        /// <typeparam name="TStartup">The startup class used to configure the new app and the service collection.</typeparam>
-        /// <param name="app">The application builder to register the isolated map with.</param>
-        /// <param name="path">The path to match. Must not end with a '/'.</param>
-        /// <param name="configureServices"></param>
-        /// <returns>The new pipeline with the isolated middleware configured.</returns>
-        public static IApplicationBuilder IsolatedMap<TStartup>(
-            this IApplicationBuilder app,
-            PathString path,
-            Action<IServiceCollection> configureServices)
-            where TStartup : class
-        {
-            var environment = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
-            var methods = StartupLoader.LoadMethods(
-                app.ApplicationServices,
-                typeof(TStartup),
-                environment.EnvironmentName);
-
-            return app.IsolatedMap(path, methods.ConfigureDelegate, methods.ConfigureServicesDelegate);
-        }
-
-        /// <summary>
-        /// If the request path starts with the given <paramref name="path"/>, execute the app configured via
-        /// <paramref name="configuration"/> parameter instead of continuing to the next component in the pipeline.
-        /// The new app will get an own newly created <see cref="ServiceCollection"/> and will not share the
-        /// <see cref="ServiceCollection"/> from the originating app.
-        /// </summary>
-        /// <param name="app">The application builder to register the isolated map with.</param>
-        /// <param name="path">The path to match. Must not end with a '/'.</param>
-        /// <param name="configuration">The branch to take for positive path matches.</param>
-        /// <param name="configureServices">A method to configure the newly created service collection.</param>
-        /// <returns>The new pipeline with the isolated middleware configured.</returns>
-        public static IApplicationBuilder IsolatedMap(
-            this IApplicationBuilder app, PathString path,
-            Action<IApplicationBuilder> configuration,
-            Action<IServiceCollection> configureServices)
-        {
-            return app.IsolatedMap(path, configuration, services =>
-            {
-                configureServices(services);
-
-                return services.BuildServiceProvider();
-            });
-        }
-
-        /// <summary>
-        /// If the request path starts with the given <paramref name="path"/>, execute the app configured via
-        /// <paramref name="configuration"/> parameter instead of continuing to the next component in the pipeline.
-        /// The new app will get an own newly created <see cref="ServiceCollection"/> and will not share the
-        /// <see cref="ServiceCollection"/> from the originating app.
-        /// </summary>
-        /// <param name="app">The application builder to register the isolated map with.</param>
-        /// <param name="path">The path to match. Must not end with a '/'.</param>
-        /// <param name="configuration">The branch to take for positive path matches.</param>
-        /// <param name="configureServices">A method to configure the newly created service collection.</param>
-        /// <returns>The new pipeline with the isolated middleware configured.</returns>
-        public static IApplicationBuilder IsolatedMap(
-            this IApplicationBuilder app, PathString path,
-            Action<IApplicationBuilder> configuration,
-            Func<IServiceCollection, IServiceProvider> configureServices)
-        {
-            if (path.HasValue && path.Value!.EndsWith("/", StringComparison.Ordinal))
-            {
-                throw new ArgumentException("The path must not end with a '/'", nameof(path));
-            }
-
-            return app.Isolate(builder => builder.Map(path, configuration), configureServices);
-        }
-
-        /// <summary>
-        /// Creates a new isolated application builder which gets its own <see cref="ServiceCollection"/>, which only
-        /// has the default services registered. It will not share the <see cref="ServiceCollection"/> from the
-        /// originating app. The isolated map will be configured using the configuration methods of the
-        /// <typeparamref name="TStartup"/> class.
-        /// </summary>
-        /// <typeparam name="TStartup">The startup class used to configure the new app and the service collection.</typeparam>
-        /// <param name="app">The application builder to create the isolated app from.</param>
-        /// <returns>The new pipeline with the isolated application integrated.</returns>
-        public static IApplicationBuilder Isolate<TStartup>(this IApplicationBuilder app) where TStartup : class
-        {
-            var environment = app.ApplicationServices.GetRequiredService<IWebHostEnvironment>();
-            var methods = StartupLoader.LoadMethods(app.ApplicationServices, typeof(TStartup), environment.EnvironmentName);
-
-            return app.Isolate(methods.ConfigureDelegate, methods.ConfigureServicesDelegate);
-        }
-
-        /// <summary>
-        /// Creates a new isolated application builder which gets its own <see cref="ServiceCollection"/>, which only
-        /// has the default services registered. It will not share the <see cref="ServiceCollection"/> from the
-        /// originating app.
-        /// </summary>
-        /// <param name="app">The application builder to create the isolated app from.</param>
-        /// <param name="configuration">The branch of the isolated app.</param>
-        /// <returns>The new pipeline with the isolated application integrated.</returns>
-        public static IApplicationBuilder Isolate(
-            this IApplicationBuilder app,
-            Action<IApplicationBuilder> configuration)
-        {
-            return app.Isolate(configuration, services => services.BuildServiceProvider());
-        }
-
         /// <summary>
         /// Creates a new isolated application builder which gets its own <see cref="ServiceCollection"/>, which only
         /// has the default services registered. It will not share the <see cref="ServiceCollection"/> from the
@@ -177,7 +52,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <param name="configuration">The branch of the isolated app.</param>
         /// <param name="configureServices">A method to configure the newly created service collection.</param>
         /// <returns>The new pipeline with the isolated application integrated.</returns>
-        public static IApplicationBuilder Isolate(
+        private static IApplicationBuilder Isolate(
             this IApplicationBuilder app,
             Action<IApplicationBuilder> configuration,
             Func<IServiceCollection, IServiceProvider> configureServices)
@@ -254,7 +129,7 @@ namespace EtAlii.xTechnology.Hosting
             return services;
         }
 
-        internal static IApplicationBuilder EnableDependencyInjection(this IApplicationBuilder app, IServiceProvider serviceProvider)
+        public static IApplicationBuilder EnableDependencyInjection(this IApplicationBuilder app, IServiceProvider serviceProvider)
         {
             app.Use(async (branchContext, next) =>
             {
