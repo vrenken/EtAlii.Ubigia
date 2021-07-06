@@ -397,6 +397,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architectur
 		..\Documentation\Architecture\GraphTraversalLanguage.md = ..\Documentation\Architecture\GraphTraversalLanguage.md
 		..\Documentation\Architecture\Gtl.Introduction.md = ..\Documentation\Architecture\Gtl.Introduction.md
 		..\Documentation\Architecture\Gtl.Specification.md = ..\Documentation\Architecture\Gtl.Specification.md
+		..\Documentation\Architecture\Identifiers.md = ..\Documentation\Architecture\Identifiers.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Philosophy", "Philosophy", "{BD83EE17-7A41-40B9-9884-07BC2411A9BA}"
