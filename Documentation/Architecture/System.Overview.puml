@@ -1,0 +1,54 @@
+@startuml
+
+node Client {
+    component Api {
+        component Fabric {
+        }
+        component Transport {
+        }
+        Fabric  --> Transport
+    }
+}
+
+node Service {
+    component "Infrastucture" as Infrastructure {
+    '    component Hosting {
+    '    }
+    '    component Storages
+    '    component Spaces
+    '    component Accounts
+    '    component Roots
+    '    component Entries
+    '    component Content
+    '
+    '    Storages -- Spaces
+    '    Spaces -- Accounts
+    }
+    component "Persistence" as Persistence {
+    '    component Properties
+    '    component Components
+    '    component Items
+    '    component Blobs
+    '    component Containers
+    'note right of Items : "General storage"
+    }
+
+        storage Ntfs {
+        }
+        storage InMemory {
+        }
+        storage Passthrough {
+        }
+
+}
+
+
+Transport --> Infrastructure
+Infrastructure --> Persistence
+Persistence --> Ntfs
+Persistence --> InMemory
+Persistence --> Passthrough
+
+
+
+@enduml
