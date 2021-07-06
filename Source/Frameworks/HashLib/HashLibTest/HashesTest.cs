@@ -67,30 +67,6 @@
         }
 
         [Fact]
-        public void HashLib_Crypto_Haval()
-        {
-            _testContext.Test(HashFactory.Crypto.CreateHaval_3_128());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_4_128());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_5_128());
-
-            _testContext.Test(HashFactory.Crypto.CreateHaval_3_160());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_4_160());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_5_160());
-
-            _testContext.Test(HashFactory.Crypto.CreateHaval_3_192());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_4_192());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_5_192());
-
-            _testContext.Test(HashFactory.Crypto.CreateHaval_3_224());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_4_224());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_5_224());
-
-            _testContext.Test(HashFactory.Crypto.CreateHaval_3_256());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_4_256());
-            _testContext.Test(HashFactory.Crypto.CreateHaval_5_256());
-        }
-
-        [Fact]
         public void HashLib_Crypto_RIPEMD256()
         {
             _testContext.Test(HashFactory.Crypto.CreateRIPEMD256());
