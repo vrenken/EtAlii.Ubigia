@@ -45,18 +45,7 @@ namespace Moppet.Lapa
 		/// </summary>
 		public int Length { get; init; }
 
-
         /// <summary>
-        /// Constructs a new block of text from another, setting the offset start.
-        /// </summary>
-        /// <param name="text">Text.</param>
-        /// <param name="startOffset">The displacement starts. If back then the length of the text will increase if the forward is reduced.</param>
-        public LpText(LpText text, int startOffset)
-        {
-            Source = text.Source; Index = text.Index + startOffset; Length = text.Length - startOffset;
-        }
-
-		/// <summary>
 		/// The main constructor.
 		/// </summary>
 		/// <param name="source">Source of text.</param>
@@ -91,16 +80,6 @@ namespace Moppet.Lapa
 		public static implicit operator LpText(string text)
 		{
 			return new LpText(text);
-		}
-
-		/// <summary>
-        /// Возвращает урезаный от начала блок текста.
-		/// </summary>
-        /// <param name="n">The number of characters to skip.</param>
-        /// <returns>Reduced to n characters of the text block.</returns>
-		public LpText Skip(int n)
-		{
-			return new LpText(Source, Index + n, Length - n);
 		}
 
 		/// <summary>

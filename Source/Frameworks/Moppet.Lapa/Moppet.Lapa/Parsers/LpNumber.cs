@@ -18,46 +18,6 @@ namespace Moppet.Lapa.Parsers
     public static class LpNumber
 	{
         /// <summary>
-        /// Parser scientific number.
-        /// It contains a podparsery:
-        /// Sign - a sign;
-        /// Integer - integer;
-        /// Scientific - fractional and / or the number of science;
-        /// Exp - exhibitor, such as E + 10;
-        /// ExpFactor - decimal degree;
-        /// Frac - the fractional part, eg .5, .10;
-        /// </summary>
-		/// <param name="comma">The decimal part. Default perceives and point and comma.</param>
-		public static LpsParser Scientific(Func<char, bool> comma = null)
-		{
-			if (comma == null)
-				comma = c => c == '.' || c == ',';
-
-			var sign   = Lp.Range(c => c == '+' || c == '-', 0, 1).Id("Sign");
-			var digits = Lp.Digits();
-			var integ  = (sign + digits).Id("Integer");
-			var exp    = (Lp.One(c => c == 'E' || c == 'e') + sign + digits.Id("ExpFactor")).Maybe().Id("Exp");
-			var frac   = (Lp.One(comma) + digits + exp).Id("Frac");
-			var number = (integ + frac).Id("Scientific") | frac.Rename("Scientific") | integ;
-			return number.TakeFirst();
-		}
-
-        /// <summary>
-        /// Function to determine the affiliation to the character hexadecimal number.
-        /// </summary>
-        public static Func<char, bool> IsHex => c => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
-
-        /// <summary>
-        /// Function to determine the accessories symbol to the octal number.
-        /// </summary>
-        public static Func<char, bool> IsOctal => c => c >= '0' && c <= '8';
-
-        /// <summary>
-        /// Function to determine the accessories symbol of the Roman number.
-        /// </summary>
-        public static Func<char, bool> IsRoman => c => c == 'I' || c == 'V' || c == 'X' || c == 'L' || c == 'C' || c == 'D' || c == 'M';
-
-        /// <summary>
         /// The parser is a simple decimal numbers with a positive test of its value.
         /// An example of parsing the date in the format yyyy.MM.dd: Positive (0, 9999, 4) + '.' + Positive (1, 12, 2) + '.' + Positive (1, 31, 2)
         /// </summary>
@@ -83,7 +43,7 @@ namespace Moppet.Lapa.Parsers
 
             if (minValue < 0)
                 throw new ArgumentOutOfRangeException(nameof(minValue));
-            
+
             if (minDigits < 1)
                 throw new ArgumentOutOfRangeException(nameof(minDigits));
 
@@ -116,18 +76,5 @@ namespace Moppet.Lapa.Parsers
             });
             return parser;
         }
-
-        /// <summary>
-        /// The hexadecimal number.
-        /// </summary>
-        /// <param name="prefix">Prefix before the number. Default is '0x' for the C language notation.</param>
-        /// <param name="id">ID nodes.</param>
-        public static LpsParser Hex(string prefix = "0x", string id = "Hex")
-		{
-            var hex = Lp.OneOrMore((c) => (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F')).Id(id); //TODO: Embedding only LpLex
-            if (prefix != null)
-                hex = (Lp.Term(prefix) + hex).Id(id);
-			return hex;
-		}
-	}
+    }
 }

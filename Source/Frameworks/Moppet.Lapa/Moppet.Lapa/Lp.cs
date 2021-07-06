@@ -56,38 +56,6 @@ namespace Moppet.Lapa
             return new(text => text.Length > 0 && char.IsLetterOrDigit(text[0]) ? new LpNode(text, 1) : new LpNode(text));
 		}
 
-
-		/// <summary>
-        /// Parser searches digits in a given range.
-		/// </summary>
-        /// <param name="minCount">The minimum allowable number of digits, but not less than.</param>
-        /// <param name="maxCount">Maximal allowable number of digits, but not more than.</param>
-		/// <returns>greedy parser.</returns>
-		public static LpsParser Digits(int minCount = 1, int maxCount = int.MaxValue)
-		{
-            return Range(c => c >= '0' && c <= '9', minCount, maxCount);
-		}
-
-        /// <summary>
-        /// Parser search string of characters in the specified range.
-        /// Greedy algorithm, ie, take the maximum allowed sequence.
-        /// </summary>
-        /// <param name="predicate">Lambda request.</param>
-        /// <param name="minCount">The minimum number of characters allowed, but not less than.</param>
-        /// <param name="maxCount">Maximum allowable number of characters, but no more.</param>
-        /// <returns>parser.</returns>
-        public static LpsParser Range(Expression<Func<char, bool>> predicate, int minCount, int maxCount)
-        {
-            if (minCount < 0)
-                throw new ArgumentOutOfRangeException(nameof(minCount), "minCount must be greater than or equal zero.");
-
-            if (minCount > maxCount)
-                throw new ArgumentOutOfRangeException(nameof(maxCount), "maxCount must be greater than or equal minCount.");
-
-            var func = LpLex.Range(predicate, minCount, maxCount).Compile();
-            return new LpsParser(func);
-        }
-
         /// <summary>
         /// Parser to search for one or more literal.
 		/// </summary>
@@ -148,7 +116,7 @@ namespace Moppet.Lapa
         /// <param name="maybeNextChars">Zero or more subsequent characters.</param>
         /// <param name="maxLength">The maximum length of.</param>
 		/// <returns>greedy parser.</returns>
-        public static LpsParser Name(Expression<Func<char, bool>> firstChar, Expression<Func<char, bool>> maybeNextChars, int maxLength = int.MaxValue)
+        private static LpsParser Name(Expression<Func<char, bool>> firstChar, Expression<Func<char, bool>> maybeNextChars, int maxLength = int.MaxValue)
 		{
             var func = LpLex.Name(firstChar, maybeNextChars, maxLength).Compile();
             return new LpsParser(func);
@@ -179,24 +147,6 @@ namespace Moppet.Lapa
 	        );
 	    }
 
-	    /// <summary>
-        /// Parser an identifier or a domain name, which must start with a certain set of characters (eg letters only)
-        /// and requirements for subsequent characters other. In behalf of always limited reach.
-        /// Here name can be written with a hyphen (dashChar), with a dash can not be repeated more than once in a row (-), to be at the beginning or end of the name.
-        /// After a dash or trailing characters allowed lastChars.
-        /// </summary>
-        /// <param name="firstChars">The first character or characters.</param>
-        /// <param name="dashChar">Symbol denoting a dash.</param>
-        /// <param name="lastChars">Valid characters after the dash or end of.</param>
-        /// <param name="maxLength">The maximum length of the name.</param>
-        /// <returns>greedy parser.</returns>
-        public static LpsParser Name(Expression<Func<char, bool>> firstChars, char dashChar, Expression<Func<char, bool>> lastChars, int maxLength = int.MaxValue)
-        {
-            var func = LpLex.Name(firstChars, dashChar, lastChars, maxLength).Compile();
-            return new LpsParser(func);
-        }
-
-
 		/// <summary>
         /// Parser that looks for matches for the specified term.
 		/// </summary>
@@ -216,41 +166,6 @@ namespace Moppet.Lapa
 		public static LpsParser Term(string term, bool ignoreCase)
         {
             return new(text => text.StartsWith(term, ignoreCase) ? new LpNode(text, term.Length) : new LpNode(text));
-        }
-
-        /// <summary>
-        /// Parser that looks for matches for any given word.
-        /// Corresponds to the structure of the regular expression: (a | b | c), where a, b ​​and c - is the word.
-        /// Words are matched in the order in which they are passed as arguments.
-        /// For example, if you search for "(ab | a)" in the string "ab", it will be found "ab", and if
-        /// We seek "(a | ab)", it is found only the first letter.
-        /// </summary>
-        /// <param name="words">Words. Empty words can not pass here.</param>
-        /// <returns>The result for one of the words found.</returns>
-        public static LpsParser Any(params string[] words)
-        {
-            // attention!
-            // option Any(params char[] chars) Expression through is not necessary to implement,
-            // because here it is Lp.One(c => c == '0' || c == '1' ...) still works several times faster.
-
-            // TODO:have the option to speed up the search by using trees and search the hash table.
-            //
-            return new(text =>
-            {
-                var wc = words.Length;
-                var tl = text.Length;
-
-                if (tl <= 0)
-                    return new LpNode(text);
-
-                for (var i = 0; i < wc; ++i)
-                {
-                    var word = words[i];
-                    if (text.StartsWith(word))
-                        return new LpNode(text, word.Length);
-                }
-                return new LpNode(text);
-            });
         }
 
         /// <summary>
@@ -418,42 +333,6 @@ namespace Moppet.Lapa
 		public static LpsParser InBrackets(LpsParser openBracket, LpsParser body, LpsParser closeBracket)
 		{
 			return new(new LpBrackets(openBracket, body, closeBracket).Do);
-		}
-
-		/// <summary>
-        /// Parser to parse the list of one or more elements, recorded, for example, a comma or other delimiter.
-        /// For example, the numbers 1,2,3.
-        /// </summary>
-		/// <param name="listItem">Item.</param>
-		/// <param name="delimiter">separator.</param>
-		/// <returns>greedy parser.</returns>
-        public static LpsParser List(LpsParser listItem, char delimiter)
-		{
-			return new(text =>
-			{
-				var last = listItem.Do(text);
-				if (!last.Success)
-					return last;
-
-                var children = new List<LpNode>(0x10);
-				children.Add(last);
-
-				while (last.Success)
-				{
-					var rest = last.Rest;
-					if (!(rest.Length > 0 && rest[0] == delimiter))
-						break;
-					var delim = new LpNode(rest, 1);
-					var next = listItem.Do(delim.Rest);
-					if (!next.Success)
-						break;
-					last = next;
-					children.Add(delim);
-					children.Add(last);
-				}
-                //TODO: Clean up of children and extra blank check,,,
-				return new LpNode(text, last.Rest.Index - text.Index, "List", children);
-			});
 		}
 
 		/// <summary>
@@ -726,16 +605,6 @@ namespace Moppet.Lapa
 			var res = parser.Do(text);
 			if (res.Success)
 				yield return res;
-		}
-
-		/// <summary>
-		/// Parser one character, if any.
-		/// </summary>
-		/// <param name="ch">symbol.</param>
-		/// <returns>parser.</returns>
-		public static LpsParser Maybe(char ch)
-		{
-            return new(t => t.Length > 0 && t[0] == ch ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
 		}
 
         /// <summary>

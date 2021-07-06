@@ -95,28 +95,6 @@ namespace Moppet.Lapa
 		}
 
 		/// <summary>
-        /// Schemer who chooses the first successful alternative (the result of the parser), which is performed for the postcondition behind.
-        /// This function is particularly advantageous if the alternatives are sorted in order of decreasing probability
-        /// their appearance.
-        /// </summary>
-		/// <param name="ifBehind">Postcondition.</param>
-		/// <returns>The resulting parser.</returns>
-		public LpsParser TakeFirst(LpsParser ifBehind)
-		{
-			return TakeFirst(Identifier, _mParsers, ifBehind);
-		}
-
-		/// <summary>
-        /// Helper function to convert string parser that selects the longest match - greedy algorithm.
-		/// </summary>
-		/// <returns>parser.</returns>
-		public LpsParser TakeMax()
-		{
-			var copyParsers = _mParsers.ToArray();
-            return new LpsParser(Identifier, (text) => All(text, copyParsers).Max() ?? new LpNode(Identifier, text));
-		}
-
-		/// <summary>
         /// Helper function to convert string parser select all alternatives.
 		/// </summary>
 		/// <returns>parser.</returns>
@@ -357,17 +335,6 @@ namespace Moppet.Lapa
 			return left | right.TakeFirst();
 		}
 
-
-		/// <summary>
-        /// Combiner to select the first successful alternative.
-		/// </summary>
-        /// <param name="parsers">List parsers.</param>
-		/// <returns>The resulting parser.</returns>
-		public static LpsParser TakeFirst(IEnumerable<LpsParser> parsers)
-		{
-			return TakeFirst(null, parsers);
-		}
-
 		/// <summary>
         /// Combiner to select the first successful alternative.
 		/// </summary>
@@ -384,33 +351,6 @@ namespace Moppet.Lapa
 					var res = next.Do(text);
                     if (res.Match.Length >= 0)
 						return res;
-				}
-                return new LpNode(text);
-			});
-		}
-
-		/// <summary>
-		/// Schemer who chooses the first successful alternative for running the postcondition behind.
-		/// This function is especially beneficial if an alternative sorted in order of decreasing probability
-        /// their appearance.
-        /// </summary>
-        /// <param name="id">ID parser.</param>
-        /// <param name="parsers">List parsers, which together represent parsing options.</param>
-		/// <param name="behind">Postcondition.</param>
-		/// <returns>The resulting parser.</returns>
-        private static LpsParser TakeFirst(string id, IEnumerable<LpsParser> parsers, LpsParser behind)
-		{
-			var parsersArray = parsers.ToArray();
-			return new LpsParser(id, (text) =>
-			{
-				foreach (var parser in parsersArray)
-				{
-					var res = parser.Do(text);
-                    if (res.Match.Length >= 0)
-					{
-						if (behind.Do(res.Rest).Success)
-							return res;
-					}
 				}
                 return new LpNode(text);
 			});

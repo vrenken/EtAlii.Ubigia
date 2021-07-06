@@ -43,19 +43,6 @@ namespace Moppet.Lapa
 		/// </summary>
 		public string Id { get; set; }
 
-
-		/// <summary>
-        /// Auxiliary copy constructor.
-		/// </summary>
-        /// <param name="n">Result analysis.</param>
-		public LpNode(LpNode n)
-		{
-			Id    = n.Id;
-			Match = n.Match;
-			Rest  = n.Rest;
-			Children = n.Children.Select(nn => new LpNode(nn)).ToArray();
-		}
-
         /// <summary>
         /// Constructs a node that represents a bad match.
         /// Ie unsuccessful attempt to parse.
@@ -136,18 +123,7 @@ namespace Moppet.Lapa
 			Match = match; Rest = rest; Children = children;
 		}
 
-		/// <summary>
-        /// The main constructor.
-		/// </summary>
-		/// <param name="match">Compliance (block parsed text).</param>
-		/// <param name="rest">The remaining text.</param>
-		/// <param name="children">Subsidiaries blocks of text that make up match.</param>
-		public LpNode(LpText match, LpText rest, IEnumerable<LpNode> children)
-		{
-			Match = match; Rest = rest; Children = children;
-		}
-
-		/// <summary>
+        /// <summary>
 		/// The main constructor.
 		/// </summary>
 		/// <param name="id">node identifier.</param>
@@ -155,18 +131,6 @@ namespace Moppet.Lapa
 		/// <param name="rest">The remaining text.</param>
 		/// <param name="children">Subsidiaries blocks of text that make up match.</param>
 		public LpNode(string id, LpText match, LpText rest, params LpNode[] children)
-		{
-			Id = id; Match = match; Rest = rest; Children = children;
-		}
-
-		/// <summary>
-		/// The main constructor.
-		/// </summary>
-		/// <param name="id">node identifier.</param>
-		/// <param name="match">Compliance (block parsed text).</param>
-		/// <param name="rest">The remaining text.</param>
-		/// <param name="children">Subsidiaries blocks of text that make up match.</param>
-		public LpNode(string id, LpText match, LpText rest, IList<LpNode> children)
 		{
 			Id = id; Match = match; Rest = rest; Children = children;
 		}
@@ -184,17 +148,6 @@ namespace Moppet.Lapa
 		public override string ToString() { return Match.ToString(); }
 
 		/// <summary>
-        /// Wraps node to another node, then the node is a new node array Children.
-        /// Wrapping is usually necessary to keep the node identification node.
-        /// </summary>
-        /// <param name="node">some result.</param>
-        /// <returns>wrapper.</returns>
-		public static LpNode Wrap(LpNode node)
-		{
-			return new LpNode(node.Match, node.Rest, node);
-		}
-
-		/// <summary>
 		/// Combines the previous and the following result in one.
 		/// </summary>
 		/// <param name="prev">Previous Match.</param>
@@ -203,18 +156,6 @@ namespace Moppet.Lapa
 		public static LpNode Concat(LpNode prev, LpNode next)
 		{
 			return new LpNode(new LpText(prev.Match.Source, prev.Match.Index, next.Rest.Index - prev.Match.Index), next.Rest, prev, next);
-		}
-
-		/// <summary>
-		/// Combines the previous and the following result in one.
-		/// </summary>
-        /// <param name="id">Result identifier (node).</param>
-		/// <param name="prev">Previous Match.</param>
-		/// <param name="next">Next Match.</param>
-		/// <returns>an object of class.</returns>
-		public static LpNode Concat(string id, LpNode prev, LpNode next)
-		{
-			return new LpNode(id, new LpText(prev.Match.Source, prev.Match.Index, next.Rest.Index - prev.Match.Index), next.Rest, prev, next);
 		}
 
 		#region Node helpers
@@ -241,40 +182,6 @@ namespace Moppet.Lapa
 						yield return cnn;
 				}
 			}
-		}
-
-		/// <summary>
-		/// Selects all nodes with the specified identifier.
-		/// </summary>
-		/// <param name="predicate">F-I search for an ID.</param>
-		/// <param name="goIntoTheDeep">If the node does not satisfy the predicate and it has child elements, then this is called lambda resolution dfs.</param>
-		/// <returns>sample.</returns>
-		public IEnumerable<LpNode> Select(Func<LpNode, bool> predicate, Func<LpNode, bool> goIntoTheDeep)
-		{
-			return LpNode.Select(new[] { this }, predicate, goIntoTheDeep);
-		}
-
-
-		/// <summary>
-        /// Selects all nodes satisfying predicate.
-        /// Dfs underway.
-        /// </summary>
-		/// <param name="predicate">F-I search for an ID.</param>
-		/// <returns>sample.</returns>
-		public IEnumerable<LpNode> Select(Func<LpNode, bool> predicate)
-		{
-			return LpNode.Select(new[] { this }, predicate, no => true);
-		}
-
-		/// <summary>
-		/// Selects all nodes with the specified identifier.
-		/// </summary>
-		/// <param name="id">ID.</param>
-		/// <param name="goIntoTheDeep">Truth is, if you need to look deeper into.</param>
-		/// <returns>sample.</returns>
-		public IEnumerable<LpNode> Select(string id, bool goIntoTheDeep = true)
-		{
-			return LpNode.Select(new[] { this }, n => n.Id == id, no => goIntoTheDeep);
 		}
 
 		/// <summary>
