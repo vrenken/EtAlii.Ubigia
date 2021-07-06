@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public class CacheTests
+    public class ClientCacheTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Cache_Create()
@@ -11,7 +11,7 @@
             // Arrange.
 
             // Act.
-            var cache = new Cache();
+            var cache = new ClientCache();
 
             // Assert.
             Assert.NotNull(cache);
@@ -22,7 +22,7 @@
         {
             // Arrange.
             var identifier = new TestIdentifierFactory().Create();
-            var cache = new Cache();
+            var cache = new ClientCache();
 
             // Act.
             var entry = await cache.GetEntry(identifier, () => Task.FromResult<IReadOnlyEntry>(null)).ConfigureAwait(false);

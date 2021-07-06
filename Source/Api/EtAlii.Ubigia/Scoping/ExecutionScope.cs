@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia
         /// This is the Cache instance used to reduce unnecessary server calls. As the whole entity and relation
         /// model is based on immutability local caching can do tremendous wonders.
         /// </summary>
-        public Cache Cache { get; }
+        public ClientCache Cache { get; }
 
         private readonly Dictionary<string, Regex> _regexes;
 
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia
         /// <param name="cacheEnabled">False when caching should be disabled.</param>
         public ExecutionScope(bool cacheEnabled)
         {
-            Cache = new Cache(cacheEnabled);
+            Cache = new ClientCache(cacheEnabled);
             _regexes = new Dictionary<string, Regex>();
         }
 

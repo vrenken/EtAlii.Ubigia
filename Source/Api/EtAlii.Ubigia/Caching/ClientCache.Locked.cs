@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// This Cache implementation isn't that cool yet. It needs a serious revamp.
     /// </summary>
-    public class Cache
+    public class ClientCache
     {
         private readonly SemaphoreSlim _propertiesSemaphore = new(1,1);
         private readonly SemaphoreSlim _entriesSemaphore = new(1,1);
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia
         /// Create a new Cache instance. Set the cacheEnabled to false if the cache should be disabled.
         /// </summary>
         /// <param name="cacheEnabled">False when caching should be disabled.</param>
-        public Cache(bool cacheEnabled = true)
+        public ClientCache(bool cacheEnabled = true)
         {
             _cacheEnabled = cacheEnabled;
             _entries = new Dictionary<Identifier, IReadOnlyEntry>();
