@@ -398,58 +398,6 @@ namespace HashLib
                 return new HashLib.Crypto.SHA512();
             }
 
-            public static IHash CreateSnefru_4_128()
-            {
-                return new HashLib.Crypto.Snefru_4_128();
-            }
-
-            public static IHash CreateSnefru_4_256()
-            {
-                return new HashLib.Crypto.Snefru_4_256();
-            }
-
-            public static IHash CreateSnefru_8_128()
-            {
-                return new HashLib.Crypto.Snefru_8_128();
-            }
-
-            public static IHash CreateSnefru_8_256()
-            {
-                return new HashLib.Crypto.Snefru_8_256();
-            }
-
-            /// <summary>
-            ///
-            /// </summary>
-            /// <param name="a_rounds">4, 8</param>
-            /// <param name="a_hash_size">128, 256</param>
-            /// <returns></returns>
-            public static IHash CreateSnefru(HashRounds a_rounds, HashLib.HashSize a_hash_size)
-            {
-                switch (a_rounds)
-                {
-                    case HashRounds.Rounds4:
-
-                        switch (a_hash_size)
-                        {
-                            case HashLib.HashSize.HashSize128: return CreateSnefru_4_128();
-                            case HashLib.HashSize.HashSize256: return CreateSnefru_4_256();
-                            default: throw new ArgumentException();
-                        }
-
-                    case HashRounds.Rounds8:
-
-                        switch (a_hash_size)
-                        {
-                            case HashLib.HashSize.HashSize128: return CreateSnefru_8_128();
-                            case HashLib.HashSize.HashSize256: return CreateSnefru_8_256();
-                            default: throw new ArgumentException();
-                        }
-
-                    default: throw new ArgumentException();
-                }
-            }
-
             public static IHash CreateTiger_3_192()
             {
                 return new HashLib.Crypto.Tiger_3_192();

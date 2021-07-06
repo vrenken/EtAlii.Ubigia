@@ -22,15 +22,6 @@
         }
 
         [Fact]
-        public void HashLib_Crypto_Snefru()
-        {
-            _testContext.Test(HashFactory.Crypto.CreateSnefru_4_128());
-            _testContext.Test(HashFactory.Crypto.CreateSnefru_4_256());
-            _testContext.Test(HashFactory.Crypto.CreateSnefru_8_128());
-            _testContext.Test(HashFactory.Crypto.CreateSnefru_8_256());
-        }
-
-        [Fact]
         public void HashLib_Crypto_HAS160()
         {
             _testContext.Test(HashFactory.Crypto.CreateHAS160());
