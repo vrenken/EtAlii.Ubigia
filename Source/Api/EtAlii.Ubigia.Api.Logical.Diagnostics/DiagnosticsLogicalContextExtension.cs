@@ -20,7 +20,9 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
             if (_diagnostics.EnableLogging)
             {
-                // TODO: This is wrong and breaks with the scaffolding pattern.
+                // Doesn't this pattern break with the general scaffolding principles?
+                // More details can be found in the GitHub issue below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/88
                 container.RegisterDecorator(typeof(ILogicalRootSet), typeof(LoggingLogicalRootSet));
             }
         }
