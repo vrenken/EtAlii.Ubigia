@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence
 
                 ulong eraDelta = 0;
                 ulong periodDelta = 0;
-                ulong monentDelta = 1;
+                ulong momentDelta = 1;
 
                 var folderToInspect = _pathBuilder.GetFolder(currentContainerIdentifier);
 
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Persistence
                 var periodFolder = _latestEntryGetter.GetLatestEntry(folderToInspect, periodDelta);
                 folderToInspect = _pathBuilder.Combine(folderToInspect, periodFolder);
 
-                var momentFolder = _latestEntryGetter.GetLatestEntry(folderToInspect, monentDelta);
+                var momentFolder = _latestEntryGetter.GetLatestEntry(folderToInspect, momentDelta);
                 _pathBuilder.Combine(folderToInspect, momentFolder);
 
                 var nextContainerIdentifier = _containerProvider.ForEntry(storageFolder, accountFolder, spaceFolder, eraFolder, periodFolder, momentFolder);
