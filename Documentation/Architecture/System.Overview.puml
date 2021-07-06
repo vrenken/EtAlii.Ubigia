@@ -12,6 +12,18 @@ node Client {
         component CodeGeneration {
         }
 
+        component Parsing {
+        }
+
+        hexagon Antlr {
+        }
+        hexagon Lappa {
+        }
+
+        Parsing --> Lappa
+        Parsing --> Antlr
+
+        ApiFunctional -> Parsing
         ApiFunctional -> CodeGeneration
 
         component ApiLogical {
@@ -33,11 +45,11 @@ node Client {
         component Caching {
         }
 
-        storage gRPC as ApiGrpc {
+        hexagon gRPC as ApiGrpc {
         }
-        storage Signalr as ApiSignalR {
+        hexagon Signalr as ApiSignalR {
         }
-        storage REST as ApiRest {
+        hexagon REST as ApiRest {
         }
 
         ApiTransport --> ApiGrpc
@@ -59,11 +71,11 @@ node Service {
         component Transport as InfrastructureTransport {
         }
 
-                storage gRPC as InfrastructureGrpc {
+                hexagon gRPC as InfrastructureGrpc {
                 }
-                storage Signalr as InfrastructureSignalR {
+                hexagon Signalr as InfrastructureSignalR {
                 }
-                storage REST as InfrastructureRest {
+                hexagon REST as InfrastructureRest {
                 }
 
                 InfrastructureTransport --> InfrastructureGrpc
@@ -87,11 +99,11 @@ node Service {
         component Persistence {
         }
 
-        storage Ntfs {
+        hexagon Ntfs {
         }
-        storage InMemory {
+        hexagon InMemory {
         }
-        storage Passthrough {
+        hexagon Passthrough {
         }
         InfrastructureFabric -> Persistence
         Persistence --> Ntfs
