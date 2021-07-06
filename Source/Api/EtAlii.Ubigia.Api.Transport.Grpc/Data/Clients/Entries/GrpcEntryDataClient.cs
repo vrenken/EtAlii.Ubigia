@@ -36,11 +36,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 var metadata = new Metadata { _transport.AuthenticationHeader };
                 var request = new EntryPutRequest { Entry = ((IComponentEditableEntry)entry).ToWire() };
                 var response = await _client.PutAsync(request, metadata);
-
                 scope.Cache.InvalidateEntry(entry.Id);
-                // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-                //scope.Cache.InvalidateEntry(result.Id)
-                return response.Entry.ToLocal();
+
+                var result = response.Entry.ToLocal();
+
+                // It's probably wise to call the invalidateEntry on the result.id as well.
+                scope.Cache.InvalidateEntry(result.Id);
+
+                return result;
             }
             catch (RpcException e)
             {

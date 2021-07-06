@@ -17,10 +17,14 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
             var changeAddress = Connection.AddressFactory.Create(Connection.Transport, RelativeDataUri.Entry);
-            var result = await Connection.Client.Put(changeAddress, entry as Entry).ConfigureAwait(false);
+            var result = await Connection.Client
+                .Put(changeAddress, entry as Entry)
+                .ConfigureAwait(false);
             scope.Cache.InvalidateEntry(entry.Id);
-            // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-            //scope.Cache.InvalidateEntry(result.Id)
+
+            // It's probably wise to call the invalidateEntry on the result.id as well.
+            scope.Cache.InvalidateEntry(result.Id);
+
             return result;
         }
 
