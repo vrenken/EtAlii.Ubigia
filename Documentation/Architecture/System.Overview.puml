@@ -1,17 +1,106 @@
 @startuml
+skinparam linetype ortho
+
 
 node Client {
-    component Api {
-        component Fabric {
-        }
-        component Transport {
-        }
-        Fabric  --> Transport
+    component Application {
     }
+    component Api {
+        component Functional as ApiFunctional {
+        }
+
+        component CodeGeneration {
+        }
+
+        ApiFunctional -> CodeGeneration
+
+        component ApiLogical {
+        }
+
+        component Traversal {
+        }
+
+        ApiLogical -> Traversal
+
+        component ApiFabric {
+        }
+
+        ApiFabric -> Caching
+
+        component Transport as ApiTransport {
+        }
+
+        component Caching {
+        }
+
+        storage gRPC as ApiGrpc {
+        }
+        storage Signalr as ApiSignalR {
+        }
+        storage REST as ApiRest {
+        }
+
+        ApiTransport --> ApiGrpc
+        ApiTransport --> ApiSignalR
+        ApiTransport --> ApiRest
+
+
+        ApiFunctional --> ApiLogical
+        ApiLogical --> ApiFabric
+        ApiFabric --> ApiTransport
+    }
+
+    Application -> ApiFunctional
 }
 
 node Service {
     component "Infrastucture" as Infrastructure {
+
+        component Transport as InfrastructureTransport {
+        }
+
+                storage gRPC as InfrastructureGrpc {
+                }
+                storage Signalr as InfrastructureSignalR {
+                }
+                storage REST as InfrastructureRest {
+                }
+
+                InfrastructureTransport --> InfrastructureGrpc
+                InfrastructureTransport --> InfrastructureSignalR
+                InfrastructureTransport --> InfrastructureRest
+
+
+        component Functional as InfrastructureFunctional {
+        }
+
+        InfrastructureFunctional <-- InfrastructureTransport
+
+        component Logical as InfrastructureLogical {
+        }
+
+        InfrastructureLogical <-- InfrastructureFunctional
+
+        component Fabric as InfrastructureFabric {
+        }
+
+        component Persistence {
+        }
+
+        storage Ntfs {
+        }
+        storage InMemory {
+        }
+        storage Passthrough {
+        }
+        InfrastructureFabric -> Persistence
+        Persistence --> Ntfs
+        Persistence --> InMemory
+        Persistence --> Passthrough
+
+
+        InfrastructureFabric <-- InfrastructureLogical
+
     '    component Hosting {
     '    }
     '    component Storages
@@ -24,30 +113,15 @@ node Service {
     '    Storages -- Spaces
     '    Spaces -- Accounts
     }
-    component "Persistence" as Persistence {
-    '    component Properties
-    '    component Components
-    '    component Items
-    '    component Blobs
-    '    component Containers
-    'note right of Items : "General storage"
+    component Hosting {
     }
 
-        storage Ntfs {
-        }
-        storage InMemory {
-        }
-        storage Passthrough {
-        }
+    Hosting <-- Infrastructure
 
 }
 
 
-Transport --> Infrastructure
-Infrastructure --> Persistence
-Persistence --> Ntfs
-Persistence --> InMemory
-Persistence --> Passthrough
+ApiTransport <-> InfrastructureTransport
 
 
 
