@@ -4,13 +4,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class IdentifierHeadGetter : IIdentifierHeadGetter
     {
         private readonly INextIdentifierGetter _nextIdentifierGetter;
+        private readonly IIdentifierGetLocker _getLocker;
         private readonly IIdentifierRootUpdater _rootUpdater;
 
         private readonly ILogicalContext _context;
@@ -18,17 +18,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private readonly Dictionary<Guid, Identifier> _cachedHeadIdentifiers;
 
-        private readonly SemaphoreSlim _lockObject = new(1,1); // TODO: This lockObject should be shared with the tail getter.
-
         private bool _headIsInitialized;
 
         public IdentifierHeadGetter(
             INextIdentifierGetter nextIdentifierGetter,
+            IIdentifierGetLocker getLocker,
             IIdentifierRootUpdater rootUpdater,
             ILogicalContext context,
             IFabricContext fabric)
         {
             _nextIdentifierGetter = nextIdentifierGetter;
+            _getLocker = getLocker;
             _rootUpdater = rootUpdater;
             _context = context;
             _fabric = fabric;
@@ -37,14 +37,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task<Identifier> GetCurrent(Guid spaceId)
         {
-            await _lockObject.WaitAsync().ConfigureAwait(false);
+            await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
                 return await GetCurrentInternal(spaceId).ConfigureAwait(false);
             }
             finally
             {
-                _lockObject.Release();
+                _getLocker.LockObject.Release();
             }
         }
 
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task<(Identifier NextHeadIdentifier, Identifier PreviousHeadIdentifier)> GetNext(Guid spaceId)
         {
-            await _lockObject.WaitAsync().ConfigureAwait(false);
+            await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
                 var previousHeadIdentifier = await GetCurrentInternal(spaceId).ConfigureAwait(false);
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             }
             finally
             {
-                _lockObject.Release();
+                _getLocker.LockObject.Release();
             }
         }
 

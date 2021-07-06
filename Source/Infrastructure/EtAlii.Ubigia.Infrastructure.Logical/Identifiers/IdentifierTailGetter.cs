@@ -4,29 +4,30 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
     using System.Threading.Tasks;
 
     public class IdentifierTailGetter : IIdentifierTailGetter
     {
         private readonly IIdentifierRootUpdater _rootUpdater;
+        private readonly IIdentifierGetLocker _getLocker;
 
         private readonly ILogicalContext _context;
         private readonly Dictionary<Guid, Identifier> _cachedTailIdentifiers;
-        private readonly SemaphoreSlim _lockObject = new(1,1); // TODO: This lock-object should be shared with the head getter.
 
         public IdentifierTailGetter(
-            IIdentifierRootUpdater rootUpdater, 
+            IIdentifierRootUpdater rootUpdater,
+            IIdentifierGetLocker getLocker,
             ILogicalContext context)
         {
             _rootUpdater = rootUpdater;
+            _getLocker = getLocker;
             _context = context;
             _cachedTailIdentifiers = new Dictionary<Guid, Identifier>();
         }
 
         public async Task<Identifier> Get(Guid spaceId)
         {
-            await _lockObject.WaitAsync().ConfigureAwait(false);
+            await _getLocker.LockObject.WaitAsync().ConfigureAwait(false);
             try
             {
                 if (!_cachedTailIdentifiers.TryGetValue(spaceId, out var tailIdentifier))
@@ -38,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             }
             finally
             {
-                _lockObject.Release();
+                _getLocker.LockObject.Release();
             }
         }
 

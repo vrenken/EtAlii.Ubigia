@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             container.Register<ILogicalIdentifierSet, LogicalIdentifierSet>();
 
+            container.Register<IIdentifierGetLocker, IdentifierGetLocker>();
             container.Register<IIdentifierTailGetter, IdentifierTailGetter>();
             container.Register<IIdentifierHeadGetter, IdentifierHeadGetter>();
             container.Register<INextIdentifierGetter, NextIdentifierGetter>();
