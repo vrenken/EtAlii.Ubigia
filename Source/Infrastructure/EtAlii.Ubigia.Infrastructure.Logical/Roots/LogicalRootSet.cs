@@ -61,12 +61,16 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public void Start()
         {
-            // TODO: In case of emergencies somehow restore the root information from somewhere.
+            // In case of emergencies somehow restore the root information from somewhere.
+            // More information can be found in the GitHub issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/89
         }
 
         public void Stop()
         {
-            // TODO: Somehow backup the root information somewhere.
+            // Somehow backup the root information somewhere.
+            // More information can be found in the GitHub issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/89
         }
     }
 }
