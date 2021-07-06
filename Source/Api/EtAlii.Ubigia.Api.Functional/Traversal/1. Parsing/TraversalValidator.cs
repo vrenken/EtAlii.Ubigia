@@ -251,7 +251,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 case ParentPathSubjectPart:
                     ValidateParentPathSubjectPart(beforePathPart, afterPathPart);
                     break;
-                // TODO: This probably should be activated, removed, and maybe also
+                // Why is this AllChildrenPathSubjectPart case below commented out?
+                // More details can be found in the GitHub issue below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/87
+
                 // should make us reflect on the other parent/child traversers.
                 // case AllChildrenPathSubjectPart:
                 //     if [beforePathPart is ChildrenPathSubjectPart or afterPathPart is ChildrenPathSubjectPart or
