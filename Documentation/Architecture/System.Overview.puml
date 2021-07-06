@@ -26,15 +26,15 @@ node Client {
         ApiFunctional -> Parsing
         ApiFunctional -> CodeGeneration
 
-        component ApiLogical {
+        component Logical as ApiLogical {
         }
 
-        component Traversal {
+        component Traversal as ApiTraversal {
         }
 
-        ApiLogical -> Traversal
+        ApiLogical -> ApiTraversal
 
-        component ApiFabric {
+        component Fabric as ApiFabric {
         }
 
         ApiFabric -> Caching
