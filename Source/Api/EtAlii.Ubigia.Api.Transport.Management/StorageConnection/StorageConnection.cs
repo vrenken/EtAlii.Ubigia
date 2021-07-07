@@ -116,7 +116,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             if (disposing && IsConnected)
             {
                 var task = Close();
-                task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar.
+
+                // Refactor the dispose in the Connections to a Disconnect or something similar.
+                // More details can be found in the GitHub issue below:
+                // https://github.com/vrenken/EtAlii.Ubigia/issues/90
+                task.Wait();
                 Storage = null;
             }
             // Free your own state (unmanaged objects).
