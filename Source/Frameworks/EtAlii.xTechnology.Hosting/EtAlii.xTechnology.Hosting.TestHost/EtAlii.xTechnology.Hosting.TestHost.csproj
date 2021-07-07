@@ -16,4 +16,8 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="TestCertificate.pem" /> 
+    <EmbeddedResource Include="TestCertificate.pfx" />
+  </ItemGroup>
 </Project>
