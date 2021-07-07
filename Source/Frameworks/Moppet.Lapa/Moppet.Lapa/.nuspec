@@ -39,19 +39,5 @@ nuget.org gallery uses information you add in the portal. -->
 <!-- Tags appear in the gallery and can be used for tag searches -->
 <tags>Text parser generator Lambda functions LALR LR AST Yacc Peg LPG Lex ANTLR Moppet</tags>
 
-<!-- Dependencies are automatically installed when the package is installed -->
-<!--<dependencies>
-<dependency id="Newtonsoft.Json" version="9.0" />
-</dependencies>-->
-<!--<packageTypes>
-<packageType name="Dependency" />
-</packageTypes>-->
 </metadata>
-
-<!-- A readme.txt will be displayed when the package is installed -->
-<files>
-<!--<file src="readme.txt" target="" />-->
-<!-- Include everything in \build -->
-<file src="bin\Debug\*.dll" target="lib" />
-</files>
 </package>

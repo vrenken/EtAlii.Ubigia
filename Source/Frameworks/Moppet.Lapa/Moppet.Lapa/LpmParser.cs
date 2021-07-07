@@ -33,12 +33,6 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Auxiliary constructor.
 		/// </summary>
-		/// <param name="id">ID.</param>
-		public LpmParser(string id) { Identifier = id; }
-
-		/// <summary>
-		/// Auxiliary constructor.
-		/// </summary>
         /// <param name="parser">The actual function of parsing - parser.</param>
 		public LpmParser(Func<LpText, IEnumerable<LpNode>> parser) { Parser = parser; }
 
@@ -225,8 +219,6 @@ namespace Moppet.Lapa
 		{
 			return new((p) => p1.Do(p).Concat(p2.Do(p)).DistinctMatches()); // DistinctVoids()
 		}
-
-
 
 		#endregion Or
 	}

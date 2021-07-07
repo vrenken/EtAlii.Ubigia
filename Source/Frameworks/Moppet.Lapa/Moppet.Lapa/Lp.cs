@@ -56,21 +56,6 @@ namespace Moppet.Lapa
             return new(text => text.Length > 0 && char.IsLetterOrDigit(text[0]) ? new LpNode(text, 1) : new LpNode(text));
 		}
 
-        /// <summary>
-        /// Parser to search for one or more literal.
-		/// </summary>
-        /// <returns>Parser for determining one or more literal.</returns>
-		public static LpsParser Letters()
-		{
-			return new(text =>
-			{
-				int end = text.Length, cur = 0, ind = text.Index;
-				var str = text.Source;
-				while (cur < end && char.IsLetter(str[ind])) { ++ind; ++cur; }
-                return cur > 0 ? new LpNode(text, cur) : new LpNode(text);
-			});
-		}
-
 
 		/// <summary>
         /// Greedy search parser one or more characters.
@@ -248,37 +233,6 @@ namespace Moppet.Lapa
 		public static LpsParser End => new(text => text.Length == 0 ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
 
         /// <summary>
-		/// Parser empty successful match.
-		/// Always returns a blank line.
-        /// </summary>
-		/// <returns>parser.</returns>
-		public static LpsParser Empty => new("Empty", text => new LpNode(new LpText(text.Source, text.Index, 0), text));
-
-        /// <summary>
-        /// Parser that analyzes the character underneath the block of text (lookahead).
-        /// Ie he looks at the character back if not first block of text strings.
-        /// If the character is behindChar or if it started a string, returning empty successful match,
-        /// otherwise it returns failure.
-        /// </summary>
-        /// <param name="behindChar">The required character.</param>
-        /// <returns>Success or failure of a blank line.</returns>
-        public static LpsParser Lookbehind(char behindChar)
-        {
-            return new(text => text.Index <= 0 || behindChar == text[-1] ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
-        }
-
-        /// <summary>
-        /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance
-        /// if the character satisfies or if we end the text, otherwise returns fail.
-        /// </summary>
-        /// <param name="aheadChar">F-I identify the correct symbol to us.</param>
-        /// <returns>Success or failure of a blank line.</returns>
-        public static LpsParser Lookahead(Func<char, bool> aheadChar)
-        {
-            return new(text => text.Length <= 0 || aheadChar(text[0]) ? new LpNode(new LpText(text.Source, text.Index, 0), text) : new LpNode(text));
-        }
-
-        /// <summary>
         /// Parser that parses the next character but does not capture it, ie returns an empty successful compliance
         /// if the character satisfies or if we end the text, otherwise returns fail.
         /// </summary>
@@ -406,47 +360,6 @@ namespace Moppet.Lapa
 			});
 		}
 
-		/// <summary>
-        /// This function modifies the parser body, borrowing from it all the properties and child nodes, child nodes still adds
-        /// possible tails left and right.
-        /// </summary>
-		/// <param name="body">The main body.</param>
-		/// <param name="maybeLeft">Possible tail left, for example Lp.Char('{').</param>
-		/// <param name="maybeRight">Possible tail right, for example Lp.Char('}').</param>
-		/// <returns>greedy parser.</returns>
-		public static LpsParser MaybeTails(this LpsParser body, LpsParser maybeLeft, LpsParser maybeRight)
-		{
-			return new(id: body.Identifier, wrapNode: body.WrapNode, recurse: body.Recurse, parser: text =>
-			{
-                var children = new List<LpNode>(0x10);
-
-				LpNode center = null;
-				var last = maybeLeft.Do(text);
-				if (last.Match.Length > 0)
-				{
-					children.Add(last);
-					center = body.Parser(last.Rest);
-				}
-				else
-				{
-                    center = body.Parser(text);
-				}
-				if (center.Match.Length < 0)
-					return center;
-
-				// Add child nodes center.
-                children.AddChildrenOrNodeOrNothing(center);
-
-				last = maybeRight.Do(center.Rest);
-				if (last.Match.Length > 0)
-					children.Add(last);
-				else
-					last = center;
-
-                return new LpNode(text, last.Rest.Index - text.Index, center.Id, children);
-			});
-		}
-
 		#endregion Special
 
 		#region Lpm special functions
@@ -494,25 +407,6 @@ namespace Moppet.Lapa
 		#endregion Lpm special functions
 
 		#region OneOrMore
-
-		internal static IEnumerable<LpNode> OneOrMore_(this LpsParser parser, LpText text)
-		{
-			var left = parser.Do(text);
-			while (left.Success)
-			{
-				yield return left;
-
-				// Protection stalled.
-				// Lpm for this check is in the function NextSelf.
-				if (left.Match.Length <= 0 || left.Rest.Length <= 0)
-					break;
-
-				var right = parser.Do(left.Rest);
-				if (!right.Success)
-					break;
-				left = LpNode.Concat(left, right);
-			}
-		}
 
         /// <summary>
         /// Designer parser chain of one or more elements.
@@ -592,30 +486,6 @@ namespace Moppet.Lapa
                 return res.Success ? res : new LpNode(new LpText(text.Source, text.Index, 0), text);
 			});
 		}
-
-		/// <summary>
-		/// Combinatorial. zero or one different.
-		/// </summary>
-		/// <param name="parser">parser.</param>
-		/// <param name="text">Text.</param>
-		/// <returns>All matching options.</returns>
-		internal static IEnumerable<LpNode> Maybe_(LpsParser parser, LpText text)
-		{
-            yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
-			var res = parser.Do(text);
-			if (res.Success)
-				yield return res;
-		}
-
-        /// <summary>
-        /// Parser one character, if any.
-        /// </summary>
-        /// <param name="ch">Function identification symbol.</param>
-        /// <returns>parser.</returns>
-        public static LpsParser Maybe(this Func<char, bool> ch)
-        {
-            return new(t => t.Length > 0 && ch(t[0]) ? new LpNode(t, 1) : new LpNode(new LpText(t.Source, t.Index, 0), t));
-        }
 
 		#endregion // ZeroOrOne
 
@@ -735,26 +605,6 @@ namespace Moppet.Lapa
             }
             while (childrens.MoveNext());
         }
-
-
-		internal static IEnumerable<LpNode> ZeroOrMore(LpsParser parser, LpText text)
-		{
-            yield return new LpNode(new LpText(text.Source, text.Index, 0), text);
-
-			var left = parser.Do(text);
-			while (left.Success)
-			{
-				yield return left;
-
-				if (left.Match.Length <= 0 || left.Rest.Length <= 0)
-					break;
-
-				var right = parser.Do(left.Rest);
-				if (!right.Success)
-					break;
-				left = LpNode.Concat(left, right);
-			}
-		}
 
 		/// <summary>
 		///Greedy parser zero or more characters.

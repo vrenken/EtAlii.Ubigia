@@ -94,29 +94,7 @@ namespace Moppet.Lapa
 			return TakeFirst(Identifier, _mParsers);
 		}
 
-		/// <summary>
-        /// Helper function to convert string parser select all alternatives.
-		/// </summary>
-		/// <returns>parser.</returns>
-        private LpmParser TakeAll()
-		{
-			var copyParsers = _mParsers.ToArray();
-			return new LpmParser(Identifier, (text) => All(text, copyParsers).DistinctMatches()); // DistinctVoids
-		}
-
-
-		/// <summary>
-        /// An implicit typecast in multiparser.
-		/// </summary>
-		/// <param name="parsers">a list of alternatives.</param>
-		/// <returns>parser.</returns>
-		public static implicit operator Func<LpText, IEnumerable<LpNode>>(LpsAlternatives parsers)
-		{
-			return parsers.TakeAll().Parser;
-		}
-
-
-		/// <summary>
+        /// <summary>
 		/// An implicit cast.
 		/// </summary>
 		/// <param name="parsers">a list of alternatives.</param>
@@ -355,21 +333,5 @@ namespace Moppet.Lapa
                 return new LpNode(text);
 			});
 		}
-
-		/// <summary>
-        /// Combiner to select all the alternatives.
-		/// </summary>
-		/// <param name="text">text Block.</param>
-        /// <param name="parsers">List parsers.</param>
-		/// <returns>The resulting parser.</returns>
-		private static IEnumerable<LpNode> All(LpText text, IEnumerable<LpsParser> parsers)
-		{
-			foreach (var next in parsers)
-			{
-				var res = next.Do(text);
-				if (res.Match.Length >= 0)
-					yield return res;
-			}
-		}
-	}
+    }
 }

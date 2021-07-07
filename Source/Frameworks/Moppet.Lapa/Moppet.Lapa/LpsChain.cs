@@ -308,37 +308,7 @@ namespace Moppet.Lapa
 			return ToParser().Maybe();
 		}
 
-
-		/// <summary>
-        /// Returns the parser that returns the two options: either a single blank line + line or empty line.
-		/// </summary>
-		/// <returns>parser.</returns>
-		public LpmParser Maybe_()
-		{
-			return new((p) => Lp.Maybe_(ToParser(), p));
-		}
-
-		/// <summary>
-		/// Returns multiparser find one and / or appropriate.
-        /// Returns a parser returns all the options that 1, 12, 123, 1234, etc.
-		/// </summary>
-		/// <returns>Multiparser.</returns>
-		public LpmParser OneOrMore_()
-		{
-			return new((p) => Lp.OneOrMore_(ToParser(), p));
-		}
-
-		/// <summary>
-        /// Returns multiparser to capture any number of matches including a blank.
-        /// Returns a parser returns all the options that empty, 1, 12, 123, 1234, etc.
-        /// </summary>
-		/// <returns>Multiparser.</returns>
-		public LpmParser ZeroOrMore_()
-		{
-			return new(p => Lp.ZeroOrMore(ToParser(), p));
-		}
-
-		/// <summary>
+        /// <summary>
 		/// Consistent application of combinatorial parsers.
 		/// </summary>
 		/// <param name="parsersList">List of parsers.</param>

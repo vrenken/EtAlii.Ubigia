@@ -114,15 +114,6 @@ namespace Moppet.Lapa
 		{
 			return Identifier ?? GetType().Name;
 		}
-
-		/// <summary>
-        /// Cloning an object.
-		/// </summary>
-		/// <returns>Branch.</returns>
-		public object Clone()
-		{
-			return Copy();
-		}
 	}
 
 	/// <summary>

@@ -360,49 +360,5 @@ namespace Moppet.Lapa
 				return r1;
 			});
 		}
-
-        /// <summary>
-        /// analogue expression Lp.Lookbehind(lookbehindChar) + rightParser.
-        /// </summary>
-        /// <param name="lookbehindChar">Symbol, which must be before the current position analysis.</param>
-        /// <param name="rightParser">next parser.</param>
-        /// <returns>The chain of two expressions.</returns>
-        public static LpsChain operator <(char lookbehindChar, LpsParser rightParser)
-        {
-            return Lp.Lookbehind(lookbehindChar) + rightParser;
-        }
-
-        /// <summary>
-        /// This statement is not implemented and is not provided.
-        /// </summary>
-        /// <param name="c">Parameter</param>
-        /// <param name="p">Parameter</param>
-        /// <returns>Something.</returns>
-        public static LpsChain operator >(char c, LpsParser p)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// analogue expression leftParser + Lp.Lookahead(lookbehindChar).
-        /// </summary>
-        /// <param name="leftParser">left parser.</param>
-        /// <param name="lookaheadChar">Symbol, which must be on.</param>
-        /// <returns>Chain of two expressions.</returns>
-        public static LpsChain operator >(LpsParser leftParser, char lookaheadChar)
-        {
-            return leftParser + Lp.Lookahead(lookaheadChar);
-        }
-
-        /// <summary>
-        /// This statement is not implemented and is not provided.
-        /// </summary>
-        /// <param name="p">Parameter.</param>
-        /// <param name="c">Parameter.</param>
-        /// <returns>Something.</returns>
-        public static LpsChain operator <(LpsParser p, char c)
-        {
-            throw new NotImplementedException();
-        }
-	}
+    }
 }
