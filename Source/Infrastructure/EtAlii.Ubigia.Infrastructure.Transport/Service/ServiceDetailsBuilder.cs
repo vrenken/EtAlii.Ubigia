@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         public ServiceDetails[] Build(IConfigurationDetails configurationDetails)
         {
-            // TODO: 1. Ugly. This needs to change and not be needed at all.
-            // TODO: 2. This needs to incorporate the Grpc services as well.
-            // TODO: 3. What about website hosting? How will we cope with that?
+            // Improve this ServiceDetailsBuilder: is very ugly and breaks with many standardizations we tried to put in place.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/91
 
             var serviceDetails = new List<ServiceDetails>();
 
@@ -173,7 +173,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         [SuppressMessage("Sonar Code Smell", "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive", Justification = "Safe to do so here.")]
         private string ConvertToDedicatedNetworkAddress(string host)
         {
-            // TODO. this is ugly and way in the incorrect place.
+            // This is also ugly and way in the incorrect place.
             return host switch
             {
                 "0.0.0.0" => "127.0.0.1",
