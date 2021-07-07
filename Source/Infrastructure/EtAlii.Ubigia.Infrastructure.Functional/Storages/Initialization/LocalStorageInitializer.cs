@@ -3,24 +3,28 @@
 namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Configuration;
 
     internal class LocalStorageInitializer : ILocalStorageInitializer
     {
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
 
-        public LocalStorageInitializer(ISystemConnectionCreationProxy systemConnectionCreationProxy)
+        private readonly IConfigurationSection _configuration;
+
+        public LocalStorageInitializer(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
+
+            _configuration = configurationRoot.GetSection("Functional:Setup");
         }
 
         public async Task Initialize(Storage localStorage)
         {
-            var systemAccountName = AccountName.System;
-            var systemAccountPassword = "system123";
+            var systemAccountName = _configuration.GetValue<string>("DefaultSystemAccountName");
+            var systemAccountPassword = _configuration.GetValue<string>("DefaultSystemAccountPassword");
 
-            var administratorAccountName = AccountName.Administrator;
-            var administratorAccountPassword = "administrator123";
-
+            var administratorAccountName = _configuration.GetValue<string>("DefaultAdministratorAccountName");
+            var administratorAccountPassword = _configuration.GetValue<string>("DefaultAdministratorAccountPassword");
 
             // Create a system connection.
             var systemConnection = _systemConnectionCreationProxy.Request();

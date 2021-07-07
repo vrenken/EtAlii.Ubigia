@@ -18,8 +18,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var instanceCreator = new LoggingInstanceCreator(decoree);
 
             // Act.
-            var act = new Action(() => instanceCreator.TryCreate<object>(null, null, "Test", out var _));
-            
+            var act = new Action(() => instanceCreator.TryCreate<object>(null, null, null, "Test", out var _));
+
             // Assert.
             Assert.Throws<NullReferenceException>(act);
             Assert.NotNull(diagnostics);

@@ -51,10 +51,8 @@ namespace EtAlii.xTechnology.Hosting
             }
             else
             {
-                using (var _ = new SystemSafeExecutionScope(_uniqueId))
-                {
-                    StartExclusiveInternal(portRange);
-                }
+                using var _ = new SystemSafeExecutionScope(_uniqueId);
+                StartExclusiveInternal(portRange);
             }
 	    }
 
@@ -88,12 +86,12 @@ namespace EtAlii.xTechnology.Hosting
 		    Ports = details.Ports;
 		    Paths = details.Paths;
 
-		    var applicationConfiguration = new ConfigurationBuilder()
+		    var configurationRoot = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
 			    .Build();
 
 		    var hostConfiguration = new HostConfigurationBuilder()
-			    .Build(applicationConfiguration, details)
+			    .Build(configurationRoot, details)
 			    .Use(diagnosticsConfiguration);
 
 		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);

@@ -17,12 +17,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
         {
 	        var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
 
-	        var applicationConfiguration = new ConfigurationBuilder()
+	        var configurationRoot = new ConfigurationBuilder()
 		        .AddConfigurationDetails(details)
 		        .Build();
 
 	        var hostConfiguration = new HostConfigurationBuilder()
-		        .Build(applicationConfiguration, details)
+		        .Build(configurationRoot, details)
 		        .Use(DiagnosticsConfiguration.Default)
 		        .UseTrayIconHost(this,
 			        "Icon-Logo-White-Shaded.ico",

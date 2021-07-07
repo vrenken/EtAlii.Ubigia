@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class InfrastructureService : ServiceBase<IHost, IInfrastructureSystem>, IInfrastructureService
     {
+        private readonly IConfigurationRoot _configurationRoot;
         private readonly IConfiguration _configuration;
         private readonly IConfigurationDetails _configurationDetails;
         private readonly IServiceDetailsBuilder _serviceDetailsBuilder;
@@ -23,11 +24,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         public IInfrastructure Infrastructure { get; private set; }
 
         public InfrastructureService(
-            IConfigurationSection configuration, 
+            IConfigurationRoot configurationRoot,
+            IConfigurationSection configuration,
             IConfigurationDetails configurationDetails,
-            IServiceDetailsBuilder serviceDetailsBuilder) 
+            IServiceDetailsBuilder serviceDetailsBuilder)
             : base(configuration)
         {
+            _configurationRoot = configurationRoot;
             _configuration = configuration;
             _configurationDetails = configurationDetails;
             _serviceDetailsBuilder = serviceDetailsBuilder;
@@ -43,7 +46,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         {
             await Infrastructure.Stop().ConfigureAwait(false);
         }
-        
+
         private IInfrastructure CreateInfrastructure()
         {
             var storage = System.Services.OfType<IStorageService>().Single().Storage;
@@ -55,12 +58,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             }
 
             var serviceDetails = _serviceDetailsBuilder.Build(_configurationDetails);
-            
+
 
             // Fetch the Infrastructure configuration.
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(name, serviceDetails)
+                .Use(_configurationRoot, name, serviceDetails)
                 .Use(DiagnosticsConfiguration.Default);
 
             // Create fabric instance.
@@ -74,7 +77,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             var dataAddress = dataService!.DataAddress;
             var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
-            
+
             // Create logical context instance.
             var logicalConfiguration = new LogicalContextConfiguration()
                 .Use(fabric)

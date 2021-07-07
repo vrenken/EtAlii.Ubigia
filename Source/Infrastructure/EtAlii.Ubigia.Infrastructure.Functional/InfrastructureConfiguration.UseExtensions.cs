@@ -5,12 +5,14 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using Microsoft.Extensions.Configuration;
 
     public static class InfrastructureConfigurationUseExtensions
     {
         public static TInfrastructureConfiguration Use<TInfrastructureConfiguration>(
-            this TInfrastructureConfiguration configuration, 
-            string name, 
+            this TInfrastructureConfiguration configuration,
+            IConfigurationRoot configurationRoot,
+            string name,
             ServiceDetails[] serviceDetails)
             where TInfrastructureConfiguration : InfrastructureConfiguration
         {
@@ -29,7 +31,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             {
                 throw new InvalidOperationException("No system service details specified during infrastructure configuration");
             }
-            
+
+            editableConfiguration.Root = configurationRoot ?? throw new ArgumentNullException(nameof(configurationRoot));
             editableConfiguration.Name = name;
             editableConfiguration.ServiceDetails = serviceDetails;
             return configuration;
@@ -39,7 +42,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             where TInfrastructureConfiguration : InfrastructureConfiguration
         {
             var editableConfiguration = (IEditableInfrastructureConfiguration) configuration;
-	        
+
             editableConfiguration.Logical = logical ?? throw new ArgumentException("No logical context specified", nameof(logical));
 
             return configuration;
@@ -50,7 +53,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             where TInfrastructure : class, IInfrastructure
         {
             var editableConfiguration = (IEditableInfrastructureConfiguration) configuration;
-            
+
             if (editableConfiguration.GetInfrastructure != null)
             {
                 throw new InvalidOperationException("GetInfrastructure already set.");

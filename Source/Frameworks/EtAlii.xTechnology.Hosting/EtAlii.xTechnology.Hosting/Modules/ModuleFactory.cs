@@ -17,25 +17,26 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         public IModule Create(
-            IHost host, 
-            ISystem system, 
-            IModule parentModule, 
+            IHost host,
+            ISystem system,
+            IModule parentModule,
             IConfigurationSection moduleConfiguration,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
-            if(!_instanceCreator.TryCreate<IModule>(moduleConfiguration, configurationDetails, "module", out var module))
+            if(!_instanceCreator.TryCreate<IModule>(moduleConfiguration, configurationRoot, configurationDetails, "module", out var module))
             {
                 module = new DefaultModule(moduleConfiguration);
             }
 
             var services = moduleConfiguration
                 .GetAllSections("Services")
-                .Select(scs => _serviceFactory.Create(host, system, module, scs, configurationDetails))
+                .Select(scs => _serviceFactory.Create(host, system, module, scs, configurationRoot, configurationDetails))
                 .ToArray();
 
             var modules = moduleConfiguration
                 .GetAllSections("Modules")
-                .Select(mcs => Create(host, system, module, mcs, configurationDetails))
+                .Select(mcs => Create(host, system, module, mcs, configurationRoot, configurationDetails))
                 .ToArray();
 
             module.Setup(host, system, services, modules, parentModule);

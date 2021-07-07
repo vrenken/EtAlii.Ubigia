@@ -10,18 +10,18 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
     public static class Program
     {
         /// <summary>
-        /// The main entry point for the application. 
+        /// The main entry point for the application.
         /// </summary>
         public static async Task Main()
         {
             var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
 
-            var applicationConfiguration = new ConfigurationBuilder()
+            var configurationRoot = new ConfigurationBuilder()
                 .AddConfigurationDetails(details)
                 .Build();
 
             var hostConfiguration = new HostConfigurationBuilder()
-                .Build(applicationConfiguration, details)
+                .Build(configurationRoot, details)
                 .Use(DiagnosticsConfiguration.Default)
                 .UseConsoleHost();
 

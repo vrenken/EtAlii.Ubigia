@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 	public class RestHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
 	    protected RestHostTestContext()
-		    : base("Host/settings.json")
+		    : base("settings.json")
 	    {
 	    }
 

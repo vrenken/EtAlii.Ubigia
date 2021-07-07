@@ -6,6 +6,13 @@ namespace EtAlii.xTechnology.Hosting
 
     public interface IFactory<out TInstance>
     {
-        TInstance Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails);
+        /// <summary>
+        /// Create an instance from the provided configuration section.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="configurationRoot"></param>
+        /// <param name="configurationDetails"></param>
+        /// <returns></returns>
+        TInstance Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails);
     }
 }

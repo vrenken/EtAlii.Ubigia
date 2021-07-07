@@ -1,5 +1,58 @@
 ﻿{
-  "Host":
+    "Transport": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
+    "Functional": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        },
+        "Setup": {
+            "DefaultSystemAccountName": "System",
+            "DefaultSystemAccountPassword": "system123",
+
+            "DefaultAdministratorAccountName": "Administrator",
+            "DefaultAdministratorAccountPassword": "administrator123"
+        }
+    },
+    "Logical": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
+    "Fabric": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
+
+    "##Logging": {
+        "LogLevel": {
+            "Default": "Warning"
+        }
+    },
+    "##Diagnostics": {
+        "Output": {
+            "Seq": {
+                "Enabled": true,
+                "Url": "http://seq.avalon:5341"
+            },
+            "Console": {
+                "Enabled": true
+            }
+        }
+    },
+
+    "Host":
   {
     "Systems": [
       {

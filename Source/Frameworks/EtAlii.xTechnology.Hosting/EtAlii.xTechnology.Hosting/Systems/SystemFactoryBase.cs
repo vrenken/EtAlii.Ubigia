@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public abstract class SystemFactoryBase : ISystemFactory
     {
-        public abstract ISystem Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails);
+        /// <inheritdoc />
+        public abstract ISystem Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails);
     }
 }

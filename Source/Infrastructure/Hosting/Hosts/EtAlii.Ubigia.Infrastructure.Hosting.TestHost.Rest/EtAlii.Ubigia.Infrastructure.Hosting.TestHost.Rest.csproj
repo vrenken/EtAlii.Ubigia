@@ -19,7 +19,10 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Host\settings.json">
+    <Content Include="settings.json">
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <Pack>true</Pack>
+      <BuildAction>Content</BuildAction>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

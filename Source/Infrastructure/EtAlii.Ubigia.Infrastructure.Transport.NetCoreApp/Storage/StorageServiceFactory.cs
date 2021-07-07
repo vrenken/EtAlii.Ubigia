@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 
 	public class StorageServiceFactory : ServiceFactoryBase
 	{
-		public override IService Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
+		public override IService Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
 		{
 			var container = new Container();
 
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 			{
 				throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
 			}
-			
+
 			string baseFolder;
 			baseFolder = configuration.GetValue<string>(nameof(baseFolder));
 			if (baseFolder == null)

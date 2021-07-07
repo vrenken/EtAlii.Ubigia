@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 
     public class InfrastructureSystemFactory : SystemFactoryBase
     {
-        public override ISystem Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
+        public override ISystem Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

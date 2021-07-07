@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 	public class GrpcHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>
     {
 	    protected GrpcHostTestContext()
-		    : base("Host/settings.json")
+		    : base("settings.json")
 	    {
 	    }
 

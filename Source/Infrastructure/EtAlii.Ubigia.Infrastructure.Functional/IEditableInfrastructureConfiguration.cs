@@ -5,11 +5,17 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public interface IEditableInfrastructureConfiguration
     {
         /// <summary>
-        /// Editable access to the context that provides access to the logical layer of the codebase. 
+        /// Editable access to the configuration root instance for the current application.
+        /// </summary>
+        IConfigurationRoot Root { get; set; }
+
+        /// <summary>
+        /// Editable access to the context that provides access to the logical layer of the codebase.
         /// </summary>
         ILogicalContext Logical { get; set; }
 
@@ -19,12 +25,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         string Name { get; set; }
 
         /// <summary>
-        /// Editable access to provide the details for all of the services provided by the hosted infrastructure.  
+        /// Editable access to provide the details for all of the services provided by the hosted infrastructure.
         /// </summary>
         ServiceDetails[] ServiceDetails { get; set; }
 
         /// <summary>
-        /// Editable access to a proxy wrapping system connection creation mechanisms. 
+        /// Editable access to a proxy wrapping system connection creation mechanisms.
         /// </summary>
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; set; }
 

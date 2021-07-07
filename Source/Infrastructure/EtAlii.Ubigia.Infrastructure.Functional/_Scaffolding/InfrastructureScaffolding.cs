@@ -19,6 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             container.Register<IContextCorrelator, ContextCorrelator>();
 
             container.Register(() => _configuration);
+            container.Register(() => _configuration.Root);
             container.Register(() => _configuration.Logical);
             container.Register(() => _configuration.SystemConnectionCreationProxy);
         }

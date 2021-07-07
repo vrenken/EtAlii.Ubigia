@@ -6,16 +6,16 @@ namespace EtAlii.xTechnology.Hosting
 
     public class HostConfigurationBuilder
     {
-        public IHostConfiguration Build(IConfigurationRoot applicationConfiguration, ConfigurationDetails details)
+        public IHostConfiguration Build(IConfigurationRoot configurationRoot, ConfigurationDetails details)
 		{
-            var hostSection = applicationConfiguration.GetSection("Host");
+            var hostSection = configurationRoot.GetSection("Host");
 
             var systemConfigurations = hostSection.GetAllSections("Systems");
 
             // Create a host instance.
             var configuration = new HostConfiguration()
                 .Use(systemConfigurations)
-                .Use(details);
+                .Use(details, configurationRoot);
 
             return configuration;
         }

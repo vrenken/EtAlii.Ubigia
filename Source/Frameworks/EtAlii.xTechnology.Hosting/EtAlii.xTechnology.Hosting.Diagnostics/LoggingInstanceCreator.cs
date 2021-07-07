@@ -16,23 +16,25 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         }
 
         public bool TryCreate<TInstance>(
-            IConfigurationSection configuration, 
-            IConfigurationDetails configurationDetails, 
+            IConfigurationSection configuration,
+            IConfigurationRoot configurationRoot,
+            IConfigurationDetails configurationDetails,
             string name, out TInstance instance)
         {
             var factoryTypeName = configuration?.GetValue<string>("Factory");
 
             _logger.Information("Creating instance for {Name} using factory: {FactoryTypeName}", name, factoryTypeName);
 
-            var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance);
-            
+            var result = _decoree.TryCreate(configuration, configurationRoot, configurationDetails, name, out instance);
+
             _logger.Information("Created instance: {Success}", result);
 
             return result;
         }
 
         public bool TryCreate<TInstance>(
-            IConfigurationSection configuration, 
+            IConfigurationSection configuration,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails, string name,
             out TInstance instance, bool throwOnNoFactory)
         {
@@ -40,8 +42,8 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
             _logger.Information("Creating instance for {Name} using factory: {FactoryTypeName}", name, factoryTypeName);
 
-            var result = _decoree.TryCreate(configuration, configurationDetails, name, out instance, throwOnNoFactory);
-            
+            var result = _decoree.TryCreate(configuration, configurationRoot, configurationDetails, name, out instance, throwOnNoFactory);
+
             _logger.Information("Created instance: {Success}", result);
 
             return result;

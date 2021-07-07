@@ -12,8 +12,8 @@ namespace EtAlii.xTechnology.Hosting
         private readonly IInstanceCreator _instanceCreator;
 
         public SystemFactory(
-            ServiceFactory serviceFactory, 
-            ModuleFactory moduleFactory, 
+            ServiceFactory serviceFactory,
+            ModuleFactory moduleFactory,
             IInstanceCreator instanceCreator)
         {
             _serviceFactory = serviceFactory;
@@ -26,27 +26,29 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         /// <param name="host"></param>
         /// <param name="systemConfiguration"></param>
+        /// <param name="configurationRoot"></param>
         /// <param name="configurationDetails"></param>
         /// <returns></returns>
         /// <exception cref="System.InvalidOperationException"></exception>
         public ISystem Create(
-            IHost host, 
+            IHost host,
             IConfigurationSection systemConfiguration,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
-            if(!_instanceCreator.TryCreate<ISystem>(systemConfiguration, configurationDetails, "system", out var system))
+            if(!_instanceCreator.TryCreate<ISystem>(systemConfiguration, configurationRoot, configurationDetails, "system", out var system))
             {
                 system = new DefaultSystem();
             }
 
             var services = systemConfiguration
                 .GetAllSections("Services")
-                .Select(scs => _serviceFactory.Create(host, system, null, scs, configurationDetails))
+                .Select(scs => _serviceFactory.Create(host, system, null, scs, configurationRoot, configurationDetails))
                 .ToArray();
 
             var modules = systemConfiguration
                 .GetAllSections("Modules")
-                .Select(mcs => _moduleFactory.Create(host, system, null, mcs, configurationDetails))
+                .Select(mcs => _moduleFactory.Create(host, system, null, mcs, configurationRoot, configurationDetails))
                 .ToArray();
 
             system.Setup(host, services, modules);

@@ -14,24 +14,26 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         public IService Create(
-            IHost host, ISystem system, 
+            IHost host, ISystem system,
             IModule parentModule,
-            IServiceFactory serviceFactory, 
+            IServiceFactory serviceFactory,
             IConfigurationSection serviceConfiguration,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
-            var service = serviceFactory.Create(serviceConfiguration, configurationDetails);
+            var service = serviceFactory.Create(serviceConfiguration, configurationRoot, configurationDetails);
             service.Setup(host, system, parentModule);
             return service;
         }
 
         public IService Create(
-            IHost host, ISystem system, 
+            IHost host, ISystem system,
             IModule parentModule,
             IConfigurationSection serviceConfiguration,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
-            _instanceCreator.TryCreate<IService>(serviceConfiguration, configurationDetails, "service", out var service, true);
+            _instanceCreator.TryCreate<IService>(serviceConfiguration, configurationRoot, configurationDetails, "service", out var service, true);
             service.Setup(host, system, parentModule);
             return service;
         }

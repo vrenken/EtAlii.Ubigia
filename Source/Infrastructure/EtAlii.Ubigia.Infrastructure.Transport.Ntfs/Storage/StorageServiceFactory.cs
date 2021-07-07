@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
 
     public class StorageServiceFactory : ServiceFactoryBase
     {
-        public override IService Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails)
+        public override IService Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

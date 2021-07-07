@@ -12,14 +12,17 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public class InstanceCreator : IInstanceCreator
     {
-        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationDetails configurationDetails, string name, out TInstance instance) => TryCreate(configuration, configurationDetails, name, out instance, false);
-        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory)
+        /// <inheritdoc />
+        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance) => TryCreate(configuration, configurationRoot, configurationDetails, name, out instance, false);
+
+        /// <inheritdoc />
+        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory)
         {
             var factoryTypeName = configuration.GetValue<string>("Factory");
-            
+
             if (throwOnNoFactory && factoryTypeName == null)
             {
-                name = string.Join(char.ToUpper(name[0]), name.Skip(1)); 
+                name = string.Join(char.ToUpper(name[0]), name.Skip(1));
                 throw new InvalidOperationException($"{name} without factory defined in configuration.");
             }
 
@@ -37,7 +40,7 @@ namespace EtAlii.xTechnology.Hosting
                 {
                     factoryTypeName = $"{factoryTypeName}, {assembly}";
                 }
-                
+
                 var type = Type.GetType(factoryTypeName, false);
                 if (type == null)
                 {
@@ -49,7 +52,7 @@ namespace EtAlii.xTechnology.Hosting
                     throw new InvalidOperationException($"Unable to activate {name} factory: {factoryTypeName}");
                 }
 
-                instance = factory.Create(configuration, configurationDetails);
+                instance = factory.Create(configuration, configurationRoot, configurationDetails);
                 return true;
             }
             instance = default;

@@ -5,9 +5,16 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class InfrastructureConfiguration : ConfigurationBase, IInfrastructureConfiguration, IEditableInfrastructureConfiguration
     {
+        /// <inheritdoc />
+        public IConfigurationRoot Root { get; private set; }
+
+        /// <inheritdoc />
+        IConfigurationRoot IEditableInfrastructureConfiguration.Root { get => Root; set => Root = value; }
+
         /// <inheritdoc />
         ILogicalContext IEditableInfrastructureConfiguration.Logical { get => Logical; set => Logical = value; }
 
@@ -22,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         /// <inheritdoc />
         ServiceDetails[] IEditableInfrastructureConfiguration.ServiceDetails { get => ServiceDetails; set => ServiceDetails = value; }
-        
+
         /// <inheritdoc />
         public ServiceDetails[] ServiceDetails { get; private set; } = Array.Empty<ServiceDetails>();
 

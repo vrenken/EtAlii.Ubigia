@@ -26,8 +26,13 @@ namespace EtAlii.xTechnology.Hosting
         public Action<string> Output { get; private set; }
 
         public IHostExtension[] Extensions { get; private set; }
-        
+
         public ConfigurationDetails Details { get; private set; }
+
+        /// <summary>
+        /// The configuration root instance for the current application.
+        /// </summary>
+        public IConfigurationRoot Root { get; private set; }
 
         public HostConfiguration()
         {
@@ -35,9 +40,11 @@ namespace EtAlii.xTechnology.Hosting
             Commands = Array.Empty<ICommand>();
         }
 
-        public IHostConfiguration Use(ConfigurationDetails details)
+        /// <inheritdoc />
+        public IHostConfiguration Use(ConfigurationDetails details, IConfigurationRoot root)
         {
             Details = details;
+            Root = root;
 
             return this;
         }
@@ -103,9 +110,9 @@ namespace EtAlii.xTechnology.Hosting
             CreateSystems = (host, systemFactory, _, _) =>
             {
                 return systemConfigurations
-                    .Select(scs => systemFactory.Create(host, scs, Details))
+                    .Select(scs => systemFactory.Create(host, scs, Root, Details))
                     .ToArray();
-            }; 
+            };
 
             return this;
         }
@@ -139,7 +146,7 @@ namespace EtAlii.xTechnology.Hosting
         public IHostConfiguration Use(bool useWrapper)
         {
             UseWrapper = useWrapper;
-            
+
             return this;
         }
     }

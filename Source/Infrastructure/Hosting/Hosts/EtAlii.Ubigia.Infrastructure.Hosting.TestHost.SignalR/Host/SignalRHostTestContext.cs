@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 	public class SignalRHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
 	    protected SignalRHostTestContext()
-		    : base("Host/settings.json")
+		    : base("settings.json")
 	    {
 	    }
 

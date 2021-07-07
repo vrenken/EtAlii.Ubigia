@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public abstract class ModuleFactoryBase : IModuleFactory
     {
-        public abstract IModule Create(IConfigurationSection configuration, IConfigurationDetails configurationDetails);
+        /// <inheritdoc />
+        public abstract IModule Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails);
     }
 }
