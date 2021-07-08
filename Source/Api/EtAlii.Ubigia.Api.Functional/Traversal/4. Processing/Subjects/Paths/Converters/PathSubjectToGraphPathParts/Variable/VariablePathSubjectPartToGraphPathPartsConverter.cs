@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var subject = variableValue switch
             {
                 string s => ToPathSubject(s, variableName),
-                INode node => new RelativePathSubject(new IdentifierPathSubjectPart(node.Id)),
+                Node node => new RelativePathSubject(new IdentifierPathSubjectPart(node.Id)),
                 PathSubject ps => ps,
                 _ => throw new ScriptParserException($"Unable to convert variableValue: {variableValue ?? "NULL"}")
             };

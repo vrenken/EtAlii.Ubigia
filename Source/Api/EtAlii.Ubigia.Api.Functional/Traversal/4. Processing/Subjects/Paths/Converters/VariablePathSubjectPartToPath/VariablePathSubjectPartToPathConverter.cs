@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return value switch
             {
                 string s => ToPath(s, variable.Source),
-                INode node => ToPath(node),
+                Node node => ToPath(node),
                 NonRootedPathSubject nonRootedPathSubject => nonRootedPathSubject.Parts,
                 StringConstantSubject stringConstantSubject => ToPath(stringConstantSubject),
                 RootedPathSubject rootedPathSubject => ToPath(rootedPathSubject),
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 .ToArray();
         }
 
-        private PathSubjectPart[] ToPath(INode node)
+        private PathSubjectPart[] ToPath(Node node)
         {
             return new PathSubjectPart[] { new ParentPathSubjectPart(), new IdentifierPathSubjectPart(node.Id) };
         }

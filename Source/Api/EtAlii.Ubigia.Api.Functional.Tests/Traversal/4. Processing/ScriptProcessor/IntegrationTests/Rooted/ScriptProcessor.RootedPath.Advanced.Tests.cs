@@ -63,11 +63,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(addResult);
@@ -99,11 +99,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(addResult);
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.Single(parents);
-            Assert.Equal("Doe", ((INode)parents.First()).Type);
+            Assert.Equal("Doe", ((Node)parents.First()).Type);
         }
 
 
@@ -211,9 +211,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(select1Script);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(select2Script);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(firstResult);
@@ -247,9 +247,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(select1Script);
-            var firstResult = await lastSequence.Output.Cast<INode>().ToArray();
+            var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
             lastSequence = await processor.Process(select2Script);
-            var secondResult = await lastSequence.Output.Cast<INode>().ToArray();
+            var secondResult = await lastSequence.Output.Cast<Node>().ToArray();
 
             // Assert.
             Assert.NotNull(firstResult);
@@ -289,9 +289,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(select1Script);
-            var firstResult = await lastSequence.Output.Cast<INode>().ToArray();
+            var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
             lastSequence = await processor.Process(select2Script);
-            var secondResult = await lastSequence.Output.Cast<INode>().ToArray();
+            var secondResult = await lastSequence.Output.Cast<Node>().ToArray();
 
             // Assert.
             Assert.NotNull(firstResult);
@@ -330,7 +330,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(select1Script);
-            var firstResult = await lastSequence.Output.Cast<INode>().ToArray();
+            var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
             lastSequence = await processor.Process(select2Script);
             var secondResult = await lastSequence.Output.Cast<Identifier>().ToArray();
 

@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public ReadOnlyObservableCollection<Value> Values { get; }
         internal ObservableCollection<Value> EditableValues { get; }
 
-        internal IInternalNode Node { get; }
+        internal Node Node { get; }
         internal Structure Parent { get; }
 
         private Structure(string type, string name, Structure parent)
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             Parent?.AddChild(this);
         }
 
-        internal Structure(string type, string name, Structure parent, IInternalNode node)
+        internal Structure(string type, string name, Structure parent, Node node)
             : this(type, name, parent)
         {
             Node = node;

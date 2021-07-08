@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
             var result = await processResult.Output.SingleOrDefaultAsync();
-            if (result is IInternalNode valueNode)
+            if (result is Node valueNode)
             {
                 properties = valueNode.Properties;
                 return properties.TryGetValue(valueName, out var newValue)

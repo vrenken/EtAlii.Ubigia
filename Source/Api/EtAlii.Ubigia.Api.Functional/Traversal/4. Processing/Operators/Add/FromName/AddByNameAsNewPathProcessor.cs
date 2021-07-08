@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 parentId = addResult.ParentId;
                 newEntry = addResult.NewEntry;
             }
-            var result = new DynamicNode((IReadOnlyEntry)newEntry);
+            var result = new Node(newEntry);
             output.OnNext(result);
             output.OnCompleted();
         }

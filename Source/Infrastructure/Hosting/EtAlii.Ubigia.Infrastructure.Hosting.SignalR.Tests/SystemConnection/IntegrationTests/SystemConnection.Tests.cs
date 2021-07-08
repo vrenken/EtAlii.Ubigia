@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             // Assert.
             Assert.Single(item);
-            Assert.IsAssignableFrom<INode>(item[0]);
+            Assert.IsAssignableFrom<Node>(item[0]);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorEntryConversion);
         }
 
-        public async IAsyncEnumerable<DynamicNode> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope)
+        public async IAsyncEnumerable<Node> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Converting entries to nodes");
             profile.Entries = entries;
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler.End(profile);
         }
 
-        public async Task<DynamicNode> Convert(IReadOnlyEntry entry, ExecutionScope scope)
+        public async Task<Node> Convert(IReadOnlyEntry entry, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Converting entry to node");
             profile.Entry = entry;

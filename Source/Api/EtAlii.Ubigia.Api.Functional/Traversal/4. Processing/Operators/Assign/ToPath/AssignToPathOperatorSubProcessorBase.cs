@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
             switch (o)
             {
-                case IInternalNode node: return await _context.Logical.Nodes.AssignNode(location, node, scope).ConfigureAwait(false);
+                case Node node: return await _context.Logical.Nodes.AssignNode(location, node, scope).ConfigureAwait(false);
                 case IPropertyDictionary properties: return await _context.Logical.Nodes.AssignProperties(location, properties, scope).ConfigureAwait(false);
             }
 

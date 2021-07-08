@@ -21,13 +21,12 @@ namespace EtAlii.Ubigia.Api.Logical
             _graphPathTraverser = graphPathTraverser;
         }
 
-        public async Task<IReadOnlyEntry> Assign(INode node, Identifier id, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> Assign(Node node, Identifier id, ExecutionScope scope)
         {
             var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope).ConfigureAwait(false);
             id = latestEntry.Id;
 
-            var sourceNode = (IInternalNode)node;
-            var newProperties = sourceNode.Properties;
+            var newProperties = node.Properties;
 
             var entry = await _fabric.Entries.Get(id, scope).ConfigureAwait(false);
             var oldProperties = await _fabric.Properties.Retrieve(id, scope).ConfigureAwait(false) ?? new PropertyDictionary();

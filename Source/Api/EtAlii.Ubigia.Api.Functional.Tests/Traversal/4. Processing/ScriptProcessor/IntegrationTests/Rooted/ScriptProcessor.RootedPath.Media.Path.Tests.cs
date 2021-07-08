@@ -43,11 +43,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(addResult);

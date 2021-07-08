@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             return result;
         }
 
-        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, Node node, ExecutionScope scope)
         {
             dynamic profile = _profiler.Begin("Assign node");
             profile.Node = node;

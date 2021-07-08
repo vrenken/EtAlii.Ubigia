@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 new ParameterSet(true),
                 new ParameterSet(false, new Parameter("var", typeof(PathSubject))),
                 new ParameterSet(false, new Parameter("var", typeof(Identifier))),
-                new ParameterSet(false, new Parameter("var", typeof(IInternalNode))),
+                new ParameterSet(false, new Parameter("var", typeof(Node))),
                 new ParameterSet(false, new Parameter("var", typeof(IObservable<object>))),
             };
             Name = "Count";
@@ -74,10 +74,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         PathSubject pathSubject => await CountPath(context, pathSubject, scope).ConfigureAwait(false),
                         Identifier => 1,
-                        IInternalNode => 1,
+                        Node => 1,
                         IObservable<object> observable => await CountObservable(observable).ConfigureAwait(false),
                         IEnumerable<Identifier> identifiers => identifiers.Count(),
-                        IEnumerable<IInternalNode> nodes => nodes.Count(),
+                        IEnumerable<Node> nodes => nodes.Count(),
                         null => throw new ScriptProcessingException("No empty argument is allowed for Count function processing"),
                         _ => throw new ScriptProcessingException("Unable to convert arguments for Count function processing")
                     };

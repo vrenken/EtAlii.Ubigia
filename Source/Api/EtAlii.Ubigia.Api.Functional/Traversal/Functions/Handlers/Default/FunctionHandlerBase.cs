@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 PathSubject pathSubject => ConvertPathToIds(context, pathSubject, scope),
                 Identifier identifier => new [] { identifier },
-                IInternalNode node => new [] { node.Id },
+                Node node => new [] { node.Id },
                 _ => throw new ScriptProcessingException("Unable to convert input for Function processing")
             };
         }

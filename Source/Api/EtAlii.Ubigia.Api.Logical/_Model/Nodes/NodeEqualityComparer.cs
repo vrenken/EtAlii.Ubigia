@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public bool Equals(Node x, Node y)
         {
-            if (x == null && y != null || x != null && y == null)
+            if (x is null && y is not null || x is not null && y is null)
             {
                 return false;
             }
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Logical
             // Return true if the fields match.
             // Note that the base class is not invoked because it is
             // System.Object, which defines Equals as reference equality.
-            return ((IInternalNode)x).Entry.Id == ((IInternalNode)y).Entry.Id;
+            return x.Entry.Id == y.Entry.Id;
         }
 
         // Is this GetHashCode behavior correct?
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Logical
         // https://github.com/vrenken/EtAlii.Ubigia/issues/75
         public int GetHashCode(Node obj)
         {
-            return ((IInternalNode)obj).Entry.Id.GetHashCode();
+            return obj.Entry.Id.GetHashCode();
         }
     }
 }

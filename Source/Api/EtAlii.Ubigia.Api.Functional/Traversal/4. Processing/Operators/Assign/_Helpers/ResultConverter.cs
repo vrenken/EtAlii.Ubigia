@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
@@ -21,8 +20,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             return input switch
             {
-                IEnumerable<INode> nodes => Convert(nodes.Cast<IInternalNode>(), scope, output),
-                INode => OnNext(input, output),
+                IEnumerable<Node> nodes => Convert(nodes, scope, output),
+                Node => OnNext(input, output),
                 IEnumerable<IReadOnlyEntry> entries => Convert(entries, output),
                 IReadOnlyEntry => OnNext(input, output),
                 IEnumerable<Identifier> identifiers => Convert(identifiers, output),
@@ -35,18 +34,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             output.OnNext(o);
             return Task.CompletedTask;
         }
-        private async Task Convert(IEnumerable<IInternalNode> nodes, ExecutionScope scope, IObserver<object> output)
+        private async Task Convert(IEnumerable<Node> nodes, ExecutionScope scope, IObserver<object> output)
         {
             foreach (var node in nodes)
             {
                 var properties = await _context.Logical.Properties.Get(node.Id, scope).ConfigureAwait(false) ?? new PropertyDictionary();
 
-                IInternalNode result = node switch
-                {
-                    DynamicNode => new DynamicNode(node.Entry, properties),
-                    Node => new Node(node.Entry, properties),
-                    _ => throw new InvalidOperationException("Unable to convert node")
-                };
+                var result = new Node(node.Entry, properties);
 
                 output.OnNext(result);
             }

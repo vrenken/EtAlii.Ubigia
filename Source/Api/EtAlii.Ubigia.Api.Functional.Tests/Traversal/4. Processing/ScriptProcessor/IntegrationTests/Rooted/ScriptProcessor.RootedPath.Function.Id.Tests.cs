@@ -131,9 +131,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.Empty(result);  // << Question: should the $var2 assignment create output or not? Nope it should not. only assign (<=), function or path results should.
-            Assert.IsAssignableFrom<INode>(await scope.Variables["var1"].Value.SingleAsync());
+            Assert.IsAssignableFrom<Node>(await scope.Variables["var1"].Value.SingleAsync());
             Assert.IsType<Identifier>(await scope.Variables["var2"].Value.SingleAsync());
-            Assert.Equal((await scope.Variables["var1"].Value.Cast<INode>().SingleAsync()).Id, await scope.Variables["var2"].Value.Cast<Identifier>().SingleAsync());
+            Assert.Equal((await scope.Variables["var1"].Value.Cast<Node>().SingleAsync()).Id, await scope.Variables["var2"].Value.Cast<Identifier>().SingleAsync());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

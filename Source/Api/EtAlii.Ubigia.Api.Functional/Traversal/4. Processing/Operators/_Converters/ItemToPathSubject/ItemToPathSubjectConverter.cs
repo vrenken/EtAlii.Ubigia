@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return items switch
             {
                 PathSubject item => item,
-                INode node => new RelativePathSubject(new ConstantPathSubjectPart(node.Type)), // << ????
+                Node node => new RelativePathSubject(new ConstantPathSubjectPart(node.Type)), // << ????
                 string s => new RelativePathSubject(new ConstantPathSubjectPart(s)),
                 _ => throw new ScriptParserException($"Unable to convert path subject: {items ?? "NULL"}")
             };
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             pathSubject = items switch
             {
                 PathSubject item => item,
-                INode node => new RelativePathSubject(new ConstantPathSubjectPart(node.Type)), // << ????
+                Node node => new RelativePathSubject(new ConstantPathSubjectPart(node.Type)), // << ????
                 string s => new RelativePathSubject(new ConstantPathSubjectPart(s)),
                 _ => null
             };

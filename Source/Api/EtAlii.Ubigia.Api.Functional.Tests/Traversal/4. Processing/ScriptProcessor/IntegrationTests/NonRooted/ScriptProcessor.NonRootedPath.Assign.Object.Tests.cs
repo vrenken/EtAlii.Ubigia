@@ -435,7 +435,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
+            Assert.False(((Node)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
             Assert.Equal("Test2", selectResult2.StringValue);
             Assert.Equal("13", selectResult2.IntValue);
@@ -487,10 +487,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
+            Assert.False(((Node)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
             Assert.Equal("Test2", selectResult2.StringValue);
-            Assert.False(((IInternalNode)selectResult2).Properties.ContainsKey("IntValue"));
+            Assert.False(((Node)selectResult2).Properties.ContainsKey("IntValue"));
             Assert.Equal(true, selectResult2.BoolValue);
         }
 
@@ -540,9 +540,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
+            Assert.False(((Node)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
-            Assert.Empty(((IInternalNode)selectResult2).Properties);
+            Assert.Empty(((Node)selectResult2).Properties);
         }
 
 
@@ -591,9 +591,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(selectResult1);
             Assert.Equal("Test1", selectResult1.StringValue);
             Assert.Equal("12", selectResult1.IntValue);
-            Assert.False(((IInternalNode)selectResult1).Properties.ContainsKey("BoolValue"));
+            Assert.False(((Node)selectResult1).Properties.ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
-            Assert.Equal(2, ((IInternalNode)selectResult2).Properties.Count);
+            Assert.Equal(2, ((Node)selectResult2).Properties.Count);
             Assert.Equal("Test1", selectResult2.StringValue);
             Assert.Equal("12", selectResult2.IntValue);
         }
@@ -638,7 +638,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result2);
             Assert.Equal("Family", result1.ObjectType);
             Assert.Equal("Person", result2.ObjectType);
-            Assert.NotEqual(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -681,7 +681,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.NotNull(result2);
             Assert.Equal("Family", result1.ObjectType);
             Assert.Equal("Family", result2.ObjectType);
-            Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -726,7 +726,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Person", result2.ObjectType);
             Assert.Equal("ABC", result1.Code);
             Assert.Equal("ABC", result2.Code);
-            Assert.NotEqual(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -770,7 +770,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Family", result1.ObjectType);
             Assert.Equal("Person", result2.ObjectType);
             Assert.Equal("ABC", result2.Code);
-            Assert.NotEqual(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.NotEqual(((Node)result1).Id, ((Node)result2).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -815,7 +815,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Family", result2.ObjectType);
             Assert.Equal("ABC", result1.Code);
             Assert.Equal("ABC", result2.Code);
-            Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -860,7 +860,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.Equal("Family", result2.ObjectType);
             Assert.Equal("ABC", result1.Code);
             Assert.Equal("ABC", result2.Code);
-            Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
+            Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
     }
 }

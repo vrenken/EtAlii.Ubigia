@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Logical
             return await _constantToIdentifierTagAssigner.Assign(tag, location, scope).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, Node node, ExecutionScope scope)
         {
             return await _nodeToIdentifierAssigner.Assign(node, location, scope).ConfigureAwait(false);
         }

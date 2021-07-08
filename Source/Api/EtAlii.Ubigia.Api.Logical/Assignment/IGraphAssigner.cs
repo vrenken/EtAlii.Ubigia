@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope);
 
-        Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope);
+        Task<IReadOnlyEntry> AssignNode(Identifier location, Node node, ExecutionScope scope);
 
         Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope);
     }

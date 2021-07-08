@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Logical
             return await assigner.AssignTag(location, tag, scope).ConfigureAwait(false);
         }
 
-        public async Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> AssignNode(Identifier location, Node node, ExecutionScope scope)
         {
             var assigner = _graphAssignerFactory.Create(Fabric);
             return await assigner.AssignNode(location, node, scope).ConfigureAwait(false);

@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
                     var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
                     var result = await processResult.Output.SingleOrDefaultAsync();
-                    if (result is IInternalNode valueNode)
+                    if (result is Node valueNode)
                     {
                         return new Value(valueName, valueNode.Type);
                     }
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var script = new Script(new Sequence(new SequencePart[] { path, new AssignOperator(), new StringConstantSubject(value) }));
                 var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
                 var result = await processResult.Output.SingleOrDefaultAsync();
-                if (result is IInternalNode valueNode)
+                if (result is Node valueNode)
                 {
                     return new Value(valueName, valueNode.Type);
                 }

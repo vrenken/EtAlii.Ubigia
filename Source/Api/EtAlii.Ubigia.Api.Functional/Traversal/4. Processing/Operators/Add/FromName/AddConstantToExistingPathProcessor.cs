@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var parentId = id;
             var addResult = await _recursiveAdder.Add(parentId, constantPathSubjectPart, null, scope).ConfigureAwait(false);
             var newEntry = addResult.NewEntry;
-            var result = new DynamicNode((IReadOnlyEntry)newEntry);
+            var result = new Node(newEntry);
             output.OnNext(result);
         }
 

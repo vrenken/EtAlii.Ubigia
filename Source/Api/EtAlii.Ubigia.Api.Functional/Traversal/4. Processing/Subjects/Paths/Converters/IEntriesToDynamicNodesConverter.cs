@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IEntriesToDynamicNodesConverter
     {
-        IAsyncEnumerable<DynamicNode> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope);
-        Task<DynamicNode> Convert(IReadOnlyEntry entry, ExecutionScope scope);
+        IAsyncEnumerable<Node> Convert(IEnumerable<IReadOnlyEntry> entries, ExecutionScope scope);
+        Task<Node> Convert(IReadOnlyEntry entry, ExecutionScope scope);
     }
 }

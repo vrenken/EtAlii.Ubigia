@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(beforeResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)beforeResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)beforeResult).Id);
             Assert.Null(afterResult);
         }
 
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(beforeResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)beforeResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)beforeResult).Id);
             Assert.Null(afterResult);
         }
 
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(beforeResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)beforeResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)beforeResult).Id);
             Assert.Null(afterResult);
         }
 
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(beforeResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)beforeResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)beforeResult).Id);
             Assert.Null(afterResult);
         }
 
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(beforeResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)beforeResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)beforeResult).Id);
             Assert.Null(afterResult);
         }
     }

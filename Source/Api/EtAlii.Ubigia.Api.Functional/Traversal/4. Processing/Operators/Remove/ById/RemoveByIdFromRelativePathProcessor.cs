@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IObserver<object> output)
         {
             var newEntry = await _context.Logical.Nodes.Remove(id, identifierToRemove, scope).ConfigureAwait(false);
-            var result = new DynamicNode(newEntry);
+            var result = new Node(newEntry);
             output.OnNext(result);
         }
     }

@@ -38,11 +38,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var comparer = NodeEqualityComparer.Default;
-            var first = (Node)null;
-            var second = (Node)null;
 
             // Act.
-            var equal = comparer.Equals(first, second);
+            var equal = comparer.Equals(null, null);
 
             // Assert.
             Assert.True(equal);
@@ -73,11 +71,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var testIdentifierFactory = new TestIdentifierFactory();
 
             var comparer = NodeEqualityComparer.Default;
-            var first = (Node)null;
             var second = new Node(Entry.NewEntry(testIdentifierFactory.Create()));
 
             // Act.
-            var equal = comparer.Equals(first, second);
+            var equal = comparer.Equals(null, second);
 
             // Assert.
             Assert.False(equal);
@@ -92,10 +89,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var comparer = NodeEqualityComparer.Default;
             var first = new Node(Entry.NewEntry(testIdentifierFactory.Create()));
-            var second = (Node)null;
 
             // Act.
-            var equal = comparer.Equals(first, second);
+            var equal = comparer.Equals(first, null);
 
             // Assert.
             Assert.False(equal);

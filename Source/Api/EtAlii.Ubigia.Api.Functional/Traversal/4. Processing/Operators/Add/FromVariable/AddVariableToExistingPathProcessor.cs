@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                         case IReadOnlyEntry entry:
                             await AddFromIdentifier(leftIdentifier, entry.Id, parameters).ConfigureAwait(false);
                             break;
-                        case INode node:
+                        case Node node:
                             await AddFromIdentifier(leftIdentifier, node.Id, parameters).ConfigureAwait(false);
                             break;
                         case string s:
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var latestIdentifierToAdd = ((IEditableEntry)entry).Id;
 
             var newEntry = await _context.Logical.Nodes.Add(leftIdentifier, latestIdentifierToAdd, parameters.Scope).ConfigureAwait(false);
-            var result = new DynamicNode(newEntry);
+            var result = new Node(newEntry);
             parameters.Output.OnNext(result);
         }
     }

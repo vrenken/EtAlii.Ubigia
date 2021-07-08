@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: o =>
                 {
-                    var entry = ((IInternalNode)o).Entry;
+                    var entry = ((Node)o).Entry;
                     parameters.Output.OnNext(entry.Tag);
                 });
             return Task.CompletedTask;

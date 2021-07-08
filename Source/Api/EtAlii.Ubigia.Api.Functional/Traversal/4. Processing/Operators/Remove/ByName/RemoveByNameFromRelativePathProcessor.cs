@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             var parentId = id;
             var removeResult = await _recursiveRemover.Remove(parentId, pathPartToRemove, scope).ConfigureAwait(false);
-            var result = new DynamicNode((IReadOnlyEntry)removeResult.NewEntry);
+            var result = new Node(removeResult.NewEntry);
             output.OnNext(result);
         }
     }

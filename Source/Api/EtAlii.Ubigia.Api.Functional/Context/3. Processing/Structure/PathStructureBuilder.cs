@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
                 if (onlyOneSingleNode)
                 {
-                    if (await scriptResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
+                    if (await scriptResult.Output.SingleOrDefaultAsync() is Node lastOutput)
                     {
                         Build(lastOutput, structureName, executionPlanResultSink, parent);
                     }
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 else
                 {
                     var items = scriptResult.Output
-                        .OfType<IInternalNode>()
+                        .OfType<Node>()
                         .ToAsyncEnumerable()
                         .ConfigureAwait(false);
                     await foreach (var item in items)
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         private void Build(
-            IInternalNode node,
+            Node node,
             string structureName,
             ExecutionPlanResultSink executionPlanResultSink,
             Structure parent)

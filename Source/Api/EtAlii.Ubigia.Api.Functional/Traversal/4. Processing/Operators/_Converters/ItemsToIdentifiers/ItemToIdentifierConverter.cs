@@ -8,18 +8,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public Identifier Convert(object item)
         {
-            switch (item)
+            return item switch
             {
-                case Identifier identifier:
-                    return identifier;
-                case IReadOnlyEntry entry:
-                    return entry.Id;
-                case INode node:
-                    return node.Id;
-                default:
-                    throw new ScriptProcessingException($"The {GetType().Name} is unable to convert the specified object: {item ?? "NULL"}");
-            }
-
+                Identifier identifier => identifier,
+                IReadOnlyEntry entry => entry.Id,
+                Node node => node.Id,
+                _ => throw new ScriptProcessingException($"The {GetType().Name} is unable to convert the specified object: {item ?? "NULL"}")
+            };
         }
     }
 }

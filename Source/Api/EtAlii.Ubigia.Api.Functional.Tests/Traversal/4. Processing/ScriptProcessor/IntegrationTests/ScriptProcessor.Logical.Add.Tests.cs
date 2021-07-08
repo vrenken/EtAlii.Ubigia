@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(locationEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)locationEntry).Id);
             Assert.Equal(selectQuery.Split(new[] { '/' }).Last(), locationEntry.ToString());
         }
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(locationEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)locationEntry).Id);
             Assert.Equal(selectQuery.Split(new[] { '/' }).Last(), locationEntry.ToString());
         }
 
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(locationEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)locationEntry).Id);
             Assert.Equal(selectQuery.Split(new[] { '/' }).Last(), locationEntry.ToString());
         }
 
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(parseResult.Errors.Any(), parseResult.Errors.Select(e => e.Message).FirstOrDefault());
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
 
@@ -149,7 +149,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -202,7 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
 
@@ -232,7 +232,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -265,7 +265,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(parseResult.Errors.Any(), parseResult.Errors.Select(e => e.Message).FirstOrDefault());
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -297,7 +297,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(parseResult.Errors.Any(), parseResult.Errors.Select(e => e.Message).FirstOrDefault());
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -330,7 +330,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Assert.False(parseResult.Errors.Any(), parseResult.Errors.Select(e => e.Message).FirstOrDefault());
             Assert.Null(beforeResult);
             Assert.NotNull(afterResult);
-            Assert.NotEqual(Identifier.Empty, ((INode)afterResult).Id);
+            Assert.NotEqual(Identifier.Empty, ((Node)afterResult).Id);
         }
     }
 }

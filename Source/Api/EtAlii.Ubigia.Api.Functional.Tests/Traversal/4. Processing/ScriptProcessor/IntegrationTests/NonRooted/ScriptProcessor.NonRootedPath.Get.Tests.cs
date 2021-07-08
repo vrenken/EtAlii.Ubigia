@@ -63,8 +63,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.IsType<DynamicNode>(result.Single());
-            Assert.Equal("Time", result.Cast<INode>().Single().Type);
+            Assert.IsType<Node>(result.Single());
+            Assert.Equal("Time", result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -87,8 +87,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.IsType<DynamicNode>(result.Single());
-            Assert.Equal("Time", result.Cast<INode>().Single().Type);
+            Assert.IsType<Node>(result.Single());
+            Assert.Equal("Time", result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -142,7 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -169,7 +169,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -195,7 +195,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -221,7 +221,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<Node>().Single().Type);
         }
     }
 }

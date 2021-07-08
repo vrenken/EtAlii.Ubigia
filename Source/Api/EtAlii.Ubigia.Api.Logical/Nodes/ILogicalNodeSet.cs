@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Logical
         // https://github.com/vrenken/EtAlii.Ubigia/issues/74
         Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope);
         Task<IReadOnlyEntry> AssignTag(Identifier location, string tag, ExecutionScope scope);
-        Task<IReadOnlyEntry> AssignNode(Identifier location, INode node, ExecutionScope scope);
+        Task<IReadOnlyEntry> AssignNode(Identifier location, Node node, ExecutionScope scope);
         Task<IReadOnlyEntry> AssignDynamic(Identifier location, object o, ExecutionScope scope);
 
         Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope);

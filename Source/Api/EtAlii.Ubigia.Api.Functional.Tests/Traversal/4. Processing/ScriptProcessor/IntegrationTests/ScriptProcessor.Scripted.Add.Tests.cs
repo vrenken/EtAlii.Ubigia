@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstContinentEntry);
             Assert.NotNull(secondContinentEntry);
-            Assert.Equal(((INode)firstContinentEntry).Id, ((INode)secondContinentEntry).Id);
+            Assert.Equal(((Node)firstContinentEntry).Id, ((Node)secondContinentEntry).Id);
             Assert.Equal(continent, firstContinentEntry.ToString());
         }
 
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstLocationEntry);
             Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
+            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -162,7 +162,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -197,7 +197,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
 
@@ -233,7 +233,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstLocationEntry);
             Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
+            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -264,7 +264,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -295,7 +295,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -326,7 +326,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstMinuteEntry);
             Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.Equal(((Node)firstMinuteEntry).Id, ((Node)secondMinuteEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -365,7 +365,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstLocationEntry);
             Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
+            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -404,7 +404,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstLocationEntry);
             Assert.NotNull(secondLocationEntry);
-            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
+            Assert.Equal(((Node)firstLocationEntry).Id, ((Node)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -428,7 +428,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstJohnEntry);
             Assert.NotNull(secondJohnEntry);
-            Assert.Equal(((INode)firstJohnEntry).Id, ((INode)secondJohnEntry).Id);
+            Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
 
         }
 
@@ -518,7 +518,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Assert.
             Assert.NotNull(firstJohnEntry);
             Assert.NotNull(secondJohnEntry);
-            Assert.Equal(((INode)firstJohnEntry).Id, ((INode)secondJohnEntry).Id);
+            Assert.Equal(((Node)firstJohnEntry).Id, ((Node)secondJohnEntry).Id);
         }
     }
 }
