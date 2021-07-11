@@ -40,7 +40,9 @@ internal static class TestModuleInitializer
                 ""Default"": ""Verbose"",
                 ""Override"": {
                     ""Microsoft"": ""Information"",
-                    ""Microsoft.AspNetCore"": ""Information""
+                    ""Microsoft.AspNetCore"": ""Information"",
+                    ""Microsoft.AspNetCore.SignalR"": ""Information"",
+                    ""Microsoft.AspNetCore.Http.Connections"": ""Information""
                 }
             },
             ""WriteTo"": [

@@ -5,7 +5,6 @@ namespace EtAlii.xTechnology.Diagnostics
     using System;
     using System.Reflection;
     using Serilog;
-    using Serilog.Events;
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Configuration;
 
@@ -35,40 +34,6 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                 .Enrich.WithMemoryUsage()
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
-            //
-            // loggerConfiguration
-            //     .WriteTo.Async(writeTo =>
-            //     {
-            //         var seqConfiguration = configurationRoot.GetSection("Logging:Output:Seq");
-            //         if (seqConfiguration.GetValue<bool>("Enabled"))
-            //         {
-            //             var logLevel = GetLogLevel(seqConfiguration);
-            //             var url = seqConfiguration.GetValue<string>("Address");
-            //             writeTo.Seq(url, logLevel);
-            //         }
-            //
-            //         var consoleConfiguration = configurationRoot.GetSection("Logging:Output:Console");
-            //         if (consoleConfiguration.GetValue<bool>("Enabled"))
-            //         {
-            //             var logLevel = GetLogLevel(consoleConfiguration);
-            //             writeTo.Debug(logLevel);
-            //         }
-            //     });
-        }
-
-        private static LogEventLevel GetLogLevel(IConfigurationSection configurationSection)
-        {
-            return configurationSection.GetValue<string>("LogLevel") switch
-            {
-                "Fatal" => LogEventLevel.Fatal,
-                "Error" => LogEventLevel.Error,
-                "Warning" => LogEventLevel.Warning,
-                "Information" => LogEventLevel.Information,
-                "Info" => LogEventLevel.Information,
-                "Debug" => LogEventLevel.Debug,
-                "Verbose" => LogEventLevel.Verbose,
-                _ => throw new NotSupportedException("Unable to determine LogLevel from configuration section")
-            };
         }
 
         public static void Initialize(Assembly rootAssembly, IConfigurationRoot configurationRoot)
@@ -78,7 +43,6 @@ namespace EtAlii.xTechnology.Diagnostics
             _isInitialized = true;
 
             Configure(_loggerConfiguration, rootAssembly, configurationRoot);
-            //_loggerConfiguration = loggerConfiguration[_loggerConfiguration]
             Log.Logger = _loggerConfiguration.CreateLogger();
 
             // Let's flush the log when the process exits.

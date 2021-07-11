@@ -28,20 +28,6 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                     var configuration = container.GetInstance<IHostConfiguration>();
                     var configurableHost = (IConfigurableHost)host;
                     configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsConfiguration.Configure(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly(), configuration.Root), true);
-                    configurableHost.ConfigureLogging += logging =>
-                    {
-                        if (!Debugger.IsAttached) return;
-
-                        // SonarQube: Make sure that this logger's configuration is safe.
-                        // I think it is as this host is for testing only.
-                        logging.AddDebug();
-
-                        logging.AddFilter(level => host.ShouldOutputLog && level >= host.LogLevel);
-                        logging.AddFilter("Microsoft.AspNetCore.SignalR", level => host.ShouldOutputLog && level >= host.LogLevel);
-                        logging.AddFilter("Microsoft.AspNetCore.Http.Connections", level => host.ShouldOutputLog && level >= host.LogLevel);
-                        logging.SetMinimumLevel(LogLevel.Trace);
-
-                    };
                 });
 
                 // Register for logging required DI instances.
