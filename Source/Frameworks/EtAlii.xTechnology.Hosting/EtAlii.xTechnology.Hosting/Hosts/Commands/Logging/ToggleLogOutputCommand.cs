@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public void Execute()
         {
-            Host.ShouldOutputLog = !Host.ShouldOutputLog;
+            //Host.ShouldOutputLog ! = Host.ShouldOutputLog
         }
 
         protected override void OnHostStateChanged(State state)

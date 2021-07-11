@@ -19,9 +19,6 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
         private readonly IConfigurableHost _configurableHost;
 
-        public bool ShouldOutputLog { get => _decoree.ShouldOutputLog; set => _decoree.ShouldOutputLog = value; }
-        public LogLevel LogLevel { get => _decoree.LogLevel; set => _decoree.LogLevel = value; }
-
         public LoggingHost(IHost decoree)
         {
             _decoree = decoree;

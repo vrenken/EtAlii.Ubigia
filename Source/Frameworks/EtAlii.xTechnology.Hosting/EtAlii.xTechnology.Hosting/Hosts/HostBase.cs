@@ -20,12 +20,6 @@ namespace EtAlii.xTechnology.Hosting
         protected IHostManager Manager => _manager;
         private IHostManager _manager;
 
-        public bool ShouldOutputLog { get => _shouldOutputLog; set => PropertyChanged.SetAndRaise(this, ref _shouldOutputLog, value); }
-        private bool _shouldOutputLog;
-
-        public LogLevel LogLevel { get => _logLevel; set => PropertyChanged.SetAndRaise(this, ref _logLevel, value); }
-        private LogLevel _logLevel = LogLevel.Information;
-
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
@@ -182,8 +176,7 @@ namespace EtAlii.xTechnology.Hosting
         {
             _selfStatus.Title = ".NET Core Host";
             var sb = new StringBuilder();
-            sb.AppendLine($"Log output: {(ShouldOutputLog ? "Enabled" : "Disabled")}");
-            sb.AppendLine($"Log level: {LogLevel}");
+            sb.AppendLine($"State: {State}");
             _selfStatus.Summary = _selfStatus.Description = sb.ToString();
         }
     }

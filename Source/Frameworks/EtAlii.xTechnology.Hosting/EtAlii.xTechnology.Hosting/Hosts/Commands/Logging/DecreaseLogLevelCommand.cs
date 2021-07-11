@@ -15,20 +15,20 @@ namespace EtAlii.xTechnology.Hosting
 
         public void Execute()
         {
-            if (Host.LogLevel != LogLevel.Critical)
-            {
-                Host.LogLevel = Host.LogLevel + 1;
-            }
+            // if [Host.LogLevel ! = LogLevel.Critical]
+            // [
+            //     Host.LogLevel = Host.LogLevel + 1
+            // ]
         }
 
         protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == State.Running && Host.LogLevel != LogLevel.Critical;
+            CanExecute = false;//= state = = State.Running & & Host.LogLevel ! = LogLevel.Critical
         }
 
         protected override void OnHostStatusChanged(Status[] status)
         {
-            CanExecute = Host.LogLevel != LogLevel.Critical;
+            CanExecute = false; //= Host.LogLevel ! = LogLevel.Critical
         }
     }
 }
