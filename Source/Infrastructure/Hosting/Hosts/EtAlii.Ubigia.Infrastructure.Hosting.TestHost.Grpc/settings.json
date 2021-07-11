@@ -35,19 +35,19 @@
         }
     },
 
-    "##Logging": {
+    "Logging": {
         "LogLevel": {
             "Default": "Warning"
-        }
-    },
-    "##Diagnostics": {
+        },
         "Output": {
             "Seq": {
                 "Enabled": true,
-                "Url": "http://seq.avalon:5341"
+                "Address": "http://seq.avalon:5341",
+                "LogLevel": "Debug"
             },
             "Console": {
-                "Enabled": true
+                "Enabled": true,
+                "LogLevel": "Info"
             }
         }
     },

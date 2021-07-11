@@ -7,6 +7,7 @@ namespace EtAlii.xTechnology.Diagnostics
     using Serilog;
     using Serilog.Events;
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Extensions.Configuration;
 
     [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
     public partial class DiagnosticsConfiguration
@@ -14,7 +15,7 @@ namespace EtAlii.xTechnology.Diagnostics
         private static readonly LoggerConfiguration _loggerConfiguration = new();
 
         private static bool _isInitialized;
-        public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly)
+        public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly, IConfigurationRoot configurationRoot)
         {
             var executingAssemblyName = executingAssembly.GetName();
             loggerConfiguration.MinimumLevel.Verbose()
@@ -32,21 +33,50 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
                 .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                 .Enrich.WithMemoryUsage()
-                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
+                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
+
+            loggerConfiguration
                 .WriteTo.Async(writeTo =>
                 {
-                    writeTo.Seq("http://seq.avalon:5341");
-                    writeTo.Debug(LogEventLevel.Error);
+                    var seqConfiguration = configurationRoot.GetSection("Logging:Output:Seq");
+                    if (seqConfiguration.GetValue<bool>("Enabled"))
+                    {
+                        var logLevel = GetLogLevel(seqConfiguration);
+                        var url = seqConfiguration.GetValue<string>("Address");
+                        writeTo.Seq(url, logLevel);
+                    }
+
+                    var consoleConfiguration = configurationRoot.GetSection("Logging:Output:Console");
+                    if (consoleConfiguration.GetValue<bool>("Enabled"))
+                    {
+                        var logLevel = GetLogLevel(consoleConfiguration);
+                        writeTo.Debug(logLevel);
+                    }
                 });
         }
 
-        public static void Initialize(Assembly rootAssembly)
+        private static LogEventLevel GetLogLevel(IConfigurationSection configurationSection)
+        {
+            return configurationSection.GetValue<string>("LogLevel") switch
+            {
+                "Fatal" => LogEventLevel.Fatal,
+                "Error" => LogEventLevel.Error,
+                "Warning" => LogEventLevel.Warning,
+                "Information" => LogEventLevel.Information,
+                "Info" => LogEventLevel.Information,
+                "Debug" => LogEventLevel.Debug,
+                "Verbose" => LogEventLevel.Verbose,
+                _ => throw new NotSupportedException("Unable to determine LogLevel from configuration section")
+            };
+        }
+
+        public static void Initialize(Assembly rootAssembly, IConfigurationRoot configurationRoot)
         {
             if (_isInitialized) return;
 
             _isInitialized = true;
 
-            Configure(_loggerConfiguration, rootAssembly);
+            Configure(_loggerConfiguration, rootAssembly, configurationRoot);
             //_loggerConfiguration = loggerConfiguration[_loggerConfiguration]
             Log.Logger = _loggerConfiguration.CreateLogger();
 

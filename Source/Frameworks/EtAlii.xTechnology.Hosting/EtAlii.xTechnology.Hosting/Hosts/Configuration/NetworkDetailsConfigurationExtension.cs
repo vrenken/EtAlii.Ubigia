@@ -10,10 +10,11 @@ namespace EtAlii.xTechnology.Hosting
     {
         public static IConfigurationBuilder AddConfigurationDetails(this IConfigurationBuilder builder, ConfigurationDetails details)
         {
-#pragma warning disable CA2000             
+#pragma warning disable CA2000
+            // We cannot use the using statement to dispose this stream as the builder is going to own it.
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(details.Configuration));
             return builder.AddJsonStream(stream);
-#pragma warning restore CA2000             
+#pragma warning restore CA2000
         }
     }
 }

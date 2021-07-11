@@ -17,21 +17,23 @@ namespace EtAlii.xTechnology.Hosting
         public string HostTitle { get; private set; }
         public string ProductTitle { get; private set; }
 
+        /// <inheritdoc />
         public bool UseWrapper { get; private set; }
         public Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> CreateSystems { get; private set; }
 
+        /// <inheritdoc />
         public Func<IHost> CreateHost { get; private set; }
         public IDiagnosticsConfiguration Diagnostics { get; private set; }
 
         public Action<string> Output { get; private set; }
 
+        /// <inheritdoc />
         public IHostExtension[] Extensions { get; private set; }
 
+        /// <inheritdoc />
         public ConfigurationDetails Details { get; private set; }
 
-        /// <summary>
-        /// The configuration root instance for the current application.
-        /// </summary>
+        /// <inheritdoc />
         public IConfigurationRoot Root { get; private set; }
 
         public HostConfiguration()
@@ -88,6 +90,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
+        /// <inheritdoc />
         public IHostConfiguration Use(Func<IHost> createHost)
         {
             if (CreateHost != null)
@@ -129,6 +132,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
+        /// <inheritdoc />
         public IHostConfiguration Use(params IHostExtension[] extensions)
         {
             if (extensions == null)
@@ -143,6 +147,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
+        /// <inheritdoc />
         public IHostConfiguration Use(bool useWrapper)
         {
             UseWrapper = useWrapper;

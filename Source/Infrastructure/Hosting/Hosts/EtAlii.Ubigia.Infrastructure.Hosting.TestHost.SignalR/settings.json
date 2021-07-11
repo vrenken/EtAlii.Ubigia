@@ -35,88 +35,80 @@
         }
     },
 
-    "##Logging": {
+    "Logging": {
         "LogLevel": {
             "Default": "Warning"
-        }
-    },
-    "##Diagnostics": {
+        },
         "Output": {
             "Seq": {
                 "Enabled": true,
-                "Url": "http://seq.avalon:5341"
+                "Address": "http://seq.avalon:5341",
+                "LogLevel": "Debug"
             },
             "Console": {
-                "Enabled": true
+                "Enabled": true,
+                "LogLevel": "Info"
             }
         }
     },
 
-    "Host":
-  {
-    "Systems": [
-      {
-        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
-        "Services": [
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory",
-            "Name": "Debug storage",
-            "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
-          },
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
-            "Name": "Debug storage",
-            "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
-          }
-        ],
-        "Modules": [
-          {
-            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
-            "Name": "Admin",
-            "####Comment": "// Admin should be accessible over localhost only",
-            "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
-            "Port": "{{PORT:AdminPort@64001}}",
-
-            "Modules": [
-              {
-                "Name": "Api",
-                "Path": "{{PATH:AdminApi@/admin}}",
-
+    "Host": {
+        "Systems": [
+            {
+                "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
                 "Services": [
-                  {
-                    "Path": "{{PATH:AdminApiSignalR@/api/stream}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR"
-                  }
+                    {
+                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory",
+                        "Name": "Debug storage",
+                        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
+                    },
+                    {
+                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+                        "Name": "Debug storage",
+                        "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
+                    }
+                ],
+                "Modules": [
+                    {
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
+                        "Name": "Admin",
+                        "####Comment": "// Admin should be accessible over localhost only",
+                        "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
+                        "Port": "{{PORT:AdminPort@64001}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Path": "{{PATH:AdminApi@/admin}}",
+                                "Services": [
+                                    {
+                                        "Path": "{{PATH:AdminApiSignalR@/api/stream}}",
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
+                        "Name": "User",
+                        "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
+                        "Port": "{{PORT:UserPort@64000}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Path": "{{PATH:UserApi@/user}}",
+                                "Services": [
+                                    {
+                                        "Path": "{{PATH:UserApiSignalR@/api/stream}}",
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
-              }
-            ]
-          },
-          {
-            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
-            "Name": "User",
-            "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
-            "Port": "{{PORT:UserPort@64000}}",
-            "Modules": [
-              {
-                "Name": "Api",
-                "Path": "{{PATH:UserApi@/user}}",
-                "Services": [
-                  {
-                    "Path": "{{PATH:UserApiSignalR@/api/stream}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR"
-                  }
-                ]
-              }
-            ]
-          }
+            }
         ]
-      }
-    ]
-  },
-    "Logging": {
-      "LogLevel": {
-        "Default": "Warning"
-      }
     }
-  }
+}
 

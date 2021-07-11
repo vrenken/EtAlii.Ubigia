@@ -15,7 +15,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
         /// </summary>
         public static async Task Main()
         {
-            var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .Parse("settings.json")
+                .ConfigureAwait(false);
 
             var configurationRoot = new ConfigurationBuilder()
                 .AddConfigurationDetails(details)
