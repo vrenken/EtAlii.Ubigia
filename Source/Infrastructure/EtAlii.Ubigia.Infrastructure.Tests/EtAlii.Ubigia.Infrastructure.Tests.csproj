@@ -12,5 +12,6 @@
     <Compile Include="..\..\UnitTestSettings.cs">
       <Link>UnitTestSettings.cs</Link>
     </Compile>
+    <Compile Remove="UnitTestSettings.cs" />
   </ItemGroup>
 </Project>

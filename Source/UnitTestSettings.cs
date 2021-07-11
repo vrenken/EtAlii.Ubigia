@@ -14,7 +14,7 @@ internal static class UnitTestConstants
     public const int NetworkPortRangeStart = 20000;
 }
 
-internal static class LoggingInitializer
+internal static class TestModuleInitializer
 {
     [ModuleInitializer]
     internal static void Initialize()
@@ -30,26 +30,49 @@ internal static class LoggingInitializer
                 .Build();
 #pragma warning restore CA2000
 
-        DiagnosticsConfiguration.Initialize(typeof(LoggingInitializer).Assembly, configurationRoot);
+        DiagnosticsConfiguration.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 
     private static string DiagnosticsSettingsJson =
-        @"{
-        ""Logging"": {
-            ""LogLevel"": {
-                ""Default"": ""Warning""
-            },
-            ""Output"": {
-                ""Seq"": {
-                    ""Enabled"": true,
-                    ""Address"": ""http://seq.avalon:5341"",
-                    ""LogLevel"": ""Debug""
-                },
-                ""Console"": {
-                    ""Enabled"": false,
-                    ""LogLevel"": ""Info""
+    @"{
+        ""Serilog"": {
+            ""MinimumLevel"": {
+                ""Default"": ""Verbose"",
+                ""Override"": {
+                    ""Microsoft"": ""Information"",
+                    ""Microsoft.AspNetCore"": ""Information""
                 }
-            }
+            },
+            ""WriteTo"": [
+                {
+                    ""Name"": ""Async"",
+                    ""Args"": {
+                        ""configure"": [
+                            {
+                                ""Name"": ""Console"",
+                                ""Args"": {
+                                    ""restrictedToMinimumLevel"": ""Information"",
+                                    ""outputTemplate"": ""{Level:u3}{Timestamp: [HH:mm:ss]}: {Message}{NewLine}""
+                                }
+                            },
+                            {
+                                ""Name"": ""Seq"",
+                                ""Args"": {
+                                    ""#COMMENT1"": ""// If you want to have a local Seq centralized logging instance please start a local seq instance in docker using the commandline below"",
+                                    ""#COMMENT2"": ""// docker run --name seq -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest"",
+                                    ""#COMMENT3"": ""// It can then be accessed using the following URL:"",
+                                    ""#COMMENT4"": ""// http://127.0.0.1:5341"",
+                                    ""#COMMENT5"": ""// If your Seq logging instance runs on another machine you can use the following"",
+                                    ""#COMMENT6"": ""// commandline in an elevated PowerShell console to forward the local port to another system:"",
+                                    ""#COMMENT7"": ""// netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=5341 connectaddress=OTHERIP connectport=5341"",
+                                    ""serverUrl"": ""http://seq.avalon:5341"",
+                                    ""restrictedToMinimumLevel"": ""Verbose""
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     }";
 }

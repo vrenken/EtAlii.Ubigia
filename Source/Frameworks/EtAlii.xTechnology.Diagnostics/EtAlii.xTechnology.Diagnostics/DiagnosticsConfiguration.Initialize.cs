@@ -18,7 +18,8 @@ namespace EtAlii.xTechnology.Diagnostics
         public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly, IConfigurationRoot configurationRoot)
         {
             var executingAssemblyName = executingAssembly.GetName();
-            loggerConfiguration.MinimumLevel.Verbose()
+            loggerConfiguration.ReadFrom
+                .Configuration(configurationRoot)
                 .Enrich.FromLogContext()
                 .Enrich.WithThreadName()
                 .Enrich.WithThreadId()
@@ -34,25 +35,25 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
                 .Enrich.WithMemoryUsage()
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
-
-            loggerConfiguration
-                .WriteTo.Async(writeTo =>
-                {
-                    var seqConfiguration = configurationRoot.GetSection("Logging:Output:Seq");
-                    if (seqConfiguration.GetValue<bool>("Enabled"))
-                    {
-                        var logLevel = GetLogLevel(seqConfiguration);
-                        var url = seqConfiguration.GetValue<string>("Address");
-                        writeTo.Seq(url, logLevel);
-                    }
-
-                    var consoleConfiguration = configurationRoot.GetSection("Logging:Output:Console");
-                    if (consoleConfiguration.GetValue<bool>("Enabled"))
-                    {
-                        var logLevel = GetLogLevel(consoleConfiguration);
-                        writeTo.Debug(logLevel);
-                    }
-                });
+            //
+            // loggerConfiguration
+            //     .WriteTo.Async(writeTo =>
+            //     {
+            //         var seqConfiguration = configurationRoot.GetSection("Logging:Output:Seq");
+            //         if (seqConfiguration.GetValue<bool>("Enabled"))
+            //         {
+            //             var logLevel = GetLogLevel(seqConfiguration);
+            //             var url = seqConfiguration.GetValue<string>("Address");
+            //             writeTo.Seq(url, logLevel);
+            //         }
+            //
+            //         var consoleConfiguration = configurationRoot.GetSection("Logging:Output:Console");
+            //         if (consoleConfiguration.GetValue<bool>("Enabled"))
+            //         {
+            //             var logLevel = GetLogLevel(consoleConfiguration);
+            //             writeTo.Debug(logLevel);
+            //         }
+            //     });
         }
 
         private static LogEventLevel GetLogLevel(IConfigurationSection configurationSection)
