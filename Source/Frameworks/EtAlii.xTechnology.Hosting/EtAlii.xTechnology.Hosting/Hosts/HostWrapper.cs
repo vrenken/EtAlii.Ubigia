@@ -16,9 +16,6 @@ namespace EtAlii.xTechnology.Hosting
 
         public IHostManager Manager => _host.Manager;
 
-        public bool ShouldOutputLog { get => _host.ShouldOutputLog; set => _host.ShouldOutputLog = value; }
-        public LogLevel LogLevel { get => _host.LogLevel; set => _host.LogLevel = value; }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
