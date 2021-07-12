@@ -2,11 +2,9 @@
 
 namespace EtAlii.xTechnology.Hosting.Diagnostics
 {
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Logging;
     using Serilog;
 
     public class HostLoggingScaffolding : IScaffolding
