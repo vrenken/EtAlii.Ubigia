@@ -57,6 +57,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             category: "Sonar Code Smell",
             checkId: "S5332:Using http protocol is insecure. Use https instead",
             Justification = "Safe to do so: This code only gets enabled at the local development machine.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S1075:URIs should not be hardcoded",
+            Justification = "We don't have access to a settings.json and the first attempt to create one from scratch exploded due to the limitations of Roslyn generator packages")]
         private void SetupLogging()
         {
             LoggerConfiguration loggerConfiguration = new ();
