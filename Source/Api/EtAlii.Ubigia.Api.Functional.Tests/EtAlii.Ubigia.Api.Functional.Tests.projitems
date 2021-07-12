@@ -138,7 +138,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\FunctionalTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\FunctionHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\IFunctionalTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\ObservableExceptionAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\RootHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestFunctionHandler.cs" />

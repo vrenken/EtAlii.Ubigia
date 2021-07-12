@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Dynamic;
 
-    public partial class Node : DynamicObject
+    public sealed partial class Node : DynamicObject
     {
         // Improve the way how Node and DynamicNode are used.
         // More details can be found in the Github issue below:
