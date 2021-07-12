@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -25,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         protected override void OnSystemStateChanged(State state)
         {
-            CanExecute = state == State.Stopped || state == State.Shutdown;
+            CanExecute = state is State.Stopped or State.Shutdown;
         }
 
         private void TryConfigure()
@@ -65,7 +66,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 var scriptArgs = new[]
                 {
                     //"-ServicePort", _infrastructure.Configuration.Address.Split(':').Last(),
-                    "-ServicePort", "UKNOWN",
+                    "-ServicePort", "UNKNOWN",
                     "-ServiceAssemblyName", assemblyName,
                     //"-RuleDisplayName", $"EtAlii Infrastructure Service ([_infrastructure.Configuration.Name])",
                     "-RuleDisplayName", $"EtAlii Infrastructure Service (UNKNOWN)",
@@ -86,6 +87,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             //return taskCompletionSource.Task
         }
 
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4036:Make sure the 'PATH' used to find this command includes only what you intend",
+            Justification = "Safe to do so here, we just select the default Powershell in a non-primary process")]
         private Process StartElevatedPowerShellScript(string scriptPath, params string[] scriptArgs)
         {
             const string powershell = "powershell.exe";

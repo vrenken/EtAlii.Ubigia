@@ -3,6 +3,7 @@
 namespace EtAlii.xTechnology.Hosting.Tests
 {
     using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
@@ -69,6 +70,10 @@ namespace EtAlii.xTechnology.Hosting.Tests
             });
         }
 
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4036:Make sure the 'PATH' used to find this command includes only what you intend",
+            Justification = "Safe to do so here, we just select the default Powershell in a non-primary process")]
         private Process StartElevatedPowerShellScript(string scriptPath, params string[] scriptArgs)
         {
             const string powershell = "powershell.exe";

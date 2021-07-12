@@ -99,7 +99,10 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         /// <param name="provider">The service provider used to retrieve the default services.</param>
         /// <returns>A new <see cref="ServiceCollection"/> with the default services registered.</returns>
-        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
         private static ServiceCollection CreateDefaultServiceCollection(IServiceProvider provider)
         {
             var services = new ServiceCollection();
