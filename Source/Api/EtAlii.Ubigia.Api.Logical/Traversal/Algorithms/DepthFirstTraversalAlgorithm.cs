@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
         }
-        public async Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
+        public async IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
         {
             if (graphPath.Any())
             {
@@ -30,14 +30,19 @@ namespace EtAlii.Ubigia.Api.Logical
                     await foreach (var relatedNode in relatedNodes)
                     {
                         var subGraphPath = new GraphPath(subPathParts);
-                        await Traverse(subGraphPath, relatedNode, context, scope, finalOutput).ConfigureAwait(false);
+                        var results = Traverse(subGraphPath, relatedNode, context, scope)
+                            .ConfigureAwait(false);
+                        await foreach (var result in results)
+                        {
+                            yield return result;
+                        }
                     }
                 }
                 else
                 {
                     await foreach (var relatedNode in relatedNodes)
                     {
-                        finalOutput.OnNext(relatedNode);
+                        yield return relatedNode;
                     }
                 }
             }

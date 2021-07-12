@@ -48,14 +48,20 @@ namespace EtAlii.Ubigia.Api.Logical
 
             var innerObservable = Observable.Create<Identifier>(async innerObserver =>
             {
-                switch (traversal)
+                var results = traversal switch
                 {
-                    case Traversal.DepthFirst:
-                        await _depthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver).ConfigureAwait(false);
-                        break;
-                    case Traversal.BreadthFirst:
-                        await _breadthFirstTraversalAlgorithm.Traverse(path, Identifier.Empty, context, scope, innerObserver).ConfigureAwait(false);
-                        break;
+                    Traversal.DepthFirst => _depthFirstTraversalAlgorithm
+                        .Traverse(path, Identifier.Empty, context, scope)
+                        .ConfigureAwait(false),
+                    Traversal.BreadthFirst => _breadthFirstTraversalAlgorithm
+                        .Traverse(path, Identifier.Empty, context, scope)
+                        .ConfigureAwait(false),
+                    _ => throw new InvalidOperationException($"Traversal request not understood: {traversal}")
+                };
+
+                await foreach (var result in results)
+                {
+                    innerObserver.OnNext(result);
                 }
 
                 innerObserver.OnCompleted();

@@ -3,7 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class ParallelDepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
     {
@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
         //private readonly int _maxDegreeOfParallelism
         //private readonly int ProcessorMultiplier = 2
 
-        public Task Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
+        public IAsyncEnumerable<Identifier> Traverse(GraphPath graphPath, Identifier current, IPathTraversalContext context, ExecutionScope scope)
         {
             throw new NotSupportedException();
             //if [graphPath.Any[]]

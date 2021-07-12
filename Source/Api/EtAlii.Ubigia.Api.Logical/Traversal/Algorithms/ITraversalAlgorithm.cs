@@ -2,16 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-    using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface ITraversalAlgorithm
     {
-        Task Traverse(
+        IAsyncEnumerable<Identifier> Traverse(
             GraphPath graphPath,
             Identifier current,
             IPathTraversalContext context,
-            ExecutionScope scope,
-            IObserver<Identifier> finalOutput);
+            ExecutionScope scope);
     }
 }
