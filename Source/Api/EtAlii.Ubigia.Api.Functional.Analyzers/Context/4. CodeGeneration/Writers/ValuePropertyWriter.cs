@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var annotation = valueFragment.Annotation;
 
             logger
-                .ForContext("ValueFragment", valueFragment, true)
+                .ForContext("ValueFragment", valueFragment.Name)
                 .ForContext("Annotation", annotation?.ToString())
                 .ForContext("Prefix", prefix.ToString())
                 .Information("Writing property: {Property}", propertyName);

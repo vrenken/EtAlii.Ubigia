@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var className = structureFragment.Name;
 
             logger
-                .ForContext("StructureFragment", structureFragment, true)
+                .ForContext("StructureFragment", structureFragment.Name)
                 .Information("Writing schema processor extension for: {ClassName}", className);
             writer.WriteLine($"public static class GraphContext{className}Extension");
             writer.WriteLine("{");

@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 ? structureFragment.Name
                 : structureFragment.Name + "Type";
             logger
-                .ForContext("StructureFragment", structureFragment, true)
+                .ForContext("StructureFragment", structureFragment.Name)
                 .Information("Writing class: {ClassName}", className);
 
             _annotationCommentWriter.Write(logger, writer, structureFragment.Annotation);
