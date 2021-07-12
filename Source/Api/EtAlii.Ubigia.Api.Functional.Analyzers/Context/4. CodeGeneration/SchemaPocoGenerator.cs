@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
     using System.CodeDom.Compiler;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Reflection;
@@ -52,6 +53,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             // For this specific generator we don't have to do any further initialization.
         }
 
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S5332:Using http protocol is insecure. Use https instead",
+            Justification = "Safe to do so: This code only gets enabled at the local development machine.")]
         private void SetupLogging()
         {
             LoggerConfiguration loggerConfiguration = new ();
@@ -66,8 +71,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 // Let's do it ourselves.
                 .Enrich.WithProperty("RootAssemblyName", executingAssemblyName.Name)
                 .Enrich.WithProperty("RootAssemblyVersion", executingAssemblyName.Version)
-                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()) // An int process ID is not enough
-                .WriteTo.Seq("http://seq.avalon:5341");
+                .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
+
+            // I know, ugly patch, but it works. And it's better than making all global generators try to phone home...
+            if (Environment.MachineName == "FRACTAL")
+            {
+                loggerConfiguration.WriteTo.Seq("http://seq.avalon:5341");
+            }
 
             _rootLogger = loggerConfiguration
                 .CreateLogger();
