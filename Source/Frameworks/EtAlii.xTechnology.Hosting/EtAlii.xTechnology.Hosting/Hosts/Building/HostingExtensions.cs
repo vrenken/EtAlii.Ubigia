@@ -112,10 +112,7 @@ namespace EtAlii.xTechnology.Hosting
 
             // SonarQube: Make sure that this logger's configuration is safe.
             // As we only add the logging services this ought to be safe. It is when and how they are configured that matters.
-            if (Debugger.IsAttached)
-            {
-                services.AddLogging();
-            }
+            services.AddLogging();
 
             if (provider.GetService<IHttpContextAccessor>() != null)
             {
