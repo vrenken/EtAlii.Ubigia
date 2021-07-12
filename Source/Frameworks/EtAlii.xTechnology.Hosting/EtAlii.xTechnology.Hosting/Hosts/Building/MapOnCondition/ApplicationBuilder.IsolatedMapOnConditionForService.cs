@@ -23,9 +23,12 @@ namespace EtAlii.xTechnology.Hosting
         /// <param name="appBuilder">Configures a branch to take</param>
         /// <param name="services">A method to configure the newly created service collection.</param>
         /// <returns></returns>
-        [SuppressMessage("Sonar Code Smell", "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive",
+            Justification = "Safe to do so here.")]
         public static IApplicationBuilder IsolatedMapOnCondition(
-            this IApplicationBuilder app, 
+            this IApplicationBuilder app,
             IService service,
             Action<IApplicationBuilder> appBuilder,
             Action<IServiceCollection> services)
@@ -35,10 +38,10 @@ namespace EtAlii.xTechnology.Hosting
                 var hostsAreEqual = service.HostString.Host == context.Request.Host.Host;
                 hostsAreEqual |= service.HostString.Host == "127.0.0.1" && context.Request.Host.Host == "localhost";
                 hostsAreEqual |= service.HostString.Host == "localhost" && context.Request.Host.Host == "127.0.0.1";
-                hostsAreEqual |= service.HostString.Host == "0.0.0.0"; 
+                hostsAreEqual |= service.HostString.Host == "0.0.0.0";
                 hostsAreEqual |= service.HostString.Host == "255.255.255.255";
                 var portsAreEqual = service.HostString.Port == context.Request.Host.Port;
-                
+
                 return hostsAreEqual && portsAreEqual;
             });
 

@@ -170,7 +170,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return new ServiceDetails("Grpc", new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute), true);
         }
 
-        [SuppressMessage("Sonar Code Smell", "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive",
+            Justification = "Safe to do so here.")]
         private string ConvertToDedicatedNetworkAddress(string host)
         {
             // This is also ugly and way in the incorrect place.

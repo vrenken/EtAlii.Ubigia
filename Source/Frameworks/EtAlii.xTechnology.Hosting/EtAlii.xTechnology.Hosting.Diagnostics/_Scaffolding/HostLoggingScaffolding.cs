@@ -16,7 +16,10 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _diagnostics = diagnostics;
         }
 
-        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
         public void Register(Container container)
         {
             if (_diagnostics.EnableLogging) // logging is enabled

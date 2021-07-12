@@ -13,7 +13,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
 	public class HubConnectionFactory
     {
-        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
 	    public HubConnection CreateForHost(ISignalRTransport transport, Uri address, string hostIdentifier)
 	    {
 		    var builder = new HubConnectionBuilder()
@@ -45,7 +48,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 		    return Create(transport, address, transport.AuthenticationToken);
 	    }
 
-        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
 		public HubConnection Create(ISignalRTransport transport, Uri address, string authenticationToken)
 	    {
 		    var builder = new HubConnectionBuilder()

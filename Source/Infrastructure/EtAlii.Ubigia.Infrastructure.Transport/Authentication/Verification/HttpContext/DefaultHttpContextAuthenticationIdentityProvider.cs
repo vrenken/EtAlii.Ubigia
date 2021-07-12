@@ -14,7 +14,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// Parses the Authorization header and creates account credentials
         /// </summary>
         /// <param name="context"></param>
-        [SuppressMessage("Sonar Code Smell", "S4834:Controlling permissions is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4834:Controlling permissions is security-sensitive",
+            Justification = "Safe to do so here.")]
         public AuthenticationIdentity Get(HttpContext context)
         {
             if (context.Request.Headers.TryGetValue("Authorization", out var values))

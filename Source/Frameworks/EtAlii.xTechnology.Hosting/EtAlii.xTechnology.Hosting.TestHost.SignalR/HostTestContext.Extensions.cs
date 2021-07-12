@@ -12,7 +12,10 @@ namespace EtAlii.xTechnology.Hosting
 
 	public static class HostTestContextExtensions
     {
-	    [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
 	    public static async Task<HubConnection> CreateSignalRConnection(this IHostTestContext context, string address)
 	    {
 		    var connection = new HubConnectionBuilder()

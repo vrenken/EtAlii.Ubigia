@@ -35,8 +35,11 @@ namespace EtAlii.xTechnology.Hosting.Service.Grpc
             await base.Stop().ConfigureAwait(false);
         }
 
-        
-        [ SuppressMessage("Sonar Code Smell", "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields", Justification = "Safe to do so here.")]
+
+        [ SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S3011:Reflection should not be used to increase accessibility of classes, methods, or fields",
+            Justification = "Safe to do so here, this is a patch to get Kestrel to work as needed.")]
         private void OnConfigureKestrel(KestrelServerOptions options)
         {
             if (!HostString.Port.HasValue)
@@ -50,7 +53,7 @@ namespace EtAlii.xTechnology.Hosting.Service.Grpc
 
             var listenOptions = property!.GetValue(options) as IEnumerable<ListenOptions>;
             if (listenOptions!.Any(lo => Equals(lo.IPEndPoint.Address, ipAddress) && lo.IPEndPoint.Port == HostString.Port)) return;
-            
+
             if (Equals(ipAddress, IPAddress.None))
             {
                 options.ListenAnyIP(HostString.Port.Value, OnConfigureListenOptions);
@@ -64,7 +67,7 @@ namespace EtAlii.xTechnology.Hosting.Service.Grpc
                 options.Listen(ipAddress, HostString.Port.Value, OnConfigureListenOptions);
             }
         }
-        
+
         protected virtual void OnConfigureListenOptions(ListenOptions options)
         {
             // Override this method to configure any additional listen options.

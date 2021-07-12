@@ -8,7 +8,10 @@ namespace EtAlii.xTechnology.Diagnostics
     using System.Diagnostics.CodeAnalysis;
     using Microsoft.Extensions.Configuration;
 
-    [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+    [SuppressMessage(
+        category: "Sonar Code Smell",
+        checkId: "S4792:Configuring loggers is security-sensitive",
+        Justification = "Safe to do so here.")]
     public partial class DiagnosticsConfiguration
     {
         private static readonly LoggerConfiguration _loggerConfiguration = new();

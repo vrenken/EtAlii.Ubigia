@@ -71,7 +71,10 @@ namespace EtAlii.xTechnology.Hosting
             }
         }
 
-        [SuppressMessage("Sonar Code Smell", "S4834:Controlling permissions is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4834:Controlling permissions is security-sensitive",
+            Justification = "Safe to do so here.")]
         private static bool IsAdministrator()
         {
             var identity = WindowsIdentity.GetCurrent();
@@ -98,7 +101,7 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         /// <summary>
-        /// Passes the remainder of the commandline arguments to the ServiceLogic and starts it.            
+        /// Passes the remainder of the commandline arguments to the ServiceLogic and starts it.
         /// </summary>
         /// <param name="serviceLogic"></param>
         /// <param name="args"></param>

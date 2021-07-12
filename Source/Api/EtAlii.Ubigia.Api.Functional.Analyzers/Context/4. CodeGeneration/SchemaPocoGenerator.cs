@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         private void SetupLogging()
         {
-            var loggerConfiguration = new LoggerConfiguration();
+            LoggerConfiguration loggerConfiguration = new ();
 
             var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
 

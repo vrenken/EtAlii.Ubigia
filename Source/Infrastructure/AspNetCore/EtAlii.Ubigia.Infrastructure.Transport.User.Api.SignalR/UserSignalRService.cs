@@ -55,7 +55,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR
 	        Status.Summary = sb.ToString();
         }
 
-        [SuppressMessage("Sonar Code Smell", "S4792:Configuring loggers is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Configuring loggers is security-sensitive",
+            Justification = "Safe to do so here.")]
         protected override void ConfigureServices(IServiceCollection services)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;

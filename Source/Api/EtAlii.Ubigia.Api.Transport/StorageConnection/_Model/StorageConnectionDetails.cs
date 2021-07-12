@@ -18,7 +18,10 @@ namespace EtAlii.Ubigia.Api.Transport
             Update(storage,new Uri(managementAddress, UriKind.Absolute), new Uri(dataAddress, UriKind.Absolute));
         }
 
-        [SuppressMessage("Sonar Code Smell", "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive", Justification = "Safe to do so here.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S1313:RSPEC-1313 - Using hardcoded IP addresses is security-sensitive",
+            Justification = "Safe to do so here.")]
         private void Update(Storage storage, Uri managementAddress, Uri dataAddress)
         {
             // A bit of a dirty patch but the server might not even completely know how the

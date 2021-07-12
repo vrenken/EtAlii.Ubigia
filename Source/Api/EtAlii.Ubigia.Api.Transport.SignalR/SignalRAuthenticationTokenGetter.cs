@@ -19,7 +19,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             _hostIdentifier = CreateHostIdentifier();
         }
 
-        [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S2068:Credentials should not be hard-coded",
+            Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         public async Task<string> GetAuthenticationToken(ISignalRSpaceTransport transport, string accountName, string password, string authenticationToken)
         {
             if (password == null && authenticationToken != null)
@@ -45,7 +48,10 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             return authenticationToken;
         }
 
-        [SuppressMessage("Sonar Code Smell", "S2068:Credentials should not be hard-coded", Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S2068:Credentials should not be hard-coded",
+            Justification = "Needed to make the downscale from admin/system to user account based authentication tokens")]
         public async Task<string> GetAuthenticationToken(ISignalRStorageTransport transport, string accountName, string password, string authenticationToken)
         {
             if (password == null && authenticationToken != null)
