@@ -24,16 +24,16 @@ namespace EtAlii.xTechnology.Hosting
                 })
 			    .AddJsonProtocol()
 			    .WithAutomaticReconnect(new[] { TimeSpan.Zero, TimeSpan.Zero, TimeSpan.FromSeconds(10) })
-			    .ConfigureLogging(logging =>
+			    .ConfigureLogging(options =>
 			    {
-				    if (!Debugger.IsAttached) return;
-
-				    // SonarQube: Make sure that this logger's configuration is safe.
-				    // I think it is as this host is for testing only.
-				    //logging.AddDebug[]
-
-				    // This will set ALL logging to Debug level
-				    logging.SetMinimumLevel(LogLevel.Trace);
+                    // SonarQube: Make sure that this logger's configuration is safe.
+                    // I think it is as this host is for testing only.
+                    if (Debugger.IsAttached)
+                    {
+                        // This will set ALL logging to Debug level
+                        options.AddDebug();
+                        options.SetMinimumLevel(LogLevel.Trace);
+                    }
 			    })
 			    .Build();
 

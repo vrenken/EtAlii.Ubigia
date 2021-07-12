@@ -83,7 +83,7 @@ namespace EtAlii.xTechnology.Hosting
 
                     finally
                     {
-                        context.RequestServices = null;
+                        context.RequestServices = null!;
                     }
                 });
 
@@ -109,11 +109,14 @@ namespace EtAlii.xTechnology.Hosting
 
             // SonarQube: Make sure that this logger's configuration is safe.
             // As we only add the logging services this ought to be safe. It is when and how they are configured that matters.
-            services.AddLogging();
+            if (Debugger.IsAttached)
+            {
+                services.AddLogging();
+            }
 
             if (provider.GetService<IHttpContextAccessor>() != null)
             {
-                services.AddSingleton(provider.GetService<IHttpContextAccessor>());
+                services.AddSingleton(provider.GetService<IHttpContextAccessor>()!);
             }
 
             services.AddSingleton(provider.GetRequiredService<IWebHostEnvironment>());
@@ -129,7 +132,7 @@ namespace EtAlii.xTechnology.Hosting
             return services;
         }
 
-        public static IApplicationBuilder EnableDependencyInjection(this IApplicationBuilder app, IServiceProvider serviceProvider)
+        private static void EnableDependencyInjection(this IApplicationBuilder app, IServiceProvider serviceProvider)
         {
             app.Use(async (branchContext, next) =>
             {
@@ -147,11 +150,10 @@ namespace EtAlii.xTechnology.Hosting
 
                 finally
                 {
-                    branchContext.RequestServices = null;
+                    branchContext.RequestServices = null!;
                 }
             });
 
-            return app;
         }
     }
 }

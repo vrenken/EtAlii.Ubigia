@@ -8,7 +8,6 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
-    using Microsoft.Extensions.Logging;
     using Serilog;
     using ILogger = Serilog.ILogger;
 
@@ -28,7 +27,6 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _configurableHost.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);
             _configurableHost.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
             _configurableHost.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
-            _configurableHost.ConfigureLogging += builder => ConfigureLogging?.Invoke(builder);
         }
 
         public State State => _decoree.State;
@@ -40,8 +38,6 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
-        public event Action<ILoggingBuilder> ConfigureLogging;
-
         public event PropertyChangedEventHandler PropertyChanged;
         public IHostConfiguration Configuration => _decoree.Configuration;
 

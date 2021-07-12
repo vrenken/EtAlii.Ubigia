@@ -9,7 +9,6 @@ namespace EtAlii.xTechnology.Hosting
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.AspNetCore.Hosting;
 	using Microsoft.AspNetCore.Server.Kestrel.Core;
-	using Microsoft.Extensions.Logging;
 
 	public abstract class HostManagerBase : IHostManager
 	{
@@ -20,13 +19,10 @@ namespace EtAlii.xTechnology.Hosting
 	    public event Action<IApplicationBuilder> ConfigureApplication;
 	    public event Action<IWebHostBuilder> ConfigureHost;
 	    public event Action<KestrelServerOptions> ConfigureKestrel;
-        public event Action<ILoggingBuilder> ConfigureLogging;
-
         private IWebHostBuilder CreateHostBuilder()
         {
 	        return WebHost.CreateDefaultBuilder()
 		        .UseKestrel(OnConfigureKestrel)
-		        .ConfigureLogging(logging => ConfigureLogging?.Invoke(logging))
 		        .Configure(OnConfigureApplication);
         }
 

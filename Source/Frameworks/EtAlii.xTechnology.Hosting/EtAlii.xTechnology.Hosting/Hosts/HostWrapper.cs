@@ -8,7 +8,6 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
-    using Microsoft.Extensions.Logging;
 
     public class HostWrapper : IConfigurableHost
     {
@@ -20,8 +19,6 @@ namespace EtAlii.xTechnology.Hosting
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
-        public event Action<ILoggingBuilder> ConfigureLogging;
-
         public IHostConfiguration Configuration => _host.Configuration;
         public State State => _host.State;
 
@@ -41,15 +38,12 @@ namespace EtAlii.xTechnology.Hosting
         private void OnConfigureApplication(IApplicationBuilder builder) => ConfigureApplication?.Invoke(builder);
         private void OnConfigureHost(IWebHostBuilder builder) => ConfigureHost?.Invoke(builder);
         private void OnConfigureKestrel(KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
-        private void OnConfigureLogging(ILoggingBuilder builder) => ConfigureLogging?.Invoke(builder);
-
         private void Wire()
         {
             _host.PropertyChanged += OnPropertyChanged;
             _host.ConfigureApplication += OnConfigureApplication;
             _host.ConfigureHost += OnConfigureHost;
             _host.ConfigureKestrel += OnConfigureKestrel;
-            _host.ConfigureLogging += OnConfigureLogging;
         }
 
         private void Unwire()
@@ -58,7 +52,6 @@ namespace EtAlii.xTechnology.Hosting
             _host.ConfigureApplication -= OnConfigureApplication;
             _host.ConfigureHost -= OnConfigureHost;
             _host.ConfigureKestrel -= OnConfigureKestrel;
-            _host.ConfigureLogging -= OnConfigureLogging;
         }
 
         public void Replace(IHost host)

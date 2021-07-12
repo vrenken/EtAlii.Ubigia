@@ -11,7 +11,6 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Server.Kestrel.Core;
-    using Microsoft.Extensions.Logging;
     using Polly;
 
     public abstract class HostBase : IConfigurableHost
@@ -23,8 +22,6 @@ namespace EtAlii.xTechnology.Hosting
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
-        public event Action<ILoggingBuilder> ConfigureLogging;
-
         public State State { get => _state; protected set => PropertyChanged.SetAndRaise(this, ref _state, value); }
         private State _state;
 
@@ -84,7 +81,6 @@ namespace EtAlii.xTechnology.Hosting
             _manager.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder);
             _manager.ConfigureHost += builder => ConfigureHost?.Invoke(builder);
             _manager.ConfigureKestrel += options => ConfigureKestrel?.Invoke(options);
-            _manager.ConfigureLogging += builder => ConfigureLogging?.Invoke(builder);
 
             _status = status
                 .Concat(new [] {_selfStatus} )
