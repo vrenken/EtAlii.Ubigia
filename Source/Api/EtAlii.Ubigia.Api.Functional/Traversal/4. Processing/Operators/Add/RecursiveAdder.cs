@@ -20,9 +20,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task<RecursiveAddResult> Add(Identifier parentId, ConstantPathSubjectPart part, IEditableEntry newEntry, ExecutionScope scope)
         {
+            var parentIdToSelect = parentId;
             var outputObservable = Observable.Create<object>(outputObserver =>
             {
-                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentId, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
+                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentIdToSelect, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
 
                 return Disposable.Empty;
             }).ToHotObservable();

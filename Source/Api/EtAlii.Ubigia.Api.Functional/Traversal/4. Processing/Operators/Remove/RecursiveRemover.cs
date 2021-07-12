@@ -18,16 +18,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _context = context;
         }
 
-        public async Task<RecursiveRemoveResult> Remove(
-            Identifier parentId,
-            ConstantPathSubjectPart part,
-            ExecutionScope scope)
+        public async Task<RecursiveRemoveResult> Remove(Identifier parentId, ConstantPathSubjectPart part, ExecutionScope scope)
         {
             IEditableEntry newEntry = null;
+            var parentIdToSelect = parentId;
 
             var outputObservable = Observable.Create<object>(outputObserver =>
             {
-                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentId, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
+                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentIdToSelect, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
 
                 return Disposable.Empty;
             });
