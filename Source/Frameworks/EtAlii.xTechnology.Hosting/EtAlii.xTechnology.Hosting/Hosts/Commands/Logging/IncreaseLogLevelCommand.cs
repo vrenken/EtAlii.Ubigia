@@ -2,11 +2,9 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using Microsoft.Extensions.Logging;
-
     internal class IncreaseLogLevelCommand : HostCommandBase<IHost>, IIncreaseLogLevelCommand
     {
-        public string Name => $"Host/Increase log output";
+        public string Name => "Host/Increase log output";
 
         public IncreaseLogLevelCommand(IHost host)
             : base(host)

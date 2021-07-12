@@ -2,11 +2,9 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    using Microsoft.Extensions.Logging;
-
     internal class DecreaseLogLevelCommand : HostCommandBase<IHost>, IDecreaseLogLevelCommand
     {
-        public string Name => $"Host/Decrease log output";
+        public string Name => "Host/Decrease log output";
 
         public DecreaseLogLevelCommand(IHost host)
             : base(host)
