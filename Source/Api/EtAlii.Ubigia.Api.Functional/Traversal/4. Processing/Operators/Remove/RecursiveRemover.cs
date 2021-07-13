@@ -41,14 +41,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     throw new ScriptProcessingException(message);
                 }
                 newEntry = (IEditableEntry)await _context.Logical.Nodes.Remove(parentId, part.Name, scope).ConfigureAwait(false);
-                parentId = newEntry.Id;
-            }
-            else
-            {
-                parentId = Identifier.Empty;
             }
 
-            return new RecursiveRemoveResult(newEntry); //(parentId, newEntry)
+            return new RecursiveRemoveResult(newEntry);
         }
     }
 }
