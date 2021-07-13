@@ -65,10 +65,15 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public async Task Start()
         {
-            var items = await _fabric.Items.GetItems<Storage>(Folder).ConfigureAwait(false);
+            var items = await _fabric.Items
+                .GetItems<Storage>(Folder)
+                .ConfigureAwait(false);
 
-            // TODO: This test to see if the local storage has already been added is not very stable.
+            // Improve this method and use a better way to decide if the local Storage needs to be added.
+            // This current test to see if the local storage has already been added is not very stable/scalable.
             // Please find another way to determine that the local storage needs initialization.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/94
             var isAlreadyRegistered = items.Any(s => s.Name == _configuration.Name);
             if (!isAlreadyRegistered)
             {
