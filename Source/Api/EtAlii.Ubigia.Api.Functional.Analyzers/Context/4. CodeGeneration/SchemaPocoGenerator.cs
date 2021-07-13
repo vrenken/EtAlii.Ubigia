@@ -60,10 +60,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         [SuppressMessage(
             category: "Sonar Code Smell",
             checkId: "S1075:URIs should not be hardcoded",
-            Justification = "We don't have access to a settings.json and the first attempt to create one from scratch exploded due to the limitations of Roslyn generator packages")]
+            Justification = "We don't have access to a settings.json and the first attempt to create one from scratch exploded due to the limitations of Roslyn generator packages.")]
+        [SuppressMessage(
+            category: "Sonar Code Smell",
+            checkId: "S4792:Make sure that this logger's configuration is safe",
+            Justification = "Safe to do so: It's a hardcoded configuration, fully instantiated in code. We need to change (or even disable this), but not right now.")]
         private void SetupLogging()
         {
-            LoggerConfiguration loggerConfiguration = new ();
+            var loggerConfiguration = new LoggerConfiguration();
 
             var executingAssemblyName = Assembly.GetCallingAssembly().GetName();
 
