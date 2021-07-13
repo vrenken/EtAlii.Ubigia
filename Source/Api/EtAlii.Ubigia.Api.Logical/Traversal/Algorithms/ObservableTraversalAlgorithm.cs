@@ -24,12 +24,15 @@ namespace EtAlii.Ubigia.Api.Logical
                 .ToHotObservable();
             var input = firstInput;
 
+            // We can reuse the auto reset event as it is used sequentially.
+            using var continueEvent = new AutoResetEvent(false);
+
             for (var i = 0; i < graphPath.Length; i++)
             {
                 var graphPathPart = graphPath[i];
                 var traverser = _graphPathPartTraverserSelector.Select(graphPathPart);
 
-                var continueEvent = new AutoResetEvent(false);
+                continueEvent.Reset();
 
                 var previousOutput = Observable.Create<Identifier>(output =>
                 {
