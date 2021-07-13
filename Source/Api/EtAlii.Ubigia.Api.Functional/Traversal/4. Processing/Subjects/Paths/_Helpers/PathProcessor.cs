@@ -22,7 +22,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
         {
-            // TODO: Continue here to root processing logical implementation.
+            // See if the root processing in the PathProcessor can be improved.
+            // Original note: "Continue here to root processing logical implementation".
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/99
             if (pathSubject is RootedPathSubject rootedPathSubject)
             {
                 var parts = new List<PathSubjectPart>(rootedPathSubject.Parts);
