@@ -21,8 +21,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
 
-		    // TODO: Ugly. This needs to change and not be needed at all.
-		    // However, for now it works...
+            // Improve this SignalRHostTestContext: is very ugly and breaks with many standardizations we tried to put in place.
+            // However, for now it works...
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/91
+
 		    var codeBase = Assembly.GetExecutingAssembly()!.Location;
 		    var isRestTestBase = codeBase!.Contains("Rest.Tests") ||
 		                           codeBase.Contains("PowerShell.Tests");
