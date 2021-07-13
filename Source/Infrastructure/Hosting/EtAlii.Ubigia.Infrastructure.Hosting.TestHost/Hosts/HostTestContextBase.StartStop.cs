@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             await base.Start(portRange).ConfigureAwait(false);
 
             Infrastructure = Host.Infrastructure;
-            
+
             var systemAccount = Infrastructure.Accounts.Get("System");
             SystemAccountName = systemAccount.Name;
             SystemAccountPassword = systemAccount.Password;
@@ -22,7 +22,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
             AdminAccountName = adminAccount.Name;
             AdminAccountPassword = adminAccount.Password;
 
-            // TODO: Create test user account and use this instead of the admin account.
+            // Create test user account and use this instead of the admin account.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/92
             TestAccountName = adminAccount.Name;
             TestAccountPassword = adminAccount.Password;
         }
@@ -30,7 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         public override async Task Stop()
         {
             await base.Stop().ConfigureAwait(false);
-            
+
             Infrastructure = null;
 
             SystemAccountName = null;
