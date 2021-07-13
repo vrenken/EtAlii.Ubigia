@@ -11,7 +11,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public void Prepare(IScriptProcessingContext context, ExecutionScope scope, DateTime time)
         {
-            // TODO: using an empty execution scope should not be needed.
+            // Fix the TimePreparer so that it no longer requires a flush of the ExecutionScope (and cache).
+            // Using an empty execution scope should not be needed. The one provided should be used.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/98
             scope = new ExecutionScope(false);
 
             var pathToAddTo = new AbsolutePathSubject(new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time") });
