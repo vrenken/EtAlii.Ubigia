@@ -6,10 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public partial class Node : IEquatable<Node>
     {
-
-        // TODO: Determine if the Node / DynamicNode classes should have their operators overloaded or not.
-        // SonarQube states that this shouldn't be the case.
-
         /// <inheritdoc />
         public override bool Equals(object obj) => NodeEqualityComparer.Default.Equals(this, obj as Node);
 
