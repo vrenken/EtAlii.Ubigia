@@ -19,14 +19,19 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
-            // TODO: This is where the template functionality should continue.
+            // Improve the account templating functionality by converting initialization to a script based approach.
+            // This is where the template functionality should continue.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/96
             var account = new Account
             {
                 Name = accountName,
                 Password = accountPassword,
             };
 
-            account = await _infrastructure.Accounts.Add(account, template).ConfigureAwait(false);
+            account = await _infrastructure.Accounts
+                .Add(account, template)
+                .ConfigureAwait(false);
             return account;
         }
 

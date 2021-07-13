@@ -23,7 +23,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var accountId = account.Id;
             var spaces = _context.Spaces.GetAll();
 
-            var hasSpace = await spaces.AnyAsync(space => space.AccountId == accountId).ConfigureAwait(false);
+            var hasSpace = await spaces
+                .AnyAsync(space => space.AccountId == accountId)
+                .ConfigureAwait(false);
             if (hasSpace)
             {
                 throw new InvalidOperationException("The account already contains a space");
@@ -39,15 +41,16 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 throw new InvalidOperationException("The account template contains duplicate space definitions");
             }
 
-            // And finally let's add the spaces that 
+            // And finally let's add the spaces that
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
                 var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out var isAdded);
                 if (isAdded)
                 {
-                    await _spaceInitializer.Initialize(addedSpace, spaceToCreate).ConfigureAwait(false);
+                    await _spaceInitializer
+                        .Initialize(addedSpace, spaceToCreate)
+                        .ConfigureAwait(false);
                 }
-
             }
         }
     }
