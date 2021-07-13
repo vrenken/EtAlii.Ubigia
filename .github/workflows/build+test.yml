@@ -19,6 +19,16 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+
+    # Versioning.
+    - name: Install NBGV tool
+      shell: powershell
+      run: install --tool-path . nbgv
+    - name: Set Version
+      shell: powershell
+      run: nbgv cloud
+
+      # Restore, build and test.
     - name: Restore dependencies
       run: dotnet restore .\Source\EtAlii.Ubigia.sln
     - name: Build

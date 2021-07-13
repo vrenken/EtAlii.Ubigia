@@ -463,6 +463,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests.csproj", "{11725836-5C0D-4089-B1D7-BDD89F87B00C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Version", "Version", "{FC8C08A9-A4C9-4B65-B086-897FFF7A35F9}"
+ProjectSection(SolutionItems) = preProject
+	..\version.json = ..\version.json
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2314,6 +2319,7 @@ Global
 		{45B10AB1-0493-4BFA-8E63-5714D36C37D4} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{82CE3399-51F8-4950-8DD2-85DD7D2F871A} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{11725836-5C0D-4089-B1D7-BDD89F87B00C} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{FC8C08A9-A4C9-4B65-B086-897FFF7A35F9} = {C9537D00-7881-4ACB-9111-9439363F658D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

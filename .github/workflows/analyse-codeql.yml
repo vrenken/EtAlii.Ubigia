@@ -64,6 +64,14 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
+    # Versioning.
+    - name: Install NBGV tool
+      shell: powershell
+      run: install --tool-path . nbgv
+    - name: Set Version
+      shell: powershell
+      run: nbgv cloud
+
     - run: |
         dotnet build .\Source\EtAlii.Ubigia.sln
 

@@ -1,13 +1,10 @@
 ﻿<!-- Stuff that needs to happen at the start of the MSBuild process should go in the .props file. -->
 <Project>
   <PropertyGroup>
-    <VersionPrefix>1.0.0.11</VersionPrefix>
-    <PackageVersion Condition="'$(VersionSuffix)' == ''">$(VersionPrefix)</PackageVersion>
-    <PackageVersion Condition="'$(VersionSuffix)' != ''">$(VersionPrefix)-$(VersionSuffix)</PackageVersion>
     <Version>$(PackageVersion)</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Peter Vrenken</Authors>
-    <Copyright>Copyright ©2012-2020 Peter Vrenken</Copyright>
+    <Copyright>Copyright ©2012-2021 Peter Vrenken</Copyright>
     <Company>EtAlii</Company>
     <Product>Ubigia</Product>
     <PackageProjectUrl>https://github.com/vrenken/EtAlii.Ubigia</PackageProjectUrl>
@@ -17,7 +14,6 @@
     <!-- https://github.com/dotnet/roslyn/issues/47087 -->
     <UbigiaLibraryTargetFramework>netstandard2.1</UbigiaLibraryTargetFramework>
     <UbigiaGrpcLibraryTargetFramework>netstandard2.1</UbigiaGrpcLibraryTargetFramework>
-    <UbigiaEfCoreLibraryTargetFramework>netstandard2.1</UbigiaEfCoreLibraryTargetFramework>
     <UbigiaPersistenceLibraryTargetFramework>netstandard2.1</UbigiaPersistenceLibraryTargetFramework>
     <UbigiaInfrastructureLibraryTargetFramework>netstandard2.1</UbigiaInfrastructureLibraryTargetFramework>
     <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
