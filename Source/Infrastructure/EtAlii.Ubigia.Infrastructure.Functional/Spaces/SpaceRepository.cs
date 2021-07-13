@@ -13,17 +13,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         private readonly ISpaceInitializer _spaceInitializer;
 
         public SpaceRepository(
-            ILogicalContext logicalContext, 
+            ILogicalContext logicalContext,
             ISpaceInitializer spaceInitializer)
         {
             _spaceInitializer = spaceInitializer;
             _logicalContext = logicalContext;
         }
-//
-//        private ObservableCollection<Space> GetItems()
-//        [
-//            return _logicalContext.Spaces.GetItems()
-//        ]
+
         public async Task<Space> Add(Space item, SpaceTemplate template)
         {
             var addedSpace = _logicalContext.Spaces.Add(item, template, out var isAdded);

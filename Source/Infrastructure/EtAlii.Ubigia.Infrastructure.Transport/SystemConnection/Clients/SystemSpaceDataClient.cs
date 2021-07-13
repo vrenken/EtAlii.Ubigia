@@ -19,14 +19,19 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
         {
-            // TODO: This is where the template functionality should continue.
+            // Improve the space templating functionality by converting initialization to a script based approach.
+            // This is where the template functionality should continue.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/95
             var space = new Space
             {
                 Name = spaceName,
                 AccountId = accountId,
             };
 
-            space = await _infrastructure.Spaces.Add(space, template).ConfigureAwait(false);
+            space = await _infrastructure.Spaces
+                .Add(space, template)
+                .ConfigureAwait(false);
             return space;
         }
 
