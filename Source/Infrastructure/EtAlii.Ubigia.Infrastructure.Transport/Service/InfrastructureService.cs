@@ -72,7 +72,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 .Use(DiagnosticsConfiguration.Default);
             var fabric = new FabricContextFactory().Create(fabricConfiguration);
 
-            // TODO: This isn't right. We don't want give the logical context any address to store and distribute.
+            // Improve the InfrastructureService.
+            // This current approach isn't right. We don't want to give the logical context any address to store and distribute.
+            // More information can be found on the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/97
             var dataService = serviceDetails.FirstOrDefault(sd => !sd.IsSystemService) ?? serviceDetails.First();
 
             var dataAddress = dataService!.DataAddress;
