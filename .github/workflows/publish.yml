@@ -37,10 +37,10 @@ jobs:
         # Pack.
       - name: Pack
         shell: powershell
-        run: |
-          mkdir $(Build.ArtifactStagingDirectory)\Packages
-          dotnet pack --no-restore --no-build /p:NuspecProperties="version=$NBGV_NuGetPackageVersion;RepositoryType=git;RepositoryCommit=$NBGV_GitCommitId;" .\Source\EtAlii.Ubigia.sln
-      #  run: dotnet pack --no-restore .\Source\EtAlii.Ubigia.sln
+        run: >
+          dotnet pack .\Source\EtAlii.Ubigia.sln
+          --no-restore
+          --no-build /p:NuspecProperties="version=$NBGV_NuGetPackageVersion;RepositoryType=git;RepositoryCommit=$NBGV_GitCommitId;"
 
         # Test.
       - name: Test
@@ -48,7 +48,16 @@ jobs:
 
         # Publish.
       - name: Publish EtAlii.xTechnology
-        run: dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: >
+        dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg
+        --skip-duplicate
+        --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
+        --source https://api.nuget.org/v3/index.json
+
       - name: Publish EtAlii.Ubigia
-        run: dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: >
+        dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg
+        --skip-duplicate
+        --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+        --source https://api.nuget.org/v3/index.json
 
