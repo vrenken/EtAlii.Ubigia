@@ -31,11 +31,13 @@ jobs:
       # Restore, build and test.
     - name: Restore dependencies
       run: dotnet restore .\Source\EtAlii.Ubigia.sln
+
     - name: Build
       run: >
         dotnet build .\Source\EtAlii.Ubigia.sln
         --no-restore
         /p:UbigiaIsRunningOnBuildAgent=true
+
     - name: Test
       run: >
         dotnet test .\Source\EtAlii.Ubigia.sln
