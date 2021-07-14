@@ -42,7 +42,7 @@ jobs:
         run: >
           dotnet pack .\Source\EtAlii.Ubigia.sln
           --no-restore
-          --no-build /p:NuspecProperties="version=$NBGV_NuGetPackageVersion;RepositoryType=git;RepositoryCommit=$NBGV_GitCommitId;"
+          --no-build /p:NuspecProperties="version=${{ NBGV_NuGetPackageVersion }};RepositoryType=git;RepositoryCommit=${{ NBGV_GitCommitId }};"
 
         # Test.
       - name: Test
