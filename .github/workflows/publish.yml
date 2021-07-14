@@ -27,8 +27,7 @@ jobs:
         # Versioning.
       - name: Versioning
         uses: dotnet/nbgv@master
-        with:
-          setAllVars: true
+        id: nbvg
 
         # Build.
       - name: Build

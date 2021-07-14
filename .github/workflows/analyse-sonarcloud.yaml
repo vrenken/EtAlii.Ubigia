@@ -49,8 +49,7 @@ jobs:
         # Versioning.
       - name: Versioning
         uses: dotnet/nbgv@master
-        with:
-          setAllVars: true
+        id: nbvg
 
       - name: Build and analyze
         env:
