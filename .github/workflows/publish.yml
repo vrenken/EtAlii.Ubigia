@@ -44,7 +44,7 @@ jobs:
           --no-build
           /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
           /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
-          RepositoryType=git
+          /p:RepositoryType=git
 
         # Test.
       - name: Test
