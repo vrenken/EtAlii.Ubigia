@@ -21,13 +21,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 5.0.x
-      - name: Restore dependencies
-        run: dotnet restore .\Source\EtAlii.Ubigia.sln
 
         # Versioning.
       - name: Versioning
         uses: dotnet/nbgv@master
         id: nbgv
+
+      - name: Restore dependencies
+        run: dotnet restore .\Source\EtAlii.Ubigia.sln
 
         # Build.
       - name: Build
@@ -35,23 +36,22 @@ jobs:
           dotnet build .\Source\EtAlii.Ubigia.sln
           --no-restore
 
-        # Pack.
-      - name: Pack
-        shell: powershell
-        run: >
-          dotnet pack .\Source\EtAlii.Ubigia.sln
-          --no-restore
-          --no-build
-          /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
-          /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
-          /p:RepositoryType=git
-
         # Test.
       - name: Test
         run: >
           dotnet test .\Source\EtAlii.Ubigia.sln
           --no-build
           --verbosity normal
+
+        # Pack.
+      - name: Pack
+        shell: powershell
+        run: >
+          dotnet pack .\Source\EtAlii.Ubigia.sln
+          --no-build
+          /p:PackageVersion=${{ steps.nbgv.outputs.NuGetPackageVersion }}
+          /p:RepositoryCommit=${{ steps.nbgv.outputs.GitCommitId }}
+          /p:RepositoryType=git
 
         # Publish.
       - name: Publish EtAlii.xTechnology
