@@ -49,6 +49,8 @@ jobs:
         # Versioning.
       - name: Versioning
         uses: dotnet/nbgv@master
+          with:
+            setAllVars: true
 
       - name: Build and analyze
         env:
@@ -57,6 +59,6 @@ jobs:
         shell: powershell
         run: |
           dotnet test --verbosity normal .\Source\EtAlii.Ubigia.sln --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /d:sonar.projectVersion="$($version.MajorMinorVersion)$($version.BuildMetadataFragment)" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /d:sonar.projectVersion="$NBGV_MajorMinorVersion$NBGV_BuildMetadataFragment" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
           dotnet build .\Source\EtAlii.Ubigia.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

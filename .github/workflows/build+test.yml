@@ -26,6 +26,8 @@ jobs:
       # Versioning.
     - name: Versioning
       uses: dotnet/nbgv@master
+        with:
+          setAllVars: true
 
       # Restore, build and test.
     - name: Restore dependencies
