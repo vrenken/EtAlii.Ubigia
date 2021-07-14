@@ -20,13 +20,9 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
-    # Versioning.
-    - name: Install NBGV tool
-      shell: powershell
-      run: dotnet tool install --tool-path . nbgv
-    - name: Set Version
-      shell: powershell
-      run: nbgv cloud
+      # Versioning.
+    - name: Versioning
+      uses: dotnet/nbgv@master
 
       # Restore, build and test.
     - name: Restore dependencies

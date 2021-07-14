@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # Prepare.
+        # Prepare.
       - uses: actions/checkout@v2
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
@@ -21,19 +21,15 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore .\Source\EtAlii.Ubigia.sln
 
-      # Versioning.
-      - name: Install NBGV tool
-        shell: powershell
-        run: dotnet tool install --tool-path . nbgv
-      - name: Set Version
-        shell: powershell
-        run: nbgv cloud
+        # Versioning.
+      - name: Versioning
+        uses: dotnet/nbgv@master
 
-      # Build.
+        # Build.
       - name: Build
         run: dotnet build --no-restore .\Source\EtAlii.Ubigia.sln
 
-      # Pack.
+        # Pack.
       - name: Pack
         shell: powershell
         run: |
@@ -42,11 +38,11 @@ jobs:
           dotnet pack --no-restore --no-build /p:NuspecProperties="version=$($version.NuGetPackageVersion);RepositoryType=git;RepositoryCommit=$($version.GitCommitId);" .\Source\EtAlii.Ubigia.sln
       #  run: dotnet pack --no-restore .\Source\EtAlii.Ubigia.sln
 
-      # Test.
+        # Test.
       - name: Test
         run: dotnet test --no-build --verbosity normal .\Source\EtAlii.Ubigia.sln
 
-      # Publish.
+        # Publish.
       - name: Publish EtAlii.xTechnology
         run: dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }} --source https://api.nuget.org/v3/index.json
       - name: Publish EtAlii.Ubigia

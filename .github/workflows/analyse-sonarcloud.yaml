@@ -45,13 +45,9 @@ jobs:
           New-Item -Path .\.sonar\scanner -ItemType Directory
           dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
 
-      # Versioning.
-      - name: Install NBGV tool
-        shell: powershell
-        run: dotnet tool install --tool-path . nbgv
-      - name: Set Version
-        shell: powershell
-        run: nbgv cloud
+        # Versioning.
+      - name: Versioning
+        uses: dotnet/nbgv@master
 
       - name: Build and analyze
         env:
