@@ -71,8 +71,8 @@ jobs:
       # Versioning.
     - name: Versioning
       uses: dotnet/nbgv@master
-        with:
-          setAllVars: true
+      with:
+        setAllVars: true
 
     - run: |
         dotnet build .\Source\EtAlii.Ubigia.sln
