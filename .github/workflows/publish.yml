@@ -32,7 +32,9 @@ jobs:
 
         # Build.
       - name: Build
-        run: dotnet build --no-restore .\Source\EtAlii.Ubigia.sln
+        run: >
+          dotnet build .\Source\EtAlii.Ubigia.sln
+          --no-restore
 
         # Pack.
       - name: Pack
@@ -44,20 +46,23 @@ jobs:
 
         # Test.
       - name: Test
-        run: dotnet test --no-build --verbosity normal .\Source\EtAlii.Ubigia.sln
+        run: >
+          dotnet test .\Source\EtAlii.Ubigia.sln
+          --no-build
+          --verbosity normal
 
         # Publish.
       - name: Publish EtAlii.xTechnology
         run: >
-        dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg
-        --skip-duplicate
-        --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
-        --source https://api.nuget.org/v3/index.json
+          dotnet nuget push .\Source\**\EtAlii.xTechnology.*.nupkg
+          --skip-duplicate
+          --api-key ${{ secrets.NUGET_ORG_XTECHNOLOGY_TOKEN }}
+          --source https://api.nuget.org/v3/index.json
 
       - name: Publish EtAlii.Ubigia
         run: >
-        dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg
-        --skip-duplicate
-        --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
-        --source https://api.nuget.org/v3/index.json
+          dotnet nuget push .\Source\**\EtAlii.Ubigia.*.nupkg
+          --skip-duplicate
+          --api-key ${{ secrets.NUGET_ORG_UBIGIA_TOKEN }}
+          --source https://api.nuget.org/v3/index.json
 
