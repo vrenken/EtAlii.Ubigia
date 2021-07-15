@@ -19,7 +19,8 @@ jobs:
         with:
           java-version: 1.11
 
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
@@ -39,21 +40,25 @@ jobs:
           restore-keys: ${{ runner.os }}-sonar-scanner
 
       - name: Install SonarCloud scanner
-        if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
+        #if: steps.cache-sonar-scanner.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.2.2
 
-      - name: Build and analyze
+        # Versioning.
+      - name: Versioning
+        uses: dotnet/nbgv@master
+        id: nbgv
+
+        #  Test, analysis, build and publish.
+      - name: Test, analysis, build and publish.
+        shell: powershell
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        shell: powershell
-        #          dotnet test --verbosity normal .\Source\EtAlii.Ubigia.sln --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-        #          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml"
         run: |
-          dotnet test --verbosity normal .\Source\EtAlii.Ubigia.sln --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
+          dotnet test .\Source\EtAlii.Ubigia.sln --verbosity normal --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.MajorMinorVersion }}${{ steps.nbgv.outputs.BuildMetadataFragment }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
           dotnet build .\Source\EtAlii.Ubigia.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
