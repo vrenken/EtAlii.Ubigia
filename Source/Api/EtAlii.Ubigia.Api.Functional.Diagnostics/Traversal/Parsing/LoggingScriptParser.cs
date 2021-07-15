@@ -28,13 +28,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                _logger.Information("Parsing text (Text: {Line})", line);
+                _logger.Debug("Parsing text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var scriptParseResult = _parser.Parse(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
+                _logger.Debug("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return scriptParseResult;
             }
@@ -48,13 +48,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
                 var line = text.Length == 1 ? text[0] : $"{text[0]}...";
-                _logger.Information("Parsing text (Text: {Line})", line);
+                _logger.Debug("Parsing text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var scriptParseResult = _parser.Parse(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
+                _logger.Debug("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return scriptParseResult;
             }

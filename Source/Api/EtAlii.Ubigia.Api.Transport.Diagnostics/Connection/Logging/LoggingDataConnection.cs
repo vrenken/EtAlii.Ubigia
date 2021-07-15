@@ -34,11 +34,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            _logger.Information("Opening data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
+            _logger.Debug("Opening data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Open().ConfigureAwait(false);
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
+            _logger.Debug("Opened data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
         }
 
         public async Task Close()
@@ -47,11 +47,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            _logger.Information("Closing data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
+            _logger.Debug("Closing data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
             await _decoree.Close().ConfigureAwait(false);
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Closed data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
+            _logger.Debug("Closed data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
         }
     }
 }

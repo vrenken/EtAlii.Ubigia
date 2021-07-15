@@ -30,59 +30,59 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task<IEditableEntry> Prepare()
         {
-            _logger.Information("Preparing entry");
+            _logger.Debug("Preparing entry");
             var start = Environment.TickCount;
 
             var entry = await _client.Prepare().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Prepared entry (Id: {EntryId} Duration: {Duration}ms)", entry.Id.ToTimeString(), duration);
+            _logger.Debug("Prepared entry (Id: {EntryId} Duration: {Duration}ms)", entry.Id.ToTimeString(), duration);
 
             return entry;
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            _logger.Information("Changing entry (Id: {OriginalEntryId})", entry.Id.ToTimeString());
+            _logger.Debug("Changing entry (Id: {OriginalEntryId})", entry.Id.ToTimeString());
             var start = Environment.TickCount;
 
             var changedEntry = await _client.Change(entry, scope).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Changed entry (Id: {ChangedEntryId} Duration: {Duration}ms)", changedEntry.Id.ToTimeString(), duration);
+            _logger.Debug("Changed entry (Id: {ChangedEntryId} Duration: {Duration}ms)", changedEntry.Id.ToTimeString(), duration);
 
             return changedEntry;
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            _logger.Information("Getting entry (Root: {RootName})", root.Name);
+            _logger.Debug("Getting entry (Root: {RootName})", root.Name);
             var start = Environment.TickCount;
 
             var entry = await _client.Get(root, scope, entryRelations).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Got entry (Root: {RootName} Id: {EntryId} Duration: {Duration}ms)", root.Name, entry.Id.ToTimeString(), duration);
+            _logger.Debug("Got entry (Root: {RootName} Id: {EntryId} Duration: {Duration}ms)", root.Name, entry.Id.ToTimeString(), duration);
 
             return entry;
         }
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            _logger.Information("Getting entry (Id: {EntryId})", entryIdentifier.ToTimeString());
+            _logger.Debug("Getting entry (Id: {EntryId})", entryIdentifier.ToTimeString());
             var start = Environment.TickCount;
 
             var entry = await _client.Get(entryIdentifier, scope, entryRelations).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Got entry (Id: {EntryId} Duration: {Duration}ms)", entryIdentifier.ToTimeString(), duration);
+            _logger.Debug("Got entry (Id: {EntryId} Duration: {Duration}ms)", entryIdentifier.ToTimeString(), duration);
 
             return entry;
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            _logger.Information("Getting multiple entries");
+            _logger.Debug("Getting multiple entries");
             var start = Environment.TickCount;
 
             var result = _client
@@ -94,12 +94,12 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Got multiple entries (Duration: {Duration}ms)", duration);
+            _logger.Debug("Got multiple entries (Duration: {Duration}ms)", duration);
         }
 
         public async IAsyncEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelations entriesWithRelation, ExecutionScope scope, EntryRelations entryRelations = EntryRelations.None)
         {
-            _logger.Information("Getting related entries");
+            _logger.Debug("Getting related entries");
             var start = Environment.TickCount;
 
             var result = _client
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Got related entries (Relations: {Relations} Duration: {Duration}ms)", entriesWithRelation, duration);
+            _logger.Debug("Got related entries (Relations: {Relations} Duration: {Duration}ms)", entriesWithRelation, duration);
 
         }
     }

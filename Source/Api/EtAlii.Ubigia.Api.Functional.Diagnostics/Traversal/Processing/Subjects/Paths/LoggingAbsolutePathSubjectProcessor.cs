@@ -18,13 +18,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
-            _logger.Information("Processing absolute path {$PathSubject}", subject);
+            _logger.Debug("Processing absolute path {$PathSubject}", subject);
             var start = Environment.TickCount;
 
             await _decoree.Process(subject, scope, output).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Processed absolute path (Duration: {Duration}ms)", duration);
+            _logger.Debug("Processed absolute path (Duration: {Duration}ms)", duration);
         }
     }
 }

@@ -28,13 +28,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             // For this we create a unique correlationId and pass it through all involved systems.
             using (_contextCorrelator.BeginLoggingCorrelationScope(Correlation.ScriptId, ShortGuid.New(), false))
             {
-                _logger.Information("Processing script");
+                _logger.Debug("Processing script");
                 var start = Environment.TickCount;
 
                 var result = _processor.Process(script);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Processed script (Duration: {Duration}ms)", duration);
+                _logger.Debug("Processed script (Duration: {Duration}ms)", duration);
 
                 return result;
             }

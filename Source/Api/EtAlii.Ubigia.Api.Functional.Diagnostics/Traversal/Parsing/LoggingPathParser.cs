@@ -28,13 +28,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                _logger.Information("Parsing subject text (Text: {Line})", line);
+                _logger.Debug("Parsing subject text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParsePath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Parsed path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
+                _logger.Debug("Parsed path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }
@@ -49,13 +49,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                _logger.Information("Parsing non-rooted path text (Text: {Line})", line);
+                _logger.Debug("Parsing non-rooted path text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParseNonRootedPath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Parsed non-rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
+                _logger.Debug("Parsed non-rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }
@@ -70,13 +70,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var lines = text.Replace("\r\n", "\n").Split('\n');
                 var line = lines.Length == 1 ? lines[0] : $"{lines[0]}...";
-                _logger.Information("Parsing rooted path text (Text: {Line})", line);
+                _logger.Debug("Parsing rooted path text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
                 var pathSubject = _parser.ParseRootedPath(text);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-                _logger.Information("Parsed rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
+                _logger.Debug("Parsed rooted path text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
 
                 return pathSubject;
             }

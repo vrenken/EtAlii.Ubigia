@@ -35,25 +35,25 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             _address = _decoree.Transport.Address;
 
-            _logger.Information("Opening space connection (Address: {Address}", _address);
+            _logger.Debug("Opening space connection (Address: {Address}", _address);
             var start = Environment.TickCount;
 
             await _decoree.Open(accountName, password).ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Opened space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
+            _logger.Debug("Opened space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
         public async Task Close()
         {
-            _logger.Information("Closing space connection (Address: {Address}", _address);
+            _logger.Debug("Closing space connection (Address: {Address}", _address);
             var start = Environment.TickCount;
 
             await _decoree.Close().ConfigureAwait(false);
             _address = null;
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Closed space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
+            _logger.Debug("Closed space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
         #region Disposable

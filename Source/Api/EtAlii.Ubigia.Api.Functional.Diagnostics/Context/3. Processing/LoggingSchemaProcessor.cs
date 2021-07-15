@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public async IAsyncEnumerable<Structure> Process(Schema schema)
         {
-            _logger.Information("Processing query");
+            _logger.Debug("Processing query");
             var start = Environment.TickCount;
 
             var items = _processor
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             }
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Processed query (Duration: {Duration}ms)", duration);
+            _logger.Debug("Processed query (Duration: {Duration}ms)", duration);
         }
     }
 }

@@ -23,24 +23,24 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task Start()
         {
-            _logger.Information("Starting transport (Address: {Address})", Address);
+            _logger.Debug("Starting transport (Address: {Address})", Address);
             var start = Environment.TickCount;
 
             await _transport.Start().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Started transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
+            _logger.Debug("Started transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
         }
 
         public async Task Stop()
         {
-            _logger.Information("Stopping transport (Address: {Address})", Address);
+            _logger.Debug("Stopping transport (Address: {Address})", Address);
             var start = Environment.TickCount;
 
             await _transport.Stop().ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
-            _logger.Information("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
+            _logger.Debug("Stopped transport (Address: {Address} Duration: {Duration}ms)", Address, duration);
         }
 
         IScaffolding[] IStorageTransport.CreateScaffolding()
