@@ -31,6 +31,7 @@
     <NoWarn>CA1822</NoWarn> <!-- [CA1822] Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. -->
     <NoWarn>$(NoWarn);AD0001</NoWarn> <!-- In SonarQube step of the build process: CSC : warning AD0001: Analyzer 'SonarAnalyzer.Rules.CSharp.CbdeHandlerRule' threw an exception of type 'SonarAnalyzer.CBDE.CbdeException' with message 'Top level error in CBDE handling -->
 
+
     <!-- We want to have comments on everything public -->
     <!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
     <!--    <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>-->
