@@ -44,7 +44,7 @@ jobs:
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.2.2
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
 
         # Versioning.
       - name: Versioning
