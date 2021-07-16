@@ -3,7 +3,7 @@
   "version": "1.3.0",
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
-    "^refs/heads/release/v\\d+(?:\\.\\d+)?$"
+    "^refs/heads/release/v\\d+(?:\\.\\d+)?(?:\\.\\d+)?$"
   ],
   "release": {
     "branchName": "release/v{version}",
