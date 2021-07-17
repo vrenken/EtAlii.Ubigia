@@ -4,7 +4,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
 
 ## Status
 [![Build+Test](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml)
-[![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yaml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yaml)
+[![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml)
 [![CodeQL Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia)
 
