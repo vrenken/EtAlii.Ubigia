@@ -2,12 +2,13 @@ name: SonarCloud Analysis
 
 on:
   push:
-    paths:
-      - '!.github/workflows/**'
-      - '.github/workflows/analyse-sonarcloud.yml'
     branches:
       - master
       - 'release/**'
+    paths:
+      - '!.github\workflows\**'
+      - '.github\workflows\analyse-sonarcloud.yml'
+
   pull_request:
     types: [opened, synchronize, reopened]
 

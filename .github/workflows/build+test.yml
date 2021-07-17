@@ -6,8 +6,8 @@ on:
       - master
       - 'release/**'
     paths:
-      - '!.github/workflows/**'
-      - '.github/workflows/build+test.yml'
+      - '!.github\workflows\**'
+      - '.github\workflows\build+test.yml'
 
   pull_request:
     branches: [ master ]
