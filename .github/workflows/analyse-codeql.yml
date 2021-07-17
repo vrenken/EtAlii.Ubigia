@@ -19,7 +19,7 @@ on:
     paths:
       - '**'
       - '!.github/workflows/**'
-      - '.github/workflows/analyse-codql.yml'
+      - '.github/workflows/*codql.yml'
 
   pull_request:
     # The branches below must be a subset of the branches above
