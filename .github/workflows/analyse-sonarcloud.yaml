@@ -7,7 +7,7 @@ on:
       - 'release/**'
     paths:
       - '!.github/workflows/**'
-      - '.github/workflows/analyse-sonarcloud.yml'
+      - '.github/workflows/*sonarcloud.yml'
 
   pull_request:
     types: [opened, synchronize, reopened]
