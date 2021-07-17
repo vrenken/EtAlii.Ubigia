@@ -9,7 +9,6 @@ on:
       - '!.github/workflows/**'
       - '.github/workflows/analyse-sonarcloud.yml'
 
-
   pull_request:
     types: [opened, synchronize, reopened]
 
