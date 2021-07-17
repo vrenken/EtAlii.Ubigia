@@ -6,8 +6,9 @@ on:
       - master
       - 'release/**'
     paths:
-      - '!.github\workflows\**'
-      - '.github\workflows\publish.yml'
+      - '**'
+      - '!.github/workflows/**'
+      - '.github/workflows/publish.yml'
 
 jobs:
   publish:
