@@ -12,8 +12,8 @@ on:
 jobs:
   build:
 
-    #runs-on: ubuntu-latest
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
+    #runs-on: windows-latest
 
     steps:
     - name: Checkout
@@ -36,9 +36,14 @@ jobs:
 
     - name: Build
       run: >
-        dotnet build ./Source/EtAlii.Ubigia.sln
+        dotnet build
         --no-restore
         /p:UbigiaIsRunningOnBuildAgent=true
+        "EtAlii.Ubigia.sln"
+        "./Source/**/*.csproj
+        !**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj
+        !**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj
+        !**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj"
 
     - name: Test
       run: >
