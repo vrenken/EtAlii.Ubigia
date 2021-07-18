@@ -10,9 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
-      <NoWarn>NU1701</NoWarn>
-    </PackageReference>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
   </ItemGroup>

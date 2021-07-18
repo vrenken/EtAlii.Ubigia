@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
-    using Microsoft.Experimental.IO;
 
     public class NtfsStorageSerializer : IStorageSerializer
     {
@@ -25,14 +24,14 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         public void Serialize<T>(string fileName, T item)
             where T: class
         {
-            using var stream = LongPathFile.Open(fileName, FileMode.CreateNew, FileAccess.Write);
+            using var stream = File.Open(fileName, FileMode.CreateNew, FileAccess.Write);
 
             _itemSerializer.Serialize(stream, item);
         }
 
         public void Serialize(string fileName, PropertyDictionary item)
         {
-            using var stream = LongPathFile.Open(fileName, FileMode.CreateNew, FileAccess.Write);
+            using var stream = File.Open(fileName, FileMode.CreateNew, FileAccess.Write);
 
             _propertiesSerializer.Serialize(stream, item);
         }
@@ -40,14 +39,14 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         public Task<T> Deserialize<T>(string fileName)
             where T : class
         {
-            using var stream = LongPathFile.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using var stream = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             return _itemSerializer.Deserialize<T>(stream);
         }
 
         public PropertyDictionary Deserialize(string fileName)
         {
-            using var stream = LongPathFile.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+            using var stream = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
 
             return _propertiesSerializer.Deserialize(stream);
         }

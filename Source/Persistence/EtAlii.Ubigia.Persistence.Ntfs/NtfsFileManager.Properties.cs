@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using System.IO;
-    using Microsoft.Experimental.IO;
 
     internal partial class NtfsFileManager
     {
@@ -18,17 +17,17 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
 
             _serializer.Serialize(temporaryFileName, item);
 
-            var shouldReplace = LongPathFile.Exists(path);
+            var shouldReplace = File.Exists(path);
             if (shouldReplace)
             {
-                LongPathFile.Move(path, backupFileName);
-                LongPathFile.Move(temporaryFileName, path);
-                LongPathFile.Delete(backupFileName);
+                File.Move(path, backupFileName);
+                File.Move(temporaryFileName, path);
+                File.Delete(backupFileName);
             }
             else
             {
-                LongPathFile.Copy(temporaryFileName, path, false);
-                LongPathFile.Delete(temporaryFileName);
+                File.Copy(temporaryFileName, path, false);
+                File.Delete(temporaryFileName);
             }
         }
 
@@ -40,7 +39,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
             var folder = _pathBuilder.GetDirectoryName(path);
             _folderManager.Create(folder);
 
-            if (LongPathFile.Exists(path))
+            if (File.Exists(path))
             {
                 item = _serializer.Deserialize(path);
             }

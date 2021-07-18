@@ -8,9 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
-      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
-    </PackageReference>
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Persistence\EtAlii.Ubigia.Persistence.Ntfs\EtAlii.Ubigia.Persistence.Ntfs.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />

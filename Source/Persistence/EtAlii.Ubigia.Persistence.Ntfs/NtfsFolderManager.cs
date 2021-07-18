@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
     using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
-    using Microsoft.Experimental.IO;
 
     internal class NtfsFolderManager : IFolderManager
     {
@@ -20,7 +19,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         public void SaveToFolder<T>(T item, string itemName, string folder)
             where T : class
         {
-            if (!LongPathDirectory.Exists(folder))
+            if (!Directory.Exists(folder))
             {
                 throw new InvalidOperationException("The provided entry has not been prepared.");
             }
@@ -47,12 +46,12 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         {
             T item = null;
 
-            if (LongPathDirectory.Exists(folderName))
+            if (Directory.Exists(folderName))
             {
                 var fileName = string.Format(_serializer.FileNameFormat, itemName);
                 fileName = Path.Combine(folderName, fileName);
 
-                if (LongPathFile.Exists(fileName))
+                if (File.Exists(fileName))
                 {
                     item = await _serializer.Deserialize<T>(fileName).ConfigureAwait(false);
                 }
@@ -63,50 +62,50 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
 
         public IEnumerable<string> EnumerateFiles(string folderName)
         {
-            return LongPathDirectory.EnumerateFiles(folderName);
+            return Directory.EnumerateFiles(folderName);
         }
 
         public IEnumerable<string> EnumerateFiles(string folderName, string searchPattern)
         {
-            return LongPathDirectory.EnumerateFiles(folderName, searchPattern);
+            return Directory.EnumerateFiles(folderName, searchPattern);
         }
 
         public IEnumerable<string> EnumerateDirectories(string folderName)
         {
-            return LongPathDirectory.EnumerateDirectories(folderName);
+            return Directory.EnumerateDirectories(folderName);
         }
 
 
         public bool Exists(string folderName)
         {
-            return LongPathDirectory.Exists(folderName);
+            return Directory.Exists(folderName);
         }
 
         public void Create(string folderName)
         {
             var parentFolder = Path.GetDirectoryName(folderName);
-            if (!LongPathDirectory.Exists(parentFolder))
+            if (!Directory.Exists(parentFolder))
             {
                 Create(parentFolder);
             }
-            LongPathDirectory.Create(folderName);
+            Directory.CreateDirectory(folderName);
         }
 
         public void Delete(string folderName)
         {
-            var subFolders = LongPathDirectory.EnumerateDirectories(folderName);
+            var subFolders = Directory.EnumerateDirectories(folderName);
             foreach (var subFolder in subFolders)
             {
                 Delete(subFolder);
             }
 
-            var files = LongPathDirectory.EnumerateFiles(folderName);
+            var files = Directory.EnumerateFiles(folderName);
             foreach (var file in files)
             {
-                LongPathFile.Delete(file);
+                File.Delete(file);
             }
 
-            LongPathDirectory.Delete(folderName);
+            Directory.Delete(folderName);
         }
     }
 }
