@@ -7,6 +7,9 @@
     <ProjectGuid>4c26a6cc-cc52-40bb-9bea-793f450bb5e7</ProjectGuid>
     <PackProject>true</PackProject>
     <PackageId>$(AssemblyName)</PackageId>
+
+<!--    <GenerateDocumentationFile>true</GenerateDocumentationFile>-->
+<!--    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>-->
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj" />
