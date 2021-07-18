@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>70db8c97-0b9a-4313-8580-c3de09c3a10e</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Fabric.Tests</RootNamespace>
+    <DefineConstants>UBIGIA_IS_REST_TESTPROJECT</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

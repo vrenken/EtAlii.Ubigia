@@ -7,7 +7,11 @@ using System.Runtime.CompilerServices;
 using EtAlii.xTechnology.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
-[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)] // CollectionPerAssembly
+#if UBIGIA_IS_REST_TESTPROJECT
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)]
+#else
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)] // CollectionPerAssembly
+#endif
 
 internal static class UnitTestConstants
 {
