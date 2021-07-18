@@ -3,8 +3,6 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
-    using System.Security.AccessControl;
-    using System.Security.Principal;
     using System.Threading;
 
     /// <summary>
@@ -41,19 +39,8 @@ namespace EtAlii.xTechnology.Hosting
             // unique id for global mutex - Global prefix means it is global to the machine
             var mutexName = $"Global\\{{{_uniqueId}}}";
 
-            // edited by Jeremy Wiebe to add example of setting up security for multi-user usage
-            // edited by 'Marc' to work also on localized systems (don't use just "Everyone")
-            var securityIdentifier = (IdentityReference)new SecurityIdentifier(WellKnownSidType.WorldSid, null);
-            var allowEveryoneRule = new MutexAccessRule(securityIdentifier, MutexRights.FullControl, AccessControlType.Allow);
-            var securitySettings = new MutexSecurity();
-            securitySettings.AddAccessRule(allowEveryoneRule);
-
             // edited by MasonGZhwiti to prevent race condition on security settings via VanNguyen
-            var mutex = new Mutex(false, mutexName, out var createdNew);
-            if (createdNew)
-            {
-                mutex.SetAccessControl(securitySettings);
-            }
+            var mutex = new Mutex(false, mutexName);
 
             AppDomain.CurrentDomain.ProcessExit += (_, _) => Dispose();
             return mutex;

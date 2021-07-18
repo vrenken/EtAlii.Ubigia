@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.IO.MemoryMappedFiles;
     using System.Linq;
     using System.Runtime.InteropServices;
@@ -11,11 +12,11 @@ namespace EtAlii.xTechnology.Hosting
     public sealed partial class Ipv4FreePortFinder
     {
         public static Ipv4FreePortFinder Current => _current.Value;
-        private static readonly Lazy<Ipv4FreePortFinder> _current = new(() => 
+        private static readonly Lazy<Ipv4FreePortFinder> _current = new(() =>
         {
             AppDomain.CurrentDomain.UnhandledException += (_, _) => _current.Value.Dispose();
             AppDomain.CurrentDomain.DomainUnload += (_, _) => _current.Value.Dispose();
-            
+
             return new Ipv4FreePortFinder();
         });
 
@@ -23,12 +24,12 @@ namespace EtAlii.xTechnology.Hosting
         {
             _memoryMappedIpcFileName = $"{nameof(Ipv4FreePortFinder)}_IpcFile";
             _structureSize = Marshal.SizeOf(typeof(PortRegistration));
-            _fileSize = 
+            _fileSize =
                 Marshal.SizeOf(typeof(ushort)) + // A short to indicate the current number of registrations stored in the file.
                 _structureSize * 0xFFFF; // We want to have at max 0xFF (=65535) registrations (there are no more ports.
-            
+
             // Create the memory-mapped file.
-            _memoryMappedFile = MemoryMappedFile.CreateOrOpen(_memoryMappedIpcFileName, _fileSize);
+            _memoryMappedFile = MemoryMappedFile.CreateFromFile(_memoryMappedIpcFileName, FileMode.OpenOrCreate, null, _fileSize);
         }
 
         /// <summary>
@@ -61,7 +62,7 @@ namespace EtAlii.xTechnology.Hosting
             var registrationsAsList = CleanupExpiredPortRegistrations(registrations, leaseExpirationMoment);
 
             var freePorts = FindOnSystem(fromRange, numberOfPorts, registrationsAsList);
-            
+
             registrationsAsList.AddRange(freePorts.Select(port => new PortRegistration { Port = port, RegisteredAt = now}));
 
             registrations = registrationsAsList.ToArray();
@@ -73,7 +74,7 @@ namespace EtAlii.xTechnology.Hosting
         private List<PortRegistration> CleanupExpiredPortRegistrations(PortRegistration[] registrations, DateTime leaseExpirationMoment)
         {
             var registrationsAsList = new List<PortRegistration>(registrations);
-            
+
             for (var i = registrations.Length - 1; i >= 0; i--)
             {
                 if (registrations[i].RegisteredAt < leaseExpirationMoment)

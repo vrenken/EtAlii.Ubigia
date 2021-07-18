@@ -18,7 +18,7 @@
     <UbigiaInfrastructureLibraryTargetFramework>netstandard2.1</UbigiaInfrastructureLibraryTargetFramework>
     <UbigiaApplicationTargetFramework>net5.0</UbigiaApplicationTargetFramework>
     <UbigiaGuiApplicationTargetFramework>$(UbigiaApplicationTargetFramework)-windows</UbigiaGuiApplicationTargetFramework>
-    <UbigiaTestApplicationTargetFramework>$(UbigiaApplicationTargetFramework)-windows</UbigiaTestApplicationTargetFramework>
+    <UbigiaTestApplicationTargetFramework>$(UbigiaApplicationTargetFramework)</UbigiaTestApplicationTargetFramework>
 
     <DefineConstants Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'">$(DefineConstants);UBIGIA_IS_RUNNING_ON_BUILD_AGENT</DefineConstants>
 
