@@ -37,7 +37,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.Grpc\EtAlii.xTechnology.Hosting.TestHost.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1C.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj" />

@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>c899ee3a-57c9-432e-a478-a54bafcc4f4e</ProjectGuid>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Remove="settings_systems_1_variant_1.json" />
     <None Remove="settings_systems_1_variant_2.json" />
@@ -22,7 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.xTechnology.Hosting.TestHost.Grpc\EtAlii.xTechnology.Hosting.TestHost.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M1C.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2.Grpc\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc.csproj" />
@@ -40,12 +39,12 @@
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.Ts1.M2A.NetCore\EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Tests.TestSystem2.NetCore\EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="DockerizedTesting" Version="1.2.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Include="Container\.dockerignore">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
