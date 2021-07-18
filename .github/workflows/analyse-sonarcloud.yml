@@ -5,6 +5,7 @@ on:
     branches:
       - master
       - 'release/**'
+
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -44,21 +45,22 @@ jobs:
         shell: powershell
         run: |
           New-Item -Path .\.sonar\scanner -ItemType Directory
-          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.2.2
+          dotnet tool update dotnet-sonarscanner --tool-path .\.sonar\scanner --version 5.1.0
 
-        # Versioning.
+        # NBGV Versioning setup.
       - name: Versioning
         uses: dotnet/nbgv@master
         id: nbgv
 
-        #  Test, analysis, build and publish.
-      - name: Test, analysis, build and publish.
-        shell: powershell
+
+        # Build and analyze.
+      - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        shell: powershell
         run: |
-          dotnet test .\Source\EtAlii.Ubigia.sln --verbosity normal --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /d:sonar.:"${{ steps.nbgv.outputs.MajorMinorVersion }}${{ steps.nbgv.outputs.PrereleaseVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
+          dotnet test --verbosity quiet .\Source\EtAlii.Ubigia.sln --logger "trx;LogFileName=report.xunit.trx" --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"EtAlii.Ubigia" /o:"vrenken" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="**\coverage.opencover.xml" /v:"${{ steps.nbgv.outputs.SimpleVersion }}" /d:sonar.cs.vstest.reportsPaths="**\report.xunit.trx" /d:sonar.coverage.exclusions="**\*.Tests\**"
           dotnet build .\Source\EtAlii.Ubigia.sln
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"

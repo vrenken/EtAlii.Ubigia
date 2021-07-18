@@ -450,7 +450,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{186D
 ProjectSection(SolutionItems) = preProject
 	..\.github\workflows\build+test.yml = ..\.github\workflows\build+test.yml
 	..\.github\workflows\analyse-codeql.yml = ..\.github\workflows\analyse-codeql.yml
-	..\.github\workflows\analyse-sonarcloud.yaml = ..\.github\workflows\analyse-sonarcloud.yaml
+	..\.github\workflows\analyse-sonarcloud.yml = ..\.github\workflows\analyse-sonarcloud.yml
 	..\.github\workflows\publish.yml = ..\.github\workflows\publish.yml
 EndProjectSection
 EndProject
