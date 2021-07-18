@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia
             Data = Array.Empty<byte>(),
         };
 
+        /// <inheritdoc />
         protected override string Name => Content.ContentName;
     }
 }

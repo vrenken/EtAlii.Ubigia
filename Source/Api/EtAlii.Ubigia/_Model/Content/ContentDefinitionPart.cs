@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia
 
         public static readonly ContentDefinitionPart Empty = new() { Checksum = 0, Size = 0 };
 
+        /// <inheritdoc />
         protected override string Name => ContentDefinition.ContentDefinitionName;
     }
 }

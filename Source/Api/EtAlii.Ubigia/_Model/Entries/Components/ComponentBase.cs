@@ -4,10 +4,13 @@ namespace EtAlii.Ubigia
 {
     public abstract class ComponentBase : IComponent
     {
+        /// <summary>
+        /// Returns true when the component has been stored.
+        /// </summary>
         public bool Stored { get; internal set; }
 
         /// <summary>
-        /// The type name of the component.
+        /// Returns the type name of the component.
         /// </summary>
         protected internal abstract string Name { get; }
 

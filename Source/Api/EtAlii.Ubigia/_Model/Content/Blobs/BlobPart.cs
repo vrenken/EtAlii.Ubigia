@@ -4,8 +4,14 @@ namespace EtAlii.Ubigia
 {
     public abstract partial class BlobPart
     {
+        /// <summary>
+        /// Returns true when the blob part has been stored.
+        /// </summary>
         public bool Stored { get; private set; }
 
+        /// <summary>
+        /// Returns the type name of the blob.
+        /// </summary>
         protected abstract string Name { get; }
 
         public ulong Id { get; init; }
