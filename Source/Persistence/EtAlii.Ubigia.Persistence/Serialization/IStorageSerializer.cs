@@ -4,6 +4,9 @@ namespace EtAlii.Ubigia.Persistence
 {
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// An interface to abstract away the storage specific serializers.
+    /// </summary>
     public interface IStorageSerializer
     {
         string FileNameFormat { get; }
