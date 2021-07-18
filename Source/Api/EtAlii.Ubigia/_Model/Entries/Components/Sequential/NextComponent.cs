@@ -4,8 +4,10 @@ namespace EtAlii.Ubigia
 {
     public class NextComponent : RelationComponent
     {
+        /// <inheritdoc />
         protected internal override string Name => "Next";
 
+        /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.NextComponent = this;

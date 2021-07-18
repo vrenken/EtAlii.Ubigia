@@ -10,8 +10,10 @@ namespace EtAlii.Ubigia
 
         public string Type { get; internal set; }
 
+        /// <inheritdoc />
         protected internal override string Name => "Type";
 
+        /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.TypeComponent = this;

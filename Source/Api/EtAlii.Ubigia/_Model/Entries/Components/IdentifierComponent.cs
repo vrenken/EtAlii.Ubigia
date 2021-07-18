@@ -10,8 +10,10 @@ namespace EtAlii.Ubigia
 
         public Identifier Id { get; internal set; }
 
+        /// <inheritdoc />
         protected internal override string Name => "Identifier";
 
+        /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.IdComponent = this;

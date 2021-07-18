@@ -10,8 +10,10 @@ namespace EtAlii.Ubigia
 
         public string Tag { get; internal set; }
 
+        /// <inheritdoc />
         protected internal override string Name => "Tag";
 
+        /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.TagComponent = this;

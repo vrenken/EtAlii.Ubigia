@@ -4,8 +4,10 @@ namespace EtAlii.Ubigia
 {
     public class Parent2Component : RelationComponent
     {
+        /// <inheritdoc />
         protected internal override string Name => "Parent2";
 
+        /// <inheritdoc />
         protected internal override void Apply(IComponentEditableEntry entry, bool markAsStored)
         {
             entry.Parent2Component = this;

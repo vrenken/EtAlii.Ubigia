@@ -22,15 +22,23 @@ namespace EtAlii.Ubigia
         {
         }
 
+        /// <summary>
+        /// Create a new, empty PropertyDictionary instance.
+        /// </summary>
         public PropertyDictionary()
         {
         }
 
+        /// <summary>
+        /// Create a new PropertyDictionary instance given the provided properties.
+        /// </summary>
+        /// <param name="properties"></param>
         public PropertyDictionary(IPropertyDictionary properties)
             : base(properties)
         {
         }
 
+        /// <inheritdoc />
         public bool Equals(IPropertyDictionary other)
         {
             if (Count != other?.Count)
@@ -56,6 +64,7 @@ namespace EtAlii.Ubigia
             return true;
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             var sb = new StringBuilder();
