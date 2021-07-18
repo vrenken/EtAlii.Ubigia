@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-#if !UBIGIA_IS_REST_TESTPROJECT
+#if !UBIGIA_RUN_TESTS_PER_ASSEMBLY
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;

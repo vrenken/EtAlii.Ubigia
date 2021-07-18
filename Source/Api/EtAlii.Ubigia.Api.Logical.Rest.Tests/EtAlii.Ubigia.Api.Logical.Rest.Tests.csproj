@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>f21017fa-b6af-4114-9cdd-bc1993732470</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Logical.Tests</RootNamespace>
-    <DefineConstants>UBIGIA_IS_REST_TESTPROJECT</DefineConstants>
+    <DefineConstants>UBIGIA_RUN_TESTS_PER_ASSEMBLY</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
