@@ -6,6 +6,9 @@ namespace EtAlii.Ubigia
     using System.Linq;
     using System.Text;
 
+    /// <summary>
+    /// A class able to convert between bytes and Base36 formatted strings.
+    /// </summary>
     public static partial class Base36Convert
     {
         private static readonly bool[]  _36AsBits = { true, false, false, true, false, false };
@@ -19,6 +22,11 @@ namespace EtAlii.Ubigia
             'w', 'x', 'y', 'z'
         };
 
+        /// <summary>
+        /// Convert the given Base36 encoded string into a span of bytes.
+        /// </summary>
+        /// <param name="base36String"></param>
+        /// <returns></returns>
         public static Span<byte> ToBytes(string base36String)
         {
             ReadOnlySpan<char> span = base36String.ToLower();
@@ -42,6 +50,12 @@ namespace EtAlii.Ubigia
             return ToBytes(bits);
         }
 
+        /// <summary>
+        /// Convert the given bytes into a Base36 encoded string.
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="leastSignificantByteFirst"></param>
+        /// <returns></returns>
         public static string ToString(byte[] bytes, bool leastSignificantByteFirst = true)
         {
             //most .NET-produced byte arrays are "little-endian" (LSB first),

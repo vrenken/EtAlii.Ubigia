@@ -5,6 +5,9 @@ namespace EtAlii.Ubigia
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// A static helper class with which the entries can be applied, added and composed.
+    /// </summary>
     public static class EntryHelper
     {
         /// <summary>

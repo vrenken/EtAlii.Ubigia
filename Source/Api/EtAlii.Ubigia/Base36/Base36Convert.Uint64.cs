@@ -10,6 +10,11 @@ namespace EtAlii.Ubigia
                     // This is the index  "012345678901234567890123456789012345"
         private const string Characters = "0123456789abcdefghijklmnopqrstuvwxyz";
 
+        /// <summary>
+        /// Convert the given Base36 encoded string into a UInt64.
+        /// </summary>
+        /// <param name="base36String"></param>
+        /// <returns></returns>
         public static ulong ToUInt64(string base36String)
         {
             base36String = base36String.ToLower();
@@ -28,6 +33,11 @@ namespace EtAlii.Ubigia
             return result;
         }
 
+        /// <summary>
+        /// Convert the given UInt64 into a Base36 encoded string.
+        /// </summary>
+        /// <param name="uInt64"></param>
+        /// <returns></returns>
         public static string ToString(ulong uInt64)
         {
             var builder = new StringBuilder();
