@@ -15,7 +15,6 @@
         "Setup": {
             "DefaultSystemAccountName": "System",
             "DefaultSystemAccountPassword": "system123",
-
             "DefaultAdministratorAccountName": "Administrator",
             "DefaultAdministratorAccountPassword": "administrator123"
         }

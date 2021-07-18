@@ -1,64 +1,138 @@
 ﻿{
-  "Host": {
-    "Systems": [
-      {
-        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
-        "Services": [
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
-            "Name": "Debug storage",
-            "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
-          },
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
-            "Name": "Debug storage",
-            "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
-          }
-        ],
-        "Modules": [
-          {
-            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
-            "Name": "Admin",
-            "####Comment": "// Admin should be accessible over localhost only",
-            "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
-            "Port": "{{PORT:AdminPort@64001}}",
-
-            "Modules": [
-              {
-                "Name": "Api",
-                "Services": [
-                  {
-                    "Path": "{{PATH:AdminApi@}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
-            "Name": "User",
-            "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
-            "Port": "{{PORT:UserPort@64000}}",
-            "Modules": [
-              {
-                "Name": "Api",
-                "Services": [
-                  {
-                    "Path": "{{PATH:UserApi@}}",
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
+    "Transport": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
+    "Functional": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        },
+        "Setup": {
+            "DefaultSystemAccountName": "System",
+            "DefaultSystemAccountPassword": "system123",
+            "DefaultAdministratorAccountName": "Administrator",
+            "DefaultAdministratorAccountPassword": "administrator123"
+        }
+    },
+    "Logical": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
+    "Fabric": {
+        "Diagnostics": {
+            "EnableProfiling": false,
+            "EnableLogging": false,
+            "EnableDebugging": false
+        }
+    },
     "Logging": {
-      "LogLevel": {
-        "Default": "Warning"
-      }
+        "LogLevel": {
+            "Default": "Warning"
+        }
+    },
+    "Serilog": {
+        "MinimumLevel": {
+            "Default": "Verbose",
+            "Override": {
+                "Microsoft": "Information",
+                "Microsoft.AspNetCore": "Information",
+                "Microsoft.AspNetCore.SignalR": "Information",
+                "Microsoft.AspNetCore.Http.Connections": "Information"
+            }
+        },
+        "WriteTo": [
+            {
+                "Name": "Async",
+                "Args": {
+                    "configure": [
+                        {
+                            "Name": "Console",
+                            "Args": {
+                                "restrictedToMinimumLevel": "Information",
+                                "outputTemplate": "{Level:u3}{Timestamp: [HH:mm:ss]}: {Message}{NewLine}"
+                            }
+                        },
+                        {
+                            "Name": "Seq",
+                            "Args": {
+                                "#COMMENT1": "// If you want to have a local Seq centralized logging instance please start a local seq instance in docker using the commandline below",
+                                "#COMMENT2": "// docker run --name seq -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest",
+                                "#COMMENT3": "// It can then be accessed using the following URL:",
+                                "#COMMENT4": "// http://127.0.0.1:5341",
+                                "#COMMENT5": "// If your Seq logging instance runs on another machine you can use the following",
+                                "#COMMENT6": "// commandline in an elevated PowerShell console to forward the local port to another system:",
+                                "#COMMENT7": "// netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=5341 connectaddress=OTHERIP connectport=5341",
+                                "serverUrl": "http://seq.avalon:5341",
+                                "restrictedToMinimumLevel": "Verbose"
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "Host": {
+        "Systems": [
+            {
+                "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
+                "Services": [
+                    {
+                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
+                        "Name": "Debug storage",
+                        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
+                    },
+                    {
+                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+                        "Name": "Debug storage",
+                        "Address": "https://{{HOST:StorageHost@127.0.0.1}}"
+                    }
+                ],
+                "Modules": [
+                    {
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
+                        "Name": "Admin",
+                        "####Comment": "// Admin should be accessible over localhost only",
+                        "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
+                        "Port": "{{PORT:AdminPort@64001}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Services": [
+                                    {
+                                        "Path": "{{PATH:AdminApi@}}",
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
+                        "Name": "User",
+                        "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
+                        "Port": "{{PORT:UserPort@64000}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Services": [
+                                    {
+                                        "Path": "{{PATH:UserApi@}}",
+                                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
-  }
+}

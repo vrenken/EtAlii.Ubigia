@@ -15,7 +15,6 @@
         "Setup": {
             "DefaultSystemAccountName": "System",
             "DefaultSystemAccountPassword": "system123",
-
             "DefaultAdministratorAccountName": "Administrator",
             "DefaultAdministratorAccountPassword": "administrator123"
         }
@@ -34,13 +33,11 @@
             "EnableDebugging": false
         }
     },
-
     "Logging": {
         "LogLevel": {
             "Default": "Warning"
         }
     },
-
     "Serilog": {
         "MinimumLevel": {
             "Default": "Verbose",
@@ -68,11 +65,12 @@
                             "Args": {
                                 "#COMMENT1": "// If you want to have a local Seq centralized logging instance please start a local seq instance in docker using the commandline below",
                                 "#COMMENT2": "// docker run --name seq -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest",
-                                "#COMMENT3": "// It can then be accessed using the following URL: http://127.0.0.1:5341",
+                                "#COMMENT3": "// It can then be accessed using the following URL:",
+                                "#COMMENT4": "// http://127.0.0.1:5341",
                                 "#COMMENT5": "// If your Seq logging instance runs on another machine you can use the following",
                                 "#COMMENT6": "// commandline in an elevated PowerShell console to forward the local port to another system:",
                                 "#COMMENT7": "// netsh interface portproxy add v4tov4 listenaddress=127.0.0.1 listenport=5341 connectaddress=OTHERIP connectport=5341",
-                                "serverUrl": "http://127.0.0.1:5341",
+                                "serverUrl": "http://seq.avalon:5341",
                                 "restrictedToMinimumLevel": "Verbose"
                             }
                         }
@@ -81,7 +79,6 @@
             }
         ]
     },
-
     "Host": {
         "Systems": [
             {
@@ -100,7 +97,7 @@
                 ],
                 "Modules": [
                     {
-                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc",
                         "Name": "Admin",
                         "####Comment": "// Admin should be accessible over localhost only",
                         "IpAddress": "{{HOST:AdminHost@127.0.0.1}}",
@@ -118,7 +115,7 @@
                         ]
                     },
                     {
-                        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
+                        "####Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc",
                         "Name": "User",
                         "IpAddress": "{{HOST:UserHost@0.0.0.0}}",
                         "Port": "{{PORT:UserPort@64000}}",
