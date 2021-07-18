@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting
             container.Register<ITaskbarIcon, TaskbarIcon>();
             container.RegisterInitializer<IHost>(host =>
             {
-                container.GetInstance<ITaskbarIconViewModel>().Initialize((ITrayIconHost)host, _runningIcon, _stoppedIcon, _errorIcon);
+                container.GetInstance<ITaskbarIconViewModel>().Initialize(host as HostWrapper, _runningIcon, _stoppedIcon, _errorIcon);
             });
         }
     }

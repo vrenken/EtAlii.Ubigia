@@ -11,26 +11,27 @@ namespace EtAlii.xTechnology.Hosting
 
     public class HostWrapper : IConfigurableHost
     {
-        private IConfigurableHost _host;
+        public IHost CurrentHost => _currentHost;
+        private IConfigurableHost _currentHost;
 
-        public IHostManager Manager => _host.Manager;
+        public IHostManager Manager => _currentHost.Manager;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
-        public IHostConfiguration Configuration => _host.Configuration;
-        public State State => _host.State;
+        public IHostConfiguration Configuration => _currentHost.Configuration;
+        public State State => _currentHost.State;
 
-        public Status[] Status => _host.Status;
+        public Status[] Status => _currentHost.Status;
 
-        public ICommand[] Commands => _host.Commands;
+        public ICommand[] Commands => _currentHost.Commands;
 
-        public ISystem[] Systems => _host.Systems;
+        public ISystem[] Systems => _currentHost.Systems;
 
         public HostWrapper(IHost host)
         {
-            _host = (IConfigurableHost)host;
+            _currentHost = (IConfigurableHost)host;
             Wire();
         }
 
@@ -40,37 +41,37 @@ namespace EtAlii.xTechnology.Hosting
         private void OnConfigureKestrel(KestrelServerOptions options) => ConfigureKestrel?.Invoke(options);
         private void Wire()
         {
-            _host.PropertyChanged += OnPropertyChanged;
-            _host.ConfigureApplication += OnConfigureApplication;
-            _host.ConfigureHost += OnConfigureHost;
-            _host.ConfigureKestrel += OnConfigureKestrel;
+            _currentHost.PropertyChanged += OnPropertyChanged;
+            _currentHost.ConfigureApplication += OnConfigureApplication;
+            _currentHost.ConfigureHost += OnConfigureHost;
+            _currentHost.ConfigureKestrel += OnConfigureKestrel;
         }
 
         private void Unwire()
         {
-            _host.PropertyChanged -= OnPropertyChanged;
-            _host.ConfigureApplication -= OnConfigureApplication;
-            _host.ConfigureHost -= OnConfigureHost;
-            _host.ConfigureKestrel -= OnConfigureKestrel;
+            _currentHost.PropertyChanged -= OnPropertyChanged;
+            _currentHost.ConfigureApplication -= OnConfigureApplication;
+            _currentHost.ConfigureHost -= OnConfigureHost;
+            _currentHost.ConfigureKestrel -= OnConfigureKestrel;
         }
 
         public void Replace(IHost host)
         {
             Unwire();
-            _host = (IConfigurableHost)host;
+            _currentHost = (IConfigurableHost)host;
             Wire();
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Commands)));
             // No need to raise PropertyChanged for the State an Status as these will still be State.Shutdown and
             // not initialized yet.
         }
-        public Task Start() => _host.Start();
-        public Task Stop() => _host.Stop();
+        public Task Start() => _currentHost.Start();
+        public Task Stop() => _currentHost.Stop();
 
-        public Task Shutdown() => _host.Shutdown();
+        public Task Shutdown() => _currentHost.Shutdown();
 
-        public void Setup(ICommand[] commands, Status[] status) => _host.Setup(commands, status);
+        public void Setup(ICommand[] commands, Status[] status) => _currentHost.Setup(commands, status);
 
-        public void Initialize() => _host.Initialize();
+        public void Initialize() => _currentHost.Initialize();
     }
 }

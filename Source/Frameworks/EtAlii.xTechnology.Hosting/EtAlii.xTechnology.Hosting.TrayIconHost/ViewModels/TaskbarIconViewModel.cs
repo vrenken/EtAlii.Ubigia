@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting
     internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private readonly IHostCommandsConverter _hostCommandsConverter;
-        private ITrayIconHost _host;
+        private HostWrapper _host;
         private Icon _runningIcon;
         private Icon _stoppedIcon;
         private Icon _errorIcon;
@@ -26,7 +26,7 @@ namespace EtAlii.xTechnology.Hosting
             _hostCommandsConverter = hostCommandsConverter;
         }
 
-        public void Initialize(ITrayIconHost host, Icon runningIcon, Icon stoppedIcon, Icon errorIcon)
+        public void Initialize(HostWrapper host, Icon runningIcon, Icon stoppedIcon, Icon errorIcon)
         {
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
@@ -105,7 +105,7 @@ namespace EtAlii.xTechnology.Hosting
         }
         private void SetIcon(Icon icon)
         {
-            _host.TaskbarIcon.Icon = icon;
+            ((ITrayIconHost)_host.CurrentHost).TaskbarIcon.Icon = icon;
         }
     }
 }

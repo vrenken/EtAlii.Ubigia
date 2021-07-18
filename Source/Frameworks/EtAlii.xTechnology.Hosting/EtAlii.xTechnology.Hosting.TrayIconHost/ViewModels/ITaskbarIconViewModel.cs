@@ -9,6 +9,6 @@ namespace EtAlii.xTechnology.Hosting
     {
         string ToolTipText { get; }
 
-        void Initialize(ITrayIconHost host, Icon runningIcon, Icon stoppedIcon, Icon errorIcon);
+        void Initialize(HostWrapper host, Icon runningIcon, Icon stoppedIcon, Icon errorIcon);
     }
 }

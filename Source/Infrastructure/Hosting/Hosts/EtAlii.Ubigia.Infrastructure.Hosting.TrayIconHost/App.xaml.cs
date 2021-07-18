@@ -15,7 +15,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 	{
         private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-	        var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
+	        var details = await new ConfigurationDetailsParser()
+                .Parse("settings.json")
+                .ConfigureAwait(true);
 
 	        var configurationRoot = new ConfigurationBuilder()
 		        .AddConfigurationDetails(details)

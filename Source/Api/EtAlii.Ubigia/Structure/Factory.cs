@@ -111,6 +111,10 @@ namespace EtAlii.Ubigia
         {
         }
 
+        /// <summary>
+        /// Override this method to initialize the TInstance factory.
+        /// </summary>
+        /// <param name="container"></param>
         protected virtual void Initialize(Container container)
         {
         }
