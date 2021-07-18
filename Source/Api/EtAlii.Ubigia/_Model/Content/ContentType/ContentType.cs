@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia
             Id = string.Join(@"\", contentTypeParts);
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return Id;

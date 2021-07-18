@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia
         public bool Stored { get; private set; }
 
         /// <summary>
-        /// Returns the type name of the blob.
+        /// Returns the type name of the blob part.
         /// </summary>
         protected abstract string Name { get; }
 

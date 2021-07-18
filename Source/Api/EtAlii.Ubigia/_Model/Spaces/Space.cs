@@ -9,14 +9,10 @@ namespace EtAlii.Ubigia
     /// </summary>
     public class Space : IIdentifiable
     {
-        /// <summary>
-        /// The unique identifier of the Space.
-        /// </summary>
+        /// <inheritdoc />
         public Guid Id { get; set; }
 
-        /// <summary>
-        /// The name of the Space.
-        /// </summary>
+        /// <inheritdoc />
         public string Name { get; set; }
 
         /// <summary>

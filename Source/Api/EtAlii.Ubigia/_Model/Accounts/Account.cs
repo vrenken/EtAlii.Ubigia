@@ -17,10 +17,10 @@ namespace EtAlii.Ubigia
             Roles = Array.Empty<string>();
         }
 
-        /// <summary>
-        /// The unique Guid with which the user can be represented in the Ubigia systems.
-        /// </summary>
+        /// <inheritdoc />
         public Guid Id { get; set; }
+
+        /// <inheritdoc />
         public string Name { get; set; }
         public string Password { get; set; }
         public string[] Roles { get; set; }

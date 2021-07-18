@@ -10,13 +10,10 @@ namespace EtAlii.Ubigia
     /// </summary>
     public class Root : IIdentifiable
     {
-        /// <summary>
-        /// The unique identifier of the Root.
-        /// </summary>
+        /// <inheritdoc />
         public Guid Id { get; set; }
-        /// <summary>
-        /// The name of the Root.
-        /// </summary>
+
+        /// <inheritdoc />
         public string Name { get; set; }
 
         /// <summary>

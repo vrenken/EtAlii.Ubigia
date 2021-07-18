@@ -4,18 +4,46 @@ namespace EtAlii.Ubigia
 {
     public class SpaceTemplate
     {
+        /// <summary>
+        /// A list of all space templates available.
+        /// </summary>
         public static SpaceTemplate[] All { get; }
+
+        /// <summary>
+        /// Returns the space template with which a data space needs to be instantiated.
+        /// </summary>
         public static SpaceTemplate Data { get; }
+
+        /// <summary>
+        /// Returns the space template with which a system space needs to be instantiated.
+        /// </summary>
         public static SpaceTemplate System { get; }
+
+        /// <summary>
+        /// Returns the space template with which a configuration space needs to be instantiated.
+        /// </summary>
         public static SpaceTemplate Configuration { get; }
+
+        /// <summary>
+        /// Returns the space template with which a metrics space needs to be instantiated.
+        /// </summary>
         public static SpaceTemplate Metrics { get; }
 
+        /// <summary>
+        /// The name of the space template.
+        /// </summary>
         public string Name { get; }
 
         public string[] RequiredRoles { get; }
 
+        /// <summary>
+        /// The roots to create in the space.
+        /// </summary>
         public string[] RootsToCreate { get; }
 
+        /// <summary>
+        /// The script to execute in order to create the space.
+        /// </summary>
         public string[] SetupScript { get; }
 
         static SpaceTemplate()

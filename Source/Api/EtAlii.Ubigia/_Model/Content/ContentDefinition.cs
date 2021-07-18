@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia
 
         public ContentDefinitionPart[] Parts { get; init; } = Array.Empty<ContentDefinitionPart>();
 
+        /// <inheritdoc />
         protected override string Name => ContentDefinitionName;
 
         public ContentDefinition ExceptParts()

@@ -9,7 +9,10 @@ namespace EtAlii.Ubigia
     /// </summary>
     public class Storage : IIdentifiable
     {
+        /// <inheritdoc />
         public Guid Id { get; set; }
+
+        /// <inheritdoc />
         public string Name { get; set; }
         public string Address { get; set; }
     }

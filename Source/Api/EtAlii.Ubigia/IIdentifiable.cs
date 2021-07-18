@@ -9,7 +9,13 @@ namespace EtAlii.Ubigia
     /// </summary>
     public interface IIdentifiable
     {
+        /// <summary>
+        /// The unique Guid with which the item can be represented in the Ubigia systems.
+        /// </summary>
         Guid Id { get; set; }
+        /// <summary>
+        /// The name with which the item can be represented in the Ubigia systems.
+        /// </summary>
         string Name { get; }
     }
 }
