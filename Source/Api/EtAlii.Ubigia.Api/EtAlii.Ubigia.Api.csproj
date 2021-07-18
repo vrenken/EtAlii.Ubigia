@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(UbigiaLibraryTargetFramework)</TargetFramework>
+    <Description>The core Ubigia API that provides everything needed to communicate with Ubigia server components.</Description>
+    <PackageReleaseNotes>Migrated to .NET 5.0</PackageReleaseNotes>
+    <PackageTags>API abstraction Ubigia SDK</PackageTags>
+    <ProjectGuid>b8feca34-e106-46e0-8457-99f5f1e901a6</ProjectGuid>
+    <PackProject>true</PackProject>
+    <PackageId>$(AssemblyName)</PackageId>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Analyzers\EtAlii.Ubigia.Api.Functional.Analyzers.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Lapa\EtAlii.Ubigia.Api.Functional.Lapa.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Rest\EtAlii.Ubigia.Api.Transport.Management.Rest.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
+  </ItemGroup>
+</Project>
