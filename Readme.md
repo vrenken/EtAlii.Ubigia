@@ -3,10 +3,14 @@ Ubigia is a philosophy and corresponding family of technologies and applications
 It's intent is not to be yet another NoSql database, but rather to expand the boundaries of digital information by applying (or better said re-inventing) some of the fundamentals we all take for granted in today's information systems.
 
 ## Status
-[![Build+Test](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test.yml)
+[![Build+Test-Ubuntu](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-ubuntu.yml)
+[![Build+Test-Windows](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/build+test-windows.yml)
 [![SonarCloud Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-sonarcloud.yml)
 [![CodeQL Analysis](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml/badge.svg)](https://github.com/vrenken/EtAlii.Ubigia/actions/workflows/analyse-codeql.yml)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![GitHub](https://img.shields.io/github/license/vrenken/EtAlii.Ubigia)
+
+![Build history](https://buildstats.info/github/chart/vrenken/etalii.ubigia)
+
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=bugs)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=EtAlii.Ubigia&metric=code_smells)](https://sonarcloud.io/dashboard?id=EtAlii.Ubigia)
