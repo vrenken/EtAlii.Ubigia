@@ -37,7 +37,7 @@ jobs:
     - name: Restore dependencies
       run: >
         dotnet restore
-        !*TrayIcon*.csproj
+        !**/*TrayIcon*.csproj
 
 
     - name: Build
@@ -45,11 +45,11 @@ jobs:
         dotnet build
         --no-restore
         /p:UbigiaIsRunningOnBuildAgent=true
-        !*TrayIcon*.csproj
+        !**/*TrayIcon*.csproj
 
     - name: Test
       run: >
         dotnet test
         --no-build
         --verbosity normal
-        !*TrayIcon*.csproj
+        !**/*TrayIcon*.csproj
