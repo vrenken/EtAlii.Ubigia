@@ -6,9 +6,11 @@
   <!-- The projects that explicitly target windows will not get compiled on Ubuntu. -->
   <PropertyGroup Condition="'$(TargetFramework)' == '$(UbigiaGuiApplicationTargetFramework)'">
     <Configurations>Debug;Release</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetFramework)' != '$(UbigiaGuiApplicationTargetFramework)'">
     <Configurations>Debug;Debug-Ubuntu;Release;Release-Ubuntu</Configurations>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
