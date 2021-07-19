@@ -39,7 +39,6 @@ jobs:
       run: >
         dotnet restore
         ./Source/EtAlii.Ubigia.sln
-        --configuration $CONFIGURATION
 
     - name: Build
       run: >
