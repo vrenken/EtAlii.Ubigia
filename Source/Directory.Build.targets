@@ -16,6 +16,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <!-- The projects that explicitly target windows will not get compiled on Ubuntu. -->
+  <ItemGroup Condition="'$(TargetFramework)' == '$(UbigiaGuiApplicationTargetFramework)'">
+    <Configurations>Debug;Release</Configurations>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != '$(UbigiaGuiApplicationTargetFramework)'">
+    <Configurations>Debug;Debug-Ubuntu;Release;Release-Ubuntu</Configurations>
+  </ItemGroup>
+
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
   <ItemGroup Condition="'$(IsUbigiaTestProject)' == 'true'">
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" Label="Microsoft.NET.Test.Sdk (.targets)" />
