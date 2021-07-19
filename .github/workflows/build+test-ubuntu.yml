@@ -37,22 +37,22 @@ jobs:
       # Restore, build and test.
     - name: Restore dependencies
       run: >
-      dotnet restore
-      ./Source/EtAlii.Ubigia.sln
-      --configuration $CONFIGURATION
+        dotnet restore
+        ./Source/EtAlii.Ubigia.sln
+        --configuration $CONFIGURATION
 
     - name: Build
       run: >
-      dotnet build
-      ./Source/EtAlii.Ubigia.sln
-      --configuration $CONFIGURATION
-      --no-restore
-      /p:UbigiaIsRunningOnBuildAgent=true
+        dotnet build
+        ./Source/EtAlii.Ubigia.sln
+        --configuration $CONFIGURATION
+        --no-restore
+        /p:UbigiaIsRunningOnBuildAgent=true
 
     - name: Test
       run: >
-      dotnet test
-      --configuration $CONFIGURATION
-      --no-build
-      --verbosity normal
-      ./Source/EtAlii.Ubigia.sln
+        dotnet test
+        --configuration $CONFIGURATION
+        --no-build
+        --verbosity normal
+        ./Source/EtAlii.Ubigia.sln
