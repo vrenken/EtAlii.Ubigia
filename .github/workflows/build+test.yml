@@ -32,10 +32,12 @@ jobs:
 
       # Restore, build and test.
     - name: Restore dependencies
-      run: >+
+      run: >
         dotnet restore
-        "./Source/**/*.csproj
-        !**/*TrayIcon*.csproj
+        ./Source/**/*.csproj
+        !**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj
+        !**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj
+        !**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj
 
 
     # dotnet build ./Source/EtAlii.Ubigia.sln --no-restore /p:UbigiaIsRunningOnBuildAgent=true
@@ -44,15 +46,18 @@ jobs:
         dotnet build
         --no-restore
         /p:UbigiaIsRunningOnBuildAgent=true
-        "EtAlii.Ubigia.sln"
-        "./Source/**/*.csproj
-        !**/*TrayIcon*.csproj
+        ./Source/**/*.csproj
+        !**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj
+        !**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj
+        !**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj
 
     - name: Test
       run: >
         dotnet test
         --no-build
         --verbosity normal
-        "./Source/**/*.csproj
-        !**/*TrayIcon*.csproj
+        ./Source/**/*.csproj
+        !**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj
+        !**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj
+        !**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj
 
