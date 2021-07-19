@@ -2,6 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>617a217c-af63-4a8f-a5ff-91ee4aa4b600</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Tests</RootNamespace>
+    <DefineConstants>UBIGIA_RUN_TESTS_PER_ASSEMBLY</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj" />
