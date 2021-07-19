@@ -65,7 +65,8 @@ namespace EtAlii.xTechnology.Hosting
             }
             catch (Exception e)
             {
-                throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
+                throw;
+                //throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
             }
         }
 
