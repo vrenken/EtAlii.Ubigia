@@ -30,6 +30,10 @@ jobs:
       with:
         dotnet-version: 5.0.200
 
+    - name: 'Install LiquidTestReports'
+      run: |
+        dotnet tool install --global LiquidTestReports.Cli --version 1.2.1-beta
+
     - name: 'Apply versioning'
       uses: dotnet/nbgv@master
       id: nbgv
@@ -69,8 +73,15 @@ jobs:
         --configuration $CONFIGURATION
         --no-build
         --verbosity normal
-        --logger:"liquid.md;LogFileName=${{github.workspace}}/${{env.file_name}};Title=${{env.title}};"
+        --logger "trx;LogFileName=report.xunit.trx"
         ./Source/EtAlii.Ubigia.sln
+
+    - name: 'Convert xUnit report'
+      run: >
+        liquid
+        --inputs "File=report.xunit.trx;Format=Trx"
+        --output-file ${{github.workspace}}/${{env.file_name}}
+        --title "${{env.title}}"
 
     - name: 'Upload report as build artifact'
       uses: actions/upload-artifact@v2
