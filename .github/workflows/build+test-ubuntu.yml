@@ -35,21 +35,10 @@ jobs:
 
       # Restore, build and test.
     - name: Restore dependencies
-      run: >
-        dotnet restore
-        !**/*TrayIcon*.csproj
-
+      run: find ./Source -name '*.csproj' -not -name '*TrayIcon*' -exec dotnet restore {} \;
 
     - name: Build
-      run: >
-        dotnet build
-        --no-restore
-        /p:UbigiaIsRunningOnBuildAgent=true
-        !**/*TrayIcon*.csproj
+      run: find ./Source -name '*.csproj' -not -name '*TrayIcon*' -exec dotnet build {} --no-restore /p:UbigiaIsRunningOnBuildAgent=true \;
 
     - name: Test
-      run: >
-        dotnet test
-        --no-build
-        --verbosity normal
-        !**/*TrayIcon*.csproj
+      run: find ./Source -name '*.csproj' -not -name '*TrayIcon*' -exec dotnet test {} --no-build --verbosity normal \;
