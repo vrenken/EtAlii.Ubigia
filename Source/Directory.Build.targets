@@ -3,6 +3,14 @@
   <PropertyGroup>
   </PropertyGroup>
 
+  <!-- The projects that explicitly target windows will not get compiled on Ubuntu. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == '$(UbigiaGuiApplicationTargetFramework)'">
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' != '$(UbigiaGuiApplicationTargetFramework)'">
+    <Configurations>Debug;Debug-Ubuntu;Release;Release-Ubuntu</Configurations>
+  </PropertyGroup>
+
   <ItemGroup>
     <!-- The .DotSettings file is maintained by Rider/Resharper - no need to show it. -->
     <None Remove="*.csproj.DotSettings" />
@@ -14,14 +22,6 @@
       <Version>3.4.220</Version>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <!-- The projects that explicitly target windows will not get compiled on Ubuntu. -->
-  <ItemGroup Condition="'$(TargetFramework)' == '$(UbigiaGuiApplicationTargetFramework)'">
-    <Configurations>Debug;Release</Configurations>
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' != '$(UbigiaGuiApplicationTargetFramework)'">
-    <Configurations>Debug;Debug-Ubuntu;Release;Release-Ubuntu</Configurations>
   </ItemGroup>
 
   <!-- We want to do a bit of xunit magic. So let's add all test relevant packages in one central place -->
