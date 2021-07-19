@@ -1,4 +1,4 @@
-name: Build+Test
+name: Build+test on Windows
 
 on:
   push:
@@ -12,7 +12,6 @@ on:
 jobs:
   build:
 
-    #runs-on: ubuntu-latest
     runs-on: windows-latest
 
     steps:
@@ -31,15 +30,11 @@ jobs:
       id: nbgv
 
       # Restore, build and test.
-      # "./Source/**/*.csproj;!**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj;!**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj;!**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj"
     - name: Restore dependencies
       run: >
         dotnet restore
         .\Source\EtAlii.Ubigia.sln
 
-
-    # dotnet build ./Source/EtAlii.Ubigia.sln --no-restore /p:UbigiaIsRunningOnBuildAgent=true
-    # "./Source/**/*.csproj;!**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj;!**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj;!**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj"
     - name: Build
       run: >
         dotnet build
@@ -47,7 +42,6 @@ jobs:
         /p:UbigiaIsRunningOnBuildAgent=true
         .\Source\EtAlii.Ubigia.sln
 
-    # "./Source/**/*.csproj;!**/EtAlii.xTechnology.Hosting.TrayIconHost.csproj;!**/EtAlii.xTechnology.Hosting.Tests.TrayIcon.csproj;!**/EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj"
     - name: Test
       run: >
         dotnet test
