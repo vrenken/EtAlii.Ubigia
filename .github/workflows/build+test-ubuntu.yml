@@ -30,12 +30,10 @@ jobs:
       with:
         dotnet-version: 5.0.200
 
-      # Versioning.
     - name: 'Apply versioning'
       uses: dotnet/nbgv@master
       id: nbgv
 
-      # Restore, build and test.
     - name: 'Restore dependencies'
       run: >
         dotnet restore
@@ -48,7 +46,6 @@ jobs:
         --configuration $CONFIGURATION
         --no-restore
         /p:UbigiaIsRunningOnBuildAgent=true
-
 
     - name: 'If PR: Set build number'
       id: PRNUMBER

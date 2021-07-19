@@ -39,6 +39,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="LiquidTestReports.Markdown" Version="1.2.1-beta" Condition="'$(UbigiaIsRunningOnBuildAgent)' == 'true'"  Label="LiquidTestReports.Markdown (.targets)"/>
   </ItemGroup>
 
   <!-- We want any project that is not a test or analyzer project to use nugetizer assistance when creating packages. -->
