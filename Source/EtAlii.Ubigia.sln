@@ -2411,16 +2411,22 @@ Global
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
 		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{85E9CF67-C4A5-47E0-AE62-F8430FDCC498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{45B10AB1-0493-4BFA-8E63-5714D36C37D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{AB4D1142-4552-408E-98D4-D8161B2F0D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{286D29ED-CB37-4EBE-B605-6A89F7AA5C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
+		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
