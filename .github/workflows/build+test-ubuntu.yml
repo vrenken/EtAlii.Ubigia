@@ -38,8 +38,8 @@ jobs:
     - name: Restore dependencies
       run: >
       dotnet restore
-      --configuration $CONFIGURATION
       ./Source/EtAlii.Ubigia.sln
+      --configuration $CONFIGURATION
 
     - name: Build
       run: >
