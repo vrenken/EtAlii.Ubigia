@@ -77,6 +77,7 @@ jobs:
         ./Source/EtAlii.Ubigia.sln
 
     - name: 'Convert xUnit report'
+      if: ${{always()}}
       run: >
         liquid
         --inputs "File=report.xunit.trx;Format=Trx"
