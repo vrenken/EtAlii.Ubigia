@@ -44,10 +44,17 @@ namespace EtAlii.xTechnology.Hosting
 		{
 			await base.Stopped().ConfigureAwait(false);
 
-            TestServer.Dispose();
-            TestServer = null;
-			_server.Dispose();
-			_server = null;
+            if (TestServer != null)
+            {
+                TestServer.Dispose();
+                TestServer = null;
+            }
+
+            if (_server != null)
+            {
+                _server.Dispose();
+                _server = null;
+            }
 		}
 	}
 }

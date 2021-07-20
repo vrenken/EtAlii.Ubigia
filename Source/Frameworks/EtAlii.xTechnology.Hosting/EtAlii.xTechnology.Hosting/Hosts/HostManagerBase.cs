@@ -41,7 +41,9 @@ namespace EtAlii.xTechnology.Hosting
 		    Host = CreateHost(_hostBuilder, out var hostIsAlreadyStarted);
 		    if (!hostIsAlreadyStarted)
 		    {
-			    await Host.StartAsync().ConfigureAwait(false);
+			    await Host
+                    .StartAsync()
+                    .ConfigureAwait(false);
 		    }
 	    }
 
@@ -54,7 +56,9 @@ namespace EtAlii.xTechnology.Hosting
 	    {
             if (Host != null)
             {
-                await Host.StopAsync(TimeSpan.FromMinutes(1)).ConfigureAwait(false);
+                await Host
+                    .StopAsync(TimeSpan.FromMinutes(1))
+                    .ConfigureAwait(false);
                 Host = null;
             }
 	    }
