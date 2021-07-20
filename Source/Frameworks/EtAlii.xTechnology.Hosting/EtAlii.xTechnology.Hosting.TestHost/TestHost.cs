@@ -9,7 +9,8 @@ namespace EtAlii.xTechnology.Hosting
     public class TestHost : TestHostBase<TestHostManager>, ITestHost
 #pragma warning restore CA1724
     {
-        // This class should be public.
+        // Warning: This class should keep its public constructor.
+        // ReSharper disable once MemberCanBeProtected.Global
         public TestHost(IHostConfiguration configuration, ISystemManager systemManager)
 	        : base(configuration, systemManager)
         {

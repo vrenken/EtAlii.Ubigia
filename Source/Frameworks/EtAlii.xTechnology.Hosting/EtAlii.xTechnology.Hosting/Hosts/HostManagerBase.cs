@@ -52,8 +52,11 @@ namespace EtAlii.xTechnology.Hosting
 
 	    public virtual async Task Stopped()
 	    {
-		    await Host.StopAsync(TimeSpan.FromMinutes(1)).ConfigureAwait(false);
-		    Host = null;
+            if (Host != null)
+            {
+                await Host.StopAsync(TimeSpan.FromMinutes(1)).ConfigureAwait(false);
+                Host = null;
+            }
 	    }
 
 		public void Setup(ref ICommand[] commands, IHost host)
