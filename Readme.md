@@ -39,6 +39,7 @@ It's intent is not to be yet another NoSql database, but rather to expand the bo
      - [Ubigia Graph Traversal Language](Documentation/Architecture/GraphTraversalLanguage.md)
      - [Ubigia Graph Context Language](Documentation/Architecture/Gcl.Introduction.md)
      - [Identifiers](Documentation/Architecture/Identifiers.md)
+     - [Tips & tricks](Documentation/TipsTricks.md)
    - Installation process
    - [Third-party dependencies](Documentation/Architecture/Dependencies.md)
    - Latest releases
