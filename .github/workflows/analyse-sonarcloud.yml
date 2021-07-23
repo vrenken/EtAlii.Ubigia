@@ -31,7 +31,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 5.0.200
+          dotnet-version: 5.0.302
 
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
