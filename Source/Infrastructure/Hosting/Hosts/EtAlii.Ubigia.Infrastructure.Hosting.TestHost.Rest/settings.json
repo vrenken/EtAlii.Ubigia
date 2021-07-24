@@ -1,36 +1,42 @@
 ﻿{
-    "Transport": {
-        "Diagnostics": {
-            "EnableProfiling": false,
-            "EnableLogging": false,
-            "EnableDebugging": false
+    "Infrastructure": {
+        "Functional": {
+            "Setup": {
+                "DefaultSystemAccountName": "System",
+                "DefaultSystemAccountPassword": "system123",
+                "DefaultAdministratorAccountName": "Administrator",
+                "DefaultAdministratorAccountPassword": "administrator123"
+            }
         }
     },
-    "Functional": {
-        "Diagnostics": {
-            "EnableProfiling": false,
-            "EnableLogging": false,
-            "EnableDebugging": false
+    "Api": {
+        "Transport": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
         },
-        "Setup": {
-            "DefaultSystemAccountName": "System",
-            "DefaultSystemAccountPassword": "system123",
-            "DefaultAdministratorAccountName": "Administrator",
-            "DefaultAdministratorAccountPassword": "administrator123"
-        }
-    },
-    "Logical": {
-        "Diagnostics": {
-            "EnableProfiling": false,
-            "EnableLogging": false,
-            "EnableDebugging": false
-        }
-    },
-    "Fabric": {
-        "Diagnostics": {
-            "EnableProfiling": false,
-            "EnableLogging": false,
-            "EnableDebugging": false
+        "Functional": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Logical": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
+        "Fabric": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
         }
     },
 

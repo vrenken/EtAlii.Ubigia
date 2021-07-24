@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
 
-            _configuration = configurationRoot.GetSection("Functional:Setup");
+            _configuration = configurationRoot.GetSection("Infrastructure:Functional:Setup");
         }
 
         public async Task Initialize(Storage localStorage)
