@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         {
             if (!Directory.Exists(folder))
             {
-                throw new InvalidOperationException("The provided entry has not been prepared.");
+                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(NtfsFolderManager)}.");
             }
 
             var fileName = string.Format(_serializer.FileNameFormat, itemName);

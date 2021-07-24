@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
             if (!folderExists)
             {
-                throw new InvalidOperationException("The provided entry has not been prepared.");
+                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(PortableFolderManager)}.");
             }
 
             var fileName = string.Format(_serializer.FileNameFormat, itemName);

@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         {
             if (!_inMemoryItems.Exists(folder))
             {
-                throw new InvalidOperationException("The provided entry has not been prepared.");
+                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(InMemoryFolderManager)}.");
             }
 
             var fileName = string.Format(_serializer.FileNameFormat, itemName);

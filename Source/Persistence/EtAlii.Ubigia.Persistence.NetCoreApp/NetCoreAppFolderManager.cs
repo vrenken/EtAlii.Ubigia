@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
         {
             if (!Directory.Exists(folder))
             {
-                throw new InvalidOperationException("The provided entry has not been prepared.");
+                throw new InvalidOperationException($"The provided entry has not been prepared by the {nameof(NetCoreAppFolderManager)}.");
             }
 
             var fileName = string.Format(_serializer.FileNameFormat, itemName);
