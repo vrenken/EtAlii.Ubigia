@@ -383,6 +383,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{FB14842E-F9DF-467C-8633-CD726C71BEE5}"
 	ProjectSection(SolutionItems) = preProject
 		..\Readme.md = ..\Readme.md
+		..\Documentation\TipsTricks.md = ..\Documentation\TipsTricks.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{6DD333C1-4642-480A-8A61-AE92F4237CB0}"
