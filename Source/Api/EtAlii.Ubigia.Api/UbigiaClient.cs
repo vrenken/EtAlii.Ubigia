@@ -1,17 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Api
 {
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.xTechnology.Diagnostics;
+    // using EtAlii.Ubigia.Api.Fabric;
+    // using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+    // using EtAlii.Ubigia.Api.Functional;
+    // using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+    // using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+    // using EtAlii.Ubigia.Api.Functional.Context;
+    // using EtAlii.Ubigia.Api.Functional.Traversal;
+    // using EtAlii.Ubigia.Api.Logical;
+    // using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    // using EtAlii.Ubigia.Api.Transport;
+    // using EtAlii.Ubigia.Api.Transport.Diagnostics;
+    // using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     public class UbigiaClient
