@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime

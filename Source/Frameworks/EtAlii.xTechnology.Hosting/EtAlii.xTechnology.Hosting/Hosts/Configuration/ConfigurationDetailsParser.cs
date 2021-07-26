@@ -16,7 +16,9 @@ namespace EtAlii.xTechnology.Hosting
 
 	    public async Task<ConfigurationDetails> Parse(string configurationFile, bool replace = true)
 	    {
-		    var configuration = await File.ReadAllTextAsync(configurationFile).ConfigureAwait(false);
+		    var configuration = await File
+                .ReadAllTextAsync(configurationFile)
+                .ConfigureAwait(false);
 
 		    // Folder matching.
 		    var folderMatches = Regex.Matches(configuration, FolderPattern);

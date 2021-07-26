@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     public abstract class InMemoryStorageTestBase : IDisposable
     {

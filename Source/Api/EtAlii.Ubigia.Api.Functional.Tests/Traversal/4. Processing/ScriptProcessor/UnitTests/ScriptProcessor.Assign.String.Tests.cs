@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class ScriptProcessorAssignStringUnitTests : IDisposable

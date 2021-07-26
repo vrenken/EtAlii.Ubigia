@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     public abstract class NtfsStorageTestBase : FileSystemStorageTestBase
     {

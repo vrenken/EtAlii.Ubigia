@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Diagnostics\EtAlii.Ubigia.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Frameworks\HashLib\HashLib\HashLib.csproj" />
   </ItemGroup>

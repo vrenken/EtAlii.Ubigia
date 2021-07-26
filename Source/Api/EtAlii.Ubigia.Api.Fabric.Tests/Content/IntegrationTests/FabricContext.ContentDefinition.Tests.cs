@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class FabricContextContentDefinitionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime

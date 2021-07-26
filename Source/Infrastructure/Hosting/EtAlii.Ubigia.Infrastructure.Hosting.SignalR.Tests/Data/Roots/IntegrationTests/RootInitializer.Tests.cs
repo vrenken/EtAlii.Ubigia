@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     [Trait("Technology", "SignalR")]

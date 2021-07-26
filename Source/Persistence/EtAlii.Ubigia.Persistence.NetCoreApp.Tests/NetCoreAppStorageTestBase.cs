@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     public abstract class NetCoreAppStorageTestBase : FileSystemStorageTestBase
     {

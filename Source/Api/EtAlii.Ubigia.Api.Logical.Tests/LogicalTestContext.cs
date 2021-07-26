@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Tests;
 
     public class LogicalTestContext : ILogicalTestContext
     {

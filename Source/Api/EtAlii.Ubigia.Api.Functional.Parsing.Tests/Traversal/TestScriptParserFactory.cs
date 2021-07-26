@@ -3,7 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     internal class TestScriptParserFactory : ScriptParserFactory
     {

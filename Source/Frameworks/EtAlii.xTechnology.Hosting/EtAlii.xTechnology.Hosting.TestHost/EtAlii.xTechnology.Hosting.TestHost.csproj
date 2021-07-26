@@ -12,9 +12,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.8" />
     <PackageReference Include="System.Threading.AccessControl" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
   </ItemGroup>
   <ItemGroup>

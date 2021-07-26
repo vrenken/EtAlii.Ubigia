@@ -7,8 +7,7 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Collections.ObjectModel;
     using System.Net.Http;
     using System.Threading.Tasks;
-	using EtAlii.xTechnology.Diagnostics;
-	using EtAlii.xTechnology.Hosting.Diagnostics;
+    using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     public abstract class HostTestContextBase<THost> : IHostTestContext
@@ -17,7 +16,7 @@ namespace EtAlii.xTechnology.Hosting
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
 
 	    public THost Host { get; private set; }
-        protected bool UseInProcessConnection { get; init; } = false;
+        protected bool UseInProcessConnection { get; init; }
 
 	    private readonly string _configurationFile;
 
@@ -36,37 +35,33 @@ namespace EtAlii.xTechnology.Hosting
 		    Paths = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 	    }
 
-	    public virtual Task Start(PortRange portRange)
-	    {
-		    StartExclusive(portRange);
-		    return Task.CompletedTask;
-	    }
+	    public virtual Task Start(PortRange portRange) => StartExclusive(portRange);
 
-	    private void StartExclusive(PortRange portRange)
+	    private async Task StartExclusive(PortRange portRange)
 	    {
 		    // We want to start only one test hosting at the same time.
             if (UseInProcessConnection)
             {
-                StartExclusiveInternal(portRange);
+                await StartExclusiveInternal(portRange).ConfigureAwait(false);
             }
             else
             {
                 using var _ = new SystemSafeExecutionScope(_uniqueId);
-                StartExclusiveInternal(portRange);
+                await StartExclusiveInternal(portRange).ConfigureAwait(false);
             }
 	    }
 
-        private void StartExclusiveInternal(PortRange portRange)
+        private async Task StartExclusiveInternal(PortRange portRange)
         {
             try
             {
-                var task = Task.Run(async () => await StartInternal(portRange, DiagnosticsConfiguration.Default).ConfigureAwait(false));
-                task.GetAwaiter().GetResult();
+                await Task
+                    .Run(async () => await StartInternal(portRange, TestConfiguration.Root).ConfigureAwait(false))
+                    .ConfigureAwait(false);
             }
             catch (Exception e)
             {
-                throw;
-                //throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
+                throw new InvalidOperationException($"Unable to start {nameof(HostTestContextBase<THost>)} on port range {portRange}", e);
             }
         }
 
@@ -79,7 +74,7 @@ namespace EtAlii.xTechnology.Hosting
 		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 	    }
 
-	    private async Task StartInternal(PortRange portRange, IDiagnosticsConfiguration diagnosticsConfiguration)
+	    private async Task StartInternal(PortRange portRange, IConfigurationRoot configurationRoot)
 	    {
 		    var details = await ParseForTesting(_configurationFile, portRange).ConfigureAwait(false);
 		    Folders = details.Folders;
@@ -91,9 +86,9 @@ namespace EtAlii.xTechnology.Hosting
 			    .AddConfigurationDetails(details)
 			    .Build();
 
-		    var hostConfiguration = new HostConfigurationBuilder()
-			    .Build(configurationRoot, details)
-			    .Use(diagnosticsConfiguration);
+            var hostConfiguration = new HostConfigurationBuilder()
+                .Build(configurationRoot, details)
+                .UseHostDiagnostics(configurationRoot);
 
 		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);
 

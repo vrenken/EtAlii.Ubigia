@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Tests
+namespace EtAlii.xTechnology.Hosting
 {
     using Microsoft.Extensions.Configuration;
 

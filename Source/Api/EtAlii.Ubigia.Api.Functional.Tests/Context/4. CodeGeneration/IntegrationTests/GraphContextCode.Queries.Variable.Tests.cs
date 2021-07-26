@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
 
     public class GraphContextCodeQueriesVariableTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {

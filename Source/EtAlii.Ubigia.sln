@@ -468,10 +468,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api", "Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{B8FECA34-E106-46E0-8457-99F5F1E901A6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EtAlii.xTechnology.Tests", "EtAlii.xTechnology.Tests", "{4B893FCA-3962-4DFD-9177-E7C84543525D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.xTechnology.Tests", "Frameworks\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests.csproj", "{A43B9072-1AF2-47CB-880A-A15216E9E27E}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
@@ -2426,20 +2422,6 @@ Global
 		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|x64.Build.0 = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug|x86.Build.0 = Debug|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|x64.ActiveCfg = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|x64.Build.0 = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|x86.ActiveCfg = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Release|x86.Build.0 = Release|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -2631,8 +2613,6 @@ Global
 		{82CE3399-51F8-4950-8DD2-85DD7D2F871A} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{11725836-5C0D-4089-B1D7-BDD89F87B00C} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6} = {27CC2941-9A82-44BF-90D7-2D55BCFFA7FA}
-		{4B893FCA-3962-4DFD-9177-E7C84543525D} = {70B0CC1F-9F35-448E-86DB-34458A5F9C03}
-		{A43B9072-1AF2-47CB-880A-A15216E9E27E} = {4B893FCA-3962-4DFD-9177-E7C84543525D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

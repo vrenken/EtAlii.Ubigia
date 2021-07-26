@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using PCLStorage;
 
     public abstract class PortableStorageTestBase : FileSystemStorageTestBase

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
 	using EtAlii.Ubigia.Api.Transport.Tests;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Threading;
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>

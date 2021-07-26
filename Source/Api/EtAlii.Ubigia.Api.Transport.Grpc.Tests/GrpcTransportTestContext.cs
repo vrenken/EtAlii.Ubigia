@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Hosting;
     using global::Grpc.Net.Client;
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>

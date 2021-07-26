@@ -4,8 +4,8 @@ using Xunit;
 using System.IO;
 using System.Text;
 using System.Runtime.CompilerServices;
-using EtAlii.Ubigia.Tests;
 using EtAlii.xTechnology.Diagnostics;
+using EtAlii.xTechnology.Hosting;
 using Microsoft.Extensions.Configuration;
 
 // #if UBIGIA_RUN_TESTS_PER_ASSEMBLY
