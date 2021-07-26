@@ -4,6 +4,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj" />
   </ItemGroup>
 

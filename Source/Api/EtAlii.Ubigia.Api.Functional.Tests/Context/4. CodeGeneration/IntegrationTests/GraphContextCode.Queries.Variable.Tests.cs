@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Tests;
 
     public class GraphContextCodeQueriesVariableTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
@@ -30,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphContextDiagnostics(TestConfiguration.Root);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_configuration);

@@ -4,19 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptProcessorRootUnAssignTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorRootUnAssignTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -28,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:time <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
             const string arrangeQuery = "root:time <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -52,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:specialtime <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
             const string arrangeQuery = "root:specialtime <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -76,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:projects <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
             const string arrangeQuery = "root:projects <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);

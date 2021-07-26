@@ -6,20 +6,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
 
     public class FunctionalTestContext : IFunctionalTestContext
     {
         private readonly ILogicalTestContext _logical;
-        public IDiagnosticsConfiguration Diagnostics { get; }
-
-        public FunctionalTestContext(
-            ILogicalTestContext logical,
-            IDiagnosticsConfiguration diagnostics)
+        public FunctionalTestContext(ILogicalTestContext logical)
         {
             _logical = logical;
-            Diagnostics = diagnostics;
         }
 
 //        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)

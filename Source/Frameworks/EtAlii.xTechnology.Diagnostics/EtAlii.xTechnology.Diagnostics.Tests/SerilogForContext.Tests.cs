@@ -4,6 +4,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
 {
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Serilog;
     using Xunit;
     using EtAlii.xTechnology.Threading;
@@ -14,7 +15,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public void ForContextRaiseInformation()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
 
             // Act.
@@ -28,7 +29,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public void ForContextRaiseInformationWithCorrelationId()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var contextCorrelator = new ContextCorrelator();
 
@@ -46,7 +47,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public async Task ForContextRaiseInformationWithCorrelationIdInAsyncMethodUsingSameLogger()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var contextCorrelator = new ContextCorrelator();
 
@@ -65,7 +66,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public async Task ForContextRaiseInformationWithCorrelationIdInAsyncMethodUsingDifferentClassAndLogger()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var testClass = new TestClass();
             var contextCorrelator = new ContextCorrelator();
@@ -90,7 +91,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public async Task ForContextRaiseInformationWithCorrelationIdInAsyncMethodUsingDifferentLoggers()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var contextCorrelator = new ContextCorrelator();
 
@@ -115,7 +116,7 @@ namespace EtAlii.xTechnology.Diagnostics.Tests
         public void ForContextRaiseInformationWithCorrelationIdInAsyncMethodUsingDifferentLoggersUsingThread()
         {
             // Arrange.
-            var hasConfiguration = DiagnosticsConfiguration.Default != null;
+            var hasConfiguration = TestConfiguration.Root != null;
             var logger = Log.ForContext<SerilogForContextTests>();
             var contextCorrelator = new ContextCorrelator();
 

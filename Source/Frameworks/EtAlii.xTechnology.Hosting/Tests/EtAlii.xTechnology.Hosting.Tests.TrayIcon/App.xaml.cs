@@ -3,7 +3,6 @@
 namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 {
 	using System.Windows;
-	using EtAlii.xTechnology.Diagnostics;
 	using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
 
@@ -22,7 +21,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 
 	        var hostConfiguration = new HostConfigurationBuilder()
 		        .Build(configurationRoot, details)
-		        .Use(DiagnosticsConfiguration.Default)
+                .UseHostDiagnostics(configurationRoot)
 		        .UseTrayIconHost(this,
 			        "Icon-Logo-White-Shaded.ico",
 			        "Icon-Logo-Black.ico",

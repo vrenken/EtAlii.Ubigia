@@ -2,23 +2,23 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class LogicalContextDiagnosticsExtension
     {
-        public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IDiagnosticsConfiguration diagnostics, bool alsoUseForDeeperDiagnostics = true)
+        public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IConfigurationRoot configurationRoot, bool alsoUseForDeeperDiagnostics = true)
             where TLogicalContextConfiguration : LogicalContextConfiguration
         {
             var extensions = new ILogicalContextExtension[]
             {
-                new DiagnosticsLogicalContextExtension(diagnostics),
+                new DiagnosticsLogicalContextExtension(configurationRoot),
             };
 
             configuration = configuration.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseFabricDiagnostics(diagnostics);
+                configuration = configuration.UseFabricDiagnostics(configurationRoot);
             }
 
             return configuration;

@@ -3,18 +3,19 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
+    using IConfiguration = EtAlii.Ubigia.IConfiguration;
 
     public static class FabricContextConfigurationUseDiagnostics
     {
-        public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static TFabricContextConfiguration UseFabricDiagnostics<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, IConfigurationRoot configurationRoot)
             where TFabricContextConfiguration : IConfiguration
         {
             var extensions = new IExtension[]
             {
-                new FabricContextDiagnosticsExtension(diagnostics), 
+                new FabricContextDiagnosticsExtension(configurationRoot),
             };
-            
+
             return configuration.Use(extensions);
         }
     }

@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _testContext.Diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

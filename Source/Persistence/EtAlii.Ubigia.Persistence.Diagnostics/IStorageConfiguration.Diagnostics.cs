@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence
 {
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class StorageConfigurationDiagnosticsExtension
     {
-        public static IStorageConfiguration Use(this IStorageConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static IStorageConfiguration UseStorageDiagnostics(this IStorageConfiguration configuration, IConfigurationRoot configurationRoot)
         {
             var extensions = new IStorageExtension[]
             {
-                new DiagnosticsStorageExtension(diagnostics),
+                new DiagnosticsStorageExtension(configurationRoot),
             };
             return configuration.Use(extensions);
         }

@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Persistence
 
     public class ComponentsProfilingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public ComponentsProfilingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public ComponentsProfilingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_configuration.InjectProfiling) // profiling is enabled
             {
                 container.RegisterDecorator(typeof(IItemStorage), typeof(ProfilingItemStorage));
                 container.RegisterDecorator(typeof(IComponentStorage), typeof(ProfilingComponentStorage));

@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class StorageConnectionConfigurationDiagnosticsExtension
     {
-        public static IStorageConnectionConfiguration UseTransportDiagnostics(this IStorageConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static IStorageConnectionConfiguration UseTransportDiagnostics(this IStorageConnectionConfiguration configuration, IConfigurationRoot configurationRoot)
         {
             var extensions = new IStorageConnectionExtension[]
             {
-                new DiagnosticsStorageConnectionExtension(diagnostics),
+                new DiagnosticsStorageConnectionExtension(configurationRoot),
             };
 
             return configuration.Use(extensions);

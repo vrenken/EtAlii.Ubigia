@@ -6,19 +6,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptProcessorLogicalRemoveTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly TraversalUnitTestContext _testContext;
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
 
         public ScriptProcessorLogicalRemoveTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -33,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var removeScript = _parser.Parse("/Person/LastName -= SurName").Script;
@@ -61,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await _testContext.LogicalTestContext.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -90,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -120,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -150,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 

@@ -7,18 +7,22 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     internal class ManagementConnectionProfilingScaffolding : IScaffolding
     {
+        private readonly DiagnosticsConfigurationSection _configuration;
+
+        public ManagementConnectionProfilingScaffolding(DiagnosticsConfigurationSection configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void Register(Container container)
         {
-            var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-
-            container.Register(() => diagnostics.CreateProfilerFactory());
-            container.Register(() => diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-
-            if (diagnostics.EnableProfiling) // profiling is enabled
+            if (_configuration.InjectProfiling) // profiling is enabled
             {
+                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+                container.Register(() => container.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+
                 container.RegisterDecorator(typeof(IManagementConnection), typeof(ProfilingManagementConnection));
             }
-
         }
     }
 }

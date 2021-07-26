@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public sealed class FabricContextRootsTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
@@ -26,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .UseFabricDiagnostics(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(TestConfiguration.Root);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

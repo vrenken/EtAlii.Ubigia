@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Persistence
 
     public class BlobsLoggingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public BlobsLoggingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public BlobsLoggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableLogging) // logging is enabled
+            if (_configuration.InjectLogging) // logging is enabled
             {
                 container.RegisterDecorator(typeof(IBlobStorer), typeof(LoggingBlobStorer));
                 container.RegisterDecorator(typeof(IBlobRetriever), typeof(LoggingBlobRetriever));

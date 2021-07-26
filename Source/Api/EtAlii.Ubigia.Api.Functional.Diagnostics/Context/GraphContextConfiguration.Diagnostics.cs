@@ -2,23 +2,24 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     public static class GraphContextConfigurationDiagnosticsExtension
     {
-        public static TGraphContextConfiguration UseFunctionalGraphContextDiagnostics<TGraphContextConfiguration>(this TGraphContextConfiguration configuration, IDiagnosticsConfiguration diagnostics, bool alsoUseForDeeperDiagnostics = true)
+        public static TGraphContextConfiguration UseFunctionalGraphContextDiagnostics<TGraphContextConfiguration>(this TGraphContextConfiguration configuration, IConfigurationRoot configurationRoot, bool alsoUseForDeeperDiagnostics = true)
             where TGraphContextConfiguration : FunctionalContextConfiguration
         {
             var extensions = new IGraphContextExtension[]
             {
-                new DiagnosticsGraphContextExtension(diagnostics)
+                new LoggingGraphContextExtension(configurationRoot),
+                new ProfilingGraphContextExtension(configurationRoot),
             };
 
             configuration = configuration.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseFunctionalTraversalDiagnostics(diagnostics);
+                configuration = configuration.UseFunctionalTraversalDiagnostics(configurationRoot);
             }
 
             return configuration;

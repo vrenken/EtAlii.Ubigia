@@ -4,25 +4,25 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsDataConnectionExtension : IDataConnectionExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsDataConnectionExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsDataConnectionExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new();
+            configurationRoot.Bind("Api:Transport:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            container.Register(() => _diagnostics);
-
             var scaffoldings = new IScaffolding[]
             {
-                new DataConnectionLoggingScaffolding(),
-                new DataConnectionProfilingScaffolding(),
-                new DataConnectionDebuggingScaffolding(),
+                new DataConnectionLoggingScaffolding(_configuration),
+                new DataConnectionProfilingScaffolding(_configuration),
+                new DataConnectionDebuggingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

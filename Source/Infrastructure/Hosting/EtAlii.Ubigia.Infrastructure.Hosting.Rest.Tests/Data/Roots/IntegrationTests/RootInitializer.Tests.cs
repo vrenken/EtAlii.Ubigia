@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     [Trait("Technology", "NetCore")]
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public RootInitializerTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(TestConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(TestConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(TestConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()

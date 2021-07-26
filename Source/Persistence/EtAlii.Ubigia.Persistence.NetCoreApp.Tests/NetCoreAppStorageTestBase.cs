@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
 
     public abstract class NetCoreAppStorageTestBase : FileSystemStorageTestBase
     {
@@ -31,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .Use(DiagnosticsConfiguration.Default)
+                .UseStorageDiagnostics(TestConfiguration.Root)
                 .UseNetCoreAppStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);

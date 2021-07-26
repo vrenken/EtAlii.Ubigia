@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using Xunit.Abstractions;
 
@@ -16,7 +16,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private IDiagnosticsConfiguration _diagnostics;
         private FunctionalContextConfiguration _configuration;
 
         public SchemaProcessorMutationsSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
@@ -29,11 +28,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphContextDiagnostics(TestConfiguration.Root);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_configuration);
@@ -49,7 +47,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close().ConfigureAwait(false);
+            await _configuration.Connection
+                .Close()
+                .ConfigureAwait(false);
             _configuration = null;
             _traversalContext = null;
             _context = null;
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
@@ -187,7 +187,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
@@ -257,7 +257,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
@@ -312,7 +312,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);
@@ -397,7 +397,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(configuration);

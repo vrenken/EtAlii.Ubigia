@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using System;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
 
     public abstract class InMemoryStorageTestBase : IDisposable
     {
@@ -53,7 +52,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .Use(DiagnosticsConfiguration.Default)
+                .UseStorageDiagnostics(TestConfiguration.Root)
                 .UseInMemoryStorage();
 
             return (InMemoryStorage)new StorageFactory().Create(configuration);

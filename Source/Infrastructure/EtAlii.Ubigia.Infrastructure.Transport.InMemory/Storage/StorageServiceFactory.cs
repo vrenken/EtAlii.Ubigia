@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
     using System;
     using EtAlii.Ubigia.Persistence;
     using EtAlii.Ubigia.Persistence.InMemory;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
@@ -29,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
             var storageConfiguration = new StorageConfiguration()
                 .Use(name)
 				.UseInMemoryStorage()
-                .Use(DiagnosticsConfiguration.Default);
+                .UseStorageDiagnostics(configurationRoot);
             var storage = new StorageFactory().Create(storageConfiguration);
 
             container.Register(() => storage);

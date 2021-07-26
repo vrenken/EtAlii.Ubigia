@@ -3,7 +3,6 @@
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
     using System;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Xunit;
 
@@ -13,7 +12,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public void InstanceCreator_CreateWithDecorator()
         {
             // Arrange.
-            var diagnostics = DiagnosticsConfiguration.Default; // We need this to trigger the logging.
             var decoree = new InstanceCreator();
             var instanceCreator = new LoggingInstanceCreator(decoree);
 
@@ -22,7 +20,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             // Assert.
             Assert.Throws<NullReferenceException>(act);
-            Assert.NotNull(diagnostics);
             Assert.NotNull(instanceCreator);
         }
     }

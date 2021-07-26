@@ -5,14 +5,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class TestHostExtension : IHostExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public TestHostExtension(IDiagnosticsConfiguration diagnostics)
+        public TestHostExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Infrastructure:Hosting:Diagnostics", _configuration);
         }
 
         public void Register(Container container)
@@ -20,9 +22,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
             var scaffoldings = new IScaffolding[]
             {
                 new TestHostScaffolding(),
-                new TestHostProfilingScaffolding(_diagnostics),
-                new TestHostLoggingScaffolding(_diagnostics),
-                new TestHostDebuggingScaffolding(_diagnostics),
+                new TestHostProfilingScaffolding(_configuration),
+                new TestHostLoggingScaffolding(_configuration),
+                new TestHostDebuggingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

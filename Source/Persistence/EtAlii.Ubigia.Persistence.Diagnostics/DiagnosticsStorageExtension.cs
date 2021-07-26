@@ -4,29 +4,25 @@ namespace EtAlii.Ubigia.Persistence
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsStorageExtension : IStorageExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsStorageExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsStorageExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Persistence:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            // var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
-            //     () => new DisabledLogFactory(),
-            //     () => new DisabledProfilerFactory(),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"),
-            //     (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Persistence"))
-
             var scaffoldings = new IScaffolding[]
             {
-                new DiagnosticsScaffolding(_diagnostics),
-                new BlobsLoggingScaffolding(_diagnostics),
-                new ComponentsProfilingScaffolding(_diagnostics),
+                new PersistenceProfilingScaffolding(_configuration),
+                new BlobsLoggingScaffolding(_configuration),
+                new ComponentsProfilingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

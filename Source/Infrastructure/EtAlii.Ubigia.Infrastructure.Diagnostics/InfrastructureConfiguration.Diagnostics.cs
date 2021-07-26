@@ -3,17 +3,17 @@
 namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class InfrastructureConfigurationUseDiagnostics
     {
-        public static InfrastructureConfiguration Use(this InfrastructureConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static InfrastructureConfiguration UseInfrastructureDiagnostics(this InfrastructureConfiguration configuration, IConfigurationRoot configurationRoot)
         {
             var extensions = new IInfrastructureExtension[]
             {
-                new DiagnosticsInfrastructureExtension(diagnostics), 
+                new DiagnosticsInfrastructureExtension(configurationRoot),
             };
-            
+
             return configuration.Use(extensions);
         }
     }

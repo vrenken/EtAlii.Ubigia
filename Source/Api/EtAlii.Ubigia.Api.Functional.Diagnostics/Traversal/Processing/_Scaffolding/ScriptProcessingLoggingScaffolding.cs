@@ -2,17 +2,22 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptProcessingLoggingScaffolding : IScaffolding
     {
+        private readonly DiagnosticsConfigurationSection _configuration;
+
+        public ScriptProcessingLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void Register(Container container)
         {
-            var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-
-            if (diagnostics.EnableLogging) // logging is enabled.
+            if (_configuration.InjectLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptProcessor), typeof(LoggingScriptProcessor));
 

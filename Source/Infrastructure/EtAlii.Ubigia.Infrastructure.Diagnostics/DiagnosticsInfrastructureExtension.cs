@@ -5,27 +5,25 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsInfrastructureExtension : IInfrastructureExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsInfrastructureExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsInfrastructureExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Persistence:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]
             {
-                new DiagnosticsScaffolding(_diagnostics),
-                new InfrastructureDebuggingScaffolding(_diagnostics),
-                new InfrastructureLoggingScaffolding(_diagnostics),
-                new InfrastructureProfilingScaffolding(_diagnostics),
-
-                //new RestProfilingScaffolding(diagnostics),
-                //new RestLoggingScaffolding(diagnostics),
+                new InfrastructureDebuggingScaffolding(_configuration),
+                new InfrastructureLoggingScaffolding(_configuration),
+                new InfrastructureProfilingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

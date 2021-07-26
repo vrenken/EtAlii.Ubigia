@@ -5,19 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptProcessorNonRootedPathFunctionRename : IClassFixture<TraversalUnitTestContext>
     {
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathFunctionRename(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -28,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "/Person += Doe/John\r\n$path <= /Person/Doe/John\r\nrename($path, 'Jane')";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -49,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "/Person += Doe/John\r\n$path <= /Person/Doe/John\r\nrename(/Person/Doe/John, 'Jane')";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -70,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "/Person += Doe/John\r\n$jane <= 'Jane'\r\n$path <= /Person/Doe/John\r\nrename(/Person/Doe/John, $jane)";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -91,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "/Person += Doe/John\r\n$jane <= 'Jane'\r\n$path <= /Person/Doe/John\r\nrename($path, $jane)";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);

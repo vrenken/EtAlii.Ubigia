@@ -9,11 +9,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class HostLoggingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public HostLoggingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public HostLoggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         [SuppressMessage(
@@ -22,7 +22,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             Justification = "Safe to do so here.")]
         public void Register(Container container)
         {
-            if (_diagnostics.EnableLogging) // logging is enabled
+            if (_configuration.InjectLogging) // logging is enabled
             {
                 container.RegisterInitializer<IHost>(host =>
                 {

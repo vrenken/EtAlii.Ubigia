@@ -6,19 +6,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class ScriptProcessorRootedPathAdvancedTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathAdvancedTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -29,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope)
                 .Use(logicalContext);
@@ -59,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript1 = _parser.Parse(selectQuery1).Script;
             var selectScript2 = _parser.Parse(selectQuery2).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -95,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript1 = _parser.Parse(selectQuery1).Script;
             var selectScript2 = _parser.Parse(selectQuery2).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -133,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript = _parser.Parse(selectQuery).Script;
             var assignScript = _parser.Parse(assignQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -171,7 +169,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -205,7 +203,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -241,7 +239,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -283,7 +281,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -324,7 +322,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -364,7 +362,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -403,7 +401,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript = _parser.Parse(assignQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript1);
@@ -464,7 +462,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript2 = _parser.Parse(selectQuery2).Script;
             var moveScript = _parser.Parse(moveQuery).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript1);
@@ -554,7 +552,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
             var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -671,7 +669,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
             var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

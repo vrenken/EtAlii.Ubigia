@@ -3,15 +3,14 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
 
     internal class TestScriptParserFactory : ScriptParserFactory
     {
         public IScriptParser Create()
         {
-            var diagnostics = DiagnosticsConfiguration.Default;
             var configuration = new TraversalParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .UseTestParser();
 
             return Create(configuration);

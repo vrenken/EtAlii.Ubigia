@@ -4,6 +4,7 @@ using Xunit;
 using System.IO;
 using System.Text;
 using System.Runtime.CompilerServices;
+using EtAlii.Ubigia.Tests;
 using EtAlii.xTechnology.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
@@ -34,6 +35,7 @@ internal static class TestModuleInitializer
                 .Build();
 #pragma warning restore CA2000
 
+        TestConfiguration.Initialize(configurationRoot);
         DiagnosticsConfiguration.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 

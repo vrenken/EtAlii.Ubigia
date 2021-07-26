@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
     public class TestHostLoggingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public TestHostLoggingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public TestHostLoggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableLogging) // logging is enabled.
+            if (_configuration.InjectLogging) // logging is enabled.
             {
                 //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton)
             }

@@ -7,20 +7,20 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class HostProfilingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public HostProfilingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public HostProfilingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_configuration.InjectProfiling) // profiling is enabled
             {
-                container.Register(() => _diagnostics.CreateProfilerFactory());
-                container.Register(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-            
+                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+                container.Register(() => container.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+
                 // Register for profiling required DI instances.
             }
         }

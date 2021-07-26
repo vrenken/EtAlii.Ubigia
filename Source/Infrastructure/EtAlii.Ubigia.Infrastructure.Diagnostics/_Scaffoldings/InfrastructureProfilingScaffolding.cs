@@ -8,20 +8,20 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     internal class InfrastructureProfilingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public InfrastructureProfilingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public InfrastructureProfilingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _diagnostics.CreateProfilerFactory());
-            container.Register(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_configuration.InjectProfiling) // profiling is enabled
             {
+                container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
+                container.Register(() => container.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+
                 container.RegisterDecorator(typeof(IEntryRepository), typeof(ProfilingEntryRepositoryDecorator));
                 container.RegisterDecorator(typeof(IIdentifierRepository), typeof(ProfilingIdentifierRepositoryDecorator));
                 container.RegisterDecorator(typeof(IStorageRepository), typeof(ProfilingStorageRepositoryDecorator));

@@ -3,7 +3,6 @@
 namespace EtAlii.xTechnology.Hosting.Tests.Console
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
@@ -22,7 +21,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
 
             var hostConfiguration = new HostConfigurationBuilder()
                 .Build(configurationRoot, details)
-                .Use(DiagnosticsConfiguration.Default)
+                .UseHostDiagnostics(configurationRoot)
                 .UseConsoleHost();
 
             ConsoleHost.Start(hostConfiguration);

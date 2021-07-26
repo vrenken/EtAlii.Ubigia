@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 
     public class TestHostProfilingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public TestHostProfilingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public TestHostProfilingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_configuration.InjectProfiling) // profiling is enabled
             {
                 // Invoke all DI container registrations involved in profiling the AspNet test host.
             }

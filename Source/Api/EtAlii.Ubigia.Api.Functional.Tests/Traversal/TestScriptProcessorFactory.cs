@@ -4,15 +4,15 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
 
     internal class TestScriptProcessorFactory : ScriptProcessorFactory
     {
-        public IScriptProcessor Create(ILogicalContext logicalContext, IDiagnosticsConfiguration diagnostics, ScriptScope scope = null)
+        public IScriptProcessor Create(ILogicalContext logicalContext, ScriptScope scope = null)
         {
             scope ??= new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .UseTestProcessor()
                 .Use(logicalContext)
                 .Use(scope);

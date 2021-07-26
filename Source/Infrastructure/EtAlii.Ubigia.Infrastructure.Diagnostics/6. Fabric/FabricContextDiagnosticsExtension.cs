@@ -5,21 +5,23 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class FabricContextDiagnosticsExtension : IFabricContextExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal FabricContextDiagnosticsExtension(IDiagnosticsConfiguration diagnostics)
+        internal FabricContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Infrastructure:Fabric:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]
             {
-                new FabricContextLoggingScaffolding(_diagnostics),
+                new FabricContextLoggingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

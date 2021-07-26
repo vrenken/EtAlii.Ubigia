@@ -5,19 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptProcessorNonRootedPathFunctionInclude : IClassFixture<TraversalUnitTestContext>
     {
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly TraversalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathFunctionInclude(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -28,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "<= include(\\02) <= /time/\"2017-02-20 20:06:02.123\"";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -56,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02\\06/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -85,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -114,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02\\*/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -143,7 +140,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\*\\*/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);

@@ -2,18 +2,17 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using System;
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class SchemaProcessorConfigurationDiagnosticsExtension
     {
-        public static SchemaProcessorConfiguration UseFunctionalDiagnostics(this SchemaProcessorConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static SchemaProcessorConfiguration UseFunctionalDiagnostics(this SchemaProcessorConfiguration configuration, IConfigurationRoot configurationRoot)
         {
-            var extensions = Array.Empty<ISchemaProcessorExtension>();
-            // var extensions = new ISchemaProcessorExtension[]
-            // [
-            //     new DiagnosticsQueryProcessorExtension(diagnostics),
-            // ]
+            var extensions = new ISchemaProcessorExtension[]
+            {
+                new LoggingSchemaProcessorExtension(configurationRoot),
+                new ProfilingSchemaProcessorExtension(configurationRoot),
+            };
 
             return configuration.Use(extensions);
 

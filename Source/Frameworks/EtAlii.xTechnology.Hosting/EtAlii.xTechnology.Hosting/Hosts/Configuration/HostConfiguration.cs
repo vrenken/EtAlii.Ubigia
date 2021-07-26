@@ -4,7 +4,6 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Linq;
-    using EtAlii.xTechnology.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     public class HostConfiguration : IHostConfiguration
@@ -23,7 +22,6 @@ namespace EtAlii.xTechnology.Hosting
 
         /// <inheritdoc />
         public Func<IHost> CreateHost { get; private set; }
-        public IDiagnosticsConfiguration Diagnostics { get; private set; }
 
         public Action<string> Output { get; private set; }
 
@@ -117,12 +115,6 @@ namespace EtAlii.xTechnology.Hosting
                     .ToArray();
             };
 
-            return this;
-        }
-
-        public IHostConfiguration Use(IDiagnosticsConfiguration diagnostics)
-        {
-            Diagnostics = diagnostics;
             return this;
         }
 

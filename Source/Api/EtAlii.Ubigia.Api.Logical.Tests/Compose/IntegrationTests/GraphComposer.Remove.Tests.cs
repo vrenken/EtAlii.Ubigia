@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public partial class GraphComposerIntegrationTests
@@ -36,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var addedEntry = await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(fabric)
-                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration);
+                .UseLogicalDiagnostics(TestConfiguration.Root);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
@@ -93,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(TestConfiguration.Root)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -130,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(TestConfiguration.Root)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>

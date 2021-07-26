@@ -8,11 +8,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptParserLoggingScaffolding : IScaffolding
     {
+        private readonly DiagnosticsConfigurationSection _configuration;
+
+        public ScriptParserLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void Register(Container container)
         {
-            var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-
-            if (diagnostics.EnableLogging) // logging is enabled.
+            if (_configuration.InjectLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IScriptParser), typeof(LoggingScriptParser));
                 container.RegisterDecorator(typeof(IPathParser), typeof(LoggingPathParser));

@@ -3,13 +3,12 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class ProfilingTraversalContextTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private readonly TraversalUnitTestContext _testContext;
-        private IDiagnosticsConfiguration _diagnostics;
 
         public ProfilingTraversalContextTests(TraversalUnitTestContext testContext)
         {
@@ -18,13 +17,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public Task InitializeAsync()
         {
-            _diagnostics = DiagnosticsConfiguration.Default;
             return Task.CompletedTask;
         }
 
         public Task DisposeAsync()
         {
-            _diagnostics = null;
             return Task.CompletedTask;
         }
 
@@ -50,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics(_diagnostics)
+                .UseFunctionalTraversalDiagnostics(TestConfiguration.Root)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
@@ -67,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics(_diagnostics)
+                .UseFunctionalTraversalDiagnostics(TestConfiguration.Root)
                 .UseTraversalProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 

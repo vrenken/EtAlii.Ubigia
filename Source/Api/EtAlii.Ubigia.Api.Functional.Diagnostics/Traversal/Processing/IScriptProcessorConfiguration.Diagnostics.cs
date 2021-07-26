@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class ScriptProcessorConfigurationDiagnosticsExtension
     {
-        public static TraversalProcessorConfiguration UseFunctionalDiagnostics(this TraversalProcessorConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static TraversalProcessorConfiguration UseFunctionalDiagnostics(this TraversalProcessorConfiguration configuration, IConfigurationRoot configurationRoot)
         {
             var extensions = new IScriptProcessorExtension[]
             {
-                new DiagnosticsScriptProcessorExtension(diagnostics),
+                new DiagnosticsScriptProcessorExtension(configurationRoot),
             };
 
             return configuration.Use(extensions);

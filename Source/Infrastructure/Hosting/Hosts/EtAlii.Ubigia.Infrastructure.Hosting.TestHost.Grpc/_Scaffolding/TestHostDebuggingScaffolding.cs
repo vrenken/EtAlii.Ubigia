@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
     public class TestHostDebuggingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public TestHostDebuggingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public TestHostDebuggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableDebugging) // diagnostics is enabled
+            if (_configuration.InjectDebugging) // debugging is enabled
             {
                 // Invoke all DI container registrations involved in debugging the Grpc test host.
             }

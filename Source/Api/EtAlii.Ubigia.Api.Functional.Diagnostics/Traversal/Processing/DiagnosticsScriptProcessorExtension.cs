@@ -4,27 +4,27 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsScriptProcessorExtension : IScriptProcessorExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsScriptProcessorExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsScriptProcessorExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            container.Register(() => _diagnostics);
-
             var scaffoldings = new IScaffolding[]
             {
-                new ScriptProcessingLoggingScaffolding(),
-                new ScriptProcessingProfilingScaffolding(),
-                new ScriptProcessingDebuggingScaffolding(),
+                new ScriptProcessingLoggingScaffolding(_configuration),
+                new ScriptProcessingProfilingScaffolding(_configuration),
+                new ScriptProcessingDebuggingScaffolding(_configuration),
 
-                new ScriptExecutionPlannerLoggingScaffolding(),
+                new ScriptExecutionPlannerLoggingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

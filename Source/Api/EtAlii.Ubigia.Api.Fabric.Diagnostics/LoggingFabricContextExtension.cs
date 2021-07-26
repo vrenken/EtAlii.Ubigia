@@ -4,21 +4,21 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
-    public class FabricContextDiagnosticsExtension : IFabricContextExtension
+    public class LoggingFabricContextExtension : IFabricContextExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal FabricContextDiagnosticsExtension(IDiagnosticsConfiguration diagnostics)
+        internal LoggingFabricContextExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new();
+            configurationRoot.Bind("Api:Fabric:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            container.Register(() => _diagnostics);
-
-            if (_diagnostics.EnableLogging)
+            if (_configuration.InjectLogging)
             {
                 container.RegisterDecorator(typeof(IEntryContext), typeof(LoggingEntryContext));
             }

@@ -5,19 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<TraversalUnitTestContext>
     {
         private readonly TraversalUnitTestContext _testContext;
         private readonly IScriptParser _parser;
-        private readonly IDiagnosticsConfiguration _diagnostics;
 
         public ScriptProcessorAssignDynamic2IntegrationTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -45,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new { ObjectType = "Person" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -93,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new {ObjectType = "Family"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -141,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -191,7 +188,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -240,7 +237,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new {ObjectType = "Family", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -290,7 +287,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new { ObjectType = "Family" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -341,7 +338,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new { ObjectType = (string)null, Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
@@ -392,7 +389,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             dynamic secondVariable = new { ObjectType = "TEST", Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
 
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();

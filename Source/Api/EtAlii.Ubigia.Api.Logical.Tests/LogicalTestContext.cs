@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.Ubigia.Tests;
 
     public class LogicalTestContext : ILogicalTestContext
     {
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(DiagnosticsConfiguration.Default);
+                .UseLogicalDiagnostics(TestConfiguration.Root);
             await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
             return new LogicalContextFactory().Create(configuration);
         }

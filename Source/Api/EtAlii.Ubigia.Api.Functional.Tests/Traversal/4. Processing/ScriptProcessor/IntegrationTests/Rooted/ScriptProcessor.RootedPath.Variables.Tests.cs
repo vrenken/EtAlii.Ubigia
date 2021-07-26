@@ -5,14 +5,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
         private ILogicalTestContext _testContext;
 
         public async Task InitializeAsync()
@@ -20,7 +18,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             _testContext = new LogicalTestContextFactory().Create();
             await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
 
-            _diagnostics = DiagnosticsConfiguration.Default;
             _parser = new TestScriptParserFactory().Create();
         }
 
@@ -53,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             scriptScope.Variables.Add("lastName", new ScopeVariable("Doe", null));
             scriptScope.Variables.Add("firstName", new ScopeVariable("John", null));
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, _diagnostics, scriptScope);
+            var processor = new TestScriptProcessorFactory().Create(logicalContext, scriptScope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

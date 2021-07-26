@@ -7,11 +7,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     internal class ManagementConnectionLoggingScaffolding : IScaffolding
     {
+        private readonly DiagnosticsConfigurationSection _configuration;
+
+        public ManagementConnectionLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        {
+            _configuration = configuration;
+        }
+
         public void Register(Container container)
         {
-            var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-
-            if (diagnostics.EnableLogging) // logging is enabled.
+            if (_configuration.InjectLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IManagementConnection), typeof(LoggingManagementConnection));
             }

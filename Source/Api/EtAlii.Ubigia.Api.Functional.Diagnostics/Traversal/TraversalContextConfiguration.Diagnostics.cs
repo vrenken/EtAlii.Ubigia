@@ -2,23 +2,23 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using Microsoft.Extensions.Configuration;
 
     public static class TraversalContextConfigurationDiagnosticsExtension
     {
-        public static TTraversalContextConfiguration UseFunctionalTraversalDiagnostics<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration, IDiagnosticsConfiguration diagnostics, bool alsoUseForDeeperDiagnostics = true)
+        public static TTraversalContextConfiguration UseFunctionalTraversalDiagnostics<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration, IConfigurationRoot configurationRoot, bool alsoUseForDeeperDiagnostics = true)
             where TTraversalContextConfiguration : FunctionalContextConfiguration
         {
             var extensions = new ITraversalContextExtension[]
             {
-                new DiagnosticsTraversalContextExtension(diagnostics)
+                new LoggingTraversalContextExtension(configurationRoot)
             };
 
             configuration = configuration.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseLogicalDiagnostics(diagnostics);
+                configuration = configuration.UseLogicalDiagnostics(configurationRoot);
             }
 
             return configuration;

@@ -6,6 +6,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests\EtAlii.xTechnology.Tests.csproj" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Parsing.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Tests.projitems" Label="Shared" />
 </Project>

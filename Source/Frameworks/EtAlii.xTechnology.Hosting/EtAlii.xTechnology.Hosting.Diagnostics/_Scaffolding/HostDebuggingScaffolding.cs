@@ -7,16 +7,16 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class HostDebuggingScaffolding : IScaffolding
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        public HostDebuggingScaffolding(IDiagnosticsConfiguration diagnostics)
+        public HostDebuggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
-            _diagnostics = diagnostics;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableDebugging) // debugging is enabled
+            if (_configuration.InjectDebugging) // debugging is enabled
             {
                 // Register for debugging required DI instances.
             }

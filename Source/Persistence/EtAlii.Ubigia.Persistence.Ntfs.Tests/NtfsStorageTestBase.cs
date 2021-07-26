@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
 
     public abstract class NtfsStorageTestBase : FileSystemStorageTestBase
     {
@@ -31,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .Use(DiagnosticsConfiguration.Default)
+                .UseStorageDiagnostics(TestConfiguration.Root)
                 .UseNtfsStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);

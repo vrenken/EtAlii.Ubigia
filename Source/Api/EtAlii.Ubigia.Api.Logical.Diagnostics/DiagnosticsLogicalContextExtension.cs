@@ -4,21 +4,21 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsLogicalContextExtension : ILogicalContextExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsLogicalContextExtension(IDiagnosticsConfiguration diagnostics)
+        internal DiagnosticsLogicalContextExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            container.Register(() => _diagnostics);
-
-            if (_diagnostics.EnableLogging)
+            if (_configuration.InjectLogging)
             {
                 // Doesn't this pattern break with the general scaffolding principles?
                 // More details can be found in the GitHub issue below:

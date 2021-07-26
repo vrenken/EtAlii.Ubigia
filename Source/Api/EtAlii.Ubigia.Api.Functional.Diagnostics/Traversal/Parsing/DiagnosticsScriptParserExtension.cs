@@ -4,25 +4,25 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class DiagnosticsScriptParserExtension : IScriptParserExtension
     {
-        private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsScriptParserExtension(IDiagnosticsConfiguration diagnostics)
+        public DiagnosticsScriptParserExtension(IConfigurationRoot configurationRoot)
         {
-            _diagnostics = diagnostics;
+            _configuration = new DiagnosticsConfigurationSection();
+            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
         }
 
         public void Initialize(Container container)
         {
-            container.Register(() => _diagnostics);
-
             var scaffoldings = new IScaffolding[]
             {
-                new ScriptParserLoggingScaffolding(),
-                new ScriptParserProfilingScaffolding(),
-                new ScriptParserDebuggingScaffolding(),
+                new ScriptParserLoggingScaffolding(_configuration),
+                new ScriptParserProfilingScaffolding(_configuration),
+                new ScriptParserDebuggingScaffolding(_configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

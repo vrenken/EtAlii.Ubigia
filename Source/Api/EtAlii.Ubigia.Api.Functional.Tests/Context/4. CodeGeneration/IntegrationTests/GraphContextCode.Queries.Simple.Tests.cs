@@ -7,10 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Tests;
 
     public class GraphContextCodeQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
@@ -18,7 +18,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private IDiagnosticsConfiguration _diagnostics;
         private FunctionalContextConfiguration _configuration;
 
         public GraphContextCodeQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
@@ -31,11 +30,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _diagnostics = _testContext.FunctionalTestContext.Diagnostics;
             _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+                .UseFunctionalGraphContextDiagnostics(TestConfiguration.Root);
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_configuration);
@@ -78,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
+                .UseFunctionalDiagnostics(TestConfiguration.Root)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new TestSchemaProcessorFactory().Create(configuration);

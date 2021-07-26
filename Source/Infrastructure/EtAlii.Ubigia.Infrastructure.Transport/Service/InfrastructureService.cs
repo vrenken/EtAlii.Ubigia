@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -64,12 +63,12 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
                 .Use(_configurationRoot, name, serviceDetails)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(_configurationRoot);
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()
                 .Use(storage)
-                .Use(DiagnosticsConfiguration.Default);
+                .UseFabricDiagnostics(_configurationRoot);
             var fabric = new FabricContextFactory().Create(fabricConfiguration);
 
             // Improve the InfrastructureService.
@@ -90,6 +89,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
 	            .Use<InfrastructureConfiguration, SystemConnectionInfrastructure>()
+                .UseInfrastructureDiagnostics(_configurationRoot)
                 .Use(logicalContext);
             return new InfrastructureFactory().Create(infrastructureConfiguration);
         }
