@@ -35,7 +35,8 @@ internal static class TestModuleInitializer
                 .Build();
 #pragma warning restore CA2000
 
-        TestConfiguration.Initialize(configurationRoot);
+        TestServiceConfiguration.Initialize(configurationRoot);
+        TestClientConfiguration.Initialize(configurationRoot);
         DiagnosticsConfiguration.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 

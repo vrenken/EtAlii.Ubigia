@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
                 .UseTransport(RestTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestConfiguration.Root);
+                .UseTransportDiagnostics(TestClientConfiguration.Root);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 	            .UseTransport(RestTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestConfiguration.Root);
+                .UseTransportDiagnostics(TestClientConfiguration.Root);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             if (openOnCreation)
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 	            .Use(RestStorageTransportProvider.Create(client))
                 .Use(address)
                 .Use(account, password)
-                .UseTransportManagementDiagnostics(TestConfiguration.Root);
+                .UseTransportManagementDiagnostics(TestClientConfiguration.Root);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {

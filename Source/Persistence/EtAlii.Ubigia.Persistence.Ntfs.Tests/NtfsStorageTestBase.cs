@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestConfiguration.Root)
+                .UseStorageDiagnostics(TestServiceConfiguration.Root)
                 .UseNtfsStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);

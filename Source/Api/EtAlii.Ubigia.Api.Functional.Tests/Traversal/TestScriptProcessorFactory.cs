@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             scope ??= new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(logicalContext)
                 .Use(scope);

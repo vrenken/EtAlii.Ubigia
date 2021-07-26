@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestConfiguration.Root)
+                .UseStorageDiagnostics(TestServiceConfiguration.Root)
                 .UseInMemoryStorage();
 
             return (InMemoryStorage)new StorageFactory().Create(configuration);

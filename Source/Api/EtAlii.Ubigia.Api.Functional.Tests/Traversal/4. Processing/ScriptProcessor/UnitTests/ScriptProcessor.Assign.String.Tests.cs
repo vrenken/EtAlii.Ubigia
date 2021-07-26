@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var script = _parser.Parse("$var1 <= \"Time\"").Script;
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1").Script;
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"Location\"").Script;
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <=").Script;
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"\"").Script;
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope);
             var processor = new TestScriptProcessorFactory().Create(configuration);

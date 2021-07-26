@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestConfiguration.Root);
+                .UseFabricDiagnostics(TestServiceConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestConfiguration.Root);
+                .UseFabricDiagnostics(TestServiceConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestConfiguration.Root);
+                .UseFabricDiagnostics(TestServiceConfiguration.Root);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()

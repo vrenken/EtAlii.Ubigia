@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var addedEntry = await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(fabric)
-                .UseLogicalDiagnostics(TestConfiguration.Root);
+                .UseLogicalDiagnostics(TestClientConfiguration.Root);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
@@ -94,7 +94,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(TestConfiguration.Root)
+                .UseLogicalDiagnostics(TestClientConfiguration.Root)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
             var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(TestConfiguration.Root)
+                .UseLogicalDiagnostics(TestClientConfiguration.Root)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>

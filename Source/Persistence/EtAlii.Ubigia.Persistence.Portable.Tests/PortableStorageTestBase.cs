@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestConfiguration.Root)
+                .UseStorageDiagnostics(TestServiceConfiguration.Root)
                 .UsePortableStorage(StorageFolder);
 
             return new StorageFactory().Create(configuration);

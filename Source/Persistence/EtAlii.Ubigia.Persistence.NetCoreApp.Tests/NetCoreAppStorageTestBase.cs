@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestConfiguration.Root)
+                .UseStorageDiagnostics(TestServiceConfiguration.Root)
                 .UseNetCoreAppStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);

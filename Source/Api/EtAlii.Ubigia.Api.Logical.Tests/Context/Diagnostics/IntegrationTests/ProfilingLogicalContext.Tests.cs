@@ -33,11 +33,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestConfiguration.Root);
+                .UseLogicalDiagnostics(TestClientConfiguration.Root);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
 
             // Assert.
             Assert.NotNull(context);
@@ -48,12 +48,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestConfiguration.Root);
+                .UseLogicalDiagnostics(TestClientConfiguration.Root);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
 
             // Assert.
             Assert.NotNull(context);
@@ -64,11 +64,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestConfiguration.Root);
+                .UseLogicalDiagnostics(TestClientConfiguration.Root);
             await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
 
             // Assert.
             Assert.NotNull(context);

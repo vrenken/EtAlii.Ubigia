@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
 
     public class FabricTestContext : IFabricTestContext
@@ -31,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .UseFabricDiagnostics(TestConfiguration.Root);
+                .UseFabricDiagnostics(TestClientConfiguration.Root);
             return new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

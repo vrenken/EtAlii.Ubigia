@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestConfiguration.Root)
+                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
                 .UseTestProcessor()
                 .Use(scope)
                 .Use(logicalContext);

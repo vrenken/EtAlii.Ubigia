@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 			    .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
 			    .Use(address)
 			    .Use(accountName, spaceName, accountPassword)
-			    .UseTransportDiagnostics(TestConfiguration.Root);
+			    .UseTransportDiagnostics(TestClientConfiguration.Root);
 		    var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
 		    using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 	            .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestConfiguration.Root);
+                .UseTransportDiagnostics(TestClientConfiguration.Root);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             if (openOnCreation)
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
 				.Use(address)
                 .Use(account, password)
-                .UseTransportManagementDiagnostics(TestConfiguration.Root);
+                .UseTransportManagementDiagnostics(TestClientConfiguration.Root);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {
