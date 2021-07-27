@@ -9,7 +9,10 @@ namespace EtAlii.xTechnology.Hosting
         where TModule: IModule
     {
         /// <inheritdoc />
-        public override IModule Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
+        public override IModule Create(
+            IConfigurationSection configuration,
+            IConfiguration configurationRoot,
+            IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

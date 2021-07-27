@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     public static class InfrastructureConfigurationUseDiagnostics
     {
-        public static InfrastructureConfiguration UseInfrastructureDiagnostics(this InfrastructureConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static InfrastructureConfiguration UseInfrastructureDiagnostics(this InfrastructureConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IInfrastructureExtension[]
             {

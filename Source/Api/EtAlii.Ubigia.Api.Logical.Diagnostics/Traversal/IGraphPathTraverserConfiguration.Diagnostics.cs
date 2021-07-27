@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public static class GraphPathTraverserConfigurationDiagnosticsExtension
     {
-        public static GraphPathTraverserConfiguration UseLogicalDiagnostics(this GraphPathTraverserConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static GraphPathTraverserConfiguration UseLogicalDiagnostics(this GraphPathTraverserConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IGraphPathTraverserExtension[]
             {

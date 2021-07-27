@@ -4,10 +4,17 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Hosting;
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public interface IFabricTestContext
     {
+        ITransportTestContext Transport { get; }
+
+        public IConfiguration ClientConfiguration { get; }
+        public IConfiguration HostConfiguration { get; }
+
         Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation);
         Task<IFabricContext> CreateFabricContext(bool openOnCreation);
         Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth);//, out string[] hierarchy)

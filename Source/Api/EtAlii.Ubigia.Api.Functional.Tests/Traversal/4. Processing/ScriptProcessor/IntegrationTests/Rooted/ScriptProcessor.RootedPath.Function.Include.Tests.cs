@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "<= include(\\02) <= time:\"2017-02-20 20:06:02.123\"";
             var script = _parser.Parse(query).Script;
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var query = new[]
             {
                 "time:\"2017-02-20 20:06:01.122\"",
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var query = new[]
             {
                 "time:\"2017-02-20 20:06:02.122\"",
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_04()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var query = new[]
             {
                 "time:\"2017-02-20 20:06:01.122\"",
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Include_Path_05()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var query = new[]
             {
                 "time:\"2017-02-20 20:06:01.122\"",

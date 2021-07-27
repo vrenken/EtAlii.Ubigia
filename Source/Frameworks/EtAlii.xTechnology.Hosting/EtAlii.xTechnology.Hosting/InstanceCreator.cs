@@ -13,10 +13,10 @@ namespace EtAlii.xTechnology.Hosting
     public class InstanceCreator : IInstanceCreator
     {
         /// <inheritdoc />
-        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance) => TryCreate(configuration, configurationRoot, configurationDetails, name, out instance, false);
+        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfiguration configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance) => TryCreate(configuration, configurationRoot, configurationDetails, name, out instance, false);
 
         /// <inheritdoc />
-        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory)
+        public bool TryCreate<TInstance>(IConfigurationSection configuration, IConfiguration configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory)
         {
             var factoryTypeName = configuration.GetValue<string>("Factory");
 

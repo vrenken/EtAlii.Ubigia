@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
 
             // Act.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
 
@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
 
@@ -84,13 +84,13 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection1 = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName,_testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName,_testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection1.Open().ConfigureAwait(false);
 
             // Act.
             var connection2 = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection2.Open().ConfigureAwait(false);
 
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -119,7 +119,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword + "BAAD", SpaceName.System, false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName + "BAAD", _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName + "BAAD", _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -149,7 +149,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System + "BAAD", false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System + "BAAD", false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName + "BAAD", _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName + "BAAD", _testContext.TransportTestContext.Host.SystemAccountPassword + "BAAD", SpaceName.System, false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName + "BAAD",_testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName + "BAAD",_testContext.TransportTestContext.Host.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false)
                 .ConfigureAwait(false);
 
             // Act.
@@ -194,7 +194,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
 
@@ -209,7 +209,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
         public async Task DataConnection_Open_And_Close_System()
         {
             var connection = await _testContext.TransportTestContext
-                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Context.SystemAccountName, _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false)
+                .CreateDataConnectionToExistingSpace(_testContext.TransportTestContext.Host.SystemAccountName, _testContext.TransportTestContext.Host.SystemAccountPassword, SpaceName.System, false)
                 .ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
             await connection.Close().ConfigureAwait(false);

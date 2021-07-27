@@ -4,23 +4,27 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using Microsoft.Extensions.Configuration;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class QueryingUnitTestContext : IAsyncLifetime
     {
-        public IFunctionalTestContext FunctionalTestContext { get; private set; }
+        public IFunctionalTestContext Functional { get; private set; }
+
+        public IConfiguration ClientConfiguration => Functional.Logical.Fabric.Transport.Host.ClientConfiguration;
+        public IConfiguration HostConfiguration => Functional.Logical.Fabric.Transport.Host.HostConfiguration;
 
         public async Task InitializeAsync()
         {
-            FunctionalTestContext = new FunctionalTestContextFactory().Create();
-            await FunctionalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            Functional = new FunctionalTestContextFactory().Create();
+            await Functional.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await FunctionalTestContext.Stop().ConfigureAwait(false);
-            FunctionalTestContext = null;
+            await Functional.Stop().ConfigureAwait(false);
+            Functional = null;
         }
     }
 }

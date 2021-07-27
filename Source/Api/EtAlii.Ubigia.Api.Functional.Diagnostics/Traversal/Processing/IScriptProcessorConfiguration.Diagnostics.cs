@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public static class ScriptProcessorConfigurationDiagnosticsExtension
     {
-        public static TraversalProcessorConfiguration UseFunctionalDiagnostics(this TraversalProcessorConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static TraversalProcessorConfiguration UseFunctionalDiagnostics(this TraversalProcessorConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IScriptProcessorExtension[]
             {

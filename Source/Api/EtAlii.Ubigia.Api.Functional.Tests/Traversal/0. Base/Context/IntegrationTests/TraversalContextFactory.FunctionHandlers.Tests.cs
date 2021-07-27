@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                     .UseTestTraversalParser();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(configuration);
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(configuration);
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(configuration);
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(configuration);
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>

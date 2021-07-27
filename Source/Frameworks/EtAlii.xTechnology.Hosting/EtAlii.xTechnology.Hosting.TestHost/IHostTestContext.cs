@@ -4,9 +4,22 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System.Net.Http;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Configuration;
 
     public interface IHostTestContext
     {
+        /// <summary>
+        /// A root configuration instance that should be used to
+        /// initialize any host-side systems.
+        /// </summary>
+        IConfiguration HostConfiguration { get; }
+
+        /// <summary>
+        /// A root configuration instance that should be used to
+        /// initialize any client-side systems.
+        /// </summary>
+        IConfiguration ClientConfiguration { get; }
+
         Task Start(PortRange portRange);
 
         Task Stop();

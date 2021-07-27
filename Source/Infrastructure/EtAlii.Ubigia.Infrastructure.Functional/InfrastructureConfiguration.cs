@@ -10,10 +10,10 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     public class InfrastructureConfiguration : ConfigurationBase, IInfrastructureConfiguration, IEditableInfrastructureConfiguration
     {
         /// <inheritdoc />
-        public IConfigurationRoot Root { get; private set; }
+        public IConfiguration Root { get; private set; }
 
         /// <inheritdoc />
-        IConfigurationRoot IEditableInfrastructureConfiguration.Root { get => Root; set => Root = value; }
+        IConfiguration IEditableInfrastructureConfiguration.Root { get => Root; set => Root = value; }
 
         /// <inheritdoc />
         ILogicalContext IEditableInfrastructureConfiguration.Logical { get => Logical; set => Logical = value; }

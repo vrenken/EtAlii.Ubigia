@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsHostExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsHostExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Hosting:Diagnostics", _configuration);

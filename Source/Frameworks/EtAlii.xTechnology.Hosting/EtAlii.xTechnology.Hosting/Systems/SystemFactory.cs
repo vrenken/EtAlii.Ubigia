@@ -33,7 +33,7 @@ namespace EtAlii.xTechnology.Hosting
         public ISystem Create(
             IHost host,
             IConfigurationSection systemConfiguration,
-            IConfigurationRoot configurationRoot,
+            IConfiguration configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             if(!_instanceCreator.TryCreate<ISystem>(systemConfiguration, configurationRoot, configurationDetails, "system", out var system))

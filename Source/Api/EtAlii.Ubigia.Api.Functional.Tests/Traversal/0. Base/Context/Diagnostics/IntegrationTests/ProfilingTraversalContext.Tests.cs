@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class ProfilingTraversalContextTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
@@ -32,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTraversalProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new TraversalContextFactory().Create(configuration);
@@ -47,9 +46,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics(TestClientConfiguration.Root)
+                .UseFunctionalTraversalDiagnostics(_testContext.ClientConfiguration)
                 .UseTraversalProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new TraversalContextFactory().Create(configuration);
@@ -64,9 +63,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics(TestClientConfiguration.Root)
+                .UseFunctionalTraversalDiagnostics(_testContext.ClientConfiguration)
                 .UseTraversalProfiling();
-            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
+            await _testContext.Logical.ConfigureLogicalContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
             var context = new TraversalContextFactory().Create(configuration);

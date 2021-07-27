@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_System_Account()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
             var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_System_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var systemAccount = await connection.Accounts.Get("System").ConfigureAwait(false);
 
             // Act.
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Administrator_Spaces()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var administratorAccount = await connection.Accounts.Get("Administrator").ConfigureAwait(false);
 
             // Act.

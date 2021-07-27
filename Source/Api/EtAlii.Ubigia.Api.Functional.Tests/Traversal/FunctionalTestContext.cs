@@ -7,13 +7,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Hosting;
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public class FunctionalTestContext : IFunctionalTestContext
     {
-        private readonly ILogicalTestContext _logical;
+        public ILogicalTestContext Logical { get; }
+
+        public IConfiguration ClientConfiguration => Logical.Fabric.Transport.Host.ClientConfiguration;
+        public IConfiguration HostConfiguration => Logical.Fabric.Transport.Host.HostConfiguration;
+
         public FunctionalTestContext(ILogicalTestContext logical)
         {
-            _logical = logical;
+            Logical = logical;
         }
 
 //        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
@@ -27,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)
         {
-            return _logical.ConfigureLogicalContextConfiguration(configuration, openOnCreation);
+            return Logical.ConfigureLogicalContextConfiguration(configuration, openOnCreation);
         }
 
 //        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
@@ -235,12 +240,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public async Task Start(PortRange portRange)
         {
-            await _logical.Start(portRange).ConfigureAwait(false);
+            await Logical.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await _logical.Stop().ConfigureAwait(false);
+            await Logical.Stop().ConfigureAwait(false);
         }
     }
 }

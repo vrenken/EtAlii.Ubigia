@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     public class ProfilingFabricContextExtension : IFabricContextExtension
     {
         private readonly DiagnosticsConfigurationSection _configuration;
-        public ProfilingFabricContextExtension(IConfigurationRoot configurationRoot)
+        public ProfilingFabricContextExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Api:Fabric:Diagnostics", _configuration);

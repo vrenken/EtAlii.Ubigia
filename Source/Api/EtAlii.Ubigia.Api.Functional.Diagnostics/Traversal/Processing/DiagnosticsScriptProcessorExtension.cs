@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsScriptProcessorExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsScriptProcessorExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);

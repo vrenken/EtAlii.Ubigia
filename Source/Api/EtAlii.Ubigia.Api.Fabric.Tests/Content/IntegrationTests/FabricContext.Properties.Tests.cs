@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class FabricContextPropertiesTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
@@ -18,10 +17,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         }
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateDataConnectionToNewSpace().ConfigureAwait(false);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection)
-                .UseFabricDiagnostics(TestClientConfiguration.Root);
+                .UseFabricDiagnostics(_testContext.ClientConfiguration);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

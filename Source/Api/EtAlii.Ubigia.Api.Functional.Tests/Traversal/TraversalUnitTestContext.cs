@@ -7,10 +7,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public class TraversalUnitTestContext : IAsyncLifetime
     {
-        public ILogicalTestContext LogicalTestContext { get; private set; }
+        public ILogicalTestContext Logical { get; private set; }
+
+        public IConfiguration ClientConfiguration => Logical.Fabric.Transport.Host.ClientConfiguration;
+        public IConfiguration HostConfiguration => Logical.Fabric.Transport.Host.HostConfiguration;
+
         public FileComparer FileComparer { get; }
         public FolderComparer FolderComparer { get; }
 
@@ -22,14 +27,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public async Task InitializeAsync()
         {
-            LogicalTestContext = new LogicalTestContextFactory().Create();
-            await LogicalTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            Logical = new LogicalTestContextFactory().Create();
+            await Logical.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await LogicalTestContext.Stop().ConfigureAwait(false);
-            LogicalTestContext = null;
+            await Logical.Stop().ConfigureAwait(false);
+            Logical = null;
         }
     }
 }

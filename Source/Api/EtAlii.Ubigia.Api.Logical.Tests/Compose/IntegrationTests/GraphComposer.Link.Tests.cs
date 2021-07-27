@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             const int depth = 3;
             var scope = new ExecutionScope(false);
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
+            using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
 
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
@@ -28,11 +28,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var personRoot = await fabric.Roots.Get("Person").ConfigureAwait(false);
             var personEntry = (IEditableEntry)await fabric.Entries.Get(personRoot, scope).ConfigureAwait(false);
 
-            var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
+            var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var firstEntry = hierarchyResult.Item1;
 //            var communicationsHierarchy = hierarchyResult.Item2
 
-            hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, personEntry, depth).ConfigureAwait(false);
+            hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, personEntry, depth).ConfigureAwait(false);
             var secondEntry = hierarchyResult.Item1;
 //            var personHierarchy = hierarchyResult.Item2
 

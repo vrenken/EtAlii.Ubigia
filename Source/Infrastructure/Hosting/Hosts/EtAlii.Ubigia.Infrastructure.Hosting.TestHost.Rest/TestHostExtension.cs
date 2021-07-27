@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        public TestHostExtension(IConfigurationRoot configurationRoot)
+        public TestHostExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Infrastructure:Hosting:Diagnostics", _configuration);

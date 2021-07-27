@@ -3,7 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 {
 	using System.Windows;
-	using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting;
 	using EtAlii.xTechnology.Hosting.Diagnostics;
 	using Microsoft.Extensions.Configuration;
 

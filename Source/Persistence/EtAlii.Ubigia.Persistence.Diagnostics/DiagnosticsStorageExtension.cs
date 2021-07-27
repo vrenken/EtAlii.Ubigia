@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsStorageExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsStorageExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Persistence:Diagnostics", _configuration);

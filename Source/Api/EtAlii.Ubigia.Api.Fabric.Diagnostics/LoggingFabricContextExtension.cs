@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal LoggingFabricContextExtension(IConfigurationRoot configurationRoot)
+        internal LoggingFabricContextExtension(IConfiguration configurationRoot)
         {
             _configuration = new();
             configurationRoot.Bind("Api:Fabric:Diagnostics", _configuration);

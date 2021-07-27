@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
@@ -33,11 +32,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            await _testContext.Fabric.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, _testContext.ClientConfiguration);
 
             // Assert.
             Assert.NotNull(context);
@@ -48,12 +47,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            await _testContext.Fabric.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, _testContext.ClientConfiguration);
 
             // Assert.
             Assert.NotNull(context);
@@ -64,11 +63,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
-            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            await _testContext.Fabric.ConfigureFabricContextConfiguration(configuration, true).ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, TestClientConfiguration.Root);
+            using var context = new LogicalContextFactory().CreateForProfiling(configuration, _testContext.ClientConfiguration);
 
             // Assert.
             Assert.NotNull(context);

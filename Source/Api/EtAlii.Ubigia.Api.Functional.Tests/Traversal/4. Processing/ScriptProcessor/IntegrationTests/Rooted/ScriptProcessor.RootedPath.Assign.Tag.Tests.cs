@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_Tags()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Get_Tags()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Filter_Tags()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person:+=Doe/John",

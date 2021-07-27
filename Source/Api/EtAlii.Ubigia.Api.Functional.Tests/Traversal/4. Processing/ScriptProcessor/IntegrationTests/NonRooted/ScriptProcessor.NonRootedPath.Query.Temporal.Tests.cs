@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Temporal_Downdate_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Temporal_Downdate_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Temporal_Downdate_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",

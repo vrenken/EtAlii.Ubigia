@@ -4,22 +4,22 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
 
     public class StartedTransportUnitTestContext : IAsyncLifetime
     {
-        public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
+        public ITransportTestContext Transport { get; private set; }
+
         public async Task InitializeAsync()
         {
-            TransportTestContext = new TransportTestContext().Create();
-            await TransportTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            Transport = new TransportTestContext().Create();
+            await Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await TransportTestContext.Stop().ConfigureAwait(false);
-            TransportTestContext = null;
+            await Transport.Stop().ConfigureAwait(false);
+            Transport = null;
         }
     }
 }

@@ -6,26 +6,30 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public class LogicalTestContext : ILogicalTestContext
     {
-        private readonly IFabricTestContext _fabric;
+        public IFabricTestContext Fabric { get; }
+
+        public IConfiguration ClientConfiguration => Fabric.Transport.Host.ClientConfiguration;
+        public IConfiguration HostConfiguration => Fabric.Transport.Host.HostConfiguration;
 
         public LogicalTestContext(IFabricTestContext fabric)
         {
-            _fabric = fabric;
+            Fabric = fabric;
         }
 
         public async Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)
         {
-            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
+            await Fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
         }
 
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
-            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
+                .UseLogicalDiagnostics(Fabric.ClientConfiguration);
+            await Fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
             return new LogicalContextFactory().Create(configuration);
         }
 
@@ -93,12 +97,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task Start(PortRange portRange)
         {
-            await _fabric.Start(portRange).ConfigureAwait(false);
+            await Fabric.Start(portRange).ConfigureAwait(false);
         }
 
         public async Task Stop()
         {
-            await _fabric.Stop().ConfigureAwait(false);
+            await Fabric.Stop().ConfigureAwait(false);
         }
 
         #endregion start/stop

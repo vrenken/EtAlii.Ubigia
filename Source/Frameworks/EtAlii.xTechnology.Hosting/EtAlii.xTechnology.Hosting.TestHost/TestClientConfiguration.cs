@@ -4,9 +4,8 @@ namespace EtAlii.xTechnology.Hosting
 
     public class TestClientConfiguration
     {
-        public static IConfigurationRoot Root => _root;
-        private static IConfigurationRoot _root;
+        public static IConfigurationRoot Root { get; private set; }
 
-        public static void Initialize(IConfigurationRoot configurationRoot) => _root = configurationRoot;
+        public static void Initialize(IConfigurationRoot configurationRoot) => Root = configurationRoot;
     }
 }

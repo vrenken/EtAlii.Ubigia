@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -160,7 +160,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -200,7 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -241,7 +241,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -281,7 +281,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -319,7 +319,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript = _parser.Parse(updateQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -361,7 +361,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -411,7 +411,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -464,7 +464,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -517,7 +517,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -568,7 +568,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateScript2 = _parser.Parse(updateQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             // Act.
@@ -615,7 +615,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);
@@ -658,7 +658,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);
@@ -701,7 +701,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);
@@ -746,7 +746,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);
@@ -790,7 +790,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);
@@ -835,7 +835,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
 
             var lastSequence = await processor.Process(addScript);

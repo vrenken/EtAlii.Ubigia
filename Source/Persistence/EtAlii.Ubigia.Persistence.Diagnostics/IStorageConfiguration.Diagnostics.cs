@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public static class StorageConfigurationDiagnosticsExtension
     {
-        public static IStorageConfiguration UseStorageDiagnostics(this IStorageConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static IStorageConfiguration UseStorageDiagnostics(this IStorageConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IStorageExtension[]
             {

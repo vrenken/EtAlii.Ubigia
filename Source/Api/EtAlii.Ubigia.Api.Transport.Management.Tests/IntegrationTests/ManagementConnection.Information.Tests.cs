@@ -16,12 +16,12 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public async Task InitializeAsync()
         {
-            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await _testContext.Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.TransportTestContext.Stop().ConfigureAwait(false);
+            await _testContext.Transport.Stop().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -30,17 +30,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Arrange.
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection.Details.ManagementAddress);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.Scheme, connection.Details.ManagementAddress.Scheme);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.Port, connection.Details.ManagementAddress.Port);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.ManagementAddress.PathAndQuery, connection.Details.ManagementAddress.PathAndQuery);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.ManagementAddress.Scheme, connection.Details.ManagementAddress.Scheme);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.ManagementAddress.Port, connection.Details.ManagementAddress.Port);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.ManagementAddress.PathAndQuery, connection.Details.ManagementAddress.PathAndQuery);
             Assert.NotNull(connection.Details.DataAddress);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.Scheme, connection.Details.DataAddress.Scheme);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.Port, connection.Details.DataAddress.Port);
-            Assert.Equal(_testContext.TransportTestContext.Context.ServiceDetails.DataAddress.PathAndQuery, connection.Details.DataAddress.PathAndQuery);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.DataAddress.Scheme, connection.Details.DataAddress.Scheme);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.DataAddress.Port, connection.Details.DataAddress.Port);
+            Assert.Equal(_testContext.Transport.Host.ServiceDetails.DataAddress.PathAndQuery, connection.Details.DataAddress.PathAndQuery);
         }
     }
 }

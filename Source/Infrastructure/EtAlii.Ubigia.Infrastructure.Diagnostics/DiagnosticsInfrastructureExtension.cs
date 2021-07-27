@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsInfrastructureExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsInfrastructureExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Persistence:Diagnostics", _configuration);

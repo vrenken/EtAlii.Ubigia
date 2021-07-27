@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public static class LogicalContextDiagnosticsExtension
     {
-        public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IConfigurationRoot configurationRoot, bool alsoUseForDeeperDiagnostics = true)
+        public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IConfiguration configurationRoot, bool alsoUseForDeeperDiagnostics = true)
             where TLogicalContextConfiguration : LogicalContextConfiguration
         {
             var extensions = new ILogicalContextExtension[]

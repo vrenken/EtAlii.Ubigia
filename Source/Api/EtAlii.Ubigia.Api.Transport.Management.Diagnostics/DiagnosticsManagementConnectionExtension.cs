@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsManagementConnectionExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsManagementConnectionExtension(IConfiguration configurationRoot)
         {
             _configuration = new();
             configurationRoot.Bind("Api:Transport:Diagnostics", _configuration);

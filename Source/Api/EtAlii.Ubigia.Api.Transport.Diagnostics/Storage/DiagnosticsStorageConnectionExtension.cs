@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     public class DiagnosticsStorageConnectionExtension : IStorageConnectionExtension
     {
         private readonly DiagnosticsConfigurationSection _configuration;
-        internal DiagnosticsStorageConnectionExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsStorageConnectionExtension(IConfiguration configurationRoot)
         {
             _configuration = new();
             configurationRoot.Bind("Api:Transport:Diagnostics", _configuration);

@@ -7,12 +7,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
 
     public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
-        private ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
+        private ITransportTestContext _testContext;
 
         public async Task InitializeAsync()
         {
@@ -159,7 +158,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Storages_Get_None()
         {
             // Arrange.
-            var expectedStorageAddress = new Uri($"{_testContext.Context.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Context.ServiceDetails.ManagementAddress.Host}/").ToString();
+            var expectedStorageAddress = new Uri($"{_testContext.Host.ServiceDetails.ManagementAddress.Scheme}://{_testContext.Host.ServiceDetails.ManagementAddress.Host}/").ToString();
 
             // Act.
             var connection = await _testContext.CreateManagementConnection().ConfigureAwait(false);
@@ -171,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
             // Assert.
             Assert.NotNull(retrievedStorage);
             Assert.Equal(expectedStorageAddress, retrievedStorage.Address);
-            Assert.Equal(_testContext.Context.HostName, retrievedStorage.Name);
+            Assert.Equal(_testContext.Host.HostName, retrievedStorage.Name);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

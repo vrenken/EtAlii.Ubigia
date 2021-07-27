@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal FabricContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
+        internal FabricContextDiagnosticsExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Infrastructure:Fabric:Diagnostics", _configuration);

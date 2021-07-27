@@ -9,7 +9,10 @@ namespace EtAlii.xTechnology.Hosting
         where TService : IService
     {
         /// <inheritdoc />
-        public override IService Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
+        public override IService Create(
+            IConfigurationSection configuration,
+            IConfiguration configurationRoot,
+            IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

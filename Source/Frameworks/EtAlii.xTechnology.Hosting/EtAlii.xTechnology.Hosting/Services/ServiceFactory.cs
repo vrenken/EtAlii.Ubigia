@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting
             IModule parentModule,
             IServiceFactory serviceFactory,
             IConfigurationSection serviceConfiguration,
-            IConfigurationRoot configurationRoot,
+            IConfiguration configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             var service = serviceFactory.Create(serviceConfiguration, configurationRoot, configurationDetails);
@@ -30,7 +30,7 @@ namespace EtAlii.xTechnology.Hosting
             IHost host, ISystem system,
             IModule parentModule,
             IConfigurationSection serviceConfiguration,
-            IConfigurationRoot configurationRoot,
+            IConfiguration configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             _instanceCreator.TryCreate<IService>(serviceConfiguration, configurationRoot, configurationDetails, "service", out var service, true);

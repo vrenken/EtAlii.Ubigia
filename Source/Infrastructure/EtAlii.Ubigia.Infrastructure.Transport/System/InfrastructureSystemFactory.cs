@@ -8,7 +8,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class InfrastructureSystemFactory : SystemFactoryBase
     {
-        public override ISystem Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
+        public override ISystem Create(
+            IConfigurationSection configuration,
+            IConfiguration configurationRoot,
+            IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

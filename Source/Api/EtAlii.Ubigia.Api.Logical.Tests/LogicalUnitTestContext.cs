@@ -5,21 +5,25 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using Xunit;
+    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
     public class LogicalUnitTestContext : IAsyncLifetime
     {
-        public IFabricTestContext FabricTestContext { get; private set; }
+        public IFabricTestContext Fabric { get; private set; }
+
+        public IConfiguration ClientConfiguration => Fabric.Transport.Host.ClientConfiguration;
+        public IConfiguration HostConfiguration => Fabric.Transport.Host.HostConfiguration;
 
         public async Task InitializeAsync()
         {
-            FabricTestContext = new FabricTestContextFactory().Create();
-            await FabricTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            Fabric = new FabricTestContextFactory().Create();
+            await Fabric.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await FabricTestContext.Stop().ConfigureAwait(false);
-            FabricTestContext = null;
+            await Fabric.Stop().ConfigureAwait(false);
+            Fabric = null;
         }
     }
 }

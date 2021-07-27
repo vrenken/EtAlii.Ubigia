@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task GraphComposer_Create()
         {
             // Arrange.
-            using var fabric = await _testContext.FabricTestContext.CreateFabricContext(true).ConfigureAwait(false);
+            using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);

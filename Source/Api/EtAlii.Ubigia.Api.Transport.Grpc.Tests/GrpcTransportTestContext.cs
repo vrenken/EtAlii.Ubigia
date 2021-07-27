@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.xTechnology.Hosting;
     using global::Grpc.Net.Client;
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
@@ -26,13 +25,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
         {
             var spaceName = Guid.NewGuid().ToString();
 
-            var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
+            var grpcChannelFactory = new Func<Uri, GrpcChannel>(channelAddress => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestClientConfiguration.Root);
+                .UseTransportDiagnostics(Host.ClientConfiguration);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
@@ -56,13 +55,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
             IContextCorrelator contextCorrelator,
             bool openOnCreation)
         {
-			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
+			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestClientConfiguration.Root);
+                .UseTransportDiagnostics(Host.ClientConfiguration);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             if (openOnCreation)
@@ -77,13 +76,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
             IContextCorrelator contextCorrelator,
             bool openOnCreation = true)
         {
-            var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
+            var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
 				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory, contextCorrelator))
 				.Use(address)
                 .Use(account, password)
-                .UseTransportManagementDiagnostics(TestClientConfiguration.Root);
+                .UseTransportManagementDiagnostics(Host.ClientConfiguration);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {

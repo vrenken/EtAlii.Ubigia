@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_String()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Int()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -101,7 +101,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_True()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -181,7 +181,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Capitals()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -222,7 +222,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_String_And_Bool_False_Camel()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -262,7 +262,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Empty()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location+=Europe",
@@ -300,7 +300,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_Spaced()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -340,7 +340,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -390,7 +390,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -443,7 +443,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Update_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -496,7 +496,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -547,7 +547,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Object_To_Path_And_Clear_Incorrect()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Location += Europe",
@@ -599,7 +599,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -642,7 +642,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -685,7 +685,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -730,7 +730,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Update_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -774,7 +774,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -819,7 +819,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Update_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",

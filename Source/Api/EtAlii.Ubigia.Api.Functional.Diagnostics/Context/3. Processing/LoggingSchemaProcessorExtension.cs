@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        public LoggingSchemaProcessorExtension(IConfigurationRoot configurationRoot)
+        public LoggingSchemaProcessorExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);

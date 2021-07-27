@@ -3,6 +3,7 @@
 namespace EtAlii.xTechnology.Hosting.Tests.Local
 {
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
     using Xunit;
@@ -16,7 +17,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
 
             var configurationBuilder = new ConfigurationBuilder()
-                .AddConfigurationDetails(details);
+                .AddConfigurationDetails(details)
+                .AddConfiguration(DiagnosticsConfiguration.Instance); // For testing we'll override the configured logging et.
 
             // Act.
             var configuration = configurationBuilder.Build();

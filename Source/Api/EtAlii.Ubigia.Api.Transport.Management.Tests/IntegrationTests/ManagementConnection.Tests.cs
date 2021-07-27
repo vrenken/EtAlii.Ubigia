@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open()
         {
-	        var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName, context.TestAccountPassword, false).ConfigureAwait(false);
+	        var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName, host.TestAccountPassword, false).ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
         }
 
@@ -33,8 +33,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Open_Invalid_Password()
         {
 			// Arrange.
-			var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName, context.TestAccountPassword + "BAAD", false).ConfigureAwait(false);
+			var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName, host.TestAccountPassword + "BAAD", false).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
@@ -47,8 +47,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Open_Invalid_Account()
         {
 			// Arrange.
-			var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName + "BAAD", context.TestAccountPassword, false).ConfigureAwait(false);
+			var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName + "BAAD", host.TestAccountPassword, false).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
@@ -61,8 +61,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Open_Invalid_Account_And_Password()
         {
 			// Arrange.
-			var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName + "BAAD", context.TestAccountPassword + "BAAD", false).ConfigureAwait(false);
+			var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName + "BAAD", host.TestAccountPassword + "BAAD", false).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open().ConfigureAwait(false));
@@ -75,8 +75,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Open_Already_Open()
         {
 			// Arrange.
-			var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName, context.TestAccountPassword, false).ConfigureAwait(false);
+			var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName, host.TestAccountPassword, false).ConfigureAwait(false);
             await connection.Open().ConfigureAwait(false);
 
             // Act.
@@ -90,8 +90,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Open_And_Close()
         {
 			// Act.
-			var context = _testContext.TransportTestContext.Context;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.ServiceDetails.ManagementAddress, context.TestAccountName, context.TestAccountPassword, false).ConfigureAwait(false);
+			var host = _testContext.Transport.Host;
+            var connection = await _testContext.Transport.CreateManagementConnection(host.ServiceDetails.ManagementAddress, host.TestAccountName, host.TestAccountPassword, false).ConfigureAwait(false);
 
             // Arrange.
             await connection.Open().ConfigureAwait(false);
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Close()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Close().ConfigureAwait(false));
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_OpenSpace()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_OpenSpace_NonExisting_Space()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_OpenSpace_NonExisting_Space_And_Account()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_OpenSpace_NonExisting_Account()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User).ConfigureAwait(false);

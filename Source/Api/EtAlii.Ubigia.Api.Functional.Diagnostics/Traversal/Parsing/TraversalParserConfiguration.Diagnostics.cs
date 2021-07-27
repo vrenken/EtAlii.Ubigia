@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public static class TraversalParserConfigurationDiagnosticsExtension
     {
-        public static TraversalParserConfiguration UseFunctionalDiagnostics(this TraversalParserConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static TraversalParserConfiguration UseFunctionalDiagnostics(this TraversalParserConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IScriptParserExtension[]
             {

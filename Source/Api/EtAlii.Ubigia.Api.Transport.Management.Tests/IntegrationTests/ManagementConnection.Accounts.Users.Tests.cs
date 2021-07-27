@@ -19,18 +19,18 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public async Task InitializeAsync()
         {
-            await _testContext.TransportTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await _testContext.Transport.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await _testContext.TransportTestContext.Stop().ConfigureAwait(false);
+            await _testContext.Transport.Stop().ConfigureAwait(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Add_Single_User()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Add_Multiple_Users()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_Single_User()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_Multiple_Users()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             for (var i = 0; i < 10; i++)
             {
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_First_User_Full_Add()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var accounts = new List<Account>();
 
@@ -136,7 +136,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Get_No_User()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             // Act.
             var retrievedAccounts = await connection.Accounts
@@ -154,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Get_All_Users()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var accounts = new List<Account>();
 
@@ -188,7 +188,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_User()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -225,7 +225,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_User_Roles_01()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -264,7 +264,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_User_Roles_02()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Delete_User()
         {
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
 
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -340,7 +340,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Delete_Non_Existing_User()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
 
             // Act.
@@ -354,7 +354,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Change_Non_Existing_User()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -370,7 +370,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Add_Already_Existing_User()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection().ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection().ConfigureAwait(false);
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(name, password, AccountTemplate.User).ConfigureAwait(false);
@@ -387,7 +387,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Add_User_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.User))
@@ -401,7 +401,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Get_User_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Get(Guid.NewGuid()))
@@ -415,7 +415,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_Delete_User_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Remove(Guid.NewGuid()))
@@ -429,7 +429,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public async Task ManagementConnection_Accounts_GetAll_Users_With_Closed_Connection()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.GetAll())
@@ -442,8 +442,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Accounts_Change_User_With_Closed_Connection()
         {
+            // TODO: Check these tests.
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(false).ConfigureAwait(false);
+            var connection = await _testContext.Transport.CreateManagementConnection(false).ConfigureAwait(false);
 
             // Act.
             //var act = new Func<Task>(async () => await connection.Accounts.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))

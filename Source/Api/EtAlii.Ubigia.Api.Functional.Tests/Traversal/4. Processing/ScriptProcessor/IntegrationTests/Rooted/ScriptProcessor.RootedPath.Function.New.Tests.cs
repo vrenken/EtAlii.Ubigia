@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_New_Path_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\n<= Person:Doe/John/Visits += new()";
             var script = _parser.Parse(query).Script;
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_New_Path_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new('Vacation')";
             var script = _parser.Parse(query).Script;
             var processor = new TestScriptProcessorFactory().Create(logicalContext);
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_New_Path_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John/Visits\r\nPerson:Doe/John/Visits += new(\"Vacation\")";
             var script = _parser.Parse(query).Script;
             var processor = new TestScriptProcessorFactory().Create(logicalContext);

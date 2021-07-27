@@ -7,6 +7,7 @@ namespace EtAlii.xTechnology.Hosting
 	using System.Collections.ObjectModel;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting.Diagnostics;
     using Microsoft.Extensions.Configuration;
 
@@ -14,6 +15,12 @@ namespace EtAlii.xTechnology.Hosting
 		where THost: class, ITestHost
     {
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
+
+        /// <inheritdoc />
+        public IConfiguration HostConfiguration { get; private set; }
+
+        /// <inheritdoc />
+        public IConfiguration ClientConfiguration { get; private set; }
 
 	    public THost Host { get; private set; }
         protected bool UseInProcessConnection { get; init; }
@@ -56,7 +63,7 @@ namespace EtAlii.xTechnology.Hosting
             try
             {
                 await Task
-                    .Run(async () => await StartInternal(portRange, TestServiceConfiguration.Root).ConfigureAwait(false))
+                    .Run(async () => await StartInternal(portRange).ConfigureAwait(false))
                     .ConfigureAwait(false);
             }
             catch (Exception e)
@@ -74,7 +81,7 @@ namespace EtAlii.xTechnology.Hosting
 		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
 	    }
 
-	    private async Task StartInternal(PortRange portRange, IConfigurationRoot configurationRoot)
+	    private async Task StartInternal(PortRange portRange)
 	    {
 		    var details = await ParseForTesting(_configurationFile, portRange).ConfigureAwait(false);
 		    Folders = details.Folders;
@@ -82,9 +89,13 @@ namespace EtAlii.xTechnology.Hosting
 		    Ports = details.Ports;
 		    Paths = details.Paths;
 
-		    var configurationRoot = new ConfigurationBuilder()
+            var configurationRoot = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
+                .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
 			    .Build();
+
+            // TODO:
+            ClientConfiguration = HostConfiguration = configurationRoot;
 
             var hostConfiguration = new HostConfigurationBuilder()
                 .Build(configurationRoot, details)

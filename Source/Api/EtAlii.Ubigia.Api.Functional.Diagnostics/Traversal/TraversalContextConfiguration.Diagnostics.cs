@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public static class TraversalContextConfigurationDiagnosticsExtension
     {
-        public static TTraversalContextConfiguration UseFunctionalTraversalDiagnostics<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration, IConfigurationRoot configurationRoot, bool alsoUseForDeeperDiagnostics = true)
+        public static TTraversalContextConfiguration UseFunctionalTraversalDiagnostics<TTraversalContextConfiguration>(this TTraversalContextConfiguration configuration, IConfiguration configurationRoot, bool alsoUseForDeeperDiagnostics = true)
             where TTraversalContextConfiguration : FunctionalContextConfiguration
         {
             var extensions = new ITraversalContextExtension[]

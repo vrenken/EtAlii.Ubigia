@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public static class HostConfigurationDiagnosticsExtension
     {
-        public static IHostConfiguration UseHostDiagnostics(this IHostConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static IHostConfiguration UseHostDiagnostics(this IHostConfiguration configuration, IConfiguration configurationRoot)
         {
             return configuration.Use(new DiagnosticsHostExtension(configurationRoot));
         }

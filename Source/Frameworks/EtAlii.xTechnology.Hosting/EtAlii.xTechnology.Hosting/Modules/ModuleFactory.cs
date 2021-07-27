@@ -21,7 +21,7 @@ namespace EtAlii.xTechnology.Hosting
             ISystem system,
             IModule parentModule,
             IConfigurationSection moduleConfiguration,
-            IConfigurationRoot configurationRoot,
+            IConfiguration configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             if(!_instanceCreator.TryCreate<IModule>(moduleConfiguration, configurationRoot, configurationDetails, "module", out var module))

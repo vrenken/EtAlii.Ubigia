@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
     public static class FabricContextConfigurationUseDiagnostics
     {
-        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration, IConfiguration configurationRoot)
         {
             configuration.Use(new IFabricContextExtension[]
             {

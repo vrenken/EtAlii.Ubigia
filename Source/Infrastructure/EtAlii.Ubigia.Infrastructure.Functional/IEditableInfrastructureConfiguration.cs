@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <summary>
         /// Editable access to the configuration root instance for the current application.
         /// </summary>
-        IConfigurationRoot Root { get; set; }
+        IConfiguration Root { get; set; }
 
         /// <summary>
         /// Editable access to the context that provides access to the logical layer of the codebase.

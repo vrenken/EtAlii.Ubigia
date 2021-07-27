@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public static class ProfilingLogicalContextFactoryExtension
     {
-        public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalContextConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalContextConfiguration configuration, IConfiguration configurationRoot)
         {
             configuration.Use(new ILogicalContextExtension[]
             {

@@ -4,17 +4,15 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.Rest;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
-    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Threading;
 
-    public class RestTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
+    public class RestTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
         protected override async Task<IDataConnection> CreateDataConnectionToNewSpace(
             Uri address, string accountName, string accountPassword, bool openOnCreation, IContextCorrelator contextCorrelator, SpaceTemplate spaceTemplate = null)
@@ -22,13 +20,13 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
             var spaceName = Guid.NewGuid().ToString();
 
             //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure)
-            var client = Context.CreateRestInfrastructureClient();
+            var client = Host.CreateRestInfrastructureClient();
 
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(RestTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestClientConfiguration.Root);
+                .UseTransportDiagnostics(Host.ClientConfiguration);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
@@ -47,13 +45,13 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
         protected override async Task<IDataConnection> CreateDataConnectionToExistingSpace(Uri address, string accountName, string accountPassword, string spaceName, IContextCorrelator contextCorrelator, bool openOnCreation)
         {
 			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure)
-	        var client = Context.CreateRestInfrastructureClient();
+	        var client = Host.CreateRestInfrastructureClient();
 
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            .UseTransport(RestTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(TestClientConfiguration.Root);
+                .UseTransportDiagnostics(Host.ClientConfiguration);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             if (openOnCreation)
@@ -65,13 +63,13 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 
         protected override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, IContextCorrelator contextCorrelator, bool openOnCreation = true)
         {
-	        var client = Context.CreateRestInfrastructureClient();
+	        var client = Host.CreateRestInfrastructureClient();
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
 	            .Use(RestStorageTransportProvider.Create(client))
                 .Use(address)
                 .Use(account, password)
-                .UseTransportManagementDiagnostics(TestClientConfiguration.Root);
+                .UseTransportManagementDiagnostics(Host.ClientConfiguration);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {

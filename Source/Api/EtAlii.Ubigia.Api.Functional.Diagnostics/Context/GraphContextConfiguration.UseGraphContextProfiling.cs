@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public static class GraphContextConfigurationUseGraphContextProfiling
     {
-        public static TGraphContextConfiguration UseGraphContextProfiling<TGraphContextConfiguration>(this TGraphContextConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static TGraphContextConfiguration UseGraphContextProfiling<TGraphContextConfiguration>(this TGraphContextConfiguration configuration, IConfiguration configurationRoot)
             where TGraphContextConfiguration : FunctionalContextConfiguration
         {
             configuration.Use(new IGraphContextExtension[]

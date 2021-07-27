@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
-    using EtAlii.xTechnology.Hosting;
 
     public class GraphContextCodeQueriesVariableTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
@@ -31,13 +30,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _configuration = new FunctionalContextConfiguration()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(TestClientConfiguration.Root);
-            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
+                .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
+            await _testContext.Functional.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_configuration);
 
-            await _testContext.FunctionalTestContext.AddPeople(_traversalContext).ConfigureAwait(false);
-            await _testContext.FunctionalTestContext.AddAddresses(_traversalContext).ConfigureAwait(false);
+            await _testContext.Functional.AddPeople(_traversalContext).ConfigureAwait(false);
+            await _testContext.Functional.AddAddresses(_traversalContext).ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
         }

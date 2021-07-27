@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     {
         public static TInfrastructureConfiguration Use<TInfrastructureConfiguration>(
             this TInfrastructureConfiguration configuration,
-            IConfigurationRoot configurationRoot,
+            IConfiguration configurationRoot,
             string name,
             ServiceDetails[] serviceDetails)
             where TInfrastructureConfiguration : InfrastructureConfiguration

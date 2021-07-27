@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var folderName = Guid.NewGuid().ToString();
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();

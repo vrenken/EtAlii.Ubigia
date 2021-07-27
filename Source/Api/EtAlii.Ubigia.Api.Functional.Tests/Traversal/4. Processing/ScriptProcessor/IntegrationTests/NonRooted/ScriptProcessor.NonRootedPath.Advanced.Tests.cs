@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
@@ -39,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
-                .UseFunctionalDiagnostics(TestClientConfiguration.Root)
+                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope)
                 .Use(logicalContext);

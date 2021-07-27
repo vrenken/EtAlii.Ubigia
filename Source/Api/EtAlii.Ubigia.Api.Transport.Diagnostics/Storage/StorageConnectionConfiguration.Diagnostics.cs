@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     public static class StorageConnectionConfigurationDiagnosticsExtension
     {
-        public static IStorageConnectionConfiguration UseTransportDiagnostics(this IStorageConnectionConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static IStorageConnectionConfiguration UseTransportDiagnostics(this IStorageConnectionConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new IStorageConnectionExtension[]
             {

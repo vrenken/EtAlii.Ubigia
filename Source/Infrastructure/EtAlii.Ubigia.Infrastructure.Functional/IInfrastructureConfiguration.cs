@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <summary>
         /// The configuration root instance for the current application.
         /// </summary>
-        IConfigurationRoot Root { get; }
+        IConfiguration Root { get; }
 
         /// <summary>
         /// The context that provides access to the logical layer of the codebase.

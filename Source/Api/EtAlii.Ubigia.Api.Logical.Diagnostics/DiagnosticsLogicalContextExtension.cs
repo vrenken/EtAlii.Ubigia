@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal DiagnosticsLogicalContextExtension(IConfigurationRoot configurationRoot)
+        internal DiagnosticsLogicalContextExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);

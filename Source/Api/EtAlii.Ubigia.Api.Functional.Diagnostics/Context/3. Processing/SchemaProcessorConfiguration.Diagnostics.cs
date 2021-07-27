@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public static class SchemaProcessorConfigurationDiagnosticsExtension
     {
-        public static SchemaProcessorConfiguration UseFunctionalDiagnostics(this SchemaProcessorConfiguration configuration, IConfigurationRoot configurationRoot)
+        public static SchemaProcessorConfiguration UseFunctionalDiagnostics(this SchemaProcessorConfiguration configuration, IConfiguration configurationRoot)
         {
             var extensions = new ISchemaProcessorExtension[]
             {

@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly DiagnosticsConfigurationSection _configuration;
 
-        internal LoggingTraversalContextExtension(IConfigurationRoot configurationRoot)
+        internal LoggingTraversalContextExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
             configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);

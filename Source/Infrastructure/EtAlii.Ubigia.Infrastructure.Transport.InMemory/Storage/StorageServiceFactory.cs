@@ -11,7 +11,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 
     public class StorageServiceFactory : ServiceFactoryBase
     {
-        public override IService Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
+        public override IService Create(
+            IConfigurationSection configuration,
+            IConfiguration configurationRoot,
+            IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 
