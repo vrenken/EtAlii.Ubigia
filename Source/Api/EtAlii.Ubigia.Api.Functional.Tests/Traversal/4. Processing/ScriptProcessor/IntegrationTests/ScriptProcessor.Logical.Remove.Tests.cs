@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
             var removeScript = _parser.Parse("/Person/LastName -= SurName").Script;
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName", "SurName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -117,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
             var lastSequence = await processor.Process(selectScript);
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 

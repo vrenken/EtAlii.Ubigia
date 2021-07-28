@@ -140,7 +140,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\RootHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptProcessorFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\__TestScriptProcessorFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalParserConfiguration.UseTestParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalProcessorConfiguration.UseTestProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalUnitTestContext.cs" />

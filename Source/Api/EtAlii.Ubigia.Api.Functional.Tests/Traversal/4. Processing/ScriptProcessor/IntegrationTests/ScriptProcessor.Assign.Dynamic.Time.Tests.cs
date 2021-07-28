@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -174,7 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -222,7 +222,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -270,7 +270,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var scope = new ScriptScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

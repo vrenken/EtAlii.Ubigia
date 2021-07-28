@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:time <= Time";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:specialtime <= Time";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:projects <= Object";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);

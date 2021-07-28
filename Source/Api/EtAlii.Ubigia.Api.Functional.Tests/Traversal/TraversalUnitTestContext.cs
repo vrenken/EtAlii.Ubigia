@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
@@ -35,6 +36,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             await Logical.Stop().ConfigureAwait(false);
             Logical = null;
+        }
+
+        public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, ScriptScope scope = null)
+        {
+            scope ??= new ScriptScope();
+            var configuration = new TraversalProcessorConfiguration()
+                .UseFunctionalDiagnostics(ClientConfiguration)
+                .UseTestProcessor()
+                .Use(logicalContext)
+                .Use(scope);
+            return new ScriptProcessorFactory().Create(configuration);
         }
     }
 }

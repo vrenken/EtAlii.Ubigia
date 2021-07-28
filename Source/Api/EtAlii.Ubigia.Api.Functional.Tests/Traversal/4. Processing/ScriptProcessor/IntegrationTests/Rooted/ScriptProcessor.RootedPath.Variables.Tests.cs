@@ -16,7 +16,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await _testContext
+                .Start(UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
 
             _parser = new TestScriptParserFactory().Create();
         }

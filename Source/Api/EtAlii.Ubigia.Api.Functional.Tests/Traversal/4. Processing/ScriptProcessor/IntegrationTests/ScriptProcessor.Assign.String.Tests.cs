@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);

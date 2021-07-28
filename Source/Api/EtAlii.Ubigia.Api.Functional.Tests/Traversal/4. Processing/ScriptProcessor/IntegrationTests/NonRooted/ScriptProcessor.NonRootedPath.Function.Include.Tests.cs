@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "<= include(\\02) <= /time/\"2017-02-20 20:06:02.123\"";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02\\06/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -111,7 +111,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\02\\*/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -140,7 +140,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "<= include(\\*\\*/*) <= /time/\"2017-02-20 20:06:02.123\""
             };
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(script);

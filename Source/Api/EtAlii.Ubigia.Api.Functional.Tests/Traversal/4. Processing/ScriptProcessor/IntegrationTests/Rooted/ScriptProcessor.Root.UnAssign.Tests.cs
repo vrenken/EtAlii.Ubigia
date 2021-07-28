@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:time <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
             const string arrangeQuery = "root:time <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:specialtime <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
             const string arrangeQuery = "root:specialtime <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             const string query = "root:projects <= ";
             var script = _parser.Parse(query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
             const string arrangeQuery = "root:projects <= Object";
             var arrangeScript = _parser.Parse(arrangeQuery).Script;
             var lastSequence = await processor.Process(arrangeScript);
