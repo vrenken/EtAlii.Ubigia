@@ -4,16 +4,22 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
     using Xunit;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
 
-    public class LogicalContextTests
+    public class LogicalContextTests : IClassFixture<LogicalUnitTestContext>
     {
+        private readonly LogicalUnitTestContext _testContext;
+
+        public LogicalContextTests(LogicalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void LogicalContext_Create()
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);
@@ -27,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
 
             // Act.
             using var context = new LogicalContextFactory().Create(configuration);
@@ -41,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(TestClientConfiguration.Root);
+                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);

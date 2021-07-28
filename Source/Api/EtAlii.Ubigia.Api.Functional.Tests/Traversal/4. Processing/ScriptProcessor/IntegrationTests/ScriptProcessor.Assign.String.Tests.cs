@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public ScriptProcessorAssignStringUnitTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope);
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
             var lastSequence = await processor.Process(script);

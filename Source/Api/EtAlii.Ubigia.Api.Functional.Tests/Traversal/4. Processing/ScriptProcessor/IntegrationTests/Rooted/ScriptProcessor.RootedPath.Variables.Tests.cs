@@ -4,38 +4,39 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
-    using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private ILogicalTestContext _testContext;
+        private TraversalUnitTestContext _testContext;
 
         public async Task InitializeAsync()
         {
-            _testContext = new LogicalTestContextFactory().Create();
+            _testContext = new TraversalUnitTestContext();
             await _testContext
-                .Start(UnitTestSettings.NetworkPortRange)
+                .InitializeAsync()
                 .ConfigureAwait(false);
 
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
         }
 
         public async Task DisposeAsync()
         {
-            _parser = null;
-
-            await _testContext.Stop().ConfigureAwait(false);
+            await _testContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
             _testContext = null;
+            _parser = null;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "Person: += Doe",
@@ -52,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             scriptScope.Variables.Add("lastName", new ScopeVariable("Doe", null));
             scriptScope.Variables.Add("firstName", new ScopeVariable("John", null));
 
-            var processor = new TestScriptProcessorFactory().Create(logicalContext, scriptScope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scriptScope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

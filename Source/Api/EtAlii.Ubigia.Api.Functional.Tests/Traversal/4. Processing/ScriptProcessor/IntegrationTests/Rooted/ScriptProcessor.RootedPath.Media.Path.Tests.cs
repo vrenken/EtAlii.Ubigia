@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public ScriptProcessorRootedPathMediaPathTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
         }
 
         [Fact(Skip="No root handlers registered yet")]

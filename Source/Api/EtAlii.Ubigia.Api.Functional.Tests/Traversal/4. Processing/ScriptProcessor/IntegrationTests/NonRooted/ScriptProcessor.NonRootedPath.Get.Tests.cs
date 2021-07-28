@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public ScriptProcessorNonRootedPathGetTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

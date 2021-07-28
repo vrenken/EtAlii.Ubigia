@@ -4,15 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
 
-    public class ScriptParserFunctionRenameTests : IDisposable
+    public class ScriptParserFunctionRenameTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
 
-        public ScriptParserFunctionRenameTests()
+        public ScriptParserFunctionRenameTests(TraversalUnitTestContext testContext)
         {
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
         }
 
         public void Dispose()

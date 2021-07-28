@@ -6,13 +6,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Linq;
     using Xunit;
 
-    public class SequenceExecutionPlannerTests : IDisposable
+    public class SequenceExecutionPlannerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
 
-        public SequenceExecutionPlannerTests()
+        public SequenceExecutionPlannerTests(TraversalUnitTestContext testContext)
         {
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
         }
 
         public void Dispose()

@@ -6,36 +6,39 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
-    using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
     public class ScriptProcessorNonRootedPathAdvancedTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private ILogicalTestContext _testContext;
+        private TraversalUnitTestContext _testContext;
 
         public async Task InitializeAsync()
         {
-            _testContext = new LogicalTestContextFactory().Create();
-            await _testContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            _testContext = new TraversalUnitTestContext();
+            await _testContext
+                .InitializeAsync()
+                .ConfigureAwait(false);
 
-            _parser = new TestScriptParserFactory().Create();
+            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
         }
 
         public async Task DisposeAsync()
         {
-            _parser = null;
-
-            await _testContext.Stop().ConfigureAwait(false);
+            await _testContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
             _testContext = null;
+            _parser = null;
         }
 
         [Fact]
         public async Task ScriptProcessor_NonRootedPath_Advanced_Create()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var scope = new ScriptScope();
             var configuration = new TraversalProcessorConfiguration()
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
@@ -44,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .Use(logicalContext);
 
             // Act.
-            var processor = new TestScriptProcessorFactory().Create(configuration);
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
 
             // Assert.
@@ -56,7 +59,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Should_Not_Clear_Children()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -71,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
             var assignScript = _parser.Parse(assignQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -95,7 +100,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_01()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -110,7 +117,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -130,7 +137,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_02()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -145,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -170,7 +179,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_03()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -186,7 +197,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -210,7 +221,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_To_Variable_And_Then_ReUse_04()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -226,7 +239,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
             var select2Script = _parser.Parse(select2Query).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -250,7 +263,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Special_Characters()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new[]
             {
                 "/Person+=Doe/\"Jöhn\"",
@@ -265,7 +280,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -287,7 +302,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQuery1 = "/Person += Doe";
             var addQueries2 = new[]
             {
@@ -303,7 +320,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addScript2 = _parser.Parse(addQuery2).Script;
             var assignScript = _parser.Parse(assignQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript1);
@@ -332,7 +349,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Move_Child()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries1 = new []
             {
               "/Person += Doe",
@@ -363,7 +382,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectScript1 = _parser.Parse(selectQuery1).Script;
             var selectScript2 = _parser.Parse(selectQuery2).Script;
             var moveScript = _parser.Parse(moveQuery).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript1);
@@ -401,7 +420,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new []
             {
                 "/Person+=Doe/John",
@@ -448,7 +469,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
             var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
             var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
@@ -518,7 +539,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
-            using var logicalContext = await _testContext.CreateLogicalContext(true).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
             var addQueries = new []
             {
                 "/Person+=Doe/John",
@@ -564,7 +587,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
             var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
             var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
-            var processor = new TestScriptProcessorFactory().Create(logicalContext);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
             var lastSequence = await processor.Process(addScript);
