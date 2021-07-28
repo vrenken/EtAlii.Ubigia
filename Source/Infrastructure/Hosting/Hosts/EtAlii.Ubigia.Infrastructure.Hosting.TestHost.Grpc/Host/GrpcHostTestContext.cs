@@ -10,11 +10,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
 	public class GrpcHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>
     {
-	    protected GrpcHostTestContext()
-		    : base("settings.json")
-	    {
-	    }
-
 	    public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);

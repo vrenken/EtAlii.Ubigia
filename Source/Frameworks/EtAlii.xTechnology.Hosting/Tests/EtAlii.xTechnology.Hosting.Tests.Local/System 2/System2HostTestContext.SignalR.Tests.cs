@@ -13,7 +13,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextSignalR_User_Api_GetSimple()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
+            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantSignalR, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextSignalR_User_Api_GetIncorrect_01()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
+            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantSignalR, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
@@ -47,7 +47,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextSignalR_User_Api_GetIncorrect_02()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
+            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantSignalR, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];
@@ -63,7 +63,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
         public async Task System2HostTestContextSignalR_User_Api_GetComplex()
         {
             // Arrange.
-            var context = new HostTestContext(ConfigurationFiles.Systems2VariantSignalR);
+            var context = new HostTestContext(ConfigurationFiles.HostSettingsSystems2VariantSignalR, ConfigurationFiles.ClientSettings);
             await context.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
             var port = context.Ports[TestPort.SignalRUserApi];
             var path = context.Paths[TestPath.SignalRUserApi];

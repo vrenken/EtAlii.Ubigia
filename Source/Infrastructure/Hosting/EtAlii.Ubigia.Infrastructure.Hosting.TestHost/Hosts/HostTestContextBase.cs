@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
 
         public string HostName => Infrastructure?.Configuration?.Name;
 
-        protected HostTestContextBase(string configurationFile) : base(configurationFile)
+        protected HostTestContextBase() : base("HostSettings.json", "ClientSettings.json")
         {
         }
     }

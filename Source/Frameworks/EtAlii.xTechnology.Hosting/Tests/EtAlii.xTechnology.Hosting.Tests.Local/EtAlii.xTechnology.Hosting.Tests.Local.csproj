@@ -4,19 +4,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="System 1\settings_variant_1.json">
+    <Content Include="ClientSettings.json">
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <Pack>true</Pack>
+      <BuildAction>Content</BuildAction>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="System 1\settings_variant_2.json">
+    <Content Include="System 1\HostSettingsVariant1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="System 2\settings_variant_grpc.json">
+    <Content Include="System 1\HostSettingsVariant2.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="System 2\settings_variant_rest.json">
+    <Content Include="System 2\HostSettingsGrpc.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="System 2\settings_variant_signalr.json">
+    <Content Include="System 2\HostSettingsRest.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System 2\HostSettingsSignalr.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Remove="settings_systems_1_variant_1.json" />

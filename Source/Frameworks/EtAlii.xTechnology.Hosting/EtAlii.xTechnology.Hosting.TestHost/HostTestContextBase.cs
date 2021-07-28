@@ -25,18 +25,20 @@ namespace EtAlii.xTechnology.Hosting
 	    public THost Host { get; private set; }
         protected bool UseInProcessConnection { get; init; }
 
-	    private readonly string _configurationFile;
+	    private readonly string _hostConfigurationFile;
+        private readonly string _clientConfigurationFile;
 
-	    public ReadOnlyDictionary<string, string> Folders { get; private set; }
+        public ReadOnlyDictionary<string, string> Folders { get; private set; }
 	    public ReadOnlyDictionary<string, string> Hosts { get; private set; }
 	    public ReadOnlyDictionary<string, int> Ports { get; private set; }
 	    public ReadOnlyDictionary<string, string> Paths { get; private set; }
 
-	    protected HostTestContextBase(string configurationFile)
+	    protected HostTestContextBase(string hostConfigurationFile, string clientConfigurationFile)
 	    {
-		    _configurationFile = configurationFile;
+		    _hostConfigurationFile = hostConfigurationFile;
+            _clientConfigurationFile = clientConfigurationFile;
 
-		    Folders = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
+            Folders = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 		    Hosts = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
 		    Ports = new ReadOnlyDictionary<string, int>(new Dictionary<string, int>());
 		    Paths = new ReadOnlyDictionary<string, string>(new Dictionary<string, string>());
@@ -83,23 +85,28 @@ namespace EtAlii.xTechnology.Hosting
 
 	    private async Task StartInternal(PortRange portRange)
 	    {
-		    var details = await ParseForTesting(_configurationFile, portRange).ConfigureAwait(false);
+            // As we're testing with both a hosting environment and clients in the same process we need to use distinct configuration roots.
+
+		    var details = await ParseForTesting(_hostConfigurationFile, portRange).ConfigureAwait(false);
 		    Folders = details.Folders;
 		    Hosts = details.Hosts;
 		    Ports = details.Ports;
 		    Paths = details.Paths;
 
-            var configurationRoot = new ConfigurationBuilder()
+            var hostConfigurationRoot = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
                 .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
 			    .Build();
-
-            // TODO:
-            ClientConfiguration = HostConfiguration = configurationRoot;
-
+            HostConfiguration = hostConfigurationRoot;
             var hostConfiguration = new HostConfigurationBuilder()
-                .Build(configurationRoot, details)
-                .UseHostDiagnostics(configurationRoot);
+                .Build(hostConfigurationRoot, details)
+                .UseHostDiagnostics(hostConfigurationRoot);
+
+            var clientConfigurationRoot = new ConfigurationBuilder()
+                .AddJsonFile(_clientConfigurationFile)
+                .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
+                .Build();
+            ClientConfiguration = clientConfigurationRoot;
 
 		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);
 

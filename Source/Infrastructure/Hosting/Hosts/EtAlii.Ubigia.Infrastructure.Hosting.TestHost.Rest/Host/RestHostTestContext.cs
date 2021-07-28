@@ -12,11 +12,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Rest
 
 	public class RestHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
-	    protected RestHostTestContext()
-		    : base("settings.json")
-	    {
-	    }
-
         public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
