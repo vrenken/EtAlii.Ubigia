@@ -1,0 +1,11 @@
+﻿{
+    "Api": {
+        "Logical": {
+            "Diagnostics": {
+                "InjectProfiling": true,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        }
+    }
+}

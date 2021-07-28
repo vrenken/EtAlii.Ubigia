@@ -37,4 +37,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)_Model\LocationAddResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)_Model\TimeAddResult.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)LogicalProfilingSettings.json" />
+  </ItemGroup>
 </Project>

@@ -414,6 +414,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             //Assert.Equal(null, result2.Code)
             Assert.Equal(((Node)result1).Id, ((Node)result2).Id);
         }
-
     }
 }

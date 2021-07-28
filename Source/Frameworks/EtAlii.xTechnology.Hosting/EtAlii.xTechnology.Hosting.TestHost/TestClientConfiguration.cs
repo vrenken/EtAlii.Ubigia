@@ -2,7 +2,7 @@ namespace EtAlii.xTechnology.Hosting
 {
     using Microsoft.Extensions.Configuration;
 
-    public class TestClientConfiguration
+    public static class TestClientConfiguration
     {
         public static IConfigurationRoot Root { get; private set; }
 

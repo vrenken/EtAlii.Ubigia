@@ -83,6 +83,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Locations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic.Time.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.Dynamic2.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Assign.String.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Function.Id.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Logical.Remove.Tests.cs" />
@@ -92,9 +93,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Time.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Typed.Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\ScopeVariable.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.Dynamic.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.Object.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.String.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\_Model\TestRootHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />

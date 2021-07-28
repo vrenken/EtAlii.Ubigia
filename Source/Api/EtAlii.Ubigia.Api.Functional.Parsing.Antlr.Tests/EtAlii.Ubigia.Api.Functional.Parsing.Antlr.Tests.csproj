@@ -4,7 +4,7 @@
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Parsing.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Antlr\EtAlii.Ubigia.Api.Functional.Antlr.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
   </ItemGroup>

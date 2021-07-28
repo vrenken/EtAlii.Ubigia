@@ -92,7 +92,6 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             return result;
         }
 
-
         #region start/stop
 
         public async Task Start(PortRange portRange)
