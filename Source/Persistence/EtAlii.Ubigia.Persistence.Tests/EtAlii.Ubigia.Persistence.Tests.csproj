@@ -18,4 +18,13 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="HostSettings.json">
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <Pack>true</Pack>
+      <BuildAction>Content</BuildAction>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

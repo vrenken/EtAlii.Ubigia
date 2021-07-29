@@ -2,24 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
-    using System;
-    using EtAlii.Ubigia.Tests;
+    using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.xTechnology.Hosting;
 
-    public abstract class InMemoryStorageTestBase : IDisposable
+    public abstract class InMemoryStorageTestBase : StorageTestBase
     {
         protected InMemoryStorage Storage { get; private set; }
 
-        protected TestContentFactory TestContentFactory { get; }
-        protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        protected TestPropertiesFactory TestPropertiesFactory { get; }
-
         protected InMemoryStorageTestBase()
         {
-            TestContentFactory = new TestContentFactory();
-            TestContentDefinitionFactory = new TestContentDefinitionFactory();
-            TestPropertiesFactory = new TestPropertiesFactory();
-
             Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
@@ -29,24 +20,13 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             }
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             // Cleanup
             if (disposing)
             {
                 Storage = null;
             }
-        }
-
-        ~InMemoryStorageTestBase()
-        {
-            Dispose(false);
         }
 
         private InMemoryStorage CreateStorage()

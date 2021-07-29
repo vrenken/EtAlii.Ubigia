@@ -3,21 +3,12 @@
 namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
-    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
 
     public abstract class NetCoreAppStorageTestBase : FileSystemStorageTestBase
     {
-        protected TestContentFactory TestContentFactory { get; }
-        protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        protected TestPropertiesFactory TestPropertiesFactory { get; }
-
         protected NetCoreAppStorageTestBase()
         {
-            TestContentFactory = new TestContentFactory();
-            TestContentDefinitionFactory = new TestContentDefinitionFactory();
-            TestPropertiesFactory = new TestPropertiesFactory();
-
             Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;

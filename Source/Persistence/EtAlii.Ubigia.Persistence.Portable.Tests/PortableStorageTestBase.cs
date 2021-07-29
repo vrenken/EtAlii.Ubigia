@@ -3,23 +3,15 @@
 namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
-    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
     using PCLStorage;
 
     public abstract class PortableStorageTestBase : FileSystemStorageTestBase
     {
-        protected TestContentFactory TestContentFactory { get; }
-        protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        protected TestPropertiesFactory TestPropertiesFactory { get; }
-        protected IFolder StorageFolder { get; private set; }
+        protected IFolder StorageFolder { get; }
 
         protected PortableStorageTestBase()
         {
-            TestContentFactory = new TestContentFactory();
-            TestContentDefinitionFactory = new TestContentDefinitionFactory();
-            TestPropertiesFactory = new TestPropertiesFactory();
-
             StorageFolder = new FileSystemFolder(RootFolder, false);
 
             Storage = CreateStorage();

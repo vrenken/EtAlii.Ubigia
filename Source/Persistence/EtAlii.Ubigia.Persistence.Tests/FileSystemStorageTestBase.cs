@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.IO;
 
     //you have to label the class with this or it is never scanned for methods
-    public abstract class FileSystemStorageTestBase : IDisposable
+    public abstract class FileSystemStorageTestBase : StorageTestBase
     {
         protected IStorage Storage { get; set; }
 
@@ -18,13 +18,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             AppDomain.CurrentDomain.ProcessExit += (_,_) => DeleteTestData();
         }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             // Cleanup
             if (disposing)
