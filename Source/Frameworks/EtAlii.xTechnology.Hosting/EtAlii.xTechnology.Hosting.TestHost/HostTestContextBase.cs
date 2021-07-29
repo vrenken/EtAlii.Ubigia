@@ -74,20 +74,13 @@ namespace EtAlii.xTechnology.Hosting
             }
         }
 
-	    /// <summary>
-	    /// Override this method to implement a custom parsing from the configuration file into a ConfigurationDetails instance.
-	    /// </summary>
-	    /// <returns></returns>
-	    private async Task<ConfigurationDetails> ParseForTesting(string configurationFile, PortRange portRange)
-	    {
-		    return await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
-	    }
-
 	    private async Task StartInternal(PortRange portRange)
 	    {
             // As we're testing with both a hosting environment and clients in the same process we need to use distinct configuration roots.
 
-		    var details = await ParseForTesting(_hostConfigurationFile, portRange).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting(_hostConfigurationFile, portRange)
+                .ConfigureAwait(false);
 		    Folders = details.Folders;
 		    Hosts = details.Hosts;
 		    Ports = details.Ports;
