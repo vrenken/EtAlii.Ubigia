@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using PCLStorage;
     using Xunit;
 
-    public class PortablePathBuilderTests : PortableStorageTestBase
+    public class PortablePathBuilderTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortablePathBuilder_GetFileNameWithoutExtension()

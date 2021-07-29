@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class ContentPartTests : NtfsStorageTestBase
+    public class ContentPartTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ContentPart_Store()

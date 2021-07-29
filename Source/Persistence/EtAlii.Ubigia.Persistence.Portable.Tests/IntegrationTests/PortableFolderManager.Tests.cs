@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class PortableFolderManagerTests : PortableStorageTestBase
+    public class PortableFolderManagerTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortableFolderManager_Exists()

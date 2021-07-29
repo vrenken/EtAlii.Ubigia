@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class ContentDefinitionTests : PortableStorageTestBase
+    public class ContentDefinitionTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ContentDefinition_Store()

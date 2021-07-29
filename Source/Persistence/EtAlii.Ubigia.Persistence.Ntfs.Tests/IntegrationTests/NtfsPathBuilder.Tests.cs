@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class NtfsPathBuilderTests : NtfsStorageTestBase
+    public class NtfsPathBuilderTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NtfsPathBuilder_GetFileNameWithoutExtension()

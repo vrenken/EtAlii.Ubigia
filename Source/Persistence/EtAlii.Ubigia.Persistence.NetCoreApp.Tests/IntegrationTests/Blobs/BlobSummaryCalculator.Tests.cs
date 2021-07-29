@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class BlobSummaryCalculatorTests : NetCoreAppStorageTestBase
+    public class BlobSummaryCalculatorTests : NetCoreAppStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void BlobSummaryCalculator_Create()

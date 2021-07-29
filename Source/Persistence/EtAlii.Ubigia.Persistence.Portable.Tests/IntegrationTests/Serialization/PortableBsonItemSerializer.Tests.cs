@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 
-    public class PortableBsonItemSerializerTests : PortableStorageTestBase
+    public class PortableBsonItemSerializerTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortableBsonItemSerializer_Create()

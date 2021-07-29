@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <ProjectGuid>E7B1B670-4330-4C31-AA35-BCCB92C40FED</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

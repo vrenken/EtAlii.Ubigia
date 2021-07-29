@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class PortableItemStorageTests : PortableStorageTestBase
+    public class PortableItemStorageTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PortableItemStorage_Store_SimpleTestItem()

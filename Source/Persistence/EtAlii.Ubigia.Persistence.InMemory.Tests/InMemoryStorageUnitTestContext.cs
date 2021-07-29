@@ -1,13 +1,15 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
+namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.xTechnology.Hosting;
 
-    public abstract class NetCoreAppStorageTestBase : FileSystemStorageTestBase
+    public sealed class InMemoryStorageUnitTestContext : StorageUnitTestContextBase
     {
-        protected NetCoreAppStorageTestBase()
+        public InMemoryStorage Storage { get; private set; }
+
+        public InMemoryStorageUnitTestContext()
         {
             Storage = CreateStorage();
 
@@ -18,14 +20,23 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
             }
         }
 
-        private IStorage CreateStorage()
+        protected override void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                Storage = null;
+            }
+        }
+
+        private InMemoryStorage CreateStorage()
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .UseStorageDiagnostics(TestServiceConfiguration.Root)
-                .UseNetCoreAppStorage(RootFolder);
+                .UseInMemoryStorage();
 
-            return new StorageFactory().Create(configuration);
+            return (InMemoryStorage)new StorageFactory().Create(configuration);
         }
     }
 }

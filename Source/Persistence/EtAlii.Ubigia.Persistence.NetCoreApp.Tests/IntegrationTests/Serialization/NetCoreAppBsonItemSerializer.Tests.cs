@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 
-    public class NetCoreAppBsonItemSerializerTests : NetCoreAppStorageTestBase
+    public class NetCoreAppBsonItemSerializerTests : NetCoreAppStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NetCoreAppBsonItemSerializer_Create()

@@ -7,17 +7,29 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class ContentDefinitionPartTests : InMemoryStorageTestBase
+    public class ContentDefinitionPartTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public ContentDefinitionPartTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact]
         public void ContentDefinitionPart_Store()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = TestContentFactory.CreatePart();
+            var contentDefinitionPart = _testContext.TestContentFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinitionPart);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
 
             // Assert.
         }
@@ -27,11 +39,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
+            var retrievedContentDefinitionPart = await _testContext.Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Id, retrievedContentDefinitionPart.Id);
@@ -42,11 +54,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
+            var retrievedContentDefinitionPart = await _testContext.Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Size, retrievedContentDefinitionPart.Size);
@@ -57,11 +69,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinitionPart);
-            var retrievedContentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
+            var retrievedContentDefinitionPart = await _testContext.Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, contentDefinitionPart.Id).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinitionPart.Checksum, retrievedContentDefinitionPart.Checksum);
@@ -72,12 +84,12 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentDefinitionFactory.CreatePart();
-            var second = TestContentDefinitionFactory.CreatePart();
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentDefinitionFactory.CreatePart();
+            var second = _testContext.TestContentDefinitionFactory.CreatePart();
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
-            Storage.Blobs.Store(containerId, second);
+            _testContext.Storage.Blobs.Store(containerId, second);
 
             // Assert.
         }
@@ -87,14 +99,14 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentDefinitionFactory.CreatePart();
-            var second = TestContentDefinitionFactory.CreatePart(first.Id);
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentDefinitionFactory.CreatePart();
+            var second = _testContext.TestContentDefinitionFactory.CreatePart(first.Id);
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.Blobs.Store(containerId, second);
+                _testContext.Storage.Blobs.Store(containerId, second);
             });
 
             // Assert.
@@ -106,7 +118,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
-            var contentDefinitionPart = await Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, 1000).ConfigureAwait(false);
+            var contentDefinitionPart = await _testContext.Storage.Blobs.Retrieve<ContentDefinitionPart>(containerId, 1000).ConfigureAwait(false);
             Assert.Null(contentDefinitionPart);
         }
     }

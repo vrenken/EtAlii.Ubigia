@@ -8,8 +8,20 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 
-    public class InMemoryBsonItemSerializerTests : InMemoryStorageTestBase
+    public class InMemoryBsonItemSerializerTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public InMemoryBsonItemSerializerTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact]
         public void InMemoryBsonItemSerializer_Create()
         {
@@ -34,18 +46,18 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var serializer = new Serializer();
             var itemSerializer = new BsonItemSerializer(serializer);
             var propertiesSerializer = new BsonPropertiesSerializer(serializer);
-            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, _testContext.Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
             var testItem = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
             storageSerializer.Serialize(fileName, testItem);
-            if (Storage.InMemoryItems.Exists(fileName))
+            if (_testContext.Storage.InMemoryItems.Exists(fileName))
             {
-                Storage.InMemoryItems.Delete(fileName);
+                _testContext.Storage.InMemoryItems.Delete(fileName);
             }
 
             // Assert.
@@ -58,19 +70,21 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var serializer = new Serializer();
             var itemSerializer = new BsonItemSerializer(serializer);
             var propertiesSerializer = new BsonPropertiesSerializer(serializer);
-            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, _testContext.Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
             var testItem = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
             storageSerializer.Serialize(fileName, testItem);
-            var retrievedTestItem = await storageSerializer.Deserialize<SimpleTestItem>(fileName).ConfigureAwait(false);
-            if (Storage.InMemoryItems.Exists(fileName))
+            var retrievedTestItem = await storageSerializer
+                .Deserialize<SimpleTestItem>(fileName)
+                .ConfigureAwait(false);
+            if (_testContext.Storage.InMemoryItems.Exists(fileName))
             {
-                Storage.InMemoryItems.Delete(fileName);
+                _testContext.Storage.InMemoryItems.Delete(fileName);
             }
 
             // Assert.
@@ -88,18 +102,18 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var serializer = new Serializer();
             var itemSerializer = new BsonItemSerializer(serializer);
             var propertiesSerializer = new BsonPropertiesSerializer(serializer);
-            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, _testContext.Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var testProperties = TestPropertiesFactory.CreateSimple();
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var testProperties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, testProperties);
-            if (Storage.InMemoryItems.Exists(fileName))
+            if (_testContext.Storage.InMemoryItems.Exists(fileName))
             {
-                Storage.InMemoryItems.Delete(fileName);
+                _testContext.Storage.InMemoryItems.Delete(fileName);
             }
 
             // Assert.
@@ -112,19 +126,19 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var serializer = new Serializer();
             var itemSerializer = new BsonItemSerializer(serializer);
             var propertiesSerializer = new BsonPropertiesSerializer(serializer);
-            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, Storage.InMemoryItemsHelper);
+            var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, _testContext.Storage.InMemoryItemsHelper);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var testProperties = TestPropertiesFactory.CreateSimple();
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var testProperties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, testProperties);
             var retrievedTestProperties = storageSerializer.Deserialize(fileName);
-            if (Storage.InMemoryItems.Exists(fileName))
+            if (_testContext.Storage.InMemoryItems.Exists(fileName))
             {
-                Storage.InMemoryItems.Delete(fileName);
+                _testContext.Storage.InMemoryItems.Delete(fileName);
             }
 
             // Assert.

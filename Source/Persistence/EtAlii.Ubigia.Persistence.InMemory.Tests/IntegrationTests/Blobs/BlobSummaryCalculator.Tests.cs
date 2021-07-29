@@ -2,19 +2,28 @@
 
 namespace EtAlii.Ubigia.Persistence.InMemory.Tests
 {
+    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class BlobSummaryCalculatorTests : InMemoryStorageTestBase
+    public sealed class BlobSummaryCalculatorTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public BlobSummaryCalculatorTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose() => _testContext?.Dispose();
+
         [Fact]
         public void BlobSummaryCalculator_Create()
         {
             // Arrange.
 
             // Act.
-            var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
+            var blobSummaryCalculator = new BlobSummaryCalculator(_testContext.Storage.PathBuilder, _testContext.Storage.FileManager);
 
             // Assert.
             Assert.NotNull(blobSummaryCalculator);
@@ -25,10 +34,10 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = TestContentFactory.Create();
-            var blobStorer = new BlobStorer(Storage.FolderManager, Storage.PathBuilder);
+            var content = _testContext.TestContentFactory.Create();
+            var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
-            var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
+            var blobSummaryCalculator = new BlobSummaryCalculator(_testContext.Storage.PathBuilder, _testContext.Storage.FileManager);
 
             // Act.
             var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);
@@ -42,16 +51,16 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = TestContentFactory.Create();
-            var contentParts = TestContentFactory.CreateParts(content.TotalParts);
-            var blobStorer = new BlobStorer(Storage.FolderManager, Storage.PathBuilder);
+            var content = _testContext.TestContentFactory.Create();
+            var contentParts = _testContext.TestContentFactory.CreateParts(content.TotalParts);
+            var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
-            var blobPartStorer = new BlobPartStorer(Storage.FolderManager, Storage.PathBuilder);
+            var blobPartStorer = new BlobPartStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             foreach (var blobPart in contentParts)
             {
                 blobPartStorer.Store(containerId, blobPart);
             }
-            var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
+            var blobSummaryCalculator = new BlobSummaryCalculator(_testContext.Storage.PathBuilder, _testContext.Storage.FileManager);
 
             // Act.
             var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);
@@ -73,18 +82,18 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = TestContentFactory.Create();
-            var contentParts = TestContentFactory.CreateParts(content.TotalParts);
-            var blobStorer = new BlobStorer(Storage.FolderManager, Storage.PathBuilder);
+            var content = _testContext.TestContentFactory.Create();
+            var contentParts = _testContext.TestContentFactory.CreateParts(content.TotalParts);
+            var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
             contentParts.RemoveAt(4);
             contentParts.RemoveAt(2);
-            var blobPartStorer = new BlobPartStorer(Storage.FolderManager, Storage.PathBuilder);
+            var blobPartStorer = new BlobPartStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             foreach (var blobPart in contentParts)
             {
                 blobPartStorer.Store(containerId, blobPart);
             }
-            var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
+            var blobSummaryCalculator = new BlobSummaryCalculator(_testContext.Storage.PathBuilder, _testContext.Storage.FileManager);
 
             // Act.
             var summary = await blobSummaryCalculator.Calculate<Content>(containerId).ConfigureAwait(false);

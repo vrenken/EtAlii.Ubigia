@@ -7,8 +7,20 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class InMemoryItemStorageTests : InMemoryStorageTestBase
+    public class InMemoryItemStorageTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public InMemoryItemStorageTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact]
         public void InMemoryItemStorage_Store_SimpleTestItem()
         {
@@ -18,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var item = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
-            Storage.Items.Store(item, id, containerId);
+            _testContext.Storage.Items.Store(item, id, containerId);
 
             // Assert.
         }
@@ -30,10 +42,10 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var id = Guid.NewGuid();
             var item = StorageTestHelper.CreateSimpleTestItem();
-            Storage.Items.Store(item, id, containerId);
+            _testContext.Storage.Items.Store(item, id, containerId);
 
             // Act.
-            var hasItem = Storage.Items.Has(id, containerId);
+            var hasItem = _testContext.Storage.Items.Has(id, containerId);
 
             // Assert.
             Assert.True(hasItem);
@@ -46,10 +58,10 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var id = Guid.NewGuid();
             var item = StorageTestHelper.CreateSimpleTestItem();
-            Storage.Items.Store(item, id, containerId);
+            _testContext.Storage.Items.Store(item, id, containerId);
 
             // Act.
-            var ids = Storage.Items.Get(containerId);
+            var ids = _testContext.Storage.Items.Get(containerId);
 
             // Assert.
             Assert.Single(ids);
@@ -64,14 +76,14 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var id = Guid.NewGuid();
             var item = StorageTestHelper.CreateSimpleTestItem();
-            Storage.Items.Store(item, id, containerId);
-            var hadItem = Storage.Items.Has(id, containerId);
+            _testContext.Storage.Items.Store(item, id, containerId);
+            var hadItem = _testContext.Storage.Items.Has(id, containerId);
 
             // Act.
-            Storage.Items.Remove(id, containerId);
+            _testContext.Storage.Items.Remove(id, containerId);
 
             // Assert.
-            var hasItem = Storage.Items.Has(id, containerId);
+            var hasItem = _testContext.Storage.Items.Has(id, containerId);
             Assert.True(hadItem);
             Assert.False(hasItem);
         }
@@ -84,7 +96,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var id = Guid.NewGuid();
 
             // Act.
-            var act = new Action(() => Storage.Items.Store((object)null, id, containerId));
+            var act = new Action(() => _testContext.Storage.Items.Store((object)null, id, containerId));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -101,7 +113,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var item = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
-            var act = new Action(() => Storage.Items.Store(item, id, containerId));
+            var act = new Action(() => _testContext.Storage.Items.Store(item, id, containerId));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -116,7 +128,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var item = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
-            var act = new Action(() => Storage.Items.Store(item, id, containerId));
+            var act = new Action(() => _testContext.Storage.Items.Store(item, id, containerId));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -136,7 +148,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                Storage.Items.Store(items[i], ids[i], containerId);
+                _testContext.Storage.Items.Store(items[i], ids[i], containerId);
             }
 
             // Assert.
@@ -153,8 +165,8 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var item = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
-            Storage.Items.Store(item, id, containerId);
-            var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(id, containerId).ConfigureAwait(false);
+            _testContext.Storage.Items.Store(item, id, containerId);
+            var retrievedItem = await _testContext.Storage.Items.Retrieve<SimpleTestItem>(id, containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedItem);
@@ -174,7 +186,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                Storage.Items.Store(items[i], ids[i], containerId);
+                _testContext.Storage.Items.Store(items[i], ids[i], containerId);
             }
 
             var now = DateTime.Now;
@@ -182,7 +194,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                var retrievedItem = await Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId).ConfigureAwait(false);
+                var retrievedItem = await _testContext.Storage.Items.Retrieve<SimpleTestItem>(ids[i], containerId).ConfigureAwait(false);
 
                 // Assert.
                 Assert.NotNull(retrievedItem);

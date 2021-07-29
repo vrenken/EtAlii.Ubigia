@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 
-    public class NtfsBsonItemSerializerTests : NtfsStorageTestBase
+    public class NtfsBsonItemSerializerTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NtfsBsonItemSerializer_Create()

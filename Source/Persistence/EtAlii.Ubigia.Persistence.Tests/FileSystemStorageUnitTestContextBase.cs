@@ -6,13 +6,13 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.IO;
 
     //you have to label the class with this or it is never scanned for methods
-    public abstract class FileSystemStorageTestBase : StorageTestBase
+    public abstract class FileSystemStorageUnitTestContextBase : StorageUnitTestContextBase
     {
-        protected IStorage Storage { get; set; }
+        public IStorage Storage { get; set; }
 
-        protected readonly string RootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
+        public readonly string RootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
 
-        protected FileSystemStorageTestBase()
+        protected FileSystemStorageUnitTestContextBase()
         {
             Directory.CreateDirectory(RootFolder);
             AppDomain.CurrentDomain.ProcessExit += (_,_) => DeleteTestData();
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             }
         }
 
-        ~FileSystemStorageTestBase()
+        ~FileSystemStorageUnitTestContextBase()
         {
             Dispose(false);
         }

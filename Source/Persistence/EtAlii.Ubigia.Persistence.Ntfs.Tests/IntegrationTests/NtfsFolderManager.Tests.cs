@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class NtfsFolderManagerTests : NtfsStorageTestBase
+    public class NtfsFolderManagerTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NtfsFolderManager_Exists()

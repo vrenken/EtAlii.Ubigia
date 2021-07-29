@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class NetCoreAppFileManagerTests : NetCoreAppStorageTestBase
+    public class NetCoreAppFileManagerTests : NetCoreAppStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NetCoreAppFileManager_Exists()

@@ -1,19 +1,14 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Portable.Tests
+namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.xTechnology.Hosting;
-    using PCLStorage;
 
-    public abstract class PortableStorageTestBase : FileSystemStorageTestBase
+    public class NetCoreAppStorageUnitTestContext : FileSystemStorageUnitTestContextBase
     {
-        protected IFolder StorageFolder { get; }
-
-        protected PortableStorageTestBase()
+        public NetCoreAppStorageUnitTestContext()
         {
-            StorageFolder = new FileSystemFolder(RootFolder, false);
-
             Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
@@ -28,7 +23,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .UseStorageDiagnostics(TestServiceConfiguration.Root)
-                .UsePortableStorage(StorageFolder);
+                .UseNetCoreAppStorage(RootFolder);
 
             return new StorageFactory().Create(configuration);
         }

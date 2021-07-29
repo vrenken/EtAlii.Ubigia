@@ -6,15 +6,15 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Tests;
     using Microsoft.Extensions.Configuration;
 
-    public abstract class StorageTestBase : IDisposable
+    public abstract class StorageUnitTestContextBase : IDisposable
     {
         public IConfiguration HostConfiguration { get; }
 
-        protected TestContentFactory TestContentFactory { get; }
-        protected TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        protected TestPropertiesFactory TestPropertiesFactory { get; }
+        public TestContentFactory TestContentFactory { get; }
+        public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
+        public TestPropertiesFactory TestPropertiesFactory { get; }
 
-        protected StorageTestBase()
+        protected StorageUnitTestContextBase()
         {
             TestContentFactory = new TestContentFactory();
             TestContentDefinitionFactory = new TestContentDefinitionFactory();
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             }
         }
 
-        ~StorageTestBase()
+        ~StorageUnitTestContextBase()
         {
             Dispose(false);
         }

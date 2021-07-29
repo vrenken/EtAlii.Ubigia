@@ -7,17 +7,29 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class ContentPartTests : InMemoryStorageTestBase
+    public class ContentPartTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public ContentPartTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact]
         public void ContentPart_Store()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentPart = TestContentFactory.CreatePart();
+            var contentPart = _testContext.TestContentFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentPart);
+            _testContext.Storage.Blobs.Store(containerId, contentPart);
 
             // Assert.
         }
@@ -27,11 +39,13 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentPart = TestContentFactory.CreatePart();
+            var contentPart = _testContext.TestContentFactory.CreatePart();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentPart);
-            var retrievedContentPart = await Storage.Blobs.Retrieve<ContentPart>(containerId, contentPart.Id).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentPart);
+            var retrievedContentPart = await _testContext.Storage.Blobs
+                .Retrieve<ContentPart>(containerId, contentPart.Id)
+                .ConfigureAwait(false);
 
             // Assert.
             AssertData.AreEqual(contentPart.Data, retrievedContentPart.Data);
@@ -42,12 +56,12 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentFactory.CreatePart();
-            var second = TestContentFactory.CreatePart();
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentFactory.CreatePart();
+            var second = _testContext.TestContentFactory.CreatePart();
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
-            Storage.Blobs.Store(containerId, second);
+            _testContext.Storage.Blobs.Store(containerId, second);
 
             // Assert.
         }
@@ -57,14 +71,14 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentFactory.CreatePart();
-            var second = TestContentFactory.CreatePart(first.Data, first.Id);
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentFactory.CreatePart();
+            var second = _testContext.TestContentFactory.CreatePart(first.Data, first.Id);
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.Blobs.Store(containerId, second);
+                _testContext.Storage.Blobs.Store(containerId, second);
             });
 
             // Assert.
@@ -78,7 +92,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var contentPart = await Storage.Blobs.Retrieve<ContentPart>(containerId, 1000).ConfigureAwait(false);
+            var contentPart = await _testContext.Storage.Blobs.Retrieve<ContentPart>(containerId, 1000).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(contentPart);

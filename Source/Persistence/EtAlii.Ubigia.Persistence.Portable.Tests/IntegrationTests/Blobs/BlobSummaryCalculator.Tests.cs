@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class BlobSummaryCalculatorTests : PortableStorageTestBase
+    public class BlobSummaryCalculatorTests : PortableStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void BlobSummaryCalculator_Create()

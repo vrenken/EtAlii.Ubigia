@@ -1,16 +1,19 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.InMemory.Tests
+namespace EtAlii.Ubigia.Persistence.Portable.Tests
 {
     using EtAlii.Ubigia.Persistence.Tests;
     using EtAlii.xTechnology.Hosting;
+    using PCLStorage;
 
-    public abstract class InMemoryStorageTestBase : StorageTestBase
+    public class PortableStorageUnitTestContext : FileSystemStorageUnitTestContextBase
     {
-        protected InMemoryStorage Storage { get; private set; }
+        public IFolder StorageFolder { get; }
 
-        protected InMemoryStorageTestBase()
+        public PortableStorageUnitTestContext()
         {
+            StorageFolder = new FileSystemFolder(RootFolder, false);
+
             Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
@@ -20,23 +23,14 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             }
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            // Cleanup
-            if (disposing)
-            {
-                Storage = null;
-            }
-        }
-
-        private InMemoryStorage CreateStorage()
+        private IStorage CreateStorage()
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .UseStorageDiagnostics(TestServiceConfiguration.Root)
-                .UseInMemoryStorage();
+                .UsePortableStorage(StorageFolder);
 
-            return (InMemoryStorage)new StorageFactory().Create(configuration);
+            return new StorageFactory().Create(configuration);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class NtfsFileManagerTests : NtfsStorageTestBase
+    public class NtfsFileManagerTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NtfsFileManager_Exists()

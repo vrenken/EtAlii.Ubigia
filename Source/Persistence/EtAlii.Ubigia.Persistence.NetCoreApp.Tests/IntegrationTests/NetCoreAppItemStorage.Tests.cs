@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class NetCoreAppItemStorageTests : NetCoreAppStorageTestBase
+    public class NetCoreAppItemStorageTests : NetCoreAppStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NetCoreAppItemStorage_Store_SimpleTestItem()

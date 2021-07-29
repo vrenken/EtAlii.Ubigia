@@ -8,17 +8,29 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class ContentDefinitionTests : InMemoryStorageTestBase
+    public class ContentDefinitionTests : IDisposable
     {
+        private readonly InMemoryStorageUnitTestContext _testContext;
+        public ContentDefinitionTests()
+        {
+            _testContext = new InMemoryStorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext?.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact]
         public void ContentDefinition_Store()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinition);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinition);
 
             // Assert.
         }
@@ -28,11 +40,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinition);
+            var retrievedContentDefinition = await _testContext.Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size);
@@ -43,11 +55,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinition);
+            var retrievedContentDefinition = await _testContext.Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
@@ -58,11 +70,11 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, contentDefinition);
-            var retrievedContentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, contentDefinition);
+            var retrievedContentDefinition = await _testContext.Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(contentDefinition.Parts.Length, retrievedContentDefinition.Parts.Length);
@@ -78,14 +90,14 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentDefinitionFactory.Create();
-            var second = TestContentDefinitionFactory.Create();
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentDefinitionFactory.Create();
+            var second = _testContext.TestContentDefinitionFactory.Create();
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.Blobs.Store(containerId, second);
+                _testContext.Storage.Blobs.Store(containerId, second);
             });
 
             // Assert.
@@ -99,7 +111,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var contentDefinition = await Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
+            var contentDefinition = await _testContext.Storage.Blobs.Retrieve<ContentDefinition>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(contentDefinition);

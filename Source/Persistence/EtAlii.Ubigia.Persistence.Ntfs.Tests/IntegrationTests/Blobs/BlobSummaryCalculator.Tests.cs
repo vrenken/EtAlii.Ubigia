@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
     using EtAlii.Ubigia.Persistence.Tests;
     using Xunit;
 
-    public class BlobSummaryCalculatorTests : NtfsStorageTestBase
+    public class BlobSummaryCalculatorTests : NtfsStorageUnitTestContext
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void BlobSummaryCalculator_Create()
