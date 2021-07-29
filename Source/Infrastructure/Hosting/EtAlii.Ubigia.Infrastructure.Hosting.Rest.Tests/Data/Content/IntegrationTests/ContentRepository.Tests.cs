@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_Content()
         {
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create();
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_ContentPart()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_ContentPart_Out_Of_Bounds()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create(3);
@@ -80,7 +80,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_ContentPart_Before_Content()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create(1);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Retrieve_Content()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_ContentDefinition_Null_Content()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Store_ContentDefinition_No_Identifier()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create();
@@ -159,7 +159,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentRepository_Get_Content()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create();

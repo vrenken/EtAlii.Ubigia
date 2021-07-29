@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task PropertiesRepository_Store_Properties()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task PropertiesRepository_Retrieve_Properties()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();

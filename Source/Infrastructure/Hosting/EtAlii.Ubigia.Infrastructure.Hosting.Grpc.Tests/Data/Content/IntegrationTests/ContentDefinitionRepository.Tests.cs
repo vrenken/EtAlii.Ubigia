@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_ContentDefinition()
         {
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_ContentDefinition_Including_Parts()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_Null()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
 
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_No_Identifier()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
@@ -96,7 +96,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Get_ContentDefinition()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_ContentDefinitionPart()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
@@ -132,7 +132,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_ContentDefinitionPart_Outside_Bounds()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task ContentDefinitionRepository_Store_ContentDefinitionPart_Twice()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var entry = await context.Host.Infrastructure.Entries.Prepare(space.Id).ConfigureAwait(false);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);

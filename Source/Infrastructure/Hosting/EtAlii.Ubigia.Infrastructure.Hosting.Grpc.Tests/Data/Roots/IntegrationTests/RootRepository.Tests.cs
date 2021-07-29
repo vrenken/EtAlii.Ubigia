@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Add()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
 			var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Get_By_Id()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Get_By_Name()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
 			var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Remove_By_Id()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
 			var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Remove_By_Instance()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);
@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_Get_Null()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
 			var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = await context.Host.Infrastructure.Roots.Get(space.Id, Guid.NewGuid()).ConfigureAwait(false);
             Assert.Null(root);
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootRepository_GetAll()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
             var addedRoot1 = await context.Host.Infrastructure.Roots.Add(space.Id, root).ConfigureAwait(false);

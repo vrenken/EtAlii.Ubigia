@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
     public class InfrastructureUnitTestContext : IAsyncLifetime
     {
-        public InProcessInfrastructureHostTestContext HostTestContext { get; private set; }
+        public InProcessInfrastructureHostTestContext Host { get; private set; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         public TestContentFactory TestContentFactory { get; }
         public TestPropertiesFactory TestPropertiesFactory { get; }
@@ -26,18 +26,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             ContentComparer = new ContentComparer(ByteArrayComparer);
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
-            HostTestContext = new HostTestContextFactory().Create<InProcessInfrastructureHostTestContext>();
+            Host = new HostTestContextFactory().Create<InProcessInfrastructureHostTestContext>();
         }
 
         public async Task InitializeAsync()
         {
-            await HostTestContext.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Host.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await HostTestContext.Stop().ConfigureAwait(false);
-            HostTestContext = null;
+            await Host.Stop().ConfigureAwait(false);
+            Host = null;
         }
     }
 }

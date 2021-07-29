@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_Admin_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_System_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
 			// Arrange.
-	        var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+	        var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
 	        var client = new AdminStorageClient(channel);
 	        var request = new AdminStorageRequest();
 	        
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
@@ -162,7 +162,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			Thread.Sleep(50000);
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
 		{
 			// Arrange.
-			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+			var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 			Thread.Sleep(50000);
@@ -199,7 +199,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
 		{
 			// Arrange.
-			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+			var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();

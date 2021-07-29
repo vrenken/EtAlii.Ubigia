@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Add_Administrator()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_Id()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_Invalid_Id()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_AccountName()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_Invalid_AccountName()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_AccountName_And_Password()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -122,7 +122,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_AccountName_And_Invalid_Password()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -137,7 +137,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Get_Administrator_By_Invalid_AccountName_And_Password()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -152,7 +152,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Remove_Administrator_By_Id()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -172,7 +172,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_Remove_Administrator_By_Instance()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);
@@ -192,7 +192,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void AccountRepository_Get_Administrator_Null()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = repository.Get(Guid.NewGuid());
             Assert.Null(account);
@@ -202,7 +202,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task AccountRepository_GetAll_Administrators()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount1 = await repository.Add(account, AccountTemplate.Administrator).ConfigureAwait(false);

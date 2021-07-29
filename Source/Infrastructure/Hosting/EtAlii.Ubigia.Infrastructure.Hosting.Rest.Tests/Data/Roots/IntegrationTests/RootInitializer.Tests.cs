@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     [Trait("Technology", "NetCore")]
@@ -26,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootInitializer_Initialize()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
 
@@ -37,7 +36,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestServiceConfiguration.Root);
+                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -58,7 +57,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootInitializer_Initialize_Check_Resulting_Root()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
 
@@ -69,7 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestServiceConfiguration.Root);
+                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
@@ -93,7 +92,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task RootInitializer_Initialize_Check_Resulting_Entry()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
             var root = _infrastructureTestHelper.CreateRoot();
 
@@ -104,7 +103,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(TestServiceConfiguration.Root);
+                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()

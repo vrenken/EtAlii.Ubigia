@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Arrange.
 
             // Act.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -41,8 +41,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var userName = "TestUser";
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
 
             // Act.
             var connection = await systemConnection.OpenSpace("TestUser", "TestSpace").ConfigureAwait(false);
@@ -63,8 +63,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var userName = Guid.NewGuid().ToString();// "TestUser"
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
 
             // Act.
             var connection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
@@ -88,8 +88,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
@@ -133,8 +133,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
 
-            var systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, accountName, password, new[] { spaceName }).ConfigureAwait(false);
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 

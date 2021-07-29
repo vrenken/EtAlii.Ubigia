@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SpaceRepository_Add()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SpaceRepository_Get()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SpaceRepository_Remove_By_Id()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SpaceRepository_Remove_By_Instance()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             Assert.NotNull(addedSpace);
@@ -90,7 +90,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void SpaceRepository_Get_Null()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = context.Host.Infrastructure.Spaces.Get(Guid.NewGuid());
             Assert.Null(space);
         }
@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SpaceRepository_GetAll()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);
             var addedSpace1 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data).ConfigureAwait(false);
             space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false).ConfigureAwait(false);

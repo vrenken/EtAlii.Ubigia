@@ -25,11 +25,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -46,11 +46,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_Admin_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -67,11 +67,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Admin_System_With_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -88,10 +88,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 
 			// Act.
 			var act = new Func<Task>(async () => await client.Get<Storage>(address).ConfigureAwait(false));
@@ -104,10 +104,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Accounts_Without_Authentication()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Accounts);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 
 			// Act.
 			var act = new Func<Task>(async () => await client.Get<IEnumerable<Account>>(address).ConfigureAwait(false));
@@ -120,11 +120,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_TestUser()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -142,11 +142,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_Admin()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -164,11 +164,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		public async Task Infrastructure_Get_Storage_Delayed_Admin_System()
 		{
 			// Arrange.
-			var context = _testContext.HostTestContext;
+			var context = _testContext.Host;
 			var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
 			var addressFactory = new AddressFactory();
 			var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var client = _testContext.Host.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials).ConfigureAwait(false);
 			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
@@ -186,10 +186,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.Create(context.ServiceDetails.ManagementAddress, RelativeManagementUri.Storages, UriParameter.Local);
-	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+	        var client = _testContext.Host.CreateRestInfrastructureClient();
 
 			// Act.
 			var act = new Func<Task>(async () =>

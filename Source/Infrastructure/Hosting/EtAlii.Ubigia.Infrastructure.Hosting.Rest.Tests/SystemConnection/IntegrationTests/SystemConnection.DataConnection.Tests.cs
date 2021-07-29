@@ -29,8 +29,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 Guid.NewGuid().ToString(),
                 Guid.NewGuid().ToString()
             };
-            _systemConnection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames ).ConfigureAwait(false);
+            _systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            await _testContext.Host.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames ).ConfigureAwait(false);
         }
 
         public Task DisposeAsync()
@@ -105,7 +105,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
 
             // Act.
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -177,7 +177,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -199,7 +199,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_User_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
@@ -220,7 +220,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_OpenManagementConnection_Add_Administrator_Account_And_Data_Space_And_Open_Space()
         {
             // Arrange.
-            var connection = await _testContext.HostTestContext.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
             var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();

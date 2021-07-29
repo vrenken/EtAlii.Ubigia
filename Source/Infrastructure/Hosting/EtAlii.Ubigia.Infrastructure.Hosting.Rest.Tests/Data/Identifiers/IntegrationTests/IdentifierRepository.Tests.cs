@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task IdentifierRepository_Get_Current_Head()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var identifier = await context.Host.Infrastructure.Identifiers.GetCurrentHead(space.Id).ConfigureAwait(false);
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task IdentifierRepository_Get_Next_Head()
         {
 	        // Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var head = await context.Host.Infrastructure.Identifiers.GetNextHead(space.Id).ConfigureAwait(false);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task IdentifierRepository_Get_Current_Tail()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
+	        var context = _testContext.Host;
             var space = await _infrastructureTestHelper.CreateSpace(context.Host.Infrastructure).ConfigureAwait(false);
 
             var identifier = await context.Host.Infrastructure.Identifiers.GetTail(space.Id).ConfigureAwait(false);
