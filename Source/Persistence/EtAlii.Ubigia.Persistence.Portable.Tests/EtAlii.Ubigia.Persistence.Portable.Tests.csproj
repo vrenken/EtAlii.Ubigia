@@ -3,17 +3,12 @@
   <PropertyGroup>
     <DebugType>Full</DebugType>
     <ProjectGuid>22B9875B-6181-49BF-9B06-BFB90080C41F</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Portable\EtAlii.Ubigia.Persistence.Portable.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.csproj" />
   </ItemGroup>
-
-<!--  <ItemGroup>-->
-<!--    <Compile Include="..\..\UnitTestSettings.cs">-->
-<!--      <Link>UnitTestSettings.cs</Link>-->
-<!--    </Compile>-->
-<!--  </ItemGroup>-->
-
+  
+  <Import Project="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems" Label="Shared" />
 </Project>

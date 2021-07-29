@@ -6,5 +6,6 @@ namespace EtAlii.Ubigia.Persistence.Tests
     public static class TestAssembly
     {
         public const string Category = "EtAlii.Ubigia.Persistence";
+        public const string StorageName = "Unit test storage";
     }
 }

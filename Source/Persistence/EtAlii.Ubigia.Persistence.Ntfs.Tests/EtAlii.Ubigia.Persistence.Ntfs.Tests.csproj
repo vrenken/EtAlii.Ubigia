@@ -3,21 +3,16 @@
   <PropertyGroup>
     <DebugType>Full</DebugType>
     <ProjectGuid>4F8B2631-CDA7-4B99-9AF3-B891139D023E</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Ntfs\EtAlii.Ubigia.Persistence.Ntfs.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+    <Folder Include="IntegrationTests" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="..\..\UnitTestSettings.cs">
-      <Link>UnitTestSettings.cs</Link>
-    </Compile>
-  </ItemGroup>
-
+  <Import Project="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems" Label="Shared" />
 </Project>

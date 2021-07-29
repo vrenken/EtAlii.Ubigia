@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Portable.Tests
+namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
     using System.IO;
+    using EtAlii.Ubigia.Persistence.Portable;
     using EtAlii.Ubigia.Serialization;
     using PCLStorage;
     using Xunit;

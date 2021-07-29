@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>C40F0294-4964-4DC8-B69B-C675AF80187A</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Persistence.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AssertData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\UnitTests\BlobStorageException.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\UnitTests\Diagnostics.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\UnitTests\ProfilingComponentStorageDecorator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\UnitTests\ProfilingItemStorageDecorator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Diagnostics\UnitTests\StorageException.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileSystemStorageUnitTestContextBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Blobs\BlobSummaryCalculator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Blobs\Content.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Blobs\ContentDefinition.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Blobs\ContentDefinitionPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Blobs\ContentPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Components\ContainerStorage.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\FileManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\FolderManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\ItemStorage.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\PathBuilder.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\PropertiesStorage.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Serialization\BsonItemSerializer.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IntegrationTests\Serialization\JsonItemSerializer.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimpleTestItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StorageTestHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StorageUnitTestContextBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnitTests\ContainerProvider.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)HostSettings.json">
+      <DefaultPackFolder>content</DefaultPackFolder>
+      <Pack>true</Pack>
+      <BuildAction>Content</BuildAction>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="$(MSBuildThisFileDirectory)..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

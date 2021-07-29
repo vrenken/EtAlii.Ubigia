@@ -1,8 +1,9 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Ntfs.Tests
+namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.Linq;
+    using EtAlii.Ubigia.Persistence.Ntfs;
     using EtAlii.Ubigia.Serialization;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;

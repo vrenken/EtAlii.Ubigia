@@ -1,7 +1,8 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.InMemory.Tests
+namespace EtAlii.Ubigia.Persistence.Tests
 {
+    using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 

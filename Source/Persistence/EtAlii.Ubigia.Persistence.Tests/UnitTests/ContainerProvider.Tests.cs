@@ -3,17 +3,16 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
-    using EtAlii.Ubigia.Persistence.Portable;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class PortableContainerProviderTests
+    public class ContainerProviderTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory = new();
-        private readonly IContainerProvider _containerProvider = new PortableContainerProvider();
+        private readonly IContainerProvider _containerProvider = new DefaultContainerProvider();
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIds()
+        public void ContainerProvider_FromIds()
         {
             // Arrange.
             var storage = Guid.NewGuid();
@@ -25,14 +24,14 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.Equal("Entries", containerIdentifier.Paths[0]);
-            Assert.Equal(Base36Convert.ToString(storage), containerIdentifier.Paths[1]);
-            Assert.Equal(Base36Convert.ToString(account), containerIdentifier.Paths[2]);
-            Assert.Equal(Base36Convert.ToString(space), containerIdentifier.Paths[3]);
+            Assert.Equal(storage.ToString(), containerIdentifier.Paths[1]);
+            Assert.Equal(account.ToString(), containerIdentifier.Paths[2]);
+            Assert.Equal(space.ToString(), containerIdentifier.Paths[3]);
             Assert.Equal(4, containerIdentifier.Paths.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_Without_EraPeriodMoment()
+        public void ContainerProvider_FromIdentifier_Without_EraPeriodMoment()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -42,17 +41,17 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.Equal("Entries", containerIdentifier.Paths[0]);
-            Assert.Equal(Base36Convert.ToString(id.Storage), containerIdentifier.Paths[1]);
-            Assert.Equal(Base36Convert.ToString(id.Account), containerIdentifier.Paths[2]);
-            Assert.Equal(Base36Convert.ToString(id.Space), containerIdentifier.Paths[3]);
-            Assert.Equal(Base36Convert.ToString(id.Era), containerIdentifier.Paths[4]);
-            Assert.Equal(Base36Convert.ToString(id.Period), containerIdentifier.Paths[5]);
-            Assert.Equal(Base36Convert.ToString(id.Moment), containerIdentifier.Paths[6]);
+            Assert.Equal(id.Storage.ToString(), containerIdentifier.Paths[1]);
+            Assert.Equal(id.Account.ToString(), containerIdentifier.Paths[2]);
+            Assert.Equal(id.Space.ToString(), containerIdentifier.Paths[3]);
+            Assert.Equal(id.Era.ToString(), containerIdentifier.Paths[4]);
+            Assert.Equal(id.Period.ToString(), containerIdentifier.Paths[5]);
+            Assert.Equal(id.Moment.ToString(), containerIdentifier.Paths[6]);
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_With_EraPeriodMoment()
+        public void ContainerProvider_FromIdentifier_With_EraPeriodMoment()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -62,17 +61,17 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.Equal("Entries", containerIdentifier.Paths[0]);
-            Assert.Equal(Base36Convert.ToString(id.Storage), containerIdentifier.Paths[1]);
-            Assert.Equal(Base36Convert.ToString(id.Account), containerIdentifier.Paths[2]);
-            Assert.Equal(Base36Convert.ToString(id.Space), containerIdentifier.Paths[3]);
-            Assert.Equal(Base36Convert.ToString(id.Era), containerIdentifier.Paths[4]);
-            Assert.Equal(Base36Convert.ToString(id.Period), containerIdentifier.Paths[5]);
-            Assert.Equal(Base36Convert.ToString(id.Moment), containerIdentifier.Paths[6]);
+            Assert.Equal(id.Storage.ToString(), containerIdentifier.Paths[1]);
+            Assert.Equal(id.Account.ToString(), containerIdentifier.Paths[2]);
+            Assert.Equal(id.Space.ToString(), containerIdentifier.Paths[3]);
+            Assert.Equal(id.Era.ToString(), containerIdentifier.Paths[4]);
+            Assert.Equal(id.Period.ToString(), containerIdentifier.Paths[5]);
+            Assert.Equal(id.Moment.ToString(), containerIdentifier.Paths[6]);
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings()
+        public void ContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -93,7 +92,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings_Partially()
+        public void ContainerProvider_FromIdentifier_With_EraPeriodMoment_AsStrings_Partially()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -106,15 +105,15 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(id.Storage.ToString(), containerIdentifier.Paths[1]);
             Assert.Equal(id.Account.ToString(), containerIdentifier.Paths[2]);
             Assert.Equal(id.Space.ToString(), containerIdentifier.Paths[3]);
-            Assert.Equal(Base36Convert.ToString(id.Era), containerIdentifier.Paths[4]);
-            Assert.Equal(Base36Convert.ToString(id.Period), containerIdentifier.Paths[5]);
-            Assert.Equal(Base36Convert.ToString(id.Moment), containerIdentifier.Paths[6]);
+            Assert.Equal(id.Era.ToString(), containerIdentifier.Paths[4]);
+            Assert.Equal(id.Period.ToString(), containerIdentifier.Paths[5]);
+            Assert.Equal(id.Moment.ToString(), containerIdentifier.Paths[6]);
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_NotEquals_True()
+        public void ContainerProvider_NotEquals_True()
         {
             // Arrange.
             var firstId = _testIdentifierFactory.Create();
@@ -129,7 +128,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_NotEquals_False()
+        public void ContainerProvider_NotEquals_False()
         {
             // Arrange.
             var firstId = _testIdentifierFactory.Create();
@@ -144,7 +143,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Equals_True()
+        public void ContainerProvider_Equals_True()
         {
             // Arrange.
             var firstId = _testIdentifierFactory.Create();
@@ -159,7 +158,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Equals_False()
+        public void ContainerProvider_Equals_False()
         {
             // Arrange.
             var firstId = _testIdentifierFactory.Create();
@@ -174,7 +173,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_TrimTime_True()
+        public void ContainerProvider_FromIdentifier_TrimTime_True()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -184,14 +183,14 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.Equal("Entries", containerIdentifier.Paths[0]);
-            Assert.Equal(Base36Convert.ToString(id.Storage), containerIdentifier.Paths[1]);
-            Assert.Equal(Base36Convert.ToString(id.Account), containerIdentifier.Paths[2]);
-            Assert.Equal(Base36Convert.ToString(id.Space), containerIdentifier.Paths[3]);
+            Assert.Equal(id.Storage.ToString(), containerIdentifier.Paths[1]);
+            Assert.Equal(id.Account.ToString(), containerIdentifier.Paths[2]);
+            Assert.Equal(id.Space.ToString(), containerIdentifier.Paths[3]);
             Assert.Equal(4, containerIdentifier.Paths.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromIdentifier_TrimTime_False()
+        public void ContainerProvider_FromIdentifier_TrimTime_False()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -201,17 +200,17 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.Equal("Entries", containerIdentifier.Paths[0]);
-            Assert.Equal(Base36Convert.ToString(id.Storage), containerIdentifier.Paths[1]);
-            Assert.Equal(Base36Convert.ToString(id.Account), containerIdentifier.Paths[2]);
-            Assert.Equal(Base36Convert.ToString(id.Space), containerIdentifier.Paths[3]);
-            Assert.Equal(Base36Convert.ToString(id.Era), containerIdentifier.Paths[4]);
-            Assert.Equal(Base36Convert.ToString(id.Period), containerIdentifier.Paths[5]);
-            Assert.Equal(Base36Convert.ToString(id.Moment), containerIdentifier.Paths[6]);
+            Assert.Equal(id.Storage.ToString(), containerIdentifier.Paths[1]);
+            Assert.Equal(id.Account.ToString(), containerIdentifier.Paths[2]);
+            Assert.Equal(id.Space.ToString(), containerIdentifier.Paths[3]);
+            Assert.Equal(id.Era.ToString(), containerIdentifier.Paths[4]);
+            Assert.Equal(id.Period.ToString(), containerIdentifier.Paths[5]);
+            Assert.Equal(id.Moment.ToString(), containerIdentifier.Paths[6]);
             Assert.Equal(7, containerIdentifier.Paths.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_FromEmptyPaths_ToString()
+        public void ContainerProvider_FromEmptyPaths_ToString()
         {
             // Arrange.
 
@@ -223,7 +222,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Single_Id_ToString()
+        public void ContainerProvider_Single_Id_ToString()
         {
             // Arrange.
             var id = Guid.NewGuid().ToString();
@@ -232,11 +231,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = ContainerIdentifier.FromPaths(id);
 
             // Assert.
+            Assert.NotEqual(ContainerIdentifier.Empty, containerId);
             Assert.Equal(id, containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Multiple_Ids_ToString()
+        public void ContainerProvider_Multiple_Ids_ToString()
         {
             // Arrange.
             var first = Guid.NewGuid().ToString();
@@ -246,11 +246,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
+            Assert.NotEqual(ContainerIdentifier.Empty, containerId);
             Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Paths()
+        public void ContainerProvider_Paths()
         {
             // Arrange.
             var first = Guid.NewGuid().ToString();
@@ -260,12 +261,13 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
+            Assert.NotEqual(ContainerIdentifier.Empty, containerId);
             Assert.Equal(first, containerId.Paths[0]);
             Assert.Equal(second, containerId.Paths[1]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Combine()
+        public void ContainerProvider_Combine()
         {
             // Arrange.
             var first = Guid.NewGuid().ToString();
@@ -276,12 +278,13 @@ namespace EtAlii.Ubigia.Persistence.Tests
             containerId = ContainerIdentifier.Combine(containerId, second);
 
             // Assert.
+            Assert.NotEqual(ContainerIdentifier.Empty, containerId);
             Assert.Equal(string.Join("\\", first, second), containerId.ToString());
         }
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Empty_ToString()
+        public void ContainerProvider_Empty_ToString()
         {
             // Arrange.
 
@@ -294,7 +297,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Comparison_With_Right_Null()
+        public void ContainerProvider_Comparison_With_Right_Null()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -308,7 +311,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortableContainerProvider_Comparison_With_Self()
+        public void ContainerProvider_Comparison_With_Self()
         {
             // Arrange.
             var id = _testIdentifierFactory.Create();
@@ -319,10 +322,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var result = first.Equals(second);
 
             // Assert.
-            Assert.True(result, "A PortableContainerProvider generated ContainerIdentifier should also match with itselve wrapped as object.");
+            Assert.True(result, "A ContainerProvider generated ContainerIdentifier should also match with itselve wrapped as object.");
         }
-
-
     }
-
 }

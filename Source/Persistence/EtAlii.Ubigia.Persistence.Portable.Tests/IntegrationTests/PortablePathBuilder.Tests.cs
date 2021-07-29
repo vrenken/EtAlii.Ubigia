@@ -1,45 +1,16 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Persistence.Portable.Tests
+namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
     using System.Linq;
-    using EtAlii.Ubigia.Persistence.Tests;
     using PCLStorage;
     using Xunit;
 
-    public class PortablePathBuilderTests : PortableStorageUnitTestContext
+    public partial class PathBuilderTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortablePathBuilder_GetFileNameWithoutExtension()
-        {
-            // Arrange.
-            var fileName = "File";
-            var fullFileName = $"{fileName}.Extension";
-
-            // Act.
-            var fileNameWithoutExtension = Storage.PathBuilder.GetFileNameWithoutExtension(fullFileName);
-
-            // Assert.
-            Assert.Equal(fileName, fileNameWithoutExtension);
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortablePathBuilder_GetFolder()
-        {
-            // Arrange.
-            var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-
-            // Act.
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-
-            // Assert.
-            var expectedFolder = Path.Combine(Storage.PathBuilder.BaseFolder, Path.Combine(containerId.Paths));
-            Assert.Equal(expectedFolder, folder);
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortablePathBuilder_GetDirectoryName_Simple()
+        public void PathBuilder_GetDirectoryName_Simple()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -54,7 +25,7 @@ namespace EtAlii.Ubigia.Persistence.Portable.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PortablePathBuilder_GetDirectoryName_Complex()
+        public void PathBuilder_GetDirectoryName_Complex()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier("First");

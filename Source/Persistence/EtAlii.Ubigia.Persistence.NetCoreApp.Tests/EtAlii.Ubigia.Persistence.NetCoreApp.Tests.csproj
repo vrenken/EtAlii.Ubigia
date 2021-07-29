@@ -1,21 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>DE359065-7238-451D-A43E-9C47AF26D885</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.NetCoreApp\EtAlii.Ubigia.Persistence.NetCoreApp.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Service Include="{82a7f48d-3b50-4b1e-b82e-3ada8210c358}" />
+    <Folder Include="IntegrationTests" />
+    <Folder Include="UnitTests" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Include="..\..\UnitTestSettings.cs">
-      <Link>UnitTestSettings.cs</Link>
-    </Compile>
-  </ItemGroup>
-
+  <Import Project="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems" Label="Shared" />
 </Project>

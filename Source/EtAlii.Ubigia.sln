@@ -232,8 +232,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.N
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Portable", "Persistence\EtAlii.Ubigia.Persistence.Portable\EtAlii.Ubigia.Persistence.Portable.csproj", "{1AD25D5F-2C61-4D19-849C-A36DA42B195A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Tests", "Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.csproj", "{E7B1B670-4330-4C31-AA35-BCCB92C40FED}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.Azure.Tests", "Persistence\EtAlii.Ubigia.Persistence.Azure.Tests\EtAlii.Ubigia.Persistence.Azure.Tests.csproj", "{E478C343-E844-4D41-B289-846D9BF559A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Persistence.InMemory.Tests", "Persistence\EtAlii.Ubigia.Persistence.InMemory.Tests\EtAlii.Ubigia.Persistence.InMemory.Tests.csproj", "{B0E65C72-8364-4FFD-8F4D-0B0F9D5EDE0C}"
@@ -467,6 +465,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests", "Api\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests\EtAlii.Ubigia.Api.Functional.Parsing.Antlr.Tests.csproj", "{11725836-5C0D-4089-B1D7-BDD89F87B00C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api", "Api\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{B8FECA34-E106-46E0-8457-99F5F1E901A6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Persistence.Tests", "Persistence\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.shproj", "{E895A45E-0B7F-4F33-993E-494D2BC78219}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -1576,20 +1576,6 @@ Global
 		{1AD25D5F-2C61-4D19-849C-A36DA42B195A}.Release|x86.Build.0 = Release|Any CPU
 		{1AD25D5F-2C61-4D19-849C-A36DA42B195A}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
 		{1AD25D5F-2C61-4D19-849C-A36DA42B195A}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|x64.Build.0 = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug|x86.Build.0 = Debug|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|x64.ActiveCfg = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|x64.Build.0 = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|x86.ActiveCfg = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Release|x86.Build.0 = Release|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug-Ubuntu|Any CPU.ActiveCfg = Debug-Ubuntu|Any CPU
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED}.Debug-Ubuntu|Any CPU.Build.0 = Debug-Ubuntu|Any CPU
 		{E478C343-E844-4D41-B289-846D9BF559A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E478C343-E844-4D41-B289-846D9BF559A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E478C343-E844-4D41-B289-846D9BF559A9}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -2530,7 +2516,6 @@ Global
 		{8389CFF0-B7E8-4A84-B95D-0F12A3706966} = {74682D95-DFBC-419C-B356-F01287995C1B}
 		{2FB9D0D5-DE7B-44EB-AC89-81DE306D9554} = {74682D95-DFBC-419C-B356-F01287995C1B}
 		{1AD25D5F-2C61-4D19-849C-A36DA42B195A} = {74682D95-DFBC-419C-B356-F01287995C1B}
-		{E7B1B670-4330-4C31-AA35-BCCB92C40FED} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
 		{E478C343-E844-4D41-B289-846D9BF559A9} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
 		{B0E65C72-8364-4FFD-8F4D-0B0F9D5EDE0C} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
 		{DE359065-7238-451D-A43E-9C47AF26D885} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
@@ -2613,6 +2598,7 @@ Global
 		{82CE3399-51F8-4950-8DD2-85DD7D2F871A} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{11725836-5C0D-4089-B1D7-BDD89F87B00C} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{B8FECA34-E106-46E0-8457-99F5F1E901A6} = {27CC2941-9A82-44BF-90D7-2D55BCFFA7FA}
+		{E895A45E-0B7F-4F33-993E-494D2BC78219} = {E91216CC-EB15-4128-A94E-EE6E966A94C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

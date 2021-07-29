@@ -2,20 +2,30 @@
 
   <PropertyGroup>
     <ProjectGuid>E478C343-E844-4D41-B289-846D9BF559A9</ProjectGuid>
+    <RootNamespace>EtAlii.Ubigia.Persistence.Tests</RootNamespace>
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Azure\EtAlii.Ubigia.Persistence.Azure.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="..\..\UnitTestSettings.cs">
-      <Link>UnitTestSettings.cs</Link>
-    </Compile>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Persistence.Diagnostics\EtAlii.Ubigia.Persistence.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Persistence\EtAlii.Ubigia.Persistence.csproj" />
+    <ProjectReference Include="..\..\Api\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="IntegrationTests\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Include="..\..\UnitTestSettings.cs">
+      <Link>UnitTestSettings.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+<!--  <Import Project="..\EtAlii.Ubigia.Persistence.Tests\EtAlii.Ubigia.Persistence.Tests.projitems" Label="Shared" />-->
 </Project>
