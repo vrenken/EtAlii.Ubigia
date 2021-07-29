@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             if (_configuration.InjectProfiling)
             {
-                // container.Register(() => _profiler);
+                // container.Register(() =gt _profiler)
                 // container.RegisterDecorator(typeof(IQueryProcessor), typeof(ProfilingQueryProcessor))
                 // //container.RegisterDecorator(typeof(ISequenceProcessor), typeof(ProfilingSequenceProcessor))
                 //

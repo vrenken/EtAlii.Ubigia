@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             if (_configuration.InjectLogging)
             {
-                //container.Register(() => _diagnostics);
+                // Register all logging related DI mappings.
             }
         }
     }
