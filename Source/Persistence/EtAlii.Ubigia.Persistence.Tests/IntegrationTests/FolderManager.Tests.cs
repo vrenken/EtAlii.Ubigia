@@ -5,17 +5,30 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System;
     using Xunit;
 
-    public class FolderManagerTests : StorageUnitTestContext
+    public class FolderManagerTests : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public FolderManagerTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void FolderManager_Exists()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
 
             // Act.
-            var exists = Storage.FolderManager.Exists(folder);
+            var exists = _testContext.Storage.FolderManager.Exists(folder);
 
             // Assert.
             Assert.False(exists);
@@ -26,14 +39,14 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Assert.False(Storage.FolderManager.Exists(folder));
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.False(_testContext.Storage.FolderManager.Exists(folder));
 
             // Act.
-            Storage.FolderManager.Create(folder);
+            _testContext.Storage.FolderManager.Create(folder);
 
             // Assert.
-            Assert.True(Storage.FolderManager.Exists(folder));
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -41,13 +54,13 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Assert.False(Storage.FolderManager.Exists(folder));
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.False(_testContext.Storage.FolderManager.Exists(folder));
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.FolderManager.SaveToFolder(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), folder);
+                _testContext.Storage.FolderManager.SaveToFolder(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), folder);
             });
 
             // Assert.
@@ -59,16 +72,16 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Assert.False(Storage.FolderManager.Exists(folder));
-            Storage.FolderManager.Create(folder);
-            Assert.True(Storage.FolderManager.Exists(folder));
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            Assert.False(_testContext.Storage.FolderManager.Exists(folder));
+            _testContext.Storage.FolderManager.Create(folder);
+            Assert.True(_testContext.Storage.FolderManager.Exists(folder));
 
             // Act.
-            ((IFolderManager)Storage.FolderManager).Delete(folder);
+            ((IFolderManager)_testContext.Storage.FolderManager).Delete(folder);
 
             // Assert.
-            Assert.False(Storage.FolderManager.Exists(folder));
+            Assert.False(_testContext.Storage.FolderManager.Exists(folder));
         }
     }
 }

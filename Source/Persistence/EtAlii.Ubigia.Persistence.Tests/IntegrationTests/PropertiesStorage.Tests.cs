@@ -5,17 +5,30 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System;
     using Xunit;
 
-    public class PropertiesStorageTests : StorageUnitTestContext
+    public class PropertiesStorageTests  : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public PropertiesStorageTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyStorage_Store_SimpleTestProperties()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var properties = TestPropertiesFactory.CreateSimple();
+            var properties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
-            Storage.Properties.Store(containerId, properties);
+            _testContext.Storage.Properties.Store(containerId, properties);
 
             // Assert.
         }
@@ -26,14 +39,14 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var count = 1000;
             var containerIds = StorageTestHelper.CreateSimpleContainerIdentifiers(count);
-            var properties = TestPropertiesFactory.CreateSimple(count);
+            var properties = _testContext.TestPropertiesFactory.CreateSimple(count);
 
             var now = DateTime.Now;
 
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                Storage.Properties.Store(containerIds[i], properties[i]);
+                _testContext.Storage.Properties.Store(containerIds[i], properties[i]);
             }
 
             // Assert.
@@ -46,11 +59,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var properties = TestPropertiesFactory.CreateSimple();
+            var properties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
-            Storage.Properties.Store(containerId, properties);
-            var retrievedProperties = Storage.Properties.Retrieve(containerId);
+            _testContext.Storage.Properties.Store(containerId, properties);
+            var retrievedProperties = _testContext.Storage.Properties.Retrieve(containerId);
 
             // Assert.
             Assert.NotNull(retrievedProperties);
@@ -64,12 +77,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var count = 1000;
             var containerIds = StorageTestHelper.CreateSimpleContainerIdentifiers(count);
-            var properties = TestPropertiesFactory.CreateSimple(count);
+            var properties = _testContext.TestPropertiesFactory.CreateSimple(count);
 
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                Storage.Properties.Store(containerIds[i], properties[i]);
+                _testContext.Storage.Properties.Store(containerIds[i], properties[i]);
             }
 
             var now = DateTime.Now;
@@ -77,7 +90,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             for (var i = 0; i < count; i++)
             {
                 // Act.
-                var retrievedProperties = Storage.Properties.Retrieve(containerIds[i]);
+                var retrievedProperties = _testContext.Storage.Properties.Retrieve(containerIds[i]);
 
                 // Assert.
                 Assert.NotNull(retrievedProperties);

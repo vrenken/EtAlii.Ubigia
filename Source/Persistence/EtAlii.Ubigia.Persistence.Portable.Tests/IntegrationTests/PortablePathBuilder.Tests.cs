@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var directoryName = Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
+            var directoryName = _testContext.Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
 
             // Assert.
             var paths = containerId.Paths.Take(containerId.Paths.Length == 1 ? 1 : containerId.Paths.Length - 1);
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier("First");
 
             // Act.
-            var directoryName = Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
+            var directoryName = _testContext.Storage.PathBuilder.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));
 
             // Assert.
             var expectedDirectoryName = Path.GetDirectoryName(string.Join(PortablePath.DirectorySeparatorChar.ToString(), containerId.Paths));

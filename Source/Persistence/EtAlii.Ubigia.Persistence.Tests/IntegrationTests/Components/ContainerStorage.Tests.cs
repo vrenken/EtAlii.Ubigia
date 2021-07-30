@@ -7,8 +7,21 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ComponentStorageTests : StorageUnitTestContext
+    public class ComponentStorageTests : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public ComponentStorageTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ComponentStorage_Prepare_Container()
         {
@@ -28,7 +41,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
 
             // Act.
-            var act = new Action(() => Storage.Components.GetNextContainer(ContainerIdentifier.Empty));
+            var act = new Action(() => _testContext.Storage.Components.GetNextContainer(ContainerIdentifier.Empty));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -40,7 +53,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
 
             // Act.
-            var act = new Func<Task>(async () => await Storage.Components.Retrieve<NonCompositeComponent>(ContainerIdentifier.Empty).ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _testContext.Storage.Components.Retrieve<NonCompositeComponent>(ContainerIdentifier.Empty).ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<StorageException>(act).ConfigureAwait(false);
@@ -52,7 +65,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
 
             // Act.
-            var act = new Action(() => Storage.Components.Store<NonCompositeComponent>(ContainerIdentifier.Empty, null));
+            var act = new Action(() => _testContext.Storage.Components.Store<NonCompositeComponent>(ContainerIdentifier.Empty, null));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -64,7 +77,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
 
             // Act.
-            var act = new Action(() => Storage.Components.StoreAll(ContainerIdentifier.Empty, Array.Empty<NonCompositeComponent>()));
+            var act = new Action(() => _testContext.Storage.Components.StoreAll(ContainerIdentifier.Empty, Array.Empty<NonCompositeComponent>()));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -76,7 +89,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
 
             // Act.
-            var act = new Func<Task>(async () => await Storage.Components.RetrieveAll<CompositeComponent>(ContainerIdentifier.Empty).ToArrayAsync().ConfigureAwait(false));
+            var act = new Func<Task>(async () => await _testContext.Storage.Components.RetrieveAll<CompositeComponent>(ContainerIdentifier.Empty).ToArrayAsync().ConfigureAwait(false));
 
             // Assert.
             await Assert.ThrowsAsync<StorageException>(act).ConfigureAwait(false);
@@ -94,7 +107,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var entryComponent = new IdentifierComponent { Id = entry.Id };
 
             // Act.
-            Storage.Components.Store(containerId, entryComponent);
+            _testContext.Storage.Components.Store(containerId, entryComponent);
 
             // Assert.
         }
@@ -109,10 +122,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalEntry = StorageTestHelper.CreateEntry(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var entryComponent = new IdentifierComponent { Id = originalEntry.Id };
-            Storage.Components.Store(containerId, entryComponent);
+            _testContext.Storage.Components.Store(containerId, entryComponent);
 
             // Act.
-            var retrievedEntry = await Storage.Components.Retrieve<IdentifierComponent>(containerId).ConfigureAwait(false);
+            var retrievedEntry = await _testContext.Storage.Components.Retrieve<IdentifierComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedEntry);
@@ -129,10 +142,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalChildren = StorageTestHelper.CreateChildrenComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalChildren);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalChildren);
+            _testContext.Storage.Components.Store(containerId, originalChildren);
 
             // Act.
-            var retrievedData = await Storage.Components
+            var retrievedData = await _testContext.Storage.Components
                 .RetrieveAll<ChildrenComponent>(containerId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -188,10 +201,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalParent = StorageTestHelper.CreateParentComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalParent);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalParent);
+            _testContext.Storage.Components.Store(containerId, originalParent);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<ParentComponent>(containerId).ConfigureAwait(false);
+            var retrievedData = await _testContext.Storage.Components.Retrieve<ParentComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -211,10 +224,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalNext = StorageTestHelper.CreateNextComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalNext);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalNext);
+            _testContext.Storage.Components.Store(containerId, originalNext);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<NextComponent>(containerId).ConfigureAwait(false);
+            var retrievedData = await _testContext.Storage.Components.Retrieve<NextComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -234,10 +247,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalPrevious = StorageTestHelper.CreatePreviousComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalPrevious);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalPrevious);
+            _testContext.Storage.Components.Store(containerId, originalPrevious);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<PreviousComponent>(containerId).ConfigureAwait(false);
+            var retrievedData = await _testContext.Storage.Components.Retrieve<PreviousComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -257,10 +270,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalUpdates = StorageTestHelper.CreateUpdatesComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalUpdates);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalUpdates);
+            _testContext.Storage.Components.Store(containerId, originalUpdates);
 
             // Act.
-            var retrievedData = await Storage.Components
+            var retrievedData = await _testContext.Storage.Components
                 .RetrieveAll<UpdatesComponent>(containerId)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
@@ -283,10 +296,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalDowndate = StorageTestHelper.CreateDowndateComponent(storageId, accountId, spaceId, 0, 0, 0);
             var originalName = ComponentHelper.GetName(originalDowndate);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalDowndate);
+            _testContext.Storage.Components.Store(containerId, originalDowndate);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<DowndateComponent>(containerId).ConfigureAwait(false);
+            var retrievedData = await _testContext.Storage.Components.Retrieve<DowndateComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -306,12 +319,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var firstPrevious = StorageTestHelper.CreatePreviousComponent(storageId, accountId, spaceId, 0, 0, 0);
             var secondPrevious = StorageTestHelper.CreatePreviousComponent(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, firstPrevious);
+            _testContext.Storage.Components.Store(containerId, firstPrevious);
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.Components.Store(containerId, secondPrevious);
+                _testContext.Storage.Components.Store(containerId, secondPrevious);
             });
 
             // Assert.
@@ -328,12 +341,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var firstNext = StorageTestHelper.CreateNextComponent(storageId, accountId, spaceId, 0, 0, 0);
             var secondNext = StorageTestHelper.CreateNextComponent(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, firstNext);
+            _testContext.Storage.Components.Store(containerId, firstNext);
 
             // Act.
             var act = new Action(() =>
             {
-                Storage.Components.Store(containerId, secondNext);
+                _testContext.Storage.Components.Store(containerId, secondNext);
             });
 
             // Assert.
@@ -350,13 +363,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var firstDowndate = StorageTestHelper.CreateDowndateComponent(storageId, accountId, spaceId, 0, 0, 0);
             var secondDowndate = StorageTestHelper.CreateDowndateComponent(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, firstDowndate);
+            _testContext.Storage.Components.Store(containerId, firstDowndate);
 
             // Act.
-            var act = new Action(() =>
-            {
-                Storage.Components.Store(containerId, secondDowndate);
-            });
+            var act = new Action(() => _testContext.Storage.Components.Store(containerId, secondDowndate));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -395,13 +405,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var firstParent = StorageTestHelper.CreateParentComponent(storageId, accountId, spaceId, 0, 0, 0);
             var secondParent = StorageTestHelper.CreateParentComponent(storageId, accountId, spaceId, 0, 0, 0);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, firstParent);
+            _testContext.Storage.Components.Store(containerId, firstParent);
 
             // Act.
-            var act = new Action(() =>
-            {
-                Storage.Components.Store(containerId, secondParent);
-            });
+            var act = new Action(() => _testContext.Storage.Components.Store(containerId, secondParent));
 
             // Assert.
             Assert.Throws<StorageException>(act);
@@ -416,10 +423,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalType = StorageTestHelper.CreateTypeComponent(type);
             var originalName = ComponentHelper.GetName(originalType);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalType);
+            _testContext.Storage.Components.Store(containerId, originalType);
 
             // Act.
-            var retrievedData = await Storage.Components.Retrieve<TypeComponent>(containerId).ConfigureAwait(false);
+            var retrievedData = await _testContext.Storage.Components.Retrieve<TypeComponent>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(retrievedData);
@@ -438,10 +445,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var originalTag = StorageTestHelper.CreateTagComponent(tag);
             var originalName = ComponentHelper.GetName(originalTag);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            Storage.Components.Store(containerId, originalTag);
+            _testContext.Storage.Components.Store(containerId, originalTag);
 
             // Act.
-            var retrievedData = await Storage.Components
+            var retrievedData = await _testContext.Storage.Components
                 .Retrieve<TagComponent>(containerId)
                 .ConfigureAwait(false);
 

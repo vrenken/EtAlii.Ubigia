@@ -6,17 +6,30 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ContentTests : StorageUnitTestContext
+    public class ContentTests : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public ContentTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Content_Store()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = TestContentFactory.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, content);
+            _testContext.Storage.Blobs.Store(containerId, content);
 
             // Assert.
         }
@@ -26,11 +39,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = TestContentFactory.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
-            Storage.Blobs.Store(containerId, content);
-            var retrievedContent = await Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
+            _testContext.Storage.Blobs.Store(containerId, content);
+            var retrievedContent = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             AssertData.AreEqual(content, retrievedContent, false);
@@ -41,15 +54,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = TestContentFactory.Create();
-            var second = TestContentFactory.Create();
-            Storage.Blobs.Store(containerId, first);
+            var first = _testContext.TestContentFactory.Create();
+            var second = _testContext.TestContentFactory.Create();
+            _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
-            var act = new Action(() =>
-            {
-                Storage.Blobs.Store(containerId, second);
-            });
+            var act = new Action(() => _testContext.Storage.Blobs.Store(containerId, second));
 
             // Assert.
             Assert.Throws<BlobStorageException>(act);
@@ -62,7 +72,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var content = await Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
+            var content = await _testContext.Storage.Blobs.Retrieve<Content>(containerId).ConfigureAwait(false);
 
             // Assert.
             Assert.Null(content);

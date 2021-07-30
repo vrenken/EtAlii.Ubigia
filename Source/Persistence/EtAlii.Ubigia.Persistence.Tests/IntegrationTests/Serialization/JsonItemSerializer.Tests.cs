@@ -7,8 +7,21 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
 
-    public class JsonItemSerializerTests : StorageUnitTestContext
+    public class JsonItemSerializerTests : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public JsonItemSerializerTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void JsonItemSerializer_Create()
         {
@@ -18,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var propertiesSerializer = new JsonPropertiesSerializer(serializer);
 
             // Act.
-            var storageSerializer = CreateSerializer(itemSerializer, propertiesSerializer);
+            var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
 
             // Assert.
             Assert.NotNull(storageSerializer);
@@ -31,11 +44,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new SerializerFactory().Create();
             var itemSerializer = new JsonItemSerializer(serializer);
             var propertiesSerializer = new JsonPropertiesSerializer(serializer);
-            var storageSerializer = CreateSerializer(itemSerializer, propertiesSerializer);
+            var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
             var testItem = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
@@ -44,7 +57,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
 
             // Assure.
-            DeleteFileWhenNeeded(fileName);
+            _testContext.DeleteFileWhenNeeded(fileName);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -54,11 +67,11 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new SerializerFactory().Create();
             var itemSerializer = new JsonItemSerializer(serializer);
             var propertiesSerializer = new JsonPropertiesSerializer(serializer);
-            var storageSerializer = CreateSerializer(itemSerializer, propertiesSerializer);
+            var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
             var testItem = StorageTestHelper.CreateSimpleTestItem();
 
             // Act.
@@ -71,7 +84,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.Equal(testItem.Value, retrievedTestItem.Value);
 
             // Assure.
-            DeleteFileWhenNeeded(fileName);
+            _testContext.DeleteFileWhenNeeded(fileName);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -81,12 +94,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new SerializerFactory().Create();
             var itemSerializer = new JsonItemSerializer(serializer);
             var propertiesSerializer = new JsonPropertiesSerializer(serializer);
-            var storageSerializer = CreateSerializer(itemSerializer, propertiesSerializer);
+            var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var properties = TestPropertiesFactory.CreateSimple();
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var properties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, properties);
@@ -94,7 +107,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Assert.
 
             // Assure.
-            DeleteFileWhenNeeded(fileName);
+            _testContext.DeleteFileWhenNeeded(fileName);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]//, ExpectedException(typeof(AssertFailedException), "JSON support should be disabled")]
@@ -104,12 +117,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new SerializerFactory().Create();
             var itemSerializer = new JsonItemSerializer(serializer);
             var propertiesSerializer = new JsonPropertiesSerializer(serializer);
-            var storageSerializer = CreateSerializer(itemSerializer, propertiesSerializer);
+            var storageSerializer = _testContext.CreateSerializer(itemSerializer, propertiesSerializer);
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var folder = Storage.PathBuilder.GetFolder(containerId);
-            Storage.FolderManager.Create(folder);
-            var fileName = Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var properties = TestPropertiesFactory.CreateSimple();
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
+            _testContext.Storage.FolderManager.Create(folder);
+            var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
+            var properties = _testContext.TestPropertiesFactory.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, properties);
@@ -121,7 +134,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             Assert.False(properties.Stored);
 
             // Assure.
-            DeleteFileWhenNeeded(fileName);
+            _testContext.DeleteFileWhenNeeded(fileName);
         }
     }
 }

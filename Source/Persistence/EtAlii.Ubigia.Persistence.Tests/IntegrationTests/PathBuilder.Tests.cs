@@ -2,11 +2,25 @@
 
 namespace EtAlii.Ubigia.Persistence.Tests
 {
+    using System;
     using System.IO;
     using Xunit;
 
-    public partial class PathBuilderTests : StorageUnitTestContext
+    public partial class PathBuilderTests : IDisposable
     {
+        private readonly StorageUnitTestContext _testContext;
+
+        public PathBuilderTests()
+        {
+            _testContext = new StorageUnitTestContext();
+        }
+
+        public void Dispose()
+        {
+            _testContext.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PathBuilder_GetFileNameWithoutExtension()
         {
@@ -15,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var fullFileName = $"{fileName}.Extension";
 
             // Act.
-            var fileNameWithoutExtension = Storage.PathBuilder.GetFileNameWithoutExtension(fullFileName);
+            var fileNameWithoutExtension = _testContext.Storage.PathBuilder.GetFileNameWithoutExtension(fullFileName);
 
             // Assert.
             Assert.Equal(fileName, fileNameWithoutExtension);
@@ -28,10 +42,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var folder = Storage.PathBuilder.GetFolder(containerId);
+            var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
 
             // Assert.
-            var expectedFolder = Path.Combine(Storage.PathBuilder.BaseFolder, Path.Combine(containerId.Paths));
+            var expectedFolder = Path.Combine(_testContext.Storage.PathBuilder.BaseFolder, Path.Combine(containerId.Paths));
             Assert.Equal(expectedFolder, folder);
         }
 
@@ -42,10 +56,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
 
             // Act.
-            var directoryName = Storage.PathBuilder.GetDirectoryName(Path.Combine(containerId.Paths));
+            var directoryName = _testContext.Storage.PathBuilder.GetDirectoryName(Path.Combine(containerId.Paths));
 
             // Assert.
-            var expectedDirectoryName = GetExpectedDirectoryName(containerId);
+            var expectedDirectoryName = _testContext.GetExpectedDirectoryName(containerId);
             Assert.Equal(expectedDirectoryName, directoryName);
         }
     }
