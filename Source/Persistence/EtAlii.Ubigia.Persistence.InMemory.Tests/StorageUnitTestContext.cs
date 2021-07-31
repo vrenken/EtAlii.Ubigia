@@ -3,16 +3,20 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Serialization;
-    using EtAlii.xTechnology.Hosting;
 
     public class StorageUnitTestContext : StorageUnitTestContextBase
     {
         public InMemoryStorage Storage { get; private set; }
 
-        public StorageUnitTestContext()
+        public override async Task InitializeAsync()
         {
+            await base
+                .InitializeAsync()
+                .ConfigureAwait(false);
+
             Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
@@ -22,20 +26,21 @@ namespace EtAlii.Ubigia.Persistence.Tests
             }
         }
 
-        protected override void Dispose(bool disposing)
+        public override async Task DisposeAsync()
         {
+            await base
+                .DisposeAsync()
+                .ConfigureAwait(false);
+
             // Cleanup
-            if (disposing)
-            {
-                Storage = null;
-            }
+            Storage = null;
         }
 
         private InMemoryStorage CreateStorage()
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestServiceConfiguration.Root)
+                .UseStorageDiagnostics(HostConfiguration)
                 .UseInMemoryStorage();
 
             return (InMemoryStorage)new StorageFactory().Create(configuration);

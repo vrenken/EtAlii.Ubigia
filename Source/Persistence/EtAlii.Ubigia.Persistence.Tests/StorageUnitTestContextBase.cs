@@ -2,13 +2,16 @@
 
 namespace EtAlii.Ubigia.Persistence.Tests
 {
-    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Xunit;
 
-    public abstract class StorageUnitTestContextBase : IDisposable
+    public abstract class StorageUnitTestContextBase : IAsyncLifetime
     {
-        public IConfiguration HostConfiguration { get; }
+        public IConfiguration HostConfiguration { get; private set; }
 
         public TestContentFactory TestContentFactory { get; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
@@ -19,40 +22,28 @@ namespace EtAlii.Ubigia.Persistence.Tests
             TestContentFactory = new TestContentFactory();
             TestContentDefinitionFactory = new TestContentDefinitionFactory();
             TestPropertiesFactory = new TestPropertiesFactory();
-
-            // var details = await new ConfigurationDetailsParser()
-            //     .ParseForTesting(_hostConfigurationFile, portRange)
-            //     .ConfigureAwait(false);
-            // Folders = details.Folders;
-            // Hosts = details.Hosts;
-            // Ports = details.Ports;
-            // Paths = details.Paths;
-            //
-            // var hostConfigurationRoot = new ConfigurationBuilder()
-            //     .AddConfigurationDetails(details)
-            //     .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
-            //     .Build();
-            // HostConfiguration = hostConfigurationRoot;
         }
 
-        public void Dispose()
+        public virtual async Task InitializeAsync()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting("HostSettings.json", UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
+
+            // We should make use of this storage folder somehow.
+            // var folders = details.Folders;
+
+            var hostConfigurationRoot = new ConfigurationBuilder()
+                .AddConfigurationDetails(details)
+                .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
+                .Build();
+            HostConfiguration = hostConfigurationRoot;
         }
 
-        protected virtual void Dispose(bool disposing)
+        public virtual Task DisposeAsync()
         {
-            // Cleanup
-            if (disposing)
-            {
-                // Nothing to do here.
-            }
-        }
-
-        ~StorageUnitTestContextBase()
-        {
-            Dispose(false);
+            HostConfiguration = null;
+            return Task.CompletedTask;
         }
     }
 }

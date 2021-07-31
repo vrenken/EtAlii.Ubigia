@@ -4,17 +4,21 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Persistence.Portable;
     using EtAlii.Ubigia.Serialization;
-    using EtAlii.xTechnology.Hosting;
     using PCLStorage;
 
     public class StorageUnitTestContext : FileSystemStorageUnitTestContextBase
     {
-        public IFolder StorageFolder { get; }
+        public IFolder StorageFolder { get; private set; }
 
-        public StorageUnitTestContext()
+        public override async Task InitializeAsync()
         {
+            await base
+                .InitializeAsync()
+                .ConfigureAwait(false);
+
             StorageFolder = new FileSystemFolder(RootFolder, false);
 
             Storage = CreateStorage();
@@ -30,7 +34,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(TestServiceConfiguration.Root)
+                .UseStorageDiagnostics(HostConfiguration)
                 .UsePortableStorage(StorageFolder);
 
             return new StorageFactory().Create(configuration);

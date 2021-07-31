@@ -5,7 +5,6 @@ using System.IO;
 using System.Text;
 using System.Runtime.CompilerServices;
 using EtAlii.xTechnology.Diagnostics;
-using EtAlii.xTechnology.Hosting;
 using Microsoft.Extensions.Configuration;
 
 // #if UBIGIA_RUN_TESTS_PER_ASSEMBLY
@@ -35,7 +34,6 @@ internal static class TestModuleInitializer
                 .Build();
 #pragma warning restore CA2000
 
-        TestServiceConfiguration.Initialize(configurationRoot);
         DiagnosticsConfiguration.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 

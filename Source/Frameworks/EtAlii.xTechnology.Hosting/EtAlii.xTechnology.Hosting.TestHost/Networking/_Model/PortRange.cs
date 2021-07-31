@@ -25,7 +25,7 @@ namespace EtAlii.xTechnology.Hosting
 
         public ushort this[ushort index] => (ushort)(LowerPort + index);
         public ushort Count => (ushort)(UpperPort - LowerPort);
-        
+
         public IEnumerator<ushort> GetEnumerator()
         {
             for (var port = LowerPort; port <= UpperPort; port++)

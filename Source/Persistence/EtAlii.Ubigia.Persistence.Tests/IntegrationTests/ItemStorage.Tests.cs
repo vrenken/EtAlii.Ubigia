@@ -6,19 +6,24 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ItemStorageTests : IDisposable
+    public class ItemStorageTests : IAsyncLifetime
     {
-        private readonly StorageUnitTestContext _testContext;
+        private StorageUnitTestContext _testContext;
 
-        public ItemStorageTests()
+        public async Task InitializeAsync()
         {
             _testContext = new StorageUnitTestContext();
+            await _testContext
+                .InitializeAsync()
+                .ConfigureAwait(false);
         }
 
-        public void Dispose()
+        public async Task DisposeAsync()
         {
-            _testContext.Dispose();
-            GC.SuppressFinalize(this);
+            await _testContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
+            _testContext = null;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -11,7 +11,9 @@ namespace EtAlii.xTechnology.Hosting
 	{
 		public static async Task<ConfigurationDetails> ParseForTesting(this ConfigurationDetailsParser parser, string configurationFile, PortRange portRange)
 		{
-			var details = await parser.Parse(configurationFile, false).ConfigureAwait(false);
+			var details = await parser
+                .Parse(configurationFile, false)
+                .ConfigureAwait(false);
 			var configuration = details.Configuration;
 
 			// We create a temporary folder for each of the folder variables
@@ -29,20 +31,23 @@ namespace EtAlii.xTechnology.Hosting
 				configuration = configuration.Replace($"{{{{HOST:{name}@{originalHost}}}}}", originalHost);
 			}
 
+            var testPorts = new Dictionary<string, int>();
+
 			// For each port we introduce a new (i.e. free) one.
 			var neededPorts = (ushort)details.Ports.Count;
-			var freePorts = Ipv4FreePortFinder.Current.Get(portRange, neededPorts);
-			
-			var testPorts = new Dictionary<string, int>();
+            if (neededPorts != 0)
+            {
+                var freePorts = Ipv4FreePortFinder.Current.Get(portRange, neededPorts);
 
-			ushort i = 0;
-			foreach (var (name, originalPort) in details.Ports)
-			{
-				var testPort = freePorts[i++];
-				testPorts.Add(name, testPort);
+                ushort i = 0;
+                foreach (var (name, originalPort) in details.Ports)
+                {
+                    var testPort = freePorts[i++];
+                    testPorts.Add(name, testPort);
 
-				configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");
-			}
+                    configuration = configuration.Replace($"{{{{PORT:{name}@{originalPort}}}}}", $"{testPort}");
+                }
+            }
 
 
 			// We just take the default value for all of the path variables

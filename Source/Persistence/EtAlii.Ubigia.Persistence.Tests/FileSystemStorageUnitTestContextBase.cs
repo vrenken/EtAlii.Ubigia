@@ -4,43 +4,47 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
 
     //you have to label the class with this or it is never scanned for methods
     public abstract class FileSystemStorageUnitTestContextBase : StorageUnitTestContextBase
     {
-        public IStorage Storage { get; set; }
+        public IStorage Storage { get; protected set; }
 
         public readonly string RootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
 
-        protected FileSystemStorageUnitTestContextBase()
+        public override async Task InitializeAsync()
         {
+            await base
+                .InitializeAsync()
+                .ConfigureAwait(false);
+
             Directory.CreateDirectory(RootFolder);
-            AppDomain.CurrentDomain.ProcessExit += (_,_) => DeleteTestData();
+            AppDomain.CurrentDomain.ProcessExit += DeleteTestData;
         }
 
-        protected override void Dispose(bool disposing)
+
+        public override async Task DisposeAsync()
         {
-            // Cleanup
-            if (disposing)
-            {
-                Storage = null;
-            }
 
-            DeleteTestData();
+            await base
+                .DisposeAsync()
+                .ConfigureAwait(false);
+
+            // Cleanup
+            Storage = null;
+
+            AppDomain.CurrentDomain.ProcessExit -= DeleteTestData;
+            DeleteTestData(null, null);
         }
 
-        private void DeleteTestData()
+        private void DeleteTestData(object sender, EventArgs eventArgs)
         {
             // Let's cleanup.
             if(Directory.Exists(RootFolder))
             {
                 Directory.Delete(RootFolder, true);
             }
-        }
-
-        ~FileSystemStorageUnitTestContextBase()
-        {
-            Dispose(false);
         }
     }
 }
