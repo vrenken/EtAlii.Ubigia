@@ -4,13 +4,32 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
     using PCLStorage;
     using Xunit;
 
-    public partial class PathBuilderTests
+    public class PortablePathBuilderTests: IAsyncLifetime
     {
+        private StorageUnitTestContext _testContext;
+
+        public async Task InitializeAsync()
+        {
+            _testContext = new StorageUnitTestContext();
+            await _testContext
+                .InitializeAsync()
+                .ConfigureAwait(false);
+        }
+
+        public async Task DisposeAsync()
+        {
+            await _testContext
+                .DisposeAsync()
+                .ConfigureAwait(false);
+            _testContext = null;
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PathBuilder_GetDirectoryName_Simple()
+        public void PortablePathBuilder_GetDirectoryName_Simple()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
@@ -25,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void PathBuilder_GetDirectoryName_Complex()
+        public void PortablePathBuilder_GetDirectoryName_Complex()
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier("First");

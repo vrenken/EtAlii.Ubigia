@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public partial class PathBuilderTests : IAsyncLifetime
+    public class PathBuilderTests : IAsyncLifetime
     {
         private StorageUnitTestContext _testContext;
 
