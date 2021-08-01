@@ -7,25 +7,30 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
+    using Serilog;
     using Xunit;
 
     public abstract class StorageUnitTestContextBase : IAsyncLifetime
     {
-        public IConfiguration HostConfiguration { get; private set; }
+        protected IConfiguration HostConfiguration { get; private set; }
 
-        public TestContentFactory TestContentFactory { get; }
-        public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
-        public TestPropertiesFactory TestPropertiesFactory { get; }
+        private readonly ILogger _logger = Log.ForContext<StorageUnitTestContextBase>();
+
+        public TestContentFactory Content { get; }
+        public TestContentDefinitionFactory ContentDefinitions { get; }
+        public TestPropertiesFactory Properties { get; }
 
         protected StorageUnitTestContextBase()
         {
-            TestContentFactory = new TestContentFactory();
-            TestContentDefinitionFactory = new TestContentDefinitionFactory();
-            TestPropertiesFactory = new TestPropertiesFactory();
+            Content = new TestContentFactory();
+            ContentDefinitions = new TestContentDefinitionFactory();
+            Properties = new TestPropertiesFactory();
         }
 
         public virtual async Task InitializeAsync()
         {
+            _logger.Verbose("Initializing StorageUnitTestContext");
+
             var details = await new ConfigurationDetailsParser()
                 .ParseForTesting("HostSettings.json", UnitTestSettings.NetworkPortRange)
                 .ConfigureAwait(false);
@@ -42,6 +47,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
         public virtual Task DisposeAsync()
         {
+            _logger.Verbose("Disposing StorageUnitTestContext");
+
             HostConfiguration = null;
             return Task.CompletedTask;
         }

@@ -3,8 +3,10 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class BlobStorageExceptionTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

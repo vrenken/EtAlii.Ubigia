@@ -4,10 +4,12 @@ namespace EtAlii.Ubigia.Persistence
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Serilog;
 
     public class ComponentsProfilingScaffolding : IScaffolding
     {
         private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly ILogger _logger = Log.ForContext<ComponentsProfilingScaffolding>();
 
         public ComponentsProfilingScaffolding(DiagnosticsConfigurationSection configuration)
         {
@@ -18,6 +20,8 @@ namespace EtAlii.Ubigia.Persistence
         {
             if (_configuration.InjectProfiling) // profiling is enabled
             {
+                _logger.Verbose("Injecting component profiling decorators");
+
                 container.RegisterDecorator(typeof(IItemStorage), typeof(ProfilingItemStorage));
                 container.RegisterDecorator(typeof(IComponentStorage), typeof(ProfilingComponentStorage));
             }

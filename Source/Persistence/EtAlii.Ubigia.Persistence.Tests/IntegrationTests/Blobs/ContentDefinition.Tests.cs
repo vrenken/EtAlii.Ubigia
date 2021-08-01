@@ -5,8 +5,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ContentDefinitionTests : IAsyncLifetime
     {
         private StorageUnitTestContext _testContext;

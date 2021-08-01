@@ -2,6 +2,9 @@
 
 namespace EtAlii.Ubigia.Persistence.Tests
 {
+    using EtAlii.Ubigia.Tests;
+
+    [CorrelateUnitTests]
     public class ProfilingItemStorageDecoratorTests
     {
         //[Fact]
