@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             var delta = DateTime.Now - now;
-            Assert.True(delta < TimeSpan.FromSeconds(30), $"delta={delta}");
+            Assert.True(delta < TimeSpan.FromSeconds(80), $"delta={delta}");
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             var delta = DateTime.Now - now;
-            Assert.True(delta < TimeSpan.FromSeconds(10));
+            Assert.True(delta < TimeSpan.FromSeconds(60), $"delta={delta}");
         }
     }
 }
