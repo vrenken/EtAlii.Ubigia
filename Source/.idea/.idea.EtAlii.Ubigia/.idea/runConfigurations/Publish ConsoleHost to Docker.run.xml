@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Publish ConsoleHost to Docker" type="DotNetPublishAndUpload" factoryName="Publish to custom server">
-    <riderPublish runtime="linux-x64" self_contained="true" server_id="965354b4-7f42-44d2-941a-fd7fa676a5b7" target_framework="netcoreapp3.1" uuid_high="1293885971239488753" uuid_low="-6346985406514913082" />
+    <riderPublish configuration="Release" platform="Any CPU" runtime="linux-x64" self_contained="true" server_id="965354b4-7f42-44d2-941a-fd7fa676a5b7" target_framework="net5.0" uuid_high="1293885971239488753" uuid_low="-6346985406514913082" />
     <method v="2" />
   </configuration>
 </component>

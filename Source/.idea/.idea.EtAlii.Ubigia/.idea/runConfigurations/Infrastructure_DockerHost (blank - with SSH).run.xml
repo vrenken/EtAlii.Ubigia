@@ -3,10 +3,7 @@
     <deployment type="dockerfile">
       <settings>
         <option name="imageTag" value="etalii.ubigia.infrastructure.dockerhost" />
-        <option name="buildCliOptions" value="" />
-        <option name="command" value="" />
         <option name="containerName" value="etalii.ubigia.infrastructure.dockerhost" />
-        <option name="entrypoint" value="" />
         <option name="portBindings">
           <list>
             <DockerPortBindingImpl>
@@ -26,7 +23,6 @@
             </DockerPortBindingImpl>
           </list>
         </option>
-        <option name="commandLineOptions" value="" />
         <option name="sourceFilePath" value="Infrastructure/Hosting/Hosts/EtAlii.Ubigia.Infrastructure.Hosting.DockerHost/Dockerfile-Blank-With-Ssh" />
       </settings>
     </deployment>
