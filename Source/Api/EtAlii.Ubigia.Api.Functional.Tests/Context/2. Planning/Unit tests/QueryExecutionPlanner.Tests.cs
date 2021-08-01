@@ -3,9 +3,11 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using System.Linq;
+    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class QueryExecutionPlannerTests
     {
 

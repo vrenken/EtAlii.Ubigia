@@ -7,13 +7,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public sealed class ContentDefinitionRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public ContentDefinitionRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -139,7 +141,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Blob.SetTotalParts(contentDefinition, 1);
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
-            
+
             // Act.
             var act = new Func<Task>(async () => await context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart).ConfigureAwait(false));
 

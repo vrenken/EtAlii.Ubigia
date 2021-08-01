@@ -5,13 +5,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public class IdentifierRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public IdentifierRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;

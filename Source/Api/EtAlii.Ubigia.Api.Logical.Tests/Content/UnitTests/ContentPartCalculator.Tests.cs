@@ -3,7 +3,9 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ContentPartCalculatorTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ContentCacheHelperTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

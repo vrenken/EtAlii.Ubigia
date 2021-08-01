@@ -8,14 +8,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public class EntryRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
-        private const int _count = 10;
+        private const int Count = 10;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public EntryRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -134,10 +136,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id).ConfigureAwait(false);
@@ -155,10 +157,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
@@ -177,10 +179,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
@@ -200,10 +202,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
@@ -223,10 +225,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 1; i < _count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
@@ -244,10 +246,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 1; i < _count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
@@ -265,10 +267,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSecondTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
-            for (var i = 1; i < _count; i++)
+            for (var i = 1; i < Count; i++)
             {
                 // Act.
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
@@ -368,17 +370,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 Assert.NotEqual(Identifier.Empty, loadedEntry.Id);
@@ -392,17 +394,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 Assert.NotEqual(Identifier.Empty, loadedEntry.Id);
@@ -416,17 +418,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 var next = loadedEntry.Next.Id;
@@ -440,17 +442,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var loadedEntry = loadedEntries[i];
                 var child = ((Entry)loadedEntry).Children.First().Id;
@@ -465,17 +467,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateSequence(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateSequence(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Previous | EntryRelations.Next).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var previousEntry = loadedEntries[i];
                 var nextId = previousEntry.Next.Id;
@@ -493,17 +495,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
 	        // Arrange.
 	        var context = _testContext.Host;
-            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(_count, context.Host.Infrastructure).ConfigureAwait(false);
-            var loadedEntries = new IEditableEntry[_count];
+            var createdEntries = await _infrastructureTestHelper.CreateFirstTypeHierarchy(Count, context.Host.Infrastructure).ConfigureAwait(false);
+            var loadedEntries = new IEditableEntry[Count];
 
             // Act.
-            for (var i = 0; i < _count; i++)
+            for (var i = 0; i < Count; i++)
             {
                 loadedEntries[i] = await context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelations.Parent | EntryRelations.Child).ConfigureAwait(false);
             }
 
             // Assert.
-            for (var i = 0; i < _count - 1; i++)
+            for (var i = 0; i < Count - 1; i++)
             {
                 var parentEntry = loadedEntries[i];
                 var childId = ((Entry)parentEntry).Children.First().Id;

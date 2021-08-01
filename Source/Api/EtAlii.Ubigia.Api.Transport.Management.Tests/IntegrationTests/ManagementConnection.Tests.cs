@@ -4,8 +4,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ManagementConnectionTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;

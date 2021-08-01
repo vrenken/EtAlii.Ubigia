@@ -11,7 +11,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class GraphPathTraverserSingleConnectionTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;

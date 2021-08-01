@@ -4,10 +4,12 @@ namespace EtAlii.Ubigia.Persistence
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
+    using Serilog;
 
     public class BlobsLoggingScaffolding : IScaffolding
     {
         private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly ILogger _logger = Log.ForContext<BlobsLoggingScaffolding>();
 
         public BlobsLoggingScaffolding(DiagnosticsConfigurationSection configuration)
         {
@@ -18,6 +20,8 @@ namespace EtAlii.Ubigia.Persistence
         {
             if (_configuration.InjectLogging) // logging is enabled
             {
+                _logger.Verbose("Injecting blob logging decorators");
+
                 container.RegisterDecorator(typeof(IBlobStorer), typeof(LoggingBlobStorer));
                 container.RegisterDecorator(typeof(IBlobRetriever), typeof(LoggingBlobRetriever));
                 container.RegisterDecorator(typeof(IBlobPartStorer), typeof(LoggingBlobPartStorer));

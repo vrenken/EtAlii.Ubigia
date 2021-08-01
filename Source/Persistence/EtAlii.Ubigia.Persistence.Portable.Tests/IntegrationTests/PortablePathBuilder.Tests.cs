@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System.Threading.Tasks;
     using PCLStorage;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class PortablePathBuilderTests: IAsyncLifetime
     {
         private StorageUnitTestContext _testContext;

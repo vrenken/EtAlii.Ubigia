@@ -3,6 +3,7 @@
     using System.Threading.Tasks;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ClientCacheTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

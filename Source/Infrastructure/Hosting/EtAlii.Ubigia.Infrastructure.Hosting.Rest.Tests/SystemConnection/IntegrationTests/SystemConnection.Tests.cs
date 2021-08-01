@@ -11,7 +11,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {

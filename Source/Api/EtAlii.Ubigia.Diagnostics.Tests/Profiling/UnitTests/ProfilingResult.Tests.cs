@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using Xunit;
-
     public class ProfilingResultTests
     {
         [Fact]

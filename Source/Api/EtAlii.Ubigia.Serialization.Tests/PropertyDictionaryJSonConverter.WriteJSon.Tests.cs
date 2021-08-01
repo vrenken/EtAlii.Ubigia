@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using System;
     using System.IO;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class PropertyDictionaryJSonConverterWriteJSonTests
     {
         [Fact]

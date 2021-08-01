@@ -12,7 +12,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
     using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -31,11 +33,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
 		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
-	
+
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);
-		        
+
 		    // Assert.
 		    Assert.NotNull(response);
 		    var authenticationToken = call
@@ -52,11 +54,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
 		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
-		    
+
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);
-		        
+
 		    // Assert.
 		    Assert.NotNull(response);
 		    var authenticationToken = call
@@ -77,7 +79,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);
-		        
+
 		    // Assert.
 		    Assert.NotNull(response);
 		    var authenticationToken = call
@@ -98,7 +100,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);
-		    
+
 		    // Assert.
 		    Assert.NotNull(response);
 		    var authenticationToken = call
@@ -115,11 +117,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
 		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
-		    
+
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);
-		    
+
 		    // Assert.
 		    Assert.NotNull(response);
 		    var authenticationToken = call
@@ -136,7 +138,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
 		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
-		    
+
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
 		    var response = await call.ResponseAsync.ConfigureAwait(false);

@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class GraphComposerFactoryTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -2,6 +2,9 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
+    using EtAlii.Ubigia.Tests;
+
+    [CorrelateUnitTests]
     public sealed class ItemGetterTests
     {
         //[Fact]
@@ -15,7 +18,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
         //    var secondId = Guid.NewGuid()
         //    var thirdId = Guid.NewGuid()
 
-        //    var items = new IIdentifiable[] 
+        //    var items = new IIdentifiable[]
         //    [
         //        new Space [ Id = firstId ],
         //        new Space [ Id = secondId ],

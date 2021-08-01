@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class FabricContextPropertiesTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;

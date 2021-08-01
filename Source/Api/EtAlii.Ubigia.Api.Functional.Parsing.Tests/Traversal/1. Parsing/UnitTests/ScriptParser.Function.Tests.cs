@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ScriptParserFunctionTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;

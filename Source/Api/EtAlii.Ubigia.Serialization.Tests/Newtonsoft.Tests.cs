@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class NewtonsoftTests
     {
         [Fact]//, ExpectedException(typeof(AssertFailedException), "JSON support should be disabled")]

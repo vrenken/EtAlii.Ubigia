@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using Newtonsoft.Json.Bson;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class UnsignedLongJsonConverterTests
     {
         [Fact]

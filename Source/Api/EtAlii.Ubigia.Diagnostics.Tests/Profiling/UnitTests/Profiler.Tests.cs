@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Diagnostics.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ProfilerTests
     {
 

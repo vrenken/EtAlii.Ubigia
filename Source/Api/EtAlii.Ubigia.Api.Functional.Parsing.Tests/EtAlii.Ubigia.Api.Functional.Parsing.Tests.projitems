@@ -16,7 +16,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Context\1. Parsing\__TextFileBasedGraphContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\MdFileBasedTraversalContextData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />

@@ -7,13 +7,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
 	[Trait("Technology", "NetCore")]
     public class RootRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public RootRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
@@ -135,7 +137,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	            .GetAll(space.Id)
 	            .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(addedRoot1);
             Assert.NotNull(addedRoot2);

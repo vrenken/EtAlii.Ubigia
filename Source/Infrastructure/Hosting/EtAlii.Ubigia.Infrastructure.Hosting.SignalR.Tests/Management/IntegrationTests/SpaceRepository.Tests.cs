@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
 	[Trait("Technology", "SignalR")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {

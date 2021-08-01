@@ -8,7 +8,8 @@ namespace EtAlii.Ubigia
     public static class Correlation
     {
         public const string ScriptId = "ScriptCorrelationId";
+        public const string UnitTestId = "UnitTestCorrelationId";
 
-        public static readonly string[] AllIds = {ScriptId};
+        public static readonly string[] AllIds = {ScriptId, UnitTestId};
     }
 }

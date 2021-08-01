@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public sealed class FabricContextRootsTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;

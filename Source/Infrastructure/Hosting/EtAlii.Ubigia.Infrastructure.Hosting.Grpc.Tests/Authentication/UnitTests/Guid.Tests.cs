@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
     public class GuidTest
     {
@@ -14,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         {
             // Arrange.
             var guid = Guid.NewGuid();
-            
+
             // Act.
             var wireGuid = guid.ToWire();
 
@@ -29,10 +31,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Arrange.
             var guid = Guid.NewGuid();
             var wireGuid = guid.ToWire();
-            
+
             // Act.
             var secondGuid = wireGuid.ToLocal();
-            
+
             // Assert
             Assert.Equal(guid, secondGuid);
         }

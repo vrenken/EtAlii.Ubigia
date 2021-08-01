@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class NodeEqualityComparerTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

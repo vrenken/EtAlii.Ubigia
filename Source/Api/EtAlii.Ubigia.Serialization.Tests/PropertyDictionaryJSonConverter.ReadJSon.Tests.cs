@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using System.IO;
     using Newtonsoft.Json;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class PropertyDictionaryJSonConverterReadJSonTests
     {
         [Fact]

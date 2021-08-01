@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class StructureQueryParserTests
     {
         [Fact]

@@ -7,9 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using Xunit.Abstractions;
 
+    [CorrelateUnitTests]
     public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ITraversalContext _traversalContext;

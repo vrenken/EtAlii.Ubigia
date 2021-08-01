@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Persistence.Azure;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class AzureStorageExtensionTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

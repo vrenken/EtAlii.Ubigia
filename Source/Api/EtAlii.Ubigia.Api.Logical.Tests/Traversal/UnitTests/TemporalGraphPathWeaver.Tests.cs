@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-
+    [CorrelateUnitTests]
     public class TemporalGraphPathWeaverTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;

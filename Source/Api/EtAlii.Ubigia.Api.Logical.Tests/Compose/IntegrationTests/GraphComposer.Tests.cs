@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public partial class GraphComposerIntegrationTests : IClassFixture<LogicalUnitTestContext>
     {
         private readonly LogicalUnitTestContext _testContext;

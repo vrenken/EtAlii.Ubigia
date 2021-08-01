@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Serialization;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class InMemoryStorageTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

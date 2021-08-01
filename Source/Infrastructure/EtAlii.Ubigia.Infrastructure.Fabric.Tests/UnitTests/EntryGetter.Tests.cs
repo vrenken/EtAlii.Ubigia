@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public sealed class EntryGetterTests
     {
         private const string TestStorageName = "InMemory Test storage";

@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class TypedPathSubjectPartParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

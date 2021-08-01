@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using System.Linq;
 	using System.Threading.Tasks;
 	using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
 	[Trait("Technology", "NetCore")]
     public sealed class StorageRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {

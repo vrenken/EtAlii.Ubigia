@@ -4,8 +4,10 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class AddressFactoryTests : IDisposable
     {
         private const string BaseAddress = "https://localtesthost:1234";

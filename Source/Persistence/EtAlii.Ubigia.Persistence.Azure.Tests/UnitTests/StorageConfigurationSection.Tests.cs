@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using EtAlii.Ubigia.Persistence.Azure;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class StorageConfigurationSectionTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

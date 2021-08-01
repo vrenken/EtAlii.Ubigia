@@ -5,8 +5,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Serialization;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class BsonItemSerializerTests : IAsyncLifetime
     {
         private StorageUnitTestContext _testContext;

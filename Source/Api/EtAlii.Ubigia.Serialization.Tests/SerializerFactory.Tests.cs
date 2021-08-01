@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Serialization.Tests
     using System.Linq;
     using Newtonsoft.Json;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class SerializerFactoryTests
     {
         [Fact]

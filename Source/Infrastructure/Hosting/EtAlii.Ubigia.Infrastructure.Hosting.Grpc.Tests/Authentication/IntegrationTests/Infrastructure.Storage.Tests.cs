@@ -16,7 +16,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using AdminStorageClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageGrpcService.StorageGrpcServiceClient;
     using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
@@ -31,16 +33,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 		{
 			var authenticationClient = new AdminAuthenticationClient(channel);
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
-			
+
 			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
-			await call.ResponseAsync.ConfigureAwait(false); 
+			await call.ResponseAsync.ConfigureAwait(false);
 			var authenticationToken = call
 				.GetTrailers()
 				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;
 			var headers = new Metadata {{GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken}};
 			return headers;
 		}
-		
+
 		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
@@ -50,10 +52,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var headers = await CreateAuthenticationHeaders(channel, context).ConfigureAwait(false);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
-			
+
 			// Act.
 			var response = await client.GetLocalAsync(request, headers);
-		
+
 			// Assert.
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
@@ -73,7 +75,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
 			// Act.
 			var response = await client.GetLocalAsync(request, headers);
-		
+
 			// Assert.
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
@@ -93,14 +95,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
 			// Act.
 			var response = await client.GetLocalAsync(request, headers);
-		
+
 			// Assert.
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
 			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
-		
+
 		[Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
@@ -108,7 +110,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	        var channel = _testContext.Host.CreateAdminGrpcInfrastructureChannel();
 	        var client = new AdminStorageClient(channel);
 	        var request = new AdminStorageRequest();
-	        
+
 			// Act.
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
@@ -168,7 +170,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
-			
+
 			// Act.
 			var response = await client.GetLocalAsync(request, headers);
 
@@ -187,14 +189,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 			Thread.Sleep(50000);
-	        
+
 			// Act.
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
 			// Assert.
 			await Assert.ThrowsAsync<RpcException>(act).ConfigureAwait(false); // InvalidInfrastructureOperationException
 		}
-		
+
 		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
 		{

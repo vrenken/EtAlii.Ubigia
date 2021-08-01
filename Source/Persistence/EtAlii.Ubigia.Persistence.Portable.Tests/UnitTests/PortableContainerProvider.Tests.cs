@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class PortableContainerProviderTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory = new();

@@ -2,6 +2,9 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
+    using EtAlii.Ubigia.Tests;
+
+    [CorrelateUnitTests]
     public partial class GraphComposerIntegrationTests
     {
     }

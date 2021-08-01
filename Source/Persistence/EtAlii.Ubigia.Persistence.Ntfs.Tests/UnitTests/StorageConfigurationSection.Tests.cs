@@ -2,12 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.Tests
 {
+    using System.IO;
     using System.Linq;
     using EtAlii.Ubigia.Persistence.Ntfs;
     using EtAlii.Ubigia.Serialization;
+    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class StorageConfigurationSectionTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -61,8 +64,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             var pathBuilder = container.GetInstance<IPathBuilder>();
-            Assert.Equal(@"TestFolder\TestName", pathBuilder.BaseFolder);
+            Assert.Equal($"TestFolder{Path.DirectorySeparatorChar}TestName", pathBuilder.BaseFolder);
         }
-
     }
 }

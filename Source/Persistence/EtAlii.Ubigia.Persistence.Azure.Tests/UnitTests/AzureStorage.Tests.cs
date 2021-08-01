@@ -5,7 +5,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Persistence.Azure;
     using EtAlii.Ubigia.Serialization;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class AzureStorageTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

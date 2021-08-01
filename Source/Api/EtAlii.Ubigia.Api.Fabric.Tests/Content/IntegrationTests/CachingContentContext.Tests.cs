@@ -5,8 +5,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using DataConnectionStub = EtAlii.Ubigia.Api.Transport.DataConnectionStub;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
-
+    [CorrelateUnitTests]
     public class CachingContentContextTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

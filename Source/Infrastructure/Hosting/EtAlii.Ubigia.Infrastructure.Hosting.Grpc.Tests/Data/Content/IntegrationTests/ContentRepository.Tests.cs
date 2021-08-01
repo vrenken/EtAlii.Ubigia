@@ -7,13 +7,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
     public sealed class ContentRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private readonly InfrastructureTestHelper _infrastructureTestHelper = new();
-        
+
         public ContentRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;

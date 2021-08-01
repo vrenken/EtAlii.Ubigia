@@ -5,8 +5,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class AccountDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

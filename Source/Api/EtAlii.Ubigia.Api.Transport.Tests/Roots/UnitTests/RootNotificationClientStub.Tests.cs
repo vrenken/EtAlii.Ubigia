@@ -2,8 +2,10 @@
 
 namespace EtAlii.Ubigia.Api.Transport.Tests
 {
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class RootNotificationClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

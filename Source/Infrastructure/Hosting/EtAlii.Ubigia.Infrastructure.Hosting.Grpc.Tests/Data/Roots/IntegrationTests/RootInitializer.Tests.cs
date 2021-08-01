@@ -9,7 +9,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
     public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {

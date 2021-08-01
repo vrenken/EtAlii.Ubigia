@@ -6,8 +6,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Security.Cryptography;
     using Xunit;
     using Aes = EtAlii.Ubigia.Infrastructure.Transport.Aes;
+    using EtAlii.Ubigia.Tests;
 
     // TODO: Move all instances of this test class to single testproject
+    [CorrelateUnitTests]
     [Trait("Technology", "Grpc")]
     public class AesTest
     {

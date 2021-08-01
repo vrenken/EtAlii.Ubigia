@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {

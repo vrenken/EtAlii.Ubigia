@@ -8,10 +8,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Tests;
     using JetBrains.dotMemoryUnit;
     using Xunit;
     using Xunit.Abstractions;
 
+    [CorrelateUnitTests]
     public class SchemaProcessorMemoryTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ITraversalContext _traversalContext;

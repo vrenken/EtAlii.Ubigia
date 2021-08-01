@@ -8,7 +8,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Api.Transport.Rest;
 	using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
 	[Trait("Technology", "NetCore")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {

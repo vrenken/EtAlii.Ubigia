@@ -8,7 +8,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Serialization;
     using PCLStorage;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class PortableStorageTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

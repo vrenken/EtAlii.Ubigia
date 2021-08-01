@@ -3,8 +3,10 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ManagementConnectionInformationTests : IClassFixture<NotStartedTransportUnitTestContext>, IAsyncLifetime
     {
         private readonly NotStartedTransportUnitTestContext _testContext;

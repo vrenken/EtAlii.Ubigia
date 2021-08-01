@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-using EtAlii.xTechnology.Threading;
-
 namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
+    using EtAlii.xTechnology.Threading;
 
-
+    [CorrelateUnitTests]
     public class InfrastructureClientUnitTests : IDisposable
     {
         public InfrastructureClientUnitTests()

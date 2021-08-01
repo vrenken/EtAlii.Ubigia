@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class InfrastructureClientIntegrationTests
     {
         private readonly Uri _url = new("http://api.openkeyval.org/", UriKind.Absolute);

@@ -7,8 +7,10 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using EtAlii.Ubigia.Serialization;
     using Newtonsoft.Json;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
     // TODO: Move all instances of this test class to single testproject
+    [CorrelateUnitTests]
     [Trait("Technology", "NetCore")]
     public class AuthenticationTokenConverterTests
     {

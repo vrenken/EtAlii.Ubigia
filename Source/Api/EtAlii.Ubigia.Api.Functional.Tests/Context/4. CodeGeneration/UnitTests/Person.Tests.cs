@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using Xunit;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class PersonTests
     {
         [Fact]

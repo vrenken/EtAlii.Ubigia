@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Linq;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public partial class ScriptParserTests
     {
         [Theory, ClassData(typeof(MdFileBasedTraversalScriptData))]

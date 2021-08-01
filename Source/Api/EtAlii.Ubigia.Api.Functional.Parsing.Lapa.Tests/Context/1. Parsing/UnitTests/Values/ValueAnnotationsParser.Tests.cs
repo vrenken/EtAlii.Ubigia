@@ -4,7 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Context;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ValueAnnotationsParserTests
     {
         [Fact]

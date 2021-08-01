@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
 	using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
 	[Trait("Technology", "Grpc")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -110,7 +112,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 	            .GetAll()
 	            .ToArrayAsync()
                 .ConfigureAwait(false);
-            
+
             // Assert.
             Assert.NotNull(addedSpace1);
             Assert.NotNull(addedSpace2);

@@ -9,7 +9,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class GraphContextCodeQueriesVariableTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ITraversalContext _traversalContext;

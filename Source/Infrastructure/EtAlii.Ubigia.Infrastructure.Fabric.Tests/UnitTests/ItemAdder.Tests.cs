@@ -6,7 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public sealed class ItemAdderTests
     {
         [Fact]
@@ -18,8 +20,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
 
-            var items = new List<IIdentifiable>(new IIdentifiable[] 
-            { 
+            var items = new List<IIdentifiable>(new IIdentifiable[]
+            {
                 new Space { Id = firstId },
                 new Space { Id = secondId },
                 new Space { Id = thirdId },
@@ -38,8 +40,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var firstId = Guid.NewGuid();
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
-            var items = new List<IIdentifiable>(new IIdentifiable[] 
-            { 
+            var items = new List<IIdentifiable>(new IIdentifiable[]
+            {
                 new Space { Id = firstId },
                 new Space { Id = secondId, Name = "Test" },
                 new Space { Id = thirdId },
@@ -64,8 +66,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
             var fourthId = Guid.NewGuid();
-            var items = new List<IIdentifiable>(new IIdentifiable[] 
-            { 
+            var items = new List<IIdentifiable>(new IIdentifiable[]
+            {
                 new Space { Id = firstId },
                 new Space { Id = secondId },
                 new Space { Id = thirdId },
@@ -90,8 +92,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
 
-            var items = new List<IIdentifiable>(new IIdentifiable[] 
-            { 
+            var items = new List<IIdentifiable>(new IIdentifiable[]
+            {
                 new Space { Id = firstId },
                 new Space { Id = secondId },
                 new Space { Id = thirdId },
@@ -116,8 +118,8 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
 
-            var items = new ObservableCollection<IIdentifiable>(new IIdentifiable[] 
-            { 
+            var items = new ObservableCollection<IIdentifiable>(new IIdentifiable[]
+            {
                 new Space { Id = firstId },
                 new Space { Id = secondId },
                 new Space { Id = thirdId },

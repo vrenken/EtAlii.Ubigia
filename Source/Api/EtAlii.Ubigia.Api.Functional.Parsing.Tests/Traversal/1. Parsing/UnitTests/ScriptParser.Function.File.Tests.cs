@@ -3,7 +3,9 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ScriptParserFunctionFileTests
     {
 

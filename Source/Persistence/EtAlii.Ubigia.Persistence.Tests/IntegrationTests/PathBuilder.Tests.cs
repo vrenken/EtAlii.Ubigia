@@ -4,8 +4,10 @@ namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System.IO;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class PathBuilderTests : IAsyncLifetime
     {
         private StorageUnitTestContext _testContext;

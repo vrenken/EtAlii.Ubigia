@@ -2,8 +2,10 @@
 
 namespace EtAlii.Ubigia.Persistence.Tests
 {
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class DiagnosticsTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

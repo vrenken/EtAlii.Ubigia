@@ -7,7 +7,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Microsoft.Extensions.Configuration;
     using Xunit;
+    using EtAlii.Ubigia.Tests;
 
+    [CorrelateUnitTests]
     public class ProfilingLogicalContextTests : IClassFixture<LogicalUnitTestContext>
     {
         private readonly LogicalUnitTestContext _testContext;

@@ -3,8 +3,10 @@
 namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ContentDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

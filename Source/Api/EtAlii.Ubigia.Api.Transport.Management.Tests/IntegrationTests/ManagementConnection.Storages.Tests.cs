@@ -7,8 +7,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
+    [CorrelateUnitTests]
     public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
         private ITransportTestContext _testContext;
