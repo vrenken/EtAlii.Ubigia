@@ -1,4 +1,12 @@
 ﻿{
+    "Persistence": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
+    },
+
     "Logging": {
         "LogLevel": {
             "Default": "Warning"
