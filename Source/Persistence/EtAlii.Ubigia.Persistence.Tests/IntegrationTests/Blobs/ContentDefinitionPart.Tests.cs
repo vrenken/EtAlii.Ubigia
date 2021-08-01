@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = _testContext.TestContentFactory.CreatePart();
+            var contentDefinitionPart = _testContext.Content.CreatePart();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.ContentDefinitions.CreatePart();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.ContentDefinitions.CreatePart();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart();
+            var contentDefinitionPart = _testContext.ContentDefinitions.CreatePart();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinitionPart);
@@ -89,8 +89,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = _testContext.TestContentDefinitionFactory.CreatePart();
-            var second = _testContext.TestContentDefinitionFactory.CreatePart();
+            var first = _testContext.ContentDefinitions.CreatePart();
+            var second = _testContext.ContentDefinitions.CreatePart();
             _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.
@@ -104,8 +104,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = _testContext.TestContentDefinitionFactory.CreatePart();
-            var second = _testContext.TestContentDefinitionFactory.CreatePart(first.Id);
+            var first = _testContext.ContentDefinitions.CreatePart();
+            var second = _testContext.ContentDefinitions.CreatePart(first.Id);
             _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.

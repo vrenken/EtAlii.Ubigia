@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.TestContentFactory.Create();
+            var content = _testContext.Content.Create();
             var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
             var blobSummaryCalculator = new BlobSummaryCalculator(_testContext.Storage.PathBuilder, _testContext.Storage.FileManager);
@@ -59,8 +59,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.TestContentFactory.Create();
-            var contentParts = _testContext.TestContentFactory.CreateParts(content.TotalParts);
+            var content = _testContext.Content.Create();
+            var contentParts = _testContext.Content.CreateParts(content.TotalParts);
             var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
             var blobPartStorer = new BlobPartStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
@@ -89,8 +89,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.TestContentFactory.Create();
-            var contentParts = _testContext.TestContentFactory.CreateParts(content.TotalParts);
+            var content = _testContext.Content.Create();
+            var contentParts = _testContext.Content.CreateParts(content.TotalParts);
             var blobStorer = new BlobStorer(_testContext.Storage.FolderManager, _testContext.Storage.PathBuilder);
             blobStorer.Store(containerId, content);
             contentParts.RemoveAt(4);

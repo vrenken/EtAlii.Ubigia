@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
             _testContext.Storage.FolderManager.Create(folder);
             var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var testProperties = _testContext.TestPropertiesFactory.CreateSimple();
+            var testProperties = _testContext.Properties.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, testProperties);
@@ -129,7 +129,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var folder = _testContext.Storage.PathBuilder.GetFolder(containerId);
             _testContext.Storage.FolderManager.Create(folder);
             var fileName = _testContext.Storage.PathBuilder.GetFileName(Guid.NewGuid().ToString(), containerId);
-            var testProperties = _testContext.TestPropertiesFactory.CreateSimple();
+            var testProperties = _testContext.Properties.CreateSimple();
 
             // Act.
             storageSerializer.Serialize(fileName, testProperties);

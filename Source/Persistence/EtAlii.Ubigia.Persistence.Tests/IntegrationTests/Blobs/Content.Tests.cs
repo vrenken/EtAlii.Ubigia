@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.TestContentFactory.Create();
+            var content = _testContext.Content.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, content);
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var content = _testContext.TestContentFactory.Create();
+            var content = _testContext.Content.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, content);
@@ -59,8 +59,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = _testContext.TestContentFactory.Create();
-            var second = _testContext.TestContentFactory.Create();
+            var first = _testContext.Content.Create();
+            var second = _testContext.Content.Create();
             _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.

@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.ContentDefinitions.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinition);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.ContentDefinitions.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinition);
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.ContentDefinitions.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinition);
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
+            var contentDefinition = _testContext.ContentDefinitions.Create();
 
             // Act.
             _testContext.Storage.Blobs.Store(containerId, contentDefinition);
@@ -95,8 +95,8 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var first = _testContext.TestContentDefinitionFactory.Create();
-            var second = _testContext.TestContentDefinitionFactory.Create();
+            var first = _testContext.ContentDefinitions.Create();
+            var second = _testContext.ContentDefinitions.Create();
             _testContext.Storage.Blobs.Store(containerId, first);
 
             // Act.

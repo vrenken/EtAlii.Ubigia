@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var properties = _testContext.TestPropertiesFactory.CreateSimple();
+            var properties = _testContext.Properties.CreateSimple();
 
             // Act.
             _testContext.Storage.Properties.Store(containerId, properties);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var count = 1000;
             var containerIds = StorageTestHelper.CreateSimpleContainerIdentifiers(count);
-            var properties = _testContext.TestPropertiesFactory.CreateSimple(count);
+            var properties = _testContext.Properties.CreateSimple(count);
 
             var now = DateTime.Now;
 
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
         {
             // Arrange.
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
-            var properties = _testContext.TestPropertiesFactory.CreateSimple();
+            var properties = _testContext.Properties.CreateSimple();
 
             // Act.
             _testContext.Storage.Properties.Store(containerId, properties);
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             // Arrange.
             var count = 1000;
             var containerIds = StorageTestHelper.CreateSimpleContainerIdentifiers(count);
-            var properties = _testContext.TestPropertiesFactory.CreateSimple(count);
+            var properties = _testContext.Properties.CreateSimple(count);
 
             for (var i = 0; i < count; i++)
             {
