@@ -93,7 +93,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             var itemName = Path.GetFileName(path);
             var folder = (Folder)_inMemoryItems.Find(folderName);
 
-            if (!folder.Items.Any(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) == 0))
+            if (folder.Items.All(i => string.Compare(i.Name, itemName, StringComparison.OrdinalIgnoreCase) != 0))
             {
                 folder.Items.Add(new Folder(itemName));
             }

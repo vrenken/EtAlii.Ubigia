@@ -10,11 +10,12 @@ namespace EtAlii.Ubigia.Persistence.InMemory
     {
         private readonly Folder _items;
 
-        private const char SeparatorChar = '\\';
-        private const string SeparatorString = @"\";
+        private readonly char _separatorChar;
 
         public InMemoryItems()
         {
+            _separatorChar = Path.DirectorySeparatorChar;
+
             _items = new Folder("Root");
         }
 
@@ -27,7 +28,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         {
             var result = default(Item);
 
-            path = path.Trim(SeparatorChar);
+            path = path.Trim(_separatorChar);
 
             if (string.IsNullOrEmpty(path))
             {
@@ -35,13 +36,13 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             }
             else
             {
-                var items = path.Split(SeparatorChar);
+                var items = path.Split(_separatorChar);
                 var subItemName = items.First();
                 if (items.Length > 1)
                 {
                     if (folder.Items.SingleOrDefault(i => string.Compare(i.Name, subItemName, StringComparison.OrdinalIgnoreCase) == 0) is Folder subFolder)
                     {
-                        var subPath = string.Join(SeparatorString, items.Skip(1));
+                        var subPath = string.Join(_separatorChar, items.Skip(1));
                         result = Find(subPath, subFolder);
                     }
                 }

@@ -9,30 +9,28 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         public string BaseFolder { get; }
 
         private readonly char _separatorChar;
-        private readonly string _separatorString;
 
         private readonly IStorageSerializer _serializer;
 
         public InMemoryPathBuilder(IStorageSerializer serializer)
         {
-            _separatorChar = '\\';
-            _separatorString = new string(_separatorChar, 1);
+            _separatorChar = Path.DirectorySeparatorChar;
 
             _serializer = serializer;
-            BaseFolder = string.Join(_separatorString, "EtAlii");
+            BaseFolder = string.Join(_separatorChar, "EtAlii");
         }
 
         public string GetFolder(ContainerIdentifier container)
         {
-            var relativePath = string.Join(_separatorString, container.Paths);
-            return string.Join(_separatorString, BaseFolder, relativePath);
+            var relativePath = string.Join(_separatorChar, container.Paths);
+            return string.Join(_separatorChar, BaseFolder, relativePath);
         }
 
         public string GetFileName(string fileId, ContainerIdentifier container)
         {
             var folder = GetFolder(container);
             var fileName = string.Format(_serializer.FileNameFormat, fileId);
-            return string.Join(_separatorString, folder, fileName);
+            return string.Join(_separatorChar, folder, fileName);
         }
 
         public string GetFileNameWithoutExtension(string path)
@@ -42,7 +40,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
 
         public string Combine(string path1, string path2)
         {
-            return string.Join(_separatorString, path1, path2);
+            return string.Join(_separatorChar, path1, path2);
         }
 
         public string GetDirectoryName(string path)
