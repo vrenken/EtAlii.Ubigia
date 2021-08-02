@@ -9,9 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
-    using EtAlii.Ubigia.Tests;
 
-    [CorrelateUnitTests]
     public partial class GraphComposerIntegrationTests
     {
         [Fact]

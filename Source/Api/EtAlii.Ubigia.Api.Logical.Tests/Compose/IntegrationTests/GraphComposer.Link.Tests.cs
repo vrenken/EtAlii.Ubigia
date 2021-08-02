@@ -6,9 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
-    using EtAlii.Ubigia.Tests;
 
-    [CorrelateUnitTests]
     public partial class GraphComposerIntegrationTests
     {
         [Fact(Skip = "Not working (yet)")]
