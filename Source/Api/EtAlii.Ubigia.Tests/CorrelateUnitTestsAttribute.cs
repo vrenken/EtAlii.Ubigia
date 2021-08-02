@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Tests
     /// <summary>
     /// This attribute ensures that each unit test gets a unique correlation ID assigned in the structured logging output.
     /// </summary>
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class CorrelateUnitTestsAttribute : BeforeAfterTestAttribute
     {
         private readonly ILogger _logger = Log.ForContext<CorrelateUnitTestsAttribute>();
