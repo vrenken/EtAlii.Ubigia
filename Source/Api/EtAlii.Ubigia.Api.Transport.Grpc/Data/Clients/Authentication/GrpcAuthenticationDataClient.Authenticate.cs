@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 }
                 else if (authenticationToken == null)
                 {
-                    var metadata = Metadata.Empty;
+                    var metadata = new Metadata();
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsync(request, metadata);
                     var response = await call.ResponseAsync.ConfigureAwait(false);
