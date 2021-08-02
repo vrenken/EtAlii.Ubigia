@@ -73,7 +73,14 @@ namespace EtAlii.xTechnology.Hosting
             {
                 if (_hasHandle)
                 {
-                    _mutex.ReleaseMutex();
+                    try
+                    {
+                        _mutex.ReleaseMutex();
+                    }
+                    catch
+                    {
+                        // This release throws when there is nothing to release.
+                    }
                 }
                 _mutex.Close();
             }
