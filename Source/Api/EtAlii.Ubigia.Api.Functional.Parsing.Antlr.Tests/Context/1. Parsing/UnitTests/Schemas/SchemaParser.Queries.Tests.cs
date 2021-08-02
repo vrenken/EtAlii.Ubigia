@@ -5,9 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Context;
     using Xunit;
-    using EtAlii.Ubigia.Tests;
 
-    [CorrelateUnitTests]
     public partial class SchemaParserTests
     {
         [Fact]

@@ -6,9 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
-    using EtAlii.Ubigia.Tests;
 
-    [CorrelateUnitTests]
     public partial class ScriptParserNonRootedPathTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

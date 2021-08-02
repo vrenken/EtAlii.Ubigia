@@ -2,9 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
-    using EtAlii.Ubigia.Tests;
-
-    [CorrelateUnitTests]
     public partial class SchemaParserTests
     {
     }
