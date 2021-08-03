@@ -59,7 +59,7 @@ jobs:
       if: always()                           # run this step even if previous step failed
       with:
         name: 'Test report (Windows-latest)' # Name of the check run which will be created
-        path: '**\*.trx'                     # Path to test results
+        path: '**/*.trx'                     # Path to test results
         reporter: dotnet-trx                 # Format of test results
 
 
