@@ -57,10 +57,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var addQueries = new[]
             {
-                "Location:+=Europe/NL/Overijssel/Enschede/Ravenhorsthoek/55",
+                "Location:+=Europe/NL/Overijssel/Enschede/Lavenhorsthoek/23",
                 "Location:+=Europe/NL/Overijssel/Enschede/Beltstraat/80",
-                "Location:+=Europe/NL/Overijssel/Enschede/\"van Loenshof\"/32",
-                "Location:+=Europe/DE/\"Nordrhein-Westfalen\"/Ahlen/\"Luise-Hensel-Strasse\"/12",
+                "Location:+=Europe/NL/Overijssel/Enschede/\"van Roenshof\"/17",
+                "Location:+=Europe/DE/\"Nordrhein-Westfalen\"/Ahlen/\"Hensel-Lida-Strasse\"/12",
             };
             var addQuery = string.Join("\r\n", addQueries);
 
