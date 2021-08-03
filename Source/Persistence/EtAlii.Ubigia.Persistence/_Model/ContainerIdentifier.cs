@@ -3,8 +3,9 @@
 namespace EtAlii.Ubigia.Persistence
 {
     using System;
+    using System.IO;
 
-    public partial struct ContainerIdentifier
+    public readonly partial struct ContainerIdentifier
     {
         public string[] Paths { get; }
 
@@ -28,7 +29,7 @@ namespace EtAlii.Ubigia.Persistence
             }
             else
             {
-                return string.Join("\\", Paths);
+                return string.Join(Path.DirectorySeparatorChar, Paths);
             }
         }
     }

@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
+    using System.IO;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
@@ -246,7 +247,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
-            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join(Path.DirectorySeparatorChar, first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -276,7 +277,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             containerId = ContainerIdentifier.Combine(containerId, second);
 
             // Assert.
-            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join(Path.DirectorySeparatorChar, first, second), containerId.ToString());
         }
 
 

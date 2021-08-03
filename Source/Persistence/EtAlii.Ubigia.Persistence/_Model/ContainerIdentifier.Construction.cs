@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Persistence
 {
-    public partial struct ContainerIdentifier
+    public readonly partial struct ContainerIdentifier
     {
         private ContainerIdentifier(string[] paths)
         {

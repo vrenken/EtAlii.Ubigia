@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Persistence
 {
-    using System.Linq;
+    using System.IO;
 
     internal class LatestEntryGetter : ILatestEntryGetter
     {
@@ -20,7 +20,8 @@ namespace EtAlii.Ubigia.Persistence
             {
                 foreach (var subFolder in _folderManager.EnumerateDirectories(folder))
                 {
-                    var part = subFolder.Split('\\').Last();
+                    var part = subFolder
+                        .Split(Path.DirectorySeparatorChar)[^1];
                     var item = ulong.Parse(part);
                     count = count < item ? item : count;
                 }

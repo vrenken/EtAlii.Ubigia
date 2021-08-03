@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     {
         public IStorage Storage { get; protected set; }
 
-        public readonly string RootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
+        public readonly string RootFolder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString()) + Path.DirectorySeparatorChar;
 
         public override async Task InitializeAsync()
         {

@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Persistence.Tests
 {
     using System;
+    using System.IO;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
@@ -248,7 +249,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.NotEqual(ContainerIdentifier.Empty, containerId);
-            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join(Path.DirectorySeparatorChar, first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -280,7 +281,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             // Assert.
             Assert.NotEqual(ContainerIdentifier.Empty, containerId);
-            Assert.Equal(string.Join("\\", first, second), containerId.ToString());
+            Assert.Equal(string.Join(Path.DirectorySeparatorChar, first, second), containerId.ToString());
         }
 
 
@@ -323,7 +324,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var result = first.Equals(second);
 
             // Assert.
-            Assert.True(result, "A ContainerProvider generated ContainerIdentifier should also match with itselve wrapped as object.");
+            Assert.True(result, "A ContainerProvider generated ContainerIdentifier should also match with itself wrapped as object.");
         }
     }
 }

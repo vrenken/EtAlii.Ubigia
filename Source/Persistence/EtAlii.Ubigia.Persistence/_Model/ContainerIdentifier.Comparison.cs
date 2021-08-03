@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence
 {
     using System;
 
-    public partial struct ContainerIdentifier : IEquatable<ContainerIdentifier>
+    public readonly partial struct ContainerIdentifier : IEquatable<ContainerIdentifier>
     {
         public override bool Equals(object obj)
         {
