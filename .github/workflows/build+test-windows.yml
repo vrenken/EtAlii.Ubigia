@@ -51,6 +51,15 @@ jobs:
         dotnet test
         --no-build
         --verbosity normal
+        --logger "trx;LogFileName=report.xunit.trx"
         .\Source\EtAlii.Ubigia.sln
+
+    - name: 'Publish test results'
+      uses: dorny/test-reporter@v1
+      if: always()                    # run this step even if previous step failed
+      with:
+        name: 'Test report (Windows)' # Name of the check run which will be created
+        path: '**\*.trx'              # Path to test results
+        reporter: dotnet-trx          # Format of test results
 
 

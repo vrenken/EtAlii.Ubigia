@@ -67,34 +67,19 @@ jobs:
 #          echo "::set-env name=file_name::TestReport.${{github.run_number}}.md"
 #        fi
 
-#        --logger "trx;LogFileName=report.xunit.trx"
     - name: 'Test'
       run: >
         dotnet test
         --configuration $CONFIGURATION
         --no-build
         --verbosity normal
+        --logger "trx;LogFileName=report.xunit.trx"
         ./Source/EtAlii.Ubigia.sln
-#
-#    - name: 'Convert xUnit report'
-#      if: ${{always()}}
-#      run: >
-#        liquid
-#        --inputs "File=report.xunit.trx;Format=Trx"
-#        --output-file ${{github.workspace}}/${{env.file_name}}
-#        --title "${{env.title}}"
-#
-#    - name: 'Upload report as build artifact'
-#      uses: actions/upload-artifact@v2
-#      if: ${{always()}}
-#      with:
-#        name: 'Test Run'
-#        path: ${{github.workspace}}/${{env.file_name}}
-#
-#    - name: 'If PR: Add report as comment'
-#      uses: machine-learning-apps/pr-comment@master
-#      if: ${{ github.event_name == 'pull_request' }}
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        path: ${{env.file_name}}
+
+    - name: 'Publish test results'
+      uses: dorny/test-reporter@v1
+      if: always()                   # run this step even if previous step failed
+      with:
+        name: 'Test report (Ubuntu)' # Name of the check run which will be created
+        path: '**/*.trx'             # Path to test results
+        reporter: dotnet-trx         # Format of test results
