@@ -27,6 +27,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public void Register(Container container)
         {
+            container.Register(() => _options.ConfigurationRoot);
+
             container.Register<ITraversalContext>(() =>
             {
                 var scriptParserFactory = new ScriptParserFactory();

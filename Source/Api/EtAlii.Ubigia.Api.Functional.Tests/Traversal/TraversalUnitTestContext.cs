@@ -41,8 +41,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, ScriptScope scope = null)
         {
             scope ??= new ScriptScope();
-            var options = new TraversalProcessorOptions()
-                .UseFunctionalDiagnostics(ClientConfiguration)
+            var options = new TraversalProcessorOptions(ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .UseTestProcessor()
                 .Use(logicalContext)
                 .Use(scope);

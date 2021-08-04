@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             options = options.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                options = options.UseFunctionalTraversalDiagnostics(configurationRoot);
+                options = options.UseFunctionalTraversalDiagnostics();
             }
 
             return options;

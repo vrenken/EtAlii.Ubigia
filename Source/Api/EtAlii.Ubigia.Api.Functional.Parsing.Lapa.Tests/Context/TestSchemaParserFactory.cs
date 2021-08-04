@@ -4,12 +4,17 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     internal class TestSchemaParserFactory : LapaSchemaParserFactory
     {
         public ISchemaParser Create()
         {
-            var parserOptions = new ParserOptions().UseLapa();
+            var configurationRoot = new ConfigurationBuilder()
+                .Build();
+
+            var parserOptions = new ParserOptions(configurationRoot)
+                .UseLapa();
             return base.Create(parserOptions);
         }
     }

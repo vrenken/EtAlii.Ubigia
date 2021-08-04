@@ -3,14 +3,15 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     internal class TestSequencePartExecutionPlannerSelector
     {
-        public static ISequencePartExecutionPlannerSelector Create()
+        public static ISequencePartExecutionPlannerSelector Create(IConfiguration configurationRoot)
         {
             var container = new Container();
 
-            var options = new TraversalProcessorOptions();
+            var options = new TraversalProcessorOptions(configurationRoot);
 
             var scaffoldings = new IScaffolding[]
             {

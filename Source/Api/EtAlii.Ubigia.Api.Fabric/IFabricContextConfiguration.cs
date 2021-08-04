@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
+    using Microsoft.Extensions.Configuration;
 
     public interface IFabricContextConfiguration : IExtensible
     {
@@ -10,6 +11,8 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// The Connection that should be used to communicate with the backend.
         /// </summary>
         IDataConnection Connection { get; }
+
+        IConfiguration ConfigurationRoot { get; }
         bool TraversalCachingEnabled { get; }
     }
 }

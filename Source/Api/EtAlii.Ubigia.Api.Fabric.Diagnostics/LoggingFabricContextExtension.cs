@@ -8,17 +8,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
     public class LoggingFabricContextExtension : IFabricContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal LoggingFabricContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new();
-            configurationRoot.Bind("Api:Fabric:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectLogging)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Fabric:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectLogging)
             {
                 container.RegisterDecorator(typeof(IEntryContext), typeof(LoggingEntryContext));
             }

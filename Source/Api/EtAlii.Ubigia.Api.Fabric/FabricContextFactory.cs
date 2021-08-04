@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         {
             return new IScaffolding[]
             {
-                new ContextScaffolding(configuration.Connection),
+                new ContextScaffolding(configuration),
                 new EntryContextScaffolding(configuration.TraversalCachingEnabled),
                 new ContentContextScaffolding(configuration.TraversalCachingEnabled),
                 new PropertyContextScaffolding(configuration.TraversalCachingEnabled),

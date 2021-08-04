@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
     using Serilog.Core;
+    using Microsoft.Extensions.Configuration;
 
     [Generator]
     public class SchemaPocoGenerator : ISourceGenerator
@@ -102,7 +103,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _logger.Information("Setting up schema parser");
             try
             {
-                var parserOptions = new ParserOptions().UseAntlr();
+                var configurationRoot = new ConfigurationBuilder()
+                    .Build();
+
+                var parserOptions = new ParserOptions(configurationRoot)
+                    .UseAntlr();
                 _schemaParser = new AntlrSchemaParserFactory().Create(parserOptions);
             }
             catch (Exception e)

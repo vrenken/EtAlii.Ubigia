@@ -2,16 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
-    using Microsoft.Extensions.Configuration;
-
     public static class FabricContextConfigurationUseDiagnostics
     {
-        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration, IConfiguration configurationRoot)
+        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration)
         {
             configuration.Use(new IFabricContextExtension[]
             {
-                new LoggingFabricContextExtension(configurationRoot),
-                new ProfilingFabricContextExtension(configurationRoot),
+                new LoggingFabricContextExtension(),
+                new ProfilingFabricContextExtension(),
             });
 
             return (IProfilingFabricContext)fabricContextFactory.Create(configuration);

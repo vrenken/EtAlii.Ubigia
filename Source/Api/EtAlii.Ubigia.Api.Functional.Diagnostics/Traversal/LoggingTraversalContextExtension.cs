@@ -8,17 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public class LoggingTraversalContextExtension : ITraversalContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal LoggingTraversalContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectLogging)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Functional:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectLogging)
             {
                 // Register all logging related DI mappings.
             }

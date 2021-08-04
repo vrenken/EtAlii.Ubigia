@@ -10,16 +10,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
     public class ProfilingFabricContextExtension : IFabricContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-        public ProfilingFabricContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Fabric:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectProfiling)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Fabric:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectProfiling)
             {
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
                 container.RegisterDecorator(typeof(IFabricContext), typeof(ProfilingFabricContext));

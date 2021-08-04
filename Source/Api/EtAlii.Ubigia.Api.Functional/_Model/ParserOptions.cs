@@ -4,9 +4,12 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
+    using Microsoft.Extensions.Configuration;
 
     public class ParserOptions : IExtensible
     {
+        public IConfiguration ConfigurationRoot { get; }
+
         /// <summary>
         /// The extensions added to this configuration.
         /// </summary>
@@ -17,5 +20,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
         /// <inheritdoc />
         TExtension[] IExtensible.GetExtensions<TExtension>() => Extensions.OfType<TExtension>().ToArray();
+
+        public ParserOptions(IConfiguration configurationRoot)
+        {
+            ConfigurationRoot = configurationRoot;
+        }
     }
 }

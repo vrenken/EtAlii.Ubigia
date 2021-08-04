@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return options.Use(new IExtension[]
             {
                 new LapaParserExtension(),
-                new LapaProcessorExtension(options)
             });
         }
     }

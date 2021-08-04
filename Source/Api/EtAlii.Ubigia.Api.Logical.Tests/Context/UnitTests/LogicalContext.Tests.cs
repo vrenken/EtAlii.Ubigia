@@ -20,8 +20,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public void LogicalContext_Create()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            var configuration = new LogicalContextConfiguration(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics();
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);
@@ -34,8 +34,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public void LogicalContext_Dispose()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            var configuration = new LogicalContextConfiguration(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics();
 
             // Act.
             using var context = new LogicalContextFactory().Create(configuration);
@@ -48,8 +48,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         public void LogicalContext_Create_Check_Components()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+            var configuration = new LogicalContextConfiguration(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics();
 
             // Act.
             var context = new LogicalContextFactory().Create(configuration);

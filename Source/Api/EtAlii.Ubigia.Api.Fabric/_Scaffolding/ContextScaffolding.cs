@@ -2,24 +2,23 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ContextScaffolding : IScaffolding
     {
-        private readonly IDataConnection _connection;
+        private readonly IFabricContextConfiguration _configuration;
 
-        public ContextScaffolding(IDataConnection connection)
+        public ContextScaffolding(IFabricContextConfiguration configuration)
         {
-            _connection = connection;
+            _configuration = configuration;
         }
 
         public void Register(Container container)
         {
             container.Register<IFabricContext, FabricContext>();
-            container.Register<IFabricContextConfiguration, FabricContextConfiguration>();
-
-            container.Register(() => _connection);
+            container.Register(() => _configuration);
+            container.Register(() => _configuration.ConfigurationRoot);
+            container.Register(() => _configuration.Connection);
         }
     }
 }

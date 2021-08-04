@@ -27,8 +27,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(Fabric.ClientConfiguration);
+            var configuration = new LogicalContextConfiguration(Fabric.ClientConfiguration)
+                .UseLogicalDiagnostics();
             await Fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation).ConfigureAwait(false);
             return new LogicalContextFactory().Create(configuration);
         }

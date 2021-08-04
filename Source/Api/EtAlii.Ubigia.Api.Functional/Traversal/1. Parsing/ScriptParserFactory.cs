@@ -2,14 +2,16 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using System;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ScriptParserFactory : Factory<IScriptParser, ParserOptions, IScriptParserExtension>, IScriptParserFactory
     {
         protected override IScaffolding[] CreateScaffoldings(ParserOptions options)
         {
-            return Array.Empty<IScaffolding>(); // Nothing to do here (for now).
+            return new IScaffolding[]
+            {
+                new ScriptParserScaffolding(options)
+            };
         }
     }
 }

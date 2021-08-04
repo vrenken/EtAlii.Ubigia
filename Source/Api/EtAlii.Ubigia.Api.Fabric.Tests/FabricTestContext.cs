@@ -32,9 +32,9 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
-            var fabricContextConfiguration = new FabricContextConfiguration()
+            var fabricContextConfiguration = new FabricContextConfiguration(ClientConfiguration)
                 .Use(connection)
-                .UseFabricDiagnostics(Transport.Host.ClientConfiguration);
+                .UseFabricDiagnostics();
             return new FabricContextFactory().Create(fabricContextConfiguration);
         }
 

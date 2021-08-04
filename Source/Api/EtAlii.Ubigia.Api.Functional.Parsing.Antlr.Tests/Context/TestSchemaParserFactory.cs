@@ -5,12 +5,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     internal class TestSchemaParserFactory : AntlrSchemaParserFactory
     {
         public ISchemaParser Create()
         {
-            var parserOptions = new ParserOptions().UseAntlr();
+            var configurationRoot = new ConfigurationBuilder()
+                .Build();
+
+            var parserOptions = new ParserOptions(configurationRoot)
+                .UseAntlr();
             return base.Create(parserOptions);
         }
     }

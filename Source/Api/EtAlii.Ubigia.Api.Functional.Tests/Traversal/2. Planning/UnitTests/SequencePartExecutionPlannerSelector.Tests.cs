@@ -9,10 +9,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     public class SequenceExecutionPlannerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
+        private readonly TraversalUnitTestContext _testContext;
 
         public SequenceExecutionPlannerTests(TraversalUnitTestContext testContext)
         {
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _testContext = testContext;
+            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
         }
 
         public void Dispose()
@@ -25,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Create()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
 
             // Act.
@@ -39,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Add()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner += Tanja");
@@ -57,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Add_With_Variable()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner += Tanja");
@@ -75,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Remove_With_Variable()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner -= Tanja");
@@ -94,7 +96,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= { Gender:'Female'}");
@@ -112,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable_From_Variable()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2");
@@ -130,7 +132,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Assign_With_Variable_From_Variable_With_Comments()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("$var1 <= /Person/Banner/Tanja <= $var2 --These are comments");
@@ -148,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Add_To_Path()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner += Tanja");
@@ -166,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Remove_From_Path()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner -= NoOne");
@@ -184,7 +186,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Simple_Remove_From_Path_With_Comments()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("/Person/Banner -= NoOne --These are comments");
@@ -202,7 +204,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Only_Comments()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("--These are comments");
@@ -219,7 +221,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public void SequenceExecutionPlanner_Plan_Only_Comments_With_Leading_Space()
         {
             // Arrange.
-            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
+            var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create(_testContext.ClientConfiguration);
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
             var parseResult = _parser.Parse("--These are comments");

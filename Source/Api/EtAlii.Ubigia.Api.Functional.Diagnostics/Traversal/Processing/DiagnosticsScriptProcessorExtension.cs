@@ -8,23 +8,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public class DiagnosticsScriptProcessorExtension : IScriptProcessorExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsScriptProcessorExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Functional:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new ScriptProcessingLoggingScaffolding(_configuration),
-                new ScriptProcessingProfilingScaffolding(_configuration),
-                new ScriptProcessingDebuggingScaffolding(_configuration),
+                new ScriptProcessingLoggingScaffolding(configuration),
+                new ScriptProcessingProfilingScaffolding(configuration),
+                new ScriptProcessingDebuggingScaffolding(configuration),
 
-                new ScriptExecutionPlannerLoggingScaffolding(_configuration),
+                new ScriptExecutionPlannerLoggingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

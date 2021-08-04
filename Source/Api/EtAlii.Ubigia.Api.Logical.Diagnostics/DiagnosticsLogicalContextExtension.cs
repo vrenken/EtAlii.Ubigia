@@ -8,17 +8,14 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public class DiagnosticsLogicalContextExtension : ILogicalContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsLogicalContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectLogging)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Logical:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectLogging)
             {
                 // Doesn't this pattern break with the general scaffolding principles?
                 // More details can be found in the GitHub issue below:

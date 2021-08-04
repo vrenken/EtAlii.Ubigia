@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class FunctionalContextOptions : LogicalContextConfiguration, IFunctionalContextOptions, IEditableFunctionalContextOptions
     {
-        public IConfiguration Configuration { get; }
         IFunctionHandlersProvider IEditableFunctionalContextOptions.FunctionHandlersProvider { get => FunctionHandlersProvider ; set => FunctionHandlersProvider = value; }
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
@@ -21,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; set; }
 
-        public FunctionalContextOptions(IConfiguration configuration)
+        public FunctionalContextOptions(IConfiguration configurationRoot)
+            : base(configurationRoot)
         {
-            Configuration = configuration;
             FunctionHandlersProvider = EtAlii.Ubigia.Api.Functional.Traversal.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = EtAlii.Ubigia.Api.Functional.Traversal.RootHandlerMappersProvider.Empty;
         }

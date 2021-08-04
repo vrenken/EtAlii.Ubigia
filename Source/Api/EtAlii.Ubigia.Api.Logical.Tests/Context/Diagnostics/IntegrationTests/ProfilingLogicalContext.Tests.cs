@@ -25,8 +25,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(clientConfiguration);
+            var configuration = new LogicalContextConfiguration(clientConfiguration)
+                .UseLogicalDiagnostics();
             await _testContext.Fabric
                 .ConfigureFabricContextConfiguration(configuration, true)
                 .ConfigureAwait(false);
@@ -44,8 +44,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(clientConfiguration);
+            var configuration = new LogicalContextConfiguration(clientConfiguration)
+                .UseLogicalDiagnostics();
             await _testContext.Fabric
                 .ConfigureFabricContextConfiguration(configuration, true)
                 .ConfigureAwait(false);
@@ -64,8 +64,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(clientConfiguration);
+            var configuration = new LogicalContextConfiguration(clientConfiguration)
+                .UseLogicalDiagnostics();
             await _testContext.Fabric
                 .ConfigureFabricContextConfiguration(configuration, true)
                 .ConfigureAwait(false);

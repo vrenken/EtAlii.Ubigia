@@ -3,22 +3,16 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Logical;
+    using Microsoft.Extensions.Configuration;
 
     public interface ITraversalProcessorOptions : IExtensible
     {
-        IScriptScope ScriptScope { get; }
+        IConfiguration ConfigurationRoot { get; }
+
+        public IScriptScope ScriptScope { get; }
 
         ILogicalContext LogicalContext { get; }
 
         bool CachingEnabled { get; }
-
-        IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
-        IFunctionHandlersProvider FunctionHandlersProvider { get; }
-
-        TraversalProcessorOptions UseCaching(bool cachingEnabled);
-        TraversalProcessorOptions Use(IScriptScope scope);
-        TraversalProcessorOptions Use(ILogicalContext logicalContext);
-        TraversalProcessorOptions Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
-        TraversalProcessorOptions Use(IFunctionHandlersProvider functionHandlersProvider);
     }
 }

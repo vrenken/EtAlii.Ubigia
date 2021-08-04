@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.Ubigia.Api.Fabric;
+    using Microsoft.Extensions.Configuration;
 
     /// <summary>
     /// This is the Configuration for a LogicalContext instance. It provides all settings and extensions
@@ -17,7 +18,8 @@ namespace EtAlii.Ubigia.Api.Logical
         bool IEditableLogicalContextConfiguration.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }
 
-        public LogicalContextConfiguration()
+        public LogicalContextConfiguration(IConfiguration configurationRoot)
+            : base(configurationRoot)
         {
             CachingEnabled = true;
         }

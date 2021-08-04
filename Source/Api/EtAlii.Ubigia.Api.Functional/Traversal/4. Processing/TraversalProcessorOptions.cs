@@ -4,9 +4,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using EtAlii.Ubigia.Api.Logical;
+    using Microsoft.Extensions.Configuration;
 
     public class TraversalProcessorOptions : ConfigurationBase, ITraversalProcessorOptions
     {
+        public IConfiguration ConfigurationRoot { get; }
+
         public IScriptScope ScriptScope { get; private set; }
 
         public ILogicalContext LogicalContext { get; private set; }
@@ -17,13 +20,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
-        public TraversalProcessorOptions()
+        public TraversalProcessorOptions(IConfiguration configurationRoot)
         {
+            ConfigurationRoot = configurationRoot;
             CachingEnabled = true;
             RootHandlerMappersProvider = EtAlii.Ubigia.Api.Functional.Traversal.RootHandlerMappersProvider.Empty;
             FunctionHandlersProvider = EtAlii.Ubigia.Api.Functional.Traversal.FunctionHandlersProvider.Empty;
         }
-
 
         public TraversalProcessorOptions Use(IScriptScope scope)
         {

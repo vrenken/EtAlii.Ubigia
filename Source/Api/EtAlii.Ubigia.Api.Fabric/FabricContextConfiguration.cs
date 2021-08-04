@@ -3,9 +3,12 @@
 namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
+    using Microsoft.Extensions.Configuration;
 
     public class FabricContextConfiguration : ConfigurationBase, IFabricContextConfiguration, IEditableFabricContextConfiguration
     {
+        public IConfiguration ConfigurationRoot { get; }
+
         /// <inheritdoc/>
         IDataConnection IEditableFabricContextConfiguration.Connection { get => Connection; set => Connection = value; }
 
@@ -18,8 +21,9 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// <inheritdoc/>
         public bool TraversalCachingEnabled {get; private set; }
 
-        public FabricContextConfiguration()
+        public FabricContextConfiguration(IConfiguration configurationRoot)
         {
+            ConfigurationRoot = configurationRoot;
             TraversalCachingEnabled = true;
         }
     }

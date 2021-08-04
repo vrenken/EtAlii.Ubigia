@@ -16,6 +16,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public void Register(Container container)
         {
+            container.Register(() => _options.ConfigurationRoot);
+
             container.Register<IGraphContext>(() =>
             {
                 var schemaProcessorFactory = container.GetInstance<ISchemaProcessorFactory>();

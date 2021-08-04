@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
             return options.Use(new IExtension[]
             {
                 new AntrlParserExtension(),
-                new AntlrProcessorExtension(options)
             });
         }
     }

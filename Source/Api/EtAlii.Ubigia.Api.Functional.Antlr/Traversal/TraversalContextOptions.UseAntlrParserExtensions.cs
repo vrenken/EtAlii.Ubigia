@@ -16,8 +16,8 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
             where TTraversalContextOptions : FunctionalContextOptions
         {
             var editableOptions = (IEditableFunctionalContextOptions) options;
-            editableOptions.ParserOptions = new ParserOptions().UseAntlr();
-            editableOptions.ProcessorOptionsProvider = () => new TraversalProcessorOptions().UseAntlr();
+            editableOptions.ParserOptions = new ParserOptions(options.ConfigurationRoot).UseAntlr();
+            editableOptions.ProcessorOptionsProvider = () => new TraversalProcessorOptions(options.ConfigurationRoot).UseAntlr();
 
             return options;
         }
