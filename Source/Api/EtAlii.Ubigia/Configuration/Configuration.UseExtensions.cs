@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia
         /// <param name="extensions"></param>
         /// <returns></returns>
         public static TConfiguration Use<TConfiguration, TExtension>(this TConfiguration configuration, TExtension[] extensions)
-            where TConfiguration: IConfiguration
+            where TConfiguration: IConfiguration // TODO: This should be IEditableConfiguration / IExtensibleConfiguration, but that currently gives a conflict.
             where TExtension : IExtension
         {
             if (extensions == null)

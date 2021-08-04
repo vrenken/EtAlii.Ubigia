@@ -14,11 +14,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
-        public Func<TraversalParserOptions> ParserOptionsProvider { get; }
+        public Func<ParserOptions> ParserOptionsProvider { get; }
         public Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; }
 
         public TraversalContext(
-            Func<TraversalParserOptions> traversalParserOptionsProvider,
+            Func<ParserOptions> traversalParserOptionsProvider,
             Func<TraversalProcessorOptions> traversalProcessorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,

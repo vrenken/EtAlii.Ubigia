@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using Microsoft.Extensions.Configuration;
 
-    public static class TraversalParserOptionsDiagnosticsExtension
+    public static class ParserOptionsDiagnosticsExtension
     {
-        public static TraversalParserOptions UseFunctionalDiagnostics(this TraversalParserOptions options, IConfiguration configurationRoot)
+        public static ParserOptions UseFunctionalDiagnostics(this ParserOptions options, IConfiguration configurationRoot)
         {
             var extensions = new IScriptParserExtension[]
             {

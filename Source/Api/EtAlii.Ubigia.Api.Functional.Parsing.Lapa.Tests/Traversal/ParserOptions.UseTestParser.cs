@@ -3,9 +3,9 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    internal static class TraversalOptionsConfigurationUseTestParserExtension
+    internal static class ParserOptionsUseTestParserExtension
     {
-        public static TraversalParserOptions UseTestParser(this TraversalParserOptions options)
+        public static ParserOptions UseTestParser(this ParserOptions options)
         {
                 return options.UseLapa();
         }

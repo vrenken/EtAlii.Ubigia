@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class PathParserFactory : Factory<IPathParser, TraversalParserOptions, IScriptParserExtension>, IPathParserFactory
+    public class PathParserFactory : Factory<IPathParser, ParserOptions, IScriptParserExtension>, IPathParserFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(TraversalParserOptions options)
+        protected override IScaffolding[] CreateScaffoldings(ParserOptions options)
         {
             return Array.Empty<IScaffolding>(); // Nothing to do here (for now).
         }

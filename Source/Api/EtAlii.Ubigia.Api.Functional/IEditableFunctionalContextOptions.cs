@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; set; }
 
-        Func<TraversalParserOptions> ParserOptionsProvider { get; set; }
+        Func<ParserOptions> ParserOptionsProvider { get; set; }
         Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; set; }
     }
 }

@@ -10,13 +10,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly Func<TraversalParserOptions> _parserOptionsProvider;
+        private readonly Func<ParserOptions> _parserOptionsProvider;
         private readonly Func<TraversalProcessorOptions> _processorOptionsProvider;
         private readonly FunctionalContextOptions _options;
 
         public TraversalContextScaffolding(
             FunctionalContextOptions options,
-            Func<TraversalParserOptions> parserOptionsProvider,
+            Func<ParserOptions> parserOptionsProvider,
             Func<TraversalProcessorOptions> processorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider)

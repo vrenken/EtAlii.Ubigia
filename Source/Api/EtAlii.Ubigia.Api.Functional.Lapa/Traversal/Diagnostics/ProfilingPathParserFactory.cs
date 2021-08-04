@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler;
         }
 
-        public IPathParser Create(TraversalParserOptions options)
+        public IPathParser Create(ParserOptions options)
         {
             options.Use(new IScriptParserExtension[]
             {

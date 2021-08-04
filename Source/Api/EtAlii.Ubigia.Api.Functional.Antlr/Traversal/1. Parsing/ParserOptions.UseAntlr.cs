@@ -2,11 +2,9 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-
-    public static class TraversalParserOptionsUseAntlrExtension
+    public static class ParserOptionsUseAntlrExtension
     {
-        public static TraversalParserOptions UseAntlr(this TraversalParserOptions options)
+        public static ParserOptions UseAntlr(this ParserOptions options)
         {
             return options.Use(new[] {new AntrlParserExtension()});
         }

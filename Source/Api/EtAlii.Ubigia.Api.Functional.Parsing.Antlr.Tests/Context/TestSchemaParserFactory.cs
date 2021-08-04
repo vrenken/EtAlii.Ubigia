@@ -4,9 +4,14 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
 
     internal class TestSchemaParserFactory : AntlrSchemaParserFactory
     {
-        public ISchemaParser Create() => base.Create(new TestSchemaParserOptions());
+        public ISchemaParser Create()
+        {
+            var parserOptions = new ParserOptions().UseAntlr();
+            return base.Create(parserOptions);
+        }
     }
 }

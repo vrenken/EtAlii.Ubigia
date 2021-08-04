@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
 
-    internal static class TraversalParserOptionsUseTestParserExtension
+    internal static class ParserOptionsUseTestParserExtension
     {
-        public static TraversalParserOptions UseTestParser(this TraversalParserOptions options)
+        public static ParserOptions UseTestParser(this ParserOptions options)
         {
 #if USE_LAPA_PARSER_IN_TESTS
                 return options.UseLapa();

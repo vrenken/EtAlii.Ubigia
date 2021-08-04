@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Reflection;
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -103,12 +102,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _logger.Information("Setting up schema parser");
             try
             {
-                var traversalOptions = new TraversalParserOptions()
-                    .UseAntlr();
-                var options = new SchemaParserOptions()
-                    .Use(traversalOptions);
-                _schemaParser = new AntlrSchemaParserFactory()
-                    .Create(options);
+                var parserOptions = new ParserOptions().UseAntlr();
+                _schemaParser = new AntlrSchemaParserFactory().Create(parserOptions);
             }
             catch (Exception e)
             {

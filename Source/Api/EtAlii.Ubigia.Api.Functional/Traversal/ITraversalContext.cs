@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <returns></returns>
         ScriptParseResult Parse(string text);
 
-        Func<TraversalParserOptions> ParserOptionsProvider { get; }
+        Func<ParserOptions> ParserOptionsProvider { get; }
         Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; }
 
         IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope);
