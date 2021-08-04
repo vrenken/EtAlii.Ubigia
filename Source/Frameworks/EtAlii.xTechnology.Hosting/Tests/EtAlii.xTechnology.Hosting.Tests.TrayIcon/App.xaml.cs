@@ -14,7 +14,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
 	{
         private async void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-	        var details = await new ConfigurationDetailsParser().Parse("settings.json").ConfigureAwait(false);
+	        var details = await new ConfigurationDetailsParser()
+                .Parse("settings.json")
+                .ConfigureAwait(false);
 
 	        var configurationRoot = new ConfigurationBuilder()
 		        .AddConfigurationDetails(details)

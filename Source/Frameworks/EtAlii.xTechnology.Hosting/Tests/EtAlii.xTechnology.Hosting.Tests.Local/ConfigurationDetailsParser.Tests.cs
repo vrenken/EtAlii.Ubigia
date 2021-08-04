@@ -8,27 +8,31 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
     public class ConfigurationDetailsParserTests
     {
-        
+
         [Theory, ClassData(typeof(ConfigurationFiles))]
         public async Task ConfigurationDetailsParser_Parse(string configurationFile)
         {
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .Parse(configurationFile)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
         }
-        
+
         [Theory, ClassData(typeof(ConfigurationFiles))]
         public async Task ConfigurationDetailsParser_ParseForTesting_Host(string configurationFile)
         {
             // Arrange.
             var portRange = new PortRange(5000, 6000);
-            
+
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting(configurationFile, portRange)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -43,7 +47,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .Parse(configurationFile)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -59,7 +65,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var portRange = new PortRange(6000, 7000);
 
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting(configurationFile, portRange)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -67,14 +75,16 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             Assert.Contains("AuthenticationPort", (IReadOnlyDictionary<string, int>)details.Ports);
             Assert.NotEqual(5003, details.Ports["AuthenticationPort"]);
         }
-        
+
         [Theory, ClassData(typeof(ConfigurationFiles))]
         public async Task ConfigurationDetailsParser_Parse_Port(string configurationFile)
         {
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .Parse(configurationFile)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -82,14 +92,16 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             Assert.Contains("AuthenticationPort", (IReadOnlyDictionary<string, int>)details.Ports);
             Assert.Equal(5003, details.Ports["AuthenticationPort"]);
         }
-        
+
         [Theory, ClassData(typeof(ConfigurationFiles))]
         public async Task ConfigurationDetailsParser_Parse_Folder(string configurationFile)
         {
             // Arrange.
 
             // Act.
-            var details = await new ConfigurationDetailsParser().Parse(configurationFile).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .Parse(configurationFile)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
@@ -97,7 +109,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             Assert.Contains("AuthenticationFolder", (IReadOnlyDictionary<string, string>)details.Folders);
             Assert.Equal("%localappdata%\\EtAlii\\App", details.Folders["AuthenticationFolder"]);
         }
-        
+
         [Theory, ClassData(typeof(ConfigurationFiles))]
         public async Task ConfigurationDetailsParser_ParseForTesting_Folder(string configurationFile)
         {
@@ -105,7 +117,9 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
             var portRange = new PortRange(5000, 6000);
 
             // Act.
-            var details = await new ConfigurationDetailsParser().ParseForTesting(configurationFile, portRange).ConfigureAwait(false);
+            var details = await new ConfigurationDetailsParser()
+                .ParseForTesting(configurationFile, portRange)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(details);
