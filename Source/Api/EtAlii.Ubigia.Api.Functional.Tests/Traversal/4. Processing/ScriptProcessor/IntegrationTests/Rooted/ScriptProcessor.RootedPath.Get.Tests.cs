@@ -77,11 +77,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //    ]
         //    var script = _parser.Parse(queries).Script
         //    var scope = new ScriptScope()
-        //    var configuration = new ScriptProcessorConfiguration()
+        //    var options = new ScriptProcessorOptions()
         //        .Use(_diagnostics)
         //        .Use(scope)
         //        .Use(logicalContext)
-        //    var processor = _testContext.Create(configuration)
+        //    var processor = _testContext.Create(options)
 
         //    // Act.
         //    var lastSequence = await processor.Process(script)

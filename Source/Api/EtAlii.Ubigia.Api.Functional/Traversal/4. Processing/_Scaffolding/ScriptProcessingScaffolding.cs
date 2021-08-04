@@ -6,11 +6,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptProcessingScaffolding : IScaffolding
     {
-        private readonly ITraversalProcessorConfiguration _configuration;
+        private readonly ITraversalProcessorOptions _options;
 
-        public ScriptProcessingScaffolding(ITraversalProcessorConfiguration configuration)
+        public ScriptProcessingScaffolding(ITraversalProcessorOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
@@ -18,9 +18,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<IScriptProcessor, ScriptProcessor>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
-            container.Register(() => _configuration.LogicalContext);
-            container.Register(() => _configuration.ScriptScope);
-            container.Register(() => _configuration);
+            container.Register(() => _options.LogicalContext);
+            container.Register(() => _options.ScriptScope);
+            container.Register(() => _options);
         }
     }
 }

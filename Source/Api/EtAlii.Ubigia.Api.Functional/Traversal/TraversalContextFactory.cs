@@ -5,37 +5,37 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.xTechnology.MicroContainer;
     using System;
 
-    public class TraversalContextFactory : Factory<ITraversalContext, FunctionalContextConfiguration, ITraversalContextExtension>
+    public class TraversalContextFactory : Factory<ITraversalContext, FunctionalContextOptions, ITraversalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(FunctionalContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalContextOptions options)
         {
             // Let's ensure that the function handler configuration is in fact valid.
-            var functionHandlersProvider = configuration.FunctionHandlersProvider;
+            var functionHandlersProvider = options.FunctionHandlersProvider;
             var functionHandlerValidator = new FunctionHandlerValidator();
             functionHandlerValidator.Validate(functionHandlersProvider);
 
             // Let's ensure that the root handler configuration is in fact valid.
-            var rootHandlerMappersProvider = configuration.RootHandlerMappersProvider;
+            var rootHandlerMappersProvider = options.RootHandlerMappersProvider;
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            if (configuration.ParserConfigurationProvider == null)
+            if (options.ParserOptionsProvider == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ParserConfigurationProvider)} specified");
+                throw new InvalidOperationException($"No {nameof(options.ParserOptionsProvider)} specified");
             }
 
-            var parserConfigurationProvider = configuration.ParserConfigurationProvider;
+            var parserOptionsProvider = options.ParserOptionsProvider;
 
-            if (configuration.ProcessorConfigurationProvider == null)
+            if (options.ProcessorOptionsProvider == null)
             {
-                throw new InvalidOperationException($"No {nameof(configuration.ProcessorConfigurationProvider)} specified");
+                throw new InvalidOperationException($"No {nameof(options.ProcessorOptionsProvider)} specified");
             }
 
-            var processorConfigurationProvider = configuration.ProcessorConfigurationProvider;
+            var processorOptionsProvider = options.ProcessorOptionsProvider;
 
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(configuration, parserConfigurationProvider, processorConfigurationProvider, functionHandlersProvider, rootHandlerMappersProvider),
+                new TraversalContextScaffolding(options, parserOptionsProvider, processorOptionsProvider, functionHandlersProvider, rootHandlerMappersProvider),
             };
         }
     }

@@ -8,24 +8,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class LapaGraphContextExtension : IGraphContextExtension
     {
-        private readonly FunctionalContextConfiguration _configuration;
+        private readonly FunctionalContextOptions _options;
 
-        public LapaGraphContextExtension(FunctionalContextConfiguration configuration)
+        public LapaGraphContextExtension(FunctionalContextOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Initialize(Container container)
         {
             container.Register<IGraphContext, GraphContext>();
-            container.Register<IFunctionalContextConfiguration>(() => _configuration);
+            container.Register<IFunctionalContextOptions>(() => _options);
 
             container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, LapaSchemaParserFactory>();
 
-            container.Register(() => new TraversalContextFactory().Create(_configuration));
+            container.Register(() => new TraversalContextFactory().Create(_options));
 
-            container.Register(() => new LogicalContextFactory().Create(_configuration));
+            container.Register(() => new LogicalContextFactory().Create(_options));
         }
     }
 }

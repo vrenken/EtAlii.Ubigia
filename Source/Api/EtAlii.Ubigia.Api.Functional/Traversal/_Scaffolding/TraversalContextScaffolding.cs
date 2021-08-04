@@ -10,22 +10,22 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly Func<TraversalParserConfiguration> _parserConfigurationProvider;
-        private readonly Func<TraversalProcessorConfiguration> _processorConfigurationProvider;
-        private readonly FunctionalContextConfiguration _configuration;
+        private readonly Func<TraversalParserOptions> _parserOptionsProvider;
+        private readonly Func<TraversalProcessorOptions> _processorOptionsProvider;
+        private readonly FunctionalContextOptions _options;
 
         public TraversalContextScaffolding(
-            FunctionalContextConfiguration configuration,
-            Func<TraversalParserConfiguration> parserConfigurationProvider,
-            Func<TraversalProcessorConfiguration> processorConfigurationProvider,
+            FunctionalContextOptions options,
+            Func<TraversalParserOptions> parserOptionsProvider,
+            Func<TraversalProcessorOptions> processorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
-            _configuration = configuration;
+            _options = options;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
-            _parserConfigurationProvider = parserConfigurationProvider;
-            _processorConfigurationProvider = processorConfigurationProvider;
+            _parserOptionsProvider = parserOptionsProvider;
+            _processorOptionsProvider = processorOptionsProvider;
         }
 
         public void Register(Container container)
@@ -34,8 +34,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             {
                 var scriptParserFactory = new ScriptParserFactory();
                 var scriptProcessorFactory = new ScriptProcessorFactory();
-                var logicalContext = new LogicalContextFactory().Create(_configuration);
-                return new TraversalContext(_parserConfigurationProvider, _processorConfigurationProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
+                var logicalContext = new LogicalContextFactory().Create(_options);
+                return new TraversalContext(_parserOptionsProvider, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
             });
         }
     }

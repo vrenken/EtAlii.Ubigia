@@ -21,11 +21,11 @@
 //            var sequencePartProcessor = new TestableSequencePartProcessor((i, p) => processedParameters[i] = p)
 //            var scope = new ScriptScope()
 
-//            var configuration = new ScriptProcessorConfiguration()
+//            var options = new ScriptProcessorOptions()
 //                .Use(sequencePartProcessor)
 //                .Use(diagnostics)
 //                .Use(scope)
-//            var processor = new TestScriptProcessorFactory().Create(configuration)
+//            var processor = new TestScriptProcessorFactory().Create(options)
 
 //            var sequenceParts = new SequencePart[]
 //            [
@@ -55,11 +55,11 @@
 //            var processedParameters = new Dictionary<int, ProcessParameters<SequencePart, SequencePart>>()
 //            var sequencePartProcessor = new TestableSequencePartProcessor((i, p) => processedParameters[i] = p)
 //            var scope = new ScriptScope()
-//            var configuration = new ScriptProcessorConfiguration()
+//            var options = new ScriptProcessorOptions()
 //                .Use(sequencePartProcessor)
 //                .Use(diagnostics)
 //                .Use(scope)
-//            var processor = new TestScriptProcessorFactory().Create(configuration)
+//            var processor = new TestScriptProcessorFactory().Create(options)
 
 //            var sequenceParts = new SequencePart[]
 //            [

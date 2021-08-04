@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class SchemaProcessingScaffolding  : IScaffolding
     {
-        private readonly ISchemaProcessorConfiguration _configuration;
+        private readonly ISchemaProcessorOptions _options;
 
-        public SchemaProcessingScaffolding (ISchemaProcessorConfiguration configuration)
+        public SchemaProcessingScaffolding (ISchemaProcessorOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
@@ -36,9 +36,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IPathCorrecter, PathCorrecter>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
-            container.Register(() => _configuration.TraversalContext);
-            container.Register(() => _configuration.SchemaScope);
-            container.Register(() => _configuration);
+            container.Register(() => _options.TraversalContext);
+            container.Register(() => _options.SchemaScope);
+            container.Register(() => _options);
         }
     }
 }

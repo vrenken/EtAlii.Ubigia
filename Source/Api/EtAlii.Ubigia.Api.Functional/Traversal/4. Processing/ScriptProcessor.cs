@@ -13,14 +13,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     internal class ScriptProcessor : IScriptProcessor
     {
         private readonly IScriptExecutionPlanner _scriptExecutionPlanner;
-        private readonly ITraversalProcessorConfiguration _configuration;
+        private readonly ITraversalProcessorOptions _options;
 
         public ScriptProcessor(
             IScriptExecutionPlanner scriptExecutionPlanner,
-            ITraversalProcessorConfiguration configuration)
+            ITraversalProcessorOptions options)
         {
             _scriptExecutionPlanner = scriptExecutionPlanner;
-            _configuration = configuration;
+            _options = options;
         }
 
         public IObservable<SequenceProcessingResult> Process(Script script)
@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             int totalExecutionPlans,
             IObserver<SequenceProcessingResult> scriptOutput)
         {
-            var executionScope = new ExecutionScope(_configuration.CachingEnabled);
+            var executionScope = new ExecutionScope(_options.CachingEnabled);
 
             var originalObservableSequenceOutput = await executionPlan.Execute(executionScope).ConfigureAwait(false);
             var observableSequenceOutput = Observable.Empty<object>();

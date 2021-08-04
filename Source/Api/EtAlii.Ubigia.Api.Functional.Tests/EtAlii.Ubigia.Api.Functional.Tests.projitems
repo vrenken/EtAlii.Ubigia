@@ -115,12 +115,12 @@
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\JohnDoeWithFriends.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\AllDoes.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\UnitTests\Person.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\TestSchemaParserConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Context\TestSchemaParserOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\GraphContextConfiguration.UseTestParserExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)\Context\GraphContextOptions.UseTestParserExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\TestSchemaParserFactory.cs" />
@@ -139,8 +139,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\RootHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalParserConfiguration.UseTestParser.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalProcessorConfiguration.UseTestProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalParserOptions.UseTestParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalProcessorOptions.UseTestProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalUnitTestContext.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -13,10 +13,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
         private ISchemaExecutionPlanner CreatePlanner()
         {
-            var configuration = new SchemaProcessorConfiguration();
+            var options = new SchemaProcessorOptions();
             var container = new Container();
             new SchemaExecutionPlanningScaffolding().Register(container);
-            new SchemaProcessingScaffolding(configuration).Register(container);
+            new SchemaProcessingScaffolding(options).Register(container);
             return container.GetInstance<ISchemaExecutionPlanner>();
         }
 

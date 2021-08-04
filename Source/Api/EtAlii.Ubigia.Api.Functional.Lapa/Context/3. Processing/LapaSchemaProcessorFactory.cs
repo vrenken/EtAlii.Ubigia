@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
+    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorOptions, ISchemaProcessorExtension>, ISchemaProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(SchemaProcessorConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(SchemaProcessorOptions options)
         {
             return new IScaffolding[]
             {
-                new SchemaProcessingScaffolding(configuration),
+                new SchemaProcessingScaffolding(options),
                 new SchemaExecutionPlanningScaffolding(),
-                //new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
-                //new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
+                //new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
+                //new RootProcessingScaffolding(options.RootHandlerMappersProvider),
                 //new PathBuildingScaffolding(),
                 //new ConstantHelpersScaffolding(),
                 //new OperatorProcessingScaffolding(),

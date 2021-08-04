@@ -10,14 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             var container = new Container();
 
-            var configuration = new TraversalProcessorConfiguration();
+            var options = new TraversalProcessorOptions();
 
             var scaffoldings = new IScaffolding[]
             {
-                new ScriptProcessingScaffolding(configuration),
+                new ScriptProcessingScaffolding(options),
                 new ScriptExecutionPlanningScaffolding(),
-                new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
-                new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
+                new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
+                new RootProcessingScaffolding(options.RootHandlerMappersProvider),
                 new PathBuildingScaffolding(),
                 new OperatorProcessingScaffolding(),
                 new ProcessingSelectorsScaffolding(),

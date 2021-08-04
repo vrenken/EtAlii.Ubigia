@@ -14,20 +14,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
-        public Func<TraversalParserConfiguration> ParserConfigurationProvider { get; }
-        public Func<TraversalProcessorConfiguration> ProcessorConfigurationProvider { get; }
+        public Func<TraversalParserOptions> ParserOptionsProvider { get; }
+        public Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; }
 
         public TraversalContext(
-            Func<TraversalParserConfiguration> traversalParserConfigurationProvider,
-            Func<TraversalProcessorConfiguration> traversalProcessorConfigurationProvider,
+            Func<TraversalParserOptions> traversalParserOptionsProvider,
+            Func<TraversalProcessorOptions> traversalProcessorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
             IScriptProcessorFactory scriptProcessorFactory,
             IScriptParserFactory scriptParserFactory,
             ILogicalContext logicalContext)
         {
-            ParserConfigurationProvider = traversalParserConfigurationProvider;
-            ProcessorConfigurationProvider = traversalProcessorConfigurationProvider;
+            ParserOptionsProvider = traversalParserOptionsProvider;
+            ProcessorOptionsProvider = traversalProcessorOptionsProvider;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
@@ -37,19 +37,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public ScriptParseResult Parse(string text)
         {
-            var configuration = ParserConfigurationProvider();
-            var parser = _scriptParserFactory.Create(configuration);
+            var options = ParserOptionsProvider();
+            var parser = _scriptParserFactory.Create(options);
             return parser.Parse(text);
         }
 
         public IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope)
         {
-            var configuration = ProcessorConfigurationProvider()
+            var options = ProcessorOptionsProvider()
                 .Use(_logicalContext)
                 .Use(_functionHandlersProvider)
                 .Use(_rootHandlerMappersProvider)
                 .Use(scope);
-            var processor = _scriptProcessorFactory.Create(configuration);
+            var processor = _scriptProcessorFactory.Create(options);
             return processor.Process(script);
         }
 

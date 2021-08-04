@@ -103,12 +103,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _logger.Information("Setting up schema parser");
             try
             {
-                var traversalConfiguration = new TraversalParserConfiguration()
+                var traversalOptions = new TraversalParserOptions()
                     .UseAntlr();
-                var configuration = new SchemaParserConfiguration()
-                    .Use(traversalConfiguration);
+                var options = new SchemaParserOptions()
+                    .Use(traversalOptions);
                 _schemaParser = new AntlrSchemaParserFactory()
-                    .Create(configuration);
+                    .Create(options);
             }
             catch (Exception e)
             {

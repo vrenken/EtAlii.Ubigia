@@ -9,11 +9,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public IScriptParser Create(IConfiguration configurationRoot)
         {
-            var configuration = new TraversalParserConfiguration()
+            var options = new TraversalParserOptions()
                 .UseFunctionalDiagnostics(configurationRoot)
                 .UseTestParser();
 
-            return Create(configuration);
+            return Create(options);
         }
     }
 }

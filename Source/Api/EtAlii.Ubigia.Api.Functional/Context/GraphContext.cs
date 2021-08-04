@@ -27,22 +27,22 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         SchemaParseResult IGraphContext.Parse(string text)
         {
-            var parserConfiguration = _traversalContext.ParserConfigurationProvider();
-            var queryParserConfiguration = new SchemaParserConfiguration()
-                .Use(parserConfiguration);
+            var parserOptions = _traversalContext.ParserOptionsProvider();
+            var queryParserOptions = new SchemaParserOptions()
+                .Use(parserOptions);
                 //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
-            var parser = _schemaParserFactory.Create(queryParserConfiguration);
+            var parser = _schemaParserFactory.Create(queryParserOptions);
             return parser.Parse(text);
         }
 
         /// <inheritdoc />
         IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
         {
-            var configuration = new SchemaProcessorConfiguration()
+            var options = new SchemaProcessorOptions()
                 .Use(scope)
                 .Use(_traversalContext);
-            var processor = _schemaProcessorFactory.Create(configuration);
+            var processor = _schemaProcessorFactory.Create(options);
             return processor.Process(schema);
         }
 

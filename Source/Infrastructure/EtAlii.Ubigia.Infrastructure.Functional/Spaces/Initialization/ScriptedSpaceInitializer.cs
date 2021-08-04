@@ -25,12 +25,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
-            var configuration = new FunctionalContextConfiguration()
+            var options = new FunctionalContextOptions()
                 .UseAntlrTraversalParser()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);
-            var scriptContext = new TraversalContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(options);
 
             var rootsToCreate = template.RootsToCreate;
 

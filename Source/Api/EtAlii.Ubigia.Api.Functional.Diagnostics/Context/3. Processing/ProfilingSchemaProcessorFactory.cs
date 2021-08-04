@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             //_profiler = profiler
         }
 
-        public ISchemaProcessor Create(SchemaProcessorConfiguration configuration)
+        public ISchemaProcessor Create(SchemaProcessorOptions options)
         {
             var extensions = Array.Empty<ISchemaProcessorExtension>();
             // var extensions = new ISchemaProcessorExtension[]
@@ -28,9 +28,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             //     new ProfilingQueryProcessorExtension2(_profiler),
             // ]
 
-            configuration.Use(extensions);
+            options.Use(extensions);
 
-            return _decoree.Create(configuration);
+            return _decoree.Create(options);
         }
     }
 }

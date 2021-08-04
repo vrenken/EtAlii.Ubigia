@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     internal class TestSchemaParserFactory : LapaSchemaParserFactory
     {
-        public ISchemaParser Create() => base.Create(new TestSchemaParserConfiguration());
+        public ISchemaParser Create() => base.Create(new TestSchemaParserOptions());
     }
 }

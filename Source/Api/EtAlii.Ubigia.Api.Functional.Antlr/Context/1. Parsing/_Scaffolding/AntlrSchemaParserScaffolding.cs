@@ -8,18 +8,18 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
 
     internal class AntlrSchemaParserScaffolding : IScaffolding
     {
-        private readonly TraversalParserConfiguration _traversalParserConfiguration;
+        private readonly TraversalParserOptions _traversalParserOptions;
 
-        public AntlrSchemaParserScaffolding(TraversalParserConfiguration traversalParserConfiguration)
+        public AntlrSchemaParserScaffolding(TraversalParserOptions traversalParserOptions)
         {
-            _traversalParserConfiguration = traversalParserConfiguration;
+            _traversalParserOptions = traversalParserOptions;
         }
 
         public void Register(Container container)
         {
             container.Register<IContextValidator, ContextValidator>();
             container.Register<ISchemaParser, AntlrSchemaParser>();
-            container.Register(() => new PathParserFactory().Create(_traversalParserConfiguration));
+            container.Register(() => new PathParserFactory().Create(_traversalParserOptions));
         }
     }
 }

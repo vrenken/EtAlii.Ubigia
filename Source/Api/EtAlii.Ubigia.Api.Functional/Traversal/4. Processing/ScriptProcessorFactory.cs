@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptProcessorFactory : Factory<IScriptProcessor, TraversalProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
+    internal class ScriptProcessorFactory : Factory<IScriptProcessor, TraversalProcessorOptions, IScriptProcessorExtension>, IScriptProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(TraversalProcessorConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(TraversalProcessorOptions options)
         {
             return Array.Empty<IScaffolding>();
         }

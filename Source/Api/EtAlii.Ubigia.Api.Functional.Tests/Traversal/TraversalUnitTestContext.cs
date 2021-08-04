@@ -41,12 +41,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, ScriptScope scope = null)
         {
             scope ??= new ScriptScope();
-            var configuration = new TraversalProcessorConfiguration()
+            var options = new TraversalProcessorOptions()
                 .UseFunctionalDiagnostics(ClientConfiguration)
                 .UseTestProcessor()
                 .Use(logicalContext)
                 .Use(scope);
-            return new ScriptProcessorFactory().Create(configuration);
+            return new ScriptProcessorFactory().Create(options);
         }
     }
 }

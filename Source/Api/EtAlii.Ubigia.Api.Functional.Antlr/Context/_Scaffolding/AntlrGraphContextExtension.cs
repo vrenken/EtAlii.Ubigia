@@ -9,24 +9,24 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
 
     internal class AntlrGraphContextExtension : IGraphContextExtension
     {
-        private readonly FunctionalContextConfiguration _configuration;
+        private readonly FunctionalContextOptions _options;
 
-        public AntlrGraphContextExtension(FunctionalContextConfiguration configuration)
+        public AntlrGraphContextExtension(FunctionalContextOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Initialize(Container container)
         {
             container.Register<IGraphContext, GraphContext>();
-            container.Register<IFunctionalContextConfiguration>(() => _configuration);
+            container.Register<IFunctionalContextOptions>(() => _options);
 
             container.Register<ISchemaProcessorFactory, AntlrSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, AntlrSchemaParserFactory>();
 
-            container.Register(() => new TraversalContextFactory().Create(_configuration));
+            container.Register(() => new TraversalContextFactory().Create(_options));
 
-            container.Register(() => new LogicalContextFactory().Create(_configuration));
+            container.Register(() => new LogicalContextFactory().Create(_options));
         }
     }
 }

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private FunctionalContextConfiguration _configuration;
+        private FunctionalContextOptions _options;
 
         public GraphContextCodeQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -31,14 +31,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _configuration = new FunctionalContextConfiguration()
+            _options = new FunctionalContextOptions()
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
-            await _testContext.Functional.ConfigureLogicalContextConfiguration(_configuration,true).ConfigureAwait(false);
+            await _testContext.Functional.ConfigureLogicalContextConfiguration(_options,true).ConfigureAwait(false);
 
-            _traversalContext = new TraversalContextFactory().Create(_configuration);
-            _context = new GraphContextFactory().Create(_configuration);
+            _traversalContext = new TraversalContextFactory().Create(_options);
+            _context = new GraphContextFactory().Create(_options);
 
             await _testContext.Functional.AddPeople(_traversalContext).ConfigureAwait(false);
             await _testContext.Functional.AddAddresses(_traversalContext).ConfigureAwait(false);
@@ -50,8 +50,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            await _configuration.Connection.Close().ConfigureAwait(false);
-            _configuration = null;
+            await _options.Connection.Close().ConfigureAwait(false);
+            _options = null;
             _traversalContext = null;
             _context = null;
 
@@ -76,11 +76,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var query = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var configuration = new SchemaProcessorConfiguration()
+            var options = new SchemaProcessorOptions()
                 .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
                 .Use(scope)
                 .Use(_traversalContext);
-            var processor = new TestSchemaProcessorFactory().Create(configuration);
+            var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor

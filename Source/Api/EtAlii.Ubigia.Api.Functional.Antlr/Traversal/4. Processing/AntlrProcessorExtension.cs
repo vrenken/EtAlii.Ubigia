@@ -7,19 +7,19 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
 
     public class AntlrProcessorExtension : IScriptProcessorExtension
     {
-        private readonly ITraversalProcessorConfiguration _configuration;
+        private readonly ITraversalProcessorOptions _options;
 
-        public AntlrProcessorExtension(ITraversalProcessorConfiguration configuration)
+        public AntlrProcessorExtension(ITraversalProcessorOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Initialize(Container container)
         {
-            new ScriptProcessingScaffolding(_configuration).Register(container);
+            new ScriptProcessingScaffolding(_options).Register(container);
             new ScriptExecutionPlanningScaffolding().Register(container);
-            new SubjectProcessingScaffolding(_configuration.FunctionHandlersProvider).Register(container);
-            new RootProcessingScaffolding(_configuration.RootHandlerMappersProvider).Register(container);
+            new SubjectProcessingScaffolding(_options.FunctionHandlersProvider).Register(container);
+            new RootProcessingScaffolding(_options.RootHandlerMappersProvider).Register(container);
             new PathBuildingScaffolding().Register(container);
             new OperatorProcessingScaffolding().Register(container);
             new ProcessingSelectorsScaffolding().Register(container);

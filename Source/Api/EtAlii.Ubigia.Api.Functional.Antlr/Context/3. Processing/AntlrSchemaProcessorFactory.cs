@@ -5,17 +5,17 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntlrSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorConfiguration, ISchemaProcessorExtension>, ISchemaProcessorFactory
+    internal class AntlrSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorOptions, ISchemaProcessorExtension>, ISchemaProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(SchemaProcessorConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(SchemaProcessorOptions options)
         {
-            var parserConfiguration = configuration.TraversalContext.ParserConfigurationProvider();
+            var parserOptions = options.TraversalContext.ParserOptionsProvider();
             return new IScaffolding[]
             {
-                new SchemaProcessingScaffolding(configuration),
+                new SchemaProcessingScaffolding(options),
                 new SchemaExecutionPlanningScaffolding(),
-                //new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
-                //new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
+                //new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
+                //new RootProcessingScaffolding(options.RootHandlerMappersProvider),
                 //new PathBuildingScaffolding(),
                 //new ConstantHelpersScaffolding(),
                 //new OperatorProcessingScaffolding(),
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
                 //new FunctionSubjectProcessingScaffolding(),
 
                 // Query Parsing
-                new AntlrSchemaParserScaffolding(parserConfiguration),
+                new AntlrSchemaParserScaffolding(parserOptions),
 
                 // Additional processing (for path variable parts).
                 //new PathSubjectParsingScaffolding(),

@@ -17,14 +17,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler;
         }
 
-        public IScriptProcessor Create(TraversalProcessorConfiguration configuration)
+        public IScriptProcessor Create(TraversalProcessorOptions options)
         {
-            configuration.Use(new IScriptProcessorExtension[]
+            options.Use(new IScriptProcessorExtension[]
             {
                 new ProfilingScriptProcessorExtension2(_profiler),
             });
 
-            return _decoree.Create(configuration);
+            return _decoree.Create(options);
         }
     }
 }

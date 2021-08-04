@@ -24,10 +24,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 //        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
 //        [
 //            var logicalContext = await _logical.CreateLogicalContext(openOnCreation)
-//            var configuration = new DataContextConfiguration()
+//            var options = new DataContextOptions()
 //                .Use(_diagnostics)
 //                .Use(logicalContext)
-//            return new DataContextFactory().Create(configuration)
+//            return new DataContextFactory().Create(options)
 //        ]
 
         public Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)

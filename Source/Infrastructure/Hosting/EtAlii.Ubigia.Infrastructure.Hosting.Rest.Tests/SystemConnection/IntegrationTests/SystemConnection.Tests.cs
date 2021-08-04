@@ -95,11 +95,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new FunctionalContextConfiguration()
+            var options = new FunctionalContextOptions()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 
-            var scriptContext = new TraversalContextFactory().Create(configuration);
+            var scriptContext = new TraversalContextFactory().Create(options);
 
             var addQueries = new[]
             {
@@ -140,7 +140,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new FunctionalContextConfiguration()
+            var configuration = new FunctionalContextOptions()
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 

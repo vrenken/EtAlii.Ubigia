@@ -2,11 +2,11 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    public static class TraversalParserConfigurationUseLapaExtension
+    public static class TraversalParserOptionsUseLapaExtension
     {
-        public static TraversalParserConfiguration UseLapa(this TraversalParserConfiguration configuration)
+        public static TraversalParserOptions UseLapa(this TraversalParserOptions options)
         {
-            return configuration.Use(new[] {new LapaParserExtension()});
+            return options.Use(new[] {new LapaParserExtension()});
         }
     }
 }

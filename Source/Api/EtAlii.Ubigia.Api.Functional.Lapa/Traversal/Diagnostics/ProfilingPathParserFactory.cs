@@ -17,14 +17,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler;
         }
 
-        public IPathParser Create(TraversalParserConfiguration configuration)
+        public IPathParser Create(TraversalParserOptions options)
         {
-            configuration.Use(new IScriptParserExtension[]
+            options.Use(new IScriptParserExtension[]
             {
                 new ProfilingPathParserExtension(_profiler),
             });
 
-            return _decoree.Create(configuration);
+            return _decoree.Create(options);
         }
     }
 }
