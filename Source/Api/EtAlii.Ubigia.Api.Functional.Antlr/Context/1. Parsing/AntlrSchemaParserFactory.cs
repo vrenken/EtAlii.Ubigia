@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
         {
             return new IScaffolding[]
             {
-                new AntlrSchemaParserScaffolding(options),
+                new AntlrSchemaParserScaffolding(),
             };
         }
     }

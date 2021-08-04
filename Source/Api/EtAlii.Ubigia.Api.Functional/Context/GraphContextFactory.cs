@@ -19,10 +19,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            return System.Array.Empty<IScaffolding>();
-            //new GraphContextScaffolding(configuration),
-            //new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
-
+            return new IScaffolding[]
+            {
+                new GraphContextScaffolding(options)
+            };
         }
     }
 }

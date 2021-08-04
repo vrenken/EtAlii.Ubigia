@@ -18,7 +18,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
 
         public void Initialize(Container container)
         {
-            container.Register<IGraphContext, GraphContext>();
             container.Register<IFunctionalContextOptions>(() => _options);
 
             container.Register<ISchemaProcessorFactory, AntlrSchemaProcessorFactory>();

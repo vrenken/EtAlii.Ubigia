@@ -10,15 +10,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     /// <inheritdoc />
     internal partial class GraphContext : IGraphContext
     {
+        private readonly ParserOptions _parserOptions;
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
         private readonly ITraversalContext _traversalContext;
 
         public GraphContext(
+            ParserOptions parserOptions,
             ISchemaProcessorFactory schemaProcessorFactory,
             ISchemaParserFactory schemaParserFactory,
             ITraversalContext traversalContext)
         {
+            _parserOptions = parserOptions;
             _schemaProcessorFactory = schemaProcessorFactory;
             _schemaParserFactory = schemaParserFactory;
             _traversalContext = traversalContext;
@@ -27,10 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         SchemaParseResult IGraphContext.Parse(string text)
         {
-            var parserOptions = _traversalContext.ParserOptions;
-                //.Use(_logicalContext.Configuration)
-                //.Use(_diagnostics)
-            var parser = _schemaParserFactory.Create(parserOptions);
+            var parser = _schemaParserFactory.Create(_parserOptions);
             return parser.Parse(text);
         }
 

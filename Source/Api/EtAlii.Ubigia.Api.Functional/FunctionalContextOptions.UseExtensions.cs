@@ -20,6 +20,15 @@ namespace EtAlii.Ubigia.Api.Functional
             return options;
         }
 
+        public static TFunctionalContextOptions Use<TFunctionalContextOptions>(this TFunctionalContextOptions options, ParserOptions parserOptions)
+            where TFunctionalContextOptions : FunctionalContextOptions
+        {
+            var editableOptions = (IEditableFunctionalContextOptions) options;
+            editableOptions.ParserOptions = parserOptions;
+
+            return options;
+        }
+
         public static TFunctionalContextOptions Use<TFunctionalContextOptions>(this TFunctionalContextOptions options, IRootHandlerMappersProvider rootHandlerMappersProvider)
             where TFunctionalContextOptions : FunctionalContextOptions
         {

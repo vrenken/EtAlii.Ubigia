@@ -11,8 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly ITraversalContext _decoree;
         public IProfiler Profiler { get; }
 
-        // This defies the purpose of both the Context and profiling decorator... :-(
-        public ParserOptions ParserOptions => _decoree.ParserOptions;
         public Func<TraversalProcessorOptions> ProcessorOptionsProvider => _decoree.ProcessorOptionsProvider;
 
         public ProfilingTraversalContext(

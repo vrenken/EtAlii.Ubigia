@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var options = new FunctionalContextOptions()
+            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 
@@ -140,7 +140,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
-            var configuration = new FunctionalContextOptions()
+            var configuration = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(dataConnection);
 

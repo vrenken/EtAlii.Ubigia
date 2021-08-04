@@ -17,7 +17,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         public void Initialize(Container container)
         {
-            container.Register<IGraphContext, GraphContext>();
             container.Register<IFunctionalContextOptions>(() => _options);
 
             container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();

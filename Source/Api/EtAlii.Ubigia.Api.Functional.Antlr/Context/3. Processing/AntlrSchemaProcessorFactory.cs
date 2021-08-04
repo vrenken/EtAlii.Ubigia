@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
                 //new FunctionSubjectProcessingScaffolding(),
 
                 // Query Parsing
-                new AntlrSchemaParserScaffolding(options.TraversalContext.ParserOptions),
+                new AntlrSchemaParserScaffolding(),
 
                 // Additional processing (for path variable parts).
                 //new PathSubjectParsingScaffolding(),

@@ -10,7 +10,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly ParserOptions _parserOptions;
         private readonly Func<TraversalProcessorOptions> _processorOptionsProvider;
         private readonly FunctionalContextOptions _options;
 
@@ -23,7 +22,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
-            _parserOptions = options.ParserOptions;
             _processorOptionsProvider = processorOptionsProvider;
         }
 
@@ -34,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var scriptParserFactory = new ScriptParserFactory();
                 var scriptProcessorFactory = new ScriptProcessorFactory();
                 var logicalContext = new LogicalContextFactory().Create(_options);
-                return new TraversalContext(_parserOptions, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
+                return new TraversalContext(_options.ParserOptions, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
             });
         }
     }

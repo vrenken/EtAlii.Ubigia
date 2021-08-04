@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public interface IFunctionalContextOptions : IExtensible
     {
+        ParserOptions ParserOptions { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
     }

@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = new FunctionalContextOptions()
+            _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Arrange.
             var processor = new TestSchemaProcessorFactory();
             var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(processor, parser, _traversalContext);
+            var context = new GraphContext(_options.ParserOptions, processor, parser, _traversalContext);
 
             // Act.
             var person = await context

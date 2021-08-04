@@ -5,10 +5,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
     using Xunit;
 
     public class InfrastructureUnitTestContext : IAsyncLifetime
     {
+        public IConfiguration ClientConfiguration => Host.ClientConfiguration;
         public InProcessInfrastructureHostTestContext Host { get; private set; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         public TestContentFactory TestContentFactory { get; }

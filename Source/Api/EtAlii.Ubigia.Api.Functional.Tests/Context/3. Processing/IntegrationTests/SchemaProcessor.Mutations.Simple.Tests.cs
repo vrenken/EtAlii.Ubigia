@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = new FunctionalContextOptions()
+            _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
