@@ -10,13 +10,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
-        private readonly Func<ParserOptions> _parserOptionsProvider;
+        private readonly ParserOptions _parserOptions;
         private readonly Func<TraversalProcessorOptions> _processorOptionsProvider;
         private readonly FunctionalContextOptions _options;
 
         public TraversalContextScaffolding(
             FunctionalContextOptions options,
-            Func<ParserOptions> parserOptionsProvider,
             Func<TraversalProcessorOptions> processorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider)
@@ -24,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
             _functionHandlersProvider = functionHandlersProvider;
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
-            _parserOptionsProvider = parserOptionsProvider;
+            _parserOptions = options.ParserOptions;
             _processorOptionsProvider = processorOptionsProvider;
         }
 
@@ -35,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var scriptParserFactory = new ScriptParserFactory();
                 var scriptProcessorFactory = new ScriptProcessorFactory();
                 var logicalContext = new LogicalContextFactory().Create(_options);
-                return new TraversalContext(_parserOptionsProvider, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
+                return new TraversalContext(_parserOptions, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
             });
         }
     }

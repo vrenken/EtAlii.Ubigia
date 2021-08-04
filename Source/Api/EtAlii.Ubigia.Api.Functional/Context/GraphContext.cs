@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         SchemaParseResult IGraphContext.Parse(string text)
         {
-            var parserOptions = _traversalContext.ParserOptionsProvider();
+            var parserOptions = _traversalContext.ParserOptions;
                 //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
             var parser = _schemaParserFactory.Create(parserOptions);

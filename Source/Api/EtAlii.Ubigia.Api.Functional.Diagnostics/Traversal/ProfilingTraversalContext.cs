@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public IProfiler Profiler { get; }
 
         // This defies the purpose of both the Context and profiling decorator... :-(
-        public Func<ParserOptions> ParserOptionsProvider => _decoree.ParserOptionsProvider;
+        public ParserOptions ParserOptions => _decoree.ParserOptions;
         public Func<TraversalProcessorOptions> ProcessorOptionsProvider => _decoree.ProcessorOptionsProvider;
 
         public ProfilingTraversalContext(

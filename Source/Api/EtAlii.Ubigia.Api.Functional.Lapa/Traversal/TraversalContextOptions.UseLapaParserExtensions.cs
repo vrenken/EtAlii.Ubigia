@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             where TTraversalContextOptions : FunctionalContextOptions
         {
             var editableOptions = (IEditableFunctionalContextOptions) options;
-            editableOptions.ParserOptionsProvider = () => new ParserOptions().UseLapa();
+            editableOptions.ParserOptions = new ParserOptions().UseLapa();
             editableOptions.ProcessorOptionsProvider = () => new TraversalProcessorOptions().UseLapa();
 
             return options;

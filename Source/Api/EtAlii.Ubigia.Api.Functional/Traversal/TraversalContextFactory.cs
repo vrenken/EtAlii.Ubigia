@@ -19,12 +19,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            if (options.ParserOptionsProvider == null)
+            if (options.ParserOptions == null)
             {
-                throw new InvalidOperationException($"No {nameof(options.ParserOptionsProvider)} specified");
+                throw new InvalidOperationException($"No {nameof(options.ParserOptions)} specified");
             }
-
-            var parserOptionsProvider = options.ParserOptionsProvider;
 
             if (options.ProcessorOptionsProvider == null)
             {
@@ -35,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             return new IScaffolding[]
             {
-                new TraversalContextScaffolding(options, parserOptionsProvider, processorOptionsProvider, functionHandlersProvider, rootHandlerMappersProvider),
+                new TraversalContextScaffolding(options, processorOptionsProvider, functionHandlersProvider, rootHandlerMappersProvider),
             };
         }
     }
