@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public interface IFunctionalContextOptions : IConfiguration
+    public interface IFunctionalContextOptions : IExtensible
     {
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }

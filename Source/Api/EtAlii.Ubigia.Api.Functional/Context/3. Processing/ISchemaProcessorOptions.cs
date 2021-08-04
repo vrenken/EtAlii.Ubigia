@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public interface ISchemaProcessorOptions : IConfiguration
+    public interface ISchemaProcessorOptions : IExtensible
     {
         ISchemaScope SchemaScope { get; }
 

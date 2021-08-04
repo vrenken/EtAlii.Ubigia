@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.Ubigia.Api.Fabric;
 
-    public interface IGraphPathTraverserConfiguration : IConfiguration
+    public interface IGraphPathTraverserConfiguration : IExtensible
     {
         IFabricContext FabricContext { get; }
 

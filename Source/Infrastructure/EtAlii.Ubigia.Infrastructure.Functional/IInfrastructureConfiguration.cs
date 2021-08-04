@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Microsoft.Extensions.Configuration;
 
-    public interface IInfrastructureConfiguration : EtAlii.Ubigia.IConfiguration
+    public interface IInfrastructureConfiguration : IExtensible
     {
         /// <summary>
         /// The configuration root instance for the current application.

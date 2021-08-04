@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using Xunit;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public class LogicalUnitTestContext : IAsyncLifetime
     {

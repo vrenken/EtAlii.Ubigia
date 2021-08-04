@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost;
     using EtAlii.xTechnology.Hosting;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public class FabricTestContext : IFabricTestContext
     {

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public class TraversalUnitTestContext : IAsyncLifetime
     {

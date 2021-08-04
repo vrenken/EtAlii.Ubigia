@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Hosting;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public class FunctionalTestContext : IFunctionalTestContext
     {

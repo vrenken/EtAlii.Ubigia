@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia
     /// This is the base class for all configuration classes.
     /// It provides out of the box support for extensions.
     /// </summary>
-    public abstract class ConfigurationBase : IConfiguration, IEditableConfiguration
+    public abstract class ConfigurationBase : IExtensible
     {
         /// <summary>
         /// The extensions added to this configuration.
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia
         protected IExtension[] Extensions { get; private set; }
 
         /// <inheritdoc/>
-        IExtension[] IEditableConfiguration.Extensions { get => Extensions; set => Extensions = value; }
+        IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
 
         /// <summary>
         /// Creates a new Configuration instance.

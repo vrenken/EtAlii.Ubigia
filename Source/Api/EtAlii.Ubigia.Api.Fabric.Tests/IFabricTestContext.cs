@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Hosting;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public interface IFabricTestContext
     {

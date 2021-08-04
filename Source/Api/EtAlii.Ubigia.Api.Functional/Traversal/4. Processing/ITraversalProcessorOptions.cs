@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public interface ITraversalProcessorOptions : IConfiguration
+    public interface ITraversalProcessorOptions : IExtensible
     {
         IScriptScope ScriptScope { get; }
 

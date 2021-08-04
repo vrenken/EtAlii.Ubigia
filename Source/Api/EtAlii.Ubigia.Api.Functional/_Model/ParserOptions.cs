@@ -2,13 +2,20 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class ParserOptions : ConfigurationBase //, IEditableConfiguration
+    using System;
+    using System.Linq;
+
+    public class ParserOptions : IExtensible
     {
-        // /// <summary>
-        // /// The extensions added to this configuration.
-        // /// </summary>
-        // public IExtension[] Extensions { get; private set; }
-        //
-        // IExtension[] IEditableConfiguration.Extensions { get => Extensions; set => Extensions = value; }
+        /// <summary>
+        /// The extensions added to this configuration.
+        /// </summary>
+        public IExtension[] Extensions { get; private set; } = Array.Empty<IExtension>();
+
+        /// <inheritdoc />
+        IExtension[] IExtensible.Extensions { get => Extensions; set => Extensions = value; }
+
+        /// <inheritdoc />
+        TExtension[] IExtensible.GetExtensions<TExtension>() => Extensions.OfType<TExtension>().ToArray();
     }
 }

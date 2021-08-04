@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
-    public interface IDataConnectionConfiguration : IConfiguration
+    public interface IDataConnectionConfiguration : IExtensible
     {
         Uri Address { get; }
         string AccountName { get; }

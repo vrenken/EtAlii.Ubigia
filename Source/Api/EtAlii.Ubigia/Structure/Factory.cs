@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia
         checkId: "S2436:Reduce the number of generic parameters in the 'Factory' class to no more than the 2 authorized",
         Justification = "We cannot make this helper factory with less than 3 generic methods. Currently the change is too invasive to apply as all layers use this abstract class.")]
     public abstract class Factory<TInstance, TInstanceConfiguration, TExtension>
-        where TInstanceConfiguration : ConfigurationBase
+        where TInstanceConfiguration : IExtensible
         where TExtension: IExtension
     {
         /// <summary>

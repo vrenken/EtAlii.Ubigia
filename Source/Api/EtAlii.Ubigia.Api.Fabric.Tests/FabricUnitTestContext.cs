@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
-    using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
+    using Microsoft.Extensions.Configuration;
 
     public class FabricUnitTestContext : IAsyncLifetime
     {

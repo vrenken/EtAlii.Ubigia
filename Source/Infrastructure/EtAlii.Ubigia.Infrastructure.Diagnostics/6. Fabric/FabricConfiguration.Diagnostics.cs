@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
     public static class FabricContextConfigurationUseDiagnostics
     {
         public static TFabricContextConfiguration UseFabricDiagnostics<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, Microsoft.Extensions.Configuration.IConfiguration configurationRoot)
-            where TFabricContextConfiguration : IConfiguration
+            where TFabricContextConfiguration : IExtensible
         {
             var extensions = new IExtension[]
             {

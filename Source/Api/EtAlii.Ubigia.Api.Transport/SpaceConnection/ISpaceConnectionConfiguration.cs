@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
-	public interface ISpaceConnectionConfiguration : IConfiguration
+	public interface ISpaceConnectionConfiguration : IExtensible
     {
         ISpaceTransport Transport { get; }
 
