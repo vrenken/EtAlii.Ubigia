@@ -8,13 +8,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
     {
         public GrpcStorageConnection(
             IStorageTransport transport,
-            IStorageConnectionConfiguration configuration,
+            IStorageConnectionOptions options,
             IStorageContext storages,
             ISpaceContext spaces,
             IAccountContext accounts,
             IAuthenticationManagementContext authentication,
             IInformationContext information)
-            : base(transport, configuration, storages, spaces, accounts, authentication, information)
+            : base(transport, options, storages, spaces, accounts, authentication, information)
         {
         }
     }

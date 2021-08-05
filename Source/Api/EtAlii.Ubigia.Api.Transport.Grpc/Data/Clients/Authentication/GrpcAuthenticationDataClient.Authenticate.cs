@@ -61,13 +61,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
                 else
                 {
                     grpcConnection.Transport.AuthenticationHeader = null;
-                    var message = $"Unable to authenticate on the specified space ({connection.Transport.Address} {connection.Configuration.Space ?? "[NONE]"})";
+                    var message = $"Unable to authenticate on the specified space ({connection.Transport.Address} {connection.Options.Space ?? "[NONE]"})";
                     throw new UnauthorizedInfrastructureOperationException(message);
                 }
             }
             catch (RpcException e)
             {
-                var message = $"Unable to authenticate on the specified space ({connection.Transport.Address} {connection.Configuration.Space ?? "[NONE]"})";
+                var message = $"Unable to authenticate on the specified space ({connection.Transport.Address} {connection.Options.Space ?? "[NONE]"})";
                 throw new UnauthorizedInfrastructureOperationException(message, e);
             }
         }

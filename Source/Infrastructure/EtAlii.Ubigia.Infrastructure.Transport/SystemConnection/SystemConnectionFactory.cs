@@ -10,36 +10,37 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public sealed class SystemConnectionFactory : ISystemConnectionFactory
     {
-        public ISystemConnection Create(ISystemConnectionConfiguration configuration)
+        /// <inheritdoc />
+        public ISystemConnection Create(ISystemConnectionOptions options)
         {
-            var factoryMethod = configuration.FactoryExtension ?? (() => CreateInternal(configuration));
+            var factoryMethod = options.FactoryExtension ?? (() => CreateInternal(options));
             return factoryMethod();
         }
 
-        private ISystemConnection CreateInternal(ISystemConnectionConfiguration configuration)
+        private ISystemConnection CreateInternal(ISystemConnectionOptions options)
         {
-            var hasTransportProvider = configuration.TransportProvider != null;
+            var hasTransportProvider = options.TransportProvider != null;
             if (!hasTransportProvider)
             {
                 throw new InvalidInfrastructureOperationException("Error creating system connection: No TransportProvider provided.");
             }
 
-            if (configuration.Infrastructure == null)
+            if (options.Infrastructure == null)
             {
                 throw new NotSupportedException("A Infrastructure is required to construct a SystemConnection instance");
             }
 
             var container = new Container();
 
-            var serviceDetails = configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
-            var transport = configuration.TransportProvider.GetStorageTransport(serviceDetails.ManagementAddress);
+            var transport = options.TransportProvider.GetStorageTransport(serviceDetails.ManagementAddress);
             var scaffoldings = transport
                 .CreateScaffolding()
                 .Concat(new IScaffolding[]
             {
-                new SystemConnectionScaffolding(configuration),
-                new SystemInfrastructureScaffolding(), 
+                new SystemConnectionScaffolding(options),
+                new SystemInfrastructureScaffolding(),
             })
             .ToArray();
 
@@ -48,7 +49,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.GetExtensions<ISystemConnectionExtension>())
+            foreach (var extension in options.GetExtensions<ISystemConnectionExtension>())
             {
                 extension.Initialize(container);
             }

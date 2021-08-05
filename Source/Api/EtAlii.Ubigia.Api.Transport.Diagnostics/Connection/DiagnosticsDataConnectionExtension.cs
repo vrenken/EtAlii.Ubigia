@@ -8,21 +8,18 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     public class DiagnosticsDataConnectionExtension : IDataConnectionExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsDataConnectionExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new();
-            configurationRoot.Bind("Api:Transport:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Transport:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new DataConnectionLoggingScaffolding(_configuration),
-                new DataConnectionProfilingScaffolding(_configuration),
-                new DataConnectionDebuggingScaffolding(_configuration),
+                new DataConnectionLoggingScaffolding(configuration),
+                new DataConnectionProfilingScaffolding(configuration),
+                new DataConnectionDebuggingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

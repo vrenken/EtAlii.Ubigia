@@ -8,21 +8,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     public class DiagnosticsManagementConnectionExtension : IManagementConnectionExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsManagementConnectionExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new();
-            configurationRoot.Bind("Api:Transport:Diagnostics", _configuration);
-        }
-
+        /// <inheritdoc />
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Transport:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new ManagementConnectionLoggingScaffolding(_configuration),
-                new ManagementConnectionProfilingScaffolding(_configuration),
-                new ManagementConnectionDebuggingScaffolding(_configuration),
+                new ManagementConnectionLoggingScaffolding(configuration),
+                new ManagementConnectionProfilingScaffolding(configuration),
+                new ManagementConnectionDebuggingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

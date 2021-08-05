@@ -16,15 +16,20 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
         /// The infrastructure against which this TestContext conducts its tests.
         /// </summary>
         protected IInfrastructure Infrastructure { get; private set; }
+
         public string SystemAccountName { get; private set; }
+
         public string SystemAccountPassword { get; private set; }
+
         public string TestAccountName { get; private set; }
+
         public string TestAccountPassword { get; private set; }
 
         public string AdminAccountName { get; private set; }
+
         public string AdminAccountPassword { get; private set; }
 
-        public string HostName => Infrastructure?.Configuration?.Name;
+        public string HostName => Infrastructure?.Options?.Name;
 
         protected HostTestContextBase() : base("HostSettings.json", "ClientSettings.json")
         {

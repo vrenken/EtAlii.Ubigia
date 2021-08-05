@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 		    services
 			    .TryAddSingleton(infrastructure.Accounts)
 			    .TryAddSingleton(infrastructure.Storages)
-				.TryAddSingleton(infrastructure.Configuration)
+				.TryAddSingleton(infrastructure.Options)
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 			    .AddSingleton<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>()
 			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()

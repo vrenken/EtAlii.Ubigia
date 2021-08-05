@@ -13,17 +13,37 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         private Uri _address;
 
+        /// <inheritdoc />
         public Account Account => _decoree.Account;
-        public Space Space => _decoree.Space;
-        public Storage Storage => _decoree.Storage;
-        public bool IsConnected => _decoree.IsConnected;
-        public ISpaceTransport Transport => ((dynamic)_decoree).Transport;
-        public ISpaceConnectionConfiguration Configuration => _decoree.Configuration;
 
+        /// <inheritdoc />
+        public Space Space => _decoree.Space;
+
+        /// <inheritdoc />
+        public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
+        public bool IsConnected => _decoree.IsConnected;
+
+        /// <inheritdoc />
+        public ISpaceTransport Transport => ((dynamic)_decoree).Transport;
+
+        /// <inheritdoc />
+        public ISpaceConnectionOptions Options => _decoree.Options;
+
+        /// <inheritdoc />
         public IAuthenticationContext Authentication => _decoree.Authentication;
+
+        /// <inheritdoc />
         public IEntryContext Entries => _decoree.Entries;
+
+        /// <inheritdoc />
         public IRootContext Roots => _decoree.Roots;
+
+        /// <inheritdoc />
         public IContentContext Content => _decoree.Content;
+
+        /// <inheritdoc />
         public IPropertiesContext Properties => _decoree.Properties;
 
         public LoggingSpaceConnection(ISpaceConnection decoree)
@@ -31,6 +51,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _decoree = decoree;
         }
 
+        /// <inheritdoc />
         public async Task Open(string accountName, string password)
         {
             _address = _decoree.Transport.Address;
@@ -44,6 +65,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Opened space connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
             _logger.Debug("Closing space connection (Address: {Address}", _address);

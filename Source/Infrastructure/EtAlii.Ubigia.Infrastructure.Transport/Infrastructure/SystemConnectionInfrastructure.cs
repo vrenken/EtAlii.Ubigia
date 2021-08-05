@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     public class SystemConnectionInfrastructure : InfrastructureBase
     {
         public SystemConnectionInfrastructure(
-            IInfrastructureConfiguration configuration,
+            IInfrastructureOptions options,
             IInformationRepository information,
             ISpaceRepository spaces,
             IIdentifierRepository identifiers,
@@ -23,18 +23,21 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             IStorageRepository storages,
             ILogicalContext logicalContext,
             IContextCorrelator contextCorrelator)
-            : base(configuration, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator)
+            : base(options, information, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext, contextCorrelator)
         {
         }
 
+        /// <inheritdoc />
         public override Task Start()
         {
             // This action is needed because the Logical layer needs a fully functional system connection to do
             // the initialization of the storage and spaces.
             // The functional is the only one that can provide these kind of connections.
-            Configuration.SystemConnectionCreationProxy.Initialize(() =>
+            Options.SystemConnectionCreationProxy.Initialize(() =>
             {
-                var configuration = new SystemConnectionConfiguration()
+                // This Options.ConfigurationRoot refers to the host configuration root.
+                // In order to use it for the system connection it should have the entries needed by the API subsystems.
+                var configuration = new SystemConnectionOptions(Options.ConfigurationRoot)
                     .Use(new SystemTransportProvider(this))
                     .Use(this);
                 return new SystemConnectionFactory().Create(configuration);

@@ -14,12 +14,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 			_infrastructure = infrastructure;
 		}
 
+        /// <inheritdoc />
 		public void Register(Container container)
 		{
 			container.Register(() => _infrastructure.Accounts);
 			container.Register(() => _infrastructure.Storages);
 			container.Register(() => _infrastructure.Spaces);
-			container.Register(() => _infrastructure.Configuration);
+			container.Register(() => _infrastructure.Options);
             container.Register(() => _infrastructure.ContextCorrelator);
 		}
 	}

@@ -14,9 +14,10 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         internal DiagnosticsInfrastructureExtension(IConfiguration configurationRoot)
         {
             _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Persistence:Diagnostics", _configuration);
+            configurationRoot.Bind("Infrastructure:Diagnostics", _configuration);
         }
 
+        /// <inheritdoc />
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]

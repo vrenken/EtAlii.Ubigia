@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Transport.Rest
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Configuration.Space).ConfigureAwait(false);
+            var space = await GetSpace(connection.Options.Space).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);

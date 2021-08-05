@@ -7,9 +7,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     public class LogicalContextFactory : ILogicalContextFactory
     {
-        public ILogicalContext Create(ILogicalContextConfiguration configuration)
+        /// <inheritdoc />
+        public ILogicalContext Create(ILogicalContextOptions options)
         {
-            if (configuration.Fabric == null)
+            if (options.Fabric == null)
             {
                 throw new NotSupportedException("A Fabric is required to construct a LogicalContext instance");
             }
@@ -18,8 +19,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             var scaffoldings = new IScaffolding[]
             {
-                new LogicalContextScaffolding(configuration),
-                new IdentifierScaffolding() 
+                new LogicalContextScaffolding(options),
+                new IdentifierScaffolding()
             };
 
             foreach (var scaffolding in scaffoldings)

@@ -8,20 +8,20 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     public class StorageConnectionFactory : IStorageConnectionFactory
     {
-        public IStorageConnection Create(IStorageConnectionConfiguration configuration)
+        public IStorageConnection Create(IStorageConnectionOptions options)
         {
-            if (configuration.Transport == null)
+            if (options.Transport == null)
             {
-                throw new InvalidOperationException("Configuration contains no Transport");
+                throw new InvalidOperationException("Options contains no Transport");
             }
 
             var container = new Container();
 
-            var scaffoldings = configuration.Transport
+            var scaffoldings = options.Transport
                 .CreateScaffolding()
                 .Concat(new IScaffolding[]
             {
-                new StorageConnectionScaffolding(configuration),
+                new StorageConnectionScaffolding(options),
             })
             .ToArray();
 

@@ -10,22 +10,22 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
 	public class GrpcHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>
     {
+        /// <inheritdoc />
 	    public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
 
-		    ServiceDetails = Infrastructure.Configuration.ServiceDetails.Single(sd => sd.Name == "Grpc");
+		    ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == "Grpc");
 	    }
 
 	    public Task<ISystemConnection> CreateSystemConnection()
 	    {
-		    var connectionConfiguration = new SystemConnectionConfiguration()
+		    var connectionConfiguration = new SystemConnectionOptions(ClientConfiguration)
 			    .Use(Infrastructure)
 			    .Use(new SystemTransportProvider(Infrastructure));
 		    var connection = new SystemConnectionFactory().Create(connectionConfiguration);
 		    return Task.FromResult(connection);
 	    }
-
 
 	    public async Task AddUserAccountAndSpaces(ISystemConnection connection, string accountName, string password, string[] spaceNames)
 	    {

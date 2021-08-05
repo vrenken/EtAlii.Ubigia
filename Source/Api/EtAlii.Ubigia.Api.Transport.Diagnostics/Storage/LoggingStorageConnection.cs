@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         private readonly IStorageConnection _decoree;
         private readonly ILogger _logger = Log.ForContext<IStorageConnection>();
 
+        private bool _disposed;
         private Uri _address;
 
         /// <inheritdoc />
@@ -24,22 +25,28 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         /// <inheritdoc />
         public IStorageTransport Transport => ((dynamic)_decoree).Transport;
+
         /// <inheritdoc />
         public IStorageContext Storages => _decoree?.Storages;
+
         /// <inheritdoc />
         public IAccountContext Accounts => _decoree?.Accounts;
+
         /// <inheritdoc />
         public ISpaceContext Spaces => _decoree?.Spaces;
+
         /// <inheritdoc />
         public IStorageConnectionDetails Details => _decoree.Details;
+
         /// <inheritdoc />
-        public IStorageConnectionConfiguration Configuration => _decoree.Configuration;
+        public IStorageConnectionOptions Options => _decoree.Options;
 
         public LoggingStorageConnection(IStorageConnection decoree)
         {
             _decoree = decoree;
         }
 
+        /// <inheritdoc />
         public async Task Open(string accountName, string password)
         {
             _address = _decoree.Transport.Address;
@@ -53,6 +60,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Opened storage connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
             _logger.Debug("Closing storage connection (Address: {Address}", _address);
@@ -65,11 +73,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Closed storage connection (Address: {Address} Duration: {Duration}ms)", _address, duration);
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -97,8 +101,5 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             // Simply call Dispose(false).
             Dispose(false);
         }
-
-        #endregion Disposable
-
     }
 }

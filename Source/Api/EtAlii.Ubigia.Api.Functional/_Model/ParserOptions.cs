@@ -8,6 +8,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class ParserOptions : IExtensible
     {
+        /// <summary>
+        /// The client configuration root that will be used to configure the parser.
+        /// </summary>
         public IConfiguration ConfigurationRoot { get; }
 
         /// <summary>

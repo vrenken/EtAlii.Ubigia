@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     public interface IInfrastructureFactory
     {
-        IInfrastructure Create(InfrastructureConfiguration configuration);
+        IInfrastructure Create(InfrastructureOptions options);
     }
 }

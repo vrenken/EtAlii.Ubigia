@@ -6,15 +6,16 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     public sealed class ManagementConnectionFactory : IManagementConnectionFactory
     {
-        public IManagementConnection Create(IManagementConnectionConfiguration configuration)
+        /// <inheritdoc />
+        public IManagementConnection Create(IManagementConnectionOptions options)
         {
-            var factoryMethod = configuration.FactoryExtension ?? (() => CreateInternal(configuration));
+            var factoryMethod = options.FactoryExtension ?? (() => CreateInternal(options));
             return factoryMethod();
         }
 
-        private IManagementConnection CreateInternal(IManagementConnectionConfiguration configuration)
+        private IManagementConnection CreateInternal(IManagementConnectionOptions options)
         {
-            var hasTransportProvider = configuration.TransportProvider != null;
+            var hasTransportProvider = options.TransportProvider != null;
             if (!hasTransportProvider)
             {
                 throw new InvalidInfrastructureOperationException("Error creating management connection: No TransportProvider provided.");
@@ -24,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
             var scaffoldings = new IScaffolding[]
             {
-                new ManagementConnectionScaffolding(configuration)
+                new ManagementConnectionScaffolding(options)
             };
 
             foreach (var scaffolding in scaffoldings)
@@ -32,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.GetExtensions<IManagementConnectionExtension>())
+            foreach (var extension in options.GetExtensions<IManagementConnectionExtension>())
             {
                 extension.Initialize(container);
             }

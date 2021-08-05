@@ -28,18 +28,18 @@ namespace EtAlii.Ubigia.Api.Transport
         public IPropertiesContext Properties => _connection?.Properties;
 
         /// <summary>
-        /// The Configuration used to instantiate this DataConnection.
+        /// The Options used to instantiate this DataConnection.
         /// </summary>
-        public IDataConnectionConfiguration Configuration { get; }
+        public IDataConnectionOptions Options { get; }
 
         /// <inheritdoc />
         public bool IsConnected => _connection?.IsConnected ?? false;
 
         private ISpaceConnection _connection;
 
-        public DataConnection(IDataConnectionConfiguration configuration)
+        public DataConnection(IDataConnectionOptions options)
         {
-            Configuration = configuration;
+            Options = options;
         }
 
         /// <inheritdoc />
@@ -50,11 +50,11 @@ namespace EtAlii.Ubigia.Api.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            var configuration = new SpaceConnectionConfiguration()
-                .Use(Configuration.TransportProvider.GetSpaceTransport(Configuration.Address))
-                .Use(Configuration.Space);
-            _connection = new SpaceConnectionFactory().Create(configuration);
-            await _connection.Open(Configuration.AccountName, Configuration.Password).ConfigureAwait(false);
+            var options = new SpaceConnectionOptions(Options.ConfigurationRoot)
+                .Use(Options.TransportProvider.GetSpaceTransport(Options.Address))
+                .Use(Options.Space);
+            _connection = new SpaceConnectionFactory().Create(options);
+            await _connection.Open(Options.AccountName, Options.Password).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

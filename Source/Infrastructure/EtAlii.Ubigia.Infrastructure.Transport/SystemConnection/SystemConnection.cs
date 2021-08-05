@@ -11,47 +11,52 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemConnection : ISystemConnection
     {
-        private readonly ISystemConnectionConfiguration _configuration;
+        private readonly ISystemConnectionOptions _options;
+        private bool _disposed;
 
-        public SystemConnection(ISystemConnectionConfiguration configuration)
+        public SystemConnection(ISystemConnectionOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            var serviceDetails = _configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
 	        var address = serviceDetails.DataAddress;
 
-            var connectionConfiguration = new DataConnectionConfiguration()
-                .UseTransport(_configuration.TransportProvider)
+            var options = new DataConnectionOptions(_options.ConfigurationRoot)
+                .UseTransport(_options.TransportProvider)
                 .Use(address)
                 .Use(accountName, spaceName, null);
-            var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
-            await dataConnection.Open().ConfigureAwait(false);
+            var dataConnection = new DataConnectionFactory()
+                .Create(options);
+            await dataConnection
+                .Open()
+                .ConfigureAwait(false);
             return dataConnection;
         }
 
+        /// <inheritdoc />
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-            var serviceDetails = _configuration.Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _options.Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
 	        var address = serviceDetails.ManagementAddress;
 
-	        var connectionConfiguration = new ManagementConnectionConfiguration()
-                .Use(_configuration.TransportProvider)
+	        var connectionOptions = new ManagementConnectionOptions(_options.ConfigurationRoot)
+                .Use(_options.TransportProvider)
                 .Use(address);
-            var managementConnection = new ManagementConnectionFactory().Create(connectionConfiguration);
-            await managementConnection.Open().ConfigureAwait(false);
+            var managementConnection = new ManagementConnectionFactory()
+                .Create(connectionOptions);
+            await managementConnection
+                .Open()
+                .ConfigureAwait(false);
             return managementConnection;
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -86,8 +91,5 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // Simply call Dispose(false).
             Dispose(false);
         }
-
-        #endregion Disposable
-
     }
 }

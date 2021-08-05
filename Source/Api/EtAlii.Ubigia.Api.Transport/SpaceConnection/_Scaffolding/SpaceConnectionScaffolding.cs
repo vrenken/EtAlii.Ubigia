@@ -7,17 +7,17 @@ namespace EtAlii.Ubigia.Api.Transport
 
     internal class SpaceConnectionScaffolding : IScaffolding
     {
-        private readonly ISpaceConnectionConfiguration _configuration;
+        private readonly ISpaceConnectionOptions _options;
 
-        public SpaceConnectionScaffolding(ISpaceConnectionConfiguration configuration)
+        public SpaceConnectionScaffolding(ISpaceConnectionOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration);
-            container.Register(() => _configuration.Transport);
+            container.Register(() => _options);
+            container.Register(() => _options.Transport);
 
             container.Register<IContextCorrelator, ContextCorrelator>();
             container.Register<IAuthenticationContext, AuthenticationContext>();

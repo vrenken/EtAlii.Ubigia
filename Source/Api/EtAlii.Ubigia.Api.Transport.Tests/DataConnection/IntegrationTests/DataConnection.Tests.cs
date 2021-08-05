@@ -59,8 +59,12 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
             var password = Guid.NewGuid().ToString();
 
             // Act.
-            var connection = await _testContext.TransportTestContext.CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Configuration).ConfigureAwait(false);
-            await connection.Open().ConfigureAwait(false);
+            var connection = await _testContext.TransportTestContext
+                .CreateDataConnectionToNewSpace(accountName, password, false, SpaceTemplate.Configuration)
+                .ConfigureAwait(false);
+            await connection
+                .Open()
+                .ConfigureAwait(false);
 
             // Assert.
         }

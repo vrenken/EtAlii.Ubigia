@@ -36,20 +36,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextConfiguration = new FabricContextConfiguration()
+            var fabricContextOptions = new FabricContextOptions()
                 .Use(context.Host.Storage)
                 .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
-            var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
+            var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var logicalContextOptions = new LogicalContextOptions()
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
-            var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
-
-            var rootInitializer = new RootInitializer(fabric, logical.Entries);
+            var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
             await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
 
             // Assert.
@@ -68,20 +66,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextConfiguration = new FabricContextConfiguration()
+            var fabricContextOptions = new FabricContextOptions()
                 .Use(context.Host.Storage)
                 .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
-            var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
+            var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var logicalContextOptions = new LogicalContextOptions()
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
-            var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
-
-            var rootInitializer = new RootInitializer(fabric, logical.Entries);
+            var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
             await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
 
             // Assert.
@@ -103,20 +99,18 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextConfiguration = new FabricContextConfiguration()
+            var fabricContextOptions = new FabricContextOptions()
                 .Use(context.Host.Storage)
                 .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
-            var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
+            var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var logicalContextOptions = new LogicalContextOptions()
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
-            var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
-
-            var rootInitializer = new RootInitializer(fabric, logical.Entries);
+            var logical = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
             await rootInitializer.Initialize(space.Id, root).ConfigureAwait(false);
 
             // Assert.

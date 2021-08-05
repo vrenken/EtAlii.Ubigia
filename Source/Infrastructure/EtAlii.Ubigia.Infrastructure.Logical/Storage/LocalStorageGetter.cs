@@ -8,23 +8,24 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     internal class LocalStorageGetter : ILocalStorageGetter
     {
-        private readonly ILogicalContextConfiguration _configuration;
+        private readonly ILogicalContextOptions _options;
         private readonly Lazy<Storage> _localStorage;
-         
-        public LocalStorageGetter(ILogicalContextConfiguration configuration)
+
+        public LocalStorageGetter(ILogicalContextOptions options)
         {
-            _configuration = configuration;
+            _options = options;
             _localStorage = new Lazy<Storage>(() => new Storage
             {
                 Id = Guid.NewGuid(),
-                Address = _configuration.StorageAddress.ToString(),
-                Name = _configuration.Name,
+                Address = _options.StorageAddress.ToString(),
+                Name = _options.Name,
             });
         }
 
+        /// <inheritdoc />
         public Storage GetLocal(IList<Storage> items)
         {
-            var local = items?.FirstOrDefault(item => item.Name == _configuration.Name);
+            var local = items?.FirstOrDefault(item => item.Name == _options.Name);
             return local ?? GetLocal();
         }
 

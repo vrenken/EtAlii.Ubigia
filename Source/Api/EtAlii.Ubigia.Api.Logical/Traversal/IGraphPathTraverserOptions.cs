@@ -7,7 +7,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface IGraphPathTraverserOptions : IExtensible
     {
+        /// <summary>
+        /// The client configuration root that will be used to configure the graph path traverser.
+        /// </summary>
         IConfiguration ConfigurationRoot { get; }
+
         IFabricContext FabricContext { get; }
 
         GraphPathTraverserOptions Use(IFabricContext fabricContext);

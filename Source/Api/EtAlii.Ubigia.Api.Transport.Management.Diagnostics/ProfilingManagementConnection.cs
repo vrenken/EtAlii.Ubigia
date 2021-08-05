@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
     {
         private readonly IManagementConnection _decoree;
         //private readonly IProfiler _profiler
+        private bool _disposed;
 
         public ProfilingManagementConnection(
             IManagementConnection decoree
@@ -21,45 +22,58 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             //_profiler = profiler
         }
 
+        /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
         public IStorageContext Storages => _decoree.Storages;
+
+        /// <inheritdoc />
         public IAccountContext Accounts => _decoree.Accounts;
+
+        /// <inheritdoc />
         public ISpaceContext Spaces => _decoree.Spaces;
+
+        /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
 
+        /// <inheritdoc />
         public IStorageConnectionDetails Details => _decoree.Details;
-        public IManagementConnectionConfiguration Configuration => _decoree.Configuration;
 
+        /// <inheritdoc />
+        public IManagementConnectionOptions Options => _decoree.Options;
+
+        /// <inheritdoc />
         public async Task Open()
         {
             await _decoree.Open().ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
         {
             return await _decoree.OpenSpace(accountId, spaceId).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Space space)
         {
             return await _decoree.OpenSpace(space).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
             return await _decoree.OpenSpace(accountName,spaceName).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
             await _decoree.Close().ConfigureAwait(false);
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -87,8 +101,5 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             // Simply call Dispose(false).
             Dispose(false);
         }
-
-        #endregion Disposable
-
     }
 }

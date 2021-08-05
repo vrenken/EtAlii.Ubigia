@@ -8,10 +8,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public abstract class InfrastructureBase : IInfrastructure
     {
+        /// <inheritdoc />
         public IContextCorrelator ContextCorrelator { get; }
 
         /// <inheritdoc />
-        public IInfrastructureConfiguration Configuration { get; }
+        public IInfrastructureOptions Options { get; }
 
         /// <inheritdoc />
         public IInformationRepository Information { get; }
@@ -51,7 +52,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
         protected InfrastructureBase(
-            IInfrastructureConfiguration configuration,
+            IInfrastructureOptions options,
             IInformationRepository information,
             ISpaceRepository spaces,
             IIdentifierRepository identifiers,
@@ -67,7 +68,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 #pragma warning restore S107
         {
             ContextCorrelator = contextCorrelator;
-            Configuration = configuration;
+            Options = options;
             Identifiers = identifiers;
             Entries = entries;
             Roots = roots;
@@ -82,11 +83,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             _logicalContext = logicalContext;
         }
 
+        /// <inheritdoc />
         public virtual Task Start()
         {
             return _logicalContext.Start();
         }
 
+        /// <inheritdoc />
         public virtual Task Stop()
         {
             return _logicalContext.Stop();

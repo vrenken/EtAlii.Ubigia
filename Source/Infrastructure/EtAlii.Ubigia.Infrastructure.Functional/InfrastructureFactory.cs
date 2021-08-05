@@ -8,14 +8,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     public class InfrastructureFactory : IInfrastructureFactory
     {
-        public IInfrastructure Create(InfrastructureConfiguration configuration)
+        /// <inheritdoc />
+        public IInfrastructure Create(InfrastructureOptions options)
         {
-            if (string.IsNullOrWhiteSpace(configuration.Name))
+            if (string.IsNullOrWhiteSpace(options.Name))
             {
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }
 
-            var serviceDetails = configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = options.ServiceDetails.Single(sd => sd.IsSystemService);
             if (serviceDetails == null)
             {
                 throw new NotSupportedException("No system service details found. These are required to construct a Infrastructure instance");
@@ -28,7 +29,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             {
                 throw new NotSupportedException("The data address is required to construct a Infrastructure instance");
             }
-            if (configuration.SystemConnectionCreationProxy == null)
+            if (options.SystemConnectionCreationProxy == null)
             {
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");
             }
@@ -36,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var container = new Container();
             var scaffoldings = new IScaffolding[]
             {
-                new InfrastructureScaffolding(configuration), 
+                new InfrastructureScaffolding(options),
                 new DataScaffolding(),
                 new ManagementScaffolding(),
             };
@@ -46,12 +47,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.GetExtensions<IInfrastructureExtension>())
+            foreach (var extension in options.GetExtensions<IInfrastructureExtension>())
             {
                 extension.Initialize(container);
             }
 
-            return configuration.GetInfrastructure(container);
+            return options.GetInfrastructure(container);
 
         }
     }

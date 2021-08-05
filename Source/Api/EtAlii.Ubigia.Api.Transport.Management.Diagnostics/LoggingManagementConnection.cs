@@ -10,26 +10,39 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
     {
         private readonly IManagementConnection _decoree;
         private readonly ILogger _logger = Log.ForContext<IManagementConnection>();
+        private bool _disposed;
 
+        /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
         public IStorageContext Storages => _decoree.Storages;
+
+        /// <inheritdoc />
         public IAccountContext Accounts => _decoree.Accounts;
+
+        /// <inheritdoc />
         public ISpaceContext Spaces => _decoree.Spaces;
 
+        /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
 
+        /// <inheritdoc />
         public IStorageConnectionDetails Details => _decoree.Details;
-        public IManagementConnectionConfiguration Configuration => _decoree.Configuration;
+
+        /// <inheritdoc />
+        public IManagementConnectionOptions Options => _decoree.Options;
 
         public LoggingManagementConnection(IManagementConnection decoree)
         {
             _decoree = decoree;
         }
 
+        /// <inheritdoc />
         public async Task Open()
         {
-            var address = _decoree.Configuration.Address;
-            var accountName = _decoree.Configuration.AccountName;
+            var address = _decoree.Options.Address;
+            var accountName = _decoree.Options.AccountName;
 
             _logger.Information("Opening management connection (Address: {Address} Account: {AccountName})", address, accountName);
             var start = Environment.TickCount;
@@ -40,9 +53,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             _logger.Information("Opened management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Space space)
         {
-            var address = _decoree.Configuration.Address;
+            var address = _decoree.Options.Address;
 
             _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, space.AccountId, space.Id);
             var start = Environment.TickCount;
@@ -55,9 +69,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             return connection;
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
         {
-            var address = _decoree.Configuration.Address;
+            var address = _decoree.Options.Address;
 
             _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountId} Space: {SpaceId})", address, accountId, spaceId);
             var start = Environment.TickCount;
@@ -70,9 +85,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             return connection;
         }
 
+        /// <inheritdoc />
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            var address = _decoree.Configuration.Address;
+            var address = _decoree.Options.Address;
 
             _logger.Information("Opening data connection from management connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
@@ -85,10 +101,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             return connection;
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
-            var address = _decoree.Configuration.Address;
-            var accountName = _decoree.Configuration.AccountName;
+            var address = _decoree.Options.Address;
+            var accountName = _decoree.Options.AccountName;
 
             _logger.Information("Closing management connection (Address: {Address} Account: {AccountName})", address, accountName);
             var start = Environment.TickCount;
@@ -99,11 +116,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             _logger.Information("Closed management connection (Address: {Address} Account: {AccountName} Duration: {Duration}ms)", address, accountName, duration);
         }
 
-        #region Disposable
-
-        private bool _disposed;
-
-        //Implement IDisposable.
+        /// <inheritdoc />
         public void Dispose()
         {
             Dispose(true);
@@ -131,8 +144,5 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
             // Simply call Dispose(false).
             Dispose(false);
         }
-
-        #endregion Disposable
-
     }
 }

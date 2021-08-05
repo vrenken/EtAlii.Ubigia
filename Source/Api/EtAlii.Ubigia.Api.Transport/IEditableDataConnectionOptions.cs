@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
-    public interface IEditableDataConnectionConfiguration
+    public interface IEditableDataConnectionOptions
     {
         ITransportProvider TransportProvider { get; set; }
 

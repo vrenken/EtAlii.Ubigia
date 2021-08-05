@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public interface IEditableSystemConnectionConfiguration
+    public interface IEditableSystemConnectionOptions
     {
         IStorageTransportProvider TransportProvider { get; set; }
 

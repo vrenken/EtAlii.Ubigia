@@ -20,6 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         private readonly IConfigurationDetails _configurationDetails;
         private readonly IServiceDetailsBuilder _serviceDetailsBuilder;
 
+        /// <inheritdoc />
         public IInfrastructure Infrastructure { get; private set; }
 
         public InfrastructureService(
@@ -35,12 +36,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _serviceDetailsBuilder = serviceDetailsBuilder;
         }
 
+        /// <inheritdoc />
         public override async Task Start()
         {
             Infrastructure = CreateInfrastructure();
             await Infrastructure.Start().ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public override async Task Stop()
         {
             await Infrastructure.Stop().ConfigureAwait(false);
@@ -58,15 +61,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             var serviceDetails = _serviceDetailsBuilder.Build(_configurationDetails);
 
-
             // Fetch the Infrastructure configuration.
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
-            var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
+            var infrastructureConfiguration = new InfrastructureOptions(systemConnectionCreationProxy)
                 .Use(_configurationRoot, name, serviceDetails)
                 .UseFabricDiagnostics(_configurationRoot);
 
             // Create fabric instance.
-            var fabricConfiguration = new FabricContextConfiguration()
+            var fabricConfiguration = new FabricContextOptions()
                 .Use(storage)
                 .UseFabricDiagnostics(_configurationRoot);
             var fabric = new FabricContextFactory().Create(fabricConfiguration);
@@ -81,14 +83,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
 
             // Create logical context instance.
-            var logicalConfiguration = new LogicalContextConfiguration()
+            var logicalConfiguration = new LogicalContextOptions()
                 .Use(fabric)
                 .Use(infrastructureConfiguration.Name, storageAddress);
             var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
-	            .Use<InfrastructureConfiguration, SystemConnectionInfrastructure>()
+	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
                 .UseInfrastructureDiagnostics(_configurationRoot)
                 .Use(logicalContext);
             return new InfrastructureFactory().Create(infrastructureConfiguration);

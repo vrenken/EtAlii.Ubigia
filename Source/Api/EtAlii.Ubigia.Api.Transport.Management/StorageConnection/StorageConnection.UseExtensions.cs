@@ -4,21 +4,21 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
 
-    public static class StorageConnectionUseExtensions
+    public static class StorageConnectionOptionsUseExtensions
     {
-        public static TStorageConnectionConfiguration Use<TStorageConnectionConfiguration>(this TStorageConnectionConfiguration configuration,IStorageTransport transport)
-            where TStorageConnectionConfiguration : StorageConnectionConfiguration
+        public static TStorageConnectionOptions Use<TStorageConnectionOptions>(this TStorageConnectionOptions options, IStorageTransport transport)
+            where TStorageConnectionOptions : StorageConnectionOptions
         {
 
-            var editableConfiguration = (IEditableStorageConnectionConfiguration) configuration;
+            var editableOptions = (IEditableStorageConnectionOptions) options;
 
-            if (editableConfiguration.Transport != null)
+            if (editableOptions.Transport != null)
             {
-                throw new InvalidOperationException("A Transport has already been assigned to this StorageConnectionConfiguration");
+                throw new InvalidOperationException("A Transport has already been assigned to this StorageConnectionOptions");
             }
 
-            editableConfiguration.Transport = transport ?? throw new ArgumentException("No transport specified", nameof(transport));
-            return configuration;
+            editableOptions.Transport = transport ?? throw new ArgumentException("No transport specified", nameof(transport));
+            return options;
         }
     }
 }

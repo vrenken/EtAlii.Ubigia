@@ -11,19 +11,41 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
     {
         private readonly IInfrastructure _decoree;
 
+        /// <inheritdoc />
         public IContextCorrelator ContextCorrelator => _decoree.ContextCorrelator;
-        public IInfrastructureConfiguration Configuration => _decoree.Configuration;
 
+        /// <inheritdoc />
+        public IInfrastructureOptions Options => _decoree.Options;
+
+        /// <inheritdoc />
         public IInformationRepository Information => _decoree.Information;
+
+        /// <inheritdoc />
         public IStorageRepository Storages => _decoree.Storages;
+
+        /// <inheritdoc />
         public ISpaceRepository Spaces => _decoree.Spaces;
+
+        /// <inheritdoc />
         public IIdentifierRepository Identifiers => _decoree.Identifiers;
+
+        /// <inheritdoc />
         public IEntryRepository Entries => _decoree.Entries;
+
+        /// <inheritdoc />
         public IPropertiesRepository Properties => _decoree.Properties;
+
+        /// <inheritdoc />
         public IRootRepository Roots => _decoree.Roots;
         //public IRootInitializer RootInitializer [ get [ return _decoree.RootInitializer; ] ]
+
+        /// <inheritdoc />
         public IAccountRepository Accounts => _decoree.Accounts;
+
+        /// <inheritdoc />
         public IContentRepository Content => _decoree.Content;
+
+        /// <inheritdoc />
         public IContentDefinitionRepository ContentDefinition => _decoree.ContentDefinition;
 
         private readonly ILogger _logger = Log.ForContext<IInfrastructure>();
@@ -33,6 +55,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _decoree = decoree;
         }
 
+        /// <inheritdoc />
         public async Task Start()
         {
             _logger.Information("Starting infrastructure hosting");
@@ -42,6 +65,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
             _logger.Information("Started infrastructure hosting");
         }
 
+        /// <inheritdoc />
         public async Task Stop()
         {
             _logger.Information("Stopping infrastructure hosting");

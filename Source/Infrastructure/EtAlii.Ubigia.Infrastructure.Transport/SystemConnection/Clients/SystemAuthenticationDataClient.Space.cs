@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal partial class SystemAuthenticationDataClient
     {
+        /// <inheritdoc />
         public async Task<Space> GetSpace(ISpaceConnection connection)
         {
             if (connection.Space != null)
@@ -14,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Account, connection.Configuration.Space).ConfigureAwait(false);
+            var space = await GetSpace(connection.Account, connection.Options.Space).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);

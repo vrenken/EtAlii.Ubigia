@@ -5,12 +5,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Microsoft.Extensions.Configuration;
 
-    public interface IInfrastructureConfiguration : IExtensible
+    public interface IInfrastructureOptions : IExtensible
     {
         /// <summary>
-        /// The configuration root instance for the current application.
+        /// The host configuration root instance for the current application.
         /// </summary>
-        IConfiguration Root { get; }
+        /// <remarks>
+        /// This is not the same configuration root as used by client API subsystems.
+        /// </remarks>
+        IConfiguration ConfigurationRoot { get; }
 
         /// <summary>
         /// The context that provides access to the logical layer of the codebase.

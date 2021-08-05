@@ -35,9 +35,9 @@ namespace EtAlii.Ubigia.Api.Transport
         IStorageConnectionDetails Details { get; }
 
         /// <summary>
-        /// The Configuration used to instantiate this StorageConnection.
+        /// The Options used to instantiate this StorageConnection.
         /// </summary>
-        IStorageConnectionConfiguration Configuration { get; }
+        IStorageConnectionOptions Options { get; }
     }
 
     /// <summary>

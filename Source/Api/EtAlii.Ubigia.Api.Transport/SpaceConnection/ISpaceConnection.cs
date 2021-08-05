@@ -7,16 +7,37 @@ namespace EtAlii.Ubigia.Api.Transport
     public interface ISpaceConnection : IConnection, IDisposable
     {
         ISpaceTransport Transport { get; }
+
         /// <summary>
-        /// The Configuration used to instantiate this SpaceConnection.
+        /// The Options used to instantiate this SpaceConnection.
         /// </summary>
-        ISpaceConnectionConfiguration Configuration { get; }
+        ISpaceConnectionOptions Options { get; }
+
+        /// <summary>
+        /// The space that is accessed.
+        /// </summary>
         Space Space { get; }
 
         IAuthenticationContext Authentication { get; }
+
+        /// <summary>
+        /// Provides access to the entries stored in the space.
+        /// </summary>
         IEntryContext Entries { get; }
+
+        /// <summary>
+        /// Provides access to the roots through which the entries in the space can be found.
+        /// </summary>
         IRootContext Roots { get; }
+
+        /// <summary>
+        /// Provides access to the content as stored in the entries in the space.
+        /// </summary>
         IContentContext Content { get; }
+
+        /// <summary>
+        /// Provides access to the properties as stored in the entries in the space.
+        /// </summary>
         IPropertiesContext Properties { get; }
     }
 

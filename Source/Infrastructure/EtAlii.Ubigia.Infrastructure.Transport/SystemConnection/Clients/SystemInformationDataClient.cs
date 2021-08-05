@@ -27,6 +27,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             return Task.FromResult(storage);
         }
+
+        /// <inheritdoc />
         public Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
             if (connection.Storage != null)
@@ -39,9 +41,10 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return Task.FromResult(storage);
         }
 
+        /// <inheritdoc />
         public Task<ConnectivityDetails> GetConnectivityDetails(IStorageConnection connection)
         {
-            var serviceDetails = _infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
             var result = new ConnectivityDetails
             {

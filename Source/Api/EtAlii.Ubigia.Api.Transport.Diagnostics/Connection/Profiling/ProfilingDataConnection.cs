@@ -9,15 +9,32 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     {
         public IProfiler Profiler { get; }
 
+        /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
         public Account Account => _decoree.Account;
+
+        /// <inheritdoc />
         public Space Space => _decoree.Space;
+
+        /// <inheritdoc />
         public IEntryContext Entries => _decoree.Entries;
+
+        /// <inheritdoc />
         public IRootContext Roots => _decoree.Roots;
+
+        /// <inheritdoc />
         public IContentContext Content => _decoree.Content;
+
+        /// <inheritdoc />
         public IPropertiesContext Properties => _decoree.Properties;
+
+        /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
-        public IDataConnectionConfiguration Configuration => _decoree.Configuration;
+
+        /// <inheritdoc />
+        public IDataConnectionOptions Options => _decoree.Options;
 
         private readonly IDataConnection _decoree;
 
@@ -27,11 +44,13 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             Profiler = profiler;
         }
 
+        /// <inheritdoc />
         public async Task Open()
         {
             await _decoree.Open().ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
             await _decoree.Close().ConfigureAwait(false);

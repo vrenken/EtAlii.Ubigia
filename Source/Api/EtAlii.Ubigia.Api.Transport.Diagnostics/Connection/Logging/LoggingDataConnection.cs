@@ -16,23 +16,39 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _decoree = decoree;
         }
 
+        /// <inheritdoc />
         public Storage Storage => _decoree.Storage;
+
+        /// <inheritdoc />
         public Account Account => _decoree.Account;
+
+        /// <inheritdoc />
         public Space Space => _decoree.Space;
 
+        /// <inheritdoc />
         public IRootContext Roots => _decoree.Roots;
+
+        /// <inheritdoc />
         public IEntryContext Entries => _decoree.Entries;
+
+        /// <inheritdoc />
         public IContentContext Content => _decoree.Content;
+
+        /// <inheritdoc />
         public IPropertiesContext Properties => _decoree.Properties;
 
+        /// <inheritdoc />
         public bool IsConnected => _decoree.IsConnected;
-        public IDataConnectionConfiguration Configuration => _decoree.Configuration;
 
+        /// <inheritdoc />
+        public IDataConnectionOptions Options => _decoree.Options;
+
+        /// <inheritdoc />
         public async Task Open()
         {
-            var address = _decoree.Configuration.Address;
-            var accountName = _decoree.Configuration.AccountName;
-            var spaceName = _decoree.Configuration.Space;
+            var address = _decoree.Options.Address;
+            var accountName = _decoree.Options.AccountName;
+            var spaceName = _decoree.Options.Space;
 
             _logger.Debug("Opening data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;
@@ -41,11 +57,12 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _logger.Debug("Opened data connection (Address: {Address} Account: {AccountName} Space: {SpaceName} Duration: {Duration}ms)", address, accountName, spaceName, duration);
         }
 
+        /// <inheritdoc />
         public async Task Close()
         {
-            var address = _decoree.Configuration.Address;
-            var accountName = _decoree.Configuration.AccountName;
-            var spaceName = _decoree.Configuration.Space;
+            var address = _decoree.Options.Address;
+            var accountName = _decoree.Options.AccountName;
+            var spaceName = _decoree.Options.Space;
 
             _logger.Debug("Closing data connection (Address: {Address} Account: {AccountName} Space: {SpaceName})", address, accountName, spaceName);
             var start = Environment.TickCount;

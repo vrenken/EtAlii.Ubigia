@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 			_infrastructure = infrastructure;
 		}
 
+        /// <inheritdoc />
 		public void Register(Container container)
 		{
 			container.Register(() => _infrastructure.Storages);
@@ -24,7 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 			container.Register(() => _infrastructure.Properties);
 			container.Register(() => _infrastructure.Content);
 			container.Register(() => _infrastructure.ContentDefinition);
-			container.Register(() => _infrastructure.Configuration);
+			container.Register(() => _infrastructure.Options);
             container.Register(() => _infrastructure.ContextCorrelator);
         }
 	}

@@ -7,11 +7,15 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     public interface IManagementConnection : IDisposable
     {
-        bool IsConnected { get; }
         /// <summary>
-        /// The Configuration used to instantiate this ManagementConnection.
+        /// Returns true when the management connection has been established.
         /// </summary>
-        IManagementConnectionConfiguration Configuration { get; }
+        bool IsConnected { get; }
+
+        /// <summary>
+        /// The Options used to instantiate this ManagementConnection.
+        /// </summary>
+        IManagementConnectionOptions Options { get; }
 
         /// <summary>
         /// Additional details about the storage connection.
@@ -27,10 +31,12 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// A context through which to call storage related RPC's.
         /// </summary>
         IStorageContext Storages { get; }
+
         /// <summary>
         /// A context through which to call account related RPC's.
         /// </summary>
         IAccountContext Accounts { get; }
+
         /// <summary>
         /// A context through which to call space related RPC's.
         /// </summary>

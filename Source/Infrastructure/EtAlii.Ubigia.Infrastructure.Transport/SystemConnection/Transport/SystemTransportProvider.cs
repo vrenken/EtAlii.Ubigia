@@ -16,11 +16,13 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _infrastructure = infrastructure;
         }
 
+        /// <inheritdoc />
         public ISpaceTransport GetSpaceTransport(Uri address)
         {
             return new SystemSpaceTransport(address, _infrastructure);
         }
 
+        /// <inheritdoc />
         public IStorageTransport GetStorageTransport(Uri address)
         {
             return new SystemStorageTransport(address, _infrastructure);
@@ -28,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
         public IStorageTransport GetStorageTransport()
         {
-            var serviceDetails = _infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+            var serviceDetails = _infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 
             return new SystemStorageTransport(serviceDetails.ManagementAddress, _infrastructure);
         }

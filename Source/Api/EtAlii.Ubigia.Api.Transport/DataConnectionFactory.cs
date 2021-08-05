@@ -6,15 +6,15 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public sealed class DataConnectionFactory
     {
-        public IDataConnection Create(IDataConnectionConfiguration configuration)
+        public IDataConnection Create(IDataConnectionOptions options)
         {
-            var factoryMethod = configuration.FactoryExtension ?? (() => CreateInternal(configuration));
+            var factoryMethod = options.FactoryExtension ?? (() => CreateInternal(options));
             return factoryMethod();
         }
 
-        private IDataConnection CreateInternal(IDataConnectionConfiguration configuration)
+        private IDataConnection CreateInternal(IDataConnectionOptions options)
         {
-            var hasTransportProvider = configuration.TransportProvider != null;
+            var hasTransportProvider = options.TransportProvider != null;
             if (!hasTransportProvider)
             {
                 throw new InvalidInfrastructureOperationException("Error creating data connection: No TransportProvider provided.");
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
             var scaffoldings = new IScaffolding[]
             {
-                new DataConnectionScaffolding(configuration),
+                new DataConnectionScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.GetExtensions<IDataConnectionExtension>())
+            foreach (var extension in options.GetExtensions<IDataConnectionExtension>())
             {
                 extension.Initialize(container);
             }

@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
             }
 
             var transport = ((IGrpcSpaceConnection) connection).Transport;
-            var space = await GetSpace(connection.Configuration.Space, transport).ConfigureAwait(false);
+            var space = await GetSpace(connection.Options.Space, transport).ConfigureAwait(false);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);

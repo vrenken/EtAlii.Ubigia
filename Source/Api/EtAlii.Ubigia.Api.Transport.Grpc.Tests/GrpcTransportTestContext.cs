@@ -27,12 +27,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
 
             var grpcChannelFactory = new Func<Uri, GrpcChannel>(channelAddress => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
-            var connectionConfiguration = new DataConnectionConfiguration()
+            var options = new DataConnectionOptions(Host.ClientConfiguration)
                 .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(Host.ClientConfiguration);
-            var connection = new DataConnectionFactory().Create(connectionConfiguration);
+                .UseTransportDiagnostics();
+            var connection = new DataConnectionFactory().Create(options);
 
             using var managementConnection = await CreateManagementConnection().ConfigureAwait(false);
             var account = await managementConnection.Accounts.Get(accountName).ConfigureAwait(false) ??
@@ -57,12 +57,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
         {
 			var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
-			var connectionConfiguration = new DataConnectionConfiguration()
+			var options = new DataConnectionOptions(Host.ClientConfiguration)
 	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory, contextCorrelator))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .UseTransportDiagnostics(Host.ClientConfiguration);
-            var connection = new DataConnectionFactory().Create(connectionConfiguration);
+                .UseTransportDiagnostics();
+            var connection = new DataConnectionFactory().Create(options);
 
             if (openOnCreation)
             {
@@ -78,12 +78,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
         {
             var grpcChannelFactory = new Func<Uri, GrpcChannel>((channelAddress) => Host.CreateGrpcInfrastructureChannel(channelAddress));
 
-            var connectionConfiguration = new ManagementConnectionConfiguration()
+            var options = new ManagementConnectionOptions(Host.ClientConfiguration)
 				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory, contextCorrelator))
 				.Use(address)
                 .Use(account, password)
-                .UseTransportManagementDiagnostics(Host.ClientConfiguration);
-            var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
+                .UseTransportManagementDiagnostics();
+            var connection = new ManagementConnectionFactory().Create(options);
             if (openOnCreation)
             {
                 await connection.Open().ConfigureAwait(false);

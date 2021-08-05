@@ -26,13 +26,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         public IStorageConnectionDetails Details => _connection?.Details;
 
         /// <inheritdoc />
-        public IManagementConnectionConfiguration Configuration { get; }
+        public IManagementConnectionOptions Options { get; }
 
         private IStorageConnection _connection;
 
-        public ManagementConnection(IManagementConnectionConfiguration configuration)
+        public ManagementConnection(IManagementConnectionOptions options)
         {
-            Configuration = configuration;
+            Options = options;
         }
 
         /// <inheritdoc />
@@ -55,12 +55,14 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         {
             var address = _connection.Details.DataAddress;
 
-			var connectionConfiguration = new DataConnectionConfiguration()
-                .UseTransport(Configuration.TransportProvider)
+			var options = new DataConnectionOptions(Options.ConfigurationRoot)
+                .UseTransport(Options.TransportProvider)
                 .Use(address)
                 .Use(accountName, spaceName, null);
-            var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
-            await dataConnection.Open().ConfigureAwait(false);
+            var dataConnection = new DataConnectionFactory().Create(options);
+            await dataConnection
+                .Open()
+                .ConfigureAwait(false);
             return dataConnection;
         }
 
@@ -72,10 +74,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            var configuration = new StorageConnectionConfiguration()
-                .Use(Configuration.TransportProvider.GetStorageTransport(Configuration.Address));
-            _connection = new StorageConnectionFactory().Create(configuration);
-            await _connection.Open(Configuration.AccountName, Configuration.Password).ConfigureAwait(false);
+            var options = new StorageConnectionOptions(Options.ConfigurationRoot)
+                .Use(Options.TransportProvider.GetStorageTransport(Options.Address));
+            _connection = new StorageConnectionFactory()
+                .Create(options);
+            await _connection
+                .Open(Options.AccountName, Options.Password)
+                .ConfigureAwait(false);
         }
 
         /// <inheritdoc />

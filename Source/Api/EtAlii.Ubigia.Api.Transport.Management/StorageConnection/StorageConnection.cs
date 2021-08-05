@@ -38,11 +38,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         private readonly StorageConnectionDetails _details;
 
         /// <inheritdoc />
-        public IStorageConnectionConfiguration Configuration { get; }
+        public IStorageConnectionOptions Options { get; }
 
         protected StorageConnection(
             IStorageTransport transport,
-            IStorageConnectionConfiguration configuration,
+            IStorageConnectionOptions options,
             IStorageContext storages,
             ISpaceContext spaces,
             IAccountContext accounts,
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             IInformationContext information)
         {
             Transport = (TTransport)transport;
-            Configuration = configuration;
+            Options = options;
             Storages = storages;
             Spaces = spaces;
             Accounts = accounts;

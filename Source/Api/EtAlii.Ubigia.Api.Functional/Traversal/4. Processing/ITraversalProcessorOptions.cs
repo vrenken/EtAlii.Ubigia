@@ -7,6 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface ITraversalProcessorOptions : IExtensible
     {
+        /// <summary>
+        /// The client configuration root that will be used to configure the traversal processor.
+        /// </summary>
         IConfiguration ConfigurationRoot { get; }
 
         public IScriptScope ScriptScope { get; }

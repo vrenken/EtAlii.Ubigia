@@ -25,9 +25,24 @@ namespace EtAlii.Ubigia.Api.Transport
         /// </summary>
         Space Space { get; }
 
+        /// <summary>
+        /// Provides access to the entries stored in the space.
+        /// </summary>
         IEntryContext Entries { get; }
+
+        /// <summary>
+        /// Provides access to the roots through which the entries in the space can be found.
+        /// </summary>
         IRootContext Roots { get; }
+
+        /// <summary>
+        /// Provides access to the content as stored in the entries in the space.
+        /// </summary>
         IContentContext Content { get; }
+
+        /// <summary>
+        /// Provides access to the properties as stored in the entries in the space.
+        /// </summary>
         IPropertiesContext Properties { get; }
 
         /// <summary>
@@ -36,9 +51,9 @@ namespace EtAlii.Ubigia.Api.Transport
         bool IsConnected { get; }
 
         /// <summary>
-        /// The Configuration used to instantiate this DataConnection.
+        /// The Options used to instantiate this DataConnection.
         /// </summary>
-        IDataConnectionConfiguration Configuration { get; }
+        IDataConnectionOptions Options { get; }
 
         /// <summary>
         /// Connect to the specified storage/space using the given credentials.

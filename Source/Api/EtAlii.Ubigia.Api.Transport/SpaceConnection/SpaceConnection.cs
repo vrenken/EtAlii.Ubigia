@@ -10,33 +10,37 @@ namespace EtAlii.Ubigia.Api.Transport
     {
         public Storage Storage { get; private set; }
 
+        /// <inheritdoc />
         public Space Space { get; private set; }
 
         public Account Account { get; private set; }
 
         ISpaceTransport ISpaceConnection.Transport => Transport;
+
         public TTransport Transport { get; }
 
         public bool IsConnected => Storage != null && Space != null;
 
-        /// <summary>
-        /// The Configuration used to instantiate this SpaceConnection.
-        /// </summary>
-        public ISpaceConnectionConfiguration Configuration { get; }
+        /// <inheritdoc />
+        public ISpaceConnectionOptions Options { get; }
 
+        /// <inheritdoc />
         public IRootContext Roots { get; }
 
+        /// <inheritdoc />
         public IEntryContext Entries { get; }
 
+        /// <inheritdoc />
         public IContentContext Content { get; }
 
+        /// <inheritdoc />
         public IPropertiesContext Properties { get; }
 
         public IAuthenticationContext Authentication { get; }
 
         protected SpaceConnection(
             ISpaceTransport transport,
-            ISpaceConnectionConfiguration configuration,
+            ISpaceConnectionOptions options,
             IRootContext roots,
             IEntryContext entries,
             IContentContext content,
@@ -44,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Transport
             IAuthenticationContext authentication)
         {
             Transport = (TTransport)transport;
-            Configuration = configuration;
+            Options = options;
             Roots = roots;
             Entries = entries;
             Content = content;

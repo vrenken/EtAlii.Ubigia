@@ -7,16 +7,17 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class SystemConnectionScaffolding : IScaffolding
     {
-        private readonly ISystemConnectionConfiguration _configuration;
+        private readonly ISystemConnectionOptions _options;
 
-        public SystemConnectionScaffolding(ISystemConnectionConfiguration configuration)
+        public SystemConnectionScaffolding(ISystemConnectionOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
+        /// <inheritdoc />
         public void Register(Container container)
         {
-            container.Register(() => _configuration);
+            container.Register(() => _options);
             container.Register<ISystemConnection, SystemConnection>();
         }
     }

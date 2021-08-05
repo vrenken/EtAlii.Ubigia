@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 
 	public class SignalRHostTestContext : EtAlii.Ubigia.Infrastructure.Hosting.TestHost.HostTestContextBase<InfrastructureTestHost>, IHostTestContext<InfrastructureTestHost>
     {
+        /// <inheritdoc />
         public override async Task Start(PortRange portRange)
 	    {
 		    await base.Start(portRange).ConfigureAwait(false);
@@ -35,15 +36,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 
 		    if (isSignalRTestBase)
 		    {
-			    ServiceDetails = Infrastructure.Configuration.ServiceDetails.Single(sd => sd.Name == "SignalR");
+			    ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == "SignalR");
 		    }
 			else if (isRestTestBase)
 		    {
-			    ServiceDetails = Infrastructure.Configuration.ServiceDetails.Single(sd => sd.Name == "Rest");
+			    ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.Name == "Rest");
 		    }
 		    else if (isSystemTestBase)
 		    {
-			    ServiceDetails = Infrastructure.Configuration.ServiceDetails.Single(sd => sd.IsSystemService);
+			    ServiceDetails = Infrastructure.Options.ServiceDetails.Single(sd => sd.IsSystemService);
 		    }
 		    else
 		    {
@@ -51,15 +52,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 		    }
 	    }
 
+        /// <inheritdoc />
 	    public Task<ISystemConnection> CreateSystemConnection()
 	    {
-		    var connectionConfiguration = new SystemConnectionConfiguration()
+		    var connectionConfiguration = new SystemConnectionOptions(ClientConfiguration)
 			    .Use(Infrastructure)
 			    .Use(new SystemTransportProvider(Infrastructure));
 		    var connection = new SystemConnectionFactory().Create(connectionConfiguration);
 		    return Task.FromResult(connection);
 	    }
 
+        /// <inheritdoc />
 	    public async Task AddUserAccountAndSpaces(ISystemConnection connection, string accountName, string password, string[] spaceNames)
 	    {
 		    var managementConnection = await connection.OpenManagementConnection().ConfigureAwait(false);

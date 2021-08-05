@@ -3,14 +3,26 @@
 namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
+    using Microsoft.Extensions.Configuration;
 
-    public class SpaceConnectionConfiguration : ConfigurationBase, ISpaceConnectionConfiguration
+    public class SpaceConnectionOptions : ConfigurationBase, ISpaceConnectionOptions
     {
+        /// <inheritdoc />
+        public IConfiguration ConfigurationRoot { get; }
+
+        /// <inheritdoc />
         public ISpaceTransport Transport { get; private set; }
 
+        /// <inheritdoc />
         public string Space { get; private set; }
 
-        public ISpaceConnectionConfiguration Use(ISpaceTransport transport)
+        public SpaceConnectionOptions(IConfiguration configurationRoot)
+        {
+            ConfigurationRoot = configurationRoot;
+        }
+
+        /// <inheritdoc />
+        public ISpaceConnectionOptions Use(ISpaceTransport transport)
         {
             if (transport == null)
             {
@@ -18,14 +30,15 @@ namespace EtAlii.Ubigia.Api.Transport
             }
             if (Transport != null)
             {
-                throw new InvalidOperationException("A Transport has already been assigned to this SpaceConnectionConfiguration");
+                throw new InvalidOperationException("A Transport has already been assigned to this SpaceConnectionOptions");
             }
 
             Transport = transport;
             return this;
         }
 
-        public ISpaceConnectionConfiguration Use(string space)
+        /// <inheritdoc />
+        public ISpaceConnectionOptions Use(string space)
         {
             if (string.IsNullOrWhiteSpace(space))
             {
@@ -33,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Transport
             }
             if (Space != null)
             {
-                throw new InvalidOperationException("A space has already been assigned to this SpaceConnectionConfiguration");
+                throw new InvalidOperationException("A space has already been assigned to this SpaceConnectionOptions");
             }
 
             Space = space;

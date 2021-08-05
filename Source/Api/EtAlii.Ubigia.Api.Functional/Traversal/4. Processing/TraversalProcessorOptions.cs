@@ -8,12 +8,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public class TraversalProcessorOptions : ConfigurationBase, ITraversalProcessorOptions
     {
+        /// <inheritdoc />
         public IConfiguration ConfigurationRoot { get; }
 
+        /// <inheritdoc />
         public IScriptScope ScriptScope { get; private set; }
 
+        /// <inheritdoc />
         public ILogicalContext LogicalContext { get; private set; }
 
+        /// <inheritdoc />
         public bool CachingEnabled { get; private set; }
 
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }

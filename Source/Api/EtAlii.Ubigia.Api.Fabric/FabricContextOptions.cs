@@ -7,6 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     public class FabricContextOptions : ConfigurationBase, IFabricContextOptions, IEditableFabricContextOptions
     {
+        /// <inheritdoc/>
         public IConfiguration ConfigurationRoot { get; }
 
         /// <inheritdoc/>

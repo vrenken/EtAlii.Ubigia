@@ -14,13 +14,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
             IStorageTransport transport,
             IAddressFactory addressFactory,
             IRestInfrastructureClient client,
-            IStorageConnectionConfiguration configuration,
+            IStorageConnectionOptions options,
             IStorageContext storages,
             ISpaceContext spaces,
             IAccountContext accounts,
             IAuthenticationManagementContext authentication,
             IInformationContext information)
-            : base(transport, configuration, storages, spaces, accounts, authentication, information)
+            : base(transport, options, storages, spaces, accounts, authentication, information)
         {
             AddressFactory = addressFactory;
             Client = client;

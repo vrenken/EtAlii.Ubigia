@@ -13,45 +13,53 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     {
         private readonly IFabricContext _fabric;
         private readonly ILocalStorageGetter _localStorageGetter;
-        private readonly ILogicalContextConfiguration _configuration;
+        private readonly ILogicalContextOptions _options;
 
         private const string Folder = "Storages";
 
         private ObservableCollection<Storage> Items { get; set; }
 
+        /// <inheritdoc />
 	    public Func<Storage, Task> Initialized { get; set; }
-	    public Func<Storage, Task> Added { get; set; }
+
+        /// <inheritdoc />
+        public Func<Storage, Task> Added { get; set; }
 
         public LogicalStorageSet(
             ILocalStorageGetter localStorageGetter,
-            ILogicalContextConfiguration configuration,
+            ILogicalContextOptions options,
             IFabricContext fabric)
         {
             _fabric = fabric;
             _localStorageGetter = localStorageGetter;
-            _configuration = configuration;
+            _options = options;
         }
 
+        /// <inheritdoc />
         public Storage GetLocal()
         {
             return _localStorageGetter.GetLocal(Items);
         }
 
+        /// <inheritdoc />
         public IAsyncEnumerable<Storage> GetAll()
         {
             return _fabric.Items.GetAll(Items);
         }
 
+        /// <inheritdoc />
         public Storage Get(string name)
         {
             return Items.SingleOrDefault(storage => storage.Name == name);
         }
 
+        /// <inheritdoc />
         public Storage Get(Guid id)
         {
             return _fabric.Items.Get(Items, id);
         }
 
+        /// <inheritdoc />
         public async Task<Storage> Add(Storage item)
         {
             item = _fabric.Items.Add(Items, CannAddFunction, item);
@@ -63,6 +71,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return item;
         }
 
+        /// <inheritdoc />
         public async Task Start()
         {
             var items = await _fabric.Items
@@ -74,7 +83,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             // Please find another way to determine that the local storage needs initialization.
             // More details can be found in the Github issue below:
             // https://github.com/vrenken/EtAlii.Ubigia/issues/94
-            var isAlreadyRegistered = items.Any(s => s.Name == _configuration.Name);
+            var isAlreadyRegistered = items.Any(s => s.Name == _options.Name);
             if (!isAlreadyRegistered)
             {
                 var storage = _localStorageGetter.GetLocal(items);
@@ -89,6 +98,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             Items = items;
         }
 
+        /// <inheritdoc />
         public Task Stop()
         {
             // Nothing at this moment.
@@ -121,16 +131,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return canAdd;
         }
 
+        /// <inheritdoc />
         public void Remove(Guid itemId)
         {
             _fabric.Items.Remove(Items, itemId);
         }
 
+        /// <inheritdoc />
         public void Remove(Storage itemToRemove)
         {
             _fabric.Items.Remove(Items, itemToRemove);
         }
 
+        /// <inheritdoc />
         public Storage Update(Guid itemId, Storage updatedItem)
         {
             return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);

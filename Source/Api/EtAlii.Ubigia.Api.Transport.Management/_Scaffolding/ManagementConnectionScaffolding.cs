@@ -6,16 +6,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     public class ManagementConnectionScaffolding : IScaffolding
     {
-        private readonly IManagementConnectionConfiguration _configuration;
+        private readonly IManagementConnectionOptions _options;
 
-        public ManagementConnectionScaffolding(IManagementConnectionConfiguration configuration)
+        public ManagementConnectionScaffolding(IManagementConnectionOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration);
+            container.Register(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
             container.Register<IManagementConnection, ManagementConnection>();
         }
     }

@@ -7,21 +7,22 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     internal class InfrastructureScaffolding : IScaffolding
     {
-        private readonly IInfrastructureConfiguration _configuration;
+        private readonly IInfrastructureOptions _options;
 
-        public InfrastructureScaffolding(IInfrastructureConfiguration configuration)
+        public InfrastructureScaffolding(IInfrastructureOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
+        /// <inheritdoc />
         public void Register(Container container)
         {
             container.Register<IContextCorrelator, ContextCorrelator>();
 
-            container.Register(() => _configuration);
-            container.Register(() => _configuration.Root);
-            container.Register(() => _configuration.Logical);
-            container.Register(() => _configuration.SystemConnectionCreationProxy);
+            container.Register(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
+            container.Register(() => _options.Logical);
+            container.Register(() => _options.SystemConnectionCreationProxy);
         }
     }
 }

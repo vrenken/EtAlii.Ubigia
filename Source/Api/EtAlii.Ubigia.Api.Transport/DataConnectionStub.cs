@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Configuration;
 
     public class DataConnectionStub : IDataConnection
     {
@@ -33,9 +34,9 @@ namespace EtAlii.Ubigia.Api.Transport
         public bool IsConnected { get; } = false;
 
         /// <summary>
-        /// The Configuration used to instantiate this DataConnection.
+        /// The Options used to instantiate this DataConnection.
         /// </summary>
-        public IDataConnectionConfiguration Configuration { get; }
+        public IDataConnectionOptions Options { get; }
 
         /// <inheritdoc />
         public Task Open()
@@ -55,7 +56,9 @@ namespace EtAlii.Ubigia.Api.Transport
             Justification = "This is a stub, only needed for testing/stubbing purposes.")]
         public DataConnectionStub()
         {
-            Configuration = new DataConnectionConfiguration();
+            var configurationRoot = new ConfigurationBuilder().Build();
+
+            Options = new DataConnectionOptions(configurationRoot);
 
             Storage = new Storage {Id = Guid.NewGuid(), Address = "https://localhost", Name = "Data connection stub storage"};
             Account = new Account { Id = Guid.NewGuid(), Name = "test", Password = "123" };

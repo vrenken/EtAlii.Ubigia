@@ -7,17 +7,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 
     internal class StorageConnectionScaffolding : IScaffolding
     {
-        private readonly IStorageConnectionConfiguration _configuration;
+        private readonly IStorageConnectionOptions _options;
 
-        public StorageConnectionScaffolding(IStorageConnectionConfiguration configuration)
+        public StorageConnectionScaffolding(IStorageConnectionOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration.Transport);
-            container.Register(() => _configuration);
+            container.Register(() => _options.Transport);
+            container.Register(() => _options);
 
             container.Register<IContextCorrelator, ContextCorrelator>();
             container.Register<IAuthenticationManagementContext, AuthenticationManagementContext>();
