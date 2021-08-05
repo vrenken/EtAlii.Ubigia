@@ -17,7 +17,7 @@ namespace EtAlii.xTechnology.Hosting
             //var property = Host.Property
 
             // Replace the original host by a completely fresh instance.
-            var host = Host.Configuration.CreateHost();
+            var host = Host.Options.CreateHost();
             var hostWrapper = Host as HostWrapper;
             hostWrapper?.Replace(host);
 

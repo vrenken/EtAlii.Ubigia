@@ -38,12 +38,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
         private InMemoryStorage CreateStorage()
         {
-            var configuration = new StorageConfiguration()
+            var options = new StorageOptions(HostConfiguration)
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(HostConfiguration)
+                .UseStorageDiagnostics()
                 .UseInMemoryStorage();
 
-            return (InMemoryStorage)new StorageFactory().Create(configuration);
+            return (InMemoryStorage)new StorageFactory().Create(options);
         }
 
         public void DeleteFileWhenNeeded(string fileName)

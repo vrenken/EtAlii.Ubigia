@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
 {
     public class InMemoryStorage : IStorage
     {
-        public IStorageConfiguration Configuration { get; }
+        public IStorageOptions Options { get; }
 
         public IPathBuilder PathBuilder { get; }
 
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
         public InMemoryStorage(
-            IStorageConfiguration configuration,
+            IStorageOptions options,
             IPathBuilder pathBuilder,
             IImmutableFileManager fileManager,
             IImmutableFolderManager folderManager,
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
             IPropertiesStorage properties)
 #pragma warning restore S107
         {
-            Configuration = configuration;
+            Options = options;
             PathBuilder = pathBuilder;
             FileManager = fileManager;
             FolderManager = folderManager;

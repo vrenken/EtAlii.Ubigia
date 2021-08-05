@@ -4,16 +4,16 @@ namespace EtAlii.xTechnology.Hosting
 {
     using System;
 
-    public static class HostConfigurationConsoleHostExtension
+    public static class HostOptionsUseConsoleHostExtension
     {
-        public static IHostConfiguration UseConsoleHost(this IHostConfiguration configuration)
+        public static IHostOptions UseConsoleHost(this IHostOptions options)
         {
             var extensions = Array.Empty<IHostExtension>();
             //var extensions = new IHostExtension[]
             //[
             //    new ConsoleHostExtension(),
             //]
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

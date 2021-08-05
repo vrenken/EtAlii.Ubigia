@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
     using EtAlii.Ubigia.Persistence;
     using EtAlii.Ubigia.Persistence.InMemory;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
     using Xunit;
 
     [CorrelateUnitTests]
@@ -15,10 +16,11 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 
         private IStorage CreateTestStorage()
         {
-            var storageConfiguration = new StorageConfiguration()
+            var configurationRoot = new ConfigurationBuilder().Build();
+            var storageOptions = new StorageOptions(configurationRoot)
                 .Use(TestStorageName)
                 .UseInMemoryStorage();
-            var storage = new StorageFactory().Create(storageConfiguration);
+            var storage = new StorageFactory().Create(storageOptions);
             return storage;
         }
 

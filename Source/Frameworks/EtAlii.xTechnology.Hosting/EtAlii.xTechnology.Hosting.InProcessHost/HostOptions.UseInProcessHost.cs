@@ -2,15 +2,15 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public static class HostConfigurationInProcessHostExtension
+    public static class HostOptionsUseInProcessHostExtension
     {
-        public static IHostConfiguration UseInProcessHost(this IHostConfiguration configuration, HostControl hostControl)
+        public static IHostOptions UseInProcessHost(this IHostOptions options, HostControl hostControl)
         {
             var extensions = new IHostExtension[]
             {
                 new InProcessHostExtension(hostControl),
             };
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

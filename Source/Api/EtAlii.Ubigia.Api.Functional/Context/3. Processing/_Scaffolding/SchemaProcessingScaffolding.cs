@@ -38,6 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _options.TraversalContext);
             container.Register(() => _options.SchemaScope);
+            container.Register(() => _options.ConfigurationRoot);
             container.Register(() => _options);
         }
     }

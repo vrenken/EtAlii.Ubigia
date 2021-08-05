@@ -20,7 +20,7 @@ namespace EtAlii.xTechnology.Hosting
         public event Action<IApplicationBuilder> ConfigureApplication;
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
-        public IHostConfiguration Configuration => _currentHost.Configuration;
+        public IHostOptions Options => _currentHost.Options;
         public State State => _currentHost.State;
 
         public Status[] Status => _currentHost.Status;

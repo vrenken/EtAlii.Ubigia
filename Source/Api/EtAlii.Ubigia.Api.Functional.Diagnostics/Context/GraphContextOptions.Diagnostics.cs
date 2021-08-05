@@ -3,17 +3,16 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using Microsoft.Extensions.Configuration;
 
     public static class GraphContextOptionsDiagnosticsExtension
     {
-        public static TGraphContextOptions UseFunctionalGraphContextDiagnostics<TGraphContextOptions>(this TGraphContextOptions options, IConfiguration configurationRoot, bool alsoUseForDeeperDiagnostics = true)
+        public static TGraphContextOptions UseFunctionalGraphContextDiagnostics<TGraphContextOptions>(this TGraphContextOptions options, bool alsoUseForDeeperDiagnostics = true)
             where TGraphContextOptions : FunctionalContextOptions
         {
             var extensions = new IGraphContextExtension[]
             {
-                new LoggingGraphContextExtension(configurationRoot),
-                new ProfilingGraphContextExtension(configurationRoot),
+                new LoggingGraphContextExtension(),
+                new ProfilingGraphContextExtension(),
             };
 
             options = options.Use(extensions);

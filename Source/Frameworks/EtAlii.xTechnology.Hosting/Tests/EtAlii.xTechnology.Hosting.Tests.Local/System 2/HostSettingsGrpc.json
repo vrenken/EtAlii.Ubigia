@@ -1,96 +1,102 @@
 ﻿{
-  "Host": {
-    "TestHost": "{{HOST:AuthenticationHost@127.0.0.1}}",
-    "TestPort": "{{PORT:AuthenticationPort@5003}}",
-    "TestHostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}",
+    "Host": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        },
 
-    "Systems": [
-      {
-        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-        "Factory": "InfrastructureSystemFactory",
-        "Services": [
-          {
-            "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Factory": "StorageServiceFactory",
-            "Name": "Debug storage",
-            "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
-          },
-          {
-            "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Factory": "InfrastructureServiceFactory",
-            "Name": "Debug storage"
-          },
-          {
-            "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
-            "Factory": "AuthenticationServiceFactory"
-          }
-        ],
-        "Modules": [
-          {
-            "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc",
-            "Factory": "AdminModuleFactory",
-            "Name": "Admin",
-            "Comment": "// Admin should be accessible over localhost only",
-            "IpAddress": "127.0.0.1",
-            "Port": "{{PORT:GrpcAdminApi@5000}}",
-            "Modules": [
-              {
-                "Name": "Api",
-                "Path": "{{PATH:GrpcAdminApi@}}",
+        "TestHost": "{{HOST:AuthenticationHost@127.0.0.1}}",
+        "TestPort": "{{PORT:AuthenticationPort@5003}}",
+        "TestHostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}",
+
+        "Systems": [
+            {
+                "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                "Factory": "InfrastructureSystemFactory",
                 "Services": [
-                  {
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc",
-                    "Factory": "AdminServiceFactory"
-                  }
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Factory": "StorageServiceFactory",
+                        "Name": "Debug storage",
+                        "BaseFolder": "{{FOLDER:StorageFolder@%LOCALAPPDATA%\\EtAlii\\Ubigia}}"
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Factory": "InfrastructureServiceFactory",
+                        "Name": "Debug storage"
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc",
+                        "Factory": "AuthenticationServiceFactory"
+                    }
+                ],
+                "Modules": [
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc",
+                        "Factory": "AdminModuleFactory",
+                        "Name": "Admin",
+                        "Comment": "// Admin should be accessible over localhost only",
+                        "IpAddress": "127.0.0.1",
+                        "Port": "{{PORT:GrpcAdminApi@5000}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Path": "{{PATH:GrpcAdminApi@}}",
+                                "Services": [
+                                    {
+                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc",
+                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc",
+                                        "Factory": "AdminServiceFactory"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc",
+                        "Factory": "UserModuleFactory",
+                        "Name": "User",
+                        "IpAddress": "0.0.0.0",
+                        "Port": "{{PORT:GrpcUserApi@5001}}",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Path": "{{PATH:GrpcUserApi@}}",
+                                "Services": [
+                                    {
+                                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc",
+                                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc",
+                                        "Factory": "UserServiceFactory"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
                 ]
-              }
-            ]
-          },
-          {
-            "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc",
-            "Factory": "UserModuleFactory",
-            "Name": "User",
-            "IpAddress": "0.0.0.0",
-            "Port": "{{PORT:GrpcUserApi@5001}}",
-            "Modules": [
-              {
-                "Name": "Api",
-                "Path": "{{PATH:GrpcUserApi@}}",
+            },
+            {
+                "Assembly": "EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc",
+                "Namespace": "EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc",
+                "Factory": "ProvisioningSystemFactory",
                 "Services": [
-                  {
-                    "Assembly": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc",
-                    "Namespace": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.Grpc",
-                    "Factory": "UserServiceFactory"
-                  }
+                    {}
+                ],
+                "Modules": [
+                    {}
                 ]
-              }
-            ]
-          }
+            }
         ]
-      },
-      {
-        "Assembly": "EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc",
-        "Namespace": "EtAlii.xTechnology.Hosting.Tests.Provisioning.Grpc",
-        "Factory": "ProvisioningSystemFactory",
-        "Services": [
-          {}
-        ],
-        "Modules": [
-          {}
-        ]
-      }
-    ]
-  },
-  "Logging": {
-    "LogLevel": {
-      "Default": "Warning"
+    },
+    "Logging": {
+        "LogLevel": {
+            "Default": "Warning"
+        }
     }
-  }
 }

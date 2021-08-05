@@ -5,12 +5,18 @@ namespace EtAlii.xTechnology.Hosting
     using System;
     using Microsoft.Extensions.Configuration;
 
-    public interface IHostConfiguration
+    public interface IHostOptions
     {
+        /// <summary>
+        /// The configuration root instance for the current host application.
+        /// </summary>
+        IConfiguration ConfigurationRoot { get; }
+
         /// <summary>
         /// Returns the array of all extensions that got registered for this host.
         /// </summary>
         IHostExtension[] Extensions { get; }
+
         ICommand[] Commands { get; }
 
         /// <summary>
@@ -29,11 +35,6 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         ConfigurationDetails Details { get; }
 
-        /// <summary>
-        /// The configuration root instance for the current application.
-        /// </summary>
-        IConfigurationRoot Root { get; }
-
         Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> CreateSystems { get; }
 
         /// <summary>
@@ -42,28 +43,27 @@ namespace EtAlii.xTechnology.Hosting
         /// <param name="extensions"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        IHostConfiguration Use(params IHostExtension[] extensions);
+        IHostOptions Use(params IHostExtension[] extensions);
 
-        IHostConfiguration Use(params IConfigurationSection[] systemConfigurations);
+        IHostOptions Use(params IConfigurationSection[] systemConfigurations);
 
-        IHostConfiguration Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems);
+        IHostOptions Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems);
 
-        IHostConfiguration Use(params ICommand[] commands);
+        IHostOptions Use(params ICommand[] commands);
 
         /// <summary>
         /// Instruct the host configuration to use the provided ConfigurationDetails and ConfigurationRoot.
         /// </summary>
         /// <param name="details"></param>
-        /// <param name="root"></param>
         /// <returns></returns>
-        IHostConfiguration Use(ConfigurationDetails details, IConfigurationRoot root);
+        IHostOptions Use(ConfigurationDetails details);
 
         /// <summary>
         /// Instruct the host configuration to use the provided host factory method.
         /// </summary>
         /// <param name="createHost"></param>
         /// <returns></returns>
-        IHostConfiguration Use(Func<IHost> createHost);
+        IHostOptions Use(Func<IHost> createHost);
 
         /// <summary>
         /// Instruct the host configuration that the host should be wrapped.
@@ -71,6 +71,6 @@ namespace EtAlii.xTechnology.Hosting
         /// </summary>
         /// <param name="useWrapper"></param>
         /// <returns></returns>
-        IHostConfiguration Use(bool useWrapper);
+        IHostOptions Use(bool useWrapper);
     }
 }

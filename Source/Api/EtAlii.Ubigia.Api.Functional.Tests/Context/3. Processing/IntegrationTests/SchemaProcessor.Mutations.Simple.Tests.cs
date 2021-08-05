@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
+                .UseFunctionalGraphContextDiagnostics();
             await _testContext.Functional.ConfigureLogicalContextOptions(_options,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_options);
@@ -77,8 +77,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);
@@ -125,8 +125,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);
@@ -187,8 +187,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);
@@ -257,8 +257,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);
@@ -312,8 +312,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var mutationSchema = _context.Parse(mutationText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);
@@ -397,8 +397,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions()
-                .UseFunctionalDiagnostics(_testContext.ClientConfiguration)
+            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+                .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = new LapaSchemaProcessorFactory().Create(options);

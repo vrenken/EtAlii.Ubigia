@@ -22,15 +22,15 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 		        .AddConfigurationDetails(details)
 		        .Build();
 
-	        var hostConfiguration = new HostConfigurationBuilder()
+	        var hostOptions = new HostOptionsBuilder()
 		        .Build(configurationRoot, details)
-		        .UseHostDiagnostics(configurationRoot)
+		        .UseHostDiagnostics()
 		        .UseTrayIconHost(this,
 			        "Icon-Logo-White-Shaded.ico",
 			        "Icon-Logo-Black.ico",
 			        "Icon-Logo-Red.ico");
 
-            TrayIconHost.Start(hostConfiguration);
+            TrayIconHost.Start(hostOptions);
         }
     }
 }

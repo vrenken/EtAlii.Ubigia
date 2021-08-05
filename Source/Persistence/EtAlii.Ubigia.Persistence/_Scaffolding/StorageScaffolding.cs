@@ -7,16 +7,17 @@ namespace EtAlii.Ubigia.Persistence
 
     public class StorageScaffolding : IScaffolding
     {
-        private readonly IStorageConfiguration _storageConfiguration;
+        private readonly IStorageOptions _options;
 
-        public StorageScaffolding(IStorageConfiguration storageConfiguration)
+        public StorageScaffolding(IStorageOptions options)
         {
-            _storageConfiguration = storageConfiguration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _storageConfiguration);
+            container.Register(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
             container.Register(() => new SerializerFactory().Create());
         }
     }

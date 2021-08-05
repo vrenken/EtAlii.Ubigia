@@ -2,16 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using Microsoft.Extensions.Configuration;
-
     public static class GraphContextOptionsUseGraphContextProfiling
     {
-        public static TGraphContextOptions UseGraphContextProfiling<TGraphContextOptions>(this TGraphContextOptions options, IConfiguration configurationRoot)
+        public static TGraphContextOptions UseGraphContextProfiling<TGraphContextOptions>(this TGraphContextOptions options)
             where TGraphContextOptions : FunctionalContextOptions
         {
             options.Use(new IGraphContextExtension[]
             {
-                new ProfilingGraphContextExtension(configurationRoot),
+                new ProfilingGraphContextExtension(),
             });
 
             return options;

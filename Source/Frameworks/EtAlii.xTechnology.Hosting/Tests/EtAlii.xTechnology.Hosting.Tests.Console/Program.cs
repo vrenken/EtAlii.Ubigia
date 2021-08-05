@@ -21,12 +21,12 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
                 .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
                 .Build();
 
-            var hostConfiguration = new HostConfigurationBuilder()
+            var hostOptions = new HostOptionsBuilder()
                 .Build(configurationRoot, details)
-                .UseHostDiagnostics(configurationRoot)
+                .UseHostDiagnostics()
                 .UseConsoleHost();
 
-            ConsoleHost.Start(hostConfiguration);
+            ConsoleHost.Start(hostOptions);
         }
     }
 }

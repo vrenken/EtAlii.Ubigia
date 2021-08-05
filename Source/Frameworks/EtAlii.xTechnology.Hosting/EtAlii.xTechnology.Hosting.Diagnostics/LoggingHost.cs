@@ -39,7 +39,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public event Action<IWebHostBuilder> ConfigureHost;
         public event Action<KestrelServerOptions> ConfigureKestrel;
         public event PropertyChangedEventHandler PropertyChanged;
-        public IHostConfiguration Configuration => _decoree.Configuration;
+        public IHostOptions Options => _decoree.Options;
 
         public async Task Start()
         {

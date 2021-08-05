@@ -10,17 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class ProfilingGraphContextExtension : IGraphContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        public ProfilingGraphContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectProfiling)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Functional:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectProfiling)
             {
                 container.RegisterDecorator(typeof(IGraphContext), typeof(ProfilingGraphContext));
 

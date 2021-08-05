@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
 
     [CorrelateUnitTests]
     public class InMemoryStorageTests
@@ -17,8 +18,9 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new Serializer();
             var bsonItemSerializer = new BsonItemSerializer(serializer);
             var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var configurationRoot = new ConfigurationBuilder().Build();
 
-            var storageConfiguration = new StorageConfiguration()
+            var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var inMemoryItems = new InMemoryItems();
             var inMemoryItemsHelper = new InMemoryItemsHelper(inMemoryItems);
@@ -49,7 +51,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var propertiesStorage = new PropertiesStorage(propertiesRetriever, propertiesStorer);
 
             // Act.
-            var storage = new InMemoryStorage(storageConfiguration, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, inMemoryItems, inMemoryItemsHelper, inMemoryContainerProvider, propertiesStorage);
+            var storage = new InMemoryStorage(storageOptions, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, inMemoryItems, inMemoryItemsHelper, inMemoryContainerProvider, propertiesStorage);
 
             // Assert.
             Assert.NotNull(storage);

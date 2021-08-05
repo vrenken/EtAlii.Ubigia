@@ -7,33 +7,33 @@ namespace EtAlii.xTechnology.Hosting
     public class HostFactory<THost>
         where THost : class, IHost
     {
-        public IHost Create(IHostConfiguration configuration, bool useWrapper)
+        public IHost Create(IHostOptions options, bool useWrapper)
         {
-            configuration.Use(useWrapper);
+            options.Use(useWrapper);
 
-            return CreateInternal(configuration);
+            return CreateInternal(options);
         }
 
-        public IHost Create(IHostConfiguration configuration)
+        public IHost Create(IHostOptions options)
         {
-            configuration.Use(true);
+            options.Use(true);
 
-            return CreateInternal(configuration);
+            return CreateInternal(options);
         }
 
-        private IHost CreateInternal(IHostConfiguration configuration)
+        private IHost CreateInternal(IHostOptions options)
         {
             // We want to be able to recreate the whole host.
-            if (configuration.CreateHost == null)
+            if (options.CreateHost == null)
             {
-                configuration.Use(() => Create(configuration));
+                options.Use(() => Create(options));
             }
-            
+
             var container = new Container();
 
             var scaffoldings = new IScaffolding[]
             {
-                new HostScaffolding<THost>(configuration),
+                new HostScaffolding<THost>(options),
             };
 
             foreach (var scaffolding in scaffoldings)
@@ -41,7 +41,7 @@ namespace EtAlii.xTechnology.Hosting
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in options.Extensions)
             {
                 extension.Register(container);
             }

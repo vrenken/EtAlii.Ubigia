@@ -9,19 +9,20 @@ namespace EtAlii.xTechnology.Hosting
     public class HostScaffolding<THost> : IScaffolding
         where THost : class, IHost
     {
-        private readonly IHostConfiguration _configuration;
+        private readonly IHostOptions _options;
 
-        public HostScaffolding(IHostConfiguration configuration)
+        public HostScaffolding(IHostOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration);
+            container.Register(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
 
             container.Register<IHost, THost>();
-            if (_configuration.UseWrapper)
+            if (_options.UseWrapper)
             {
                 // During runtime, so not during testing,
                 // we want to be able to restart (and therefore replace) the host.
@@ -36,10 +37,10 @@ namespace EtAlii.xTechnology.Hosting
                 var systemFactory = new SystemFactory(serviceFactory, moduleFactory, instanceCreator);
 
                 // Instantiate the systems.
-                var systems = _configuration.CreateSystems(host, systemFactory, serviceFactory, moduleFactory);
+                var systems = _options.CreateSystems(host, systemFactory, serviceFactory, moduleFactory);
 
                 // Fetch all available commands.
-                var commands = _configuration.Commands
+                var commands = _options.Commands
                     .Concat(systems.SelectMany(system => system.Commands))
                     .Distinct()
                     .ToList();

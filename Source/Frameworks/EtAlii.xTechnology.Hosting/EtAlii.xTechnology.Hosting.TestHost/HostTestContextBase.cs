@@ -91,9 +91,9 @@ namespace EtAlii.xTechnology.Hosting
                 .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
 			    .Build();
             HostConfiguration = hostConfigurationRoot;
-            var hostConfiguration = new HostConfigurationBuilder()
+            var hostOptions = new HostOptionsBuilder()
                 .Build(hostConfigurationRoot, details)
-                .UseHostDiagnostics(hostConfigurationRoot);
+                .UseHostDiagnostics();
 
             var clientConfigurationRoot = new ConfigurationBuilder()
                 .AddJsonFile(_clientConfigurationFile)
@@ -101,7 +101,7 @@ namespace EtAlii.xTechnology.Hosting
                 .Build();
             ClientConfiguration = clientConfigurationRoot;
 
-		    var host = (THost)new HostFactory<THost>().Create(hostConfiguration, false);
+		    var host = (THost)new HostFactory<THost>().Create(hostOptions, false);
 
 		    Host = host;
 		    await host.Start().ConfigureAwait(false);

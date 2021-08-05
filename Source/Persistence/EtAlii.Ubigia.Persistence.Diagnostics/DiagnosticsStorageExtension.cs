@@ -8,21 +8,18 @@ namespace EtAlii.Ubigia.Persistence
 
     public class DiagnosticsStorageExtension : IStorageExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsStorageExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Persistence:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Persistence:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new PersistenceProfilingScaffolding(_configuration),
-                new BlobsLoggingScaffolding(_configuration),
-                new ComponentsProfilingScaffolding(_configuration),
+                new PersistenceProfilingScaffolding(configuration),
+                new BlobsLoggingScaffolding(configuration),
+                new ComponentsProfilingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

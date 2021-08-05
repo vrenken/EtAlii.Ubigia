@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence
 {
     public class DefaultStorage : IStorage
     {
-        public IStorageConfiguration Configuration { get; }
+        public IStorageOptions Options { get; }
 
         public IPathBuilder PathBuilder { get; }
 
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Persistence
         // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
         public DefaultStorage(
-            IStorageConfiguration configuration,
+            IStorageOptions options,
             IPathBuilder pathBuilder,
             IImmutableFileManager fileManager,
             IImmutableFolderManager folderManager,
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Persistence
             IPropertiesStorage properties)
 #pragma warning restore S107
         {
-            Configuration = configuration;
+            Options = options;
             PathBuilder = pathBuilder;
             FileManager = fileManager;
             FolderManager = folderManager;

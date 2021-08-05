@@ -7,11 +7,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public interface IHost : INotifyPropertyChanged
     {
-        IHostConfiguration Configuration { get; }
-        Task Start();
-        Task Stop();
-
-        Task Shutdown();
+        IHostOptions Options { get; }
 
         State State { get; }
 
@@ -24,5 +20,11 @@ namespace EtAlii.xTechnology.Hosting
         void Setup(ICommand[] commands, Status[] status);
 
         void Initialize();
+
+        Task Start();
+
+        Task Stop();
+
+        Task Shutdown();
     }
 }

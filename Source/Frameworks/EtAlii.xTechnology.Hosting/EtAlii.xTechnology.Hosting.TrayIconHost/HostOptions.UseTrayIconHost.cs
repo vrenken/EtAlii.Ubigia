@@ -8,10 +8,10 @@ namespace EtAlii.xTechnology.Hosting
     using System.Reflection;
     using System.Windows;
 
-    public static class HostConfigurationTrayIconHostExtension
+    public static class HostOptionsUseTrayIconHostExtension
     {
-        public static IHostConfiguration UseTrayIconHost(
-            this IHostConfiguration configuration,
+        public static IHostOptions UseTrayIconHost(
+            this IHostOptions options,
             Application application,
             string runningIconResource,
             string stoppedIconResource,
@@ -28,7 +28,7 @@ namespace EtAlii.xTechnology.Hosting
             {
                 new TrayIconHostExtension(runningIcon, stoppedIcon, errorIcon),
             };
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
 
         private static Icon ToIcon(Assembly assembly, string resource)

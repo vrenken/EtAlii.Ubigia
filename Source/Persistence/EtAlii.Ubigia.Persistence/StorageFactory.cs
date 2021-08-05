@@ -13,9 +13,9 @@ namespace EtAlii.Ubigia.Persistence
             throw new NotSupportedException();
         }
 
-        public IStorage Create(IStorageConfiguration configuration)
+        public IStorage Create(IStorageOptions options)
         {
-            if (string.IsNullOrWhiteSpace(configuration.Name))
+            if (string.IsNullOrWhiteSpace(options.Name))
             {
                 throw new NotSupportedException("The name is required to construct a Storage instance");
             }
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Persistence
 
             var scaffoldings = new List<IScaffolding>(new IScaffolding[]
             {
-                new StorageScaffolding(configuration),
+                new StorageScaffolding(options),
                 new ComponentsScaffolding(),
                 new BlobsScaffolding(),
                 new ContainersScaffolding(),
@@ -38,12 +38,12 @@ namespace EtAlii.Ubigia.Persistence
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in options.Extensions)
             {
                 extension.Initialize(container);
             }
 
-            return configuration.GetStorage(container);
+            return options.GetStorage(container);
         }
     }
 }

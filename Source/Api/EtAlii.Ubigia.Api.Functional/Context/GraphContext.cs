@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
         {
-            var options = new SchemaProcessorOptions()
+            var options = new SchemaProcessorOptions(_parserOptions.ConfigurationRoot)
                 .Use(scope)
                 .Use(_traversalContext);
             var processor = _schemaProcessorFactory.Create(options);

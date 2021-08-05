@@ -9,26 +9,26 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
     {
         public string BaseFolder { get; private set; }
 
-        private readonly IStorageConfiguration _configuration;
+        private readonly IStorageOptions _options;
         private readonly IStorageSerializer _serializer;
         private readonly char _separatorChar;
         private readonly string _separatorString;
 
         public NtfsPathBuilder(
-            IStorageConfiguration configuration,
+            IStorageOptions options,
             IStorageSerializer serializer)
         {
             _separatorChar = Path.DirectorySeparatorChar;
             _separatorString = new string(_separatorChar, 1);
 
-            _configuration = configuration;
+            _options = options;
             _serializer = serializer;
         }
 
         public void Initialize(string baseFolder)
         {
             var folder = Environment.ExpandEnvironmentVariables(baseFolder);
-            BaseFolder = string.Join(_separatorString, folder, _configuration.Name);
+            BaseFolder = string.Join(_separatorString, folder, _options.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)

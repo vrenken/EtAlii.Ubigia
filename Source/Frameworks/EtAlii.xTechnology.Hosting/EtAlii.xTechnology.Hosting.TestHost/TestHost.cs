@@ -11,8 +11,8 @@ namespace EtAlii.xTechnology.Hosting
     {
         // Warning: This class should keep its public constructor.
         // ReSharper disable once MemberCanBeProtected.Global
-        public TestHost(IHostConfiguration configuration, ISystemManager systemManager)
-	        : base(configuration, systemManager)
+        public TestHost(IHostOptions options, ISystemManager systemManager)
+	        : base(options, systemManager)
         {
         }
 

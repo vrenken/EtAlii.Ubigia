@@ -9,19 +9,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class ProfilingSchemaProcessorExtension : ISchemaProcessorExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-        //private readonly IProfiler _profiler
-
-        public ProfilingSchemaProcessorExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
-            //_profiler = profiler
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectProfiling)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Functional:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectProfiling)
             {
                 // container.Register(() =gt _profiler)
                 // container.RegisterDecorator(typeof(IQueryProcessor), typeof(ProfilingQueryProcessor))

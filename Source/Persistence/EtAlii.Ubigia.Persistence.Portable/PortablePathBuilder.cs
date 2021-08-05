@@ -11,10 +11,10 @@ namespace EtAlii.Ubigia.Persistence.Portable
 
         private readonly IStorageSerializer _serializer;
 
-        public PortablePathBuilder(IStorageConfiguration configuration, IStorageSerializer serializer)
+        public PortablePathBuilder(IStorageOptions options, IStorageSerializer serializer)
         {
             _serializer = serializer;
-            BaseFolder = PortablePath.Combine("EtAlii", "Ubigia", configuration.Name);
+            BaseFolder = PortablePath.Combine("EtAlii", "Ubigia", options.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)

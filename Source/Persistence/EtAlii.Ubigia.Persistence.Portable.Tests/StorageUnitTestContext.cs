@@ -32,12 +32,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
         private IStorage CreateStorage()
         {
-            var configuration = new StorageConfiguration()
+            var options = new StorageOptions(HostConfiguration)
                 .Use(TestAssembly.StorageName)
-                .UseStorageDiagnostics(HostConfiguration)
+                .UseStorageDiagnostics()
                 .UsePortableStorage(StorageFolder);
 
-            return new StorageFactory().Create(configuration);
+            return new StorageFactory().Create(options);
         }
 
 

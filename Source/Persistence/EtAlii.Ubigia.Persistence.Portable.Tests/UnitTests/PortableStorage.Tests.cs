@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using PCLStorage;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
 
     [CorrelateUnitTests]
     public class PortableStorageTests
@@ -17,15 +18,16 @@ namespace EtAlii.Ubigia.Persistence.Tests
         public void PortableStorage_Create()
         {
             // Arrange.
+            var configurationRoot = new ConfigurationBuilder().Build();
             var folderName = $"C:\\Temp\\{Guid.NewGuid()}";
             var serializer = new Serializer();
             var bsonItemSerializer = new BsonItemSerializer(serializer);
             var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
-            var storageConfiguration = new StorageConfiguration()
+            var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var folderStorage = new FileSystemFolder(folderName);
             var storageSerializer = new PortableStorageSerializer(bsonItemSerializer, bsonPropertiesSerializer, folderStorage);
-            var pathBuilder = new PortablePathBuilder(storageConfiguration, storageSerializer);
+            var pathBuilder = new PortablePathBuilder(storageOptions, storageSerializer);
             var folderManager = new PortableFolderManager(storageSerializer, folderStorage);
             var fileManager = new PortableFileManager(storageSerializer, folderManager, pathBuilder, folderStorage);
             var azureContainerProvider = new PortableContainerProvider();
@@ -51,7 +53,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var propertiesStorage = new PropertiesStorage(propertiesRetriever, propertiesStorer);
 
             // Act.
-            var storage = new DefaultStorage(storageConfiguration, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, azureContainerProvider, propertiesStorage);
+            var storage = new DefaultStorage(storageOptions, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, azureContainerProvider, propertiesStorage);
 
             // Assert.
             Assert.NotNull(storage);

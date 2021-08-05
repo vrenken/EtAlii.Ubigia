@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.NetCoreApp
 {
-    public static class StorageConfigurationNetCoreAppExtension
+    public static class StorageOptionsUseNetCoreApp
     {
-        public static IStorageConfiguration UseNetCoreAppStorage(this IStorageConfiguration configuration, string baseFolder)
+        public static IStorageOptions UseNetCoreAppStorage(this IStorageOptions options, string baseFolder)
         {
             var extensions = new IStorageExtension[]
             {
                 new NetCoreAppStorageExtension(baseFolder),
             };
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

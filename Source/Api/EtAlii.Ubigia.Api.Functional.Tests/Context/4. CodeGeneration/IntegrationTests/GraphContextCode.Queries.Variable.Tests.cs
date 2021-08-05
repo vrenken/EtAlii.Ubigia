@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics(_testContext.ClientConfiguration);
+                .UseFunctionalGraphContextDiagnostics();
             await _testContext.Functional.ConfigureLogicalContextOptions(_options,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_options);

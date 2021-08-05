@@ -4,20 +4,20 @@ namespace EtAlii.xTechnology.Hosting
 {
     using Microsoft.Extensions.Configuration;
 
-    public class HostConfigurationBuilder
+    public class HostOptionsBuilder
     {
-        public IHostConfiguration Build(IConfigurationRoot configurationRoot, ConfigurationDetails details)
+        public IHostOptions Build(IConfigurationRoot configurationRoot, ConfigurationDetails details)
 		{
             var hostSection = configurationRoot.GetSection("Host");
 
             var systemConfigurations = hostSection.GetAllSections("Systems");
 
-            // Create a host instance.
-            var configuration = new HostConfiguration()
+            // Create a host options instance.
+            var options = new HostOptions(configurationRoot)
                 .Use(systemConfigurations)
-                .Use(details, configurationRoot);
+                .Use(details);
 
-            return configuration;
+            return options;
         }
     }
 }

@@ -1,77 +1,89 @@
 ﻿{
-  "Host": {
-    "HostName": "{{HOST:AuthenticationHost@127.0.0.1}}",
-    "PortName": "{{PORT:AuthenticationPort@5003}}",
-    "HostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}",
+    "Host": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        },
 
-    "Systems": [
-      {
-        "Factory": "",
-        "Services": [
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-            "Factory": "AdminServiceFactory",
-            "Name": "Grpc Admin service",
-            "Port": "{{PORT:GrpcAdminApi@1111}}"
-          },
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
-            "Factory": "UserServiceFactory",
-            "Name": "Grpc User service",
-            "Port": "{{PORT:GrpcUserApi@2222}}"
-          }
-        ],
-        "Modules": [ {} ]
-      },
-      {
-        "Factory": "",
-        "Services": [
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-            "Factory": "AdminServiceFactory",
-            "Name": "SignalR Admin service",
-            "Port": "{{PORT:SignalRAdminApi@3333}}"
-          },
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
-            "Factory": "UserServiceFactory",
-            "Name": "SignalR User service",
-            "Port": "{{PORT:UserApiSignalR@4444}}"
-          }
-        ],
-        "Modules": [ {} ]
-      },
-      {
-        "Factory": "",
-        "Services": [
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-            "Factory": "AdminServiceFactory",
-            "Name": "Rest Admin service",
-            "Port": "{{PORT:RestAdminApi@5555}}",
-            "IpAddress": "0.0.0.0"
-          },
-          {
-            "Assembly" : "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-            "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
-            "Factory": "UserServiceFactory",
-            "Name": "Rest User service",
-            "Port": "{{PORT:RestUserApi@6666}}",
-            "IpAddress": "0.0.0.0"
-          }
-        ],
-        "Modules": [ {} ]
-      }
-    ]
-  },
+        "HostName": "{{HOST:AuthenticationHost@127.0.0.1}}",
+        "PortName": "{{PORT:AuthenticationPort@5003}}",
+        "HostFolder": "{{FOLDER:AuthenticationFolder@%localappdata%\\EtAlii\\App}}",
+
+        "Systems": [
+            {
+                "Factory": "",
+                "Services": [
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+                        "Factory": "AdminServiceFactory",
+                        "Name": "Grpc Admin service",
+                        "Port": "{{PORT:GrpcAdminApi@1111}}"
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.GrpcSystem",
+                        "Factory": "UserServiceFactory",
+                        "Name": "Grpc User service",
+                        "Port": "{{PORT:GrpcUserApi@2222}}"
+                    }
+                ],
+                "Modules": [
+                    {}
+                ]
+            },
+            {
+                "Factory": "",
+                "Services": [
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+                        "Factory": "AdminServiceFactory",
+                        "Name": "SignalR Admin service",
+                        "Port": "{{PORT:SignalRAdminApi@3333}}"
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.SignalRSystem",
+                        "Factory": "UserServiceFactory",
+                        "Name": "SignalR User service",
+                        "Port": "{{PORT:UserApiSignalR@4444}}"
+                    }
+                ],
+                "Modules": [
+                    {}
+                ]
+            },
+            {
+                "Factory": "",
+                "Services": [
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
+                        "Factory": "AdminServiceFactory",
+                        "Name": "Rest Admin service",
+                        "Port": "{{PORT:RestAdminApi@5555}}",
+                        "IpAddress": "0.0.0.0"
+                    },
+                    {
+                        "Assembly": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
+                        "Namespace": "EtAlii.xTechnology.Hosting.Tests.RestSystem",
+                        "Factory": "UserServiceFactory",
+                        "Name": "Rest User service",
+                        "Port": "{{PORT:RestUserApi@6666}}",
+                        "IpAddress": "0.0.0.0"
+                    }
+                ],
+                "Modules": [
+                    {}
+                ]
+            }
+        ]
+    },
     "Logging": {
-      "LogLevel": {
-        "Default": "Warning"
-      }
+        "LogLevel": {
+            "Default": "Warning"
+        }
     }
-  }
+}

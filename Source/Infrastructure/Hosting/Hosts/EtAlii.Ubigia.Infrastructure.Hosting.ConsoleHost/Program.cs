@@ -22,12 +22,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
                 .AddConfigurationDetails(details)
                 .Build();
 
-            var hostConfiguration = new HostConfigurationBuilder()
+            var hostOptions = new HostOptionsBuilder()
                 .Build(configurationRoot, details)
-                .UseHostDiagnostics(configurationRoot)
+                .UseHostDiagnostics()
                 .UseConsoleHost();
 
-            ConsoleHost.Start(hostConfiguration);
+            ConsoleHost.Start(hostOptions);
         }
     }
 }

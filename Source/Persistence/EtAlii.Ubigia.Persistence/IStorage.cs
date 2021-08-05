@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence
 {
     public interface IStorage
     {
-        IStorageConfiguration Configuration { get; }
+        IStorageOptions Options { get; }
         IPathBuilder PathBuilder { get; }
         IImmutableFileManager FileManager { get; }
         IImmutableFolderManager FolderManager { get; }

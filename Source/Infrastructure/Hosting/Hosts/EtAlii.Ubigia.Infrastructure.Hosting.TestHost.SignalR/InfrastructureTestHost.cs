@@ -17,8 +17,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
 	    public IStorage Storage => _storage;
 	    private IStorage _storage;
 
-		public InfrastructureTestHost(IHostConfiguration configuration, ISystemManager systemManager)
-		    : base(configuration, systemManager)
+		public InfrastructureTestHost(IHostOptions options, ISystemManager systemManager)
+		    : base(options, systemManager)
 	    {
 		}
 

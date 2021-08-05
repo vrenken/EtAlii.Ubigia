@@ -7,8 +7,8 @@ namespace EtAlii.xTechnology.Hosting
     {
         protected new THostManager Manager => (THostManager)base.Manager;
 
-        protected TestHostBase(IHostConfiguration configuration, ISystemManager systemManager)
-            : base(configuration, systemManager)
+        protected TestHostBase(IHostOptions options, ISystemManager systemManager)
+            : base(options, systemManager)
         {
         }
 

@@ -35,16 +35,16 @@ namespace EtAlii.xTechnology.Hosting
         public ICommand[] Commands => _commands;
         private ICommand[] _commands;
 
-        public IHostConfiguration Configuration { get; }
+        public IHostOptions Options { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
         private readonly Status _selfStatus;
 
-        protected HostBase(IHostConfiguration configuration, ISystemManager systemManager)
+        protected HostBase(IHostOptions options, ISystemManager systemManager)
         {
-            Configuration = configuration;
+            Options = options;
 	        _systemManager = systemManager;
 
             _selfStatus = new Status(GetType().Name);

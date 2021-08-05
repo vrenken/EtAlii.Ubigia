@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Persistence.Azure
     {
         public string BaseFolder { get; }
 
-        public AzurePathBuilder(IStorageConfiguration configuration)
+        public AzurePathBuilder(IStorageOptions options)
         {
             var folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            BaseFolder = Path.Combine(folder, "EtAlii", "Ubigia", configuration.Name);
+            BaseFolder = Path.Combine(folder, "EtAlii", "Ubigia", options.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)

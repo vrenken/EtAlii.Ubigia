@@ -11,10 +11,10 @@ namespace EtAlii.xTechnology.Hosting
 
     public partial class WindowsServiceHost
     {
-        public static void Start(string[] args, IHostConfiguration configuration, ServiceDetails serviceDetails)
+        public static void Start(string[] args, IHostOptions options, ServiceDetails serviceDetails)
         {
             // Instantiate the service logic.
-            var serviceLogic = new ServiceLogic(configuration);
+            var serviceLogic = new ServiceLogic(options);
 
             // No arguments? Run the Service and exit when service exits.
             if (!args.Any())

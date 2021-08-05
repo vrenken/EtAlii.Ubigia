@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.InMemory
 {
-    public static class StorageConfigurationInMemoryExtension
+    public static class StorageOptionsUseInMemoryStorageExtension
     {
-        public static IStorageConfiguration UseInMemoryStorage(this IStorageConfiguration configuration)
+        public static IStorageOptions UseInMemoryStorage(this IStorageOptions options)
         {
             var extensions = new IStorageExtension[]
             {
                 new InMemoryStorageExtension(),
             };
-            return configuration
+            return options
                 .Use(extensions)
                 .Use<InMemoryStorage>();
         }

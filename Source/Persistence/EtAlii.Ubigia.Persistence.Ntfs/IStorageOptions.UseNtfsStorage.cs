@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.Ntfs
 {
-    public static class StorageConfigurationNtfsExtension
+    public static class StorageOptionsNtfsExtensionExtension
     {
-        public static IStorageConfiguration UseNtfsStorage(this IStorageConfiguration configuration, string baseFolder)
+        public static IStorageOptions UseNtfsStorage(this IStorageOptions options, string baseFolder)
         {
             var extensions = new IStorageExtension[]
             {
                 new NtfsStorageExtension(baseFolder),
             };
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

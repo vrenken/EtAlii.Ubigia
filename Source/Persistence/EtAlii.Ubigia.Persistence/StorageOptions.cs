@@ -5,9 +5,12 @@ namespace EtAlii.Ubigia.Persistence
     using System;
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
-    public class StorageConfiguration : IStorageConfiguration
+    public class StorageOptions : IStorageOptions
     {
+        public IConfiguration ConfigurationRoot { get; }
+
         public IStorageExtension[] Extensions { get; private set; }
 
         public string Name { get; private set; }
@@ -19,12 +22,13 @@ namespace EtAlii.Ubigia.Persistence
             return _getStorage(container);
         }
 
-        public StorageConfiguration()
+        public StorageOptions(IConfiguration configurationRoot)
         {
+            ConfigurationRoot = configurationRoot;
             Extensions = Array.Empty<IStorageExtension>();
         }
 
-        public IStorageConfiguration Use(IStorageExtension[] extensions)
+        public IStorageOptions Use(IStorageExtension[] extensions)
         {
             if (extensions == null)
             {
@@ -44,7 +48,7 @@ namespace EtAlii.Ubigia.Persistence
             return this;
         }
 
-        public IStorageConfiguration Use(string name)
+        public IStorageOptions Use(string name)
         {
             Name = name;
             _getStorage = container =>
@@ -56,7 +60,7 @@ namespace EtAlii.Ubigia.Persistence
         }
 
 
-        public IStorageConfiguration Use<TStorage>()
+        public IStorageOptions Use<TStorage>()
             where TStorage : class, IStorage
         {
             _getStorage = container =>

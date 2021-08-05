@@ -28,11 +28,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
                 throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(name)} not set in service configuration.");
             }
 
-            var storageConfiguration = new StorageConfiguration()
+            var storageOptions = new StorageOptions(configurationRoot)
                 .Use(name)
 				.UseInMemoryStorage()
-                .UseStorageDiagnostics(configurationRoot);
-            var storage = new StorageFactory().Create(storageConfiguration);
+                .UseStorageDiagnostics();
+            var storage = new StorageFactory().Create(storageOptions);
 
             container.Register(() => storage);
 

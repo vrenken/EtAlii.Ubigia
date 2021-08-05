@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public partial class TrayIconHost
     {
-        public static void Start(IHostConfiguration configuration)
+        public static void Start(IHostOptions options)
         {
             var arguments = Environment.GetCommandLineArgs();
             for(var i = 0; i < arguments.Length; i++)
@@ -21,7 +21,7 @@ namespace EtAlii.xTechnology.Hosting
                 }
             }
 
-            var host = new HostFactory<TrayIconHost>().Create(configuration);
+            var host = new HostFactory<TrayIconHost>().Create(options);
             // Start hosting both the infrastructure and the storage.
             host.Start();
         }

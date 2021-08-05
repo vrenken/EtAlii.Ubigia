@@ -6,18 +6,26 @@ namespace EtAlii.xTechnology.Hosting
     using System.Linq;
     using Microsoft.Extensions.Configuration;
 
-    public class HostConfiguration : IHostConfiguration
+    public class HostOptions : IHostOptions
     {
+        /// <inheritdoc />
+        public IConfiguration ConfigurationRoot { get; }
+
         public string EnabledImage { get; private set; }
+
         public string ErrorImage { get; private set; }
+
         public string DisabledImage { get; private set; }
+
         public ICommand[] Commands { get; private set; }
 
         public string HostTitle { get; private set; }
+
         public string ProductTitle { get; private set; }
 
         /// <inheritdoc />
         public bool UseWrapper { get; private set; }
+
         public Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> CreateSystems { get; private set; }
 
         /// <inheritdoc />
@@ -31,25 +39,22 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public ConfigurationDetails Details { get; private set; }
 
-        /// <inheritdoc />
-        public IConfigurationRoot Root { get; private set; }
-
-        public HostConfiguration()
+        public HostOptions(IConfiguration configurationRoot)
         {
+            ConfigurationRoot = configurationRoot;
             Extensions = Array.Empty<IHostExtension>();
             Commands = Array.Empty<ICommand>();
         }
 
         /// <inheritdoc />
-        public IHostConfiguration Use(ConfigurationDetails details, IConfigurationRoot root)
+        public IHostOptions Use(ConfigurationDetails details)
         {
             Details = details;
-            Root = root;
 
             return this;
         }
 
-        public IHostConfiguration Use(string enabledImage, string errorImage, string disabledImage)
+        public IHostOptions Use(string enabledImage, string errorImage, string disabledImage)
         {
             EnabledImage = enabledImage;
             ErrorImage = errorImage;
@@ -58,7 +63,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostConfiguration Use(string productTitle = "EtAlii.xTechnology.Hosting", string hostTitle = "Host")
+        public IHostOptions Use(string productTitle = "EtAlii.xTechnology.Hosting", string hostTitle = "Host")
         {
             ProductTitle = productTitle;
             HostTitle = hostTitle;
@@ -66,7 +71,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostConfiguration Use(params ICommand[] commands)
+        public IHostOptions Use(params ICommand[] commands)
         {
             Commands = Commands
                 .Concat(commands)
@@ -76,7 +81,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostConfiguration Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems)
+        public IHostOptions Use(Func<IHost, SystemFactory, ServiceFactory, ModuleFactory, ISystem[]> createSystems)
         {
             if (CreateSystems != null)
             {
@@ -89,7 +94,7 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         /// <inheritdoc />
-        public IHostConfiguration Use(Func<IHost> createHost)
+        public IHostOptions Use(Func<IHost> createHost)
         {
             if (CreateHost != null)
             {
@@ -101,7 +106,7 @@ namespace EtAlii.xTechnology.Hosting
             return this;
         }
 
-        public IHostConfiguration Use(params IConfigurationSection[] systemConfigurations)
+        public IHostOptions Use(params IConfigurationSection[] systemConfigurations)
         {
             if (CreateSystems != null)
             {
@@ -111,21 +116,21 @@ namespace EtAlii.xTechnology.Hosting
             CreateSystems = (host, systemFactory, _, _) =>
             {
                 return systemConfigurations
-                    .Select(scs => systemFactory.Create(host, scs, Root, Details))
+                    .Select(scs => systemFactory.Create(host, scs, ConfigurationRoot, Details))
                     .ToArray();
             };
 
             return this;
         }
 
-        public IHostConfiguration Use(Action<string> output)
+        public IHostOptions Use(Action<string> output)
         {
             Output = output;
             return this;
         }
 
         /// <inheritdoc />
-        public IHostConfiguration Use(params IHostExtension[] extensions)
+        public IHostOptions Use(params IHostExtension[] extensions)
         {
             if (extensions == null)
             {
@@ -140,7 +145,7 @@ namespace EtAlii.xTechnology.Hosting
         }
 
         /// <inheritdoc />
-        public IHostConfiguration Use(bool useWrapper)
+        public IHostOptions Use(bool useWrapper)
         {
             UseWrapper = useWrapper;
 

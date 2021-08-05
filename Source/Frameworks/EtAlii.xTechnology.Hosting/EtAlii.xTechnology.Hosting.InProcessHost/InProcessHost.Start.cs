@@ -7,9 +7,9 @@ namespace EtAlii.xTechnology.Hosting
     /// </summary>
     public partial class InProcessHost
     {
-        public static void Start(IHostConfiguration configuration)
+        public static void Start(IHostOptions options)
         {
-            var host = new HostFactory<InProcessHost>().Create(configuration);
+            var host = new HostFactory<InProcessHost>().Create(options);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();

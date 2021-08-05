@@ -16,9 +16,9 @@ namespace EtAlii.xTechnology.Hosting
 
         private readonly IHost _host;
 
-        public ServiceLogic(IHostConfiguration configuration)
+        public ServiceLogic(IHostOptions options)
         {
-            _host = new HostFactory<WindowsServiceHost>().Create(configuration);
+            _host = new HostFactory<WindowsServiceHost>().Create(options);
         }
 
 

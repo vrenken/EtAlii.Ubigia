@@ -8,17 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class LoggingGraphContextExtension : IGraphContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal LoggingGraphContextExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Functional:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectLogging)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Functional:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectLogging)
             {
                 // Register all logging related DI mappings.
             }

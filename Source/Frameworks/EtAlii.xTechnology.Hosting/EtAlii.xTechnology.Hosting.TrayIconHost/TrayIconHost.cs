@@ -10,10 +10,10 @@ namespace EtAlii.xTechnology.Hosting
         public ITaskbarIcon TaskbarIcon { get; }
 
         public TrayIconHost(
-            IHostConfiguration configuration,
+            IHostOptions options,
             ISystemManager systemManager,
             ITaskbarIcon taskbarIcon)
-            : base(configuration, systemManager)
+            : base(options, systemManager)
         {
             TaskbarIcon = taskbarIcon;
 

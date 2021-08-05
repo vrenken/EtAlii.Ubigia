@@ -3,15 +3,17 @@
 namespace EtAlii.Ubigia.Persistence
 {
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
-    public interface IStorageConfiguration
+    public interface IStorageOptions
     {
+        IConfiguration ConfigurationRoot { get; }
         IStorageExtension[] Extensions { get; }
         string Name { get; }
 
-        IStorageConfiguration Use(string name);
-        IStorageConfiguration Use(IStorageExtension[] extensions);
-        IStorageConfiguration Use<TStorage>()
+        IStorageOptions Use(string name);
+        IStorageOptions Use(IStorageExtension[] extensions);
+        IStorageOptions Use<TStorage>()
             where TStorage : class, IStorage;
 
         IStorage GetStorage(Container container);

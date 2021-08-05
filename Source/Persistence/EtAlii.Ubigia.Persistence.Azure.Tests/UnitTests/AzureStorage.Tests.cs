@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
     using EtAlii.Ubigia.Serialization;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
 
     [CorrelateUnitTests]
     public class AzureStorageTests
@@ -17,11 +18,12 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var serializer = new Serializer();
             var bsonItemSerializer = new BsonItemSerializer(serializer);
             var bsonPropertiesSerializer = new BsonPropertiesSerializer(serializer);
+            var configurationRoot = new ConfigurationBuilder().Build();
 
-            var storageConfiguration = new StorageConfiguration()
+            var storageOptions = new StorageOptions(configurationRoot)
                 .Use("Test");
             var storageSerializer = new AzureStorageSerializer();
-            var pathBuilder = new AzurePathBuilder(storageConfiguration);
+            var pathBuilder = new AzurePathBuilder(storageOptions);
             var folderManager = new AzureFolderManager();
             var fileManager = new AzureFileManager();
             var azureContainerProvider = new DefaultContainerProvider();
@@ -47,7 +49,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
             var propertiesStorage = new PropertiesStorage(propertiesRetriever, propertiesStorer);
 
             // Act.
-            var storage = new AzureStorage(storageConfiguration, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, azureContainerProvider, propertiesStorage);
+            var storage = new AzureStorage(storageOptions, pathBuilder, fileManager, folderManager, storageSerializer, itemStorage, componentStorage, blobStorage, azureContainerProvider, propertiesStorage);
 
             // Assert.
             Assert.NotNull(storage);

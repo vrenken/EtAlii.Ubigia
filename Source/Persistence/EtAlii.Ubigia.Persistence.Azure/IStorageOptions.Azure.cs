@@ -2,15 +2,15 @@
 
 namespace EtAlii.Ubigia.Persistence.Azure
 {
-    public static class StorageConfigurationAzureExtension
+    public static class StorageOptionsUseAzureStorageExtension
     {
-        public static IStorageConfiguration UseAzureStorage(this IStorageConfiguration configuration)
+        public static IStorageOptions UseAzureStorage(this IStorageOptions options)
         {
             var extensions = new IStorageExtension[]
             {
                 new AzureStorageExtension(),
             };
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

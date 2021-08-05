@@ -3,14 +3,18 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     public interface ISchemaProcessorOptions : IExtensible
     {
+        IConfiguration ConfigurationRoot { get; }
+
         ISchemaScope SchemaScope { get; }
 
         ITraversalContext TraversalContext { get; }
 
         SchemaProcessorOptions Use(ISchemaScope scope);
+
         SchemaProcessorOptions Use(ITraversalContext traversalContext);
     }
 }

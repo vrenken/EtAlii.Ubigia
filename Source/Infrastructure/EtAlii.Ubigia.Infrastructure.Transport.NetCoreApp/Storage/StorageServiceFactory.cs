@@ -35,11 +35,11 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 				throw new InvalidOperationException($"Unable to start service {nameof(StorageService)}: {nameof(baseFolder)} not set in service configuration.");
 			}
 
-			var storageConfiguration = new StorageConfiguration()
+			var storageOptions = new StorageOptions(configurationRoot)
 				.Use(name)
 				.UseNetCoreAppStorage(baseFolder)
-                .UseStorageDiagnostics(configurationRoot);
-			var storage = new StorageFactory().Create(storageConfiguration);
+                .UseStorageDiagnostics();
+			var storage = new StorageFactory().Create(storageOptions);
 
 			container.Register(() => storage);
 

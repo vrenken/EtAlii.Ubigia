@@ -16,6 +16,7 @@
             }
         }
     },
+
     "Api": {
         "Transport": {
             "Diagnostics": {
@@ -52,7 +53,6 @@
             "Default": "Warning"
         }
     },
-
 
     "Serilog": {
         "MinimumLevel": {
@@ -97,6 +97,11 @@
     },
 
     "Host": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        },
         "Systems": [
             {
                 "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
@@ -153,5 +158,13 @@
                 ]
             }
         ]
+    },
+
+    "Persistence": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
     }
 }

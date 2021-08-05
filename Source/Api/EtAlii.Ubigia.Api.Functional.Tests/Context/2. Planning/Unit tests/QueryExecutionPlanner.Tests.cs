@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Linq;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
     using Xunit;
 
     [CorrelateUnitTests]
@@ -13,7 +14,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
         private ISchemaExecutionPlanner CreatePlanner()
         {
-            var options = new SchemaProcessorOptions();
+            var configurationRoot = new ConfigurationBuilder().Build();
+            var options = new SchemaProcessorOptions(configurationRoot);
             var container = new Container();
             new SchemaExecutionPlanningScaffolding().Register(container);
             new SchemaProcessingScaffolding(options).Register(container);

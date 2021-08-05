@@ -4,9 +4,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     public class SchemaProcessorOptions : ConfigurationBase, ISchemaProcessorOptions
     {
+        public  IConfiguration ConfigurationRoot { get; }
+
+        public SchemaProcessorOptions(IConfiguration configurationRoot)
+        {
+            ConfigurationRoot = configurationRoot;
+        }
+
         /// <inheritdoc />
         public ISchemaScope SchemaScope { get; private set; }
 

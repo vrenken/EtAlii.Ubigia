@@ -23,15 +23,15 @@ namespace EtAlii.xTechnology.Hosting.Tests.TrayIcon
                 .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
 		        .Build();
 
-	        var hostConfiguration = new HostConfigurationBuilder()
+	        var hostOptions = new HostOptionsBuilder()
 		        .Build(configurationRoot, details)
-                .UseHostDiagnostics(configurationRoot)
+                .UseHostDiagnostics()
 		        .UseTrayIconHost(this,
 			        "Icon-Logo-White-Shaded.ico",
 			        "Icon-Logo-Black.ico",
 			        "Icon-Logo-Red.ico");
 
-	        TrayIconHost.Start(hostConfiguration);
+	        TrayIconHost.Start(hostOptions);
         }
     }
 }

@@ -8,21 +8,18 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class DiagnosticsHostExtension : IHostExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsHostExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Hosting:Diagnostics", _configuration);
-        }
-
         public void Register(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Host:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new HostDebuggingScaffolding(_configuration),
-                new HostLoggingScaffolding(_configuration),
-                new HostProfilingScaffolding(_configuration),
+                new HostDebuggingScaffolding(configuration),
+                new HostLoggingScaffolding(configuration),
+                new HostProfilingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)
