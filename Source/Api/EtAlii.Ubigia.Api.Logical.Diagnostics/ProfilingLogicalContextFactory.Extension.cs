@@ -2,15 +2,13 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using Microsoft.Extensions.Configuration;
-
     public static class ProfilingLogicalContextFactoryExtension
     {
-        public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalContextOptions options, IConfiguration configurationRoot)
+        public static IProfilingLogicalContext CreateForProfiling(this LogicalContextFactory logicalContextFactory, LogicalContextOptions options)
         {
             options.Use(new ILogicalContextExtension[]
             {
-                new ProfilingLogicalContextExtension(configurationRoot),
+                new ProfilingLogicalContextExtension(),
             });
 
             return (IProfilingLogicalContext)logicalContextFactory.Create(options);

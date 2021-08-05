@@ -40,9 +40,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public IAsyncEnumerable<IReadOnlyEntry> SelectMany(GraphPath path, ExecutionScope scope)
         {
-            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
+            var options = new GraphPathTraverserOptions(_configurationRoot)
                 .Use(Fabric);
-            var traverser = GraphPathTraverserFactory.Create(configuration);
+            var traverser = GraphPathTraverserFactory.Create(options);
             return Observable
                 .Create<IReadOnlyEntry>(output =>
                 {
@@ -54,17 +54,17 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)
         {
-            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
+            var options = new GraphPathTraverserOptions(_configurationRoot)
                 .Use(Fabric);
-            var traverser = GraphPathTraverserFactory.Create(configuration);
+            var traverser = GraphPathTraverserFactory.Create(options);
             traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
         }
 
         public async Task<IReadOnlyEntry> SelectSingle(GraphPath path, ExecutionScope scope)
         {
-            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
+            var options = new GraphPathTraverserOptions(_configurationRoot)
                 .Use(Fabric);
-            var traverser = GraphPathTraverserFactory.Create(configuration);
+            var traverser = GraphPathTraverserFactory.Create(options);
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
                 traverser.Traverse(path, Traversal.DepthFirst, scope, output);

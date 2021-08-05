@@ -26,11 +26,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var factory = new GraphPathTraverserFactory();
-            IConfiguration configurationRoot = null;
-            var configuration = new GraphPathTraverserConfiguration(configurationRoot);
+            var configurationRoot = new ConfigurationBuilder().Build();
+            var options = new GraphPathTraverserOptions(configurationRoot);
 
             // Act.
-            var traverser = factory.Create(configuration);
+            var traverser = factory.Create(options);
 
             // Assert.
             Assert.NotNull(traverser);

@@ -20,17 +20,17 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Fabric = fabric;
         }
 
-        public async Task ConfigureLogicalContextConfiguration(LogicalContextOptions options, bool openOnCreation)
+        public async Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation)
         {
             await Fabric.ConfigureFabricContextOptions(options, openOnCreation).ConfigureAwait(false);
         }
 
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
-            var configuration = new LogicalContextOptions(Fabric.ClientConfiguration)
+            var options = new LogicalContextOptions(ClientConfiguration)
                 .UseLogicalDiagnostics();
-            await Fabric.ConfigureFabricContextOptions(configuration, openOnCreation).ConfigureAwait(false);
-            return new LogicalContextFactory().Create(configuration);
+            await Fabric.ConfigureFabricContextOptions(options, openOnCreation).ConfigureAwait(false);
+            return new LogicalContextFactory().Create(options);
         }
 
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)

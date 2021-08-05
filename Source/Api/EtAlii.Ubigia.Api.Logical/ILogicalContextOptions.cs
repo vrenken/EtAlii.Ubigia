@@ -2,8 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
-    public interface IEditableLogicalContextConfiguration
+    public interface ILogicalContextOptions : IExtensible
     {
-        bool CachingEnabled { get; set;}
+        bool CachingEnabled { get; }
     }
 }

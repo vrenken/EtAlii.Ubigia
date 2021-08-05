@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
-    public static class Win32HierarchicalContentManagerExtensions
+    public static class FileHierarchicalContentManagerExtensions
     {
         public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, in Identifier identifier)
         {

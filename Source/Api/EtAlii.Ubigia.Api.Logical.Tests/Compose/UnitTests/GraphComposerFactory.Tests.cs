@@ -16,14 +16,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             IFabricContext fabric = null;
-            IConfiguration configurationRoot = null;
+            var configurationRoot = new ConfigurationBuilder().Build();
 
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(configurationRoot).Use(fabric);
+            var options = new GraphPathTraverserOptions(configurationRoot).Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var traverser = graphPathTraverserFactory.Create(options);
 
             // Act.
-            var factory = new GraphComposerFactory(graphPathTraverser);
+            var factory = new GraphComposerFactory(traverser);
 
             // Assert.
             Assert.NotNull(factory );

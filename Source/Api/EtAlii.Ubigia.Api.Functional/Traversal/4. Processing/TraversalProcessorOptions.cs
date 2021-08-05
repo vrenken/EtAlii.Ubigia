@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         {
             LogicalContext = logicalContext ?? throw new ArgumentException("No logical context specified", nameof(logicalContext));
 
-            return UseCaching(logicalContext.Configuration.CachingEnabled);
+            return UseCaching(logicalContext.Options.CachingEnabled);
         }
 
         public TraversalProcessorOptions Use(IRootHandlerMappersProvider rootHandlerMappersProvider)

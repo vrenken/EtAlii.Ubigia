@@ -27,12 +27,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
 
             // Act.
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
 
             // Assert.
             Assert.NotNull(traverser);
@@ -52,10 +52,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             foreach (var item in hierarchy)
@@ -92,10 +92,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             foreach (var item in hierarchy)
@@ -132,10 +132,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             hierarchy[3] = Guid.NewGuid().ToString();
@@ -172,10 +172,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             hierarchy[3] = Guid.NewGuid().ToString();
@@ -218,10 +218,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             hierarchy = hierarchy.Take(depth - 1).ToArray();
@@ -259,10 +259,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             hierarchy = hierarchy.Take(depth - 1).ToArray();
@@ -304,10 +304,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             var newHierarchy = new List<string>(hierarchy);
@@ -346,10 +346,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var hierarchyResult = await _testContext.Fabric.CreateHierarchy(fabric, communicationsEntry, depth).ConfigureAwait(false);
             var hierarchy = hierarchyResult.Item2;
 
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
                 .Use(fabric);
-            var traverser = new GraphPathTraverserFactory().Create(configuration);
+            var traverser = new GraphPathTraverserFactory().Create(options);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
             var newHierarchy = new List<string>(hierarchy);

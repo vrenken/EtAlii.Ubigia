@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Logical
     using EtAlii.Ubigia.Api.Fabric;
     using Microsoft.Extensions.Configuration;
 
-    public interface IGraphPathTraverserConfiguration : IExtensible
+    public interface IGraphPathTraverserOptions : IExtensible
     {
         IConfiguration ConfigurationRoot { get; }
         IFabricContext FabricContext { get; }
 
-        GraphPathTraverserConfiguration Use(IFabricContext fabricContext);
+        GraphPathTraverserOptions Use(IFabricContext fabricContext);
     }
 }

@@ -16,11 +16,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
 
             IFabricContext fabric = null;
-            IConfiguration configurationRoot = null;
+            var configurationRoot = new ConfigurationBuilder().Build();
 
-            var configuration = new GraphPathTraverserConfiguration(configurationRoot);
+            var options = new GraphPathTraverserOptions(configurationRoot);
             var traverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = traverserFactory.Create(configuration);
+            var graphPathTraverser = traverserFactory.Create(options);
 
             var graphChildAdder = new GraphChildAdder(graphPathTraverser, fabric);
             var graphLinkAdder = new GraphLinkAdder(graphChildAdder, graphPathTraverser, fabric);

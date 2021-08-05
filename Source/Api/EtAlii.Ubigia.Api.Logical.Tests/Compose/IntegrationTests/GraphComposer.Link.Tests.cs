@@ -17,10 +17,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
 
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
-            var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
-            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration).Use(fabric);
+            var traverser = new GraphPathTraverserFactory().Create(options);
+            var composer = new GraphComposerFactory(traverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);

@@ -17,13 +17,13 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler = profiler;
         }
 
-        public IGraphPathTraverser Create(GraphPathTraverserConfiguration configuration)
+        public IGraphPathTraverser Create(GraphPathTraverserOptions options)
         {
-            configuration.Use(new IGraphPathTraverserExtension[]
+            options.Use(new IGraphPathTraverserExtension[]
             {
                 new ProfilingGraphPathTraverserExtension(_profiler),
             });
-            return _decoree.Create(configuration);
+            return _decoree.Create(options);
         }
     }
 }

@@ -7,9 +7,9 @@ namespace EtAlii.Ubigia.Api.Logical
     public interface ILogicalContext : IDisposable
     {
         /// <summary>
-        /// The Configuration used to instantiate this Context.
+        /// The Options used to instantiate this Context.
         /// </summary>
-        ILogicalContextConfiguration Configuration { get; }
+        ILogicalContextOptions Options { get; }
 
         /// <summary>
         /// The Nodes property provides logical access to graph nodes.

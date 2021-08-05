@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         IConfiguration ClientConfiguration { get; }
         IConfiguration HostConfiguration { get; }
 
-        Task ConfigureLogicalContextConfiguration(LogicalContextOptions options, bool openOnCreation);
+        Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation);
 
         Task<ILogicalContext> CreateLogicalContext(bool openOnCreation);
         Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, params string[] hierarchy);

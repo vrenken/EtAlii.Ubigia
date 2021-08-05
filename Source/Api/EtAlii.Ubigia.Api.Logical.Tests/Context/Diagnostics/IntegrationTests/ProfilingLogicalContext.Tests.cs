@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options);
 
             // Assert.
             Assert.NotNull(context);
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options);
 
             // Assert.
             Assert.NotNull(context);

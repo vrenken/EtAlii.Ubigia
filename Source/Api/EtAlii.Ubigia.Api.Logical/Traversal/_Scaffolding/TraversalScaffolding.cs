@@ -6,18 +6,18 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class TraversalScaffolding : IScaffolding
     {
-        private readonly IGraphPathTraverserConfiguration _configuration;
+        private readonly IGraphPathTraverserOptions _options;
         //private readonly bool _useParallelization = false
 
-        public TraversalScaffolding(IGraphPathTraverserConfiguration configuration)
+        public TraversalScaffolding(IGraphPathTraverserOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration.FabricContext);
-            container.Register(() => _configuration.ConfigurationRoot);
+            container.Register(() => _options.FabricContext);
+            container.Register(() => _options.ConfigurationRoot);
             container.Register<IGraphPathTraverser, GraphPathTraverser>();
             container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 

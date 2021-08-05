@@ -19,10 +19,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
+                .Use(fabric)
+                .UseLogicalDiagnostics();
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
-            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
+            var traverser = graphPathTraverserFactory.Create(options);
+            var composer = new GraphComposerFactory(traverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -33,13 +35,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var item = Guid.NewGuid().ToString();
             var addedEntry = await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
-                .Use(fabric)
-                .UseLogicalDiagnostics();
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
+                graphPathTraverserFactory.Create(options).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();
@@ -79,9 +78,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var graphPathTraverser = graphPathTraverserFactory.Create(options);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
@@ -91,13 +92,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics()
-                .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope,output);
+                graphPathTraverserFactory.Create(options).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope,output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();
@@ -116,9 +114,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
+            var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
+                .Use(fabric)
+                .UseLogicalDiagnostics();
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
-            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var graphPathTraverser = graphPathTraverserFactory.Create(options);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
@@ -128,13 +128,10 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics()
-                .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
+                graphPathTraverserFactory.Create(options).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();

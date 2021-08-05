@@ -2,16 +2,16 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    public static class GraphPathTraverserConfigurationDiagnosticsExtension
+    public static class GraphPathTraverserOptionsDiagnosticsExtension
     {
-        public static GraphPathTraverserConfiguration UseLogicalDiagnostics(this GraphPathTraverserConfiguration configuration)
+        public static GraphPathTraverserOptions UseLogicalDiagnostics(this GraphPathTraverserOptions options)
         {
             var extensions = new IGraphPathTraverserExtension[]
             {
                 new DiagnosticsGraphPathTraverserExtension(),
             };
 
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

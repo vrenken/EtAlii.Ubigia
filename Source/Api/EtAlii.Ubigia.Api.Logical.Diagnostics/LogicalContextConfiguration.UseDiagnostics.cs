@@ -6,21 +6,21 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public static class LogicalContextDiagnosticsExtension
     {
-        public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, bool alsoUseForDeeperDiagnostics = true)
-            where TLogicalContextConfiguration : LogicalContextOptions
+        public static TLogicalContextOptions UseLogicalDiagnostics<TLogicalContextOptions>(this TLogicalContextOptions options, bool alsoUseForDeeperDiagnostics = true)
+            where TLogicalContextOptions : LogicalContextOptions
         {
             var extensions = new ILogicalContextExtension[]
             {
                 new DiagnosticsLogicalContextExtension(),
             };
 
-            configuration = configuration.Use(extensions);
+            options = options.Use(extensions);
             if (alsoUseForDeeperDiagnostics)
             {
-                configuration = configuration.UseFabricDiagnostics();
+                options = options.UseFabricDiagnostics();
             }
 
-            return configuration;
+            return options;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.IO;
     using System.Threading.Tasks;
 
-    public static class Win32ContentManagerExtensions
+    public static class FileContentManagerExtensions
     {
         public static async Task Upload(this IContentManager contentManager, string localDataIdentifier, Identifier identifier)
         {
@@ -16,7 +16,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 var size = fileInfo.Length;
                 using (var stream = File.OpenRead(localDataIdentifier))
                 {
-                    await contentManager.Upload(stream, (uint)size, identifier).ConfigureAwait(false);
+                    await contentManager
+                        .Upload(stream, (uint)size, identifier)
+                        .ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -31,7 +33,9 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 using (var stream = File.Create(localDataIdentifier))
                 {
-                    await contentManager.Download(stream, identifier, validateChecksum).ConfigureAwait(false);
+                    await contentManager
+                        .Download(stream, identifier, validateChecksum)
+                        .ConfigureAwait(false);
                 }
             }
             catch (Exception e)

@@ -20,10 +20,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 var fabric = container.GetInstance<IFabricContext>();
                 var configurationRoot = container.GetInstance<IConfiguration>();
 
-                var configuration = new GraphPathTraverserConfiguration(configurationRoot)
+                var options = new GraphPathTraverserOptions(configurationRoot)
                     .Use(fabric);
                 var graphPathTraverserFactory = container.GetInstance<IGraphPathTraverserFactory>();
-                return graphPathTraverserFactory.Create(configuration);
+                return graphPathTraverserFactory.Create(options);
             });
 
         }
