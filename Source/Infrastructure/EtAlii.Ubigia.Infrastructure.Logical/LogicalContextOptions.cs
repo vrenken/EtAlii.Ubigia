@@ -4,9 +4,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Fabric;
+    using Microsoft.Extensions.Configuration;
 
     public class LogicalContextOptions : ILogicalContextOptions
     {
+        /// <inheritdoc />
+        public IConfiguration ConfigurationRoot { get; }
+
         /// <inheritdoc />
         public IFabricContext Fabric { get; private set; }
 
@@ -15,6 +19,11 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         /// <inheritdoc />
         public Uri StorageAddress { get; private set; }
+
+        public LogicalContextOptions(IConfiguration configurationRoot)
+        {
+            ConfigurationRoot = configurationRoot;
+        }
 
         /// <inheritdoc />
         public ILogicalContextOptions Use(string name, Uri storageAddress)

@@ -10,6 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
     public class InfrastructureUnitTestContext : IAsyncLifetime
     {
+        public IConfiguration HostConfiguration => Host.HostConfiguration;
         public IConfiguration ClientConfiguration => Host.ClientConfiguration;
         public InProcessInfrastructureHostTestContext Host { get; private set; }
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }

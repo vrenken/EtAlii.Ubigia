@@ -10,10 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     public class InfrastructureOptions : ConfigurationBase, IInfrastructureOptions, IEditableInfrastructureOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; private set; }
-
-        /// <inheritdoc />
-        IConfiguration IEditableInfrastructureOptions.ConfigurationRoot { get => ConfigurationRoot; set => ConfigurationRoot = value; }
+        public IConfiguration ConfigurationRoot { get; }
 
         /// <inheritdoc />
         ILogicalContext IEditableInfrastructureOptions.Logical { get => Logical; set => Logical = value; }
@@ -42,8 +39,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <inheritdoc />
         Func<Container, IInfrastructure> IEditableInfrastructureOptions.GetInfrastructure { get; set; }
 
-        public InfrastructureOptions(ISystemConnectionCreationProxy systemConnectionCreationProxy)
+        public InfrastructureOptions(IConfiguration configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
+            ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
         }
 

@@ -5,15 +5,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
 
     public interface IEditableInfrastructureOptions
     {
-        /// <summary>
-        /// Editable access to the host configuration root instance for the current application.
-        /// </summary>
-        IConfiguration ConfigurationRoot { get; set; }
-
         /// <summary>
         /// Editable access to the context that provides access to the logical layer of the codebase.
         /// </summary>

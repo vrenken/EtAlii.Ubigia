@@ -5,13 +5,11 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using Microsoft.Extensions.Configuration;
 
     public static class InfrastructureOptionsUseExtensions
     {
         public static TInfrastructureOptions Use<TInfrastructureOptions>(
             this TInfrastructureOptions options,
-            IConfiguration configurationRoot,
             string name,
             ServiceDetails[] serviceDetails)
             where TInfrastructureOptions : InfrastructureOptions
@@ -32,7 +30,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 throw new InvalidOperationException("No system service details specified during infrastructure configuration");
             }
 
-            editableOptions.ConfigurationRoot = configurationRoot ?? throw new ArgumentNullException(nameof(configurationRoot));
             editableOptions.Name = name;
             editableOptions.ServiceDetails = serviceDetails;
             return options;

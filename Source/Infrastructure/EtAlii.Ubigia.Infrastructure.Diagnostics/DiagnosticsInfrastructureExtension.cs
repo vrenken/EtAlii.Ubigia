@@ -9,22 +9,19 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     public class DiagnosticsInfrastructureExtension : IInfrastructureExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsInfrastructureExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Infrastructure:Diagnostics", _configuration);
-        }
-
         /// <inheritdoc />
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Infrastructure:Fabric:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new InfrastructureDebuggingScaffolding(_configuration),
-                new InfrastructureLoggingScaffolding(_configuration),
-                new InfrastructureProfilingScaffolding(_configuration),
+                new InfrastructureDebuggingScaffolding(configuration),
+                new InfrastructureLoggingScaffolding(configuration),
+                new InfrastructureProfilingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

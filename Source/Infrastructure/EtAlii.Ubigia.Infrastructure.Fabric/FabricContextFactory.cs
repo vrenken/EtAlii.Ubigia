@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
             return new IScaffolding[]
             {
-                new FabricContextScaffolding(options.Storage),
+                new FabricContextScaffolding(options),
                 new ItemsScaffolding(),
                 new IdentifiersScaffolding(),
                 new ContentScaffolding(),

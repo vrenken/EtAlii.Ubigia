@@ -1,5 +1,12 @@
 ﻿{
     "Infrastructure": {
+        "Fabric": {
+            "Diagnostics": {
+                "InjectProfiling": false,
+                "InjectLogging": true,
+                "InjectDebugging": false
+            }
+        },
         "Functional": {
             "Setup": {
                 "DefaultSystemAccountName": "System",

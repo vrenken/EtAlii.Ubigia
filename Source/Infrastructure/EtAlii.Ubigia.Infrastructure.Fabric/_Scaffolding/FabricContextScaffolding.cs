@@ -2,22 +2,22 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
-    using EtAlii.Ubigia.Persistence;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class FabricContextScaffolding : IScaffolding
     {
-        private readonly IStorage _storage;
+        private readonly FabricContextOptions _options;
 
-        public FabricContextScaffolding(IStorage storage)
+        public FabricContextScaffolding(FabricContextOptions options)
         {
-            _storage = storage;
+            _options = options;
         }
 
         public void Register(Container container)
         {
             container.Register<IFabricContext, FabricContext>();
-            container.Register(() => _storage);
+            container.Register(() => _options.Storage);
+            container.Register(() => _options.ConfigurationRoot);
         }
     }
 }

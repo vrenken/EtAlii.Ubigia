@@ -36,12 +36,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions()
+            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
+                .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions()
+            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
@@ -66,12 +66,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions()
+            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
+                .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions()
+            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);
@@ -99,12 +99,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             Assert.NotEqual(root.Identifier, Identifier.Empty);
             Assert.NotEqual(root.Id, Guid.Empty);
 
-            var fabricContextOptions = new FabricContextOptions()
+            var fabricContextOptions = new FabricContextOptions(_testContext.HostConfiguration)
                 .Use(context.Host.Storage)
-                .UseFabricDiagnostics(_testContext.Host.HostConfiguration);
+                .UseFabricDiagnostics();
             var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
-            var logicalContextOptions = new LogicalContextOptions()
+            var logicalContextOptions = new LogicalContextOptions(_testContext.HostConfiguration)
                 .Use(fabric)
                 .Use(context.HostName, context.ServiceDetails.DataAddress);
             var logical = new LogicalContextFactory().Create(logicalContextOptions);

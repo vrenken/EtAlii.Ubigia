@@ -9,19 +9,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
     public class FabricContextDiagnosticsExtension : IFabricContextExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal FabricContextDiagnosticsExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Infrastructure:Fabric:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Infrastructure:Fabric:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
-                new FabricContextLoggingScaffolding(_configuration),
+                new FabricContextLoggingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

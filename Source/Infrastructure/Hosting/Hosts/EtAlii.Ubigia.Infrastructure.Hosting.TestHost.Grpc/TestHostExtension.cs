@@ -9,22 +9,19 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
     public class TestHostExtension : IHostExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        public TestHostExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new();
-            configurationRoot.Bind("Infrastructure:Hosting:Diagnostics", _configuration);
-        }
-
         public void Register(Container container)
         {
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Infrastructure:Hosting:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
             var scaffoldings = new IScaffolding[]
             {
                 new TestHostScaffolding(),
-                new TestHostProfilingScaffolding(_configuration),
-                new TestHostLoggingScaffolding(_configuration),
-                new TestHostDebuggingScaffolding(_configuration),
+                new TestHostProfilingScaffolding(configuration),
+                new TestHostLoggingScaffolding(configuration),
+                new TestHostDebuggingScaffolding(configuration),
             };
 
             foreach (var scaffolding in scaffoldings)

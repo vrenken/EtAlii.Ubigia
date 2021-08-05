@@ -33,6 +33,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             container.Register(() => _options);
             container.Register(() => _options.Fabric);
+            container.Register(() => _options.ConfigurationRoot);
 
             container.Register<ILogicalStorageSet, LogicalStorageSet>();
             container.Register<ILocalStorageGetter, LocalStorageGetter>();

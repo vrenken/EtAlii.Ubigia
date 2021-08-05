@@ -4,14 +4,20 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 {
 	using System;
 	using EtAlii.Ubigia.Infrastructure.Fabric;
+    using Microsoft.Extensions.Configuration;
 
-	public interface ILogicalContextOptions
+    public interface ILogicalContextOptions
     {
+        /// <summary>
+        /// The host configuration root that will be used to configure the logical context.
+        /// </summary>
+        IConfiguration ConfigurationRoot { get; }
+
 	    /// <summary>
 	    /// The name of the Ubigia storage.
 	    /// </summary>
         string Name { get; }
-        
+
         /// <summary>
         /// The address (schema+host) at which the storage can be found.
         /// </summary>
@@ -21,7 +27,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// The fabric that should be used by the logical context.
         /// </summary>
         IFabricContext Fabric { get; }
-        
+
         ILogicalContextOptions Use(string name, Uri storageAddress);
 
         ILogicalContextOptions Use(IFabricContext fabric);

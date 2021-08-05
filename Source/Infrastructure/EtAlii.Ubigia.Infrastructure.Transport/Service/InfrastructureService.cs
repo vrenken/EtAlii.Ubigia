@@ -63,15 +63,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
             // Fetch the Infrastructure configuration.
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
-            var infrastructureConfiguration = new InfrastructureOptions(systemConnectionCreationProxy)
-                .Use(_configurationRoot, name, serviceDetails)
-                .UseFabricDiagnostics(_configurationRoot);
+            var infrastructureConfiguration = new InfrastructureOptions(_configurationRoot, systemConnectionCreationProxy)
+                .Use(name, serviceDetails)
+                .UseFabricDiagnostics();
 
             // Create fabric instance.
-            var fabricConfiguration = new FabricContextOptions()
+            var fabricContextOptions = new FabricContextOptions(_configurationRoot)
                 .Use(storage)
-                .UseFabricDiagnostics(_configurationRoot);
-            var fabric = new FabricContextFactory().Create(fabricConfiguration);
+                .UseFabricDiagnostics();
+            var fabric = new FabricContextFactory().Create(fabricContextOptions);
 
             // Improve the InfrastructureService.
             // This current approach isn't right. We don't want to give the logical context any address to store and distribute.
@@ -83,15 +83,15 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var storageAddress = new Uri($"{dataAddress.Scheme}://{dataAddress.Host}");
 
             // Create logical context instance.
-            var logicalConfiguration = new LogicalContextOptions()
+            var logicalContextOptions = new LogicalContextOptions(_configurationRoot)
                 .Use(fabric)
                 .Use(infrastructureConfiguration.Name, storageAddress);
-            var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
+            var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
 	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
-                .UseInfrastructureDiagnostics(_configurationRoot)
+                .UseInfrastructureDiagnostics()
                 .Use(logicalContext);
             return new InfrastructureFactory().Create(infrastructureConfiguration);
         }
