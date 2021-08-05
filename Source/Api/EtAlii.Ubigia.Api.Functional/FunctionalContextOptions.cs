@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Logical;
     using Microsoft.Extensions.Configuration;
 
-    public class FunctionalContextOptions : LogicalContextConfiguration, IFunctionalContextOptions, IEditableFunctionalContextOptions
+    public class FunctionalContextOptions : LogicalContextOptions, IFunctionalContextOptions, IEditableFunctionalContextOptions
     {
         IFunctionHandlersProvider IEditableFunctionalContextOptions.FunctionHandlersProvider { get => FunctionHandlersProvider ; set => FunctionHandlersProvider = value; }
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }

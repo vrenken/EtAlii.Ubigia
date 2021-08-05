@@ -6,19 +6,19 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     internal class ContextScaffolding : IScaffolding
     {
-        private readonly IFabricContextConfiguration _configuration;
+        private readonly IFabricContextOptions _options;
 
-        public ContextScaffolding(IFabricContextConfiguration configuration)
+        public ContextScaffolding(IFabricContextOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
             container.Register<IFabricContext, FabricContext>();
-            container.Register(() => _configuration);
-            container.Register(() => _configuration.ConfigurationRoot);
-            container.Register(() => _configuration.Connection);
+            container.Register(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
+            container.Register(() => _options.Connection);
         }
     }
 }

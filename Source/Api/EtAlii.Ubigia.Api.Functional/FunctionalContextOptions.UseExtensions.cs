@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional
             where TFunctionalContextOptions : FunctionalContextOptions
         {
             // ReSharper disable once RedundantCast
-            options.Use((LogicalContextConfiguration)otherOptions); // This cast is needed!
+            options.Use((LogicalContextOptions)otherOptions); // This cast is needed!
 
             var editableOptions = (IEditableFunctionalContextOptions) options;
 

@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Api.Fabric
     public interface IFabricContext : IDisposable
     {
         /// <summary>
-        /// The Configuration used to instantiate this Context.
+        /// The Options used to instantiate this Context.
         /// </summary>
-        IFabricContextConfiguration Configuration { get; }
+        IFabricContextOptions Options { get; }
 
         /// <summary>
         /// The Connection property provides access to the connection used to communicate with the backend.

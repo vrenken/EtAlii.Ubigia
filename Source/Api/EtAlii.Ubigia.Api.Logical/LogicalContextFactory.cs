@@ -4,13 +4,13 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class LogicalContextFactory : Factory<ILogicalContext, LogicalContextConfiguration, ILogicalContextExtension>
+    public class LogicalContextFactory : Factory<ILogicalContext, LogicalContextOptions, ILogicalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(LogicalContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(LogicalContextOptions options)
         {
             return new IScaffolding[]
             {
-                new ContextScaffolding(configuration),
+                new ContextScaffolding(options),
                 new GraphScaffolding(),
             };
         }

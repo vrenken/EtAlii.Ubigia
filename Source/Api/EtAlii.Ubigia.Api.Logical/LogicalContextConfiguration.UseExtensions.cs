@@ -12,20 +12,20 @@ namespace EtAlii.Ubigia.Api.Logical
     {
 
         public static TLogicalContextConfiguration UseCaching<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, bool cachingEnabled)
-            where TLogicalContextConfiguration: LogicalContextConfiguration
+            where TLogicalContextConfiguration: LogicalContextOptions
         {
             ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = cachingEnabled;
             return configuration;
         }
 
 
-        public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, LogicalContextConfiguration otherConfiguration)
-            where TLogicalContextConfiguration: LogicalContextConfiguration
+        public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, LogicalContextOptions otherOptions)
+            where TLogicalContextConfiguration: LogicalContextOptions
         {
             // ReSharper disable once RedundantCast
-            configuration.Use((FabricContextConfiguration)otherConfiguration); // This cast is needed!
+            configuration.Use((FabricContextOptions)otherOptions); // This cast is needed!
 
-            ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = otherConfiguration.CachingEnabled;
+            ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = otherOptions.CachingEnabled;
             return configuration;
         }
     }

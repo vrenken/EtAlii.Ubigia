@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical
     /// This is the Configuration for a LogicalContext instance. It provides all settings and extensions
     ///to facilitate configurable logical graph querying and traversal.
     /// </summary>
-    public class LogicalContextConfiguration : FabricContextConfiguration, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
+    public class LogicalContextOptions : FabricContextOptions, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
     {
         /// <summary>
         /// Set this property to true to enable client-side caching. It makes sure that the immutable entries
@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
         bool IEditableLogicalContextConfiguration.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }
 
-        public LogicalContextConfiguration(IConfiguration configurationRoot)
+        public LogicalContextOptions(IConfiguration configurationRoot)
             : base(configurationRoot)
         {
             CachingEnabled = true;

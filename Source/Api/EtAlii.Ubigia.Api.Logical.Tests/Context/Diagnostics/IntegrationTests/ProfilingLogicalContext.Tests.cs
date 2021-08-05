@@ -25,14 +25,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration(clientConfiguration)
+            var options = new LogicalContextOptions(clientConfiguration)
                 .UseLogicalDiagnostics();
             await _testContext.Fabric
-                .ConfigureFabricContextConfiguration(configuration, true)
+                .ConfigureFabricContextOptions(options, true)
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
 
             // Assert.
             Assert.NotNull(context);
@@ -44,15 +44,15 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration(clientConfiguration)
+            var options = new LogicalContextOptions(clientConfiguration)
                 .UseLogicalDiagnostics();
             await _testContext.Fabric
-                .ConfigureFabricContextConfiguration(configuration, true)
+                .ConfigureFabricContextOptions(options, true)
                 .ConfigureAwait(false);
 
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
 
             // Assert.
             Assert.NotNull(context);
@@ -64,14 +64,14 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var configuration = new LogicalContextConfiguration(clientConfiguration)
+            var options = new LogicalContextOptions(clientConfiguration)
                 .UseLogicalDiagnostics();
             await _testContext.Fabric
-                .ConfigureFabricContextConfiguration(configuration, true)
+                .ConfigureFabricContextOptions(options, true)
                 .ConfigureAwait(false);
 
             // Act.
-            using var context = new LogicalContextFactory().CreateForProfiling(configuration, clientConfiguration);
+            using var context = new LogicalContextFactory().CreateForProfiling(options, clientConfiguration);
 
             // Assert.
             Assert.NotNull(context);

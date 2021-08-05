@@ -23,19 +23,19 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Transport = transport;
         }
 
-        public async Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation)
+        public async Task ConfigureFabricContextOptions(FabricContextOptions fabricContextOptions, bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
-            fabricContextConfiguration.Use(connection);
+            fabricContextOptions.Use(connection);
         }
 
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
-            var fabricContextConfiguration = new FabricContextConfiguration(ClientConfiguration)
+            var fabricContextOptions = new FabricContextOptions(ClientConfiguration)
                 .Use(connection)
                 .UseFabricDiagnostics();
-            return new FabricContextFactory().Create(fabricContextConfiguration);
+            return new FabricContextFactory().Create(fabricContextOptions);
         }
 
         public async Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth)//, out string[] hierarchy)

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public IConfiguration ClientConfiguration { get; }
         public IConfiguration HostConfiguration { get; }
 
-        Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation);
+        Task ConfigureFabricContextOptions(FabricContextOptions fabricContextOptions, bool openOnCreation);
         Task<IFabricContext> CreateFabricContext(bool openOnCreation);
         Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth);//, out string[] hierarchy)
 

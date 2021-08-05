@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public IConfiguration ClientConfiguration { get; }
         public IConfiguration HostConfiguration { get; }
 
-        Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation);
+        Task ConfigureLogicalContextConfiguration(LogicalContextOptions options, bool openOnCreation);
 
         Task AddPeople(ITraversalContext context);
         Task AddAddresses(ITraversalContext context);

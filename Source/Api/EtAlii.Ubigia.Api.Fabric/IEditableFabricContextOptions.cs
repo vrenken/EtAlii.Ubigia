@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
 
-    public interface IEditableFabricContextConfiguration
+    public interface IEditableFabricContextOptions
     {
         /// <summary>
         /// Gets or sets the Connection that should be used to communicate with the backend.

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Fabric
     using EtAlii.Ubigia.Api.Transport;
     using Microsoft.Extensions.Configuration;
 
-    public interface IFabricContextConfiguration : IExtensible
+    public interface IFabricContextOptions : IExtensible
     {
         /// <summary>
         /// The Connection that should be used to communicate with the backend.

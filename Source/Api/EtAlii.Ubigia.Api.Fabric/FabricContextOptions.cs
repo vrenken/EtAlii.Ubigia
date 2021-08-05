@@ -5,23 +5,23 @@ namespace EtAlii.Ubigia.Api.Fabric
     using EtAlii.Ubigia.Api.Transport;
     using Microsoft.Extensions.Configuration;
 
-    public class FabricContextConfiguration : ConfigurationBase, IFabricContextConfiguration, IEditableFabricContextConfiguration
+    public class FabricContextOptions : ConfigurationBase, IFabricContextOptions, IEditableFabricContextOptions
     {
         public IConfiguration ConfigurationRoot { get; }
 
         /// <inheritdoc/>
-        IDataConnection IEditableFabricContextConfiguration.Connection { get => Connection; set => Connection = value; }
+        IDataConnection IEditableFabricContextOptions.Connection { get => Connection; set => Connection = value; }
 
         /// <inheritdoc/>
         public IDataConnection Connection {get; private set; }
 
         /// <inheritdoc/>
-        bool IEditableFabricContextConfiguration.TraversalCachingEnabled { get => TraversalCachingEnabled; set => TraversalCachingEnabled = value; }
+        bool IEditableFabricContextOptions.TraversalCachingEnabled { get => TraversalCachingEnabled; set => TraversalCachingEnabled = value; }
 
         /// <inheritdoc/>
         public bool TraversalCachingEnabled {get; private set; }
 
-        public FabricContextConfiguration(IConfiguration configurationRoot)
+        public FabricContextOptions(IConfiguration configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             TraversalCachingEnabled = true;

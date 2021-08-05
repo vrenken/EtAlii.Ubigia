@@ -4,15 +4,15 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
     public static class FabricContextConfigurationUseDiagnostics
     {
-        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration)
+        public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextOptions options)
         {
-            configuration.Use(new IFabricContextExtension[]
+            options.Use(new IFabricContextExtension[]
             {
                 new LoggingFabricContextExtension(),
                 new ProfilingFabricContextExtension(),
             });
 
-            return (IProfilingFabricContext)fabricContextFactory.Create(configuration);
+            return (IProfilingFabricContext)fabricContextFactory.Create(options);
         }
     }
 }

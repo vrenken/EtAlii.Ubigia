@@ -7,20 +7,20 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class ContextScaffolding : IScaffolding
     {
-        private readonly LogicalContextConfiguration _configuration;
+        private readonly LogicalContextOptions _options;
 
-        public ContextScaffolding(LogicalContextConfiguration configuration)
+        public ContextScaffolding(LogicalContextOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
             container.Register<ILogicalContext, LogicalContext>();
-            container.Register<ILogicalContextConfiguration>(() => _configuration);
-            container.Register(() => _configuration.ConfigurationRoot);
+            container.Register<ILogicalContextConfiguration>(() => _options);
+            container.Register(() => _options.ConfigurationRoot);
 
-            container.Register(() => new FabricContextFactory().Create(_configuration));
+            container.Register(() => new FabricContextFactory().Create(_options));
             container.Register<ILogicalNodeSet, LogicalNodeSet>();
             container.Register<ILogicalRootSet, LogicalRootSet>();
 
