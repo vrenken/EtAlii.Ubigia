@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
@@ -93,10 +92,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_1()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
             await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -124,11 +129,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_2()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -153,11 +166,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_Empty_Item_2()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -177,11 +198,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_3()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -207,11 +236,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_4()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
@@ -236,11 +273,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_With_Variable_1()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -269,11 +314,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_With_Variable_2()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
@@ -301,12 +354,22 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Logical_Add_With_Variable_3()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var executionScope = new ExecutionScope(false);
-            var root = await logicalContext.Roots.Get("Person").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), executionScope).ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastNameOriginal","SurName").ConfigureAwait(false);
-            await _testContext.Logical.CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName").ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Person")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), executionScope)
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastNameOriginal","SurName")
+                .ConfigureAwait(false);
+            await _testContext.Logical
+                .CreateHierarchy(logicalContext, (IEditableEntry)entry, "LastName")
+                .ConfigureAwait(false);
             var selectQuery = "<= /Person/LastName/";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();

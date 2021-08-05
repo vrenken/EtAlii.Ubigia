@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
 
     [CorrelateUnitTests]
     public class GraphPathComposerUnitTests
@@ -15,8 +16,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
 
             IFabricContext fabric = null;
+            IConfiguration configurationRoot = null;
 
-            var configuration = new GraphPathTraverserConfiguration();
+            var configuration = new GraphPathTraverserConfiguration(configurationRoot);
             var traverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = traverserFactory.Create(configuration);
 
@@ -26,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var graphAdder = new GraphAdder(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
             var graphRemover = new GraphRemover(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
             var graphLinker = new GraphLinker(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
-            var graphUnlinker = new GraphUnlinker();//graphChildAdder, graphLinkAdder
+            var graphUnlinker = new GraphUnlinker();
             var graphRenamer = new GraphRenamer(graphUpdater, graphPathTraverser);
 
             // Act.

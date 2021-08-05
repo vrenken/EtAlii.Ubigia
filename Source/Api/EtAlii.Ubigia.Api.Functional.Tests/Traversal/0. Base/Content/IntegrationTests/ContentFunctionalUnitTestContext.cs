@@ -7,10 +7,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Hosting;
+    using Microsoft.Extensions.Configuration;
     using Serilog;
 
-    public class Win32FunctionalUnitTestContext : IDisposable
+    public class ContentFunctionalUnitTestContext : IDisposable
     {
+        /// <summary>
+        ///Gets or sets the client configuration root that should be used to configure any client-specific components.
+        ///</summary>
+        public IConfiguration ClientConfiguration => LogicalTestContext.ClientConfiguration;
+
+        /// <summary>
+        ///Gets or sets the host configuration root that should be used to configure any host-specific components.
+        ///</summary>
+        public IConfiguration HostConfiguration => LogicalTestContext.HostConfiguration;
+
         private readonly Guid _uniqueId = Guid.Parse("5F763915-44A5-496F-B478-BFA42F60E406");
         public string TestFile2MImage { get; }
         public string TestFile10MRaw { get; }
@@ -21,10 +32,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
         private readonly ILogger _log;
-        public Win32FunctionalUnitTestContext()
+        public ContentFunctionalUnitTestContext()
         {
-            _log = Log.ForContext<Win32FunctionalUnitTestContext>();
-            _log.Information("Created {InstanceName}", nameof(Win32FunctionalUnitTestContext));
+            _log = Log.ForContext<ContentFunctionalUnitTestContext>();
+            _log.Information("Created {InstanceName}", nameof(ContentFunctionalUnitTestContext));
 
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);
@@ -36,13 +47,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using (var _ = new SystemSafeExecutionScope(_uniqueId))
             {
                 // Getting Temp file names to use
-                TestFile2MImage = Win32TestHelper.CreateTemporaryFileName();
-                TestFile10MRaw = Win32TestHelper.CreateTemporaryFileName();
-                TestFile100MRaw = Win32TestHelper.CreateTemporaryFileName();
+                TestFile2MImage = ContentTestHelper.CreateTemporaryFileName();
+                TestFile10MRaw = ContentTestHelper.CreateTemporaryFileName();
+                TestFile100MRaw = ContentTestHelper.CreateTemporaryFileName();
 
-                Win32TestHelper.SaveResourceTestImage(TestFile2MImage);
-                Win32TestHelper.SaveTestFile(TestFile10MRaw, 10);
-                Win32TestHelper.SaveTestFile(TestFile100MRaw, 100);
+                ContentTestHelper.SaveResourceTestImage(TestFile2MImage);
+                ContentTestHelper.SaveTestFile(TestFile10MRaw, 10);
+                ContentTestHelper.SaveTestFile(TestFile100MRaw, 100);
             }
         }
 

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
@@ -33,9 +33,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var item = Guid.NewGuid().ToString();
             var addedEntry = await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration()
+            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
                 .Use(fabric)
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration);
+                .UseLogicalDiagnostics();
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
@@ -91,8 +91,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration)
+            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -116,7 +116,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             const int depth = 3;
             var scope = new ExecutionScope(false);
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
-            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration).Use(fabric);
             var graphPathTraverserFactory = new GraphPathTraverserFactory();
             var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
             var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
@@ -128,8 +128,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 //            var hierarchy = hierarchyResult.Item2
             var item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope).ConfigureAwait(false);
-            var configuration = new GraphPathTraverserConfiguration()
-                .UseLogicalDiagnostics(_testContext.ClientConfiguration)
+            var configuration = new GraphPathTraverserConfiguration(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>

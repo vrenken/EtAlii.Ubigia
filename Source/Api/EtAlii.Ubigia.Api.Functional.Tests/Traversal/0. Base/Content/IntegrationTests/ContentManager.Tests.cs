@@ -7,32 +7,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
     using UnitTestSettings = EtAlii.Ubigia.Api.Functional.Tests.UnitTestSettings;
 
-    public class Win32ContentManagerTests : IClassFixture<Win32FunctionalUnitTestContext>, IAsyncLifetime
+    public class ContentManagerTests : IClassFixture<ContentFunctionalUnitTestContext>, IAsyncLifetime
     {
-        private readonly Win32FunctionalUnitTestContext _testContext;
+        private readonly ContentFunctionalUnitTestContext _testContext;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        //public TestContext TestContext
-        //[
-        //    get
-        //    [
-        //        return _testContext
-        //    ]
-        //    set
-        //    [
-        //        _testContext = value
-        //    ]
-        //]
-        //private TestContext _testContext
-
-        public Win32ContentManagerTests(Win32FunctionalUnitTestContext testContext)
+        public ContentManagerTests(ContentFunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -52,9 +34,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
 
             // Act.
             var contentManager = logicalContext.Content;
@@ -70,9 +58,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var fileName = Guid.NewGuid().ToString();
             var contentManager = logicalContext.Content;
 
@@ -89,9 +83,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
@@ -105,9 +105,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
@@ -126,9 +132,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
@@ -146,9 +158,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
 
             // Act.
@@ -166,11 +184,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = ContentTestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Act.
@@ -192,11 +216,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = ContentTestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.
@@ -218,11 +248,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = ContentTestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile2MImage, entry.Id).ConfigureAwait(false);
 
             // Act.
@@ -247,11 +283,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = ContentTestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.
@@ -276,11 +318,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.LogicalTestContext
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = ContentTestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id).ConfigureAwait(false);
 
             // Act.

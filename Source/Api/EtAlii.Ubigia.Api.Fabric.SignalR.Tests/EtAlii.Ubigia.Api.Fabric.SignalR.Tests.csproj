@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>3d64ff30-d4fa-4a68-8f95-46b593dbb72a</ProjectGuid>
     <RootNamespace>EtAlii.Ubigia.Api.Fabric.Tests</RootNamespace>
-    <DefineConstants>UBIGIA_RUN_TESTS_PER_ASSEMBLY</DefineConstants>
+<!--    <DefineConstants>UBIGIA_RUN_TESTS_PER_ASSEMBLY</DefineConstants>-->
   </PropertyGroup>
 
   <ItemGroup>

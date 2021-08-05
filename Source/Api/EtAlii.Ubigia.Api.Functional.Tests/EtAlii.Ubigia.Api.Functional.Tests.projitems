@@ -10,10 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32ContentManager.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32HierarchicalContentManager.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\Win32FunctionalUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\Win32TestHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\ContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\HierarchicalContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\ContentFunctionalUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\ContentTestHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Context\Diagnostics\IntegrationTests\ProfilingTraversalContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Context\IntegrationTests\InvalidTestRenameFunctionHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Context\IntegrationTests\InvalidTestRootHandlerMapper.cs" />

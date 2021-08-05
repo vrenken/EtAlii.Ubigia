@@ -9,10 +9,12 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
+    using Microsoft.Extensions.Configuration;
 
     public class LogicalNodeSet : ILogicalNodeSet
     {
         private readonly IGraphComposerFactory _graphComposerFactory;
+        private readonly IConfiguration _configurationRoot;
         private readonly IGraphAssignerFactory _graphAssignerFactory;
 
         internal IFabricContext Fabric { get; }
@@ -23,6 +25,7 @@ namespace EtAlii.Ubigia.Api.Logical
         internal IGraphPathTraverserFactory GraphPathTraverserFactory { get; }
 
         public LogicalNodeSet(
+            IConfiguration configurationRoot,
             IFabricContext fabric,
             IGraphPathTraverserFactory graphPathTraverserFactory,
             IGraphAssignerFactory graphAssignerFactory,
@@ -30,13 +33,14 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             Fabric = fabric;
             GraphPathTraverserFactory = graphPathTraverserFactory;
+            _configurationRoot = configurationRoot;
             _graphAssignerFactory = graphAssignerFactory;
             _graphComposerFactory = graphComposerFactory;
         }
 
         public IAsyncEnumerable<IReadOnlyEntry> SelectMany(GraphPath path, ExecutionScope scope)
         {
-            var configuration = new GraphPathTraverserConfiguration()
+            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
                 .Use(Fabric);
             var traverser = GraphPathTraverserFactory.Create(configuration);
             return Observable
@@ -50,10 +54,23 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)
         {
-            var configuration = new GraphPathTraverserConfiguration()
+            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
                 .Use(Fabric);
             var traverser = GraphPathTraverserFactory.Create(configuration);
             traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+        }
+
+        public async Task<IReadOnlyEntry> SelectSingle(GraphPath path, ExecutionScope scope)
+        {
+            var configuration = new GraphPathTraverserConfiguration(_configurationRoot)
+                .Use(Fabric);
+            var traverser = GraphPathTraverserFactory.Create(configuration);
+            var results = Observable.Create<IReadOnlyEntry>(output =>
+            {
+                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
+                return Disposable.Empty;
+            }).ToHotObservable();
+            return await results.SingleOrDefaultAsync();
         }
 
         public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)

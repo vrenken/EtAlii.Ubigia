@@ -8,17 +8,14 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public class DiagnosticsGraphPathTraverserExtension : IGraphPathTraverserExtension
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
-
-        internal DiagnosticsGraphPathTraverserExtension(IConfiguration configurationRoot)
-        {
-            _configuration = new DiagnosticsConfigurationSection();
-            configurationRoot.Bind("Api:Logical:Diagnostics", _configuration);
-        }
-
         public void Initialize(Container container)
         {
-            if (_configuration.InjectLogging)
+            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configuration = configurationRoot
+                .GetSection("Api:Logical:Diagnostics")
+                .Get<DiagnosticsConfigurationSection>();
+
+            if (configuration.InjectLogging)
             {
                 // Do stuff...
             }

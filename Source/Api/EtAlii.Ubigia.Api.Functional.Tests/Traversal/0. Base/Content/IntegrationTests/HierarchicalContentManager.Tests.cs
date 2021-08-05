@@ -6,21 +6,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class Win32HierarchicalContentManagerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public class HierarchicalContentManagerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
     {
         private readonly string _testFolderSimple;
         private readonly TraversalUnitTestContext _testContext;
 
-        public Win32HierarchicalContentManagerTests(TraversalUnitTestContext testContext)
+        public HierarchicalContentManagerTests(TraversalUnitTestContext testContext)
         {
             _testContext = testContext;
 
             // Getting Temp folder names to use
-            _testFolderSimple = Win32TestHelper.CreateTemporaryFolderName();
-            Win32TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
+            _testFolderSimple = ContentTestHelper.CreateTemporaryFolderName();
+            ContentTestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
         }
 
         public void Dispose()
@@ -49,9 +48,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var folderName = Guid.NewGuid().ToString();
             var hierarchicalContentManager = new HierarchicalContentManager();
 
@@ -71,9 +76,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
 
             // Act.
@@ -88,11 +99,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var scope = new ExecutionScope(false);
-            using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var root = await logicalContext.Roots.Get("Hierarchy").ConfigureAwait(false);
-            var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope).ConfigureAwait(false);
+            using var logicalContext = await _testContext.Logical
+                .CreateLogicalContext(true)
+                .ConfigureAwait(false);
+            var root = await logicalContext.Roots
+                .Get("Hierarchy")
+                .ConfigureAwait(false);
+            var entry = await logicalContext.Nodes
+                .SelectSingle(GraphPath.Create(root.Identifier), scope)
+                .ConfigureAwait(false);
             var hierarchicalContentManager = new HierarchicalContentManager();
-            var retrievedFolderPath = Win32TestHelper.CreateTemporaryFolderName();
+            var retrievedFolderPath = ContentTestHelper.CreateTemporaryFolderName();
             hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 
             // Act.

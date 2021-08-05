@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     internal class GraphScaffolding : IScaffolding
     {
@@ -17,7 +18,9 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register(() =>
             {
                 var fabric = container.GetInstance<IFabricContext>();
-                var configuration = new GraphPathTraverserConfiguration()
+                var configurationRoot = container.GetInstance<IConfiguration>();
+
+                var configuration = new GraphPathTraverserConfiguration(configurationRoot)
                     .Use(fabric);
                 var graphPathTraverserFactory = container.GetInstance<IGraphPathTraverserFactory>();
                 return graphPathTraverserFactory.Create(configuration);

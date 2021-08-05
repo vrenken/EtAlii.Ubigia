@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using Xunit;
     using EtAlii.Ubigia.Tests;
+    using Microsoft.Extensions.Configuration;
 
     [CorrelateUnitTests]
     public class GraphPathTraverserFactoryTests
@@ -25,7 +26,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             var factory = new GraphPathTraverserFactory();
-            var configuration = new GraphPathTraverserConfiguration();
+            IConfiguration configurationRoot = null;
+            var configuration = new GraphPathTraverserConfiguration(configurationRoot);
 
             // Act.
             var traverser = factory.Create(configuration);

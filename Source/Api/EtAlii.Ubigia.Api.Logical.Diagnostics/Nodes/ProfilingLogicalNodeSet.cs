@@ -27,6 +27,19 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler.End(profile);
         }
 
+        public async Task<IReadOnlyEntry> SelectSingle(GraphPath path, ExecutionScope scope)
+        {
+            dynamic profile = _profiler.Begin("SelectSingle: " + path);
+            profile.Path = path.ToString();
+
+            var result = await _decoree
+                .SelectSingle(path, scope)
+                .ConfigureAwait(false);
+
+            _profiler.End(profile);
+
+            return result;
+        }
 
         public async Task<IReadOnlyEntry> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {

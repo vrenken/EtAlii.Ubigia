@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical
     public interface ILogicalNodeSet
     {
         void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output);
+        Task<IReadOnlyEntry> SelectSingle(GraphPath path, ExecutionScope scope);
 
         // Can these 4 Assign method in ILogicalNodeSet be refactored to adhere to the IObserver<object> pattern?
         // More details can be found in the Github issue below:

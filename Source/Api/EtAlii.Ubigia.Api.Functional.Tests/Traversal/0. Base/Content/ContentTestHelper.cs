@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Reflection;
     using Xunit;
 
-    public static class Win32TestHelper
+    public static class ContentTestHelper
     {
         public static string CreateTemporaryFileName()
         {
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public static void SaveResourceTestImage(string fileName)
         {
             // Get the current executing assembly (in this case it's the test dll)
-            var assembly = Assembly.GetAssembly(typeof(Win32TestHelper));
+            var assembly = Assembly.GetAssembly(typeof(ContentTestHelper));
             // Get the stream (embedded resource) - be sure to wrap in a using block
             using var stream = assembly!.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Tests.TestImage_01.jpg");
             var bytes = new byte[stream!.Length];
@@ -108,15 +108,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 Assert.Equal(expectedBytes[i], actualBytes[i]);
             }
         }
-
-
-        //public static IContentManager CreateContentManager(ILogicalContext logicalContext)
-        //[
-        //    return new ContentManagerFactory().Create(logicalContext.Fabric)
-        //]
-        //public static IContentManager CreateContentManager(IFabricContext fabric)
-        //[
-        //    return new ContentManagerFactory().Create(fabric)
-        //]
     }
 }
