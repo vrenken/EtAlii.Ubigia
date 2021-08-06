@@ -88,7 +88,7 @@ namespace EtAlii.xTechnology.Hosting
 
             var hostConfigurationRoot = new ConfigurationBuilder()
 			    .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
+                .AddConfiguration(DiagnosticsConfiguration.ConfigurationRoot) // For testing we'll override the configured logging et.
 			    .Build();
             HostConfiguration = hostConfigurationRoot;
             var hostOptions = new HostOptionsBuilder()
@@ -97,7 +97,7 @@ namespace EtAlii.xTechnology.Hosting
 
             var clientConfigurationRoot = new ConfigurationBuilder()
                 .AddJsonFile(_clientConfigurationFile)
-                .AddConfiguration(DiagnosticsConfiguration.Instance) // For testing we'll override the configured logging et.
+                .AddConfiguration(DiagnosticsConfiguration.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
             ClientConfiguration = clientConfigurationRoot;
 

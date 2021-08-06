@@ -16,15 +16,18 @@ namespace EtAlii.xTechnology.Diagnostics
     {
         private static readonly LoggerConfiguration _loggerConfiguration = new();
 
-        public static IConfiguration Instance { get; private set; }
+        /// <summary>
+        /// Returns a configuration root with additional debug information that can be added on top of existing configuration roots.
+        /// </summary>
+        public static IConfiguration ConfigurationRoot { get; private set; }
 
         private static bool _isInitialized;
-        public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly, IConfiguration configurationRoot)
+
+        public static void Configure(LoggerConfiguration loggerConfiguration, Assembly executingAssembly)
         {
-            Instance = configurationRoot;
             var executingAssemblyName = executingAssembly.GetName();
             loggerConfiguration.ReadFrom
-                .Configuration(configurationRoot)
+                .Configuration(ConfigurationRoot)
                 .Enrich.FromLogContext()
                 .Enrich.WithThreadName()
                 .Enrich.WithThreadId()
@@ -42,13 +45,14 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
         }
 
-        public static void Initialize(Assembly rootAssembly, IConfiguration configurationRoot)
+        public static void Initialize(Assembly rootAssembly, IConfiguration diagnosticsConfigurationRoot)
         {
             if (_isInitialized) return;
-
             _isInitialized = true;
 
-            Configure(_loggerConfiguration, rootAssembly, configurationRoot);
+            ConfigurationRoot = diagnosticsConfigurationRoot;
+
+            Configure(_loggerConfiguration, rootAssembly);
             Log.Logger = _loggerConfiguration.CreateLogger();
 
             // Let's flush the log when the process exits.

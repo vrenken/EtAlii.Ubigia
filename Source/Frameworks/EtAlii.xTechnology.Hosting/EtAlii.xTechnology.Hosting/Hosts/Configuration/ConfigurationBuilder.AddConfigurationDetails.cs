@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
     using System.Text;
     using Microsoft.Extensions.Configuration;
 
-    public static class NetworkDetailsConfigurationExtension
+    public static class ConfigurationBuilderAddConfigurationDetailsExtension
     {
         public static IConfigurationBuilder AddConfigurationDetails(this IConfigurationBuilder builder, ConfigurationDetails details)
         {
