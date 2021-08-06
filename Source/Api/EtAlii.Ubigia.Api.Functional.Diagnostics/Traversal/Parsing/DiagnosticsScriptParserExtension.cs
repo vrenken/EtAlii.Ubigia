@@ -11,15 +11,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
-                new ScriptParserLoggingScaffolding(configuration),
-                new ScriptParserProfilingScaffolding(configuration),
-                new ScriptParserDebuggingScaffolding(configuration),
+                new ScriptParserLoggingScaffolding(options),
+                new ScriptParserProfilingScaffolding(options),
+                new ScriptParserDebuggingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

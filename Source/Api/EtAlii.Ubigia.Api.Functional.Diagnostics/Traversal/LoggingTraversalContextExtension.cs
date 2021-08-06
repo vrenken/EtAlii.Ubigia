@@ -11,11 +11,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
-            if (configuration.InjectLogging)
+            if (options.InjectLogging)
             {
                 // Register all logging related DI mappings.
             }

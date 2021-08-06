@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptProcessingDebuggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public ScriptProcessingDebuggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public ScriptProcessingDebuggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectDebugging) // debugging is enabled
+            if (_options.InjectDebugging) // debugging is enabled
             {
                 // Add registrations needed for debugging.
             }

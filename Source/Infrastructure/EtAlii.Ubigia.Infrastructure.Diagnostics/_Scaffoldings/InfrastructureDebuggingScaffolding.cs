@@ -8,16 +8,16 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     internal class InfrastructureDebuggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public InfrastructureDebuggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public InfrastructureDebuggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectDebugging) // debugging is enabled
+            if (_options.InjectDebugging) // debugging is enabled
             {
                 container.RegisterDecorator(typeof(IEntryRepository), typeof(DebuggingEntryRepositoryDecorator));
             }

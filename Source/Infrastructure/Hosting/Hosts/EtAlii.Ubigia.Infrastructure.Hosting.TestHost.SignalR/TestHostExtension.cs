@@ -12,16 +12,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
         public void Register(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Infrastructure:Hosting:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
                 new TestHostScaffolding(),
-                new TestHostProfilingScaffolding(configuration),
-                new TestHostLoggingScaffolding(configuration),
-                new TestHostDebuggingScaffolding(configuration),
+                new TestHostProfilingScaffolding(options),
+                new TestHostLoggingScaffolding(options),
+                new TestHostDebuggingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

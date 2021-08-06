@@ -11,15 +11,15 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
         public void Register(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Host:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
-                new HostDebuggingScaffolding(configuration),
-                new HostLoggingScaffolding(configuration),
-                new HostProfilingScaffolding(configuration),
+                new HostDebuggingScaffolding(options),
+                new HostLoggingScaffolding(options),
+                new HostProfilingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

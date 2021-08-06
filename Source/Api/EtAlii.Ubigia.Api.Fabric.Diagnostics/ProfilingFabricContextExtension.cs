@@ -13,11 +13,11 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Api:Fabric:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
-            if (configuration.InjectProfiling)
+            if (options.InjectProfiling)
             {
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
                 container.RegisterDecorator(typeof(IFabricContext), typeof(ProfilingFabricContext));

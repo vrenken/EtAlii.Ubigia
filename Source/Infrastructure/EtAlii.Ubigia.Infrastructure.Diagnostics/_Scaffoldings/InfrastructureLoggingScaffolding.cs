@@ -9,16 +9,16 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     internal class InfrastructureLoggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public InfrastructureLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public InfrastructureLoggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectLogging) // logging is enabled.
+            if (_options.InjectLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IInfrastructure), typeof(LoggingInfrastructureDecorator));
 

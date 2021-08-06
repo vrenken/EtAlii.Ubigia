@@ -11,15 +11,15 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Api:Transport:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
-                new StorageConnectionLoggingScaffolding(configuration),
-                new StorageConnectionProfilingScaffolding(configuration),
-                new StorageConnectionDebuggingScaffolding(configuration),
+                new StorageConnectionLoggingScaffolding(options),
+                new StorageConnectionProfilingScaffolding(options),
+                new StorageConnectionDebuggingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

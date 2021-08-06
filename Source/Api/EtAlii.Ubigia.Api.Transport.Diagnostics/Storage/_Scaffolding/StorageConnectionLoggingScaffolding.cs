@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     internal class StorageConnectionLoggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public StorageConnectionLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public StorageConnectionLoggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectLogging) // logging is enabled.
+            if (_options.InjectLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IStorageConnection), typeof(LoggingStorageConnection));
                 container.RegisterDecorator(typeof(IStorageTransport), typeof(LoggingStorageTransport));

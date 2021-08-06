@@ -13,15 +13,15 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Infrastructure:Fabric:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
-                new InfrastructureDebuggingScaffolding(configuration),
-                new InfrastructureLoggingScaffolding(configuration),
-                new InfrastructureProfilingScaffolding(configuration),
+                new InfrastructureDebuggingScaffolding(options),
+                new InfrastructureLoggingScaffolding(options),
+                new InfrastructureProfilingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

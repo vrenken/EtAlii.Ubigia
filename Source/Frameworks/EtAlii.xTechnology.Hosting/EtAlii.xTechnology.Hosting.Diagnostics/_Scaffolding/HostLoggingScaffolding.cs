@@ -9,11 +9,11 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class HostLoggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public HostLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public HostLoggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         [SuppressMessage(
@@ -22,12 +22,12 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             Justification = "Safe to do so here.")]
         public void Register(Container container)
         {
-            if (_configuration.InjectLogging) // logging is enabled
+            if (_options.InjectLogging) // logging is enabled
             {
                 container.RegisterInitializer<IHost>(host =>
                 {
                     var configurableHost = (IConfigurableHost)host;
-                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsOptions.Configure(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly()), true);
+                    configurableHost.ConfigureHost += webHostBuilder => webHostBuilder.UseSerilog((_, loggerConfiguration) => DiagnosticsOptions.ConfigureLoggerConfiguration(loggerConfiguration, System.Reflection.Assembly.GetExecutingAssembly()), true);
                 });
 
                 // Register for logging required DI instances.

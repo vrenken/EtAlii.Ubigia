@@ -13,11 +13,11 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Api:Logical:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
-            if (configuration.InjectProfiling)
+            if (options.InjectProfiling)
             {
                 container.RegisterDecorator(typeof(ILogicalContext), typeof(ProfilingLogicalContext));
 

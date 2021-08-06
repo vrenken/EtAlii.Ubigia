@@ -8,17 +8,17 @@ namespace EtAlii.Ubigia.Persistence
 
     public class ComponentsProfilingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
         private readonly ILogger _logger = Log.ForContext<ComponentsProfilingScaffolding>();
 
-        public ComponentsProfilingScaffolding(DiagnosticsConfigurationSection configuration)
+        public ComponentsProfilingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectProfiling) // profiling is enabled
+            if (_options.InjectProfiling) // profiling is enabled
             {
                 _logger.Verbose("Injecting component profiling decorators");
 

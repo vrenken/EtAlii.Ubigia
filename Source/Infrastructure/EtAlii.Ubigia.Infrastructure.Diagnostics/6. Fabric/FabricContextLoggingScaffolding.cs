@@ -8,16 +8,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
     internal class FabricContextLoggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public FabricContextLoggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public FabricContextLoggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectLogging) // logging is enabled.
+            if (_options.InjectLogging) // logging is enabled.
             {
                 // Fabric.
                 container.RegisterDecorator(typeof(IEntryGetter), typeof(LoggingEntryGetterDecorator));

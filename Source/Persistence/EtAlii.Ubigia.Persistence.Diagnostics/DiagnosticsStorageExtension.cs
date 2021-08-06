@@ -11,15 +11,15 @@ namespace EtAlii.Ubigia.Persistence
         public void Initialize(Container container)
         {
             var configurationRoot = container.GetInstance<IConfiguration>();
-            var configuration = configurationRoot
+            var options = configurationRoot
                 .GetSection("Persistence:Diagnostics")
-                .Get<DiagnosticsConfigurationSection>();
+                .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
-                new PersistenceProfilingScaffolding(configuration),
-                new BlobsLoggingScaffolding(configuration),
-                new ComponentsProfilingScaffolding(configuration),
+                new PersistenceProfilingScaffolding(options),
+                new BlobsLoggingScaffolding(options),
+                new ComponentsProfilingScaffolding(options),
             };
 
             foreach (var scaffolding in scaffoldings)

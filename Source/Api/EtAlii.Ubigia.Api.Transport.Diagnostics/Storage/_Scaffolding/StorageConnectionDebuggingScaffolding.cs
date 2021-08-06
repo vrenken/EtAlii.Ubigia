@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     internal class StorageConnectionDebuggingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public StorageConnectionDebuggingScaffolding(DiagnosticsConfigurationSection configuration)
+        public StorageConnectionDebuggingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectDebugging) // logging is enabled
+            if (_options.InjectDebugging) // logging is enabled
             {
                 // Invoke all DI container registrations involved in debugging the StorageConnection.
             }

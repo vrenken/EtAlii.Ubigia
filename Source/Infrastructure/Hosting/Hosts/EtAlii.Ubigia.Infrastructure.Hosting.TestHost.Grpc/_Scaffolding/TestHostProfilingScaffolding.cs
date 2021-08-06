@@ -7,16 +7,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
     public class TestHostProfilingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
 
-        public TestHostProfilingScaffolding(DiagnosticsConfigurationSection configuration)
+        public TestHostProfilingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectProfiling) // profiling is enabled
+            if (_options.InjectProfiling) // profiling is enabled
             {
                 // Invoke all DI container registrations involved in profiling the Grpc test host.
             }

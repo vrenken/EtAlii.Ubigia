@@ -8,17 +8,17 @@ namespace EtAlii.Ubigia.Persistence
 
     internal class PersistenceProfilingScaffolding : IScaffolding
     {
-        private readonly DiagnosticsConfigurationSection _configuration;
+        private readonly DiagnosticsOptions _options;
         private readonly ILogger _logger = Log.ForContext<PersistenceProfilingScaffolding>();
 
-        internal PersistenceProfilingScaffolding(DiagnosticsConfigurationSection configuration)
+        internal PersistenceProfilingScaffolding(DiagnosticsOptions options)
         {
-            _configuration = configuration;
+            _options = options;
         }
 
         public void Register(Container container)
         {
-            if (_configuration.InjectProfiling)
+            if (_options.InjectProfiling)
             {
                 _logger.Verbose("Injecting persistence profiling decorators");
 
