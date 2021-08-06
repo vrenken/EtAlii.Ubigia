@@ -11,11 +11,11 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         /// <summary>
         /// The host configuration root that will be used to configure the logical context.
         /// </summary>
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         public IStorage Storage { get; private set; }
 
-        public FabricContextOptions(IConfiguration configurationRoot)
+        public FabricContextOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

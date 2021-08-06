@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.SignalR
     {
         public void Register(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Infrastructure:Hosting:Diagnostics")
                 .Get<DiagnosticsOptions>();

@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 
     public class AuthenticationService : ServiceBase
     {
-        public AuthenticationService(IConfigurationSection configuration) 
+        public AuthenticationService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     {
         public IFunctionalTestContext Functional { get; private set; }
 
-        public IConfiguration ClientConfiguration => Functional.Logical.Fabric.Transport.Host.ClientConfiguration;
-        public IConfiguration HostConfiguration => Functional.Logical.Fabric.Transport.Host.HostConfiguration;
+        public IConfigurationRoot ClientConfiguration => Functional.Logical.Fabric.Transport.Host.ClientConfiguration;
+        public IConfigurationRoot HostConfiguration => Functional.Logical.Fabric.Transport.Host.HostConfiguration;
 
         public async Task InitializeAsync()
         {

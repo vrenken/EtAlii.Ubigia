@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <summary>
         /// The client configuration root that will be used to configure the management connection.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         IStorageTransportProvider TransportProvider { get; }
 	    Uri Address { get; }

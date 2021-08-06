@@ -15,12 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         /// <summary>
         ///Gets or sets the client configuration root that should be used to configure any client-specific components.
         ///</summary>
-        public IConfiguration ClientConfiguration => LogicalTestContext.ClientConfiguration;
+        public IConfigurationRoot ClientConfiguration => LogicalTestContext.ClientConfiguration;
 
         /// <summary>
         ///Gets or sets the host configuration root that should be used to configure any host-specific components.
         ///</summary>
-        public IConfiguration HostConfiguration => LogicalTestContext.HostConfiguration;
+        public IConfigurationRoot HostConfiguration => LogicalTestContext.HostConfiguration;
 
         private readonly Guid _uniqueId = Guid.Parse("5F763915-44A5-496F-B478-BFA42F60E406");
         public string TestFile2MImage { get; }

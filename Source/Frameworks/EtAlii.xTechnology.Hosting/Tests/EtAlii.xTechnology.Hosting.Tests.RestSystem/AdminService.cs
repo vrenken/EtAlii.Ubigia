@@ -13,7 +13,6 @@ namespace EtAlii.xTechnology.Hosting.Tests.RestSystem
         {
         }
 
-        
         protected override void ConfigureApplication(IApplicationBuilder applicationBuilder)
         {
             applicationBuilder

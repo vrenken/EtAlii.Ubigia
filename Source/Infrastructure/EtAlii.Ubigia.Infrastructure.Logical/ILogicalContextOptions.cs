@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <summary>
         /// The host configuration root that will be used to configure the logical context.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
 	    /// <summary>
 	    /// The name of the Ubigia storage.

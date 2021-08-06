@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting
     public class HostOptions : IHostOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         public string EnabledImage { get; private set; }
 
@@ -39,7 +39,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public ConfigurationDetails Details { get; private set; }
 
-        public HostOptions(IConfiguration configurationRoot)
+        public HostOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             Extensions = Array.Empty<IHostExtension>();

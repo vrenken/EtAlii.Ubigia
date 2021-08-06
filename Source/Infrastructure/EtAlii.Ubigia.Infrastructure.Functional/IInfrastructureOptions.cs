@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// <remarks>
         /// This is not the same configuration root as used by client API subsystems.
         /// </remarks>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         /// <summary>
         /// The context that provides access to the logical layer of the codebase.

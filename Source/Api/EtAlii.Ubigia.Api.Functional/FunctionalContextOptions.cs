@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; set; }
 
-        public FunctionalContextOptions(IConfiguration configurationRoot)
+        public FunctionalContextOptions(IConfigurationRoot configurationRoot)
             : base(configurationRoot)
         {
             FunctionHandlersProvider = EtAlii.Ubigia.Api.Functional.Traversal.FunctionHandlersProvider.Empty;

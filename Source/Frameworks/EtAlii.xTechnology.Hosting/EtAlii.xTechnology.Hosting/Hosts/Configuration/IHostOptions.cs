@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <summary>
         /// The configuration root instance for the current host application.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         /// <summary>
         /// Returns the array of all extensions that got registered for this host.

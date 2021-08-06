@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     public class LogicalContextOptions : ILogicalContextOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         public IFabricContext Fabric { get; private set; }
@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// <inheritdoc />
         public Uri StorageAddress { get; private set; }
 
-        public LogicalContextOptions(IConfiguration configurationRoot)
+        public LogicalContextOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

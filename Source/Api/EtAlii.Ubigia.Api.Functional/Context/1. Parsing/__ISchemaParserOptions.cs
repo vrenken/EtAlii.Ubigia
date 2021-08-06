@@ -4,7 +4,7 @@
 // {
 //     using EtAlii.Ubigia.Api.Functional.Traversal;
 //
-//     public interface ISchemaParserOptions : IConfiguration
+//     public interface ISchemaParserOptions : IConfigurationRoot
 //     {
 //         TraversalParserOptions TraversalParserOptions { get; }
 //

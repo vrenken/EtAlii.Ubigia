@@ -8,12 +8,12 @@ namespace EtAlii.Ubigia.Api.Logical
     public class GraphPathTraverserOptions : ConfigurationBase, IGraphPathTraverserOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         public IFabricContext FabricContext { get; private set; }
 
-        public GraphPathTraverserOptions(IConfiguration configurationRoot)
+        public GraphPathTraverserOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

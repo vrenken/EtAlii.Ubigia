@@ -11,8 +11,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     {
         public IFabricTestContext Fabric { get; private set; }
 
-        public IConfiguration ClientConfiguration => Fabric.Transport.Host.ClientConfiguration;
-        public IConfiguration HostConfiguration => Fabric.Transport.Host.HostConfiguration;
+        public IConfigurationRoot ClientConfiguration => Fabric.Transport.Host.ClientConfiguration;
+        public IConfigurationRoot HostConfiguration => Fabric.Transport.Host.HostConfiguration;
 
         public async Task InitializeAsync()
         {

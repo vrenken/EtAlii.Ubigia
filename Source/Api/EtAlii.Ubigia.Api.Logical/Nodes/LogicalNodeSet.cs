@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
     public class LogicalNodeSet : ILogicalNodeSet
     {
         private readonly IGraphComposerFactory _graphComposerFactory;
-        private readonly IConfiguration _configurationRoot;
+        private readonly IConfigurationRoot _configurationRoot;
         private readonly IGraphAssignerFactory _graphAssignerFactory;
 
         internal IFabricContext Fabric { get; }
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Logical
         internal IGraphPathTraverserFactory GraphPathTraverserFactory { get; }
 
         public LogicalNodeSet(
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IFabricContext fabric,
             IGraphPathTraverserFactory graphPathTraverserFactory,
             IGraphAssignerFactory graphAssignerFactory,

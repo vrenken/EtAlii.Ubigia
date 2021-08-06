@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     public class SystemConnectionOptions : ConfigurationBase, ISystemConnectionOptions, IEditableSystemConnectionOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         IStorageTransportProvider IEditableSystemConnectionOptions.TransportProvider { get => TransportProvider; set => TransportProvider = value; }
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <inheritdoc />
         public IInfrastructure Infrastructure { get; private set; }
 
-        public SystemConnectionOptions(IConfiguration configurationRoot)
+        public SystemConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

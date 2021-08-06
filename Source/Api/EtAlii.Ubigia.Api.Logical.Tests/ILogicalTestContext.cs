@@ -11,8 +11,8 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     {
         IFabricTestContext Fabric { get; }
 
-        IConfiguration ClientConfiguration { get; }
-        IConfiguration HostConfiguration { get; }
+        IConfigurationRoot ClientConfiguration { get; }
+        IConfigurationRoot HostConfiguration { get; }
 
         Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation);
 

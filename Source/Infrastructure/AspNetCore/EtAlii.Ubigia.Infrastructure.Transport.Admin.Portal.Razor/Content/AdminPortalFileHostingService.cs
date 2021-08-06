@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor
 
     public class AdminPortalFileHostingService : ServiceBase
     {
-        public AdminPortalFileHostingService(IConfigurationSection configuration) 
+        public AdminPortalFileHostingService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

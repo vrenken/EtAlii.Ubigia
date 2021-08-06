@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore
 
     public class StorageService : ServiceBase
     {
-        public StorageService(IConfigurationSection configuration) 
+        public StorageService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

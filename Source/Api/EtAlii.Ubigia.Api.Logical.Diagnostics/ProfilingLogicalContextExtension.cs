@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Api:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();

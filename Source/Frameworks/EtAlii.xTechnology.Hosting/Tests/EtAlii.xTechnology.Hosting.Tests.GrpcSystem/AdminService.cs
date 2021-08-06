@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.GrpcSystem
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using WireAdminGrpcService = global::EtAlii.xTechnology.Hosting.Tests.GrpcSystem.WireProtocol.AdminGrpcService;
-    
+
     public class AdminService : GrpcServiceBase
     {
         public AdminService(IConfigurationSection configuration) : base(configuration)

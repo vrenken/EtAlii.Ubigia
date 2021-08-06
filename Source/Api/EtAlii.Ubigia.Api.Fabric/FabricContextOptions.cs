@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Fabric
     public class FabricContextOptions : ConfigurationBase, IFabricContextOptions, IEditableFabricContextOptions
     {
         /// <inheritdoc/>
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc/>
         IDataConnection IEditableFabricContextOptions.Connection { get => Connection; set => Connection = value; }
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// <inheritdoc/>
         public bool TraversalCachingEnabled {get; private set; }
 
-        public FabricContextOptions(IConfiguration configurationRoot)
+        public FabricContextOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             TraversalCachingEnabled = true;

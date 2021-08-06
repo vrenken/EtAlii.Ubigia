@@ -17,7 +17,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
         public bool TryCreate<TInstance>(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails,
             string name, out TInstance instance)
         {
@@ -34,7 +34,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
         public bool TryCreate<TInstance>(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails, string name,
             out TInstance instance, bool throwOnNoFactory)
         {

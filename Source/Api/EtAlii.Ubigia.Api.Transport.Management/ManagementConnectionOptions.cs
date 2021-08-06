@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     public class ManagementConnectionOptions : ConfigurationBase, IManagementConnectionOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         public IStorageTransportProvider TransportProvider { get; private set; }
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <inheritdoc />
         public string Password { get; private set; }
 
-        public ManagementConnectionOptions(IConfiguration configurationRoot)
+        public ManagementConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
         public IStorage Storage { get; }
         private readonly string _baseFolder;
 
-        public StorageService(IConfigurationSection configurationSection, IStorage storage) 
+        public StorageService(IConfigurationSection configurationSection, IStorage storage)
             : base(configurationSection)
         {
             Storage = storage;

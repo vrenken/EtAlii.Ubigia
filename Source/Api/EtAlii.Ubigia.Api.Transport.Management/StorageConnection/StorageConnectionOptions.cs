@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     public class StorageConnectionOptions : ConfigurationBase, IStorageConnectionOptions, IEditableStorageConnectionOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         IStorageTransport IEditableStorageConnectionOptions.Transport { get => Transport; set => Transport = value; }
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         /// <inheritdoc />
         public IStorageTransport Transport { get; private set; }
 
-        public StorageConnectionOptions(IConfiguration configurationRoot)
+        public StorageConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

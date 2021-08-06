@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric
         /// <summary>
         /// The client configuration root that will be used to configure the fabric context.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         bool TraversalCachingEnabled { get; }
     }

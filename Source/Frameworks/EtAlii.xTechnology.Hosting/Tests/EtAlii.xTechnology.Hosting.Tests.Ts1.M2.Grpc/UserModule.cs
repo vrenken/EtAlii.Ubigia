@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Grpc
 
     public class UserModule : ModuleBase
     {
-        public UserModule(IConfigurationSection configuration) 
+        public UserModule(IConfigurationSection configuration)
             : base(configuration)
         {
         }

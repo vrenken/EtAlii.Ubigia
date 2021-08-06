@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public interface IStorageOptions
     {
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
         IStorageExtension[] Extensions { get; }
         string Name { get; }
 

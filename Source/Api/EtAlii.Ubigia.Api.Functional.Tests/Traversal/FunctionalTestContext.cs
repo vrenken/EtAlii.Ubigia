@@ -13,8 +13,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     {
         public ILogicalTestContext Logical { get; }
 
-        public IConfiguration ClientConfiguration => Logical.Fabric.Transport.Host.ClientConfiguration;
-        public IConfiguration HostConfiguration => Logical.Fabric.Transport.Host.HostConfiguration;
+        public IConfigurationRoot ClientConfiguration => Logical.ClientConfiguration;
+        public IConfigurationRoot HostConfiguration => Logical.HostConfiguration;
 
         public FunctionalTestContext(ILogicalTestContext logical)
         {

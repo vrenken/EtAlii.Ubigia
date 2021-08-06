@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
     public abstract class StorageUnitTestContextBase : IAsyncLifetime
     {
-        protected IConfiguration HostConfiguration { get; private set; }
+        protected IConfigurationRoot HostConfiguration { get; private set; }
 
         private readonly ILogger _logger = Log.ForContext<StorageUnitTestContextBase>();
 

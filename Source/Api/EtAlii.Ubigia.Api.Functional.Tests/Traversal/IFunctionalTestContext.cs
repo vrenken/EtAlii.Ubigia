@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     {
         ILogicalTestContext Logical { get; }
 
-        public IConfiguration ClientConfiguration { get; }
-        public IConfiguration HostConfiguration { get; }
+        public IConfigurationRoot ClientConfiguration { get; }
+        public IConfigurationRoot HostConfiguration { get; }
 
         Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation);
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
     internal class TestSequencePartExecutionPlannerSelector
     {
-        public static ISequencePartExecutionPlannerSelector Create(IConfiguration configurationRoot)
+        public static ISequencePartExecutionPlannerSelector Create(IConfigurationRoot configurationRoot)
         {
             var container = new Container();
 

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Razor
 
     public class UserPortalFileHostingService : ServiceBase
     {
-        public UserPortalFileHostingService(IConfigurationSection configuration) 
+        public UserPortalFileHostingService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

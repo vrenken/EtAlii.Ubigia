@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional
         /// <summary>
         /// The client configuration root that will be used to configure the parser.
         /// </summary>
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <summary>
         /// The extensions added to this configuration.
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional
         /// <inheritdoc />
         TExtension[] IExtensible.GetExtensions<TExtension>() => Extensions.OfType<TExtension>().ToArray();
 
-        public ParserOptions(IConfiguration configurationRoot)
+        public ParserOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Grpc
 
     public class AdminModule : ModuleBase
     {
-        public AdminModule(IConfigurationSection configuration) 
+        public AdminModule(IConfigurationSection configuration)
             : base(configuration)
         {
         }

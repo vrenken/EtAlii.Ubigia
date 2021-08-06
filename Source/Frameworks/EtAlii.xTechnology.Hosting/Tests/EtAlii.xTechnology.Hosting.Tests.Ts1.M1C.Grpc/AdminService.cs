@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.Grpc
 
     public class AdminService : GrpcServiceBase
     {
-        public AdminService(IConfigurationSection configuration) 
+        public AdminService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

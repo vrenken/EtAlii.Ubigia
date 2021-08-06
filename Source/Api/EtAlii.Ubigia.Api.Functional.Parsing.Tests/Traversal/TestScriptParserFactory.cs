@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
     internal class TestScriptParserFactory : ScriptParserFactory
     {
-        public IScriptParser Create(IConfiguration configurationRoot)
+        public IScriptParser Create(IConfigurationRoot configurationRoot)
         {
             var options = new ParserOptions(configurationRoot)
                 .UseFunctionalDiagnostics()

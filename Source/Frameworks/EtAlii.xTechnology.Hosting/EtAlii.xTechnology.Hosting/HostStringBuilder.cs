@@ -38,7 +38,7 @@ namespace EtAlii.xTechnology.Hosting
             host = port != -1 && host != null
                 ? host
                 : fallbackAddress.ToString();
-            
+
             if (parentModule != null)
             {
                 host = Equals(host, IPAddress.None.ToString())
@@ -52,6 +52,5 @@ namespace EtAlii.xTechnology.Hosting
             return hostString;
 
         }
-        
     }
 }

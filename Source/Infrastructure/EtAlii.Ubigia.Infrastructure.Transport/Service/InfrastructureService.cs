@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     public class InfrastructureService : ServiceBase<IHost, IInfrastructureSystem>, IInfrastructureService
     {
-        private readonly IConfiguration _configurationRoot;
+        private readonly IConfigurationRoot _configurationRoot;
         private readonly IConfiguration _configuration;
         private readonly IConfigurationDetails _configurationDetails;
         private readonly IServiceDetailsBuilder _serviceDetailsBuilder;
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         public IInfrastructure Infrastructure { get; private set; }
 
         public InfrastructureService(
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationSection configuration,
             IConfigurationDetails configurationDetails,
             IServiceDetailsBuilder serviceDetailsBuilder)

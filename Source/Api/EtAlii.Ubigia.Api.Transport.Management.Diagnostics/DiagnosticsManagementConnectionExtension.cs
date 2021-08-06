@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
         /// <inheritdoc />
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Api:Transport:Diagnostics")
                 .Get<DiagnosticsOptions>();

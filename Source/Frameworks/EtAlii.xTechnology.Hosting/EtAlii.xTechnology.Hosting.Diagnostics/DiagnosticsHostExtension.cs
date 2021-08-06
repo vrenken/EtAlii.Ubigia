@@ -10,7 +10,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     {
         public void Register(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Host:Diagnostics")
                 .Get<DiagnosticsOptions>();

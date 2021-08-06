@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     {
         ITransportTestContext Transport { get; }
 
-        public IConfiguration ClientConfiguration { get; }
-        public IConfiguration HostConfiguration { get; }
+        public IConfigurationRoot ClientConfiguration { get; }
+        public IConfigurationRoot HostConfiguration { get; }
 
         Task ConfigureFabricContextOptions(FabricContextOptions fabricContextOptions, bool openOnCreation);
         Task<IFabricContext> CreateFabricContext(bool openOnCreation);

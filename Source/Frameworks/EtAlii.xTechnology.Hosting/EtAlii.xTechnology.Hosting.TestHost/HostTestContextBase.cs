@@ -17,10 +17,10 @@ namespace EtAlii.xTechnology.Hosting
 	    private readonly Guid _uniqueId = Guid.Parse("827F11D6-4305-47C6-B42B-1271052FAC86");
 
         /// <inheritdoc />
-        public IConfiguration HostConfiguration { get; private set; }
+        public IConfigurationRoot HostConfiguration { get; private set; }
 
         /// <inheritdoc />
-        public IConfiguration ClientConfiguration { get; private set; }
+        public IConfigurationRoot ClientConfiguration { get; private set; }
 
 	    public THost Host { get; private set; }
         protected bool UseInProcessConnection { get; init; }

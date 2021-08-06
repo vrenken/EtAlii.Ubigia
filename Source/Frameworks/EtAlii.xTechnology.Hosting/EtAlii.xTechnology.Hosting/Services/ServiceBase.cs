@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public abstract class ServiceBase<THost, TSystem> : IService 
+    public abstract class ServiceBase<THost, TSystem> : IService
         where THost : class, IHost
         where TSystem: class, ISystem
     {
@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting
 
 
         public HostString HostString { get; private set; }
-        
+
         public PathString PathString { get; private set; }
 
         public Status Status { get; }
@@ -86,7 +86,6 @@ namespace EtAlii.xTechnology.Hosting
             _parentModule = parentModule;
         }
 
-        
         public virtual void Initialize()
         {
             // Host magic.
@@ -100,7 +99,7 @@ namespace EtAlii.xTechnology.Hosting
     public abstract class ServiceBase<THost> : ServiceBase<THost, ISystem>
         where THost : class, IHost
     {
-        protected ServiceBase(IConfigurationSection configuration) 
+        protected ServiceBase(IConfigurationSection configuration)
             : base(configuration)
         {
         }
@@ -108,7 +107,7 @@ namespace EtAlii.xTechnology.Hosting
 
     public abstract class ServiceBase : ServiceBase<IHost, ISystem>
     {
-        protected ServiceBase(IConfigurationSection configuration) 
+        protected ServiceBase(IConfigurationSection configuration)
             : base(configuration)
         {
         }

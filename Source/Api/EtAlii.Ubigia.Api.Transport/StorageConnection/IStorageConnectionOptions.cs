@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <summary>
         /// The client configuration root used to instantiate this ManagementConnection.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         /// <summary>
         /// The transport that will be used to instantiate this ManagementConnection.

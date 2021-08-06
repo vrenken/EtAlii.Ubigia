@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport
     public class SpaceConnectionOptions : ConfigurationBase, ISpaceConnectionOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         public ISpaceTransport Transport { get; private set; }
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <inheritdoc />
         public string Space { get; private set; }
 
-        public SpaceConnectionOptions(IConfiguration configurationRoot)
+        public SpaceConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

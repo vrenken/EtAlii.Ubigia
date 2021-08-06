@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         private readonly IConfigurationSection _configuration;
 
-        public LocalStorageInitializer(IConfiguration configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
+        public LocalStorageInitializer(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
 

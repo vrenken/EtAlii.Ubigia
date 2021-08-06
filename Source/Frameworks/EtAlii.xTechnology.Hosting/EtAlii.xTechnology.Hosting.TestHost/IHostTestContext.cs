@@ -12,13 +12,13 @@ namespace EtAlii.xTechnology.Hosting
         /// A root configuration instance that should be used to
         /// initialize any host-side systems.
         /// </summary>
-        IConfiguration HostConfiguration { get; }
+        IConfigurationRoot HostConfiguration { get; }
 
         /// <summary>
         /// A root configuration instance that should be used to
         /// initialize any client-side systems.
         /// </summary>
-        IConfiguration ClientConfiguration { get; }
+        IConfigurationRoot ClientConfiguration { get; }
 
         Task Start(PortRange portRange);
 

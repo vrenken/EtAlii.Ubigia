@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class SchemaProcessorOptions : ConfigurationBase, ISchemaProcessorOptions
     {
-        public  IConfiguration ConfigurationRoot { get; }
+        public  IConfigurationRoot ConfigurationRoot { get; }
 
-        public SchemaProcessorOptions(IConfiguration configurationRoot)
+        public SchemaProcessorOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

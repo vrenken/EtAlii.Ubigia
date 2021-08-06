@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Razor
 
     public class AdminPortalControllerService : ServiceBase
     {
-        public AdminPortalControllerService(IConfigurationSection configuration) 
+        public AdminPortalControllerService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

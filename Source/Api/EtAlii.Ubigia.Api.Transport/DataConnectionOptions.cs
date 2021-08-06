@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport
     public class DataConnectionOptions : ConfigurationBase, IDataConnectionOptions, IEditableDataConnectionOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         ITransportProvider IEditableDataConnectionOptions.TransportProvider { get => TransportProvider; set => TransportProvider = value; }
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Transport
         /// <inheritdoc />
         public string Space { get; private set; }
 
-        public DataConnectionOptions(IConfiguration configurationRoot)
+        public DataConnectionOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
         }

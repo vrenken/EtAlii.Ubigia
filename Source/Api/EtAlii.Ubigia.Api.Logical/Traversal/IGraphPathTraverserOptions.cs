@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Logical
         /// <summary>
         /// The client configuration root that will be used to configure the graph path traverser.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         IFabricContext FabricContext { get; }
 

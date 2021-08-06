@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public class StorageOptions : IStorageOptions
     {
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         public IStorageExtension[] Extensions { get; private set; }
 
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Persistence
             return _getStorage(container);
         }
 
-        public StorageOptions(IConfiguration configurationRoot)
+        public StorageOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             Extensions = Array.Empty<IStorageExtension>();

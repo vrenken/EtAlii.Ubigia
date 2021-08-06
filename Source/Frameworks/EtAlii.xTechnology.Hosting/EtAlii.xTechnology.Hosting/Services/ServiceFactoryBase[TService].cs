@@ -11,7 +11,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public override IService Create(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             var container = new Container();

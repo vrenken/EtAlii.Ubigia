@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <returns></returns>
         TInstance Create(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails);
     }
 }

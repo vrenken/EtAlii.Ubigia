@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence
     {
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Persistence:Diagnostics")
                 .Get<DiagnosticsOptions>();

@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         /// <summary>
         /// The client configuration root that will be used to configure the system connection.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         IStorageTransportProvider TransportProvider { get; }
 

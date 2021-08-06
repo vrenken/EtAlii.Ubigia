@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     {
         public override ISystem Create(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             var container = new Container();

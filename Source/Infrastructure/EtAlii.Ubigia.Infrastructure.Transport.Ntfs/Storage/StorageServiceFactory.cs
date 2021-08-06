@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
     {
         public override IService Create(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails)
         {
             var container = new Container();

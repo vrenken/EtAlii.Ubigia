@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// <summary>
         /// The client configuration root that will be used to configure the traversal processor.
         /// </summary>
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         public IScriptScope ScriptScope { get; }
 

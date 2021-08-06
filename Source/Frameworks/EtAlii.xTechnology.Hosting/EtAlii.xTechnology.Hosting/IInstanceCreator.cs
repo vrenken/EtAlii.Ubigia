@@ -16,7 +16,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <param name="instance"></param>
         /// <typeparam name="TInstance"></typeparam>
         /// <returns></returns>
-        bool TryCreate<TInstance>(IConfigurationSection configuration, IConfiguration configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance);
+        bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance);
 
         /// <summary>
         /// Try to create a TInstance using the provided configuration section, root, details and name.
@@ -31,6 +31,6 @@ namespace EtAlii.xTechnology.Hosting
         /// <param name="throwOnNoFactory"></param>
         /// <typeparam name="TInstance"></typeparam>
         /// <returns></returns>
-        bool TryCreate<TInstance>(IConfigurationSection configuration, IConfiguration configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory);
+        bool TryCreate<TInstance>(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails, string name, out TInstance instance, bool throwOnNoFactory);
     }
 }

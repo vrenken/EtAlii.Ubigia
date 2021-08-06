@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
         bool IEditableLogicalContextOptions.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }
 
-        public LogicalContextOptions(IConfiguration configurationRoot)
+        public LogicalContextOptions(IConfigurationRoot configurationRoot)
             : base(configurationRoot)
         {
             CachingEnabled = true;

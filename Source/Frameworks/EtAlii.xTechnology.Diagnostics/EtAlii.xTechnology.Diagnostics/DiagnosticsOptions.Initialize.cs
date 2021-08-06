@@ -19,7 +19,7 @@ namespace EtAlii.xTechnology.Diagnostics
         /// <summary>
         /// Returns a configuration root with additional debug information that can be added on top of existing configuration roots.
         /// </summary>
-        public static IConfiguration ConfigurationRoot { get; private set; }
+        public static IConfigurationRoot ConfigurationRoot { get; private set; }
 
         private static bool _isInitialized;
 
@@ -45,7 +45,7 @@ namespace EtAlii.xTechnology.Diagnostics
                 .Enrich.WithProperty("UniqueProcessId", Guid.NewGuid()); // An int process ID is not enough
         }
 
-        public static void Initialize(Assembly rootAssembly, IConfiguration diagnosticsConfigurationRoot)
+        public static void Initialize(Assembly rootAssembly, IConfigurationRoot diagnosticsConfigurationRoot)
         {
             if (_isInitialized) return;
             _isInitialized = true;

@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register(() =>
             {
                 var fabric = container.GetInstance<IFabricContext>();
-                var configurationRoot = container.GetInstance<IConfiguration>();
+                var configurationRoot = container.GetInstance<IConfigurationRoot>();
 
                 var options = new GraphPathTraverserOptions(configurationRoot)
                     .Use(fabric);

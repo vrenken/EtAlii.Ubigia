@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     public class TraversalProcessorOptions : ConfigurationBase, ITraversalProcessorOptions
     {
         /// <inheritdoc />
-        public IConfiguration ConfigurationRoot { get; }
+        public IConfigurationRoot ConfigurationRoot { get; }
 
         /// <inheritdoc />
         public IScriptScope ScriptScope { get; private set; }
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
-        public TraversalProcessorOptions(IConfiguration configurationRoot)
+        public TraversalProcessorOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
             CachingEnabled = true;

@@ -9,7 +9,7 @@ namespace EtAlii.xTechnology.Hosting
         /// <inheritdoc />
         public abstract ISystem Create(
             IConfigurationSection configuration,
-            IConfiguration configurationRoot,
+            IConfigurationRoot configurationRoot,
             IConfigurationDetails configurationDetails);
     }
 }

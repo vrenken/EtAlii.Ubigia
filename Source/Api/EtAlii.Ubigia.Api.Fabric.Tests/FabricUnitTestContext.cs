@@ -13,8 +13,8 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     {
         public ITransportTestContext Transport { get; private set; }
 
-        public IConfiguration ClientConfiguration => Transport.Host.ClientConfiguration;
-        public IConfiguration HostConfiguration => Transport.Host.HostConfiguration;
+        public IConfigurationRoot ClientConfiguration => Transport.Host.ClientConfiguration;
+        public IConfigurationRoot HostConfiguration => Transport.Host.HostConfiguration;
 
         public ByteArrayComparer ByteArrayComparer { get; }
         public ContentComparer ContentComparer { get; }

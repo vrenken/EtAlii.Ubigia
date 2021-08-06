@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public interface ISchemaProcessorOptions : IExtensible
     {
-        IConfiguration ConfigurationRoot { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
 
         ISchemaScope SchemaScope { get; }
 

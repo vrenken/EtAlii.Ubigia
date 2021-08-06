@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Infrastructure.Grpc
 
     public class InfrastructureService : ServiceBase
     {
-        public InfrastructureService(IConfigurationSection configuration) 
+        public InfrastructureService(IConfigurationSection configuration)
             : base(configuration)
         {
         }

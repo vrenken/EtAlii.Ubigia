@@ -7,7 +7,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore
 
     public class ProvisioningSystemFactory : SystemFactoryBase
     {
-        public override ISystem Create(IConfigurationSection configuration, IConfiguration configurationRoot, IConfigurationDetails configurationDetails)
+        public override ISystem Create(IConfigurationSection configuration, IConfigurationRoot configurationRoot, IConfigurationDetails configurationDetails)
         {
             var container = new Container();
 

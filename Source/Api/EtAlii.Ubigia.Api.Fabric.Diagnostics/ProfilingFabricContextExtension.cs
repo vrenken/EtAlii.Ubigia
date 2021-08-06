@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     {
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfiguration>();
+            var configurationRoot = container.GetInstance<IConfigurationRoot>();
             var options = configurationRoot
                 .GetSection("Api:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
