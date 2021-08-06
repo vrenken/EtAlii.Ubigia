@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.Diagnostics
         category: "Sonar Code Smell",
         checkId: "S4792:Configuring loggers is security-sensitive",
         Justification = "Safe to do so here.")]
-    public static class DiagnosticsConfiguration
+    public static class DiagnosticsOptions
     {
         private static readonly LoggerConfiguration _loggerConfiguration = new();
 

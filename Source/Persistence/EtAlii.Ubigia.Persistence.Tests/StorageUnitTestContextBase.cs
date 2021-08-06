@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Persistence.Tests
 
             var hostConfigurationRoot = new ConfigurationBuilder()
                 .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsConfiguration.ConfigurationRoot) // For testing we'll override the configured logging et.
+                .AddConfiguration(DiagnosticsOptions.ConfigurationRoot) // For testing we'll override the configured logging et.
                 .Build();
             HostConfiguration = hostConfigurationRoot;
         }

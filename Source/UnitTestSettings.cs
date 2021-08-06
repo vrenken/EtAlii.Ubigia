@@ -34,7 +34,7 @@ internal static class TestModuleInitializer
                 .Build();
 #pragma warning restore CA2000
 
-        DiagnosticsConfiguration.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
+        DiagnosticsOptions.Initialize(typeof(TestModuleInitializer).Assembly, configurationRoot);
     }
 
     private static string DiagnosticsSettingsJson =

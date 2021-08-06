@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting.Tests.Local
 
             var configurationBuilder = new ConfigurationBuilder()
                 .AddConfigurationDetails(details)
-                .AddConfiguration(DiagnosticsConfiguration.ConfigurationRoot); // For testing we'll override the configured logging et.
+                .AddConfiguration(DiagnosticsOptions.ConfigurationRoot); // For testing we'll override the configured logging et.
 
             // Act.
             var configuration = configurationBuilder.Build();
