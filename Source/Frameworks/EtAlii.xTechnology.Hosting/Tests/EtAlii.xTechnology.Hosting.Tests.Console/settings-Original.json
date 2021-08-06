@@ -1,78 +1,92 @@
 ﻿{
-  "Host": {
-    "Systems": [
-      {
-        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.InfrastructureSystemFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
-        "Services": [
-          {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.StorageServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
-            "Name": "Debug storage",
-            "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
-          },
-          {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.InfrastructureServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
-            "Name": "Debug storage"
-          },
-          {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.AuthenticationServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore"
-          }
-        ],
-        "Modules": [
-          {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.AdminModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore",
-            "Name": "Admin",
-            "IpAddress": "0.0.0.0",
-            "Port": "5000",
-            "Modules": [
-              {
-                "Name": "Api",
-                "Services": [ ]
-              },
-              {
-                "Name": "Portal",
-                "Services": [ ]
-              }
-            ]
-          },
-          {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.UserModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore",
-            "Name": "User",
-            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
-            "Port": "5001",
-            "Modules": [
-              {
-                "Name": "Api",
+    "Host": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        },
+        "Systems": [
+            {
+                "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.InfrastructureSystemFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
                 "Services": [
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserRestServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
-                  },
-                  {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
-                  }
+                    {
+                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.StorageServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
+                        "Name": "Debug storage",
+                        "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
+                    },
+                    {
+                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.InfrastructureServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore",
+                        "Name": "Debug storage"
+                    },
+                    {
+                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore.AuthenticationServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.NetCore"
+                    }
+                ],
+                "Modules": [
+                    {
+                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore.AdminModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.NetCore",
+                        "Name": "Admin",
+                        "IpAddress": "0.0.0.0",
+                        "Port": "5000",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Services": []
+                            },
+                            {
+                                "Name": "Portal",
+                                "Services": []
+                            }
+                        ]
+                    },
+                    {
+                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore.UserModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.NetCore",
+                        "Name": "User",
+                        "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
+                        "Port": "5001",
+                        "Modules": [
+                            {
+                                "Name": "Api",
+                                "Services": [
+                                    {
+                                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserRestServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
+                                    },
+                                    {
+                                        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore.UserSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.NetCore"
+                                    }
+                                ]
+                            },
+                            {
+                                "Name": "Portal",
+                                "Services": []
+                            }
+                        ]
+                    }
                 ]
-              },
-              {
-                "Name": "Portal",
-                "Services": [ ]
-              }
-            ]
-          }
+            },
+            {
+                "Factory": "EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.ProvisioningSystemFactory, EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore",
+                "Services": [
+                    {}
+                ],
+                "Modules": [
+                    {}
+                ]
+            }
         ]
-      },
-      {
-        "Factory": "EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore.ProvisioningSystemFactory, EtAlii.xTechnology.Hosting.Tests.Provisioning.NetCore",
-        "Services": [
-          {}
-        ],
-        "Modules": [
-          {}
-        ]
-      }
-    ]
-  },
+    },
+
     "Logging": {
-      "LogLevel": {
-        "Default": "Warning"
-      }
+        "LogLevel": {
+            "Default": "Warning"
+        }
+    },
+
+    "Persistence": {
+        "Diagnostics": {
+            "InjectProfiling": false,
+            "InjectLogging": true,
+            "InjectDebugging": false
+        }
     }
-  }
+}
