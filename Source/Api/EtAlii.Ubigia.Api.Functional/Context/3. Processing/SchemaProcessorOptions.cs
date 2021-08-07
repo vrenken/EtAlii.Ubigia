@@ -8,18 +8,19 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public class SchemaProcessorOptions : ConfigurationBase, ISchemaProcessorOptions
     {
+        /// <inheritdoc />
         public  IConfigurationRoot ConfigurationRoot { get; }
-
-        public SchemaProcessorOptions(IConfigurationRoot configurationRoot)
-        {
-            ConfigurationRoot = configurationRoot;
-        }
 
         /// <inheritdoc />
         public ISchemaScope SchemaScope { get; private set; }
 
         /// <inheritdoc />
         public ITraversalContext TraversalContext { get; private set; }
+
+        public SchemaProcessorOptions(IConfigurationRoot configurationRoot)
+        {
+            ConfigurationRoot = configurationRoot;
+        }
 
         /// <inheritdoc />
         public SchemaProcessorOptions Use(ISchemaScope scope)

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public static class ParserOptionsDiagnosticsExtension
     {
-        public static ParserOptions UseFunctionalDiagnostics(this ParserOptions options)
+        public static FunctionalOptions UseFunctionalDiagnostics(this FunctionalOptions options)
         {
             var extensions = new IScriptParserExtension[]
             {

@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     public static class GraphContextOptionsUseGraphContextProfiling
     {
-        public static TGraphContextOptions UseGraphContextProfiling<TGraphContextOptions>(this TGraphContextOptions options)
-            where TGraphContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseGraphContextProfiling<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
             options.Use(new IGraphContextExtension[]
             {

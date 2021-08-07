@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphContextFactory : Factory<IGraphContext, FunctionalContextOptions, IGraphContextExtension>
+    public class GraphContextFactory : Factory<IGraphContext, FunctionalOptions, IGraphContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(FunctionalContextOptions options)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
             // Let's ensure that the function handler configuration is in fact valid.
             var functionHandlersProvider = options.FunctionHandlersProvider;

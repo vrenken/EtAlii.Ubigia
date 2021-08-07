@@ -10,13 +10,13 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
         /// Add Antlr GTL parsing to the options.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TTraversalContextOptions"></typeparam>
+        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TTraversalContextOptions UseAntlrTraversalParser<TTraversalContextOptions>(this TTraversalContextOptions options)
-            where TTraversalContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseAntlrTraversalParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
-            var editableOptions = (IEditableFunctionalContextOptions) options;
-            editableOptions.ParserOptions = new ParserOptions(options.ConfigurationRoot).UseAntlr();
+            options.UseAntlr();
+            var editableOptions = (IEditableFunctionalOptions) options;
             editableOptions.ProcessorOptionsProvider = () => new TraversalProcessorOptions(options.ConfigurationRoot).UseAntlr();
 
             return options;

@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public interface IPathParserFactory
     {
-        IPathParser Create(ParserOptions options);
+        IPathParser Create(IFunctionalOptions options);
     }
 }

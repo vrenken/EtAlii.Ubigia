@@ -8,13 +8,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// Add Lapa GTL parsing to the options.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TTraversalContextOptions"></typeparam>
+        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TTraversalContextOptions UseLapaTraversalParser<TTraversalContextOptions>(this TTraversalContextOptions options)
-            where TTraversalContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseLapaTraversalParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
-            var editableOptions = (IEditableFunctionalContextOptions) options;
-            editableOptions.ParserOptions = new ParserOptions(options.ConfigurationRoot).UseLapa();
+            options.UseLapa();
+
+            var editableOptions = (IEditableFunctionalOptions) options;
             editableOptions.ProcessorOptionsProvider = () => new TraversalProcessorOptions(options.ConfigurationRoot).UseLapa();
 
             return options;

@@ -8,10 +8,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// Add Lapa GCL parsing to the configuration.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TGraphContextOptions"></typeparam>
+        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TGraphContextOptions UseLapaContextParser<TGraphContextOptions>(this TGraphContextOptions options)
-            where TGraphContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseLapaContextParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
             options.Use(new IGraphContextExtension[]
             {

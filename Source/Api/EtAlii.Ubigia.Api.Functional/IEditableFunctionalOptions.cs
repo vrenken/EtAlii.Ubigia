@@ -5,13 +5,12 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using EtAlii.Ubigia.Api.Functional.Traversal;
 
-    public interface IEditableFunctionalContextOptions
+    public interface IEditableFunctionalOptions
     {
         IFunctionHandlersProvider FunctionHandlersProvider { get; set; }
 
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; set; }
 
-        ParserOptions ParserOptions { get; set; }
         Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; set; }
     }
 }

@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public static class ParserOptionsUseLapaExtension
     {
-        public static ParserOptions UseLapa(this ParserOptions options)
+        public static FunctionalOptions UseLapa(this FunctionalOptions options)
         {
             return options.Use(new[] {new LapaParserExtension()});
         }

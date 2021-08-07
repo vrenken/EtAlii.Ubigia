@@ -11,10 +11,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
         private readonly Func<TraversalProcessorOptions> _processorOptionsProvider;
-        private readonly FunctionalContextOptions _options;
+        private readonly FunctionalOptions _options;
 
         public TraversalContextScaffolding(
-            FunctionalContextOptions options,
+            FunctionalOptions options,
             Func<TraversalProcessorOptions> processorOptionsProvider,
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider)
@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 var scriptParserFactory = new ScriptParserFactory();
                 var scriptProcessorFactory = new ScriptProcessorFactory();
                 var logicalContext = new LogicalContextFactory().Create(_options);
-                return new TraversalContext(_options.ParserOptions, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
+                return new TraversalContext(_options, _processorOptionsProvider, _functionHandlersProvider, _rootHandlerMappersProvider, scriptProcessorFactory, scriptParserFactory, logicalContext);
             });
         }
     }

@@ -3,10 +3,11 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
-    public interface IFunctionalContextOptions : IExtensible
+    public interface IFunctionalOptions : IExtensible
     {
-        ParserOptions ParserOptions { get; }
+        IConfigurationRoot ConfigurationRoot { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
     }

@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaParserFactory : Factory<ISchemaParser, ParserOptions, ISchemaParserExtension>, ISchemaParserFactory
+    internal class LapaSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, ISchemaParserExtension>, ISchemaParserFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(ParserOptions options)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
             return new IScaffolding[]
             {

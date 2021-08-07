@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     public static class TraversalContextOptionsUseTraversalProfiling
     {
-        public static TTraversalContextOptions UseTraversalProfiling<TTraversalContextOptions>(this TTraversalContextOptions options)
-            where TTraversalContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseTraversalProfiling<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : IFunctionalOptions
         {
             options.Use(new ITraversalContextExtension[]
             {

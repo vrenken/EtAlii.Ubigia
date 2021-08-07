@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private ITraversalContext _traversalContext;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private FunctionalContextOptions _options;
+        private FunctionalOptions _options;
 
         public GraphContextCodeQueriesVariableTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            _options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics();
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Arrange.
             var processor = new TestSchemaProcessorFactory();
             var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options.ParserOptions, processor, parser, _traversalContext);
+            var context = new GraphContext(_options, processor, parser, _traversalContext);
 
             // Act.
             var person = await context

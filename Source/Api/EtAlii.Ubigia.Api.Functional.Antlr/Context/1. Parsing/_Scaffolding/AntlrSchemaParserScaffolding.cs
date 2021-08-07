@@ -14,8 +14,8 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
             container.Register<ISchemaParser, AntlrSchemaParser>();
             container.Register(() =>
             {
-                var functionalContextOptions = container.GetInstance<IFunctionalContextOptions>();
-                return new PathParserFactory().Create(functionalContextOptions.ParserOptions);
+                var options = container.GetInstance<IFunctionalOptions>();
+                return new PathParserFactory().Create(options);
             });
         }
     }

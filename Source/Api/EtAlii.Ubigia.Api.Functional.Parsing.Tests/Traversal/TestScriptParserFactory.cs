@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     {
         public IScriptParser Create(IConfigurationRoot configurationRoot)
         {
-            var options = new ParserOptions(configurationRoot)
+            var options = new FunctionalOptions(configurationRoot)
                 .UseFunctionalDiagnostics()
                 .UseTestParser();
 

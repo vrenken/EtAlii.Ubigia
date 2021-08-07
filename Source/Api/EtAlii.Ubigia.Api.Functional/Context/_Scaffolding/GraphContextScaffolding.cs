@@ -7,9 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class GraphContextScaffolding : IScaffolding
     {
-        private readonly FunctionalContextOptions _options;
+        private readonly FunctionalOptions _options;
 
-        public GraphContextScaffolding(FunctionalContextOptions options)
+        public GraphContextScaffolding(FunctionalOptions options)
         {
             _options = options;
         }
@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var schemaProcessorFactory = container.GetInstance<ISchemaProcessorFactory>();
                 var schemaParserFactory = container.GetInstance<ISchemaParserFactory>();
                 var traversalContext = container.GetInstance<ITraversalContext>();
-                return new GraphContext(_options.ParserOptions, schemaProcessorFactory, schemaParserFactory, traversalContext);
+                return new GraphContext(_options, schemaProcessorFactory, schemaParserFactory, traversalContext);
             });
         }
     }

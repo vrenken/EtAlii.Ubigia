@@ -10,8 +10,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <summary>
         /// Add the configured test GCL parsing to the options.
         /// </summary>
-        public static TGraphContextOptions UseTestContextParser<TGraphContextOptions>(this TGraphContextOptions options)
-            where TGraphContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseTestContextParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
 #if USE_LAPA_PARSER_IN_TESTS
             return options.UseLapaContextParser();

@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptParserScaffolding : IScaffolding
     {
-        private readonly ParserOptions _options;
+        private readonly IFunctionalOptions _options;
 
-        public ScriptParserScaffolding(ParserOptions options)
+        public ScriptParserScaffolding(IFunctionalOptions options)
         {
             _options = options;
         }

@@ -106,9 +106,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 var configurationRoot = new ConfigurationBuilder()
                     .Build();
 
-                var parserOptions = new ParserOptions(configurationRoot)
+                var options = new FunctionalOptions(configurationRoot)
                     .UseAntlr();
-                _schemaParser = new AntlrSchemaParserFactory().Create(parserOptions);
+                _schemaParser = new AntlrSchemaParserFactory().Create(options);
             }
             catch (Exception e)
             {

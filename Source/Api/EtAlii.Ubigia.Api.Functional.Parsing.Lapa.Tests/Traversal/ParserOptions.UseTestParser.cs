@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal static class ParserOptionsUseTestParserExtension
     {
-        public static ParserOptions UseTestParser(this ParserOptions options)
+        public static FunctionalOptions UseTestParser(this FunctionalOptions options)
         {
                 return options.UseLapa();
         }

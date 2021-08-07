@@ -8,8 +8,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public ISchemaParser Create()
         {
-            var parserOptions = new ParserOptions().UseLapa();
-            return base.Create(parserOptions);
+            var options = new FunctionalContextOptions().UseLapa();
+            return base.Create(options);
         }
     }
 #else
@@ -24,9 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var configurationRoot = new ConfigurationBuilder()
                 .Build();
 
-            var parserOptions = new ParserOptions(configurationRoot)
+            var options = new FunctionalOptions(configurationRoot)
                 .UseAntlr();
-            return base.Create(parserOptions);
+            return base.Create(options);
         }
     }
 #endif

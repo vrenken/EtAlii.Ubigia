@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.xTechnology.MicroContainer;
     using System;
 
-    public class TraversalContextFactory : Factory<ITraversalContext, FunctionalContextOptions, ITraversalContextExtension>
+    public class TraversalContextFactory : Factory<ITraversalContext, FunctionalOptions, ITraversalContextExtension>
     {
-        protected override IScaffolding[] CreateScaffoldings(FunctionalContextOptions options)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
             // Let's ensure that the function handler configuration is in fact valid.
             var functionHandlersProvider = options.FunctionHandlersProvider;
@@ -18,11 +18,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var rootHandlerMappersProvider = options.RootHandlerMappersProvider;
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
-
-            if (options.ParserOptions == null)
-            {
-                throw new InvalidOperationException($"No {nameof(options.ParserOptions)} specified");
-            }
 
             if (options.ProcessorOptionsProvider == null)
             {

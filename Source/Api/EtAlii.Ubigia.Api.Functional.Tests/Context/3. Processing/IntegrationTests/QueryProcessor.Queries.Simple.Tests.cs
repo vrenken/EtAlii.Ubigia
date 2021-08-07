@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private IGraphContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
-        private FunctionalContextOptions _options;
+        private FunctionalOptions _options;
 
         public SchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            _options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
                 .UseFunctionalGraphContextDiagnostics();

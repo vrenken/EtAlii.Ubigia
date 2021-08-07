@@ -10,10 +10,10 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
         /// Add Antlr GCL parsing to the options.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TGraphContextOptions"></typeparam>
+        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TGraphContextOptions UseAntlrContextParser<TGraphContextOptions>(this TGraphContextOptions options)
-            where TGraphContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseAntlrContextParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
             options.Use(new IGraphContextExtension[]
             {

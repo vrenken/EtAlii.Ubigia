@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                     .UseTestTraversalParser();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = new FunctionalContextOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .Use(functionHandlersProvider);
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);

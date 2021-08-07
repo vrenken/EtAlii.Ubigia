@@ -14,10 +14,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// Use the text parser configured for testing.
         /// </summary>
         /// <param name="options"></param>
-        /// <typeparam name="TTraversalContextOptions"></typeparam>
+        /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TTraversalContextOptions UseTestTraversalParser<TTraversalContextOptions>(this TTraversalContextOptions options)
-            where TTraversalContextOptions : FunctionalContextOptions
+        public static TFunctionalOptions UseTestTraversalParser<TFunctionalOptions>(this TFunctionalOptions options)
+            where TFunctionalOptions : FunctionalOptions
         {
 #if USE_LAPA_PARSER_IN_TESTS
             return options.UseLapaTraversalParser();

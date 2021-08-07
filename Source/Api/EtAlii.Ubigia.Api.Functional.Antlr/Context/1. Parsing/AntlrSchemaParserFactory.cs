@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class AntlrSchemaParserFactory : Factory<ISchemaParser, ParserOptions, ISchemaParserExtension>, ISchemaParserFactory
+    public class AntlrSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, ISchemaParserExtension>, ISchemaParserFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(ParserOptions options)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
             return new IScaffolding[]
             {

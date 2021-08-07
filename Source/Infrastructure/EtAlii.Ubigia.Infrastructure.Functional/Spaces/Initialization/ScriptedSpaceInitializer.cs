@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
             // We don't have access to the configuration root yet.
-            var options = new FunctionalContextOptions(null)
+            var options = new FunctionalOptions(null)
                 .UseAntlrTraversalParser()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
