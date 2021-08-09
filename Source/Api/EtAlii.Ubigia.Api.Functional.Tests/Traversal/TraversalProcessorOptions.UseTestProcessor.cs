@@ -2,16 +2,16 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
-    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
 
     internal static class TraversalProcessorOptionsUseTestProcessorExtension
     {
-        public static TraversalProcessorOptions UseTestProcessor(this TraversalProcessorOptions options)
+        public static FunctionalOptions UseTestProcessor(this FunctionalOptions options)
         {
 #if USE_LAPA_PARSER_IN_TESTS
-                return options.UseLapa();
+                return options.UseLapaParser();
 #else
-            return options.UseAntlr();
+            return options.UseAntlrParser();
 #endif
         }
     }}

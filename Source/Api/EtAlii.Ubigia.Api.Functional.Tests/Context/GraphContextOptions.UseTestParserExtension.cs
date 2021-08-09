@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
 
     public static class GraphContextOptionsUseTestParserExtension
     {
@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             where TFunctionalOptions : FunctionalOptions
         {
 #if USE_LAPA_PARSER_IN_TESTS
-            return options.UseLapaContextParser();
+            return options.UseLapaParser();
 #else
-            return options.UseAntlrContextParser();
+            return options.UseAntlrParser();
 #endif
         }
 

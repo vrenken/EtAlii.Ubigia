@@ -6,9 +6,8 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
     {
@@ -27,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             // We don't have access to the configuration root yet.
             var options = new FunctionalOptions(null)
-                .UseAntlrTraversalParser()
+                .UseAntlrParser()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);

@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             _options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTestContextParser()
-                .UseFunctionalGraphContextDiagnostics();
+                .UseFunctionalDiagnostics();
             await _testContext.Functional.ConfigureLogicalContextOptions(_options,true).ConfigureAwait(false);
 
             _traversalContext = new TraversalContextFactory().Create(_options);
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var query = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
-            var options = new SchemaProcessorOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseFunctionalDiagnostics()
                 .Use(scope)
                 .Use(_traversalContext);

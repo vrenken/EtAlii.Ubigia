@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics()
+                .UseFunctionalDiagnostics()
                 .UseTraversalProfiling();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
-                .UseFunctionalTraversalDiagnostics()
+                .UseFunctionalDiagnostics()
                 .UseTraversalProfiling();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 

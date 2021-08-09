@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical
         /// and relations are kept on the client.This reduces network traffic but requires more local memory.
         /// </summary>
         bool IEditableLogicalContextOptions.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
-        public bool CachingEnabled { get; private set; }
+        public bool CachingEnabled { get; protected set; }
 
         public LogicalContextOptions(IConfigurationRoot configurationRoot)
             : base(configurationRoot)

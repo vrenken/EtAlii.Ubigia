@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private ISchemaExecutionPlanner CreatePlanner()
         {
             var configurationRoot = new ConfigurationBuilder().Build();
-            var options = new SchemaProcessorOptions(configurationRoot);
+            var options = new FunctionalOptions(configurationRoot);
             var container = new Container();
             new SchemaExecutionPlanningScaffolding().Register(container);
             new SchemaProcessingScaffolding(options).Register(container);
