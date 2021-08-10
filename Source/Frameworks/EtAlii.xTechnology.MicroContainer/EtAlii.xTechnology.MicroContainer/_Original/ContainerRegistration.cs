@@ -1,5 +1,7 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+#if USE_ORIGINAL_CONTAINER
+
 //#define CHECK_USAGE
 namespace EtAlii.xTechnology.MicroContainer
 {
@@ -64,3 +66,5 @@ namespace EtAlii.xTechnology.MicroContainer
         public readonly List<DecoratorRegistration> Decorators = new();
     }
 }
+
+#endif

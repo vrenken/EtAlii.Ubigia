@@ -7,7 +7,8 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
     public class ContainerTests
     {
         // Cycle tests.
-        
+
+#if USE_ORIGINAL_CONTAINER
         [Fact]
         public void Container_Parent_With_Children_Initialized_Using_Parent()
         {
@@ -35,7 +36,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             var firstChild = container.GetInstance<IFirstChild>();
             var secondChild = container.GetInstance<ISecondChild>();
             var parent = container.GetInstance<IParent>();
-            
+
             Assert.Equal(1, modelCount.ParentConstructorCount);
             Assert.Equal(1, modelCount.ParentInitializeCount);
             Assert.Equal(1, modelCount.FirstChildConstructorCount);
@@ -45,7 +46,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             Assert.Same(parent, firstChild.Parent);
             Assert.Same(parent, secondChild.Parent);
         }
-
+#endif
         [Fact]
         public void Container_Parent_Initializes_2_Children_1()
         {
@@ -56,10 +57,10 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
 
             container.Register<IFirstChild, FirstChild>();
             container.Register<ISecondChild, SecondChild>();
-            
+
             container.Register<IParent, Parent>();
             container.RegisterInitializer<IParent>(p => p.Initialize());
-            
+
             container.RegisterInitializer<IParent>(p =>
             {
                 var c1 = container.GetInstance<IFirstChild>();
@@ -85,7 +86,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             Assert.Same(parent, firstChild.Parent);
             Assert.Same(parent, secondChild.Parent);
         }
-        
+
         [Fact]
         public void Container_Parent_Initializes_2_Children_2()
         {
@@ -96,10 +97,10 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
 
             container.Register<IFirstChild, FirstChild>();
             container.Register<ISecondChild, SecondChild>();
-            
+
             container.Register<IParent, Parent>();
             container.RegisterInitializer<IParent>(p => p.Initialize());
-            
+
             container.RegisterInitializer<IParent>(p =>
             {
                 var c1 = container.GetInstance<IFirstChild>();
@@ -121,7 +122,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             Assert.Equal(1, modelCount.SecondChildConstructorCount);
             Assert.Equal(1, modelCount.SecondChildInitializeCount);
         }
-                
+
         [Fact]
         public void Container_Parent_Initialize_Chain_01()
         {
@@ -147,7 +148,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
         {
             // Arrange.
             var container = new Container();
-            
+
             container.Register<ISecondParent, SecondParent>();
             container.Register<IThirdParent, ThirdParent>();
             container.Register<IFourthParent, FourthParent>();
@@ -166,7 +167,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
         {
             // Arrange.
             var container = new Container();
-            
+
             container.Register<IThirdParent, ThirdParent>();
             container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
             container.Register<ISecondParent, SecondParent>();
@@ -185,9 +186,9 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
         {
             // Arrange.
             var container = new Container();
-            
-            container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
+
             container.Register<IThirdParent, ThirdParent>();
+            container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
             container.Register<ISecondParent, SecondParent>();
             container.Register<IFourthParent, FourthParent>();
 
@@ -198,13 +199,13 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             // Assert.
             Assert.Same(secondParent.Instance, thirdParent.Instance);
         }
-        
+
         [Fact]
         public void Container_Parent_Initialize_Chain_05()
         {
             // Arrange.
             var container = new Container();
-            
+
             container.Register<ISecondParent, SecondParent>();
             container.Register<IThirdParent, ThirdParent>();
             container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
@@ -216,13 +217,13 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             // Assert.
             Assert.NotNull(thirdParent.Instance);
         }
-                
+
         [Fact]
         public void Container_Parent_Initialize_Chain_06()
         {
             // Arrange.
             var container = new Container();
-            
+
             container.Register<IThirdParent, ThirdParent>();
             container.Register<ISecondParent, SecondParent>();
             container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
@@ -240,11 +241,11 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
         {
             // Arrange.
             var container = new Container();
-            
+
             container.Register<ISecondParent, SecondParent>();
+            container.Register<IThirdParent, ThirdParent>();
             container.RegisterInitializer<IThirdParent>(parent => parent.Initialize(container.GetInstance<ISecondParent>().Instance));
             container.Register<IFourthParent, FourthParent>();
-            container.Register<IThirdParent, ThirdParent>();
 
             // Act.
             var thirdParent = container.GetInstance<IThirdParent>();
@@ -253,7 +254,7 @@ namespace EtAlii.xTechnology.MicroContainer.Tests
             Assert.NotNull(thirdParent.Instance);
         }
 
-        
+
 
         [Fact]
         public void Container_Parent_With_Children_Initialize_Children_First()

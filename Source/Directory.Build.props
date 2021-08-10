@@ -46,6 +46,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Original = original implementation. -->
+    <!-- new      = wrapper around Microsoft.Extensions.DependencyInjection. -->
+    <!--    <DefineConstants>USE_ORIGINAL_CONTAINER</DefineConstants>-->
+  </ItemGroup>
+
+  <ItemGroup>
 <!--    <PackageReference Include="Meziantou.Analyzer" Version="1.0.612" >-->
 <!--      <PrivateAssets>all</PrivateAssets>-->
 <!--      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
