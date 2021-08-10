@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectDebugging) // logging is enabled
             {

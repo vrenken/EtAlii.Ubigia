@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ILogicalContext, LogicalContext>();
             container.Register<ILogicalContextOptions>(() => _options);
@@ -27,9 +27,9 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IPropertiesManager, PropertiesManager>();
             container.Register<IPropertiesGetter, PropertiesGetter>();
 
-            container.Register(() =>
+            container.Register(services =>
             {
-                var fabric = container.GetInstance<IFabricContext>();
+                var fabric = services.GetInstance<IFabricContext>();
                 return new ContentManagerFactory().Create(fabric);
             });
         }

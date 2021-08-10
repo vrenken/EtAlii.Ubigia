@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
     internal class ContentScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IContentSet, ContentSet>();
 

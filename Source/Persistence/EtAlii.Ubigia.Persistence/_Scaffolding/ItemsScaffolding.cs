@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public class ItemsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IItemStorage, ItemStorage>();
         }

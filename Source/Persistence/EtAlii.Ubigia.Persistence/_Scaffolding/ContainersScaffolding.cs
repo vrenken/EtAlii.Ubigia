@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public class ContainersScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IContainerCreator, ContainerCreator>();
             container.Register<INextContainerIdentifierAlgorithm, NextContainerIdentifierFromFolderAlgorithm>();

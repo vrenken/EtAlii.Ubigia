@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _fabricContext = fabricContext;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _fabricContext);
 

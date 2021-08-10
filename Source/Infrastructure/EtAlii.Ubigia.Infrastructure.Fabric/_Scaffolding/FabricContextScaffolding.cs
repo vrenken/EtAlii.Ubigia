@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IFabricContext, FabricContext>();
             container.Register(() => _options.Storage);

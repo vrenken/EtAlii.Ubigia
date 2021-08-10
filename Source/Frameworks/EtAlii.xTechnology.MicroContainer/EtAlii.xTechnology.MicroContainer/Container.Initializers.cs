@@ -15,14 +15,14 @@ namespace EtAlii.xTechnology.MicroContainer
     /// </summary>
     public partial class Container
     {
+        /// <inheritdoc />
+        public void RegisterInitializer<TService>(Action<IServiceCollection, TService> initializer)
+        {
+            var wrapper = new Action<TService>(service => initializer(this, service));
+            RegisterInitializer(wrapper);
+        }
 
-        /// <summary>
-        /// Registers an initializer that will be called right after an object has been constructed.
-        /// This is useful and often needed for creating bidirectional object access which by theory are not possible in a normal DI tree.
-        /// </summary>
-        /// <param name="initializer"></param>
-        /// <typeparam name="TService"></typeparam>
-        /// <exception cref="InvalidOperationException">In case the service type is not an interface.</exception>
+        /// <inheritdoc />
         public void RegisterInitializer<TService>(Action<TService> initializer)
         {
 #if DEBUG

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         }
 
         /// <inheritdoc />
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IContextCorrelator, ContextCorrelator>();
 

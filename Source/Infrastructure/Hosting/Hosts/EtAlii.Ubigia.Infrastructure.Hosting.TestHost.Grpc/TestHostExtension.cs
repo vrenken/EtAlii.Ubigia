@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
             _configurationRoot = configurationRoot;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Infrastructure:Hosting:Diagnostics")

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
     using PCLStorage;
 
 
-    public class PortableStorageExtension : IStorageExtension
+    public class PortableStorageExtension : IExtension
     {
         private readonly IFolder _localStorage;
 
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
             _localStorage = localStorage;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     /// <summary>
     /// An extension targeting a IDataConnection.
     /// </summary>

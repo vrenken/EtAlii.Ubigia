@@ -15,14 +15,7 @@ namespace EtAlii.xTechnology.MicroContainer
     /// </summary>
     public partial class Container
     {
-
-        /// <summary>
-        /// Registers a decorator that will wrap the concrete instance. This is very useful for conditional logic and
-        /// 'meta-behavior' like conditional profiling/logging/debugging.
-        /// </summary>
-        /// <param name="serviceType"></param>
-        /// <param name="decoratorType"></param>
-        /// <exception cref="InvalidOperationException">In case the decorator type has already been registered, does not have a service instance constructor parameter or when the service type is not an interface.</exception>
+        /// <inheritdoc />
         public void RegisterDecorator(Type serviceType, Type decoratorType)
         {
 #if DEBUG

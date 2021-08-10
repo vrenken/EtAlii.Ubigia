@@ -16,7 +16,7 @@ namespace EtAlii.xTechnology.Hosting
             _hostControl = hostControl;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             // Nothing to do here right now...
         }

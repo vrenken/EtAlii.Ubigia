@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
     internal class IdentifierScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ILogicalIdentifierSet, LogicalIdentifierSet>();
 

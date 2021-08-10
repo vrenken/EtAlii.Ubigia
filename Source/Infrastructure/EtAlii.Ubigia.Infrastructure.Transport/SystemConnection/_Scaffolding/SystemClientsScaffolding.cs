@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _infrastructure = infrastructure;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ISpaceConnection, SystemSpaceConnection>();
             container.Register<IStorageConnection, SystemStorageConnection>();
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();
 
             container.Register<IInformationDataClient, SystemInformationDataClient>();
-            
+
             container.Register<IEntryDataClient, SystemEntryDataClient>();
             container.Register<IEntryNotificationClient, EntryNotificationClientStub>();
 

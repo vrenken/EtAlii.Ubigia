@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
             _configurationRoot = configurationRoot;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Infrastructure:Fabric:Diagnostics")

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _configurationRoot = configurationRoot;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Api:Transport:Diagnostics")

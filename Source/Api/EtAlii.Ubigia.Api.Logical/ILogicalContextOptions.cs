@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Logical
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public interface ILogicalContextOptions : IExtensible
     {
         bool CachingEnabled { get; }

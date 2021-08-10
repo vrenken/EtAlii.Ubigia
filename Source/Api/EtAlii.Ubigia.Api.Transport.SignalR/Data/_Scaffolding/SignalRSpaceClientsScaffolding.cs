@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
     internal class SignalRSpaceClientsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ISpaceConnection, SignalRSpaceConnection>();
 

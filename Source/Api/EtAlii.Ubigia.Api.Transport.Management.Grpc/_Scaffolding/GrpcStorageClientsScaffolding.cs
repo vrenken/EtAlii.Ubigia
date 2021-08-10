@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 
     internal class GrpcStorageClientsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageConnection, GrpcStorageConnection>();
 

@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public interface IFabricContextExtension : IExtension
     {
     }

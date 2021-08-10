@@ -2,11 +2,13 @@
 
 namespace EtAlii.Ubigia.Persistence.Azure
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class StorageOptionsUseAzureStorageExtension
     {
         public static IStorageOptions UseAzureStorage(this IStorageOptions options)
         {
-            var extensions = new IStorageExtension[]
+            var extensions = new IExtension[]
             {
                 new AzureStorageExtension(),
             };

@@ -13,11 +13,11 @@
 //        [
 //            //_applicationManager = applicationManager
 //        ]
-//        public void Initialize(Container container)
+//        public void Initialize(IRegisterOnlyContainer container)
 //        [
 //            var scaffoldings = new IScaffolding[]
 //            [
-//                //new AspNetCoreApplicationScaffolding()//_applicationManager), 
+//                //new AspNetCoreApplicationScaffolding()//_applicationManager),
 //            ]
 //            foreach (var scaffolding in scaffoldings)
 //            [

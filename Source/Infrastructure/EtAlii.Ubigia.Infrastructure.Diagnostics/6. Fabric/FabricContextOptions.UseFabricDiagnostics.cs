@@ -3,6 +3,8 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class FabricContextConfigurationUseDiagnostics
     {
         public static TFabricContextOptions UseFabricDiagnostics<TFabricContextOptions>(this TFabricContextOptions options)

@@ -16,14 +16,14 @@ namespace EtAlii.Ubigia.Persistence
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectProfiling)
             {
                 _logger.Verbose("Injecting persistence profiling decorators");
 
                 container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(() => container.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+                container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
             }
         }
     }

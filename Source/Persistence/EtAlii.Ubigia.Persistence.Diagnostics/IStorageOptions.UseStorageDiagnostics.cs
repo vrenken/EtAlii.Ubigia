@@ -2,11 +2,13 @@
 
 namespace EtAlii.Ubigia.Persistence
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class StorageOptionsUseStorageDiagnosticsExtension
     {
         public static IStorageOptions UseStorageDiagnostics(this IStorageOptions options)
         {
-            var extensions = new IStorageExtension[]
+            var extensions = new IExtension[]
             {
                 new DiagnosticsStorageExtension(options.ConfigurationRoot),
             };

@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Persistence.Azure
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class AzureStorageExtension : IStorageExtension
+    public class AzureStorageExtension : IExtension
     {
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

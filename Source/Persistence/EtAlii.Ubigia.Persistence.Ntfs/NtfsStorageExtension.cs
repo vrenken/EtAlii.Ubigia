@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class NtfsStorageExtension : IStorageExtension
+    public class NtfsStorageExtension : IExtension
     {
         private readonly string _baseFolder;
 
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
             _baseFolder = baseFolder;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

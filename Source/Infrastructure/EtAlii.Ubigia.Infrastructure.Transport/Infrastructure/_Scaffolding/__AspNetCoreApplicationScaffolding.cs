@@ -13,7 +13,7 @@
 //        [
 //            //_applicationManager = applicationManager
 //        ]
-//        public void Register(Container container)
+//        public void Register(IRegisterOnlyContainer container)
 //        [
 //            //container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 

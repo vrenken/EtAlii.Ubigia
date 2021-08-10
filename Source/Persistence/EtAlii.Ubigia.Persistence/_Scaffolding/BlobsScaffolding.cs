@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence
 
     public class BlobsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IBlobStorage, BlobStorage>();
             container.Register<IBlobStorer, BlobStorer>();

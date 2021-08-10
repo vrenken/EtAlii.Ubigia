@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Persistence
     {
         public IConfigurationRoot ConfigurationRoot { get; }
 
-        public IStorageExtension[] Extensions { get; private set; }
+        public IExtension[] Extensions { get; private set; }
 
         public string Name { get; private set; }
 
@@ -25,10 +25,10 @@ namespace EtAlii.Ubigia.Persistence
         public StorageOptions(IConfigurationRoot configurationRoot)
         {
             ConfigurationRoot = configurationRoot;
-            Extensions = Array.Empty<IStorageExtension>();
+            Extensions = Array.Empty<IExtension>();
         }
 
-        public IStorageOptions Use(IStorageExtension[] extensions)
+        public IStorageOptions Use(IExtension[] extensions)
         {
             if (extensions == null)
             {

@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public interface IInfrastructureOptions : IExtensible

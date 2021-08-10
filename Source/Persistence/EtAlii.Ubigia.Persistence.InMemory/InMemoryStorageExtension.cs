@@ -4,9 +4,9 @@ namespace EtAlii.Ubigia.Persistence.InMemory
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class InMemoryStorageExtension : IStorageExtension
+    public class InMemoryStorageExtension : IExtension
     {
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

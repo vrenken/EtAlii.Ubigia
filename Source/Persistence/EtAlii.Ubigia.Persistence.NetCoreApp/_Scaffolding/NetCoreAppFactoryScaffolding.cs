@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
 
     public class NetCoreAppFactoryScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, NetCoreAppStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.

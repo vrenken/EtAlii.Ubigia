@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
         }
 
         /// <inheritdoc />
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _options);
             container.Register<ISystemConnection, SystemConnection>();

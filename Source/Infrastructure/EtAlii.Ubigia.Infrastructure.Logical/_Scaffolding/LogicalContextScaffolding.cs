@@ -14,21 +14,21 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ILogicalContext, LogicalContext>();
-            container.RegisterInitializer<ILogicalContext>(context =>
+            container.RegisterInitializer<ILogicalContext>((services, context) =>
             {
                 context.Initialize(
-                    container.GetInstance<ILogicalStorageSet>(),
-                    container.GetInstance<ILogicalSpaceSet>(),
-                    container.GetInstance<ILogicalAccountSet>(),
-                    container.GetInstance<ILogicalRootSet>(),
-                    container.GetInstance<ILogicalEntrySet>(),
-                    container.GetInstance<ILogicalContentSet>(),
-                    container.GetInstance<ILogicalContentDefinitionSet>(),
-                    container.GetInstance<ILogicalPropertiesSet>(),
-                    container.GetInstance<ILogicalIdentifierSet>());
+                    services.GetInstance<ILogicalStorageSet>(),
+                    services.GetInstance<ILogicalSpaceSet>(),
+                    services.GetInstance<ILogicalAccountSet>(),
+                    services.GetInstance<ILogicalRootSet>(),
+                    services.GetInstance<ILogicalEntrySet>(),
+                    services.GetInstance<ILogicalContentSet>(),
+                    services.GetInstance<ILogicalContentDefinitionSet>(),
+                    services.GetInstance<ILogicalPropertiesSet>(),
+                    services.GetInstance<ILogicalIdentifierSet>());
             });
 
             container.Register(() => _options);

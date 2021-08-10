@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _options.FabricContext);
             container.Register(() => _options.ConfigurationRoot);

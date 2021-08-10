@@ -13,6 +13,6 @@ namespace EtAlii.xTechnology.MicroContainer
         /// Run the scaffolding and corresponding container register calls it contains.
         /// </summary>
         /// <param name="container"></param>
-        void Register(Container container);
+        void Register(IRegisterOnlyContainer container);
     }
 }

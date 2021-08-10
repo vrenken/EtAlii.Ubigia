@@ -16,7 +16,7 @@ namespace EtAlii.xTechnology.Hosting
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);
@@ -30,9 +30,9 @@ namespace EtAlii.xTechnology.Hosting
                 container.RegisterDecorator(typeof(IHost), typeof(HostWrapper));
             }
             container.Register<IInstanceCreator, InstanceCreator>();
-            container.RegisterInitializer<IHost>(host =>
+            container.RegisterInitializer<IHost>((services, host) =>
             {
-                var instanceCreator = container.GetInstance<IInstanceCreator>();
+                var instanceCreator = services.GetInstance<IInstanceCreator>();
                 var serviceFactory = new ServiceFactory(instanceCreator);
                 var moduleFactory = new ModuleFactory(serviceFactory, instanceCreator);
                 var systemFactory = new SystemFactory(serviceFactory, moduleFactory, instanceCreator);
@@ -64,7 +64,7 @@ namespace EtAlii.xTechnology.Hosting
                 host.Setup(commands.ToArray(), statuses);
 
                 // Initialize the services.
-                var systemManager = container.GetInstance<ISystemManager>();
+                var systemManager = services.GetInstance<ISystemManager>();
                 systemManager.Setup(systems);
 
                 host.Initialize();

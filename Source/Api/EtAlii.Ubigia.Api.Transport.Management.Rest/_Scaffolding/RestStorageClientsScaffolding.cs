@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Rest
             _infrastructureClient = infrastructureClient;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IAddressFactory, AddressFactory>();
             container.Register<IStorageConnection, RestStorageConnection>();

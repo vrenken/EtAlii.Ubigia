@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
 
     internal class SystemInfrastructureScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
-            // Put all SystemInfrastructure container registrations in here. 
+            // Put all SystemInfrastructure container registrations in here.
         }
     }
 }

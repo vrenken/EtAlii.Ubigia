@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Transport
 {
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public interface IStorageConnectionOptions : IExtensible

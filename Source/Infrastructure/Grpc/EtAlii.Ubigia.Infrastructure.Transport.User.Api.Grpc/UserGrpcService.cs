@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
     using EtAlii.xTechnology.Threading;
+    using IServiceCollection = Microsoft.Extensions.DependencyInjection.IServiceCollection;
 
 	public class UserGrpcService : GrpcServiceBase
     {

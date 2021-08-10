@@ -15,7 +15,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
             _configurationRoot = configurationRoot;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Host:Diagnostics")

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
 
     internal class PropertiesScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IPropertiesSet, PropertiesSet>();
 

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             _transport = transport;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register(() => _transport);
         }

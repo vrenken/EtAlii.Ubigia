@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
 
     public class InMemoryFactoryScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, InMemoryStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.

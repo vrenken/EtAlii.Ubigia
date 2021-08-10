@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public interface IGraphPathTraverserOptions : IExtensible

@@ -2,11 +2,13 @@
 
 namespace EtAlii.Ubigia.Persistence.Ntfs
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class StorageOptionsNtfsExtensionExtension
     {
         public static IStorageOptions UseNtfsStorage(this IStorageOptions options, string baseFolder)
         {
-            var extensions = new IStorageExtension[]
+            var extensions = new IExtension[]
             {
                 new NtfsStorageExtension(baseFolder),
             };

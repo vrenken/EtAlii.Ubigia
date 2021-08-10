@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 
     internal class SignalRStorageClientsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageConnection, SignalRStorageConnection>();
 

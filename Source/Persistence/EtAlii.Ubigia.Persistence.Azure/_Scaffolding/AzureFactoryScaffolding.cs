@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Azure
 
     public class AzureFactoryScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, AzureStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.

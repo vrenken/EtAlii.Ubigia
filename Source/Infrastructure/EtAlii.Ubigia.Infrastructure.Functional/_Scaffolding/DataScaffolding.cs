@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
     internal class DataScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IInformationRepository, InformationRepository>();
 

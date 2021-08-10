@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class NetCoreAppStorageExtension : IStorageExtension
+    public class NetCoreAppStorageExtension : IExtension
     {
         private readonly string _baseFolder;
 
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Persistence.NetCoreApp
             _baseFolder = baseFolder;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

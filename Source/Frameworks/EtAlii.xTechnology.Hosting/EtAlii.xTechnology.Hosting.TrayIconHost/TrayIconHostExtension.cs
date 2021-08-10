@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Hosting
             _errorIcon = errorIcon;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             var scaffoldings = new IScaffolding[]
             {

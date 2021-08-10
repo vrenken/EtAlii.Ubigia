@@ -2,11 +2,13 @@
 
 namespace EtAlii.Ubigia.Persistence.InMemory
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class StorageOptionsUseInMemoryStorageExtension
     {
         public static IStorageOptions UseInMemoryStorage(this IStorageOptions options)
         {
-            var extensions = new IStorageExtension[]
+            var extensions = new IExtension[]
             {
                 new InMemoryStorageExtension(),
             };

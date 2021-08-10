@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 
 	public class AuthenticationScaffolding : IScaffolding
 	{
-		public void Register(Container container)
+		public void Register(IRegisterOnlyContainer container)
 		{
 			container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>();
 			container.Register<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>();

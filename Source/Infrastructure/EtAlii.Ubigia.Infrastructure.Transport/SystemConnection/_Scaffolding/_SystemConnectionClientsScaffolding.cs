@@ -8,7 +8,7 @@
 
 //    internal class SystemConnectionClientsScaffolding : IScaffolding
 //    [
-//        public void Register(Container container)
+//        public void Register(IRegisterOnlyContainer container)
 //        [
 //            var isRestTransport = container.GetInstance<ITransport>() is RestTransport
 //            if [isRestTransport]

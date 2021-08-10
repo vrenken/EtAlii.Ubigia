@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
 	public class TestHostScaffolding : IScaffolding
 	{
-		public void Register(Container container)
+		public void Register(IRegisterOnlyContainer container)
 		{
 			//container.Register<IHost, TestHost>()
 			//container.Register<IAddressFactory, AddressFactory>()

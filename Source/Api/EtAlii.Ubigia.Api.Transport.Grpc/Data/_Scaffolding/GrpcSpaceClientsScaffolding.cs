@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 
     internal class GrpcSpaceClientsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ISpaceConnection, GrpcSpaceConnection>();
 

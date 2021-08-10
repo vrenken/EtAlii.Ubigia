@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Persistence
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectProfiling) // profiling is enabled
             {

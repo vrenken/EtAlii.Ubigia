@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
 
     public class NtfsFactoryScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, NtfsStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.

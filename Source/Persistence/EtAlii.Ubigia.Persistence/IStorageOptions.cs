@@ -8,11 +8,11 @@ namespace EtAlii.Ubigia.Persistence
     public interface IStorageOptions
     {
         IConfigurationRoot ConfigurationRoot { get; }
-        IStorageExtension[] Extensions { get; }
+        IExtension[] Extensions { get; }
         string Name { get; }
 
         IStorageOptions Use(string name);
-        IStorageOptions Use(IStorageExtension[] extensions);
+        IStorageOptions Use(IExtension[] extensions);
         IStorageOptions Use<TStorage>()
             where TStorage : class, IStorage;
 

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 		}
 
         /// <inheritdoc />
-		public void Register(Container container)
+		public void Register(IRegisterOnlyContainer container)
 		{
 			container.Register(() => _infrastructure.Accounts);
 			container.Register(() => _infrastructure.Storages);

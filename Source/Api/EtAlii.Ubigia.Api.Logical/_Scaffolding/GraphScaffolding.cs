@@ -8,21 +8,21 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IGraphPathBuilder, GraphPathBuilder>();
             container.Register<IGraphComposerFactory, GraphComposerFactory>();
             container.Register<IGraphAssignerFactory, GraphAssignerFactory>();
 
             container.Register<IGraphPathTraverserFactory, GraphPathTraverserFactory>();
-            container.Register(() =>
+            container.Register(services =>
             {
-                var fabric = container.GetInstance<IFabricContext>();
-                var configurationRoot = container.GetInstance<IConfigurationRoot>();
+                var fabric = services.GetInstance<IFabricContext>();
+                var configurationRoot = services.GetInstance<IConfigurationRoot>();
 
                 var options = new GraphPathTraverserOptions(configurationRoot)
                     .Use(fabric);
-                var graphPathTraverserFactory = container.GetInstance<IGraphPathTraverserFactory>();
+                var graphPathTraverserFactory = services.GetInstance<IGraphPathTraverserFactory>();
                 return graphPathTraverserFactory.Create(options);
             });
 

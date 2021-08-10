@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         }
 
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Api:Logical:Diagnostics")

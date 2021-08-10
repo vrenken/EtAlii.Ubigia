@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Persistence.Portable
             _localStorage = localStorage;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, PortableStorageSerializer>();
             container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.

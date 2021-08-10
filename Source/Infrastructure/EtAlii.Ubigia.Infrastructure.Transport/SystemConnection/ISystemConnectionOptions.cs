@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
     using System;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public interface ISystemConnectionOptions : IExtensible

@@ -18,14 +18,14 @@ namespace EtAlii.xTechnology.Hosting
             _errorIcon = errorIcon;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IHostCommandsConverter, HostCommandsConverter>();
             container.Register<ITaskbarIconViewModel, TaskbarIconViewModel>();
             container.Register<ITaskbarIcon, TaskbarIcon>();
-            container.RegisterInitializer<IHost>(host =>
+            container.RegisterInitializer<IHost>((services, host) =>
             {
-                container.GetInstance<ITaskbarIconViewModel>().Initialize(host as HostWrapper, _runningIcon, _stoppedIcon, _errorIcon);
+                services.GetInstance<ITaskbarIconViewModel>().Initialize(host as HostWrapper, _runningIcon, _stoppedIcon, _errorIcon);
             });
         }
     }

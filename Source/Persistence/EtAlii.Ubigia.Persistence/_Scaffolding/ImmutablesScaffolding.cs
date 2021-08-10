@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Persistence
 
     public class ImmutablesScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
-            container.Register<IImmutableFolderManager>(container.GetInstance<IFolderManager>);
-            container.Register<IImmutableFileManager>(container.GetInstance<IFileManager>);
+            container.Register<IImmutableFolderManager>(services => services.GetInstance<IFolderManager>());
+            container.Register<IImmutableFileManager>(services => services.GetInstance<IFileManager>());
         }
     }
 }

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Persistence
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsStorageExtension : IStorageExtension
+    public class DiagnosticsStorageExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Persistence
             _configurationRoot = configurationRoot;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
                 .GetSection("Persistence:Diagnostics")

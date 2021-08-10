@@ -2,10 +2,11 @@
 
 namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
+    using EtAlii.xTechnology.MicroContainer;
 
-    internal class ContentDefinitionScaffolding : xTechnology.MicroContainer.IScaffolding
+    internal class ContentDefinitionScaffolding : IScaffolding
     {
-        public void Register(xTechnology.MicroContainer.Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IContentDefinitionSet, ContentDefinitionSet>();
 
