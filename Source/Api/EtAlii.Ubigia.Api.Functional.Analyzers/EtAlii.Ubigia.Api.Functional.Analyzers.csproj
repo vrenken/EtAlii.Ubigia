@@ -70,6 +70,15 @@
     <PackageReference Include="Microsoft.Extensions.Primitives" Version="5.0.0" PrivateAssets="all">
       <GeneratePathProperty>true</GeneratePathProperty>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" PrivateAssets="all">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" PrivateAssets="all">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="5.0.0" PrivateAssets="all">
+      <GeneratePathProperty>true</GeneratePathProperty>
+    </PackageReference>
 
 
     <!--    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" PrivateAssets="all">-->
@@ -110,6 +119,11 @@
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration)\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Configuration_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_Primitives)\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll" IncludeRuntimeDependency="false" />
+
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Extensions_DependencyInjection_Abstractions)\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="$(PkgMicrosoft_Bcl_AsyncInterfaces)\lib\netstandard2.1\Microsoft.Bcl.AsyncInterfaces.dll" IncludeRuntimeDependency="false" />
+
 
     </ItemGroup>
   </Target>
