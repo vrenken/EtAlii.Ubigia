@@ -9,11 +9,17 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 
     public class DiagnosticsInfrastructureExtension : IInfrastructureExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsInfrastructureExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         /// <inheritdoc />
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Infrastructure:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

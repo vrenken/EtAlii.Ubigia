@@ -9,10 +9,16 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
     public class TestHostExtension : IHostExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public TestHostExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         public void Register(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Infrastructure:Hosting:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

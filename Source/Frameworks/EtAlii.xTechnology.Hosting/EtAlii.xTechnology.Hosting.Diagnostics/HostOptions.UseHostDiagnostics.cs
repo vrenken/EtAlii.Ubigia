@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
     {
         public static IHostOptions UseHostDiagnostics(this IHostOptions options)
         {
-            return options.Use(new DiagnosticsHostExtension());
+            return options.Use(new DiagnosticsHostExtension(options.ConfigurationRoot));
         }
     }
 }

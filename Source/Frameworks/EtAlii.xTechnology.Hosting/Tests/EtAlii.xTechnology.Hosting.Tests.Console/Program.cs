@@ -23,8 +23,8 @@ namespace EtAlii.xTechnology.Hosting.Tests.Console
 
             var hostOptions = new HostOptionsBuilder()
                 .Build(configurationRoot, details)
-                .UseHostDiagnostics()
-                .UseConsoleHost();
+                .UseConsoleHost()
+                .UseHostDiagnostics();
 
             ConsoleHost.Start(hostOptions);
         }

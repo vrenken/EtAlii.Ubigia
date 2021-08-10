@@ -8,10 +8,16 @@ namespace EtAlii.Ubigia.Persistence
 
     public class DiagnosticsStorageExtension : IStorageExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsStorageExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Persistence:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

@@ -29,9 +29,10 @@ namespace EtAlii.xTechnology.Hosting
                 // Hence we need a HostWrapper.
                 container.RegisterDecorator(typeof(IHost), typeof(HostWrapper));
             }
+            container.Register<IInstanceCreator, InstanceCreator>();
             container.RegisterInitializer<IHost>(host =>
             {
-                var instanceCreator = new InstanceCreator();
+                var instanceCreator = container.GetInstance<IInstanceCreator>();
                 var serviceFactory = new ServiceFactory(instanceCreator);
                 var moduleFactory = new ModuleFactory(serviceFactory, instanceCreator);
                 var systemFactory = new SystemFactory(serviceFactory, moduleFactory, instanceCreator);

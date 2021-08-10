@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 
             var hostOptions = new HostOptionsBuilder()
                 .Build(configurationRoot, details)
-                .UseHostDiagnostics()
-                .UseConsoleHost();
+                .UseConsoleHost()
+                .UseHostDiagnostics();
 
             ConsoleHost.Start(hostOptions);
         }

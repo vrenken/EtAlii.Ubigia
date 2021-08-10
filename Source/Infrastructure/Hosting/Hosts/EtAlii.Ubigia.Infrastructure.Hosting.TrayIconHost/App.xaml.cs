@@ -24,11 +24,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 
 	        var hostOptions = new HostOptionsBuilder()
 		        .Build(configurationRoot, details)
-		        .UseHostDiagnostics()
-		        .UseTrayIconHost(this,
-			        "Icon-Logo-White-Shaded.ico",
-			        "Icon-Logo-Black.ico",
-			        "Icon-Logo-Red.ico");
+                .UseTrayIconHost(this,
+                    "Icon-Logo-White-Shaded.ico",
+                    "Icon-Logo-Black.ico",
+                    "Icon-Logo-Red.ico")
+		        .UseHostDiagnostics();
 
             TrayIconHost.Start(hostOptions);
         }

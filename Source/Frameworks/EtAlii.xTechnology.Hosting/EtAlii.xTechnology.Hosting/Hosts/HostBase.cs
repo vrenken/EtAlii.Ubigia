@@ -102,7 +102,16 @@ namespace EtAlii.xTechnology.Hosting
             }
         }
 
-        public async Task Start()
+        protected virtual async Task OnStartException(Exception exception)
+        {
+            Trace.WriteLine($"Fatal exception in hosting: {exception}");
+            Trace.WriteLine("Unable to start hosting");
+            State = State.Error;
+            await Task.Delay(100).ConfigureAwait(false);
+            await Stop().ConfigureAwait(false);
+        }
+
+        public virtual async Task Start()
         {
             State = State.Starting;
 
@@ -111,14 +120,7 @@ namespace EtAlii.xTechnology.Hosting
                 .WaitAndRetryAsync(
                     5,
                     retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    async (exception, _, _) =>
-                    {
-                        Trace.WriteLine($"Fatal exception in hosting: {exception}");
-                        Trace.WriteLine("Unable to start hosting");
-                        State = State.Error;
-                        await Task.Delay(100).ConfigureAwait(false);
-                        await Stop().ConfigureAwait(false);
-                    }
+                    (exception, _, _) => OnStartException(exception)
                 )
                 .ExecuteAsync(async () =>
                 {
@@ -130,7 +132,14 @@ namespace EtAlii.xTechnology.Hosting
                 .ConfigureAwait(false);
         }
 
-        public async Task Stop()
+        protected virtual void OnStopException(Exception exception)
+        {
+            State = State.Error;
+            Trace.WriteLine($"Fatal exception in hosting: {exception}");
+            Trace.WriteLine("Unable to stop hosting");
+        }
+
+        public virtual async Task Stop()
         {
             State = State.Stopping;
 
@@ -139,12 +148,7 @@ namespace EtAlii.xTechnology.Hosting
                 .WaitAndRetry(
                     5,
                     retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)),
-                    (exception, _, _) =>
-                    {
-                        State = State.Error;
-                        Trace.WriteLine($"Fatal exception in hosting: {exception}");
-                        Trace.WriteLine("Unable to stop hosting");
-                    }
+                    (exception, _, _) => OnStopException(exception)
                 )
                 .Execute(async () =>
                 {
@@ -156,7 +160,7 @@ namespace EtAlii.xTechnology.Hosting
                 .ConfigureAwait(false);
         }
 
-        public async Task Shutdown()
+        public virtual async Task Shutdown()
         {
             await Stop().ConfigureAwait(false);
 

@@ -8,11 +8,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     public class DiagnosticsManagementConnectionExtension : IManagementConnectionExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsManagementConnectionExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         /// <inheritdoc />
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Api:Transport:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

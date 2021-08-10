@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Persistence
         {
             var extensions = new IStorageExtension[]
             {
-                new DiagnosticsStorageExtension(),
+                new DiagnosticsStorageExtension(options.ConfigurationRoot),
             };
             return options.Use(extensions);
         }

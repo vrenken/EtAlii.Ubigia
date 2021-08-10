@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Configuration;
 
     public abstract class ServiceFactoryBase<TService> : ServiceFactoryBase
-        where TService : IService
+        where TService : class, IService
     {
         /// <inheritdoc />
         public override IService Create(

@@ -8,10 +8,17 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public class DiagnosticsLogicalContextExtension : ILogicalContextExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsLogicalContextExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
+
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Api:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             var extensions = new IDataConnectionExtension[]
             {
-                new DiagnosticsDataConnectionExtension(),
+                new DiagnosticsDataConnectionExtension(options.ConfigurationRoot),
             };
 
             return options.Use(extensions);

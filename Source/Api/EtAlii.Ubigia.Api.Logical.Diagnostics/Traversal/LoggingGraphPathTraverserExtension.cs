@@ -8,10 +8,16 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public class DiagnosticsGraphPathTraverserExtension : IGraphPathTraverserExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsGraphPathTraverserExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Api:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

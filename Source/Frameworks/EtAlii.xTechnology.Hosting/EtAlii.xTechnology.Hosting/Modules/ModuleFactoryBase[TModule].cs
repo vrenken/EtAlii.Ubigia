@@ -6,7 +6,7 @@ namespace EtAlii.xTechnology.Hosting
     using Microsoft.Extensions.Configuration;
 
     public abstract class ModuleFactoryBase<TModule> : ModuleFactoryBase
-        where TModule: IModule
+        where TModule: class, IModule
     {
         /// <inheritdoc />
         public override IModule Create(

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             var extensions = new ISpaceConnectionExtension[]
             {
-                new DiagnosticsSpaceConnectionExtension(),
+                new DiagnosticsSpaceConnectionExtension(options.ConfigurationRoot),
             };
             return options.Use(extensions);
         }

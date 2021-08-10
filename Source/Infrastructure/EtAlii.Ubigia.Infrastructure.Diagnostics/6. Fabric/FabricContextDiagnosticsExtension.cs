@@ -9,10 +9,16 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 
     public class FabricContextDiagnosticsExtension : IFabricContextExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public FabricContextDiagnosticsExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         public void Initialize(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Infrastructure:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

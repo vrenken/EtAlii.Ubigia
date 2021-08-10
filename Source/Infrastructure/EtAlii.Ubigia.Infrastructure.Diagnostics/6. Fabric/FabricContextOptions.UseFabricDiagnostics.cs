@@ -5,15 +5,15 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
 {
     public static class FabricContextConfigurationUseDiagnostics
     {
-        public static TFabricContextConfiguration UseFabricDiagnostics<TFabricContextConfiguration>(this TFabricContextConfiguration configuration)
-            where TFabricContextConfiguration : IExtensible
+        public static TFabricContextOptions UseFabricDiagnostics<TFabricContextOptions>(this TFabricContextOptions options)
+            where TFabricContextOptions : FabricContextOptions
         {
             var extensions = new IExtension[]
             {
-                new FabricContextDiagnosticsExtension(),
+                new FabricContextDiagnosticsExtension(options.ConfigurationRoot),
             };
 
-            return configuration.Use(extensions);
+            return options.Use(extensions);
         }
     }
 }

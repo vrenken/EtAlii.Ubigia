@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         {
             var extensions = new IGraphPathTraverserExtension[]
             {
-                new DiagnosticsGraphPathTraverserExtension(),
+                new DiagnosticsGraphPathTraverserExtension(options.ConfigurationRoot),
             };
 
             return options.Use(extensions);

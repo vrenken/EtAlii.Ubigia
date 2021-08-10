@@ -8,10 +8,16 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
 
     public class DiagnosticsHostExtension : IHostExtension
     {
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsHostExtension(IConfigurationRoot configurationRoot)
+        {
+            _configurationRoot = configurationRoot;
+        }
+
         public void Register(Container container)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            var options = _configurationRoot
                 .GetSection("Host:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

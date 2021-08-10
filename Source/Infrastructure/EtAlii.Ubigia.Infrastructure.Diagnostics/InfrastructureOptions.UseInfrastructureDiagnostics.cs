@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         {
             var extensions = new IInfrastructureExtension[]
             {
-                new DiagnosticsInfrastructureExtension(),
+                new DiagnosticsInfrastructureExtension(options.ConfigurationRoot),
             };
 
             return options.Use(extensions);

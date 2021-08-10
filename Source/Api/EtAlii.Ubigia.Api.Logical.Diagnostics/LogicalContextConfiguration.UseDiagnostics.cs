@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         {
             var extensions = new ILogicalContextExtension[]
             {
-                new DiagnosticsLogicalContextExtension(),
+                new DiagnosticsLogicalContextExtension(options.ConfigurationRoot),
             };
 
             options = options.Use(extensions);
