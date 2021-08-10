@@ -94,7 +94,15 @@ namespace EtAlii.xTechnology.MicroContainer
         }
 
         /// <inheritdoc />
-        public void RegisterDecorator(Type serviceType, Type decoratorType)
+        public void RegisterDecorator<TService, TDecorator>()
+            where TService : class
+            where TDecorator : TService
+        {
+            RegisterDecorator(typeof(TService), typeof(TDecorator));
+        }
+
+        /// <inheritdoc />
+        private void RegisterDecorator(Type serviceType, Type decoratorType)
 	    {
             // We want a stub in case the service type has not yet been registered.
 		    if (!_mappings.TryGetValue(serviceType, out var mapping))

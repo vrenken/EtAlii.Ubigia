@@ -14,33 +14,33 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler = profiler;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
-            container.RegisterDecorator(typeof(IGraphPathTraverser), typeof(ProfilingGraphPathTraverser));
+            container.RegisterDecorator<IGraphPathTraverser, ProfilingGraphPathTraverser>();
             container.Register<IProfiler>(() => new Profiler(_profiler, ProfilingAspects.Logical.Traversal));
 
-            container.RegisterDecorator(typeof(ITemporalGraphPathWeaver), typeof(ProfilingTemporalGraphPathWeaver));
+            container.RegisterDecorator<ITemporalGraphPathWeaver, ProfilingTemporalGraphPathWeaver>();
 
-            container.RegisterDecorator(typeof(IGraphPathNodeTraverser), typeof(ProfilingGraphPathNodeTraverser));
-            container.RegisterDecorator(typeof(IGraphPathIdentifiersStartNodeTraverser), typeof(ProfilingGraphPathIdentifiersStartNodeTraverser));
-            container.RegisterDecorator(typeof(IGraphPathRootStartNodeTraverser), typeof(ProfilingGraphPathRootStartNodeTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllChildrenRelationTraverser), typeof(ProfilingGraphPathAllChildrenRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathChildrenRelationTraverser), typeof(ProfilingGraphPathChildrenRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllParentsRelationTraverser), typeof(ProfilingGraphPathAllParentsRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathParentRelationTraverser), typeof(ProfilingGraphPathParentRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllNextRelationTraverser), typeof(ProfilingGraphPathAllNextRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathNextRelationTraverser), typeof(ProfilingGraphPathNextRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllPreviousRelationTraverser), typeof(ProfilingGraphPathAllPreviousRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathPreviousRelationTraverser), typeof(ProfilingGraphPathPreviousRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllUpdatesRelationTraverser), typeof(ProfilingGraphPathAllUpdatesRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathUpdatesRelationTraverser), typeof(ProfilingGraphPathUpdatesRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathAllDowndatesRelationTraverser), typeof(ProfilingGraphPathAllDowndatesRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathDowndateRelationTraverser), typeof(ProfilingGraphPathDowndateRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathFinalRelationTraverser), typeof(ProfilingGraphPathFinalRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathOriginalRelationTraverser), typeof(ProfilingGraphPathOriginalRelationTraverser));
-            container.RegisterDecorator(typeof(IGraphPathWildcardTraverser), typeof(ProfilingGraphPathWildcardTraverser));
-            container.RegisterDecorator(typeof(IGraphPathConditionalTraverser), typeof(ProfilingGraphPathConditionalTraverser));
-            container.RegisterDecorator(typeof(IGraphPathTaggedNodeTraverser), typeof(ProfilingGraphPathTaggedNodeTraverser));
+            container.RegisterDecorator<IGraphPathNodeTraverser, ProfilingGraphPathNodeTraverser>();
+            container.RegisterDecorator<IGraphPathIdentifiersStartNodeTraverser, ProfilingGraphPathIdentifiersStartNodeTraverser>();
+            container.RegisterDecorator<IGraphPathRootStartNodeTraverser, ProfilingGraphPathRootStartNodeTraverser>();
+            container.RegisterDecorator<IGraphPathAllChildrenRelationTraverser, ProfilingGraphPathAllChildrenRelationTraverser>();
+            container.RegisterDecorator<IGraphPathChildrenRelationTraverser, ProfilingGraphPathChildrenRelationTraverser>();
+            container.RegisterDecorator<IGraphPathAllParentsRelationTraverser, ProfilingGraphPathAllParentsRelationTraverser>();
+            container.RegisterDecorator<IGraphPathParentRelationTraverser, ProfilingGraphPathParentRelationTraverser>();
+            container.RegisterDecorator<IGraphPathAllNextRelationTraverser, ProfilingGraphPathAllNextRelationTraverser>();
+            container.RegisterDecorator<IGraphPathNextRelationTraverser, ProfilingGraphPathNextRelationTraverser>();
+            container.RegisterDecorator<IGraphPathAllPreviousRelationTraverser, ProfilingGraphPathAllPreviousRelationTraverser>();
+            container.RegisterDecorator<IGraphPathPreviousRelationTraverser, ProfilingGraphPathPreviousRelationTraverser>();
+            container.RegisterDecorator<IGraphPathAllUpdatesRelationTraverser, ProfilingGraphPathAllUpdatesRelationTraverser>();
+            container.RegisterDecorator<IGraphPathUpdatesRelationTraverser, ProfilingGraphPathUpdatesRelationTraverser>();
+            container.RegisterDecorator<IGraphPathAllDowndatesRelationTraverser, ProfilingGraphPathAllDowndatesRelationTraverser>();
+            container.RegisterDecorator<IGraphPathDowndateRelationTraverser, ProfilingGraphPathDowndateRelationTraverser>();
+            container.RegisterDecorator<IGraphPathFinalRelationTraverser, ProfilingGraphPathFinalRelationTraverser>();
+            container.RegisterDecorator<IGraphPathOriginalRelationTraverser, ProfilingGraphPathOriginalRelationTraverser>();
+            container.RegisterDecorator<IGraphPathWildcardTraverser, ProfilingGraphPathWildcardTraverser>();
+            container.RegisterDecorator<IGraphPathConditionalTraverser, ProfilingGraphPathConditionalTraverser>();
+            container.RegisterDecorator<IGraphPathTaggedNodeTraverser, ProfilingGraphPathTaggedNodeTraverser>();
         }
     }
 }

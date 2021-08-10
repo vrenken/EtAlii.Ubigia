@@ -28,7 +28,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         /// </summary>
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; set; }
 
-        Func<Container, IInfrastructure> GetInfrastructure { get; set; }
-
+        Action<IRegisterOnlyContainer> RegisterInfrastructureService { get; set; }
     }
 }

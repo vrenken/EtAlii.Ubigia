@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             _enableCaching = enableCaching;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_enableCaching)
             {
@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
                 container.Register<IPropertyCacheProvider, PropertyCacheProvider>();
                 container.Register<IPropertyCacheHelper, PropertyCacheHelper>();
-                container.Register(() => CreatePropertyCacheContextProvider(container));
+                container.Register(CreatePropertyCacheContextProvider);
                 container.Register<IPropertiesContext, CachingPropertiesContext>();
             }
             else
@@ -34,9 +34,9 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private IPropertiesCacheContextProvider CreatePropertyCacheContextProvider(Container container)
+        private IPropertiesCacheContextProvider CreatePropertyCacheContextProvider(IServiceCollection services)
         {
-            var connection = container.GetInstance<IDataConnection>();
+            var connection = services.GetInstance<IDataConnection>();
             var context = new PropertiesContext(connection); // we need to instantiate the original ContentContext and use it in the PropertyCacheContextProvider.
             return new PropertiesCacheContextProvider(context);
         }

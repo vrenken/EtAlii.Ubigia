@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric.Diagnostics
             if (_options.InjectLogging) // logging is enabled.
             {
                 // Fabric.
-                container.RegisterDecorator(typeof(IEntryGetter), typeof(LoggingEntryGetterDecorator));
-                container.RegisterDecorator(typeof(IEntryStorer), typeof(LoggingEntryStorerDecorator));
-                container.RegisterDecorator(typeof(IEntryUpdater), typeof(LoggingEntryUpdaterDecorator));
+                container.RegisterDecorator<IEntryGetter, LoggingEntryGetterDecorator>();
+                container.RegisterDecorator<IEntryStorer, LoggingEntryStorerDecorator>();
+                container.RegisterDecorator<IEntryUpdater, LoggingEntryUpdaterDecorator>();
             }
         }
     }

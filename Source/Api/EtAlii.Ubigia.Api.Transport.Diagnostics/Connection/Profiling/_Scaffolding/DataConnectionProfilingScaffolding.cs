@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
                 container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
                 container.Register(services => services.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
-                container.RegisterDecorator(typeof(IDataConnection), typeof(ProfilingDataConnection));
-                container.RegisterDecorator(typeof(IEntryDataClient), typeof(ProfilingEntryDataClient));
+                container.RegisterDecorator<IDataConnection, ProfilingDataConnection>();
+                container.RegisterDecorator<IEntryDataClient, ProfilingEntryDataClient>();
 
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Transport.Connection));
 

@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence.Azure
         public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, AzureStorageSerializer>();
-            container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.
+            container.RegisterDecorator<IStorageSerializer, LockingStorageSerializer>(); // We need file level locking.
             container.Register<IFolderManager, AzureFolderManager>();
             container.Register<IFileManager, AzureFileManager>();
             container.Register<IPathBuilder, AzurePathBuilder>();

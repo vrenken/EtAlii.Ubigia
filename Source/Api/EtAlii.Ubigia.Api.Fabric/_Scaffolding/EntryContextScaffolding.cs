@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             _enableCaching = enableCaching;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_enableCaching)
             {
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
                 container.Register<IEntryCacheProvider, EntryCacheProvider>();
                 container.Register<IEntryCacheHelper, EntryCacheHelper>();
-                container.Register(() => CreateEntryCacheContextProvider(container));
+                container.Register(CreateEntryCacheContextProvider);
                 container.Register<IEntryContext, CachingEntryContext>();
             }
             else
@@ -38,9 +38,9 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         }
 
-        private IEntryCacheContextProvider CreateEntryCacheContextProvider(Container container)
+        private IEntryCacheContextProvider CreateEntryCacheContextProvider(IServiceCollection services)
         {
-            var connection = container.GetInstance<IDataConnection>();
+            var connection = services.GetInstance<IDataConnection>();
             var context = new EntryContext(connection); // we need to instantiate the original EntryContext and use it in the EntryCacheContextProvider.
             return new EntryCacheContextProvider(context);
         }

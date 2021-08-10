@@ -18,11 +18,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(ISpaceConnection), typeof(LoggingSpaceConnection));
-                container.RegisterDecorator(typeof(ISpaceTransport), typeof(LoggingSpaceTransport));
+                container.RegisterDecorator<ISpaceConnection, LoggingSpaceConnection>();
+                container.RegisterDecorator<ISpaceTransport, LoggingSpaceTransport>();
 
-                container.RegisterDecorator(typeof(IRootDataClient), typeof(LoggingRootDataClient));
-                container.RegisterDecorator(typeof(IEntryDataClient), typeof(LoggingEntryDataClient));
+                container.RegisterDecorator<IRootDataClient, LoggingRootDataClient>();
+                container.RegisterDecorator<IEntryDataClient, LoggingEntryDataClient>();
             }
         }
     }

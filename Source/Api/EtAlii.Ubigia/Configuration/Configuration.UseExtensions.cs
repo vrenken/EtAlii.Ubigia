@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia
 {
     using System;
     using System.Linq;
+    using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
     /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.

@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
+    using EtAlii.xTechnology.MicroContainer;
+
     public static class FabricContextOptionsDiagnosticsExtension
     {
         public static TFabricContextOptions UseFabricDiagnostics<TFabricContextOptions>(this TFabricContextOptions options)
@@ -9,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         {
             var extensions = new IExtension[]
             {
-                new LoggingFabricContextExtension(),
+                new LoggingFabricContextExtension(options.ConfigurationRoot),
             };
             return options.Use(extensions);
         }

@@ -22,10 +22,10 @@ namespace EtAlii.Ubigia.Persistence
             {
                 _logger.Verbose("Injecting blob logging decorators");
 
-                container.RegisterDecorator(typeof(IBlobStorer), typeof(LoggingBlobStorer));
-                container.RegisterDecorator(typeof(IBlobRetriever), typeof(LoggingBlobRetriever));
-                container.RegisterDecorator(typeof(IBlobPartStorer), typeof(LoggingBlobPartStorer));
-                container.RegisterDecorator(typeof(IBlobPartRetriever), typeof(LoggingBlobPartRetriever));
+                container.RegisterDecorator<IBlobStorer, LoggingBlobStorer>();
+                container.RegisterDecorator<IBlobRetriever, LoggingBlobRetriever>();
+                container.RegisterDecorator<IBlobPartStorer, LoggingBlobPartStorer>();
+                container.RegisterDecorator<IBlobPartRetriever, LoggingBlobPartRetriever>();
             }
         }
     }

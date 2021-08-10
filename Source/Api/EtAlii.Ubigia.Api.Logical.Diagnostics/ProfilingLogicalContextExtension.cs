@@ -26,14 +26,14 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
             if (options.InjectProfiling)
             {
-                container.RegisterDecorator(typeof(ILogicalContext), typeof(ProfilingLogicalContext));
+                container.RegisterDecorator<ILogicalContext, ProfilingLogicalContext>();
 
-                container.RegisterDecorator(typeof(ILogicalRootSet), typeof(ProfilingLogicalRootSet));
-                container.RegisterDecorator(typeof(IPropertiesManager), typeof(ProfilingPropertiesManager));
-                container.RegisterDecorator(typeof(ILogicalNodeSet), typeof(ProfilingLogicalNodeSet));
-                container.RegisterDecorator(typeof(IContentManager), typeof(ProfilingContentManager));
+                container.RegisterDecorator<ILogicalRootSet, ProfilingLogicalRootSet>();
+                container.RegisterDecorator<IPropertiesManager, ProfilingPropertiesManager>();
+                container.RegisterDecorator<ILogicalNodeSet, ProfilingLogicalNodeSet>();
+                container.RegisterDecorator<IContentManager, ProfilingContentManager>();
 
-                container.RegisterDecorator(typeof(IGraphPathTraverserFactory), typeof(ProfilingGraphPathTraverserFactory));
+                container.RegisterDecorator<IGraphPathTraverserFactory, ProfilingGraphPathTraverserFactory>();
 
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Logical.Context));
             }

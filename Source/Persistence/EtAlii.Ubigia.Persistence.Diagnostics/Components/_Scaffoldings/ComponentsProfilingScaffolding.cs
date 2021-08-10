@@ -22,8 +22,8 @@ namespace EtAlii.Ubigia.Persistence
             {
                 _logger.Verbose("Injecting component profiling decorators");
 
-                container.RegisterDecorator(typeof(IItemStorage), typeof(ProfilingItemStorage));
-                container.RegisterDecorator(typeof(IComponentStorage), typeof(ProfilingComponentStorage));
+                container.RegisterDecorator<IItemStorage, ProfilingItemStorage>();
+                container.RegisterDecorator<IComponentStorage, ProfilingComponentStorage>();
             }
         }
     }

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using Microsoft.Extensions.Configuration;
 
-    public class LogicalContextOptions : ILogicalContextOptions
+    public class LogicalContextOptions : ConfigurationBase, ILogicalContextOptions
     {
         /// <inheritdoc />
         public IConfigurationRoot ConfigurationRoot { get; }
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public ILogicalContextOptions Use(string name, Uri storageAddress)
+        public LogicalContextOptions Use(string name, Uri storageAddress)
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));
             StorageAddress = storageAddress ?? throw new ArgumentNullException(nameof(storageAddress));
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         }
 
         /// <inheritdoc />
-        public ILogicalContextOptions Use(IFabricContext fabric)
+        public LogicalContextOptions Use(IFabricContext fabric)
         {
 			Fabric = fabric ?? throw new ArgumentException("No fabric context specified", nameof(fabric));
 

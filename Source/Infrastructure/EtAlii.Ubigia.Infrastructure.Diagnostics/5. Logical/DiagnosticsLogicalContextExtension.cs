@@ -1,29 +1,32 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
+    using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LoggingFabricContextExtension : IFabricContextExtension
+    public class DiagnosticsLogicalContextExtension : IExtension
     {
         private readonly IConfigurationRoot _configurationRoot;
 
-        public LoggingFabricContextExtension(IConfigurationRoot configurationRoot)
+        public DiagnosticsLogicalContextExtension(IConfigurationRoot configurationRoot)
         {
             _configurationRoot = configurationRoot;
         }
 
+        /// <inheritdoc />
         public void Initialize(IRegisterOnlyContainer container)
         {
             var options = _configurationRoot
-                .GetSection("Api:Fabric:Diagnostics")
+                .GetSection("Infrastructure:Logical:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             if (options.InjectLogging)
             {
-                container.RegisterDecorator<IEntryContext, LoggingEntryContext>();
+                // Logical.
+                container.RegisterDecorator<IEntryPreparer, LoggingEntryPreparerDecorator>();
             }
         }
     }

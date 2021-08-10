@@ -79,7 +79,8 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             // Create logical context instance.
             var logicalContextOptions = new LogicalContextOptions(_configurationRoot)
                 .Use(fabric)
-                .Use(name, storageAddress);
+                .Use(name, storageAddress)
+                .UseLogicalContextDiagnostics();
             var logicalContext = new LogicalContextFactory().Create(logicalContextOptions);
 
             // Create a Infrastructure instance.
@@ -87,8 +88,9 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             var infrastructureOptions = new InfrastructureOptions(_configurationRoot, systemConnectionCreationProxy)
                 .Use(name, serviceDetails)
 	            .Use<InfrastructureOptions, SystemConnectionInfrastructure>()
-                .UseInfrastructureDiagnostics()
-                .Use(logicalContext);
+                .Use(logicalContext)
+                .UseInfrastructureDiagnostics();
+
             return new InfrastructureFactory().Create(infrastructureOptions);
         }
     }

@@ -37,17 +37,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 
         /// <inheritdoc />
-        Func<Container, IInfrastructure> IEditableInfrastructureOptions.GetInfrastructure { get; set; }
+        Action<IRegisterOnlyContainer> IEditableInfrastructureOptions.RegisterInfrastructureService { get => RegisterInfrastructureService; set => RegisterInfrastructureService = value; }
+        public Action<IRegisterOnlyContainer> RegisterInfrastructureService { get; private set; }
 
         public InfrastructureOptions(IConfigurationRoot configurationRoot, ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             ConfigurationRoot = configurationRoot;
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
-        }
-
-        public IInfrastructure GetInfrastructure(Container container)
-        {
-            return ((IEditableInfrastructureOptions)this).GetInfrastructure(container);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence.InMemory
         public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, InMemoryStorageSerializer>();
-            container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.
+            container.RegisterDecorator<IStorageSerializer, LockingStorageSerializer>(); // We need file level locking.
             container.Register<IFolderManager, InMemoryFolderManager>();
             container.Register<IFileManager, InMemoryFileManager>();
             container.Register<IPathBuilder, InMemoryPathBuilder>();

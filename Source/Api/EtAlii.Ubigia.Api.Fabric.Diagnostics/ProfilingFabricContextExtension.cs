@@ -10,20 +10,26 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
     public class ProfilingFabricContextExtension : IFabricContextExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public ProfilingFabricContextExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Fabric:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             if (options.InjectProfiling)
             {
                 container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Fabric.Context));
-                container.RegisterDecorator(typeof(IFabricContext), typeof(ProfilingFabricContext));
-                container.RegisterDecorator(typeof(IEntryCacheHelper), typeof(ProfilingEntryCacheHelper));
-                container.RegisterDecorator(typeof(IContentCacheHelper), typeof(ProfilingContentCacheHelper));
-                container.RegisterDecorator(typeof(IPropertyCacheHelper), typeof(ProfilingPropertyCacheHelper));
+                container.RegisterDecorator<IFabricContext, ProfilingFabricContext>();
+                container.RegisterDecorator<IEntryCacheHelper, ProfilingEntryCacheHelper>();
+                container.RegisterDecorator<IContentCacheHelper, ProfilingContentCacheHelper>();
+                container.RegisterDecorator<IPropertyCacheHelper, ProfilingPropertyCacheHelper>();
             }
         }
     }

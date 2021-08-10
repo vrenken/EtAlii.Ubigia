@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence
         {
             container.Register<IContainerCreator, ContainerCreator>();
             container.Register<INextContainerIdentifierAlgorithm, NextContainerIdentifierFromFolderAlgorithm>();
-            container.RegisterDecorator(typeof(INextContainerIdentifierAlgorithm), typeof(NextContainerIdentifierFromTimeAlgorithm));
+            container.RegisterDecorator<INextContainerIdentifierAlgorithm, NextContainerIdentifierFromTimeAlgorithm>();
             container.Register<ILatestEntryGetter, LatestEntryGetter>();
         }
     }

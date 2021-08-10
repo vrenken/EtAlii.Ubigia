@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia
 {
     using System;
     using System.Linq;
+    using EtAlii.xTechnology.MicroContainer;
 
     /// <summary>
     /// This is the base class for all configuration classes.

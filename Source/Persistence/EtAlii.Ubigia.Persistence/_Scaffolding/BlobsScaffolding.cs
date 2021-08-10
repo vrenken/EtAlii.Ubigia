@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Persistence
             container.Register<IBlobPartStorer, BlobPartStorer>();
             container.Register<IBlobPartRetriever, BlobPartRetriever>();
             container.Register<IBlobSummaryCalculator, BlobSummaryCalculator>();
-            container.RegisterDecorator(typeof(IBlobSummaryCalculator), typeof(LoadingBlobSummaryCalculatorDecorator));
+            container.RegisterDecorator<IBlobSummaryCalculator, LoadingBlobSummaryCalculatorDecorator>();
         }
     }
 }

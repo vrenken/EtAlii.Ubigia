@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
                 // Doesn't this pattern break with the general scaffolding principles?
                 // More details can be found in the GitHub issue below:
                 // https://github.com/vrenken/EtAlii.Ubigia/issues/88
-                container.RegisterDecorator(typeof(ILogicalRootSet), typeof(LoggingLogicalRootSet));
+                container.RegisterDecorator<ILogicalRootSet, LoggingLogicalRootSet>();
             }
         }
     }

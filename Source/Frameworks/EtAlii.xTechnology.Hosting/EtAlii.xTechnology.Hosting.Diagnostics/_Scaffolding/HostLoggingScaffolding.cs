@@ -31,7 +31,7 @@ namespace EtAlii.xTechnology.Hosting.Diagnostics
                 });
 
                 // Register for logging required DI instances.
-                container.RegisterDecorator(typeof(IInstanceCreator), typeof(LoggingInstanceCreator));
+                container.RegisterDecorator<IInstanceCreator, LoggingInstanceCreator>();
                 //container.RegisterDecorator(typeof(IHost), typeof(LoggingHost));
             }
         }

@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         {
             if (_options.InjectDebugging) // debugging is enabled
             {
-                container.RegisterDecorator(typeof(IEntryRepository), typeof(DebuggingEntryRepositoryDecorator));
+                container.RegisterDecorator<IEntryRepository, DebuggingEntryRepositoryDecorator>();
             }
         }
     }

@@ -16,7 +16,14 @@ namespace EtAlii.xTechnology.MicroContainer
     public partial class Container
     {
         /// <inheritdoc />
-        public void RegisterDecorator(Type serviceType, Type decoratorType)
+        public void RegisterDecorator<TService, TDecorator>()
+            where TService : class
+            where TDecorator : TService
+        {
+            RegisterDecorator(typeof(TService), typeof(TDecorator));
+        }
+
+        private void RegisterDecorator(Type serviceType, Type decoratorType)
         {
 #if DEBUG
             if (!serviceType.GetTypeInfo().IsInterface)

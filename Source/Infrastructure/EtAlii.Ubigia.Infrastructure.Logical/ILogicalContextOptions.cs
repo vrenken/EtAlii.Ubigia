@@ -28,8 +28,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         /// </summary>
         IFabricContext Fabric { get; }
 
-        ILogicalContextOptions Use(string name, Uri storageAddress);
+        LogicalContextOptions Use(string name, Uri storageAddress);
 
-        ILogicalContextOptions Use(IFabricContext fabric);
+        LogicalContextOptions Use(IFabricContext fabric);
     }
 }

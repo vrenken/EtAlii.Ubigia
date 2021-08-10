@@ -5,9 +5,7 @@
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
-    using System.Linq;
     using System.Reflection;
-    using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
     /// This container is build to be simple and pure. We don't want to assign too much 'lifetime' responsibilities
@@ -36,22 +34,7 @@ namespace EtAlii.xTechnology.MicroContainer
                 throw new InvalidOperationException($"Service Type should be an interface: {serviceType}");
             }
 #endif
-            var oldDescriptor = _collection.SingleOrDefault(service => service.ServiceType == serviceType);
-            if (oldDescriptor == null)
-            {
-                throw new InvalidOperationException($"Service Type initialization could not be registered: {serviceType}");
-            }
-
-            var index = _collection.IndexOf(oldDescriptor);
-
-            var newFactory = new Func<IServiceProvider, object>(provider =>
-            {
-                var instance = (TService)GetInstance(provider, oldDescriptor);
-                initializer(instance);
-                return instance!;
-            });
-
-            _collection[index] = ServiceDescriptor.Describe(serviceType, newFactory, ServiceLifetime.Singleton);
+            _initializers.Add(new ServiceInitializer<TService>(initializer));
         }
     }
 }

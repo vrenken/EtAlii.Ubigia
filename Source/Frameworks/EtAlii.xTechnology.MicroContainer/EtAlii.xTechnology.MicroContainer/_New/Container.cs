@@ -5,6 +5,7 @@
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
+    using System.Collections.Generic;
     using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ namespace EtAlii.xTechnology.MicroContainer
     {
         private readonly ServiceCollection _collection = new();
         private ServiceProvider? _serviceProvider;
+        private readonly List<ServiceInitializer> _initializers = new();
 
         /// <inheritdoc />
         public T GetInstance<T>()
@@ -27,6 +29,10 @@ namespace EtAlii.xTechnology.MicroContainer
                 throw new InvalidOperationException($"Service Type could not be instantiated: {typeof(T)}");
             }
 
+            foreach (var initializer in _initializers)
+            {
+                initializer.Initialize(_serviceProvider);
+            }
             return instance;
         }
 
@@ -105,7 +111,7 @@ namespace EtAlii.xTechnology.MicroContainer
             _collection.AddSingleton(_ => constructMethod());
         }
 
-        private object GetInstance(IServiceProvider provider, ServiceDescriptor descriptor)
+        internal object GetInstance(IServiceProvider provider, ServiceDescriptor descriptor)
         {
             if (descriptor.ImplementationInstance != null)
             {

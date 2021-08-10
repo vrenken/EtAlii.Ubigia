@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -20,12 +19,8 @@ namespace EtAlii.Ubigia.Infrastructure.Diagnostics
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(IInfrastructure), typeof(LoggingInfrastructureDecorator));
-
-                // Logical.
-                container.RegisterDecorator(typeof(IEntryPreparer), typeof(LoggingEntryPreparerDecorator));
-
-                container.RegisterDecorator(typeof(IStorageRepository), typeof(LoggingStorageRepositoryDecorator));
+                container.RegisterDecorator<IInfrastructure, LoggingInfrastructureDecorator>();
+                container.RegisterDecorator<IStorageRepository, LoggingStorageRepositoryDecorator>();
             }
         }
     }

@@ -33,8 +33,15 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             {
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");
             }
+            if (options.RegisterInfrastructureService == null)
+            {
+                throw new NotSupportedException("RegisterInfrastructureService is required to construct a Infrastructure instance");
+            }
 
             var container = new Container();
+
+            options.RegisterInfrastructureService(container);
+
             var scaffoldings = new IScaffolding[]
             {
                 new InfrastructureScaffolding(options),
@@ -52,7 +59,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
                 extension.Initialize(container);
             }
 
-            return options.GetInfrastructure(container);
+            return container.GetInstance<IInfrastructure>();
 
         }
     }

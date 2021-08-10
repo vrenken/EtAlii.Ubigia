@@ -51,16 +51,12 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         {
             var editableOptions = (IEditableInfrastructureOptions) options;
 
-            if (editableOptions.GetInfrastructure != null)
+            if (editableOptions.RegisterInfrastructureService != null)
             {
-                throw new InvalidOperationException("GetInfrastructure already set.");
+                throw new InvalidOperationException("RegisterInfrastructureService already set.");
             }
 
-            editableOptions.GetInfrastructure = container =>
-            {
-                container.Register<IInfrastructure, TInfrastructure>();
-                return container.GetInstance<IInfrastructure>();
-            };
+            editableOptions.RegisterInfrastructureService = container => container.Register<IInfrastructure, TInfrastructure>();
 
             return options;
         }

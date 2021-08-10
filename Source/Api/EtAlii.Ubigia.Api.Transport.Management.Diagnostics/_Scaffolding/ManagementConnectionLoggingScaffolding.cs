@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(IManagementConnection), typeof(LoggingManagementConnection));
+                container.RegisterDecorator<IManagementConnection, LoggingManagementConnection>();
             }
         }
     }

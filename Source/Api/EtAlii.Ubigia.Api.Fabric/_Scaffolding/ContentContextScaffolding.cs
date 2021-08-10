@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Fabric
             _enableCaching = enableCaching;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_enableCaching)
             {
@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                 container.Register<IContentCacheProvider, ContentCacheProvider>();
                 container.Register<IContentCacheHelper, ContentCacheHelper>();
                 container.Register<IContentDefinitionCacheHelper, ContentDefinitionCacheHelper>();
-                container.Register(() => CreateContentCacheContextProvider(container));
+                container.Register(CreateContentCacheContextProvider);
                 container.Register<IContentContext, CachingContentContext>();
             }
             else
@@ -40,9 +40,9 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private IContentCacheContextProvider CreateContentCacheContextProvider(Container container)
+        private IContentCacheContextProvider CreateContentCacheContextProvider(IServiceCollection services)
         {
-            var connection = container.GetInstance<IDataConnection>();
+            var connection = services.GetInstance<IDataConnection>();
             var context = new ContentContext(connection); // we need to instantiate the original ContentContext and use it in the ContentCacheContextProvider.
             return new ContentCacheContextProvider(context);
         }

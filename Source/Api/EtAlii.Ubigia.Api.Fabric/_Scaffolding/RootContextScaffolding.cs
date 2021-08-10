@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     internal class RootContextScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IRootContext, RootContext>();
         }

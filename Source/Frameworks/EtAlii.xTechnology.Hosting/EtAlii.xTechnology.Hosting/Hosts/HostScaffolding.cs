@@ -27,7 +27,7 @@ namespace EtAlii.xTechnology.Hosting
                 // During runtime, so not during testing,
                 // we want to be able to restart (and therefore replace) the host.
                 // Hence we need a HostWrapper.
-                container.RegisterDecorator(typeof(IHost), typeof(HostWrapper));
+                container.RegisterDecorator<IHost, HostWrapper>();
             }
             container.Register<IInstanceCreator, InstanceCreator>();
             container.RegisterInitializer<IHost>((services, host) =>

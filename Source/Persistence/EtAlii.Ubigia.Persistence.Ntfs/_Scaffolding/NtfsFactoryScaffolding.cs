@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Persistence.Ntfs
         public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IStorageSerializer, NtfsStorageSerializer>();
-            container.RegisterDecorator(typeof(IStorageSerializer), typeof(LockingStorageSerializer)); // We need file level locking.
+            container.RegisterDecorator<IStorageSerializer, LockingStorageSerializer>(); // We need file level locking.
             container.Register<IFolderManager, NtfsFolderManager>();
             container.Register<IFileManager, NtfsFileManager>();
             container.Register<IPathBuilder, NtfsPathBuilder>();
