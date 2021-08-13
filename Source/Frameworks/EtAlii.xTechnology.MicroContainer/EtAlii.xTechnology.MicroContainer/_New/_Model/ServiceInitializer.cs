@@ -1,5 +1,7 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+#if !USE_ORIGINAL_CONTAINER
+
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
@@ -31,3 +33,5 @@ namespace EtAlii.xTechnology.MicroContainer
         public abstract void Initialize(ServiceProvider serviceProvider);
     }
 }
+
+#endif

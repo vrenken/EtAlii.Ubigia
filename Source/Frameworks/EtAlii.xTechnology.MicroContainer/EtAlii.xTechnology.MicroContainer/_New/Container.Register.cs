@@ -1,15 +1,16 @@
-// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-#if USE_ORIGINAL_CONTAINER
+#if !USE_ORIGINAL_CONTAINER
 
 namespace EtAlii.xTechnology.MicroContainer
 {
     using System;
     using System.Linq;
     using System.Reflection;
+    using Microsoft.Extensions.DependencyInjection;
 
     public partial class Container
-	{
+    {
 
         public bool HasRegistration<TService>()
             where TService : class
@@ -21,39 +22,31 @@ namespace EtAlii.xTechnology.MicroContainer
                 throw new InvalidOperationException($"Service Type should be an interface: {serviceType}");
             }
 #endif
-            return _mappings.ContainsKey(serviceType);
+            var hasDescriptor = _collection.Any(service => service.ServiceType == serviceType);
+            return hasDescriptor;
         }
 
-	    private bool HasRegistration(Type serviceType)
-	    {
-		    if(_mappings.TryGetValue(serviceType, out var registration))
-	        {
-                return registration.ConcreteType != null || registration.ConstructMethod != null;
-            }
-            return false;
-        }
         /// <inheritdoc />
         public void Register<TService, TImplementation>()
-            where TService : class
+            where TService: class
             where TImplementation : class, TService
         {
-            var serviceType = typeof(TService);
-
 #if DEBUG
-            if (HasRegistration(serviceType))
+            if (_serviceProvider != null)
             {
-                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
+                throw new InvalidOperationException($"Service Provider already instantiated");
             }
+            var serviceType = typeof(TService);
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException($"Service Type should be an interface: {serviceType}");
             }
-#endif
-	        if (!_mappings.TryGetValue(serviceType, out var mapping))
+            if (HasRegistration<TService>())
             {
-                _mappings[serviceType] = mapping = new ContainerRegistration();
+                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
             }
-            mapping.ConcreteType = typeof(TImplementation);
+#endif
+            _collection.AddSingleton<TService, TImplementation>();
         }
 
         /// <inheritdoc />
@@ -70,23 +63,23 @@ namespace EtAlii.xTechnology.MicroContainer
             where TService : class
             where TImplementation : class, TService
         {
-            var serviceType = typeof(TService);
 #if DEBUG
-            if (HasRegistration(serviceType))
+            if (_serviceProvider != null)
             {
-                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
+                throw new InvalidOperationException($"Service Provider already instantiated");
             }
+            var serviceType = typeof(TService);
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException($"Service Type should be an interface: {serviceType}");
             }
-#endif
-	        if (!_mappings.TryGetValue(serviceType, out var mapping))
+            if (HasRegistration<TService>())
             {
-                _mappings[serviceType] = mapping = new ContainerRegistration();
+                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
             }
-            mapping.ConstructMethod = () => constructMethod()!;
-            mapping.ConcreteType = typeof(TImplementation);
+#endif
+
+            _collection.AddSingleton<TService>(_ => constructMethod());
         }
 
         /// <inheritdoc />
@@ -101,24 +94,23 @@ namespace EtAlii.xTechnology.MicroContainer
         public void Register<TService>(Func<TService> constructMethod)
             where TService : class
         {
-            var serviceType = typeof(TService);
 #if DEBUG
-            if (HasRegistration(serviceType))
+            if (_serviceProvider != null)
             {
-                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
-
+                throw new InvalidOperationException($"Service Provider already instantiated");
             }
+            var serviceType = typeof(TService);
             if (!serviceType.GetTypeInfo().IsInterface)
             {
                 throw new InvalidOperationException($"Service Type should be an interface: {serviceType}");
             }
-#endif
-	        if (!_mappings.TryGetValue(serviceType, out var mapping))
+            if (HasRegistration<TService>())
             {
-                _mappings[serviceType] = mapping = new ContainerRegistration();
+                throw new InvalidOperationException($"Service Type already registered: {serviceType}");
             }
-            mapping.ConstructMethod = () => constructMethod()!;
-            mapping.ConcreteType = typeof(TService);
+#endif
+
+            _collection.AddSingleton(_ => constructMethod());
         }
     }
 }

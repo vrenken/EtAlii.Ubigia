@@ -6,11 +6,14 @@ namespace EtAlii.xTechnology.MicroContainer
 {
 	using System;
 	using System.Collections.Generic;
+    using System.Diagnostics;
+    using System.Reflection;
 
     /// <summary>
     /// This container is build to be simple and pure. We don't want to assign too much 'lifetime' responsibilities
     /// to our DI framework. Most lifetime behavior can be solved way easier without a container.
     /// </summary>
+    [DebuggerNonUserCode]
 	public partial class Container : IRegisterOnlyContainer, IServiceCollection
 	{
         // This mapping contains the understanding of all the objects that the container can instantiate.

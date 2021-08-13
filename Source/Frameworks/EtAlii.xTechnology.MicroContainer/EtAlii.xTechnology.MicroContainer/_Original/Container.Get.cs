@@ -92,40 +92,6 @@ namespace EtAlii.xTechnology.MicroContainer
             throw new InvalidOperationException($"No mapping found for type: {type}");
         }
 
-        private object DecorateInstanceIfNeeded(ContainerRegistration mapping, object instance, List<ContainerRegistration> involvedContainerRegistrations)
-        {
-            foreach (var decoratorMapping in mapping.Decorators)
-            {
-                if (mapping.Instance == null)
-                {
-                    var newInstance = CreateInstance(decoratorMapping.DecoratorType, decoratorMapping.ServiceType, instance, involvedContainerRegistrations);
-                    mapping.Instance = newInstance;
-                }
-                instance = mapping.Instance;
-            }
-            return instance;
-        }
-
-        private void InitializeImmediately(ContainerRegistration mapping)
-        {
-            foreach (var initializer in mapping.ImmediateInitializers)
-            {
-                initializer(mapping.Instance!);
-            }
-        }
-
-        private void InitializeLazy(ContainerRegistration mapping)
-        {
-            if (!mapping.IsLazyInitialized)
-            {
-                mapping.IsLazyInitialized = true;
-                foreach (var lazyInitializer in mapping.LazyInitializers)
-                {
-                    lazyInitializer.Invoke(mapping.Instance!);
-                }
-            }
-        }
-
         /// <summary>
         /// Create an instance for the specified type. This requires instantiating its constructor parameters as well.
         /// </summary>

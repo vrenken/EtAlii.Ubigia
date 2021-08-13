@@ -26,7 +26,7 @@ namespace EtAlii.xTechnology.MicroContainer
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
         void Register<TService, TImplementation>(Func<IServiceCollection, TImplementation> constructMethod)
             where TService : class
-            where TImplementation : TService;
+            where TImplementation : class, TService;
 
         /// <summary>
         /// Register an object instantiation function that will be used to provide the concrete instance wherever the service interface is being used as
@@ -37,7 +37,7 @@ namespace EtAlii.xTechnology.MicroContainer
         /// <exception cref="InvalidOperationException">In case the service type has already been registered or when the service type is not an interface.</exception>
         void Register<TService, TImplementation>(Func<TImplementation> constructMethod)
             where TService : class
-            where TImplementation : TService;
+            where TImplementation : class, TService;
 
         /// <summary>
         /// Register an object instantiation function that will be used to provide an instance wherever the service interface is being used as
@@ -65,6 +65,9 @@ namespace EtAlii.xTechnology.MicroContainer
         void RegisterDecorator<TService, TDecorator>()
             where TService : class
             where TDecorator : TService;
+
+        bool HasRegistration<TService>()
+            where TService : class;
 
         /// <summary>
         /// Registers an initializer that will be called right after an object has been constructed.
