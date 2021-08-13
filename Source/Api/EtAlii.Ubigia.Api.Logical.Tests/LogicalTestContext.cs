@@ -20,16 +20,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             Fabric = fabric;
         }
 
-        public async Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation)
-        {
-            await Fabric.ConfigureFabricContextOptions(options, openOnCreation).ConfigureAwait(false);
-        }
-
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
-            var options = new LogicalContextOptions(ClientConfiguration)
-                .UseLogicalDiagnostics();
-            await Fabric.ConfigureFabricContextOptions(options, openOnCreation).ConfigureAwait(false);
+            var options = await new LogicalContextOptions(ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(Fabric, openOnCreation)
+                .ConfigureAwait(false);
+
             return new LogicalContextFactory().Create(options);
         }
 

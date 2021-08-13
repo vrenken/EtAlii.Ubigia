@@ -17,7 +17,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task InitializeAsync()
         {
             Fabric = new FabricTestContextFactory().Create();
-            await Fabric.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Fabric
+                .Start(UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()

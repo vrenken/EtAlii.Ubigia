@@ -29,23 +29,40 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task InitializeAsync()
         {
             Logical = new LogicalTestContextFactory().Create();
-            await Logical.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Logical
+                .Start(UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()
         {
-            await Logical.Stop().ConfigureAwait(false);
+            await Logical
+                .Stop()
+                .ConfigureAwait(false);
             Logical = null;
         }
-
-        public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, ScriptScope scope = null)
+        //
+        // public async Task<FunctionalOptions> CreateFunctionalOptions(bool openConnectionOnCreation = true)
+        // {
+        //     var logicalContext = await Logical
+        //         .CreateLogicalContext(openConnectionOnCreation)
+        //         .ConfigureAwait(false);
+        //
+        //     var options = new FunctionalOptions(ClientConfiguration)
+        //         .Use(logicalContext.Options.Connection)
+        //         .UseTestParser();
+        //
+        //     return options;
+        // }
+        //
+        public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, FunctionalScope scope = null)
         {
-            scope ??= new ScriptScope();
+            scope ??= new FunctionalScope();
             var options = new FunctionalOptions(ClientConfiguration)
-                .UseFunctionalDiagnostics()
                 .UseTestProcessor()
-                .Use(logicalContext)
-                .Use(scope);
+                .Use(logicalContext.Options.Connection)
+                .Use(scope)
+                .UseFunctionalDiagnostics();
             return new ScriptProcessorFactory().Create(options);
         }
     }

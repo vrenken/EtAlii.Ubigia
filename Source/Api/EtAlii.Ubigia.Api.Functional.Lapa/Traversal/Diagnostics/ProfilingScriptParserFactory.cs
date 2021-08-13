@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public IScriptParser Create(IFunctionalOptions options)
         {
-            options.Use(new IScriptParserExtension[]
+            options.Use(new IFunctionalExtension[]
             {
                 new ProfilingScriptParserExtension(_profiler),
             });

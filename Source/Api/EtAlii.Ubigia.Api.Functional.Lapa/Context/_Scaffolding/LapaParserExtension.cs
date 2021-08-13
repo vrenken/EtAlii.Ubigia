@@ -6,23 +6,30 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaGraphContextExtension : IGraphContextExtension
+    internal class LapaParserExtension : IFunctionalExtension
     {
         private readonly FunctionalOptions _options;
 
-        public LapaGraphContextExtension(FunctionalOptions options)
+        public LapaParserExtension(FunctionalOptions options)
         {
             _options = options;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             container.Register<IFunctionalOptions>(() => _options);
 
+            new LapaSchemaParserScaffolding().Register(container);
+            new LapaScriptParserScaffolding().Register(container);
+
+            new LapaSequenceParsingScaffolding().Register(container);
+            new LapaSubjectParsingScaffolding().Register(container);
+            new LapaOperatorParsingScaffolding().Register(container);
+            new LapaPathSubjectParsingScaffolding().Register(container);
+            new LapaConstantParsingScaffolding().Register(container);
+
             container.Register<ISchemaProcessorFactory, LapaSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, LapaSchemaParserFactory>();
-
-            container.Register(() => new TraversalContextFactory().Create(_options));
 
             container.Register(() => new LogicalContextFactory().Create(_options));
         }

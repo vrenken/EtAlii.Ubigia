@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -20,25 +19,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             Logical = logical;
         }
-
-//        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
-//        [
-//            var logicalContext = await _logical.CreateLogicalContext(openOnCreation)
-//            var options = new DataContextOptions()
-//                .Use(_diagnostics)
-//                .Use(logicalContext)
-//            return new DataContextFactory().Create(options)
-//        ]
-
-        public Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation)
-        {
-            return Logical.ConfigureLogicalContextOptions(options, openOnCreation);
-        }
-
-//        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
-//        {
-//            return await _logical.CreateLogicalContext(openOnCreation).ConfigureAwait(false);
-//        }
 
         public async Task AddPeople(ITraversalContext context)
         {
@@ -222,7 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             await context.Process(addQuery);
 
 //            var testQuery = context.Parse("person:Stark/Tony")
-//            var testResult = await context.Process(testQuery.Script, new ScriptScope())
+//            var testResult = await context.Process(testQuery.Script, new FunctionalScope())
 //            var result = await testResult.Output.ToArray()
 //            var result = context.Scripts.Process(addQuery)
 //

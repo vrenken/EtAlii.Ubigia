@@ -6,12 +6,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LoggingGraphContextExtension : IGraphContextExtension
+    public class LoggingGraphContextExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public LoggingGraphContextExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

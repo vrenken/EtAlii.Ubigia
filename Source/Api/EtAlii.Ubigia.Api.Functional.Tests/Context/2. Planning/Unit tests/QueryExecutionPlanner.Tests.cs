@@ -3,43 +3,53 @@
 namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using System.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
     using Xunit;
 
     [CorrelateUnitTests]
-    public class QueryExecutionPlannerTests
+    public class QueryExecutionPlannerTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
 
-        private ISchemaExecutionPlanner CreatePlanner()
+        public QueryExecutionPlannerTests(TraversalUnitTestContext testContext)
         {
-            var configurationRoot = new ConfigurationBuilder().Build();
-            var options = new FunctionalOptions(configurationRoot);
+            _testContext = testContext;
+        }
+
+        private async Task<ISchemaExecutionPlanner> CreatePlanner()
+        {
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
+
             var container = new Container();
-            new SchemaExecutionPlanningScaffolding().Register(container);
-            new SchemaProcessingScaffolding(options).Register(container);
+            new CommonFunctionalExtension(options).Initialize(container);
             return container.GetInstance<ISchemaExecutionPlanner>();
         }
 
         [Fact]
-        public void QueryExecutionPlanner_Create()
+        public async Task QueryExecutionPlanner_Create()
         {
             // Arrange.
 
             // Act.
-            var planner = CreatePlanner();
+            var planner = await CreatePlanner().ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(planner);
         }
 
         [Fact]
-        public void QueryExecutionPlanner_Plan_Simple_00()
+        public async Task QueryExecutionPlanner_Plan_Simple_00()
         {
             // Arrange.
             var parser = new TestSchemaParserFactory().Create();
-            var planner = CreatePlanner();
+            var planner = await CreatePlanner().ConfigureAwait(false);
 
             var queryText = @"
             Person = @node(person:Doe/John)

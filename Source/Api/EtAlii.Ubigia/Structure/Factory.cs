@@ -57,12 +57,12 @@ namespace EtAlii.Ubigia
         /// This allows for more advanced DI initialization approaches.
         /// </summary>
         /// <param name="instance"></param>
-        /// <param name="container"></param>
-        protected virtual void InitializeInstance(TInstance instance, Container container)
+        /// <param name="services"></param>
+        protected virtual void InitializeInstance(TInstance instance, IServiceCollection services)
         {
         }
 
-        protected virtual void Initialize(Container container, TInstanceConfiguration configuration)
+        protected virtual void Initialize(IRegisterOnlyContainer container, TInstanceConfiguration configuration)
         {
         }
     }

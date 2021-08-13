@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -14,8 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
         public IConfigurationRoot ClientConfiguration { get; }
         public IConfigurationRoot HostConfiguration { get; }
-
-        Task ConfigureLogicalContextOptions(LogicalContextOptions options, bool openOnCreation);
 
         Task AddPeople(ITraversalContext context);
         Task AddAddresses(ITraversalContext context);

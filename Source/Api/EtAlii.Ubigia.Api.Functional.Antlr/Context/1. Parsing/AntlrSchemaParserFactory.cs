@@ -2,17 +2,15 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
 {
+    using System;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class AntlrSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, ISchemaParserExtension>, ISchemaParserFactory
+    public class AntlrSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, IFunctionalExtension>, ISchemaParserFactory
     {
         protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
-            return new IScaffolding[]
-            {
-                new AntlrSchemaParserScaffolding(),
-            };
+            return Array.Empty<IScaffolding>();
         }
     }
 }

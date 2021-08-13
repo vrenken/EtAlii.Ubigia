@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptExecutionPlanningScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IScriptExecutionPlanner, ScriptExecutionPlanner>();
             container.Register<ISequenceExecutionPlanner, SequenceExecutionPlanner>();

@@ -4,35 +4,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class TraversalContext : ITraversalContext
     {
-        private readonly IFunctionalOptions _options;
-        private readonly IFunctionHandlersProvider _functionHandlersProvider;
-        private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
+        private readonly FunctionalOptions _options;
         private readonly IScriptProcessorFactory _scriptProcessorFactory;
         private readonly IScriptParserFactory _scriptParserFactory;
-        private readonly ILogicalContext _logicalContext;
-
-        public Func<TraversalProcessorOptions> ProcessorOptionsProvider { get; }
 
         public TraversalContext(
-            IFunctionalOptions options,
-            Func<TraversalProcessorOptions> traversalProcessorOptionsProvider,
-            IFunctionHandlersProvider functionHandlersProvider,
-            IRootHandlerMappersProvider rootHandlerMappersProvider,
+            FunctionalOptions options,
             IScriptProcessorFactory scriptProcessorFactory,
-            IScriptParserFactory scriptParserFactory,
-            ILogicalContext logicalContext)
+            IScriptParserFactory scriptParserFactory)
         {
-            ProcessorOptionsProvider = traversalProcessorOptionsProvider;
             _options = options;
-            _functionHandlersProvider = functionHandlersProvider;
-            _rootHandlerMappersProvider = rootHandlerMappersProvider;
             _scriptProcessorFactory = scriptProcessorFactory;
             _scriptParserFactory = scriptParserFactory;
-            _logicalContext = logicalContext;
         }
 
         public ScriptParseResult Parse(string text)
@@ -43,11 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope)
         {
-            var options = ProcessorOptionsProvider()
-                .Use(_logicalContext)
-                .Use(_functionHandlersProvider)
-                .Use(_rootHandlerMappersProvider)
-                .Use(scope);
+            var options = _options.CreateScope(scope);
             var processor = _scriptProcessorFactory.Create(options);
             return processor.Process(script);
         }

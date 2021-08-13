@@ -36,15 +36,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Advanced_Create()
         {
             // Arrange.
-            using var logicalContext = await _testContext.Logical
-                .CreateLogicalContext(true)
-                .ConfigureAwait(false);
-            var scope = new ScriptScope();
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseFunctionalDiagnostics()
+            var scope = new FunctionalScope();
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestProcessor()
                 .Use(scope)
-                .Use(logicalContext);
+                .UseFunctionalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var processor = new ScriptProcessorFactory().Create(options);

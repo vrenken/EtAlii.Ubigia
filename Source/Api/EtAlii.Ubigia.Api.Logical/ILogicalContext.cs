@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical
         /// <summary>
         /// The Options used to instantiate this Context.
         /// </summary>
-        ILogicalContextOptions Options { get; }
+        LogicalContextOptions Options { get; }
 
         /// <summary>
         /// The Nodes property provides logical access to graph nodes.

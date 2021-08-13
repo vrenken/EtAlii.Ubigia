@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Threading;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptProcessingLoggingScaffolding : IScaffolding
@@ -15,19 +14,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(IScriptProcessor), typeof(LoggingScriptProcessor));
+                container.RegisterDecorator<IScriptProcessor, LoggingScriptProcessor>();
 
-                container.RegisterDecorator(typeof(IAbsolutePathSubjectProcessor), typeof(LoggingAbsolutePathSubjectProcessor));
-                container.RegisterDecorator(typeof(IRelativePathSubjectProcessor), typeof(LoggingRelativePathSubjectProcessor));
-                container.RegisterDecorator(typeof(IRootedPathSubjectProcessor), typeof(LoggingRootedPathSubjectProcessor));
+                container.RegisterDecorator<IAbsolutePathSubjectProcessor, LoggingAbsolutePathSubjectProcessor>();
+                container.RegisterDecorator<IRelativePathSubjectProcessor, LoggingRelativePathSubjectProcessor>();
+                container.RegisterDecorator<IRootedPathSubjectProcessor, LoggingRootedPathSubjectProcessor>();
 
-                container.RegisterDecorator(typeof(IRootPathProcessor), typeof(LoggingRootPathProcessor));
-
-                container.Register<IContextCorrelator, ContextCorrelator>();
+                container.RegisterDecorator<IRootPathProcessor, LoggingRootPathProcessor>();
             }
         }
     }

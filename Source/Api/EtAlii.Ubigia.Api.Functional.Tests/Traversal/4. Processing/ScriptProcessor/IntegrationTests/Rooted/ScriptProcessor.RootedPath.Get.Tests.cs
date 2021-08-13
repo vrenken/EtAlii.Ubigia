@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         //        "$var1"
         //    ]
         //    var script = _parser.Parse(queries).Script
-        //    var scope = new ScriptScope()
+        //    var scope = new FunctionalScope()
         //    var options = new ScriptProcessorOptions()
         //        .Use(_diagnostics)
         //        .Use(scope)

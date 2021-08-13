@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class LapaOperatorParsingScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             // Operators
             container.Register<IOperatorsParser, OperatorsParser>();

@@ -2,45 +2,25 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.Extensions.Configuration;
 
     internal class TestSequencePartExecutionPlannerSelector
     {
-        public static ISequencePartExecutionPlannerSelector Create(IConfigurationRoot configurationRoot)
+        public static async Task<ISequencePartExecutionPlannerSelector> Create(ILogicalTestContext testContext)
         {
             var container = new Container();
 
-            var options = new TraversalProcessorOptions(configurationRoot);
+            var options = await new FunctionalOptions(testContext.ClientConfiguration)
+                .UseTestParser()
+                .UseDataConnectionToNewSpace(testContext, true)
+                .ConfigureAwait(false);
 
-            var scaffoldings = new IScaffolding[]
+            foreach (var extension in ((IExtensible)options).Extensions)
             {
-                new ScriptProcessingScaffolding(options),
-                new ScriptExecutionPlanningScaffolding(),
-                new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
-                new RootProcessingScaffolding(options.RootHandlerMappersProvider),
-                new PathBuildingScaffolding(),
-                new OperatorProcessingScaffolding(),
-                new ProcessingSelectorsScaffolding(),
-                new FunctionSubjectProcessingScaffolding(),
-
-                // Script Parsing
-                // TODO: These should actually be converted into a single+dedicated LapaScriptParser instance registration.
-                // However, for now this move is too big.
-                new LapaScriptParserScaffolding(),
-                new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantParsingScaffolding(),
-                new LapaSequenceParsingScaffolding(),
-                new LapaSubjectParsingScaffolding(),
-                new LapaOperatorParsingScaffolding(),
-
-            };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
+                extension.Initialize(container);
             }
-
             return container.GetInstance<ISequencePartExecutionPlannerSelector>();
         }
     }

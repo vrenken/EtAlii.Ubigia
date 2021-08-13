@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new { ObjectType = "Family" };
             dynamic secondVariable = new { ObjectType = "Person" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new {ObjectType = "Family"};
             dynamic secondVariable = new {ObjectType = "Family"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new {ObjectType = "Family", Code = "ABC"};
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new {ObjectType = "Family"};
             dynamic secondVariable = new {ObjectType = "Person", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -232,7 +232,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new {ObjectType = "Family", Code = "ABC"};
             dynamic secondVariable = new {ObjectType = "Family", Code = "ABC"};
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -282,7 +282,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new { ObjectType = "Family", Code = "ABC" };
             dynamic secondVariable = new { ObjectType = "Family" };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -333,7 +333,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new { ObjectType = (string)null, Code = (string)null };
             dynamic secondVariable = new { ObjectType = (string)null, Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
@@ -384,7 +384,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             dynamic firstVariable = new { ObjectType = "TEST", Code = (string)null };
             dynamic secondVariable = new { ObjectType = "TEST", Code = (string)null };
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));

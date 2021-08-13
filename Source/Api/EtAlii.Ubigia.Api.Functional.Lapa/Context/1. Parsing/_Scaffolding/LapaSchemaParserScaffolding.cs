@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class LapaSchemaParserScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<INodeAnnotationsParser, NodeAnnotationsParser>();
             container.Register<IValueAnnotationsParser, ValueAnnotationsParser>();
@@ -16,9 +16,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IRequirementParser, RequirementParser>();
 
             container.Register<IAssignmentParser, AssignmentParser>();
-            container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser =>
+            container.RegisterInitializer<IKeyValuePairParser>((services, keyValuePairParser) =>
             {
-                var assignmentParser = container.GetInstance<IAssignmentParser>();
+                var assignmentParser = services.GetInstance<IAssignmentParser>();
                 ((KeyValuePairParser) keyValuePairParser).Initialize(assignmentParser.Parser);
             });
 

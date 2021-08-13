@@ -28,7 +28,7 @@
     <LangVersion>9</LangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 
-    <NoWarn>CA1822</NoWarn> <!-- [CA1822] Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. -->
+    <NoWarn>$(NoWarn);CA1822</NoWarn> <!-- [CA1822] Mark members as static, however as we aim to use as few static keywords as possible this is a false alarm. -->
     <NoWarn>$(NoWarn);AD0001</NoWarn> <!-- In SonarQube step of the build process: CSC : warning AD0001: Analyzer 'SonarAnalyzer.Rules.CSharp.CbdeHandlerRule' threw an exception of type 'SonarAnalyzer.CBDE.CbdeException' with message 'Top level error in CBDE handling -->
 
 
@@ -45,20 +45,15 @@
     <AnalysisLevel>5.0</AnalysisLevel>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Original = original implementation. -->
-    <!-- new      = wrapper around Microsoft.Extensions.DependencyInjection. -->
-    <!--    <DefineConstants>USE_ORIGINAL_CONTAINER</DefineConstants>-->
-  </ItemGroup>
+  <PropertyGroup>
+    <!--<DefineConstants>$(DefineConstants);USE_ORIGINAL_CONTAINER</DefineConstants>-->   <!-- = original implementation. -->
+    <DefineConstants>$(DefineConstants);USE_WRAPPER_CONTAINER</DefineConstants>           <!-- = wrapper around Microsoft.Extensions.DependencyInjection. -->
+  </PropertyGroup>
 
   <ItemGroup>
 <!--    <PackageReference Include="Meziantou.Analyzer" Version="1.0.612" >-->
 <!--      <PrivateAssets>all</PrivateAssets>-->
 <!--      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
-<!--    </PackageReference>-->
-<!--    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.8.0">-->
-<!--      <PrivateAssets>all</PrivateAssets>-->
-<!--      <IncludeAssets>analyzers</IncludeAssets>-->
 <!--    </PackageReference>-->
 <!--    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.14.0.22654">-->
 <!--      <PrivateAssets>all</PrivateAssets>-->

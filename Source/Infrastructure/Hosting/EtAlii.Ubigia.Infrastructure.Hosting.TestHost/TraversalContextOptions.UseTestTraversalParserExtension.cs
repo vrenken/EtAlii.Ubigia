@@ -10,19 +10,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// </summary>
     public static class TraversalContextOptionsUseTestParserExtension
     {
+        // TODO: is this file in the right project?
+
         /// <summary>
         /// Use the text parser configured for testing.
         /// </summary>
         /// <param name="options"></param>
         /// <typeparam name="TFunctionalOptions"></typeparam>
         /// <returns></returns>
-        public static TFunctionalOptions UseTestTraversalParser<TFunctionalOptions>(this TFunctionalOptions options)
+        public static TFunctionalOptions UseTestParsing<TFunctionalOptions>(this TFunctionalOptions options)
             where TFunctionalOptions : FunctionalOptions
         {
 #if USE_LAPA_PARSER_IN_TESTS
             return options.UseLapaParser();
 #else
-            return options.UseAntlrParser();
+            return options.UseAntlrParsing();
 #endif
         }
 

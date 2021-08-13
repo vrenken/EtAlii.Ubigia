@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person" }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person", Code = "ABC" }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Person", Code = "ABC" }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -226,7 +226,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -274,7 +274,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "Family", Code = "ABC" }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "Family", }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -323,7 +323,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = (string)null, Code = (string)null }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = (string)null, Code = (string)null }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
@@ -373,7 +373,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var assignScript2 = _parser.Parse(assignQuery2).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
 
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             scope.Variables.Add("first", new ScopeVariable(new { ObjectType = "TEST", Code = (string)null }, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(new { ObjectType = "TEST", Code = (string)null }, "Variable"));
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);

@@ -14,11 +14,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(IScriptExecutionPlanner), typeof(LoggingScriptExecutionPlanner));
+                container.RegisterDecorator<IScriptExecutionPlanner, LoggingScriptExecutionPlanner>();
             }
         }
     }

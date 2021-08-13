@@ -9,6 +9,7 @@
     <Import_RootNamespace>EtAlii.Ubigia.Functional.Scripting.Traversal.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionalOptions.UseDataConnectionToNewSpace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\ContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\HierarchicalContentManager.Tests.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\_Model\TestRootHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\GraphContextCode.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\GraphContextCode.Queries.Variable.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\UserPocoObject.cs" />
@@ -120,7 +122,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\GraphContextOptions.UseTestParserExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\TestSchemaParserFactory.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\ParserOptions.UseTestParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalProcessorOptions.UseTestProcessor.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TraversalUnitTestContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">

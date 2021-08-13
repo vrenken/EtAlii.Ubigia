@@ -2,38 +2,38 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptProcessorFactory : Factory<IScriptProcessor, TraversalProcessorOptions, IScriptProcessorExtension>, IScriptProcessorFactory
+    internal class ScriptProcessorFactory : Factory<IScriptProcessor, FunctionalOptions, IFunctionalExtension>, IScriptProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(TraversalProcessorOptions options)
+        // TODO: Should we remove the ScriptParserFactory and use an injected IScriptParser singleton instance instead?
+
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
-            return new IScaffolding[]
-            {
-                new ScriptProcessingScaffolding(options),
-                new ScriptExecutionPlanningScaffolding(),
-                new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
-                new RootProcessingScaffolding(options.RootHandlerMappersProvider),
-                new PathBuildingScaffolding(),
-                new OperatorProcessingScaffolding(),
-                new ProcessingSelectorsScaffolding(),
-                new FunctionSubjectProcessingScaffolding(),
-            };
+            return Array.Empty<IScaffolding>();
         }
 
-        protected override void InitializeInstance(IScriptProcessor instance, Container container)
+        protected override void InitializeInstance(IScriptProcessor instance, IServiceCollection services)
         {
-            var pathProcessor = container.GetInstance<IPathProcessor>();
-            var pathSubjectToGraphPathConverter = container.GetInstance<IPathSubjectToGraphPathConverter>();
+            var pathProcessor = services.GetInstance<IPathProcessor>();
+            var pathSubjectToGraphPathConverter = services.GetInstance<IPathSubjectToGraphPathConverter>();
 
-            var absolutePathSubjectProcessor = container.GetInstance<IAbsolutePathSubjectProcessor>();
-            var relativePathSubjectProcessor = container.GetInstance<IRelativePathSubjectProcessor>();
-            var rootedPathSubjectProcessor = container.GetInstance<IRootedPathSubjectProcessor>();
+            var absolutePathSubjectProcessor = services.GetInstance<IAbsolutePathSubjectProcessor>();
+            var relativePathSubjectProcessor = services.GetInstance<IRelativePathSubjectProcessor>();
+            var rootedPathSubjectProcessor = services.GetInstance<IRootedPathSubjectProcessor>();
 
-            var pathSubjectForOutputConverter = container.GetInstance<IPathSubjectForOutputConverter>();
-            var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>();
+            var pathSubjectForOutputConverter = services.GetInstance<IPathSubjectForOutputConverter>();
+            var addRelativePathToExistingPathProcessor = services.GetInstance<IAddRelativePathToExistingPathProcessor>();
 
-            container.GetInstance<IScriptProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor);
+            services.GetInstance<IScriptProcessingContext>().Initialize(
+                pathSubjectToGraphPathConverter,
+                absolutePathSubjectProcessor,
+                relativePathSubjectProcessor,
+                rootedPathSubjectProcessor,
+                pathProcessor,
+                pathSubjectForOutputConverter,
+                addRelativePathToExistingPathProcessor);
         }
     }
 }

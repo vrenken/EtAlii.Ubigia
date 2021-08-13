@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class OperatorProcessingScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             // Processing.
             container.Register<IAssignOperatorProcessor, AssignOperatorProcessor>();

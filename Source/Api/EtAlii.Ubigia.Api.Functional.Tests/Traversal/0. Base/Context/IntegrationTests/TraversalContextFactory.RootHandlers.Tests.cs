@@ -20,9 +20,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser();
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -35,9 +36,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create_With_RootHandler_None()
         {
             // Arrange.
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser();
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -53,10 +55,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappers = new IRootHandlerMapper[] { new TestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
-                .Use(rootHandlerMappersProvider);
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .Use(rootHandlerMappersProvider)
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -72,10 +75,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappers = new IRootHandlerMapper[] { new InvalidTestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
-                .Use(rootHandlerMappersProvider);
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .Use(rootHandlerMappersProvider)
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>
@@ -98,10 +102,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
-                .Use(rootHandlerMappersProvider);
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .Use(rootHandlerMappersProvider)
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -121,10 +126,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
-                .Use(rootHandlerMappersProvider);
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParser()
+                .Use(rootHandlerMappersProvider)
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var act = new Action(() =>

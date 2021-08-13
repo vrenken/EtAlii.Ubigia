@@ -8,13 +8,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         public ISchemaParser Create()
         {
-            var options = new FunctionalContextOptions().UseLapa();
+            var options = new FunctionalContextOptions().UseLapaParsing();
             return base.Create(options);
         }
     }
 #else
+    using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
     using Microsoft.Extensions.Configuration;
 
     internal class TestSchemaParserFactory : AntlrSchemaParserFactory
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 .Build();
 
             var options = new FunctionalOptions(configurationRoot)
-                .UseAntlr();
+                .UseAntlrParsing();
             return base.Create(options);
         }
     }

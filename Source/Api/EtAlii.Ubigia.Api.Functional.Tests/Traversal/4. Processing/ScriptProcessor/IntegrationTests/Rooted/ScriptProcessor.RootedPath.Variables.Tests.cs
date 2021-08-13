@@ -49,11 +49,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var addScript = _parser.Parse(addQueries).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
-            var scriptScope = new ScriptScope();
-            scriptScope.Variables.Add("lastName", new ScopeVariable("Doe", null));
-            scriptScope.Variables.Add("firstName", new ScopeVariable("John", null));
+            var scope = new FunctionalScope();
+            scope.Variables.Add("lastName", new ScopeVariable("Doe", null));
+            scope.Variables.Add("firstName", new ScopeVariable("John", null));
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scriptScope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.
             var lastSequence = await processor.Process(addScript);

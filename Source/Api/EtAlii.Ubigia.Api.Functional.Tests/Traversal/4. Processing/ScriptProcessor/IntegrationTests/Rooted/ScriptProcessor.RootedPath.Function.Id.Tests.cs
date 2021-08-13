@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "$var1 <= Person: += Doe/Jane\r\n$var2 <= id(Person:Doe/Jane)";
             var script = _parser.Parse(query).Script;
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
             var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
 
             // Act.

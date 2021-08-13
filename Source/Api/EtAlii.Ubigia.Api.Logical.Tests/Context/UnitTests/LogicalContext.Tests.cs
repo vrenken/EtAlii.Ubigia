@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
+    using System.Threading.Tasks;
     using Xunit;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Tests;
@@ -17,11 +18,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void LogicalContext_Create()
+        public async Task LogicalContext_Create()
         {
             // Arrange.
-            var options = new LogicalContextOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics();
+            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var context = new LogicalContextFactory().Create(options);
@@ -31,11 +34,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void LogicalContext_Dispose()
+        public async Task LogicalContext_Dispose()
         {
             // Arrange.
-            var options = new LogicalContextOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics();
+            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             using var context = new LogicalContextFactory().Create(options);
@@ -45,11 +50,13 @@ namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void LogicalContext_Create_Check_Components()
+        public async Task LogicalContext_Create_Check_Components()
         {
             // Arrange.
-            var options = new LogicalContextOptions(_testContext.ClientConfiguration)
-                .UseLogicalDiagnostics();
+            var options = await new LogicalContextOptions(_testContext.ClientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
 
             // Act.
             var context = new LogicalContextFactory().Create(options);

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IRootPathProcessor, RootPathProcessor>();
             container.Register<IRootHandlerMapperFinder, RootHandlerMapperFinder>();
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<IIdentifierRootHandlerPathPartMatcher, IdentifierRootHandlerPathPartMatcher>();
 
             container.Register<IRootHandlerMapperFactory, RootHandlerMapperFactory>();
-            container.Register(() => GetRootHandlerMappersProvider(container));
+            container.Register(GetRootHandlerMappersProvider);
 
         }
     }

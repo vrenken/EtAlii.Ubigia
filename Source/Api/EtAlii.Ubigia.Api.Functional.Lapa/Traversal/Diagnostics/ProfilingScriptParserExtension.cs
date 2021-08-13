@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingScriptParserExtension : IScriptParserExtension
+    public class ProfilingScriptParserExtension : IFunctionalExtension
     {
         private readonly IProfiler _profiler;
 
@@ -14,13 +14,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _profiler = profiler;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             container.Register(() => _profiler);
-            container.RegisterDecorator(typeof(IScriptParser), typeof(ProfilingScriptParser));
-            container.RegisterDecorator(typeof(IPathParser), typeof(ProfilingPathParser));
-            container.RegisterDecorator(typeof(ISequenceParser), typeof(ProfilingSequenceParser));
-            container.RegisterDecorator(typeof(INonRootedPathSubjectParser), typeof(ProfilingNonRootedPathSubjectParser));
+            container.RegisterDecorator<IScriptParser, ProfilingScriptParser>();
+            container.RegisterDecorator<IPathParser, ProfilingPathParser>();
+            container.RegisterDecorator<ISequenceParser, ProfilingSequenceParser>();
+            container.RegisterDecorator<INonRootedPathSubjectParser, ProfilingNonRootedPathSubjectParser>();
         }
     }
 }

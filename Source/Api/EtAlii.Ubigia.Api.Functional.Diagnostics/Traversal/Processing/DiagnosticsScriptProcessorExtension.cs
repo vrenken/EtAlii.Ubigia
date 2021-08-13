@@ -6,17 +6,24 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class DiagnosticsScriptProcessorExtension : IScriptProcessorExtension
+    public class DiagnosticsScriptProcessorExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public DiagnosticsScriptProcessorExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             var scaffoldings = new IScaffolding[]
             {
+                new ScriptProcessingDiagnosticsScaffolding(options),
                 new ScriptProcessingLoggingScaffolding(options),
                 new ScriptProcessingProfilingScaffolding(options),
                 new ScriptProcessingDebuggingScaffolding(options),

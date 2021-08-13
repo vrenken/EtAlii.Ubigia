@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             // We don't have access to the configuration root yet.
             var options = new FunctionalOptions(null)
-                .UseAntlrParser()
+                .UseAntlrParsing()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             foreach (var rootToCreate in rootsToCreate)
             {
-                var scope = new ScriptScope();
+                var scope = new FunctionalScope();
                 var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object");
                 var processingResult = await scriptContext.Process(createScript.Script, scope);
                 await processingResult.Output.LastOrDefaultAsync();

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class LapaSubjectParsingScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ISubjectsParser, SubjectsParser>();
             container.Register<IVariableSubjectParser, VariableSubjectParser>();

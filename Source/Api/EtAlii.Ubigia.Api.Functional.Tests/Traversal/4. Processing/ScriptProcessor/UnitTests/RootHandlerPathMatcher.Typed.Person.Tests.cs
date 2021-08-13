@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -152,7 +152,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -195,7 +195,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -207,7 +207,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -234,7 +234,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(NamePathFormatter.LastNameFormatter),
@@ -250,7 +250,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -262,7 +262,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptScope = new ScriptScope();
+            var functionalScope = new FunctionalScope();
             var template = new PathSubjectPart[]
             {
                 new ParentPathSubjectPart(), new TypedPathSubjectPart(TextPathFormatter.NumberFormatter),
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);

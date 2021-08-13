@@ -13,11 +13,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     internal class ScriptProcessor : IScriptProcessor
     {
         private readonly IScriptExecutionPlanner _scriptExecutionPlanner;
-        private readonly ITraversalProcessorOptions _options;
+        private readonly IFunctionalOptions _options;
 
         public ScriptProcessor(
             IScriptExecutionPlanner scriptExecutionPlanner,
-            ITraversalProcessorOptions options)
+            IFunctionalOptions options)
         {
             _scriptExecutionPlanner = scriptExecutionPlanner;
             _options = options;

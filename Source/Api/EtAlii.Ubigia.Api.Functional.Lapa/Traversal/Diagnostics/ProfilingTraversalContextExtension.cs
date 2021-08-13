@@ -5,15 +5,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingTraversalContextExtension : ITraversalContextExtension
+    public class ProfilingTraversalContextExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
-            container.RegisterDecorator(typeof(ITraversalContext), typeof(ProfilingTraversalContext));
+            container.RegisterDecorator<ITraversalContext, ProfilingTraversalContext>();
 
-            container.RegisterDecorator(typeof(IScriptProcessorFactory), typeof(ProfilingScriptProcessorFactory));
-            container.RegisterDecorator(typeof(IScriptParserFactory), typeof(ProfilingScriptParserFactory));
-            container.RegisterDecorator(typeof(IPathParserFactory), typeof(ProfilingPathParserFactory));
+            container.RegisterDecorator<IScriptProcessorFactory, ProfilingScriptProcessorFactory>();
+            container.RegisterDecorator<IScriptParserFactory, ProfilingScriptParserFactory>();
 
             container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.TraversalContext));
         }

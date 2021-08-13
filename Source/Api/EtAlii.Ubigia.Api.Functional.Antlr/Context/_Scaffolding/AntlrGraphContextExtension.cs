@@ -3,11 +3,10 @@
 namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
 {
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntlrGraphContextExtension : IGraphContextExtension
+    internal class AntlrGraphContextExtension : IFunctionalExtension
     {
         private readonly FunctionalOptions _options;
 
@@ -16,15 +15,11 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
             _options = options;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             container.Register<IFunctionalOptions>(() => _options);
-
             container.Register<ISchemaProcessorFactory, AntlrSchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, AntlrSchemaParserFactory>();
-
-            container.Register(() => new TraversalContextFactory().Create(_options));
-
             container.Register(() => new LogicalContextFactory().Create(_options));
         }
     }

@@ -11,8 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         private readonly ITraversalContext _decoree;
         public IProfiler Profiler { get; }
 
-        public Func<TraversalProcessorOptions> ProcessorOptionsProvider => _decoree.ProcessorOptionsProvider;
-
         public ProfilingTraversalContext(
             ITraversalContext decoree,
             IProfiler profiler)

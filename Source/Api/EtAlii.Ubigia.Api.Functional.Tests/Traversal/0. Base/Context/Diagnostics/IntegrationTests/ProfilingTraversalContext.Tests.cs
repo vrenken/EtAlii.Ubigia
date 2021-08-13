@@ -1,5 +1,7 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
+#if USE_LAPA_PARSER_IN_TESTS
+
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
@@ -31,7 +33,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
                 .UseTraversalProfiling();
-            await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
+            await _testContext.Logical
+                .ConfigureLogicalContextOptions(options, true)
+                .ConfigureAwait(false);
 
             // Act.
             var context = new TraversalContextFactory().Create(options);
@@ -46,8 +50,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
-                .UseFunctionalDiagnostics()
-                .UseTraversalProfiling();
+                .UseTraversalProfiling()
+                .UseFunctionalDiagnostics();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 
             // Act.
@@ -63,8 +67,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestTraversalParser()
-                .UseFunctionalDiagnostics()
-                .UseTraversalProfiling();
+                .UseTraversalProfiling()
+                .UseFunctionalDiagnostics();
             await _testContext.Logical.ConfigureLogicalContextOptions(options, true).ConfigureAwait(false);
 
             // Act.
@@ -75,3 +79,5 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         }
     }
 }
+
+#endif

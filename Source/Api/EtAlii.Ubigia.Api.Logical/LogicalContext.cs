@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical
     internal class LogicalContext : ILogicalContext
     {
         /// <inheritdoc/>
-        public ILogicalContextOptions Options { get; }
+        public LogicalContextOptions Options { get; }
 
         /// <inheritdoc/>
         public ILogicalNodeSet Nodes { get; }
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical
             IContentManager content,
             IPropertiesManager properties)
         {
-            Options = options;
+            Options = (LogicalContextOptions)options;
             Nodes = nodes;
             Roots = roots;
             Content = content;

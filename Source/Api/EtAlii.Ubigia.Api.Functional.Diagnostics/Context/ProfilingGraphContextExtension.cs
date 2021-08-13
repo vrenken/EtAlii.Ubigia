@@ -8,18 +8,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using Microsoft.Extensions.Configuration;
     using IProfiler = EtAlii.Ubigia.Diagnostics.Profiling.IProfiler;
 
-    public class ProfilingGraphContextExtension : IGraphContextExtension
+    public class ProfilingGraphContextExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public ProfilingGraphContextExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             if (options.InjectProfiling)
             {
-                container.RegisterDecorator(typeof(IGraphContext), typeof(ProfilingGraphContext));
+                container.RegisterDecorator<IGraphContext, ProfilingGraphContext>();
 
                 //container.RegisterDecorator(typeof(IQueryProcessorFactory), typeof(ProfilingQueryProcessorFactory))
                 //container.RegisterDecorator(typeof(IQueryParserFactory), typeof(ProfilingQueryParserFactory))

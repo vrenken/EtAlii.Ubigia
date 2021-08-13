@@ -8,8 +8,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.IO;
     using System.Linq;
     using System.Reflection;
+    using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     .Build();
 
                 var options = new FunctionalOptions(configurationRoot)
-                    .UseAntlr();
+                    .UseAntlrParsing();
                 _schemaParser = new AntlrSchemaParserFactory().Create(options);
             }
             catch (Exception e)
@@ -121,7 +121,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             try
             {
                 var schemaText = file.GetText()?.ToString();
-                _logger.ForContext("SchemaText", schemaText, true).Information("Parsing schema");
+                _logger
+                    .ForContext("SchemaText", schemaText, true)
+                    .Information("Parsing schema");
                 var result = _schemaParser.Parse(schemaText);
                 if (result.Errors.Any())
                 {

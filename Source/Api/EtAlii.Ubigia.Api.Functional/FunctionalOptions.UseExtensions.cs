@@ -39,7 +39,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
             editableOptions.FunctionHandlersProvider = otherOptions.FunctionHandlersProvider;
             editableOptions.RootHandlerMappersProvider = otherOptions.RootHandlerMappersProvider;
-            editableOptions.ProcessorOptionsProvider = otherOptions.ProcessorOptionsProvider;
 
             return options;
         }

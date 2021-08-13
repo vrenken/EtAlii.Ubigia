@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
 
-        private IRootHandlerMappersProvider GetRootHandlerMappersProvider(Container container)
+        private IRootHandlerMappersProvider GetRootHandlerMappersProvider(IServiceCollection services)
         {
 
-            var defaultRootHandlerMappers = container.GetInstance<IRootHandlerMapperFactory>().CreateDefaults();
+            var defaultRootHandlerMappers = services.GetInstance<IRootHandlerMapperFactory>().CreateDefaults();
 
             var rootHandlerMappers = defaultRootHandlerMappers
                 .Concat(_rootHandlerMappersProvider.RootHandlerMappers)

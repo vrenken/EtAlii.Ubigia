@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
 
     /// <inheritdoc />
     internal partial class GraphContext : IGraphContext
@@ -13,18 +12,15 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         private readonly FunctionalOptions _options;
         private readonly ISchemaProcessorFactory _schemaProcessorFactory;
         private readonly ISchemaParserFactory _schemaParserFactory;
-        private readonly ITraversalContext _traversalContext;
 
         public GraphContext(
             FunctionalOptions options,
             ISchemaProcessorFactory schemaProcessorFactory,
-            ISchemaParserFactory schemaParserFactory,
-            ITraversalContext traversalContext)
+            ISchemaParserFactory schemaParserFactory)
         {
             _options = options;
             _schemaProcessorFactory = schemaProcessorFactory;
             _schemaParserFactory = schemaParserFactory;
-            _traversalContext = traversalContext;
         }
 
         /// <inheritdoc />
@@ -37,9 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// <inheritdoc />
         IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
         {
-            var options = new SchemaProcessorOptions(_options.ConfigurationRoot)
-                .Use(scope)
-                .Use(_traversalContext);
+            var options = _options.CreateScope(scope);
             var processor = _schemaProcessorFactory.Create(options);
             return processor.Process(schema);
         }

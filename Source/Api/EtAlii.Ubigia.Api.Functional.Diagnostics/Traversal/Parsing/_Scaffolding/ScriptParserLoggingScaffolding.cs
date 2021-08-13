@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Threading;
 
     internal class ScriptParserLoggingScaffolding : IScaffolding
     {
@@ -15,14 +14,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectLogging) // logging is enabled.
             {
-                container.RegisterDecorator(typeof(IScriptParser), typeof(LoggingScriptParser));
-                container.RegisterDecorator(typeof(IPathParser), typeof(LoggingPathParser));
-
-                container.Register<IContextCorrelator, ContextCorrelator>();
+                container.RegisterDecorator<IScriptParser, LoggingScriptParser>();
+                container.RegisterDecorator<IPathParser, LoggingPathParser>();
             }
         }
     }

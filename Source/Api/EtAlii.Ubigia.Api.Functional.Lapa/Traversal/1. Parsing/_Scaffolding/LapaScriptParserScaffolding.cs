@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class LapaScriptParserScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ITraversalValidator, TraversalValidator>();
             container.Register<IScriptParser, LapaScriptParser>();

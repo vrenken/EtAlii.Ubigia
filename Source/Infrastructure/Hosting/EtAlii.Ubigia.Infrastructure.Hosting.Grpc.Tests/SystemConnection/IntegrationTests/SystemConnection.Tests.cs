@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
@@ -96,7 +95,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
+                .UseTestParsing()
                 .Use(dataConnection);
 
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -113,7 +112,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var addScript = scriptContext.Parse(addQuery).Script;
             var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
 
             // Act.
             var lastSequence = await scriptContext.Process(addScript, scope);
@@ -141,7 +140,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName).ConfigureAwait(false);
 
             var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestTraversalParser()
+                .UseTestParsing()
                 .Use(dataConnection);
 
             var scriptContext = new TraversalContextFactory().Create(options);
@@ -149,7 +148,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var selectQuery = "<= /Person";
 
             var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new ScriptScope();
+            var scope = new FunctionalScope();
 
             // Act.
             var lastSequence = await scriptContext.Process(selectScript, scope);

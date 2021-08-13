@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
 
-        private IFunctionHandlersProvider GetFunctionHandlersProvider(Container container)
+        private IFunctionHandlersProvider GetFunctionHandlersProvider(IServiceCollection services)
         {
 
-            var defaultFunctionHandlers = container.GetInstance<IFunctionHandlerFactory>().CreateDefaults();
+            var defaultFunctionHandlers = services.GetInstance<IFunctionHandlerFactory>().CreateDefaults();
 
             var functionHandlers = defaultFunctionHandlers
                 .Concat(_functionHandlersProvider.FunctionHandlers)

@@ -14,12 +14,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             if (_options.InjectProfiling) // profiling is enabled
             {
                 container.Register<IProfilerFactory>(() => new DisabledProfilerFactory());
-                container.Register(() => container.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
+                container.Register(c => c.GetInstance<IProfilerFactory>().Create("EtAlii", "EtAlii.Ubigia"));
 
                 // Add registrations needed for profiling.
             }

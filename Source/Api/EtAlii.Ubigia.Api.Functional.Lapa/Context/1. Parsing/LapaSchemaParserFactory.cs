@@ -2,23 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, ISchemaParserExtension>, ISchemaParserFactory
+    internal class LapaSchemaParserFactory : Factory<ISchemaParser, FunctionalOptions, IFunctionalExtension>, ISchemaParserFactory
     {
         protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
-            return new IScaffolding[]
-            {
-                new LapaSchemaParserScaffolding(),
-
-                new LapaSequenceParsingScaffolding(),
-                new LapaSubjectParsingScaffolding(),
-                new LapaOperatorParsingScaffolding(),
-                new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantParsingScaffolding(),
-            };
+            return Array.Empty<IScaffolding>();
         }
     }
 }

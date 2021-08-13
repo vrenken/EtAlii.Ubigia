@@ -25,10 +25,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var options = new LogicalContextOptions(clientConfiguration)
-                .UseLogicalDiagnostics();
-            await _testContext.Fabric
-                .ConfigureFabricContextOptions(options, true)
+            var options = await new LogicalContextOptions(clientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
@@ -44,10 +43,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var options = new LogicalContextOptions(clientConfiguration)
-                .UseLogicalDiagnostics();
-            await _testContext.Fabric
-                .ConfigureFabricContextOptions(options, true)
+            var options = await new LogicalContextOptions(clientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
 
@@ -64,10 +62,9 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             // Arrange.
             var clientConfiguration = await GetProfilingClientConfiguration().ConfigureAwait(false);
 
-            var options = new LogicalContextOptions(clientConfiguration)
-                .UseLogicalDiagnostics();
-            await _testContext.Fabric
-                .ConfigureFabricContextOptions(options, true)
+            var options = await new LogicalContextOptions(clientConfiguration)
+                .UseLogicalDiagnostics()
+                .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.

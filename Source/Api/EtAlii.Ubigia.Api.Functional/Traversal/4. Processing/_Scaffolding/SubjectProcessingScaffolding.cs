@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _functionHandlersProvider = functionHandlersProvider;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IAbsolutePathSubjectProcessor, AbsolutePathSubjectProcessor>();
             container.Register<IRelativePathSubjectProcessor, RelativePathSubjectProcessor>();
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             container.Register<IRootDefinitionSubjectProcessor, RootDefinitionSubjectProcessor>();
 
             container.Register<IFunctionHandlerFactory, FunctionHandlerFactory>();
-            container.Register(() => GetFunctionHandlersProvider(container));
+            container.Register(GetFunctionHandlersProvider);
         }
     }
 }

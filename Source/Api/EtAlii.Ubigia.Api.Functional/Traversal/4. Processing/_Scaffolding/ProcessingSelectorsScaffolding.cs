@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ProcessingSelectorsScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<IItemToIdentifierConverter, ItemToIdentifierConverter>();
             container.Register<IItemToPathSubjectConverter, ItemToPathSubjectConverter>();
