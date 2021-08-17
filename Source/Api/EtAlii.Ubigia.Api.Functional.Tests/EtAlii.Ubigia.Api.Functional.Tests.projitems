@@ -117,7 +117,6 @@
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\JohnDoeWithFriends.gcl" />
     <GclFile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\IntegrationTests\_Model\AllDoes.gcl" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\4. CodeGeneration\UnitTests\Person.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)\Context\__TestSchemaParserOptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)\Context\3. Processing\IntegrationTests\SchemaProcessor.Memory.Tests.cs" />
