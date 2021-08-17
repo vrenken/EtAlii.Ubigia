@@ -13,8 +13,9 @@ namespace EtAlii.xTechnology.MicroContainer
         public T GetInstance<T>()
         {
             _serviceProvider ??= _collection.BuildServiceProvider();
-#if DEBUG
+
             var instance = _serviceProvider.GetService<T>();
+#if DEBUG
             if (instance == null)
             {
                 throw new InvalidOperationException($"Service Type could not be instantiated: {typeof(T)}");
