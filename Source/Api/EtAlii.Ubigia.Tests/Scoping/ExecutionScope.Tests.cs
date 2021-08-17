@@ -22,7 +22,7 @@
             // Arrange.
 
             // Act.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
 
             // Assert.
             Assert.NotNull(scope);

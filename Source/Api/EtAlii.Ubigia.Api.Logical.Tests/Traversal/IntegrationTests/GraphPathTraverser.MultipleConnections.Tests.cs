@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
 
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -164,7 +164,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -210,7 +210,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -251,7 +251,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -296,7 +296,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -338,7 +338,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var communicationsRoot = await fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);

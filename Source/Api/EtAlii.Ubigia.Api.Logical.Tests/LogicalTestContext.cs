@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)
         {
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             // Root.
             // Location.
             // [LINK]
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var city = "Enschede";
             var location = "Helmerhoek";
 
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
 
             var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope).ConfigureAwait(false);
             var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope).ConfigureAwait(false);
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
         public async Task<IEditableEntry> CreateHierarchy(ILogicalContext context, IEditableEntry parent, params string[] hierarchy)
         {
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
 
             var result = parent;
             foreach (var element in hierarchy)

@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32HierarchicalContentManager_Upload_Non_Existing_Folder_Hierarchy()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -75,7 +75,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32HierarchicalContentManager_Upload_Folder_Hierarchy()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32HierarchicalContentManager_Download_Folder_Hierarchy()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);

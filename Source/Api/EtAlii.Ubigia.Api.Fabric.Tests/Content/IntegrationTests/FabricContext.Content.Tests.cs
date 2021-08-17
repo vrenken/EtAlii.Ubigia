@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task FabricContext_Content_Store()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var content = _testContext.TestContentFactory.Create();
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task FabricContext_Content_Retrieve_Complete()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
 
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task FabricContext_Content_Retrieve_Incomplete()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);

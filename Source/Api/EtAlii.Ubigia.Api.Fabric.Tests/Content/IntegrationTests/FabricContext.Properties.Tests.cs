@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task FabricContext_Properties_Store()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.Create();
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task FabricContext_Properties_Retrieve()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var root = await _fabric.Roots.Get("Hierarchy").ConfigureAwait(false);
             var entry = await _fabric.Entries.Get(root.Identifier, scope).ConfigureAwait(false);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();

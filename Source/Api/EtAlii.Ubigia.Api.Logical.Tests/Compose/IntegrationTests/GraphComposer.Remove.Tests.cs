@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 3;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .Use(fabric)
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 3;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .UseLogicalDiagnostics()
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 3;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var fabric = await _testContext.Fabric.CreateFabricContext(true).ConfigureAwait(false);
             var options = new GraphPathTraverserOptions(_testContext.ClientConfiguration)
                 .Use(fabric)

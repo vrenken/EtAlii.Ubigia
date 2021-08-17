@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Create()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Upload_Non_Existing_File()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Upload_2M_File()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Upload_2M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Upload_10M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Upload_100M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -183,7 +183,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Download_2M_File()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -215,7 +215,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Download_10M_File()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -247,7 +247,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Download_2M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -282,7 +282,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Download_10M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task Win32ContentManager_Download_100M_File_Timed()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.LogicalTestContext
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);

@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         private async Task<IEditableEntry> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, params string[] hierarchy)
         {
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
 
             foreach (var child in hierarchy)
             {

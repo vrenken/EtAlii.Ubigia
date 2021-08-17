@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         public async Task GraphPathTraverser_SingleConnection_Traverse_Time_BreadthFirst()
         {
             // Arrange.
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             const int depth = 5;
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -140,7 +140,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -263,7 +263,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -307,7 +307,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
@@ -347,7 +347,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             // Arrange.
             const int depth = 5;
-            var scope = new ExecutionScope(false);
+            var scope = new ExecutionScope();
             var communicationsRoot = await _fabric.Roots.Get("Communication").ConfigureAwait(false);
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope).ConfigureAwait(false);
 
