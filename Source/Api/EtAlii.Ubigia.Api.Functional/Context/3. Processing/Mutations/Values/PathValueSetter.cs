@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _relatedIdentityFinder = relatedIdentityFinder;
         }
 
-        public async Task<Value> Set(string valueName, string value, Structure structure, PathSubject path, SchemaExecutionScope executionScope)
+        public async Task<Value> Set(string valueName, string value, Structure structure, PathSubject path, ExecutionScope scope)
         {
             if (path is RelativePathSubject)
             {
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     path = new AbsolutePathSubject(parts);
                     var script = new Script(new Sequence(new SequencePart[] { path, new AssignOperator(), new StringConstantSubject(value) }));
 
-                    var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+                    var processResult = await _traversalContext.Process(script, scope);
                     var result = await processResult.Output.SingleOrDefaultAsync();
                     if (result is Node valueNode)
                     {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             {
                 // We also want to be able to set absolute or rooted paths.
                 var script = new Script(new Sequence(new SequencePart[] { path, new AssignOperator(), new StringConstantSubject(value) }));
-                var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+                var processResult = await _traversalContext.Process(script, scope);
                 var result = await processResult.Output.SingleOrDefaultAsync();
                 if (result is Node valueNode)
                 {

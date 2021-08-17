@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal interface IPathValueGetter
     {
-        Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope);
+        Task<Value> Get(string valueName, Structure structure, PathSubject path, ExecutionScope scope);
     }
 }

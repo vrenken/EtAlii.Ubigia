@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
         /// <inheritdoc />
         public async Task Build(
-            SchemaExecutionScope executionScope,
+            ExecutionScope scope,
             ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             string structureName,
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             if (path != null)
             {
                 var script = new Script(new Sequence(new SequencePart[] {path}));
-                var scriptResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+                var scriptResult = await _traversalContext.Process(script, scope);
 
                 var onlyOneSingleNode = annotation is SelectSingleNodeAnnotation ||
                                         annotation is AddAndSelectSingleNodeAnnotation ||

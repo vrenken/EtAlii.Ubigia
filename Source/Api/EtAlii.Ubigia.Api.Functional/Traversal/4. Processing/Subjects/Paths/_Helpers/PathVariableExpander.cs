@@ -7,18 +7,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class PathVariableExpander : IPathVariableExpander
     {
-        private readonly IScriptProcessingContext _context;
         private readonly IVariablePathSubjectPartToPathConverter _variablePathSubjectPartToPathConverter;
 
         public PathVariableExpander(
-            IScriptProcessingContext context,
             IVariablePathSubjectPartToPathConverter variablePathSubjectPartToGraphPathPartsConverter)
         {
-            _context = context;
             _variablePathSubjectPartToPathConverter = variablePathSubjectPartToGraphPathPartsConverter;
         }
 
-        public async Task<PathSubjectPart[]> Expand(PathSubjectPart[] path)
+        public async Task<PathSubjectPart[]> Expand(ExecutionScope scope, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
 
@@ -27,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 if (part is VariablePathSubjectPart variablePart)
                 {
                     var variableName = variablePart.Name;
-                    if (!_context.Scope.Variables.TryGetValue(variableName, out var variable))
+                    if (!scope.Variables.TryGetValue(variableName, out var variable))
                     {
                         throw new ScriptProcessingException($"Variable {variableName} not set");
                     }

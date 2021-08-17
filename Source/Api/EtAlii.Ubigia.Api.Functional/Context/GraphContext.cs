@@ -24,24 +24,23 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        SchemaParseResult IGraphContext.Parse(string text)
+        SchemaParseResult IGraphContext.Parse(string text, ExecutionScope scope)
         {
             var parser = _schemaParserFactory.Create(_options);
-            return parser.Parse(text);
+            return parser.Parse(text, scope);
         }
 
         /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ExecutionScope scope)
         {
-            var options = _options.CreateScope(scope);
-            var processor = _schemaProcessorFactory.Create(options);
-            return processor.Process(schema);
+            var processor = _schemaProcessorFactory.Create(_options);
+            return processor.Process(schema, scope);
         }
 
         /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(string[] text, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string[] text, ExecutionScope scope)
         {
-            var queryParseResult = ((IGraphContext)this).Parse(string.Join(Environment.NewLine, text));
+            var queryParseResult = ((IGraphContext)this).Parse(string.Join(Environment.NewLine, text), scope);
 
             if (queryParseResult.Errors.Any())
             {
@@ -53,29 +52,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(string text, params object[] args)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string text, ExecutionScope scope, params object[] args)
         {
             text = string.Format(text, args);
-            return ((IGraphContext)this).Process(text);
-        }
-
-        /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(string[] text)
-        {
-            return ((IGraphContext)this).Process(string.Join(Environment.NewLine, text));
-        }
-
-        /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(string text)
-        {
-            var scope = new SchemaScope();
             return ((IGraphContext)this).Process(text, scope);
         }
 
         /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(string text, ISchemaScope scope)
+        IAsyncEnumerable<Structure> IGraphContext.Process(string text, ExecutionScope scope)
         {
-            var queryParseResult = ((IGraphContext)this).Parse(text);
+            var queryParseResult = ((IGraphContext)this).Parse(text, scope);
 
             if (queryParseResult.Errors.Any())
             {

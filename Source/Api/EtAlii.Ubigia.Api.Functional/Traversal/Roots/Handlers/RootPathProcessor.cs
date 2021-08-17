@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
 
-        public async Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output, IScriptScope scriptScope)
+        public async Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output)
         {
             // Find root handler mapper.
             var rootHandlerMapper = _rootHandlerMapperFinder.Find(root);
@@ -30,12 +30,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 throw new InvalidOperationException("No matching root handler mapper found.");
             }
             // Find the matching root handler.
-            //var scriptScope = new ScriptScope()
-
             MatchResult match = null;
             foreach (var rh in rootHandlerMapper.AllowedRootHandlers)
             {
-                var m = await _rootHandlerPathMatcher.Match(scriptScope, rh, path).ConfigureAwait(false);
+                var m = await _rootHandlerPathMatcher
+                    .Match(scope, rh, path)
+                    .ConfigureAwait(false);
                 if (m != MatchResult.NoMatch)
                 {
                     match = m;

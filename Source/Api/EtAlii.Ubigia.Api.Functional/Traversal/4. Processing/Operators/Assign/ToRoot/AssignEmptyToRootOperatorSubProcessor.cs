@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class AssignEmptyToRootOperatorSubProcessor : IAssignEmptyToRootOperatorSubProcessor
     {

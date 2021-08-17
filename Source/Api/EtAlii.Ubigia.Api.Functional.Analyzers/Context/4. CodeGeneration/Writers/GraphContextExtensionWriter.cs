@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             writer.Indent -= 1;
 
             writer.WriteLine($"var resultMapper = new {className}.ResultMapper();");
-            writer.WriteLine("var scope = new SchemaScope();");
+            writer.WriteLine("var scope = new ExecutionScope();");
             foreach (var variable in variables)
             {
                 writer.WriteLine($"scope.Variables.Add(\"{variable}\", new ScopeVariable({variable}, \"{variable}\"));");

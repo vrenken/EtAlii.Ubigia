@@ -7,13 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public class AssignEmptyToVariableOperatorSubProcessor : IAssignEmptyToVariableOperatorSubProcessor
     {
-        private readonly IScriptProcessingContext _context;
-
-        public AssignEmptyToVariableOperatorSubProcessor(IScriptProcessingContext context)
-        {
-            _context = context;
-        }
-
         public Task Assign(OperatorParameters parameters)
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
@@ -22,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
             var variableName = variableSubject.Name;
 
-            _context.Scope.Variables.Remove(variableName);
+            parameters.Scope.Variables.Remove(variableName);
 
             parameters.RightInput.Subscribe(
                 onError: (e) => parameters.Output.OnError(e),

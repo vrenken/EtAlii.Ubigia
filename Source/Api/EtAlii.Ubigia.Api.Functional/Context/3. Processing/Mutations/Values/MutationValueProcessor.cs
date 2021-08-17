@@ -16,11 +16,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task Process(
             ValueFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,
-            SchemaExecutionScope executionScope)
+            ExecutionScope scope)
         {
             foreach (var structure in executionPlanResultSink.Parent.Items)
             {
-                var value = await _valueSetter.Set(fragment.Name, fragment.Mutation, fragment.Annotation, executionScope, structure).ConfigureAwait(false);
+                var value = await _valueSetter
+                    .Set(fragment.Name, fragment.Mutation, fragment.Annotation, scope, structure)
+                    .ConfigureAwait(false);
                 structure.EditableValues.Add(value);
             }
         }

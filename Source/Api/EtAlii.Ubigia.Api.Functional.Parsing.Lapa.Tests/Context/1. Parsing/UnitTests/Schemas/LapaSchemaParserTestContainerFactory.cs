@@ -2,36 +2,37 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.Ubigia.Tests;
 
-    [CorrelateUnitTests]
-    public class LapaSchemaParserTestContainerFactory
+    public class LapaSchemaParserComponentTestFactory
     {
-        public Container Create()
+        public async Task<(TFirst, TSecond)> Create<TFirst, TSecond>(TraversalUnitTestContext testContext)
         {
-            var scaffoldings = new IScaffolding[]
-            {
-                new LapaSchemaParserScaffolding(),
-
-                new LapaSequenceParsingScaffolding(),
-                new LapaSubjectParsingScaffolding(),
-                new LapaOperatorParsingScaffolding(),
-                new LapaPathSubjectParsingScaffolding(),
-                new LapaConstantParsingScaffolding(),
-            };
-
-
             var container = new Container();
 
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            var options = await new FunctionalOptions(testContext.ClientConfiguration)
+                .UseLapaParsing()
+                .UseDataConnectionToNewSpace(testContext, true)
+                .ConfigureAwait(false);
+            new LapaParserExtension(options).Initialize(container);
 
-            return container;
+            return (container.GetInstance<TFirst>(), container.GetInstance<TSecond>());
+        }
+
+        public async Task<T> Create<T>(TraversalUnitTestContext testContext)
+        {
+            var container = new Container();
+
+            var options = await new FunctionalOptions(testContext.ClientConfiguration)
+                .UseLapaParsing()
+                .UseDataConnectionToNewSpace(testContext, true)
+                .ConfigureAwait(false);
+            new LapaParserExtension(options).Initialize(container);
+
+            return container.GetInstance<T>();
         }
     }
 }

@@ -7,13 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public class AssignPathToVariableOperatorSubProcessor : IAssignPathToVariableOperatorSubProcessor
     {
-        private readonly IScriptProcessingContext _context;
-
-        public AssignPathToVariableOperatorSubProcessor(IScriptProcessingContext context)
-        {
-            _context = context;
-        }
-
         public Task Assign(OperatorParameters parameters)
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
@@ -24,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var variableName = variableSubject.Name;
 
             var variable = new ScopeVariable(parameters.RightInput, source);
-            _context.Scope.Variables[variableName] = variable;
+            parameters.Scope.Variables[variableName] = variable;
 
             parameters.RightInput.Subscribe(
                 onError: (e) => parameters.Output.OnError(e),

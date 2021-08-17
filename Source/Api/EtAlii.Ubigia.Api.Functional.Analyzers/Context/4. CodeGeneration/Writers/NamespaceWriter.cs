@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using System.CodeDom.Compiler;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Serilog;
 
     /// <inheritdoc />

@@ -3,7 +3,6 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Microsoft.Extensions.Configuration;
 
     internal class TestSchemaParserFactory : LapaSchemaParserFactory
@@ -14,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 .Build();
 
             var options = new FunctionalOptions(configurationRoot)
-                .UseLapa();
+                .UseLapaParsing();
             return base.Create(options);
         }
     }

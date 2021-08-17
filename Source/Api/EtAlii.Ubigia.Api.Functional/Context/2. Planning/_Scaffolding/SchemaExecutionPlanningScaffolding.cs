@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class SchemaExecutionPlanningScaffolding : IScaffolding
     {
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
             container.Register<ISchemaExecutionPlanner, SchemaExecutionPlanner>();
         }

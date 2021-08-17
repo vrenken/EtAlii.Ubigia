@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class AddAndSelectSingleNodeAnnotationParserTests
+    public class AddAndSelectSingleNodeAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public AddAndSelectSingleNodeAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Create()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IAddAndSelectSingleNodeAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<IAddAndSelectSingleNodeAnnotationParser>();
-        }
-
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_01()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/, Potsdam)";
 
             // Act.
@@ -49,10 +55,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_02()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/, ""Potsdam"")";
 
             // Act.
@@ -69,10 +77,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_03()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin, ""Potsdam"")";
 
             // Act.
@@ -89,10 +99,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_04()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_04()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/, ""Potsdam"")";
 
             // Act.
@@ -109,10 +121,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_05()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_05()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/, 'Potsdam')";
 
             // Act.
@@ -129,10 +143,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_06()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_06()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/, 'Potsdam')";
 
             // Act.
@@ -149,10 +165,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_07()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_07()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/,'Potsdam')";
 
             // Act.
@@ -170,10 +188,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void AddAndSelectSingleNodeAnnotationParser_Parse_08()
+        public async Task AddAndSelectSingleNodeAnnotationParser_Parse_08()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IAddAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-add(location:DE/Berlin/,""Potsdam"")";
 
             // Act.

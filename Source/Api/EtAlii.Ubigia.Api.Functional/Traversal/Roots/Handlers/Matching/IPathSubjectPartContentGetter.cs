@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IPathSubjectPartContentGetter
     {
-        Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope);
+        Task<string> GetPartContent(PathSubjectPart part, ExecutionScope scope);
     }
 }

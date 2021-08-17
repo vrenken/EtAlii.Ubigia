@@ -6,7 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IScriptProcessingContext
     {
-        IScriptScope Scope { get; }
         ILogicalContext Logical { get; }
 
         IPathSubjectToGraphPathConverter PathSubjectToGraphPathConverter { get; }

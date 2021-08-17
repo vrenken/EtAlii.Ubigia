@@ -20,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             //_profiler = profiler
         }
 
-        public ISchemaProcessor Create(SchemaProcessorOptions options)
+        public ISchemaProcessor Create(FunctionalOptions options)
         {
-            var extensions = Array.Empty<ISchemaProcessorExtension>();
+            var extensions = Array.Empty<IFunctionalExtension>();
             // var extensions = new ISchemaProcessorExtension[]
             // [
             //     new ProfilingQueryProcessorExtension2(_profiler),

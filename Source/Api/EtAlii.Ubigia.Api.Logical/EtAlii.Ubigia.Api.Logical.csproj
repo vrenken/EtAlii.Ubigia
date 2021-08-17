@@ -9,7 +9,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections.csproj" />
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading.csproj" />
-    <PackageReference Include="System.Reactive" Version="5.0.0" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
   </ItemGroup>
 

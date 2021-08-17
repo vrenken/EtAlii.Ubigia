@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ContextScaffolding : IScaffolding
@@ -15,6 +16,12 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public void Register(IRegisterOnlyContainer container)
         {
+#if DEBUG
+            if (_options.Connection == null)
+            {
+                throw new InvalidOperationException("No Connection provided");
+            }
+#endif
             container.Register<IFabricContext, FabricContext>();
             container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);

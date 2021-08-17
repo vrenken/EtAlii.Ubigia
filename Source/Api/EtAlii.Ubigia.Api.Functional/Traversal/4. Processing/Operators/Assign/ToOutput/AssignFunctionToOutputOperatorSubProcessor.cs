@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class AssignFunctionToOutputOperatorSubProcessor : IAssignFunctionToOutputOperatorSubProcessor
     {

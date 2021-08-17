@@ -2,38 +2,44 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SetAndSelectValueAnnotationParserTests
+    public class SetAndSelectValueAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public SetAndSelectValueAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Create()
+        public async Task SetAndSelectValueAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private ISetAndSelectValueAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<ISetAndSelectValueAnnotationParser>();
-        }
-
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Parse_Value_LastName_01()
+        public async Task SetAndSelectValueAnnotationParser_Parse_Value_LastName_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-set(\\LastName, 'Does2')";
 
             // Act.
@@ -51,10 +57,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Parse_Value_LastName_02()
+        public async Task SetAndSelectValueAnnotationParser_Parse_Value_LastName_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-set(\\LastName, ""Does2"")";
 
             // Act.
@@ -72,10 +80,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Parse_Value_Integer()
+        public async Task SetAndSelectValueAnnotationParser_Parse_Value_Integer()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-set(\\Weight, 42)";
 
             // Act.
@@ -92,10 +102,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Parse_Value_01()
+        public async Task SetAndSelectValueAnnotationParser_Parse_Value_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-set(//Nickname, 'Johnny')";
 
             // Act.
@@ -112,10 +124,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void SetAndSelectValueAnnotationParser_Parse_Value_02()
+        public async Task SetAndSelectValueAnnotationParser_Parse_Value_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISetAndSelectValueAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-set(//Nickname, ""Johnny"")";
 
             // Act.

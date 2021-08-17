@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var start = Environment.TickCount;
 
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -39,11 +39,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var traversalContext = new TraversalContextFactory().Create(_options);
             _context = new GraphContextFactory().Create(_options);
 
+            var scope = new ExecutionScope();
             await _testContext.Functional
-                .AddPeople(traversalContext)
+                .AddPeople(traversalContext, scope)
                 .ConfigureAwait(false);
             await _testContext.Functional
-                .AddAddresses(traversalContext)
+                .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -66,6 +67,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Time_Now_By_Structure()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var queryText = @"Time = @node(time:now)
                                {
                                     Millisecond = @node()
@@ -77,19 +79,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     Year = @node(\\\\\\)
                                }";
 
-            var query = _context.Parse(queryText).Schema;
+            var query = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(query)
+                .Process(query, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 

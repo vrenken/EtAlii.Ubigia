@@ -13,14 +13,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// Parse the specified text into a GTL script.
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="scope"></param>
         /// <returns></returns>
-        ScriptParseResult Parse(string text);
+        ScriptParseResult Parse(string text, ExecutionScope scope);
 
-        IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope);
-        IObservable<SequenceProcessingResult> Process(string text, params object[] args);
-        IObservable<SequenceProcessingResult> Process(string[] text);
-        IObservable<SequenceProcessingResult> Process(string[] text, IScriptScope scope);
+        IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope);
+        IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope, params object[] args);
+        IObservable<SequenceProcessingResult> Process(string[] text, ExecutionScope scope);
 
-        IObservable<SequenceProcessingResult> Process(string text);
+        IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope);
     }
 }

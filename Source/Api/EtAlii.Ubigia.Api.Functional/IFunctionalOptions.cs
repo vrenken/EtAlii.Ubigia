@@ -3,12 +3,19 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
     public interface IFunctionalOptions : IExtensible
     {
+        /// <summary>
+        /// The client configuration root that will be used to configure each of the functional contexts and parsers/processors.
+        /// </summary>
         IConfigurationRoot ConfigurationRoot { get; }
+
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
+
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
+        bool CachingEnabled { get; }
     }
 }

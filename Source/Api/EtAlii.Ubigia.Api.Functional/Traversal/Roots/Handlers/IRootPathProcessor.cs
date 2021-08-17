@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IRootPathProcessor
     {
-        Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output, IScriptScope scriptScope);
+        Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output);
     }
 }

@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             ExecutionScope scope)
         {
             var variableName = ((VariablePathSubjectPart)pathSubjectPart).Name;
-            if (!_context.Scope.Variables.TryGetValue(variableName, out var variable))
+            if (!scope.Variables.TryGetValue(variableName, out var variable))
             {
                 throw new ScriptProcessingException($"Variable {variableName} not set");
             }

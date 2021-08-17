@@ -18,10 +18,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _fragment = fragment;
         }
 
-        internal override async Task Execute(SchemaExecutionScope executionScope)
+        internal override async Task Execute(ExecutionScope scope)
         {
             await _processor
-                .Process(_fragment, ResultSink, executionScope)
+                .Process(_fragment, ResultSink, scope)
                 .ConfigureAwait(false);
         }
 

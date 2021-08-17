@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ValueAnnotationsParserTests
+    public class ValueAnnotationsParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public ValueAnnotationsParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void ValueAnnotationsParser_Create()
+        public async Task ValueAnnotationsParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateValueAnnotationsParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueAnnotationsParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IValueAnnotationsParser CreateValueAnnotationsParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<IValueAnnotationsParser>();
-        }
-
         [Fact]
-        public void ValueAnnotationsParser_Parse_Value_LastName()
+        public async Task ValueAnnotationsParser_Parse_Value_LastName()
         {
             // Arrange.
-            var parser = CreateValueAnnotationsParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueAnnotationsParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node(\\LastName)";
 
             // Act.
@@ -49,10 +55,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueAnnotationsParser_Parse_Value()
+        public async Task ValueAnnotationsParser_Parse_Value()
         {
             // Arrange.
-            var parser = CreateValueAnnotationsParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueAnnotationsParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node()";
 
             // Act.

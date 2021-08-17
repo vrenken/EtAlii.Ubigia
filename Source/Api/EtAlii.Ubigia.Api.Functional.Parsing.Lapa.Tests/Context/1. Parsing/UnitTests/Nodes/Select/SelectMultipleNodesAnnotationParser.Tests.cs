@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SelectMultipleNodesAnnotationParserTests
+    public class SelectMultipleNodesAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public SelectMultipleNodesAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void SelectMultipleNodesAnnotationParser_Create()
+        public async Task SelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private ISelectMultipleNodesAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<ISelectMultipleNodesAnnotationParser>();
-        }
-
         [Fact]
-        public void SelectMultipleNodesAnnotationParser_Parse_01()
+        public async Task SelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes(person:Doe/*)";
 
             // Act.
@@ -48,10 +54,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void SelectMultipleNodesAnnotationParser_Parse_02()
+        public async Task SelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes(person:Doe/* )";
 
             // Act.
@@ -67,10 +75,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void SelectMultipleNodesAnnotationParser_Parse_03()
+        public async Task SelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ISelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes( person:Doe/*)";
 
             // Act.

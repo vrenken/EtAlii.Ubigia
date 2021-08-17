@@ -6,18 +6,28 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class LoggingSchemaProcessorExtension : ISchemaProcessorExtension
+    public class LoggingSchemaProcessorExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public LoggingSchemaProcessorExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 
             if (options.InjectLogging)
             {
-                container.RegisterDecorator(typeof(ISchemaProcessor), typeof(LoggingSchemaProcessor));
+                var hasProcessor = container.HasRegistration<ISchemaProcessor>();
+                if (hasProcessor)
+                {
+                    container.RegisterDecorator<ISchemaProcessor, LoggingSchemaProcessor>();
+                }
             }
         }
     }

@@ -28,9 +28,8 @@ namespace EtAlii.Ubigia
                 throw new ArgumentException("No extensions specified", nameof(extensions));
             }
 
-            configuration.Extensions = extensions
-                .Cast<IExtension>()
-                .Concat(configuration.Extensions)
+            configuration.Extensions = configuration.Extensions
+                .Concat(extensions.Cast<IExtension>()) // TODO: This cast feels not needed.
                 .Distinct()
                 .ToArray();
             return configuration;

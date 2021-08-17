@@ -3,50 +3,49 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class StructureFragmentParserMutationsTests
+    public class StructureFragmentParserMutationsTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public StructureFragmentParserMutationsTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void StructureFragmentParser_Create()
+        public async Task StructureFragmentParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateStructureFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IStructureFragmentParser CreateStructureFragmentParser()
-        {
-            return CreateStructureFragmentParser(out _);
-        }
-
-        private IStructureFragmentParser CreateStructureFragmentParser(out INodeValidator nodeValidator)
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            nodeValidator = container.GetInstance<INodeValidator>();
-            return container.GetInstance<IStructureFragmentParser>();
-        }
-
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_Key_Value_Single()
+        public async Task StructureFragmentParser_Parse_ValueMutation_Key_Value_Single()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key <= ""value""
             }";
 
-
             // Act.
             var node = parser.Parser.Do(text);
             var query = parser.Parse(node, nodeValidator);
@@ -60,16 +59,17 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_Node_Clear()
+        public async Task StructureFragmentParser_Parse_ValueMutation_Node_Clear()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Doe/John)
             {
                FirstName @node-clear()
             }";
 
-
             // Act.
             var node = parser.Parser.Do(text);
             var query = parser.Parse(node, nodeValidator);
@@ -83,16 +83,17 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
+        public async Task StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1 <= ""value1"",
                 key2 <= ""value2""
             }";
-
 
             // Act.
             var node = parser.Parser.Do(text);
@@ -107,10 +108,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
+        public async Task StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 age <= ""22"",
@@ -131,10 +134,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_00()
+        public async Task StructureFragmentParser_Parse_ValueMutation_With_Annotations_00()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
@@ -166,10 +171,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_01()
+        public async Task StructureFragmentParser_Parse_ValueMutation_With_Annotations_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(person:Stark/Tony)
             {
                 age <= 22,
@@ -189,10 +196,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_StructureMutation_01()
+        public async Task StructureFragmentParser_Parse_StructureMutation_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                         {
                             FirstName @node()

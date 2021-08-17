@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal class MatchParameters
     {
-        public IScriptScope Scope { get; }
+        public ExecutionScope Scope { get; }
         public PathSubjectPart[] PathRest { get; }
         public IRootHandler RootHandler { get; }
         public PathSubjectPart CurrentTemplatePart { get; }
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IRootHandler rootHandler,
             PathSubjectPart currentTemplatePart,
             PathSubjectPart[] pathRest,
-            IScriptScope scope)
+            ExecutionScope scope)
         {
             RootHandler = rootHandler;
             CurrentTemplatePart = currentTemplatePart;

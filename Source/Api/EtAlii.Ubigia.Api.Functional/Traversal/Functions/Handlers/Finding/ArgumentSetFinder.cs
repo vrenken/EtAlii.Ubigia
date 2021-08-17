@@ -24,17 +24,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _variableSubjectFunctionParameterConverter = variableSubjectFunctionParameterConverter;
         }
 
-        public ArgumentSet Find(FunctionSubject functionSubject)
+        public ArgumentSet Find(FunctionSubject functionSubject, ExecutionScope scope)
         {
             var arguments = functionSubject.Arguments
                 .Select(argument =>
                 {
                     return argument switch
                     {
-                        NonRootedPathFunctionSubjectArgument nonRootedPathFunctionSubjectArgument => _nonRootedPathSubjectFunctionParameterConverter.Convert(nonRootedPathFunctionSubjectArgument),
-                        RootedPathFunctionSubjectArgument rootedPathFunctionSubjectArgument => _rootedPathSubjectFunctionParameterConverter.Convert(rootedPathFunctionSubjectArgument),
-                        ConstantFunctionSubjectArgument constantFunctionSubjectArgument => _constantSubjectFunctionParameterConverter.Convert(constantFunctionSubjectArgument),
-                        VariableFunctionSubjectArgument variableFunctionSubjectArgument => _variableSubjectFunctionParameterConverter.Convert(variableFunctionSubjectArgument),
+                        NonRootedPathFunctionSubjectArgument nonRootedPathFunctionSubjectArgument => _nonRootedPathSubjectFunctionParameterConverter.Convert(nonRootedPathFunctionSubjectArgument, scope),
+                        RootedPathFunctionSubjectArgument rootedPathFunctionSubjectArgument => _rootedPathSubjectFunctionParameterConverter.Convert(rootedPathFunctionSubjectArgument, scope),
+                        ConstantFunctionSubjectArgument constantFunctionSubjectArgument => _constantSubjectFunctionParameterConverter.Convert(constantFunctionSubjectArgument, scope),
+                        VariableFunctionSubjectArgument variableFunctionSubjectArgument => _variableSubjectFunctionParameterConverter.Convert(variableFunctionSubjectArgument, scope),
                         _ => throw new NotSupportedException($"Cannot process argument: {argument?.ToString() ?? "NULL"}")
                     };
                 })

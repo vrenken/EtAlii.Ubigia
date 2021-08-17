@@ -18,7 +18,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task InitializeAsync()
         {
             Functional = new FunctionalTestContextFactory().Create();
-            await Functional.Start(UnitTestSettings.NetworkPortRange).ConfigureAwait(false);
+            await Functional
+                .Start(UnitTestSettings.NetworkPortRange)
+                .ConfigureAwait(false);
         }
 
         public async Task DisposeAsync()

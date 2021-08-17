@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class UnlinkAndSelectMultipleNodesAnnotationParserTests
+    public class UnlinkAndSelectMultipleNodesAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public UnlinkAndSelectMultipleNodesAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void UnlinkAndSelectMultipleNodesAnnotationParser_Create()
+        public async Task UnlinkAndSelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IUnlinkAndSelectMultipleNodesAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<IUnlinkAndSelectMultipleNodesAnnotationParser>();
-        }
-
         [Fact]
-        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_01()
+        public async Task UnlinkAndSelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -50,10 +56,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_02()
+        public async Task UnlinkAndSelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-unlink(/Time, time:'2000-05-02 23:07',/Event)";
 
             // Act.
@@ -71,10 +79,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_03()
+        public async Task UnlinkAndSelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -92,10 +102,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectMultipleNodesAnnotationParser_Parse_04()
+        public async Task UnlinkAndSelectMultipleNodesAnnotationParser_Parse_04()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.

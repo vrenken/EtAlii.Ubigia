@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     internal interface ISchemaProcessorFactory
     {
-        ISchemaProcessor Create(SchemaProcessorOptions options);
+        ISchemaProcessor Create(FunctionalOptions options);
     }
 }

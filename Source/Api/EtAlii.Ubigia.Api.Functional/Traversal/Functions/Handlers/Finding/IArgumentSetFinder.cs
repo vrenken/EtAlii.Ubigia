@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal interface IArgumentSetFinder
     {
-        ArgumentSet Find(FunctionSubject functionSubject);
+        ArgumentSet Find(FunctionSubject functionSubject, ExecutionScope scope);
     }
 }

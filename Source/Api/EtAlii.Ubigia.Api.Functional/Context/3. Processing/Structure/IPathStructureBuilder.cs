@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal interface IPathStructureBuilder
     {
         Task Build(
-            SchemaExecutionScope executionScope,
+            ExecutionScope scope,
             ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             string structureName,

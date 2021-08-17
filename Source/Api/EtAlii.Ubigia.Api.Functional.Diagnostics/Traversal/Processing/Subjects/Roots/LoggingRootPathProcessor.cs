@@ -16,12 +16,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _decoree = decoree;
         }
 
-        public async Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output, IScriptScope scriptScope)
+        public async Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output)
         {
             _logger.Debug("Processing root {RootSubject}", root);
             var start = Environment.TickCount;
 
-            await _decoree.Process(root, path, scope, output, scriptScope).ConfigureAwait(false);
+            await _decoree
+                .Process(root, path, scope, output)
+                .ConfigureAwait(false);
 
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             _logger.Debug("Processed root (Duration: {Duration}ms)", duration);

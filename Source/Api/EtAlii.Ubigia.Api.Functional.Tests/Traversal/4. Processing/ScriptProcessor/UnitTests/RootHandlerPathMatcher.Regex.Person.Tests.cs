@@ -12,13 +12,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
+            var scope = new ExecutionScope();
             var template = new PathSubjectPart[] { new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(), new RegexPathSubjectPart(@"^\p{L}+$") };
             var path = new PathSubjectPart[] { new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(), new ConstantPathSubjectPart("John") };
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -29,8 +29,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -55,8 +55,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
@@ -82,8 +82,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -108,8 +108,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
@@ -134,8 +134,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new WildcardPathSubjectPart("*"), new ParentPathSubjectPart(),
@@ -149,7 +149,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -161,8 +161,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -176,7 +176,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -187,8 +187,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -202,7 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -212,8 +212,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
@@ -227,7 +227,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -237,8 +237,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"\w"), new ParentPathSubjectPart(),
@@ -252,7 +252,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
@@ -263,8 +263,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var functionalScope = new FunctionalScope();
-            functionalScope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var scope = new ExecutionScope();
+            scope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
                 new RegexPathSubjectPart(@"\w"), new ParentPathSubjectPart(),
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(functionalScope, rootHandler, path).ConfigureAwait(false);
+            var match = await rootHandlerPathMatcher.Match(scope, rootHandler, path).ConfigureAwait(false);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);

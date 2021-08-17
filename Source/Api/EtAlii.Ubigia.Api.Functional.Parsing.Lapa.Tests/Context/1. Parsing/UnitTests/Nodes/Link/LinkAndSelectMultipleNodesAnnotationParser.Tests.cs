@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class LinkAndSelectMultipleNodesAnnotationParserTests
+    public class LinkAndSelectMultipleNodesAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public LinkAndSelectMultipleNodesAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Create()
+        public async Task LinkAndSelectMultipleNodesAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ILinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private ILinkAndSelectMultipleNodesAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<ILinkAndSelectMultipleNodesAnnotationParser>();
-        }
-
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_01()
+        public async Task LinkAndSelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ILinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-link(/Time, time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -50,10 +56,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_02()
+        public async Task LinkAndSelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ILinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-link(/Time, time:'2000-05-02 23:07',/Event)";
 
             // Act.
@@ -71,10 +79,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_03()
+        public async Task LinkAndSelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ILinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-link(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -92,10 +102,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void LinkAndSelectMultipleNodesAnnotationParser_Parse_04()
+        public async Task LinkAndSelectMultipleNodesAnnotationParser_Parse_04()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<ILinkAndSelectMultipleNodesAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@nodes-link(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal partial class GraphContext
     {
         /// <inheritdoc />
-        public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
+        public async Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ExecutionScope scope)
         {
             return await ProcessMultiple(text, resultMapper, scope)
                 .SingleOrDefaultAsync()
@@ -17,9 +17,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope)
+        public async IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ExecutionScope scope)
         {
-            var items = ((IGraphContext)this).Process(text, scope).ConfigureAwait(false);
+            var items = ((IGraphContext)this)
+                .Process(text, scope)
+                .ConfigureAwait(false);
 
             await foreach (var item in items)
             {

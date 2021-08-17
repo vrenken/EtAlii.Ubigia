@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal interface IValueGetter
     {
-        Task<Value> Get(string valueName, ValueAnnotation annotation, SchemaExecutionScope executionScope, Structure structure);
+        Task<Value> Get(string valueName, ValueAnnotation annotation, ExecutionScope scope, Structure structure);
     }
 }

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     {
         internal ExecutionPlanResultSink ResultSink { get; private set; }
 
-        internal abstract Task Execute(SchemaExecutionScope executionScope);
+        internal abstract Task Execute(ExecutionScope scope);
 
         internal void SetResultSink(ExecutionPlanResultSink resultSink)
         {

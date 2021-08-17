@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task Process(
             StructureFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,
-            SchemaExecutionScope executionScope)
+            ExecutionScope scope)
         {
             var annotation = fragment.Annotation;
 
@@ -41,18 +41,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 foreach (var structure in executionPlanResultSink.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, structure).ConfigureAwait(false);
+                    await Build(scope, executionPlanResultSink, annotation, id, fragment.Name, structure).ConfigureAwait(false);
                 }
             }
             else
             {
                 var id = Identifier.Empty;
-                await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, null).ConfigureAwait(false);
+                await Build(scope, executionPlanResultSink, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
 
         private async Task Build(
-            SchemaExecutionScope executionScope,
+            ExecutionScope scope,
             ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             Identifier id,
@@ -64,14 +64,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             var mutationScript = CreateMutationScript(annotation, path);
             if (mutationScript != null)
             {
-                var scriptResult = await _traversalContext.Process(mutationScript, executionScope.ScriptScope);
+                var scriptResult = await _traversalContext
+                    .Process(mutationScript, scope);
                 await scriptResult.Output;
 
                 // For some operators we need to correct the path as well.
                 path = _pathCorrecter.Correct(annotation, path);
             }
 
-            await _pathStructureBuilder.Build(executionScope, executionPlanResultSink, annotation, structureName, parent, path).ConfigureAwait(false);
+            await _pathStructureBuilder
+                .Build(scope, executionPlanResultSink, annotation, structureName, parent, path)
+                .ConfigureAwait(false);
 
         }
 

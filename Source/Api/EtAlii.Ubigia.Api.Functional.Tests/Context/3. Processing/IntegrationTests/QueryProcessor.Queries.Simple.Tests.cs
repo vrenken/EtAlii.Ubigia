@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var start = Environment.TickCount;
 
             _options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -38,11 +38,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var traversalContext = new TraversalContextFactory().Create(_options);
             _context = new GraphContextFactory().Create(_options);
 
+            var scope = new ExecutionScope();
             await _testContext.Functional
-                .AddPeople(traversalContext)
+                .AddPeople(traversalContext, scope)
                 .ConfigureAwait(false);
             await _testContext.Functional
-                .AddAddresses(traversalContext)
+                .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -63,15 +64,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
 
         [Fact]
-        public async Task SchemaProcessor_Create()
+        public void SchemaProcessor_Create()
         {
             // Arrange.
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
 
             // Act.
             var processor = new TestSchemaProcessorFactory().Create(options);
@@ -86,6 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Time_Now_By_Structure()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var queryText = @"Time = @node(time:now)
                                {
                                     Millisecond = @node()
@@ -97,19 +97,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     Year = @node(\\\\\\)
                                }";
 
-            var query = _context.Parse(queryText).Schema;
+            var query = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(query)
+                .Process(query, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -138,25 +136,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Person_By_Structure()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
                                         FirstName = @node()
                                         LastName = @node(\#FamilyName)
                                    }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -172,25 +169,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Persons_By_Structure_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:*/*)
                                    {
                                         FirstName = @node()
                                         LastName = @node(\#FamilyName)
                                    }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -225,25 +221,24 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Person_By_Values()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Data
                                    {
                                         FirstName = @node(Person:Stark/Tony)
                                         LastName = @node(Person:Stark/Tony\#FamilyName)
                                    }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -260,6 +255,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Person_Nested_By_Structure()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                     {
                                         Data
@@ -269,19 +265,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                         }
                                     }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -299,6 +293,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Person_Nested_Double_By_Structure()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:Stark/Tony)
                                    {
                                         Data1
@@ -311,19 +306,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                         }
                                    }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -343,6 +336,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Persons_By_Structure_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:Doe/*)
                                {
                                     FirstName = @node()
@@ -351,19 +345,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     Birthdate
                                }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -390,6 +382,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Query_Person_Friends()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var selectSchemaText = @"Person = @nodes(Person:Doe/John)
                                {
                                     FirstName = @node()
@@ -403,19 +396,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     }
                                }";
 
-            var selectSchema = _context.Parse(selectSchemaText).Schema;
+            var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+            var options = new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
-                .Use(scope)
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
+                .Use(_options.Connection);
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(selectSchema)
+                .Process(selectSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 

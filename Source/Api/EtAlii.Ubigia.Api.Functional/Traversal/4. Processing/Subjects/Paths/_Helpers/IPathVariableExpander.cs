@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IPathVariableExpander
     {
-        Task<PathSubjectPart[]> Expand(PathSubjectPart[] path);
+        Task<PathSubjectPart[]> Expand(ExecutionScope scope, PathSubjectPart[] path);
     }
 }

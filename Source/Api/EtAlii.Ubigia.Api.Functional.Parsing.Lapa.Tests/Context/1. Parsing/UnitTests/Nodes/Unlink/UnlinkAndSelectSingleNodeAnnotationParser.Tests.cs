@@ -2,37 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class UnlinkAndSelectSingleNodeAnnotationParserTests
+    public class UnlinkAndSelectSingleNodeAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public UnlinkAndSelectSingleNodeAnnotationParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void UnlinkAndSelectSingleNodeAnnotationParser_Create()
+        public async Task UnlinkAndSelectSingleNodeAnnotationParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IUnlinkAndSelectSingleNodeAnnotationParser CreateAnnotationParser()
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            return container.GetInstance<IUnlinkAndSelectSingleNodeAnnotationParser>();
-        }
-
         [Fact]
-        public void UnlinkAndSelectSingleNodeAnnotationParser_Parse_01()
+        public async Task UnlinkAndSelectSingleNodeAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-unlink(/Time, time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -50,10 +56,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectSingleNodeAnnotationParser_Parse_02()
+        public async Task UnlinkAndSelectSingleNodeAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-unlink(/Time, time:'2000-05-02 23:07',/Event)";
 
             // Act.
@@ -71,10 +79,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectSingleNodeAnnotationParser_Parse_03()
+        public async Task UnlinkAndSelectSingleNodeAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.
@@ -92,10 +102,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void UnlinkAndSelectSingleNodeAnnotationParser_Parse_04()
+        public async Task UnlinkAndSelectSingleNodeAnnotationParser_Parse_04()
         {
             // Arrange.
-            var parser = CreateAnnotationParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IUnlinkAndSelectSingleNodeAnnotationParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"@node-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
             // Act.

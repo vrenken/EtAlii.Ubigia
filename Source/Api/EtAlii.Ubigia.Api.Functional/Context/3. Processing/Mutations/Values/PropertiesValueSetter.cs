@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _traversalContext = traversalContext;
         }
 
-        public async Task<Value> Set(string valueName, Structure structure, object value, SchemaExecutionScope executionScope)
+        public async Task<Value> Set(string valueName, Structure structure, object value, ExecutionScope scope)
         {
             var properties = structure.Node.Properties;
             var id = structure.Node.Id;
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 new ObjectConstantSubject(properties)
             }));
 
-            var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+            var processResult = await _traversalContext.Process(script, scope);
             var result = await processResult.Output.SingleOrDefaultAsync();
             if (result is Node valueNode)
             {

@@ -7,8 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class ScriptProcessingContext : IScriptProcessingContext
     {
-        public IScriptScope Scope { get; }
-
         public ILogicalContext Logical { get; }
 
         public IPathSubjectToGraphPathConverter PathSubjectToGraphPathConverter { get; private set; }
@@ -23,9 +21,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; private set; }
 
 
-        public ScriptProcessingContext(IScriptScope scope, ILogicalContext logical)
+        public ScriptProcessingContext(ILogicalContext logical)
         {
-            Scope = scope;
             Logical = logical;
         }
 

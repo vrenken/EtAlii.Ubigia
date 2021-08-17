@@ -6,21 +6,13 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class VariableSubjectFunctionParameterConverter : IVariableSubjectFunctionParameterConverter
     {
-        private readonly IScriptProcessingContext _context;
-
-        public VariableSubjectFunctionParameterConverter(IScriptProcessingContext context)
-        {
-            _context = context;
-        }
-
-        public object Convert(FunctionSubjectArgument argument)
+        public object Convert(FunctionSubjectArgument argument, ExecutionScope scope)
         {
             var variableSubjectArgument = (VariableFunctionSubjectArgument)argument;
 
             object result = Observable.Empty<object>();
             var variableName = variableSubjectArgument.Name;
-            ScopeVariable variable;
-            if (_context.Scope.Variables.TryGetValue(variableName, out variable))
+            if (scope.Variables.TryGetValue(variableName, out var variable))
             {
                 result = variable.Value;
             }

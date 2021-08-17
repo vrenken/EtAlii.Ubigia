@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task<Value> Get(
             string valueName,
             ValueAnnotation annotation,
-            SchemaExecutionScope executionScope,
+            ExecutionScope scope,
             Structure structure)
         {
             if (annotation == null)
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             if (annotation.Source != null)
             {
                 // @value(\#LastName) traversal, i.e. a path to another node.
-                return await _pathValueGetter.Get(valueName, structure, annotation.Source, executionScope).ConfigureAwait(false);
+                return await _pathValueGetter.Get(valueName, structure, annotation.Source, scope).ConfigureAwait(false);
             }
             // @value() traversal, i.e. no path but the node itself.
             return new Value(valueName, structure.Node.Type);

@@ -4,34 +4,42 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SequenceParserPathsHierarchicalTests : IDisposable
+    public class SequenceParserPathsHierarchicalTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
     {
         private ISequenceParser _parser;
+        private readonly TraversalUnitTestContext _testContext;
 
-        public SequenceParserPathsHierarchicalTests()
+        public SequenceParserPathsHierarchicalTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
+        public async Task InitializeAsync()
         {
             var container = new Container();
 
-            new LapaConstantParsingScaffolding().Register(container);
-            new LapaScriptParserScaffolding().Register(container);
-            new LapaSequenceParsingScaffolding().Register(container);
-            new LapaOperatorParsingScaffolding().Register(container);
-            new LapaSubjectParsingScaffolding().Register(container);
-            new LapaPathSubjectParsingScaffolding().Register(container);
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseDataConnectionToNewSpace(_testContext, true)
+                .ConfigureAwait(false);
+            new LapaParserExtension(options).Initialize(container);
 
             _parser = container.GetInstance<ISequenceParser>();
         }
 
-        public void Dispose()
+        public Task DisposeAsync()
         {
             _parser = null;
-            GC.SuppressFinalize(this);
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -770,6 +778,5 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal(7, path.Parts.Length);
             Assert.IsType<ChildrenPathSubjectPart>(path.Parts.Skip(6).Single());
         }
-
     }
 }

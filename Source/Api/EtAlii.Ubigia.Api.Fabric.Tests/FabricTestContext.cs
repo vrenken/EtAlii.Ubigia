@@ -23,12 +23,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Transport = transport;
         }
 
-        public async Task ConfigureFabricContextOptions(FabricContextOptions fabricContextOptions, bool openOnCreation)
-        {
-            var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);
-            fabricContextOptions.Use(connection);
-        }
-
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnectionToNewSpace(openOnCreation).ConfigureAwait(false);

@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal interface IPropertiesValueSetter
     {
-        Task<Value> Set(string valueName, Structure structure, object value, SchemaExecutionScope executionScope);
+        Task<Value> Set(string valueName, Structure structure, object value, ExecutionScope scope);
     }
 }

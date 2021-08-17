@@ -17,6 +17,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\CachingEntryContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\FabricContext.Entries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entries\UnitTests\EntryCacheHelper.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FabricContextOptions.UseDataConnectionToNewSpace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FabricTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FabricTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFabricTestContext.cs" />

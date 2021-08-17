@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         public async Task Process(
             StructureFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,
-            SchemaExecutionScope executionScope)
+            ExecutionScope scope)
         {
             var annotation = fragment.Annotation;
 
@@ -34,19 +34,19 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                 foreach (var structure in executionPlanResultSink.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, structure).ConfigureAwait(false);
+                    await Build(scope, executionPlanResultSink, annotation, id, fragment.Name, structure).ConfigureAwait(false);
                 }
             }
             else
             {
                 var id = Identifier.Empty;
-                await Build(executionScope, executionPlanResultSink, annotation, id, fragment.Name, null).ConfigureAwait(false);
+                await Build(scope, executionPlanResultSink, annotation, id, fragment.Name, null).ConfigureAwait(false);
             }
         }
 
 
         private async Task Build(
-            SchemaExecutionScope executionScope,
+            ExecutionScope scope,
             ExecutionPlanResultSink executionPlanResultSink,
             NodeAnnotation annotation,
             Identifier id,
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             var path = _pathDeterminer.Determine(executionPlanResultSink, annotation, id);
 
-            await _pathStructureBuilder.Build(executionScope, executionPlanResultSink, annotation, structureName, parent, path).ConfigureAwait(false);
+            await _pathStructureBuilder.Build(scope, executionPlanResultSink, annotation, structureName, parent, path).ConfigureAwait(false);
         }
     }
 }

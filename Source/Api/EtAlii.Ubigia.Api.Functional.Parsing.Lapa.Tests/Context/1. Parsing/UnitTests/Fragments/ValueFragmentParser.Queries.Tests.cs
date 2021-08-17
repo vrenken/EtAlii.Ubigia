@@ -2,32 +2,43 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ValueFragmentParserQueriesTests
+    public class ValueFragmentParserQueriesTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public ValueFragmentParserQueriesTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void ValueFragmentParser_Create()
+        public async Task ValueFragmentParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IValueFragmentParser CreateValueFragmentParser() => new LapaSchemaParserTestContainerFactory().Create().GetInstance<IValueFragmentParser>();
-
         [Fact]
-        public void ValueFragmentParser_Parse_Query_Without_Annotation()
+        public async Task ValueFragmentParser_Parse_Query_Without_Annotation()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"firstname";
 
             // Act.
@@ -45,10 +56,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Query_With_Value_Annotation()
+        public async Task ValueFragmentParser_Parse_Query_With_Value_Annotation()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"firstname @node()";
 
             // Act.
@@ -68,10 +81,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Query_With_Relative_Value_Annotation()
+        public async Task ValueFragmentParser_Parse_Query_With_Relative_Value_Annotation()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = @"lastname @node(\\)";
 
             // Act.

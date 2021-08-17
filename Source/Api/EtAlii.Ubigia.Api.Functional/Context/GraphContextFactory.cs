@@ -2,27 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphContextFactory : Factory<IGraphContext, FunctionalOptions, IGraphContextExtension>
+    public class GraphContextFactory : Factory<IGraphContext, FunctionalOptions, IFunctionalExtension>
     {
         protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
-            // Let's ensure that the function handler configuration is in fact valid.
-            var functionHandlersProvider = options.FunctionHandlersProvider;
-            var functionHandlerValidator = new FunctionHandlerValidator();
-            functionHandlerValidator.Validate(functionHandlersProvider);
-
-            // Let's ensure that the root handler configuration is in fact valid.
-            var rootHandlerMappersProvider = options.RootHandlerMappersProvider;
-            var rootHandlerMapperValidator = new RootHandlerMapperValidator();
-            rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
-
-            return new IScaffolding[]
-            {
-                new GraphContextScaffolding(options)
-            };
+            return Array.Empty<IScaffolding>();
         }
     }
 }

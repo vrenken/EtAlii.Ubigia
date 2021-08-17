@@ -7,18 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class VariableSubjectProcessor : IVariableSubjectProcessor
     {
-        private readonly IScriptProcessingContext _context;
-
-        public VariableSubjectProcessor(IScriptProcessingContext context)
-        {
-            _context = context;
-        }
-
         public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var variableName = ((VariableSubject)subject).Name;
 
-            if (_context.Scope.Variables.TryGetValue(variableName, out var variable))
+            if (scope.Variables.TryGetValue(variableName, out var variable))
             {
                 variable.Value.Subscribe(
                     onError: output.OnError,

@@ -5,16 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingScriptProcessorExtension2 : IScriptProcessorExtension
+    public class ProfilingFunctionalExtension2 : IFunctionalExtension
     {
         private readonly IProfiler _profiler;
 
-        public ProfilingScriptProcessorExtension2(IProfiler profiler)
+        public ProfilingFunctionalExtension2(IProfiler profiler)
         {
             _profiler = profiler;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             container.Register(() => _profiler);
             //container.RegisterDecorator(typeof(IScriptProcessor), typeof(ProfilingScriptProcessor))
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             //container.RegisterDecorator(typeof(IPathSubjectToGraphPathConverter), typeof(ProfilingPathSubjectToGraphPathConverter))
             //container.RegisterDecorator(typeof(IPathProcessor), typeof(ProfilingPathProcessor))
 
-            container.RegisterDecorator(typeof(IEntriesToDynamicNodesConverter), typeof(ProfilingEntriesToDynamicNodesConverter));
+            container.RegisterDecorator<IEntriesToDynamicNodesConverter, ProfilingEntriesToDynamicNodesConverter>();
 
             //container.RegisterDecorator(typeof(IPathSubjectForOutputConverter), typeof(ProfilingPathSubjectForOutputConverter))
             //container.RegisterDecorator(typeof(IPathSubjectForFunctionAssignmentOperationConverter), typeof(ProfilingPathSubjectForFunctionAssignmentOperationConverter))

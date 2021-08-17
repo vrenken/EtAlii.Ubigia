@@ -2,44 +2,44 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class StructureQueryParserTests
+    public class StructureQueryParserTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public StructureQueryParserTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void StructureFragmentParser_Create()
+        public async Task StructureFragmentParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateStructureFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IStructureFragmentParser CreateStructureFragmentParser()
-        {
-            return CreateStructureFragmentParser(out _);
-        }
-
-        private IStructureFragmentParser CreateStructureFragmentParser(out INodeValidator nodeValidator)
-        {
-            var container = new LapaSchemaParserTestContainerFactory().Create();
-
-            nodeValidator = container.GetInstance<INodeValidator>();
-            return container.GetInstance<IStructureFragmentParser>();
-        }
-
         [Fact]
-        public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_01()
+        public async Task StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_01()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1,
@@ -62,10 +62,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_02()
+        public async Task StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_02()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
                 ""key1"",
@@ -88,10 +90,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void StructureFragmentParser_Parse_Query_With_Two_Distinct_Results()
+        public async Task StructureFragmentParser_Parse_Query_With_Two_Distinct_Results()
         {
             // Arrange.
-            var parser = CreateStructureFragmentParser(out var nodeValidator);
+            var (parser, nodeValidator) = await new LapaSchemaParserComponentTestFactory()
+                .Create<IStructureFragmentParser, INodeValidator>(_testContext)
+                .ConfigureAwait(false);
             var text = @"Data
             {
                 Person @nodes(Person:Doe/*)

@@ -21,22 +21,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _scriptParserFactory = scriptParserFactory;
         }
 
-        public ScriptParseResult Parse(string text)
+        public ScriptParseResult Parse(string text, ExecutionScope scope)
         {
             var parser = _scriptParserFactory.Create(_options);
-            return parser.Parse(text);
+            return parser.Parse(text, scope);
         }
 
-        public IObservable<SequenceProcessingResult> Process(Script script, IScriptScope scope)
+        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
         {
-            var options = _options.CreateScope(scope);
-            var processor = _scriptProcessorFactory.Create(options);
-            return processor.Process(script);
+            var processor = _scriptProcessorFactory.Create(_options);
+            return processor.Process(script, scope);
         }
 
-        public IObservable<SequenceProcessingResult> Process(string[] text, IScriptScope scope)
+        public IObservable<SequenceProcessingResult> Process(string[] text, ExecutionScope scope)
         {
-            var scriptParseResult = Parse(string.Join(Environment.NewLine, text));
+            var scriptParseResult = Parse(string.Join(Environment.NewLine, text), scope);
 
             if (scriptParseResult.Errors.Any())
             {
@@ -48,28 +47,21 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         }
 
 
-        public IObservable<SequenceProcessingResult> Process(string text, params object[] args)
+        public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope, params object[] args)
         {
             text = string.Format(text, args);
-            return Process(text);
+            return Process(text, scope);
         }
 
-        public IObservable<SequenceProcessingResult> Process(string[] text)
+        public IObservable<SequenceProcessingResult> Process(string text, ExecutionScope scope)
         {
-            return Process(string.Join(Environment.NewLine, text));
-        }
-
-        public IObservable<SequenceProcessingResult> Process(string text)
-        {
-            var scriptParseResult = Parse(text);
+            var scriptParseResult = Parse(text, scope);
 
             if (scriptParseResult.Errors.Any())
             {
                 var firstError = scriptParseResult.Errors.First();
                 throw new ScriptParserException(firstError.Message, firstError.Exception);
             }
-
-            var scope = new ScriptScope();
 
             return Process(scriptParseResult.Script, scope);
         }

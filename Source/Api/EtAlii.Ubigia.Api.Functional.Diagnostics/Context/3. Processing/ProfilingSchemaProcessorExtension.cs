@@ -2,17 +2,22 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    //using EtAlii.Ubigia.Diagnostics.Profiling
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
 
-    public class ProfilingSchemaProcessorExtension : ISchemaProcessorExtension
+    public class ProfilingSchemaProcessorExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        private readonly IConfigurationRoot _configurationRoot;
+
+        public ProfilingSchemaProcessorExtension(IConfigurationRoot configurationRoot)
         {
-            var configurationRoot = container.GetInstance<IConfigurationRoot>();
-            var options = configurationRoot
+            _configurationRoot = configurationRoot;
+        }
+
+        public void Initialize(IRegisterOnlyContainer container)
+        {
+            var options = _configurationRoot
                 .GetSection("Api:Functional:Diagnostics")
                 .Get<DiagnosticsOptions>();
 

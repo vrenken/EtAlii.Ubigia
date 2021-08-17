@@ -2,15 +2,18 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Antlr.Traversal
 {
+    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
+    using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class AntrlParserExtension : IScriptParserExtension, IScriptProcessorExtension
+    internal class AntrlParserExtension : IFunctionalExtension
     {
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
+            container.Register<IContextValidator, ContextValidator>();
+            container.Register<ISchemaParser, AntlrSchemaParser>();
             container.Register<IPathParser, AntlrPathParser>();
-
             container.Register<ITraversalValidator, TraversalValidator>();
             container.Register<IScriptParser, AntlrScriptParser>();
         }

@@ -2,46 +2,14 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, SchemaProcessorOptions, ISchemaProcessorExtension>, ISchemaProcessorFactory
+    internal class LapaSchemaProcessorFactory : Factory<ISchemaProcessor, FunctionalOptions, IFunctionalExtension>, ISchemaProcessorFactory
     {
-        protected override IScaffolding[] CreateScaffoldings(SchemaProcessorOptions options)
+        protected override IScaffolding[] CreateScaffoldings(FunctionalOptions options)
         {
-            return new IScaffolding[]
-            {
-                new SchemaProcessingScaffolding(options),
-                new SchemaExecutionPlanningScaffolding(),
-                //new SubjectProcessingScaffolding(options.FunctionHandlersProvider),
-                //new RootProcessingScaffolding(options.RootHandlerMappersProvider),
-                //new PathBuildingScaffolding(),
-                //new ConstantHelpersScaffolding(),
-                //new OperatorProcessingScaffolding(),
-                //new ProcessingSelectorsScaffolding(),
-                //new FunctionSubjectProcessingScaffolding(),
-
-                // Query Parsing
-                new LapaSchemaParserScaffolding(),
-
-                // Additional processing (for path variable parts).
-                //new PathSubjectParsingScaffolding(),
-
-            };
-        }
-
-        protected override void InitializeInstance(ISchemaProcessor instance, Container container)
-        {
-//            var pathProcessor = container.GetInstance<IPathProcessor>()
-//            var pathSubjectToGraphPathConverter = container.GetInstance<IPathSubjectToGraphPathConverter>()
-//
-//            var absolutePathSubjectProcessor = container.GetInstance<IAbsolutePathSubjectProcessor>()
-//            var relativePathSubjectProcessor = container.GetInstance<IRelativePathSubjectProcessor>()
-//            var rootedPathSubjectProcessor = container.GetInstance<IRootedPathSubjectProcessor>()
-//
-//            var pathSubjectForOutputConverter = container.GetInstance<IPathSubjectForOutputConverter>()
-//            var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>()
-//
-//            container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor)
+            return Array.Empty<IScaffolding>();
         }
     }
 }

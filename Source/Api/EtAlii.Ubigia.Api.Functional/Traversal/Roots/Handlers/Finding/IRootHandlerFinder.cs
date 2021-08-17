@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal interface IRootHandlerFinder
     {
-        Task<IRootHandler> Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject);
+        Task<IRootHandler> Find(ExecutionScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject);
     }
 }

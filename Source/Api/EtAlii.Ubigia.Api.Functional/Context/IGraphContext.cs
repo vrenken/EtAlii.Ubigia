@@ -14,17 +14,16 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         /// Parse the specified text into a GCL query.
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="scope"></param>
         /// <returns></returns>
-        SchemaParseResult Parse(string text);
+        SchemaParseResult Parse(string text, ExecutionScope scope);
 
-        IAsyncEnumerable<Structure> Process(Schema schema, ISchemaScope scope);
-        IAsyncEnumerable<Structure> Process(string text, params object[] args);
-        IAsyncEnumerable<Structure> Process(string text, ISchemaScope scope);
-        IAsyncEnumerable<Structure> Process(string[] text);
-        IAsyncEnumerable<Structure> Process(string[] text, ISchemaScope scope);
-        IAsyncEnumerable<Structure> Process(string text);
+        IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope);
+        IAsyncEnumerable<Structure> Process(string text, ExecutionScope scope, params object[] args);
+        IAsyncEnumerable<Structure> Process(string[] text, ExecutionScope scope);
+        IAsyncEnumerable<Structure> Process(string text, ExecutionScope scope);
 
-        Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
-        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ISchemaScope scope);
+        Task<TResult> ProcessSingle<TResult>(string text, IResultMapper<TResult> resultMapper, ExecutionScope scope);
+        IAsyncEnumerable<TResult> ProcessMultiple<TResult>(string text, IResultMapper<TResult> resultMapper, ExecutionScope scope);
     }
 }

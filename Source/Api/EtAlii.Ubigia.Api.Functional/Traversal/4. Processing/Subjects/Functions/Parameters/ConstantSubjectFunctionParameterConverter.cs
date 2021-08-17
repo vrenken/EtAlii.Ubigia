@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     internal class ConstantSubjectFunctionParameterConverter : IConstantSubjectFunctionParameterConverter
     {
-        public object Convert(FunctionSubjectArgument argument)
+        public object Convert(FunctionSubjectArgument argument, ExecutionScope scope)
         {
             var constantArgument = (ConstantFunctionSubjectArgument)argument;
             return constantArgument.Value;

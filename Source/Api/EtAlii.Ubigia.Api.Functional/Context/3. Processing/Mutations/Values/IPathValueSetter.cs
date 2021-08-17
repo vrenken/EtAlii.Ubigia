@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal interface IPathValueSetter
     {
-        Task<Value> Set(string valueName, string value, Structure structure, PathSubject path, SchemaExecutionScope executionScope);
+        Task<Value> Set(string valueName, string value, Structure structure, PathSubject path, ExecutionScope scope);
     }
 }

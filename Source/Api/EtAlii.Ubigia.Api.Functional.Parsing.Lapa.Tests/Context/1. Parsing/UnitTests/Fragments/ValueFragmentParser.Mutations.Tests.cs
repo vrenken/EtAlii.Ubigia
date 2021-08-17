@@ -2,33 +2,44 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ValueFragmentParserMutationsTests
+    public class ValueFragmentParserMutationsTests : IClassFixture<TraversalUnitTestContext>
     {
+        private readonly TraversalUnitTestContext _testContext;
+
+        public ValueFragmentParserMutationsTests(TraversalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
-        public void ValueFragmentParser_Create()
+        public async Task ValueFragmentParser_Create()
         {
             // Arrange.
 
             // Act.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IValueFragmentParser CreateValueFragmentParser() => new LapaSchemaParserTestContainerFactory().Create().GetInstance<IValueFragmentParser>();
-
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Space()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Space()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "firstname <= \"John\"";
 
             // Act.
@@ -45,10 +56,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Tab()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Tab()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "firstname\t<=\t\"John\"";
 
             // Act.
@@ -65,10 +78,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Compact()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Compact()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "firstname<=\"John\"";
 
             // Act.
@@ -85,10 +100,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Space()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Space()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "Location @node-set( Location:NL/Overijssel/Enschede/Oldebokhoek/52 )";
 
             // Act.
@@ -106,10 +123,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Compact()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Compact()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "Location @node-set(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
 
             // Act.
@@ -128,10 +147,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Tab()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Tab()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "Location\t@node-set(\tLocation:NL/Overijssel/Enschede/Oldebokhoek/52\t)";
 
             // Act.
@@ -149,10 +170,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Space()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Space()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 
             // Act.
@@ -172,10 +195,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         }
 
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Tab()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Tab()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "FirstName @node-set(\t\"John\"\t)";
 
             // Act.
@@ -194,10 +219,12 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Equal("John", subject.Value);
         }
         [Fact]
-        public void ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Compact()
+        public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Compact()
         {
             // Arrange.
-            var parser = CreateValueFragmentParser();
+            var parser = await new LapaSchemaParserComponentTestFactory()
+                .Create<IValueFragmentParser>(_testContext)
+                .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 
             // Act.

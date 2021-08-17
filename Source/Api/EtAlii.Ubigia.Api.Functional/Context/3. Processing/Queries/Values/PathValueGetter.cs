@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         }
 
         /// <inheritdoc />
-        public async Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope)
+        public async Task<Value> Get(string valueName, Structure structure, PathSubject path, ExecutionScope scope)
         {
             if (path is RelativePathSubject)
             {
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
                     path = new AbsolutePathSubject(parts);
                     var script = new Script(new Sequence(new SequencePart[] {path}));
 
-                    var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+                    var processResult = await _traversalContext.Process(script, scope);
                     var result = await processResult.Output.SingleOrDefaultAsync();
                     if (result is Node valueNode)
                     {
@@ -52,7 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             {
                 // We also want to be able to get absolute or rooted paths.
                 var script = new Script(new Sequence(new SequencePart[] {path}));
-                var processResult = await _traversalContext.Process(script, executionScope.ScriptScope);
+                var processResult = await _traversalContext.Process(script, scope);
                 var result = await processResult.Output.SingleOrDefaultAsync();
                 if (result is Node valueNode)
                 {

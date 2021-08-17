@@ -20,20 +20,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             Logical = logical;
         }
 
-        public async Task AddPeople(ITraversalContext context)
+        public async Task AddPeople(ITraversalContext context, ExecutionScope scope)
         {
-            await AddJohnDoe(context).ConfigureAwait(false);
-            await AddJaneDoe(context).ConfigureAwait(false);
-            await AddTonyStark(context).ConfigureAwait(false);
-            await AddPeterBanner(context).ConfigureAwait(false);
-            await AddTanjaBanner(context).ConfigureAwait(false);
-            await AddArjanBanner(context).ConfigureAwait(false);
-            await AddIdaBanner(context).ConfigureAwait(false);
+            await AddJohnDoe(context, scope).ConfigureAwait(false);
+            await AddJaneDoe(context, scope).ConfigureAwait(false);
+            await AddTonyStark(context, scope).ConfigureAwait(false);
+            await AddPeterBanner(context, scope).ConfigureAwait(false);
+            await AddTanjaBanner(context, scope).ConfigureAwait(false);
+            await AddArjanBanner(context, scope).ConfigureAwait(false);
+            await AddIdaBanner(context, scope).ConfigureAwait(false);
 
-            await AddFriends(context).ConfigureAwait(false);
+            await AddFriends(context, scope).ConfigureAwait(false);
         }
 
-        public async Task AddAddresses(ITraversalContext context)
+        public async Task AddAddresses(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -45,10 +45,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddPeterBanner(ITraversalContext context)
+        private async Task AddPeterBanner(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -59,10 +59,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddTanjaBanner(ITraversalContext context)
+        private async Task AddTanjaBanner(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -72,10 +72,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var addQuery = string.Join("\r\n", addQueries);
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddArjanBanner(ITraversalContext context)
+        private async Task AddArjanBanner(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -85,11 +85,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var addQuery = string.Join("\r\n", addQueries);
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
 
-        private async Task AddIdaBanner(ITraversalContext context)
+        private async Task AddIdaBanner(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -99,10 +99,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var addQuery = string.Join("\r\n", addQueries);
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddJohnDoe(ITraversalContext context)
+        private async Task AddJohnDoe(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -113,10 +113,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddJaneDoe(ITraversalContext context)
+        private async Task AddJaneDoe(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -127,10 +127,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddTonyStark(ITraversalContext context)
+        private async Task AddTonyStark(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -141,10 +141,10 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
         }
 
-        private async Task AddFriends(ITraversalContext context)
+        private async Task AddFriends(ITraversalContext context, ExecutionScope scope)
         {
             var addQueries = new[]
             {
@@ -186,23 +186,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "person:Banner/Tanja/Friends += person:Banner/Peter",
                 "person:Banner/Tanja/Friends += person:Banner/Arjan",
                 "person:Banner/Tanja/Friends += person:Banner/Ida",
-
-//                "person:Banner/Ida/Friends/",
-//                "person:Banner/Arjan/Friends/",
-//                "person:Banner/Tanja/Friends/",
-//                "person:Banner/Peter/Friends/",
-//                "person:Stark/Tony/Friends/",
-//                "person:Doe/Jane/Friends/",
-//                "person:Doe/John/Friends/",
-//                "person:Stark/Tony",
             };
             var addQuery = string.Join("\r\n", addQueries);
 
 
-            await context.Process(addQuery);
+            await context.Process(addQuery, scope);
 
 //            var testQuery = context.Parse("person:Stark/Tony")
-//            var testResult = await context.Process(testQuery.Script, new FunctionalScope())
+//            var testResult = await context.Process(testQuery.Script, new ExecutionScope())
 //            var result = await testResult.Output.ToArray()
 //            var result = context.Scripts.Process(addQuery)
 //

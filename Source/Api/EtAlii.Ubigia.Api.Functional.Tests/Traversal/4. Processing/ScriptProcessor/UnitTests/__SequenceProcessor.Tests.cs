@@ -19,7 +19,7 @@
 //            var diagnostics = TestDiagnostics.Create()
 //            var processedParameters = new Dictionary<int, ProcessParameters<SequencePart, SequencePart>>()
 //            var sequencePartProcessor = new TestableSequencePartProcessor((i, p) => processedParameters[i] = p)
-//            var scope = new ScriptScope()
+//            var scope = new ExecutionScope()
 
 //            var options = new ScriptProcessorOptions()
 //                .Use(sequencePartProcessor)
@@ -54,7 +54,7 @@
 //            var diagnostics = TestDiagnostics.Create()
 //            var processedParameters = new Dictionary<int, ProcessParameters<SequencePart, SequencePart>>()
 //            var sequencePartProcessor = new TestableSequencePartProcessor((i, p) => processedParameters[i] = p)
-//            var scope = new ScriptScope()
+//            var scope = new ExecutionScope()
 //            var options = new ScriptProcessorOptions()
 //                .Use(sequencePartProcessor)
 //                .Use(diagnostics)

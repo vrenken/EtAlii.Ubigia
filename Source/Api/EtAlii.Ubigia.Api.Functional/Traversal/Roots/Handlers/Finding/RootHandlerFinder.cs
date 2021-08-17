@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
 
-        public async Task<IRootHandler> Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
+        public async Task<IRootHandler> Find(ExecutionScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
         {
             var rootHandler = rootHandlerMapper.AllowedRootHandlers.FirstOrDefault();
             if (rootHandler != null)

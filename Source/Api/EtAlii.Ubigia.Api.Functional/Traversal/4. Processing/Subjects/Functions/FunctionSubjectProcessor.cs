@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             var functionSubject = (FunctionSubject)subject;
 
             // Find matching argument set.
-            var argumentSet = _argumentSetFinder.Find(functionSubject);
+            var argumentSet = _argumentSetFinder.Find(functionSubject, scope);
             // Find function handler.
             var functionHandler = _functionHandlerFinder.Find(functionSubject);
             // And one single parameter set with the exact same parameters.

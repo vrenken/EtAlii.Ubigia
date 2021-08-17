@@ -1,12 +1,11 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia
 {
     using System;
     using System.Collections;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
-    using EtAlii.Ubigia.Api.Logical;
 
     /// <summary>
     /// A ScopeVariable instance is used to cache the value of a variable in the scope of a script.
@@ -55,12 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         public ScopeVariable(IObservable<object> value, string source)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            Value = value;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
             Source = source ?? string.Empty;
         }
     }

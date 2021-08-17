@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _downdateRootHandlerPathPartMatcher = downdateRootHandlerPathPartMatcher;
             _identifierRootHandlerPathPartMatcher = identifierRootHandlerPathPartMatcher;
         }
-        public async Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
+        public async Task<MatchResult> Match(ExecutionScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
             var matches = new[] { new MatchResult(rootHandler, Array.Empty<PathSubjectPart>(), path) };
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         }
 
         private async Task<PathSubjectPart[]> FindMatchingRest(
-            IScriptScope scope,
+            ExecutionScope scope,
             IRootHandler rootHandler,
             MatchResult[] matches,
             PathSubjectPart templatePart,
@@ -174,7 +174,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 foreach (var m in matches)
                 {
                     var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
-                    var canMatch = await matcher.CanMatch(parameters).ConfigureAwait(false);
+                    var canMatch = await matcher
+                        .CanMatch(parameters)
+                        .ConfigureAwait(false);
                     if (canMatch)
                     {
                         match = m;

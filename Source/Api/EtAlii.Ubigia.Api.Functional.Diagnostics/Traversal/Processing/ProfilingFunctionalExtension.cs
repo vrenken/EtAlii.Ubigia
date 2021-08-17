@@ -5,33 +5,33 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using EtAlii.Ubigia.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingScriptProcessorExtension : IScriptProcessorExtension
+    public class ProfilingFunctionalExtension : IFunctionalExtension
     {
         private readonly IProfiler _profiler;
 
-        public ProfilingScriptProcessorExtension(IProfiler profiler)
+        public ProfilingFunctionalExtension(IProfiler profiler)
         {
             _profiler = profiler;
         }
 
-        public void Initialize(Container container)
+        public void Initialize(IRegisterOnlyContainer container)
         {
             container.Register(() => _profiler);
-            container.RegisterDecorator(typeof(IScriptProcessor), typeof(ProfilingScriptProcessor));
+            container.RegisterDecorator<IScriptProcessor, ProfilingScriptProcessor>();
             //container.RegisterDecorator(typeof(ISequenceProcessor), typeof(ProfilingSequenceProcessor))
 
             //container.RegisterDecorator(typeof(IOperatorsProcessor2), typeof(ProfilingOperatorsProcessor))
             //container.RegisterDecorator(typeof(ISubjectsProcessor2), typeof(ProfilingSubjectsProcessor))
             //container.RegisterDecorator(typeof(ICommentProcessor2), typeof(ProfilingCommentProcessor))
 
-            container.RegisterDecorator(typeof(IAbsolutePathSubjectProcessor), typeof(ProfilingAbsolutePathSubjectProcessor));
-            container.RegisterDecorator(typeof(IRelativePathSubjectProcessor), typeof(ProfilingRelativePathSubjectProcessor));
-            container.RegisterDecorator(typeof(IPathSubjectToGraphPathConverter), typeof(ProfilingPathSubjectToGraphPathConverter));
-            container.RegisterDecorator(typeof(IPathProcessor), typeof(ProfilingPathProcessor));
+            container.RegisterDecorator<IAbsolutePathSubjectProcessor, ProfilingAbsolutePathSubjectProcessor>();
+            container.RegisterDecorator<IRelativePathSubjectProcessor, ProfilingRelativePathSubjectProcessor>();
+            container.RegisterDecorator<IPathSubjectToGraphPathConverter, ProfilingPathSubjectToGraphPathConverter>();
+            container.RegisterDecorator<IPathProcessor, ProfilingPathProcessor>();
 
-            container.RegisterDecorator(typeof(IEntriesToDynamicNodesConverter), typeof(ProfilingEntriesToDynamicNodesConverter));
+            container.RegisterDecorator<IEntriesToDynamicNodesConverter, ProfilingEntriesToDynamicNodesConverter>();
 
-            container.RegisterDecorator(typeof(IPathSubjectForOutputConverter), typeof(ProfilingPathSubjectForOutputConverter));
+            container.RegisterDecorator<IPathSubjectForOutputConverter, ProfilingPathSubjectForOutputConverter>();
             //container.RegisterDecorator(typeof(IPathSubjectForFunctionAssignmentOperationConverter2), typeof(ProfilingPathSubjectForFunctionAssignmentOperationConverter))
             //container.RegisterDecorator(typeof(IPathSubjectForPathAddOperationConverter2), typeof(ProfilingPathSubjectForPathAddOperationConverter))
             //container.RegisterDecorator(typeof(IPathSubjectForPathAssignmentOperationConverter2), typeof(ProfilingPathSubjectForPathAssignmentOperationConverter))

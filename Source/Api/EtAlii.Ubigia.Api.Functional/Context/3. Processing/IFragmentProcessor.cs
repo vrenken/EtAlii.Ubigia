@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         Task Process(
             TFragment fragment,
             ExecutionPlanResultSink executionPlanResultSink,
-            SchemaExecutionScope executionScope);
+            ExecutionScope scope);
 
     }
 }
