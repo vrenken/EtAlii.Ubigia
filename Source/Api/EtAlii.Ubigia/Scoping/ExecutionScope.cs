@@ -14,28 +14,11 @@ namespace EtAlii.Ubigia
         /// This is the Cache instance used to reduce unnecessary server calls. As the whole entity and relation
         /// model is based on immutability local caching can do tremendous wonders.
         /// </summary>
-        public ClientCache Cache { get; }
+        public ClientCache Cache { get; } = new ();
 
-        private readonly Dictionary<string, Regex> _regexes;
+        private readonly Dictionary<string, Regex> _regexes = new();
 
         public Dictionary<string, ScopeVariable> Variables { get; } = new ();
-
-        /// <summary>
-        /// Create a new ExecutionScope instance. Set the cacheEnabled to false if the cache should be disabled.
-        /// </summary>
-        /// <param name="cacheEnabled">False when caching should be disabled.</param>
-        public ExecutionScope(bool cacheEnabled = true)
-        {
-            cacheEnabled = false;
-            Cache = new ClientCache(cacheEnabled);
-            _regexes = new Dictionary<string, Regex>();
-        }
-
-        public ExecutionScope(bool cacheEnabled, Dictionary<string, ScopeVariable> variables)
-            : this(cacheEnabled)
-        {
-            Variables = variables;
-        }
 
         /// <summary>
         /// Gets cached regular expressions for the specified pattern.

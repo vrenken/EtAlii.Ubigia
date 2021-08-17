@@ -85,13 +85,13 @@ namespace EtAlii.Ubigia
         {
             IReadOnlyEntry result;
 
-            if (_cacheEnabled)
+            // This cache is not clever enough yet and should be improved.
+            // More details can be found in the Github issue below:
+            // https://github.com/vrenken/EtAlii.Ubigia/issues/93
+            if (false) // _cacheEnabled
             {
                 await _entriesSemaphore.WaitAsync().ConfigureAwait(false);
 
-                // This cache is not clever enough yet and should be improved.
-                // More details can be found in the Github issue below:
-                // https://github.com/vrenken/EtAlii.Ubigia/issues/93
                 var hasValue = _entries.TryGetValue(identifier, out result);
 
                 _entriesSemaphore.Release();
@@ -127,9 +127,6 @@ namespace EtAlii.Ubigia
 
                 await _relatedEntriesSemaphore.WaitAsync().ConfigureAwait(false);
 
-                // This cache is not clever enough yet and should be improved.
-                // More details can be found in the Github issue below:
-                // https://github.com/vrenken/EtAlii.Ubigia/issues/93
                 var hasValue = _relatedEntries.TryGetValue(cacheId, out var cachedResult);
 
                 _relatedEntriesSemaphore.Release();
