@@ -12,9 +12,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableOutput()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("$var1 <= /Fourth/4\r\n/Fifth/5\r\n/Sixth/6\r\n$var1").Script;
+            var script = _parser.Parse("$var1 <= /Fourth/4\r\n/Fifth/5\r\n/Sixth/6\r\n$var1", scope).Script;
 
             // Assert.
             Assert.Equal(4, script.Sequences.Count());
@@ -26,9 +27,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableOutput_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("$var1<=/Fourth/4\r\n/Fifth/5\r\n/Sixth/6\r\n$var1").Script;
+            var script = _parser.Parse("$var1<=/Fourth/4\r\n/Fifth/5\r\n/Sixth/6\r\n$var1", scope).Script;
 
             // Assert.
             Assert.Equal(4, script.Sequences.Count());

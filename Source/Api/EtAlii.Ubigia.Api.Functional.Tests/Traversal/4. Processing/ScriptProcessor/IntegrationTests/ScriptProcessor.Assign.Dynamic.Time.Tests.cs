@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -37,20 +38,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence  = await processor.Process(updateScript);
+            lastSequence  = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -67,6 +68,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Empty()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -80,20 +82,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript);
+            lastSequence = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -106,6 +108,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -121,20 +124,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript);
+            lastSequence = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -150,6 +153,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Local()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -168,20 +172,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript);
+            lastSequence = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -198,6 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Utc()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -216,20 +221,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript);
+            lastSequence = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -246,6 +251,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Assign_Dynamic_To_Path_Spaced_With_DateTime_Unspecified()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "<= Time:2014/09/06/16/33"
@@ -264,20 +270,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var updateScript = _parser.Parse(updateQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var updateScript = _parser.Parse(updateQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
-            var scope = new FunctionalScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
+            scope = new ExecutionScope { Variables = { ["data"] = new ScopeVariable(data, "data") } };
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic addResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(updateScript);
+            lastSequence = await processor.Process(updateScript, scope);
             dynamic updateResult = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic selectResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.

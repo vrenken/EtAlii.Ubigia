@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Time_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -30,10 +31,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Time_Root_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:time <= Time";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -48,10 +50,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Time_Root_Under_Other_Name()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -66,10 +69,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Time_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:specialtime <= Time";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -84,10 +88,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -103,10 +108,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:projects <= Object";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -121,10 +127,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name_And_Schema()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";//":/[Words]/[Number]"
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

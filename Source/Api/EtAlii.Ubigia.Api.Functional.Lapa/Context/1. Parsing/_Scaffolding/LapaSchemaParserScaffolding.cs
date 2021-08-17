@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class LapaSchemaParserScaffolding : IScaffolding
@@ -16,11 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IRequirementParser, RequirementParser>();
 
             container.Register<IAssignmentParser, AssignmentParser>();
-            container.RegisterInitializer<IKeyValuePairParser>((services, keyValuePairParser) =>
-            {
-                var assignmentParser = services.GetInstance<IAssignmentParser>();
-                ((KeyValuePairParser) keyValuePairParser).Initialize(assignmentParser.Parser);
-            });
+            container.Register<IFragmentKeyValuePairParser, FragmentKeyValuePairParser>();
 
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
             container.Register<IValueFragmentParser, ValueFragmentParser>();

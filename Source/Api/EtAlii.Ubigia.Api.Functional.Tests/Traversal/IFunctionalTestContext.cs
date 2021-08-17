@@ -14,8 +14,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public IConfigurationRoot ClientConfiguration { get; }
         public IConfigurationRoot HostConfiguration { get; }
 
-        Task AddPeople(ITraversalContext context);
-        Task AddAddresses(ITraversalContext context);
+        Task AddPeople(ITraversalContext context, ExecutionScope scope);
+        Task AddAddresses(ITraversalContext context, ExecutionScope scope);
 
         Task Start(PortRange portRange);
         Task Stop();

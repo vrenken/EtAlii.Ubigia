@@ -34,6 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Variables_QueryBy_FirstName_LastName()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
@@ -47,18 +48,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var selectQuery = "Person:$lastName/$firstName";
 
-            var addScript = _parser.Parse(addQueries).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
-            var scope = new FunctionalScope();
+            var addScript = _parser.Parse(addQueries, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             scope.Variables.Add("lastName", new ScopeVariable("Doe", null));
             scope.Variables.Add("firstName", new ScopeVariable("John", null));
 
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var person = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.

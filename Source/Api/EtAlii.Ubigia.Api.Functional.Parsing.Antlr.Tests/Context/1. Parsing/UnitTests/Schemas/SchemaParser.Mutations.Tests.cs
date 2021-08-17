@@ -12,6 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Nested_Mutation()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"
             Person = @nodes(Person:Doe/John)
@@ -28,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -64,6 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_With_Comment_And_Object_Multiple_Lines_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"-- This is a comment
             Data
@@ -72,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -86,6 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_With_Comment_And_Object_Multiple_Lines_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"-- This is a comment
             Data = @node(Person:Doe/John)
@@ -94,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -109,6 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Without_Comment_And_Object_Multiple_Lines_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"Data
             {
@@ -116,7 +120,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -131,6 +135,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Without_Comment_And_Object_Multiple_Lines_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Data
@@ -139,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -154,6 +159,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_NonRooted_Select()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var schemaText = @"-- Comment goes here.
             Person = @node(/Person/Stark/Tony)
@@ -168,7 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(schemaText);
+            var parseResult = parser.Parse(schemaText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -194,6 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Annotated_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person = @node(person:Stephenson/Sabrina)
@@ -211,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(annotatedRootPersonText);
+            var parseResult = parser.Parse(annotatedRootPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -236,6 +243,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Rooted_Select()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"-- Comment goes here.
             Person = @node(Person:Start/Tony)
@@ -250,7 +258,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -274,6 +282,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Flat()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -288,7 +297,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -313,6 +322,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Flat_Annotated()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person = @node(Person:Doe/John)
@@ -327,7 +337,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -354,6 +364,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Nested()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -370,7 +381,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -396,6 +407,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Annotated_Element_00()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person = @node(person:Stark/Tony)
@@ -409,7 +421,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(annotatedRootPersonText);
+            var parseResult = parser.Parse(annotatedRootPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -435,6 +447,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Annotated_Element_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person
@@ -448,7 +461,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(annotatedRootPersonText);
+            var parseResult = parser.Parse(annotatedRootPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -474,6 +487,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Mutation_Annotated_Element_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var annotatedRootPersonText = @"
             Person
@@ -491,7 +505,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(annotatedRootPersonText);
+            var parseResult = parser.Parse(annotatedRootPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);

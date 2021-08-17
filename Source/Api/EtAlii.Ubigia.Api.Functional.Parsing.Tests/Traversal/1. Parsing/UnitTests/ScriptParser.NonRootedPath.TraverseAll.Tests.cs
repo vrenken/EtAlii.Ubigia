@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Hierarchical_Childs()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/2018/08/22//";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -35,10 +36,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Hierarchical_Parents()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = @"/2018/08/22\\";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -59,10 +61,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Sequential_Next()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Device/Canon/BT342/Feed/123>>";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -86,10 +89,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Traverse_All_Sequential_Previous()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Device/Canon/BT342/Feed/123<<";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

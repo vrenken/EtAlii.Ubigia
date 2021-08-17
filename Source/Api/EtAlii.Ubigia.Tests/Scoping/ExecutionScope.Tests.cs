@@ -10,10 +10,10 @@
             // Arrange.
 
             // Act.
-            var executionScope = new ExecutionScope(true);
+            var scope = new ExecutionScope();
 
             // Assert.
-            Assert.NotNull(executionScope);
+            Assert.NotNull(scope);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -22,20 +22,20 @@
             // Arrange.
 
             // Act.
-            var executionScope = new ExecutionScope(false);
+            var scope = new ExecutionScope(false);
 
             // Assert.
-            Assert.NotNull(executionScope);
+            Assert.NotNull(scope);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ExecutionScope_GetWildCardRegex()
         {
             // Arrange.
-            var executionScope = new ExecutionScope(true);
+            var scope = new ExecutionScope();
 
             // Act.
-            var regex = executionScope.GetWildCardRegex("Vre*");
+            var regex = scope.GetWildCardRegex("Vre*");
 
             // Assert.
             Assert.NotNull(regex);

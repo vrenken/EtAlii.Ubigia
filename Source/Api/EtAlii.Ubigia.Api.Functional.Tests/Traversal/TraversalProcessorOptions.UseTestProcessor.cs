@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     {
         public static FunctionalOptions UseTestProcessor(this FunctionalOptions options)
         {
-#if USE_LAPA_PARSER_IN_TESTS
+#if USE_LAPA_PARSING_IN_TESTS
                 return options.UseLapaParsing();
 #else
             return options.UseAntlrParsing();

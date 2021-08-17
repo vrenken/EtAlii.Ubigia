@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             Profiler = profiler.Create(ProfilingAspects.Functional.SchemaProcessor);
         }
 
-        public IAsyncEnumerable<Structure> Process(Schema schema)
+        public IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
         {
-            return _decoree.Process(schema);
+            return _decoree.Process(schema, scope);
         }
     }
 }

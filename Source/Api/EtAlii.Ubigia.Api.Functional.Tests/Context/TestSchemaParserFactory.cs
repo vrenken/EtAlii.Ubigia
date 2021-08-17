@@ -3,7 +3,7 @@
 // ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-#if USE_LAPA_PARSER_IN_TESTS
+#if USE_LAPA_PARSING_IN_TESTS
     internal class TestSchemaParserFactory : LapaSchemaParserFactory
     {
         public ISchemaParser Create()

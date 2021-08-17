@@ -85,6 +85,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_Advanced_Operation_Single_Space_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
@@ -110,9 +111,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
-            var addScript = scriptContext.Parse(addQuery).Script;
-            var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new FunctionalScope();
+            var addScript = scriptContext.Parse(addQuery, scope).Script;
+            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
 
             // Act.
             var lastSequence = await scriptContext.Process(addScript, scope);
@@ -130,6 +130,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_Advanced_Operation_Single_Space_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
@@ -147,8 +148,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var selectQuery = "<= /Person";
 
-            var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new FunctionalScope();
+            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
 
             // Act.
             var lastSequence = await scriptContext.Process(selectScript, scope);

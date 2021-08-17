@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Tags_Assign()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Person/Doe/John# <= FirstName";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -42,10 +43,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Tags_Assign_With_Comment()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Person/Doe/John# <= FirstName --A comment";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -72,10 +74,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Tags_Query()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Person/Doe/John#";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -97,10 +100,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Tags_Filter()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Person/Doe/#FirstName";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

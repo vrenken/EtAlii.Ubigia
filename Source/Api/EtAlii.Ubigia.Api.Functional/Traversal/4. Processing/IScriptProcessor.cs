@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     public interface IScriptProcessor
     {
-        IObservable<SequenceProcessingResult> Process(Script script);
+        IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope);
     }
 }

@@ -19,13 +19,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _processor = processor;
         }
 
-        public async IAsyncEnumerable<Structure> Process(Schema schema)
+        public async IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
         {
             _logger.Debug("Processing query");
             var start = Environment.TickCount;
 
             var items = _processor
-                .Process(schema)
+                .Process(schema, scope)
                 .ConfigureAwait(false);
 
             await foreach (var item in items)

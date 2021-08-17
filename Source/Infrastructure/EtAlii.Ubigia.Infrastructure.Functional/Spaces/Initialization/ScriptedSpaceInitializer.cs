@@ -34,10 +34,10 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
             var rootsToCreate = template.RootsToCreate;
 
+            var scope = new ExecutionScope();
             foreach (var rootToCreate in rootsToCreate)
             {
-                var scope = new FunctionalScope();
-                var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object");
+                var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object", scope);
                 var processingResult = await scriptContext.Process(createScript.Script, scope);
                 await processingResult.Output.LastOrDefaultAsync();
             }

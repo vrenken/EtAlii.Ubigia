@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 {
     using EtAlii.Ubigia.Api.Functional.Antlr.Context;
 
-#if USE_LAPA_PARSER_IN_TESTS
+#if USE_LAPA_PARSING_IN_TESTS
     internal class TestSchemaProcessorFactory : LapaSchemaProcessorFactory
 #else
     internal class TestSchemaProcessorFactory : AntlrSchemaProcessorFactory

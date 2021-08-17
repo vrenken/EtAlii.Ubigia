@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     internal class ValueFragmentParser : IValueFragmentParser
     {
-        private readonly IKeyValuePairParser _keyValuePairParser;
+        private readonly IFragmentKeyValuePairParser _keyValuePairParser;
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IValueAnnotationsParser _annotationParser;
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             IQuotedTextParser quotedTextParser,
             IValueAnnotationsParser annotationParser,
             INodeFinder nodeFinder,
-            IKeyValuePairParser keyValuePairParser,
+            IFragmentKeyValuePairParser keyValuePairParser,
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             {
                 case QueryValueId:
                     return ParseQueryValue(child);
-                case KeyValuePairParser.Id:
+                case KeyValuePairParserBase.Id:
                     var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
                     var kvp = _keyValuePairParser.Parse(kvpNode);
                     var prefix = new ValuePrefix(ValueType.Object, Requirement.None);

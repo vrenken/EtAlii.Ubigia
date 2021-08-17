@@ -12,9 +12,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableItemsAssignment_With_Variable()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 <= /Fourth/4/\r\n/Fifth/5\r\n/Sixth/6").Script;
+            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 <= /Fourth/4/\r\n/Fifth/5\r\n/Sixth/6", scope).Script;
 
             // Assert.
             Assert.Equal(4, script.Sequences.Count());
@@ -26,9 +27,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableItemsAssignment_With_Variable_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1<=/Fourth/4/\r\n/Fifth/5\r\n/Sixth/6").Script;
+            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1<=/Fourth/4/\r\n/Fifth/5\r\n/Sixth/6", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.ElementAt(1);
@@ -40,9 +42,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableItemsAssignment_With_Path()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 <= /Fourth/4/\r\n/Fifth/5\r\n/Sixth/6").Script;
+            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 <= /Fourth/4/\r\n/Fifth/5\r\n/Sixth/6", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.ElementAt(1);
@@ -53,9 +56,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableItemsAssignment_With_Path_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1<=/Fourth/4/\r\n/Fifth/5\r\n/Sixth/6").Script;
+            var script = _parser.Parse("/First/Second/Third/Fourth\r\n$var1<=/Fourth/4/\r\n/Fifth/5\r\n/Sixth/6", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.ElementAt(1);

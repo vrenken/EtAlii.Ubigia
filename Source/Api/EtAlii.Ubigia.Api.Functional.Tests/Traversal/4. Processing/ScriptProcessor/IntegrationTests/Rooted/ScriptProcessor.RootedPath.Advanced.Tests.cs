@@ -23,10 +23,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Advanced_Create()
         {
             // Arrange.
-            var scope = new FunctionalScope();
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
                 .UseTestProcessor()
-                .Use(scope)
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -42,6 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -52,18 +51,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2017/09/01/22/05/00/000";
             var selectQuery2 = "Time:2017/09/01/22/05";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -78,6 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_AbsolutePath()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -88,18 +88,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2018/09/01/22/05/00/000";
             var selectQuery2 = "Time:2018/09/01/22/05";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -114,6 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_Should_Not_Clear_Children()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -126,20 +127,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "Person:Doe/";
             var assignQuery = "Person:Doe# <= FamilyName";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
-            var assignScript = _parser.Parse(assignQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
+            var assignScript = _parser.Parse(assignQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var personsBefore = await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(assignScript);
+            lastSequence = await processor.Process(assignScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -154,6 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Parent_Should_Return_Same_Node()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -165,15 +167,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John\\";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var parents = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -186,6 +188,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -198,18 +201,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Query = "Person:Doe/Jane";
             var select2Query = "$person <= Person:Doe\r\n$person/Jane";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var select1Script = _parser.Parse(select1Query).Script;
-            var select2Script = _parser.Parse(select2Query).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var select1Script = _parser.Parse(select1Query, scope).Script;
+            var select2Script = _parser.Parse(select2Query, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(select1Script);
+            lastSequence = await processor.Process(select1Script, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(select2Script);
+            lastSequence = await processor.Process(select2Script, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -222,6 +225,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -234,18 +238,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:Doe\r\n$person/";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var select1Script = _parser.Parse(select1Query).Script;
-            var select2Script = _parser.Parse(select2Query).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var select1Script = _parser.Parse(select1Query, scope).Script;
+            var select2Script = _parser.Parse(select2Query, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(select1Script);
+            lastSequence = await processor.Process(select1Script, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
-            lastSequence = await processor.Process(select2Script);
+            lastSequence = await processor.Process(select2Script, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().ToArray();
 
             // Assert.
@@ -263,6 +267,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -276,18 +281,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:\r\n$person/Doe/";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var select1Script = _parser.Parse(select1Query).Script;
-            var select2Script = _parser.Parse(select2Query).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var select1Script = _parser.Parse(select1Query, scope).Script;
+            var select2Script = _parser.Parse(select2Query, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(select1Script);
+            lastSequence = await processor.Process(select1Script, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
-            lastSequence = await processor.Process(select2Script);
+            lastSequence = await processor.Process(select2Script, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().ToArray();
 
             // Assert.
@@ -304,6 +309,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -317,18 +323,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:\r\n<= id() <= $person/Doe/";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var select1Script = _parser.Parse(select1Query).Script;
-            var select2Script = _parser.Parse(select2Query).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var select1Script = _parser.Parse(select1Query, scope).Script;
+            var select2Script = _parser.Parse(select2Query, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(select1Script);
+            lastSequence = await processor.Process(select1Script, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().ToArray();
-            lastSequence = await processor.Process(select2Script);
+            lastSequence = await processor.Process(select2Script, scope);
             var secondResult = await lastSequence.Output.Cast<Identifier>().ToArray();
 
             // Assert.
@@ -345,6 +351,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Assign_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -358,16 +365,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -383,6 +390,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery1 = "Person: += Doe";
             var addQueries2 = new[]
@@ -395,25 +403,25 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "Person:Doe#";
             var assignQuery = "Person:Doe# <= FamilyName";
 
-            var addScript1 = _parser.Parse(addQuery1).Script;
-            var addScript2 = _parser.Parse(addQuery2).Script;
-            var assignScript = _parser.Parse(assignQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript1 = _parser.Parse(addQuery1, scope).Script;
+            var addScript2 = _parser.Parse(addQuery2, scope).Script;
+            var assignScript = _parser.Parse(assignQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript1);
+            var lastSequence = await processor.Process(addScript1, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(assignScript);
+            lastSequence = await processor.Process(assignScript, scope);
             var result = await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic tagBefore = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(addScript2);
+            lastSequence = await processor.Process(addScript2, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic tagAfter = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -429,6 +437,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Move_Child()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries1 = new []
             {
@@ -455,34 +464,34 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "Person:Doe/";
             var selectQuery2 = "Person:Does/";
 
-            var addScript1 = _parser.Parse(addQuery1).Script;
-            var addScript2 = _parser.Parse(addQuery2).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-            var moveScript = _parser.Parse(moveQuery).Script;
+            var addScript1 = _parser.Parse(addQuery1, scope).Script;
+            var addScript2 = _parser.Parse(addQuery2, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
+            var moveScript = _parser.Parse(moveQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript1);
+            var lastSequence = await processor.Process(addScript1, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(addScript2);
+            lastSequence = await processor.Process(addScript2, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var result = await lastSequence.Output.ToArray();
             var beforeCount1 = result.Length;
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             result = await lastSequence.Output.ToArray();
             var beforeCount2 = result.Length;
 
-            lastSequence = await processor.Process(moveScript);
+            lastSequence = await processor.Process(moveScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             result = await lastSequence.Output.ToArray();
             var afterCount1 = result.Length;
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             result = await lastSequence.Output.ToArray();
             var afterCount2 = result.Length;
 
@@ -500,6 +509,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
@@ -542,61 +552,61 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectQueryJane = "Person:Doe/Jane/Friends/#FirstName";
             var friendsSelectQueryTony = "Person:Stark/Tony/Friends/#FirstName";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var linkScript = _parser.Parse(linkQuery).Script;
-            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn).Script;
-            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane).Script;
-            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony).Script;
-            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
-            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
-            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var linkScript = _parser.Parse(linkQuery, scope).Script;
+            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn, scope).Script;
+            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane, scope).Script;
+            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony, scope).Script;
+            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn, scope).Script;
+            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane, scope).Script;
+            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScriptJohn);
+            lastSequence = await processor.Process(nodeSelectScriptJohn, scope);
             var result = await lastSequence.Output.ToArray();
             var beforeNodeCountJohn = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptJane);
+            lastSequence = await processor.Process(nodeSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var beforeNodeCountJane = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptTony);
+            lastSequence = await processor.Process(nodeSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var beforeNodeCountTony = result.Length;
 
-            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            lastSequence = await processor.Process(friendsSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountJohn = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptJane);
+            lastSequence = await processor.Process(friendsSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountJane = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptTony);
+            lastSequence = await processor.Process(friendsSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountTony = result.Length;
 
-            lastSequence = await processor.Process(linkScript);
+            lastSequence = await processor.Process(linkScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScriptJohn);
+            lastSequence = await processor.Process(nodeSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountJohn = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptJane);
+            lastSequence = await processor.Process(nodeSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountJane = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptTony);
+            lastSequence = await processor.Process(nodeSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountTony = result.Length;
 
-            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            lastSequence = await processor.Process(friendsSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountJohn = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptJane);
+            lastSequence = await processor.Process(friendsSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountJane = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptTony);
+            lastSequence = await processor.Process(friendsSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountTony = result.Length;
 
@@ -621,6 +631,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new []
             {
@@ -659,61 +670,61 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var friendsSelectQueryJane = "Person:Doe/Jane/Friends/#FirstName";
             var friendsSelectQueryTony = "Person:Stark/Tony/Friends/#FirstName";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var linkScript = _parser.Parse(linkQuery).Script;
-            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn).Script;
-            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane).Script;
-            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony).Script;
-            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
-            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
-            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var linkScript = _parser.Parse(linkQuery, scope).Script;
+            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn, scope).Script;
+            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane, scope).Script;
+            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony, scope).Script;
+            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn, scope).Script;
+            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane, scope).Script;
+            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScriptJohn);
+            lastSequence = await processor.Process(nodeSelectScriptJohn, scope);
             var result = await lastSequence.Output.ToArray();
             var beforeNodeCountJohn = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptJane);
+            lastSequence = await processor.Process(nodeSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var beforeNodeCountJane = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptTony);
+            lastSequence = await processor.Process(nodeSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var beforeNodeCountTony = result.Length;
 
-            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            lastSequence = await processor.Process(friendsSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountJohn = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptJane);
+            lastSequence = await processor.Process(friendsSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountJane = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptTony);
+            lastSequence = await processor.Process(friendsSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var beforeFriendCountTony = result.Length;
 
-            lastSequence = await processor.Process(linkScript);
+            lastSequence = await processor.Process(linkScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScriptJohn);
+            lastSequence = await processor.Process(nodeSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountJohn = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptJane);
+            lastSequence = await processor.Process(nodeSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountJane = result.Length;
-            lastSequence = await processor.Process(nodeSelectScriptTony);
+            lastSequence = await processor.Process(nodeSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var afterNodeCountTony = result.Length;
 
-            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            lastSequence = await processor.Process(friendsSelectScriptJohn, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountJohn = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptJane);
+            lastSequence = await processor.Process(friendsSelectScriptJane, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountJane = result.Length;
-            lastSequence = await processor.Process(friendsSelectScriptTony);
+            lastSequence = await processor.Process(friendsSelectScriptTony, scope);
             result = await lastSequence.Output.ToArray();
             var afterFriendCountTony = result.Length;
 

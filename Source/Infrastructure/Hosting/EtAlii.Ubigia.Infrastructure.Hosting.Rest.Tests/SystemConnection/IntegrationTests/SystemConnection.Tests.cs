@@ -29,7 +29,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Arrange.
 
             // Act.
-            var connection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
+            var connection = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -42,11 +44,17 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var userName = "TestUser";
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            await _testContext.Host
+                .AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName })
+                .ConfigureAwait(false);
 
             // Act.
-            var connection = await systemConnection.OpenSpace("TestUser", "TestSpace").ConfigureAwait(false);
+            var connection = await systemConnection
+                .OpenSpace("TestUser", "TestSpace")
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(connection);
@@ -64,8 +72,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var userName = Guid.NewGuid().ToString();// "TestUser"
             var password = "123";
             var spaceName = "TestSpace";
-            var systemConnection = await _testContext.Host.CreateSystemConnection().ConfigureAwait(false);
-            await _testContext.Host.AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName }).ConfigureAwait(false);
+            var systemConnection = await _testContext.Host
+                .CreateSystemConnection()
+                .ConfigureAwait(false);
+            await _testContext.Host
+                .AddUserAccountAndSpaces(systemConnection, userName, password, new[] { spaceName })
+                .ConfigureAwait(false);
 
             // Act.
             var connection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
@@ -73,10 +85,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             // Assert.
             Assert.NotNull(connection);
             Assert.NotNull(connection.Storage);
-            var account = await connection.Accounts.Get(userName).ConfigureAwait(false);
+            var account = await connection.Accounts
+                .Get(userName)
+                .ConfigureAwait(false);
             Assert.NotNull(account);
             Assert.Equal(userName, account.Name);
-            var space = await connection.Spaces.Get(account.Id, spaceName).ConfigureAwait(false);
+            var space = await connection.Spaces
+                .Get(account.Id, spaceName)
+                .ConfigureAwait(false);
             Assert.NotNull(space);
             Assert.Equal(spaceName, space.Name);
         }
@@ -85,6 +101,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_Advanced_Operation_Single_Space_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
@@ -110,9 +127,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
-            var addScript = scriptContext.Parse(addQuery).Script;
-            var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new FunctionalScope();
+            var addScript = scriptContext.Parse(addQuery, scope).Script;
+            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
+            scope = new ExecutionScope();
 
             // Act.
             var lastSequence = await scriptContext.Process(addScript, scope);
@@ -130,6 +147,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
         public async Task SystemConnection_Advanced_Operation_Single_Space_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
@@ -147,8 +165,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 
             var selectQuery = "<= /Person";
 
-            var selectScript = scriptContext.Parse(selectQuery).Script;
-            var scope = new FunctionalScope();
+            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
+            scope = new ExecutionScope();
 
             // Act.
             var lastSequence = await scriptContext.Process(selectScript, scope);

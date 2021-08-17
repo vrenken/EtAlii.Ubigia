@@ -23,13 +23,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Assign()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "<= id() <= Person:";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -42,13 +43,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "Person: += Doe/John\r\n$path <= Person:Doe/John\r\nid($path)";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -60,13 +62,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "$path <= Person:\r\nid($path)";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -79,13 +82,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Variable_Path_Variable()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "$path <= Person:\r\n$id <= id($path)\r\n$id";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -97,13 +101,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "id(Person:)";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -115,14 +120,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             const string query = "$var1 <= Person: += Doe/Jane\r\n$var2 <= id(Person:Doe/Jane)";
-            var script = _parser.Parse(query).Script;
-            var scope = new FunctionalScope();
-            var processor = _testContext.CreateScriptProcessor(logicalContext, scope);
+            var script = _parser.Parse(query, scope).Script;
+            var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -137,6 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -148,15 +154,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Id(Person:Doe/*)";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -167,6 +173,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Function_Id_Path_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -178,15 +185,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "$var1 <= Person:Doe/*\r\n<= Id($var1)";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.

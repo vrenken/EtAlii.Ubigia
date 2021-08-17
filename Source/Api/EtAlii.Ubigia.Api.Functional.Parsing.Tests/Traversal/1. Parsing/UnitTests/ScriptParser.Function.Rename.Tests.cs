@@ -28,6 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Rename()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var scriptText = new[]
             {
                 "$v0 <= /Documents/Files+=/Images",
@@ -36,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             };
 
             // Act.
-            var script = _parser.Parse(scriptText).Script;
+            var script = _parser.Parse(scriptText, scope).Script;
 
             // Assert.
             Assert.NotNull(script);

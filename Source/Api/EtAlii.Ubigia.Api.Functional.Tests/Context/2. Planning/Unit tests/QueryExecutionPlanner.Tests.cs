@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         private async Task<ISchemaExecutionPlanner> CreatePlanner()
         {
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -48,6 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task QueryExecutionPlanner_Plan_Simple_00()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var planner = await CreatePlanner().ConfigureAwait(false);
 
@@ -65,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 }
             }";
 
-            var parseResult = parser.Parse(queryText);
+            var parseResult = parser.Parse(queryText, scope);
             var query = parseResult.Schema;
 
             // Act.

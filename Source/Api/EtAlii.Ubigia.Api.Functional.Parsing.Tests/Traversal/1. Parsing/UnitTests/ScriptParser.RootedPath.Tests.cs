@@ -55,10 +55,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$e1 <= First:Second";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
             var script = result.Script;
 
             // Assert.
@@ -70,10 +71,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Newline_N_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "First:1\nSecond:2\nThird:3\n$var1 <= Fourth:4\nFifth:5";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -86,10 +88,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Newline_N_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/1\nSecond:2\n/Third/3\n$var1 <= Fourth:4\n/Fifth/5";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -102,10 +105,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Newline_N_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "First:1\n/Second/2\nThird:3\n$var1 <= /Fourth/4\nFifth:5";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -117,10 +121,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Newline_N_Invalid_Script()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "First:1\nSecond:2\nThird:3$var1 = Fourth:4\nFifth:5";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             Assert.Null(result.Script);
@@ -131,10 +136,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Newline_RN()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "First:1\r\nSecond:2\r\nThird:3\r\n$var1 <= Fourth:4\r\nFifth:5";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -147,9 +153,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_VariableAssignment_With_Path_Error()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth is bad:5\r\nSixth:6");
+            var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth is bad:5\r\nSixth:6", scope);
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -159,9 +166,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_VariableAssignment_With_Separator_Error()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth:/5\r\nSixth:6");
+            var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth:/5\r\nSixth:6", scope);
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -171,10 +179,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Comment_3()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var query = "this:line/is/safe\r\n--and this line also";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -189,10 +198,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Comment_4()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "--this line is safe\r\nand:this/line/also";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -206,9 +216,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Comment_5()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe --and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe --and this comment also", scope).Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -220,9 +231,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Comment_6()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe   --and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe   --and this comment also", scope).Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -234,9 +246,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_Parse_Comment_7()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe--and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe--and this comment also", scope).Script;
 
             // Assert.
             Assert.Single(script.Sequences);

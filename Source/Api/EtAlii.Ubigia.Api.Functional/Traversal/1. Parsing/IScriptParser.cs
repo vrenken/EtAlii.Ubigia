@@ -11,14 +11,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         /// Parse the script specified in the provided text.
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="scope"></param>
         /// <returns></returns>
-        ScriptParseResult Parse(string text);
+        ScriptParseResult Parse(string text, ExecutionScope scope);
 
         /// <summary>
         /// Parse the script specified in the provided lines.
         /// </summary>
         /// <param name="text"></param>
+        /// <param name="scope"></param>
         /// <returns></returns>
-        ScriptParseResult Parse(string[] text);
+        ScriptParseResult Parse(string[] text, ExecutionScope scope);
     }
 }

@@ -21,6 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Assign_Tags()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -35,16 +36,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 
             var selectQuery = "/Person/Doe/";
 
-            var addScript = _parser.Parse(addQueries).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQueries, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var people = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -56,6 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_Tags()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -72,22 +74,22 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectTagQuery1 = "/Person/Doe#";
             var selectTagQuery2 = "/Person/Doe/Jane#";
 
-            var addScript = _parser.Parse(addQueries).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
-            var selectTagScript1 = _parser.Parse(selectTagQuery1).Script;
-            var selectTagScript2 = _parser.Parse(selectTagQuery2).Script;
+            var addScript = _parser.Parse(addQueries, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
+            var selectTagScript1 = _parser.Parse(selectTagQuery1, scope).Script;
+            var selectTagScript2 = _parser.Parse(selectTagQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectTagScript1);
+            lastSequence = await processor.Process(selectTagScript1, scope);
             var tag1Result = await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectTagScript2);
+            lastSequence = await processor.Process(selectTagScript2, scope);
             var tag2Result = await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var people = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -103,6 +105,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Filter_Tags()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -118,19 +121,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery = "/Person/Doe/";
             var filterByTagQuery = "/Person/Doe/#FirstName";
 
-            var addScript = _parser.Parse(addQueries).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
-            var filterByTagScript = _parser.Parse(filterByTagQuery).Script;
+            var addScript = _parser.Parse(addQueries, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
+            var filterByTagScript = _parser.Parse(filterByTagQuery, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(filterByTagScript);
+            lastSequence = await processor.Process(filterByTagScript, scope);
             var filterByTagResult = await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var people = await lastSequence.Output.ToArray();
 
             // Assert.

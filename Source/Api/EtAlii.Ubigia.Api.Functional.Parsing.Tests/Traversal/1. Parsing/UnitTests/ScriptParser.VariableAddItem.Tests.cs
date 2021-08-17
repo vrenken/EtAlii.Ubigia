@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableAddItem_Without_File()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var query = "$v0 <= /Documents/Files+=/Images";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();
@@ -31,10 +32,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableAddItem_Without_File_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var query = "$v0 <= /Documents/Files += /Images";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();

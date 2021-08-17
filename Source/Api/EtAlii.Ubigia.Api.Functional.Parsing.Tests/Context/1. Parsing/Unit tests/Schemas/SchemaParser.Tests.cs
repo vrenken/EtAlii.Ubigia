@@ -23,12 +23,13 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Comment()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment { }";
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -40,12 +41,13 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Comment_And_Object_Single_Line()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment { ""key"": ""value"" }";
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);

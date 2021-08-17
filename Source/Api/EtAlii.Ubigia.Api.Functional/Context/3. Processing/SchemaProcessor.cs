@@ -10,16 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     internal class SchemaProcessor : ISchemaProcessor
     {
         private readonly ISchemaExecutionPlanner _schemaExecutionPlanner;
-        private readonly ISchemaScope _schemaScope;
 
-        public SchemaProcessor(ISchemaExecutionPlanner schemaExecutionPlanner, ISchemaScope schemaScope)
+        public SchemaProcessor(ISchemaExecutionPlanner schemaExecutionPlanner)
         {
             _schemaExecutionPlanner = schemaExecutionPlanner;
-            _schemaScope = schemaScope;
         }
 
         /// <inheritdoc />
-        public async IAsyncEnumerable<Structure> Process(Schema schema)
+        public async IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope)
         {
             // We need to create execution plans for all of the sequences.
             var executionPlans = _schemaExecutionPlanner.Plan(schema);
@@ -27,12 +25,10 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
             try
             {
-                var executionScope = _schemaScope.CreateExecutionScope();
-
                 foreach (var executionPlan in executionPlans!)
                 {
                     await executionPlan
-                        .Execute(executionScope)
+                        .Execute(scope)
                         .ConfigureAwait(false);
                 }
             }

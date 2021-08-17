@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Query_Flat_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -27,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -43,6 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Query_Flat_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -57,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -71,6 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Query_Flat_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -85,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -99,6 +102,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Query_Flat_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var normalPersonText = @"
             Person
@@ -108,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(normalPersonText, scope);
 
             // Assert.
             Assert.NotNull(parseResult);

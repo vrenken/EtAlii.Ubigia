@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Without_File()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files+=/Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -31,10 +32,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Unquoted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files+=Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -50,10 +52,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Quoted_00()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Person: += \"Doe\"";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -68,10 +71,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Quoted_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Person: += \"Doe\"/\"John\"";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -87,10 +91,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Quoted_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Person: += 'Doe'/'John'";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -107,10 +112,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Without_File_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files += /Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -127,10 +133,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Single()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files += Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -146,10 +153,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Single_Quoted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files += \"Images\"";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -165,10 +173,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Single_Quoted_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files += \"Images äëöüáéóúâêôû\"";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -184,10 +193,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files/Images+=/Vacation/Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -212,10 +222,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Documents/Files/Images+=Vacation:Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -240,10 +251,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files/Images+=Vacation:Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -266,10 +278,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files/Images += /Vacation/Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -289,10 +302,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Non_Rooted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files/Images+=Vacation/Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -311,10 +325,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RootedPath_AddItem_RootedPath_Non_Rooted_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "Documents:Files/Images += Vacation/Italy/Tuscany";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

@@ -11,9 +11,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_From_MdFiles(string fileName, string line, string queryText)
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var result = _parser.Parse(queryText);
+            var result = _parser.Parse(queryText, scope);
             var lines = queryText.Split('\n');
 
             // Assert.

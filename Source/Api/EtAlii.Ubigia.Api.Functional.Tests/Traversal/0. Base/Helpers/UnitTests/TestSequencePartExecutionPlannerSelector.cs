@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var container = new Container();
 
             var options = await new FunctionalOptions(testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseDataConnectionToNewSpace(testContext, true)
                 .ConfigureAwait(false);
 

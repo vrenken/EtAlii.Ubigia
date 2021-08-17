@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
         }
 
-        public ScriptParseResult Parse(string text)
+        public ScriptParseResult Parse(string text, ExecutionScope scope)
         {
-            var result = _decoree.Parse(text);
+            var result = _decoree.Parse(text, scope);
 
             var errorMessage = result.Errors
                 .Select(e => e.Message)
@@ -37,9 +37,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return result;
         }
 
-        public ScriptParseResult Parse(string[] text)
+        public ScriptParseResult Parse(string[] text, ExecutionScope scope)
         {
-            var result = _decoree.Parse(text);
+            var result = _decoree.Parse(text, scope);
 
             var errorMessage = result.Errors
                 .Select(e => e.Message)

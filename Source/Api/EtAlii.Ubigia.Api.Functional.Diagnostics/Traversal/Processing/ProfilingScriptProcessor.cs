@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);
         }
 
-        public IObservable<SequenceProcessingResult> Process(Script script)
+        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
         {
-            return _decoree.Process(script);
+            return _decoree.Process(script, scope);
         }
     }
 }

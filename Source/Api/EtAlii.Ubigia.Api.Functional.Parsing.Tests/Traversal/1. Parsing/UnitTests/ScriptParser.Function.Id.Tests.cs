@@ -29,10 +29,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Assign()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id() <= /Hierarchy";
 
             // Act.
-            var result = _parser.Parse(text);
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;
@@ -50,10 +51,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Variable()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id($path)";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -72,10 +74,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Constant_SingleQuoted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id('/Hierarchy')";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -94,10 +97,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Constant_SingleQuoted_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id('/Hierarchy äëöüáéóúâêôû')";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -119,10 +123,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Constant_DoubleQuoted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(\"/Hierarchy\")";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -141,10 +146,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Constant_DoubleQuoted_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(\"/Hierarchy äëöüáéóúâêôû\")";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -164,10 +170,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(/Hierarchy)";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -188,10 +195,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(/Hierarchy/Child)";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -213,10 +221,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(/Hierarchy/Child/$var/MoreChildren)";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -243,10 +252,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(time:now)";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -265,10 +275,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_05()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(time:\"2016-02-19\")";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -288,10 +299,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Id_Path_06()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "id(time:'2016-02-19')";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

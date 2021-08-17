@@ -120,11 +120,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context
         {
             try
             {
+                var scope = new ExecutionScope();
                 var schemaText = file.GetText()?.ToString();
                 _logger
                     .ForContext("SchemaText", schemaText, true)
                     .Information("Parsing schema");
-                var result = _schemaParser.Parse(schemaText);
+                var result = _schemaParser.Parse(schemaText, scope);
                 if (result.Errors.Any())
                 {
                     _logger

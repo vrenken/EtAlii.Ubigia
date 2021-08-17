@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RemoveItem_Without_File()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Documents/Files/-=Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -30,10 +31,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RemoveItem_Quoted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Documents/Files/-= \"Images\"";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -48,10 +50,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_RemoveItem_Rooted()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/Documents/Files/-=/Images";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

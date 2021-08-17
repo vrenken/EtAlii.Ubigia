@@ -13,10 +13,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$var0 <= /Documents/Files/Image01 <= $var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();
@@ -33,10 +34,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$var0 <= /Documents/Files/Image01<=$var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();
@@ -53,10 +55,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem_Based_On_Identifier()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$var0 <= /&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40 <= $var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();
@@ -81,10 +84,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem_Based_On_Identifier_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$var0 <= /&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40<=$var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var sequence = script.Sequences.First();
@@ -107,10 +111,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem_Based_On_Identifier_In_Variable()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$id <= /&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40\r\n$var0 <= /$id <= $var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var firstSequence = script.Sequences.ElementAt(0);
@@ -138,10 +143,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableUpdateItem_Based_On_Identifier_In_Variable_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "$id <= /&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40\r\n$var0 <= /$id<=$var1";
 
             // Act.
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
 
             // Assert.
             var firstSequence = script.Sequences.ElementAt(0);

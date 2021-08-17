@@ -8,24 +8,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     using System.Reactive.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class ScriptProcessor : IScriptProcessor
     {
         private readonly IScriptExecutionPlanner _scriptExecutionPlanner;
-        private readonly IFunctionalOptions _options;
 
-        public ScriptProcessor(
-            IScriptExecutionPlanner scriptExecutionPlanner,
-            IFunctionalOptions options)
+        public ScriptProcessor(IScriptExecutionPlanner scriptExecutionPlanner)
         {
             _scriptExecutionPlanner = scriptExecutionPlanner;
-            _options = options;
         }
 
-        public IObservable<SequenceProcessingResult> Process(Script script)
+        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
         {
-            var observableScriptOutput = CreateObservableScriptResult(script);
+            var observableScriptOutput = CreateObservableScriptResult(script, scope);
 
             // We want all subscriptions to have access to all results.
             observableScriptOutput = observableScriptOutput
@@ -36,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return observableScriptOutput;
         }
 
-        private IObservable<SequenceProcessingResult> CreateObservableScriptResult(Script script)
+        private IObservable<SequenceProcessingResult> CreateObservableScriptResult(Script script, ExecutionScope scope)
         {
             var observableScriptOutput = Observable.Create<SequenceProcessingResult>(async scriptOutput =>
             {
@@ -52,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                     {
                         var sequence = sequences[executionPlanIndex];
                         var executionPlan = executionPlans[executionPlanIndex];
-                        await ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput).ConfigureAwait(false);
+                        await ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput, scope).ConfigureAwait(false);
                     }
 
                     // After iterating through the sequences script observation has ended. Please keep in mind
@@ -87,11 +82,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             ISequenceExecutionPlan executionPlan,
             int executionPlanIndex,
             int totalExecutionPlans,
-            IObserver<SequenceProcessingResult> scriptOutput)
+            IObserver<SequenceProcessingResult> scriptOutput,
+            ExecutionScope scope)
         {
-            var executionScope = new ExecutionScope(_options.CachingEnabled);
-
-            var originalObservableSequenceOutput = await executionPlan.Execute(executionScope).ConfigureAwait(false);
+            var originalObservableSequenceOutput = await executionPlan
+                .Execute(scope)
+                .ConfigureAwait(false);
             var observableSequenceOutput = Observable.Empty<object>();
 
             // We only show output:

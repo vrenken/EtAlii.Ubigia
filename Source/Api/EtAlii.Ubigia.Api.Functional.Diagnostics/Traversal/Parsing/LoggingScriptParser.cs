@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _contextCorrelator = contextCorrelator;
         }
 
-        public ScriptParseResult Parse(string text)
+        public ScriptParseResult Parse(string text, ExecutionScope scope)
         {
             // We want to be able to track method calls throughout the whole application stack.
             // Including across network and process boundaries.
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 _logger.Debug("Parsing text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
-                var scriptParseResult = _parser.Parse(text);
+                var scriptParseResult = _parser.Parse(text, scope);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
                 _logger.Debug("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             }
         }
 
-        public ScriptParseResult Parse(string[] text)
+        public ScriptParseResult Parse(string[] text, ExecutionScope scope)
         {
             // We want to be able to track method calls throughout the whole application stack.
             // Including across network and process boundaries.
@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 _logger.Debug("Parsing text (Text: {Line})", line);
                 var start = Environment.TickCount;
 
-                var scriptParseResult = _parser.Parse(text);
+                var scriptParseResult = _parser.Parse(text, scope);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
                 _logger.Debug("Parsed text (Text: \"{Line}\" Duration: {Duration}ms)", line, duration);

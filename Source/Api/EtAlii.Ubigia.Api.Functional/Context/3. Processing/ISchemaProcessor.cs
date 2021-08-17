@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
     public interface ISchemaProcessor
     {
-        IAsyncEnumerable<Structure> Process(Schema schema);
+        IAsyncEnumerable<Structure> Process(Schema schema, ExecutionScope scope);
     }
 }

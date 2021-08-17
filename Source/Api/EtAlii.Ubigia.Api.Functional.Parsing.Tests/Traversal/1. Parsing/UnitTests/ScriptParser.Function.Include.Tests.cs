@@ -29,26 +29,28 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Include_Invalid_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include() <= time:now";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Assert.
             Assert.Single(parseResult.Errors);
         }
 
-#if UseLapaParserInTests == true
+#if USE_LAPA_PARSING_IN_TESTS == true
         // The test below only works on the Antlr4 parser. We still keep it in as the outcome is better than that of the Lapa parser.
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_Function_Include_Invalid_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include(\"12\",\"\") <= time:now";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Assert.
             Assert.Single(parseResult.Errors);
@@ -59,10 +61,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Include_Invalid_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include(\"12\",/) <= time:now";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Assert.
             Assert.Single(parseResult.Errors);
@@ -72,10 +75,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Include_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include(/) <= time:now";
 
             // Act.
-            var result = _parser.Parse(text);
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;
@@ -97,7 +101,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             const string text = "include(/12) <= time:now";
 
             // Act.
-            var result = _parser.Parse(text);
+            var scope = new ExecutionScope();
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;
@@ -120,7 +125,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             const string text = "include(/12/*) <= time:now";
 
             // Act.
-            var result = _parser.Parse(text);
+            var scope = new ExecutionScope();
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;
@@ -142,10 +148,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Include_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include(\\12/*) <= time:now";
 
             // Act.
-            var result = _parser.Parse(text);
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;
@@ -167,10 +174,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Function_Include_05()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "include(\\*/*) <= time:now";
 
             // Act.
-            var result = _parser.Parse(text);
+            var result = _parser.Parse(text, scope);
 
             // Assert.
             var script = result.Script;

@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_Path_Absolute()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/time/2016 += /12/04/13/38/22";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -33,10 +34,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Add_Time_MMDDHHMMSS_Path_Relative()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/time/2016 += 12/04/13/38/22";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -54,10 +56,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Add_Time_DDHHMMSS_Path_Absolute()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/time/2016/12 += /04/13/38/22";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -75,10 +78,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_Add_Time_DDHHMMSS_Path_Relative()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/time/2016/12 += 04/13/38/22";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

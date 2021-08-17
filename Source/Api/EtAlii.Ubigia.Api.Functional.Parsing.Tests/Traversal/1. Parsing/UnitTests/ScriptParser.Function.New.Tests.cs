@@ -29,13 +29,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_New_Blank()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var scriptText = new[]
             {
                 "Person:Doe/John/Visits += new()",
             };
 
             // Act.
-            var result = _parser.Parse(scriptText);
+            var result = _parser.Parse(scriptText, scope);
 
             // Assert.
             Assert.NotNull(result);
@@ -58,13 +59,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_New_Argument_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var scriptText = new[]
             {
                 "Person:Doe/John/Visits += new('Vacation')",
             };
 
             // Act.
-            var result = _parser.Parse(scriptText);
+            var result = _parser.Parse(scriptText, scope);
 
             // Assert.
             Assert.NotNull(result);
@@ -89,13 +91,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_New_Argument_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var scriptText = new[]
             {
                 "Person:Doe/John/Visits += new(\"Vacation\")",
             };
 
             // Act.
-            var result = _parser.Parse(scriptText);
+            var result = _parser.Parse(scriptText, scope);
 
             // Assert.
             Assert.NotNull(result);

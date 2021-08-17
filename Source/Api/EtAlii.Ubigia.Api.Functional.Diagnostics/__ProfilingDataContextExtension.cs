@@ -9,7 +9,7 @@
 //
 //    public class ProfilingDataContextExtension : IDataContextExtension
 //    [
-//        public void Initialize(Container container)
+//        public void Initialize(IRegisterOnlyContainer container)
 //        [
 //            container.RegisterDecorator(typeof(IDataContext), typeof(ProfilingDataContext))
 ////            container.RegisterDecorator(typeof(ITraversalContext), typeof(ProfilingTraversalContext))

@@ -28,8 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
+            _options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -37,11 +36,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var traversalContext = new TraversalContextFactory()
                 .Create(_options);
 
+            var scope = new ExecutionScope();
             await _testContext.Functional
-                .AddPeople(traversalContext)
+                .AddPeople(traversalContext, scope)
                 .ConfigureAwait(false);
             await _testContext.Functional
-                .AddAddresses(traversalContext)
+                .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));

@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYY_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -32,18 +33,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/01/01/00/00/00/000";
             var selectQuery2 = "time:'2016'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -59,6 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMM_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -70,18 +72,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
             var selectQuery2 = "time:'2016-09'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -97,6 +99,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDD_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -108,18 +111,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
             var selectQuery2 = "time:'2016-09-01'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -135,6 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHH_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -146,18 +150,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/09/01/22/00/00/000";
             var selectQuery2 = "time:'2016-09-01 22'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -173,6 +177,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMM_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -184,18 +189,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2020/09/01/22/05/00/000";
             var selectQuery2 = "time:'2020-09-01 22:05'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -211,6 +216,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSS_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -222,18 +228,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/09/01/22/05/23/000";
             var selectQuery2 = "time:'2016-09-01 22:05:23'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.
@@ -249,6 +255,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSSMMM_Regex_Separated_SingleQuotes()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             var addQueries = new[]
@@ -260,18 +267,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var selectQuery1 = "/Time/2016/09/01/22/05/23/123";
             var selectQuery2 = "time:'2016-09-01 22:05:23.123'";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript1 = _parser.Parse(selectQuery1, scope).Script;
+            var selectScript2 = _parser.Parse(selectQuery2, scope).Script;
 
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             var addResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
+            lastSequence = await processor.Process(selectScript1, scope);
             var firstResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
+            lastSequence = await processor.Process(selectScript2, scope);
             var secondResult = await lastSequence.Output.Cast<Node>().SingleOrDefaultAsync();
 
             // Assert.

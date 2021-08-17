@@ -22,14 +22,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Time_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:time <= EtAlii.Ubigia.Roots.Time";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots
                 .GetAll()
@@ -48,14 +49,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Time_Root_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:time <= Time";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "time").ConfigureAwait(false);
 
@@ -71,14 +73,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Time_Root_Under_Other_Name()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= EtAlii.Ubigia.Roots.Time";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime").ConfigureAwait(false);
 
@@ -94,14 +97,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Time_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:specialtime <= Time";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "specialtime").ConfigureAwait(false);
 
@@ -117,14 +121,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Object_Root_Under_Other_Name()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects").ConfigureAwait(false);
 
@@ -140,14 +145,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Root_Assign_Object_Root_Under_Other_Name_And_Using_Short_RootType()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "root:projects <= Object";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
             var root = await logicalContext.Roots.GetAll().SingleOrDefaultAsync(r => r.Name == "projects").ConfigureAwait(false);
 

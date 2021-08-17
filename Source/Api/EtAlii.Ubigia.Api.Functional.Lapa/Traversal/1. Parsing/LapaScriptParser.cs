@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _parser = new LpsParser(Id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional);
         }
 
-        public ScriptParseResult Parse(string text)
+        public ScriptParseResult Parse(string text, ExecutionScope scope)
         {
             text ??= string.Empty;
 
@@ -69,6 +69,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             return new ScriptParseResult(string.Join(Environment.NewLine, text), script, errors);
         }
 
-        public ScriptParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
+        public ScriptParseResult Parse(string[] text, ExecutionScope scope) =>  Parse(string.Join("\n", text), scope);
     }
 }

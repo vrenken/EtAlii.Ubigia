@@ -12,9 +12,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("$var1 <= \"Test\"").Script;
+            var script = _parser.Parse("$var1 <= \"Test\"", scope).Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -28,9 +29,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("$var1<=\"Test\"").Script;
+            var script = _parser.Parse("$var1<=\"Test\"", scope).Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -44,9 +46,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment_Next()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/Test1/Test2\r\n$var1 <= \"Test\"").Script;
+            var script = _parser.Parse("/Test1/Test2\r\n$var1 <= \"Test\"", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.Skip(1).First();
@@ -59,9 +62,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment_Next_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/Test1/Test2\r\n$var1<=\"Test\"").Script;
+            var script = _parser.Parse("/Test1/Test2\r\n$var1<=\"Test\"", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.Skip(1).First();
@@ -74,9 +78,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment_Middle()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/Test1/Test2\r\n$var1 <= \"Test\"\r\n/Test3/Test4").Script;
+            var script = _parser.Parse("/Test1/Test2\r\n$var1 <= \"Test\"\r\n/Test3/Test4", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.Skip(1).First();
@@ -89,9 +94,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_VariableStringAssignment_Middle_Without_Spaces()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var script = _parser.Parse("/Test1/Test2\r\n$var1<=\"Test\"\r\n/Test3/Test4").Script;
+            var script = _parser.Parse("/Test1/Test2\r\n$var1<=\"Test\"\r\n/Test3/Test4", scope).Script;
 
             // Assert.
             var sequence = script.Sequences.Skip(1).First();

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
             _contextValidator = contextValidator;
         }
 
-        public SchemaParseResult Parse(string text)
+        public SchemaParseResult Parse(string text, ExecutionScope scope)
         {
             text ??= string.Empty;
 
@@ -63,6 +63,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr.Context
             return new SchemaParseResult(string.Join(Environment.NewLine, text), schema, errors);
         }
 
-        public SchemaParseResult Parse(string[] text) =>  Parse(string.Join("\n", text));
+        public SchemaParseResult Parse(string[] text, ExecutionScope scope) =>  Parse(string.Join("\n", text), scope);
     }
 }

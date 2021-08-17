@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_From_MdFiles(string fileName, string line, string queryText)
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
 
             // Act.
-            var parseResult = parser.Parse(queryText);
+            var parseResult = parser.Parse(queryText, scope);
             var lines = queryText.Split('\n');
 
             // Assert.
@@ -36,6 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Comment_MultiLine_And_Object()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment on the first line.
             -- And this is a comment on the second line.
@@ -46,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -58,6 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParser_Parse_Comment_Object_With_Namespace_Option()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"[namespace=EtAlii.Namespace.Test]
             Person
@@ -67,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);

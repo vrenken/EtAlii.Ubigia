@@ -12,10 +12,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_UnAssign_Time_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:time <= ";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -30,10 +31,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_UnAssign_Time_Root_Under_Other_Name()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:specialtime <= ";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -48,10 +50,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Root_UnAssign_Object_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "root:projects <= ";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;

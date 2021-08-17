@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     /// </summary>
     public interface ISchemaParser
     {
-        SchemaParseResult Parse(string text);
-        SchemaParseResult Parse(string[] text);
+        SchemaParseResult Parse(string text, ExecutionScope scope);
+        SchemaParseResult Parse(string[] text, ExecutionScope scope);
     }
 }

@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             _contextCorrelator = contextCorrelator;
         }
 
-        public IObservable<SequenceProcessingResult> Process(Script script)
+        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
         {
             // We want to be able to track method calls throughout the whole application stack.
             // Including across network and process boundaries.
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
                 _logger.Debug("Processing script");
                 var start = Environment.TickCount;
 
-                var result = _processor.Process(script);
+                var result = _processor.Process(script, scope);
 
                 var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
                 _logger.Debug("Processed script (Duration: {Duration}ms)", duration);

@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 {
     using EtAlii.Ubigia.Api.Functional.Antlr;
 
-    internal static class ParserOptionsUseTestParserExtension
+    internal static class ParserOptionsUseTestParsingExtension
     {
-        public static FunctionalOptions UseTestParser(this FunctionalOptions options)
+        public static FunctionalOptions UseTestParsing(this FunctionalOptions options)
         {
                 return options.UseAntlrParsing();
         }

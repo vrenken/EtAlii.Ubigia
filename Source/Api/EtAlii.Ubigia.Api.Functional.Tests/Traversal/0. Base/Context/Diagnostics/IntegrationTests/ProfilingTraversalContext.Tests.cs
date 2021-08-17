@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-#if USE_LAPA_PARSER_IN_TESTS
+#if USE_LAPA_PARSING_IN_TESTS
 
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {

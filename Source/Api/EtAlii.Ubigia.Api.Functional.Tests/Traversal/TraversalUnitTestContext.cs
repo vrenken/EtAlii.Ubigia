@@ -41,27 +41,12 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
             Logical = null;
         }
-        //
-        // public async Task<FunctionalOptions> CreateFunctionalOptions(bool openConnectionOnCreation = true)
-        // {
-        //     var logicalContext = await Logical
-        //         .CreateLogicalContext(openConnectionOnCreation)
-        //         .ConfigureAwait(false);
-        //
-        //     var options = new FunctionalOptions(ClientConfiguration)
-        //         .Use(logicalContext.Options.Connection)
-        //         .UseTestParser();
-        //
-        //     return options;
-        // }
-        //
-        public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext, FunctionalScope scope = null)
+
+        public IScriptProcessor CreateScriptProcessor(ILogicalContext logicalContext)//, ExecutionScope scope = null)
         {
-            scope ??= new FunctionalScope();
             var options = new FunctionalOptions(ClientConfiguration)
                 .UseTestProcessor()
                 .Use(logicalContext.Options.Connection)
-                .Use(scope)
                 .UseFunctionalDiagnostics();
             return new ScriptProcessorFactory().Create(options);
         }

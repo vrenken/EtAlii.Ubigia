@@ -34,8 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
+            _options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -43,11 +42,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var traversalContext = new TraversalContextFactory().Create(_options);
             _context = new GraphContextFactory().Create(_options);
 
+            var scope = new ExecutionScope();
             await _testContext.Functional
-                .AddPeople(traversalContext)
+                .AddPeople(traversalContext, scope)
                 .ConfigureAwait(false);
             await _testContext.Functional
-                .AddAddresses(traversalContext)
+                .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -69,6 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             // Arrange.
             dotMemory.Check();
+            var scope = new ExecutionScope();
 
             // Act.
             var isolator = new Func<Task>(async () =>
@@ -79,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                         Weight = 160.1,
                         NickName = ""HeavyJohnny""
                     }";
-                var mutationSchema = _context.Parse(mutationText).Schema;
+                var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
                 var queryText =
                     @"Person = @node(Person:Doe/John)
@@ -87,20 +88,19 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                         Weight,
                         NickName
                     }";
-                var querySchema = _context.Parse(queryText).Schema;
+                var querySchema = _context.Parse(queryText, scope).Schema;
 
-                var scope = new FunctionalScope();
-                var options = _options.CreateScope(scope);
+                var options = _options.CreateScope();
                 var processor = new TestSchemaProcessorFactory().Create(options);
 
                 // Act.
                 var mutationResults = await processor
-                    .Process(mutationSchema)
+                    .Process(mutationSchema, scope)
                     .ToArrayAsync()
                     .ConfigureAwait(false);
                 Assert.NotEmpty(mutationResults);
                 var queryResults = await processor
-                    .Process(querySchema)
+                    .Process(querySchema, scope)
                     .ToArrayAsync()
                     .ConfigureAwait(false);
                 Assert.NotEmpty(queryResults);

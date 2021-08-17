@@ -22,6 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Temporal_Downdate_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -32,16 +33,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John{";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -53,6 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Temporal_Downdate_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -64,16 +66,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John{{";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var history = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -94,6 +96,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Temporal_Downdate_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
@@ -105,16 +108,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John{";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.

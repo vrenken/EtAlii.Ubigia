@@ -8,29 +8,7 @@ namespace EtAlii.Ubigia
     /// <summary>
     /// The ExecutionScope contains all details needed to execute GCL/GTL/Linq queries and mutations.
     /// </summary>
-    public class ExecutionScope //: IExecutionScope
-//     {
-//         /// <inheritdoc />
-//         public Dictionary<string, ScopeVariable> Variables { get; }
-//
-//         /// <summary>
-//         /// Create a new ExecutionScope instance.
-//         /// </summary>
-//         public ExecutionScope()
-//         {
-//             Variables = new Dictionary<string, ScopeVariable>();
-//         }
-//
-//         /// <summary>
-//         /// Create a new ExecutionScope instance using the variables provided by the dictionary.
-//         /// </summary>
-//         public ExecutionScope(Dictionary<string, ScopeVariable> variables)
-//         {
-//             Variables = variables;
-//         }
-//     }
-// }
-
+    public class ExecutionScope
     {
         /// <summary>
         /// This is the Cache instance used to reduce unnecessary server calls. As the whole entity and relation

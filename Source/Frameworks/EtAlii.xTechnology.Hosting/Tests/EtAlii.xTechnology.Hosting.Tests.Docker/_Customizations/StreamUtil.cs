@@ -13,7 +13,7 @@ namespace Docker.DotNet.Models
     internal static class StreamUtil
     {
         private static readonly JsonSerializer _jsonSerializer = new();
-        
+
         internal static async Task MonitorStreamAsync(Task<Stream> streamTask, DockerClient client, CancellationToken cancel, IProgress<string> progress)
         {
             await using var stream = await streamTask.ConfigureAwait(false);
@@ -38,24 +38,22 @@ namespace Docker.DotNet.Models
             // ReadLineAsync must be cancelled by closing the whole stream.
             await using (cancel.Register(() => stream.Dispose()))
             {
-                using (var reader = new StreamReader(stream, new UTF8Encoding(false)))
+                using var reader = new StreamReader(stream, new UTF8Encoding(false));
+                try
                 {
-                    try
+                    string line;
+                    while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
                     {
-                        string line;
-                        while ((line = await reader.ReadLineAsync().ConfigureAwait(false)) != null)
-                        {
-                            var prog = _jsonSerializer.DeserializeObject<T>(line);
-                            if (prog == null) continue;
+                        var prog = _jsonSerializer.DeserializeObject<T>(line);
+                        if (prog == null) continue;
 
-                            progress.Report(prog);
-                        }
+                        progress.Report(prog);
                     }
-                    catch (ObjectDisposedException)
-                    {
-                        // The subsequent call to reader.ReadLineAsync() after cancellation
-                        // will fail because we disposed the stream. Just ignore here.
-                    }
+                }
+                catch (ObjectDisposedException)
+                {
+                    // The subsequent call to reader.ReadLineAsync() after cancellation
+                    // will fail because we disposed the stream. Just ignore here.
                 }
             }
         }

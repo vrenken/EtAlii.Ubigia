@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
     /// <summary>
     /// Add the configured test GTL parsing to the options.
     /// </summary>
-    public static class TraversalContextOptionsUseTestParserExtension
+    public static class TraversalContextOptionsUseTestParsingExtension
     {
         // TODO: is this file in the right project?
 
@@ -21,8 +21,8 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
         public static TFunctionalOptions UseTestParsing<TFunctionalOptions>(this TFunctionalOptions options)
             where TFunctionalOptions : FunctionalOptions
         {
-#if USE_LAPA_PARSER_IN_TESTS
-            return options.UseLapaParser();
+#if USE_LAPA_PARSING_IN_TESTS
+            return options.UseLapaParsing);
 #else
             return options.UseAntlrParsing();
 #endif

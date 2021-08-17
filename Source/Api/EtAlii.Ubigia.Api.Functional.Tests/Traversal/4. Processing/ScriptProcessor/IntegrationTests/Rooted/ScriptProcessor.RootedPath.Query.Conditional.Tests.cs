@@ -23,6 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Does",
@@ -43,16 +44,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale=true";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -71,6 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Does",
@@ -91,16 +93,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale=false";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -121,6 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Does",
@@ -141,16 +144,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale!=true";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -171,6 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_Boolean_04()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Does",
@@ -191,16 +195,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale!=false";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -220,6 +224,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_RootedPath_Query_Conditional_Equals_DateTime_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var addQueries = new[]
             {
                 "Person:+=Does",
@@ -240,16 +245,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.Birthdate=1978-08-23";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
 
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.

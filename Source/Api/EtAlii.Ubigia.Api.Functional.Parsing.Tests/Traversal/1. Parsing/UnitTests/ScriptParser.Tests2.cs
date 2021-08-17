@@ -29,10 +29,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Single_Line_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "'SingleLine'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -44,10 +45,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Single_Line_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'SingleLine'";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -58,10 +60,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines_RN_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "'First'\r\n'Second'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -73,10 +76,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines_RN_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'First'\r\n/'Second'";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -87,10 +91,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines_N_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "'First'\n'Second'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -102,10 +107,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines_N_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'First'\n/'Second'";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -116,10 +122,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Additional_Newline()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'First'\n/'Second'\r\n\r\n/'Third'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -131,10 +138,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "'First'\n'Second'\r\n'Third'\r\n";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -146,10 +154,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'First'\n/'Second'\r\n/'Third'\r\n";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -160,10 +169,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "'First'\n$second\r\n'Third'\r\n";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -175,10 +185,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Trailing_Newline_And_Variable_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "/'First'\n$second\r\n/'Third'\r\n";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -189,10 +200,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "\r\n'First'\n'Second'\r\n'Third'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -205,10 +217,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "\r\n/'First'\n/'Second'\r\n/'Third'";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);
@@ -219,10 +232,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "\r\n'First'\n$second\r\n'Third'";
 
             // Act.
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
             var script = parseResult.Script;
 
             // Assert.
@@ -234,10 +248,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_Parse_Multiple_Lines__With_Leading_Newline_And_Variable_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var text = "\r\n/'First'\n$second\r\n/'Third'";
 
             // Act.
-            var script = _parser.Parse(text).Script;
+            var script = _parser.Parse(text, scope).Script;
 
             // Assert.
             Assert.NotNull(script);

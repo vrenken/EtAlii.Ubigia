@@ -14,12 +14,13 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParserBugs_Parse_Comment()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"-- This is a comment { }";
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -31,6 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParserBugs_Parse_Node_Set_Annotation()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"Person = @node(Person:Doe/John)
             {
@@ -39,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -60,6 +62,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void SchemaParserBugs_Parse_Node_Clear_Annotation()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var parser = new TestSchemaParserFactory().Create();
             var text = @"Person = @node(Person:Doe/John)
             {
@@ -67,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             }";
 
             // Act.
-            var parseResult = parser.Parse(text);
+            var parseResult = parser.Parse(text, scope);
 
             // Assert.
             Assert.NotNull(parseResult);

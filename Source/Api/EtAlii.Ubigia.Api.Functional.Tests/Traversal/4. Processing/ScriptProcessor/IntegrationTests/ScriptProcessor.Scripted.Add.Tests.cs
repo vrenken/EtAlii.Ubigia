@@ -23,9 +23,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Scripted_Add_Simple()
         {
-            var continent = "Europe";
-
             // Arrange.
+            var scope = new ExecutionScope();
+            var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQueries = new[]
             {
@@ -36,14 +36,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -57,6 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_1()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
@@ -76,14 +77,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -96,6 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_2()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -111,14 +113,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -131,6 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_3()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -146,14 +149,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -166,6 +169,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_4()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -181,14 +185,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -202,6 +206,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_At_Once_1()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
@@ -217,14 +222,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -237,6 +242,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_At_Once_2()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -248,14 +254,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -268,6 +274,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_At_Once_3()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -279,14 +286,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -299,6 +306,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_At_Once_4()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var now = DateTime.Now;
             var addQueries = new[]
@@ -310,14 +318,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Format(string.Join("\r\n", addQueries), now);
             var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -330,6 +338,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_Spaced_1()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
@@ -349,14 +358,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -369,6 +378,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Add_Spaced_2()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var continent = "Europe";
             var country = "NL";
@@ -388,14 +398,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -408,18 +418,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "<= /Person+=Doe/John";
             var selectQuery = "/Person/Doe/John";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -433,18 +444,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_NonSpaced_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+=Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -457,18 +469,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Spaced_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+= Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
@@ -481,14 +494,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Wrong_Root()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "+=Person_Bad/Doe/John";
 
-            var addScript = _parser.Parse(addQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var act = processor.Process(addScript);
+            var act = processor.Process(addScript, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -498,18 +512,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var addQuery = "<= /Person += Doe/John";
             var selectQuery = "/Person/Doe/John";
 
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript = _parser.Parse(selectQuery).Script;
+            var addScript = _parser.Parse(addQuery, scope).Script;
+            var selectScript = _parser.Parse(selectQuery, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(addScript);
+            var lastSequence = await processor.Process(addScript, scope);
             dynamic firstJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript);
+            lastSequence = await processor.Process(selectScript, scope);
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.

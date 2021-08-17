@@ -34,15 +34,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Assign_Invalid_Faulty_Argument()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id('First') <= /Time";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
 
             // Assert.
@@ -55,15 +56,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Assign_Invalid_Faulty_Arguments()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id('First', 'Second') <= /Time";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -74,15 +76,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Variable_Invalid_Faulty_Arguments()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id($path, 'First', 'Second')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -94,15 +97,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Variable_Invalid_Faulty_Argument()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id($path, 'First')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -114,15 +118,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Constant_DoubleQuoted_Invalid_Faulty_Arguments()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id(\"/Hierarchy\", 'First', 'Second')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -133,15 +138,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Constant_DoubleQuoted_Invalid_Faulty_Argument()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id(\"/Hierarchy\", 'First')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -152,15 +158,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Constant_SingleQuoted_Invalid_Faulty_Arguments()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id('/Hierarchy', 'First', 'Second')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);
@@ -171,15 +178,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_Function_Id_Constant_SingleQuoted_Invalid_Faulty_Argument()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string text = "id('/Hierarchy', 'First')";
             using var logicalContext = await _testContext.Logical
                 .CreateLogicalContext(true)
                 .ConfigureAwait(false);
             var processor = _testContext.CreateScriptProcessor(logicalContext);
-            var parseResult = _parser.Parse(text);
+            var parseResult = _parser.Parse(text, scope);
 
             // Act.
-            var act = processor.Process(parseResult.Script);
+            var act = processor.Process(parseResult.Script, scope);
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act).ConfigureAwait(false);

@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _parser = new LpsParser(Id, true, headerParsers + newLineParser.OptionalMultiple + _structureFragmentParser.Parser.Maybe() + newLineParser.OptionalMultiple);
         }
 
-        public SchemaParseResult Parse(string text)
+        public SchemaParseResult Parse(string text, ExecutionScope scope)
         {
             text ??= string.Empty;
 
@@ -59,9 +59,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             return new SchemaParseResult(string.Join(Environment.NewLine, text), schema, errors);
         }
 
-        public SchemaParseResult Parse(string[] text)
-        {
-            return Parse(string.Join("\n", text));
-        }
+        public SchemaParseResult Parse(string[] text, ExecutionScope scope) => Parse(string.Join("\n", text), scope);
     }
 }

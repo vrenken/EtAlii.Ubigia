@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         {
             // Arrange.
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .Use(rootHandlerMappersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .Use(rootHandlerMappersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .Use(rootHandlerMappersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
             var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParser()
+                .UseTestParsing()
                 .Use(rootHandlerMappersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);

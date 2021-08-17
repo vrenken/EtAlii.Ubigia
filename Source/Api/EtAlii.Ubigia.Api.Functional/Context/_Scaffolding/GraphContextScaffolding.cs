@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Context
 {
-    using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class GraphContextScaffolding : IScaffolding
@@ -14,16 +13,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             _options = options;
         }
 
-        public void Register(Container container)
+        public void Register(IRegisterOnlyContainer container)
         {
-            container.Register(() => _options.ConfigurationRoot);
-
-            container.Register<IGraphContext>(() =>
+            container.Register<IGraphContext>(services =>
             {
-                var schemaProcessorFactory = container.GetInstance<ISchemaProcessorFactory>();
-                var schemaParserFactory = container.GetInstance<ISchemaParserFactory>();
-                var traversalContext = container.GetInstance<ITraversalContext>();
-                return new GraphContext(_options, schemaProcessorFactory, schemaParserFactory, traversalContext);
+                var schemaProcessorFactory = services.GetInstance<ISchemaProcessorFactory>();
+                var schemaParserFactory = services.GetInstance<ISchemaParserFactory>();
+                return new GraphContext(_options, schemaProcessorFactory, schemaParserFactory);
             });
         }
     }

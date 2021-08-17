@@ -13,10 +13,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/Third/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -28,10 +29,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Query()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/Third/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -44,10 +46,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Typed_Word()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/[Word]/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -64,10 +67,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Typed_word()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/[word]/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -84,10 +88,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Typed_WORD()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/[WORD]/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -105,10 +110,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Typed_NUMBER()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/[NUMBER]/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -125,10 +131,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Typed_BaadFood()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/[BaadFood]/Fourth";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             Assert.Null(result.Script);
@@ -139,10 +146,11 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Path_With_Query_And_VariableAssignment()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             const string query = "/First/Second/Third/Fourth\r\n$var1 <= /Fourth/4\r\n/Fifth/5\r\n/Sixth/6";
 
             // Act.
-            var result = _parser.Parse(query);
+            var result = _parser.Parse(query, scope);
 
             // Assert.
             var script = result.Script;
@@ -157,9 +165,10 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Path_With_Separator_No_Error()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
-            var result = _parser.Parse("/First/Second//Third/Fourth");
+            var result = _parser.Parse("/First/Second//Third/Fourth", scope);
 
             // Assert.
             Assert.DoesNotContain(result.Errors, e => e.Exception is ScriptParserException);
@@ -169,6 +178,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Unquoted_Path_With_Normal_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var count = 0;
 
             // Act.
@@ -176,7 +186,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             {
                 var symbol = $"ThirdIs{c}Cool";
                 var query = $"/First/Second/{symbol}/Fourth";
-                var script = _parser.Parse(query).Script;
+                var script = _parser.Parse(query, scope).Script;
                 count = script.Sequences.Count();
             });
 
@@ -192,6 +202,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Normal_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var count = 0;
 
             // Act.
@@ -199,7 +210,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             {
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"/First/Second/{symbol}/Fourth";
-                var script = _parser.Parse(query).Script;
+                var script = _parser.Parse(query, scope).Script;
                 count = script.Sequences.Count();
             });
 
@@ -216,6 +227,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var count = 0;
 
             // Act.
@@ -223,7 +235,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             {
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"/First/Second/{symbol}/Fourth";
-                var script = _parser.Parse(query).Script;
+                var script = _parser.Parse(query, scope).Script;
                 count = script.Sequences.Count();
             });
 
@@ -242,13 +254,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Unquoted_Path_With_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
             var act = new Func<char, ScriptParseResult>(c =>
             {
                 var symbol = $"ThirdIsNot{c}Cool";
                 var query = $"/First/Second/{symbol}/Fourth";
-                return _parser.Parse(query);
+                return _parser.Parse(query, scope);
             });
 
             // Assert.
@@ -263,13 +276,14 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public void ScriptParser_NonRootedPath_Parse_Query_Unquoted_Path_With_Quoted_Special_Characters()
         {
             // Arrange.
+            var scope = new ExecutionScope();
 
             // Act.
             var act = new Func<char, ScriptParseResult>(c =>
             {
                 var symbol = $"\"ThirdIsNot{c}Cool\"";
                 var query = $"/First/Second/{symbol}/Fourth";
-                return _parser.Parse(query);
+                return _parser.Parse(query, scope);
             });
 
             // Assert.

@@ -24,14 +24,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItem()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
 
             const string query = "/Time";
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(query, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -44,6 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_1()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
@@ -51,11 +53,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "$var1"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -68,6 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariable_2()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
             {
@@ -75,11 +78,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "$var1"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -92,6 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_1()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
@@ -102,11 +106,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "/$var1/$var2"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -119,6 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_2()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
@@ -129,11 +134,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "/$var1/$var2"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -146,6 +151,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
@@ -156,11 +162,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "/$var1/$var2"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -173,6 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
@@ -182,11 +189,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "/$var1"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -199,6 +206,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable_Spaced()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var continent = "Europe";
             using var logicalContext = await _testContext.Logical.CreateLogicalContext(true).ConfigureAwait(false);
             var queries = new[]
@@ -208,11 +216,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 "/$var1"
             };
 
-            var script = _parser.Parse(queries).Script;
+            var script = _parser.Parse(queries, scope).Script;
             var processor = _testContext.CreateScriptProcessor(logicalContext);
 
             // Act.
-            var lastSequence = await processor.Process(script);
+            var lastSequence = await processor.Process(script, scope);
             var result = await lastSequence.Output.ToArray();
 
             // Assert.

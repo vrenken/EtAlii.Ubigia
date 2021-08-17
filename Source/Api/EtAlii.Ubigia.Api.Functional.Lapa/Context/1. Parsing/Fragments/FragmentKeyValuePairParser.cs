@@ -1,19 +1,21 @@
-﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
 
-namespace EtAlii.Ubigia.Api.Functional.Traversal
+namespace EtAlii.Ubigia.Api.Functional.Context
 {
+    using EtAlii.Ubigia.Api.Functional.Traversal;
     using Moppet.Lapa;
 
-    internal class KeyValuePairParser : KeyValuePairParserBase, IKeyValuePairParser
+    internal class FragmentKeyValuePairParser : KeyValuePairParserBase, IFragmentKeyValuePairParser
     {
-        string IKeyValuePairParser.Id => Id;
+        private readonly IAssignmentParser _assignmentParser;
+        string IFragmentKeyValuePairParser.Id => Id;
 
         // SONARQUBE_DependencyInjectionSometimesRequiresMoreThan7Parameters:
         // After a (very) long period of considering all options I am convinced that we won't be able to break down all DI patterns so that they fit within the 7 limit
         // specified by SonarQube. The current setup here is already some kind of facade that hides away many of the type specific parsing. Therefore refactoring to facades won't work.
         // Therefore this pragma warning disable of S107.
 #pragma warning disable S107
-        public KeyValuePairParser(
+        public FragmentKeyValuePairParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
             IDateTimeValueParser dateTimeValueParser,
@@ -22,15 +24,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             IIntegerValueParser integerValueParser,
             IFloatValueParser floatValueParser,
             IWhitespaceParser whitespaceParser,
+            IAssignmentParser assignmentParser,
             INodeFinder nodeFinder)
-        : base(nodeValidator, quotedTextParser, dateTimeValueParser, timeSpanValueParser, booleanValueParser, integerValueParser, floatValueParser, whitespaceParser, nodeFinder)
+            : base(nodeValidator, quotedTextParser, dateTimeValueParser, timeSpanValueParser, booleanValueParser, integerValueParser, floatValueParser, whitespaceParser, nodeFinder)
 #pragma warning restore S107
         {
+            _assignmentParser = assignmentParser;
         }
 
         protected override LpsParser InitializeParser()
         {
-            var separator = WhitespaceParser.Optional + Lp.Char(':') + WhitespaceParser.Optional;
+            var separator = _assignmentParser.Parser;
 
             return new LpsParser(Id, true,
                 (

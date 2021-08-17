@@ -28,8 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
+            _options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -38,11 +37,12 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .Create(_options);
             _context = new GraphContextFactory().Create(_options);
 
+            var scope = new ExecutionScope();
             await _testContext.Functional
-                .AddPeople(traversalContext)
+                .AddPeople(traversalContext, scope)
                 .ConfigureAwait(false);
             await _testContext.Functional
-                .AddAddresses(traversalContext)
+                .AddAddresses(traversalContext, scope)
                 .ConfigureAwait(false);
 
             _testOutputHelper.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphContext));
@@ -65,31 +65,32 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Person_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
+
             var mutationText = @"Person = @node(Person:Doe/John)
                                {
                                     Weight = 160.1,
                                     NickName = ""HeavyJohnny""
                                }";
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
             var queryText = @"Person = @node(Person:Doe/John)
                               {
                                     Weight,
                                     NickName
                               }";
-            var querySchema = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var mutationResults = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
             var queryResults = await processor
-                .Process(querySchema)
+                .Process(querySchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -110,31 +111,31 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Person_02()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var mutationText = @"Person = @node-add(Person:Doe, Mary)
                                {
                                     Weight = 160.1,
                                     NickName = ""MinteyMary""
                                }";
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
             var queryText = @"Person = @node(Person:Doe/Mary)
                               {
                                     Weight,
                                     NickName
                               }";
-            var querySchema = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var mutationResults = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
             var queryResults = await processor
-                .Process(querySchema)
+                .Process(querySchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -155,6 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Person_03()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var mutationText = @"Person = @node(Person:Doe/John)
                                  {
                                      FirstName = @node(),
@@ -167,7 +169,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                         NickName
                                      }
                                  }";
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
             var queryText = @"Person = @node(Person:Doe/John)
                               {
@@ -181,19 +183,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                         NickName
                                     }
                               }";
-            var querySchema = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var mutationResults = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
             var queryResults = await processor
-                .Process(querySchema)
+                .Process(querySchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -236,31 +237,31 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Persons_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var mutationText = @"Person = @nodes-add(Person:Doe, Mary)
                                {
                                     Weight = 160.1,
                                     NickName = ""MinteyMary""
                                }";
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
             var queryText = @"Person[] = @nodes(Person:Doe/)
                               {
                                     Weight,
                                     NickName
                               }";
-            var querySchema = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var mutationResults = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
             var queryResults = await processor
-                .Process(querySchema)
+                .Process(querySchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -287,6 +288,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var mutationText = @"Person = @nodes(Person:Doe/John)
                                {
                                     FirstName = @node()
@@ -300,15 +302,14 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                     }
                                }";
 
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var results = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -336,6 +337,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task SchemaProcessor_Mutate_Person_Friends_Bidirectional_01()
         {
             // Arrange.
+            var scope = new ExecutionScope();
             var mutationText = @"Data
                                  {
                                      Person = @node(Person:Doe/John)
@@ -352,7 +354,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                      }
                                  }";
 
-            var mutationSchema = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText, scope).Schema;
 
             var queryText = @"Data
                               {
@@ -381,21 +383,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                                         }
                                     }
                               }";
-            var querySchema = _context.Parse(queryText).Schema;
-
-
-            var scope = new FunctionalScope();
-            var options = _options.CreateScope(scope);
+            var querySchema = _context.Parse(queryText, scope).Schema;
+            var options = _options.CreateScope();
             var processor = new TestSchemaProcessorFactory().Create(options);
 
             // Act.
             var mutationResults = await processor
-                .Process(mutationSchema)
+                .Process(mutationSchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
             var queryResults = await processor
-                .Process(querySchema)
+                .Process(querySchema, scope)
                 .ToArrayAsync()
                 .ConfigureAwait(false);
 
