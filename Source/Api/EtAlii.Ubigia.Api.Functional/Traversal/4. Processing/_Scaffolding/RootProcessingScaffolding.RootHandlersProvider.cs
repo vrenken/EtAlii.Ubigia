@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
         private IRootHandlerMappersProvider GetRootHandlerMappersProvider(IServiceCollection services)
         {
-
             var defaultRootHandlerMappers = services.GetInstance<IRootHandlerMapperFactory>().CreateDefaults();
 
             var rootHandlerMappers = defaultRootHandlerMappers
