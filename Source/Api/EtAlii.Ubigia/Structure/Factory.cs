@@ -2,121 +2,34 @@
 
 namespace EtAlii.Ubigia
 {
-    using System.Diagnostics.CodeAnalysis;
     using EtAlii.xTechnology.MicroContainer;
 
-    /// <summary>
-    /// Use this as a base class to create configurable and extensible subsystem factories.
-    /// </summary>
-
-    [SuppressMessage(
-        category: "Sonar Code Smell",
-        checkId: "S2436:Reduce the number of generic parameters in the 'Factory' class to no more than the 2 authorized",
-        Justification = "We cannot make this helper factory with less than 3 generic methods. Currently the change is too invasive to apply as all layers use this abstract class.")]
-    public abstract class Factory<TInstance, TInstanceConfiguration, TExtension>
-        where TInstanceConfiguration : IExtensible
-        where TExtension: IExtension
+    public static class Factory
     {
-        /// <summary>
-        /// Create a new TInstance factory instance for the given configuration.
-        /// </summary>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        public TInstance Create(TInstanceConfiguration configuration)
+        public static TInstance Create<TInstance, TExtension>(IExtensible options)
+            where TExtension : IExtension
         {
             var container = new Container();
 
-            Initialize(container, configuration);
-
-            var scaffoldings = CreateScaffoldings(configuration);
-
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            foreach (var extension in configuration.GetExtensions<TExtension>())
+            foreach (var extension in options.GetExtensions<TExtension>())
             {
                 extension.Initialize(container);
             }
 
-            var instance = container.GetInstance<TInstance>();
-            InitializeInstance(instance, container);
-            return instance;
+            return container.GetInstance<TInstance>();
         }
 
-        /// <summary>
-        /// Override this method and return the for the factory relevant IScaffolding instances.
-        /// </summary>
-        /// <returns></returns>
-        protected abstract IScaffolding[] CreateScaffoldings(TInstanceConfiguration configuration);
-
-        /// <summary>
-        /// Override this method to configure the TInstance factory instance before it is returned.
-        /// This allows for more advanced DI initialization approaches.
-        /// </summary>
-        /// <param name="instance"></param>
-        /// <param name="services"></param>
-        protected virtual void InitializeInstance(TInstance instance, IServiceCollection services)
-        {
-        }
-
-        protected virtual void Initialize(IRegisterOnlyContainer container, TInstanceConfiguration configuration)
-        {
-        }
-    }
-
-    /// <summary>
-    /// Use this as a base class to create a non-configurable nor extensible subsystem factory.
-    /// </summary>
-    public abstract class Factory<TInstance>
-    {
-        /// <summary>
-        /// Create a new TInstance factory instance.
-        /// </summary>
-        /// <returns></returns>
-        public TInstance Create()
+        public static (TFirstInstance, TSecondInstance) Create<TFirstInstance, TSecondInstance, TExtension>(IExtensible options)
+            where TExtension : IExtension
         {
             var container = new Container();
 
-            Initialize(container);
-
-            var scaffoldings = CreateScaffoldings();
-
-
-            foreach (var scaffolding in scaffoldings)
+            foreach (var extension in options.GetExtensions<TExtension>())
             {
-                scaffolding.Register(container);
+                extension.Initialize(container);
             }
 
-            var instance = container.GetInstance<TInstance>();
-            InitializeInstance(instance, container);
-            return instance;
-        }
-
-        /// <summary>
-        /// Override this method and return the for the factory relevant IScaffolding instances.
-        /// </summary>
-        /// <returns></returns>
-        protected abstract IScaffolding[] CreateScaffoldings();
-
-        /// <summary>
-        /// Override this method to configure the TInstance factory instance before it is returned.
-        /// This allows for more advanced DI initialization approaches.
-        /// </summary>
-        /// <param name="instance"></param>
-        /// <param name="container"></param>
-        protected virtual void InitializeInstance(TInstance instance, Container container)
-        {
-        }
-
-        /// <summary>
-        /// Override this method to initialize the TInstance factory.
-        /// </summary>
-        /// <param name="container"></param>
-        protected virtual void Initialize(Container container)
-        {
+            return (container.GetInstance<TFirstInstance>(), container.GetInstance<TSecondInstance>());
         }
     }
 }

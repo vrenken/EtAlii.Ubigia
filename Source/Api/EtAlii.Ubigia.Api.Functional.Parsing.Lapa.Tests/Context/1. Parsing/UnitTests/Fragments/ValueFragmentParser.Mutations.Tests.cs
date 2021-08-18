@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname <= \"John\"";
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname\t<=\t\"John\"";
 
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname<=\"John\"";
 
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location @node-set( Location:NL/Overijssel/Enschede/Oldebokhoek/52 )";
 
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location @node-set(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
 
@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location\t@node-set(\tLocation:NL/Overijssel/Enschede/Oldebokhoek/52\t)";
 
@@ -174,7 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 
@@ -199,7 +199,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\t\"John\"\t)";
 
@@ -223,7 +223,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 

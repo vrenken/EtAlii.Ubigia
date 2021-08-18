@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             // Act.
             var planner = await _testContext
-                .CreateFunctionalOnNewSpace<ISchemaExecutionPlanner>()
+                .CreateComponentOnNewSpace<ISchemaExecutionPlanner>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             var scope = new ExecutionScope();
             var parser = _testContext.CreateSchemaParser();
             var planner = await _testContext
-                .CreateFunctionalOnNewSpace<ISchemaExecutionPlanner>()
+                .CreateComponentOnNewSpace<ISchemaExecutionPlanner>()
                 .ConfigureAwait(false);
 
 

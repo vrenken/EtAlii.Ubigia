@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task InitializeAsync()
         {
             _parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISequenceParser>()
+                .CreateComponentOnNewSpace<ISequenceParser>()
                 .ConfigureAwait(false);
         }
 

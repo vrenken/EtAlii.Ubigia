@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(\\LastName)";
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(NickName)";
 
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(//Weight)";
 

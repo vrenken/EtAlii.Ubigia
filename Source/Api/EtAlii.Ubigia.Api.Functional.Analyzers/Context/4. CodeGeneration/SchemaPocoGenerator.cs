@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     using System.Linq;
     using System.Reflection;
     using EtAlii.Ubigia.Api.Functional.Antlr;
-    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Text;
     using Serilog;
@@ -108,7 +107,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context
 
                 var options = new FunctionalOptions(configurationRoot)
                     .UseAntlrParsing();
-                _schemaParser = new AntlrSchemaParserFactory().Create(options);
+
+                _schemaParser = Factory.Create<ISchemaParser, IFunctionalExtension>(options);
             }
             catch (Exception e)
             {

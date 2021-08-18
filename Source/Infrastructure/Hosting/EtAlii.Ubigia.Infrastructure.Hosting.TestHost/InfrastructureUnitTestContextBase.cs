@@ -1,0 +1,11 @@
+﻿// Copyright (c) Peter Vrenken. All rights reserved. See the license on https://github.com/vrenken/EtAlii.Ubigia
+
+namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost
+{
+    using EtAlii.Ubigia.Api.Functional;
+
+    public abstract class InfrastructureUnitTestContextBase
+    {
+        public T CreateComponent<T>(IFunctionalOptions options) => Factory.Create<T, IFunctionalExtension>(options);
+    }
+}

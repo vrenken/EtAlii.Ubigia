@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
     using Microsoft.Extensions.Configuration;
     using Xunit;
 
-    public class InfrastructureUnitTestContext : IAsyncLifetime
+    public class InfrastructureUnitTestContext : InfrastructureUnitTestContextBase, IAsyncLifetime
     {
         public IConfigurationRoot ClientConfiguration => Host.ClientConfiguration;
         public IConfigurationRoot HostConfiguration => Host.HostConfiguration;

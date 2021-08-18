@@ -8,14 +8,17 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Antlr;
     using EtAlii.Ubigia.Api.Functional.Traversal;
+    using Microsoft.Extensions.Configuration;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
     {
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
+        private readonly IConfigurationRoot _configurationRoot;
 
-        public ScriptedSpaceInitializer(ISystemConnectionCreationProxy systemConnectionCreationProxy)
+        public ScriptedSpaceInitializer(ISystemConnectionCreationProxy systemConnectionCreationProxy, IConfigurationRoot configurationRoot)
         {
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
+            _configurationRoot = configurationRoot;
         }
 
         public async Task Initialize(Space space, SpaceTemplate template)
@@ -24,13 +27,13 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
             var managementConnection = await systemConnection.OpenManagementConnection().ConfigureAwait(false);
             var spaceConnection = await managementConnection.OpenSpace(space).ConfigureAwait(false);
 
-            // We don't have access to the configuration root yet.
-            var options = new FunctionalOptions(null)
+            var options = new FunctionalOptions(_configurationRoot)
                 .UseAntlrParsing()
                 .UseCaching(true)
                 .UseTraversalCaching(true)
                 .Use(spaceConnection);
-            var scriptContext = new TraversalContextFactory().Create(options);
+
+            var scriptContext = Factory.Create<ITraversalContext, IFunctionalExtension>(options);
 
             var rootsToCreate = template.RootsToCreate;
 

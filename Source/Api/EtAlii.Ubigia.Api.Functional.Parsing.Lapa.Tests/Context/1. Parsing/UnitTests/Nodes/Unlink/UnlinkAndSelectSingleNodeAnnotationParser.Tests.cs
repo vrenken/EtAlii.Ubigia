@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
+                .CreateComponentOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
+                .CreateComponentOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-unlink(/Time, time:'2000-05-02 23:07', /Event)";
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
+                .CreateComponentOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-unlink(/Time, time:'2000-05-02 23:07',/Event)";
 
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
+                .CreateComponentOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 
@@ -106,7 +106,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
+                .CreateComponentOnNewSpace<IUnlinkAndSelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-unlink(/Time,time:'2000-05-02 23:07', /Event)";
 

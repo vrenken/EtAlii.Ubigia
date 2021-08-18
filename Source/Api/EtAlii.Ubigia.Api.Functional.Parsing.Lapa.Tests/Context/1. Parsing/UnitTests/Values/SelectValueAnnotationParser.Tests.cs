@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node(\\LastName)";
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node()";
 

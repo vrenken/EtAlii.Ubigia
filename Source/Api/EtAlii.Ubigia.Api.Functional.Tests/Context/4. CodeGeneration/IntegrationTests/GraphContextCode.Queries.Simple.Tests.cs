@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
-            var (graphContext, traversalContext) = _testContext.CreateFunctional<IGraphContext, ITraversalContext>(_options);
+            var (graphContext, traversalContext) = _testContext.CreateComponent<IGraphContext, ITraversalContext>(_options);
             _context = graphContext;
 
             var scope = new ExecutionScope();

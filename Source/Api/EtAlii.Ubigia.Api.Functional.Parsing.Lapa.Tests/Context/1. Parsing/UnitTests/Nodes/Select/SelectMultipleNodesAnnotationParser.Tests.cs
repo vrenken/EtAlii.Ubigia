@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes(person:Doe/*)";
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes(person:Doe/* )";
 
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<ISelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<ISelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes( person:Doe/*)";
 

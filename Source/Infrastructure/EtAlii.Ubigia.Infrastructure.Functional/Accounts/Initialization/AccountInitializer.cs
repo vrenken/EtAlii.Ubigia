@@ -12,7 +12,9 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
         private readonly ILogicalContext _context;
         private readonly ISpaceInitializer _spaceInitializer;
 
-        public AccountInitializer(ILogicalContext context, ISpaceInitializer spaceInitializer)
+        public AccountInitializer(
+            ILogicalContext context,
+            ISpaceInitializer spaceInitializer)
         {
             _context = context;
             _spaceInitializer = spaceInitializer;

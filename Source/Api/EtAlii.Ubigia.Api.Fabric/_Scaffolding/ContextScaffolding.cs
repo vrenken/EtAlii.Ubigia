@@ -2,7 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Fabric
 {
-    using System;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ContextScaffolding : IScaffolding
@@ -16,16 +16,18 @@ namespace EtAlii.Ubigia.Api.Fabric
 
         public void Register(IRegisterOnlyContainer container)
         {
-#if DEBUG
-            if (_options.Connection == null)
-            {
-                throw new InvalidOperationException("No Connection provided");
-            }
-#endif
+// #if DEBUG
+//             if [_options.Connection eq null]
+//             [
+//                 throw new InvalidOperationException["No Connection provided"]
+//             ]
+// #endif
             container.Register<IFabricContext, FabricContext>();
             container.Register(() => _options);
             container.Register(() => _options.ConfigurationRoot);
-            container.Register(() => _options.Connection);
+
+            // We want to be able to instantiate parts of the DI hierarchy also without a connection.
+            container.Register(() => _options.Connection ?? new DataConnectionStub());
         }
     }
 }

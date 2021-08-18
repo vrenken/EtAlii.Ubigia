@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .UseTestParsing()
                 .Use(dataConnection);
 
-            var context = _testContext.CreateFunctional<ITraversalContext>(options);
+            var context = _testContext.CreateComponent<ITraversalContext>(options);
 
             var addQueries = new[]
             {
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .UseTestParsing()
                 .Use(dataConnection);
 
-            var context = _testContext.CreateFunctional<ITraversalContext>(options);
+            var context = _testContext.CreateComponent<ITraversalContext>(options);
 
             var selectQuery = "<= /Person";
 

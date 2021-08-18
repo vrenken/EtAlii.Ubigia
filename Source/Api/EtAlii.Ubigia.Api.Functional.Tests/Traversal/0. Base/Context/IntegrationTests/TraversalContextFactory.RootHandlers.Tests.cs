@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
+            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
+            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
+            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -89,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Act.
             var act = new Action(() =>
             {
-                _testContext.CreateFunctional<ITraversalContext>(options);
+                _testContext.CreateComponent<ITraversalContext>(options);
             });
 
             // Assert.
@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
+            var scriptContext = _testContext.CreateComponent<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -142,7 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Act.
             var act = new Action(() =>
             {
-                _testContext.CreateFunctional<ITraversalContext>(options);
+                _testContext.CreateComponent<ITraversalContext>(options);
             });
 
             // Assert.

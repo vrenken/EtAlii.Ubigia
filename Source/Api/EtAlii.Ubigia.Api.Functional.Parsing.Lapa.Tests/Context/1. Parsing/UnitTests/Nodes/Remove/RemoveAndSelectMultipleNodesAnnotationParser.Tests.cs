@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/, Potsdam)";
 
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/, ""Potsdam"")";
 
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin, ""Potsdam"")";
 
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/, ""Potsdam"")";
 
@@ -125,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/, 'Potsdam')";
 
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/, 'Potsdam')";
 
@@ -169,7 +169,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/,'Potsdam')";
 
@@ -192,7 +192,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
+                .CreateComponentOnNewSpace<IRemoveAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-remove(location:DE/Berlin/,""Potsdam"")";
 

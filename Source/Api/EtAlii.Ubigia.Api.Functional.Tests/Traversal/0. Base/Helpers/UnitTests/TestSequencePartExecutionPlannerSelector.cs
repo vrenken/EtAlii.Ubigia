@@ -4,24 +4,17 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.MicroContainer;
 
     internal class TestSequencePartExecutionPlannerSelector
     {
         public static async Task<ISequencePartExecutionPlannerSelector> Create(ILogicalTestContext testContext)
         {
-            var container = new Container();
-
             var options = await new FunctionalOptions(testContext.ClientConfiguration)
                 .UseTestParsing()
                 .UseDataConnectionToNewSpace(testContext, true)
                 .ConfigureAwait(false);
 
-            foreach (var extension in ((IExtensible)options).Extensions)
-            {
-                extension.Initialize(container);
-            }
-            return container.GetInstance<ISequencePartExecutionPlannerSelector>();
+            return Factory.Create<ISequencePartExecutionPlannerSelector, IFunctionalExtension>(options);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node(Person:Stark/Tony)";
 
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-link(/Friends, Person:Doe/Jane, /Friends)";
 
@@ -81,7 +81,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts, Pepper)";
 
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts\t, \tPepper)";
 
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts, Pepper)";
 
@@ -146,7 +146,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts, Pepper)";
 
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts\t, \tPepper)";
 
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts, Pepper)";
 
@@ -212,7 +212,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
+                .CreateComponentOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes(Person:Doe/*)";
 

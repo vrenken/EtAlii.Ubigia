@@ -10,9 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalOptions.UseDataConnectionToNewSpace.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.Context.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.Traversal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\ContentManager.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\0. Base\Content\IntegrationTests\HierarchicalContentManager.Tests.cs" />
@@ -131,7 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\FunctionalTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\FunctionalTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\FunctionHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\IFunctionalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\ObservableExceptionAssert.cs" />

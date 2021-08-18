@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.Single(parseResult.Errors);
         }
 
-#if USE_LAPA_PARSING_IN_TESTS == true
+#if USE_LAPA_PARSING_IN_TESTS
         // The test below only works on the Antlr4 parser. We still keep it in as the outcome is better than that of the Lapa parser.
 
         [Fact, Trait("Category", TestAssembly.Category)]

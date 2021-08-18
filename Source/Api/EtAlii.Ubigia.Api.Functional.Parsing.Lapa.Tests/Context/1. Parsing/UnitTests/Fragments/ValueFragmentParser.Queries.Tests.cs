@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = @"firstname";
 
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = @"firstname @node()";
 
@@ -85,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
+                .CreateComponentOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = @"lastname @node(\\)";
 

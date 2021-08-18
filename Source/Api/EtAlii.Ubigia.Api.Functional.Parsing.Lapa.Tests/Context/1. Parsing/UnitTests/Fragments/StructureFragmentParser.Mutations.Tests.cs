@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 
             // Act.
             var parser = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(Person:Doe/John)
             {
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(Person:Stark/Tony)
             {
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(person:Stark/Tony)
             {
@@ -175,7 +175,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Person @node(person:Stark/Tony)
             {
@@ -200,7 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var (parser, nodeValidator) = await _testContext
-                .CreateFunctionalOnNewSpace<IStructureFragmentParser, INodeValidator>()
+                .CreateComponentOnNewSpace<IStructureFragmentParser, INodeValidator>()
                 .ConfigureAwait(false);
             var text = @"Friends @nodes-link(/Friends, Person:Banner/Peter, /Friends)
                         {

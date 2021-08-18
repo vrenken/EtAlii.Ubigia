@@ -3,14 +3,14 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Context;
     using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
     using Xunit;
 
-    public partial class FunctionalUnitTestContext : IAsyncLifetime
+    public class FunctionalUnitTestContext : IAsyncLifetime
     {
         public IFunctionalTestContext Functional { get; private set; }
 
@@ -30,7 +30,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public async Task InitializeAsync()
         {
-            Functional = new FunctionalTestContextFactory().Create();
+            var logicalTestContext = new LogicalTestContextFactory().Create();
+            Functional = new FunctionalTestContext(logicalTestContext);
             await Functional
                 .Start(UnitTestSettings.NetworkPortRange)
                 .ConfigureAwait(false);
@@ -42,65 +43,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Functional = null;
         }
 
-        public async Task<(TFirst, TSecond)> CreateFunctional<TFirst, TSecond>()
-        {
-            var container = new Container();
+        public TInstance CreateComponent<TInstance>(IFunctionalOptions options) => Factory.Create<TInstance, IFunctionalExtension>(options);
 
-            var options = await new FunctionalOptions(ClientConfiguration)
-                .UseLapaParsing()
-                .UseDataConnectionToNewSpace(this, true)
-                .ConfigureAwait(false);
+        public (TFirstInstance, TSecondInstance) CreateComponent<TFirstInstance, TSecondInstance>(IFunctionalOptions options) => Factory.Create<TFirstInstance, TSecondInstance, IFunctionalExtension>(options);
 
-            foreach (var extension in options.GetExtensions<IFunctionalExtension>())
-            {
-                extension.Initialize(container);
-            }
-
-            return (container.GetInstance<TFirst>(), container.GetInstance<TSecond>());
-        }
-
-        public async Task<T> CreateFunctionalOnNewSpace<T>()
-        {
-            var options = await new FunctionalOptions(ClientConfiguration)
-                .UseLapaParsing()
-                .UseDataConnectionToNewSpace(this, true)
-                .ConfigureAwait(false);
-
-            return CreateFunctional<T>(options);
-        }
-
-        public async Task<(TFirst, TSecond)> CreateFunctionalOnNewSpace<TFirst, TSecond>()
-        {
-            var options = await new FunctionalOptions(ClientConfiguration)
-                .UseLapaParsing()
-                .UseDataConnectionToNewSpace(this, true)
-                .ConfigureAwait(false);
-
-            return CreateFunctional<TFirst, TSecond>(options);
-        }
-
-        public T CreateFunctional<T>(IFunctionalOptions options)
-        {
-            var container = new Container();
-
-            foreach (var extension in options.GetExtensions<IFunctionalExtension>())
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<T>();
-        }
-
-        public (TFirst, TSecond) CreateFunctional<TFirst, TSecond>(IFunctionalOptions options)
-        {
-            var container = new Container();
-
-            foreach (var extension in options.GetExtensions<IFunctionalExtension>())
-            {
-                extension.Initialize(container);
-            }
-
-            return (container.GetInstance<TFirst>(), container.GetInstance<TSecond>());
-        }
+        public ISchemaProcessor CreateSchemaProcessor(IFunctionalOptions options) => Factory.Create<ISchemaProcessor, IFunctionalExtension>(options);
     }
 }
