@@ -5,15 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class HierarchicalContentManagerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public class HierarchicalContentManagerTests : IClassFixture<FunctionalUnitTestContext>, IDisposable
     {
         private readonly string _testFolderSimple;
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public HierarchicalContentManagerTests(TraversalUnitTestContext testContext)
+        public HierarchicalContentManagerTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
 

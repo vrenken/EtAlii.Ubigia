@@ -4,19 +4,19 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ScriptParserAssignPathObjectTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public class ScriptParserAssignPathObjectTests : IClassFixture<FunctionalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
 
-        public ScriptParserAssignPathObjectTests(TraversalUnitTestContext testContext)
+        public ScriptParserAssignPathObjectTests(FunctionalUnitTestContext testContext)
         {
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         public void Dispose()

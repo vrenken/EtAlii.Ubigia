@@ -3,22 +3,23 @@
 namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private TraversalUnitTestContext _testContext;
+        private FunctionalUnitTestContext _testContext;
 
         public async Task InitializeAsync()
         {
-            _testContext = new TraversalUnitTestContext();
+            _testContext = new FunctionalUnitTestContext();
             await _testContext
                 .InitializeAsync()
                 .ConfigureAwait(false);
 
-            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
+            _parser = _testContext.CreateScriptParser();
         }
 
         public async Task DisposeAsync()

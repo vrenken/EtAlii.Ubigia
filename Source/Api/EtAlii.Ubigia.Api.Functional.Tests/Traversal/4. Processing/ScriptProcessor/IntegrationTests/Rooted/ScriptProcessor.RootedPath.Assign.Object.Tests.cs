@@ -4,18 +4,19 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<TraversalUnitTestContext>
+    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<FunctionalUnitTestContext>
     {
         private readonly IScriptParser _parser;
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathAssignObjectIntegrationTests(TraversalUnitTestContext testContext)
+        public ScriptProcessorRootedPathAssignObjectIntegrationTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

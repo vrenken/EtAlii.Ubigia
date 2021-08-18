@@ -5,35 +5,27 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
-    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SequenceParserTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class SequenceParserTests : IClassFixture<FunctionalUnitTestContext>, IAsyncLifetime
     {
         private ISequenceParser _parser;
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public SequenceParserTests(TraversalUnitTestContext testContext)
+        public SequenceParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
         public async Task InitializeAsync()
         {
-            var container = new Container();
-
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            _parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISequenceParser>()
                 .ConfigureAwait(false);
-            new LapaParserExtension(options).Initialize(container);
-
-            _parser = container.GetInstance<ISequenceParser>();
         }
 
         public Task DisposeAsync()

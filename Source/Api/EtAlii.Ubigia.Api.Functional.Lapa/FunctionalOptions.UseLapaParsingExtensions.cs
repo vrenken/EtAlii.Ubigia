@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             return options.Use(new IExtension[]
             {
-                new LapaParserExtension(options),
+                new LapaParserExtension(),
             });
         }
     }

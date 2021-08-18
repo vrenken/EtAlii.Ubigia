@@ -4,17 +4,17 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ValueFragmentParserMutationsTests : IClassFixture<TraversalUnitTestContext>
+    public class ValueFragmentParserMutationsTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public ValueFragmentParserMutationsTests(TraversalUnitTestContext testContext)
+        public ValueFragmentParserMutationsTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -25,8 +25,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -37,8 +37,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Space()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname <= \"John\"";
 
@@ -59,8 +59,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Tab()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname\t<=\t\"John\"";
 
@@ -81,8 +81,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Compact()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "firstname<=\"John\"";
 
@@ -103,8 +103,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Space()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location @node-set( Location:NL/Overijssel/Enschede/Oldebokhoek/52 )";
 
@@ -126,8 +126,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Compact()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location @node-set(Location:NL/Overijssel/Enschede/Oldebokhoek/52)";
 
@@ -150,8 +150,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_From_Annotation_Tab()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "Location\t@node-set(\tLocation:NL/Overijssel/Enschede/Oldebokhoek/52\t)";
 
@@ -173,8 +173,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Space()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 
@@ -198,8 +198,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Tab()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\t\"John\"\t)";
 
@@ -222,8 +222,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ValueFragmentParser_Parse_Value_Mutation_Assignment_From_Constant_Compact()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IValueFragmentParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IValueFragmentParser>()
                 .ConfigureAwait(false);
             var text = "FirstName @node-set(\"John\")";
 

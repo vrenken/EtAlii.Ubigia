@@ -6,20 +6,21 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using Xunit.Abstractions;
 
     [CorrelateUnitTests]
-    public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class SchemaProcessorQueriesSimpleTests : IClassFixture<FunctionalUnitTestContext>, IAsyncLifetime
     {
         private IGraphContext _context;
-        private readonly QueryingUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
 
-        public SchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
+        public SchemaProcessorQueriesSimpleTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;
@@ -35,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
-            var traversalContext = new TraversalContextFactory().Create(_options);
-            _context = new GraphContextFactory().Create(_options);
+            var (graphContext, traversalContext) = _testContext.CreateFunctional<IGraphContext, ITraversalContext>(_options);
+            _context = graphContext;
 
             var scope = new ExecutionScope();
             await _testContext.Functional
@@ -67,13 +68,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public void SchemaProcessor_Create()
         {
             // Arrange.
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
 
             // Act.
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Assert.
             Assert.NotNull(processor);
@@ -99,11 +96,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var query = _context.Parse(queryText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -145,11 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -178,11 +167,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -230,11 +215,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -267,11 +248,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -308,11 +285,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -347,11 +320,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor
@@ -398,11 +367,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 
             var selectSchema = _context.Parse(selectSchemaText, scope).Schema;
 
-            var options = new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(_options.Connection);
 
             // Act.
             var results = await processor

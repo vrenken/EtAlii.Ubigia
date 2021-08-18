@@ -7,31 +7,20 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
 
     internal class TraversalContext : ITraversalContext
     {
-        private readonly FunctionalOptions _options;
-        private readonly IScriptProcessorFactory _scriptProcessorFactory;
-        private readonly IScriptParserFactory _scriptParserFactory;
+        private readonly IScriptProcessor _scriptProcessor;
+        private readonly IScriptParser _scriptParser;
 
         public TraversalContext(
-            FunctionalOptions options,
-            IScriptProcessorFactory scriptProcessorFactory,
-            IScriptParserFactory scriptParserFactory)
+            IScriptProcessor scriptProcessor,
+            IScriptParser scriptParser)
         {
-            _options = options;
-            _scriptProcessorFactory = scriptProcessorFactory;
-            _scriptParserFactory = scriptParserFactory;
+            _scriptProcessor = scriptProcessor;
+            _scriptParser = scriptParser;
         }
 
-        public ScriptParseResult Parse(string text, ExecutionScope scope)
-        {
-            var parser = _scriptParserFactory.Create(_options);
-            return parser.Parse(text, scope);
-        }
+        public ScriptParseResult Parse(string text, ExecutionScope scope) => _scriptParser.Parse(text, scope);
 
-        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope)
-        {
-            var processor = _scriptProcessorFactory.Create(_options);
-            return processor.Process(script, scope);
-        }
+        public IObservable<SequenceProcessingResult> Process(Script script, ExecutionScope scope) => _scriptProcessor.Process(script, scope);
 
         public IObservable<SequenceProcessingResult> Process(string[] text, ExecutionScope scope)
         {

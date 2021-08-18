@@ -61,6 +61,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableOutput.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableStringAssignment.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Traversal\1. Parsing\UnitTests\ScriptParser.VariableUpdateItem.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Traversal\TestScriptParserFactory.cs" />
   </ItemGroup>
 </Project>

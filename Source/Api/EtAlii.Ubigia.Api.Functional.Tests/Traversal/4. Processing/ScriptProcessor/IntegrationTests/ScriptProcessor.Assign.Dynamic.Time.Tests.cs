@@ -5,17 +5,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class ScriptProcessorAssignDynamicTimeIntegrationTests : IClassFixture<TraversalUnitTestContext>
+    public class ScriptProcessorAssignDynamicTimeIntegrationTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;
 
-        public ScriptProcessorAssignDynamicTimeIntegrationTests(TraversalUnitTestContext testContext)
+        public ScriptProcessorAssignDynamicTimeIntegrationTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

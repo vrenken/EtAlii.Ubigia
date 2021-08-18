@@ -5,17 +5,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class SequenceExecutionPlannerTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public class SequenceExecutionPlannerTests : IClassFixture<FunctionalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public SequenceExecutionPlannerTests(TraversalUnitTestContext testContext)
+        public SequenceExecutionPlannerTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         public void Dispose()

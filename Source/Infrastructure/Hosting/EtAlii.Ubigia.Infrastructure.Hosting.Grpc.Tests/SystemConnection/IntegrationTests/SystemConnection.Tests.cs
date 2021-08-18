@@ -99,7 +99,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .UseTestParsing()
                 .Use(dataConnection);
 
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var context = _testContext.CreateFunctional<ITraversalContext>(options);
 
             var addQueries = new[]
             {
@@ -111,13 +111,13 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
             var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
-            var addScript = scriptContext.Parse(addQuery, scope).Script;
-            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
+            var addScript = context.Parse(addQuery, scope).Script;
+            var selectScript = context.Parse(selectQuery, scope).Script;
 
             // Act.
-            var lastSequence = await scriptContext.Process(addScript, scope);
+            var lastSequence = await context.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await scriptContext.Process(selectScript, scope);
+            lastSequence = await context.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -144,14 +144,14 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
                 .UseTestParsing()
                 .Use(dataConnection);
 
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var context = _testContext.CreateFunctional<ITraversalContext>(options);
 
             var selectQuery = "<= /Person";
 
-            var selectScript = scriptContext.Parse(selectQuery, scope).Script;
+            var selectScript = context.Parse(selectQuery, scope).Script;
 
             // Act.
-            var lastSequence = await scriptContext.Process(selectScript, scope);
+            var lastSequence = await context.Process(selectScript, scope);
             var item = await lastSequence.Output.ToArray();
 
             // Assert.

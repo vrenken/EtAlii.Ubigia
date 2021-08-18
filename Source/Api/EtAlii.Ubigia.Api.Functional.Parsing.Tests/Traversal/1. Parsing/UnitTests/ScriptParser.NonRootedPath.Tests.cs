@@ -4,13 +4,13 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public partial class ScriptParserNonRootedPathTests : IClassFixture<TraversalUnitTestContext>, IDisposable
+    public partial class ScriptParserNonRootedPathTests : IClassFixture<FunctionalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
 
@@ -40,9 +40,9 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
              'ä','ë','ö','ü','á','é','ó','ú','â','ê','ô','û'
         };
 
-        public ScriptParserNonRootedPathTests(TraversalUnitTestContext testContext)
+        public ScriptParserNonRootedPathTests(FunctionalUnitTestContext testContext)
         {
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         public void Dispose()

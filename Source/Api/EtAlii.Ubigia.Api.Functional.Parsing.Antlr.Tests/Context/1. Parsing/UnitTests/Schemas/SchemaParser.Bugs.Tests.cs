@@ -3,19 +3,27 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Context;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SchemaParserBugsTests
+    public class SchemaParserBugsTests : IClassFixture<FunctionalUnitTestContext>
     {
+        private readonly FunctionalUnitTestContext _testContext;
+
+        public SchemaParserBugsTests(FunctionalUnitTestContext testContext)
+        {
+            _testContext = testContext;
+        }
+
         [Fact]
         public void SchemaParserBugs_Parse_Comment()
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var text = @"-- This is a comment { }";
 
 
@@ -33,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var text = @"Person = @node(Person:Doe/John)
             {
                 NickName = @node-set(""Johnny"")
@@ -63,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var text = @"Person = @node(Person:Doe/John)
             {
                 FirstName = @node-clear()

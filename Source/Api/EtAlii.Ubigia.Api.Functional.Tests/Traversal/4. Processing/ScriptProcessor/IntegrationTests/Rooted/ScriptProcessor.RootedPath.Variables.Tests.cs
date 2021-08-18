@@ -4,21 +4,22 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
     public class ScriptProcessorRootedPathVariablesTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private TraversalUnitTestContext _testContext;
+        private FunctionalUnitTestContext _testContext;
 
         public async Task InitializeAsync()
         {
-            _testContext = new TraversalUnitTestContext();
+            _testContext = new FunctionalUnitTestContext();
             await _testContext
                 .InitializeAsync()
                 .ConfigureAwait(false);
 
-            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
+            _parser = _testContext.CreateScriptParser();
         }
 
         public async Task DisposeAsync()

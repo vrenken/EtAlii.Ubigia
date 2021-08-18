@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person
             {
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person
             {
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person
             {
@@ -103,7 +103,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person
             {

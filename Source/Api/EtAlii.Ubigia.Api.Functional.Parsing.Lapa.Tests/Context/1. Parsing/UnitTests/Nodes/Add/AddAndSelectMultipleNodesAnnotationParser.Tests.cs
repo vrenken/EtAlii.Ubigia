@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class AddAndSelectMultipleNodesAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
+    public class AddAndSelectMultipleNodesAnnotationParserTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public AddAndSelectMultipleNodesAnnotationParserTests(TraversalUnitTestContext testContext)
+        public AddAndSelectMultipleNodesAnnotationParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -36,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/, Potsdam)";
 
@@ -58,8 +58,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/, ""Potsdam"")";
 
@@ -80,8 +80,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin, ""Potsdam"")";
 
@@ -102,8 +102,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_04()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/, ""Potsdam"")";
 
@@ -124,8 +124,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_05()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/, 'Potsdam')";
 
@@ -146,8 +146,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_06()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/, 'Potsdam')";
 
@@ -168,8 +168,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_07()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/,'Potsdam')";
 
@@ -191,8 +191,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task AddAndSelectMultipleNodesAnnotationParser_Parse_08()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IAddAndSelectMultipleNodesAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IAddAndSelectMultipleNodesAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes-add(location:DE/Berlin/,""Potsdam"")";
 

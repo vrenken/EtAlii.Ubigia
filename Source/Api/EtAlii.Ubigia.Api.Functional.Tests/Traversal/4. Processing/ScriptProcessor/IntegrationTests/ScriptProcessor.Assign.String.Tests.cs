@@ -4,17 +4,18 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class ScriptProcessorAssignStringUnitTests : IClassFixture<TraversalUnitTestContext>
+    public class ScriptProcessorAssignStringUnitTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
         private readonly IScriptParser _parser;
 
-        public ScriptProcessorAssignStringUnitTests(TraversalUnitTestContext testContext)
+        public ScriptProcessorAssignStringUnitTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
-            _parser = new TestScriptParserFactory().Create(testContext.ClientConfiguration);
+            _parser = testContext.CreateScriptParser();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -23,12 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var script = _parser.Parse("$var1 <= \"Time\"", scope).Script;
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
                 .ConfigureAwait(false);
-            var processor = new ScriptProcessorFactory().Create(options);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -43,12 +41,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1", scope).Script;
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
                 .ConfigureAwait(false);
-            var processor = new ScriptProcessorFactory().Create(options);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -64,12 +59,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"Location\"", scope).Script;
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
                 .ConfigureAwait(false);
-            var processor = new ScriptProcessorFactory().Create(options);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -85,12 +77,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <=", scope).Script;
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
                 .ConfigureAwait(false);
-            var processor = new ScriptProcessorFactory().Create(options);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);
@@ -107,12 +96,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Arrange.
             var scope = new ExecutionScope();
             var script = _parser.Parse("$var1 <= \"Time\"\r\n$var2 <= $var1\r\n$var1 <= \"\"", scope).Script;
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
                 .ConfigureAwait(false);
-            var processor = new ScriptProcessorFactory().Create(options);
 
             // Act.
             var lastSequence = await processor.Process(script, scope);

@@ -12,6 +12,27 @@ namespace EtAlii.Ubigia.Api.Functional.Context
             container.Register<IScriptProcessor, ScriptProcessor>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
+            container.RegisterInitializer<IScriptProcessingContext>((services, instance) =>
+            {
+                var pathProcessor = services.GetInstance<IPathProcessor>();
+                var pathSubjectToGraphPathConverter = services.GetInstance<IPathSubjectToGraphPathConverter>();
+
+                var absolutePathSubjectProcessor = services.GetInstance<IAbsolutePathSubjectProcessor>();
+                var relativePathSubjectProcessor = services.GetInstance<IRelativePathSubjectProcessor>();
+                var rootedPathSubjectProcessor = services.GetInstance<IRootedPathSubjectProcessor>();
+
+                var pathSubjectForOutputConverter = services.GetInstance<IPathSubjectForOutputConverter>();
+                var addRelativePathToExistingPathProcessor = services.GetInstance<IAddRelativePathToExistingPathProcessor>();
+
+                instance.Initialize(
+                    pathSubjectToGraphPathConverter,
+                    absolutePathSubjectProcessor,
+                    relativePathSubjectProcessor,
+                    rootedPathSubjectProcessor,
+                    pathProcessor,
+                    pathSubjectForOutputConverter,
+                    addRelativePathToExistingPathProcessor);
+            });
 
             container.Register<ISchemaProcessor, SchemaProcessor>();
 

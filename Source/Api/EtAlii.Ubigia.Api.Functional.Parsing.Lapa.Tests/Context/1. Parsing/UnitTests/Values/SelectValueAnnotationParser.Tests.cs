@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SelectValueAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
+    public class SelectValueAnnotationParserTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public SelectValueAnnotationParserTests(TraversalUnitTestContext testContext)
+        public SelectValueAnnotationParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -36,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task SelectValueAnnotationParser_Parse_Value_LastName()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node(\\LastName)";
 
@@ -57,8 +57,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task SelectValueAnnotationParser_Parse_Value()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node()";
 

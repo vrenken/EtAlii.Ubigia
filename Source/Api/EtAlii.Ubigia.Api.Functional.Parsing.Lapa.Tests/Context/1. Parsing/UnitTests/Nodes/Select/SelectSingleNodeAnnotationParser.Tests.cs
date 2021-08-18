@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class SelectSingleNodeAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
+    public class SelectSingleNodeAnnotationParserTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public SelectSingleNodeAnnotationParserTests(TraversalUnitTestContext testContext)
+        public SelectSingleNodeAnnotationParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectSingleNodeAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -36,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task SelectSingleNodeAnnotationParser_Parse_01()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectSingleNodeAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node(person:Doe/John)";
 
@@ -56,8 +56,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task SelectSingleNodeAnnotationParser_Parse_02()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectSingleNodeAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node(person:Doe/John )";
 
@@ -77,8 +77,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task SelectSingleNodeAnnotationParser_Parse_03()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<ISelectSingleNodeAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<ISelectSingleNodeAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node( person:Doe/John)";
 
@@ -93,6 +93,5 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             Assert.NotNull(nodeAnnotation);
             Assert.Equal("person:Doe/John", nodeAnnotation.Source.ToString());
         }
-
     }
 }

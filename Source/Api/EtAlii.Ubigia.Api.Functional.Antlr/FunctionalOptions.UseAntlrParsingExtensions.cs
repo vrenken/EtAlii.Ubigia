@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Antlr
 {
-    using EtAlii.Ubigia.Api.Functional.Antlr.Context;
     using EtAlii.Ubigia.Api.Functional.Antlr.Traversal;
 
     public static class GraphContextOptionsUseAntlrParsingExtension
@@ -18,7 +17,6 @@ namespace EtAlii.Ubigia.Api.Functional.Antlr
         {
             options.Use(new IFunctionalExtension[]
             {
-                new AntlrGraphContextExtension(options),
                 new AntrlParserExtension()
             });
 

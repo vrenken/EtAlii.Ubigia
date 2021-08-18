@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class NodeAnnotationsParserTests : IClassFixture<TraversalUnitTestContext>
+    public class NodeAnnotationsParserTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public NodeAnnotationsParserTests(TraversalUnitTestContext testContext)
+        public NodeAnnotationsParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -36,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node(Person:Stark/Tony)";
 
@@ -57,8 +57,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Add_Relative_Path()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-link(/Friends, Person:Doe/Jane, /Friends)";
 
@@ -80,8 +80,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Add_Whitespaces()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts, Pepper)";
 
@@ -102,8 +102,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Add_Tabs()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts\t, \tPepper)";
 
@@ -123,8 +123,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Add_Compact()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-add(Person:Potts, Pepper)";
 
@@ -145,8 +145,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Remove_Whitespaces()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts, Pepper)";
 
@@ -167,8 +167,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Remove_Tabs()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts\t, \tPepper)";
 
@@ -189,8 +189,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Node_Person_Remove_Compact()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = "@node-remove(Person:Potts, Pepper)";
 
@@ -211,8 +211,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task NodeAnnotationsParser_Parse_Nodes_Persons()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<INodeAnnotationsParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<INodeAnnotationsParser>()
                 .ConfigureAwait(false);
             var text = @"@nodes(Person:Doe/*)";
 

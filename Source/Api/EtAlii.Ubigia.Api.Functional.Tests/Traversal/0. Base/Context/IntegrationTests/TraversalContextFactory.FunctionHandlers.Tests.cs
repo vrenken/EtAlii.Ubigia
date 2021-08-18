@@ -4,13 +4,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
 
-    public class TraversalContextFactoryFunctionHandlersTests : IClassFixture<TraversalUnitTestContext>
+    public class TraversalContextFactoryFunctionHandlersTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public TraversalContextFactoryFunctionHandlersTests(TraversalUnitTestContext testContext)
+        public TraversalContextFactoryFunctionHandlersTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -20,12 +21,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create()
         {
             // Arrange.
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -35,12 +38,14 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task TraversalContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -53,13 +58,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -72,7 +79,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -80,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Act.
             var act = new Action(() =>
             {
-                new TraversalContextFactory().Create(options);
+                _testContext.CreateFunctional<ITraversalContext>(options);
             });
 
             // Assert.
@@ -98,13 +107,15 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
             // Act.
-            var scriptContext = new TraversalContextFactory().Create(options);
+            var scriptContext = _testContext.CreateFunctional<ITraversalContext>(options);
 
             // Assert.
             Assert.NotNull(scriptContext);
@@ -121,7 +132,9 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
+                .UseFunctionalDiagnostics()
                 .Use(functionHandlersProvider)
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
@@ -129,7 +142,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
             // Act.
             var act = new Action(() =>
             {
-                new TraversalContextFactory().Create(options);
+                _testContext.CreateFunctional<ITraversalContext>(options);
             });
 
             // Assert.

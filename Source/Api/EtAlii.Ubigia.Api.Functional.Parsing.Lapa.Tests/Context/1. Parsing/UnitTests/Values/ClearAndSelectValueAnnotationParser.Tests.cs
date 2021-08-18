@@ -4,16 +4,16 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Context;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using Xunit;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class ClearAndSelectValueAnnotationParserTests : IClassFixture<TraversalUnitTestContext>
+    public class ClearAndSelectValueAnnotationParserTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public ClearAndSelectValueAnnotationParserTests(TraversalUnitTestContext testContext)
+        public ClearAndSelectValueAnnotationParserTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -24,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
             // Arrange.
 
             // Act.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IClearAndSelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
 
             // Assert.
@@ -36,8 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ClearAndSelectValueAnnotationParser_Parse_Value_LastName()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IClearAndSelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(\\LastName)";
 
@@ -57,8 +57,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ClearAndSelectValueAnnotationParser_Parse_Value_NickName()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IClearAndSelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(NickName)";
 
@@ -78,8 +78,8 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         public async Task ClearAndSelectValueAnnotationParser_Parse_Value()
         {
             // Arrange.
-            var parser = await new LapaSchemaParserComponentTestFactory()
-                .Create<IClearAndSelectValueAnnotationParser>(_testContext)
+            var parser = await _testContext
+                .CreateFunctionalOnNewSpace<IClearAndSelectValueAnnotationParser>()
                 .ConfigureAwait(false);
             var text = @"@node-clear(//Weight)";
 

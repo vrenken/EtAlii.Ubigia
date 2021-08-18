@@ -101,11 +101,12 @@
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Logical\$(OutDir)\EtAlii.Ubigia.Api.Logical.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional\$(OutDir)\EtAlii.Ubigia.Api.Functional.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Functional.Antlr\$(OutDir)\EtAlii.Ubigia.Api.Functional.Antlr.dll" IncludeRuntimeDependency="false" />
+      <TargetPathWithTargetPlatformMoniker Include="..\EtAlii.Ubigia.Api.Transport\$(OutDir)\EtAlii.Ubigia.Api.Transport.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer\$(OutDir)\EtAlii.xTechnology.MicroContainer.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Threading\EtAlii.xTechnology.Threading\$(OutDir)\EtAlii.xTechnology.Threading.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics\$(OutDir)\EtAlii.xTechnology.Diagnostics.dll" IncludeRuntimeDependency="false" />
       <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections\$(OutDir)\EtAlii.xTechnology.Collections.dll" IncludeRuntimeDependency="false" />
-
+      <TargetPathWithTargetPlatformMoniker Include="..\..\Frameworks\HashLib\HashLib\$(OutDir)\HashLib.dll" IncludeRuntimeDependency="false" />
     </ItemGroup>
   </Target>
 

@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional.Traversal;
     using EtAlii.Ubigia.Api.Logical;
@@ -17,21 +16,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
         IRootHandlerMappersProvider IEditableFunctionalOptions.RootHandlerMappersProvider { get => RootHandlerMappersProvider; set => RootHandlerMappersProvider = value; }
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
-
-        public FunctionalOptions CreateScope()
-        {
-            // TODO: We should somehow convert this scope in one that replicates the generated ServiceCollection.
-            var extensions = Extensions
-                .Where(e => e is not CommonFunctionalExtension)
-                .ToArray();
-            return new FunctionalOptions(ConfigurationRoot)
-                .Use(this)
-                .Use(extensions)
-                .Use(FunctionHandlersProvider)
-                .Use(RootHandlerMappersProvider)
-                .Use(Connection)
-                .UseCaching(CachingEnabled);
-        }
 
         public FunctionalOptions(IConfigurationRoot configurationRoot)
             : base(configurationRoot)
@@ -50,12 +34,6 @@ namespace EtAlii.Ubigia.Api.Functional
             return this;
         }
 
-        // public FunctionalOptions Use(ExecutionScope scope)
-        // {
-        //     ExecutionScope = scope ?? throw new ArgumentException("No functional scope specified", nameof(scope));
-        //     return this;
-        // }
-
         public FunctionalOptions Use(IDataConnection dataConnection)
         {
             // LogicalContext = dataConnection ?? throw new ArgumentException("No data connection specified", nameof(dataConnection));
@@ -68,12 +46,5 @@ namespace EtAlii.Ubigia.Api.Functional
             // return UseCaching(logicalContext.Options.CachingEnabled);
             return this;
         }
-
-        // public FunctionalOptions Use(ITraversalContext traversalContext)
-        // {
-        //     TraversalContext = traversalContext ?? throw new ArgumentException("No traversal context specified", nameof(traversalContext));
-        //     return this;
-        // }
-        //
     }
 }

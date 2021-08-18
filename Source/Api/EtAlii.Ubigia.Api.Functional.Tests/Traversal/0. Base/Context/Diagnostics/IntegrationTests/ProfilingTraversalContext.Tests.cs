@@ -7,11 +7,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ProfilingTraversalContextTests : IClassFixture<TraversalUnitTestContext>, IAsyncLifetime
+    public class ProfilingTraversalContextTests : IClassFixture<FunctionalUnitTestContext>, IAsyncLifetime
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public ProfilingTraversalContextTests(TraversalUnitTestContext testContext)
+        public ProfilingTraversalContextTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

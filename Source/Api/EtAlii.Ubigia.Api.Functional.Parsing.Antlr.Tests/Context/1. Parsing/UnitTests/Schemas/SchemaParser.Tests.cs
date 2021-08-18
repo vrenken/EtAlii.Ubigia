@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Context;
     using Xunit;
 
     public partial class SchemaParserTests
@@ -13,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
 
             // Act.
             var parseResult = parser.Parse(queryText, scope);
@@ -38,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var text = @"-- This is a comment on the first line.
             -- And this is a comment on the second line.
             Person
@@ -61,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var text = @"[namespace=EtAlii.Namespace.Test]
             Person
             {

@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal
             where TFunctionalOptions : FunctionalOptions
         {
 #if USE_LAPA_PARSING_IN_TESTS
-            return options.UseLapaParsing);
+            return options.UseLapaParsing();
 #else
             return options.UseAntlrParsing();
 #endif

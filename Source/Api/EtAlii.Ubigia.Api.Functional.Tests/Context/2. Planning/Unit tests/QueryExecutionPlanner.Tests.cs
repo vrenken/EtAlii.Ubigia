@@ -4,32 +4,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Traversal;
-    using EtAlii.Ubigia.Api.Functional.Traversal.Tests;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     [CorrelateUnitTests]
-    public class QueryExecutionPlannerTests : IClassFixture<TraversalUnitTestContext>
+    public class QueryExecutionPlannerTests : IClassFixture<FunctionalUnitTestContext>
     {
-        private readonly TraversalUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
 
-        public QueryExecutionPlannerTests(TraversalUnitTestContext testContext)
+        public QueryExecutionPlannerTests(FunctionalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        private async Task<ISchemaExecutionPlanner> CreatePlanner()
-        {
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestParsing()
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
-
-            var container = new Container();
-            new CommonFunctionalExtension(options).Initialize(container);
-            return container.GetInstance<ISchemaExecutionPlanner>();
         }
 
         [Fact]
@@ -38,7 +24,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
             // Arrange.
 
             // Act.
-            var planner = await CreatePlanner().ConfigureAwait(false);
+            var planner = await _testContext
+                .CreateFunctionalOnNewSpace<ISchemaExecutionPlanner>()
+                .ConfigureAwait(false);
 
             // Assert.
             Assert.NotNull(planner);
@@ -49,8 +37,11 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
-            var planner = await CreatePlanner().ConfigureAwait(false);
+            var parser = _testContext.CreateSchemaParser();
+            var planner = await _testContext
+                .CreateFunctionalOnNewSpace<ISchemaExecutionPlanner>()
+                .ConfigureAwait(false);
+
 
             var queryText = @"
             Person = @node(person:Doe/John)

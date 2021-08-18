@@ -5,22 +5,23 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
     public class ScriptProcessorNonRootedPathAdvancedTests : IAsyncLifetime
     {
         private IScriptParser _parser;
-        private TraversalUnitTestContext _testContext;
+        private FunctionalUnitTestContext _testContext;
 
         public async Task InitializeAsync()
         {
-            _testContext = new TraversalUnitTestContext();
+            _testContext = new FunctionalUnitTestContext();
             await _testContext
                 .InitializeAsync()
                 .ConfigureAwait(false);
 
-            _parser = new TestScriptParserFactory().Create(_testContext.ClientConfiguration);
+            _parser = _testContext.CreateScriptParser();
         }
 
         public async Task DisposeAsync()
@@ -36,14 +37,11 @@ namespace EtAlii.Ubigia.Api.Functional.Traversal.Tests
         public async Task ScriptProcessor_NonRootedPath_Advanced_Create()
         {
             // Arrange.
-            var options = await new FunctionalOptions(_testContext.ClientConfiguration)
-                .UseTestProcessor()
-                .UseFunctionalDiagnostics()
-                .UseDataConnectionToNewSpace(_testContext, true)
-                .ConfigureAwait(false);
 
             // Act.
-            var processor = new ScriptProcessorFactory().Create(options);
+            var processor = await _testContext
+                .CreateScriptProcessorOnNewSpace()
+                .ConfigureAwait(false);
 
 
             // Assert.

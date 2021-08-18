@@ -10,17 +10,18 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class GraphContextCodeQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphContextCodeQueriesSimpleTests : IClassFixture<FunctionalUnitTestContext>, IAsyncLifetime
     {
         private IGraphContext _context;
-        private readonly QueryingUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
 
-        public GraphContextCodeQueriesSimpleTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
+        public GraphContextCodeQueriesSimpleTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;
@@ -36,8 +37,8 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
-            var traversalContext = new TraversalContextFactory().Create(_options);
-            _context = new GraphContextFactory().Create(_options);
+            var (graphContext, traversalContext) = _testContext.CreateFunctional<IGraphContext, ITraversalContext>(_options);
+            _context = graphContext;
 
             var scope = new ExecutionScope();
             await _testContext.Functional
@@ -85,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
                 .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .Use(_options.Connection);
-            var processor = new TestSchemaProcessorFactory().Create(options);
+            var processor = _testContext.CreateSchemaProcessor(options);
 
             // Act.
             var results = await processor
@@ -118,9 +119,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Person_By_Structure()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var person = await context
@@ -138,9 +139,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Persons_By_Structure_02()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var persons = await context
@@ -178,9 +179,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Person_By_Values()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var data = await context
@@ -199,9 +200,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Person_Nested_By_Structure()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var person = await context
@@ -221,9 +222,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Person_Nested_Double_By_Structure()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var person = await context
@@ -244,9 +245,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Persons_By_Structure_01()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var items = await context
@@ -277,9 +278,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCode_Query_Person_Friends()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var person = await context

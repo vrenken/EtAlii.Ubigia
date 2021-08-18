@@ -9,16 +9,17 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
     using Xunit;
     using Xunit.Abstractions;
     using EtAlii.Ubigia.Api.Functional.Context.Tests.Model;
+    using EtAlii.Ubigia.Api.Functional.Tests;
     using EtAlii.Ubigia.Tests;
 
     [CorrelateUnitTests]
-    public class GraphContextCodeQueriesVariableTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphContextCodeQueriesVariableTests : IClassFixture<FunctionalUnitTestContext>, IAsyncLifetime
     {
-        private readonly QueryingUnitTestContext _testContext;
+        private readonly FunctionalUnitTestContext _testContext;
         private readonly ITestOutputHelper _testOutputHelper;
         private FunctionalOptions _options;
 
-        public GraphContextCodeQueriesVariableTests(QueryingUnitTestContext testContext, ITestOutputHelper testOutputHelper)
+        public GraphContextCodeQueriesVariableTests(FunctionalUnitTestContext testContext, ITestOutputHelper testOutputHelper)
         {
             _testContext = testContext;
             _testOutputHelper = testOutputHelper;
@@ -28,13 +29,13 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         {
             var start = Environment.TickCount;
 
-            _options = await TraversalContextOptionsUseTestParsingExtension.UseTestParsing(new FunctionalOptions(_testContext.ClientConfiguration))
+            _options = await new FunctionalOptions(_testContext.ClientConfiguration)
+                .UseTestParsing()
                 .UseFunctionalDiagnostics()
                 .UseDataConnectionToNewSpace(_testContext, true)
                 .ConfigureAwait(false);
 
-            var traversalContext = new TraversalContextFactory()
-                .Create(_options);
+            var traversalContext = _testContext.CreateFunctional<ITraversalContext>(_options);
 
             var scope = new ExecutionScope();
             await _testContext.Functional
@@ -62,9 +63,9 @@ namespace EtAlii.Ubigia.Api.Functional.Context.Tests
         public async Task GraphContextCodeQueries_Query_Person_By_Variables()
         {
             // Arrange.
-            var processor = new TestSchemaProcessorFactory();
-            var parser = new TestSchemaParserFactory();
-            var context = new GraphContext(_options, processor, parser);
+            var processor = _testContext.CreateSchemaProcessor(_options);
+            var parser = _testContext.CreateSchemaParser();
+            var context = new GraphContext(processor, parser);
 
             // Act.
             var person = await context

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var annotatedRootPersonText = @"
             Person = @node(person:Stephenson/Sabrina)
             {
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var annotatedRootPersonText = @"
             Person
             {
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var annotatedRootPersonText = @"
             Person
             {
@@ -116,7 +116,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(Person:Doe/John)
             {
@@ -145,7 +145,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(Person:Doe/John)
             {
@@ -174,7 +174,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(Person:Doe/John)
             {
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(person:Doe/John)
             {
@@ -229,7 +229,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(person:Doe/John)
             {
@@ -265,7 +265,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var normalPersonText = @"
             Person = @node(person:Doe/John)
             {
@@ -301,7 +301,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var queryText = @"Person = @nodes(Person:Stark/Tony)
                                {
                                     Data
@@ -338,7 +338,7 @@ namespace EtAlii.Ubigia.Api.Functional.Parsing.Tests
         {
             // Arrange.
             var scope = new ExecutionScope();
-            var parser = new TestSchemaParserFactory().Create();
+            var parser = _testContext.CreateSchemaParser();
             var queryText = @"
             Person = @node(person:Doe/John)
             {

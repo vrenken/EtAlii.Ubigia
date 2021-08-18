@@ -9,33 +9,22 @@ namespace EtAlii.Ubigia.Api.Functional.Context
     /// <inheritdoc />
     internal partial class GraphContext : IGraphContext
     {
-        private readonly FunctionalOptions _options;
-        private readonly ISchemaProcessorFactory _schemaProcessorFactory;
-        private readonly ISchemaParserFactory _schemaParserFactory;
+        private readonly ISchemaProcessor _schemaProcessor;
+        private readonly ISchemaParser _schemaParser;
 
         public GraphContext(
-            FunctionalOptions options,
-            ISchemaProcessorFactory schemaProcessorFactory,
-            ISchemaParserFactory schemaParserFactory)
+            ISchemaProcessor schemaProcessor,
+            ISchemaParser schemaParser)
         {
-            _options = options;
-            _schemaProcessorFactory = schemaProcessorFactory;
-            _schemaParserFactory = schemaParserFactory;
+            _schemaProcessor = schemaProcessor;
+            _schemaParser = schemaParser;
         }
 
         /// <inheritdoc />
-        SchemaParseResult IGraphContext.Parse(string text, ExecutionScope scope)
-        {
-            var parser = _schemaParserFactory.Create(_options);
-            return parser.Parse(text, scope);
-        }
+        SchemaParseResult IGraphContext.Parse(string text, ExecutionScope scope) => _schemaParser.Parse(text, scope);
 
         /// <inheritdoc />
-        IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ExecutionScope scope)
-        {
-            var processor = _schemaProcessorFactory.Create(_options);
-            return processor.Process(schema, scope);
-        }
+        IAsyncEnumerable<Structure> IGraphContext.Process(Schema schema, ExecutionScope scope) => _schemaProcessor.Process(schema, scope);
 
         /// <inheritdoc />
         IAsyncEnumerable<Structure> IGraphContext.Process(string[] text, ExecutionScope scope)
